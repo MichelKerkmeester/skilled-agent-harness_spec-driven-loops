@@ -10,7 +10,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`stress-test/substrate/` holds pure-logic stress coverage: cases that put the package's validation rules under volume without spawning a process or opening a database. Keeping them pure is deliberate — process startup adds noise that swamps the signal these cases exist to produce.
+`stress-test/substrate/` holds pure-logic stress coverage: cases that put the package's validation rules under volume without spawning a process or opening a database. Keeping them pure is deliberate: process startup adds noise that swamps the signal these cases exist to produce.
 
 ---
 

@@ -31,7 +31,7 @@ version: 1.1.0.0
 
 ### Why This Skill Exists
 
-Mobbin holds one of the largest libraries of real app UI screenshots. It exposes that library through a paid hosted MCP. Reaching it from a coding agent without a written contract is risky in specific, documented ways. Live pre-auth discovery on 2026-07-16 listed exactly three read-only search tools, so an agent that guesses beyond them invents tools that do not exist. The auth model invites a worse guess: there is no API key, only browser OAuth, so a helper that wires a `MOBBIN_API_KEY` env var fabricates a credential path the provider never published. This README records the wiring truth, the three-tool contract, the auth expectations and the boundary that this transport produces no design tokens or Style Reference of its own — `sk-design-md-generator` is the measured-extraction companion for that.
+Mobbin holds one of the largest libraries of real app UI screenshots. It exposes that library through a paid hosted MCP. Reaching it from a coding agent without a written contract is risky in specific, documented ways. Live pre-auth discovery on 2026-07-16 listed exactly three read-only search tools, so an agent that guesses beyond them invents tools that do not exist. The auth model invites a worse guess: there is no API key, only browser OAuth, so a helper that wires a `MOBBIN_API_KEY` env var fabricates a credential path the provider never published. This README records the wiring truth, the three-tool contract, the auth expectations and the boundary that this transport produces no design tokens or Style Reference of its own: `sk-design-md-generator` is the measured-extraction companion for that.
 
 ### What It Does
 

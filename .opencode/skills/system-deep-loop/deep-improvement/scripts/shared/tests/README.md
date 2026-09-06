@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The deep-improvement Vitest suites are **co-located with the lane each one covers**: a suite that exercises `agent-improvement/` lives in `agent-improvement/tests/`, a suite for `model-benchmark/` lives in `model-benchmark/tests/`, and so on. Suites that cover `shared/` or `lib/` helpers — plus the cross-lane fixtures and this index — live in `shared/tests/`.
+The deep-improvement Vitest suites are **co-located with the lane each one covers**: a suite that exercises `agent-improvement/` lives in `agent-improvement/tests/`, a suite for `model-benchmark/` lives in `model-benchmark/tests/`, and so on. Suites that cover `shared/` or `lib/` helpers, plus the cross-lane fixtures and this index, live in `shared/tests/`.
 
 Current state:
 

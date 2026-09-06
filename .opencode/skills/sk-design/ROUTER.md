@@ -12,7 +12,7 @@ router_state: active
 skill_pointer: SKILL.md
 ---
 
-# sk-design — stage two
+# sk-design Surface Router — per-intent leaf sets
 
 ## 1. OVERVIEW
 
@@ -30,10 +30,36 @@ An intent that matches nothing here is a gap to report, not a reason to load eve
 ## 2. INTENT MODEL
 
 Five intents across four modes. The split is real rather than decorative: deciding a value, judging
-a surface against values, and reading values back off a surface that already exists all load
-different things.
+a surface against values, authoring a chart canvas, authoring a diagram canvas, and reading values
+back off a surface that already exists all load different things.
+
+| Intent | Mode | What the request is asking for |
+|--------|------|-------------------------------|
+| `VALUES` | `sk-design-fundamentals` | Decide a value for something that does not exist yet |
+| `REVIEW` | `sk-design-fundamentals` | Judge a surface that does exist against those values |
+| `CHART` | `sk-design-chart` | Author a data canvas: one file, one question a reader answers by looking |
+| `FLOWCHART` | `sk-design-diagram` | Author a process canvas, in markup or in text characters |
+| `EXTRACT` | `sk-design-md-generator` | Read values back off a surface that already exists |
+
+`VALUES` and `REVIEW` share a mode because they share its references; they stay separate intents
+because they load different ones.
+
+---
+
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
+
+The single machine-readable projection of the intent model above. The prose is the human-facing
+contract; this block is the byte-for-byte source the deterministic router-replay parses. Keep them in
+sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here. Every
+`RESOURCE_MAP` path resolves on disk and is registered in `leaf-manifest.json`, so each dual-reads to
+a canonical typed pair.
 
 ```python
+# No always-loaded preamble: a design request loads only the selected mode's
+# leaves, so the hub default route stays minimal and a no-match disambiguates
+# rather than pulling four modes' references into context.
+DEFAULT_RESOURCE = []
+
 INTENT_SIGNALS = {
     "VALUES": {"weight": 4, "keywords": ["padding", "spacing", "margin", "gutter", "type scale", "typography", "font size", "colour", "color", "contrast", "contrast ratio", "radius", "corner radius", "elevation", "shadow", "hierarchy", "visual hierarchy", "what should this look like"]},
     "REVIEW": {"weight": 4, "keywords": ["design review", "does this look right", "critique this", "visual audit", "ux laws", "accessibility contrast", "review this screen", "why does this look wrong"]},
@@ -72,9 +98,18 @@ RESOURCE_MAP = {
 
 ---
 
-## 3. HOW TO READ THIS
+## 4. HOW TO READ THIS
 
-A mode is chosen by `hub-router.json`, not here. This document only answers what that mode loads.
-A mode entry is loaded because the registry named the mode, not from here. This map lists leaves,
-which is why no `SKILL.md` appears in it. Load what a row resolves and nothing more; a resource
-already in context is not re-read.
+- A mode is chosen by `hub-router.json`, not here. This document only answers what that mode loads.
+- One dominant intent routes to one mode's leaf set.
+- Two near-tied intents (within the ambiguity delta) route to both leaf sets; the union is deduped by
+  canonical pair and capped at the selected-map union limit. `CHART` and `FLOWCHART` are the pair most
+  likely to tie, because a request to visualise something rarely says which canvas it wants.
+- `VALUES` and `REVIEW` resolve to the same mode. A tie between them is not ambiguity to escalate; it
+  is one mode loading both leaf sets.
+- This map lists leaves, which is why no `SKILL.md` appears in it. A mode entry is loaded because the
+  registry named the mode, not from here.
+- Load what a row resolves and nothing more; a resource already in context is not re-read.
+- No keyword match is the hub's UNKNOWN fallback: report the gap and confirm the target mode before
+  loading anything. An intent that matches nothing here is a gap to report, not a reason to load
+  everything.

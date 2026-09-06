@@ -15,7 +15,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`git-worktree-guard/` is the index for the SessionStart guard that warns when a top-level AI session is running directly on the shared checkout instead of an isolated worktree. Concurrent AI sessions on one shared working tree can collide — shared working files and shared MCP databases — so the repo's model is one worktree per session. This guard detects the off-model state and surfaces a one-line warning naming the branch and the isolation command, so the operator knows to launch the next session through `worktree-session.sh`.
+`git-worktree-guard/` is the index for the SessionStart guard that warns when a top-level AI session is running directly on the shared checkout instead of an isolated worktree. Concurrent AI sessions on one shared working tree can collide, shared working files and shared MCP databases, so the repo's model is one worktree per session. This guard detects the off-model state and surfaces a one-line warning naming the branch and the isolation command, so the operator knows to launch the next session through `worktree-session.sh`.
 
 It is the detect-and-warn companion to `worktree-session.sh`. A SessionStart hook cannot relocate an already-started process into a worktree, but it can warn. It is intentionally non-fatal: it prints one line to stderr and always exits 0, so it never blocks a session the operator chose to run there.
 
@@ -28,7 +28,7 @@ One real script backs all four editor runtimes; the per-runtime entries are rela
 On each SessionStart, `worktree-guard.sh`:
 
 1. Checks the caller-side silence switch (`SPECKIT_WORKTREE_GUARD=off`) and the shared kill-switch (the legacy `SYSTEM_WORKTREE_GUARD_DISABLED` alias, then `hook_enabled git-worktree-guard`; fail-open if the resolver is absent). Either disabled → exit 0.
-2. Skips orchestrated children (`AI_SESSION_CHILD=1`) — they are expected to share the parent's tree, so they never warn.
+2. Skips orchestrated children (`AI_SESSION_CHILD=1`): they are expected to share the parent's tree, so they never warn.
 3. Resolves `git-dir` and `git-common-dir`. Not a git repo → exit 0. Inside a linked worktree (`git-dir != git-common-dir`) → already isolated, exit 0 with no warning.
 4. Otherwise prints one warning line to stderr:
 

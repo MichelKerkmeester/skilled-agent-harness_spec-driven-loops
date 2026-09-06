@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/graph/` owns one generated artifact: the `graph-metadata.json` a spec folder carries beside its documents. Four modules cover its full life — a schema that says what the file may contain, a parser that derives runtime fields from it, a drift gate that proves the file still matches the documents it summarizes, and a telemetry store that keeps read-time signals out of the file entirely.
+`lib/graph/` owns one generated artifact: the `graph-metadata.json` a spec folder carries beside its documents. Four modules cover its full life: a schema that says what the file may contain, a parser that derives runtime fields from it, a drift gate that proves the file still matches the documents it summarizes, and a telemetry store that keeps read-time signals out of the file entirely.
 
 The separation is the point. A generated file that changes on every read cannot be checked against its sources, because its fingerprint moves for reasons that have nothing to do with content. So the parser derives, the drift gate reads and reports without ever writing, and access events land in a sidecar store.
 
@@ -36,7 +36,7 @@ The separation is the point. A generated file that changes on every read cannot 
 | Drift gate never writes | A gate that repairs what it measures cannot report honestly on the next run. |
 | Severity resolved by the caller | The same check backs both the grandfather report rollout and the enforced run; only the caller knows which it is. |
 | Best-effort telemetry writes | An unwritable store leaves the generated file byte-identical rather than failing a read. |
-| Closed status set in one place | Prose statuses ("shipped — see summary") are rejected at the boundary instead of being admitted as any non-empty string. |
+| Closed status set in one place | Prose statuses ("shipped: see summary") are rejected at the boundary instead of being admitted as any non-empty string. |
 
 ---
 

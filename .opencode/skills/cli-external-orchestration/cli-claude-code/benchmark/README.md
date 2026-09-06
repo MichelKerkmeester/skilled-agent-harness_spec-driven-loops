@@ -27,13 +27,13 @@ The first entry in this tree is **not** a Lane C harness run. It is a hand-autho
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | doc | SKIP | derived-after-the-fact (hand-authored, not a harness run) | Claude Code's native `/goal` has no cross-runtime adapter and no headless dispatch surface — see `CC-029` |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | doc | SKIP | derived-after-the-fact (hand-authored, not a harness run) | Claude Code's native `/goal` has no cross-runtime adapter and no headless dispatch surface, see `CC-029` |
 
 ---
 
 ## 3. RE-RUNNING
 
-The entry in section 2 has no re-run command. It is a hand-authored documentation derivation of scenario `CC-029` from the goal-hook manual-testing-playbook corpus, not a Lane C harness invocation — there is nothing to dispatch, because Claude Code's native `/goal` is a first-party product surface with no cross-runtime hook state or headless entry point this repo can score.
+The entry in section 2 has no re-run command. It is a hand-authored documentation derivation of scenario `CC-029` from the goal-hook manual-testing-playbook corpus, not a Lane C harness invocation: there is nothing to dispatch, because Claude Code's native `/goal` is a first-party product surface with no cross-runtime hook state or headless entry point this repo can score.
 
 For a future live Lane C run against `cli-claude-code`'s other scenarios, run from the repository root:
 
@@ -44,7 +44,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
   --trace-mode=router
 ```
 
-Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder and a new row in section 2 — never overwrite an existing run-label.
+Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder and a new row in section 2: never overwrite an existing run-label.
 
 ---
 

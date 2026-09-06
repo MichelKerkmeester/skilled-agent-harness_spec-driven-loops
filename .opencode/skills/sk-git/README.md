@@ -118,9 +118,9 @@ RESERVED        := "main"
 WRAPPER         := "work/" RUNTIME "/" SLUG          (launch-wrapper lane, exempt)
 ```
 
-Two flat spec-style namespaces — `worktrees/` and `branches/` — keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused; deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
+Two flat spec-style namespaces, `worktrees/` and `branches/`, keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused; deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
 
-`BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers — `git status`/fsmonitor, Git GUIs, sync clients — stop scanning every worktree's `node_modules` on each pass. The allocator, launch wrapper, and reaper all resolve this base; `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate. Number allocation is location-independent — relocating the base can never reissue a live number.
+`BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass. The allocator, launch wrapper, and reaper all resolve this base; `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate. Number allocation is location-independent: relocating the base can never reissue a live number.
 
 ### The Number Allocator And Its Lock
 

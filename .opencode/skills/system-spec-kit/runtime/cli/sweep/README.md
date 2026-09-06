@@ -26,7 +26,7 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
 - `.github/workflows/strict-pass-freshness-report.yml` runs this script weekly and reports.
   It does not gate. Merge-blocking lives in `changed-packet-validation.yml`, which is
   scoped to the packets a pull request changed; this sweep exists for the case that gate
-  cannot see — a toolchain change breaking packets no pull request touched.
+  cannot see: a toolchain change breaking packets no pull request touched.
 - `.opencode/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh` shares the same pass/fail classification vocabulary.
 
 ---

@@ -19,8 +19,8 @@ trigger_phrases:
 
 The deep-improvement Lane C harness benchmarks `system-deep-loop` against its own `manual_testing_playbook` scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). Two trace modes score the same corpus:
 
-- **router** — deterministic and offline: replays `hub-router.json` + `mode-registry.json` per scenario. This is the CI gate and the mode used for the baseline here.
-- **live** — dispatches each scenario through `cli-opencode` to a real model and grades stated routing plus observed activation. Operator default for a true routing verdict; also the only mode that scores D1-inter (advisor), D4, and the browser-class scenarios.
+- **router**: deterministic and offline: replays `hub-router.json` + `mode-registry.json` per scenario. This is the CI gate and the mode used for the baseline here.
+- **live**: dispatches each scenario through `cli-opencode` to a real model and grades stated routing plus observed activation. Operator default for a true routing verdict; also the only mode that scores D1-inter (advisor), D4, and the browser-class scenarios.
 
 Note: the harness itself lives inside this hub (`deep-improvement/scripts/skill-benchmark/`), so `system-deep-loop` benchmarks itself with the same Lane C tooling every other hub uses; there is no special-casing.
 
@@ -37,7 +37,7 @@ Note: the harness itself lives inside this hub (`deep-improvement/scripts/skill-
 
 ### Known measurement gaps in this baseline
 
-- **D3 efficiency scores 6/100 in router mode** for this corpus — a Mode-A measurement gap, not a routing failure: every routing scenario passes its replay. Treat D3 movement as meaningful only between runs of the same mode and corpus shape.
+- **D3 efficiency scores 6/100 in router mode** for this corpus: a Mode-A measurement gap, not a routing failure: every routing scenario passes its replay. Treat D3 movement as meaningful only between runs of the same mode and corpus shape.
 - **D1-inter and D4 are unscored** in router mode by design (need live mode / `--d4`).
 - **The four MR mode-routing scenarios route out to browser class** by the harness `classifyKind` heuristic (the `MR` prefix is treated as browser-class, matching how every hub's `MR-*` scenarios behave). They are scored only in live mode; the router aggregate is computed over the 16 text-scorable scenarios.
 
@@ -49,7 +49,7 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 
 | Run label | What it is | Verdict/Status | Evidence |
 |---|---|---|---|
-| [`baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot, router mode — the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./reports/baseline/skill-benchmark-report.md) |
+| [`baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot, router mode: the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./reports/baseline/skill-benchmark-report.md) |
 
 ---
 
@@ -63,12 +63,12 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
   --output /tmp/dlw-bench/report.json
 ```
 
-Compare against `baseline/skill-benchmark-report.json`. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add new baselines as sibling folders (e.g. `after/`, `live/`) rather than overwriting `baseline/` — the baseline is the frozen comparison anchor.
+Compare against `baseline/skill-benchmark-report.json`. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add new baselines as sibling folders (e.g. `after/`, `live/`) rather than overwriting `baseline/`: the baseline is the frozen comparison anchor.
 
 ---
 
 ## 4. COMPILED-ROUTING ARCHIVE
 
-Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
 Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

@@ -9,15 +9,15 @@ trigger_phrases:
 
 # mobbin-mcp
 
-> The hosted remote Mobbin MCP for the mcp-mobbin skill. Nothing is installed here and nothing can be: the provider is a hosted service with no local source, and the local `mobbin` manual is registered in `.utcp_config.json` — this folder is a pointer, not a vendored server.
+> The hosted remote Mobbin MCP for the mcp-mobbin skill. Nothing is installed here and nothing can be: the provider is a hosted service with no local source, and the local `mobbin` manual is registered in `.utcp_config.json`: this folder is a pointer, not a vendored server.
 
 ---
 
 ## 1. OVERVIEW
 
-The Mobbin MCP is a **remote, paid, hosted** design-research service at `https://api.mobbin.com/mcp` (provider transport: **Streamable HTTP**), exposing one publicly documented tool, `search_screens`. The official repository (`mobbin/mobbin-mcp-server`, manifest identity `com.mobbin/mobbin` v1.0.1) contains registration and metadata artifacts only — README, `mcp.json`, `server.json`, `rules/`, `.cursor-plugin/` — so there is no server to clone, build, or install, and this folder holds only this pointer.
+The Mobbin MCP is a **remote, paid, hosted** design-research service at `https://api.mobbin.com/mcp` (provider transport: **Streamable HTTP**), exposing one publicly documented tool, `search_screens`. The official repository (`mobbin/mobbin-mcp-server`, manifest identity `com.mobbin/mobbin` v1.0.1) contains registration and metadata artifacts only, README, `mcp.json`, `server.json`, `rules/`, `.cursor-plugin/`, so there is no server to clone, build, or install, and this folder holds only this pointer.
 
-The local wiring is **registered**: a `mobbin` manual launching `npx -y mcp-remote https://api.mobbin.com/mcp` over stdio with an empty `env`, applied to `.utcp_config.json` on 2026-07-16 (operator-owned; reference shape kept in [`../../assets/utcp-mobbin-manual.md`](../../assets/utcp-mobbin-manual.md)). Discovery pends a fresh Code Mode session; OAuth pends the operator. Access is plan-gated (Pro, Team, or Enterprise; Free has no MCP access) and authenticated by **browser OAuth only** — no API key exists for MCP; unauthenticated requests return HTTP 401. Auth state persists under `~/.mcp-auth` and is never touched by the skill. The service enforces 60 requests per 60 seconds per user.
+The local wiring is **registered**: a `mobbin` manual launching `npx -y mcp-remote https://api.mobbin.com/mcp` over stdio with an empty `env`, applied to `.utcp_config.json` on 2026-07-16 (operator-owned; reference shape kept in [`../../assets/utcp-mobbin-manual.md`](../../assets/utcp-mobbin-manual.md)). Discovery pends a fresh Code Mode session; OAuth pends the operator. Access is plan-gated (Pro, Team, or Enterprise; Free has no MCP access) and authenticated by **browser OAuth only**: no API key exists for MCP; unauthenticated requests return HTTP 401. Auth state persists under `~/.mcp-auth` and is never touched by the skill. The service enforces 60 requests per 60 seconds per user.
 
 ---
 
@@ -31,7 +31,7 @@ const tools = await list_tools();
 const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 ```
 
-Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_info()` returns a concrete schema — both work pre-auth (confirmed 2026-07-16: three tools listed, `mobbin.mobbin.{search_screens,search_flows,search_sections}`; fixture `references/discovery-fixture-2026-07-16.json`). Authenticated CALLS still require completed operator OAuth on a paid account. Fail closed if tools are missing, renamed, or expanded beyond the fixture three-tool baseline, and refuse any mutation-capable tool.
+Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_info()` returns a concrete schema: both work pre-auth (confirmed 2026-07-16: three tools listed, `mobbin.mobbin.{search_screens,search_flows,search_sections}`; fixture `references/discovery-fixture-2026-07-16.json`). Authenticated CALLS still require completed operator OAuth on a paid account. Fail closed if tools are missing, renamed, or expanded beyond the fixture three-tool baseline, and refuse any mutation-capable tool.
 
 ---
 
@@ -52,7 +52,7 @@ Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_
 | What You See | Cause | Fix |
 |---|---|---|
 | No `mobbin.*` tools in Code Mode | Session predates the registration (manuals load at startup), OAuth incomplete, or the registration broke | Reconnect Code Mode in a fresh session, then re-run discovery; a missing manual is escalated to the operator |
-| HTTP 401 on every call | Not authenticated; the empty `env` is correct, not the problem | Operator completes browser OAuth on a paid account. Never add an API key — none exists |
+| HTTP 401 on every call | Not authenticated; the empty `env` is correct, not the problem | Operator completes browser OAuth on a paid account. Never add an API key, none exists |
 | Callable name differs from the fixture baseline | Provider surface drift since the 2026-07-16 discovery | Use the name `tool_info` returns; fail closed, save a fresh dated fixture, and update the packet docs |
 | HTTP 429 | 60 requests / 60 seconds / user exceeded | Honor `Retry-After`, then exponential backoff with jitter |
 

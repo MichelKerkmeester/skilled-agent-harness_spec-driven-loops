@@ -1,4 +1,4 @@
-# sk-design styles — extracted from Refero
+# sk-design styles, extracted from Refero
 
 ## 1. OVERVIEW
 
@@ -23,6 +23,6 @@ node .opencode/skills/sk-design-md-generator/styles/lib/engine/style-library.mjs
 
 **Extracted: 1290 of 1,290 styles** (0 errors).
 
-The full per-style index (1,290 bundles) lives under [`library/bundles/`](library/bundles/) — one
-`<slug>/` folder per style — with the index contract and freshness fingerprints in
+The full per-style index (1,290 bundles) lives under [`library/bundles/`](library/bundles/): one
+`<slug>/` folder per style: with the index contract and freshness fingerprints in
 [`library/manifests/`](library/manifests/) (see `retrieval-manifest.json`).

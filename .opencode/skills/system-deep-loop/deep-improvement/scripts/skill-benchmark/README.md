@@ -1,6 +1,6 @@
 ---
 title: "skill-benchmark: Lane C benchmark scripts"
-description: "Lane C scripts that benchmark a skill's real-world routing, discovery, efficiency, and usefulness — parse its playbook into gold, dispatch per scenario, score D1-D5, and render a dual report."
+description: "Lane C scripts that benchmark a skill's real-world routing, discovery, efficiency, and usefulness: parse its playbook into gold, dispatch per scenario, score D1-D5, and render a dual report."
 trigger_phrases:
   - "skill benchmark scripts"
   - "run-skill-benchmark"
@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill-benchmark/` owns the Lane C (skill-benchmark) executables: benchmark a target skill's live routing, discovery, efficiency, and usefulness against its own authored `manual_testing_playbook`, then score the result on five dimensions and render a dual machine/human report. Private gold never crosses the dispatch boundary — scenarios are dispatched on a public prompt and joined back to gold only at scoring time.
+`skill-benchmark/` owns the Lane C (skill-benchmark) executables: benchmark a target skill's live routing, discovery, efficiency, and usefulness against its own authored `manual_testing_playbook`, then score the result on five dimensions and render a dual machine/human report. Private gold never crosses the dispatch boundary: scenarios are dispatched on a public prompt and joined back to gold only at scoring time.
 
 Current state:
 
@@ -101,7 +101,7 @@ skill-benchmark/
 |---|---|
 | `run-skill-benchmark.cjs` | Lane C orchestrator. Resolves the target skill root, runs the D5 connectivity gate FIRST, loads scenarios, contamination-lints each public prompt, dispatches, aggregates, writes `report.json` and renders `report.md`. Exports `run`, `augmentWithD4R`, `resolveSkillRoot`, `loadFixtures`. |
 | `d5-connectivity.cjs` | Static structural scan and D5 hard gate. Runs before any dispatch and caps the verdict regardless of weighted score: catches dead RESOURCE_MAP routes, dead intent keys, paths escaping the skill root, and orphan references (reported, not gated). An unparseable router is the strongest gate failure. Exports `scanConnectivity`, `listMarkdownRefs`. |
-| `load-playbook-scenarios.cjs` | Corpus loader. Parses a skill's `manual_testing_playbook` (sk-code root-index shape and sk-doc per-scenario frontmatter shape) into one normalized scenario shape with gold AS AUTHORED — a stale path is a finding, not a silent drop. Exports `loadPlaybookScenarios`, `classifyKind`, `extractPaths`, `parseRootIndex`. |
+| `load-playbook-scenarios.cjs` | Corpus loader. Parses a skill's `manual_testing_playbook` (sk-code root-index shape and sk-doc per-scenario frontmatter shape) into one normalized scenario shape with gold AS AUTHORED: a stale path is a finding, not a silent drop. Exports `loadPlaybookScenarios`, `classifyKind`, `extractPaths`, `parseRootIndex`. |
 | `executor-dispatch.cjs` | The seam between orchestrator and executors. Routes `classKind` routing/advisor + trace-mode router→`router-replay`, +live→`live-executor`, browser→`browser-executor`, and normalizes each into one observed-result the scorer consumes. Lazy-requires live/browser siblings. Exports `dispatchScenario`. |
 | `router-replay.cjs` | Mode A deterministic in-skill smart-router replay. Extracts INTENT_SIGNALS + RESOURCE_MAP from the target SKILL.md and reproduces its substring-scoring semantics. Exit 0 on replay, 2 on unparseable router. Exports `routeSkillResources`, `parseRouter`, `scoreIntents`, `selectIntents`. |
 | `live-executor.cjs` | Mode B live executor via `opencode run`. Runs routing/advisor scenarios as routing-ANALYSIS prompts, reads back stated routing + tool_use corroboration, normalizes to the observed-result shape. Self-contained dispatch (no `--agent`, uses `--format json`). Exports `runLiveScenario`, `parseLiveResult`, `buildLiveDispatchPrompt`, `runDispatch`, and parsing helpers. |
@@ -110,8 +110,8 @@ skill-benchmark/
 | `build-report.cjs` | The ONLY writer of `report.md`. Renders the human markdown FROM the `report.json` object (anti-drift); accepts no score arguments. Exports `renderReport`. |
 | `d4-ablation.cjs` | D4 usefulness ablation. Holds the D4 hallucination delta (skill-ON vs skill-OFF, graded by the Lane B grader) AND the opt-in `--d4` D4-R task-outcome ablation that grades a real change with the task-outcome rubric and reports it as the advisory `D4_task_outcome` (never collapsed into D4). Skill-OFF is approximate; scores stamp `attribution: "approximate"`. Exports `runD4Ablation`, `gradeAblation`, `runD4RAblation`, `gradeTaskOutcome`, and prompt builders. |
 | `contamination-lint.cjs` | Pre-dispatch hint-free gate. Reuses the routers' own lowercased-substring match logic so "hint-free" is judged by the same mechanism that could be gamed. Banned vocabulary is built from the skill's identity (name/id, triggers, router keywords, intent keys, resource segments) and the private gold labels. A hard leak is a FIXTURE failure. Exports `buildBannedVocab`, `lintFixture`, `frontmatterTriggers`. |
-| `advisor-probe.cjs` | D1-inter signal: does the skill-advisor route a domain prompt to the target skill? Runs the in-repo Python advisor CLI over the PUBLIC prompt (deterministic — reads the compiled SQLite skill graph), opt-in via `--advisor-mode=python`. Exports `probeAdvisor`, `scoreD1Inter`, `DEFAULT_ADVISOR_PY`. |
-| `playbook-generator.cjs` | Opt-in staged scenario generator for skills with thin coverage. NEVER writes the live playbook — writes only to `manual-testing-playbook/_generated_staging/` and emits a promoteHint. Generated scenarios are tier `T1-auto` and must pass contamination, parser round-trip, structural, and self-consistency gates. Exports `generatePlaybook`, `analyzeCoverage`, `validateGenerated`, `renderScenarioMarkdown`. |
+| `advisor-probe.cjs` | D1-inter signal: does the skill-advisor route a domain prompt to the target skill? Runs the in-repo Python advisor CLI over the PUBLIC prompt (deterministic: reads the compiled SQLite skill graph), opt-in via `--advisor-mode=python`. Exports `probeAdvisor`, `scoreD1Inter`, `DEFAULT_ADVISOR_PY`. |
+| `playbook-generator.cjs` | Opt-in staged scenario generator for skills with thin coverage. NEVER writes the live playbook: writes only to `manual-testing-playbook/_generated_staging/` and emits a promoteHint. Generated scenarios are tier `T1-auto` and must pass contamination, parser round-trip, structural, and self-consistency gates. Exports `generatePlaybook`, `analyzeCoverage`, `validateGenerated`, `renderScenarioMarkdown`. |
 | `_args.cjs` | Shared space-form arg parser for Lane C (`--skill <v> --outputs-dir <v> ...`); bare flags become boolean true. Exports `parse`. |
 | `tests/` | Lane C vitest suites: `skill-benchmark.vitest.ts`, `playbook-mode.vitest.ts`, `sk-code-router-sync.vitest.ts`. |
 
@@ -177,7 +177,7 @@ Main flow:
 
 Mode A consumes every authored `expected_intent`/`expected_resources` assertion as hard route gold: intent gold is an exact-set assertion (the rejection labels `none`/`defer`/`UNKNOWN` assert the empty intent set), resource gold is an exact-assembly assertion for frontmatter (sk-doc-shape) corpora and a must-include + no-forbidden-prefix assertion for sk-code-shape corpora. A present-but-unparseable gold block is a LOUD counted parse failure, never a silent skip. The report always records the flag state, row count, matches, and per-scenario violation detail under `routeGold`; when the gate is enforced, any violation (including a parse failure) flips the verdict to `BLOCKED-BY-ROUTE-GOLD` and the process exits 3.
 
-- `auto` (default): enforced when the target skill is hub-type (ships a `hub-router.json`), off otherwise — existing non-hub baselines keep their meaning.
+- `auto` (default): enforced when the target skill is hub-type (ships a `hub-router.json`), off otherwise: existing non-hub baselines keep their meaning.
 - `on` / `off`: explicit per-run override (e.g. `off` while triaging a hub corpus's newly-surfaced violations).
 
 ### Compiled-routing parity gate (`--compiled-routing-parity on|off|auto`)

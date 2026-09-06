@@ -16,7 +16,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Each row below is one run folder. The first row is a hand-authored, derived-after-the-fact record — not a Lane C harness run — so it is dated by the day it was authored rather than a harness execution timestamp.
+Each row below is one run folder. The first row is a hand-authored, derived-after-the-fact record: not a Lane C harness run, so it is dated by the day it was authored rather than a harness execution timestamp.
 
 ---
 

@@ -16,7 +16,7 @@ The two intermediate-representation (IR) extractors behind the import redraw flo
 
 ## 1. OVERVIEW
 
-This folder owns the deterministic half of `sk-design-diagram`'s import flow: two stdlib-only Python CLIs that decode a `.drawio` or Mermaid source into a normalized IR — nodes, edges, containers, hubs, cycles, budget flags — as a compact Markdown digest (or full JSON). It also owns the shell validator required before delivering an `ascii-markdown` flowchart. Neither extractor makes a design decision; the agent reads the digest, picks a diagram type and detail level, and redraws from scratch in the packet's design system. All scripts run locally with no network access and never mutate the source file they read.
+This folder owns the deterministic half of `sk-design-diagram`'s import flow: two stdlib-only Python CLIs that decode a `.drawio` or Mermaid source into a normalized IR, nodes, edges, containers, hubs, cycles, budget flags, as a compact Markdown digest (or full JSON). It also owns the shell validator required before delivering an `ascii-markdown` flowchart. Neither extractor makes a design decision; the agent reads the digest, picks a diagram type and detail level, and redraws from scratch in the packet's design system. All scripts run locally with no network access and never mutate the source file they read.
 
 Behavior details (per-type routing rules, the four output dials) live in [`../references/import-export/`](../references/import-export/) and [`../references/foundations/output-spec.md`](../references/foundations/output-spec.md); this README stays navigational.
 
@@ -56,8 +56,8 @@ Both print a Markdown digest to stdout by default. Add `--json` for the full IR,
 
 ## 4. CLI ENTRYPOINTS
 
-- **`drawio_extract.py`** — Flattens a draw.io `mxGraphModel` into absolute-positioned nodes and edges, and reports hub degrees, container structure, cycle detection, and budget flags. Accepts `.drawio`, raw XML, `.drawio.png`, or `.drawio.svg`.
-- **`mermaid_extract.py`** — Parses bounded Mermaid text under a strict trust boundary: it never evaluates, renders, fetches, or executes Mermaid, JavaScript, URLs, directives, or label content. Click targets and styling are counted and discarded; labels are emitted only as inert text.
+- **`drawio_extract.py`**: Flattens a draw.io `mxGraphModel` into absolute-positioned nodes and edges, and reports hub degrees, container structure, cycle detection, and budget flags. Accepts `.drawio`, raw XML, `.drawio.png`, or `.drawio.svg`.
+- **`mermaid_extract.py`**: Parses bounded Mermaid text under a strict trust boundary: it never evaluates, renders, fetches, or executes Mermaid, JavaScript, URLs, directives, or label content. Click targets and styling are counted and discarded; labels are emitted only as inert text.
 
 Common flags on both: `--page`/`--diagram` (select which page/diagram when the source has more than one), `--json` (emit the full IR instead of the digest), `--max-rows N` (digest table length, default 40), `--out PATH` (write to a file instead of stdout).
 
@@ -69,7 +69,7 @@ The two extractors share the following two-code contract:
 
 | Code | Meaning |
 |---:|---|
-| 0 | OK — digest or JSON written |
+| 0 | OK, digest or JSON written |
 | 2 | Unreadable file, unsupported/malformed input, a selector matching nothing, or a node/edge limit exceeded |
 
 The flowchart validator uses its own two-code delivery contract:
@@ -85,7 +85,7 @@ The flowchart validator uses its own two-code delivery contract:
 
 - **Never mutates the source.** Both scripts open the input read-only and only ever write to `--out` or stdout.
 - **No network access.** Every path is local; nothing is fetched.
-- **Untrusted content stays inert.** Labels, links, tooltips, and metadata from the source are treated as content only — the extractors never follow them as instructions, and `mermaid_extract.py` never evaluates the Mermaid text as code.
+- **Untrusted content stays inert.** Labels, links, tooltips, and metadata from the source are treated as content only: the extractors never follow them as instructions, and `mermaid_extract.py` never evaluates the Mermaid text as code.
 - **Node/edge ceilings fail closed.** `MAX_NODES`/`MAX_EDGES` limits exit 2 rather than silently truncating output.
 
 ---

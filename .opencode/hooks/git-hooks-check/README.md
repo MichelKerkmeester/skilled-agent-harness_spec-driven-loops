@@ -15,9 +15,9 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`git-hooks-check/` is the index for the SessionStart guard that verifies the repository's managed git hooks are installed and current. A fresh clone or a forgotten install step leaves a versioned hook under `.opencode/scripts/git-hooks/` with no matching effective symlink in `.git/hooks` — a silent gap that can drop commit-msg, pre-commit, or pre-push coverage. This guard detects that state and warns the operator, so the commit/push guardrails stay in force.
+`git-hooks-check/` is the index for the SessionStart guard that verifies the repository's managed git hooks are installed and current. A fresh clone or a forgotten install step leaves a versioned hook under `.opencode/scripts/git-hooks/` with no matching effective symlink in `.git/hooks`: a silent gap that can drop commit-msg, pre-commit, or pre-push coverage. This guard detects that state and warns the operator, so the commit/push guardrails stay in force.
 
-It is the detect-and-warn companion to `install-git-hooks.sh`. A SessionStart hook cannot install missing git hooks into an already-running session without side effects, but it can warn — and, when the live-sync loop is enabled, self-heal from the main checkout. It is intentionally non-fatal: it prints one warning line to stderr and always exits 0, so it never blocks a session.
+It is the detect-and-warn companion to `install-git-hooks.sh`. A SessionStart hook cannot install missing git hooks into an already-running session without side effects, but it can warn: and, when the live-sync loop is enabled, self-heal from the main checkout. It is intentionally non-fatal: it prints one warning line to stderr and always exits 0, so it never blocks a session.
 
 One real script backs all four editor runtimes; the per-runtime entries are relative symlinks into `.opencode/bin/`.
 

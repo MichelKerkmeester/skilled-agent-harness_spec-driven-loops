@@ -15,18 +15,18 @@ version: 1.17.0.2
 
 ## 1. OVERVIEW
 
-`benchmark-fixtures/` holds the JSON fixtures a sweep scores. Each coding-task fixture names a function (`fn_name`), states the task, and carries `tests[]` (visible) + `hidden_tests[]` (held-out adversarial) oracle cases of the form `{name, args[], expect}`. `code-task-scorer.cjs` extracts the model's function, runs every oracle case in an isolated child process, and returns a `correctness_pass_rate` fraction — so "mostly right" separates from "fully right" instead of pass/fail.
+`benchmark-fixtures/` holds the JSON fixtures a sweep scores. Each coding-task fixture names a function (`fn_name`), states the task, and carries `tests[]` (visible) + `hidden_tests[]` (held-out adversarial) oracle cases of the form `{name, args[], expect}`. `code-task-scorer.cjs` extracts the model's function, runs every oracle case in an isolated child process, and returns a `correctness_pass_rate` fraction: so "mostly right" separates from "fully right" instead of pass/fail.
 
-Reviewer-prompt fixtures add a separate expected-verdict shape for reviewer regression tests. They use `kind: "reviewer-prompt"`, `prompt_template`, `input_kind`, `input`, `expectedVerdict`, and `expectedFindings`. `reviewer-scorer.cjs` extracts `PASS`/`FAIL`/`BLOCK` pattern-first, can fall back to `--grader llm`, and reports `REVIEWER_BENCHMARK: fixture X expected FAIL, got PASS — rule not safe to promote` on mismatch.
+Reviewer-prompt fixtures add a separate expected-verdict shape for reviewer regression tests. They use `kind: "reviewer-prompt"`, `prompt_template`, `input_kind`, `input`, `expectedVerdict`, and `expectedFindings`. `reviewer-scorer.cjs` extracts `PASS`/`FAIL`/`BLOCK` pattern-first, can fall back to `--grader llm`, and reports `REVIEWER_BENCHMARK: fixture X expected FAIL, got PASS: rule not safe to promote` on mismatch.
 
-Fixtures are organized by a **difficulty tier** (T1 smoke → T4 adversarial) so a profile can pick a discrimination level. The design lesson baked into the packs: raw computational difficulty saturates for frontier models (they ace standard-to-hard algorithms), so the discriminating fixtures are **invalid-dominant strict validators** — many adversarial-malformed inputs a lax-but-plausible solution wrongly accepts.
+Fixtures are organized by a **difficulty tier** (T1 smoke → T4 adversarial) so a profile can pick a discrimination level. The design lesson baked into the packs: raw computational difficulty saturates for frontier models (they ace standard-to-hard algorithms), so the discriminating fixtures are **invalid-dominant strict validators**: many adversarial-malformed inputs a lax-but-plausible solution wrongly accepts.
 
 Current state:
 
 - Legacy agent fixtures (`fixture_*`) feed the Lane B pattern scorer (no tier, no oracle cases).
 - The tiered taxonomy (`t1`/`t3`/`t4`) seeds the smoke → adversarial range.
 - The **hard pack** (computational, T4) discriminates code quality at the oracle level but tends to saturate frontier models.
-- The **harder pack** (T4) confirmed the saturation finding — frontier models ace these too.
+- The **harder pack** (T4) confirmed the saturation finding, frontier models ace these too.
 - The **validation pack** (`validate_*`, T4) is the discriminator: invalid-dominant validators where occasional catastrophic failures surface a real, reproducible reliability gap. Every oracle value is generated from a verified reference impl (reference scores 1.0; a lax impl scores < 1.0), never hand-authored.
 - Reviewer fixtures (`reviewer_*`) seed reviewer-prompt regression cases for stale evidence, softened failure, read-budget overuse, and acceptance coverage shortfall.
 
@@ -43,14 +43,14 @@ Current state:
 | `t4-adversarial-tokenizer.json` | T4 | `tokenize` | 15 | Adversarial tokenizer. |
 | `hard-merge-intervals.json` | T4 | `mergeIntervals` | 16 | Hard computational pack (partial-credit). |
 | `hard-parse-csv-line.json` | T4 | `parseCsvLine` | 17 | Hard computational pack. |
-| `hard-roman-to-int.json` | T4 | `romanToInt` | 17 | Hard pack — the one that consistently discriminates (roman-numeral validation edge cases). |
+| `hard-roman-to-int.json` | T4 | `romanToInt` | 17 | Hard pack: the one that consistently discriminates (roman-numeral validation edge cases). |
 | `hard-eval-expr.json` | T4 | `evalExpr` | 18 | Hard computational pack. |
-| `harder-semver-compare.json` | T4 | `semverCompare` | 24 | Harder pack (precedence rules) — saturated frontier models. |
-| `harder-normalize-path.json` | T4 | `normalizePath` | 24 | Harder pack (path resolution) — saturated. |
-| `harder-int-to-words.json` | T4 | `intToWords` | 24 | Harder pack (number→words) — saturated. |
-| `validate-ipv4.json` | T4 | `isValidIPv4` | 27 | Validation pack — strict dotted-decimal, leading-zero/range/format; ~74% invalid. |
-| `validate-date.json` | T4 | `isValidDate` | 26 | Validation pack — strict ISO date, leap-year + days-per-month; ~73% invalid. |
-| `validate-semver.json` | T4 | `isValidSemver` | 28 | Validation pack — strict SemVer grammar, numeric-id leading-zero + empty-identifier; ~64% invalid. |
+| `harder-semver-compare.json` | T4 | `semverCompare` | 24 | Harder pack (precedence rules), saturated frontier models. |
+| `harder-normalize-path.json` | T4 | `normalizePath` | 24 | Harder pack (path resolution), saturated. |
+| `harder-int-to-words.json` | T4 | `intToWords` | 24 | Harder pack (number→words), saturated. |
+| `validate-ipv4.json` | T4 | `isValidIPv4` | 27 | Validation pack: strict dotted-decimal, leading-zero/range/format; ~74% invalid. |
+| `validate-date.json` | T4 | `isValidDate` | 26 | Validation pack: strict ISO date, leap-year + days-per-month; ~73% invalid. |
+| `validate-semver.json` | T4 | `isValidSemver` | 28 | Validation pack: strict SemVer grammar, numeric-id leading-zero + empty-identifier; ~64% invalid. |
 | `reviewer-stale-verdict.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for stale completion evidence after a changed command or asset. |
 | `reviewer-softened-fail.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for active blockers relabeled as conditional or partial success. |
 | `reviewer-over-read.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for unjustified full or repeat reads. |

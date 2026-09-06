@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.opencode/plugins/` contains the JavaScript modules OpenCode discovers as local plugins. Each module exposes a default plugin factory that registers tools, hook handlers, or lifecycle handlers with the host. OpenCode loads plugins by a flat glob over this folder (it does not recurse), so every loadable plugin lives directly here; the `lib/` and `tests/` subfolders are not plugin sources.
 
-The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `sk-communication`, `sk-vision`, `system-completion`, `system-deep-loop`); the files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. The single shared boundary every plugin honors: **never write to stdout or stderr** — OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers, or persisted to bounded workspace logs.
+The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `sk-communication`, `sk-vision`, `system-completion`, `system-deep-loop`); the files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. The single shared boundary every plugin honors: **never write to stdout or stderr**, OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers, or persisted to bounded workspace logs.
 
 Every plugin honors a per-concern kill-switch via the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin is a genuine full no-op, not just a no-emit no-op. All advisory checks fail open; rejection is opt-in per each plugin's own contract.
 
@@ -40,7 +40,7 @@ Every plugin honors a per-concern kill-switch via the shared `hook-flags.cjs` re
 | `system-skill-advisor.js` | `skill-advisor` | `experimental.chat.system.transform`, `event`, `tool` (`spec_kit_skill_advisor_status`) | Injects skill-routing guidance per prompt and exposes advisor status. Spawns the warm bridge subprocess; TTL+LRU prompt cache with in-flight dedup. |
 | `system-spec-gate.js` | `spec-gate` | `experimental.chat.system.transform`, `tool.execute.before`, `event` | Classifies and evaluates mutation-gate state. Classify best-effort fetches the last user message via `ctx.client`; enforce throws `system-spec-gate:` on deny (OpenCode's deny signal). |
 | `system-speckit-completion.js` | `speckit-completion` | `tool` (read-only completion evidence) | Exposes read-only completion evidence. Checks `core.DISABLED_ENV` directly at factory entry. |
-| `lib/opencode-message-identity.js` | — (shared helper) | — | Stable transform identity and dedup state. Used by `system-skill-advisor.js` when `deduplicateTransforms` is on. |
+| `lib/opencode-message-identity.js` |, (shared helper) | — | Stable transform identity and dedup state. Used by `system-skill-advisor.js` when `deduplicateTransforms` is on. |
 | `tests/` | — | — | Plugin regression suites (see `tests/README.md`). |
 
 ---
@@ -108,7 +108,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Boundary | Rule |
 |---|---|
 | Transport only | Plugin files own the OpenCode transport boundary. Shared policy and runtime-neutral logic belongs under the owning skill. |
-| No stdout/stderr | Plugins never print warnings to stdout or stderr — OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings go through `experimental.chat.system.transform`, tool returns, or bounded workspace logs. |
+| No stdout/stderr | Plugins never print warnings to stdout or stderr. OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings go through `experimental.chat.system.transform`, tool returns, or bounded workspace logs. |
 | Fail-open | All advisory checks fail open. A disabled plugin, a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. Rejection is opt-in per each plugin's own contract (e.g. `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny). |
 | Kill-switch | Every plugin honors its per-concern kill-switch via the shared `hook-flags.cjs` resolver plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin is a genuine full no-op. |
 | Bounded | Subprocess spawns, caches, pending-event buffers, and workspace logs are all bounded (per-plugin limits documented in each plugin's README). |
@@ -118,12 +118,12 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 Plugin factories register some subset of:
 
-- `tool` — tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the 13 `sk_vision_*` tools, the read-only completion-evidence tool).
-- `tool.execute.before` — pre-tool evaluation (spec-gate enforce, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
-- `tool.execute.after` — post-tool evaluation (cli-dispatch-audit, post-edit-quality run).
-- `experimental.chat.system.transform` — per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness).
-- `chat.message` — assistant message projection (sk-communication-projection).
-- `event` — lifecycle handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `server.instance.disposed`/`global.disposed`).
+- `tool`: tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the 13 `sk_vision_*` tools, the read-only completion-evidence tool).
+- `tool.execute.before`: pre-tool evaluation (spec-gate enforce, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
+- `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run).
+- `experimental.chat.system.transform`: per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness).
+- `chat.message`: assistant message projection (sk-communication-projection).
+- `event`: lifecycle handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `server.instance.disposed`/`global.disposed`).
 
 ---
 

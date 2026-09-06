@@ -35,11 +35,11 @@ Load the file that matches the current task.
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **README types and voice** — the five README types, progressive-disclosure stages and two-tier voice with worked examples | [readme/types-and-voice.md](readme/types-and-voice.md) | Deciding which README type to write, or how narrative and reference voice should split inside one file |
-| **README writing patterns** — per-section writing tips, heading hierarchy, analogy patterns, recommended table patterns, code-block and placeholder conventions | [readme/writing-patterns.md](readme/writing-patterns.md) | Drafting individual README sections, or reaching for a proven table or formatting pattern |
-| **README quality and checklist** — DQI weighting, per-section quality checks and the full pre-publish checklist | [readme/quality-and-checklist.md](readme/quality-and-checklist.md) | Reviewing a drafted README before delivery |
-| **Install-guide section examples** — Section 0/1/2 worked examples plus multi-platform and tool-specific configuration patterns | [install-guide/section-examples.md](install-guide/section-examples.md) | Writing the AI-First prompt, Overview, Prerequisites or platform configuration of an install guide |
-| **Install-guide quality and standards** — troubleshooting standards, DQI weighting, minimum requirements, common issues and the pre-publish checklist | [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) | Writing the troubleshooting section, or reviewing an install guide before delivery |
+| **README types and voice**: the five README types, progressive-disclosure stages and two-tier voice with worked examples | [readme/types-and-voice.md](readme/types-and-voice.md) | Deciding which README type to write, or how narrative and reference voice should split inside one file |
+| **README writing patterns**: per-section writing tips, heading hierarchy, analogy patterns, recommended table patterns, code-block and placeholder conventions | [readme/writing-patterns.md](readme/writing-patterns.md) | Drafting individual README sections, or reaching for a proven table or formatting pattern |
+| **README quality and checklist**, DQI weighting, per-section quality checks and the full pre-publish checklist | [readme/quality-and-checklist.md](readme/quality-and-checklist.md) | Reviewing a drafted README before delivery |
+| **Install-guide section examples**, Section 0/1/2 worked examples plus multi-platform and tool-specific configuration patterns | [install-guide/section-examples.md](install-guide/section-examples.md) | Writing the AI-First prompt, Overview, Prerequisites or platform configuration of an install guide |
+| **Install-guide quality and standards**: troubleshooting standards, DQI weighting, minimum requirements, common issues and the pre-publish checklist | [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) | Writing the troubleshooting section, or reviewing an install guide before delivery |
 
 ---
 
@@ -64,4 +64,4 @@ Load the file that matches the current task.
 
 ---
 
-*End of create-readme reference map — depth lives in the `readme/` and `install-guide/` groups.*
+*End of create-readme reference map: depth lives in the `readme/` and `install-guide/` groups.*

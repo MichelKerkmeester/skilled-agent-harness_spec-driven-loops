@@ -22,7 +22,7 @@ importance_tier: "important"
 This package owns three things that the rest of Spec Kit builds on.
 
 - **Spec folder validation.** `lib/validation/orchestrator.ts` decides every rule verdict for a spec folder. `cli/spec/validate.sh` is a thin front end over its compiled output and deliberately implements no rules of its own.
-- **Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate, and serialize the two generated JSON files a spec folder carries — `description.json` and `graph-metadata.json` — plus the integrity and drift gates that prove they still match the documents they summarize.
+- **Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate, and serialize the two generated JSON files a spec folder carries, `description.json` and `graph-metadata.json`, plus the integrity and drift gates that prove they still match the documents they summarize.
 - **Runtime hook adapters.** `hooks/` holds the per-runtime adapters for Claude, Codex, Cursor, Devin, and Pi, together with the runtime-neutral Gate-3 spec-gate core they all call.
 
 The package has no server process and no transport of its own. Its build artifact is a library under `dist/`, and every consumer reaches it either through the `./api` export or by naming a file under `hooks/` in a runtime hook config.
@@ -234,7 +234,7 @@ npm run test:spec-validation   # the tracked validation suites in cli/tests
 
 `test:sharded` covers the Vitest lane; `test:spec-validation` covers the tracked shell
 validation suites. A shard that exceeds `SPECKIT_TEST_RUN_TIMEOUT_MS` prints
-`[test-bound] invocation exceeded` and exits 124, which is not a result — read the log
+`[test-bound] invocation exceeded` and exits 124, which is not a result, read the log
 and the exit status separately rather than through a pipe.
 
 Focused documentation checks from the repository root:

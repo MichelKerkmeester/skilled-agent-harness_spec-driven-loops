@@ -43,7 +43,7 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 - The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls an already-running app. It reaches what only the live app knows: the resolved link graph, the computed tag and task index, Bases, sync and file history, and plugin state.
 - The cyanheads Obsidian MCP exposes a structured 12-tool `obsidian_*` surface through Code Mode when the live app and the Local REST API plugin are available. It is the specialist surface, not the default one.
 
-On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer: the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
 
 ### The Plugin Knowledge Layer
 
@@ -57,10 +57,10 @@ On top of those surfaces sits the plugin knowledge layer. The mode treats each c
 | **Dataview** | add and patch note metadata (frontmatter and inline fields) and author DQL query blocks |
 | **Git** | read vault git state and operate settings. Destructive operations only on throwaway repos |
 | **Outliner** | operate the minimal settings file. The plugin is an editor-behavior contract with no note format |
-| **Theme system** | operate the Obsidian theme system at the file layer — activate a community theme via `cssTheme`, customize with CSS snippets and variables, and build or publish themes, never editing a shipped theme's own files (Minimal as the worked example) |
+| **Theme system** | operate the Obsidian theme system at the file layer: activate a community theme via `cssTheme`, customize with CSS snippets and variables, and build or publish themes, never editing a shipped theme's own files (Minimal as the worked example) |
 | **Meta Bind** | author `INPUT`/`VIEW` fields and `meta-bind-button` blocks whose `updateMetadata` actions read and write note frontmatter, with the JS Engine companion powering the Notion-style start/stop task timer |
-| **Notion Bases** | operate `_database.md` schemas — two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar — as the Notion-database replacement |
-| **Make.md** | operate Spaces and Contexts — table, board, gallery, calendar and chart views with relations and formulas — as a Notion-like workspace layer, noting that its configuration is UI-driven rather than fully file-scriptable |
+| **Notion Bases** | operate `_database.md` schemas, two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar, as the Notion-database replacement |
+| **Make.md** | operate Spaces and Contexts, table, board, gallery, calendar and chart views with relations and formulas, as a Notion-like workspace layer, noting that its configuration is UI-driven rather than fully file-scriptable |
 | **Advanced Canvas** | extend `.canvas` files at the JSON layer with styled nodes, pathfinding edges, portals, collapsible groups and the presentation start node per the Advanced JSON Canvas data model |
 | **Claudian** | operate the `.claudian/` settings file and the provider-native `.claude/` slash-command and reusable-skill files for the in-vault coding-agent chat plugin |
 

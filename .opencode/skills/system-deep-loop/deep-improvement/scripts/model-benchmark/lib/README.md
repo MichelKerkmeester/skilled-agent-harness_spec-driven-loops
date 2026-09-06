@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/` holds the building blocks of the config-driven benchmark *sweep*. Each module is a pure (or near-pure) helper that `../sweep-benchmark.cjs` composes into one pipeline: render a prompt per framework, score each model output into a dimension vector, gate on correctness, then aggregate and report a trust verdict before any leaderboard. The central design choice is that **correctness is a GATE, not a blended score** — the fix for a saturation mis-read where a tied 100%-correct column let a format/length artifact pose as a correctness win.
+`lib/` holds the building blocks of the config-driven benchmark *sweep*. Each module is a pure (or near-pure) helper that `../sweep-benchmark.cjs` composes into one pipeline: render a prompt per framework, score each model output into a dimension vector, gate on correctness, then aggregate and report a trust verdict before any leaderboard. The central design choice is that **correctness is a GATE, not a blended score**: the fix for a saturation mis-read where a tied 100%-correct column let a format/length artifact pose as a correctness win.
 
 Current state:
 

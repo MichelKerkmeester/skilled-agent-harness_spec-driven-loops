@@ -7,9 +7,9 @@ use the built-in `node:sqlite`).
 
 ## Contents
 
-- `engine/` — flat-file retrieval engine tests (the default read path).
-- `database/` — SQLite generation / indexer / retrieval / adapter / operator tests.
-- `oracle/` — the differential-parity oracle plus its pinned golden fixtures.
+- `engine/`: flat-file retrieval engine tests (the default read path).
+- `database/`: SQLite generation / indexer / retrieval / adapter / operator tests.
+- `oracle/`: the differential-parity oracle plus its pinned golden fixtures.
 
 ## Architecture fit
 

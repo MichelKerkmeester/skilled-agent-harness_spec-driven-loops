@@ -119,7 +119,7 @@ Code Mode uses the local stdio server, because the remote OAuth server cannot co
 
 ### Agent Safety Invariants
 
-Always share a page or database with the integration before operating on it. An unshared target returns HTTP 403, and a missing share is the single most common cause of "not found" confusion. Always respect the rate limit: about 3 requests per second per integration, with bursts allowed. On HTTP 429 (`rate_limited`) or 529 (`service_overload`), honor the `Retry-After` header and back off with jitter; centralize retries in the HTTP layer, not per tool. Always let the server pin the API version per operation, and never hardcode a single version across markdown and non-markdown tools. Treat tokens as opaque strings; do not validate them with a regex. Never auto-modify `opencode.json` — the Code Mode config lives in `.utcp_config.json`. Confirm every tool name with `tool_info()`; never guess it. An empty `search` result is valid and common — do not fabricate pages.
+Always share a page or database with the integration before operating on it. An unshared target returns HTTP 403, and a missing share is the single most common cause of "not found" confusion. Always respect the rate limit: about 3 requests per second per integration, with bursts allowed. On HTTP 429 (`rate_limited`) or 529 (`service_overload`), honor the `Retry-After` header and back off with jitter; centralize retries in the HTTP layer, not per tool. Always let the server pin the API version per operation, and never hardcode a single version across markdown and non-markdown tools. Treat tokens as opaque strings; do not validate them with a regex. Never auto-modify `opencode.json`, the Code Mode config lives in `.utcp_config.json`. Confirm every tool name with `tool_info()`; never guess it. An empty `search` result is valid and common, do not fabricate pages.
 
 ### Preflight Check
 
@@ -178,13 +178,13 @@ This skill uses only Notion's official MCP server (`@notionhq/notion-mcp-server`
 
 A: No. Notion is cloud-only with no headless filesystem and no daily-driver CLI equivalent, so this mode is MCP-only. Every operation runs through the official MCP over Code Mode, with direct Notion REST API calls filling the five gaps the MCP does not expose. That is the deliberate difference from `mcp-click-up`, which adds the `cupt` CLI for daily task operations.
 
-**Q: Local stdio server or remote OAuth server — which do I use?**
+**Q: Local stdio server or remote OAuth server: which do I use?**
 
-A: Use the local stdio server for headless and Code Mode work; it authenticates with a static `NOTION_TOKEN` and needs no browser. Use the remote OAuth server at `mcp.notion.com` for interactive sessions where a human can complete the OAuth flow. Code Mode runs headless, so it uses the local server. The local server is deprecated but still functional — plan a migration to remote for interactive use, and keep local for automation until a headless remote path exists.
+A: Use the local stdio server for headless and Code Mode work; it authenticates with a static `NOTION_TOKEN` and needs no browser. Use the remote OAuth server at `mcp.notion.com` for interactive sessions where a human can complete the OAuth flow. Code Mode runs headless, so it uses the local server. The local server is deprecated but still functional: plan a migration to remote for interactive use, and keep local for automation until a headless remote path exists.
 
 **Q: My page or database returns 403 or "not found" even though it exists. Why?**
 
-A: An internal integration sees only what is explicitly shared with it. Open the page or database in Notion, use the connection menu and add your integration. Sharing a parent page does not always cascade — share the specific object the call targets.
+A: An internal integration sees only what is explicitly shared with it. Open the page or database in Notion, use the connection menu and add your integration. Sharing a parent page does not always cascade: share the specific object the call targets.
 
 **Q: My `search` came back empty. Is that an error?**
 
@@ -192,7 +192,7 @@ A: No. An empty `search` result is valid, and `search` matches titles only, not 
 
 **Q: Which Notion API version does the mode use?**
 
-A: Most tools pin `2025-09-03`, the version that introduced data sources. The two markdown round-trip tools require `2026-03-11`. The local server sources the `Notion-Version` header per operation, so you do not set one global version — let the server pin it.
+A: Most tools pin `2025-09-03`, the version that introduced data sources. The two markdown round-trip tools require `2026-03-11`. The local server sources the `Notion-Version` header per operation, so you do not set one global version, let the server pin it.
 
 ---
 

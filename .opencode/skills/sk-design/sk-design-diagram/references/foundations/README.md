@@ -26,7 +26,7 @@ The shared foundation docs every diagram build touches, directly or via one cond
 | File | Purpose |
 |---|---|
 | `style-guide.md` | The single source of truth for colors, typography, spacing, and the 4px grid every diagram type draws against. |
-| `onboarding.md` | The agent-mediated brand/skin extraction flow — no network-fetch tool ships in the packet, so this is guidance, not a script. |
+| `onboarding.md` | The agent-mediated brand/skin extraction flow: no network-fetch tool ships in the packet, so this is guidance, not a script. |
 | `output-spec.md` | The four import/export dials (format, size, detail, audience), the degrade ladder, and the fidelity-ledger contract. |
 
 ---
@@ -35,5 +35,5 @@ The shared foundation docs every diagram build touches, directly or via one cond
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Resource Loading Levels — when each file loads. |
+| [`../../SKILL.md`](../../SKILL.md) | Resource Loading Levels: when each file loads. |
 | [`../types/`](../types/) | Per-type conventions that draw against `style-guide.md`'s tokens. |

@@ -175,6 +175,8 @@ path and matches by exact blob hash.
 | 6 | `006-design-mode-and-command-rename/` | The two moved modes take the hub's name and their commands move to the `/design:` surface, bound to the design agent | Planned |
 | 7 | `007-close-inherited-failures/` | Every gate this packet left red closes: four playbook fixtures, a scenario with no criteria, two malformed spec documents | Planned |
 | 8 | `008-fundamentals-beyond-ui/` | Fundamentals stops being a UI-only skill; slide decks, print and document surfaces are first-class | Planned |
+| 9 | `009-router-conformance/` | The root router takes the shape every other hub's router has, which no validator checks | Complete |
+| 10 | `010-readme-human-voice/` | Authored READMEs follow the Em Dash Ban the Human Voice Rules already carry | Complete |
 
 ### Two constraints this packet reversed on operator instruction
 
@@ -189,7 +191,7 @@ legibility is worth the cost.
 The numbering reads in a sensible order; the work runs in another, because each step must land on a
 tree the previous one left green.
 
-**002, then 003, then 004, then 001, then 005, then 006, then 007, then 008.**
+**002, then 003, then 004, then 001, then 005, then 006, then 007, then 009, then 010; 008 is independent and still open.**
 
 `002` first because it is the smallest possible hub, assembled from content the root already holds,
 which makes every later step "add a mode to a shipped hub" rather than "author a hub while moving
@@ -208,6 +210,10 @@ moved yet.
 | `006` | `007` | Both modes and both commands carry the hub's name, every live reference resolves, and the replay holds | Phrase replay, both hub gates, the compiled-routing guard, the corpus checker from the renamed path |
 | `007` | `008` | No gate this packet touched is red, and the two it inherited are closed or owned elsewhere in writing | Every gate re-run with output read; `validate.sh --strict` across the affected packets |
 | `008` | — | Fundamentals answers a non-UI surface question as well as it answers a UI one | Replay of surface-specific phrases against the recorded baseline |
+| `009` | `010` | The router reads like its peers and the replay is unchanged | Section skeleton compared against two peers; sixteen-phrase replay |
+| `010` | — | No prose em-dash remains in an authored README, and no line without one was touched | `hvr_scan.py` before and after; line-by-line audit against `HEAD` |
+| 008-fundamentals-beyond-ui | 009-router-conformance | [Criteria TBD] | [Verification TBD] |
+| 009-router-conformance | 010-readme-human-voice | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

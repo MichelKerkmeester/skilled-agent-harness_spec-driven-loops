@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 Each script is a working workflow and an honest capability boundary: it exercises only research-verified commands, verifies artifacts independently of tool responses, and reports UNKNOWN or version-drift states instead of papering over them.
 
-**Prerequisites for all scripts**: macOS, the `aside` CLI installed (`command -v aside`), and — for anything touching the browser — a signed-in Aside account. See [INSTALL-GUIDE.md](../INSTALL-GUIDE.md).
+**Prerequisites for all scripts**: macOS, the `aside` CLI installed (`command -v aside`), and, for anything touching the browser, a signed-in Aside account. See [INSTALL-GUIDE.md](../INSTALL-GUIDE.md).
 
 ---
 
@@ -45,7 +45,7 @@ Each script is a working workflow and an honest capability boundary: it exercise
 
 ### 2.2 repl-evidence-capture.sh
 
-**Purpose:** Deterministic evidence workflow — open a tab, capture a screenshot, verify the artifact by PNG magic bytes.
+**Purpose:** Deterministic evidence workflow: open a tab, capture a screenshot, verify the artifact by PNG magic bytes.
 
 ```bash
 ./repl-evidence-capture.sh                          # https://example.com → /tmp/aside-evidence
@@ -55,7 +55,7 @@ Each script is a working workflow and an honest capability boundary: it exercise
 **What it verifies:**
 - `openTab(url)` round trip (the documented REPL entry point)
 - `page.screenshot({ path })` writes a real file
-- File exists, size > 0, first four bytes are PNG magic `89504e47` — independent of the tool response
+- File exists, size > 0, first four bytes are PNG magic `89504e47`, independent of the tool response
 
 **Honest boundaries:** bound-page result shapes are untested territory; the script gates on the artifact, not the response. A "not bound to a browser profile" error is a binding state, not an auth failure.
 
@@ -92,7 +92,7 @@ command -v aside && aside --version 2>&1 && aside --help 2>&1 > /tmp/aside-help-
 
 ### Fixture-first flag usage
 
-The command surface is version-pinned. Capture `aside --help` for the installed version before scripting flags — especially around the unresolved `-m provider/model` vs `--model`/`--provider` spelling.
+The command surface is version-pinned. Capture `aside --help` for the installed version before scripting flags: especially around the unresolved `-m provider/model` vs `--model`/`--provider` spelling.
 
 ### Artifact-evidence standard
 
@@ -105,15 +105,15 @@ Every artifact needs independent proof: a screenshot is a non-empty PNG-magic fi
 | Symptom | Fix |
 |---|---|
 | `aside not found` | Install via the official curl installer (operator-invoked); ensure `~/.local/bin` on PATH |
-| `not bound to a browser profile` | Binding state, not auth — see [`references/troubleshooting.md`](../references/troubleshooting.md) |
+| `not bound to a browser profile` | Binding state, not auth: see [`references/troubleshooting.md`](../references/troubleshooting.md) |
 | Probe reports inventory drift | Save the new fixture, rediscover, re-evaluate the workflow before invoking |
-| Task pauses mid-run | Human-only boundary (approval/MFA/CAPTCHA/vault) — act in the Aside app, then resume |
+| Task pauses mid-run | Human-only boundary (approval/MFA/CAPTCHA/vault), act in the Aside app, then resume |
 
 ---
 
 ## 5. SEE ALSO
 
-- `../SKILL.md` — lane router and full rule set
-- `../references/aside-cli-reference.md` — verified command surface
-- `../references/mcp-wiring.md` — handshake, discovery, registration posture
-- `../scripts/doctor.sh` — read-only diagnostics combining these checks
+- `../SKILL.md`: lane router and full rule set
+- `../references/aside-cli-reference.md`: verified command surface
+- `../references/mcp-wiring.md`: handshake, discovery, registration posture
+- `../scripts/doctor.sh`: read-only diagnostics combining these checks

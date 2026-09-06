@@ -65,7 +65,7 @@ cupt --version
 cupt status
 ```
 
-Expected: `cupt, version <installed version>`, then two lines — `OK: Authenticated as: <user>` and `OK: Workspace: <name>`.
+Expected: `cupt, version <installed version>`, then two lines: `OK: Authenticated as: <user>` and `OK: Workspace: <name>`.
 
 ---
 

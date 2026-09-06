@@ -33,7 +33,7 @@ This is a curated, hand-derived report, not a Lane C harness run. Claude Code sh
 | File | Contents |
 |---|---|
 | [`skill-benchmark-report.json`](./skill-benchmark-report.json) | The machine record every other file here derives from |
-| [`skill-benchmark-report.md`](./skill-benchmark-report.md) | Rendered scoring report, hand-derived from the JSON for this documentation-only entry — no `build-report.cjs` run backs it |
+| [`skill-benchmark-report.md`](./skill-benchmark-report.md) | Rendered scoring report, hand-derived from the JSON for this documentation-only entry: no `build-report.cjs` run backs it |
 | [`results.csv`](./results.csv) | One row per scenario, for spreadsheet and diff use |
 | [`failed-runs.md`](./failed-runs.md) | Per-scenario failure detail, or a statement that none was captured |
 | [`findings-and-recommendations.md`](./findings-and-recommendations.md) | Failures grouped by their recorded reason |

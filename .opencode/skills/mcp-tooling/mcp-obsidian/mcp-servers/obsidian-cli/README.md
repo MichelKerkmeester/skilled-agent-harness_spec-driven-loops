@@ -34,8 +34,8 @@ mcp-obsidian drives Obsidian vault operations through real third-party and first
 
 The two profiles cover different runtime conditions, and the router picks by whether a live app is available:
 
-- **Headless — `notesmd-cli`** (Yakitrak). Operates directly on the vault filesystem, so it works with **no running Obsidian app**. Use it for scripted, unattended, or app-less work.
-- **App-backed — official `obsidian` CLI**. Ships with the Obsidian desktop app and **remote-controls an already-running app**. It does **not** launch one: with the app closed every command writes to stderr and exits 1. Use it when a live app is already the source of truth.
+- **Headless: `notesmd-cli`** (Yakitrak). Operates directly on the vault filesystem, so it works with **no running Obsidian app**. Use it for scripted, unattended, or app-less work.
+- **App-backed: official `obsidian` CLI**. Ships with the Obsidian desktop app and **remote-controls an already-running app**. It does **not** launch one: with the app closed every command writes to stderr and exits 1. Use it when a live app is already the source of truth.
 
 ### What Each Profile Is
 
@@ -43,7 +43,7 @@ The two profiles cover different runtime conditions, and the router picks by whe
 
 `open`, `daily`, `search`, `search-content`, `list`, `print`, `create`, `move`, `delete`, `frontmatter`, `add-vault`, `remove-vault`, `list-vaults`, `set-default-vault`.
 
-**Official `obsidian` CLI** (binary name `obsidian`) shipped GA in Obsidian desktop **v1.12.4** (Feb 2026) and is free. It has no npm or Homebrew package — it ships inside the desktop app and is enabled from in-app settings, which registers the `obsidian` binary on `PATH` (macOS/Linux).
+**Official `obsidian` CLI** (binary name `obsidian`) shipped GA in Obsidian desktop **v1.12.4** (Feb 2026) and is free. It has no npm or Homebrew package: it ships inside the desktop app and is enabled from in-app settings, which registers the `obsidian` binary on `PATH` (macOS/Linux).
 
 ---
 
@@ -55,7 +55,7 @@ The two profiles cover different runtime conditions, and the router picks by whe
 bash setup.sh
 ```
 
-Installs `notesmd-cli` via Homebrew when available, and no-ops if a `notesmd-cli` binary is already on `PATH`. If Homebrew is unavailable it prints the Scoop, AUR, and build-from-source instructions instead of installing. The same run then prints the steps to enable the official `obsidian` CLI — it never toggles anything inside the app for you.
+Installs `notesmd-cli` via Homebrew when available, and no-ops if a `notesmd-cli` binary is already on `PATH`. If Homebrew is unavailable it prints the Scoop, AUR, and build-from-source instructions instead of installing. The same run then prints the steps to enable the official `obsidian` CLI: it never toggles anything inside the app for you.
 
 **Step 2: Register a vault for `notesmd-cli`.**
 
@@ -65,11 +65,11 @@ notesmd-cli set-default-vault "Vault"
 notesmd-cli list-vaults
 ```
 
-Vault configuration is stored at `~/.config/obsidian/obsidian.json`. `notesmd-cli` reads and writes the vault as plain Markdown files — no running app or token is required.
+Vault configuration is stored at `~/.config/obsidian/obsidian.json`. `notesmd-cli` reads and writes the vault as plain Markdown files: no running app or token is required.
 
 **Step 3 (optional): Enable the official `obsidian` CLI.**
 
-In the desktop app: **Settings → General → Command line interface → toggle on → "Register CLI"**. That auto-adds the `obsidian` binary to `PATH` on macOS/Linux. It requires Obsidian desktop **v1.12.4+** and a running app — the CLI is a remote control, not a filesystem tool.
+In the desktop app: **Settings → General → Command line interface → toggle on → "Register CLI"**. That auto-adds the `obsidian` binary to `PATH` on macOS/Linux. It requires Obsidian desktop **v1.12.4+** and a running app: the CLI is a remote control, not a filesystem tool.
 
 **Step 4: Verify.**
 

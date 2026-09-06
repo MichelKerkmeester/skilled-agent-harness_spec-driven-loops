@@ -9,11 +9,11 @@ description: "Cursor CLI hook adapters that normalize Cursor lifecycle payloads 
 
 ## 1. OVERVIEW
 
-`hooks/cursor/` adapts Cursor CLI's lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Cursor payload, spawns the matching compiled Claude adapter with a normalized input, and translates the result back into Cursor's native `{permission, user_message, agent_message}` hook response envelope — a materially different shape from Codex's `hookSpecificOutput` envelope. No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters so the command transports cannot drift apart.
+`hooks/cursor/` adapts Cursor CLI's lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Cursor payload, spawns the matching compiled Claude adapter with a normalized input, and translates the result back into Cursor's native `{permission, user_message, agent_message}` hook response envelope: a materially different shape from Codex's `hookSpecificOutput` envelope. No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters so the command transports cannot drift apart.
 
 > **Fallback contract.** Every registration in `.cursor/hooks.json` wraps its adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`, so the hook always answers its host. On a primary-adapter failure the fallback prints `mk-hook-drift host=cursor event=<event> adapter=<name>` to stderr and returns the host's expected JSON with `"mkHookDrift": true`, which the runtime-mirrors doctor asset reads as a degraded-adapter signal.
 
-**Blast radius (read before registering `.cursor/hooks.json`).** Unlike `.codex/hooks.json` or `.devin/hooks.v1.json`, Cursor's hook config is NOT tool-private — `.cursor/hooks.json` (project) and `~/.cursor/hooks.json` (user) are the exact same files the Cursor **editor** reads. Registering these adapters in a project `.cursor/hooks.json` also fires them for anyone using the Cursor editor on this repo, not only dispatched `cursor-agent` CLI sessions. Every adapter here fails open (never blocks on malformed/missing stdin), which is the load-bearing mitigation for that shared blast radius — see `decision-record.md` ADR-001 for the full reasoning and rejected alternatives.
+**Blast radius (read before registering `.cursor/hooks.json`).** Unlike `.codex/hooks.json` or `.devin/hooks.v1.json`, Cursor's hook config is NOT tool-private, `.cursor/hooks.json` (project) and `~/.cursor/hooks.json` (user) are the exact same files the Cursor **editor** reads. Registering these adapters in a project `.cursor/hooks.json` also fires them for anyone using the Cursor editor on this repo, not only dispatched `cursor-agent` CLI sessions. Every adapter here fails open (never blocks on malformed/missing stdin), which is the load-bearing mitigation for that shared blast radius, see `decision-record.md` ADR-001 for the full reasoning and rejected alternatives.
 
 ---
 
@@ -27,7 +27,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `preToolUse` | **Confirmed fires** | `spec-gate-enforce.mjs` (this folder) | Fires before every tool call (`Shell`, `Read`, `Grep`, `Write` all observed); the deny path (`permission:"deny"` + exit 2) was live-verified to actually block the tool call |
 | `postToolUse` | **Confirmed fires** | `post-tool-use.mjs` | Runs post-edit, graph-freshness, and dispatch-audit adapters. |
 | `sessionEnd` | **Confirmed fires** | `session-end.ts` → delegates to `../claude/session-stop.js` | Fires once per process with `reason`/`final_status` and a real `transcript_path` |
-| `beforeShellExecution` / `afterShellExecution` | **Confirmed fires** | Covered by `preToolUse`/`postToolUse` instead (broader) | Not separately wired — `preToolUse` already gates shell calls |
+| `beforeShellExecution` / `afterShellExecution` | **Confirmed fires** | Covered by `preToolUse`/`postToolUse` instead (broader) | Not separately wired: `preToolUse` already gates shell calls |
 | `beforeReadFile` | **Confirmed fires** | Not wired (read-only, no mutation to gate) | — |
 | `afterFileEdit` | **Confirmed fires** | Not wired (post-hoc; `preToolUse` already gates the write before it happens) | — |
 | `afterAgentThought` | **Confirmed fires** | Not wired (no repo guard needs a reasoning-trace hook today) | — |
@@ -47,7 +47,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 |------|---------|
 | `shared.ts` | Reads and validates a bounded Cursor hook payload, translates it into the shape the `../claude/*.js` adapters already expect, spawns the matching adapter, and emits Cursor's native `{permission, user_message, agent_message}` response envelope. |
 | `session-start.ts` | `sessionStart` adapter. Delegates to `session-prime.js` and returns its context as `agent_message`. |
-| `session-end.ts` | `sessionEnd` adapter (NOT `stop` — see the delivery table above). Delegates to `session-stop.js`. |
+| `session-end.ts` | `sessionEnd` adapter (NOT `stop`: see the delivery table above). Delegates to `session-stop.js`. |
 | `post-tool-use.mjs` | Normalizes Cursor tool payloads for post-edit, graph-freshness, and dispatch-audit hooks. |
 | `precompact.ts` | `preCompact` adapter. Registered, but no CLI-reachable compaction trigger exists to confirm delivery in any case. |
 | `user-prompt-submit.ts` | Prompt-submit adapter, registered for parity against the undelivered `beforeSubmitPrompt` event. |
@@ -72,9 +72,9 @@ Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `spec-gate-prebind.mjs` | `sessionStart` hook. Validates an explicit folder or opens opt-in top-level enforcement state. | **Active** — process-tested; disabled, child, malformed, and missing-session cases write no state. |
-| `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. | **Active** — the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
-| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Would surface the bounded Gate-3 question as `agent_message`. | **Registered, delivery unconfirmed** — `beforeSubmitPrompt` did not fire under the tested CLI build. |
+| `spec-gate-prebind.mjs` | `sessionStart` hook. Validates an explicit folder or opens opt-in top-level enforcement state. | **Active**: process-tested; disabled, child, malformed, and missing-session cases write no state. |
+| `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. | **Active**: the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
+| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Would surface the bounded Gate-3 question as `agent_message`. | **Registered, delivery unconfirmed**: `beforeSubmitPrompt` did not fire under the tested CLI build. |
 | `spec-gate-prebind.test.mjs` | Co-located tests, run with `node --test`. | — |
 
 ---
@@ -83,4 +83,4 @@ Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-
 
 - [`../README.md`](../README.md)
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)
-- [`specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md`](../../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md) — ADR-001 (registration scope) and ADR-002 (event mapping + the live-verification methodology and results above)
+- [`specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md`](../../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md). ADR-001 (registration scope) and ADR-002 (event mapping + the live-verification methodology and results above)

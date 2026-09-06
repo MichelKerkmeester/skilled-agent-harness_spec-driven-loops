@@ -15,7 +15,7 @@ trigger_phrases:
 
 `dispatch/` owns two concerns that fire around composed CLI dispatch commands (`opencode run`, `claude -p`, `codex exec -p`, `devin -p`, and siblings): a **preflight lint** that evaluates a dispatch skill's declared `hard_rules:` against the command string *before* it spawns, and an **audit trail** that appends one scrubbed JSONL line per completed dispatch. Both cores are dependency-free by design so enforcement survives even when the skill advisor daemon is down.
 
-The `DISPATCH_SHAPES` registry in `lib/dispatch-audit.mjs` is the single source of truth for what counts as a dispatch, shared by both concerns so the before-lint and the after-audit can never disagree about a command's shape. The preflight may deny or advise; the audit never decides, it only records. Every path fails open — a missing `SKILL.md`, malformed frontmatter, a throwing check, or an unwritable log resolves to allow/skip, never to a blocked or broken dispatch.
+The `DISPATCH_SHAPES` registry in `lib/dispatch-audit.mjs` is the single source of truth for what counts as a dispatch, shared by both concerns so the before-lint and the after-audit can never disagree about a command's shape. The preflight may deny or advise; the audit never decides, it only records. Every path fails open: a missing `SKILL.md`, malformed frontmatter, a throwing check, or an unwritable log resolves to allow/skip, never to a blocked or broken dispatch.
 
 The concern is one runtime-neutral pair of cores plus a thin adapter per runtime. The cores make every decision; each adapter only translates its runtime's event shape into the core's input and delivers the result.
 
@@ -131,7 +131,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 | Boundary | Rule |
 |---|---|
-| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin) — nothing outside this tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
+| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
 | Decisions | Preflight may deny (`block` severity) or advise (`warn`). Audit never decides; it only records. Pi's preflight adds an authorization deny that is independent of the target skill's declared rules. |
 | Failure | Every path fails open. A missing `SKILL.md`, malformed frontmatter, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
 | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |

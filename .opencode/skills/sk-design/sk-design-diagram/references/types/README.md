@@ -11,7 +11,7 @@ version: 1.0.0.3
 
 # references/types
 
-Per-type layout conventions, ceilings, and anti-patterns — one file per supported diagram type.
+Per-type layout conventions, ceilings, and anti-patterns: one file per supported diagram type.
 
 ---
 

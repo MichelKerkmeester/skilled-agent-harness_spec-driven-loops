@@ -38,7 +38,7 @@ python3 scripts/create_diff.py compare-pair --before old.md --after new.md --rep
 python3 scripts/validate_report.py /tmp/out.html
 ```
 
-The engine reads both inputs and writes only the report — it never mutates either source document.
+The engine reads both inputs and writes only the report: it never mutates either source document.
 
 ---
 
@@ -47,15 +47,15 @@ The engine reads both inputs and writes only the report — it never mutates eit
 | Path | Purpose |
 |---|---|
 | `create_diff.py` | Diff engine and report renderer. Subcommands: `capabilities`, `snapshot`, `compare`, `compare-pair`, `status`, `cleanup`. |
-| `validate_report.py` | Self-contained/safe HTML report validator — an allowlist of the emitter's exact HTML dialect. |
+| `validate_report.py` | Self-contained/safe HTML report validator: an allowlist of the emitter's exact HTML dialect. |
 | `test_create_diff.py` | Stdlib regression suite covering the engine and the validator. |
 
 ---
 
 ## 4. CLI ENTRYPOINTS
 
-- **`create_diff.py`** — Compare two document versions and render a single self-contained, zero-JavaScript, accessible HTML diff report; supports stored baseline snapshots or explicit file pairs.
-- **`validate_report.py`** — Assert one or more generated reports are inert and self-contained, printing `PASS`/`FAIL` per file.
+- **`create_diff.py`**: Compare two document versions and render a single self-contained, zero-JavaScript, accessible HTML diff report; supports stored baseline snapshots or explicit file pairs.
+- **`validate_report.py`**: Assert one or more generated reports are inert and self-contained, printing `PASS`/`FAIL` per file.
 
 The full flag list and JSON-summary contract are defined in [`../references/cli-reference.md`](../references/cli-reference.md), which is authoritative. Do not duplicate that content here.
 

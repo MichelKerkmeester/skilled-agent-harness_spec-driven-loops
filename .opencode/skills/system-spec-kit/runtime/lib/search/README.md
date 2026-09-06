@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/search/` owns resolving what a spec folder is about. The folder name is historical — this is a discovery module, not a retrieval engine. Despite the name, no `search-flags.ts` module lives here; the two environment flags this folder reads (`SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE`, `SPECKIT_GENERATED_METADATA_Z_EXCLUSION`) are read directly in `folder-discovery.ts` through the shared `parseFlagTristate()` reader from `lib/config/capability-flags.ts`.
+`lib/search/` owns resolving what a spec folder is about. The folder name is historical: this is a discovery module, not a retrieval engine. Despite the name, no `search-flags.ts` module lives here; the two environment flags this folder reads (`SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE`, `SPECKIT_GENERATED_METADATA_Z_EXCLUSION`) are read directly in `folder-discovery.ts` through the shared `parseFlagTristate()` reader from `lib/config/capability-flags.ts`.
 
 Current state:
 

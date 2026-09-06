@@ -67,7 +67,6 @@ runtime/cli/spec/
 +-- recommend-level.sh           # Recommend documentation level from task signals
 +-- archive.sh                   # Move completed or stale spec folders
 +-- check-template-staleness.sh  # Compare generated docs with templates
-+-- check-smart-router.sh        # Validate SKILL.md smart-router references
 +-- quality-audit.sh             # Batch quality audit helper
 +-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
 +-- is-phase-parent.ts           # Phase-parent detection and manifest health check
@@ -98,16 +97,15 @@ Disallowed direction:
 |---|---|
 | `create.sh` | Creates new Level 1 or phase folders from templates. |
 | `upgrade-level.sh` | Adds missing files and sections for higher documentation levels. |
-| `validate.sh` | Runs the modular validation gate used before completion claims. `resolve_orchestrator()` checks the compiled runtime dist freshness (via `../lib/dist-freshness.cjs`) before trusting it and fails closed with exit `3` when stale — no silent auto-rebuild. |
+| `validate.sh` | Runs the modular validation gate used before completion claims. `resolve_orchestrator()` checks the compiled runtime dist freshness (via `../lib/dist-freshness.cjs`) before trusting it and fails closed with exit `3` when stale: no silent auto-rebuild. |
 | `check-completion.sh` | Confirms checklist evidence before a task is called complete. |
 | `scaffold-debug-delegation.sh` | Generates `debug-delegation.md` handoff scaffolds from failure-trail input. |
 | `progressive-validate.sh` | Runs a staged validation pass for detect, fix, suggest and report flows. |
-| `check-smart-router.sh` | Validates `SKILL.md` smart-router resource paths and reports load bloat warnings. |
 | `test-validation.sh` | Legacy wrapper forwarding to `runtime/cli/tests/test-validation.sh`. |
 | `archive.sh` | Moves completed or stale spec folders into the archive area. |
 | `is-phase-parent.ts` | Detects whether a folder is a phase parent and reports child-count manifest health. |
 | `sync-phase-map-status.ts` | Corrects a phase parent's map table rows and descendant completion percentages. |
-| `sweep-track-roots.mjs` | Sweeps every track root (spec-less directory under `specs/` carrying a `graph-metadata.json`) and reports its declared `children_ids` count against the on-disk numbered child directories, one line per track; exits non-zero when they differ. Per-packet validation never reaches a track root — the orchestrator exempts track directories from packet rules — so this sweep is the only check that sees their drift. Read-only: report-only counts, reconciling a drifted root is an operator-run regeneration. |
+| `sweep-track-roots.mjs` | Sweeps every track root (spec-less directory under `specs/` carrying a `graph-metadata.json`) and reports its declared `children_ids` count against the on-disk numbered child directories, one line per track; exits non-zero when they differ. Per-packet validation never reaches a track root, the orchestrator exempts track directories from packet rules, so this sweep is the only check that sees their drift. Read-only: report-only counts, reconciling a drifted root is an operator-run regeneration. |
 | `repair-derived.cjs` | Repairs derivable packet facts (folder name, packet pointer, level, metadata fingerprint) and refuses authored ones; see `README-repair-derived.md`. |
 
 ---

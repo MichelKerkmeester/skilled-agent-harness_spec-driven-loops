@@ -1,4 +1,4 @@
-# D4-R Live — Task-Outcome Usefulness Ablation
+# D4-R Live. Task-Outcome Usefulness Ablation
 
 ## 1. OVERVIEW
 
@@ -6,9 +6,9 @@ The **real** routine-task usefulness measurement for `sk-code`, replacing the ol
 
 ## What this measures
 
-For each routine scenario, the model is asked to **do the task** (produce a minimal patch plan + the verification command — *not* a routing list), once with the skill (skill-ON) and once from its own knowledge (skill-OFF). A task-outcome grader (claude-sonnet) scores each answer on correctness / verification-fit / focus / hallucination-risk. The score is `0.5 + (on − off) / 2`: **>0.5 = the skill helped**, `<0.5 = it hurt`.
+For each routine scenario, the model is asked to **do the task** (produce a minimal patch plan + the verification command, *not* a routing list), once with the skill (skill-ON) and once from its own knowledge (skill-OFF). A task-outcome grader (claude-sonnet) scores each answer on correctness / verification-fit / focus / hallucination-risk. The score is `0.5 + (on − off) / 2`: **>0.5 = the skill helped**, `<0.5 = it hurt`.
 
-This is reported as an **advisory** `D4_task_outcome` — separate from `D4_hallucination`, and **not** folded into the weighted aggregate.
+This is reported as an **advisory** `D4_task_outcome`: separate from `D4_hallucination`, and **not** folded into the weighted aggregate.
 
 ## Result (n=5, gpt-5.5-fast on/off, claude-sonnet grader)
 
@@ -39,5 +39,5 @@ Paid + non-deterministic (15 gpt-5.5 dispatches + 10 grader calls; ~45–55 min)
 
 ## Files
 
-- `skill-benchmark-report.json` — full report incl. per-scenario `d4TaskOutcome` + `advisorySignals.D4_task_outcome` + the base-live D1/D2/D3 + `assetRecall`.
-- `skill-benchmark-report.md` — rendered from the JSON.
+- `skill-benchmark-report.json`: full report incl. per-scenario `d4TaskOutcome` + `advisorySignals.D4_task_outcome` + the base-live D1/D2/D3 + `assetRecall`.
+- `skill-benchmark-report.md`: rendered from the JSON.

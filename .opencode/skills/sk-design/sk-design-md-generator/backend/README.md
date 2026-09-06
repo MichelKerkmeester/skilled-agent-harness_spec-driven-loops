@@ -70,7 +70,7 @@ Expected result: `extract.ts` writes `tokens.json` into the `--output` directory
 | Write | Runs `build-write-prompt.ts`, which pre-renders the Tokens Colors, Spacing and Shapes, Surfaces and Quick Start sections deterministically through `formatters-v3.ts`, plus a FACTS block of locked values for the prose phase to paste unchanged. |
 | Validate | Runs `validate.ts` to confirm every hex in `DESIGN.md` traces to `tokens.json`, the required v3 sections are present, Quick-Start fidelity holds, and prose provenance meets the claims threshold. |
 | Report | Optional. `report-gen.ts` and `preview-gen.ts` render HTML report and visual preview artifacts from a `DESIGN.md` and `tokens.json` pair, and `proof.ts` produces a fidelity proof. |
-| Guided Run | Optional wrapper. `guided-run.ts` runs preflight checks, then chains extract, write-prompt and (once a `DESIGN.md` exists) validate/report — a single entry point for a smoke run. It never authors `DESIGN.md` content. |
+| Guided Run | Optional wrapper. `guided-run.ts` runs preflight checks, then chains extract, write-prompt and (once a `DESIGN.md` exists) validate/report: a single entry point for a smoke run. It never authors `DESIGN.md` content. |
 
 ---
 

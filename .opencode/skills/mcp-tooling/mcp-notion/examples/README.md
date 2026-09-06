@@ -1,6 +1,6 @@
 ---
 title: "mcp-notion - Example Workflows"
-description: "Index of Code Mode Notion workflows for the mcp-notion mode — page create, data-source query, and add relation, each shown as a self-contained call_tool_chain pattern."
+description: "Index of Code Mode Notion workflows for the mcp-notion mode: page create, data-source query, and add relation, each shown as a self-contained call_tool_chain pattern."
 trigger_phrases:
   - "notion examples"
   - "notion code mode workflows"
@@ -19,15 +19,15 @@ version: 0.1.0.0
 
 ## 1. OVERVIEW
 
-This directory indexes practical Notion agent workflows. Notion is MCP-only, so every workflow runs through Code Mode `call_tool_chain({ code: "..." })` against the `notion` manual — there is no CLI.
+This directory indexes practical Notion agent workflows. Notion is MCP-only, so every workflow runs through Code Mode `call_tool_chain({ code: "..." })` against the `notion` manual: there is no CLI.
 
 Three workflows are documented below:
 
-- **Page create** — create a page under a parent, with properties and an initial paragraph.
-- **Data-source query** — read rows from a data source with a filter (read-only).
-- **Add relation** — set a relation property linking one page to another.
+- **Page create**: create a page under a parent, with properties and an initial paragraph.
+- **Data-source query**: read rows from a data source with a filter (read-only).
+- **Add relation**: set a relation property linking one page to another.
 
-The snippets are illustrative. Tool identifiers follow the local stdio server's kebab pattern (`create-a-page`, `query-data-source`, …); **confirm every name live with `list_tools()` / `tool_info()`** before running — the local and remote backends name tools differently.
+The snippets are illustrative. Tool identifiers follow the local stdio server's kebab pattern (`create-a-page`, `query-data-source`, …); **confirm every name live with `list_tools()` / `tool_info()`** before running: the local and remote backends name tools differently.
 
 ---
 
@@ -72,7 +72,7 @@ await call_tool_chain({
 });
 ```
 
-Confirm the real tool names first — the create-page and append-children tools are the two used here.
+Confirm the real tool names first: the create-page and append-children tools are the two used here.
 
 ---
 
@@ -93,7 +93,7 @@ await call_tool_chain({
 });
 ```
 
-An empty result (`[]`) is valid — never fabricate rows. Queries target the **data source**, not the database container (Notion API 2.0.0).
+An empty result (`[]`) is valid: never fabricate rows. Queries target the **data source**, not the database container (Notion API 2.0.0).
 
 ---
 
@@ -130,7 +130,7 @@ await call_tool_chain({ code: `return await notion["notion_retrieve-bot-user"]({
 
 ### 3.5 SCRATCH-SAFE ROUND-TRIP
 
-Create in a scratch parent, read back, then archive (reversible) — never hard-delete, there is no hard delete.
+Create in a scratch parent, read back, then archive (reversible): never hard-delete, there is no hard delete.
 
 ```javascript
 await call_tool_chain({
@@ -150,6 +150,6 @@ await call_tool_chain({
 
 ## 4. RELATED RESOURCES
 
-- [`../feature-catalog/FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) — the full 24-tool + 5-gap capability inventory
-- [`../manual-testing-playbook/manual-testing-playbook.md`](../manual-testing-playbook/manual-testing-playbook.md) — scratch-safe test scenarios
-- [`../scripts/README.md`](../scripts/README.md) — setup and diagnostic scripts
+- [`../feature-catalog/FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md): the full 24-tool + 5-gap capability inventory
+- [`../manual-testing-playbook/manual-testing-playbook.md`](../manual-testing-playbook/manual-testing-playbook.md), scratch-safe test scenarios
+- [`../scripts/README.md`](../scripts/README.md), setup and diagnostic scripts

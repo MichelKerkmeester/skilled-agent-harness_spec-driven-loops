@@ -1,6 +1,6 @@
 ---
 title: "Permission Policy Hook: Devin Permission-Request Policy"
-description: "Devin-only adapter that responds to the PermissionRequest event with an allow/deny decision composed from the shared write-target and dispatch hard-rule cores. Fails closed — deny is the safe default."
+description: "Devin-only adapter that responds to the PermissionRequest event with an allow/deny decision composed from the shared write-target and dispatch hard-rule cores. Fails closed, deny is the safe default."
 trigger_phrases:
   - "permission request policy"
   - "devin permission hook"
@@ -15,11 +15,11 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`permission-policy/` is the index for the adapter that answers Devin's `PermissionRequest` event with an allow-or-deny decision. `PermissionRequest` is the only dedicated approval-hook event any supported runtime exposes — Claude and Codex influence permissions through `PreToolUse` decisions, and Cursor, OpenCode, and Pi expose no separate approval event — so this concern is **Devin-only by design** (see the hub coverage matrix).
+`permission-policy/` is the index for the adapter that answers Devin's `PermissionRequest` event with an allow-or-deny decision. `PermissionRequest` is the only dedicated approval-hook event any supported runtime exposes, Claude and Codex influence permissions through `PreToolUse` decisions, and Cursor, OpenCode, and Pi expose no separate approval event, so this concern is **Devin-only by design** (see the hub coverage matrix).
 
 The adapter composes two existing shared cores rather than reimplementing policy: write-class tool calls delegate to `spec-gate-core`'s `isExemptTargetPath`, and exec-class tool calls delegate to `dispatch-rule-checks`' hard-rule evaluator. It is registered live in `.devin/hooks.v1.json`'s `PermissionRequest` array, replacing the prior empty-array registration that silently rejected every approval-needing tool call under non-interactive `devin -p` sessions.
 
-The single most important property is that it **fails closed** — the opposite of the fail-open guards elsewhere in this tree. A malformed payload, an unparseable request, a missing identity field, a missing file path or command, an unknown tool class, or any internal evaluation error resolves to **deny**, because a `PermissionRequest` denial is the safe default. The only allow paths are an exempt write target, an exec command that violates no dispatch hard rule, or the kill-switch being explicitly disabled.
+The single most important property is that it **fails closed**: the opposite of the fail-open guards elsewhere in this tree. A malformed payload, an unparseable request, a missing identity field, a missing file path or command, an unknown tool class, or any internal evaluation error resolves to **deny**, because a `PermissionRequest` denial is the safe default. The only allow paths are an exempt write target, an exec command that violates no dispatch hard rule, or the kill-switch being explicitly disabled.
 
 The real code lives in `system-spec-kit/runtime/hooks/devin/`; this folder holds a relative symlink into it.
 
@@ -35,7 +35,7 @@ On each `PermissionRequest` event, `permission-request-policy.mjs` reads a JSON 
 
 The decision flow:
 
-1. **Kill-switch.** If `isHookEnabled('permission-policy')` is false (disabled), it emits `allow` with the reason "permission policy is disabled" — the explicit escape hatch. The resolver itself is wrapped so that a *missing* resolver leaves the policy **enabled** (fail-closed), not disabled.
+1. **Kill-switch.** If `isHookEnabled('permission-policy')` is false (disabled), it emits `allow` with the reason "permission policy is disabled": the explicit escape hatch. The resolver itself is wrapped so that a *missing* resolver leaves the policy **enabled** (fail-closed), not disabled.
 2. **Parse.** A payload that is not valid JSON → `deny`.
 3. **Identity.** `hook_event_name` must be `PermissionRequest` and every required identity field (`hook_event_name`, `tool_name`, `tool_use_id`, `session_id`, `prompt_id`) must be non-blank. Otherwise → `deny`.
 4. **Classify and evaluate:**
@@ -44,7 +44,7 @@ The decision flow:
    |---|---|---|---|
    | `write` | `apply-patch`, `apply_patch`, `edit`, `multiedit`, `patch`, `write` | `evaluateWrite` reads the file path (`file_path` / `filePath` / `path`); delegates to `spec-gate-core.isExemptTargetPath(filePath, projectDir)` | The target path is exempt under the shared write-target policy |
    | `exec` | `bash`, `exec`, `run-command`, `run_command` | `evaluateExec` reads the command; delegates to `dispatch-rule-checks.evaluate(command, readHardRules(<cli-opencode SKILL.md>))` | The command violates no dispatch hard rule |
-   | unknown | any other `tool_name` | — | Never — `deny` ("tool is not covered by a known policy class") |
+   | unknown | any other `tool_name` | — | Never: `deny` ("tool is not covered by a known policy class") |
 
 5. **Failure.** Any exception inside `evaluatePermission` → `deny` ("policy evaluation failed closed"). An uncaught top-level error → `deny`.
 
@@ -110,7 +110,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Fails closed | Deny is the safe default. Malformed JSON, missing identity, missing file path or command, unknown tool class, or any evaluation error → `deny`. This is the opposite of the fail-open guards elsewhere in this tree. |
 | Decision, not advisory | Emits a binding `approve` / `block` permission decision, not a warning. |
 | Composed, not reimplemented | Write-class delegates to `spec-gate-core.isExemptTargetPath`; exec-class delegates to `dispatch-rule-checks.evaluate`. Policy lives in those shared cores and the `cli-opencode` hard rules. |
-| Kill-switch is permissive | Disabling the kill-switch emits `allow` — the only way the policy broadens permissions. A missing resolver keeps the policy enabled (fail-closed). |
+| Kill-switch is permissive | Disabling the kill-switch emits `allow`: the only way the policy broadens permissions. A missing resolver keeps the policy enabled (fail-closed). |
 | Imports | Node builtins only, plus `../lib/spec-gate/spec-gate-core.mjs`, `../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs`, and the shared `hook-flags.cjs` via `createRequire`. Nothing outside the repo. |
 | Real code | Stays in `system-spec-kit`; the hub entry is a relative symlink. |
 

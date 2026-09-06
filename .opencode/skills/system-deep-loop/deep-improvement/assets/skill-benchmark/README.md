@@ -15,7 +15,7 @@ version: 1.17.0.4
 
 ## 1. OVERVIEW
 
-`assets/skill-benchmark/` holds the static reference data for Lane C (skill-benchmark): the scoring profile, the finding-to-fix taxonomy, and the legacy fixture corpus. These are data inputs and documented references, not executable code — the Lane C scorer and orchestrator live under `scripts/skill-benchmark/`.
+`assets/skill-benchmark/` holds the static reference data for Lane C (skill-benchmark): the scoring profile, the finding-to-fix taxonomy, and the legacy fixture corpus. These are data inputs and documented references, not executable code: the Lane C scorer and orchestrator live under `scripts/skill-benchmark/`.
 
 Current state:
 
@@ -57,7 +57,7 @@ skill-benchmark/
 | Imports | The scorer loads `default-profile.json`; the report renderer loads `remediation-taxonomy.json`. |
 | Consumers | `fixtures/` is read by `scripts/skill-benchmark/run-skill-benchmark.cjs` only on the `--fixtures-dir` (legacy) path. The taxonomy is also covered by `model-benchmark/tests/remediation.vitest.ts`. |
 | Ownership | Lane C reference data lives here. The weights and verdict logic that actually run live in `scripts/skill-benchmark/score-skill-benchmark.cjs`. Bottleneck rendering lives in `scripts/skill-benchmark/build-report.cjs`. |
-| Write policy | Reference data — hand-edited only. No script writes back into this directory; benchmark runs emit reports to a separate `--outputs-dir`. |
+| Write policy | Reference data: hand-edited only. No script writes back into this directory; benchmark runs emit reports to a separate `--outputs-dir`. |
 
 Main flow:
 

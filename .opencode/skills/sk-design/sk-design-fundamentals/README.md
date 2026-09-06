@@ -1,6 +1,6 @@
 ---
 title: "sk-design"
-description: "Concrete values and behavior for a UI that reads as designed — fixed scales, hierarchy technique, interaction detail, motion rules and a WCAG review pass — for anyone building, fixing or reviewing an interface."
+description: "Concrete values and behavior for a UI that reads as designed, fixed scales, hierarchy technique, interaction detail, motion rules and a WCAG review pass, for anyone building, fixing or reviewing an interface."
 trigger_phrases:
   - "ui looks off"
   - "make this look better"
@@ -32,7 +32,7 @@ Most interfaces built by people who do not consider themselves designers fail th
 
 ### Why This Skill Exists
 
-Visual design gets treated as talent, so people who do not have it guess. Guessing produces 35 slightly different blues, spacing that never quite groups anything, and a headline that is enormous on a phone. The fix is not taste. It is a small set of decisions made once — which sixteen spacing values exist, which eleven font sizes, which nine shades of each color — after which every later choice is picking from a list. That is what this skill carries, along with the techniques for building hierarchy, the interaction details that make a screen behave under a real thumb, and the motion model that keeps it from feeling either sluggish or cartoonish.
+Visual design gets treated as talent, so people who do not have it guess. Guessing produces 35 slightly different blues, spacing that never quite groups anything, and a headline that is enormous on a phone. The fix is not taste. It is a small set of decisions made once, which sixteen spacing values exist, which eleven font sizes, which nine shades of each color, after which every later choice is picking from a list. That is what this skill carries, along with the techniques for building hierarchy, the interaction details that make a screen behave under a real thumb, and the motion model that keeps it from feeling either sluggish or cartoonish.
 
 ### What It Does
 
@@ -93,7 +93,7 @@ Exit 0 with no hard failures.
 
 ## 4. HOW IT WORKS
 
-A request arrives and the router asks one question first: is there nothing yet, a complaint, or existing code? That answer decides which reference loads before anything else happens. From there the work follows the same four phases regardless of entry point — choose values from the scales, establish hierarchy, implement behavior, then verify against the hard rules and contrast minimums.
+A request arrives and the router asks one question first: is there nothing yet, a complaint, or existing code? That answer decides which reference loads before anything else happens. From there the work follows the same four phases regardless of entry point: choose values from the scales, establish hierarchy, implement behavior, then verify against the hard rules and contrast minimums.
 
 ```text
 [UI request]

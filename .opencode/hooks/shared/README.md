@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder injects nothing into any AI session — it is pure plumbing for the adapters that do. Two concerns live here: the kill-switch resolver that every adapter calls before doing anything, and the fail-open stdin/JSON helpers that the CommonJS adapters share. Keeping local copies is deliberate — it is what makes every adapter under `.opencode/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
+This folder injects nothing into any AI session, it is pure plumbing for the adapters that do. Two concerns live here: the kill-switch resolver that every adapter calls before doing anything, and the fail-open stdin/JSON helpers that the CommonJS adapters share. Keeping local copies is deliberate, it is what makes every adapter under `.opencode/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
 
 A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-spec-kit/runtime/hooks/lib/` for that skill's own spec-gate adapters, which are not part of the fully-portable set. The two are allowed to drift in principle; in practice the file is small and stable enough that they shouldn't.
 
@@ -20,26 +20,26 @@ A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-s
 
 ## 2. WHAT IT DOES
 
-**Kill-switch resolver.** `hook-flags.cjs` exports `isHookEnabled(concern, env?, config?)` — default-on, so adding the guard changes no behavior until a flag is set. A hook goes silent when the master switch (`SYSTEM_HOOKS_DISABLED`, alias `MK_HOOKS_DISABLED`) or one of the concern's kill-switches is truthy (`1`/`true`/`yes`/`on`, case-insensitive). `concernFlag(concern)` derives the canonical env-var name: concerns listed in `CONCERN_CANONICAL` get their hand-set name (e.g. `goal` → `OPENCODE_GOAL_DISABLED`, `dispatch` → `CLI_DISPATCH_AUDIT_DISABLED`); every other concern falls back to the default shape `SYSTEM_<CONCERN>_DISABLED`. `LEGACY_ALIASES` maps each concern to the older `MK_`/`SPECKIT_`/plugin-owned names that also disable it, so operator config written against any generation keeps working.
+**Kill-switch resolver.** `hook-flags.cjs` exports `isHookEnabled(concern, env?, config?)`: default-on, so adding the guard changes no behavior until a flag is set. A hook goes silent when the master switch (`SYSTEM_HOOKS_DISABLED`, alias `MK_HOOKS_DISABLED`) or one of the concern's kill-switches is truthy (`1`/`true`/`yes`/`on`, case-insensitive). `concernFlag(concern)` derives the canonical env-var name: concerns listed in `CONCERN_CANONICAL` get their hand-set name (e.g. `goal` → `OPENCODE_GOAL_DISABLED`, `dispatch` → `CLI_DISPATCH_AUDIT_DISABLED`); every other concern falls back to the default shape `SYSTEM_<CONCERN>_DISABLED`. `LEGACY_ALIASES` maps each concern to the older `MK_`/`SPECKIT_`/plugin-owned names that also disable it, so operator config written against any generation keeps working.
 
 Flags resolve from two sources: the live environment, and an optional operator config file (`hook-flags.env`, sibling of this folder, overridable via `HOOK_FLAGS_CONFIG`). The environment always wins over the file for a given key, so a persisted default can still be overridden per session. The config file is read once per process and cached; tests reset the cache via `_resetConfigCache()`.
 
-At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`, which copies every legacy `MK_*` env value forward onto its new name (only when the new name is unset — a value set explicitly under the new name always wins). This bridges the rename from the opaque `MK_` prefix to self-describing prefixes that name the owning skill or surface.
+At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`, which copies every legacy `MK_*` env value forward onto its new name (only when the new name is unset: a value set explicitly under the new name always wins). This bridges the rename from the opaque `MK_` prefix to self-describing prefixes that name the owning skill or surface.
 
 **Adapter plumbing.** `hook-adapter-shared.cjs` provides `readStdin()` (bounded stdin collection via async iterator) and `parseJsonFailOpen(raw)` (JSON parsing that resolves to `null` instead of throwing). Twenty-eight lines, byte-identical behavior for every consumer.
 
-**POSIX mirror.** `hook-flags.sh` exposes `hook_enabled <concern>` for shell entrypoints. It resolves the config file at source time (explicit `HOOK_FLAGS_CONFIG`, then `__hf_root`, then `git rev-parse --show-toplevel`). It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED` only — it does not carry the `CONCERN_CANONICAL` overrides or `LEGACY_ALIASES`, so shell entrypoints that need those must use the Node resolver instead.
+**POSIX mirror.** `hook-flags.sh` exposes `hook_enabled <concern>` for shell entrypoints. It resolves the config file at source time (explicit `HOOK_FLAGS_CONFIG`, then `__hf_root`, then `git rev-parse --show-toplevel`). It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED` only: it does not carry the `CONCERN_CANONICAL` overrides or `LEGACY_ALIASES`, so shell entrypoints that need those must use the Node resolver instead.
 
 ---
 
 ## 3. PER-RUNTIME DELIVERY
 
-This concern has no per-runtime adapters — it is consumed by every other concern's adapters. Each module flavor exists so a different runtime's adapter can import it without a module-system mismatch:
+This concern has no per-runtime adapters: it is consumed by every other concern's adapters. Each module flavor exists so a different runtime's adapter can import it without a module-system mismatch:
 
 | Flavor | File | Consumed by | Mechanism |
 |---|---|---|---|
 | CommonJS | `hook-flags.cjs` | Claude, Codex, Devin, Cursor (via `.mjs`), OpenCode plugins (via `createRequire`) | `require()`; calls `applyEnvAliases()` at load. |
-| ESM | `hook-flags.mjs` | Cursor, Pi (via `.ts`), ESM adapters | `createRequire` facade over `.cjs` — zero drift. |
+| ESM | `hook-flags.mjs` | Cursor, Pi (via `.ts`), ESM adapters | `createRequire` facade over `.cjs`, zero drift. |
 | TypeScript | `hook-flags.ts` | Pi, Claude `.ts` adapters | Typed `createRequire` facade over `.cjs`. |
 | POSIX sh | `hook-flags.sh` | Shell entrypoints (dist-freshness, git hooks) | `source` + `hook_enabled <concern>`. Default-shape flags only. |
 | CommonJS | `hook-adapter-shared.cjs` | `mcp-route-guard/{claude,codex,devin}`, `task-dispatch/{claude,devin}` | `require()`; `readStdin()` + `parseJsonFailOpen()`. |

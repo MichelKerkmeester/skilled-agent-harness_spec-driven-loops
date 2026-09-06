@@ -17,7 +17,7 @@ The redraw procedures for import requests, and the manual export procedure.
 
 ## 1. OVERVIEW
 
-Import requests route by source extension to one of the two redraw procedures below; both build on the IR extractors in [`../../scripts/`](../../scripts/). Export is always a separate, manual step — never automatic after a generate or import.
+Import requests route by source extension to one of the two redraw procedures below; both build on the IR extractors in [`../../scripts/`](../../scripts/). Export is always a separate, manual step: never automatic after a generate or import.
 
 ---
 

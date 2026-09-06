@@ -21,10 +21,10 @@ The deep-improvement Lane C harness benchmarks `system-deep-loop/deep-improvemen
 
 Two trace modes score the same playbook corpus:
 
-- **router** — deterministic and offline: replays the skill's machine-readable router per scenario. This is the CI gate.
-- **live** — dispatches each scenario through `cli-opencode` to a real model and grades stated routing plus observed activation. Operator default for a true routing verdict.
+- **router**: deterministic and offline: replays the skill's machine-readable router per scenario. This is the CI gate.
+- **live**: dispatches each scenario through `cli-opencode` to a real model and grades stated routing plus observed activation. Operator default for a true routing verdict.
 
-Note: `deep-improvement` owns the Lane C harness itself, so it benchmarks itself with the same tooling every other hub uses; there is no special-casing. The rubric, terminal buckets, and pass thresholds are the Lane C scoring contract's, not this index's (see §3) — where a number here and the scoring contract disagree, the scoring contract prevails.
+Note: `deep-improvement` owns the Lane C harness itself, so it benchmarks itself with the same tooling every other hub uses; there is no special-casing. The rubric, terminal buckets, and pass thresholds are the Lane C scoring contract's, not this index's (see §3): where a number here and the scoring contract disagree, the scoring contract prevails.
 
 ### Key Statistics
 
@@ -61,4 +61,4 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
   --output /tmp/di-bench/report.json
 ```
 
-Compare against an existing run-label folder's `skill-benchmark-report.json`. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder rather than overwriting an existing one — a run label is immutable once shipped. The five-dimension rubric, terminal buckets, and pass thresholds live once in the Lane C [`scoring-contract.md`](../references/skill-benchmark/scoring-contract.md); the [`deep-improvement`](../SKILL.md) skill owns the runner and scoring.
+Compare against an existing run-label folder's `skill-benchmark-report.json`. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder rather than overwriting an existing one: a run label is immutable once shipped. The five-dimension rubric, terminal buckets, and pass thresholds live once in the Lane C [`scoring-contract.md`](../references/skill-benchmark/scoring-contract.md); the [`deep-improvement`](../SKILL.md) skill owns the runner and scoring.

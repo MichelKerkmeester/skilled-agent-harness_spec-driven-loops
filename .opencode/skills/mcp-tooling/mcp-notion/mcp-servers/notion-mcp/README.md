@@ -1,6 +1,6 @@
 ---
 title: "notion-mcp"
-description: "Vendored install pointer for the official Notion MCP server, launched on demand via npx — nothing to vendor locally, with dual-backend (local stdio vs remote OAuth) notes."
+description: "Vendored install pointer for the official Notion MCP server, launched on demand via npx: nothing to vendor locally, with dual-backend (local stdio vs remote OAuth) notes."
 trigger_phrases:
   - "notion mcp server"
   - "notion official mcp"

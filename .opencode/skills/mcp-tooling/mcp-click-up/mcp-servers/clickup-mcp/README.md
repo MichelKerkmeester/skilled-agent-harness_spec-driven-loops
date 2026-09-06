@@ -1,6 +1,6 @@
 ---
 title: "clickup-mcp"
-description: "Vendored install pointer for the official ClickUp MCP server, launched on demand via npx — nothing to vendor locally."
+description: "Vendored install pointer for the official ClickUp MCP server, launched on demand via npx, nothing to vendor locally."
 trigger_phrases:
   - "clickup mcp server"
   - "clickup official mcp"

@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`handlers/save/` owns the save-path mutex. A spec folder can be written by more than one caller at a time — two processes running a generator, a git hook firing beside an interactive session — and the resulting time-of-check-to-time-of-use race silently loses whichever write lands second. This folder is the one guard against that.
+`handlers/save/` owns the save-path mutex. A spec folder can be written by more than one caller at a time, two processes running a generator, a git hook firing beside an interactive session, and the resulting time-of-check-to-time-of-use race silently loses whichever write lands second. This folder is the one guard against that.
 
 Current responsibilities:
 

@@ -23,7 +23,7 @@ The parent package owns provider selection in `../factory.ts`. Files in this fol
 
 Ollama is the local-first default of the cascade in `../auto-select.ts`. Document indexing and query encoding must resolve the same active manifest, or a store ends up holding vectors that its own queries cannot match.
 
-> **Store migration belongs to the consumer.** These providers produce vectors and nothing else. Deciding what happens to a store when the active provider changes — re-embed, rebuild, or refuse — is the consuming service's call, and the skill advisor makes it for `skill-graph.sqlite`. No logic in this folder reads or writes a database.
+> **Store migration belongs to the consumer.** These providers produce vectors and nothing else. Deciding what happens to a store when the active provider changes, re-embed, rebuild, or refuse, is the consuming service's call, and the skill advisor makes it for `skill-graph.sqlite`. No logic in this folder reads or writes a database.
 
 ---
 

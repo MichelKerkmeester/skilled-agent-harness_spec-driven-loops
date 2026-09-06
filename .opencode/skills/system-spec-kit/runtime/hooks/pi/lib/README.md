@@ -119,5 +119,5 @@ There is no dedicated unit test for this file. Its two callers (`../session-star
 
 ## 7. RELATED
 
-- [`../README.md`](../README.md) — the Pi session-lifecycle bridges that consume this file.
-- [`../../../../../../../.pi/extensions/README.md`](../../../../../../../.pi/extensions/README.md) — the discovery mirror and symlink map this file resolves imports against.
+- [`../README.md`](../README.md): the Pi session-lifecycle bridges that consume this file.
+- [`../../../../../../../.pi/extensions/README.md`](../../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map this file resolves imports against.

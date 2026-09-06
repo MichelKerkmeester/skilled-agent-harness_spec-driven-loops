@@ -99,7 +99,7 @@ Every run-label folder on disk, one row each. `Status` separates current runs fr
 | [`reports/2026-06-01--after--router/`](./reports/2026-06-01--after--router/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
 | [`reports/2026-06-01--full--router/`](./reports/2026-06-01--full--router/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
 | [`reports/2026-06-01--live--live/`](./reports/2026-06-01--live--live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
-| [`fixtures/sk-code/`](./fixtures/sk-code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a — see folder | legacy |
+| [`fixtures/sk-code/`](./fixtures/sk-code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a, see folder | legacy |
 
 ---
 
@@ -149,6 +149,6 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 ## 7. COMPILED-ROUTING ARCHIVE
 
-Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
 Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

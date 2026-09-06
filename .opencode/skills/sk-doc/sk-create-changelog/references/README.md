@@ -1,6 +1,6 @@
 ---
 title: create-changelog References
-description: Routing hub for create-changelog overflow — worked examples, version-bump nuance, and topology and release edge cases.
+description: Routing hub for create-changelog overflow: worked examples, version-bump nuance, and topology and release edge cases.
 trigger_phrases:
   - "changelog creation examples"
   - "create changelog edge cases"
@@ -12,9 +12,9 @@ contextType: implementation
 version: 1.0.0.6
 ---
 
-# create-changelog References — Overflow Map
+# create-changelog References. Overflow Map
 
-Routing hub for the `create-changelog` overflow set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative: it holds the seven-step creation workflow, required inputs, topology and target resolution, the format contract, validation, and the always/never/escalate rules. The shared changelog format lives in [../assets/changelog-template.md](../assets/changelog-template.md). These reference files carry only supplementary detail that would bloat the SKILL.md — worked examples, version-bump nuance, and placement and release edge cases.
+Routing hub for the `create-changelog` overflow set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative: it holds the seven-step creation workflow, required inputs, topology and target resolution, the format contract, validation, and the always/never/escalate rules. The shared changelog format lives in [../assets/changelog-template.md](../assets/changelog-template.md). These reference files carry only supplementary detail that would bloat the SKILL.md: worked examples, version-bump nuance, and placement and release edge cases.
 
 ---
 
@@ -36,9 +36,9 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Worked examples** — a fully written global component entry and a packet-local nested entry, each annotated for why it is shaped that way | [worked-examples.md](worked-examples.md) | Modeling a real entry and you want a filled-in example, not the blank template |
-| **Version-bump rules** — concrete major/minor/patch/build examples, real sk-doc release shapes, the first-entry case, and the "major means breaking, not large" distinction | [version-bump-rules.md](version-bump-rules.md) | Choosing or calculating a global four-part version and the SKILL.md bump table is not concrete enough |
-| **Topology and edge cases** — the output-mode placement table, hub-versus-packet judgment, back-dating, source-format conflicts, and the optional GitHub release flow with its unknowns | [topology-edge-cases.md](topology-edge-cases.md) | Deciding where a changelog belongs, or handling release, back-dating, or format-conflict edge cases |
+| **Worked examples**: a fully written global component entry and a packet-local nested entry, each annotated for why it is shaped that way | [worked-examples.md](worked-examples.md) | Modeling a real entry and you want a filled-in example, not the blank template |
+| **Version-bump rules**: concrete major/minor/patch/build examples, real sk-doc release shapes, the first-entry case, and the "major means breaking, not large" distinction | [version-bump-rules.md](version-bump-rules.md) | Choosing or calculating a global four-part version and the SKILL.md bump table is not concrete enough |
+| **Topology and edge cases**: the output-mode placement table, hub-versus-packet judgment, back-dating, source-format conflicts, and the optional GitHub release flow with its unknowns | [topology-edge-cases.md](topology-edge-cases.md) | Deciding where a changelog belongs, or handling release, back-dating, or format-conflict edge cases |
 
 ---
 
@@ -68,4 +68,4 @@ Load the file that matches the current task:
 
 ---
 
-*End of create-changelog reference map — depth lives in the three concern files above.*
+*End of create-changelog reference map: depth lives in the three concern files above.*

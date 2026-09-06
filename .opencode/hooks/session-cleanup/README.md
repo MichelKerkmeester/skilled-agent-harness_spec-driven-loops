@@ -17,7 +17,7 @@ contextType: "reference"
 
 `session-cleanup/` is the index for the concern that runs bounded startup guards and teardown cleanup. It has two faces that share one teardown script:
 
-- **Shell script** (`.opencode/scripts/session-cleanup.sh`) backs the editor runtimes at session teardown. It kills only MCP helper processes it can **prove** are descendants of an explicit session PID — re-proving ancestry immediately before each kill — so a teardown never reaches into a sibling session's transports. There is deliberately no fallback to the hook's PPID: under a shared terminal that PPID can resolve to an ancestor common to many live sessions.
+- **Shell script** (`.opencode/scripts/session-cleanup.sh`) backs the editor runtimes at session teardown. It kills only MCP helper processes it can **prove** are descendants of an explicit session PID, re-proving ancestry immediately before each kill, so a teardown never reaches into a sibling session's transports. There is deliberately no fallback to the hook's PPID: under a shared terminal that PPID can resolve to an ancestor common to many live sessions.
 - **OpenCode plugin** (`.opencode/plugins/session-cleanup.js`) runs the same teardown script on dispose, and additionally runs startup guards (worktree-guard, check-git-hooks, git-live-follow `--start`) plus a backgrounded primary-reconcile on `session.created`, surfacing any guard warnings once per session through the system context.
 
 Both faces are bounded and fail-open: subprocesses wait at most eight seconds (plugin) or run inline (shell), and any failure is a no-op that never blocks session start or teardown. Neither writes into spec docs.
@@ -113,7 +113,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 | Boundary | Rule |
 |---|---|
-| Proven ancestry only | The shell script kills only descendants it can prove at kill time via the live ppid chain. No PPID fallback — a shared terminal's PPID is common to many sessions. Missing session identity → no-op (or orphan-sweep when explicitly enabled). |
+| Proven ancestry only | The shell script kills only descendants it can prove at kill time via the live ppid chain. No PPID fallback: a shared terminal's PPID is common to many sessions. Missing session identity → no-op (or orphan-sweep when explicitly enabled). |
 | Bounded | Plugin subprocesses: 8s timeout, 4 KiB capture. Shell: inline, rotated 10 MB log. |
 | Fail-open | Any guard, kill, spawn, or log failure is a no-op that never blocks session start or teardown. |
 | No spec writes | Sweeps runtime/MCP state only; never touches spec-folder docs. |

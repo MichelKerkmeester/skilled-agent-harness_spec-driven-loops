@@ -87,7 +87,7 @@ The request reaches `mcp-obsidian`, which operates the vault through headless `n
 Query my Notion roadmap data source for in-progress rows and update a page's status.
 ```
 
-The request reaches `mcp-notion`, which operates the workspace through the official Notion MCP over Code Mode — targeting a data-source id and routing to the direct Notion API for the capabilities the MCP does not expose.
+The request reaches `mcp-notion`, which operates the workspace through the official Notion MCP over Code Mode: targeting a data-source id and routing to the direct Notion API for the capabilities the MCP does not expose.
 
 **Step 3: Route a design transport with its measured-reference partner.**
 
@@ -95,7 +95,7 @@ The request reaches `mcp-notion`, which operates the workspace through the offic
 Render this component in Figma and export the design tokens.
 ```
 
-The request reaches `mcp-figma`, which drives Figma Desktop through `figma-ds-cli`. The transport pairs with `sk-design-md-generator` before any design-affecting operation — using it to extract a measured Style Reference from a live source — because the transport never decides taste on its own.
+The request reaches `mcp-figma`, which drives Figma Desktop through `figma-ds-cli`. The transport pairs with `sk-design-md-generator` before any design-affecting operation, using it to extract a measured Style Reference from a live source, because the transport never decides taste on its own.
 
 **Step 4: Install or debug a bridge.** `/doctor:mcp` covers install and debug for every `mcp-*` skill, including every hub member. The doctor route reports the state of the target bridge without changing its configuration.
 

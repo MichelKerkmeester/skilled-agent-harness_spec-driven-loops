@@ -20,7 +20,7 @@ trigger_phrases:
 
 | File | Pi event | Behavior and injected text |
 |---|---|---|
-| `spec-gate-classify.ts` | `input` | Runs the shared core's `classifyIntent()` and, on a mutation-shaped turn, appends the bounded Gate-3 A-E documentation question to the user's own prompt text via Pi's input-transform — uniquely **operator-visible** in Pi's chat, unlike every other runtime's invisible context channel. |
+| `spec-gate-classify.ts` | `input` | Runs the shared core's `classifyIntent()` and, on a mutation-shaped turn, appends the bounded Gate-3 A-E documentation question to the user's own prompt text via Pi's input-transform: uniquely **operator-visible** in Pi's chat, unlike every other runtime's invisible context channel. |
 | `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | Runs `evaluateMutation()`; a denied write/edit blocks the tool call with the core's reason, bash is advise-only. Fails open. |
 | `session-start-context.ts` | `session_start` | Bridges `session-prime.js`'s startup context (compact recovery, resume reminder) into the session via `pi.sendMessage()`. Pi has no `compact` or `clear` start reason, so both map to the `startup` default. |
 | `completion-evidence.ts` | `turn_end` | Evaluates the same advisory-only sentinel as Claude against the ending assistant message, delegating policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Never blocks. |

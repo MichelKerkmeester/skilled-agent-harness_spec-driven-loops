@@ -1,6 +1,6 @@
 ---
 title: sk-code shared
-description: Shared surface-router and cross-mode reference index for sk-code — navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references (plus pattern assets) consumed by every sk-code mode.
+description: Shared surface-router and cross-mode reference index for sk-code: navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references (plus pattern assets) consumed by every sk-code mode.
 importance_tier: normal
 contextType: general
 version: 1.0.0.1
@@ -8,7 +8,7 @@ version: 1.0.0.1
 
 # sk-code shared
 
-> Cross-mode reference surface for `sk-code`: the surface router, phase lifecycle, shared workflow doctrine, universal standards, and pattern assets that every sk-code mode consumes. This is a navigation index — authoritative content lives in the linked files.
+> Cross-mode reference surface for `sk-code`: the surface router, phase lifecycle, shared workflow doctrine, universal standards, and pattern assets that every sk-code mode consumes. This is a navigation index: authoritative content lives in the linked files.
 
 ---
 
@@ -18,23 +18,23 @@ version: 1.0.0.1
 
 Layout:
 
-- `references/` — routing keys, phase lifecycle, shared workflow doctrine, and stack-agnostic checklists.
-- `references/universal/` — stack-agnostic standards shared across surfaces.
-- `assets/patterns/` — executable pattern templates shipped with the skill.
+- `references/`: routing keys, phase lifecycle, shared workflow doctrine, and stack-agnostic checklists.
+- `references/universal/`: stack-agnostic standards shared across surfaces.
+- `assets/patterns/`: executable pattern templates shipped with the skill.
 
 ---
 
-## 2. REFERENCES — ROUTING & LIFECYCLE
+## 2. REFERENCES, ROUTING & LIFECYCLE
 
 | File | What it covers |
 |---|---|
-| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection (WEBFLOW / OPENCODE / UNKNOWN) plus OpenCode language sub-detection — the primary routing key, resolved from CWD and changed/target files before intent classification. |
+| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection (WEBFLOW / OPENCODE / UNKNOWN) plus OpenCode language sub-detection: the primary routing key, resolved from CWD and changed/target files before intent classification. |
 | [`../ROUTER.md`](../ROUTER.md) | Authoritative root surface router: intent classification, surface-to-resource maps, declared shared controls, load tiers, verification commands, and UNKNOWN fallback. |
 | [`references/phase-detection.md`](./references/phase-detection.md) | Phase 1/2/3 development lifecycle (Implementation / Testing + Debugging / Verification) with per-surface resource expectations. |
 
 ---
 
-## 3. REFERENCES — SHARED WORKFLOW DOCTRINE
+## 3. REFERENCES, SHARED WORKFLOW DOCTRINE
 
 Surface-agnostic workflow doctrine consumed by every surface packet; none of these define surface-specific standards or skill identity.
 
@@ -46,23 +46,23 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 ---
 
-## 4. REFERENCES — CHECKLISTS
+## 4. REFERENCES, CHECKLISTS
 
 | File | What it covers |
 |---|---|
 | [`references/universal-verification-checklist.md`](./references/universal-verification-checklist.md) | Stack-agnostic verification gate to walk before any done / works / complete / passing claim across WEBFLOW or OPENCODE. |
 | [`references/universal-debugging-checklist.md`](./references/universal-debugging-checklist.md) | Stack-agnostic 4-phase debugging workflow: reproduce reliably → identify root cause → test one hypothesis at a time → fix at source. |
-| [`references/performance-loading-checklist.md`](./references/performance-loading-checklist.md) | Release gate for interaction-, viewport-, or idle-gated deferred loading — proves startup wins without a worse first-use experience. |
+| [`references/performance-loading-checklist.md`](./references/performance-loading-checklist.md) | Release gate for interaction-, viewport-, or idle-gated deferred loading: proves startup wins without a worse first-use experience. |
 
 ---
 
-## 5. REFERENCES — UNIVERSAL STANDARDS (`references/universal/`)
+## 5. REFERENCES, UNIVERSAL STANDARDS (`references/universal/`)
 
 | File | What it covers |
 |---|---|
 | [`references/universal/code-quality-standards.md`](./references/universal/code-quality-standards.md) | Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate. |
 | [`references/universal/code-style-guide.md`](./references/universal/code-style-guide.md) | Language-agnostic naming, file-structure, commenting, and formatting principles; stack-specific enforcement lives in each stack's standards doc. |
-| [`references/universal/error-recovery.md`](./references/universal/error-recovery.md) | Surface-agnostic recovery decision tree — Document → Isolate → Verify prerequisites → Retry verbose → Escalate — for build, deploy, test, and runtime failures. |
+| [`references/universal/error-recovery.md`](./references/universal/error-recovery.md) | Surface-agnostic recovery decision tree, Document → Isolate → Verify prerequisites → Retry verbose → Escalate, for build, deploy, test, and runtime failures. |
 | [`references/universal/multi-agent-research.md`](./references/universal/multi-agent-research.md) | Parallel-agent specialization model for comprehensive codebase analysis and performance audits when sequential investigation is too slow. |
 
 ---
@@ -79,5 +79,5 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 ## 7. RELATED
 
-- [`../SKILL.md`](../SKILL.md) — the `sk-code` runtime contract that routes surfaces and workflow modes into these references.
-- [`../sk-code-quality/README.md`](../sk-code-quality/README.md) — a workflow mode that consumes the universal quality standards above for its Phase 1.5 gate.
+- [`../SKILL.md`](../SKILL.md): the `sk-code` runtime contract that routes surfaces and workflow modes into these references.
+- [`../sk-code-quality/README.md`](../sk-code-quality/README.md): a workflow mode that consumes the universal quality standards above for its Phase 1.5 gate.

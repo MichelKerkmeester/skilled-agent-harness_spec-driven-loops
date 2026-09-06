@@ -76,7 +76,7 @@ Non-interactive. Never runs `aside --update`, never prints secrets. Exit 0 = ins
 bash scripts/doctor.sh
 ```
 
-Changes nothing, installs nothing. Reports the binary path/version, signed-in account state, and the live MCP handshake result (the discovered tool inventory is version-pinned — the doctor confirms reachability, it does not freeze the inventory). Manual absence in `.utcp_config.json` is reported as an ERROR because the `aside` manual is registered. The stdio handshake is the only supported MCP lifecycle control; the probe opens and immediately closes the process.
+Changes nothing, installs nothing. Reports the binary path/version, signed-in account state, and the live MCP handshake result (the discovered tool inventory is version-pinned: the doctor confirms reachability, it does not freeze the inventory). Manual absence in `.utcp_config.json` is reported as an ERROR because the `aside` manual is registered. The stdio handshake is the only supported MCP lifecycle control; the probe opens and immediately closes the process.
 
 ---
 

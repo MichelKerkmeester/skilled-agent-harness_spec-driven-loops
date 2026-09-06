@@ -20,10 +20,10 @@ trigger_phrases:
 
 Current state:
 
-- TypeScript scripts run with `npx tsx` from the scripts workspace; `run-phase2-closure-metrics.mjs` runs with `node`.
+- TypeScript scripts run with `npx tsx` from the CLI package.
 - Import policy checks prefer the runtime package's public API (`@spec-kit/runtime/api`) over internal runtime paths.
 - Allowlisted exceptions are tracked in `import-policy-allowlist.json`.
-- The retrieval-quality runners that used to live here — `run-ablation.ts`, `run-bm25-baseline.ts` and `run-performance-benchmarks.ts` — were removed with the memory engine, along with `map-ground-truth-ids.ts`. Nothing replaced them, because the search pipeline they measured no longer exists.
+- The retrieval-quality runners that used to live here, `run-ablation.ts`, `run-bm25-baseline.ts` and `run-performance-benchmarks.ts`, were removed with the memory engine, along with `map-ground-truth-ids.ts`. Nothing replaced them, because the search pipeline they measured no longer exists.
 
 ---
 
@@ -37,9 +37,6 @@ runtime/cli/evals/
 +-- check-no-mcp-lib-imports.ts               # Internal runtime import checks
 +-- check-no-mcp-lib-imports-ast.ts           # AST variant of the same check
 +-- check-source-dist-alignment.ts            # Orphaned dist artifact detection
-+-- collect-redaction-calibration-inputs.ts   # Redaction calibration inputs
-+-- run-redaction-calibration.ts              # Redaction threshold calibration
-+-- run-phase2-closure-metrics.mjs            # Closure metrics into a spec folder's scratch/
 +-- import-policy-rules.ts                    # Shared import policy rules
 +-- import-policy-allowlist.json              # Managed import exceptions
 `-- README.md
@@ -70,9 +67,6 @@ Restricted import surfaces:
 | `check-architecture-boundaries.ts` | Checks shared neutrality and wrapper-only boundaries. |
 | `check-handler-cycles-ast.ts` | Detects import cycles between handlers. |
 | `check-source-dist-alignment.ts` | Maps each runtime-critical `dist/**/*.js` back to its source `.ts` and flags orphans left by deleted or renamed sources. |
-| `run-redaction-calibration.ts` | Calibrates sensitive-content redaction thresholds. |
-| `collect-redaction-calibration-inputs.ts` | Collects data used by redaction calibration runs. |
-| `run-phase2-closure-metrics.mjs` | Generates closure metrics for a named spec folder and writes them under that folder's `scratch/`. Takes the spec-folder path as its one argument. |
 | `import-policy-rules.ts` | Shared rule definitions used by the import policy checks. |
 | `import-policy-allowlist.json` | Stores temporary approved exceptions with owner and expiry metadata. |
 
@@ -99,12 +93,6 @@ npx tsx evals/check-source-dist-alignment.ts
 ```
 
 Expected result: exits zero when every runtime-critical dist artifact still has a matching source file, and reports a violation for each orphan left by a deleted or renamed source.
-
-```bash
-node evals/run-phase2-closure-metrics.mjs specs/<track>/<packet>
-```
-
-Expected result: writes closure metrics into that spec folder's `scratch/` directory. Without the spec-folder argument it exits with a usage error.
 
 ---
 

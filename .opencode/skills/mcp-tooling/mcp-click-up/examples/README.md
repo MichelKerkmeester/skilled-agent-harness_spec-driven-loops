@@ -37,10 +37,10 @@ This directory contains production-ready bash scripts demonstrating practical Cl
 - Orphaned timer detection and cleanup on exit
 
 **Agent Safety**
-- `set -euo pipefail` — exits immediately on any error
-- `trap cleanup EXIT INT TERM` — no orphaned timers or partial state
-- `--json` on all cupt reads — never parses human-readable output
-- Empty queue treated as valid — never fabricates tasks
+- `set -euo pipefail`: exits immediately on any error
+- `trap cleanup EXIT INT TERM`: no orphaned timers or partial state
+- `--json` on all cupt reads: never parses human-readable output
+- Empty queue treated as valid: never fabricates tasks
 
 ---
 
@@ -69,7 +69,7 @@ command -v jq >/dev/null || echo "Install jq for JSON parsing"
 
 ### 3.1 task-queue-workflow.sh
 
-**Purpose:** Process a tagged ClickUp work queue end-to-end — the primary AI agent pattern.
+**Purpose:** Process a tagged ClickUp work queue end-to-end: the primary AI agent pattern.
 
 **Usage:**
 ```bash
@@ -89,7 +89,7 @@ bash examples/task-queue-workflow.sh --tag urgent --dry-run
 **What it does:**
 1. Runs preflight: verifies `cupt` is installed and authenticated
 2. Fetches tasks with the specified tag using `cupt list --tag X --all --json`
-3. Exits cleanly with a clear message if the queue is empty — never fabricates tasks
+3. Exits cleanly with a clear message if the queue is empty: never fabricates tasks
 4. For each task: inspects via `cupt show --notes --json` and `cupt context`
 5. Discovers the list's status schema via `cupt statuses <id>`
 6. Dry-runs completion for every task in the batch
@@ -121,8 +121,8 @@ bash examples/task-queue-workflow.sh --tag urgent --dry-run
 ```
 
 **Exit codes:**
-- `0` — All tasks completed (or queue was empty)
-- `1` — Preflight failed (cupt not found or not authenticated)
+- `0`: All tasks completed (or queue was empty)
+- `1`: Preflight failed (cupt not found or not authenticated)
 
 **Use cases:**
 - Automated AI agent work queues
@@ -133,7 +133,7 @@ bash examples/task-queue-workflow.sh --tag urgent --dry-run
 
 ### 3.2 time-tracking-workflow.sh
 
-**Purpose:** Timer lifecycle management — start, status, stop, and manual logging.
+**Purpose:** Timer lifecycle management: start, status, stop, and manual logging.
 
 **Usage:**
 ```bash
@@ -160,8 +160,8 @@ bash examples/time-tracking-workflow.sh status
 | `status` | — | Show running timer or "no timer running" |
 
 **Exit codes:**
-- `0` — Command succeeded
-- `1` — cupt not installed, not authenticated, invalid args, or timer conflict
+- `0`: Command succeeded
+- `1`: cupt not installed, not authenticated, invalid args, or timer conflict
 
 **Use cases:**
 - Automated time tracking in agent workflows
@@ -247,7 +247,7 @@ yes | bash examples/task-queue-workflow.sh --tag ai_ready
 
 ### Adjust Timer Check Frequency
 
-The `status` subcommand is stateless — run it as frequently as needed:
+The `status` subcommand is stateless, run it as frequently as needed:
 
 ```bash
 # Check every 30 seconds in a loop
@@ -323,21 +323,21 @@ sudo apt install jq
 ### Skill Documentation
 
 **mcp-click-up:**
-- `.opencode/skills/mcp-tooling/mcp-click-up/SKILL.md` — Routing rules and agent invariants
-- `.opencode/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md` — Install and authentication
-- `.opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md` — Full cupt command reference
+- `.opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`: Routing rules and agent invariants
+- `.opencode/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md`: Install and authentication
+- `.opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md`: Full cupt command reference
 
 ### Related References
 
-- `cupt-commands.md §7. TASK COMPLETION` — dry-run and status resolution rules
-- `cupt-commands.md §14. AGENT INVARIANTS` — safety patterns these scripts implement
-- `troubleshooting.md §7. TEAM FILTER PERFORMANCE` — why `--tag` is preferred over `--team`
+- `cupt-commands.md §7. TASK COMPLETION`: dry-run and status resolution rules
+- `cupt-commands.md §14. AGENT INVARIANTS`: safety patterns these scripts implement
+- `troubleshooting.md §7. TEAM FILTER PERFORMANCE`: why `--tag` is preferred over `--team`
 
 ### External
 
-- [cupt on GitHub](https://github.com/newz2000/cupt) — source, changelog, issues
-- [cupt on PyPI](https://pypi.org/project/cupt/) — install and version history
-- [ClickUp API Tokens](https://app.clickup.com/settings/apps) — generate `pk_` token
+- [cupt on GitHub](https://github.com/newz2000/cupt), source, changelog, issues
+- [cupt on PyPI](https://pypi.org/project/cupt/), install and version history
+- [ClickUp API Tokens](https://app.clickup.com/settings/apps), generate `pk_` token
 
 ---
 

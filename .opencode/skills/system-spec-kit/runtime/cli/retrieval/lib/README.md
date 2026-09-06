@@ -55,7 +55,7 @@ Current state:
 | Boundary | Rule |
 |---|---|
 | Filesystem | Only `artifact.mjs` (`publishJson`), `corpus.mjs` (`walkCorpus`) and `rg-lane.mjs` (`runRecipe`, which spawns ripgrep) touch disk or a subprocess. The other modules are pure functions over their arguments. |
-| Duplication with the runtime | `normalize.mjs` and the matching logic in `rg-lane.mjs` deliberately re-implement, rather than import, the equivalent TypeScript the retired lane carried — this tree runs as plain ESM `.mjs` with no build step, so it cannot import compiled runtime output without reintroducing the daemon/MCP path these tools exist to bypass. Keep the two in sync by hand when the runtime lane's scoring changes. |
+| Duplication with the runtime | `normalize.mjs` and the matching logic in `rg-lane.mjs` deliberately re-implement, rather than import, the equivalent TypeScript the retired lane carried: this tree runs as plain ESM `.mjs` with no build step, so it cannot import compiled runtime output without reintroducing the daemon/MCP path these tools exist to bypass. Keep the two in sync by hand when the runtime lane's scoring changes. |
 | Ownership | A function that needs filesystem or subprocess access belongs in one of the three modules above, not scattered into a sibling script. |
 
 ---

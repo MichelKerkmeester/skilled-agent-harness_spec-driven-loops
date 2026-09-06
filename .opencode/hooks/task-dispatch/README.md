@@ -15,7 +15,7 @@ trigger_phrases:
 
 `task-dispatch/` gates Task-tool dispatches before they execute. The main concern is deep-loop protection: `lib/dispatch-guard.cjs` recognizes dispatches that target deep-loop sub-agents and distinguishes a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command. A second, Claude-only guard enforces the Fable-model subagent policy.
 
-The core returns a transport-free `allow`/`warn`/`reject` decision; adapters translate it into their runtime's envelope. Warning state persists under `.opencode/skills/.state/loop-guard/` so both OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance but never writes stdout/stderr and never writes the warning log itself — the adapter appends warnings/audits so both runtimes share one bounded log path.
+The core returns a transport-free `allow`/`warn`/`reject` decision; adapters translate it into their runtime's envelope. Warning state persists under `.opencode/skills/.state/loop-guard/` so both OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance but never writes stdout/stderr and never writes the warning log itself: the adapter appends warnings/audits so both runtimes share one bounded log path.
 
 ---
 
@@ -23,13 +23,13 @@ The core returns a transport-free `allow`/`warn`/`reject` decision; adapters tra
 
 **task-dispatch-guard** evaluates every Task-tool dispatch through two checks. `evaluateDispatch` returns `{ decision, detail, warnings, audits }`; Check 1 runs first and short-circuits to `reject` under the mode-reject env before Check 2 can run, but a mismatch warning is still recorded and Check 2 still runs.
 
-*Check 1 — Deep Route mode mismatch.* Resolves the real target agent identity (`resolveTargetIdentity` parses `target_agent=@<name>` / `Agent: @<name>` from the prompt body first, falling back to `subagent_type` only when it is not the generic `general` placeholder that `orchestrate` sets for every call). Loads the agent's registered workflow modes from `mode-registry.json`. If the prompt declares a `mode=` that is not in that agent's registered set, it warns (or rejects under `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`):
+*Check 1. Deep Route mode mismatch.* Resolves the real target agent identity (`resolveTargetIdentity` parses `target_agent=@<name>` / `Agent: @<name>` from the prompt body first, falling back to `subagent_type` only when it is not the generic `general` placeholder that `orchestrate` sets for every call). Loads the agent's registered workflow modes from `mode-registry.json`. If the prompt declares a `mode=` that is not in that agent's registered set, it warns (or rejects under `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`):
 
 ```text
 system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="<agent>" (registry modes="<a|b>") but the prompt declares mode="<mode>"
 ```
 
-*Check 2 — loop-like repeated hand-off.* For the three command-owned loop executors (`deep-research`, `deep-review`, `deep-improvement`), records each non-command-driven dispatch in per-session state. A dispatch is command-driven only when the prompt carries an `Iteration: N of M` marker *and* a `Config: <path>` line that resolves to a real on-disk deep-loop config with `mode` + `maxIterations` — marker text alone is not enough, so a forger or injected content cannot gain command authority. At 2 non-command-driven hand-offs it warns; at 3, under `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`, it rejects:
+*Check 2, loop-like repeated hand-off.* For the three command-owned loop executors (`deep-research`, `deep-review`, `deep-improvement`), records each non-command-driven dispatch in per-session state. A dispatch is command-driven only when the prompt carries an `Iteration: N of M` marker *and* a `Config: <path>` line that resolves to a real on-disk deep-loop config with `mode` + `maxIterations`, marker text alone is not enough, so a forger or injected content cannot gain command authority. At 2 non-command-driven hand-offs it warns; at 3, under `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`, it rejects:
 
 ```text
 system-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.
@@ -37,7 +37,7 @@ system-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> no
 
 Warnings are injected into the model's context as `additionalContext`, newline-joined when several apply. A reject becomes the denial reason. Every non-allow decision also appends a `[system-deep-loop-guard] WARN:` line to the shared bounded log `guard-warnings.log` in the state directory (256 KB default, rotated to `.1`). Generic subagents (`context`/`review`/`write`/`debug`) and `ai-council` are intentionally excluded from loop-repeat counting.
 
-**fable-subagent-guard** (Claude only) fires when the main session runs on a Fable model — read from the session transcript's last `"model":"claude-…"` field (tail 2 MB). It denies three dispatch shapes that would silently inherit Fable, each with its own reason:
+**fable-subagent-guard** (Claude only) fires when the main session runs on a Fable model: read from the session transcript's last `"model":"claude-…"` field (tail 2 MB). It denies three dispatch shapes that would silently inherit Fable, each with its own reason:
 
 | Shape | Denial reason |
 |---|---|
@@ -89,7 +89,7 @@ task-dispatch/
 
 | File | Responsibility |
 |---|---|
-| `lib/dispatch-guard.cjs` | Owns registry indexing (`loadRegistryAgents`), target identity resolution (`resolveTargetIdentity`), Deep Route mode-mismatch detection, command-driven iteration recognition (`isCommandDrivenIteration` — requires a real on-disk config, not just marker text), session-scoped loop-repeat state (`recordLoopDispatch`, atomic file persistence), the bounded warning log contract (`appendWarningLog`), age-based state sweep/archive/prune (`sweepStaleLoopGuardStates`), and the runtime-neutral `evaluateDispatch` entrypoint. Never writes stdout/stderr. |
+| `lib/dispatch-guard.cjs` | Owns registry indexing (`loadRegistryAgents`), target identity resolution (`resolveTargetIdentity`), Deep Route mode-mismatch detection, command-driven iteration recognition (`isCommandDrivenIteration`: requires a real on-disk config, not just marker text), session-scoped loop-repeat state (`recordLoopDispatch`, atomic file persistence), the bounded warning log contract (`appendWarningLog`), age-based state sweep/archive/prune (`sweepStaleLoopGuardStates`), and the runtime-neutral `evaluateDispatch` entrypoint. Never writes stdout/stderr. |
 | `claude/task-dispatch-guard.cjs` | Claude `PreToolUse(Task)` adapter. Returns warnings as `additionalContext`, rejections through Claude's `permissionDecision: 'deny'` form. Uses `shared/hook-adapter-shared.cjs`. |
 | `claude/fable-subagent-guard.mjs` | Claude-only `PreToolUse(Task\|Agent)` Fable-model policy. Reads the active model from the session transcript; denies `fork`, missing `model`, and non-opus/sonnet `model` when Fable drives the main loop. Fails open when the transcript is unreadable. |
 | `devin/task-dispatch-guard.cjs` | Devin `PreToolUse(run_subagent)` adapter over the same core. Accepts the four `subagent_type`/`agent_type` field aliases. |
@@ -106,7 +106,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 |---|---|
 | `SYSTEM_TASK_DISPATCH_DISABLED=1` | Full no-op on every runtime. The shared resolver (`isHookEnabled('task-dispatch')`) short-circuits every adapter, including the Fable guard. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
-| `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` | Escalates a Deep Route mode mismatch from `warn` to `reject` (deny). Off by default — the mismatch is advisory unless this is set. |
+| `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` | Escalates a Deep Route mode mismatch from `warn` to `reject` (deny). Off by default: the mismatch is advisory unless this is set. |
 | `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` | Escalates a confirmed loop-recreation (count ≥ 3) from `warn` to `reject`. Off by default. |
 | `SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES` | Warning-log size cap before rotation (default 256 KB). |
 | `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | Days an untouched per-session state file stays active before archiving (default 2). |
@@ -121,7 +121,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 | Boundary | Rule |
 |---|---|
-| Imports | The core imports Node builtins only. Adapters import `../lib/` and (CommonJS ones) `../../shared/hook-adapter-shared.cjs` + `../../shared/hook-flags.cjs` — nothing outside this tree. The Cursor adapter imports `hook-flags.mjs` and shells out to the Claude adapter by repo-relative path. |
+| Imports | The core imports Node builtins only. Adapters import `../lib/` and (CommonJS ones) `../../shared/hook-adapter-shared.cjs` + `../../shared/hook-flags.cjs`: nothing outside this tree. The Cursor adapter imports `hook-flags.mjs` and shells out to the Claude adapter by repo-relative path. |
 | State | Loop-repeat counters and warning logs live in `.opencode/skills/.state/loop-guard/`, written by adapters (never the core) so both runtimes share one bounded log. State files are session-keyed and written atomically (temp + rename). |
 | Decisions | `allow`, `warn`, or `reject`. Reject is reserved for confirmed mode mismatch (under the reject env) and confirmed loop-recreation (count ≥ 3 under the reject-loop env), plus the Fable policy's three forbidden shapes. |
 | Failure | Fails open on malformed stdin, missing/unreadable registry or state, or any internal error. A persistence failure under a reject env emits an audit line (`appendRejectModeDegradedAudit`) but still allows the dispatch. |

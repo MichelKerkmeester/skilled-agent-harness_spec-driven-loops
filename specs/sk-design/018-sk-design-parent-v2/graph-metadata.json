@@ -11,7 +11,9 @@
     "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof",
     "sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename",
     "sk-design/018-sk-design-parent-v2/007-close-inherited-failures",
-    "sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui"
+    "sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui",
+    "sk-design/018-sk-design-parent-v2/009-router-conformance",
+    "sk-design/018-sk-design-parent-v2/010-readme-human-voice"
   ],
   "manual": {
     "depends_on": [],
@@ -145,17 +147,17 @@
     ],
     "causal_summary": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-09-06T17:41:57.712Z",
+    "last_save_at": "2026-09-06T17:54:30.930Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:05e065274601cbafa865f4dc99c4dac806b16a5c8130f6c08a29fd20893197be",
+    "source_fingerprint": "sha256:111545506c2d86dddc16ad2f8e688510d0db96d8ed40ca523109bc1bdc300bf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15192f65e820070c49e7d350bf2d3cea4f5600946eda5736a943eba4dea090c7"
+      "spec.md": "62c53c1b4a50523a6f4b6632c022af400ffcf83281b95fe9d0d66610f6eae7c8"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-06T15:29:55.408Z"

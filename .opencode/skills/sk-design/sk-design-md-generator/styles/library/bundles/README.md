@@ -2,7 +2,7 @@
 
 ## 1. OVERVIEW
 
-The raw style corpus: **1,290 per-style bundle folders** (plus this README). Each bundle is one style —
+The raw style corpus: **1,290 per-style bundle folders** (plus this README). Each bundle is one style:
 `DESIGN.md`, design tokens, tailwind/css-vars, provenance, and related files.
 
 ## Do not hand-edit

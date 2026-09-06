@@ -96,8 +96,8 @@ The script's `--vault` usage is `VERIFY` against the installed binary before rel
 
 **Exit codes:**
 
-- `0` — Preflight and note workflow succeeded, including an idempotent existing-note result
-- Non-zero — `notesmd-cli` is unavailable, no vault is registered, or a required note operation failed
+- `0`: Preflight and note workflow succeeded, including an idempotent existing-note result
+- Non-zero: `notesmd-cli` is unavailable, no vault is registered, or a required note operation failed
 
 **Use cases:**
 
@@ -134,8 +134,8 @@ OBSIDIAN_BASE_URL="http://127.0.0.1:27123" \
 
 **Exit codes:**
 
-- `0` — The reference and any available preflight checks ran
-- Non-zero — Shell-level script failure
+- `0`: The reference and any available preflight checks ran
+- Non-zero. Shell-level script failure
 
 **Use cases:**
 
@@ -174,8 +174,8 @@ Every CLI call goes through an `obs()` wrapper that turns the CLI's own `Error:`
 
 **Exit codes:**
 
-- `0` — Preflight passed and the full round trip succeeded
-- `1` — `obsidian` is not registered, the Obsidian app is not running, the named vault does not exist, or a CLI call reported an error on stdout
+- `0`: Preflight passed and the full round trip succeeded
+- `1`: `obsidian` is not registered, the Obsidian app is not running, the named vault does not exist, or a CLI call reported an error on stdout
 
 **Use cases:**
 
@@ -280,21 +280,21 @@ If the app is closed or the plugin is disabled, switch the actual note operation
 
 **mcp-obsidian:**
 
-- [`../SKILL.md`](../SKILL.md) — Routing rules, safety invariants, and resource map
-- [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md) — Install and configuration for both CLI profiles and the MCP
-- [`../references/obsidian-cli-commands.md`](../references/obsidian-cli-commands.md) — Full CLI reference
-- [`../references/mcp-tools.md`](../references/mcp-tools.md) — Cyanheads MCP invocation and tool inventory
+- [`../SKILL.md`](../SKILL.md). Routing rules, safety invariants, and resource map
+- [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md). Install and configuration for both CLI profiles and the MCP
+- [`../references/obsidian-cli-commands.md`](../references/obsidian-cli-commands.md). Full CLI reference
+- [`../references/mcp-tools.md`](../references/mcp-tools.md). Cyanheads MCP invocation and tool inventory
 
 ### Related References
 
-- [`../references/plugins/plugin-operation-logic.md`](../references/plugins/plugin-operation-logic.md) — Why the mode edits plugin data instead of UI controls
-- [`../references/troubleshooting.md`](../references/troubleshooting.md) — CLI, Local REST API, and MCP recovery guide
+- [`../references/plugins/plugin-operation-logic.md`](../references/plugins/plugin-operation-logic.md). Why the mode edits plugin data instead of UI controls
+- [`../references/troubleshooting.md`](../references/troubleshooting.md). CLI, Local REST API, and MCP recovery guide
 
 ### External
 
-- [notesmd-cli on GitHub](https://github.com/Yakitrak/obsidian-cli) — source and installation paths
-- [cyanheads obsidian-mcp-server](https://github.com/cyanheads/obsidian-mcp-server) — MCP server source
-- [Obsidian Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) — plugin used by the live-app MCP path
+- [notesmd-cli on GitHub](https://github.com/Yakitrak/obsidian-cli), source and installation paths
+- [cyanheads obsidian-mcp-server](https://github.com/cyanheads/obsidian-mcp-server). MCP server source
+- [Obsidian Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api): plugin used by the live-app MCP path
 
 ---
 

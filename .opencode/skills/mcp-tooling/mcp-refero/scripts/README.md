@@ -76,7 +76,7 @@ bash scripts/doctor.sh                     # report-only, offline
 REFERO_DOCTOR_LIVE=1 bash scripts/doctor.sh   # + one unauthenticated HTTPS probe
 ```
 
-The optional live probe sends ONE unauthenticated request to the Refero MCP endpoint. On a healthy environment the expected result is HTTP 401 — the endpoint requires auth. The probe proves reachability only; it cannot complete OAuth and never attempts to.
+The optional live probe sends ONE unauthenticated request to the Refero MCP endpoint. On a healthy environment the expected result is HTTP 401: the endpoint requires auth. The probe proves reachability only; it cannot complete OAuth and never attempts to.
 
 ---
 

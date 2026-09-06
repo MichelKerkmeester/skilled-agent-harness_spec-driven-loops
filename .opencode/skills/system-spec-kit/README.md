@@ -501,7 +501,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[p
 
 ### Retrieval Misses Content You Know Exists
 
-The trigger index only knows what an author declared in `trigger_phrases`. A phrase that was never declared cannot be matched, and no amount of rephrasing will surface it — that is a corpus gap, not a lookup failure. Regenerate the index if frontmatter changed, then fall back to the free-text lane, which scans prose rather than declared phrases:
+The trigger index only knows what an author declared in `trigger_phrases`. A phrase that was never declared cannot be matched, and no amount of rephrasing will surface it: that is a corpus gap, not a lookup failure. Regenerate the index if frontmatter changed, then fall back to the free-text lane, which scans prose rather than declared phrases:
 
 ```bash
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
@@ -609,10 +609,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[p
 | `generate-context.ts` | source for the runtime entry point `runtime/cli/dist/continuity/generate-context.js` |
 | `backfill-frontmatter.ts` | add missing frontmatter to generated context artifacts |
 | `backfill-research-metadata.ts` | backfill missing metadata files under `research/*/iterations/` |
-| `rank-memories.ts` | rank continuity records by relevance for a query |
 | `validate-memory-quality.ts` | run quality checks on continuity content |
-| `ast-parser.ts` | parse markdown AST for section extraction |
-| `fix-memory-h1.mjs` | fix heading levels in older generated artifacts |
 
 TypeScript sources compile to `runtime/cli/dist/`.
 

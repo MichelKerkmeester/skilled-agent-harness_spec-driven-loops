@@ -20,7 +20,7 @@ trigger_phrases:
 
 Two of them exist because the naive version fails in a way that is easy to miss:
 
-- `run-tests-sharded.mjs` splits the suite because a single reused worker eventually spins on a CPU-bound rehash storm and never returns. The module it stops at is innocent, and so are the ones after it — the cost belongs to the accumulated process. Shards run one at a time on purpose; running them together contends for the same temporary directories and databases and produces failures that belong to the harness rather than the code.
+- `run-tests-sharded.mjs` splits the suite because a single reused worker eventually spins on a CPU-bound rehash storm and never returns. The module it stops at is innocent, and so are the ones after it: the cost belongs to the accumulated process. Shards run one at a time on purpose; running them together contends for the same temporary directories and databases and produces failures that belong to the harness rather than the code.
 - `run-tests.mjs` bounds each invocation with a process-group timeout so a hung run is terminated with its children instead of leaking them.
 
 ---

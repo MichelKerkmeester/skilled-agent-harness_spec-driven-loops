@@ -22,7 +22,7 @@ This directory is the output home for executed sk-vision scenarios. The `manual-
 |---|---|---|
 | `benchmark/README.md` | This file | Layout + how to run |
 | `benchmark/reports/README.md` | Run index | One row per dated run folder, append-only |
-| `benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` | Harness (renderer-owned) | Per-run artifacts — never hand-authored |
+| `benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` | Harness (renderer-owned) | Per-run artifacts: never hand-authored |
 
 ---
 
@@ -47,14 +47,14 @@ benchmark/
 
 ## 3. HOW TO RUN
 
-### Lane C — full corpus
+### Lane C, full corpus
 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill .opencode/skills/sk-vision
 ```
 
-### Manual playbook scenario — single scenario
+### Manual playbook scenario, single scenario
 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs \
@@ -69,7 +69,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
 
 Rules:
 
-1. Verdicts are `PASS`, `FAIL`, or `SKIP` — nothing else. A `SKIP` must name its blocker.
+1. Verdicts are `PASS`, `FAIL`, or `SKIP`: nothing else. A `SKIP` must name its blocker.
 2. Every `PASS` persists through `--outcome-json` with `executionContext.requireDurableEvidence: true` and one controlled evidence class (`unit`, `adapter-driven`, `registered-path`, or `native-host-delivered`); evidence paths must be non-symlink regular files beneath the evidence root.
 3. Report files (`skill-benchmark-report.{json,md}`, `results.csv`, `failed-runs.md`, `findings-and-recommendations.md`) are renderer-owned and never hand-authored.
 

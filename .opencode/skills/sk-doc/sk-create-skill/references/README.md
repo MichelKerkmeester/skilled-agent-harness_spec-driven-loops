@@ -14,15 +14,15 @@ version: 1.2.0.50
 
 # Skill Creation Workflow - Complete Development Guide
 
-Routing hub for the full skill lifecycle. The depth lives in three grouped subfolders — `shared/` (concepts common to both), `skill/` (standalone-skill creation), and `parent-skill/` (parent-hub pattern); this file maps each concern to its focused reference.
+Routing hub for the full skill lifecycle. The depth lives in three grouped subfolders: `shared/` (concepts common to both), `skill/` (standalone-skill creation), and `parent-skill/` (parent-hub pattern); this file maps each concern to its focused reference.
 
 ---
 
 ## 1. OVERVIEW
 
-This file is a thin index over the skill-creation reference set. Each stage of the lifecycle — what a skill is, how to build one, how to validate and ship it, the pitfalls to avoid, worked examples and maintenance, and the parent-hub pattern — lives in its own single-concern file, grouped under `shared/`, `skill/`, and `parent-skill/`.
+This file is a thin index over the skill-creation reference set. Each stage of the lifecycle, what a skill is, how to build one, how to validate and ship it, the pitfalls to avoid, worked examples and maintenance, and the parent-hub pattern, lives in its own single-concern file, grouped under `shared/`, `skill/`, and `parent-skill/`.
 
-**Core Principle**: Progressive disclosure maximizes value, minimizes cost — for the skill being built and for this documentation set.
+**Core Principle**: Progressive disclosure maximizes value, minimizes cost: for the skill being built and for this documentation set.
 
 ```
 Level 1: SKILL.md metadata (name + description) — Always in context (~100 words)
@@ -40,15 +40,15 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **What a skill is** — anatomy, SKILL.md required sections, bundled-resource directories, layered-doc structure system | [overview.md](shared/overview.md) | Orienting on skill structure, or deciding where content belongs (SKILL.md vs references vs assets) |
-| **The create workflow** — the six ordered steps from concept to packaged skill, SKILL.md authoring questions, frontmatter completion | [creation-workflow.md](skill/creation-workflow.md) | Building a new skill or rebuilding an existing one |
-| **Validation and packaging** — minimal vs comprehensive validation, distribution checklist, installation | [validation-and-packaging.md](shared/validation-and-packaging.md) | Before packaging, releasing, or diagnosing a rejected skill |
-| **Common pitfalls** — eight recurring defects (generic/bloated description, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, misplaced references) | [common-pitfalls.md](shared/common-pitfalls.md) | A skill does not trigger, bloats context, or fails budget checks; reviewing fresh authored skills |
-| **Examples and maintenance** — worked example skill layouts (PDF editor, brand guidelines, database query) and the update/versioning workflow | [examples-and-maintenance.md](skill/examples-and-maintenance.md) | Modeling a new skill on a proven layout, or maintaining and versioning a shipped skill |
-| **Which root JSON files a skill needs** — the H/S class contract, the registry+router discriminator, required/forbidden/overlay sets, which files are generated versus authored, and the fleet gate that enforces it | [skill-root-metadata-contract.md](shared/skill-root-metadata-contract.md) | Creating any skill root, auditing one, or diagnosing a `ci-skill-root-metadata` failure |
-| **Parent hubs with nested mode packets** — one advisor identity dispatching to workflow and surface packets through a two-axis `modes[]` registry with `packetKind`, named extensions, required hub-router metadata, and the two-state root `ROUTER.md` control document | [parent-skills-nested-packets.md](parent-skill/parent-skills-nested-packets.md) | Designing or repairing a parent skill, parent hub, mode packet, surface packet, mode registry, hub router, or root router |
-| **Parent hub router schema** — detailed schema companion for `mode-registry.json`, `hub-router.json`, `packetKind`, `surfaceBundle`, router signals, vocabulary classes, named extensions, and the two-state root `ROUTER.md` contract | [parent-hub-router-schema.md](parent-skill/parent-hub-router-schema.md) | Validating or authoring parent-hub router metadata and two-axis mode declarations |
-| **Compiled-routing architecture** — which seven hubs the compiled router serves and why, the shadow-child-to-cohort chain, the compiled-serving parity bar, and why a fresh `--compiled-routing ready` manifest is onboarding evidence, not a working compiled route | [compiled-routing-architecture.md](parent-skill/compiled-routing-architecture.md) | Deciding or explaining `--compiled-routing legacy\|ready`, or a parent hub's path toward the compiled router |
+| **What a skill is**: anatomy, SKILL.md required sections, bundled-resource directories, layered-doc structure system | [overview.md](shared/overview.md) | Orienting on skill structure, or deciding where content belongs (SKILL.md vs references vs assets) |
+| **The create workflow**: the six ordered steps from concept to packaged skill, SKILL.md authoring questions, frontmatter completion | [creation-workflow.md](skill/creation-workflow.md) | Building a new skill or rebuilding an existing one |
+| **Validation and packaging**: minimal vs comprehensive validation, distribution checklist, installation | [validation-and-packaging.md](shared/validation-and-packaging.md) | Before packaging, releasing, or diagnosing a rejected skill |
+| **Common pitfalls**: eight recurring defects (generic/bloated description, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, misplaced references) | [common-pitfalls.md](shared/common-pitfalls.md) | A skill does not trigger, bloats context, or fails budget checks; reviewing fresh authored skills |
+| **Examples and maintenance**: worked example skill layouts (PDF editor, brand guidelines, database query) and the update/versioning workflow | [examples-and-maintenance.md](skill/examples-and-maintenance.md) | Modeling a new skill on a proven layout, or maintaining and versioning a shipped skill |
+| **Which root JSON files a skill needs**: the H/S class contract, the registry+router discriminator, required/forbidden/overlay sets, which files are generated versus authored, and the fleet gate that enforces it | [skill-root-metadata-contract.md](shared/skill-root-metadata-contract.md) | Creating any skill root, auditing one, or diagnosing a `ci-skill-root-metadata` failure |
+| **Parent hubs with nested mode packets**: one advisor identity dispatching to workflow and surface packets through a two-axis `modes[]` registry with `packetKind`, named extensions, required hub-router metadata, and the two-state root `ROUTER.md` control document | [parent-skills-nested-packets.md](parent-skill/parent-skills-nested-packets.md) | Designing or repairing a parent skill, parent hub, mode packet, surface packet, mode registry, hub router, or root router |
+| **Parent hub router schema**: detailed schema companion for `mode-registry.json`, `hub-router.json`, `packetKind`, `surfaceBundle`, router signals, vocabulary classes, named extensions, and the two-state root `ROUTER.md` contract | [parent-hub-router-schema.md](parent-skill/parent-hub-router-schema.md) | Validating or authoring parent-hub router metadata and two-axis mode declarations |
+| **Compiled-routing architecture**: which seven hubs the compiled router serves and why, the shadow-child-to-cohort chain, the compiled-serving parity bar, and why a fresh `--compiled-routing ready` manifest is onboarding evidence, not a working compiled route | [compiled-routing-architecture.md](parent-skill/compiled-routing-architecture.md) | Deciding or explaining `--compiled-routing legacy\|ready`, or a parent hub's path toward the compiled router |
 
 ---
 
@@ -83,4 +83,4 @@ Load the file that matches the current task:
 
 ---
 
-*End of Skill Creation Workflow hub — depth lives in the `shared/`, `skill/`, and `parent-skill/` groups.*
+*End of Skill Creation Workflow hub: depth lives in the `shared/`, `skill/`, and `parent-skill/` groups.*

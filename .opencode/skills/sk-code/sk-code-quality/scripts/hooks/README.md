@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`hooks/` holds one file: `claude-posttooluse.sh`, the predecessor Python hook (despite the `.sh` extension) for Claude Code `PostToolUse` on `Write`/`Edit`. It shells out to `../check-comment-hygiene.sh` and `../check-dist-staleness.sh` directly and is **not currently registered** in any runtime config — kept for reference only.
+`hooks/` holds one file: `claude-posttooluse.sh`, the predecessor Python hook (despite the `.sh` extension) for Claude Code `PostToolUse` on `Write`/`Edit`. It shells out to `../check-comment-hygiene.sh` and `../check-dist-staleness.sh` directly and is **not currently registered** in any runtime config, kept for reference only.
 
 The live post-edit-quality hooks (the `.cjs` adapters and their shared router) moved to [`.opencode/hooks/post-edit-quality/`](../../../../../hooks/post-edit-quality/README.md). The checker scripts they spawn still live one level up in `../`, owned by this skill.
 

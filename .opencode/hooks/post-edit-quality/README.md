@@ -13,11 +13,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`post-edit-quality/` runs quality checkers against a file right after it is written or edited and surfaces bounded, redacted findings back to the model. One path-dispatch table in `lib/post-edit-router.cjs` decides which checker(s) apply to which file, shared by every runtime adapter so policy cannot drift between them. The router returns at most one checker per edit — the table is deliberately narrow and near-mutually-exclusive, with rows evaluated in priority order so an overlapping path resolves to exactly one checker, never two.
+`post-edit-quality/` runs quality checkers against a file right after it is written or edited and surfaces bounded, redacted findings back to the model. One path-dispatch table in `lib/post-edit-router.cjs` decides which checker(s) apply to which file, shared by every runtime adapter so policy cannot drift between them. The router returns at most one checker per edit: the table is deliberately narrow and near-mutually-exclusive, with rows evaluated in priority order so an overlapping path resolves to exactly one checker, never two.
 
 Warn-only by contract: every failure path (missing checker, unexpected exit code, spawn error, exhausted deadline) resolves to no finding, and the edit itself is never blocked. The router never writes stdout/stderr and never throws; each adapter owns its own transport.
 
-The checker scripts themselves (comment hygiene, dist staleness, flowchart, frontmatter, placeholders, wikilinks) stay in their owning skills — the router invokes them by project-root-relative path via `spawnSync`, never a static import.
+The checker scripts themselves (comment hygiene, dist staleness, flowchart, frontmatter, placeholders, wikilinks) stay in their owning skills: the router invokes them by project-root-relative path via `spawnSync`, never a static import.
 
 ---
 
@@ -51,7 +51,7 @@ The dispatch table rows, in priority order (`resolveDispatch` returns the first 
 | 4 | `placeholders` | Spec doc (`spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`decision-record.md`) under `specs/` | `check-placeholders.sh <dir>` | `exit1` |
 | 5 | `wikilinks` | `.md` under `.opencode/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `check-links.sh <skill dir>` | `exit1` |
 
-A separate entrypoint, `runDistStalenessCheck`, preserves the legacy dist-staleness coverage that runs alongside comment hygiene. It is kept out of the shared dispatch table because it is unconditional per edited file rather than path-matched, and because OpenCode already has independent dist-freshness coverage via `system-dist-freshness-guard.js` — folding it into the table would double-run it there. It prints `STALE DIST WARNING: <package> -- run: <rebuild command>` when a watched package's compiled output is older than its newest source.
+A separate entrypoint, `runDistStalenessCheck`, preserves the legacy dist-staleness coverage that runs alongside comment hygiene. It is kept out of the shared dispatch table because it is unconditional per edited file rather than path-matched, and because OpenCode already has independent dist-freshness coverage via `system-dist-freshness-guard.js`: folding it into the table would double-run it there. It prints `STALE DIST WARNING: <package> -- run: <rebuild command>` when a watched package's compiled output is older than its newest source.
 
 Findings are bounded (2000 chars per finding, 20 findings max) and redacted: keyworded secret assignments (`api_key=`, `token:`, `bearer`, `authorization`, ...) are replaced with `[REDACTED]` before any text is printed or logged.
 
@@ -64,11 +64,11 @@ Every runtime evaluates the **same** `lib/post-edit-router.cjs` core. What diffe
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
 | **Claude** | `claude/claude-posttooluse.cjs` | `PostToolUse` on `Write\|Edit` | `tool_input.file_path`; resolves project dir from `payload.cwd` or `CLAUDE_PROJECT_DIR` | Plain stdout (transcript/verbose view; not model context in normal use). 9s budget, 8s per checker. |
-| **Codex** | `codex/post-edit-quality.cjs` | `PostToolUse` on `apply_patch\|edit` (`.codex/hooks.json`) | `apply_patch` bundles multiple files in one patch body — extracts every `*** Add/Update/Delete File:` and `*** Move to:` header so each file gets checked; resolves relative paths against `CODEX_PROJECT_DIR` | Plain stdout. One shared budget across all files in a patch; dist-staleness runs once against the first existing file. |
+| **Codex** | `codex/post-edit-quality.cjs` | `PostToolUse` on `apply_patch\|edit` (`.codex/hooks.json`) | `apply_patch` bundles multiple files in one patch body: extracts every `*** Add/Update/Delete File:` and `*** Move to:` header so each file gets checked; resolves relative paths against `CODEX_PROJECT_DIR` | Plain stdout. One shared budget across all files in a patch; dist-staleness runs once against the first existing file. |
 | **Devin** | `devin/post-edit-quality.cjs` | `PostToolUse` on `edit` (`.devin/hooks.v1.json`) | `file_path`/`filePath`/`path`; resolves relative paths against `DEVIN_PROJECT_DIR` | Plain stdout. |
 | **Cursor** | `cursor/post-tool-use.mjs` | `postToolUse` event | Multiplexed proxy: `Write` tool_name → shapes a Claude payload and `spawnSync`s `claude-posttooluse.cjs`; `Shell` → dispatch audit (separate concern) | Findings returned as `agent_message` in the `{permission: 'allow'}` envelope. |
-| **Pi** | `pi/post-edit-quality.ts` | `tool_result` event, discovered via `.pi/extensions/` | `toolName: 'edit'`/`'write'`; `event.input.path` resolved against `ctx.cwd` | Appends findings as `{type: "text", text}` content to the tool result — model-visible. |
-| **OpenCode** | `.opencode/plugins/sk-code-post-edit-quality.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` | `after` carries only a `callID`, so `before` stashes the file path in a bounded correlation map and `after` retrieves+evicts it; watches `write`/`edit`/`patch`/`multiedit`/`apply_patch` | Findings buffered, then drained into the next turn's system context (model-visible) via the transform hook. Also written to a rotated log `.opencode/logs/post-edit-quality.log` (256 KB). **Never** stdout/stderr — OpenCode's TUI paints console output onto the prompt line. 4s budget, 3s per checker, per-skill dedupe. |
+| **Pi** | `pi/post-edit-quality.ts` | `tool_result` event, discovered via `.pi/extensions/` | `toolName: 'edit'`/`'write'`; `event.input.path` resolved against `ctx.cwd` | Appends findings as `{type: "text", text}` content to the tool result, model-visible. |
+| **OpenCode** | `.opencode/plugins/sk-code-post-edit-quality.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` | `after` carries only a `callID`, so `before` stashes the file path in a bounded correlation map and `after` retrieves+evicts it; watches `write`/`edit`/`patch`/`multiedit`/`apply_patch` | Findings buffered, then drained into the next turn's system context (model-visible) via the transform hook. Also written to a rotated log `.opencode/logs/post-edit-quality.log` (256 KB). **Never** stdout/stderr. OpenCode's TUI paints console output onto the prompt line. 4s budget, 3s per checker, per-skill dedupe. |
 
 The three CommonJS adapters (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-edit tool name, resolve the file, run the router, print findings. They share the Claude budget constants. Cursor deliberately does not reimplement the check: it reshapes its `Write` payload and shells out to the Claude adapter. Pi and OpenCode deliver findings into model-visible channels (tool-result content and the system transform respectively) rather than stdout.
 
@@ -114,7 +114,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 |---|---|
 | `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` | Full no-op on every runtime. The shared resolver (`isHookEnabled('post-edit-quality')`) short-circuits every adapter; the OpenCode plugin also checks this name directly. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
-| `SPECKIT_VALIDATE_LINKS=true` | Opt-in. Enables the wikilinks checker row (the heaviest checker — a whole-tree scan), scoped to markdown edits inside a skill directory. Off by default. |
+| `SPECKIT_VALIDATE_LINKS=true` | Opt-in. Enables the wikilinks checker row (the heaviest checker: a whole-tree scan), scoped to markdown edits inside a skill directory. Off by default. |
 
 Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 

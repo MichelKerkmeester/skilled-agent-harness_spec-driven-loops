@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/hooks/git/` contains a standalone, opt-in Git hook surface: `install-hooks.sh` symlinks `pre-commit` into Git's resolved hooks directory, and `pre-commit` runs the comment-hygiene and agent-mirror-sync gates for staged changes. The hook is opt-in — a clone does nothing until the installer is run.
+`.opencode/hooks/git/` contains a standalone, opt-in Git hook surface: `install-hooks.sh` symlinks `pre-commit` into Git's resolved hooks directory, and `pre-commit` runs the comment-hygiene and agent-mirror-sync gates for staged changes. The hook is opt-in: a clone does nothing until the installer is run.
 
 This folder is the standalone/legacy surface. The repository's primary Git hook installer is `.opencode/scripts/install-git-hooks.sh`, which installs a broader set of hooks (`commit-msg`, `pre-commit`, `post-commit`, `post-merge`, `post-rewrite`, `pre-push`) from `.opencode/scripts/git-hooks/`. The primary `pre-commit` chains into this folder's `pre-commit` as its comment-hygiene sub-gate, and also runs mass-deletion, doc-model-refs, prompt-card-sync, MCP mutation-class, and tool-ownership gates. Run `install-hooks.sh` here directly only to install or test the hygiene gate standalone, without the other gates.
 
@@ -25,7 +25,7 @@ This folder is the standalone/legacy surface. The repository's primary Git hook 
 
 | Gate | Scope | Behavior | Bypass |
 |---|---|---|---|
-| Comment hygiene | Staged added/modified files (`git diff --cached --name-only --diff-filter=ACM`) | Runs `check-comment-hygiene.sh` per file. Exit 1 from the checker → violation counted. Any non-{0,1,2} exit → hard block. Blocks the commit when violations > 0. | `SPECKIT_SKIP_COMMENT_HYGIENE=1` (primary pre-commit only); this standalone hook has no per-gate bypass — use the kill switch below. |
+| Comment hygiene | Staged added/modified files (`git diff --cached --name-only --diff-filter=ACM`) | Runs `check-comment-hygiene.sh` per file. Exit 1 from the checker → violation counted. Any non-{0,1,2} exit → hard block. Blocks the commit when violations > 0. | `SPECKIT_SKIP_COMMENT_HYGIENE=1` (primary pre-commit only); this standalone hook has no per-gate bypass, use the kill switch below. |
 | Agent mirror-sync | Staged agent files under `.opencode/agents/` or `.claude/agents/` (`--diff-filter=ACMD`) | Runs `check-agent-mirror-sync.cjs` over the staged agent files. Blocks the commit if the `.opencode` / `.claude` mirrors desync. | None per-gate; use the kill switch. |
 
 Both gates resolve their checkers from the repository root. Missing tooling is fail-open: if the comment-hygiene checker is absent or not executable, the gate warns and skips; if `node` or the mirror-sync checker is unavailable, the mirror gate warns and skips. The kill switch (`hook_enabled git-commit-hooks`) short-circuits the whole hook before any gate runs.
@@ -49,7 +49,7 @@ Fix: re-sync the mirrors so each agent body matches, then re-stage.
 
 ## 3. PER-RUNTIME DELIVERY
 
-This concern has no per-runtime adapters — it is a native Git hook, not a runtime hook. Git invokes `pre-commit` directly from `.git/hooks/` during `git commit`. The kill-switch resolver (`hook-flags.sh`) is sourced at the top of the hook; it is the same POSIX mirror the shell entrypoints under `shared/` use.
+This concern has no per-runtime adapters: it is a native Git hook, not a runtime hook. Git invokes `pre-commit` directly from `.git/hooks/` during `git commit`. The kill-switch resolver (`hook-flags.sh`) is sourced at the top of the hook; it is the same POSIX mirror the shell entrypoints under `shared/` use.
 
 | Surface | File | How it fires |
 |---|---|---|
@@ -74,7 +74,7 @@ git/
 
 | File | Responsibility |
 |---|---|
-| `install-hooks.sh` | Resolves the repo root, symlinks `pre-commit` into `$REPO_ROOT/.git/hooks/pre-commit`. Does not check for existing hooks or ownership — the primary installer does. |
+| `install-hooks.sh` | Resolves the repo root, symlinks `pre-commit` into `$REPO_ROOT/.git/hooks/pre-commit`. Does not check for existing hooks or ownership: the primary installer does. |
 | `pre-commit` | Sources `shared/hook-flags.sh` and short-circuits on the `git-commit-hooks` kill switch. Runs `check-comment-hygiene.sh` per staged file (fail-open if absent). Runs `check-agent-mirror-sync.cjs` over staged agent files (fail-open if `node` or the checker is absent). Blocks on violations; exits 0 otherwise. |
 
 ---
@@ -97,7 +97,7 @@ The `hook-flags.sh` mirror checks the master switch and the default-shape `SYSTE
 | Boundary | Rule |
 |---|---|
 | Imports | The hook sources `shared/hook-flags.sh` (POSIX sh, Node-free). The checkers are spawned by path: `check-comment-hygiene.sh` (shell) and `check-agent-mirror-sync.cjs` (Node). |
-| Decisions | Block (exit 1) or allow (exit 0). No advisory state — both gates are blocking when they fire. |
+| Decisions | Block (exit 1) or allow (exit 0). No advisory state: both gates are blocking when they fire. |
 | Failure | Fail-open: a missing or non-executable checker, a missing `node`, or an unavailable kill-switch resolver produces a warning and skips the gate, never a block. |
 | Scope | Only staged files are inspected (`git diff --cached --name-only`). Commits that touch no in-scope files are unaffected. |
 

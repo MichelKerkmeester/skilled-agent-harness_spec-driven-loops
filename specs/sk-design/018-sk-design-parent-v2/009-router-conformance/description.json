@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/009-router-conformance",
+  "description": "The `sk-design` root router passes its contract validator and still does not read like any other",
+  "keywords": [
+    "sk-design",
+    "root",
+    "router",
+    "passes",
+    "contract",
+    "validator",
+    "still",
+    "read",
+    "like"
+  ],
+  "lastUpdated": "2026-09-06T17:57:56.215Z",
+  "specId": "009",
+  "folderSlug": "router-conformance",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -21,10 +21,10 @@ The deep-improvement Lane C skill-benchmark harness benchmarks `sk-prompt` again
 
 Two trace modes score the same corpus:
 
-- **router** is deterministic and offline — it replays `hub-router.json` + `mode-registry.json`. This is the CI gate.
+- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. This is the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation.
 
-The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's — see section 5. Where a number here and the scoring contract disagree, the scoring contract prevails.
+The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's: see section 5. Where a number here and the scoring contract disagree, the scoring contract prevails.
 
 ---
 
@@ -74,6 +74,6 @@ Start with the `.md` file for the verdict and the ranked bottlenecks; open the `
 
 ## 6. COMPILED-ROUTING ARCHIVE
 
-Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
 Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

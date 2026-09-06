@@ -16,8 +16,8 @@ version: 1.0.0.0
 
 `extract-refero.mjs` builds the sibling `styles/<slug>/` folders from
 [styles.refero.design](https://styles.refero.design/). For each `/style/<uuid>`
-page it captures the four published tabs — **DESIGN.md, Tailwind v4, CSS
-Variables, Design Tokens** (the Extended variant) — verbatim, and writes one
+page it captures the four published tabs, **DESIGN.md, Tailwind v4, CSS
+Variables, Design Tokens** (the Extended variant), verbatim, and writes one
 folder per style plus a `source.md` that links back to the original style.
 
 The tabs are client-rendered, so they are read from a real Chrome through the
@@ -107,6 +107,6 @@ without writing to any real style folder. Raise `--delay-ms` if the site returns
 
 ## Related
 
-- [`../library/bundles/cursor/`](../library/bundles/cursor/) — the reference style; the output template every capture mirrors.
-- [`../README.md`](../README.md) — the extracted-styles index.
-- `specs/sk-design/010-sk-design-styles-from-refero/` — the spec packet (harness + pilot phases).
+- [`../library/bundles/cursor/`](../library/bundles/cursor/): the reference style; the output template every capture mirrors.
+- [`../README.md`](../README.md): the extracted-styles index.
+- `specs/sk-design/010-sk-design-styles-from-refero/`: the spec packet (harness + pilot phases).

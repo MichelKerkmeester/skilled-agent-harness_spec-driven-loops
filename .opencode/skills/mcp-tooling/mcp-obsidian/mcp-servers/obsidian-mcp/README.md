@@ -1,6 +1,6 @@
 ---
 title: "obsidian-mcp"
-description: "Config-only install pointer for the Obsidian MCP server (cyanheads obsidian-mcp-server), launched on demand via npx — nothing to vendor locally."
+description: "Config-only install pointer for the Obsidian MCP server (cyanheads obsidian-mcp-server), launched on demand via npx, nothing to vendor locally."
 trigger_phrases:
   - "obsidian mcp server"
   - "obsidian-mcp-server install"
@@ -30,7 +30,7 @@ version: 0.1.0.0
 
 ### Why This Package Exists
 
-mcp-obsidian routes app-backed vault operations — reading, writing, searching and tagging notes against a live Obsidian instance — to the `obsidian-mcp-server` MCP server. That server is launched on demand by Code Mode and is not vendored as source in this repository, so `npm install` in this folder does nothing useful. `package.json` is a placeholder that documents that fact for anyone who runs `npm install` here by habit.
+mcp-obsidian routes app-backed vault operations, reading, writing, searching and tagging notes against a live Obsidian instance, to the `obsidian-mcp-server` MCP server. That server is launched on demand by Code Mode and is not vendored as source in this repository, so `npm install` in this folder does nothing useful. `package.json` is a placeholder that documents that fact for anyone who runs `npm install` here by habit.
 
 ### What It Does
 
@@ -43,7 +43,7 @@ It reads three environment variables (interpolated by the manual, see Section 3)
 
 | Variable | Required | Default |
 |---|---|---|
-| `OBSIDIAN_API_KEY` | Yes | — (Local REST API bearer token) |
+| `OBSIDIAN_API_KEY` | Yes |, (Local REST API bearer token) |
 | `OBSIDIAN_BASE_URL` | No | `http://127.0.0.1:27123` |
 | `OBSIDIAN_VERIFY_SSL` | No | `false` |
 
@@ -67,7 +67,7 @@ obsidian_OBSIDIAN_BASE_URL=http://127.0.0.1:27123
 obsidian_OBSIDIAN_VERIFY_SSL=false
 ```
 
-**Step 3: Confirm registration.** The `obsidian` manual is already registered in `.utcp_config.json` — this folder does not edit that file. To confirm:
+**Step 3: Confirm registration.** The `obsidian` manual is already registered in `.utcp_config.json`: this folder does not edit that file. To confirm:
 
 ```typescript
 list_tools()

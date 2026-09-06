@@ -17,7 +17,7 @@ The 4 base HTML templates a new diagram is built from.
 
 ## 1. OVERVIEW
 
-Loaded `ON_DEMAND` per `SKILL.md`'s Resource Loading Levels — copy the variant matching the request, then draw into it.
+Loaded `ON_DEMAND` per `SKILL.md`'s Resource Loading Levels: copy the variant matching the request, then draw into it.
 
 ---
 

@@ -15,9 +15,9 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`directive-lifecycle/` is the index for the concern that keeps the Skill Advisor's constant directive block from being re-injected on every turn. The advisor brief appends a block of constant directives (comment-hygiene) after a `\nDirectives:` separator. Without dedup, that block rides along on every prompt. This concern records, per session, whether the block has already been delivered, and re-arms full delivery only on a lifecycle boundary (`startup` / `resume` / `compact` / `clear` / `post-compact`) — so the directives appear at startup and after a compaction, not on every turn.
+`directive-lifecycle/` is the index for the concern that keeps the Skill Advisor's constant directive block from being re-injected on every turn. The advisor brief appends a block of constant directives (comment-hygiene) after a `\nDirectives:` separator. Without dedup, that block rides along on every prompt. This concern records, per session, whether the block has already been delivered, and re-arms full delivery only on a lifecycle boundary (`startup` / `resume` / `compact` / `clear` / `post-compact`): so the directives appear at startup and after a compaction, not on every turn.
 
-Two pieces cooperate. A **decision** function (`decideDirectiveLifecycleDelivery`, in the advisor's `lib/`) runs inside each runtime's prompt-submit path and chooses `full` or `suppressed` delivery against a durable, file-backed per-session store. A **boundary** adapter (`directive-lifecycle-boundary.ts`) runs on host lifecycle events and advances the store — bumping one session's epoch when identity is known, or invalidating every older record (a generation bump) when it is not — so a resume, compact, or clear forces the next prompt to re-deliver the full block.
+Two pieces cooperate. A **decision** function (`decideDirectiveLifecycleDelivery`, in the advisor's `lib/`) runs inside each runtime's prompt-submit path and chooses `full` or `suppressed` delivery against a durable, file-backed per-session store. A **boundary** adapter (`directive-lifecycle-boundary.ts`) runs on host lifecycle events and advances the store, bumping one session's epoch when identity is known, or invalidating every older record (a generation bump) when it is not, so a resume, compact, or clear forces the next prompt to re-deliver the full block.
 
 The single most important property is that it **fails open**. A missing session id, an unconfirmed session, an invalid transcript, a clock mismatch, a store-set failure, or any internal error resolves to full delivery, so the guardrails are never silently lost. The boundary adapters emit no model-visible output at all; they only advance durable state.
 
@@ -33,16 +33,16 @@ The real code lives in `system-skill-advisor` (the canonical boundary adapter an
 
 | Condition | Decision |
 |---|---|
-| Kill-switch disabled, no separator, empty head, no session id, session unconfirmed, or invalid transcript | `full` — deliver the complete brief (fail open) |
-| Lifecycle boundary event (`startup` / `resume` / `compact` / `clear`) | `full` — re-arm and commit a fresh record |
-| No existing record, clock mismatch, directives text changed, transcript path changed, or transcript bytes went backwards (rollback) | `full` — re-deliver and commit |
-| Same directives, same transcript path, transcript advanced, record committed | `suppressed` — deliver the `head` only, drop the directive block |
+| Kill-switch disabled, no separator, empty head, no session id, session unconfirmed, or invalid transcript | `full`: deliver the complete brief (fail open) |
+| Lifecycle boundary event (`startup` / `resume` / `compact` / `clear`) | `full`, re-arm and commit a fresh record |
+| No existing record, clock mismatch, directives text changed, transcript path changed, or transcript bytes went backwards (rollback) | `full`, re-deliver and commit |
+| Same directives, same transcript path, transcript advanced, record committed | `suppressed`: deliver the `head` only, drop the directive block |
 
 The store is bounded to 64 sessions (`MAX_DIRECTIVE_LIFECYCLE_SESSIONS`) with LRU eviction, schema version 2. A double-read clock check guards against concurrent generation bumps: if the store generation changes between the two reads, the decision falls open to full delivery.
 
 ### Boundary (runs on host lifecycle events)
 
-`advanceDirectiveLifecycleBoundary(state, sessionId)` is the boundary entrypoint. With a non-empty session id it advances that session's epoch (`advanceSessionEpoch`); with no identity it bumps the whole store generation (`advanceGeneration`), invalidating every older record so the next prompt in any session re-delivers full. The Spec-Kit bridge shim (`speckit-directive-lifecycle-boundary.ts`) resolves the compiled canonical target by walking up to the `.opencode` ancestor and spawns it with a 500 ms timeout, 64 KiB stdio cap, and `SIGKILL` on timeout — fail-open on any resolution, spawn, or exit failure.
+`advanceDirectiveLifecycleBoundary(state, sessionId)` is the boundary entrypoint. With a non-empty session id it advances that session's epoch (`advanceSessionEpoch`); with no identity it bumps the whole store generation (`advanceGeneration`), invalidating every older record so the next prompt in any session re-delivers full. The Spec-Kit bridge shim (`speckit-directive-lifecycle-boundary.ts`) resolves the compiled canonical target by walking up to the `.opencode` ancestor and spawns it with a 500 ms timeout, 64 KiB stdio cap, and `SIGKILL` on timeout: fail-open on any resolution, spawn, or exit failure.
 
 ---
 
@@ -109,7 +109,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 | Boundary | Rule |
 |---|---|
-| Advisory only | Suppressing a repeat drops only the directive block; the prompt always proceeds. The boundary adapters emit no model-visible output — they advance durable state only. |
+| Advisory only | Suppressing a repeat drops only the directive block; the prompt always proceeds. The boundary adapters emit no model-visible output: they advance durable state only. |
 | Fail-open | Missing identity, unconfirmed session, invalid transcript, clock mismatch, store-set failure, missing target, spawn failure, timeout, or non-zero exit all resolve to full delivery (decision) or a no-op (boundary). |
 | Bounded | Decision stdin 64 KiB; bridge child timeout 500 ms, stdio cap 64 KiB, `SIGKILL` on timeout; store bounded to 64 sessions with LRU eviction. |
 | State | File-backed durable store, schema version 2, process-local handle with cross-process persistence. A double-read clock check detects concurrent generation bumps. |

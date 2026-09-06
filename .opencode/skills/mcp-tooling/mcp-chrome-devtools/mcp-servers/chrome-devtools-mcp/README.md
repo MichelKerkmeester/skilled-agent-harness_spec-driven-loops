@@ -29,7 +29,7 @@ version: 1.0.0.0
 
 ### Why This Package Exists
 
-mcp-chrome-devtools routes multi-tool and parallel-browser work — the surfaces the sequential-only `bdg` CLI cannot reach — to the Chrome DevTools MCP server ([ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp), Apache-2.0). The server is launched on demand by Code Mode and is not vendored as source in this repository, so nothing installs in this folder. It documents the registration instead.
+mcp-chrome-devtools routes multi-tool and parallel-browser work, the surfaces the sequential-only `bdg` CLI cannot reach, to the Chrome DevTools MCP server ([ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp), Apache-2.0). The server is launched on demand by Code Mode and is not vendored as source in this repository, so nothing installs in this folder. It documents the registration instead.
 
 ### What It Does
 

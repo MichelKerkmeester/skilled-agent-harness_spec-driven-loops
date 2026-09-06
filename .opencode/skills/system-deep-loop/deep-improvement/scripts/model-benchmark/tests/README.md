@@ -1,6 +1,6 @@
 ---
 title: "tests: Lane B + sweep framework vitest suite"
-description: "The vitest suite that guards the deep-improvement Lane B benchmark and the config-driven sweep framework — scorers, the correctness gate, the matrix sweep runtime, the dispatch envelope, paired-bootstrap stats, and dispatch cwd-isolation."
+description: "The vitest suite that guards the deep-improvement Lane B benchmark and the config-driven sweep framework: scorers, the correctness gate, the matrix sweep runtime, the dispatch envelope, paired-bootstrap stats, and dispatch cwd-isolation."
 trigger_phrases:
   - "model-benchmark tests"
   - "sweep vitest suite"
@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/` holds the vitest suite for the whole `model-benchmark/` surface — both the original deep-improvement Lane B grader and the config-driven *sweep* framework built on top of it. The suite is additive: the Lane B baseline stays green while every sweep feature lands behind its own spec file. Run the whole suite from the skill's `scripts/` root:
+`tests/` holds the vitest suite for the whole `model-benchmark/` surface: both the original deep-improvement Lane B grader and the config-driven *sweep* framework built on top of it. The suite is additive: the Lane B baseline stays green while every sweep feature lands behind its own spec file. Run the whole suite from the skill's `scripts/` root:
 
 ```bash
 cd .opencode/skills/system-deep-loop/deep-improvement/scripts && npx vitest run model-benchmark/tests/

@@ -2,11 +2,11 @@
 
 ## 1. OVERVIEW
 
-Tests for the flat-file retrieval engine (`../../lib/engine/`) — the default `legacy` read path.
+Tests for the flat-file retrieval engine (`../../lib/engine/`): the default `legacy` read path.
 
 ## Key files
 
-- `index.mjs` — the aggregator that runs the full engine suite.
+- `index.mjs`: the aggregator that runs the full engine suite.
 - Coverage: `eligibility-first` ranking, `fallback`/degradation, `hydrate-guard`, `invalidation`,
   `proof` (corpus-use proof), `check-stable`, plus `fixtures.mjs` shared setup.
 

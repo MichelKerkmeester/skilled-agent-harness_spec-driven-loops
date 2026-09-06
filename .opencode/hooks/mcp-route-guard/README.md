@@ -27,11 +27,11 @@ The guard runs on every native external MCP call, before the call executes. It p
 
 | Condition | Decision |
 |---|---|
-| Server is one of our own internal servers (token starts with `system_` or the pre-rename `mk_`, or is `code_mode` / `sequential_thinking`) | `allow` — never nudge Code Mode to wrap its own siblings |
-| Server family IS registered in the Code Mode manifest (`.utcp_config.json`) | `warn` — the call is routable, so advise it |
-| Server family is NOT in the manifest, default (manifest-strict) mode | `allow` — stay silent so every advisory the operator sees is actionable |
-| Server family is NOT in the manifest, broad mode enabled | `warn` — a coverage advisory suggesting the operator register a manual |
-| Anything goes wrong | `allow` — fail open |
+| Server is one of our own internal servers (token starts with `system_` or the pre-rename `mk_`, or is `code_mode` / `sequential_thinking`) | `allow`: never nudge Code Mode to wrap its own siblings |
+| Server family IS registered in the Code Mode manifest (`.utcp_config.json`) | `warn`: the call is routable, so advise it |
+| Server family is NOT in the manifest, default (manifest-strict) mode | `allow`: stay silent so every advisory the operator sees is actionable |
+| Server family is NOT in the manifest, broad mode enabled | `warn`: a coverage advisory suggesting the operator register a manual |
+| Anything goes wrong | `allow`, fail open |
 
 When the decision is `warn`, it injects exactly this text as model-visible context (delivered per runtime, see Section 3):
 

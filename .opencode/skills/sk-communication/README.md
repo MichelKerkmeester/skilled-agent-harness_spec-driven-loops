@@ -12,7 +12,7 @@ version: 1.1.0.0
 
 # sk-communication
 
-Make supported CLI and agent output read like careful plain English without ever changing the underlying data — and, when words are the wrong medium, explain it as a picture instead.
+Make supported CLI and agent output read like careful plain English without ever changing the underlying data: and, when words are the wrong medium, explain it as a picture instead.
 
 ## At a glance
 
@@ -31,9 +31,9 @@ Make supported CLI and agent output read like careful plain English without ever
 
 Coding CLIs often emit terse, robotic status text. The communication-projection package rewrites it into readable prose behind privacy-first provider routing, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Anything unsafe or failed returns the exact original.
 
-That is Lane A. Lane B answers a different failure: sometimes the problem is not that the words are dense, it is that words are the wrong medium, or that the reader lacks the background the text assumes. Lane B explains a topic — or the previous reply — as the smallest visual that answers the question, at a depth you choose. It runs in-context, reaches no model, and writes nothing unless you ask for an artifact.
+That is Lane A. Lane B answers a different failure: sometimes the problem is not that the words are dense, it is that words are the wrong medium, or that the reader lacks the background the text assumes. Lane B explains a topic, or the previous reply, as the smallest visual that answers the question, at a depth you choose. It runs in-context, reaches no model, and writes nothing unless you ask for an artifact.
 
-This skill is the entry point for both. It does not duplicate the code — it routes a request to the right lane and enforces the load-bearing invariants. The runtime contract lives in [SKILL.md](SKILL.md); the subsystem map is inline in [SKILL.md](SKILL.md); the visual rubrics live in [references/visual-explanation.md](references/visual-explanation.md).
+This skill is the entry point for both. It does not duplicate the code: it routes a request to the right lane and enforces the load-bearing invariants. The runtime contract lives in [SKILL.md](SKILL.md); the subsystem map is inline in [SKILL.md](SKILL.md); the visual rubrics live in [references/visual-explanation.md](references/visual-explanation.md).
 
 ---
 
@@ -41,14 +41,14 @@ This skill is the entry point for both. It does not duplicate the code — it ro
 
 The skill is held off advisor routing on purpose, so you invoke it by hand.
 
-**Lane A — projection**
+**Lane A, projection**
 
 - "rewrite this CLI output to plain English"
 - "wire up the projection layer for Codex / Pi / OpenCode / Devin / Cursor"
 - "route rewriting to a local model, keep my text private"
-- "which tier is this runtime — full projection or safe native?"
+- "which tier is this runtime, full projection or safe native?"
 
-**Lane B — explanation**
+**Lane B, explanation**
 
 - "draw me the control flow through this dispatch path"
 - "show that as a file tree, not a paragraph"
@@ -78,7 +78,7 @@ Lane B needs none of that. It is a prompt contract, not a package:
 /rewrite:explain-visually --artifact the dispatch pipeline   # also write a standalone HTML file
 ```
 
-Consume the package through its subpath exports — `@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, and `./release`.
+Consume the package through its subpath exports: `@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, and `./release`.
 
 ---
 
@@ -97,10 +97,10 @@ Consume the package through its subpath exports — `@portable-cli/communication
 
 ## 5. PACKAGE MAP AND DEEPER DOCS
 
-- [references/visual-explanation.md](references/visual-explanation.md) — Lane B: modality table, depth rubric, protected spans, lane boundary.
-- [feature-catalog/feature-catalog.md](feature-catalog/feature-catalog.md) — the current shipped-behavior inventory.
-- [manual-testing-playbook/manual-testing-playbook.md](manual-testing-playbook/manual-testing-playbook.md) — deterministic operator validation scenarios.
-- `.opencode/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
+- [references/visual-explanation.md](references/visual-explanation.md). Lane B: modality table, depth rubric, protected spans, lane boundary.
+- [feature-catalog/feature-catalog.md](feature-catalog/feature-catalog.md): the current shipped-behavior inventory.
+- [manual-testing-playbook/manual-testing-playbook.md](manual-testing-playbook/manual-testing-playbook.md): deterministic operator validation scenarios.
+- `.opencode/skills/sk-communication/cli-communication-projection/docs/`: install, configuration, privacy, support-matrix, rollback, and runbook.
 
 ---
 

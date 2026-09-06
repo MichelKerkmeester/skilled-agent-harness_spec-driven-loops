@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/scripts/git-hooks/` holds the hook scripts this repo installs into `.git/hooks/`. Hooks here are advisory-first: each one's primary check has its own bypass env var — with two exceptions whose headline check blocks by default: `pre-commit` layers a few genuinely blocking sub-gates on top of its advisory headline check, and `pre-push` blocks outright (for new remote branches only; see below).
+`.opencode/scripts/git-hooks/` holds the hook scripts this repo installs into `.git/hooks/`. Hooks here are advisory-first: each one's primary check has its own bypass env var: with two exceptions whose headline check blocks by default: `pre-commit` layers a few genuinely blocking sub-gates on top of its advisory headline check, and `pre-push` blocks outright (for new remote branches only; see below).
 
 Current state:
 
@@ -25,7 +25,7 @@ Current state:
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
 - `post-merge` and `post-rewrite` anchor and surface any `--autostash` entry after a merge or an amend/rebase, so a conflicted (un-applied) autostash cannot be lost silently.
 - `lib/autostash-orphan-guard.sh` is the one shared helper `post-merge` and `post-rewrite` both source; `lib/mass-deletion-guard.sh` backs the `pre-push` mass-deletion gate.
-- `pre-push` blocks creation of a *new* remote branch (remote sha all-zero) whose name breaks the owner-first naming grammar (`<owner>/NNNN-slug`, `skilled/vA.B.C.D` release, or `main`); wrapper refs (`work/<runtime>/<slug>`) are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed — migration tolerance, with only an advisory notice for a non-conformant name. The naming check is **tri-state**: a genuine invalid name blocks, but an internal validator error (for example a failed owner-discovery scan) fails **open** so a tooling fault never blocks a legal push, and the authorized-owner set is read only from version-controlled `SKILL.md` files (an untracked skill cannot authorize a remote owner).
+- `pre-push` blocks creation of a *new* remote branch (remote sha all-zero) whose name breaks the owner-first naming grammar (`<owner>/NNNN-slug`, `skilled/vA.B.C.D` release, or `main`); wrapper refs (`work/<runtime>/<slug>`) are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed: migration tolerance, with only an advisory notice for a non-conformant name. The naming check is **tri-state**: a genuine invalid name blocks, but an internal validator error (for example a failed owner-discovery scan) fails **open** so a tooling fault never blocks a legal push, and the authorized-owner set is read only from version-controlled `SKILL.md` files (an untracked skill cannot authorize a remote owner).
 
 ---
 
@@ -103,7 +103,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 | `post-merge` | Sources `lib/autostash-orphan-guard.sh` and anchors any `--autostash` entry the merge left un-applied. | None; the guard is best-effort and never blocks |
 | `post-rewrite` | Sources `lib/autostash-orphan-guard.sh` after an amend or rebase. The rewritten `old_commit new_commit` pairs git sends on stdin are unused. | None; the guard is best-effort and never blocks |
 | `lib/autostash-orphan-guard.sh` | Defines `autostash_orphan_guard()`, the one function `post-merge` and `post-rewrite` source. Anchors every autostash entry under `refs/autostash-rescue/<sha>` so it survives garbage collection, prints recovery instructions and records an alert in `.opencode/logs/autostash-orphan-alerts.log`. | None; it always returns success |
-| `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin. Blocks only a *new* remote branch (remote sha all-zero) whose name fails `is_valid_branch`/`is_wrapper_branch` from `worktree-naming.sh` — `<owner>/NNNN-slug`, `skilled/vA.B.C.D`, `main`, and `backup/*` are accepted, `work/<runtime>/<slug>` wrapper refs are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed (migration tolerance); a non-conformant name there only gets an advisory notice. Fails safe (exits 0) if `worktree-naming.sh` is missing or fails to source. | `SPECKIT_SKIP_PREPUSH_NAMING=1` |
+| `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin. Blocks only a *new* remote branch (remote sha all-zero) whose name fails `is_valid_branch`/`is_wrapper_branch` from `worktree-naming.sh`: `<owner>/NNNN-slug`, `skilled/vA.B.C.D`, `main`, and `backup/*` are accepted, `work/<runtime>/<slug>` wrapper refs are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed (migration tolerance); a non-conformant name there only gets an advisory notice. Fails safe (exits 0) if `worktree-naming.sh` is missing or fails to source. | `SPECKIT_SKIP_PREPUSH_NAMING=1` |
 
 ---
 

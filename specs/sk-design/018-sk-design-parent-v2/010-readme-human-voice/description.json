@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/010-readme-human-voice",
+  "description": "The Human Voice Rules carry an explicit Em Dash Ban: never use one, prefer a comma, full stop or",
+  "keywords": [
+    "human",
+    "voice",
+    "rules",
+    "carry",
+    "explicit",
+    "dash",
+    "ban",
+    "never",
+    "one",
+    "prefer",
+    "comma",
+    "full",
+    "stop"
+  ],
+  "lastUpdated": "2026-09-06T17:57:56.216Z",
+  "specId": "010",
+  "folderSlug": "readme-human-voice",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

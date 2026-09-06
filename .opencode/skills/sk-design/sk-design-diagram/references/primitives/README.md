@@ -17,7 +17,7 @@ Optional primitives layered onto a base diagram, loaded only when the request ca
 
 ## 1. OVERVIEW
 
-Every file here is `ON_DEMAND` in `SKILL.md`'s Resource Loading Levels — none load by default. Each documents one independent primitive that composes with any diagram type.
+Every file here is `ON_DEMAND` in `SKILL.md`'s Resource Loading Levels: none load by default. Each documents one independent primitive that composes with any diagram type.
 
 ---
 

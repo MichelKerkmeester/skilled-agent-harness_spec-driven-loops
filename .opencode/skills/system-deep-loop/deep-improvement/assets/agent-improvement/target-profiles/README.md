@@ -14,7 +14,7 @@ version: 1.17.0.1
 
 ## 1. OVERVIEW
 
-This directory is **intentionally empty** — it holds only `.gitkeep`. Agent improvement runs exclusively in dynamic mode: `scripts/agent-improvement/generate-profile.cjs` derives a fresh target profile on the fly from the agent's own structure and rules, and `scripts/agent-improvement/score-candidate.cjs` applies the 5-dimension scoring against it. Because every run regenerates its profile, no static profile files are committed here. The directory exists so the `profileCatalog` (in `../target-manifest.jsonc`) and `targetProfiles` (in `../improvement-config.json`) path references stay consistent.
+This directory is **intentionally empty**: it holds only `.gitkeep`. Agent improvement runs exclusively in dynamic mode: `scripts/agent-improvement/generate-profile.cjs` derives a fresh target profile on the fly from the agent's own structure and rules, and `scripts/agent-improvement/score-candidate.cjs` applies the 5-dimension scoring against it. Because every run regenerates its profile, no static profile files are committed here. The directory exists so the `profileCatalog` (in `../target-manifest.jsonc`) and `targetProfiles` (in `../improvement-config.json`) path references stay consistent.
 
 Current state:
 
@@ -38,6 +38,6 @@ Current state:
 
 ## 3. RELATED
 
-- [`../target-manifest.jsonc`](../target-manifest.jsonc) — `profileCatalog` reference and dynamic-mode classification.
-- [`../improvement-config.json`](../improvement-config.json) — `targetProfiles` path reference.
+- [`../target-manifest.jsonc`](../target-manifest.jsonc): `profileCatalog` reference and dynamic-mode classification.
+- [`../improvement-config.json`](../improvement-config.json), `targetProfiles` path reference.
 - [`../../../SKILL.md`](../../../SKILL.md)

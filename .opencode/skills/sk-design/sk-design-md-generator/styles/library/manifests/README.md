@@ -6,7 +6,7 @@ The flat engine's manifest(s) over the bundle corpus.
 
 ## Contents
 
-- `retrieval-manifest.json` — the flat engine's freshness + index contract over `../bundles/`. It records
+- `retrieval-manifest.json`: the flat engine's freshness + index contract over `../bundles/`. It records
   per-bundle fingerprints so retrieval can fail closed on stale or missing content.
 
 ## Architecture fit

@@ -14,9 +14,9 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Codex reads hooks only from the user-global `~/.codex/hooks.json` — a file that can silently drift from the repo (stale checkout anchor, missing adapter, manual edit). Claude and OpenCode hooks are repo-local and cannot drift. The watchdog closes that gap: on each OpenCode session start it runs the Codex hook installer's non-mutating `--check` and records drift for the operator.
+Codex reads hooks only from the user-global `~/.codex/hooks.json`: a file that can silently drift from the repo (stale checkout anchor, missing adapter, manual edit). Claude and OpenCode hooks are repo-local and cannot drift. The watchdog closes that gap: on each OpenCode session start it runs the Codex hook installer's non-mutating `--check` and records drift for the operator.
 
-It runs as an **OpenCode plugin** (the observing runtime) that watches the Codex configuration. There is no adapter on any other runtime — this is an OpenCode-plugin-hosted concern. Surfacing only; repair stays an explicit installer run.
+It runs as an **OpenCode plugin** (the observing runtime) that watches the Codex configuration. There is no adapter on any other runtime: this is an OpenCode-plugin-hosted concern. Surfacing only; repair stays an explicit installer run.
 
 ---
 
@@ -26,14 +26,14 @@ On `session.created`, the plugin:
 
 1. Checks the `codex-watchdog` kill switch. If disabled, returns immediately.
 2. Extracts the session ID and dedupes per session (bounded set, max 1000 entries with LRU eviction). A session that already warned is not re-checked.
-3. Runs `node .opencode/bin/install-codex-hooks.mjs --check` via `execFileSync` with a 5-second timeout and `stdio: 'ignore'`. This is the installer's non-mutating verification mode — it exits 0 when the user-global Codex hooks match the repo, non-zero on drift.
+3. Runs `node .opencode/bin/install-codex-hooks.mjs --check` via `execFileSync` with a 5-second timeout and `stdio: 'ignore'`. This is the installer's non-mutating verification mode: it exits 0 when the user-global Codex hooks match the repo, non-zero on drift.
 4. If the check exits non-zero (drift detected, or the installer could not run), appends one line to the bounded workspace log `.opencode/logs/codex-hooks-watchdog.log`:
 
 ```text
 <ISO timestamp> codex hook drift detected; run: node .opencode/bin/install-codex-hooks.mjs --check
 ```
 
-The log is capped at 256 KB (truncated on overflow). The plugin never throws, never writes stdout/stderr (OpenCode's TUI paints console output onto the prompt input line), and never blocks a turn. Any error — missing installer, spawn failure, timeout, log write failure — resolves to a no-op.
+The log is capped at 256 KB (truncated on overflow). The plugin never throws, never writes stdout/stderr (OpenCode's TUI paints console output onto the prompt input line), and never blocks a turn. Any error, missing installer, spawn failure, timeout, log write failure, resolves to a no-op.
 
 ---
 
@@ -90,7 +90,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 |---|---|
 | Imports | Node builtins only, plus `../hooks/shared/hook-flags.cjs` via `createRequire`. |
 | Decisions | Advisory only. Emits a log line on drift; never blocks a turn, never throws, never writes stdout/stderr. |
-| Failure | Fail-open on every path: disabled kill switch, missing installer, spawn failure, timeout, non-zero exit, log write failure — all resolve to a no-op. |
+| Failure | Fail-open on every path: disabled kill switch, missing installer, spawn failure, timeout, non-zero exit, log write failure, all resolve to a no-op. |
 | State | Per-session dedupe set (max 1000, LRU eviction). Bounded log file (256 KB, truncated on overflow). No persistent state outside the log. |
 
 ---

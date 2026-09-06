@@ -1,6 +1,6 @@
 ---
 title: "Git Primary Reconcile: Live-Checkout Convergence"
-description: "SessionStart primitive that converges the primary checkout onto its live branch — fast-forwarding when behind and rebase-publishing local commits when ahead — across Claude, Codex, Pi, and the OpenCode session-start plugin."
+description: "SessionStart primitive that converges the primary checkout onto its live branch, fast-forwarding when behind and rebase-publishing local commits when ahead, across Claude, Codex, Pi, and the OpenCode session-start plugin."
 trigger_phrases:
   - "primary checkout reconcile"
   - "live branch reconcile"
@@ -15,7 +15,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`git-primary-reconcile/` is the index for the SessionStart primitive that keeps the primary checkout current on its live branch. A session that commits directly in the primary can leave it stranded — behind origin, ahead of origin, or both — so the next session opens against a diverged checkout. This script converges it: it fast-forwards when the checkout is behind and rebase-publishes local commits when it is ahead, so the primary never rests in a half-merged state.
+`git-primary-reconcile/` is the index for the SessionStart primitive that keeps the primary checkout current on its live branch. A session that commits directly in the primary can leave it stranded, behind origin, ahead of origin, or both, so the next session opens against a diverged checkout. This script converges it: it fast-forwards when the checkout is behind and rebase-publishes local commits when it is ahead, so the primary never rests in a half-merged state.
 
 It acts only in the main checkout, only on the resolved live branch, and only when tracked files are clean. It never loses a commit: a rebase conflict is aborted back to the exact pre-rebase HEAD, a pre-existing rebase is refused rather than touched, and a blocked push leaves local commits preserved but unpublished. Every internal failure is non-fatal (exit 0) so session start always continues.
 
@@ -27,7 +27,7 @@ One real script backs the wired runtimes. Claude, Codex, and Pi carry relative s
 
 On each SessionStart, `git-primary-reconcile.sh` runs this flow (every branch exits 0):
 
-1. **Worktree gate.** Resolves `git-dir` and `git-common-dir`; a linked worktree (`git-dir != git-common-dir`) exits immediately — a worktree shares refs with the primary but is owned by a separate session, so moving its branch would cross an ownership boundary. This gate precedes flags, logging, locking, and fetch.
+1. **Worktree gate.** Resolves `git-dir` and `git-common-dir`; a linked worktree (`git-dir != git-common-dir`) exits immediately: a worktree shares refs with the primary but is owned by a separate session, so moving its branch would cross an ownership boundary. This gate precedes flags, logging, locking, and fetch.
 2. **Kill-switches.** Loads the shared `hook-flags.sh` fail-open (warns and continues enabled if the resolver is absent). `hook_enabled live-sync` and `hook_enabled primary-reconcile` each short-circuit to a recorded skip when disabled.
 3. **Single-flight lock.** Acquires a lock file in the common dir (TTL 45s, stale-lock reclaim). A held lock records a skip and exits.
 4. **Live-branch resolution.** Resolves the current branch. With `SPECKIT_LIVE_BRANCH` unset, only `skilled/v*` release branches auto-resolve as live; anything else skips. The current branch must match the resolved live branch.
@@ -37,14 +37,14 @@ On each SessionStart, `git-primary-reconcile.sh` runs this flow (every branch ex
 
    | Situation | Action |
    |---|---|
-   | Tips equal | Skip — already up to date |
+   | Tips equal | Skip, already up to date |
    | Local is behind (ancestor of remote) | `git merge --ff-only`; on success `ADVANCE`, on a dirty collision `BLOCK` (ff would overwrite local changes), otherwise `BLOCK` (ff refused) |
    | Local is ahead, clean tree, no pre-existing rebase | `git rebase <REMOTE_TIP>` then `git push <REMOTE> HEAD:<LIVE>`; on success `PUBLISH` |
-   | Local is ahead, dirty tree | `SKIP` — rebase needs a clean tree; local commits preserved but unpublished |
-   | Local is ahead, pre-existing rebase state | `BLOCK` — refuses to rebase or abort a rebase it did not start |
-   | Histories diverged with no local commits to rebase | `BLOCK` — cannot reconcile automatically |
+   | Local is ahead, dirty tree | `SKIP`: rebase needs a clean tree; local commits preserved but unpublished |
+   | Local is ahead, pre-existing rebase state | `BLOCK`: refuses to rebase or abort a rebase it did not start |
+   | Histories diverged with no local commits to rebase | `BLOCK`, cannot reconcile automatically |
 
-8. **Rebase safety.** On a rebase failure it aborts, then asserts HEAD landed back on the exact pre-rebase commit (force `reset --hard` if needed), no leftover rebase state, and a clean tree — otherwise `CRITICAL BLOCK`. A rebase conflict aborts cleanly with local commits preserved but unpublished.
+8. **Rebase safety.** On a rebase failure it aborts, then asserts HEAD landed back on the exact pre-rebase commit (force `reset --hard` if needed), no leftover rebase state, and a clean tree: otherwise `CRITICAL BLOCK`. A rebase conflict aborts cleanly with local commits preserved but unpublished.
 9. **Push gates.** On a rejected push, it classifies the gate from the push output and prints the fix:
 
    | Gate | Fix |
@@ -122,7 +122,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Scope-gated | Runs only in the main checkout, only on the resolved live branch. A linked worktree exits before any flag, lock, or network call. |
 | Never touches uncommitted work | Tracked-only cleanliness; untracked build output is ignored. A dirty tree blocks the rebase/publish path (commits preserved, unpublished) and a dirty collision blocks the fast-forward. |
 | Never loses a commit | A rebase conflict aborts back to the exact pre-rebase HEAD (force `reset --hard` if needed, then asserted). A pre-existing rebase is refused, never aborted. A blocked push leaves local commits intact. |
-| Non-fatal | Every internal failure — missing git, unresolvable dirs, fetch failure/timeout, missing tips, rebase failure, push rejection — exits 0 so session start continues. |
+| Non-fatal | Every internal failure, missing git, unresolvable dirs, fetch failure/timeout, missing tips, rebase failure, push rejection, exits 0 so session start continues. |
 | Bounded | Fetch and push run under the network timeout via `timeout`/`gtimeout`/`perl alarm`; if no bounded runner exists, network access is refused (skip). Single-flight lock prevents concurrent runs. |
 | Imports | Bash only; sources the shared `hook-flags.sh` fail-open. Nothing outside the repo. |
 | Real code | Stays in `.opencode/bin/`; the hub entries are relative symlinks. |

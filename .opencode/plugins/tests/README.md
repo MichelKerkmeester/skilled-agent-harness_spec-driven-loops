@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.opencode/plugins/tests/` contains the Node built-in test-runner suites for the plugin entrypoints in the parent directory. Tests are **hermetic**: they use temporary directories (`os.tmpdir()`), in-process `import()` of the plugin module under test, stubbed `ctx.client` / bridge / subprocess seams, and per-test env var save/restore. No live OpenCode session, daemon, or network is required.
 
-The suites pin three contracts above all: the **kill-switch ordering** (a disabled plugin must be a genuine full no-op, checked before any `output` read or mutation — not just a no-emit no-op that still normalizes `output.system`), the **fail-open boundary** (a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op), and the **hook behavior** (correct injection / deny / advise / cache / lifecycle) when the kill-switch is off. Several plugins expose a `.__test` surface hanging off the default export so tests can reach internal helpers without a stray named export being mistaken for a second plugin.
+The suites pin three contracts above all: the **kill-switch ordering** (a disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`), the **fail-open boundary** (a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op), and the **hook behavior** (correct injection / deny / advise / cache / lifecycle) when the kill-switch is off. Several plugins expose a `.__test` surface hanging off the default export so tests can reach internal helpers without a stray named export being mistaken for a second plugin.
 
 Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared `hook-flags.cjs` resolver directly, while importing the ESM plugin under test via `import(pathToFileURL(...))`. Some suites use cache-busting query strings (`?${label}-${Date.now()}`) or `data:text/javascript;base64,...` instrumented modules to get a fresh module instance per test.
 
@@ -100,7 +100,7 @@ Tests manage their own env per test (save/restore). The kill-switch env each sui
 | Boundary | Rule |
 |---|---|
 | Hermetic | Temporary directories, in-process `import()`, stubbed `ctx.client` / bridge / subprocess seams, per-test env save/restore. No live OpenCode session, daemon, or network. |
-| Kill-switch ordering | A disabled plugin must be a genuine full no-op, checked before any `output` read or mutation — not just a no-emit no-op that still normalizes `output.system`. |
+| Kill-switch ordering | A disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`. |
 | Fail-open boundary | A missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. |
 | CJS shell, ESM under test | Tests are `.test.cjs` so they can `require()` Node builtins and `hook-flags.cjs`; the ESM plugin under test is imported via `import(pathToFileURL(...))`. Cache-busting query strings or `data:text/javascript;base64,...` instrumented modules give a fresh module instance per test where needed. |
 | `.__test` surface | Several plugins expose internal helpers hanging off the default export so tests can reach them without a stray named export being mistaken for a second plugin. |

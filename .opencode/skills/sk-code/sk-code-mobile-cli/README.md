@@ -3,7 +3,7 @@
 The read-only evidence base a code workflow loads when it works on the **Pi Remote Mobile-CLI** app.
 It carries the app's formalized design system so implementation, quality, review, debug, and verify
 work honor the same token library, natural comment convention, guardrails, and verification gate the app
-actually ships under — instead of treating `app-mobile/` as a generic, unowned frontend.
+actually ships under: instead of treating `app-mobile/` as a generic, unowned frontend.
 
 ---
 
@@ -13,9 +13,9 @@ actually ships under — instead of treating `app-mobile/` as a generic, unowned
 | --- | --- |
 | **Packet kind** | `surface` (read-only domain evidence) |
 | **Backend** | `evidence-base` |
-| **Tools** | read-only — `Read, Bash, Grep, Glob`; mutates nothing |
+| **Tools** | read-only: `Read, Bash, Grep, Glob`; mutates nothing |
 | **Advisor** | invisible (`routingClass: metadata`); reached only by hub bundling |
-| **Detected surface** | `PI_REMOTE` — `app-mobile/`, `app-relay/`, `@pi-remote/*` |
+| **Detected surface** | `PI_REMOTE`: `app-mobile/`, `app-relay/`, `@pi-remote/*` |
 | **Bundled with** | a workflow mode, e.g. `[sk-code-quality, sk-code-mobile-cli]` |
 | **Frozen contracts** | ink-on-parchment tokens (Inter + Source Serif 4; WCAG AA; ≥44px) · read-only security posture |
 
@@ -33,13 +33,13 @@ surface closes that gap: PI_REMOTE now detects, and the design-system evidence l
 
 ### What It Carries
 
-- **The token library** — the primitive → semantic → component three-layer model, the 8 frozen
+- **The token library**: the primitive → semantic → component three-layer model, the 8 frozen
   `--pi-*` values in light and dark, and the propagation rules a retint follows.
-- **The comment convention** — kept MODULE and numbered section banners, module headers, markup section
+- **The comment convention**: kept MODULE and numbered section banners, module headers, markup section
   labels, one-line purpose comments, four edit classes, and natural seam-reading rules.
-- **The guardrails** — the `Do not edit — <why>` notes and the architectural reason a presentation edit
+- **The guardrails**: the `Do not edit, <why>` notes and the architectural reason a presentation edit
   cannot cross into logic or the security boundary.
-- **The verification gate** — the browser-free resolver method and the command set that prove a change
+- **The verification gate**: the browser-free resolver method and the command set that prove a change
   preserved every frozen value in both themes.
 
 ### The Design-System Evidence Layer
@@ -51,11 +51,11 @@ apply; the app artifacts are the source of truth for the exact values and the br
 
 ### The Mobile CLI App Repository
 
-The Pi Remote app is a **separate repository from this skills hub** — the **Mobile CLI app repo**. Its
+The Pi Remote app is a **separate repository from this skills hub**: the **Mobile CLI app repo**. Its
 source (`app-mobile/`, `app-relay/`), its `specs/`, and the live
 design-system artifacts named above all live there; it is the source of truth. This surface is that
 repo's read-only design-system mirror inside `sk-code`. When a code workflow runs on the app, the Mobile
-CLI repo is the working tree, so every `app-mobile` and `app-relay` path this packet cites resolves there —
+CLI repo is the working tree, so every `app-mobile` and `app-relay` path this packet cites resolves there,
 not against this hub. The design-system contract distilled here is specified in
 `specs/003-design-system-library/` in that repo.
 
@@ -68,9 +68,9 @@ A workflow bundling this surface should, in order:
 1. Read `references/design-system/token-library.md` to place any color/spacing/radius change in the right layer
    (semantic role for a system-wide retint; component token for one surface; never a `--pi-*` primitive).
 2. Read `references/conventions/comment-grammar.md` to find the nearby purpose comment for the edit class (token /
-   slot / state / layout) and confirm it is not inside a `Do not edit — <why>` fence.
-3. Make the change, then run `references/verification/verification.md` — the browser-free resolvers plus
-   `npm run typecheck` / `build` / `test:web` — to prove no frozen value moved and both themes still
+   slot / state / layout) and confirm it is not inside a `Do not edit, <why>` fence.
+3. Make the change, then run `references/verification/verification.md`: the browser-free resolvers plus
+   `npm run typecheck` / `build` / `test:web`: to prove no frozen value moved and both themes still
    pass WCAG AA.
 
 ---
@@ -86,7 +86,7 @@ the third surface, beside `sk-code-webflow` and `sk-code-opencode`.
 ### Detection and Bundling
 
 Surface detection (in `../../shared/references/stack-detection.md`) resolves PI_REMOTE from the CWD and
-changed/target files, at precedence **OPENCODE > PI_REMOTE > WEBFLOW > UNKNOWN** — OPENCODE still wins a
+changed/target files, at precedence **OPENCODE > PI_REMOTE > WEBFLOW > UNKNOWN**, OPENCODE still wins a
 `.opencode/` target; PI_REMOTE catches the pi-remote app paths that previously fell to UNKNOWN. The hub
 then bundles this surface behind the chosen workflow mode via `routerPolicy.outcomes.surfaceBundle`
 (workflow ordered first, surface after).
@@ -98,21 +98,21 @@ then bundles this surface behind the chosen workflow mode via `routerPolicy.outc
 ### When The Hub Bundles This Surface
 
 `node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<pi-remote task>"` resolves the workflow
-mode and appends `sk-code-mobile-cli` as read-only evidence — e.g. a quality gate on the app returns
+mode and appends `sk-code-mobile-cli` as read-only evidence: e.g. a quality gate on the app returns
 `[sk-code-quality, sk-code-mobile-cli]`.
 
 ### Related Skills
 
-- `../sk-code-webflow`, `../sk-code-opencode` — sibling read-only surfaces on the same axis.
-- `../sk-code-quality`, `../sk-code-review` — workflow modes that bundle this surface.
-- `../../shared/` — the implement → debug → verify doctrine this surface folds in via symlink.
+- `../sk-code-webflow`, `../sk-code-opencode`: sibling read-only surfaces on the same axis.
+- `../sk-code-quality`, `../sk-code-review`: workflow modes that bundle this surface.
+- `../../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.
 - `system-spec-kit` (spec folders + memory), `sk-git` (worktrees, commits, finish).
 
 ---
 
 ## 6. FAQ
 
-**Does this surface edit the app?** No — it is read-only evidence. The bundled workflow mode makes edits;
+**Does this surface edit the app?** No: it is read-only evidence. The bundled workflow mode makes edits;
 this surface tells it the rules.
 
 **Can I retint the app from here?** You change values in the app's `app-mobile/src/app.css` (through the workflow
@@ -140,11 +140,11 @@ the single `sk-code` identity and the hub bundles this surface.
 
 ## 8. RELATED DOCUMENTS
 
-- `SKILL.md` — the surface contract, reference map, machine-readable routing, and standards.
-- `references/` — the token library, natural comment convention, guardrails, verification, and the
+- `SKILL.md`: the surface contract, reference map, machine-readable routing, and standards.
+- `references/`: the token library, natural comment convention, guardrails, verification, and the
   workflow doctrine.
-- `changelog/` — release notes for this packet.
-- `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json` — the parent hub's routing.
-- The **Mobile CLI app repo** — the app source, its `specs/` (including the design-system spec
+- `changelog/`: release notes for this packet.
+- `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json`: the parent hub's routing.
+- The **Mobile CLI app repo**: the app source, its `specs/` (including the design-system spec
   `specs/003-design-system-library/`), and the live `token-library.md` / `designer-editability.md` and the Storybook catalog.
   This surface is its read-only evidence mirror; see §2 "The Mobile CLI App Repository".

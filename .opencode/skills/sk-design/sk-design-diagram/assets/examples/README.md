@@ -11,7 +11,7 @@ version: 1.0.0.3
 
 # assets/examples
 
-Canonical, self-contained HTML/SVG output — one rendered example per diagram type, plus special-pattern variants.
+Canonical, self-contained HTML/SVG output: one rendered example per diagram type, plus special-pattern variants.
 
 ---
 

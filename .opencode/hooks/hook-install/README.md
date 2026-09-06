@@ -15,11 +15,11 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`hook-install/` is the index for the installer that reconciles the repository's versioned hooks into Codex's user-global hook file. Codex reads hooks only from `~/.codex/hooks.json` — a file that lives outside the repo and can silently drift (stale checkout anchor, missing adapter, manual edit). This installer merges the repo's authoritative `.codex/hooks.json` into that user-global file, so Codex runs the current managed hook set without the operator hand-editing a global config.
+`hook-install/` is the index for the installer that reconciles the repository's versioned hooks into Codex's user-global hook file. Codex reads hooks only from `~/.codex/hooks.json`: a file that lives outside the repo and can silently drift (stale checkout anchor, missing adapter, manual edit). This installer merges the repo's authoritative `.codex/hooks.json` into that user-global file, so Codex runs the current managed hook set without the operator hand-editing a global config.
 
 It is tooling that *installs* hooks rather than a runtime event hook. It is explicitly invoked as a reconcile step, not run on every turn, and is indexed here so the hub shows every hook-related executable in one place. The same installer backs a non-mutating `--check` mode that the [`codex-watchdog`](../codex-watchdog/README.md) plugin calls on each OpenCode session start to surface drift.
 
-One real installer backs the wired runtimes. Claude, Cursor, and Devin carry relative symlinks into `.opencode/bin/`; Codex itself carries no copy — it is the install target, not an installer host.
+One real installer backs the wired runtimes. Claude, Cursor, and Devin carry relative symlinks into `.opencode/bin/`; Codex itself carries no copy: it is the install target, not an installer host.
 
 ---
 
@@ -38,8 +38,8 @@ One real installer backs the wired runtimes. Claude, Cursor, and Devin carry rel
 The installer treats hook **identity** as the first adapter path in a command (`node`/`bash`/`python` + a `.js`/`.mjs`/`.cjs`/`.sh` file). Against the user-global target it:
 
 - **Removes** hooks whose identity matches a source hook (the source is authoritative for command shape, so the old entry is replaced).
-- **Removes repo orphans** — any identity under `.opencode/` that no longer exists on disk. Ownership follows the `.opencode/` namespace, so a renamed script orphans its installed entry rather than silently surviving.
-- **Keeps third-party hooks** — anything the repo does not own is preserved untouched.
+- **Removes repo orphans**: any identity under `.opencode/` that no longer exists on disk. Ownership follows the `.opencode/` namespace, so a renamed script orphans its installed entry rather than silently surviving.
+- **Keeps third-party hooks**: anything the repo does not own is preserved untouched.
 - **Appends** the canonical source groups, with the portable anchor `${CODEX_PROJECT_DIR:-$PWD}` rewritten to the resolved repo path.
 
 ### Drift classification (`--check`)

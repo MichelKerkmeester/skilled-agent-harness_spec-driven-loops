@@ -21,7 +21,7 @@ Route map for the `create-agent` overflow references. The authoritative, numbere
 
 `SKILL.md` is the primary contract: when to use, component choice, output package, canonical frontmatter, required body shape, the ordered creation workflow, and the validation gate. It is complete on its own for authoring an agent.
 
-These reference files hold single-concern depth that would bloat that contract — the harder component-choice calls, the reasoning behind permission scoping, and the catalogue of failure modes. Load the one the current task needs; do not read them front to back.
+These reference files hold single-concern depth that would bloat that contract: the harder component-choice calls, the reasoning behind permission scoping, and the catalogue of failure modes. Load the one the current task needs; do not read them front to back.
 
 ---
 
@@ -31,9 +31,9 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Which component to build** — agent vs skill vs command comparison, signals that the answer is an agent, lighter-alternative signals, decision rule | [agent-vs-skill-vs-command.md](agent-vs-skill-vs-command.md) | The request could plausibly be a skill or command, or mixes responsibilities and needs a clear owner |
-| **Frontmatter and permission depth** — `mode` selection, least-authority permission design rules, the deprecated `tools:` contract to migrate away from | [permission-design.md](permission-design.md) | Scoping an agent's `permission:` object, choosing `mode`, or justifying `task: allow` |
-| **What goes wrong** — seven recurring defects with why-it-breaks and the correct fix, plus runtime-placement integrity | [common-pitfalls.md](common-pitfalls.md) | Reviewing a draft agent, or an agent fails validation, over-permits, or bloats |
+| **Which component to build**: agent vs skill vs command comparison, signals that the answer is an agent, lighter-alternative signals, decision rule | [agent-vs-skill-vs-command.md](agent-vs-skill-vs-command.md) | The request could plausibly be a skill or command, or mixes responsibilities and needs a clear owner |
+| **Frontmatter and permission depth**: `mode` selection, least-authority permission design rules, the deprecated `tools:` contract to migrate away from | [permission-design.md](permission-design.md) | Scoping an agent's `permission:` object, choosing `mode`, or justifying `task: allow` |
+| **What goes wrong**: seven recurring defects with why-it-breaks and the correct fix, plus runtime-placement integrity | [common-pitfalls.md](common-pitfalls.md) | Reviewing a draft agent, or an agent fails validation, over-permits, or bloats |
 
 ---
 

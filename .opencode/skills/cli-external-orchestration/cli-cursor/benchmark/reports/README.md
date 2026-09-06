@@ -18,7 +18,7 @@ _Derived after the fact from this run's stored record, not written at run time._
 
 ## 1. OVERVIEW
 
-Each row below is one run folder. Unlike a Lane C skill-benchmark tree, no automated harness writes these rows at run time — they were hand-derived after the fact from the run's stored record (canary-token + transcript-grep evidence captured in packet `034-goal-hook-playbooks-and-validation`).
+Each row below is one run folder. Unlike a Lane C skill-benchmark tree, no automated harness writes these rows at run time: they were hand-derived after the fact from the run's stored record (canary-token + transcript-grep evidence captured in packet `034-goal-hook-playbooks-and-validation`).
 
 ---
 

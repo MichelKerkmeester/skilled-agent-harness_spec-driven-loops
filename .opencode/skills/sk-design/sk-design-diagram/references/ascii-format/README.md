@@ -14,7 +14,7 @@ version: 1.0.0.7
 
 # Create-Flowchart References
 
-Route-map for create-flowchart overflow guidance. `../../SKILL.md` is the authoritative workflow contract; these references carry only the depth that does not belong inline — a worked example, validator mechanics, and pattern-selection detail. Open only the file the current task needs.
+Route-map for create-flowchart overflow guidance. `../../SKILL.md` is the authoritative workflow contract; these references carry only the depth that does not belong inline: a worked example, validator mechanics, and pattern-selection detail. Open only the file the current task needs.
 
 ---
 
@@ -30,9 +30,9 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Worked example** — a compact validator-passing decision tree and why its labels, connectors, and widths pass | [worked-example.md](worked-example.md) | Modeling a real decision tree on a proven, validator-safe shape |
-| **Validator mechanics and notation** — how the validator inspects a file, box-width consistency and fixes, common mistakes, and the judgment the validator cannot supply | [notation-and-validator.md](notation-and-validator.md) | A flowchart fails validation, hits the box-width error, or you need validator-passing notation |
-| **Pattern selection and splitting** — choosing a pattern by workflow shape with best-fit and avoid-when detail, plus when to split a large diagram | [pattern-selection.md](pattern-selection.md) | Deciding which pattern fits, or whether a diagram is too large for one figure |
+| **Worked example**: a compact validator-passing decision tree and why its labels, connectors, and widths pass | [worked-example.md](worked-example.md) | Modeling a real decision tree on a proven, validator-safe shape |
+| **Validator mechanics and notation**: how the validator inspects a file, box-width consistency and fixes, common mistakes, and the judgment the validator cannot supply | [notation-and-validator.md](notation-and-validator.md) | A flowchart fails validation, hits the box-width error, or you need validator-passing notation |
+| **Pattern selection and splitting**: choosing a pattern by workflow shape with best-fit and avoid-when detail, plus when to split a large diagram | [pattern-selection.md](pattern-selection.md) | Deciding which pattern fits, or whether a diagram is too large for one figure |
 
 ---
 
@@ -47,4 +47,4 @@ Load the file that matches the current task:
 
 ---
 
-*End of create-flowchart reference route-map — depth lives in the three single-concern files above.*
+*End of create-flowchart reference route-map: depth lives in the three single-concern files above.*

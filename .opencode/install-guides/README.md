@@ -332,7 +332,7 @@ Prerequisites → Code Mode → Skill Advisor
 
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
-- [ ] Skill Advisor (native advisor_recommend + skill_graph_* — 8 tools)
+- [ ] Skill Advisor (native advisor_recommend + skill_graph_*, 8 tools)
 - [ ] Chrome DevTools CLI (browser debugging)
 - [ ] Antigravity Auth (Google OAuth)
 - [ ] OpenAI Codex Auth (ChatGPT OAuth)
@@ -435,7 +435,7 @@ The shared embedding stack at `.opencode/skills/system-spec-kit/shared/embedding
 | **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
 | **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
 
-**Default provider:** `auto`. The active default is **Ollama** when its local daemon is reachable; otherwise the cascade falls back to local **HF Local** (pure-Node), then to opt-in cloud. Cloud (OpenAI/Voyage) is never auto-selected silently — it requires an explicit key or `EMBEDDINGS_PROVIDER`.
+**Default provider:** `auto`. The active default is **Ollama** when its local daemon is reachable; otherwise the cascade falls back to local **HF Local** (pure-Node), then to opt-in cloud. Cloud (OpenAI/Voyage) is never auto-selected silently: it requires an explicit key or `EMBEDDINGS_PROVIDER`.
 
 **Provider selection (local-first cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
 1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
@@ -479,7 +479,7 @@ No separate local model service is required. Continue to Phase 3 for MCP server 
 1. **Code Mode** (foundation, install FIRST)
 2. Skill Advisor (native skill recommendation)
 
-Spec-folder retrieval is not on this list. It needs no server — see Section 10.2.
+Spec-folder retrieval is not on this list. It needs no server, see Section 10.2.
 
 ---
 
@@ -582,7 +582,7 @@ test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
 
 ---
 
-### 10.3 Skill Advisor (`system_skill_advisor` — Native Recommendation)
+### 10.3 Skill Advisor (`system_skill_advisor`. Native Recommendation)
 
 The standalone `system_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
 
@@ -893,7 +893,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 /doctor:mcp debug                    # MCP-infra diagnostic only (~30s)
 ```
 
-- `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
+- `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release": the right pick after a fresh install (runs `/doctor:update --migrate`).
 - `/doctor:update` rebuilds the generated artifacts and the advisor database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
 - `/doctor:mcp debug` checks the native MCP servers (Skill Advisor, Code Mode) and offers guided repair with `--fix`.
 
@@ -1008,7 +1008,7 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 After installing OpenCode components, customize the AI agent configuration for your project.
 
-> **🎯 This is a public repo template.** Of the shipped skills, `sk-code` is the one that carries stack-specific patterns — start there when adapting to your project. The other shipped skills (`sk-doc`, `sk-git`, `system-spec-kit`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project regardless of frontend stack, animation library, CMS, or backend language. Many teams will also add their own skills on top of the shipped set — that's expected. See §15.5 below for the customization map.
+> **🎯 This is a public repo template.** Of the shipped skills, `sk-code` is the one that carries stack-specific patterns, start there when adapting to your project. The other shipped skills (`sk-doc`, `sk-git`, `system-spec-kit`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project regardless of frontend stack, animation library, CMS, or backend language. Many teams will also add their own skills on top of the shipped set, that's expected. See §15.5 below for the customization map.
 
 ### 15.1 AGENTS.md Customization
 
@@ -1075,7 +1075,7 @@ The Agent System provides specialized AI personas with defined authorities, tool
 ls .opencode/agents/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-### 15.5 Customizing for Your Stack — Start with `sk-code`
+### 15.5 Customizing for Your Stack. Start with `sk-code`
 
 This template ships with `sk-code` configured for Webflow + OpenCode + cross-stack Motion.dev. To adapt for your stack:
 
@@ -1087,11 +1087,11 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 **What "adapting `sk-code`" looks like:**
 1. Replace `references/{webflow,opencode,motion_dev}/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
 2. Replace `assets/{webflow,opencode,motion_dev}/` with your stack's assets.
-3. Update `SKILL.md` §2 — `STACK_FOLDERS` Python dict + the bash detection block — to match your stack's marker files and CWD signals.
+3. Update `SKILL.md` §2, `STACK_FOLDERS` Python dict + the bash detection block, to match your stack's marker files and CWD signals.
 4. Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
 5. Bump `sk-code` version + ship a changelog. Use `assets/opencode/checklists/skill-authoring.md` as your reference.
 
-**Adding your own skills:** the shipped set is intentionally minimal — most teams will add their own (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor automatically. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
+**Adding your own skills:** the shipped set is intentionally minimal: most teams will add their own (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor automatically. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **Detailed Guide**: [Root README §4 Customizing for Your Stack](../../README.md#customizing-for-your-stack)
 
