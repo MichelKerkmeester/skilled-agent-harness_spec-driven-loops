@@ -167,7 +167,7 @@ node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-ind
 
 ### The Packet Lifecycle
 
-Every conversation that modifies files gets a spec folder. Gate 3 in AGENTS.md enforces this by asking "Which spec folder?" before any file modification begins. The only exemptions are single-file fixes under 5 characters, typo or whitespace corrections.
+Every conversation that modifies files gets a spec folder. Gate 3 in AGENTS.md enforces this by asking "Which spec folder?" before any file modification begins. The only exemption is a trivial fix of a few characters in one file.
 
 ```text
 Session starts
@@ -194,13 +194,12 @@ Session starts
 ### Spec Folder Structure
 
 ```text
-specs/<###-feature-name>/
+specs/<track>/<###-feature-name>/
 ├── description.json             # Spec identity and continuity metadata
 ├── spec.md                      # What the feature is and why it exists
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
 ├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
-├── checklist.md                 # QA validation gates (Level 2+)
 ├── decision-record.md           # Architecture decisions (Level 3+)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
 ├── handover.md                  # Operator-facing session handoff for /speckit:resume
@@ -218,16 +217,16 @@ Not every change needs the same amount of paperwork. A one-line bug fix does not
 | Level | LOC guidance | Required files | When to use |
 |---|---|---|---|
 | **1** | under 100 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | small features, bug fixes, single-file changes |
-| **2** | 100 to 499 | Level 1 plus `acceptance-criteria.md`; `checklist.md` optional | features needing QA verification, multi-file changes |
-| **3** | 500 and up | Level 2 plus `decision-record.md` | architecture changes, complex refactors |
+| **2** | 100 to 499 | Level 1 plus `acceptance-criteria.md`, which is optional and warns when absent | features needing QA verification, multi-file changes |
+| **3** | 500 and up | Level 2 plus `decision-record.md`, which is optional and created on request | architecture changes, complex refactors |
 | **3+** | complexity 80 and up | Level 3 plus approval workflow, compliance and stakeholders | high-complexity work needing review tracking |
 | **Phase Parent** | control files only | `spec.md`, `description.json`, `graph-metadata.json` | folder contains phase children with their own spec docs |
 
 The LOC ranges are guidance, not hard rules. Risk, complexity and the number of affected files can push a task to a higher level. When in doubt, choose the higher level.
 
-### Checklist Priority System
+### Task Priority System
 
-Level 2 and up uses a priority system so reviewers know what blocks shipping:
+The Level 2+ verification section of `tasks.md` uses a priority system so reviewers know what blocks shipping:
 
 | Priority | Meaning | Deferral |
 |---|---|---|
@@ -267,12 +266,12 @@ The `/speckit:implement` and `/speckit:complete` commands plus the nested change
 
 ### Template Rendering
 
-Templates live in one manifest source and render through the Level contract resolver. `create.sh` asks the resolver which files belong to each level, then the inline renderer expands only the sections allowed for that level.
+Templates live under `templates/` in three groups, `core/`, `addons/` and `packet-types/`, and render through the Level contract resolver. `create.sh` asks the resolver which files belong to each level, then the inline renderer expands only the sections allowed for that level.
 
 ```text
 Level 1:  spec.md, plan.md, tasks.md, implementation-summary.md
-Level 2:  Level 1 + acceptance-criteria.md (checklist.md optional)
-Level 3:  Level 2 + decision-record.md
+Level 2:  Level 1 + acceptance-criteria.md (optional, warns if absent)
+Level 3:  Level 2 + decision-record.md (optional, on request)
 Level 3+: Level 3 + extended governance sections
 Phase:    lean parent trio plus child phase folders
 ```
@@ -406,12 +405,15 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 ├── SKILL.md                    # AI workflow instructions (when to use, gates, rules)
 ├── README.md                   # This file (what it does, how to use it)
 ├── ARCHITECTURE.md             # Boundary contract: runtime/cli/ vs runtime/
-├── templates/                  # Manifest template source
-│   └── manifest/               # Rendered by Level contract resolver + inline renderer
+├── templates/                  # Template source + Level contract
+│   ├── core/                   # Scaffolded at every level
+│   ├── addons/                 # Level-gated and workflow-owned documents
+│   ├── packet-types/           # Phase parent, review and context-index shapes
+│   └── spec-kit-docs.json      # Level contract resolved by create.sh
 ├── runtime/cli/                    # CLI tools (TypeScript source + Bash)
 │   ├── spec/                   # Spec folder management scripts
 │   ├── continuity/             # Continuity scripts
-│   ├── templates/              # Template composition (manifest renderer)
+│   ├── templates/              # Inline gate renderer
 │   ├── core/                   # Core library (29 modules)
 │   ├── extractors/             # Session data extractors (13 extractors)
 │   ├── utils/                  # Utility modules (19 utilities)
@@ -537,11 +539,11 @@ node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index
 
 **Q: Is System Spec Kit mandatory for every file change?**
 
-A: Yes, for any conversation that modifies files. The only exemption is single-file fixes under 5 characters, typo or whitespace corrections. Gate 3 in AGENTS.md enforces this by asking "Which spec folder?" before any file modification begins.
+A: Yes, for any conversation that modifies files. The only exemption is a trivial fix of a few characters in one file. Gate 3 in AGENTS.md enforces this by asking "Which spec folder?" before any file modification begins.
 
 **Q: When do I need Level 2 instead of Level 1?**
 
-A: Level 2 adds a `checklist.md` for QA verification. Use it when the change touches multiple files, needs testing verification or has edge cases worth documenting. The LOC guidance is 100 to 499, but risk and complexity matter more than line count.
+A: Level 2 adds an `acceptance-criteria.md` closure gate. Use it when the change touches multiple files, needs testing verification or has edge cases worth documenting. The LOC guidance is 100 to 499, but risk and complexity matter more than line count.
 
 **Q: When do I need Level 3?**
 

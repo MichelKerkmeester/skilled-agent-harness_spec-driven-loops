@@ -25,29 +25,37 @@ This document covers spec folder organization, naming conventions, and level-spe
 
 ```
 templates/
-├── manifest/                       # Canonical .tmpl source files + Level contract
+├── core/                           # Scaffolded at every level
 │   ├── spec.md.tmpl
 │   ├── plan.md.tmpl
 │   ├── tasks.md.tmpl
-│   ├── acceptance-criteria.md.tmpl
+│   └── implementation-summary.md.tmpl
+│
+├── addons/                         # Level-gated and workflow-owned documents
 │   ├── acceptance-criteria.md.tmpl
 │   ├── decision-record.md.tmpl
-│   ├── implementation-summary.md.tmpl
-│   ├── phase-parent.spec.md.tmpl
+│   ├── goal.md.tmpl
 │   ├── handover.md.tmpl
 │   ├── debug-delegation.md.tmpl
 │   ├── research.md.tmpl
 │   ├── resource-map.md.tmpl
-│   ├── context-index.md.tmpl
-│   └── spec-kit-docs.json          # Level contract resolved by create.sh
+│   ├── before-after.md.tmpl
+│   ├── timeline.md.tmpl
+│   └── roadmap.md.tmpl
 │
+├── packet-types/                   # Non-level packet shapes
+│   ├── phase-parent.spec.md.tmpl
+│   ├── review.spec.md.tmpl
+│   └── context-index.md.tmpl
+│
+├── spec-kit-docs.json              # Level contract resolved by create.sh
 ├── examples/               # Rendered examples by Level
 ├── changelog/              # Template history
 ├── stress-test/            # Review/research rubric assets
 └── scratch/                # Local ignored render workspace
 ```
 
-> **IMPORTANT:** Always scaffold new specs from the manifest-backed Level contract. `create.sh` and the Level contract resolver share `templates/spec-kit-docs.json`.
+> **IMPORTANT:** Always scaffold new specs from the Level contract. `create.sh` and the Level contract resolver share `templates/spec-kit-docs.json`.
 
 ---
 
@@ -110,12 +118,11 @@ specs/NNN-name/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
-├── acceptance-criteria.md
-├── acceptance-criteria.md     # the closure gate
 └── implementation-summary.md  # Created AFTER implementation completes
 ```
 
 **Optional:**
+- `acceptance-criteria.md` - the closure gate; validation warns when it is absent
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 
@@ -127,13 +134,12 @@ specs/NNN-name/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
-├── acceptance-criteria.md
-├── acceptance-criteria.md
-├── decision-record.md         # Architecture decisions
 └── implementation-summary.md  # Created AFTER implementation completes
 ```
 
 **Optional:**
+- `acceptance-criteria.md` - the closure gate; validation warns when it is absent
+- `decision-record.md` - architecture decisions; created on request, skipped silently when absent
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 - `research/` / `review/` local-owner folders — see §4 `research/` and `review/` (local owner folders). Root specs keep them at the root packet; child phases and sub-phases keep them under the owning phase folder.
@@ -304,7 +310,6 @@ specs/016-user-preferences/
 ├── plan.md
 ├── tasks.md
 ├── acceptance-criteria.md
-├── acceptance-criteria.md
 ├── implementation-summary.md  # Created after implementation
 ├── scratch/
 │   └── test-data.json
@@ -319,7 +324,6 @@ specs/017-authentication-system/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
-├── acceptance-criteria.md
 ├── acceptance-criteria.md
 ├── decision-record.md
 ├── implementation-summary.md
