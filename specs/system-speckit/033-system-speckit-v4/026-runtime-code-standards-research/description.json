@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
+  "description": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality",
+  "keywords": [
+    "system-spec-kit",
+    "runtime",
+    "shared",
+    "package",
+    "across",
+    "many",
+    "packets",
+    "two",
+    "directory",
+    "moves",
+    "while",
+    "sk-code-opencode",
+    "sk-code-quality"
+  ],
+  "lastUpdated": "2026-09-06T07:58:19.501Z",
+  "specId": "026",
+  "folderSlug": "runtime-code-standards-research",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

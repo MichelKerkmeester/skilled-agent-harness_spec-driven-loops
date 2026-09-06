@@ -131,6 +131,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 22 | 022-shared-containment-helper/ | was `055-path-containment-seam`; first commit 2026-09-05, last 2026-09-05 | complete |
 | 23 | 023-trigger-index-root-and-drift-fixes/ | was `056-integration-research-remediation`; first commit 2026-09-06, last 2026-09-06 | complete |
 | 24 | 024-metadata-regeneration-and-shared-parser/ | was `057-metadata-regeneration-and-parser-edges`; first commit 2026-09-06, last 2026-09-06 | complete |
+| 25 | 025-docs-reality-alignment-research/ | ten-iteration research lane: playbook, catalog and references against the runtime | in progress |
+| 26 | 026-runtime-code-standards-research/ | ten-iteration research lane: shared and runtime code against the sk-code standards | in progress |
 
 ### Phase Transition Rules
 
@@ -144,6 +146,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | any child | its successor | The child validates strict at its slot and its metadata names the parent | `validate.sh <child> --strict`; `graph-metadata.json` parent id |
+| a research child | its remediation child | Ten iterations complete and every kept finding reproduced in-session | `research/confirmed-findings.md` present; `validate.sh <child> --strict` |
 <!-- /ANCHOR:phase-map -->
 
 ---

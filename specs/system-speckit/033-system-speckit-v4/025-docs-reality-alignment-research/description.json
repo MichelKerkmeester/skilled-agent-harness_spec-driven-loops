@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research",
+  "description": "The system-spec-kit documentation grew through the memory-database era and the CLI move from `scripts/` to `runtime/cli/`",
+  "keywords": [
+    "system-spec-kit",
+    "documentation",
+    "grew",
+    "memory-database",
+    "era",
+    "cli",
+    "move",
+    "scripts",
+    "runtime"
+  ],
+  "lastUpdated": "2026-09-06T07:58:19.500Z",
+  "specId": "025",
+  "folderSlug": "docs-reality-alignment-research",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
