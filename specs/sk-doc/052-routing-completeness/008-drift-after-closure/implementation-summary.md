@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "sk-doc/052-routing-completeness/008-drift-after-closure"
     last_updated_at: "2026-09-05T19:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Fixed the two owned findings at their producers and worked through the independent review"
+    recent_action: "Fixed both owned findings, worked through review"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
@@ -187,11 +187,11 @@ tree, and its findings were worked through rather than argued with.
 
 | Decision | Why |
 |----------|-----|
-| Fix the loader at the wrapper's root, not in the fallback | The fallback is a second renderer for an environment this tree does not have; the wrapper's spelling is the defect and its sibling library already had the right one |
-| Remove spec-kit's `trigger-phrases` keyword rather than change the anchor test | Spec-kit's declared signal is `trigger index`; the field name belongs to sk-doc's frontmatter mode; changing the scorer's anchor test is a scoring change D2 forbids |
-| Fix the Python reference's database resolution rather than override it in the test | One scorer honoured the directory override and its reference did not; that seam is what produced the drift, and a test-side override would have left it |
-| Re-pin only after the regime was deterministic and the number reproduced twice | A pin captured against a live graph was wrong within minutes; the new pin moves only with a diff |
-| Retire `spec kit runtime` from the CLI hub | Spec-kit already wins it at 0.93 and the CLI hub's written boundary is executor dispatch; phase 004's rule decides collisions by the losing hub's boundary |
+| Fix the loader at the wrapper's root, not in the fallback | The fallback is a second renderer for an environment this tree does not have. The wrapper's spelling is the defect and its sibling library already had the right one |
+| Remove spec-kit's `trigger-phrases` keyword rather than change the anchor test | Spec-kit's declared signal is `trigger index`. The field name belongs to sk-doc's frontmatter mode. Changing the scorer's anchor test is a scoring change D2 forbids |
+| Fix the Python reference's database resolution rather than override it in the test | One scorer honoured the directory override and its reference did not. That seam is what produced the drift, and a test-side override would have left it |
+| Re-pin only after the regime was deterministic and the number reproduced twice | A pin captured against a live graph was wrong within minutes. The new pin moves only with a diff |
+| Retire `spec kit runtime` from the CLI hub | Spec-kit already wins it at 0.93 and the CLI hub's written boundary is executor dispatch. Phase 004's rule decides collisions by the losing hub's boundary |
 | Record the validator gap rather than widen the rule | Widening it is a fleet gate change that would fail every packet still carrying scaffold text, and that blast radius is the operator's to accept |
 | Level 3 for this phase | The level script scored it Level 1 on size, but the phase rules on four decisions, and the packet rule is to go higher when judgment and the script differ |
 <!-- /ANCHOR:decisions -->
@@ -203,7 +203,7 @@ tree, and its findings were worked through rather than argued with.
 
 | Check | Result |
 |-------|--------|
-| `scaffold-golden-snapshots.vitest.ts` under the CLI workspace config | PASS, 9 of 9; 1 failed before the fix on `before-after.md` |
+| `scaffold-golden-snapshots.vitest.ts` under the CLI workspace config | PASS, 9 of 9. 1 failed before the fix on `before-after.md` |
 | `inline-gate-renderer.vitest.ts` with its loader path corrected | PASS, 12 of 12 |
 | Scratch `create.sh --level 3 --skip-branch --with-lazy-addons` | PASS, eleven documents rendered |
 | `parent-skill-check.cjs` on all five hubs, hub path passed | PASS, `all hard invariants passed` on each |
@@ -212,11 +212,11 @@ tree, and its findings were worked through rather than argued with.
 | `skill_graph_compiler.py --validate-only` after the keyword removal | PASS |
 | Live replay `spec kit runtime` | `system-spec-kit` 0.93 first, CLI hub 0.467 second |
 | Live replay `delegate to opencode for code generation` | CLI hub 0.811 first with target `cli-opencode` |
-| Live replay `trigger_phrases` after the daemon rebuild | `sk-doc` 0.487; `trigger index` still `system-spec-kit` 0.70 |
+| Live replay `trigger_phrases` after the daemon rebuild | `sk-doc` 0.487. `trigger index` still `system-spec-kit` 0.70 |
 | `python-ts-parity.vitest.ts` from the final tree, twice | PASS, 2 of 2 each run, report 109 and 102 with seven accepted rows both times |
 | Six sibling advisor suites after both advisor changes | PASS, 41 tests |
 | Voice-scanner self-checks `test_hvr_scan.py` | PASS, `ALL PASS` over eleven checks |
-| Gate A re-run, before and after the keyword fix | 343 then 344 of 388; the one remaining difference is the retired signal |
+| Gate A re-run, before and after the keyword fix | 343 then 344 of 388. The one remaining difference is the retired signal |
 | Gate B re-run | 20 of 180 intended-mode top picks, 93 empty, 0 errors, full prompts stored |
 | Independent review: 20 random corpus rows re-queried live | 20 of 20 reproduce |
 | `validate.sh --strict --recursive` on the parent | PASS, `RESULT: PASSED` on all nine folders |
@@ -229,10 +229,10 @@ tree, and its findings were worked through rather than argued with.
 ## Known Limitations
 
 1. **The validator's placeholder rule still does not read bracketed template text.** ADR-004 records the mechanism and the owner. Until it changes, run `check-placeholders.sh` beside `validate.sh` before any completion claim.
-2. **The scorer's space-keyed anchor test remains.** Two hubs declaring the same underscored token will trip it again. This is the second recorded instance; changing the test is a scoring change outside this packet.
+2. **The scorer's space-keyed anchor test remains.** Two hubs declaring the same underscored token will trip it again. This is the second recorded instance. Changing the test is a scoring change outside this packet.
 3. **The inline render fallback still cannot batch.** A tree with no tsx installed anywhere would fail the scaffold the same way. ADR-001 records why it was not widened.
 4. **One figure in ADR-002 is the investigation's, not re-run here.** The Python reference reading 107 against the metadata as committed at the pin commit and at HEAD. What was verified here is that the isolated regime reproduces and that 112 is not among its readings.
-5. **The phase 007 narrative still names the pre-nesting `scripts/` tree in prose.** Its continuity paths and its files table are current; the body describes the tree as it stood when the phase ran, which is what a record should do.
+5. **The phase 007 narrative still names the pre-nesting `scripts/` tree in prose.** Its continuity paths and its files table are current. The body describes the tree as it stood when the phase ran, which is what a record should do.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "sk-doc/052-routing-completeness/008-drift-after-closure"
     last_updated_at: "2026-09-05T19:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed ADR-002 and ADR-003 as implemented after two independent investigations, and added ADR-004 for the validator gap"
+    recent_action: "Closed ADR-002 and ADR-003, added ADR-004"
     next_safe_action: "Hand ADR-004 to system-spec-kit"
     blockers: []
     key_files:
@@ -146,7 +146,7 @@ SQLite`.
 The investigation traced both leaks. The test disabled only the built-in semantic lane for
 the Python spawn and imported the native scorer statically, so
 `lib/scorer/projection.ts:58` had already read the database directory before any test code
-ran. The sibling suites pin all three regime variables before a dynamic import; this one
+ran. The sibling suites pin all three regime variables before a dynamic import. This one
 did not. The Python reference resolved its database off its own file location at
 `scripts/skill_advisor.py:246` and never read the override, while the native resolver at
 `lib/skill-graph/skill-graph-db.ts:270` honours it. One scorer could be isolated from the
@@ -163,7 +163,7 @@ The two rows that join the accepted list are `rr-iter2-020`, a request to audit 
 `memory_save` prompts are documented across packet docs, and `rr-iter3-146`, a read-only
 review of the routing taxonomy. Both carry gold `sk-code`, both are won by the Python
 reference, and both are lost by the native scorer to `sk-doc` by under 0.04.
-`sk-code`'s metadata declares the phrase `review packet docs`; `sk-doc`'s nearest mode acts
+`sk-code`'s metadata declares the phrase `review packet docs`. `sk-doc`'s nearest mode acts
 on an existing document rather than assessing one. That the gold labels are right and the
 scorer bleeds vocabulary is a judgment, and it is recorded as one.
 

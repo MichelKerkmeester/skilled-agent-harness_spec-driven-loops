@@ -51,14 +51,16 @@
       ".opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts",
       "research/gate-a-rerun-2026-09-05.tsv",
+      "research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
       "research/gate-b-rerun-2026-09-05.tsv",
       "runtime/cli/templates/inline-gate-renderer.sh",
-      "runtime/cli/lib/template-utils.sh",
-      "runtime/cli/spec/create.sh",
-      "runtime/cli/spec/validate.sh",
-      "node_modules/tsx/dist/loader.mjs"
+      "runtime/cli/lib/template-utils.sh"
     ],
     "entities": [
       {
@@ -122,15 +124,45 @@
         "source": "derived"
       },
       {
+        "name": "inline-gate-renderer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
         "source": "derived"
       },
       {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "python-ts-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "gate-a-rerun-2026-09-05.tsv",
         "kind": "file",
         "path": "research/gate-a-rerun-2026-09-05.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
+        "kind": "file",
+        "path": "research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
         "source": "derived"
       },
       {
@@ -143,12 +175,6 @@
         "name": "template-utils.sh",
         "kind": "script",
         "path": "runtime/cli/lib/template-utils.sh",
-        "source": "derived"
-      },
-      {
-        "name": "loader.mjs",
-        "kind": "file",
-        "path": "node_modules/tsx/dist/loader.mjs",
         "source": "derived"
       },
       {
@@ -180,35 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Measure",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A packet that closes on measured numbers stays true only while its inputs hold still",
     "created_at": "2026-09-05T13:40:04Z",
-    "last_save_at": "2026-09-05T13:57:43.252Z",
+    "last_save_at": "2026-09-05T14:42:20.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1b9519d64bdced3a6c70f0ccec4d5a339e016ae293a763c19908209b094d590",
+    "source_fingerprint": "sha256:3b6256ee85ee36f93a8e59f54262c25335476d97b678163a738f45f025995bb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e5a7f3037a569117b7982f61ada292af3720dfd03c45bb1a0c3553a0b4498a5",
       "plan.md": "7ea883b4b4d3d89af31f24da1fee485ac41b671a700e465164afc1dc262eb0bb",
       "tasks.md": "986cf0ce893b5c75111c3d296316c2a7633cd56697a2048d1dc571c8b3dd5cbc",
-      "decision-record.md": "316ea42fae52f82b45319c228ccc9f8695fef3db60680fd1e5a2178d92a14ebe",
-      "implementation-summary.md": "72925f8f388b12dc9fc997cd4d9ddfe604a6c0a03288f3801ccf065831111a8b"
+      "decision-record.md": "dc31d92842930d7a58ed7877c9cab5b36ac815ccacbb591dbd223ecb1ef67ae6",
+      "implementation-summary.md": "ec2956e3547baf6aefb0aeb012f558f9c3443533eaf50fe98b4f2af3ea6e56dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

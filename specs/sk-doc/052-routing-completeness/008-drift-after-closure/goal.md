@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/052-routing-completeness/008-drift-after-closure"
     last_updated_at: "2026-09-05T16:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed every criterion on the re-run artifacts and the green scaffold suite"
+    recent_action: "Fixed both owned findings, worked through review"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files: []
@@ -93,6 +93,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Level 3 over the script's Level 1 | The size score is honest and the phase is small, but it rules on three decisions, and the packet convention is to go higher when the script and judgment differ |
-| The parity suite stays red | Deliberate. Re-pinning is a scoring judgment D2 forbids, and the number is regime-dependent; the next owner has all three readings |
+| The parity suite stays red | Deliberate. Re-pinning is a scoring judgment D2 forbids, and the number is regime-dependent. The next owner has all three readings |
 | The mint changed nothing | Intent signals are not among the manifest's hashed inputs, so the retirement reached the daemon through the metadata rescan rather than through a re-mint. The guard was still run, since the rule is to run it after any routing edit |
 <!-- /ANCHOR:log -->
