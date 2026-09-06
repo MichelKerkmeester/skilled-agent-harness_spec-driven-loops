@@ -21,9 +21,9 @@
 // (dry run); 2 = something failed — a rejected argument, a packet whose report
 // could not be read, or a repair that did not land.
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const { execFile } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
@@ -32,9 +32,9 @@ const { promisify } = require('node:util');
 
 const run = promisify(execFile);
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const REPO = process.cwd();
 const VALIDATE = '.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh';
 const BACKFILL = '.opencode/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts';
@@ -121,9 +121,9 @@ function fail(message) {
   throw new UsageError(message);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. DIAGNOSIS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function parseReport(stdout) {
   try {
     const report = JSON.parse(stdout);
@@ -200,9 +200,9 @@ function readIfPresent(file) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. DERIVED REPAIRS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // A repair rewrites a document a person wrote. Writing in place truncates the
 // file first, so an interrupt between the truncate and the write leaves that
@@ -372,9 +372,9 @@ async function repairFolder(folder, apply) {
   return { folder, planned, authored, failure };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. DISCOVERY
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Snapshots taken before a rename are frozen by definition: their recorded
 // location is deliberately the old one, so "repairing" it to match where the
@@ -406,9 +406,9 @@ function discover(root) {
   return packets.sort();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. ARGUMENTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
   const options = { apply: false, folder: undefined, roots: 'specs' };
   for (let i = 0; i < argv.length; i += 1) {
@@ -455,9 +455,9 @@ function insideSpecs(target) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. ENTRY POINT
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 async function main() {
   const { apply, folder: folderArg, roots: rootsArg } = parseArgs(process.argv.slice(2));
 

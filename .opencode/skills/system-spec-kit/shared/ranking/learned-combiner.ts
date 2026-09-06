@@ -9,9 +9,8 @@
 // SPECKIT_LEARNED_STAGE2_COMBINER feature flag.
 //
 // No external ML dependencies — matrix math imported from matrix-math.ts.
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
-// Feature catalog: Learned Stage 2 weight combiner
 
 import { transpose, matMul, matVecMul, addScaledIdentity, solveLinearSystem } from './matrix-math.js';
 

@@ -1,8 +1,8 @@
 "use strict";
 // @ts-nocheck
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TEST: PROGRESSIVE VALIDATION PIPELINE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Tests for progressive-validate.sh — the 4-level progressive validation
 // Wrapper around validate.sh.
 //
@@ -59,9 +59,9 @@ const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
 const os = __importStar(require("os"));
 const child_process_1 = require("child_process");
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const SCRIPTS_DIR = path.resolve(__dirname, '..');
 const PROGRESSIVE_SCRIPT = path.join(SCRIPTS_DIR, 'spec', 'progressive-validate.sh');
 const VALIDATE_SCRIPT = path.join(SCRIPTS_DIR, 'spec', 'validate.sh');
@@ -69,9 +69,9 @@ const FIXTURES_DIR = path.join(SCRIPTS_DIR, 'tests', 'test-fixtures');
 const VALID_L1_FIXTURE = path.join(FIXTURES_DIR, '002-valid-level1');
 // Today's date in YYYY-MM-DD format (for auto-fix assertions)
 const TODAY = new Date().toISOString().split('T')[0];
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Run progressive-validate.sh against a folder with optional extra flags.
  * Returns { stdout, stderr, exitCode }.
@@ -118,9 +118,9 @@ function createTempSpecDir(files) {
 function readFile(dir, name) {
     return fs.readFileSync(path.join(dir, name), 'utf8');
 }
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. FIXTURES — MINIMAL SPEC.MD TEMPLATES FOR AUTO-FIX TESTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** A minimal valid Level-1 spec.md without date placeholders. */
 const MINIMAL_SPEC_MD = `
 <!-- SPECKIT_TEMPLATE_SOURCE: level-1/spec.md | v2.2 -->
@@ -178,14 +178,14 @@ const MINIMAL_IMPL_MD = `
 
 Summary here.
 `.trimStart();
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. GUARD: SKIP ENTIRE SUITE IF SCRIPT IS NOT PRESENT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const SCRIPT_EXISTS = fs.existsSync(PROGRESSIVE_SCRIPT);
 const VALIDATE_EXISTS = fs.existsSync(VALIDATE_SCRIPT);
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. SUITE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 (0, vitest_1.describe)('Progressive Validation Pipeline', () => {
     // ───────────────────────────────────────────────────────────────
     // 7. GUARD TESTS

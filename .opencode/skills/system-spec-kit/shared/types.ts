@@ -1,13 +1,13 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Types
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import type { HfLocalDtype } from './embeddings/providers/hf-local.js';
 // Single source of truth for cross-workspace types.
 // Used across shared/, runtime/, and runtime/cli/.
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. EMBEDDING TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Embedding profile descriptor (provider + model + dimension) */
 export interface EmbeddingProfileData {
@@ -149,9 +149,9 @@ export interface BatchEmbeddingOptions {
 /** Model dimensions lookup for API providers */
 export type ModelDimensions = Record<string, number>;
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. RETRY / ERROR CLASSIFICATION TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Configuration for retry with exponential backoff */
 export interface RetryConfig {
@@ -190,9 +190,9 @@ export interface RetryAttemptLogEntry {
   timestamp: string;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. FOLDER SCORING TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Archive pattern with multiplier for folder scoring */
 export interface ArchivePattern {
@@ -243,9 +243,9 @@ export type TierWeights = Record<string, number>;
 /** Ranking mode for folder results */
 export type RankingMode = 'score' | 'recency' | 'activity' | 'importance';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. CHUNKING TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Priority patterns for semantic chunking */
 export interface PriorityPatterns {
@@ -261,9 +261,9 @@ export interface PriorityBuckets {
   low: string[];
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 5. TRIGGER EXTRACTOR TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Trigger extractor configuration */
 export interface TriggerConfig {
@@ -342,16 +342,16 @@ export interface ExtractionResult {
   breakdown: ExtractionBreakdown;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 6. PATH SECURITY TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // Path security functions use primitive types (string, string[], null).
 // No custom types needed beyond the function signatures themselves.
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 7. PROFILE SLUG TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Parsed profile slug components */
 export interface ParsedProfileSlug {
@@ -371,9 +371,9 @@ export interface ProfileJson {
   slug: string;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 8. TASK PREFIX TYPES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Task prefix constants for embedding task types */
 export interface TaskPrefixMap {

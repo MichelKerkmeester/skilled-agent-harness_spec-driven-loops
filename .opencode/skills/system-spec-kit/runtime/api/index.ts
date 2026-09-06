@@ -101,3 +101,13 @@ export {
 } from '../lib/graph/graph-metadata-parser.js';
 export type { GraphMetadataPruneCandidate } from '../lib/graph/graph-metadata-parser.js';
 export type { GraphMetadataValidationResult } from '../lib/graph/graph-metadata-parser.js';
+
+// The freshness pointer's index-layer store: the save path writes it, the resume
+// ladder and the Gate 3 classifier read it first under generator hardening.
+export { recordFreshnessPointer, resolveLastActiveChildFromStore } from '../lib/graph/access-telemetry.js';
+
+// The drift gate flag is read by the CLI's validation entry point through the public surface.
+export { isGeneratedMetadataDriftGateEnabled } from '../lib/config/capability-flags.js';
+
+// Validation entry points in the CLI reach these through the public surface.
+export { isGeneratedMetadataGrandfatherEnabled, isStatusCompletionConsistencyGateEnabled } from '../lib/config/capability-flags.js';

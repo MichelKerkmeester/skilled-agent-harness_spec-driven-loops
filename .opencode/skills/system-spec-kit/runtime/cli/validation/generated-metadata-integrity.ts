@@ -8,14 +8,8 @@
 // bridge protocol. Grandfather report mode keeps violations non-blocking until the
 // scoped migration graduates the rule to a hard error.
 
-import {
-  checkGeneratedMetadataIntegrity,
-  resolveGeneratedMetadataIntegrity,
-} from '../../lib/validation/generated-metadata-integrity.js';
-import {
-  isGeneratedMetadataGrandfatherEnabled,
-  isStatusCompletionConsistencyGateEnabled,
-} from '../../lib/config/capability-flags.js';
+import { checkGeneratedMetadataIntegrity, resolveGeneratedMetadataIntegrity } from '@spec-kit/runtime/api';
+import { isGeneratedMetadataGrandfatherEnabled, isStatusCompletionConsistencyGateEnabled } from '@spec-kit/runtime/api';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface CliOptions {

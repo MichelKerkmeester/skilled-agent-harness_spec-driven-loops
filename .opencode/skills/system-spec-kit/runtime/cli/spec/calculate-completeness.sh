@@ -228,7 +228,7 @@ calculate_file_completeness() {
   if [[ "$total_lines" -gt 0 ]] && [[ "$placeholders" -gt 0 ]]; then
     percentage=$(echo "scale=2; (1 - $placeholders / $total_lines) * 100" | bc)
     percentage=$(printf "%.0f" "$percentage")
-    # P1-13 FIX: Clamp to 0 when placeholders exceed total lines
+    # Clamp to 0 when placeholders exceed total lines
     [[ "$percentage" -lt 0 ]] && percentage=0
   elif [[ "$placeholders" -gt 0 ]]; then
     percentage=0

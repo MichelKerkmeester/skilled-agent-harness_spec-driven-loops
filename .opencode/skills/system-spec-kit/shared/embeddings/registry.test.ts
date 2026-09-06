@@ -13,7 +13,7 @@
 // - getCanonicalFallback('voyage' | 'openai') returns the documented cloud strings.
 // - The function NEVER returns the legacy BAAI/bge-base-en or jina default
 //   (catches stale-default regressions before they hit production).
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import {
   EmbedderNotConfiguredError,

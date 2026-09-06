@@ -13,9 +13,9 @@ import { getCanonicalFallback } from '../registry.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
 import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../types.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. CONFIGURATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // Derived from registry MANIFESTS[0] (single source of truth).
 const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
@@ -61,9 +61,9 @@ export const TASK_PREFIX: TaskPrefixMap = {
   CLASSIFICATION: 'classification: ',
 };
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1b. PREFIX REGISTRY
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Model-keyed prefix lookup. The supported local menu is nomic-only; unlisted
 // user overrides fall through to an empty prefix unless env overrides are set.
 //
@@ -115,9 +115,9 @@ export function getPrefixFor(modelId: string, kind: 'document' | 'query'): strin
   return '';
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
 
@@ -197,9 +197,9 @@ interface ErrorWithCode extends Error {
   code?: string;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 let currentDevice: string | null = null;
 let activeTransport: HfLocalTransport = nodeHttpTransport;
@@ -606,9 +606,9 @@ function nextDelay(currentDelay: number): number {
   return Math.min(currentDelay * 2, READY_RETRY_MAX_DELAY);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. PROVIDER CLASS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Provides hf local provider. */
 export class HfLocalProvider implements IEmbeddingProvider {

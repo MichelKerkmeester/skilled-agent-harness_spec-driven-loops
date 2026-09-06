@@ -23,9 +23,9 @@
 // spawn/parse error on either chained hook must never affect the tool call
 // already completed, and never affects the other chained hook.
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
@@ -33,18 +33,18 @@ import { join } from 'node:path';
 // resolves relative imports against the realpath, not the hub symlink).
 import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs';
 const DISPATCH_AUDIT_RELATIVE = '.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function approve(agentMessage) {
   process.stdout.write(JSON.stringify({
@@ -93,9 +93,9 @@ function parseShellToolOutput(rawToolOutput) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. MAIN
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -153,8 +153,12 @@ async function main() {
   return approve();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. ENTRYPOINT
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-main().catch(() => approve());
+main().catch((error) => {
+  // Fail-open by contract, but a swallowed failure hides a broken hook; report it.
+  process.stderr.write(`post-tool-use: ${error instanceof Error ? error.message : String(error)}\n`);
+  approve();
+});

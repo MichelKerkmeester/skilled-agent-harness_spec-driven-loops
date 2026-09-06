@@ -721,9 +721,9 @@ fi
 # 7. TEST CASES
 # ───────────────────────────────────────────────────────────────
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # FOLDER-TOKEN NOTE
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # The 053 fixture expects "warn" rather than "pass" everywhere it appears.
 # It declares the author-chosen phrase "template", which is also a token of
 # its own directory name, so the grep-convention rule reports it as a
@@ -736,42 +736,42 @@ fi
 # editing any document in it invalidates the metadata fingerprint, which
 # turns a warning into a hard integrity error. Change the expectation here,
 # never the fixture.
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # POSITIVE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Positive Tests (should PASS or WARN)"; then
     # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
     run_test "Compliant Level 2 template fixture" "053-template-compliant-level2" "warn"
     run_test "Extra-header fixture warns without failing" "054-template-extra-header" "warn"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # LEVEL_DECLARED RULE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Level Declaration Tests (should PASS or WARN)"; then
     # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
     run_test "Explicit level declaration on compliant fixture" "053-template-compliant-level2" "warn"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # WARNING TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Warning Tests (should WARN)"; then
     run_test "Template extra-header fixture warns" "054-template-extra-header" "warn"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTIONS_PRESENT RULE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Sections Present Tests (should FAIL on missing)"; then
     run_test "Missing required spec header now fails" "055-template-missing-header" "fail"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # NEGATIVE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Negative Tests (should FAIL)"; then
     run_test "Missing required files (no spec.md)" "006-missing-required-files" "fail"
     run_test "Unfilled placeholders" "005-unfilled-placeholders" "fail"
@@ -786,9 +786,9 @@ if begin_category "Negative Tests (should FAIL)"; then
     run_test "Reordered required anchor fails" "058-template-reordered-anchor" "fail"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # ANCHOR EDGE CASE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Anchor Edge Cases"; then
     # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
     run_test "Compliant anchor order passes" "053-template-compliant-level2" "warn"
@@ -796,9 +796,9 @@ if begin_category "Anchor Edge Cases"; then
     run_test "Reordered required anchor fails" "058-template-reordered-anchor" "fail" "ANCHORS_VALID"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # PLACEHOLDER_FILLED EDGE CASE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "Placeholder Edge Cases"; then
     # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
     run_test "Compliant fixture stays placeholder-free" "053-template-compliant-level2" "warn"
@@ -806,9 +806,9 @@ if begin_category "Placeholder Edge Cases"; then
     run_test "Placeholder case variations (detected)" "037-placeholder-case-variations" "fail"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # CLI OPTIONS TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 if begin_category "CLI Options Tests"; then
     # warn: folder-token trigger, see FOLDER-TOKEN NOTE above
     run_test_json_valid "--json produces valid JSON with required fields" "053-template-compliant-level2" "warn"

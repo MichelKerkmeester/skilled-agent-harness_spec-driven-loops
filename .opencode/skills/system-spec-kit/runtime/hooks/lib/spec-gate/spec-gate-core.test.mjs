@@ -72,9 +72,9 @@ function observedGate3Request(overrides = {}) {
   });
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Golden loop
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('golden loop: open -> deny -> answer -> allow', () => {
   const { root, folderRel } = makeWorkspace();
@@ -203,9 +203,9 @@ test('an invalid/nonexistent folder answer stays open and re-asks', () => {
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Open-gate silence & answer-attempt re-ask (question surface semantics)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('an open gate stays open but silent on a read-only turn (no question re-injection)', () => {
   const { root } = makeWorkspace();
@@ -716,9 +716,9 @@ test('sanitizePromptForClassify: strips injected advisor tail and history, keeps
   assert.equal(core.sanitizePromptForClassify(undefined), '');
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Read-only guard
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('read-only prompts never open the gate', () => {
   const { root } = makeWorkspace();
@@ -755,9 +755,9 @@ test('empty/whitespace-only prompt never triggers Gate 3', () => {
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Exempt-path
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('exempt path: writing the spec folder itself is always allowed', () => {
   const { root, folderRel } = makeWorkspace();
@@ -829,9 +829,9 @@ test('exempt path: /tmp scratchpad, dist, node_modules, .git, out-of-repo', () =
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Bash is always advise-only
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('bash never denies even with enforce on and gate open', () => {
   const { root } = makeWorkspace();
@@ -854,9 +854,9 @@ test('bash never denies even with enforce on and gate open', () => {
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // enforcement matrix: deny appears only for the single all-true row
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('deny matrix: only enforce-on + write/edit + open + non-exempt denies', () => {
   const { root, folderRel } = makeWorkspace();
@@ -928,9 +928,9 @@ test('gate never opened this session: satisfied/skipped/closed all allow', () =>
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Fail-open assertions
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('fail-open: corrupt state file reads as never-opened', () => {
   const { root } = makeWorkspace();
@@ -997,14 +997,14 @@ test('fail-open: unexpected argument shape never throws and always allows', () =
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // fix 2/4: a null (not merely malformed-but-object) request must never throw
 // -- request.env / the kill-switch used to be read BEFORE the try/catch
 // boundary, so classifyIntent(null)/evaluateMutation(null) threw a raw
 // TypeError instead of failing open. Isolated to a fresh empty cwd (via
 // process.chdir) so the "no real gate state present" assumption holds
 // regardless of this repo's own ambient .state/spec-gate contents.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('classifyIntent(null) fails open: never throws, returns the closed/no-question shape', () => {
   const tempDir = mkdtempSync(join(tmpdir(), 'spec-gate-null-request-'));
@@ -1039,9 +1039,9 @@ test('evaluateMutation(null) fails open: never throws, always allows', () => {
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Kill switch
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('SYSTEM_SPEC_GATE_DISABLED=1 makes both entrypoints a full no-op', () => {
   const { root } = makeWorkspace();
@@ -1070,9 +1070,9 @@ test('SYSTEM_SPEC_GATE_DISABLED=1 makes both entrypoints a full no-op', () => {
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // no console output; enforce never walks the specs tree
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('static shape: core never writes console output', () => {
   const source = readFileSync(CORE_SOURCE_PATH, 'utf8');
@@ -1088,9 +1088,9 @@ test('static shape: evaluateMutation never calls validateSpecFolderBinding', () 
   assert.equal(body.includes('validateSpecFolderBinding'), false);
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // answerParse() corpus: false-positive / false-negative rate
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const POSITIVE_ANSWER_CORPUS = [
   { prompt: 'B, use .opencode/specs/059-login', expect: 'binding' },
@@ -1190,9 +1190,9 @@ test('answerParse() corpus: ordinary prompts are never misread as answers (false
   assert.equal(falsePositives, 0, `answerParse() false-positive rate ${rate} on prompts: ${misreads.join(' | ')}`);
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // State helpers: sweep / evict sanity
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('state round-trip: write, read, evict', () => {
   const { root } = makeWorkspace();
@@ -1231,9 +1231,9 @@ test('appendWarningLog never throws and is fail-open on an unwritable dir', () =
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // WS1: formatSpecGateEvent -- the shared telemetry line formatter
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('formatSpecGateEvent: composes the canonical pipe-delimited fields in order', () => {
   const line = core.formatSpecGateEvent({
@@ -1368,10 +1368,10 @@ test('SYSTEM_SPEC_GATE_DISABLED=1: the kill-switch means no telemetry line is ev
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // P1 fix: a classify-path exception must evict a previously persisted 'open'
 // session state, never leave it stale for a later enforce hook to read.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('classify-path exception evicts a previously persisted open state (fail-open, not fail-stale)', async (t) => {
   if (typeof t.mock?.module !== 'function') {
@@ -1423,10 +1423,10 @@ test('classify-path exception evicts a previously persisted open state (fail-ope
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // P1 fix: exemption/containment is decided on the REAL path (realpath), not
 // the lexical one -- an in-repo symlink escaping the repo must be exempt.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('symlink escape: an in-repo symlink whose real target lands outside the repo is exempt', () => {
   const { root } = makeWorkspace();
@@ -1476,10 +1476,10 @@ test('symlink sanity: an in-repo symlink whose real target stays in-repo is stil
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // P2 fix: answerParse() is state-gated structurally (isOpen), not merely by
 // caller convention -- a direct call with isOpen:false must never parse.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('answerParse() never parses an answer when isOpen is explicitly false', () => {
   assert.equal(core.answerParse('B, .opencode/specs/059-login', false), null);
@@ -1492,23 +1492,23 @@ test('answerParse() never parses an answer when isOpen is explicitly false', () 
   assert.notEqual(core.answerParse('B, .opencode/specs/059-login', true), null);
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // P2 fix: UNKNOWN_SESSION_ID is exported so every adapter can key a missing
 // sessionID to the EXACT same state file the core's own internal fallback
 // resolves to -- this is the anchor the OpenCode adapter's classify/enforce
 // unification (system-spec-gate.js sessionIdFrom()) depends on.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('sessionStateKey: an omitted/nullish sessionID resolves to the SAME key as the exported UNKNOWN_SESSION_ID constant', () => {
   assert.equal(core.sessionStateKey(undefined), core.sessionStateKey(core.UNKNOWN_SESSION_ID));
   assert.equal(core.sessionStateKey(null), core.sessionStateKey(core.UNKNOWN_SESSION_ID));
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // P2 fix: exemption/containment must canonicalize path CASING (via
 // realpathSync.native), not just symlink targets -- a case-variant path
 // pointing at a real in-repo file must never read as exempt.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('case-insensitive FS: a case-variant path to a real in-repo file is still enforceable, never falsely exempt', (t) => {
   const { root } = makeWorkspace();
@@ -1548,10 +1548,10 @@ test('case-insensitive FS: a case-variant path to a real in-repo file is still e
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // HIGHEST BLAST proof: SYSTEM_SPEC_GATE_ENFORCE unset never denies, across the
 // full tool/target/gate-state matrix; every known error path fails OPEN.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('HIGHEST BLAST proof: with SYSTEM_SPEC_GATE_ENFORCE unset, no tool/target/gate-state combination ever denies', () => {
   const { root, folderRel } = makeWorkspace();
@@ -1637,10 +1637,10 @@ test('HIGHEST BLAST proof: every known error path resolves to allow, even with e
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // WS2: trigger-turn self-binding -- a prompt that BOTH triggers Gate 3 AND
 // names a valid folder in the same breath binds on that turn, never opens.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('WS2 self-bind: a trigger prompt naming a valid spec-path folder satisfies on the same turn', () => {
   const { root, folderRel } = makeWorkspace();
@@ -1816,10 +1816,10 @@ test('WS2 options-threading regression guard: requiresGate3Prompt=true still ope
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // WS3: scaffolded-folder acceptance -- a folder with only spec.md (no
 // description.json/graph-metadata.json yet) satisfies a prior_answer binding.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('WS3 scaffolded accept: a folder with ONLY spec.md (no save-time trio) still satisfies the gate', () => {
   const { root } = makeWorkspace();
@@ -2022,12 +2022,12 @@ test('WS3 scaffolded accept: SYSTEM_SPEC_GATE_DISABLED=1 short-circuits before t
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // WS4: headless / subagent enforce scoping -- a dispatched/child session
 // (AI_SESSION_CHILD=1) is a COMPLETE Gate-3 no-op: it never denies, never
 // advises, never reads or writes gate state, and never surfaces the question,
 // even with enforce on, because it has no user turn to answer Gate 3.
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('isChildSession: only the exact value "1" reads as a child session', () => {
   assert.equal(core.isChildSession({ [core.CHILD_SESSION_ENV]: '1' }), true);

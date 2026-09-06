@@ -22,9 +22,9 @@ function isEscapedQuoteAt(str: string, index: number): boolean {
   return backslashCount % 2 === 1;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. MAIN
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Strips JSONC comments from a string while preserving comment-like content

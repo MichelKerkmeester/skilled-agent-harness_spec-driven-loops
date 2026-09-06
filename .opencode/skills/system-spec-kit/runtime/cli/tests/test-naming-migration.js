@@ -24,9 +24,9 @@ const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. PATHS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const SCRIPTS_ROOT = path.resolve(__dirname, '..');
 const RUNTIME_ROOT = path.resolve(__dirname, '..', '..');
 const BASE_ROOT = path.resolve(RUNTIME_ROOT, '..');
@@ -97,9 +97,9 @@ const CROSS_REFERENCE_MISMATCH_BUDGET = new Map([
   ['scripts/utils/input-normalizer.ts', 9],
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TEST STATE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 let passed = 0;
 let failed = 0;
 let skipped = 0;
@@ -115,9 +115,9 @@ function fail(msg, detail) {
 function skip(msg) { skipped++; console.log(`  \u25CB ${msg}`); }
 function section(name) { console.log(`\n\u2501\u2501 ${name} ${'\u2501'.repeat(Math.max(0, 56 - name.length))}`); }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. FILE DISCOVERY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function walkFiles(dir, ext) {
   const results = [];
   if (!fs.existsSync(dir)) return results;
@@ -142,9 +142,9 @@ function isTestFile(filePath) {
   return normalized.includes('/tests/');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. ERROR CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function isEsmInteropError(error) {
   const msg = error?.message || '';
   const code = error?.code || '';
@@ -218,9 +218,9 @@ function t1SyntaxValidation() {
   if (shFail === 0) pass(`All ${shells.length} shell scripts pass bash -n`);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. IMPORT TEST HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Some scripts call process.exit() on require (standalone CLI tools).
 // We intercept process.exit and suppress console noise during import tests.
 

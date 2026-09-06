@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Trigger Extractor
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Feature catalog: Trigger phrase matching (trigger index lookup) // hygiene-ok
 
 import type {
@@ -13,9 +13,9 @@ import type {
   ExtractionResult,
 } from './types.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. STOP WORD LISTS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Defines stop words english. */
 export const STOP_WORDS_ENGLISH: Set<string> = new Set([
@@ -60,9 +60,9 @@ export const STOP_WORDS_ARTIFACTS: Set<string> = new Set([
   'related', 'reference', 'source', 'target', 'link', 'anchor',
 ]);
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. CONFIGURATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Defines config. */
 export const CONFIG: TriggerConfig = {
@@ -93,9 +93,9 @@ const GENERIC_STOPWORDS: Set<string> = new Set([
   'this', 'that', 'which', 'where', 'when', 'what',
 ]);
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. PREPROCESSING
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Remove markdown formatting from text */
 export function removeMarkdown(text: string): string {
@@ -148,9 +148,9 @@ export function filterStopWords(tokens: string[]): string[] {
   );
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. N-GRAM EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract n-grams respecting sentence boundaries */
 export function extractNgrams(tokens: string[], n: number): Map<string, number> {
@@ -182,9 +182,9 @@ export function countNgrams(tokens: string[], n: number): NgramCount[] {
     .sort((a, b) => b.count - a.count);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 5. PROBLEM TERM EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Defines problem indicators. */
 export const PROBLEM_INDICATORS: Set<string> = new Set([
@@ -253,9 +253,9 @@ export function extractProblemTerms(text: string): TriggerPhrase[] {
   return results;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 6. TECHNICAL TERM EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract technical terms: function names, camelCase, snake_case, file paths */
 export function extractTechnicalTerms(text: string): TriggerPhrase[] {
@@ -333,9 +333,9 @@ export function extractTechnicalTerms(text: string): TriggerPhrase[] {
   return results;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 7. DECISION PATTERN EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract decision patterns: "chose X", "selected Y", "implemented Z" */
 export function extractDecisionTerms(text: string): TriggerPhrase[] {
@@ -376,9 +376,9 @@ export function extractDecisionTerms(text: string): TriggerPhrase[] {
   return results;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 8. COMPOUND NOUN EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract meaningful compound nouns (2-4 word noun phrases) */
 export function extractCompoundNouns(text: string): TriggerPhrase[] {
@@ -418,9 +418,9 @@ export function extractCompoundNouns(text: string): TriggerPhrase[] {
   return results;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 9. ACTION TERM EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract action verb + object patterns (e.g., "fix bug", "add feature") */
 export function extractActionTerms(text: string): TriggerPhrase[] {
@@ -452,9 +452,9 @@ export function extractActionTerms(text: string): TriggerPhrase[] {
   return results;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 10. TF-IDF SCORING
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Calculate TF-IDF-like scores with length bonus */
 export function scoreNgrams(ngrams: NgramCount[], lengthBonus: number, _totalTokens: number): ScoredNgram[] {
@@ -474,9 +474,9 @@ export function scoreNgrams(ngrams: NgramCount[], lengthBonus: number, _totalTok
   });
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 11. DEDUPLICATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Remove phrases that are substrings of higher-scoring phrases.
  *  BUG-001 FIX: Prefer longer, more specific phrases over shorter ones.
@@ -564,9 +564,9 @@ export function filterTechStopWords(candidates: ScoredNgram[]): ScoredNgram[] {
   });
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 12. MAIN EXTRACTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Extract trigger phrases from memory content using TF-IDF + N-gram hybrid

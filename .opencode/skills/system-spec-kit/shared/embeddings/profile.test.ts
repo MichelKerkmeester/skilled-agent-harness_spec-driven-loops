@@ -11,7 +11,7 @@
 // - Env-var override still takes precedence over fallback
 // - Source-text ban-list: no inline `'BAAI/bge-base-en'` or `'jina-embeddings-v3'`
 //   string in profile.ts (catches stale-default regression at test time)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';

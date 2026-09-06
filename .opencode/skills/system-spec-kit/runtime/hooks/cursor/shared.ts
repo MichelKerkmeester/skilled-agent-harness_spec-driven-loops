@@ -207,7 +207,11 @@ export function runCursorHook(metaUrl: string, main: () => Promise<void>): void 
   const entrypoint = process.argv[1];
   if (!entrypoint || resolve(entrypoint) !== fileURLToPath(metaUrl)) return;
 
-  void main().catch(() => emitCursorResponse(null)).finally(() => {
+  void main().catch((error: unknown) => {
+    // Fail-open by contract, but a swallowed failure hides a broken adapter; report it.
+    process.stderr.write(`hook adapter: ${error instanceof Error ? error.message : String(error)}\n`);
+    emitCursorResponse(null);
+  }).finally(() => {
     process.exitCode = 0;
   });
 }

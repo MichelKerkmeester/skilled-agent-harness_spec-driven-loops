@@ -1,6 +1,6 @@
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // TEST: hf-model-server busy-shutdown failsafe timing (live subprocess)
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Spawns the real hf-model-server.cjs shutdown wiring (via the fixture
 // harness, which injects only a fake/delay-controllable loadModel — the
 // signal handling, failsafe timer, and dispose() drain logic under test are

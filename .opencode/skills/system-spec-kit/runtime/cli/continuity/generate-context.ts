@@ -13,7 +13,7 @@ import * as fsSync from 'fs';
 
 // Internal modules
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
-import { graphMetadataSchema } from '@spec-kit/runtime/api';
+import { graphMetadataSchema, recordFreshnessPointer } from '@spec-kit/runtime/api';
 import {
   CONFIG,
   getSessionScopedSaveContextExample,
@@ -615,6 +615,16 @@ export function updatePhaseParentPointer(
   const updatedChildrenIds: string[] = activeChildId && !metadata.children_ids.includes(activeChildId)
     ? [...metadata.children_ids, activeChildId]
     : metadata.children_ids;
+
+  // Under generator hardening the resume ladder and the Gate 3 classifier read the
+  // pointer from the index-layer store first, so the save records it there too;
+  // the store write is best-effort and never blocks the canonical save.
+  if (activeChildId) {
+    const specFolderId = path.isAbsolute(metadata.packet_id)
+      ? metadata.packet_id.split('/specs/').pop() ?? metadata.packet_id
+      : metadata.packet_id;
+    recordFreshnessPointer(specFolderId, { childId: activeChildId, at: timestamp });
+  }
 
   const updated: GraphMetadata = {
     ...metadata,

@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Quality Extractors
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
 
@@ -19,7 +19,7 @@ function extractFrontmatter(content: string): string {
 
 /**
  * Extract quality score from frontmatter content.
- * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
+ * Canonical shared implementation; the former per-package copies were removed.
  */
 export function extractQualityScore(content: string): number {
   const fm = extractFrontmatter(content);
@@ -32,7 +32,7 @@ export function extractQualityScore(content: string): number {
 
 /**
  * Extract quality flags from frontmatter content.
- * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
+ * Canonical shared implementation; the former per-package copies were removed.
  */
 export function extractQualityFlags(content: string): string[] {
   const fm = extractFrontmatter(content);

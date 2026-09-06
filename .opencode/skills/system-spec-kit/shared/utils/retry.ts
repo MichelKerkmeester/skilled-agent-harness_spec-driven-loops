@@ -1,14 +1,14 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Retry
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Canonical location (moved from runtime/lib/utils/retry.js)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import type { RetryConfig, ErrorClassification, RetryOptions, RetryAttemptLogEntry } from '../types.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. CONFIGURATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Defines default config. */
 export const DEFAULT_CONFIG: RetryConfig = {
@@ -18,9 +18,9 @@ export const DEFAULT_CONFIG: RetryConfig = {
   exponentialBase: 2, // Multiplier for exponential backoff
 };
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. ERROR CLASSIFICATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Defines transient http status codes. */
 export const TRANSIENT_HTTP_STATUS_CODES: Set<number> = new Set([
@@ -87,9 +87,9 @@ export const PERMANENT_ERROR_PATTERNS: readonly RegExp[] = [
   /malformed/i,
 ];
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. ERROR TYPE DETECTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 interface ErrorWithStatus extends Error {
   status?: number;
@@ -221,9 +221,9 @@ export function isPermanentError(error: Error): boolean {
   return classifyError(error).type === 'permanent';
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. BACKOFF CALCULATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Provides calculate backoff. */
 export function calculateBackoff(attempt: number, config: RetryConfig = DEFAULT_CONFIG): number {
@@ -241,9 +241,9 @@ export function getBackoffSequence(config: RetryConfig = DEFAULT_CONFIG): number
   return delays;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 5. RETRY UTILITY
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Sleep. */
 export function sleep(ms: number): Promise<void> {

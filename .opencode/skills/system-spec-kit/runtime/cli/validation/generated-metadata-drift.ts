@@ -10,9 +10,9 @@
 
 import {
   checkGeneratedMetadataDrift,
+  isGeneratedMetadataDriftGateEnabled,
   resolveGeneratedMetadataDrift,
-} from '../../lib/graph/generated-metadata-drift.js';
-import { isGeneratedMetadataDriftGateEnabled } from '../../lib/config/capability-flags.js';
+} from '@spec-kit/runtime/api';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface CliOptions {

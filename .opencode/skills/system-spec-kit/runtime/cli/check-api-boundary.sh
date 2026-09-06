@@ -13,7 +13,7 @@
 
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-RUNTIME_DIR="$(dirname "$SCRIPT_DIR")/runtime"
+RUNTIME_DIR="$(dirname "$SCRIPT_DIR")"
 
 if [[ ! -d "$RUNTIME_DIR/lib" ]]; then
   echo "ERROR: $RUNTIME_DIR/lib/ not found" >&2

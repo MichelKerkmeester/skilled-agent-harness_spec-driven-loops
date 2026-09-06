@@ -1,15 +1,15 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Profile
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
 import * as path from 'path';
 import type { ParsedProfileSlug, ProfileJson } from '../types.js';
 import { getCanonicalFallback, type CanonicalProvider } from './registry.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. UTILITY FUNCTIONS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Create safe slug for filenames (e.g., openai__text-embedding-3-small__1536) */
 export function createProfileSlug(provider: string, model: string, dim: number, dtype?: string | null): string {
@@ -43,9 +43,9 @@ export function parseProfileSlug(slug: string): ParsedProfileSlug | null {
   };
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. EMBEDDING PROFILE CLASS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 interface EmbeddingProfileOptions {
   provider: string;

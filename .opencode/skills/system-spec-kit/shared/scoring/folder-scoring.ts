@@ -33,9 +33,9 @@ interface FolderMemoryCamelCaseFields {
  */
 export type FolderMemoryInput = FolderMemoryCamelCaseFields & Record<string, unknown>;
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Archive detection patterns (Decision D2)
@@ -110,9 +110,9 @@ const ARCHIVE_MULTIPLIERS: readonly ArchivePattern[] = [
   { pattern: /\/prototype\//i, multiplier: 0.2, type: 'prototype' },
 ];
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. ARCHIVE DETECTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Check if a folder path matches archive patterns
@@ -133,9 +133,9 @@ export function getArchiveMultiplier(folderPath: string): number {
   return match ? match.multiplier : 1.0;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. RECENCY SCORING
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Compute recency score with inverse decay (Decision D4)
@@ -162,9 +162,9 @@ export function computeRecencyScore(timestamp: string, tier: string = 'normal', 
   return 1 / (1 + daysSince * decayRate);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. PATH UTILITIES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Simplify folder path for display
@@ -179,9 +179,9 @@ export function simplifyFolderPath(fullPath: string): string {
   return isArchived(fullPath) ? `${leaf} (archived)` : leaf;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 5. FOLDER SCORING
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 interface SingleFolderScore {
   score: number;
@@ -282,9 +282,9 @@ export function findLastActivity(memories: FolderMemoryInput[]): string {
   return new Date(maxTimestamp).toISOString();
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 6. MAIN COMPUTATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Compute scores for all folders from a set of memories

@@ -20,6 +20,7 @@ import {
   sanitizeTriggerPhrase,
 } from '../lib/trigger-phrase-sanitizer.js';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
+import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -121,13 +122,12 @@ Default scan roots:
 
 function resolveProjectRoot(): string {
   const candidates = [
-    path.resolve(moduleDir, '../../../../../..'),
-    path.resolve(moduleDir, '../../../..'),
+    findRepoRoot(moduleDir),
     process.cwd(),
   ];
 
   for (const candidate of candidates) {
-    const skillRoot = path.join(candidate, '.opencode', 'skill', 'system-spec-kit');
+    const skillRoot = path.join(candidate, '.opencode', 'skills', 'system-spec-kit');
     if (fs.existsSync(skillRoot)) {
       return candidate;
     }

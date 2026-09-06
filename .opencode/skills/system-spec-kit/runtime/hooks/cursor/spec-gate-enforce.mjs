@@ -13,16 +13,16 @@
 // core change. FAILS OPEN -- any missing payload, unmapped tool, or internal
 // error approves silently, so a bug here never blocks correctly-scoped work.
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Cursor tool vocabulary -> the mutation classes the core expects, confirmed
 // live via a temporary probe-hook dispatch against cursor-agent
@@ -32,9 +32,9 @@ import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 // than assuming it maps the same way.
 const CURSOR_TOOL_MAP = { Shell: 'bash', Write: 'write' };
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function approve() {
   // {"permission":"allow"} + exit 0 -> defer to the normal flow.
@@ -59,9 +59,9 @@ function filePathFrom(toolInput) {
   return firstNonBlankString(toolInput.file_path, toolInput.filePath, toolInput.path);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. MAIN
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 async function main() {
   const payload = parseJsonFailOpen(await readStdin());
@@ -125,8 +125,12 @@ async function main() {
   return approve();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. ENTRYPOINT
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-main().catch(() => approve());
+main().catch((error) => {
+  // Fail-open by contract, but a swallowed failure hides a broken hook; report it.
+  process.stderr.write(`spec-gate-enforce: ${error instanceof Error ? error.message : String(error)}\n`);
+  approve();
+});

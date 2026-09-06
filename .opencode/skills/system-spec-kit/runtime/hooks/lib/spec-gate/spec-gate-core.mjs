@@ -19,9 +19,9 @@
 // ║          argument shape resolves to allow/no-op with no side effects.    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
 import {
@@ -53,9 +53,9 @@ import { findRepoRoot } from '../workspace/repo-root.mjs';
 // directly; nothing under `runtime/` is touched or rebuilt by this module.
 import { classifyPrompt, validateSpecFolderBinding } from '../../../../shared/dist/gate-3-classifier.js';
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const GATE_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.state/spec-gate';
 const GATE_ARCHIVE_DIR_NAME = '.archive';
@@ -505,9 +505,9 @@ export function resetGate3DeliveryShadow() {
   GATE_3_ERROR_LATCHED.clear();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS -- session-scoped state (atomic file persistence)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Hex-encode a session id into a filesystem-safe state-file key. Falls back
@@ -646,9 +646,9 @@ export function evictGateState(stateDir, sessionID) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. HELPERS -- warning log + retention (adapter-invoked only)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function positiveIntFromEnv(env, name, fallback) {
   const raw = Number((env || process.env)[name]);
@@ -877,9 +877,9 @@ export function sweepStaleGateStates(stateDir, runtimeState) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. HELPERS -- answer parsing
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Bare "skip" / "skip it", optionally followed by a short aside that is
 // clearly SEPARATED from the word itself (a dash/colon/comma/period right
@@ -1203,9 +1203,9 @@ function acceptPriorAnswerBinding(candidatePath, workspaceRoot) {
   return { accepted: false, resolvedAbsolutePath: null };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. HELPERS -- path-class exemptions
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function isUnderAnyRoot(absolutePath, roots) {
   return roots.some((root) => absolutePath === root || absolutePath.startsWith(`${root}/`));
@@ -1290,9 +1290,9 @@ export function isExemptTargetPath(filePath, projectDir) {
   return false;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. RUNTIME-NEUTRAL ENTRYPOINTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Classify one user turn against the session's Gate-3 state.

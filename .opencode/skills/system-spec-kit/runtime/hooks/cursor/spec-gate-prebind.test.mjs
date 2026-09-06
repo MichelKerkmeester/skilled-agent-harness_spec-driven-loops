@@ -5,9 +5,9 @@
 // downstream interaction with spec-gate-enforce.mjs, across disabled/child/
 // malformed/declared-folder/whitespace-root/padded-session-id cases.
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import assert from 'node:assert/strict';
 import {
@@ -27,16 +27,16 @@ import { test } from 'node:test';
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const PREBIND_HOOK_PATH = fileURLToPath(new URL('./spec-gate-prebind.mjs', import.meta.url));
 const ENFORCE_HOOK_PATH = fileURLToPath(new URL('./spec-gate-enforce.mjs', import.meta.url));
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. TEST FIXTURES
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function makeWorkspace() {
   const root = mkdtempSync(join(tmpdir(), 'cursor-spec-gate-prebind-'));
@@ -83,9 +83,9 @@ function assertAllowed(result) {
   assert.deepEqual(JSON.parse(result.stdout), { permission: 'allow' });
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. TESTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 test('malformed input and missing session identity fail open without state', () => {
   const { root } = makeWorkspace();

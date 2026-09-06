@@ -7,9 +7,9 @@ import { getCanonicalFallback } from '../registry.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
 import type { EmbeddingProfileData, IEmbeddingProvider, ProviderMetadata } from '../../types.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. MANIFESTS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_OLLAMA_BASE_URL = 'http://127.0.0.1:11434';
 // Derived from registry MANIFESTS[0].
@@ -74,9 +74,9 @@ interface OllamaAvailability {
 
 let availabilityPromise: Promise<OllamaAvailability> | null = null;
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export function resolveOllamaBaseUrl(value: string | undefined = process.env.OLLAMA_BASE_URL): string {
   return (value || DEFAULT_OLLAMA_BASE_URL).replace(/\/+$/, '');
@@ -203,9 +203,9 @@ function isModelMissingResponse(response: Response, body: unknown): boolean {
   return /model.*(not found|not loaded|pull)|pull.*model/i.test(message);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. PROVIDER CLASS
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export class OllamaProvider implements IEmbeddingProvider {
   modelName: string;

@@ -1,6 +1,6 @@
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // TEST: Level Contract Resolver
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import { resolveLevelContract, serializeLevelContract } from '../../lib/templates/level-contract-resolver';

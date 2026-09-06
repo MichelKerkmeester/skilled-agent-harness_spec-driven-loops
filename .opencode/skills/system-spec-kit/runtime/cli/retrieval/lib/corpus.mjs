@@ -62,7 +62,7 @@ export const IGNORED_PATHS = Object.freeze([
  * an exclusion added here without a matching divergence-table entry is
  * exactly what that test exists to catch.
  */
-export const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules', 'scratch', '.git']));
+export const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules', 'scratch', '.git', 'dist']));
 
 /**
  * Test-fixture directory names. A fixture tree holds documents written to be

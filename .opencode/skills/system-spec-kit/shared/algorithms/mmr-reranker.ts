@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: MMR Reranker
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Maximal Marginal Relevance for post-fusion diversity pruning.
 
 /* ---------------------------------------------------------------
@@ -9,7 +9,7 @@
 
 /** Default maximum number of candidates to process before MMR selection. */
 
-// Feature catalog: Hybrid search pipeline
+// Bounded so the pairwise similarity pass stays cheap on a large fused list.
 
 const DEFAULT_MAX_CANDIDATES = 20;
 

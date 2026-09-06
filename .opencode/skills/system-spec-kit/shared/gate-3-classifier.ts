@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Gate 3 Classifier
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Shared typed classifier for the Gate 3 (SPEC FOLDER QUESTION) trigger surface.
 // Addresses classifier edge cases from the foundational-runtime deep review.
 //
@@ -8,7 +8,7 @@
 // speckit command entry docs cite this module as the machine contract.
 // The prose trigger lists in those docs remain as human-readable references
 // but the authoritative list of tokens lives here.
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -20,9 +20,9 @@ function assertNever(value: never, label: string): never {
   throw new Error(`Unexpected ${label}: ${String(value)}`);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. TRIGGER SCHEMA
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Token categories consumed by the classifier. */
 export type TriggerCategory =
@@ -138,9 +138,9 @@ const SPEC_ROOTS: readonly SpecRoot['label'][] = ['specs', '.opencode/specs'];
 const MANDATORY_SPEC_METADATA_FILES = ['spec.md', 'description.json', 'graph-metadata.json'] as const;
 const PHASE_CHILD_FOLDER_PATTERN = /^\d{3}-[a-z0-9-]+$/;
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. CANONICAL TRIGGER VOCABULARY
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * File-write positive triggers.
@@ -254,9 +254,9 @@ export const GATE_3_VOCABULARY = Object.freeze({
   readOnlyDisqualifier:READ_ONLY_DISQUALIFIERS,
 });
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. NORMALIZATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Normalize a prompt for matching: lowercase and collapse whitespace, but
@@ -274,9 +274,9 @@ export function tokenizePrompt(normalized: string): string[] {
   return normalized.split(/[^a-z0-9:/_-]+/).filter(Boolean);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. MATCHING
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Check if a single trigger entry matches a normalized prompt. */
 export function matchesEntry(entry: TriggerEntry, normalized: string, tokens: string[]): boolean {
@@ -293,9 +293,9 @@ export function matchesEntry(entry: TriggerEntry, normalized: string, tokens: st
   return tokens.includes(entry.pattern);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 5. SPEC FOLDER BINDING VALIDATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 function invalidBinding(reason: SpecFolderBindingValidationReason, pathValue: string | null = null): SpecFolderBindingValidation {
   return {
@@ -704,9 +704,9 @@ function applyGate3Satisfaction(core: CoreClassificationResult, options: Classif
   return { requiresGate3Prompt: true, satisfiedBy: null, writeBoundary: null };
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 6. CORE CLASSIFIER
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 function triggerIndex(entry: TriggerEntry, normalized: string): number {
   return normalized.indexOf(entry.pattern);
@@ -864,9 +864,9 @@ export function classifyPrompt(prompt: string, options: ClassificationOptions = 
   };
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 7. JSON EXPORT (for non-TS consumers)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Serializable JSON snapshot of the vocabulary (for Python / YAML consumers). */
 export interface Gate3VocabularySnapshot {

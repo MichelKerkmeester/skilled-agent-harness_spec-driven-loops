@@ -18,9 +18,9 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const {
   appendFileSync,
@@ -53,9 +53,9 @@ const childProcess = require('node:child_process');
 // host, which the spawn would block in full for its whole duration.
 const completionState = require('../../cli/lib/completion-state.cjs');
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Mirrors the runtime hook's private COMPLETION_CLAIM_PATTERN verbatim. That
 // module does not export the constant, and this sentinel must stay a plain
@@ -105,9 +105,9 @@ const CHECKLIST_ADVISE_STATUSES = new Set([
   'P1_INCOMPLETE',
 ]);
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS -- claim + packet detection
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function detectCompletionClaim(text) {
   if (typeof text !== 'string') return false;
@@ -124,18 +124,18 @@ function resolveSpecFolderFromText(text) {
   return match[0].replace(/[.,;:'"`)\]]+$/, '') || null;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. HELPERS -- env-tunable constants
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function positiveIntFromEnv(environment, envName, fallback) {
   const raw = Number(environment[envName]);
   return Number.isFinite(raw) && raw > 0 ? Math.trunc(raw) : fallback;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. PATHS (runtime-neutral)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Resolve the state dir, bounded log path, and dedup store both runtime
@@ -152,9 +152,9 @@ function resolveSentinelPaths(projectDir) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. CHECKLIST EVALUATION (bounded spawn, err.stdout-on-exit-1 parse)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Spawn check-completion.sh --json against one folder and parse its status.
@@ -238,9 +238,9 @@ function verdictFromImplementationSummary(absoluteSpecFolder, specFolder) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. DEDUP (atomic, packet + message fingerprint)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function dedupKeyForSpecFolder(specFolder) {
   return createHash('sha256').update(String(specFolder)).digest('hex').slice(0, 24);
@@ -297,9 +297,9 @@ function applyDedup(stateDir, specFolder, claimText) {
   return { deduped: false, fingerprint };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. BOUNDED ADVISORY LOG (adapter-invoked, never stdout/stderr)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Advisories must never reach stdout/stderr: on the OpenCode side that
 // corrupts the TUI, and on the Claude side stdout is reserved for hook output
@@ -328,9 +328,9 @@ function appendAdvisoryLog(projectDir, detail) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. STATE SWEEP (throttled, adapter-invoked, fail-open)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Unlike the per-session gate-state files the spec-gate sweep archives, this
 // dedup store is one shared JSON map keyed per spec folder -- it only ever
@@ -462,9 +462,9 @@ function sweepStaleSentinelState(projectDir, runtimeState) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 10. MAIN ENTRYPOINT (runtime-neutral)
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Evaluate one completion claim against recorded evidence and return a
@@ -530,9 +530,9 @@ function evaluateCompletionEvidence(request = {}) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 11. EXPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = {
   // constants

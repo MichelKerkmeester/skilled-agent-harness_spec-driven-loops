@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Unicode Normalization
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Shared canonical fold used by Gate 3, recovered-payload provenance,
 // and trigger-phrase sanitization. The pipeline intentionally goes
 // beyond NFKC because zero-width / soft-hyphen characters and mixed

@@ -51,6 +51,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -125,8 +126,8 @@ export const EXCLUDED_DIR_NAMES = Object.freeze(
   new Set([...CORPUS_EXCLUDED_DIR_NAMES].filter((name) => !NOT_PRUNED_DELTA.some((entry) => entry.name === name))),
 );
 
-/** Artifact directory used when `--out` is absent. */
-const DEFAULT_OUT_DIR = 'specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/scratch';
+/** Artifact directory used when `--out` is absent: a temp directory, so a run never writes into a packet by default. */
+const DEFAULT_OUT_DIR = path.join(os.tmpdir(), 'retrofit-convention');
 
 /** Phrase the baseline recipes run against when `--probe` is absent. */
 const DEFAULT_PROBE = 'grep convention';
@@ -1032,7 +1033,7 @@ export function parseArgs(argv) {
   }
 
   const repoRoot = path.resolve(parsed.root ?? findRepoRoot());
-  const outDir = path.resolve(parsed.out ?? path.join(repoRoot, DEFAULT_OUT_DIR));
+  const outDir = path.resolve(parsed.out ?? DEFAULT_OUT_DIR);
 
   return {
     includeHidden: parsed.includeHidden,

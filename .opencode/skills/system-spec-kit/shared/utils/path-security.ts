@@ -7,9 +7,9 @@
 import path from 'path';
 import fs from 'fs';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. PATH VALIDATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validate file path is within allowed directories (CWE-22: Path Traversal mitigation)
@@ -107,9 +107,9 @@ export function validateFilePath(filePath: string, allowedBasePaths: string[]): 
   }
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. REGEX UTILITIES
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Escape special regex characters in a string */
 export function escapeRegex(str: string): string {

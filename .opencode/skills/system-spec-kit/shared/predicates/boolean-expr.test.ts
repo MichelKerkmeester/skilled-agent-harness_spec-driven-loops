@@ -5,7 +5,7 @@
 // Runner: `node --experimental-vm-modules .../boolean-expr.test.js` after tsc.
 // Standalone assertions (no Vitest dependency) to mirror the existing
 // quality-extractors.test.ts convention in this directory.
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import {
   evaluateBooleanExpr,
@@ -24,9 +24,9 @@ function assert(cond: boolean, label: string): void {
   console.log(`PASS: ${label}`);
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. STRING PARSER
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // Canonical TRUE/FALSE uppercase form (current runtime contract).
 {
@@ -90,9 +90,9 @@ function assert(cond: boolean, label: string): void {
   assert((parsed.error ?? '').includes('after'), "error suggests moving narrative into 'after:'");
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. OBJECT VALIDATOR
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 {
   const result = validateBooleanExpr({ field: 'intake_only', op: '==', value: true });
@@ -119,9 +119,9 @@ function assert(cond: boolean, label: string): void {
   assert(result.ok === false, 'unsupported op rejected');
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. UNIFIED WHEN-FIELD PARSER
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 {
   const asString = parseWhenField('intake_only == TRUE');
@@ -149,9 +149,9 @@ function assert(cond: boolean, label: string): void {
   );
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. EVALUATOR
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 {
   const expr = { field: 'intake_only', op: '==' as const, value: true };

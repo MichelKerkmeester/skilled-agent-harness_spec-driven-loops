@@ -857,9 +857,9 @@ fi
 # 7. TEST CASES
 # ═══════════════════════════════════════════════════════════════
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTION A: INDIVIDUAL RULE TESTS (ISOLATED)
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 if begin_category "Individual Rule: FILE_EXISTS (check-files.sh)"; then
     run_isolated_rule_test "L1: All files present" "check-files.sh" "002-valid-level1" "pass" 1
@@ -941,9 +941,9 @@ if begin_category "Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)"; the
     run_isolated_rule_test "L3 complexity check" "check-complexity.sh" "004-valid-level3" "pass" 3
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTION B: ORCHESTRATOR INTEGRATION TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 if begin_category "Orchestrator: Valid Fixtures (Exit 0 or 1)"; then
     run_test "053-template-compliant-level2 passes cleanly" "053-template-compliant-level2" "pass"
@@ -969,9 +969,9 @@ if begin_category "Orchestrator: Error Fixtures (Exit 2)"; then
     run_test "072 scaffold marker fails through default registry bridge" "072-scaffold-never-touched-violation" "fail" "SCAFFOLD_NEVER_TOUCHED" "SCAFFOLD_NEVER_TOUCHED"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTION C: EXIT CODE VERIFICATION
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 if begin_category "Exit Code Verification"; then
     run_test "Exit 0: Compact compliant fixture returns pass" "053-template-compliant-level2" "pass"
@@ -985,9 +985,9 @@ if begin_category "Exit Code Verification"; then
     run_exact_exit_test "Exact exit 3: missing folder" 3 "$FIXTURES/does-not-exist"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTION D: JSON OUTPUT MODE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 if begin_category "JSON Output Mode"; then
     run_test_json "--json compact compliant fixture produces valid JSON" "053-template-compliant-level2" "pass"
@@ -995,9 +995,9 @@ if begin_category "JSON Output Mode"; then
     run_test_json "--json error fixture produces valid JSON" "055-template-missing-header" "fail"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTION E: CLI OPTIONS TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 if begin_category "CLI Options"; then
     run_test_with_flags "--strict: warnings stay advisory" "054-template-extra-header" "warn" "--strict"
@@ -1008,9 +1008,9 @@ if begin_category "CLI Options"; then
     run_test_with_flags "SPECKIT_STRICT=true env var" "054-template-extra-header" "warn" "" "SPECKIT_STRICT=true"
 fi
 
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # SECTION F: EDGE CASE TESTS
-# ─────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 if begin_category "Edge Cases: Anchor Scenarios"; then
     run_test "Compliant anchor order passes cleanly" "053-template-compliant-level2" "pass"

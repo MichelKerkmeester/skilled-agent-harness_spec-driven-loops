@@ -2,16 +2,16 @@
 // MODULE: Chunking
 // ───────────────────────────────────────────────────────────────────
 
-// Feature catalog: Anchor-aware chunk thinning
+// Chunks split on anchor boundaries so a thinned chunk never cuts an anchored section.
 
 import type { PriorityPatterns, PriorityBuckets } from './types.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. CONFIGURATION
 //
 // These constants are the SINGLE SOURCE OF TRUTH for text length limits.
 // Other modules (embeddings.ts, hf-local.ts) import from here.
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Maximum text length for embedding generation.
@@ -59,9 +59,9 @@ function truncateToLength(text: string, maxLength: number): string {
   return sliced;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. SEMANTIC CHUNKING
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Intelligently chunk text to fit within max_length while preserving important content.

@@ -738,9 +738,9 @@ export async function resolveStartupEmbeddingConfig(
   };
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 1. PROVIDER RESOLUTION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Resolve provider based on env vars. Local-first precedence:
@@ -1044,9 +1044,9 @@ async function createFallbackProvider(
   );
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 2. PROVIDER FACTORY
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Create provider instance based on configuration */
 export async function createEmbeddingsProvider(options: CreateProviderOptions = {}): Promise<IEmbeddingProvider> {
@@ -1131,18 +1131,18 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
   }
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 3. PROVIDER INFO
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /** Get configuration information without creating the provider */
 export function getProviderInfo(): ProviderInfoWithFallback {
   return getProviderInfoForResolution(resolveProvider());
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // 4. PRE-FLIGHT API KEY VALIDATION
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validation timeout in milliseconds.

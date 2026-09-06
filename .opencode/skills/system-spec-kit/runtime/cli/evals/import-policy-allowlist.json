@@ -2,24 +2,154 @@
   "description": "Allowlist for scripts importing from @spec-kit/runtime/{lib,core,handlers} internals or equivalent relative runtime paths. Each exception requires: owner, reason, removeWhen, createdAt, lastReviewedAt. Wildcard internal-runtime entries MUST include expiresAt; specific-path entries SHOULD include expiresAt.",
   "exceptions": [
     {
-      "file": "cli/spec-folder/generate-description.ts",
-      "import": "@spec-kit/runtime/lib/search/folder-discovery",
+      "file": "cli/tests/architecture-boundary-enforcement.vitest.ts",
+      "import": "../../shared/utils",
       "owner": "spec-kit-maintainers",
-      "reason": "CLI tool needs folder-discovery internals for description generation",
-      "removeWhen": "folder-discovery exports exposed via api/",
-      "createdAt": "2026-03-08",
-      "lastReviewedAt": "2026-03-08",
-      "expiresAt": "2026-06-08"
+      "reason": "Boundary test writes fixture files whose import strings the scanner reads as imports",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
     },
     {
-      "file": "cli/core/workflow.ts",
-      "import": "@spec-kit/runtime/lib/search/folder-discovery",
+      "file": "cli/tests/architecture-boundary-enforcement.vitest.ts",
+      "import": "../shared/utils",
       "owner": "spec-kit-maintainers",
-      "reason": "Workflow memory-save updates per-folder description.json via dynamic import",
-      "removeWhen": "folder-discovery exports exposed via api/",
-      "createdAt": "2026-03-08",
-      "lastReviewedAt": "2026-03-08",
-      "expiresAt": "2026-06-08"
+      "reason": "Boundary test writes fixture files whose import strings the scanner reads as imports",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/graph-key-file-declarations.vitest.ts",
+      "import": "../../lib/graph/graph-metadata-parser.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/graph-metadata-refresh.vitest.ts",
+      "import": "../../lib/graph/graph-metadata-parser.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/level-contract-resolver.vitest.ts",
+      "import": "../../lib/templates/level-contract-resolver",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/memory-pipeline-regressions.vitest.ts",
+      "import": "../../shared/embeddings",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a shared internal directly",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/memory-template-contract.vitest.ts",
+      "import": "../../shared/parsing/memory-template-contract",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a shared internal directly",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/scaffold-golden-snapshots.vitest.ts",
+      "import": "../../lib/templates/level-contract-resolver",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/scoped-backfill-boundary.vitest.ts",
+      "import": "../../lib/utils/index-scope.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/workflow-canonical-save-metadata.vitest.ts",
+      "import": "../../lib/graph/graph-metadata-parser",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/gate-3-classifier.vitest.ts",
+      "import": "../../shared/gate-3-classifier",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime or shared internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/generated-metadata-drift.vitest.ts",
+      "import": "../../lib/description/packet-synopsis.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime or shared internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/graph-metadata-backfill.vitest.ts",
+      "import": "../../lib/graph/graph-metadata-parser.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime or shared internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/scoped-backfill-boundary.vitest.ts",
+      "import": "../../lib/search/folder-discovery.js",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime or shared internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/workflow-canonical-save-metadata.vitest.ts",
+      "import": "../../lib/search/folder-discovery",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime or shared internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-06",
+      "lastReviewedAt": "2026-09-06",
+      "expiresAt": "2027-03-06"
     }
   ]
 }

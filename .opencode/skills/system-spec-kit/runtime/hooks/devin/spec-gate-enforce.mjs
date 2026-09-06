@@ -16,25 +16,25 @@
 // FAILS OPEN -- any missing payload or internal error approves silently, so a
 // bug here never blocks correctly-scoped work.
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Devin tool vocabulary -> the mutation classes the core expects. `exec` is the
 // shell surface (Bash-equivalent); `edit` is the file-write surface (proposed,
 // not live-confirmed -- research-devin-hooks-portability/research.md §10).
 const DEVIN_TOOL_MAP = { exec: 'bash', edit: 'edit' };
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -58,9 +58,9 @@ function filePathFrom(toolInput) {
   return firstNonBlankString(toolInput.file_path, toolInput.filePath, toolInput.path);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. MAIN
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 async function main() {
   const payload = parseJsonFailOpen(await readStdin());
@@ -127,8 +127,12 @@ async function main() {
   return approve();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. ENTRYPOINT
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-main().catch(() => approve());
+main().catch((error) => {
+  // Fail-open by contract, but a swallowed failure hides a broken hook; report it.
+  process.stderr.write(`spec-gate-enforce: ${error instanceof Error ? error.message : String(error)}\n`);
+  approve();
+});

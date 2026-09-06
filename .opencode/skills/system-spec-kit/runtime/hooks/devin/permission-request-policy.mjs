@@ -12,9 +12,9 @@
 // class denies -- the opposite fail-direction from the rest of the Devin adapter
 // suite, deliberate because a PermissionRequest denial is the safe default.
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -33,9 +33,9 @@ function permissionPolicyEnabled() {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const WRITE_TOOL_NAMES = new Set([
   'apply-patch',
@@ -53,9 +53,9 @@ const DISPATCH_SKILL_PATH = fileURLToPath(new URL(
   import.meta.url,
 ));
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function isNonBlankString(value) {
   return typeof value === 'string' && value.trim().length > 0;
@@ -156,9 +156,9 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. ENTRYPOINT
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 async function main() {
   if (permissionPolicyEnabled() === false) {
@@ -180,5 +180,10 @@ async function main() {
   }
 }
 
-main().catch(() => emitDecision('deny', 'Permission denied: policy evaluation failed closed.'));
+main().catch((error) => {
+  // Fail closed by contract, and say why on stderr so a broken policy is visible.
+  process.stderr.write(`permission-request-policy: ${error instanceof Error ? error.message : String(error)}
+`);
+  emitDecision('deny', 'Permission denied: policy evaluation failed closed.');
+});
 

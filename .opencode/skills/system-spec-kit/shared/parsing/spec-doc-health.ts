@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Spec Document Health Evaluator
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Shared evaluator for spec folder document quality.
 // Used by workflow.ts (memory pipeline) and memory-save.ts for
 // non-blocking health annotation on rendered memory files.
@@ -13,9 +13,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Types
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export interface SpecDocHealthIssue {
   rule: string;
@@ -38,9 +38,9 @@ export interface SpecDocHealthResult {
   perFile: SpecDocFileResult[];
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Constants
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 const SPECKIT_LEVEL_RE = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
 const SPECKIT_TEMPLATE_SOURCE_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:\s*.+\s*-->/;
@@ -65,9 +65,9 @@ const PHASE_PARENT_REQUIRED_FILES = ['spec.md', 'description.json', 'graph-metad
 // A direct child folder qualifies as a phase when it matches NNN-slug.
 const PHASE_CHILD_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Level Detection
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 function detectLevel(folderPath: string): number | null {
   const specPath = path.join(folderPath, 'spec.md');
@@ -89,9 +89,9 @@ function detectLevel(folderPath: string): number | null {
   }
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Rule Checks
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // Mirrors the single-source-of-truth contract enforced by validate.sh /
 // check-files.sh: a folder is a phase parent when it has at least one direct
@@ -299,9 +299,9 @@ function checkContentSubstance(folderPath: string): SpecDocHealthIssue[] {
   return issues;
 }
 
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Main Evaluator
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 export function evaluateSpecDocHealth(specFolderPath: string): SpecDocHealthResult {
   const resolvedPath = path.resolve(specFolderPath);

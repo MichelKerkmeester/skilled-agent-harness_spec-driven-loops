@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# ----------------------------------------------------------------
+# ───────────────────────────────────────────────────────────────
 # COMPONENT: Dist Freshness Validation Tests
-# ----------------------------------------------------------------
+# ───────────────────────────────────────────────────────────────
 # Verifies validate.sh fails closed on stale compiled validation dist output and
 # passes through once the dist entry is newer than the watched source.
 

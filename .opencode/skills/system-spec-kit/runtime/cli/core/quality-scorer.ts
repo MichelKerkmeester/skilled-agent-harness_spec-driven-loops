@@ -120,7 +120,7 @@ function hasMeaningfulObservationTitle(title?: string): boolean {
  * Returns canonical score01 plus a score100 compatibility alias and a per-criterion breakdown.
  *
  * Legacy 8-parameter variant retained for backward compatibility.
- * Prefer `scoreRenderQuality` from `extractors/quality-scorer.ts` which accepts
+ * Prefer `scoreMemoryQuality` from `extractors/quality-scorer.ts` which accepts
  * a single `QualityInputs` object and uses validation-rule-based scoring (V1-V12).
  */
 // Floor thresholds — minimum dimension scores for JSON quality floor activation
@@ -136,7 +136,7 @@ const JSON_FLOOR_MIN_DIMENSIONS = 4;  // At least 4/6 must pass
 const JSON_FLOOR_DAMPING = 0.85;      // Damping factor for the JSON floor
 const JSON_FLOOR_CAP = 0.70;          // Hard maximum
 
-/** Legacy heuristic memory quality scorer. Prefer `scoreRenderQuality` in extractors/quality-scorer.ts for new callers. */
+/** Legacy heuristic render-quality scorer. Prefer `scoreMemoryQuality` in extractors/quality-scorer.ts for new callers. */
 export function scoreRenderQuality(
   content: string,
   triggerPhrases: string[],
