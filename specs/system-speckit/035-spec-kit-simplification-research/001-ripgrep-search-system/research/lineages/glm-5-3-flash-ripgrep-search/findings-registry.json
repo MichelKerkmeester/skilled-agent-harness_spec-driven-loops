@@ -1,0 +1,38 @@
+{
+  "lineage": "glm-5-3-flash-ripgrep-search",
+  "sessionId": "fanout-glm-5-3-flash-ripgrep-search-1788705376825-f0ulmm",
+  "generatedAt": "2026-09-06T18:30:00Z",
+  "findings": [
+    {"id": "L1", "severity": "P1", "title": "Freshness/ownership chain: four inconsistent corpus snapshots; no whole-corpus verifier", "source": "runtime/data/trigger-index.json + fixtures/corpus-manifest.json + fixtures/latency-report.json + AGENTS.md:477 + workflow.ts:344 + doctor-speckit-retrieval.yaml:148", "recommendation": "regenerate-all + doctor manifestHash check + named owner", "firstIteration": 1, "refinedIterations": [4, 7, 8, 9]},
+    {"id": "L2", "severity": "P1", "title": "Single-token phrases can only match by exact equality", "source": "runtime/cli/retrieval/lib/normalize.mjs:118-121", "recommendation": "document in conventions §8 or allow single-token overlap scoring", "firstIteration": 2, "refinedIterations": [9]},
+    {"id": "L3", "severity": "P1", "title": "Concept-lane contract contradiction + 'Both index artifacts' stale fragment", "source": "references/retrieval/retrieval-conventions.md:33,40,42,44", "recommendation": "one editing pass to two-lane reality", "firstIteration": 3, "refinedIterations": [5, 9]},
+    {"id": "L4", "severity": "P1", "title": "search.md inline recipe drift vs conventions §2.1 (missing --hidden/.git/scratch; 'two globs' count)", "source": ".opencode/commands/speckit/search.md:27,86-88", "recommendation": "byte-identical recipe or verbatim pointer", "firstIteration": 3, "refinedIterations": [5, 9]},
+    {"id": "L5", "severity": "P1", "title": "Gate 1 lookup has no mechanical executor on any runtime; hook-system table misleading", "source": "AGENTS.md:83; references/config/hook-system.md:89-93; hooks census", "recommendation": "wire UserPromptSubmit hook or declare advisory", "firstIteration": 4, "refinedIterations": [9]},
+    {"id": "L6", "severity": "P1", "title": "Doctor staleness probe (mtime/size) lacks manifestHash comparison", "source": ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml:148-149", "recommendation": "add manifestHash consistency check (shared fix vehicle with L1)", "firstIteration": 4, "refinedIterations": [9]},
+    {"id": "L7", "severity": "P1", "title": "measure-cold-lookup.mjs orphaned: zero recurring callers for the only latency gate", "source": "runtime/cli/retrieval/measure-cold-lookup.mjs", "recommendation": "wire into doctor/CI or document acceptance-only", "firstIteration": 6, "refinedIterations": [9]},
+    {"id": "L8", "severity": "P1", "title": "retrofit-convention.mjs (48 KB completed-migration pipeline) displaces retrieval hot directory", "source": "runtime/cli/retrieval/retrofit-convention.mjs", "recommendation": "relocate/archive with its test, pending migration acceptance", "firstIteration": 7, "refinedIterations": [9]},
+    {"id": "L9", "severity": "P1", "title": "Four acceptance-fossil fixtures with no runtime reader; dormant promptSetHash parity slot", "source": "fixtures/{semantic-probes,prompt-set,recipe-execution,daemon-off-proof}.json; generate-trigger-index.mjs:216-218; trigger-index.vitest.ts:404-410", "recommendation": "land parity arm or mark as archived acceptance evidence; refresh hash pins", "firstIteration": 10, "refinedIterations": []},
+    {"id": "P2-batch", "severity": "P2", "title": "Cosmetic + verified-positive rows: doc fixes (EXCLUSIONS/§9 rows/class ladders/latency target/README §7/--root trap/--limit 0/--triggers), render/utilization notes (0.000 tail, context.md index ingestion, --no-index-hash, variants on-demand), and 15 verified-positive confirmations", "source": "see research.md §2 P2 table with per-row file:line", "recommendation": "document", "firstIteration": 1, "refinedIterations": [2, 3, 4, 5, 6, 7, 8, 9, 10]}
+  ],
+  "ruledOut": [
+    {"approach": "dedicated repo-rules/retrieval.md", "reason": "Gate 5 loads on first write, not per prompt; footprint already 5 lines", "evidence": "iterations/iteration-005.md F5.7"},
+    {"approach": "stale index drops restructured docs", "reason": "identical path/phrase/posting sets between snapshots", "evidence": "iterations/iteration-008.md F8.1"},
+    {"approach": "keyed lane weak for canonical queries", "reason": "distinctive query returns exact 1.000 hits; weakness limited to fuzzy phrasing noise", "evidence": "iterations/iteration-009.md F9.3"},
+    {"approach": "generator nondeterminism", "reason": "two builds byte-identical", "evidence": "iterations/iteration-001.md F1.2"},
+    {"approach": "hook-executed Gate 1", "reason": "zero references across all runtimes' hooks/adapters/plugins/settings", "evidence": "iterations/iteration-004.md F4.1"}
+  ],
+  "sources": [
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/{corpus,normalize,artifact,frontmatter,rg-lane}.mjs",
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/{rg-wrapper,measure-cold-lookup,retrofit-convention,sweep-memory-residue}.mjs",
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md + fixtures/*",
+    ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+    ".opencode/skills/system-spec-kit/runtime/cli/{core/workflow.ts,lib/validator-registry.json,rules/check-grep-convention.sh,tests/*}",
+    ".opencode/commands/speckit/{search.md,assets/search-presentation.txt,assets/speckit-resume-auto.yaml}",
+    ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+    ".opencode/skills/system-spec-kit/references/{retrieval/retrieval-conventions.md,memory/*,config/hook-system.md,structure/grep-convention.md}",
+    "AGENTS.md", "CLAUDE.md", "REPO RULES.md", "repo-rules/*.md",
+    ".opencode/agents/{debug,deep-improvement,context,deep-review,ai-council,deep-research}.md"
+  ]
+}

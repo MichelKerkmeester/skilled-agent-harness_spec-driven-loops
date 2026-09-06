@@ -24,7 +24,7 @@ Guardrails:
 - Ask targeted follow-up questions only when the query is genuinely ambiguous.
 - Do not display an option dump at startup.
 - Do not use forbidden result labels listed in the presentation asset.
-- Copy the recipe flags literally from `retrieval-conventions.md`. Each of `--no-config`, the two exclusion globs and the `--` separator closes a specific failure; paraphrasing them reintroduces it.
+- Copy the recipe flags literally from `retrieval-conventions.md`. Each of `--no-config`, `--hidden`, the four exclusion globs and the `--` separator closes a specific failure; paraphrasing them reintroduces it.
 - Retrieval here is lexical. Never soften a no-hit into a paraphrase or a nearest guess.
 - This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
 
@@ -96,8 +96,8 @@ The ripgrep recipes from `retrieval-conventions.md` Section 2. Pick exactly one 
 Structured JSONL, the default:
 
 ```bash
-rg --no-config --json --fixed-strings --ignore-case \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+rg --no-config --hidden --json --fixed-strings --ignore-case \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- '<QUERY>' specs .opencode
 ```
 

@@ -41,12 +41,12 @@ Current state:
 
 | Module | Imported by |
 |---|---|
-| `artifact.mjs` | Every script in `retrieval/`: `generate-trigger-index.mjs`, `lookup-trigger-index.mjs`, `measure-cold-lookup.mjs`, `retrofit-convention.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`. |
-| `normalize.mjs` | `generate-trigger-index.mjs`, `lookup-trigger-index.mjs`, `retrofit-convention.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`. |
-| `rg-lane.mjs` | `retrofit-convention.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`. |
-| `corpus.mjs` | `generate-trigger-index.mjs`, `retrofit-convention.mjs`. |
+| `artifact.mjs` | Every script in `retrieval/`: `generate-trigger-index.mjs`, `lookup-trigger-index.mjs`, `measure-cold-lookup.mjs`, `../ops/retrofit-convention.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`. |
+| `normalize.mjs` | `generate-trigger-index.mjs`, `lookup-trigger-index.mjs`, `../ops/retrofit-convention.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`. |
+| `rg-lane.mjs` | `../ops/retrofit-convention.mjs`, `rg-wrapper.mjs`, `sweep-memory-residue.mjs`. |
+| `corpus.mjs` | `generate-trigger-index.mjs`, `../ops/retrofit-convention.mjs`. |
 | `frontmatter.mjs` | `generate-trigger-index.mjs` only. |
-| `grep-convention.mjs` | `retrofit-convention.mjs` (the pipeline that applies the convention) and `../../rules/check-grep-convention-helper.mjs` (the validation rule that enforces it). |
+| `grep-convention.mjs` | `../ops/retrofit-convention.mjs` (the pipeline that applies the convention) and `../../rules/check-grep-convention-helper.mjs` (the validation rule that enforces it). |
 
 ---
 
@@ -62,16 +62,16 @@ Current state:
 
 ## 5. VALIDATION
 
-Run from the skill root (`.opencode/skills/system-spec-kit`):
+Run from the CLI package (`.opencode/skills/system-spec-kit/runtime/cli`):
 
 ```bash
-npx --prefix scripts vitest run --config runtime/vitest.config.ts \
-  scripts/tests/trigger-index.vitest.ts \
-  scripts/tests/rg-wrapper-recipes.vitest.ts \
-  scripts/tests/grep-convention.vitest.ts \
-  scripts/tests/grep-convention-rule.vitest.ts \
-  scripts/tests/sweep-memory-residue.vitest.ts \
-  scripts/tests/retrofit-convention-pipeline.vitest.ts
+npx vitest run --config ../../vitest.config.ts --project cli \
+  tests/trigger-index.vitest.ts \
+  tests/rg-wrapper-recipes.vitest.ts \
+  tests/grep-convention.vitest.ts \
+  tests/grep-convention-rule.vitest.ts \
+  tests/sweep-memory-residue.vitest.ts \
+  tests/retrofit-convention-pipeline.vitest.ts
 ```
 
 Expected result: all suites pass. These vitest files exercise every module in this folder, either directly or through the CLI script that imports it.

@@ -80,6 +80,7 @@ phase and binds as if written here.
 | 003-shared-package-utilization | `003-shared-package-utilization/goal.md` |
 | 004-template-system-and-acceptance-criteria | `004-template-system-and-acceptance-criteria/goal.md` |
 | 005-overengineering-simplification | `005-overengineering-simplification/goal.md` |
+| 006-retrieval-drift-remediation | `006-retrieval-drift-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -118,10 +119,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Lane 001 ran, reproduced, remediated | Done | `001-ripgrep-search-system/research/confirmed-findings.md`; child `006-retrieval-drift-remediation` complete |
+| Lane 002 | Running | started 17:17 in worktree 046 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Child 006 appended to the binding | The binding table gained a row; durable slice changed, parent resent in chat. |
 <!-- /ANCHOR:log -->

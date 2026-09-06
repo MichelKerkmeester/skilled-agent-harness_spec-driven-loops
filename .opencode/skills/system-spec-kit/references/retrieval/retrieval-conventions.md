@@ -7,7 +7,7 @@ trigger_phrases:
   - "caller-side ranking tuple"
   - "retrieval exit status mapping"
   - "trigger index lookup path"
-  - "concept versus exact retrieval"
+  - "keyed versus free-text retrieval"
   - "lane merge rule"
   - "coverage and exclusion policy"
   - "root coverage table"
@@ -28,20 +28,20 @@ The invocation contract for free-text retrieval over spec docs and skill docs, r
 
 Ripgrep is an evidence producer, never the relevance ranker. It returns matches, paths and lines. The caller decides what any of it is worth.
 
-### The Three Lanes
+### The Two Lanes
 
-Retrieval splits into a keyed lane, a free-text lane and a concept lane, and no two of them share a mechanism.
+Retrieval splits into a keyed lane and a free-text lane, and the two share no mechanism.
 
 | Lane | Mechanism | Used for |
 |------|-----------|----------|
 | **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
 | **Free-text evidence** | The ripgrep recipes in Section 2 | Finding a phrase anywhere in the corpus, with no index at all |
 
-The three answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Concept search is a ranked retrieval over an embedded index, and it returns a passage that no literal query would have reached.
+The two answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Neither ranks by meaning: a phrase that no document spells literally is a clean no-hit, never a nearest guess.
 
-**An exact identifier always goes to ripgrep first.** A symbol, a path, a flag, an error code, a config key or any string the caller can already spell is a literal-match problem, and the scan answers it exhaustively while the concept lane answers it with a ranked sample. Reaching for the concept lane on a known string trades completeness for nothing. The concept lane earns its place only where the caller cannot spell the target.
+**An exact identifier always goes to ripgrep first.** A symbol, a path, a flag, an error code, a config key or any string the caller can already spell is a literal-match problem, and the scan answers it exhaustively. The keyed lane earns its place where the caller wants the packets whose authors declared the phrase, not every file that happens to contain it.
 
-> **Availability note.** Both index artifacts are produced by phase `001-trigger-index-replacement`. In a checkout that predates the generator, the ripgrep lane in Section 2 works immediately and the Gate 1 lane does not.
+> **Availability note.** The index and its manifest are produced together by `generate-trigger-index.mjs`. In a checkout that predates the generator, the ripgrep lane in Section 2 works immediately and the Gate 1 lane does not.
 
 ### What This Replaces
 
@@ -196,7 +196,7 @@ The two exit `2` rows are the reason the mapping matters. Both produced no stdou
 Ripgrep supplies matches, paths and lines. It never ranks relevance, and no document, plan or wrapper comment may imply that it does. Ordering is the caller's job, applied after parsing, using this stable tuple.
 
 1. **Evidence field**, most specific first: `trigger_phrases`, then title or description, then anchor marker, then body line.
-2. **Normalized match class**: exact phrase, then phrase containment, then token coverage.
+2. **Normalized match class**, in the order `lib/normalize.mjs` ranks them: `exact`, `phrase-containment`, `query-containment`, `token-overlap`, then `partial`. The lookup emits these labels verbatim, and no document may rename them.
 3. **Relative path**, then one-based line number.
 
 Each result carries its document type and its packet path alongside the ranked position, so a caller can filter or group without a second scan.
@@ -257,6 +257,8 @@ The last one is not hypothetical. The frontmatter editor inserts folder tokens a
 
 Use one canonical spelling in emitted frontmatter. A reader may recognize the `triggerPhrases` alias for compatibility and report it, but canonical output stays `trigger_phrases`.
 
+Declare phrases of two or more tokens. A single-token phrase can only ever match by exact equality: `scorePhrase` in `lib/normalize.mjs` gives it no containment or token-overlap score, so against any longer prompt it surfaces as a zero-score `partial` candidate and never ranks.
+
 ---
 
 ## 9. COVERAGE AND EXCLUSION POLICY
@@ -269,6 +271,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 |------|:---:|:---:|--------|
 | `specs` | Yes | Yes | Shared |
 | `.opencode/skills` | Yes | Yes (subset of `.opencode`) | Shared |
+| `.opencode/specs` (a symlink to `specs`) | Folded onto `specs` | Yes, under the path it was given | The corpus walker canonicalizes the alias so one document never owns a phrase twice; ripgrep reports whichever spelling the caller passed. |
 | `.opencode/install-guides` | Yes | Yes (subset of `.opencode`) | Converged in the retrieval-coverage-alignment phase — it already carries `trigger_phrases` frontmatter and ripgrep already reached it; the trigger index missing it was a pure asymmetry |
 | Rest of `.opencode` (`commands`, `agents`, `bin`, `rules`, …) | No | Yes | Deliberate divergence. Every trigger-index root becomes part of a committed, size-tracked, fail-closed-on-malformed generated artifact that every Gate 1 lookup parses cold; the ripgrep lane carries no such artifact, so widening its reach costs nothing. The trigger index stays scoped to the `trigger_phrases`-governed corpus |
 | Repository-root `README.md` | No | No | Decided against for both lanes. It is public-facing project marketing content with no `trigger_phrases` convention, not spec or skill documentation |
@@ -282,6 +285,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 | `node_modules` | Yes | Yes | Shared |
 | `.git` | Yes (never walked) | Yes (`--glob '!**/.git/**'`) | Shared |
 | `scratch` | Yes | Yes | Converged in the retrieval-coverage-alignment phase. Unconditional in both: this repository's convention treats every `scratch/` tree as temporary output cleaned before completion, and the sibling `sweep-memory-residue.mjs` tool already excluded it for the same reason |
+| `dist` | Yes | No | Deliberate divergence. The trigger index prunes compiled output so a stale copy of a source document cannot own a phrase; the ripgrep lane scans it, and a hit there is evidence like any other. |
 | `research/lineages` (directly under a `research` parent) | Yes | No | Deliberate divergence. The trigger index excludes lineage transcripts to protect the curated phrase index from unauthored, transcript-derived noise (Section 8). Ripgrep is a raw evidence lane with no ranking to protect, and the corpus holds thousands of lineage documents a researcher may legitimately need to grep for a specific fact; converging would be a real coverage loss for a noise concern that does not apply to a scan |
 | `fixtures` / `__fixtures__` / `test-fixtures` / `*-fixtures` directories outside `specs/` | Yes | No | Deliberate divergence. The trigger index's exemption is scoped to outside `specs/` because hundreds of real specification documents live under packet directories named or containing `fixtures` (for example `002-contracts-and-fixtures`); replicating that exact scoping in ripgrep's flat, later-glob-wins engine risks a subtly wrong pattern that silently drops real spec content, which is a worse failure than the test-fixture noise it would remove |
 

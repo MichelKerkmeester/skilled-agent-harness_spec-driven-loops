@@ -39,7 +39,7 @@ Section 8 carries three commands verbatim, because the convention is required to
 
 ### Every Rule Has Two Enforcers
 
-Nothing here is advice. Each rule is applied once across the corpus by the retrofit at `.opencode/skills/system-spec-kit/runtime/cli/retrieval/retrofit-convention.mjs`, then re-checked on every run by the validator rule at `.opencode/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh`, which `validate.sh` invokes. Templates under `.opencode/skills/system-spec-kit/templates/` produce conforming documents with no manual step, so a new document cannot drift back.
+Nothing here is advice. Each rule is applied once across the corpus by the retrofit at `.opencode/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs`, then re-checked on every run by the validator rule at `.opencode/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh`, which `validate.sh` invokes. Templates under `.opencode/skills/system-spec-kit/templates/` produce conforming documents with no manual step, so a new document cannot drift back.
 
 ### Scope
 
@@ -409,7 +409,7 @@ The second row is worth a decision rather than a shrug. A field with 35 values i
 ### Scripts
 
 - `.opencode/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh` - The validator rule that re-checks every rule in this document
-- `.opencode/skills/system-spec-kit/runtime/cli/retrieval/retrofit-convention.mjs` - The retrofit that applies the convention and emits the Section 10 diagnostics
+- `.opencode/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs` - The retrofit that applies the convention and emits the Section 10 diagnostics
 - `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs` - `normalizeTriggerText` and `MAX_PHRASE_LENGTH`, the shared source of the Section 3 duplicate comparison and phrase budget
 - `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` - The gate that invokes the rule
 

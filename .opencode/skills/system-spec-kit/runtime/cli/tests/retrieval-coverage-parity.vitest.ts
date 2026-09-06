@@ -4,12 +4,12 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { CORPUS_ROOTS, EXCLUDED_DIR_NAMES, FIXTURE_DIR_PATTERN, isExcludedDirectory } from '../retrieval/lib/corpus.mjs';
+import { CORPUS_ROOTS, EXCLUDED_DIR_NAMES, EXCLUSIONS, FIXTURE_DIR_PATTERN, isExcludedDirectory } from '../retrieval/lib/corpus.mjs';
 import { DEFAULT_ROOTS, GLOBS } from '../retrieval/lib/rg-lane.mjs';
 import {
   EXCLUDED_DIR_NAMES as RETROFIT_EXCLUDED_DIR_NAMES,
   NOT_PRUNED_DELTA as RETROFIT_NOT_PRUNED_DELTA,
-} from '../retrieval/retrofit-convention.mjs';
+} from '../ops/retrofit-convention.mjs';
 import {
   EXCLUDE_GLOBS as SWEEP_EXCLUDE_GLOBS,
   GLOB_DELTA as SWEEP_GLOB_DELTA,
@@ -36,6 +36,15 @@ const CONVENTIONS_PATH = path.join(
 
 /** Directory names pruned unconditionally by both lanes, wherever they appear. */
 const SHARED_UNIVERSAL_EXCLUSIONS = Object.freeze(['.git', 'node_modules', 'scratch', 'z_archive']);
+
+/**
+ * Flat directory names only the trigger index prunes. Compiled output under
+ * the skills tree must never own a phrase, because a stale copy of a source
+ * document would then shadow it; the ripgrep lane still scans it, since a
+ * literal hit there is evidence like any other. The conventions document
+ * records this row under its exclusion coverage table.
+ */
+const TRIGGER_INDEX_ONLY_EXCLUSIONS = Object.freeze(['dist']);
 
 /**
  * Every directory-name exclusion the trigger index applies unconditionally.
@@ -125,8 +134,13 @@ describe('exclusion coverage parity', () => {
     // corpus.mjs's real exclusion set must be exactly the shared table below -
     // an addition or removal on either side without updating this test is the
     // undocumented divergence this suite exists to catch.
-    expect(TRIGGER_INDEX_UNIVERSAL_EXCLUSIONS).toEqual([...SHARED_UNIVERSAL_EXCLUSIONS].sort());
+    expect(TRIGGER_INDEX_UNIVERSAL_EXCLUSIONS).toEqual(
+      [...SHARED_UNIVERSAL_EXCLUSIONS, ...TRIGGER_INDEX_ONLY_EXCLUSIONS].sort(),
+    );
     expect(ripgrepUniversalExclusions(GLOBS)).toEqual([...SHARED_UNIVERSAL_EXCLUSIONS].sort());
+    for (const name of TRIGGER_INDEX_ONLY_EXCLUSIONS) {
+      expect(ripgrepUniversalExclusions(GLOBS), `ripgrep silently converged on "${name}"`).not.toContain(name);
+    }
   });
 
   it('excludes each shared universal name in both lanes identically', () => {
@@ -213,6 +227,15 @@ describe('retrieval-conventions.md glob parity', () => {
 // drift on either side fails here instead of surfacing as a silent behavior
 // change in the pipeline or the sweep.
 // ───────────────────────────────────────────────────────────────────
+
+describe('manifest exclusion record', () => {
+  it('names every directory the walker prunes, so the manifest describes the policy that produced it', () => {
+    for (const name of EXCLUDED_DIR_NAMES) {
+      const recorded = EXCLUSIONS.some((entry) => entry === name || entry === `**/${name}/**`);
+      expect(recorded, `EXCLUSIONS has no row for pruned directory ${name}`).toBe(true);
+    }
+  });
+});
 
 describe('retrofit-convention.mjs exclusion parity', () => {
   it('derives its effective exclusion set from the shared table minus its declared delta, and nothing else', () => {

@@ -57,7 +57,7 @@ Field mapping:
 | `indexHash`, `manifestHash` | `index` / `manifest`, first 12 characters each |
 | `specFolder` | `scope`, or `(unscoped)` |
 | `result.score` | `<score>` — the lookup's own score, three decimals, exactly as the tool emits it |
-| `result.matchClass` | `<matchClass>` — `exact`, `query-containment`, `partial`, verbatim from the tool |
+| `result.matchClass` | `<matchClass>` — one of `exact`, `phrase-containment`, `query-containment`, `token-overlap`, `partial`, verbatim from the tool |
 | `result.path` | `<path>` — the repo-relative document path |
 | `results.length` | `CANDIDATES=<count>` |
 

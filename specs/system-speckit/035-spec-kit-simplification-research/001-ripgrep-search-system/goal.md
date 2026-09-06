@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system"
-    last_updated_at: "2026-09-06T16:40:00Z"
+    last_updated_at: "2026-09-06T17:40:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed every criterion after remediation"
+    next_safe_action: "None; the lane is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,10 +72,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-ripgrep-search/
-- [ ] research.md ranks findings with path:line on both sides
-- [ ] Every P0 and P1 finding reproduces in-session before remediation is planned
-- [ ] A written verdict on whether a retrieval repo rule should exist, with the root-document lines it would absorb
+- [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-ripgrep-search/
+- [x] research.md ranks findings with path:line on both sides
+- [x] Every P0 and P1 finding reproduces in-session before remediation is planned
+- [x] A written verdict on whether a retrieval repo rule should exist, with the root-document lines it would absorb
 <!-- /ANCHOR:completion -->
 
 ---
@@ -92,10 +92,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-ripgrep-search/research.md`, stop reason maxIterationsReached, 16:36 to 17:15 |
+| Reproduction | Done | `research/confirmed-findings.md`: 8 P1 confirmed, 1 dropped (L5), 8 P2 fixed or recorded, 1 dropped |
+| Remediation | Done | `../006-retrieval-drift-remediation` closed every row |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| L5 dropped | The hook-system table column is "Manual fallback"; the lookup is documented as the manual Gate 1 step, so no contradiction exists. |
+| No repo rule | Gate 5 loads on first write, Gate 1 fires per prompt; the root-document footprint is five lines and stays inline. |
 <!-- /ANCHOR:log -->

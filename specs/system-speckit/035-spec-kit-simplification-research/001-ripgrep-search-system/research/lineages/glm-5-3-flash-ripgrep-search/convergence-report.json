@@ -1,0 +1,23 @@
+{
+  "lineage": "glm-5-3-flash-ripgrep-search",
+  "sessionId": "fanout-glm-5-3-flash-ripgrep-search-1788705376825-f0ulmm",
+  "loopType": "research",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "convergenceThresholdUsedAsTelemetryOnly": true,
+  "newInfoRatioTrend": [1.0, 0.9, 1.0, 0.85, 0.7, 0.7, 0.8, 0.55, 0.45, 0.4],
+  "p1Count": 9,
+  "p2Count": 25,
+  "p0Count": 0,
+  "questionsAnswered": ["q-gen", "q-lookup", "q-search", "q-callers", "q-contradiction", "q-footprint", "q-consulted", "q-removal"],
+  "openQuestionsCarried": [
+    "promptSetHash parity arm: land or retire (schema v3 candidate)",
+    "grep-convention migration formal acceptance (licenses retrofit relocation)",
+    "fixture hash pins: exemption or auto-refresh at regeneration",
+    "named owner for whole-corpus index regeneration"
+  ],
+  "synthesis": "research.md",
+  "evidenceArtifacts": ["tmp/gen1", "tmp/gen2"],
+  "completedAt": "2026-09-06T18:30:00Z"
+}

@@ -36,6 +36,7 @@ Registered classes are `session-ambiguity` and `telemetry-drift`; both healers a
 - `runbook.sh drill <class|all> --scenario <success|escalate> --max-attempts <n>` runs bounded remediation drills.
 - `heal-*.sh` scripts hold the class-specific detect, repair, and verify flow structure, but each currently stops before completing a cycle (see Overview).
 - `ops-common.sh` provides shared retry, logging, and escalation helpers.
+- `retrofit-convention.mjs enumerate|dry-run|process|rescan` is the one-time grep-convention retrofit over the spec corpus. Each stage reads the manifest `enumerate` froze, so `process` never sees a document that changed after enumeration. It imports `../retrieval/lib/` and `../retrieval/rg-wrapper.mjs`; run it from the repository root.
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
 - `process-sweep.ts` emits dry-run plans and an `apply` result. No terminable process class is registered, so `apply` signals nothing and reports `no-terminable-class-registered`; termination returns only when a class is registered together with the ownership evidence that proves the process is this repository's to kill.
 
@@ -59,6 +60,7 @@ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignmen
 | File | Purpose |
 | --- | --- |
 | `ops-common.sh` | Shared retry, logging, option parsing, and escalation helpers |
+| `retrofit-convention.mjs` | Manifest-frozen enumerate/dry-run/process/rescan pipeline that applied the grep convention across the corpus once; kept for a repeat run, not for lookup time |
 | `heal-session-ambiguity.sh` | Deprecated stub: logs a deprecation notice and exits 0 before the retained (unreachable) detect/repair logic runs. Session ambiguity is now handled by the memory-save pipeline (`generate-context.js`). |
 | `heal-telemetry-drift.sh` | Parses and validates its options, then always reports that its telemetry-drift verifier was removed and exits 1. No replacement verifier is wired yet. |
 | `runbook.sh` | Class listing, runbook display, and drill orchestration |

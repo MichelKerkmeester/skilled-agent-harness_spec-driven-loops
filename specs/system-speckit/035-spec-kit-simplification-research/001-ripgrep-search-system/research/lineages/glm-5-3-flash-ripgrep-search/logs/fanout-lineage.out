@@ -1,0 +1,9 @@
+All verification passes. The lineage is complete:
+
+**Summary of the run:**
+- **10/10 iterations** executed inline (no nested dispatch), each with an iteration file, structured delta, and state record — all inside the lineage directory; the repository itself was never modified (generator runs, lookups, vitest, and ripgrep probes were read-only or redirected into `tmp/gen1`/`tmp/gen2` as retained evidence).
+- **Ledger outcome:** 0 P0 / 9 P1 / 25 P2 findings. Headline P1s: the freshness/ownership chain (four inconsistent corpus snapshots with zero query impact today and no whole-corpus verifier); the concept-lane contract contradiction in `retrieval-conventions.md`; search.md's inline recipe drift; no hook on any runtime executing the Gate 1 lookup; and the 48 KB completed-migration `retrofit-convention.mjs` displacing the retrieval directory.
+- **8/8 charter questions answered**, 4 process questions carried; adversarial re-probes in iteration 9 corrected/refined two earlier claims before synthesis.
+- **Synthesis** at `research.md` with the cited defect-and-simplification ledger, convergence report, findings registry, dashboard, and `synthesis-record.json` carrying `stopReason: "maxIterationsReached"`.
+
+FANOUT_LINEAGE_COMPLETE:glm-5-3-flash-ripgrep-search

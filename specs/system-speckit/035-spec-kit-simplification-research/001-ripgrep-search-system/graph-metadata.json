@@ -39,7 +39,7 @@
       "reproduction"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "research/lineages/glm-5-3-flash-ripgrep-search/research.md",
+      "research/confirmed-findings.md",
       ".opencode/commands/speckit/search.md",
       "references/retrieval/retrieval-conventions.md"
     ],
@@ -88,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
         "name": "search.md",
         "kind": "doc",
         "path": ".opencode/commands/speckit/search.md",
@@ -101,12 +109,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -131,6 +133,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited together",
     "created_at": "2026-09-06T14:29:30Z",
-    "last_save_at": "2026-09-06T14:35:24.724Z",
+    "last_save_at": "2026-09-06T15:30:20.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6114708c179463e666bbf1c505db267c4ebc7bb1ff7ae2b8299f0a9fa1534aca",
+    "source_fingerprint": "sha256:69ab83f1bd41008924101a9d301278428ea4996eefd4c1eac535514256c52ed6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14b06dae1b99e657b0423243fada6cd32d1a4c79b5bbd2812e5dadd475f19996",
+      "spec.md": "637d80dbe0dbfbbece1c29a59839a5e0c24982eea4daaf024b96db89920cf9be",
       "plan.md": "4fa92eb8d60cb5b53cfd6ca57a695bcebfa9bbd4ad60dc45641b5e35000f4923",
-      "tasks.md": "ebf588acf17d6f782870a4d6b1c6eb65f313ee06bb5de9cb0a7fa74394f2197c",
-      "implementation-summary.md": "a5a0920201dd534bf643f2b4a1dd857925a9d6b129a7f0515ab41e798cbbba58"
+      "tasks.md": "73d32d07ac93bcadf8b6a7c7498fb6a0608a5a3bc0af37d71f35250251c14f2d",
+      "implementation-summary.md": "df8a8d972a9427d6e89168af3e844bfe13dc18c664b02f4ddb76010947587672"
     },
     "last_active_at": null
   }

@@ -118,6 +118,10 @@ staleness_signals:
   manifest_hash_mismatch:
     detection: "The index's recorded manifestHash does not match a fresh manifest over the same included paths"
     severity: medium
+  committed_pair_mismatch:
+    detection: "The manifestHash inside runtime/data/trigger-index.json differs from the one in runtime/cli/retrieval/fixtures/corpus-manifest.json, so one generator run did not produce the committed pair"
+    severity: medium
+    note: "Costs one JSON read per file and no corpus walk. Every generator run writes both files, so a mismatch means one of them was committed alone."
   lookup_exit_error:
     detection: "The lookup command exits 2 or higher, or emits stderr"
     severity: high
@@ -148,6 +152,8 @@ workflow:
       - "Bash: test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
       - "Bash: stat -f '%m %z' .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
       - "Run upstream_assets.lookup_command with a known probe prompt; record exit status, indexHash, manifestHash and candidatePhraseCount"
+      - "Bash: compare the manifestHash field of .opencode/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash field of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json; unequal values are the committed_pair_mismatch signal"
+      - "Optional, when the operator asks about latency: node .opencode/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs --json --out <packet scratch path>; exit 1 means the cold-start budget was exceeded. Never write the committed fixtures/latency-report.json from a diagnostic run"
       - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase; record exit status and path count"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
       - "Interactive gate: before_phase_1_analysis"
@@ -158,6 +164,7 @@ workflow:
       - lookup_exit: 0|1|2+
       - index_hash: string
       - manifest_hash: string
+      - committed_pair_match: true|false
       - candidate_phrase_count: N
       - ripgrep_exit: 0|1|2+
       - ripgrep_path_count: N

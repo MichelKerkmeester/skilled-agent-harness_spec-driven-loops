@@ -1,5 +1,5 @@
 {
-  "manifestHash": "49566f345ee96cd981d0b73e72c9e4fff11a88c9408bcd8c346e660d1149829f",
+  "manifestHash": "237de51493a6a0413ebf338a3649f9d3307dc4b2e07cdc10c33c92e578aede7c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -202,6 +202,9 @@
     ],
     "001 provisioning results": [
       "001-provisioning results"
+    ],
+    "001 quiet spec kit": [
+      "001-quiet-spec-kit"
     ],
     "001 reinstate design parent": [
       "001-reinstate-design-parent"
@@ -17863,6 +17866,9 @@
     "chart packet closeout results": [
       "chart packet closeout results"
     ],
+    "chart packet relocation": [
+      "chart packet relocation"
+    ],
     "chart palette": [
       "chart palette"
     ],
@@ -21101,6 +21107,27 @@
     ],
     "cli runtime integration tasks": [
       "cli runtime integration tasks"
+    ],
+    "cli runtime utilization": [
+      "cli runtime utilization"
+    ],
+    "cli runtime utilization findings": [
+      "cli runtime utilization findings"
+    ],
+    "cli runtime utilization lane closure": [
+      "cli runtime utilization lane closure"
+    ],
+    "cli runtime utilization lane plan": [
+      "cli runtime utilization lane plan"
+    ],
+    "cli runtime utilization lane summary": [
+      "cli runtime utilization lane summary"
+    ],
+    "cli runtime utilization lane tasks": [
+      "cli runtime utilization lane tasks"
+    ],
+    "cli runtime utilization research lane": [
+      "cli runtime utilization research lane"
     ],
     "cli sessionid scoping": [
       "cli sessionId scoping"
@@ -26078,9 +26105,6 @@
     ],
     "concept level novelty tasks": [
       "concept-level novelty tasks"
-    ],
-    "concept versus exact retrieval": [
-      "concept versus exact retrieval"
     ],
     "conceptual novelty plateau": [
       "conceptual novelty plateau"
@@ -36709,6 +36733,9 @@
     "design implementation handoff": [
       "design implementation handoff"
     ],
+    "design intent routing": [
+      "design intent routing"
+    ],
     "design intent vs slop": [
       "design intent vs slop"
     ],
@@ -37219,6 +37246,9 @@
     ],
     "design register checklist": [
       "design register checklist"
+    ],
+    "design resource map": [
+      "design resource map"
     ],
     "design review findings": [
       "design review findings"
@@ -48683,6 +48713,9 @@
     "glm parent hub routing synthesis": [
       "glm parent hub routing synthesis"
     ],
+    "glm research lane spec kit": [
+      "glm research lane spec kit"
+    ],
     "glm thinking tier": [
       "glm thinking tier"
     ],
@@ -48980,6 +49013,18 @@
     "goal research handoff": [
       "goal research handoff"
     ],
+    "goal resync plan": [
+      "goal resync plan"
+    ],
+    "goal resync rule": [
+      "goal resync rule"
+    ],
+    "goal resync shipped": [
+      "goal resync shipped"
+    ],
+    "goal resync tasks": [
+      "goal resync tasks"
+    ],
     "goal rollback": [
       "goal rollback"
     ],
@@ -49015,6 +49060,9 @@
     ],
     "goal template": [
       "goal template"
+    ],
+    "goal template edit": [
+      "goal template edit"
     ],
     "goal template shipped": [
       "goal template shipped"
@@ -54400,6 +54448,9 @@
     ],
     "keyed discovery marker decision": [
       "keyed discovery marker decision"
+    ],
+    "keyed versus free text retrieval": [
+      "keyed versus free-text retrieval"
     ],
     "keyframes ownership": [
       "keyframes ownership"
@@ -64747,6 +64798,9 @@
     "nested goal addon": [
       "nested goal addon"
     ],
+    "nested goal amendment": [
+      "nested goal amendment"
+    ],
     "nested goal lineage resource map": [
       "nested goal lineage resource map"
     ],
@@ -67821,6 +67875,9 @@
     "operator approval batch": [
       "operator approval batch"
     ],
+    "operator copy of goal": [
+      "operator copy of goal"
+    ],
     "operator deferred rss severity": [
       "operator deferred rss severity"
     ],
@@ -68462,6 +68519,24 @@
     ],
     "overengineering simplification": [
       "overengineering simplification"
+    ],
+    "overengineering simplification findings": [
+      "overengineering simplification findings"
+    ],
+    "overengineering simplification lane closure": [
+      "overengineering simplification lane closure"
+    ],
+    "overengineering simplification lane plan": [
+      "overengineering simplification lane plan"
+    ],
+    "overengineering simplification lane summary": [
+      "overengineering simplification lane summary"
+    ],
+    "overengineering simplification lane tasks": [
+      "overengineering simplification lane tasks"
+    ],
+    "overengineering simplification research lane": [
+      "overengineering simplification research lane"
     ],
     "overengineering simplification summary": [
       "overengineering simplification summary"
@@ -69207,6 +69282,9 @@
     ],
     "parent goal child phases": [
       "parent goal child phases"
+    ],
+    "parent goal resend in chat": [
+      "parent goal resend in chat"
     ],
     "parent goal set string": [
       "parent goal set string"
@@ -80061,6 +80139,9 @@
     "reproduce write escape": [
       "reproduce write escape"
     ],
+    "reproduction before remediation": [
+      "reproduction before remediation"
+    ],
     "reproduction pass before remediation": [
       "reproduction pass before remediation"
     ],
@@ -80644,6 +80725,9 @@
     ],
     "research lane execution plan": [
       "research lane execution plan"
+    ],
+    "research lane in progress": [
+      "research lane in progress"
     ],
     "research lane tasks": [
       "research lane tasks"
@@ -82523,6 +82607,27 @@
     ],
     "ripgrep retrieval synthesis": [
       "ripgrep retrieval synthesis"
+    ],
+    "ripgrep search system": [
+      "ripgrep search system"
+    ],
+    "ripgrep search system findings": [
+      "ripgrep search system findings"
+    ],
+    "ripgrep search system lane closure": [
+      "ripgrep search system lane closure"
+    ],
+    "ripgrep search system lane plan": [
+      "ripgrep search system lane plan"
+    ],
+    "ripgrep search system lane summary": [
+      "ripgrep search system lane summary"
+    ],
+    "ripgrep search system lane tasks": [
+      "ripgrep search system lane tasks"
+    ],
+    "ripgrep search system research lane": [
+      "ripgrep search system research lane"
     ],
     "risky followup remediation": [
       "risky followup remediation"
@@ -87295,6 +87400,27 @@
     "shared package duplicate helpers": [
       "shared package duplicate helpers"
     ],
+    "shared package utilization": [
+      "shared package utilization"
+    ],
+    "shared package utilization findings": [
+      "shared package utilization findings"
+    ],
+    "shared package utilization lane closure": [
+      "shared package utilization lane closure"
+    ],
+    "shared package utilization lane plan": [
+      "shared package utilization lane plan"
+    ],
+    "shared package utilization lane summary": [
+      "shared package utilization lane summary"
+    ],
+    "shared package utilization lane tasks": [
+      "shared package utilization lane tasks"
+    ],
+    "shared package utilization research lane": [
+      "shared package utilization research lane"
+    ],
     "shared parsers post run refresh": [
       "shared parsers post run refresh"
     ],
@@ -89243,6 +89369,9 @@
     "sk create chart scaffold": [
       "sk-create-chart scaffold"
     ],
+    "sk create chart spec move": [
+      "sk-create-chart spec move"
+    ],
     "sk create command": [
       "sk-create-command"
     ],
@@ -90163,6 +90292,9 @@
     ],
     "sk design styles utilization": [
       "sk-design styles utilization"
+    ],
+    "sk design surface router": [
+      "sk-design surface router"
     ],
     "sk design task breakdown": [
       "sk-design task breakdown"
@@ -100091,6 +100223,27 @@
     ],
     "template system": [
       "template system"
+    ],
+    "template system and acceptance criteria": [
+      "template system and acceptance criteria"
+    ],
+    "template system and acceptance criteria findings": [
+      "template system and acceptance criteria findings"
+    ],
+    "template system and acceptance criteria lane closure": [
+      "template system and acceptance criteria lane closure"
+    ],
+    "template system and acceptance criteria lane plan": [
+      "template system and acceptance criteria lane plan"
+    ],
+    "template system and acceptance criteria lane summary": [
+      "template system and acceptance criteria lane summary"
+    ],
+    "template system and acceptance criteria lane tasks": [
+      "template system and acceptance criteria lane tasks"
+    ],
+    "template system and acceptance criteria research lane": [
+      "template system and acceptance criteria research lane"
     ],
     "template system explained": [
       "template system explained"

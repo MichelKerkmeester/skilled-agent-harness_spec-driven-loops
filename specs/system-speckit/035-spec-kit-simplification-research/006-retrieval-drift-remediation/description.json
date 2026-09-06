@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation",
+  "description": "The retrieval code is correct and its documents are not: the conventions describe a concept lane over an embedded index that does not exist, the",
+  "keywords": [
+    "retrieval",
+    "code",
+    "correct",
+    "documents",
+    "conventions",
+    "describe",
+    "concept",
+    "lane",
+    "embedded",
+    "index",
+    "exist"
+  ],
+  "lastUpdated": "2026-09-06T15:30:20.686Z",
+  "specId": "006",
+  "folderSlug": "retrieval-drift-remediation",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

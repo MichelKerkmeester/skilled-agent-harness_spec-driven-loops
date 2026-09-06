@@ -1,0 +1,45 @@
+{
+  "sessionId": "fanout-glm-5-3-flash-ripgrep-search-1788705376825-f0ulmm",
+  "lineage": "glm-5-3-flash-ripgrep-search",
+  "loopType": "research",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/glm-5-3-flash-ripgrep-search",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "inline": true,
+    "nestedDispatchUsed": false
+  },
+  "charter": {
+    "role": "Skeptical retrieval auditor — every claim unverified until cited; code overrides self-reported success",
+    "target": "cited defect-and-simplification ledger",
+    "nonGoalsHonored": ["no edits", "no database/vector redesign", "no prose-style review"],
+    "earlyConvergence": false
+  },
+  "outcomes": {
+    "p0": 0,
+    "p1": 9,
+    "p2": 25,
+    "questionsAnswered": 8,
+    "openQuestionsCarried": 4,
+    "synthesis": "research.md",
+    "findingsRegistry": "findings-registry.json",
+    "convergenceReport": "convergence-report.json",
+    "dashboard": "deep-research-dashboard.md",
+    "stateLog": "deep-research-state.jsonl",
+    "deltas": "deltas/iter-001.jsonl..iter-010.jsonl",
+    "iterations": "iterations/iteration-001.md..iteration-010.md"
+  },
+  "headlineFindings": [
+    "L1 freshness/ownership chain: four inconsistent corpus snapshots (runtime index, committed fixtures, fresh build, foreign-worktree fixtures); zero query impact today (identical path/phrase/posting sets); no whole-corpus verifier exists",
+    "L3 retrieval-conventions.md declares a third 'concept lane' over an embedded index that search.md calls unsupported, plus a 'Both index artifacts' stale fragment",
+    "L4 search.md's inline ripgrep recipe omits the flags its own guardrail says are mandatory",
+    "L5 no hook on any of five runtimes executes the Gate 1 lookup despite the root doc requiring it every message",
+    "L8 retrofit-convention.mjs: a 48 KB completed-migration pipeline in the retrieval hot directory"
+  ],
+  "writeSurfaceCompliance": "All writes confined to the lineage directory; repo untouched; no generate-context.js, validate.sh, or git write commands executed",
+  "completedAt": "2026-09-06T18:30:00Z"
+}

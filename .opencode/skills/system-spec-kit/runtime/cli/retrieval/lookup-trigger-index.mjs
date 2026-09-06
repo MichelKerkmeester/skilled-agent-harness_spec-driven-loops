@@ -18,6 +18,8 @@
 //   node lookup-trigger-index.mjs "<prompt>" [--index <path>] [--spec-folder <scope>]
 //                                 [--limit <n>] [--no-index-hash] [--json]
 //
+// --limit 0 lifts the cap and returns every candidate; the default is 20.
+//
 // Exit codes: 0 = candidates found, 1 = no candidates, 2 = bad invocation or unreadable index.
 // ───────────────────────────────────────────────────────────────────
 

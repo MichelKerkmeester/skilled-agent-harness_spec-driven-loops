@@ -56,8 +56,8 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
-import { publishJson, sha256, stableStringify } from './lib/artifact.mjs';
-import { EXCLUDED_DIR_NAMES as CORPUS_EXCLUDED_DIR_NAMES, canonicalRelativePath } from './lib/corpus.mjs';
+import { publishJson, sha256, stableStringify } from '../retrieval/lib/artifact.mjs';
+import { EXCLUDED_DIR_NAMES as CORPUS_EXCLUDED_DIR_NAMES, canonicalRelativePath } from '../retrieval/lib/corpus.mjs';
 import {
   ALIAS_KEY,
   CANONICAL_TRIGGER_KEY,
@@ -74,10 +74,10 @@ import {
   degradesFrontmatter,
   planDocument,
   renderUnifiedDiff,
-} from './lib/grep-convention.mjs';
-import { compareCodeUnits } from './lib/normalize.mjs';
-import { ripgrepVersion } from './lib/rg-lane.mjs';
-import { RECIPES, search } from './rg-wrapper.mjs';
+} from '../retrieval/lib/grep-convention.mjs';
+import { compareCodeUnits } from '../retrieval/lib/normalize.mjs';
+import { ripgrepVersion } from '../retrieval/lib/rg-lane.mjs';
+import { RECIPES, search } from '../retrieval/rg-wrapper.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
 // ───────────────────────────────────────────────────────────────────

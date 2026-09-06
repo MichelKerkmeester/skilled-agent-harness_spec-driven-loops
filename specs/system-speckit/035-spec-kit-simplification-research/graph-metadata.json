@@ -8,7 +8,8 @@
     "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
     "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
     "system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
-    "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification"
+    "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
+    "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -47,7 +48,9 @@
       "002-cli-runtime-utilization/goal.md",
       "003-shared-package-utilization/goal.md",
       "004-template-system-and-acceptance-criteria/goal.md",
-      "005-overengineering-simplification/goal.md"
+      "005-overengineering-simplification/goal.md",
+      "006-retrieval-drift-remediation/goal.md",
+      "001-ripgrep-search-system/research/confirmed-findings.md"
     ],
     "entities": [
       {
@@ -60,6 +63,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "001-ripgrep-search-system/research/confirmed-findings.md",
         "source": "derived"
       },
       {
@@ -137,17 +146,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-06T14:34:32.520Z",
+    "last_save_at": "2026-09-06T15:30:21.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8da7886d5653ff746601d011d50fb488b6ce5598db3497fa05418a759a20ac41",
+    "source_fingerprint": "sha256:4c7e116b8306a6b6f19713b5e8a46390a3f9071900c63d0b471976d92a8af36e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c7d991a649b1dd63b3c93c54272052067716f80ea24599a6f1e308af3761e2f1"
+      "spec.md": "1711d1c0df16a3b37a6ef11568f85587b9d971372196dd9dd3b3e977cb289c85"
     },
     "last_active_at": null
   }

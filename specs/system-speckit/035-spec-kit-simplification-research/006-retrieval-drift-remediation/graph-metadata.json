@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation",
+  "parent_id": "system-speckit/035-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval drift remediation",
+      "concept lane removal",
+      "committed pair mismatch",
+      "retrofit convention ops move",
+      "retrieval remediation plan",
+      "exclusion record parity",
+      "doctor committed pair check",
+      "retrofit relocation plan",
+      "retrieval remediation tasks",
+      "exclusion record tasks",
+      "retrofit move tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "retrieval",
+      "drift",
+      "remediation",
+      "concept",
+      "lane",
+      "removal",
+      "committed",
+      "pair",
+      "mismatch",
+      "retrofit",
+      "convention",
+      "ops"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "references/retrieval/retrieval-conventions.md",
+      "runtime/cli/retrieval/lib/corpus.mjs",
+      "runtime/cli/tests/retrieval-coverage-parity.vitest.ts",
+      "runtime/cli/ops/retrofit-convention.mjs",
+      "runtime/cli/tests/retrofit-convention-pipeline.vitest.ts",
+      "runtime/cli/retrieval/README.md",
+      "lib/README.md",
+      "ops/README.md",
+      "references/structure/grep-convention.md",
+      "runtime/cli/retrieval/lookup-trigger-index.mjs",
+      "runtime/data/trigger-index.json",
+      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".opencode/commands/speckit/search.md",
+      ".opencode/commands/speckit/assets/search-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-coverage-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/retrieval-coverage-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrofit-convention.mjs",
+        "kind": "file",
+        "path": "runtime/cli/ops/retrofit-convention.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrofit-convention-pipeline.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/retrofit-convention-pipeline.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep-convention.md",
+        "kind": "doc",
+        "path": "references/structure/grep-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/speckit/assets/search-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The retrieval code is correct and its documents are not: the conventions describe a concept lane over an embedded index that does not exist, the search router carries a recipe that drops three mandatory flags, the presentation asset names three of five match classes, the READMEs give test commands over a directory that was moved, and the doctor never performs the one cheap check that would have caught the committed index lagging its manifest",
+    "created_at": "2026-09-06T15:20:31Z",
+    "last_save_at": "2026-09-06T15:31:12.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:567b5e5cc7aae11047bdec044c3bf1f1dad9628357cfe58ee67031e1b56b238a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d1ae84c90780e02f37269af75ea708d3cf34b39fc162a1db4b1b7201e2daa451",
+      "plan.md": "e8703acd42a5a72a25c57226c9214873ae30eed25d8199800265fe4289081597",
+      "tasks.md": "9570be261f55df3937ab295a61eddf7802c7baedb5134da7d895269cf73c1d76",
+      "implementation-summary.md": "326c9b4fed8ecd8dcc08430c77dfa4f7b43a6462cfa3a488aee294b8c2b124bb"
+    },
+    "last_active_at": null
+  }
+}

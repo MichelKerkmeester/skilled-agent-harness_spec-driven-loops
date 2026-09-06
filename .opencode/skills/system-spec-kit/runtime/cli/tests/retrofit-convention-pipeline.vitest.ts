@@ -18,7 +18,7 @@ import {
   verifyPreimage,
   walkScope,
   writeAtomic,
-} from '../retrieval/retrofit-convention.mjs';
+} from '../ops/retrofit-convention.mjs';
 
 const tempRoots = new Set<string>();
 

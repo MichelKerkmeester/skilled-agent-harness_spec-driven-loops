@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:19ea3bc84255f77d65f0f117ed02ba574b02eb034732ea980ba7f0cfce968952"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 10
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-ripgrep-search-system |
-| **Completed** | not yet; lane in progress |
+| **Completed** | 2026-09-06 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,11 +46,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The lane is open: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` are authored, and the charter is being improved before launch. Nothing under `research/` exists yet.
+The lane ran ten iterations of GLM 5.3 Flash max through DevPass on cli-pi under the fan-out runner and synthesized a nine-row P1 ledger plus a P2 table. Eight P1 rows and eight P2 rows reproduced in the main checkout; two were dropped on evidence. Everything confirmed was closed by `../006-retrieval-drift-remediation`.
 
-### Planning surface
+### Research surface
 
-You can read the lane's directive in `goal.md` and its angles in `spec.md`; the research artifacts land under `research/lineages/` once the lane runs.
+You can read the synthesis at `research/lineages/glm-5-3-flash-ripgrep-search/research.md`, the per-iteration narratives under `iterations/`, and the reproduction verdict for every row in `research/confirmed-findings.md`, which also records why no retrieval repo rule should exist.
 
 ### Files Changed
 
@@ -58,6 +58,8 @@ You can read the lane's directive in `goal.md` and its angles in `spec.md`; the 
 |------|--------|---------|
 | spec.md, plan.md, tasks.md, acceptance-criteria.md | Created | Planning documents for the lane |
 | goal.md | Created | The lane's durable directive, bound by the parent goal |
+| research/lineages/glm-5-3-flash-ripgrep-search/ | Created | Ten iterations, deltas, state log, synthesis |
+| research/confirmed-findings.md | Created | Reproduction of every row and the remediation pointer |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +67,7 @@ You can read the lane's directive in `goal.md` and its angles in `spec.md`; the 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Scaffolded through `create.sh --phase`, planning documents authored in-session, goal rendered from the goal addon through the inline gate renderer.
+Scaffolded through `create.sh --phase`, planning documents authored in-session, goal rendered from the goal addon. The charter was improved through sk-prompt, launched with `fanout-run.cjs --loop-type research --stop-policy max-iterations` in worktree 046, and watched by a one-minute monitor; the lane never went silent. Artifacts were copied into this checkout without the lineage's temporary index builds.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -86,7 +88,8 @@ Scaffolded through `create.sh --phase`, planning documents authored in-session, 
 | Check | Result |
 |-------|--------|
 | Strict validation of this child | `validate.sh <child> --strict` printed RESULT: PASSED at open |
-| Lane run | pending |
+| Lane run | 10 of 10 iterations, stop reason maxIterationsReached, newInfoRatio 1.0 to 0.4 |
+| Reproduction | 8 of 9 P1 rows confirmed in the main checkout; L5 dropped |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,7 +97,7 @@ Scaffolded through `create.sh --phase`, planning documents authored in-session, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not run yet** The lane has not started; every research criterion is still open.
+1. **Executor self-reports were not trusted** Every row was re-checked here; the synthesis's L6 claim that no hash signal existed was corrected to "the signal exists, the activity did not".
 <!-- /ANCHOR:limitations -->
 
 ---

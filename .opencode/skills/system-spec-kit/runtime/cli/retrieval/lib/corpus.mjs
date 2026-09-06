@@ -28,11 +28,18 @@ import { compareCodeUnits } from './normalize.mjs';
  */
 export const CORPUS_ROOTS = Object.freeze(['specs', '.opencode/skills', '.opencode/install-guides']);
 
-/** Human-readable exclusion list recorded in the manifest. */
+/**
+ * Human-readable exclusion list recorded in the manifest. It is part of the
+ * manifest identity, so every generator run folds it into manifestHash: an
+ * entry added to EXCLUDED_DIR_NAMES or FIXTURE_DIR_PATTERN below without a
+ * matching row here leaves the manifest describing a policy the walker no
+ * longer applies, which is what the coverage-parity suite checks.
+ */
 export const EXCLUSIONS = Object.freeze([
   '**/z_archive/**',
   '**/node_modules/**',
   '**/scratch/**',
+  '**/dist/**',
   '**/research/lineages/**',
   '**/tests/fixtures/**',
   '**/{fixtures,__fixtures__,test-fixtures,*-fixtures}/** outside specs/',
