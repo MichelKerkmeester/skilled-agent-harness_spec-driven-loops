@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:fe9138a299d70c2eeb548688b82b78397cde2792a9cfb6e5a87df5ed9a400ee1"
+      fingerprint: "sha256:14c53d22f4ff6b51b3e36d59d0eb2f7157ef9b5c0c2659a21fe5752f7fc3b24b"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -77,7 +77,7 @@ Same launch shape as phase 025, in parallel. Each cited line was opened here; ri
 | Decision | Why |
 |----------|-----|
 | Drop findings with a live consumer | The shared socket server is imported through the package export; the embeddings barrel is imported by workflow.ts |
-| Defer the repo-root consolidation | Four resolvers with different stop conditions; unifying them changes behavior in a security-adjacent primitive without tests |
+| Consolidate the repo-root resolvers in 028 | One sentinel-file resolver with a written rationale already existed under runtime/hooks; the rest delegate to it |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -98,7 +98,7 @@ Same launch shape as phase 025, in parallel. Each cited line was opened here; ri
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Repo-root resolvers** Still four implementations; a follow-up needs a crafted-tree test before consolidating
+1. **None** Every confirmed row was applied in phase 028, including the repo-root consolidation
 <!-- /ANCHOR:limitations -->
 
 ---

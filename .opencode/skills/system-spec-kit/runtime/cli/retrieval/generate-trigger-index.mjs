@@ -41,6 +41,7 @@ import { TRIGGER_INDEX_SCHEMA_VERSION, assertTriggerIndexShape, publishJson, sha
 import { CORPUS_ROOTS, EXCLUSIONS, IGNORED_PATHS, walkCorpus } from './lib/corpus.mjs';
 import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontmatter.mjs';
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
+import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
 // ───────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -78,20 +79,7 @@ export const DEFAULT_VARIANTS_PATH = path.join(SCRIPT_DIR, 'fixtures', 'phrase-v
  * @returns {string} Absolute repository root.
  */
 export function findRepoRoot(start = SCRIPT_DIR) {
-  const origin = path.resolve(start);
-  let directory = origin;
-  for (;;) {
-    const holdsCorpus = fs.existsSync(path.join(directory, '.opencode'))
-      && fs.existsSync(path.join(directory, 'specs'));
-    if (holdsCorpus || fs.existsSync(path.join(directory, '.git'))) {
-      return directory;
-    }
-    const parent = path.dirname(directory);
-    if (parent === directory) {
-      return path.resolve(origin, '..', '..', '..', '..', '..');
-    }
-    directory = parent;
-  }
+  return resolveRepoRoot(start);
 }
 
 /** Repository root the corpus roots resolve against. */

@@ -77,6 +77,7 @@ import {
 import { compareCodeUnits } from './lib/normalize.mjs';
 import { ripgrepVersion } from './lib/rg-lane.mjs';
 import { RECIPES, search } from './rg-wrapper.mjs';
+import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
 // ───────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -1053,14 +1054,7 @@ export function parseArgs(argv) {
  * @returns {string} Repository root.
  */
 function findRepoRoot() {
-  let directory = SCRIPT_DIR;
-  while (directory !== path.dirname(directory)) {
-    if (fs.existsSync(path.join(directory, SCOPE_ROOT)) && fs.existsSync(path.join(directory, '.git'))) {
-      return directory;
-    }
-    directory = path.dirname(directory);
-  }
-  return process.cwd();
+  return resolveRepoRoot(SCRIPT_DIR);
 }
 
 /**

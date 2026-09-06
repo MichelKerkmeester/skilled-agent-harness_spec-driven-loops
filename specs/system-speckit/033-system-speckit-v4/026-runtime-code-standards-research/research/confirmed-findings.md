@@ -20,7 +20,7 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited cod
 | F2.1 | P1 | `runtime/cli/lib/frontmatter-migration.ts:386,473,606` | Own fence detection beside the shared parser | Keep, and state the reason in the module header: it classifies legacy shapes the strict parser rejects |
 | F7.1 | P1 | `runtime/cli/spec/quality-audit.sh` | No test | Add a vitest with a happy path and an edge case |
 | F7.2 | P1 | `runtime/cli/spec/calculate-completeness.sh` | No test | Add a vitest with a happy path and an edge case |
-| F10.1 | P1 | four `findRepoRoot` implementations | Different stop conditions in each | Deferred: consolidating a root resolver changes behavior in a security-adjacent primitive and needs its own tests; recorded as follow-up |
+| F10.1 | P1 | four `findRepoRoot` implementations | Different stop conditions in each | Consolidated onto the sentinel-file resolver in `runtime/hooks/lib/workspace/repo-root.mjs`; the other three delegate to it |
 | F3.2 | P2 | `runtime/cli/doctor.sh:43,51`, `validate-command-tree-parity.sh:34` | Exit codes 20, 26, 64 | No change: the codes are documented in the script header and 64 is the sysexits usage code |
 | F6.2 | P2 | 27 `test-*` files in `runtime/cli/tests` | Legacy node-run suites | No change: wired by the package scripts, not a vitest glob |
 

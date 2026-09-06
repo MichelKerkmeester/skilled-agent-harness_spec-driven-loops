@@ -40,6 +40,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { findRepoRoot: resolveRepoRoot } = require('../../hooks/lib/workspace/repo-root.mjs');
 
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -60,24 +61,7 @@ const ASSET_PATH_RE = /\.opencode\/commands\/[A-Za-z0-9._/-]+\.(?:txt|ya?ml)/g;
 // ───────────────────────────────────────────────────────────────
 
 function findRepoRoot(start) {
-  let dir = start;
-  for (let i = 0; i < 12; i++) {
-    if (fs.existsSync(path.join(dir, '.opencode')) && fs.existsSync(path.join(dir, '.git'))) {
-      return dir;
-    }
-    const parent = path.dirname(dir);
-    if (parent === dir) break;
-    dir = parent;
-  }
-  // Fall back to walking up to the first .opencode we can see.
-  dir = start;
-  for (let i = 0; i < 12; i++) {
-    if (fs.existsSync(path.join(dir, '.opencode'))) return dir;
-    const parent = path.dirname(dir);
-    if (parent === dir) break;
-    dir = parent;
-  }
-  return start;
+  return resolveRepoRoot(start);
 }
 
 function loadContract() {

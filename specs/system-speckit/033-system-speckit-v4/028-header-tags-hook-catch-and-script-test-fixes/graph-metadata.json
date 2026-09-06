@@ -46,6 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "runtime/hooks/lib/workspace/repo-root.mjs",
       "shared/embeddings.ts",
       "runtime/cli/kpi/quality-kpi.sh",
       "runtime/cli/evals/run-phase2-closure-metrics.mjs",
@@ -83,6 +84,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-root.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/lib/workspace/repo-root.mjs",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Confirmed",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows every failure, one barrel nobody imports, one comment kept alive by a hygiene marker, and two public CLI scripts with no test at all",
     "created_at": "2026-09-06T08:18:05Z",
-    "last_save_at": "2026-09-06T08:31:31.322Z",
+    "last_save_at": "2026-09-06T09:09:23.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ee4d51a4aedfb23e29f50586a1e11500bdacda4a4847110944c7ca9163ce1f3",
+    "source_fingerprint": "sha256:3ed71bd2d81eb02a8d4f4685461b83ae1920bbd5c810772b8f6aa9b81bbc6981",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aee66c37a105f4170cee156fa7fe05a6b4290b05d6ece7cc8735ca7e4d391166",
       "plan.md": "1d8d14b37bf28e4551bc84030c14adeaa5123acacfb66cde472e70cc699d3885",
       "tasks.md": "f6c2f8aad5d94a8d96616c53e2ec2931c1a87428c57d1edd07272a8965e2deaf",
-      "implementation-summary.md": "660ce01b90f815038b50991bd12b78ffe998e4ff93ee9ca2b95ba3a662c5c3c1"
+      "implementation-summary.md": "1a78836cf4a0e6c8cb8cb6155d92a126c4ef1502b82013e9b866422e34a40523"
     },
     "last_active_at": null
   }
