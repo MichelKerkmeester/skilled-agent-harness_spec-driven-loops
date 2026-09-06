@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/007-cli-package-residue-removal",
+  "description": "The CLI package carried around thirty files that nothing called: modules whose only importers were tests written to explain them, a registry that",
+  "keywords": [
+    "cli",
+    "package",
+    "carried",
+    "around",
+    "thirty",
+    "files",
+    "nothing",
+    "called",
+    "modules",
+    "whose",
+    "only",
+    "importers",
+    "tests",
+    "written",
+    "explain",
+    "them",
+    "registry"
+  ],
+  "lastUpdated": "2026-09-06T18:11:49.549Z",
+  "specId": "007",
+  "folderSlug": "cli-package-residue-removal",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

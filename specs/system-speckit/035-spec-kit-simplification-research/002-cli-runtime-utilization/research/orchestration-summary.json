@@ -1,0 +1,71 @@
+{
+  "run_id": "1788707853865-9gs9so",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "base_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm-5-3-flash-cli-runtime",
+      "state_log": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/glm-5-3-flash-cli-runtime/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-06T15:32:53.101Z",
+        "end_at_iso": "2026-09-06T17:48:37.812Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 8,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 16
+      },
+      "sample": [
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-09-06T18:05:00.000Z",
+          "deltaMs": 862188
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-09-06T18:32:00.000Z",
+          "deltaMs": 2482188
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-09-06T19:02:00.000Z",
+          "deltaMs": 4282188
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-09-06T19:31:00.000Z",
+          "deltaMs": 6022188
+        },
+        {
+          "index": 12,
+          "reason": "after_window",
+          "timestamp": "2026-09-06T19:55:00.000Z",
+          "deltaMs": 7462188
+        }
+      ]
+    }
+  ]
+}

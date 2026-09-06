@@ -100,11 +100,13 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-ripgrep-search-system/ | ten-iteration research lane: ripgrep search system | complete |
-| 2 | 002-cli-runtime-utilization/ | ten-iteration research lane: cli runtime utilization | in progress |
+| 2 | 002-cli-runtime-utilization/ | ten-iteration research lane: cli runtime utilization | complete |
 | 3 | 003-shared-package-utilization/ | ten-iteration research lane: shared package utilization | in progress |
 | 4 | 004-template-system-and-acceptance-criteria/ | ten-iteration research lane: template system and acceptance criteria | in progress |
 | 5 | 005-overengineering-simplification/ | ten-iteration research lane: overengineering simplification | in progress |
 | 6 | 006-retrieval-drift-remediation/ | remediation of every confirmed finding from lane 001 | complete |
+
+| 7 | 007-cli-package-residue-removal/ | removal of every confirmed dead file from lane 002 and a CI runner for the CLI gates | complete |
 
 ### Phase Transition Rules
 
@@ -118,6 +120,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-ripgrep-search-system | 006-retrieval-drift-remediation | research.md synthesized and every P1 row reproduced or dropped in `research/confirmed-findings.md` | `validate.sh 001-ripgrep-search-system --strict` prints RESULT: PASSED and the confirmed table names 006 |
+| 002-cli-runtime-utilization | 007-cli-package-residue-removal | research.md synthesized and every removal, merge and fix row censused in `research/confirmed-findings.md` | `validate.sh 002-cli-runtime-utilization --strict` prints RESULT: PASSED and the confirmed table names 007 |
 <!-- /ANCHOR:phase-map -->
 
 ---

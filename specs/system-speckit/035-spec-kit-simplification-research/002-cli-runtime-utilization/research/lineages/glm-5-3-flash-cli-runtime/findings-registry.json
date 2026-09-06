@@ -1,0 +1,813 @@
+{
+  "sessionId": "fanout-glm-5-3-flash-cli-runtime-1788707853865-9gs9so",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopPolicy": "max-iterations",
+    "stopReason": "maxIterationsReached",
+    "iterationsCompleted": 10,
+    "recordedAt": "2026-09-06T19:55:00.000Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-purpose-does-each-directory-under-runtime-cli-declare-and-which-real-callers",
+      "inboxId": null,
+      "text": "What purpose does each directory under runtime/cli declare, and which real callers (commands, bin, hooks, plugins, workflows) actually use it?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-stages-of-the-save-pipeline-continuity-core-extractors-still-execute-after-th",
+      "inboxId": null,
+      "text": "Which stages of the save pipeline (continuity/, core/, extractors/) still execute after the memory decommission, and which are inert?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-scripts-registry-json-entries-have-no-matching-script-which-scripts-have-no-re",
+      "inboxId": null,
+      "text": "Which scripts-registry.json entries have no matching script, which scripts have no registry entry, and which checks are duplicated (rules/ vs validation/ vs root check scripts vs package.json)?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-directories-or-entry-points-have-zero-external-callers-and-which-registry-entr",
+      "inboxId": null,
+      "text": "Which directories or entry points have zero external callers, and which registry entries point at nothing?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-5-are-the-codex-pi-runtime-mirrors-sync-scripts-and-the-evals-check-gate-actually-invo",
+      "inboxId": null,
+      "text": "Are the codex/, pi/, runtime-mirrors/ sync scripts and the evals/ check gate actually invoked, and by what?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-6-does-the-package-framing-context-generation-and-continuity-management-match-what-the",
+      "inboxId": null,
+      "text": "Does the package framing (context generation and continuity management) match what the code does, and which helpers are duplicated across this package, ../lib/, and any shared layer?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-iter001-001",
+      "iteration": 1,
+      "label": "package.json:4 frames the package as context generation and continuity management while the same package ships the validation, retrieval, boundary-enforcement, telemetry, mirror and sweep subsystems; three self-descriptions diverge (package.json:4, cli/README.md:17, ARCHITECTURE.md:23) and 002 spec.md:83-85 independently flags the mismatch.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/package.json:4",
+        ".opencode/skills/system-spec-kit/runtime/cli/README.md:17",
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:23",
+        "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/spec.md"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-002",
+      "iteration": 1,
+      "label": "scripts-registry.json:4 claims a centralized catalog for dynamic discovery yet holds 0 references to 11 of the package subsystem directories (retrieval, graph, observability, codex, pi, runtime-mirrors, sweep, optimizer, resource-map, kpi, metrics); the mandated Gate 1 lookup/generate pair (SKILL.md:428,432,530-531) is undiscoverable through it.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json:4",
+        ".opencode/skills/system-spec-kit/SKILL.md:428"
+      ],
+      "severity": "P1",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-003",
+      "iteration": 1,
+      "label": "scripts-registry.json:382-386 self-counts are wrong: 14 scripts[] entries vs totalScripts 13; 7 essential:false scripts vs optionalScripts 6 (7+6=13 arithmetic drops one); 9 rules[] entries vs totalRules 14; 4 essential:true rules vs essentialRules 3; only essentialScripts 7 is correct. (Corrected in place during iteration 1: the mechanism is count arithmetic, not a missing essential field.)",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json:382"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-004",
+      "iteration": 1,
+      "label": "scripts-registry.json:7 lastUpdated 2025-12-31 is about eight months stale while the registry presents itself as the living script catalog.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json:7"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-005",
+      "iteration": 1,
+      "label": "README.md:33-105 topology block omits doctor.sh, common.sh, registry-loader.sh, check-api-boundary.sh, migrate-deep-research-paths.ts, seed-council-value-fixture.cjs (grep: NONE-FOUND) plus the 7 .scan* dotfiles and the dist/node_modules/runtime symlink entries; .scan-results.txt is a 0-byte residue.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/README.md:33"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-006",
+      "iteration": 1,
+      "label": "dist/ and node_modules/ are symlinks to absolute main-checkout paths and runtime/ -> ../dist, so this 046 worktree resolves the compiled layer and dependency tree outside itself; worktree-scoped, ownership caller-not-checked.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli (ls -la + readlink observation)"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed-observation"
+    },
+    {
+      "id": "f-iter001-007",
+      "iteration": 1,
+      "label": "package.json:19-20 selects two different vitest configs for the test lane (../../vitest.config.ts) and the task-enrichment lane (../vitest.config.ts); both configs exist, so it is undocumented inconsistency, not breakage.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/package.json:19"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-001",
+      "iteration": 2,
+      "label": "Two competing registries: the engine orchestrator reads only cli/lib/validator-registry.json (39 dispatchable rules, runtime/lib/validation/orchestrator.ts:76 + spawnSync at 316/363) while scripts-registry.json (scripts-registry.json:4, self-described centralized catalog for dynamic discovery) has NO reader — registry-loader.sh, its designated reader, has zero callers anywhere in .opencode/.github. Counts disagree (9 vs 39).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:76",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/registry-loader.sh:4"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-002",
+      "iteration": 2,
+      "label": "README.md:110 declares validate-command-tree-parity.sh wired into spec/validate.sh as the COMMAND_TREE_PARITY rule; observed: COMMAND_TREE_PARITY appears nowhere in the live dispatch registry, the orchestrator (654) carries only an unrelated comment, validate.sh never references it; the actual wired caller is .github/workflows/command-tree-parity.yml.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/README.md:110",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json (grep: no COMMAND_TREE_PARITY)",
+        ".github/workflows/command-tree-parity.yml"
+      ],
+      "severity": "P1",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-003",
+      "iteration": 2,
+      "label": "spec/check-smart-router.sh and spec/sweep-track-roots.mjs have zero references anywhere (repo-wide rg over .opencode + .github, tests and docs included, excluding their own directory) — two dead files; the only caveat is undiscovered string-concatenated dynamic imports, deferred to the iteration 9 import sweep.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/spec (rg: no external hits)"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-004",
+      "iteration": 2,
+      "label": "PLACEHOLDER_FILLED implemented twice, both alive: rules/check-placeholders.sh (115L, dispatched via the validation gate, sourced-only per post-edit-router.cjs:32) vs spec/check-placeholders.sh (184L, the hook canonical, post-edit-router.cjs:41 + 3 reference docs).",
+      "sources": [
+        ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs:32",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:21"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-005",
+      "iteration": 2,
+      "label": "COMMENT_HYGIENE duplicated across packages: cli/rules/check-comment-hygiene.sh runs only inside the validation gate (dispatched) while BOTH the post-edit hook (post-edit-router.cjs:36) and .github/workflows/comment-hygiene.yml:17 invoke the sk-code copy (.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh).",
+      "sources": [
+        ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs:36",
+        ".github/workflows/comment-hygiene.yml:17"
+      ],
+      "severity": "P2",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-006",
+      "iteration": 2,
+      "label": "Phase-parent detection exists in three places despite the no-reimplementation claim (MODULE-MAP spec/ section): the engine rule (runtime/lib/spec/is-phase-parent.ts:19), a 200L near-duplicate runnable-CLI copy (cli/spec/is-phase-parent.ts, 208 diff lines, no callers found), and the shell mirror (cli/lib/shell-common.sh:48, mandated to agree by speckit-implement-auto.yaml:80); all three agree in code, but the comments, MODULE-MAP and the command contract document the laxer ^[0-9]{3}-[a-z0-9-]+ regex that the implemented ^[0-9]{3}-[a-z0-9][a-z0-9-]*$ does not enforce. [CORRECTED iteration 3: the 200L copy IS production-wired via continuity/generate-context.ts:34; the drift risk is realized on both the heaviest write and read paths.]",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/lib/spec/is-phase-parent.ts:6",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/is-phase-parent.ts:7",
+        ".opencode/commands/speckit/assets/speckit-implement-auto.yaml:80"
+      ],
+      "severity": "P2",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-007",
+      "iteration": 2,
+      "label": "Six spec/ scripts have no wired caller in any of the five surfaces (commands, bin, hooks, plugins, workflows): upgrade-level.sh, archive.sh, quality-audit.sh, progressive-validate.sh, sync-phase-map-status.ts, check-template-staleness.sh — they are referenced only by skill docs (SKILL.md:534, feature-catalog, manual-testing-playbook, references/workflows/quick-reference.md) and run only when a human or AI remembers.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/SKILL.md:534",
+        ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-008",
+      "iteration": 2,
+      "label": "ARCHITECTURE.md:193 says validate.sh enforces 20 rules while the dispatched registry holds 39 (20 authored_template + 13 operational_runtime + 6 structural) — the printed number matches no plausible reading without qualification.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:193",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json (severity/category counts)"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-001",
+      "iteration": 3,
+      "label": "The three-layer save gate (ARCHITECTURE.md:182: intake, router, post-save quality review) is real and wired but runs inside ONE process — generate-context.ts:15-35 intake, workflow.ts conductor, post-save-review.ts:1157L third layer; the command YAML still keys it post_save_indexing while its own note says no indexing happens (speckit-plan-auto.yaml:696-701).",
+      "sources": [
+        ".opencode/commands/speckit/assets/speckit-plan-auto.yaml:696",
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:15",
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:1"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-002",
+      "iteration": 3,
+      "label": "continuity/rank-memories.ts (440L), the declared ranking CLI (README.md:53), has zero code callers: 2 READMEs + 1 sk-code conventions doc + itself; absent from both scripts-registry.json and the live validator-registry.json; /speckit:search (now the ripgrep lane) does not reference it.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/README.md",
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/rank-memories.ts:1"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-003",
+      "iteration": 3,
+      "label": "continuity/fix-memory-h1.mjs + continuity/ast-parser.ts (65L): the fixer referenced by 2 READMEs only, its sole dependant imported by nothing else — dead together.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/fix-memory-h1.mjs:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/ast-parser.ts:1"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-004",
+      "iteration": 3,
+      "label": "Dual quality scorers plus a dispatched-by-nothing shim: extractors/quality-scorer.ts is canonical (core/quality-scorer.ts:123 says Prefer), core/quality-scorer.ts (367L) holds its own scoreRenderQuality (:140) with NO production callers, the duplication is test-pinned (tests/quality-scorer-disambiguation.vitest.ts); continuity/validate-memory-quality.ts (66L, self-described backward-compat shim AND CLI entry of ../lib/validate-memory-quality.ts) is dispatched by neither registry.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/quality-scorer.ts:123",
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/validate-memory-quality.ts:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json (grep: NOT-FOUND)"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-005",
+      "iteration": 3,
+      "label": "core/spec-root-* governance cluster (collision-classifier 170L, fallback-telemetry 48L, fixtures 239L, migration 360L, migration-manifest 248L, registry 180L — 1245L) is production-wired only through spec-root-write-guard.ts (39L) and workflow.ts; external reference profiles are test-dominated (refs 1-4, tests 1-3); no command/hook/plugin/workflow names any of them.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/spec-root-write-guard.ts:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:1"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-006",
+      "iteration": 3,
+      "label": "continuity/ retains 1529L of one-shot migration machinery with no wired caller: backfill-frontmatter.ts (620L, 4 refs), backfill-research-metadata.ts (284L, 8 refs), migrate-trigger-phrase-residual.ts (625L, 1 ref).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/backfill-frontmatter.ts:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts:1"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-007",
+      "iteration": 3,
+      "label": "CORRECTION of f-iter002-006: continuity/generate-context.ts:34 imports ../spec/is-phase-parent.js — the 200L near-duplicate IS production-wired; the save path and the validation gate detect phase parents through two 200L/183L implementations 208 diff lines apart that agree on the enforced regex and both disagree with their own documented regex.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:34",
+        ".opencode/skills/system-spec-kit/runtime/lib/spec/is-phase-parent.ts:6",
+        ".opencode/commands/speckit/assets/speckit-implement-auto.yaml:80"
+      ],
+      "severity": "P2",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-001",
+      "iteration": 4,
+      "label": "Two-hub import topology: continuity/generate-context.ts:15-35 pulls only 3 extractors directly while core/workflow.ts:17-48 buys 4 via the barrel AND 6+ more individually (contamination-filter, spec-folder-extractor, git-context-extractor, extractors/quality-scorer as scoreMemoryQualityV2, lib/validate-memory-quality, lib/content-filter) — all 12 extractors production-wired, none inert post-decommission; a single-entry dependency audit returns the wrong answer. Recommendation: document the topology.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:17",
+        ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:33"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-002",
+      "iteration": 4,
+      "label": "core/quality-scorer.ts (367L, scoreRenderQuality:140, buildRenderQualityScoreFields:359) is outside the extractors barrel (its './quality-scorer.js' resolves to the extractors/ sibling), has NO production importers, and its only callers are 2 tests that exist to explain the duplication (quality-scorer-disambiguation.vitest.ts, quality-scorer-calibration.vitest.ts); the production scorer is extractors/quality-scorer.ts (scoreMemoryQualityV2, workflow.ts:42-43). Recommendation: merge into the canonical or remove; retire the disambiguation test.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/quality-scorer.ts:140",
+        ".opencode/skills/system-spec-kit/runtime/cli/extractors/index.ts:36",
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:42"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-003",
+      "iteration": 4,
+      "label": "renderers/ (template-renderer.ts 231L + index.ts) has no production importers (only tests/task-enrichment.vitest.ts:13,118 which imports AND vi.mocks populateTemplate; grep of populateTemplate against production: EMPTY), while production template rendering runs through templates/inline-gate-renderer.sh wired at spec/create.sh:1066, documented at assets/template-mapping.md:90,101,338 and README.md:269 + SKILL.md:61. Recommendation: merge into the wired mechanism or remove.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/task-enrichment.vitest.ts:118",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:1066",
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:90"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-004",
+      "iteration": 4,
+      "label": "scripts-registry.json:37-38 declares generate-context dependencies [lib/embeddings.js, lib/anchor-generator.js, lib/content-filter.js]; observed: generate-context.ts:15-35 imports none directly — anchor-generator arrives via extractors/file-extractor.ts:26, content-filter via core/workflow.ts:48, and lib/embeddings.js arrives nowhere in the two-hub closure. Recommendation: fix the declaration to the true closure or drop the field. [CORRECTED iteration 9: lib/embeddings.js IS reached via core/workflow.ts:56 (EMBEDDING_DIM, MODEL_NAME — two constants); the dependency is 3/3 indirect, not 2/3+absent.]",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json:37",
+        ".opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts:26",
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:48"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter005-001",
+      "iteration": 5,
+      "label": "The trigger-index freshness gap: the committed retrieval artifact answers EVERY Gate 1 prompt (SKILL.md:432) yet no workflow regenerates or canaries it (rg over .github/workflows: EMPTY) and the lookup validates shape only (assertTriggerIndexShape, lookup-trigger-index.mjs:25; no stale/fresh/generatedAt guard) — staleness decays silently at exit 0; the only freshness mechanism is AI discipline. Recommendation: fix (freshness signal or CI canary) or, minimally, document the staleness risk where the lookup is mandated.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/SKILL.md:432",
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:25",
+        ".github/workflows (rg: none)"
+      ],
+      "severity": "P1",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter005-002",
+      "iteration": 5,
+      "label": "Four of seven retrieval root scripts have no wired caller (rg over the 5 surfaces + workflows: NONE-FOUND, and neither registry lists any): rg-wrapper.mjs (documented AI-usage, 2 conventions mentions), retrofit-convention.mjs, sweep-memory-residue.mjs, measure-cold-lookup.mjs — the latter three are the 001-acceptance build-verify-measure residue, kept in the production tree with 10 frozen-baseline fixtures. Recommendation: remove the migration trio once 001 evidence is archived; keep rg-wrapper only while the conventions point at it.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md:9-13",
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs:3"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter005-003",
+      "iteration": 5,
+      "label": "Dependency-direction story vs a live crossing: retrieval/generate-trigger-index.mjs:44 imports findRepoRoot from ../../hooks/lib/workspace/repo-root.mjs (cli->runtime/hooks/lib) while ARCHITECTURE.md:100 gates reaches past runtime/api into lib/core/handlers — and the governed allowlist (evals/import-policy-allowlist.json) contains no hooks/workspace/repo-root entry (grep: EMPTY); either hooks/ is quietly outside the governed zones or the .mjs lane escapes the check (whether the check would flag it: caller-not-checked — iteration 8). Compounding: 3 repo-root implementations coexist (cli/common.sh get_repo_root, used by create/upgrade/scaffold/heal; runtime/hooks/lib/workspace/repo-root.mjs; shared/paths pending). Recommendation: fix — govern or route via api; converge repo-root onto one seam.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:44",
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:100",
+        ".opencode/skills/system-spec-kit/runtime/cli/evals/import-policy-allowlist.json (grep: none)"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed-observation"
+    },
+    {
+      "id": "f-iter005-004",
+      "iteration": 5,
+      "label": "graph/ is more wired than its documentation, except its twin: spec/repair-derived.cjs:40,319 spawns cli/graph/backfill-graph-metadata.ts inside the CI repair lane (strict-pass-freshness-report.yml -> repair-derived -> BACKFILL) and the doctor surface wires it twice (doctor-update.yaml, doctor-runtime-bootstrap.sh), yet cli/README.md:7 presents backfill as purely manual; conversely graph/migrate-generated-json.ts has no wired caller in the five surfaces. The repair split (referee repairs-derived vs doer backfill) is delegation, not duplication. Recommendation: document the delegation; migrate-generated-json.ts is a removal candidate after its migration is confirmed consumed.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:319",
+        ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/README.md:118"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-001",
+      "iteration": 6,
+      "label": "runtime/cli/doctor.sh (read-only health check, catches the install-time silent-skip-deps failure, doctor.sh:2-3) has ZERO references anywhere (rg over .opencode + .github, docs included: none outside itself); the /doctor command implements its own machinery (commands/doctor/scripts/doctor-runtime-bootstrap.sh); absent from both registries and the README. Recommendation: remove, or merge its silent-skip-deps check into the /doctor bootstrap.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/doctor.sh:2",
+        ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh:1"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-002",
+      "iteration": 6,
+      "label": "The .scan* seven (.scan-one.sh, .scan-validate-all.sh, .scan-results.txt [0 bytes], .scan-lines.txt, .scan-validate-all.txt, .no-frontmatter-list.txt, .enumerate-no-frontmatter.py) have zero references and zero documentation; they one-off duplicate what tests/test-validation.sh + spec/validate.sh already provide. Recommendation: remove the seven (the README-omission aspect is already filed as f-iter001-005).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/.scan-one.sh:2",
+        ".opencode/skills/system-spec-kit/runtime/cli (rg: no references)"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-003",
+      "iteration": 6,
+      "label": "Two one-off scripts survive on changelog memories: migrate-deep-research-paths.ts (7.0KB, sole reference: changelog/v3.0.0.3.md) and seed-council-value-fixture.cjs (3.3KB, references: 2 deep-ai-council changelogs + 1 benchmark report) — no wired caller, no current documentation, no registry entry. Recommendation: remove both.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/changelog/v3.0.0.3.md:1",
+        ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v1.1.0.0.md:1"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-004",
+      "iteration": 6,
+      "label": "The twin-module pattern — same basename, different directory, drifting role: core/alignment-validator.ts (227L, extracted from workflow.ts, imported by workflow.ts:98) vs spec-folder/alignment-validator.ts (712L, imported by spec-folder/index.ts:20 + folder-detector.ts:27-28), both production-wired with disjoint concerns; joined by the scorer twins (core/quality-scorer.ts 0-caller vs the extractors/ canonical) and a third suspect pair (utils/phase-classifier vs lib/phase-classifier, 5 citations, spelling split caller-not-fully-verified); the one sanctioned non-twin is the documented inversion seam cli/config/index.ts:5-8. The cost is realized: a test exists to disambiguate the scorers. Recommendation: document the ownership boundary (which directory owns which concern).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:98",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec-folder/index.ts:20",
+        ".opencode/skills/system-spec-kit/runtime/cli/config/index.ts:5"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-005",
+      "iteration": 6,
+      "label": "Two more documented-but-unwired root entries, extending f-iter002-007: deploy-mcp.sh (README:111, the declared canonical rebuild step; references: itself + 1 fixture string + 1 changelog) and test-council-matrix.sh (README:113; references: 2 changelogs + 1 historical benchmark report) — no wired caller in any of the five surfaces or workflows. Recommendation: document their unwired status alongside the six already recorded, or wire deploy-mcp into the 046-series worktree setup.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/README.md:111",
+        ".opencode/skills/system-spec-kit/runtime/cli/README.md:113"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-001",
+      "iteration": 7,
+      "label": "Two parallel mirror-drift guardians with disjoint coverage: CI runs the deep-loop checker over .opencode|claude|codex/agents only (agent-mirror-sync.yml:15-24, fail-closed) while the doctor route (commands/doctor/_routes.yaml:169-182, 5 trigger phrases) runs --check on ALL FIVE surfaces via 7 sync scripts (doctor-runtime-mirrors.yaml:34-40,141) plus 2 more doctor checkers and install-codex-hooks --check — prompts/pi/claude drift is CI-invisible and neither guardian references the other; codex/generate-command-routers.cjs is the one sync script with no --check line (execution: caller-not-verified). Recommendation: merge into one CI-wired full-coverage guardian.",
+      "sources": [
+        ".github/workflows/agent-mirror-sync.yml:15",
+        ".opencode/commands/doctor/_routes.yaml:169",
+        ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml:34"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-002",
+      "iteration": 7,
+      "label": "ops/ is a dispatcher for two self-declared stubs: ops/README.md:15-37 (neither heal-*.sh completes a detect/repair/verify cycle; heal-session-ambiguity exits via a deprecation notice, heal-telemetry-drift always reports its verifier removed and exits with error; both wait on a replacement); runbook.sh (147L) still dispatches to both; the ONLY production-wired ops module is process-sweep.ts (251L, via plugins/session-cleanup.js); process-memory-harness.ts (589L) is test-pinned. Recommendation: merge (collapse runbook+heals+registrations) or fix (finish the promised remediation paths).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/ops/README.md:15",
+        ".opencode/plugins/session-cleanup.js:1"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-003",
+      "iteration": 7,
+      "label": "The package test, typecheck and 7-script check gate have ZERO CI: of 12 workflows exactly 5 touch system-spec-kit (changed-packet-validation=validate.sh, strict-pass-freshness=repair-derived>backfill, command-tree-parity, markdown-link-integrity=check-markdown-links.cjs, routing-registry-drift — whose 4 vitest runs execute in system-skill-advisor/mcp-server:83-192, not this package); no workflow runs this package vitest (53k-LOC tests/), typecheck, npm test, or package.json:24 check. Recommendation: fix — wire test+check (or a cheap subset) into one workflow, else the tests/ tree is documentation.",
+      "sources": [
+        ".github/workflows/routing-registry-drift.yml:83",
+        ".opencode/skills/system-spec-kit/runtime/cli/package.json:24",
+        ".github/workflows (12-file inventory)"
+      ],
+      "severity": "P1",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-004",
+      "iteration": 7,
+      "label": "setup/ residuals: check-prerequisites.sh = 6 command YAMLs (strong); record-node-version.js = wired via the PARENT package (system-spec-kit/package.json); check-native-modules.sh + rebuild-native-modules.sh = documented-only (.env.example + feature-catalog playbook + 1 changelog, nothing invokes); _utils.sh = uncited-by-content (no sourcing mention anywhere; indirect-variable sourcing: caller-not-fully-verified). Recommendation: document the native-module manual covenant; _utils.sh is a removal candidate.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/package.json:1",
+        ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/setup (grep: no _utils sourcing)"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed-observation"
+    },
+    {
+      "id": "f-iter008-001",
+      "iteration": 8,
+      "label": "CORRECTION of f-iter005-003: the crossing dissolves — check-architecture-boundaries.ts:80 scans .ts/.js/.mjs/.cjs, the governed zones are exactly lib/core/handlers (hooks/ deliberately ungoverned), and 3 checks read the allowlist (check-allowlist-expiry enforces the governed adjective); retrieval->hooks/lib is policy-consistent; what survives is the 3-repo-roots duplication and the zone-list extrapolation trap. Recommendation: document (amended from fix).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/evals/check-architecture-boundaries.ts:80",
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:100"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter008-002",
+      "iteration": 8,
+      "label": "kpi/quality-kpi.sh (100L, defect-rate reporting for generated continuity support) has ZERO references anywhere (5 surfaces + workflows + tests + docs: NONE-FOUND; neither registry) — one script, one README, no caller of any kind. Recommendation: remove the directory.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/kpi/quality-kpi.sh:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/kpi (rg: no references)"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter008-003",
+      "iteration": 8,
+      "label": "Three stranded research harnesses inside the GATE directory: evals/run-phase2-closure-metrics.mjs, evals/collect-redaction-calibration-inputs.ts, evals/run-redaction-calibration.ts — zero callers (not in package.json:24 check nor check:ast; NONE-FOUND elsewhere) — an earlier phase closure-metrics and redaction-calibration apparatus beside the 6 live checks. Recommendation: remove (or relocate into the owning 035-packet evidence).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/evals/run-phase2-closure-metrics.mjs:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/evals/run-redaction-calibration.ts:1"
+      ],
+      "severity": "P1",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter008-004",
+      "iteration": 8,
+      "label": "observability/ (7 files, 1903L, smart-router telemetry) has documentation-shaped invocation only: committed outputs (smart-router-measurement-report.md, results.jsonl) prove the measurement RAN; 2 sk-doc test fixtures + the trigger-index phrases are its only referents; no hook, plugin, command, or workflow; the live-session-wrapper has no installer; the results consumer: caller-not-verified (likely the 035/001 evidence chain). Recommendation: document the one-shot-measurement covenant (or remove after 035 archival).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-report.md:1",
+        ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json:1"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed-observation"
+    },
+    {
+      "id": "f-iter008-005",
+      "iteration": 8,
+      "label": "metrics/fable-metrics.cjs IS wired via the doctor (doctor-fable-mode.yaml + doctor/scripts/fable-mode-check.cjs), correcting the stranded-suspect prior; the residual: fable-baseline.json is ONE MODEL frozen into a shared package doctor — the 005-overengineering question. Recommendation: document.",
+      "sources": [
+        ".opencode/commands/doctor/assets/doctor-fable-mode.yaml:1",
+        ".opencode/commands/doctor/scripts/fable-mode-check.cjs:1"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter008-006",
+      "iteration": 8,
+      "label": "resource-map/extract-from-evidence.cjs (554L, evidence-to-resource-map ledger) is unwired by the very workflow it serves: 4 references, all documentation (deep-research + deep-review playbooks, feature-catalog); NO command/YAML/hook/workflow invokes it, while /deep:research independently specifies resource_map_output: {artifact_dir}/resource-map.md (deep-research-auto.yaml:175) and its own detect/seed semantics (:252-256) — the workflow hand-rolls what the extractor automates (this lineage resource-map.md is the live demonstration). Recommendation: fix — the synthesis steps should call it, or remove it and correct the playbooks.",
+      "sources": [
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:175",
+        ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md:1"
+      ],
+      "severity": "P1",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter008-007",
+      "iteration": 8,
+      "label": "The four-sweeps quadrant: FOUR sweep implementations in FOUR directories, TWO wired — sweep/strict-pass-freshness.ts (CI: strict-pass-freshness-report.yml:56), ops/process-sweep.ts (plugin: session-cleanup.js), retrieval/sweep-memory-residue.mjs (unwired, f-iter005-002), spec/sweep-track-roots.mjs (unwired, f-iter002-003); none shares code with another (each re-derives folder-walking/timeout/reporting). Recommendation: merge — one sweep module, thin invokers, or at least one directory.",
+      "sources": [
+        ".github/workflows/strict-pass-freshness-report.yml:56",
+        ".opencode/plugins/session-cleanup.js:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts:1"
+      ],
+      "severity": "P2",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-001",
+      "iteration": 9,
+      "label": "The coverage-graph engine is duplicated across two skills and unified by a TEST, not a module: cli/lib/coverage-graph/*.ts (spec-kit copy, ZERO production importers in its own package; 13 test suites: 8+ here, 5 across the fence) vs system-deep-loop/runtime/lib/coverage-graph/{signals,query}.ts (the PRODUCTION copy with its own types and database); the treaty = tests/graph-convergence-parity.vitest.ts:6-11, a cross-skill SIBLING-RELATIVE import (../../../system-deep-loop/...) pinning both signals implementations; shared/ — the sanctioned seam — hosts neither; plus the stray cli/lib/coverage-graph-convergence.cjs. Recommendation: merge — one copy in @spec-kit/shared or the deep-loop; retire the treaty.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/graph-convergence-parity.vitest.ts:6",
+        ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:1",
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:20"
+      ],
+      "severity": "P1",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-002",
+      "iteration": 9,
+      "label": "Certification rollup (closes Q4): all 19 no-caller claims re-verified at FULL sweep (tests+docs+fixtures included, self-mentions counted); no claim overturned; counts: continuity/ast-parser 0, setup/_utils 0, .scan-one 0, quality-kpi 1 (self), cli/doctor 1 (self), migrate-deep-research-paths 1 (changelog), the 3 evals harnesses 2 (one = evals/README), registry-loader 2, check-smart-router 2, spec/sweep-track-roots 2, fix-memory-h1 3, rank-memories 5 (all docs), the retrieval quartet 4-8 (docs+fixtures). Removal bill: ~30 files + 2 directories, each evidence-filed (f-iter002-003, f-iter003-002/003, f-iter006-001/002/003, f-iter008-002/003). Recommendation: remove in one PR with the docs lines they ship.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli (19-count certification, this session)"
+      ],
+      "severity": "P2",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-003",
+      "iteration": 9,
+      "label": "The sanctioned seam works; its 2023-era shadow does not: the cli->@spec-kit/shared census = 18 lanes/43+ citations (frontmatter/parse-frontmatter 11, memory-sufficiency 5, path-security 4, trigger-extractor 4) versus the registry libraries[]javascript (8 re-export shims): lib/trigger-extractor.js = ZERO importers (dead-but-registered), lib/embeddings.js = ONE caller for TWO CONSTANTS (core/workflow.ts:56, correcting f-iter004-004), the other six = 1-6 citations (alive); plus the stray coverage-graph-convergence.cjs. Recommendation: fix — re-derive libraries[] from this census, or execute the f-iter002-001 registry-removal.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:56",
+        ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json:330",
+        ".opencode/skills/system-spec-kit/runtime/cli (shared-import census, this session)"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-004",
+      "iteration": 9,
+      "label": "js-yaml: a top-level dependency with ONE production importer (rules/check-grep-convention-helper.mjs) + 2 tests + an ambient .d.ts, while 11 importers take their YAML via shared/frontmatter/parse-frontmatter. Recommendation: merge — put the one helper YAML need behind the shared seam (or downgrade the dep into that helper).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/rules/check-grep-convention-helper.mjs:1",
+        ".opencode/skills/system-spec-kit/runtime/cli/package.json:52"
+      ],
+      "severity": "P2",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter010-001",
+      "iteration": 10,
+      "label": "ZERO dangling paths: all 14 scripts[], 9 rules[] and 11 libraries[] paths in scripts-registry.json resolve on disk (existsSync over the resolution root: 0 missing; 8 library paths are dist/ outputs resolving through this worktree's symlinked main-checkout dist, f-iter001-006). The registry failure mode is coverage-not-existence. Recommendation: document the true sentence.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json (existsSync sweep, this session)"
+      ],
+      "severity": "P2",
+      "recommendation": "document",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter010-002",
+      "iteration": 10,
+      "label": "The heaviest-caller quantification: continuity/save-reminders 64 command-surface files > retrieval/trigger-index 49 > validation 11; and the 49 retrieval references are 49/49 in .opencode/commands (0 in hooks, plugins, bin, workflows) — reminders, not mechanisms, so the retrieval lane still runs on AI discipline alone (f-iter005-001); the validation 11 are mostly EXECUTIONS. The 002 problem statement (spec.md:84: heaviest callers are validation and retrieval) is inverted. Recommendation: fix the sentence if quoted into remediation.",
+      "sources": [
+        ".opencode/commands (49+64+11 counts, this session)",
+        "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/spec.md:84"
+      ],
+      "severity": "P2",
+      "recommendation": "fix",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter010-003",
+      "iteration": 10,
+      "label": "The removal bill, ranked by confidence: Tier 1 (certified zero-or-self, ship docs lines with them) = .scan* seven + 0-byte residue, continuity/ast-parser.ts + fix-memory-h1.mjs, kpi/ (2 files), setup/_utils.sh, 3 stranded evals harnesses, doctor.sh, migrate-deep-research-paths.ts + seed-council-value-fixture.cjs; Tier 2 (documentation-ship-with) = continuity/rank-memories.ts, spec/check-smart-router.sh + spec/sweep-track-roots.mjs, the retrieval trio + their 10 fixtures (after 001 archival); Tier 3 (merge-first) = core/quality-scorer.ts, renderers/, conditionally registry-loader.sh + scripts-registry.json. Total ~30 files + 2 directories, each evidence-filed. Recommendation: remove in one PR.",
+      "sources": [
+        "iterations 2-9 of this lineage (each member evidence-filed)"
+      ],
+      "severity": "P2",
+      "recommendation": "remove",
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter010-004",
+      "iteration": 10,
+      "label": "The merge list, ranked by confidence: (1) PLACEHOLDER_FILLED x2, (2) coverage-graph x2 skills + treaty, (3) the registries, (4) the scorers + disambiguation test, (5) comment-hygiene cross-package, (6) the four sweeps, (7) the three template mechanisms, (8) repo-root x3, (9) phase-parent x3, (10) resource-map extractor into the /deep: steps, (11) js-yaml behind the shared seam. Systemic cause: wherever a seam existed, a copy accreted anyway, then a test (disambiguation, parity, calibration) patrols the difference — the tests are the fossils of un-merged pairs. Recommendation: merge down the list in rank order.",
+      "sources": [
+        "iterations 2-9 of this lineage"
+      ],
+      "severity": "P2",
+      "recommendation": "merge",
+      "trust": "confirmed"
+    }
+  ],
+  "terminalProgress": [
+    {
+      "iteration": 1,
+      "focus": "Package topology and declared purpose: package.json, scripts-registry.json, README.md, ARCHITECTURE.md, MODULE-MAP.md, SKILL.md, and the 002 packet directive, as the audit baseline.",
+      "findingsCount": 7,
+      "newInfoRatio": 1,
+      "status": "complete"
+    },
+    {
+      "iteration": 3,
+      "focus": "Save pipeline stage 1: continuity/ + core/ — the admitted production surface of generate-context.ts, the wiring of the three documented gate layers, and post-decommission residue (rank-memories, fix-memory-h1+ast-parser, the migration trio, the shim, the rival scorer).",
+      "findingsCount": 7,
+      "newInfoRatio": 0.85,
+      "status": "complete"
+    },
+    {
+      "iteration": 4,
+      "focus": "Save pipeline stage 2: extractors/, loaders/, renderers/, templates/ — extractor liveness via the second import hub (core/workflow.ts:17-48), the stranded renderers, the wired inline-gate renderer, and the registry's stale dependency declaration. Q2 CLOSED.",
+      "findingsCount": 4,
+      "newInfoRatio": 0.8,
+      "status": "complete"
+    },
+    {
+      "iteration": 5,
+      "focus": "retrieval/ + graph/: the 001 replacement lane's wired 2-of-7 reality, the trigger-index freshness hole, the dependency-direction counterexample (cli->runtime/hooks/lib with no allowlist entry), and graph/'s delegation-plus-twin structure.",
+      "findingsCount": 4,
+      "newInfoRatio": 0.8,
+      "status": "complete"
+    },
+    {
+      "iteration": 6,
+      "focus": "The support shell: spec-folder/, utils/, types/, config/ + the undocumented root entries (doctor.sh, deploy-mcp.sh, migrate-deep-research-paths.ts, seed-council-value-fixture.cjs, test-council-matrix.sh, the .scan* seven, registry-loader.sh) — production import census plus the twin-module pattern.",
+      "findingsCount": 5,
+      "newInfoRatio": 0.8,
+      "status": "complete"
+    },
+    {
+      "iteration": 7,
+      "focus": "The delivery surface: codex/, pi/, runtime-mirrors/ sync scripts (invoked by the doctor route, not the 3 promised workflows), the two-parallel-guardian coverage gap, ops/ self-declared stub theater, setup/ residuals, and the zero-CI finding for the package test/typecheck/gate layers.",
+      "findingsCount": 4,
+      "newInfoRatio": 0.8,
+      "status": "complete"
+    },
+    {
+      "iteration": 8,
+      "focus": "The measurement belt: the evals/ check gate (6 checks + policy + allowlist + expiry, wired only into an unchecked npm script), the six measurement directories (kpi dead, metrics doctor-wired, observability output-committed, optimizer agent-wired, resource-map playbook-documented, sweep CI-wired), the .mjs-coverage resolution, and the four-sweeps quadrant.",
+      "findingsCount": 7,
+      "newInfoRatio": 0.8,
+      "status": "complete"
+    },
+    {
+      "iteration": 9,
+      "focus": "The cross-package ledger: the coverage-graph duplication treaty (two skills, one parity test, shared/ hosts neither), the 19-claim death-row certification at full sweep, the cli->@spec-kit/shared census (18 lanes) against the 2023-era shim registry, and the js-yaml single-importer verdict.",
+      "findingsCount": 4,
+      "newInfoRatio": 0.75,
+      "status": "complete"
+    },
+    {
+      "iteration": 10,
+      "focus": "The consolidation verdict: 0 dangling registry paths (existsSync over 32+11), the framing quantification (continuity 64 > retrieval 49-all-reminders > validation 11-mostly-executions; the 002 packet's heaviest-caller claim inverted), the Tier-1/2/3 removal bill, the 11-item ranked merge list, and the residuals ledger. All six charter questions CLOSED.",
+      "findingsCount": 4,
+      "newInfoRatio": 0.7,
+      "status": "complete"
+    }
+  ]
+}

@@ -9,7 +9,8 @@
     "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
     "system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
     "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
-    "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation"
+    "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation",
+    "system-speckit/035-spec-kit-simplification-research/007-cli-package-residue-removal"
   ],
   "manual": {
     "depends_on": [],
@@ -50,7 +51,10 @@
       "004-template-system-and-acceptance-criteria/goal.md",
       "005-overengineering-simplification/goal.md",
       "006-retrieval-drift-remediation/goal.md",
-      "001-ripgrep-search-system/research/confirmed-findings.md"
+      "007-cli-package-residue-removal/goal.md",
+      "001-ripgrep-search-system/research/confirmed-findings.md",
+      "002-cli-runtime-utilization/research/confirmed-findings.md",
+      "resource-map/extract-from-evidence.cjs"
     ],
     "entities": [
       {
@@ -69,6 +73,12 @@
         "name": "confirmed-findings.md",
         "kind": "doc",
         "path": "001-ripgrep-search-system/research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract-from-evidence.cjs",
+        "kind": "file",
+        "path": "resource-map/extract-from-evidence.cjs",
         "source": "derived"
       },
       {
@@ -146,17 +156,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-06T15:30:21.099Z",
+    "last_save_at": "2026-09-06T18:10:37.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4c7e116b8306a6b6f19713b5e8a46390a3f9071900c63d0b471976d92a8af36e",
+    "source_fingerprint": "sha256:4e6d4ac640dcf54bfb3cb74b4cf476218e43442439870286160f64336efa6cb3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1711d1c0df16a3b37a6ef11568f85587b9d971372196dd9dd3b3e977cb289c85"
+      "spec.md": "ddeed056705ba3454256ce79f2fde33e7a26b6f9a6d5edd2083430f6e1969c11"
     },
     "last_active_at": null
   }

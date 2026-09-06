@@ -1,5 +1,5 @@
 ---
-title: "Goal: CLI runtime utilization"
+title: "Goal: CLI package residue removal"
 description: "The durable directive this packet executes against, and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization"
-    last_updated_at: "2026-09-06T18:50:00Z"
+    packet_pointer: "system-speckit/035-spec-kit-simplification-research/007-cli-package-residue-removal"
+    last_updated_at: "2026-09-06T18:40:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Closed every criterion after remediation"
-    next_safe_action: "None; the lane is closed"
+    recent_action: "Closed every criterion"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: CLI runtime utilization
+# Goal: CLI package residue removal
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Establish what every directory of the @spec-kit/cli package is for, who actually calls it, what is dead or test-only, and what should be removed or merged.
+**Objective:** Close every confirmed finding from the CLI runtime lane so that the package holds only what something reaches, its records describe what the code does, and its gates run in CI, with nothing deferred.
 
 ### Decisions
 
@@ -48,9 +48,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Research is read-only; remediation lands in a sibling child created after synthesis |
-| D2 | A directory counts as live only with a caller outside the package or a registered entry point |
-| D3 | Naming is judged against observed callers, not the README |
+| D1 | A file is removed only after a repository-wide reference census finds no consumer outside specs, changelogs and benchmark reports |
+| D2 | A duplicate that turns out to serve a different input or consumer is documented at both sites rather than merged |
+| D3 | The index carries only this packet's hunks; another session's uncommitted edits to the same files stay in the working tree |
+| D4 | A test that reads another session's live packet is recorded as failing, never patched around |
 
 ### Operator copy
 
@@ -72,10 +73,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-cli-runtime/
-- [x] research.md carries a per-directory table: purpose, callers, verdict
-- [x] Every P0 and P1 finding reproduces in-session
-- [x] A ranked removal and merge list with the evidence that nothing documented depends on each item
+- [x] Every row of the research lane's confirmed-findings table names a fix commit or a recorded decision
+- [x] npm run check and the CLI vitest project pass after the removals, except the one test that reads another session's packet
+- [x] A GitHub workflow runs the CLI check gate, typecheck, the shared tests, the CLI vitest project and the mirror checks
+- [x] validate.sh --strict prints RESULT: PASSED for this child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -92,14 +93,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
-| Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-cli-runtime/research.md`, stop reason maxIterationsReached, 17:17 to 19:44, first executor attempt hung and was retried by the runner |
-| Reproduction | Done | `research/confirmed-findings.md`: 12 of 13 removal rows confirmed or corrected, 9 of 11 merge rows, 12 of 13 fix rows; 3 dropped |
-| Remediation | Done | `../007-cli-package-residue-removal` closed every row |
+| Census of 13 removal, 11 merge and 13 fix rows | Done | `../002-cli-runtime-utilization/research/confirmed-findings.md` |
+| Removals, corrections, regex, workflow | Done | `implementation-summary.md` Files Changed |
+| Gates | Done | rebuild, `npm run check`, dist fresh, six vitest files, legacy suite, shared tests, full CLI project, strict validation |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Three rows dropped | The trigger-extractor shim has two importers; js-yaml has three production importers; the worktree symlink layout is an environment fact. |
-| Two findings the lane missed | A test that could not run and a test that reads another session's packet; both recorded in the confirmed table. |
+| Another session's README sweep landed in the working tree mid-phase | Edits were re-applied onto HEAD copies and staged by object id; the sweep stays theirs. |
+| Two findings not in the synthesis | The export-contracts test could not run and asserted retired handlers, removed; the manifest test reads another session's packet, recorded. |
+| Mirror checks fail today on the other session's uncommitted diagram move | Left as their drift; the new workflow will surface it, which is what the finding asked for. |
 <!-- /ANCHOR:log -->

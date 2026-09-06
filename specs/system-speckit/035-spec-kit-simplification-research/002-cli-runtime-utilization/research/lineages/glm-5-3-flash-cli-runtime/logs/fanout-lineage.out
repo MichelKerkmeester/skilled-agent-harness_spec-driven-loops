@@ -1,0 +1,10 @@
+Final-state verification passes: all 9 required artifacts at their exact paths, 10/10 iterations + deltas, every JSONL line parses, 54 findings (0 P0 / 22 P1 / 32 P2), 6/6 charter questions resolved, and the terminal synthesis record carries `stopReason: maxIterationsReached` (state + convergence report). The lineage's write surface stayed inside the directory — every write this session was made under its absolute path.
+
+**Lineage summary (glm-5-3-flash-cli-runtime):**
+
+- **10/10 iterations, inline-executed** — no nested dispatch; state, deltas, reducer artifacts, and synthesis all written into the lineage directory; continuity save intentionally skipped (detached-lineage contract, recorded in the state log).
+- **The verdict (research.md §1):** the package is three things wearing one name — a fully-alive continuity/save core (its documented 3-layer gate survives the memory decommission *inside one process*), a legitimately decisive validation dispatch (the only coherent registry: 39 dispatched rules), and a long margin (retrieval ceremonies + a silent freshness hole, doctor-checked-but-CI-unguarded mirrors, six measurement directories, self-declared ops stubs, and a 53k-LOC test estate + 6-check gate that **no automated mechanism anywhere executes**).
+- **Removal bill:** ~30 files + 2 directories, ranked in 3 confidence tiers, all 19 no-caller claims certification-verified. **Merge bill:** 11 ranked exhibits, one systemic cause — *the tests are the fossils of un-merged pairs*. Plus a 13-row fix list, including the 002 packet's own inverted heaviest-caller sentence (continuity 64 > retrieval 49-reminders > validation 11-executions).
+- 4 in-place corrections, each reason-recorded; every claim traceable to a cited line; none-found distinguished from caller-not-checked throughout.
+
+FANOUT_LINEAGE_COMPLETE:glm-5-3-flash-cli-runtime

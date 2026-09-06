@@ -1,0 +1,65 @@
+{
+  "topic": "Context: the @spec-kit/cli package at .opencode/skills/system-spec-kit/runtime/cli, judged for purpose, logic, integration, and utilization. Scope covers every directory under it: spec/, rules/, continuity/, spec-folder/, graph/, retrieval/, core/, extractors/, utils/, lib/, validation/, evals/, setup/, ops/, kpi/, metrics/, optimizer/, observability/, resource-map/, sweep/, loaders/, renderers/, templates/, codex/, pi/, runtime-mirrors/, config/, types/, tests/. Ground every claim in files actually read: the tree itself, scripts-registry.json, package.json scripts, README.md, ../../ARCHITECTURE.md, ../lib/MODULE-MAP.md, system-spec-kit/SKILL.md, and every caller under .opencode/commands, .opencode/bin, .opencode/hooks, .opencode/plugins, and .github/workflows. Role: an independent code-archaeology auditor with no stake in the package's current shape, trusting only what is read in these files and their real callers, never a name, a doc claim, or a stated intent alone. Action: for each directory, weigh its declared purpose against its real callers traced through the command, bin, hook, plugin, and workflow surfaces above. Trace the save pipeline (continuity/, core/, extractors/) end to end and mark which stages still run after the memory decommission versus which are inert. Check rules/ and validation/ against scripts-registry.json and package.json for registry entries with no matching script, scripts with no registry entry, and duplicated checks. Name every directory or entry point with zero external callers and every registry entry pointing at nothing. Verify whether codex/, pi/, and runtime-mirrors/ sync scripts and the evals/ check gate are actually invoked, and by what. Test whether the package's own framing, as context generation and continuity management, matches what the code does. Find helpers duplicated across this package, ../lib/, and any shared layer. Close with the removal and merge list, ranked by confidence that nothing documented depends on it. Format: one finding per entry: path:line; declared purpose; observed callers (named, or none found); severity P0 broken, P1 dead or misleading, P2 cosmetic; a one-line recommendation labeled remove, merge, fix, or document. Non-goals: no file edits; no rewrite proposals beyond removal or merge; no evaluation of prose style or naming conventions for their own sake.",
+  "maxIterations": 10,
+  "minIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": false,
+  "specFolder": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "fanoutLineageArtifactDir": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/glm-5-3-flash-cli-runtime",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-06T15:41:43.000Z",
+  "status": "initialized",
+  "executionMode": "detached-fanout",
+  "executor": {
+    "kind": "cli-pi",
+    "type": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-5-3-flash-cli-runtime-1788707853865-9gs9so",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "artifactRootBinding": {
+    "overrideUsed": true,
+    "resolveArtifactRootCommandSkipped": true,
+    "artifactDir": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/glm-5-3-flash-cli-runtime"
+  }
+}

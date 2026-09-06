@@ -81,6 +81,7 @@ phase and binds as if written here.
 | 004-template-system-and-acceptance-criteria | `004-template-system-and-acceptance-criteria/goal.md` |
 | 005-overengineering-simplification | `005-overengineering-simplification/goal.md` |
 | 006-retrieval-drift-remediation | `006-retrieval-drift-remediation/goal.md` |
+| 007-cli-package-residue-removal | `007-cli-package-residue-removal/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -120,11 +121,15 @@ and findings belong here.
 |------|-------|----------|
 | Packet opened | Done | this file |
 | Lane 001 ran, reproduced, remediated | Done | `001-ripgrep-search-system/research/confirmed-findings.md`; child `006-retrieval-drift-remediation` complete |
-| Lane 002 | Running | started 17:17 in worktree 046 |
+| Lane 002 ran, censused, remediated | Done | `002-cli-runtime-utilization/research/confirmed-findings.md`; child `007-cli-package-residue-removal` complete, commit `3f161d2ee9` on both branches |
+| Lane 003 | Running | started 19:48 in worktree 046 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Child 006 appended to the binding | The binding table gained a row; durable slice changed, parent resent in chat. |
+| Child 007 appended to the binding | Durable slice changed again; parent resent in chat. |
+| Resource-map extractor wiring carried to lane 004 | Lane 002 found the deep commands never name `resource-map/extract-from-evidence.cjs`; lane 004 owns the resource-map addon, so the wiring decision lands with its remediation. |
+| Shared index hazard | Another session staged and amended in this checkout mid-commit; the 007 commit was rebuilt through a private index and the branch advanced with a compare-and-swap. |
 <!-- /ANCHOR:log -->
