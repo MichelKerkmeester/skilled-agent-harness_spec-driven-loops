@@ -174,7 +174,7 @@ path and matches by exact blob hash.
 | 5 | `005-closure-and-routing-proof/` | The baseline replayed from the closing state, the daemon rebuilt, the packet measured | Complete |
 | 6 | `006-design-mode-and-command-rename/` | The two moved modes take the hub's name and their commands move to the `/design:` surface, bound to the design agent | Planned |
 | 7 | `007-close-inherited-failures/` | Every gate this packet left red closes: four playbook fixtures, a scenario with no criteria, two malformed spec documents | Planned |
-| 8 | `008-fundamentals-beyond-ui/` | Fundamentals stops being a UI-only skill; slide decks, print and document surfaces are first-class | Planned |
+| 8 | `008-fundamentals-beyond-ui/` | Fundamentals stops being a UI-only skill; slide decks, print and document surfaces are first-class | Complete |
 | 9 | `009-router-conformance/` | The root router takes the shape every other hub's router has, which no validator checks | Complete |
 | 10 | `010-readme-human-voice/` | Authored READMEs follow the Em Dash Ban the Human Voice Rules already carry | Complete |
 

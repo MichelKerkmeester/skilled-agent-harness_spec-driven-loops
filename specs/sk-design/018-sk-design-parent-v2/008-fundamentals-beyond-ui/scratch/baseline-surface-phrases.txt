@@ -1,0 +1,12 @@
+what padding should this have            sk-design=0.82
+contrast ratio failure on this button    sk-design=0.95
+design review of this slide deck         sk-code=0.9379, sk-design=0.9107
+how should this slide be laid out        NOTHING
+type scale for a printed report          sk-design=0.858
+margins for a print layout               NOTHING
+document layout hierarchy                NOTHING
+presentation deck spacing                sk-design=0.82
+create a chart                           sk-design=0.8461, sk-doc=0.82, system-spec-kit=0.82
+make a diagram                           sk-design=0.82
+flowchart                                sk-design=0.82
+extract design tokens from stripe.com    sk-design=0.9067

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 3: fundamentals-beyond-ui [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: fundamentals covers every surface, not only UI"
+description: "Name the surfaces the fundamentals mode serves, say what differs between them, and put the vocabulary where the advisor actually reads it."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: fundamentals-beyond-ui
+# Implementation Plan: fundamentals covers every surface, not only UI
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -21,15 +21,18 @@ contextType: "general"
 
 ### Technical Context
 
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+`sk-design-fundamentals` carried 46 UI-specific mentions against 1 non-UI. Its H1 read
+`Visual UI Design`, its description said it "designs, builds and reviews UI", and its keyword block
+was entirely screen vocabulary.
+
+The judgment underneath is not screen-specific. A spacing scale, a type scale, a colour ramp and a
+hierarchy pyramid decide a slide, a printed page and a report layout as much as they decide a
+component. Only two of its six references are genuinely screen-only.
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Name five surfaces and what changes on each, say which two references do not apply off-screen, and
+add surface vocabulary to the hub's `intent_signals`, which is the only file the advisor reads.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +41,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] The problem statement and frozen scope are in `spec.md`
+- [x] Success criteria are observable commands, not adjectives
+- [x] A baseline for the new surface phrases is captured before any edit; it cannot be recaptured
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every acceptance criterion in `acceptance-criteria.md` is `Met`, `Waived` or `Superseded`
+- [x] Three previously-dead surface phrases route, and every control holds
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +57,22 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Broaden one mode rather than fork a second. The systems are shared; only the extras differ, so a
+fork would duplicate the shared part and drift.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+
+- **The surfaces table**: five surfaces, what applies, what changes, what does not.
+- **`intent_signals`**: 17 new entries, the only vocabulary surface the advisor reads.
+- **The router's VALUES and REVIEW keyword lists**: kept in step with the hub vocabulary.
+- **The controls**: chart, diagram, padding, contrast and extract phrases, replayed to prove the
+  widening did not pull a canvas phrase off the mode that owns it.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+A surface question scores against the hub's `intent_signals`, the hub resolves VALUES or REVIEW, and
+fundamentals answers. Nothing new is loaded; the same references serve every surface bar two.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,27 +80,25 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Surface | Change |
+|---------|--------|
+| `sk-design-fundamentals/SKILL.md` | H1, description, opening, a surfaces table, hierarchy framing, keyword block |
+| `sk-design/graph-metadata.json` | 17 `intent_signals` for slide, print and document layouts |
+| `sk-design/ROUTER.md` | VALUES and REVIEW keyword lists extended to match |
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+| Step | What | Gate |
+|------|------|------|
+| 1 | Capture a baseline for twelve surface and control phrases | The file exists before any edit |
+| 2 | Read the contract and decide what is genuinely screen-only | Two references, named |
+| 3 | Rewrite the framing and add the surfaces table | The table says what changes per surface |
+| 4 | Add vocabulary to `intent_signals`, not to `description.json` | Keywords there move no score |
+| 5 | Rebuild and replay both sets | Dead phrases route; controls hold |
 <!-- /ANCHOR:phases -->
 
 ---
@@ -97,11 +106,12 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Check | How |
+|-------|-----|
+| The new surfaces route | Twelve-phrase replay against the pre-edit baseline |
+| Nothing was pulled off its mode | Chart, diagram, padding, contrast and extract replayed as controls |
+| No packet regression | The sixteen-phrase set replayed and diffed |
+| The hub stays valid | Fleet metadata, leaf manifests, derived freshness, router contract |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,9 +119,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Depends on | Nature |
+|-----------|--------|
+| `006` | The contract should name final mode names |
+| `intent_signals` | The only vocabulary surface the advisor reads, measured twice in this packet |
+| A pre-edit baseline | Unrepeatable once vocabulary changes |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,30 +131,18 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the three files and rebuild the advisor. The three surface phrases return to reaching nobody,
+which is the state this phase found.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
-```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
-```
-
-| Phase | Depends On | Blocks |
-|-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| This phase | Depends on | Blocks |
+|-----------|-----------|--------|
+| `008-fundamentals-beyond-ui` | `006` | Nothing |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -150,12 +150,12 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Item | Size |
+|------|------|
+| Files changed | 3 |
+| `intent_signals` added | 17 |
+| Phrases measured | 12 surface plus 16 packet |
+| Commits | 1 |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,23 +164,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Baseline captured before any edit
+- [x] Controls replayed alongside the new phrases, not after them
+- [x] Vocabulary added where the advisor reads it
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert the three files
+2. Rebuild the advisor and observe the generation move
+3. Expect the three surface phrases to reach nobody again
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+
+None. Documentation and vocabulary only.
 <!-- /ANCHOR:enhanced-rollback -->
-
----
-
 
 ---
 
@@ -188,25 +184,30 @@ Phase 1.5 (Config) ───┘
 ## L3: DEPENDENCY GRAPH
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
+capture baseline (12 phrases, unrepeatable)
+        |
+        v
+read the contract -> decide what is genuinely screen-only
+        |
+        v
+surfaces table + reframed opening + keyword block
+        |
+        v
+17 intent_signals -> router keyword lists in step
+        |
+        v
+rebuild (665 -> 666) -> replay both sets -> controls held
 ```
 
 ### Dependency Matrix
 
-| Component | Depends On | Produces | Blocks |
-|-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Step | Needs | Produces |
+|------|-------|----------|
+| Baseline | An untouched vocabulary | The comparison target |
+| Read | The contract and its references | What is shared, what is screen-only |
+| Rewrite | That distinction | A table that says what changes per surface |
+| Vocabulary | The rewrite | Reachable surfaces |
+| Replay | An explicit rebuild | Proof the canvases kept their phrases |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +215,8 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
-
-**Total Critical Path**: [Sum of durations]
-
-**Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+The baseline, because it cannot be recaptured, and the controls, because the real risk here is not
+that a new phrase fails to route but that it steals one that already did.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -230,31 +224,70 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
-| Milestone | Description | Success Criteria | Target |
-|-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| Milestone | Evidence |
+|-----------|----------|
+| Surfaces named | Five, with what changes and what does not apply |
+| Dead phrases route | 0.9059, 0.8962, 0.9112, from nothing |
+| Existing phrases improved | Printed report 0.858 to 0.95; deck spacing 0.82 to 0.9059 |
+| Controls held | Chart, diagram, padding, contrast, extract unchanged |
+| No packet regression | Sixteen-phrase set: no owner changed, nothing below baseline |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Broaden the one mode rather than fork a second
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: A slide deck, a printed page and a document layout each need the same spacing scale,
+type scale, colour ramp and hierarchy pyramid that a screen does.
 
-**Decision**: [What we decided]
+**Decision**: Name the surfaces inside `sk-design-fundamentals` and say what differs, rather than
+adding a deck or print mode.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The shared judgment lives once. A fork would duplicate it and the copies would drift.
+- The mode's contract is longer and has to carry a per-surface table to stay specific.
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- A separate slide-deck mode: duplicates four systems to differentiate two references.
+
+### ADR-002: Say what differs, not only what is shared
+
+**Status**: Accepted
+
+**Context**: Surface-agnostic framing that stops naming differences stops being useful. "Design
+applies everywhere" helps nobody lay out a slide.
+
+**Decision**: Carry a table naming each surface, which systems apply, what changes, and what does not
+apply at all.
+
+**Consequences**:
+- A deck question gets the systems and is told to skip focus rings and touch targets.
+- The table is a maintenance surface: a new reference has to be classified as shared or screen-only.
+
+**Alternatives Rejected**:
+- A single sentence saying the rules are surface-agnostic: true and useless.
+
+### ADR-003: Leave the deck-review ordering to whoever owns it
+
+**Status**: Accepted
+
+**Context**: `design review of this slide deck` reaches this hub at 0.9107 but `sk-code` wins at
+0.9379. The pattern holds across rephrasings and inverts when the review verb is dropped.
+
+**Decision**: Record it. Do not inflate this hub's weights or trim another hub's vocabulary.
+
+**Consequences**:
+- The requirement is satisfied, since the phrase reaches the hub above the bar.
+- A design review of a non-code artifact still routes to the code skill first, which is a real
+  question this phase is not scoped to answer.
+
+**Alternatives Rejected**:
+- Trim `sk-code`'s review vocabulary: changing another hub to win an ordering contest is how
+  vocabulary drifts across a fleet.
 
 ---
 

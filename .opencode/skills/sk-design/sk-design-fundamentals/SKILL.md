@@ -1,15 +1,22 @@
 ---
 name: sk-design
-description: "Designs, builds and reviews UI from fixed value scales, interaction guidelines, motion principles and a WCAG review pass."
+description: "Designs, builds and reviews any laid-out surface from fixed value scales: screen UI, slide decks, printed and document layouts. Adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen."
 allowed-tools: [Read, Write, Edit, Grep, Glob]
 version: 1.0.0.0
 ---
 
-<!-- Keywords: ui design rules, what padding, how much padding, padding, margin, spacing between elements, spacing scale, what font size, font size, type scale, font weight, color palette, hsl shades, shade ramp, shadow elevation, box shadow, border radius, visual hierarchy, de-emphasize, ui looks off, looks amateur, feels cluttered, make this look better, design tokens, contrast ratio, wcag, wcag 4.5:1, a11y, accessibility, accessibility issues, accessibility review, accessibility audit, aria-label, alt text, screen reader, grey on color, em versus rem, breakpoint scaling, empty state, interaction guidelines, focus ring, focus outline, touch target, hit area, keyboard navigation, animation duration, transition duration, easing curve, spring animation, twelve principles of animation, review this component, design review, ui review, component states, dark mode palette, where do i start designing, grayscale first, how much white space, nothing draws the eye, primary secondary tertiary, destructive button, labels are a last resort, too many options, overwhelming, cognitive load, progressive disclosure, fitts law, hicks law, doherty threshold, chunking, concentric radius, layered shadows, button shadow anatomy, text-wrap balance, tabular nums, drop shadow, shadow, draws the eye, no visual hierarchy, everything looks the same -->
+<!-- Keywords: ui design rules, what padding, how much padding, padding, margin, spacing between elements, spacing scale, what font size, font size, type scale, font weight, color palette, hsl shades, shade ramp, shadow elevation, box shadow, border radius, visual hierarchy, de-emphasize, ui looks off, looks amateur, feels cluttered, make this look better, design tokens, contrast ratio, wcag, wcag 4.5:1, a11y, accessibility, accessibility issues, accessibility review, accessibility audit, aria-label, alt text, screen reader, grey on color, em versus rem, breakpoint scaling, empty state, interaction guidelines, focus ring, focus outline, touch target, hit area, keyboard navigation, animation duration, transition duration, easing curve, spring animation, twelve principles of animation, review this component, design review, ui review, component states, dark mode palette, where do i start designing, grayscale first, how much white space, nothing draws the eye, primary secondary tertiary, destructive button, labels are a last resort, too many options, overwhelming, cognitive load, progressive disclosure, fitts law, hicks law, doherty threshold, chunking, concentric radius, layered shadows, button shadow anatomy, text-wrap balance, tabular nums, drop shadow, shadow, draws the eye, no visual hierarchy, everything looks the same, slide deck design, slide layout, presentation design, deck spacing, print layout, printed page design, margins for print, document layout, report layout, long-form layout, poster layout, how should this slide be laid out, type scale for print, laid out -->
 
-# Visual UI Design
+# Visual Design
 
-Visual design is not talent. It is a small set of systems decisions made **once**, plus a handful of techniques for building hierarchy, a set of interaction details that make a screen behave correctly, and a motion model that keeps it feeling human.
+Visual design is not talent. It is a small set of systems decisions made **once**, plus a handful of
+techniques for building hierarchy, a set of interaction details that make a screen behave correctly,
+and a motion model that keeps it feeling human.
+
+**Most of that is not about screens.** A spacing scale, a type scale, a colour ramp and a hierarchy
+pyramid decide a slide, a printed page and a report layout as much as they decide a component. The
+sections below say which parts carry to every surface and which are genuinely screen-only, so a deck
+question gets the systems and skips the focus rings.
 
 The single biggest cause of amateur-looking UI is picking values ad hoc — 17px here, `#3B82F6` there, `lighten(5%)` for a hover state, `400ms` because it seemed smooth. Design *from a scale*, always.
 
@@ -248,6 +255,23 @@ def route_ui_craft_resources(user_request, task=None):
 
 ## 3. HOW IT WORKS
 
+### The Surfaces
+
+The systems below are surface-agnostic. What differs is which of the extras apply.
+
+| Surface | Systems that apply | What changes | What does not apply |
+| --- | --- | --- | --- |
+| **Screen UI** | All four | The reference surface these rules were written against | Nothing |
+| **Slide decks** | All four | Far fewer elements per view, so hierarchy does more work and the type scale runs larger. Transitions replace interaction motion | Focus rings, hover, touch targets |
+| **Printed layouts** | All four | No dark mode and no hover state. Contrast still matters and is harder, because paper has no backlight. Measure in a physical unit and keep the spacing ratios | Interaction craft, motion, response budgets |
+| **Document layouts** | All four | Reading order is the hierarchy. Long-form type scale runs tighter than UI, and white space carries the structure | Interaction craft, motion |
+| **Chart and diagram canvases** | Colour and type scale only | Those canvases have their own layout rules | Everything else; the canvas modes own it |
+
+Two references are screen-only: [`interaction-craft.md`](references/interaction-craft.md) and
+[`motion-principles.md`](references/motion-principles.md). A deck may borrow the motion timings for
+transitions; a printed page has no use for either. Everything else in `references/` applies whatever
+the surface.
+
 ### The Systems
 
 Pick from these lists. Never invent a value that is not on one.
@@ -350,7 +374,7 @@ Full steps with their reasoning: [`references/build-procedure.md`](references/bu
 
 ### Hierarchy, The Technique That Does The Most Work
 
-Everything on screen sits in a pyramid: primary, secondary, tertiary. When everything competes, the UI reads as noise. This is what makes a design look designed, not styling.
+Everything on the surface sits in a pyramid: primary, secondary, tertiary. When everything competes, the surface reads as noise. This is the most surface-agnostic technique here: a slide with three competing headings fails the same way a screen does. This is what makes a design look designed, not styling.
 
 Four rules carry most of it:
 

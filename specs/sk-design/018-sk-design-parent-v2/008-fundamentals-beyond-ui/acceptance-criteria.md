@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** `sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui`
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a contract with 46 UI mentions against 1 non-UI, When it is broadened, Then it names the surfaces it serves and says what differs between them | A five-row surfaces table naming screen UI, slide decks, printed layouts, document layouts and canvases, with what applies, what changes and what does not; the two screen-only references named explicitly | Met | - |
+| AC-002 | REQ-002 | Given three surface phrases that reached nobody, When the vocabulary is added where the advisor reads it, Then each reaches `sk-design` above the bar | At generation 666: `how should this slide be laid out` 0.9059, `margins for a print layout` 0.8962, `document layout hierarchy` 0.9112, all from nothing | Met | - |
+| AC-003 | REQ-003 | Given the packet's sixteen-phrase baseline, When it is replayed after the vocabulary change, Then no phrase drops | Three cells moved by at most one ten-thousandth or reordered a third-place entry; no owner changed and nothing fell below baseline | Met | - |
+| AC-004 | REQ-004 | Given a widened sibling vocabulary, When canvas phrases are replayed as controls, Then each still reaches the mode that owns its canvas | `create a chart` 0.8461, `make a diagram` 0.82, `flowchart` 0.82, all unchanged; `what padding should this have` 0.82 and `contrast ratio failure on this button` 0.95 also unchanged | Met | - |
+| AC-005 | REQ-002 | Given a design review of a non-code artifact, When it is replayed, Then this hub wins the ordering | `design review of this slide deck` returns `sk-code=0.9379, sk-design=0.9107`. The phrase reaches this hub above the bar, so REQ-002 holds, but `sk-code` wins. The pattern holds across rephrasings and inverts without the review verb. Resolving it means changing a hub this phase does not own | Superseded | ADR-003 |
 
 ### Status values
 
@@ -79,8 +83,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-004 carried this phase. Adding vocabulary is easy; the risk in widening a sibling's vocabulary is
+stealing a phrase that already routed correctly, and both canvas modes came back unchanged. AC-005 is
+`Superseded` rather than `Met` or `Unmet`: the phrase reaches this hub above the bar, which is what
+the requirement asked, but it loses an ordering contest to `sk-code`. Winning that would mean
+inflating this hub's weights or trimming another hub's, and changing a hub to win an ordering contest
+is how vocabulary drifts across a fleet.
 <!-- /ANCHOR:closure -->

@@ -33,7 +33,7 @@ _memory:
 | **Packet** | `sk-design/018-sk-design-parent-v2` |
 | **Level** | 2 (phase parent) |
 | **Phases** | 10 |
-| **Open** | 1 (`008`) |
+| **Open** | 0; the packet is closed |
 | **Branch** | `skilled/v4.0.0.0` |
 
 `sk-design` was a hub until 19 August 2026 and was dismantled on purpose by
@@ -57,12 +57,11 @@ tree the previous one left green.
 | 5 | `005-closure-and-routing-proof` | **Done** | Nothing | Sixteen-phrase replay at generation 638: zero phrases reach nobody, against four at the baseline |
 | 6 | `006-design-mode-and-command-rename` | **Done** | Both command names change with no forwarder; 249 files move; the compiled routing must be re-minted in the same commit | Replay at or above the closing scores; the compiled-routing guard green; the corpus checker from the renamed path |
 | 7 | `007-close-inherited-failures` | **Done** | Nothing; it only repairs | Both hubs' typed-gold gates green, the compiled-routing scenario green, the router-unification packet 25 of 25 |
-| 8 | `008-fundamentals-beyond-ui` | **Now** | Broader vocabulary can pull a canvas phrase off the mode that owns it | New surface phrases above the bar with chart and diagram replayed as controls |
+| 8 | `008-fundamentals-beyond-ui` | **Done** | Broader vocabulary can pull a canvas phrase off the mode that owns it | New surface phrases above the bar with chart and diagram replayed as controls |
 | 9 | `009-router-conformance` | **Done** | Nothing; prose and structure only | Peer section skeleton, every path resolving, replay unchanged |
 | 10 | `010-readme-human-voice` | **Done** | Nothing; prose only, but easy to damage silently | 0 prose em-dashes, 0 splices, 0 out-of-scope edits |
 
-**Now.** Step 7, closing the gates this packet left red. The rename landed with the replay
-byte-identical, so the fixtures can move once onto their final names.
+**Now.** Nothing. All ten steps are done.
 
 **Next.** Step 7 closes every gate this packet left red, including the four FLOWCHART fixtures that
 `005` recorded and handed on. The operator has since directed that they move to the design hub rather

@@ -138,7 +138,7 @@ step does.
 | 5 | `005-closure-and-routing-proof` | Done: generation 638, zero phrases reach nobody |
 | 6 | `006-design-mode-and-command-rename` | Done: 249 renames, replay byte-identical at generation 650 |
 | 7 | `007-close-inherited-failures` | Done: every inherited gate green, nothing deleted |
-| 8 | `008-fundamentals-beyond-ui` | Open |
+| 8 | `008-fundamentals-beyond-ui` | Done: three dead surface phrases route, controls held |
 | 9 | `009-router-conformance` | Done: peer shape, replay unchanged at generation 653 |
 | 10 | `010-readme-human-voice` | Done: 909 prose em-dashes removed from 147 authored READMEs |
 

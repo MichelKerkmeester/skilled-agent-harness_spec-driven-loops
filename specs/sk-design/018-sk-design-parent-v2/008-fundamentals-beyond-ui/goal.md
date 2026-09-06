@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui"
     last_updated_at: "2026-09-06T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the phase directive for broadening fundamentals past screen UI"
-    next_safe_action: "Capture a baseline for the new surface phrases before editing any vocabulary"
+    recent_action: "Broadened fundamentals to five named surfaces"
+    next_safe_action: "None open; the deck-review ordering is recorded for another owner"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/ROUTER.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-018-sk-design-parent-v2"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -84,9 +84,23 @@ Fundamentals serves slide decks, print and document layouts as well as it serves
 
 ### Progress
 
-Planned. Not started.
+Done. Five surfaces named with what differs between them, 17 `intent_signals` added, and three
+previously-dead surface phrases now route. Every control held.
 
 ### Deviations and findings
 
-None yet.
+- **Only two of six references are genuinely screen-only.** `interaction-craft.md` and
+  `motion-principles.md`. The spacing scale, type scale, colour ramp, hierarchy pyramid, build
+  procedure and review checklist all carry to a slide, a printed page and a document layout. The
+  contract had never said so.
+- **Widening the vocabulary cost nothing on the canvases.** Chart, diagram and flowchart phrases were
+  replayed in the same run as the new ones and came back identical, which was the main risk.
+- **A design review of a slide deck still routes to `sk-code` first.** 0.9379 against this hub's
+  0.9107. It holds across rephrasings and inverts when the review verb is dropped, so `sk-code`
+  carries strong review vocabulary and the phrase is genuinely ambiguous between reviewing an artifact
+  and reviewing the code that renders it. Recorded rather than fixed, because fixing it means changing
+  a hub this phase does not own.
+- **Two phrases that already worked got better.** `type scale for a printed report` went 0.858 to
+  0.95 and `presentation deck spacing` 0.82 to 0.9059. Naming a surface helps phrases that were
+  already scraping past the bar, not only the ones that were failing.
 <!-- /ANCHOR:log -->

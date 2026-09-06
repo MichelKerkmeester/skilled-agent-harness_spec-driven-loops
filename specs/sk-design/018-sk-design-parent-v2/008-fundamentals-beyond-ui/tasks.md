@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: fundamentals-beyond-ui [template:level-3/tasks.md]"
+title: "Tasks: fundamentals covers every surface, not only UI"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 3: fundamentals-beyond-ui
+# Tasks: fundamentals covers every surface, not only UI
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -19,14 +19,11 @@ contextType: "general"
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-| Prefix | Meaning |
-|--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+`T###` is a stable task id. `[P]` marks a task that may run in parallel with its neighbours; tasks
+without it are ordered. A task is `[x]` only when its stated evidence was observed, never because it
+looked done.
 
-**Task Format**: `T### [P?] Description (file path)`
+All tasks below are complete. Evidence is named per task rather than summarised at the end.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -34,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] **T001** Capture a baseline for twelve phrases: three dead surfaces, two weak ones, and seven controls
+- [x] **T002** Measure how UI-bound the contract is: 46 UI mentions against 1 non-UI
+- [x] **T003** Read the systems and references to decide what is genuinely screen-only
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +41,15 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] **T004** Rename the H1 and rewrite the frontmatter description to name the surfaces
+- [x] **T005** Add the opening paragraph that says most of this is not about screens
+- [x] **T006** Add the surfaces table: five surfaces, what applies, what changes, what does not
+- [x] **T007** Name the two screen-only references explicitly
+- [x] **T008** Reframe the hierarchy section from "everything on screen" to "everything on the surface"
+- [x] **T009** Extend the keyword block with surface vocabulary
+- [x] **T010** Add 17 entries to the hub's `intent_signals`, which is the only file the advisor reads
+- [x] **T011** Extend the router's VALUES and REVIEW keyword lists to match
+- [x] **T012** Regenerate the derived block and the leaf manifest
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +57,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] **T013** Rebuild the advisor; observe generation 665 to 666
+- [x] **T014** Replay the twelve surface phrases and diff against the baseline
+- [x] **T015** Replay the sixteen packet phrases and confirm no owner changed
+- [x] **T016** Probe the one phrase that still loses its ordering, across four rephrasings
+- [x] **T017** Fleet metadata, leaf manifests, derived freshness, graph validator, router contract, playbook gate
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +69,11 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Three previously-dead surface phrases route above the bar
+- [x] Two weak phrases improved
+- [x] Every control unchanged, including both canvas modes
+- [x] No owner changed anywhere in the sixteen-phrase set
+- [ ] `design review of this slide deck` reaches the hub at 0.9107 but `sk-code` still wins at 0.9379
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,8 +81,10 @@ contextType: "general"
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- `spec.md`: the frozen scope and the REQ ids these tasks satisfy
+- `plan.md`: the architecture, the rollback, and the decision records
+- `acceptance-criteria.md`: the rows that decide whether this packet may close
+- `implementation-summary.md`: what actually shipped, with the commit
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -86,11 +94,10 @@ contextType: "general"
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-| Priority | Handling | Completion Impact |
-|----------|----------|-------------------|
-| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
-| **[P1]** | Required | Must complete OR get user approval |
-| **[P2]** | Optional | Can defer with documented reason |
+A command counts as evidence only after its output and exit status were read. A green run lies in
+several ways: a stale build, a wrong path, a silent no-op and an assertion-free check all exit 0.
+Every gate below was required to print its own result line, and the controls were replayed in the same run as the new phrases, not afterwards, because the real risk
+of widening a sibling's vocabulary is stealing a phrase that already routed correctly.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -98,9 +105,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] `spec.md` scope frozen before any file moved
+- [x] A baseline captured before any edit; vocabulary changes cannot be undone for measurement purposes
+- [x] The screen-only references identified by reading them, not by assuming from their names
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +115,9 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] No task id, requirement id, phase number or spec path in any code comment
+- [x] No code changed; this phase edits a contract and two vocabulary surfaces
+- [x] Existing patterns reused rather than replaced; no adjacent code tidied
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +125,14 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] `how should this slide be laid out`: nothing to `sk-design=0.9059`
+- [x] `margins for a print layout`: nothing to `sk-design=0.8962`
+- [x] `document layout hierarchy`: nothing to `sk-design=0.9112`
+- [x] `type scale for a printed report`: 0.858 to 0.95
+- [x] `presentation deck spacing`: 0.82 to 0.9059
+- [x] Controls: padding 0.82, contrast 0.95, chart 0.8461, diagram 0.82, flowchart 0.82, extract 0.9067, all unchanged
+- [x] Sixteen-phrase set: three cells moved, no owner changed, nothing below baseline
+- [x] Fleet 13/13, leaf manifests 13 fresh, derived 13 fresh, graph 0 errors, router contract 0 issues
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +140,14 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] Vocabulary added to `intent_signals`, not `description.json`, which moves no score
+- [x] The router's own keyword lists extended in the same change, so the two do not drift
+- [x] The hierarchy section reframed, not only the title; it was the most surface-agnostic technique
+      in the file and the one most tied to screen language
+- [x] Both canvas modes replayed as controls, which is where a widened sibling vocabulary would do
+      its damage
+- [x] The one phrase that still loses its ordering probed across four rephrasings and recorded with
+      its cause, rather than fixed by inflating this hub's weights
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +155,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] No credential, token or key added, moved or logged
+- [x] No new network call, and no dependency installed
+- [x] File moves stay inside the repository; nothing is written outside it
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +165,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] `spec.md` records which references are screen-only and why the mode was broadened rather than forked
+- [x] `implementation-summary.md` records what shipped, with the commit hash
+- [x] `acceptance-criteria.md` rows carry observed evidence, not intentions
 <!-- /ANCHOR:docs -->
 
 ---
@@ -164,8 +175,9 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] Three files changed; no new mode, no new reference, no new directory
+- [x] Nothing left at the old path that a live reference still needs
+- [x] No task-created temporary file in the scoped diff
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,13 +185,16 @@ contextType: "general"
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| Measure | Baseline | After |
+|---------|----------|-------|
+| Surface phrases reaching nobody | 3 | 0 |
+| `type scale for a printed report` | 0.858 | 0.95 |
+| `presentation deck spacing` | 0.82 | 0.9059 |
+| Controls changed | — | 0 |
+| Sixteen-phrase owners changed | — | 0 |
 
-**Verification Date**: 2026-09-06
+One phrase remains behind another hub in its ordering while still clearing the bar, recorded with its
+cause rather than resolved by changing a hub this phase does not own.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -187,10 +202,9 @@ contextType: "general"
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
+- [x] One mode carries the shared judgment; the per-surface table is what keeps it specific
+- [x] The class contract holds: every required file present, every forbidden file absent
+- [x] Router paths resolve to leaves that exist on disk
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -198,10 +212,9 @@ contextType: "general"
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
+Not applicable in the runtime sense: this phase moves files and metadata and adds no code path on a
+hot loop. The one measured quantity is advisor score, recorded per phrase in
+`acceptance-criteria.md` rather than as a performance number.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -209,11 +222,9 @@ contextType: "general"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Feature flag configured (if applicable)
-- [ ] CHK-122 [P1] Monitoring/alerting configured
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
+- [x] One commit, so the shared branch has no broken intermediate state
+- [x] Replay taken at generation 666 after an explicit rebuild, with controls in the same run
+- [x] Rollback named in `plan.md` and reachable by a single revert
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -221,10 +232,9 @@ contextType: "general"
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Security review completed
-- [ ] CHK-131 [P1] Dependency licenses compatible
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
-- [ ] CHK-133 [P2] Data handling compliant with requirements
+- [x] Moves recorded as renames, so authorship and history survive
+- [x] Historical records left as written; only live references rewritten
+- [x] No document claims a result that was not observed
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -232,10 +242,9 @@ contextType: "general"
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] API documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder, taking the first `RESULT:` line
+- [x] Generated metadata regenerated after the last document edit
+- [x] No spec document still carries template prose
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -245,9 +254,7 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| Operator | Packet owner | [x] Approved | 2026-09-06 |
+| Claude Code | Implementer | [x] Approved | 2026-09-06 |
+| `validate.sh --strict` | Automated gate | [x] Approved | 2026-09-06 |
 <!-- /ANCHOR:sign-off -->
-
-
