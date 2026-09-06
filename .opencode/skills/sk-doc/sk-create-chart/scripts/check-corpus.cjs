@@ -26,6 +26,7 @@ const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
 const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
 const POINTER_CONTRACT = path.join(PACKAGE_ROOT, 'references', 'template-contract.md');
+const GALLERY = path.join(PACKAGE_ROOT, 'assets', 'gallery.html');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
 const EXAMPLE_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
 const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
@@ -1757,6 +1758,162 @@ function checkCardReadout(browser, file, shots, work) {
     `the card shows ${result.missing.length} value(s) the data table does not carry (${result.missing.slice(0, 8).join(', ')}). A reader without a pointer cannot reach them, so the figure keeps data from anyone not holding a mouse`);
 }
 
+
+// A mark drawn smaller than a fingertip cannot be hit by aiming at it, and several forms here draw
+// marks a few pixels across. The rule that matters is not how big a mark is painted but whether a
+// pointer aimed into the drawing reaches one: a form answers the pointer when every position inside
+// its plot resolves to a mark, and to the mark nearest the aim. This is the second rule that has to
+// open a card to know anything, because resolution exists only while a pointer is moving.
+const POINTER_SAMPLES = 11;
+
+const POINTER_REACH_DRIVER = `<script>
+(function () {
+  var result = { state: 'ok', probed: 0, opened: 0, wrong: 0, dead: 0, worst: null, worstDead: null };
+  var AIM_DISTANCE = 24;
+  function go() {
+    try {
+      // These transforms are compositor-driven: the paint reaches its end state while the main
+      // thread still reports the pre-animation box. Every geometry read below would be a
+      // measurement of the animation rather than the chart without this.
+      if (document.getAnimations) {
+        document.getAnimations().forEach(function (a) { try { a.finish(); } catch (err) {} });
+      }
+      var svg = document.querySelector('svg[data-chart-part], svg#chart, svg');
+      var marks = [].slice.call(document.querySelectorAll('[data-mark]'));
+      var card = document.querySelector('[data-chart-tooltip]');
+      if (!svg || !marks.length || !card) { result.state = 'not-applicable'; return emit(); }
+      var frame = svg.getBoundingClientRect();
+      // The mark a reader is aiming at. When the pointer is over a painted shape the browser's own
+      // hit test is the truth and nothing here should second-guess it: forms that tile a region,
+      // a matrix or a treemap or a stack of bands, have heavily overlapping bounding boxes, so a
+      // box test picks a different shape than the one under the pointer. Only when the pointer is
+      // over no mark at all does the nearest centre decide, and that is the case the resolver was
+      // built for.
+      function expectedAt(px, py) {
+        var under = document.elementFromPoint(px, py);
+        var direct = under && under.closest ? under.closest('[data-mark]') : null;
+        if (direct) return { el: direct, dist: 0 };
+        // Off the paint but still inside a mark's own box: the most specific box wins. A form that
+        // marks a whole row as one group gives that row a box hundreds of pixels wide, so the
+        // distance to its centre says nothing about whether the reader is pointing at it.
+        var inside = null, insideArea = Infinity;
+        var nearest = null, nearestDist = Infinity;
+        marks.forEach(function (m) {
+          var b = m.getBoundingClientRect();
+          if (px >= b.left && px <= b.right && py >= b.top && py <= b.bottom) {
+            var area = b.width * b.height;
+            if (area < insideArea) { insideArea = area; inside = m; }
+            return;
+          }
+          var d = Math.hypot(px - (b.left + b.width / 2), py - (b.top + b.height / 2));
+          if (d < nearestDist) { nearestDist = d; nearest = m; }
+        });
+        if (inside) return { el: inside, dist: 0 };
+        return { el: nearest, dist: nearestDist };
+      }
+      var stepX = frame.width / (${POINTER_SAMPLES} + 1);
+      var stepY = frame.height / (${POINTER_SAMPLES} + 1);
+      for (var i = 1; i <= ${POINTER_SAMPLES}; i++) {
+        for (var j = 1; j <= ${POINTER_SAMPLES}; j++) {
+          var px = frame.left + stepX * i;
+          var py = frame.top + stepY * j;
+          var under = document.elementFromPoint(px, py) || svg;
+          under.dispatchEvent(new PointerEvent('pointermove',
+            { bubbles: true, cancelable: true, clientX: px, clientY: py }));
+          result.probed++;
+          var expected = expectedAt(px, py);
+          if (!card.hasAttribute('data-open')) {
+            // Empty space far from every mark owes no answer. Only a position close enough that a
+            // reader is plainly aiming at a mark counts against the form, which is what separates
+            // a chart with wide margins from a chart with holes in it.
+            if (expected.dist <= AIM_DISTANCE) {
+              result.dead++;
+              if (!result.worstDead) {
+                result.worstDead = { x: Math.round(px), y: Math.round(py), dist: Math.round(expected.dist) };
+              }
+            }
+            continue;
+          }
+          result.opened++;
+          var shown = (card.textContent || '').replace(/\\s+/g, ' ').trim();
+          var want = expected.el;
+          var wb = want.getBoundingClientRect();
+          want.dispatchEvent(new PointerEvent('pointermove', { bubbles: true, cancelable: true,
+            clientX: wb.left + wb.width / 2, clientY: wb.top + wb.height / 2 }));
+          var direct = (card.textContent || '').replace(/\\s+/g, ' ').trim();
+          if (direct !== shown) {
+            result.wrong++;
+            if (!result.worst) result.worst = { x: Math.round(px), y: Math.round(py),
+              got: shown.slice(0, 48), expected: direct.slice(0, 48) };
+          }
+        }
+      }
+    } catch (err) {
+      result.state = 'driver-error';
+      result.detail = String(err && err.message ? err.message : err);
+    }
+    emit();
+  }
+  function emit() {
+    var node = document.createElement('pre');
+    node.id = 'chart-pointer-reach';
+    node.textContent = JSON.stringify(result);
+    document.body.appendChild(node);
+  }
+  setTimeout(go, 200);
+})();
+</` + `script>`;
+
+function checkPointerReach(browser, file, shots, work) {
+  const src = fs.readFileSync(file, 'utf8');
+  // A form that answers no pointer has no resolution to test; the register rules cover those.
+  if (!/data-chart-tooltip/.test(src)) return;
+  if (!/data-mark/.test(src)) return;
+  tally('pointer-reach', 1);
+  const cut = src.lastIndexOf('</body>');
+  if (cut === -1) {
+    record('pointer-reach', 'error', rel(file), 'the file has no </body>, so the reach driver could not be attached');
+    return;
+  }
+  const instrumented = path.join(work, 'reach-' + path.basename(file));
+  fs.writeFileSync(instrumented, src.slice(0, cut) + POINTER_REACH_DRIVER + src.slice(cut));
+  const opened = openOnce(browser, instrumented, path.join(shots, 'reach.png'), SCHEME_LIGHT);
+  if (opened.error) {
+    record('pointer-reach', 'error', rel(file), `the browser did not return a document for the reach walk: ${opened.error}`);
+    return;
+  }
+  const found = /<pre id="chart-pointer-reach">([\s\S]*?)<\/pre>/.exec(opened.dom);
+  if (!found) {
+    record('pointer-reach', 'error', rel(file), 'the reach driver produced no result, so pointer resolution is unknown rather than proven');
+    return;
+  }
+  let result;
+  try {
+    result = JSON.parse(found[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
+  } catch (err) {
+    record('pointer-reach', 'error', rel(file), `the reach driver returned something that is not JSON: ${err.message}`);
+    return;
+  }
+  if (result.state === 'not-applicable') return;
+  if (result.state !== 'ok') {
+    record('pointer-reach', 'error', rel(file), `the reach walk did not complete: ${result.state}${result.detail ? ` (${result.detail})` : ''}`);
+    return;
+  }
+  if (result.wrong) {
+    const w = result.worst;
+    record('pointer-reach', 'error', rel(file),
+      `${result.wrong} of ${result.opened} sampled positions opened the wrong mark's card. At (${w.x}, ${w.y}) the card read "${w.got}" where the nearest mark reads "${w.expected}". A pointer that answers with a neighbour's reading is worse than one that answers with nothing`);
+    return;
+  }
+  // Only positions close enough to a mark that a reader is plainly aiming at it are counted. A
+  // form may have all the empty margin it likes; it may not have a hole where a mark is.
+  if (result.dead) {
+    const d = result.worstDead;
+    record('pointer-reach', 'error', rel(file),
+      `${result.dead} of ${result.probed} sampled positions answered nothing while sitting within reach of a mark. At (${d.x}, ${d.y}) the nearest mark is ${d.dist}px away and no card opened. A reader aiming at a mark and getting nothing cannot tell a small target from a broken figure`);
+  }
+}
+
 function checkRenders(files) {
   const browser = findBrowser();
   if (!browser) {
@@ -1784,6 +1941,7 @@ function checkRenders(files) {
   try {
     for (const file of files) {
       checkCardReadout(browser, file, shots, work);
+      checkPointerReach(browser, file, shots, work);
       const first = openOnce(browser, file, path.join(shots, 'first.png'), SCHEME_LIGHT);
       if (first.error) {
         record('render', 'error', rel(file), `the browser did not return a document: ${first.error}`);
@@ -1860,7 +2018,10 @@ function main() {
   checkRadiusRungs(palette);
   for (const theme of THEMES) checkPaletteSource(palette, theme);
 
-  const files = htmlFilesUnder(ASSET_ROOT);
+  // The gallery frames every chart rather than being one. Running the chart rules over it would
+  // ask a contact sheet for a data block and a colour system it has no business carrying; its own
+  // obligation is completeness, which checkGallery below is what enforces.
+  const files = htmlFilesUnder(ASSET_ROOT).filter((f) => f !== GALLERY);
   const templateIdentities = new Map();
 
   for (const file of files) {
@@ -1903,6 +2064,38 @@ function main() {
   // proof sheet. The set is derived from the two directories rather than listed, so a new form
   // joins it by existing.
   checkGeometryBlock([...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(path.join(ASSET_ROOT, 'color'))]);
+
+
+/* ------------------------------------------------------------------ gallery */
+
+// A hand-listed gallery omits the form somebody added last week, and the omission looks exactly
+// like a form that was never meant to be there. This rule makes the omission impossible to ship:
+// the page is generated from the templates directory, and a page that has fallen behind the
+// directory is an error rather than a stale artifact nobody happens to open.
+function checkGallery(templateFiles) {
+  tally('gallery', 1 + templateFiles.length);
+  if (!fs.existsSync(GALLERY)) {
+    record('gallery', 'error', rel(GALLERY),
+      'no gallery has been built, so nothing shows the corpus in both colour schemes. Build it with scripts/build-gallery.cjs');
+    return;
+  }
+  const html = fs.readFileSync(GALLERY, 'utf8');
+  const declared = /<meta name="chart-gallery" content="(\d+)"/.exec(html);
+  if (!declared) {
+    record('gallery', 'error', rel(GALLERY), 'the gallery declares no form count, so it cannot say what it claims to cover');
+  } else if (Number(declared[1]) !== templateFiles.length) {
+    record('gallery', 'error', rel(GALLERY),
+      `the gallery says it carries ${declared[1]} forms and the corpus has ${templateFiles.length}. Rebuild it with scripts/build-gallery.cjs`);
+  }
+  for (const file of templateFiles) {
+    const form = path.basename(file, '.html');
+    // Two frames per form, because the point of the page is the comparison between schemes.
+    const frames = (html.match(new RegExp(`templates/${form}\\.html`, 'g')) || []).length;
+    if (frames >= 2) continue;
+    record('gallery', 'error', rel(GALLERY),
+      `${form} appears in ${frames} gallery frame(s) and needs two, one per colour scheme. A form missing from the gallery is a form nobody reviews`);
+  }
+}
 
 /* ------------------------------------------------------- pointer-contract coverage */
 
@@ -1956,6 +2149,7 @@ function checkContractCoverage(templateFiles) {
 }
 
   checkContractCoverage(htmlFilesUnder(TEMPLATE_DIR));
+  checkGallery(htmlFilesUnder(TEMPLATE_DIR));
 
   const catalog = parseCatalog();
   checkCatalogResolves(catalog, templateIdentities);

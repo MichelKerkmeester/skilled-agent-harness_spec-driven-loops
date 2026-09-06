@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Prove the targets, the rules and the gallery from the final state [template:level-2/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Prove the targets, the rules and the gallery from the final state"
+description: "Prove the whole packet from its final state, reconcile every document that now describes a corpus that has changed, and correct the parent packet that still claims completion while carrying active children."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,11 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/005-closure-and-proof` |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Packet** | `010-corpus-expansion-and-gallery` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,10 +34,21 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+Four children changed the corpus from twenty-one forms with placeholder figures to twenty-six with
+believable ones, a pointer resolver on every mark-carrying file, three new corpus rules and a
+generated gallery. Several documents now describe a corpus that no longer exists, and the parent
+packet still reads `Complete` although it acquired a phase parent with five children after it
+closed.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+Every claim in the packet matches what the corpus does, proven from the final state rather than
+from the state each child left.
+
+### Non-Goals
+
+- Any further change to the corpus. This child proves and reconciles; it does not build.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -65,20 +77,13 @@ contextType: "general"
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement |
-|----|-------------|
-| REQ-002 | [Requirement description] |
-
-> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
-> which is the document that decides whether this packet may close.
+| REQ-001 | `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state, after every child has landed. |
+| REQ-002 | Every rule this packet added has been watched failing on a deliberate mutation and restored byte-identically. |
+| REQ-003 | `validate.sh --strict` is clean across the packet and every child. |
+| REQ-004 | The parent packet's status is reconciled: it may not claim completion while carrying children that changed the corpus after it closed. |
+| REQ-005 | Nothing is pushed or merged, and the working state is reported exactly. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -86,8 +91,10 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Corpus gate `RESULT: PASSED`, 0 errors, from the final state.
+- **SC-002**: Each of `pointer-reach` and `gallery` watched failing, restored, re-passed.
+- **SC-003**: `validate.sh --strict` clean for the phase parent and all five children.
+- **SC-004**: No document in the packet contradicts another about what the corpus contains.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-gallery" content="26">
+<title>Chart corpus, every form in both schemes</title>
+<style>
+  /* The gallery frames the corpus and must not restyle it: every colour here is the page's own,
+     and each chart keeps whatever its own file declares. */
+  :root { color-scheme: light dark; --ink: #1a1a1a; --ground: #faf9f7; --rule: #dcd8d2; --muted: #6b665f; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ececec; --ground: #16171a; --rule: #33363b; --muted: #9aa0a6; }
+  }
+  body { margin: 0; padding: 32px 24px 64px; background: var(--ground); color: var(--ink);
+         font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { max-width: 1180px; margin: 0 auto 40px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  header p { margin: 0; color: var(--muted); max-width: 62ch; }
+  .form { max-width: 1180px; margin: 0 auto 48px; padding-top: 24px; border-top: 1px solid var(--rule); }
+  h2 { font-size: 17px; margin: 0 0 4px; font-weight: 600; }
+  .meta { margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .pair { grid-template-columns: 1fr; } }
+  .frame { margin: 0; }
+  figcaption { font-size: 12px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.04em;
+               text-transform: uppercase; }
+  iframe { width: 100%; height: 560px; border: 1px solid var(--rule); border-radius: 8px;
+           background: Canvas; display: block; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Chart corpus</h1>
+  <p>Every form in the corpus, each rendered twice: once with a light colour scheme pinned and once
+     with a dark one. This page is generated from the templates directory, so a form that exists is
+     a form that appears here.</p>
+</header>
+
+      <section class="form" id="bar-columns">
+        <h2>Pallets despatched by site</h2>
+        <p class="meta"><code>bar-columns</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/bar-columns.html" title="Pallets despatched by site, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/bar-columns.html" title="Pallets despatched by site, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="bar-line-composed">
+        <h2>Orders and conversion rate over eight weeks</h2>
+        <p class="meta"><code>bar-line-composed</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/bar-line-composed.html" title="Orders and conversion rate over eight weeks, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/bar-line-composed.html" title="Orders and conversion rate over eight weeks, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="bar-rows">
+        <h2>Median working days by stage</h2>
+        <p class="meta"><code>bar-rows</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/bar-rows.html" title="Median working days by stage, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/bar-rows.html" title="Median working days by stage, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="box-plot">
+        <h2>Days to resolve a case, by team</h2>
+        <p class="meta"><code>box-plot</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/box-plot.html" title="Days to resolve a case, by team, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/box-plot.html" title="Days to resolve a case, by team, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="bullet">
+        <h2>Service desk measures against their targets, week 42</h2>
+        <p class="meta"><code>bullet</code> &middot; ordered palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/bullet.html" title="Service desk measures against their targets, week 42, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/bullet.html" title="Service desk measures against their targets, week 42, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="calendar-grid">
+        <h2>Deployments per day across a full year</h2>
+        <p class="meta"><code>calendar-grid</code> &middot; ordered palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/calendar-grid.html" title="Deployments per day across a full year, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/calendar-grid.html" title="Deployments per day across a full year, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="candlestick">
+        <h2>Weekly open, high, low and close over fourteen weeks</h2>
+        <p class="meta"><code>candlestick</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/candlestick.html" title="Weekly open, high, low and close over fourteen weeks, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/candlestick.html" title="Weekly open, high, low and close over fourteen weeks, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="daily-line">
+        <h2>Orders per day over twenty-eight days</h2>
+        <p class="meta"><code>daily-line</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/daily-line.html" title="Orders per day over twenty-eight days, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/daily-line.html" title="Orders per day over twenty-eight days, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="daily-range">
+        <h2>Daily response time range over fourteen days</h2>
+        <p class="meta"><code>daily-range</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/daily-range.html" title="Daily response time range over fourteen days, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/daily-range.html" title="Daily response time range over fourteen days, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="distribution-strip">
+        <h2>Time to first response by cohort</h2>
+        <p class="meta"><code>distribution-strip</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/distribution-strip.html" title="Time to first response by cohort, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/distribution-strip.html" title="Time to first response by cohort, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="dumbbell">
+        <h2>Cold build time per pipeline, before and after remote caching</h2>
+        <p class="meta"><code>dumbbell</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/dumbbell.html" title="Cold build time per pipeline, before and after remote caching, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/dumbbell.html" title="Cold build time per pipeline, before and after remote caching, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="funnel">
+        <h2>Deal count by pipeline stage</h2>
+        <p class="meta"><code>funnel</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/funnel.html" title="Deal count by pipeline stage, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/funnel.html" title="Deal count by pipeline stage, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="grouped-bars">
+        <h2>Signups by channel, two years compared</h2>
+        <p class="meta"><code>grouped-bars</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/grouped-bars.html" title="Signups by channel, two years compared, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/grouped-bars.html" title="Signups by channel, two years compared, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="heat-matrix">
+        <h2>Units sold by product line and region</h2>
+        <p class="meta"><code>heat-matrix</code> &middot; ordered palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/heat-matrix.html" title="Units sold by product line and region, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/heat-matrix.html" title="Units sold by product line and region, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="histogram">
+        <h2>Build durations in ten-minute bins</h2>
+        <p class="meta"><code>histogram</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/histogram.html" title="Build durations in ten-minute bins, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/histogram.html" title="Build durations in ten-minute bins, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="independent-percentages">
+        <h2>Adoption of five account security controls</h2>
+        <p class="meta"><code>independent-percentages</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/independent-percentages.html" title="Adoption of five account security controls, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/independent-percentages.html" title="Adoption of five account security controls, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="parallel-axes">
+        <h2>Four suppliers across five measures</h2>
+        <p class="meta"><code>parallel-axes</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/parallel-axes.html" title="Four suppliers across five measures, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/parallel-axes.html" title="Four suppliers across five measures, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="population-pyramid">
+        <h2>Registered patients by age band and sex</h2>
+        <p class="meta"><code>population-pyramid</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/population-pyramid.html" title="Registered patients by age band and sex, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/population-pyramid.html" title="Registered patients by age band and sex, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="progress-single">
+        <h2>Bookings against the annual goal</h2>
+        <p class="meta"><code>progress-single</code> &middot; ordered palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/progress-single.html" title="Bookings against the annual goal, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/progress-single.html" title="Bookings against the annual goal, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="scatter">
+        <h2>Squad size against tickets closed per person</h2>
+        <p class="meta"><code>scatter</code> &middot; neutral palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/scatter.html" title="Squad size against tickets closed per person, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/scatter.html" title="Squad size against tickets closed per person, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="stacked-area">
+        <h2>Revenue by licence type over twenty-four months</h2>
+        <p class="meta"><code>stacked-area</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/stacked-area.html" title="Revenue by licence type over twenty-four months, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/stacked-area.html" title="Revenue by licence type over twenty-four months, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="stacked-bars">
+        <h2>Revenue by product line within each market</h2>
+        <p class="meta"><code>stacked-bars</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/stacked-bars.html" title="Revenue by product line within each market, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/stacked-bars.html" title="Revenue by product line within each market, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="treemap">
+        <h2>Cloud spend by service family and line item</h2>
+        <p class="meta"><code>treemap</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/treemap.html" title="Cloud spend by service family and line item, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/treemap.html" title="Cloud spend by service family and line item, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="unit-grid">
+        <h2>Support hours by account tier, one square per percent</h2>
+        <p class="meta"><code>unit-grid</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/unit-grid.html" title="Support hours by account tier, one square per percent, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/unit-grid.html" title="Support hours by account tier, one square per percent, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="unit-ring">
+        <h2>Incidents by root cause, one tick per incident</h2>
+        <p class="meta"><code>unit-ring</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/unit-ring.html" title="Incidents by root cause, one tick per incident, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/unit-ring.html" title="Incidents by root cause, one tick per incident, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+      <section class="form" id="waterfall">
+        <h2>From gross bookings to net revenue</h2>
+        <p class="meta"><code>waterfall</code> &middot; categorical palette</p>
+        <div class="pair">
+        <figure class="frame">
+          <figcaption>Light</figcaption>
+          <iframe src="templates/waterfall.html" title="From gross bookings to net revenue, light scheme"
+                  loading="lazy" data-scheme="light"></iframe>
+        </figure>
+        <figure class="frame">
+          <figcaption>Dark</figcaption>
+          <iframe src="templates/waterfall.html" title="From gross bookings to net revenue, dark scheme"
+                  loading="lazy" data-scheme="dark"></iframe>
+        </figure>
+        </div>
+      </section>
+<script>
+// Each frame pins its own scheme so the pair is a comparison rather than two copies of whatever the
+// reader's system happens to be set to. The pin is written into the framed document once it loads,
+// because a colour scheme cannot be forced on a frame from outside it.
+document.querySelectorAll('iframe[data-scheme]').forEach(function (frame) {
+  frame.addEventListener('load', function () {
+    try {
+      var doc = frame.contentDocument;
+      if (!doc) return;
+      var style = doc.createElement('style');
+      style.textContent = ':root { color-scheme: ' + frame.dataset.scheme + ' !important; }';
+      doc.head.appendChild(style);
+      doc.documentElement.style.colorScheme = frame.dataset.scheme;
+    } catch (err) {
+      // A frame that refuses inspection keeps the reader's own scheme, which is a degraded
+      // comparison rather than a broken page.
+    }
+  });
+});
+</script>
+</body>
+</html>

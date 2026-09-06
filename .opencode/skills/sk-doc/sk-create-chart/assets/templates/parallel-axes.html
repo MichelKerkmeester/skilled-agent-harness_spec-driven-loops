@@ -111,7 +111,9 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .dot-2 { fill: var(--chart-series-2); }
 .dot-3 { fill: var(--chart-series-3); }
 .dot-4 { fill: var(--chart-series-4); }
-.axis { stroke: var(--chart-rule); stroke-width: 2; }
+/* The axis rules are furniture and the crossing lines are the data, so the rules draw at
+   the hairline the data lines draw at rather than at double their weight. */
+.axis { stroke: var(--chart-rule); }
 .axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
 .bound { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .key { fill: var(--chart-muted); font-size: 11px; }
@@ -152,11 +154,11 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
       <title id="fig-title">Four suppliers across five measures</title>
-      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Each supplier takes the swatch printed beside its name where its line ends on the right. Alpha is lowest on unit price at 4.10 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
+      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Each supplier takes the swatch printed beside its name where its line ends on the right. Alpha is lowest on unit price at 4.1 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
       <g data-chart-legend id="legend-parallel-axes"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: procurement vendor scorecard, tender evaluation. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -177,10 +179,10 @@ const AXES = [
   { name: 'Support response', unit: 'hours', min: 0, max: 48 }
 ];
 const DATA = [
-  { label: 'Alpha', values: [4.1, 21, 18, 71, 48] },
-  { label: 'Beta', values: [5.2, 14, 9, 86, 24] },
-  { label: 'Gamma', values: [5.8, 9, 5, 93, 8] },
-  { label: 'Delta', values: [6.4, 7, 3, 96, 4] }
+  { label: 'Alpha', values: [4.1, 22, 16, 67, 43] },
+  { label: 'Beta', values: [5.3, 13, 9, 84, 27] },
+  { label: 'Gamma', values: [5.9, 8, 5, 92, 9] },
+  { label: 'Delta', values: [6.6, 5, 3, 97, 4] }
 ];
 /* CHART_DATA:END */
 

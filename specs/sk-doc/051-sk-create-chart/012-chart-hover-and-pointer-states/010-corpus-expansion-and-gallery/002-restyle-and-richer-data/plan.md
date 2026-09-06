@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Restyle every existing form and replace demo data with realistic figures [template:level-3/plan.md]"
+title: "Implementation Plan: Restyle every existing form and replace demo data with realistic figures"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"

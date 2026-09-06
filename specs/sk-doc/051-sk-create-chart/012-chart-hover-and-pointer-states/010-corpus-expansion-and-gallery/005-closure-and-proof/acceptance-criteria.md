@@ -1,6 +1,6 @@
 ---
 title: "Acceptance Criteria: Prove the targets, the rules and the gallery from the final state"
-description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
+description: "Five criteria: the corpus gated from its final state, every new rule watched failing, the packet validated, the parent reconciled, and nothing pushed."
 trigger_phrases:
   - "acceptance criteria"
   - "closure gate"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-closure-and-proof"
+    packet_pointer: "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof"
     last_updated_at: "2026-09-06T06:26:47Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 010-corpus-expansion-and-gallery/005-closure-and-proof
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the final state of the corpus, When `check-corpus.cjs --render` runs, Then it prints `RESULT: PASSED` | Observed: `RESULT: PASSED`, 0 errors, 35 files scanned, 26 chart forms. `card-readout` 22, `pointer-reach` 22, `gallery` 27, `pointer-contract-coverage` 52, `dark-render` 35, `settled-render` 70, all 0 failures | Met | - |
+| AC-002 | REQ-002 | Given each rule this packet added, When a deliberate mutation is applied, Then the rule fails naming the fault, and a byte-identical restore returns the corpus to green | Observed for `pointer-reach`: `daily-line` reverted to plain hit testing gave 23 of 121 positions dead within reach at (158, 204), `RESULT: FAILED`, restored at sha256 `5357f64ab8bc618d`, `RESULT: PASSED`. Observed for `gallery` in both directions: a dropped form named `funnel`; a 27th template named both the count mismatch and the form; restored at sha256 `852ff466ce16eb10` | Met | - |
+| AC-003 | REQ-003 | Given the packet, When `validate.sh --strict` runs, Then it is clean for the parent and every child | Recorded in the closure notes below with the observed result | Met | - |
+| AC-004 | REQ-004 | Given the parent packet, When its status is read, Then it does not claim completion while carrying children that changed the corpus after it closed | Observed: the parent's status and phase map were reconciled to name this phase parent and its five children | Met | - |
+| AC-005 | REQ-005 | Given the work, When the session reports, Then nothing is pushed or merged and the working state is stated exactly | Observed: no commit, no push, no merge; every change is working tree, scoped to the chart skill and this packet | Met | - |
 
 ### Status values
 

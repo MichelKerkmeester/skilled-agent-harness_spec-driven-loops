@@ -158,7 +158,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       <g data-chart-tooltip id="tip-candlestick"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: market data warehouse, weekly bars.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -172,20 +172,20 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 <script>
 /* CHART_DATA:BEGIN */
 const DATA = [
-  { period: 'W1', open: 100, high: 106, low: 98, close: 104 },
-  { period: 'W2', open: 104, high: 112, low: 103, close: 110 },
-  { period: 'W3', open: 110, high: 114, low: 106, close: 108 },
-  { period: 'W4', open: 108, high: 118, low: 107, close: 117 },
-  { period: 'W5', open: 117, high: 124, low: 115, close: 122 },
-  { period: 'W6', open: 122, high: 128, low: 119, close: 126 },
-  { period: 'W7', open: 126, high: 131, low: 123, close: 124 },
-  { period: 'W8', open: 124, high: 134, low: 122, close: 133 },
-  { period: 'W9', open: 133, high: 141, low: 132, close: 139 },
-  { period: 'W10', open: 139, high: 144, low: 136, close: 140 },
-  { period: 'W11', open: 140, high: 141, low: 128, close: 130 },
-  { period: 'W12', open: 130, high: 132, low: 118, close: 120 },
-  { period: 'W13', open: 120, high: 122, low: 110, close: 112 },
-  { period: 'W14', open: 112, high: 113, low: 100, close: 102 }
+  { period: 'W1', open: 100, high: 105, low: 97, close: 103 },
+  { period: 'W2', open: 103, high: 104, low: 95, close: 96 },
+  { period: 'W3', open: 96, high: 102, low: 95, close: 101 },
+  { period: 'W4', open: 101, high: 109, low: 100, close: 108 },
+  { period: 'W5', open: 108, high: 110, low: 103, close: 105 },
+  { period: 'W6', open: 105, high: 116, low: 104, close: 115 },
+  { period: 'W7', open: 115, high: 121, low: 113, close: 119 },
+  { period: 'W8', open: 119, high: 122, low: 112, close: 114 },
+  { period: 'W9', open: 114, high: 131, low: 113, close: 129 },
+  { period: 'W10', open: 129, high: 142, low: 128, close: 140 },
+  { period: 'W11', open: 140, high: 141, low: 131, close: 133 },
+  { period: 'W12', open: 133, high: 134, low: 121, close: 123 },
+  { period: 'W13', open: 123, high: 125, low: 114, close: 116 },
+  { period: 'W14', open: 116, high: 117, low: 101, close: 102 }
 ];
 /* CHART_DATA:END */
 
@@ -351,7 +351,12 @@ const TICK_DP = (String(Number(step.toFixed(6))).split('.')[1] || '').length;
 const rungs = Math.round((ceiling - floor) / step);
 for (let t = 0; t <= rungs; t += 1) {
   const value = floor + step * t;
-  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  // The end rungs bound the scale rather than carry marks, so their lines only frame the
+  // plot. They keep their printed labels and give up their lines; the interior rungs keep
+  // both, because those are the heights a wick is read against.
+  if (t > 0 && t < rungs) {
+    node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  }
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
 

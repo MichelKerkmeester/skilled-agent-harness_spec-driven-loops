@@ -155,7 +155,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       <g data-chart-tooltip id="tip-scatter"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: Jira Service Management ticket export, April to June. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -171,15 +171,15 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 const X_NAME = 'People in the squad';
 const Y_NAME = 'Tickets closed per person, per week';
 const DATA = [
-  { label: 'Squad 1', x: 3, y: 11 }, { label: 'Squad 2', x: 4, y: 13 },
-  { label: 'Squad 3', x: 4, y: 10 }, { label: 'Squad 4', x: 5, y: 15 },
-  { label: 'Squad 5', x: 6, y: 14 }, { label: 'Squad 6', x: 6, y: 18 },
-  { label: 'Squad 7', x: 7, y: 17 }, { label: 'Squad 8', x: 8, y: 21 },
-  { label: 'Squad 9', x: 8, y: 19 }, { label: 'Squad 10', x: 9, y: 24 },
-  { label: 'Squad 11', x: 10, y: 22 }, { label: 'Squad 12', x: 11, y: 27 },
-  { label: 'Squad 13', x: 11, y: 25 }, { label: 'Squad 14', x: 12, y: 29 },
-  { label: 'Squad 15', x: 13, y: 31 }, { label: 'Squad 16', x: 14, y: 9, lead: true },
-  { label: 'Squad 17', x: 15, y: 34 }, { label: 'Squad 18', x: 16, y: 36 }
+  { label: 'Atlas', x: 4, y: 11 }, { label: 'Beacon', x: 3, y: 8 },
+  { label: 'Cobalt', x: 5, y: 13 }, { label: 'Drift', x: 6, y: 12 },
+  { label: 'Ember', x: 6, y: 16 }, { label: 'Fathom', x: 7, y: 14 },
+  { label: 'Gantry', x: 8, y: 18 }, { label: 'Harbor', x: 9, y: 17 },
+  { label: 'Inlet', x: 8, y: 20 }, { label: 'Juniper', x: 10, y: 22 },
+  { label: 'Kestrel', x: 11, y: 20 }, { label: 'Lumen', x: 12, y: 26 },
+  { label: 'Meridian', x: 11, y: 24 }, { label: 'Nimbus', x: 13, y: 28 },
+  { label: 'Orchard', x: 14, y: 27 }, { label: 'Pinnacle', x: 14, y: 9, lead: true },
+  { label: 'Quarry', x: 15, y: 33 }, { label: 'Ridgeline', x: 16, y: 35 }
 ];
 /* CHART_DATA:END */
 
@@ -333,8 +333,10 @@ const RIGHT = 700;
 const TOP = 16;
 const BASE = 262;
 const TICKS = 4;
-const xMax = niceStep(DATA.reduce(function (m, d) { return Math.max(m, d.x); }, 0) / TICKS) * TICKS;
-const yMax = niceStep(DATA.reduce(function (m, d) { return Math.max(m, d.y); }, 0) / TICKS) * TICKS;
+const xPeak = DATA.reduce(function (m, d) { return Math.max(m, d.x); }, 0);
+const yPeak = DATA.reduce(function (m, d) { return Math.max(m, d.y); }, 0);
+const xMax = niceStep(xPeak / TICKS) * TICKS;
+const yMax = niceStep(yPeak / TICKS) * TICKS;
 // Every rung prints to the same decimal count as the gap between rungs, so the ladder
 // reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
 const X_DP = (String(Number((xMax / TICKS).toFixed(6))).split('.')[1] || '').length;
@@ -342,13 +344,22 @@ const Y_DP = (String(Number((yMax / TICKS).toFixed(6))).split('.')[1] || '').len
 const px = function (v) { return LEFT + (RIGHT - LEFT) * (v / xMax); };
 const py = function (v) { return BASE - (BASE - TOP) * (v / yMax); };
 
+// The value axis keeps the baseline and every other interior rung, and no rung above the
+// highest point, where no mark is left for a line to serve. The baseline itself is drawn
+// once, as the axis line below, so the rung at zero prints its label and no second line
+// hidden underneath it.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (yMax / TICKS) * t;
-  node('line', { x1: LEFT, y1: py(value), x2: RIGHT, y2: py(value) }, 'grid');
+  if (t % 2 === 1 || value > yPeak) continue;
+  if (t !== 0) node('line', { x1: LEFT, y1: py(value), x2: RIGHT, y2: py(value) }, 'grid');
   node('text', { x: LEFT - 10, y: py(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, Y_DP);
 }
+// The horizontal axis is labels only, so it thins by the same rule: every other rung, and
+// none past the right-most point, where a label would measure empty plot. The first and last
+// rungs are always kept, so the span the points cover stays readable.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (xMax / TICKS) * t;
+  if (t % 2 === 1 || value > xPeak) continue;
   const anchor = t === 0 ? 'start' : t === TICKS ? 'end' : 'middle';
   node('text', { x: px(value), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = fmt(value, X_DP);
 }

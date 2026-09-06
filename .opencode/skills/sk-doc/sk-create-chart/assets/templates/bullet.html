@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="chart-template" content="daily-line">
-<meta name="chart-color-system" content="neutral">
-<title>One reading per day over a month</title>
+<meta name="chart-template" content="bullet">
+<meta name="chart-color-system" content="ordered">
+<title>One measure against its target, over qualitative ranges</title>
 <style>
-/* CHART_PALETTE:BEGIN system=neutral */
+/* CHART_PALETTE:BEGIN system=ordered */
 :root {
   --chart-surface: #FAF8F5;
   --chart-ink: #1A1917;
@@ -18,25 +18,27 @@
   --chart-radius-swatch: 6px;
   --chart-radius-pill: 8px;
   --chart-radius-card: 10px;
-  --chart-series-1: #292825;
-  --chart-series-2: #4C4B48;
-  --chart-series-3: #6B6A67;
-  --chart-series-4: #8D8B89;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
   --chart-emphasis: #B4471F;
 }
 /* CHART_PALETTE:END */
 
-/* CHART_PALETTE_DARK:BEGIN system=neutral */
+/* CHART_PALETTE_DARK:BEGIN system=ordered */
 @media (prefers-color-scheme: dark) {
   :root {
     --chart-surface: #161513;
     --chart-ink: #F2F0EC;
     --chart-muted: #A8A5A0;
     --chart-rule: #F2F0EC17;
-    --chart-series-1: #E2E1DE;
-    --chart-series-2: #B0AEAA;
-    --chart-series-3: #8A8783;
-    --chart-series-4: #686561;
+    --chart-series-1: #A1D4DC;
+    --chart-series-2: #47AFBE;
+    --chart-series-3: #318893;
+    --chart-series-4: #28646A;
+    --chart-series-5: #1F4649;
     --chart-emphasis: #DD6336;
   }
 }
@@ -101,44 +103,30 @@ th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--char
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
-
-/* The fill names a gradient rather than a flat value. The colour still comes from the
-   series token, which the gradient stops below carry; this property exists because a fill
-   has to resolve through a --chart- reference to satisfy the corpus colour rule, and a
-   bare url() reference reads to that rule as a fill with no colour in it at all. */
-:root { --chart-area-fill: url(#area-fade); }
-
-.area { fill: var(--chart-area-fill); }
-.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.18; }
-.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0; }
-.line { fill: none; stroke: var(--chart-series-1); stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
-/* Dashed and drawn below full strength, because the rule token is also the card border and
-   a grid at the same weight competes with the frame around it. The grid is the thing a
-   reader looks past, so it gives way first. */
-.grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
-.dot { fill: var(--chart-series-1); }
-/* The ring is the surface colour, so the emphasized reading separates from the line it
-   sits on instead of merging into it. */
-.mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
-.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-/* The printed low sits to the right of its own mark, over the run of days, so it lets the
-   pointer through to whatever mark is underneath rather than reading as a hole in it. */
-.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; pointer-events: none; }
-/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
-   and a table cell line up digit under digit and a column of numbers reads as a column.
-   The stack is all system faces: a delivered file has no network to fetch one from. The
-   sentence about missing days keeps the body face, because it is prose and not a figure. */
-.tick, .note, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
-/* Two groups, one at a time. The run of days is one and the day the headline is about is the
-   other, and pointing at either drops the other to a third of its strength, which is what
-   separates the emphasis from the series it sits on. Clicking the marker holds that state
-   until it is clicked again. Nothing dims until a reader asks: the attribute is empty until a
-   pointer or a key press fills it, so the file paints what it always painted. */
-[data-series] { transition: opacity 0.2s ease; }
-svg[data-chart-dim="1"] [data-series]:not([data-series="1"]) { opacity: 0.3; }
-svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
+/* The band track is one capsule split into qualitative ranges, so only its two outer ends
+   are rounded and the seams between ranges stay square. A rounded seam would read as a gap
+   between three tracks rather than as a boundary inside one. */
+.band-lo { fill: var(--chart-series-5); }
+.band-mid { fill: var(--chart-series-4); }
+.band-hi { fill: var(--chart-series-3); }
+/* The measure bar floats over the ranges it is read against instead of meeting a baseline,
+   so like the track it rounds every corner rather than only the end that meets nothing. */
+.measure { fill: var(--chart-series-1); rx: var(--chart-radius-track); }
+/* Ink crosses the bar it has to stay visible on, and ink is what the bar is printed in, so
+   the target tick and the figure under it take the accent instead. A marker that disappears
+   into the mark it crosses points at nothing. */
+.target-tick { stroke: var(--chart-emphasis); stroke-width: 2; }
+.target-label { fill: var(--chart-ink); font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.val { fill: var(--chart-ink); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so a target label, a value
+   label and a table cell line up digit under digit and a column of numbers reads as a
+   column. The stack is all system faces: a delivered file has no network to fetch one
+   from. The measure names keep the body face, because they are names rather than figures. */
+.target-label, .val, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+
 /* A reader who clicks a control inside the figure should not be left looking at a ring they
    never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
    the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
@@ -160,70 +148,68 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
    off a mark and the same value read out of the table sit digit under digit. */
 .tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
-/* The figure reveals itself left to right on first paint, so a reader watches the series
-   arrive in reading order instead of finding it already there. The wipe takes the whole
-   figure rather than the marks alone: a reveal that leaves the axis standing reads as a
-   chart being drawn on top of a chart. It runs once and it ends unclipped, which is the
-   picture this file would paint with no animation in it at all. That is what lets the
-   fallback below remove the motion instead of replacing it with a second design. */
-@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-/* backwards, not both: the clip applies before the first frame and is gone once the
-   animation ends, so the settled file carries no trace of having moved. */
-.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* Each mark grows from the anchor it is measured against over half a second, and consecutive
+   marks start slightly apart so the eye follows the order the chart is arranged in. The delay
+   comes from a mark's place in the drawing order, which is geometry: no number in the data
+   block reaches the timing. It is capped rather than accumulated, so a file carrying thirty
+   rows still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.measure {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: chart-grow-x 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
 /* A reader whose system asks for less motion gets the settled picture immediately, and the
    card with no fade. The motion is removed rather than shortened, because a fast animation
    is still an animation and a fast fade is still a fade, to somebody it makes ill. */
 @media (prefers-reduced-motion: reduce) {
-  .figure svg { animation: none; }
-  [data-series] { transition: none; }
+  .measure { animation: none; }
   [data-chart-tooltip] { transition: none; }
 }
 </style>
 </head>
 <body>
 <div class="card">
-  <h1 class="headline" data-chart-part="headline">The drop in the second week never came back</h1>
-  <p class="subtitle" data-chart-part="subtitle">Orders placed per day across four weeks to the twenty-eighth. The lowest day carries a marker because it is what the headline is about.</p>
+  <h1 class="headline" data-chart-part="headline">Three of four service desk measures finished the week behind target</h1>
+  <p class="subtitle" data-chart-part="subtitle">Service desk figures for week 42. Each measure is drawn as a bar over three qualitative ranges, crossed by a tick at its target, and every row is scaled to the top of its own ranges. The shading deepens from the low band to the high band and names none of them good or bad; the table below the chart carries every figure, including each range's upper bound.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart" data-chart-dim="">
-      <title id="fig-title">Orders per day over twenty-eight days</title>
-      <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
-      <defs>
-        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
-          <stop offset="0" class="fade-top"></stop>
-          <stop offset="1" class="fade-base"></stop>
-        </linearGradient>
-      </defs>
-      <g data-chart-tooltip id="tip-daily-line"></g>
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 280" id="chart">
+      <title id="fig-title">Service desk measures against their targets, week 42</title>
+      <desc id="fig-desc">Four measures as horizontal bullet bars. Each row lays three qualitative ranges as deepening shades, carries the actual value as a thick bar over them, and is crossed by a tick at its target: first response stands at 3.4 hours against a target of 2, backlog age at 9 days against 5, reopened tickets at 4.1 percent against 5, and escalations at 7 per hundred tickets against 4. The table below the chart carries every figure as text.</desc>
+      <g data-chart-tooltip id="tip-bullet"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: order management system, daily order totals. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
     <table data-chart-table>
-      <caption>Orders placed per day, twenty-eight days.</caption>
-      <thead><tr><th scope="col">Day</th><th scope="col">Orders</th></tr></thead>
+      <caption>Service desk, week 42: each measure against its target, with the upper bounds of the three qualitative ranges behind its bar. The gap is actual minus target.</caption>
+      <thead><tr><th scope="col">Measure</th><th scope="col">Actual</th><th scope="col">Target</th><th scope="col">Gap</th><th scope="col">Low band &le;</th><th scope="col">Mid band &le;</th><th scope="col">High band &le;</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
 </div>
 <script>
 /* CHART_DATA:BEGIN */
-const DATA = [
-  { day: 1, value: 191 }, { day: 2, value: 204 }, { day: 3, value: 187 }, { day: 4, value: 212 },
-  { day: 5, value: 196 }, { day: 6, value: 143 }, { day: 7, value: 129 }, { day: 8, value: 183 },
-  { day: 9, value: 197 }, { day: 10, value: 178 }, { day: 11, value: 96 }, { day: 12, value: 104 },
-  { day: 13, value: 118 }, { day: 14, value: 111 }, { day: 15, value: 139 }, { day: 16, value: 152 },
-  { day: 17, value: 146 }, { day: 18, value: 158 }, { day: 19, value: 151 }, { day: 20, value: 113 },
-  { day: 21, value: 107 }, { day: 22, value: 147 }, { day: 23, value: 163 }, { day: 24, value: 155 },
-  { day: 25, value: 149 }, { day: 26, value: 161 }, { day: 27, value: 121 }, { day: 28, value: 114 }
+// Week 42 for a service desk. bands holds the upper bounds of three qualitative ranges,
+// and the last bound is also the scale the row is drawn at; actual and target are read
+// against it. The figures are uneven on purpose: two measures landed well past their
+// target, one sits short of it, and escalations ran close to the top of its highest range.
+const METRICS = [
+  { label: 'First response', unit: 'h', actual: 3.4, target: 2, bands: [1.5, 3, 6] },
+  { label: 'Backlog age', unit: 'days', actual: 9, target: 5, bands: [4, 8, 14] },
+  { label: 'Tickets reopened', unit: '%', actual: 4.1, target: 5, bands: [3, 6, 10] },
+  { label: 'Escalations / 100', unit: '', actual: 7, target: 4, bands: [2, 5, 9] }
 ];
 /* CHART_DATA:END */
 
-// Everything below draws. A near-hairline is the right weight here: heavy enough to hold on
-// paper, light enough that the line reads as a measurement rather than as a border. The area fill helps only
-// when the reader is reading shape rather than reading values off the axis.
+// Everything below draws. The ranges and the tick are what turn a number into a comparison:
+// the bar says where the week landed, the bands say what kind of landing it was, and the
+// tick says what it was aiming at.
 const SVG = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('chart');
 
@@ -241,7 +227,9 @@ function node(name, attrs, cls) {
 // which one they are looking at, inside the picture, where the person reading a chart will see
 // it. Readability is what is tested rather than length: a block whose entries all carry values
 // that are not finite numbers has length and still has nothing to draw. One row is not empty.
-const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+const HAS_READABLE_DATA = (METRICS || []).some(function (m) {
+  return Number.isFinite(m.actual) && Number.isFinite(m.target) && (m.bands || []).every(Number.isFinite);
+});
 figure: {
 if (!HAS_READABLE_DATA) {
   const box = svg.viewBox.baseVal;
@@ -271,6 +259,17 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+// One assembler for every figure that carries a unit, so a value in the value column, the
+// same value in the card and the same value in the table are put together once and cannot
+// drift apart. A percent attaches without a space, which is how the sentences above write it.
+function unitTail(u) { return u === '%' ? u : (u ? ' ' + u : ''); }
+function valueText(m) { return fmt(m.actual) + unitTail(m.unit); }
+function targetText(m) { return fmt(m.target) + unitTail(m.unit); }
+// The gap is signed: a positive gap is how far the measure sits past its target, a negative
+// one how far short. Subtraction leaves binary dust, so the gap goes through fmt like every
+// other figure a reader is shown.
+function gapText(m) { const g = m.actual - m.target; return (g > 0 ? '+' : '') + fmt(g) + unitTail(m.unit); }
+
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
 // not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
 // and returns an em dash for a reading nobody took, so the card can never disagree with the
@@ -283,8 +282,8 @@ function fmt(v, decimals) {
 const TIP_PAD = 10;
 const TIP_LINE = 16;
 const TIP_FLOOR = 128;
-const TIP_ROWS = 1;
-const tipLayer = document.getElementById('tip-daily-line');
+const TIP_ROWS = 3;
+const tipLayer = document.getElementById('tip-bullet');
 const MARKS = new Map();
 
 function tipNode(name, cls) {
@@ -355,198 +354,130 @@ function closeTip() {
   tipLayer.removeAttribute('data-open');
 }
 
-// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
-// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
-function niceStep(v) {
-  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
-  const n = v / pow;
-  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
-  for (let i = 0; i < ladder.length; i += 1) {
-    if (n <= ladder[i]) return ladder[i] * pow;
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const TRACK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-track')) || 0;
+
+// The two outer ends of the track are the only rounded corners it has, and a rect cannot
+// round one end without the other, so the outer ranges are paths and the inner ones rects.
+function endRounded(x, y, w, h, r, left) {
+  const k = Math.max(0, Math.min(r, w / 2, h / 2));
+  if (left) {
+    return 'M' + (x + w) + ',' + y +
+      ' H' + (x + k) +
+      ' A' + k + ',' + k + ' 0 0 0 ' + x + ',' + (y + k) +
+      ' V' + (y + h - k) +
+      ' A' + k + ',' + k + ' 0 0 0 ' + (x + k) + ',' + (y + h) +
+      ' H' + (x + w) + ' Z';
   }
-  return 10 * pow;
+  return 'M' + x + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w - k) + ',' + (y + h) +
+    ' H' + x + ' Z';
 }
 
-const LEFT = 50;
-const RIGHT = 706;
-const TOP = 20;
-const BASE = 244;
-const TICKS = 4;
-const peak = DATA.reduce(function (m, d) { return Number.isFinite(d.value) ? Math.max(m, d.value) : m; }, 0);
-const max = niceStep(peak / TICKS) * TICKS;
-// Every rung prints to the same decimal count as the gap between rungs, so the ladder
-// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
-const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
-const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
-const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+// The insets are this form's own, sized to what the rows actually carry: the left inset fits
+// the widest measure name, and the right inset reserves a value column so a bar never has to
+// carry its own label where it would collide with the tick that judges it. Each row is scaled
+// to its own top band bound rather than to a shared axis, because the measures run in
+// different units; the ranges drawn behind a bar are what keep a per-row scale readable.
+const LEFT = 130;
+const RIGHT = 640;
+const TOP = 34;
+const PITCH = 66;
+const BAND_H = 18;
+const BAR_H = 12;
+const BAND_CLASSES = ['band-lo', 'band-mid', 'band-hi'];
 
-// The fade runs down the plot rather than down each path's own box. A series broken by a
-// gap is drawn as several paths, and a per-path ramp would give each piece its own ink
-// density at the same height, which reads as an encoding nobody intended.
-const fade = document.getElementById('area-fade');
-fade.setAttribute('y1', TOP);
-fade.setAttribute('y2', BASE);
+const spanOf = function (m) { return m.bands[m.bands.length - 1]; };
+const xAt = function (m, v) { return LEFT + (RIGHT - LEFT) * (v / spanOf(m)); };
 
-// The value axis keeps the baseline and every other interior rung, and no rung above the
-// highest reading, where no mark is left for a line to serve. The readings themselves are
-// carried by the line, the card and the table, so the surviving ladder anchors the scale
-// rather than carrying every figure.
-for (let t = 0; t <= TICKS; t += 1) {
-  const value = (max / TICKS) * t;
-  if (t % 2 === 1 || value > peak) continue;
-  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
-  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
-}
+// Counts the bars as they are drawn, top to bottom, so the growth arrives in the order a
+// person scans. A running count is where a mark sits in the drawing and nothing else: reaching
+// into the data for the same number would let the shape of the data set the timing.
+let drawn = 0;
+METRICS.forEach(function (m, i) {
+  const y0 = TOP + PITCH * i;
+  const row = document.createElementNS(SVG, 'g');
 
-// A day with no reading breaks the line rather than dragging it through a value nobody
-// recorded. Interpolating across the gap invents the reading, and dropping the day and
-// closing up moves every later day to the wrong place on the axis. The line restarts on
-// the far side, which is what a reader needs to see. A day standing alone between two
-// gaps has no segment to belong to, so it is drawn as a round cap on a zero-length path.
-const segments = [];
-let run = [];
-DATA.forEach(function (d, i) {
-  if (Number.isFinite(d.value)) { run.push(x(i) + ',' + y(d.value)); return; }
-  if (run.length) segments.push(run);
-  run = [];
-});
-if (run.length) segments.push(run);
-const omitted = DATA.length - segments.reduce(function (n, s) { return n + s.length; }, 0);
+  // The bands tile the track from zero to the top bound, deepening as they go. Each row's
+  // own bounds set the seams, which is why no two rows split at the same place.
+  let prev = 0;
+  m.bands.forEach(function (bound, b) {
+    const x0 = LEFT + (RIGHT - LEFT) * (prev / spanOf(m));
+    const x1 = xAt(m, bound);
+    let el;
+    if (b === 0) {
+      el = node('path', { d: endRounded(x0, y0, x1 - x0, BAND_H, TRACK_R, true) }, BAND_CLASSES[b]);
+    } else if (b === m.bands.length - 1) {
+      el = node('path', { d: endRounded(x0, y0, x1 - x0, BAND_H, TRACK_R, false) }, BAND_CLASSES[b]);
+    } else {
+      el = node('rect', { x: x0, y: y0, width: x1 - x0, height: BAND_H }, BAND_CLASSES[b]);
+    }
+    row.appendChild(el);
+    prev = bound;
+  });
 
-// The run of days and the day the headline is about are the two things a reader separates on
-// this form, so they are the two groups the dim knows about. The series is the first.
-segments.forEach(function (points) {
-  if (points.length > 1) {
-    const from = points[0].split(',')[0];
-    const to = points[points.length - 1].split(',')[0];
-    node('path', {
-      d: 'M' + from + ',' + BASE + ' L' + points.join(' L') + ' L' + to + ',' + BASE + ' Z',
-      'data-series': 1
-    }, 'area');
+  // The stylesheet grows each bar from its zero end and staggers it by this index.
+  row.appendChild(node('rect', {
+    x: LEFT,
+    y: y0 + (BAND_H - BAR_H) / 2,
+    width: (RIGHT - LEFT) * (m.actual / spanOf(m)),
+    height: BAR_H,
+    style: '--mark-index:' + drawn
+  }, 'measure'));
+  drawn += 1;
+
+  const tx = xAt(m, m.target);
+  row.appendChild(node('line', { x1: tx, y1: y0 - 5, x2: tx, y2: y0 + BAND_H + 5 }, 'target-tick'));
+  const tl = node('text', { x: tx, y: y0 + BAND_H + 17, 'text-anchor': 'middle' }, 'target-label');
+  // A centred figure near either end of the track would hang past it, so the anchor flips
+  // to keep the target's value inside the row it belongs to.
+  if (tx - 42 < 0) {
+    tl.setAttribute('x', tx + 4);
+    tl.setAttribute('text-anchor', 'start');
+  } else if (tx + 42 > 720) {
+    tl.setAttribute('x', tx - 4);
+    tl.setAttribute('text-anchor', 'end');
   }
-  node('path', {
-    d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : ''),
-    'data-series': 1
-  }, 'line');
+  tl.textContent = 'Target ' + targetText(m);
+  row.appendChild(tl);
+
+  const cat = node('text', { x: LEFT - 10, y: y0 + BAND_H / 2 + 4, 'text-anchor': 'end' }, 'cat');
+  cat.textContent = m.label;
+  row.appendChild(cat);
+  const val = node('text', { x: 716, y: y0 + BAND_H / 2 + 4, 'text-anchor': 'end' }, 'val');
+  val.textContent = valueText(m);
+  row.appendChild(val);
+
+  // The whole row is one mark: the ranges, the bar, the tick and both labels answer for the
+  // same reading, so the card they open carries the three figures that row is judged by.
+  markable(row, m.label, [['Actual', valueText(m)], ['Target', targetText(m)], ['Gap', gapText(m)]]);
+  svg.appendChild(row);
 });
 
-// A dot per reading says where a value was actually recorded. A line alone leaves that to
-// be guessed from its corners, and a corner is also what a steep pair of readings makes
-// where nothing was recorded at all. The figure prints only the emphasised low, so the
-// card is the only reading of the value for every other day, and the finite-value test in
-// the guard is what keeps a day with no reading from becoming a mark with nothing to say.
-DATA.forEach(function (d, i) {
-  if (!Number.isFinite(d.value)) return;
-  markable(node('circle', { cx: x(i), cy: y(d.value), r: 2.5, 'data-series': 1 }, 'dot'),
-    'Day ' + d.day, [['Orders', fmt(d.value)]]);
-});
-
-// A line with a hole in it and a line that is simply short look the same, so the count
-// is stated inside the figure rather than left to the table to imply.
-if (omitted) {
-  node('text', { x: LEFT, y: BASE + 42 }, 'notice').textContent =
-    omitted === 1 ? '1 day has no reading and is left out of the line.'
-                  : fmt(omitted) + ' days have no reading and are left out of the line.';
-}
-
-// Thinning, not rotating. Days sit (RIGHT - LEFT) / (count - 1) apart, which is 24 units
-// over twenty-eight days. A 'day 28' label is six characters at the fixed mono advance of
-// roughly 0.6em, so about 40 units at the 11px .tick size, and drawing every day overlaps
-// by two thirds. Every seventh leaves roughly 170 units of clear space. The estimate is
-// exact rather than averaged now that the label is monospaced, which is worth keeping:
-// raise the divisor when the label grows, because a date reads far wider than a day
-// number, and the first and last are always kept so the span stays readable.
-DATA.forEach(function (d, i) {
-  if (d.day % 7 !== 0 && d.day !== 1) return;
-  const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';
-  node('text', { x: x(i), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = 'day ' + d.day;
-});
-
-// The low point is found among the readings that exist. A missing value compares as
-// smaller than every real one, so an unfiltered search marks the gap as the low.
-const readings = DATA.filter(function (d) { return Number.isFinite(d.value); });
-const entries = [];
-if (readings.length) {
-  const lowest = readings.reduce(function (a, b) { return b.value < a.value ? b : a; }, readings[0]);
-  const lowIndex = DATA.indexOf(lowest);
-  // The emphasised day is the second group, and it is a button because it is the control for
-  // the dim: pointing at it drops the run of days behind it to a third, which is what leaves
-  // the day the headline is about standing on its own. A control a pointer can reach has to be
-  // reachable from a keyboard too.
-  const entry = document.createElementNS(SVG, 'g');
-  entry.setAttribute('data-series', 2);
-  entry.setAttribute('tabindex', '0');
-  entry.setAttribute('role', 'button');
-  entry.setAttribute('aria-pressed', 'false');
-  const marker = document.createElementNS(SVG, 'circle');
-  marker.setAttribute('cx', x(lowIndex));
-  marker.setAttribute('cy', y(lowest.value));
-  marker.setAttribute('r', 5);
-  marker.setAttribute('class', 'mark');
-  entry.appendChild(marker);
-  // The emphasised crown covers its own dot, so this circle is the day's mark on the
-  // picture: without it, the one day the figure does print its value would be the one
-  // day whose pointer finds no mark.
-  markable(marker, 'Day ' + lowest.day, [['Orders', fmt(lowest.value)]]);
-  const note = document.createElementNS(SVG, 'text');
-  note.setAttribute('x', x(lowIndex) + 10);
-  note.setAttribute('y', y(lowest.value) + 4);
-  note.setAttribute('class', 'note');
-  note.textContent = fmt(lowest.value);
-  entry.appendChild(note);
-  svg.appendChild(entry);
-  entries.push(entry);
-}
-
+// The table is the complete reading, and the card repeats only what it already carries, so
+// the two can never disagree: both are assembled from the same three helpers above.
 const rows = document.getElementById('rows');
-DATA.forEach(function (d) {
+METRICS.forEach(function (m) {
   const tr = document.createElement('tr');
   const th = document.createElement('th');
   th.setAttribute('scope', 'row');
-  th.textContent = 'Day ' + d.day;
-  const td = document.createElement('td');
-  td.className = 'num';
-  td.textContent = fmt(d.value);
+  th.textContent = m.label;
   tr.appendChild(th);
-  tr.appendChild(td);
+  [valueText(m), targetText(m), gapText(m)]
+    .concat(m.bands.map(function (b) { return fmt(b) + unitTail(m.unit); }))
+    .forEach(function (text) {
+      const td = document.createElement('td');
+      td.className = 'num';
+      td.textContent = text;
+      tr.appendChild(td);
+    });
   rows.appendChild(tr);
 });
 
-// Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
-// the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
-// no chart can be left permanently dimmed by a pointer that wandered off the page.
-let latched = null;
-
-function dimTo(series) {
-  svg.setAttribute('data-chart-dim', series === null ? '' : series);
-}
-
-function latch(series) {
-  latched = latched === series ? null : series;
-  dimTo(latched);
-  entries.forEach(function (entry) {
-    entry.setAttribute('aria-pressed', entry.getAttribute('data-series') === latched ? 'true' : 'false');
-  });
-}
-
-svg.addEventListener('pointermove', function (e) {
-  if (latched !== null) return;
-  const owner = e.target.closest ? e.target.closest('[data-series]') : null;
-  dimTo(owner ? owner.getAttribute('data-series') : null);
-});
-svg.addEventListener('pointerleave', function () {
-  if (latched === null) dimTo(null);
-});
-entries.forEach(function (entry) {
-  entry.addEventListener('click', function () { latch(entry.getAttribute('data-series')); });
-  // A group in a drawing does not turn a key press into a click the way a button element does,
-  // so the two keys a button answers to are wired by hand.
-  entry.addEventListener('keydown', function (e) {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    e.preventDefault();
-    latch(entry.getAttribute('data-series'));
-  });
-});
 // One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
 // cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
 // pays for nothing.

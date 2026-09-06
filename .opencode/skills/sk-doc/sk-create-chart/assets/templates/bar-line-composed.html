@@ -200,12 +200,12 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
       <title id="fig-title">Orders and conversion rate over eight weeks</title>
-      <desc id="fig-desc">Eight weekly columns for orders placed, read against the left scale, with a line for the conversion rate read against the right scale. Each measure takes the colour of the axis it is measured against. Orders rise every week from 1,180 to 2,040 while the conversion rate falls every week from 4.0 to 2.6 percent, so the growth came from more sessions rather than from better ones. The table below the chart carries both series as text.</desc>
+      <desc id="fig-desc">Eight weekly columns for orders placed, read against the left scale, with a line for the conversion rate read against the right scale. Each measure takes the colour of the axis it is measured against. Orders rise every week from 1,120 to 2,010 while the conversion rate falls every week from 4.3 to 2.8 percent, so the growth came from more sessions rather than from better ones. The table below the chart carries both series as text.</desc>
       <g data-chart-legend id="legend-bar-line-composed"></g>
       <g data-chart-tooltip id="tip-bar-line-composed"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: commerce analytics warehouse, weekly rollup to 24 August. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -221,14 +221,14 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
 const SERIES = ['Orders', 'Conversion rate'];
 const UNITS = ['orders', 'percent'];
 const DATA = [
-  { label: 'W1', count: 1180, rate: 4.0 },
-  { label: 'W2', count: 1290, rate: 3.8 },
-  { label: 'W3', count: 1360, rate: 3.7 },
-  { label: 'W4', count: 1520, rate: 3.4 },
-  { label: 'W5', count: 1610, rate: 3.3 },
-  { label: 'W6', count: 1740, rate: 3.0 },
-  { label: 'W7', count: 1880, rate: 2.8 },
-  { label: 'W8', count: 2040, rate: 2.6 }
+  { label: '6 Jul', count: 1120, rate: 4.3 },
+  { label: '13 Jul', count: 1265, rate: 4.0 },
+  { label: '20 Jul', count: 1310, rate: 3.9 },
+  { label: '27 Jul', count: 1495, rate: 3.6 },
+  { label: '3 Aug', count: 1530, rate: 3.5 },
+  { label: '10 Aug', count: 1555, rate: 3.2 },
+  { label: '17 Aug', count: 1780, rate: 3.0 },
+  { label: '24 Aug', count: 2010, rate: 2.8 }
 ];
 /* CHART_DATA:END */
 
@@ -437,7 +437,13 @@ const cx = function (i) { return LEFT + slot * i + slot / 2; };
 // a scale, so the two ladders share their lines and differ only in what the ends say.
 for (let t = 0; t <= TICKS; t += 1) {
   const at = BASE - (BASE - TOP) * (t / TICKS);
-  node('line', { x1: LEFT, y1: at, x2: RIGHT, y2: at }, 'grid');
+  // The end rungs keep their labels and give up their lines. The columns' own feet draw
+  // the baseline, and the top rung sits past every reading on either ladder, so a line at
+  // either end frames the plot rather than helping a value be read. The interior rungs
+  // keep theirs, and the two ladders still share one set of lines.
+  if (t > 0 && t < TICKS) {
+    node('line', { x1: LEFT, y1: at, x2: RIGHT, y2: at }, 'grid');
+  }
   node('text', { x: LEFT - 10, y: at + 4, 'text-anchor': 'end' }, 'tick')
     .textContent = fmt((LEFT_MAX / TICKS) * t, LEFT_DP);
   if (!SECOND_SCALE) continue;

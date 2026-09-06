@@ -12,7 +12,8 @@
     "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/006-daily-range-endpoints",
     "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity",
     "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof",
-    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals"
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery"
   ],
   "manual": {
     "depends_on": [],
@@ -207,7 +208,7 @@
     ],
     "causal_summary": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
     "created_at": "2026-09-05T11:11:08Z",
-    "last_save_at": "2026-09-06T04:48:19.083Z",
+    "last_save_at": "2026-09-06T09:55:49.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,11 +218,11 @@
       "acceptance-criteria.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2c556936143d8207a4bc8820ad1ac93bd3f42a798914ec519a6ecc34553af446",
+    "source_fingerprint": "sha256:4e507d2a6556fb5dfe8c08597173f97f46b27ef03e008338717de0a9084c8ac4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "425501b51a3f11186f9eab1492d36217445f31e1271af438d064d55b0b750045",
-      "plan.md": "5079fdc2e7a804ef904daa04c10d3c07e6aa2b8c9fc0e7ac89de42e2b891c800",
+      "spec.md": "e4c57cc9d16932a0d95da6744cf366886baf2b2054afe6fa7c99f4eaba9ca9ca",
+      "plan.md": "9d9d5b127ac224dad8d72376ab6a285705b169ade41a9f45ffa493ebf92dafce",
       "tasks.md": "08a7a64e425745e5579dde95f9974ebd5bcc49b4a30ad1dd110dbde7c5b89c25",
       "research/research.md": "7a633af5fae46b0c2a0aad4080424ae85657b8bbd31d5cadda200d51eb70a108"
     },

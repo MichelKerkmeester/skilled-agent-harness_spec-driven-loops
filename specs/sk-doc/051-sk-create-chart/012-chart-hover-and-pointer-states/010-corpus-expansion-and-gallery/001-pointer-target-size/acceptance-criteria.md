@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-pointer-target-size"
+    packet_pointer: "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size"
     last_updated_at: "2026-09-06T06:26:43Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 010-corpus-expansion-and-gallery/001-pointer-target-size
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given any mark-carrying form, When a pointer sits anywhere within aiming distance of a mark, Then a card opens | Observed: `pointer-reach` walks an 11 by 11 grid on each of the 17 mark-carrying files and reports zero positions answering nothing within 24px of a mark. A finer sweep of `scatter` found 225 of 225 positions live | Met | - |
+| AC-002 | REQ-001 | Given any such position, When the card opens, Then it belongs to the mark the reader is aiming at | Observed: zero wrong-mark answers across all 17 files. The oracle asks the browser where the pointer is over a painted shape and computes nearest centre only off-mark, after two earlier oracles disagreed with the platform at tile boundaries | Met | - |
+| AC-003 | REQ-002 | Given a form whose bars animate in, When the resolver computes a mark's region, Then the region comes from `getBBox()` and does not move while the animation runs | Observed: the excerpt caches `getBBox()` per mark in all 17 files, which is independent of layout and of the entry transform | Met | - |
+| AC-004 | REQ-003 | Given a form that answers nothing where a mark is, When the checker runs, Then it fails and names the position and distance | Observed: reverting `daily-line` to plain hit testing gave `RESULT: FAILED`, 23 of 121 positions, coordinate (158, 204) at 22px. Restored byte-identical, sha256 `5357f64ab8bc618d`, gate back to `RESULT: PASSED` | Met | - |
+| AC-005 | REQ-003 | Given a form that answers with a neighbour's mark, When the checker runs, Then it fails and names both readings | Observed before the oracle was corrected: `heat-matrix` 10 of 90 and `stacked-area` 18 of 72, each naming the card shown and the card expected | Met | - |
+| AC-006 | REQ-004 | Given every changed form, When it is rendered, Then the picture is identical to its pre-change render | Observed: reconstructed pre-resolver copies render byte-identical PNGs on `scatter`, `calendar-grid`, `stacked-bars` and `daily-line` | Met | - |
+| AC-007 | REQ-006 | Given the corpus, When `check-corpus.cjs --render` runs from the final state, Then it prints `RESULT: PASSED` | Observed: `RESULT: PASSED`, 0 errors, `pointer-reach` and `card-readout` both 17 assertions 0 failures | Met | - |
 
 ### Status values
 
@@ -79,8 +85,14 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes. Seven of seven `Met`, nothing waived, nothing open.
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+The resolver was right on its first build and never changed. The rule that checks it was wrong
+three times, each time because its oracle approximated the browser instead of asking it, and once
+more because it counted empty margin as a hole. That is the transferable part of this child: where
+the platform can answer authoritatively, ask it, and reserve independent computation for what it
+cannot answer.
+
+The rule earned its place on its first honest run by catching a defect its author had shipped: four
+deliveries had never received the resolver, and two answered nothing at 121 of 121 positions.
 <!-- /ANCHOR:closure -->

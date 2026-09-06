@@ -152,7 +152,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       <desc id="fig-desc">Seven sites drawn as vertical columns against a value axis. The tallest site despatched 840 pallets and carries the emphasis colour. The table below the chart carries every value as text.</desc>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: warehouse management system, despatch records. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -167,12 +167,12 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 /* CHART_DATA:BEGIN */
 const DATA = [
   { label: 'LDS', value: 840, lead: true },
-  { label: 'BRM', value: 690 },
-  { label: 'CDF', value: 415 },
-  { label: 'GLW', value: 380 },
-  { label: 'NCL', value: 265 },
-  { label: 'PLY', value: 190 },
-  { label: 'ABZ', value: 120 }
+  { label: 'BRM', value: 628 },
+  { label: 'CDF', value: 497 },
+  { label: 'GLW', value: 341 },
+  { label: 'NCL', value: 252 },
+  { label: 'PLY', value: 184 },
+  { label: 'ABZ', value: 61 }
 ];
 /* CHART_DATA:END */
 
@@ -266,8 +266,13 @@ const max = niceStep(peak / TICKS) * TICKS;
 const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
+// The value axis keeps the rungs a reader still needs, not every rung the scale allows: the
+// baseline plus every other interior rung, and no rung above the tallest column, where no
+// mark is left for a line to serve. Every column prints its own value, so the surviving
+// ladder anchors the scale rather than being the only way to read a figure.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
+  if (t % 2 === 1 || value > peak) continue;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }

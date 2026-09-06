@@ -1,6 +1,6 @@
 ---
 title: "Acceptance Criteria: Generate one gallery page rendering every form in both colour schemes"
-description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
+description: "Six criteria: generated not authored, both schemes per form, the rule watched failing in both directions, nothing external, and the page held to its own obligation rather than the chart rules."
 trigger_phrases:
   - "acceptance criteria"
   - "closure gate"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-light-dark-gallery"
+    packet_pointer: "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery"
     last_updated_at: "2026-09-06T06:26:46Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 010-corpus-expansion-and-gallery/004-light-dark-gallery
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the templates directory, When the gallery is built, Then its contents come from that directory rather than a hand-written list | Observed: `build-gallery.cjs` reads `assets/templates/` and reports "26 forms, 52 frames"; `--check` compares the written page byte for byte against a fresh build | Met | - |
+| AC-002 | REQ-002 | Given each form, When the gallery is opened, Then it appears twice with each frame pinned to a scheme | Observed: 52 frames, two per form, each carrying `data-scheme` and writing that scheme into the framed document on load | Met | - |
+| AC-003 | REQ-003 | Given a form dropped from the page, When the corpus runs, Then it fails naming that form | Observed: removing `funnel` gave `FAIL [gallery] ... funnel appears in 0 gallery frame(s) and needs two`, then `RESULT: FAILED`. Restored, sha256 `852ff466ce16eb10` | Met | - |
+| AC-004 | REQ-003 | Given a form added without rebuilding, When the corpus runs, Then it fails naming the count and the form | Observed: a 27th template gave both `the gallery says it carries 26 forms and the corpus has 27` and the missing-form line, then `RESULT: FAILED`. Probe removed, gate back to `RESULT: PASSED` | Met | - |
+| AC-005 | REQ-004 | Given the page, When inspected, Then it carries no framework, CDN reference or build step for the charts | Observed: one inline stylesheet and one inline script, no external reference of any kind | Met | - |
+| AC-006 | REQ-005 | Given the gallery, When the corpus runs, Then it is not judged by the chart rules | Observed: before the exemption the page produced 24 failures demanding a data block and colour system. It is now excluded by path and held to the `gallery` rule instead, 27 assertions, 0 failures | Met | - |
 
 ### Status values
 
@@ -79,8 +84,15 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes. Six of six `Met`.
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+The rule matters more than the page. A gallery is easy to write and easy to let rot, and a rotten
+one is worse than none because it still looks authoritative. Generating it from the directory and
+failing the corpus when the two disagree is what makes the page trustworthy a year from now.
+
+Building it surfaced a category error worth recording: the page lives under `assets/`, so the
+corpus checker initially ran the chart rules over it and produced twenty-four failures demanding a
+data block, a colour system and a palette block from a contact sheet. The fix was not to give the
+gallery those things but to say plainly that it is not a chart, and to hold it to the one obligation
+it does have.
 <!-- /ANCHOR:closure -->

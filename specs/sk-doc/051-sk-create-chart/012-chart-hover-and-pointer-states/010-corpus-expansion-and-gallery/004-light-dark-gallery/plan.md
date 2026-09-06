@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Generate one gallery page rendering every form in both colour schemes [template:level-2/plan.md]"
+title: "Implementation Plan: Generate one gallery page rendering every form in both colour schemes"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"

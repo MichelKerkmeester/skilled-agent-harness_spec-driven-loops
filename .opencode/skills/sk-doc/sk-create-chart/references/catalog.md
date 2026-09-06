@@ -41,6 +41,11 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 
 | id | family | question | data shape | system | file |
 | --- | --- | --- | --- | --- | --- |
+| histogram | distribution | What shape does this measure take across its range | 6 to 15 adjacent bins, one count each | neutral | assets/templates/histogram.html |
+| bullet | comparison | Did this measure clear its target, and by how much | 1 to 6 metrics, each with an actual, a target and banded ranges | ordered | assets/templates/bullet.html |
+| funnel | part-to-whole | Where in the pipeline are we losing them | 4 to 7 ordered stages, one count each | neutral | assets/templates/funnel.html |
+| dumbbell | change | How far did each category move between two readings | 5 to 12 categories, a before and an after each | neutral | assets/templates/dumbbell.html |
+| population-pyramid | distribution | How do two populations differ across the same bands | 6 to 12 ordered bands, two counts each | neutral | assets/templates/population-pyramid.html |
 | bar-rows | comparison | Which category is biggest, when the names are words | 8 or fewer categories, one value each | neutral | assets/templates/bar-rows.html |
 | bar-columns | comparison | Which category is biggest, when the names are short codes | 8 or fewer categories, one value each | neutral | assets/templates/bar-columns.html |
 | grouped-bars | comparison | How does this period compare with the last one | 2 series across 6 or fewer categories | neutral | assets/templates/grouped-bars.html |
@@ -122,7 +127,6 @@ Every name in the left column already routes to this packet, so a request carryi
 
 | The reader says | Draw | What to know first |
 | --- | --- | --- |
-| histogram | `distribution-strip` | Same question, different mark. The strip draws one dot per record rather than binning records into bars, so the spread is read from where the dots crowd. It stays honest from tens to a few hundred records. Past that ceiling, or when a five-number summary is what the reader wants, use `box-plot` |
 | heatmap, heat map | `heat-matrix` | The same chart under a different name. Two discrete dimensions, one cell per combination, shaded by value |
 | calendar heatmap | `calendar-grid` | The same chart, fixed to one year of days with weekdays down and weeks across. A shaded matrix of anything other than days belongs in `heat-matrix` |
 | donut chart | `unit-ring` | Same question, same ring, same total in the middle. The ring is built from countable ticks rather than from continuous arcs, which is the point: a reader counts marks instead of estimating angles. Parts that arrive as percentages rather than as whole-number counts belong in `unit-grid` |
@@ -130,7 +134,7 @@ Every name in the left column already routes to this packet, so a request carryi
 | parallel coordinates | `parallel-axes` | The same chart under a different name. One vertical axis per dimension, one line per entity, every axis on its own scale |
 | combo chart, dual axis chart, bar and line chart | `bar-line-composed` | The same chart under three names a reader is more likely to use than the row id. Columns for a count and a line for a rate over the same periods. The second scale is not a setting: the file draws one only when the two measures are an order of magnitude apart, and one ladder otherwise |
 
-Two of those rows are substitutions rather than matches, and the difference is worth saying plainly. **This corpus draws no binned histogram and no arc-based pie or donut.** Each of the two rows names what arrives instead and why it answers the question the reader asked. The other five rows are the same chart wearing a name the index happens not to use.
+One of those rows is a substitution rather than a match, and the difference is worth saying plainly. **This corpus draws no arc-based pie or donut.** It does now draw a binned histogram, which is why `histogram` has moved out of this table and into the index above. Each of the two rows names what arrives instead and why it answers the question the reader asked. The other five rows are the same chart wearing a name the index happens not to use.
 
 A name that reaches neither this table nor a row in the index is still a gap to report. Sending a reader to a chart that answers a different question costs more than telling them the corpus has no form for it.
 

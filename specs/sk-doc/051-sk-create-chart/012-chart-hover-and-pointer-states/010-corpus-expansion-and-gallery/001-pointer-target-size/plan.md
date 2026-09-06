@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Give every mark a pointer target of at least 24 CSS pixels and enforce it [template:level-2/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Give every mark a pointer target of at least 24 CSS pixels and enforce it"
+description: "Replace per-mark hit testing with a nearest-mark resolver on the nine forms whose marks sit under the pointer floor, then add the corpus rule that keeps it true. Records the measurement trap that made the first baseline wrong and the settled-render claim that did not survive testing."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -19,17 +19,22 @@ contextType: "general"
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
+One mechanism and one rule.
 
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+The mechanism replaces `markAt()`'s DOM hit test with a nearest-mark resolver on the nine forms
+carrying marks under the floor. Every mark gets the region nearer to it than to any other, which is
+larger than an enlarged mark wherever marks are far apart and the largest available where they are
+close. Resolution is ordered: direct hit, then the smallest containing box, then nearest centre
+within a bounded reach.
 
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+The rule is `pointer-reach`. It walks an 11 by 11 grid over each drawing, dispatches a real
+pointer at each position, and fails a form that answers nothing across more than a tenth of the
+grid or answers with a mark other than the nearest.
+
+Both halves depend on one harness fact: these transforms are compositor-driven, so the paint
+settles while `getBoundingClientRect()` still reports the pre-animation box. Anything that reads
+geometry must force animations first.
+
 <!-- /ANCHOR:summary -->
 
 ---
@@ -53,15 +58,20 @@ contextType: "general"
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+The resolver lives in each file, as everything here does, and is the same excerpt in all nine.
+It caches each mark's `getBBox()` once. `getBBox()` reports drawn geometry independent of layout
+and of the entry transform, which is what keeps a region stable while a bar grows in; a region
+measured from the painted box would move.
 
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+Ordering carries the design. A direct DOM hit is exact and cheapest, so it wins. Containment comes
+next because nearest-centre alone is wrong for stacked rectangles: on `stacked-bars` a point inside
+one segment can sit nearer another segment's centre, and naming that neighbour would attribute a
+reading to the wrong series. Nearest centre is the fallback, bounded so that pointing away from the
+drawing still means nothing.
 
-### Data Flow
-[Brief description of how data moves through the system]
+`pointer-reach` runs inside the render pass on a temporary instrumented copy, never on a corpus
+file. It is the second rule that can only learn anything by opening a card.
+
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,11 +107,15 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+The corpus checker is the test suite, so a rule is tested by watching it fail. `pointer-reach` gets
+a deliberate mutation that trips exactly its branch, run against a real file in place and restored
+from a byte-identical copy.
+
+Correctness of the resolver is proven by probe rather than by reading: a grid walk per form,
+comparing the card each position opens against the geometrically nearest mark. That walk found the
+one case the design exists for, and it also produced a false alarm on `stacked-bars` where the
+oracle, not the resolver, was wrong.
+
 <!-- /ANCHOR:testing -->
 
 ---
@@ -150,12 +164,11 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Phase | Complexity | Notes |
+|-------|------------|-------|
+| Measure the baseline | Medium | The measurement is the delicate part, not the fix |
+| The resolver, nine forms | Low | One proven excerpt, transferred mechanically |
+| The rule and its proof | Medium | It must be watched failing before it counts |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +177,18 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Every changed file is tracked and uncommitted, so the working tree is the backup
+- [x] No flag applies: the resolver is a function body and the rule is one call site
+- [x] Nothing is deployed; the gate is run on demand
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Restore the original `markAt` in the nine templates and revert the three `markAt(e)` call sites.
+2. Remove the `checkPointerReach` call from the render pass.
+3. Re-run `node scripts/check-corpus.cjs --render` and confirm `RESULT: PASSED`.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A. No data changes; the rule writes only to a temporary directory.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---

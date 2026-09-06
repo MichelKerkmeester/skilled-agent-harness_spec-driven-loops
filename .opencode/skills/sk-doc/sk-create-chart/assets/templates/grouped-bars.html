@@ -186,7 +186,7 @@ path.past, path.current {
       <g data-chart-tooltip id="tip-grouped-bars"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: marketing analytics platform, signup attribution by channel. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -202,11 +202,11 @@ path.past, path.current {
 const SERIES = ['Last year', 'This year'];
 const RANK = ['past', 'current'];
 const DATA = [
-  { label: 'Referral', values: [1240, 1810] },
-  { label: 'Organic', values: [2100, 2460] },
-  { label: 'Paid search', values: [1930, 1420] },
-  { label: 'Events', values: [640, 880] },
-  { label: 'Partners', values: [410, 690] }
+  { label: 'Referral', values: [1187, 1642] },
+  { label: 'Organic', values: [2246, 2613] },
+  { label: 'Paid search', values: [2015, 1378] },
+  { label: 'Events', values: [655, 918] },
+  { label: 'Partners', values: [384, 726] }
 ];
 /* CHART_DATA:END */
 
@@ -384,8 +384,12 @@ const max = niceStep(peak / TICKS) * TICKS;
 const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
+// The value axis keeps the baseline and every other interior rung, and no rung above the
+// tallest column, where no mark is left for a line to serve. Columns are compared as pairs
+// by height, so the surviving ladder anchors the scale rather than naming every rung.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
+  if (t % 2 === 1 || value > peak) continue;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
@@ -503,13 +507,76 @@ entries.forEach(function (entry) {
 // pays for nothing.
 let pinned = null;
 
-function markAt(target) {
-  return target && target.closest ? target.closest('[data-mark]') : null;
+// The reach a pointer gets when it lands on no mark at all. Far enough that a small mark is easy
+// to hit, short enough that pointing at empty space still means nothing.
+const REACH = 36;
+const BOXES = new Map();
+
+// getBBox reports the geometry the element was drawn with, independent of layout and of the entry
+// animation's transform. A region measured from the painted box would move while the mark grows in.
+function markBox(el) {
+  let box = BOXES.get(el);
+  if (box === undefined) {
+    try {
+      const g = el.getBBox();
+      box = { x: g.x, y: g.y, w: g.width, h: g.height };
+    } catch (err) {
+      box = null;
+    }
+    BOXES.set(el, box);
+  }
+  return box;
+}
+
+function pointerInDrawing(e) {
+  const ctm = svg.getScreenCTM();
+  if (!ctm) return null;
+  const p = svg.createSVGPoint();
+  p.x = e.clientX;
+  p.y = e.clientY;
+  return p.matrixTransform(ctm.inverse());
+}
+
+// These marks sit closer together than a comfortable pointer target is wide, so growing each one
+// to a usable size would make neighbours overlap and steal each other's card. Handing every mark
+// the region that is nearer to it than to any other gives it the largest target it can have
+// without taking one away from its neighbour.
+function markAt(e) {
+  const target = e && e.target;
+  const direct = target && target.closest ? target.closest('[data-mark]') : null;
+  if (direct) return direct;
+  const at = pointerInDrawing(e);
+  if (!at) return null;
+  let inside = null;
+  let nearest = null;
+  let best = Infinity;
+  MARKS.forEach(function (_info, el) {
+    const box = markBox(el);
+    if (!box) return;
+    const area = box.w * box.h;
+    // A pointer within a mark's own box belongs to that mark even when a smaller neighbour's
+    // centre is nearer, which is what distance alone gets wrong on a stacked column.
+    if (at.x >= box.x && at.x <= box.x + box.w && at.y >= box.y && at.y <= box.y + box.h) {
+      if (!inside || area < inside.area) inside = { el: el, area: area };
+      return;
+    }
+    const dx = at.x - (box.x + box.w / 2);
+    const dy = at.y - (box.y + box.h / 2);
+    const d = dx * dx + dy * dy;
+    // A tie goes to the larger mark. Where a form draws an emphasised mark over an ordinary one at
+    // the same point, the emphasised one is what the figure prints and what the reader is aiming at.
+    if (d < best || (d === best && nearest && area > nearest.area)) {
+      best = d;
+      nearest = { el: el, area: area };
+    }
+  });
+  if (inside) return inside.el;
+  return best <= REACH * REACH && nearest ? nearest.el : null;
 }
 
 svg.addEventListener('pointermove', function (e) {
   if (pinned) return;
-  const mark = markAt(e.target);
+  const mark = markAt(e);
   if (mark) openTip(mark); else closeTip();
 });
 svg.addEventListener('pointerleave', function () {
@@ -518,7 +585,7 @@ svg.addEventListener('pointerleave', function () {
 // A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
 // anywhere else closes it too, which is the gesture a reader already expects.
 svg.addEventListener('click', function (e) {
-  const mark = markAt(e.target);
+  const mark = markAt(e);
   if (!mark || mark === pinned) {
     pinned = null;
     closeTip();

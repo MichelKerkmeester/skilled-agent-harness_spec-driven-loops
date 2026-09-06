@@ -276,7 +276,7 @@ than a shared value.
 
 ---
 
-## 7. THE NINETEEN RULES
+## 7. THE TWENTY RULES
 
 Every rule below is enforced, and three are enforced in part. The check name is what appears in the
 corpus check output, so a failure points at the rule it broke.
@@ -310,6 +310,7 @@ Section 9 carries the full account of what a run does not observe.
 | 17 | A form that refuses the pointer says why, and cannot also carry a register that answers one | `interaction-hygiene` | A form claiming both that it needs no pointer and that it answers one, or an inert claim nobody can act on because it names no reason |
 | 18 | Every number a card can show appears in the form's data table | `card-readout` | A hover that reveals a reading no other route reaches, which hides data from every reader not holding a pointer |
 | 19 | Every form on disk has a row in the per-form pointer contract, and every row has a form | `pointer-contract-coverage` | A form shipping with no decision recorded about what a pointer does on it, or a row describing a form nobody ships |
+| 20 | A pointer aimed into a drawing reaches a mark, and reaches the nearest one | `pointer-reach` | A mark too small to aim at, and a card that answers with a neighbour's reading instead of the one under the pointer |
 
 Rule 4 used to say exactly one block, and it said so for a good reason: one block per file is one
 place a colour can drift, and a diff shows it. A theme is the one thing that argument does not
@@ -442,6 +443,11 @@ A form that gains any of the three also carries one line of interaction hygiene:
 
 | Form | Contract | Reason |
 | --- | --- | --- |
+| `histogram` | `tooltip` | A bin's count exists only as column height, and the bin's own range is printed on the axis at its edges rather than against the column |
+| `bullet` | `tooltip` | The measure, its target and the gap between them exist as bar lengths against a banded track, and none of the three is printed beside the mark |
+| `funnel` | `tooltip` | A stage's count is printed, but the drop from the stage above exists only as the difference in two bar widths |
+| `dumbbell` | `tooltip` | The two endpoints are drawn and the change between them is the whole point of the form, existing only as the distance between two dots |
+| `population-pyramid` | `tooltip` | Each side's count exists as a bar length from the centre, and the comparison between the two sides is never printed |
 | `box-plot` | `tooltip` | Reference implementation. Five-number summary per box, none of it printed in the drawing |
 | `calendar-grid` | `tooltip` | Shipped and working. No defect found |
 | `candlestick` | `tooltip` | Shipped and working. No defect found |
@@ -463,6 +469,21 @@ A form that gains any of the three also carries one line of interaction hygiene:
 | `independent-percentages` | `inert` | Each track's percentage is printed to its right and its name to its left |
 | `bar-columns` | `inert` | Each column's value is printed above it |
 | `bar-rows` | `inert` | Each bar's value is printed at its end, with its unit suffix |
+
+### What a pointer owes a reader
+
+A mark is reachable when a pointer aimed at it opens its card. That is not the same as the mark
+being drawn, and in this corpus it was mostly not true: measured against a 24px floor, 596 of 695
+marks were smaller than a comfortable target, and the smallest were under five pixels across.
+
+The fix is not to draw bigger marks. It is to hand every mark the region that is nearer to it than
+to any other, which is the largest target it can have without taking one from a neighbour.
+Resolution runs in order: a direct hit wins; then the smallest mark box containing the pointer,
+which is what nearest-centre gets wrong on a stacked column; then the nearest centre within a
+bounded reach, so pointing away from the drawing still means nothing. Regions come from `getBBox()`
+so they do not move while a bar grows in.
+
+`pointer-reach` enforces it, and like `card-readout` it can only know by opening a card.
 
 ### What a card owes its table
 

@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Research and add the chart forms the catalogue is missing [template:level-3/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Research and add the chart forms the catalogue is missing"
+description: "Build five new chart forms by adapting the closest existing structure, then admit each to the corpus only once it passes."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -34,9 +34,10 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Decide the catalogue, so the child has an end — Evidence: five gaps named with the form each is adapted from; `gauge`, `radar`, `pareto`, `lollipop` and `sankey` excluded with written reasons
+- [x] T002 Write one bounded brief per form naming what to change and what must survive byte-for-byte — Evidence: five briefs, each listing the palette block, geometry, card mechanism, pointer resolver and accessibility wiring as untouchable
+- [x] T003 Build outside the skill tree, so a half-built form cannot fail the gate for the whole corpus — Evidence: all five written to a scratch directory first
+
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +45,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Build the five forms in parallel — Evidence: four landed first time; `histogram` returned a provider error with nothing written and succeeded on retry
+- [x] T005 Check each file structurally before admitting it — Evidence: `data-chart-table`, `markable()`, the resolver, palette references and zero external references present in each; identity meta matching the filename stem and a colour system the palette defines
+- [x] T006 Admit the forms with their contract rows and catalogue entries in the same move — Evidence: 26 templates against 26 contract rows; catalogue index carries all five
+- [x] T007 Correct the catalogue prose that adding a histogram made false — Evidence: the substitution row routing `histogram` to `distribution-strip` removed, and the sentence claiming the corpus draws no binned histogram rewritten
+
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Fix what the gate found — Evidence: `population-pyramid` missing its focus hygiene rule, and `bullet` mis-resolving 10 of 81 positions, which turned out to be the checker's oracle rather than the form
+- [x] T009 Gate the enlarged corpus — Evidence: `RESULT: PASSED`, 0 errors, 26 templates, `card-readout` and `pointer-reach` at 22 assertions each
+
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` — nine of nine
+- [x] No `[B]` blocked tasks remaining — none used
+- [x] Manual verification passed — structural check per file before admission, then the corpus gate
 <!-- /ANCHOR:completion -->
 
 ---

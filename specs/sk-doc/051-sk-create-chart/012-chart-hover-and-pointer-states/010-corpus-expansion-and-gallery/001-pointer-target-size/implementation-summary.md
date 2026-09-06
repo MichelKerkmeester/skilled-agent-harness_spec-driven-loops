@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-2/implementation-summary.md]"
+title: "Implementation Summary: give every mark a reachable pointer target"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation summary"
@@ -10,13 +10,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-pointer-target-size"
+    packet_pointer: "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size"
     last_updated_at: "2026-09-06T06:26:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Resolver on 17 files; pointer-reach added, corrected three times, watched failing"
+    next_safe_action: "Child 002, the restyle"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs"
+      - ".opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-001-pointer-target-size"

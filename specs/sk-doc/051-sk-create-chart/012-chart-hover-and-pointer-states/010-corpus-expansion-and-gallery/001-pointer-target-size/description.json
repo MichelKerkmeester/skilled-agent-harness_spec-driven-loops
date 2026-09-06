@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size",
+  "description": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
+  "keywords": [
+    "markable",
+    "sets",
+    "data-mark",
+    "visible",
+    "geometry",
+    "pointer",
+    "target",
+    "drawn",
+    "mark"
+  ],
+  "lastUpdated": "2026-09-06T08:15:45.462Z",
+  "specId": "001",
+  "folderSlug": "pointer-target-size",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart",
+    "012-chart-hover-and-pointer-states",
+    "010-corpus-expansion-and-gallery"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

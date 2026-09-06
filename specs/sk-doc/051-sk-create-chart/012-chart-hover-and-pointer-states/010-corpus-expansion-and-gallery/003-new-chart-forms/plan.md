@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Research and add the chart forms the catalogue is missing [template:level-3/plan.md]"
+title: "Implementation Plan: Research and add the chart forms the catalogue is missing"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"

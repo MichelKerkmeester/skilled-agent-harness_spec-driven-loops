@@ -165,7 +165,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       <g data-chart-tooltip id="tip-daily-range"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: application performance monitoring, daily response-time probes. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -179,13 +179,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 <script>
 /* CHART_DATA:BEGIN */
 const DATA = [
-  { day: 1, low: 118, high: 340 }, { day: 2, low: 121, high: 366 },
-  { day: 3, low: 116, high: 352 }, { day: 4, low: 124, high: 401 },
-  { day: 5, low: 119, high: 438 }, { day: 6, low: 112, high: 402 },
-  { day: 7, low: 115, high: 421 }, { day: 8, low: 123, high: 507 },
-  { day: 9, low: 120, high: 548 }, { day: 10, low: 126, high: 611 },
-  { day: 11, low: 118, high: 664 }, { day: 12, low: 122, high: 702 },
-  { day: 13, low: 117, high: 781 }, { day: 14, low: 125, high: 910 }
+  { day: 1, low: 119, high: 340 }, { day: 2, low: 124, high: 372 },
+  { day: 3, low: 117, high: 361 }, { day: 4, low: 127, high: 408 },
+  { day: 5, low: 121, high: 449 }, { day: 6, low: 115, high: 431 },
+  { day: 7, low: 122, high: 467 }, { day: 8, low: 128, high: 536 },
+  { day: 9, low: 118, high: 583 }, { day: 10, low: 125, high: 622 },
+  { day: 11, low: 116, high: 695 }, { day: 12, low: 123, high: 741 },
+  { day: 13, low: 120, high: 826 }, { day: 14, low: 126, high: 910 }
 ];
 /* CHART_DATA:END */
 
@@ -351,8 +351,13 @@ const max = niceStep(peak / TICKS) * TICKS;
 const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
+// The value axis keeps the baseline and every other interior rung, and no rung above the
+// tallest bar, where no mark is left for a line to serve. A bar's two bounds are read from
+// the card and the table, so the surviving ladder anchors the scale rather than carrying
+// every figure.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
+  if (t % 2 === 1 || value > peak) continue;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }

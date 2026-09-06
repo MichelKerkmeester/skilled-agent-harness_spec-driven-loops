@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Restyle every existing form and replace demo data with realistic figures [template:level-3/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Restyle every existing form and replace demo data with realistic figures"
+description: "Two gated stages: believable figures into all twenty-one templates, then a restyle that provably moved no number."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Snapshot every template before dispatch so containment can be checked mechanically rather than read — Evidence: 21 templates copied outside the packet; the same snapshot later served stage B
+- [x] T002 Establish the containment contract: only lines between the data delimiters and the source line may move — Evidence: a difflib opcode walk per file, asserting every changed run falls inside the block or is the source line
+- [x] T003 Confirm the corpus is green before the first edit — Evidence: `RESULT: PASSED` from the state child 001 left
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Stage A, first batch of five templates, as a trial before fanning out — Evidence: 5 files, 2 changed runs each, all contained; 14/14 daily-range lows below highs; all parse
+- [x] T005 Stage A, remaining sixteen templates across three workers — Evidence: all contained; `unit-grid` sums to 100, `candlestick` satisfies high>=max(open,close) on 14/14 weeks, `treemap` children nest under families
+- [x] T006 Stage A gate — Evidence: `RESULT: PASSED`, 0 errors, `card-readout` 17/17 confirming every new figure a card reveals is also in its table
+- [x] T007 Capture the rendered table text of every form, so stage B has something to be checked against — Evidence: 26 snapshots, all non-empty
+- [x] T008 Stage B restyle across all twenty-six forms, three workers, one stated direction — Evidence: 15 files edited, 11 deliberately left alone as forms already carrying little ink
+- [x] T009 Reconcile the prose that stage A left stale — Evidence: six templates quoted figures their data no longer carried, all six corrected, sweep re-run reporting zero
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Prove the restyle moved no number — Evidence: all 26 rendered table texts byte-identical to the pre-restyle baseline
+- [x] T011 Stage B gate — Evidence: `RESULT: PASSED`, 0 errors, with `dark-render` 35 and `palette-source-dark` 34 confirming both colour schemes survived
+- [x] T012 Verify no data block moved during the restyle — Evidence: all 26 `CHART_DATA` blocks byte-identical to the pre-restyle snapshot
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` — twelve of twelve
+- [x] No `[B]` blocked tasks remaining — none used
+- [x] Manual verification passed — containment per file, arithmetic per batch, table text per form
 <!-- /ANCHOR:completion -->
 
 ---

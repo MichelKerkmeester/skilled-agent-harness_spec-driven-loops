@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Generate one gallery page rendering every form in both colour schemes [template:level-2/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Generate one gallery page rendering every form in both colour schemes"
+description: "One page carrying every chart form twice, once per pinned colour scheme, generated from the templates directory so a missing form is impossible rather than merely unlikely."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,11 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/004-light-dark-gallery` |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Packet** | `010-corpus-expansion-and-gallery` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,10 +34,24 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+Every file in the corpus carries a dark palette block behind `prefers-color-scheme`, and the checker
+proves that block reaches the paint. What nobody can do is see the two schemes together: comparing
+them means changing a system setting and reloading, one form at a time, twenty-six times.
+
+The obvious fix is a page listing every form. The obvious fix is also how a corpus acquires a page
+that quietly omits the form somebody added last week, and an omission of that kind is
+indistinguishable from a form that was never meant to be listed.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+One self-contained page showing every form in both schemes, generated from the directory rather
+than written by hand, with a corpus rule that makes a stale gallery an error.
+
+### Non-Goals
+
+- Restyling anything. The gallery frames the corpus; it does not change it.
+- A build step for the charts. The generator writes one static page and the charts stay as they are.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -44,20 +59,29 @@ contextType: "general"
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
+### Generated, never authored
+
+`scripts/build-gallery.cjs` reads `assets/templates/`, and `--check` fails when the written page
+differs by a byte from what a fresh build would produce. That is the whole design: the page cannot
+disagree with the directory without the disagreement being an error somebody sees.
+
+Each of the fifty-two frames pins its own colour scheme, written into the framed document once it
+loads, because a scheme cannot be forced on a frame from outside it. Without the pin a pair is two
+copies of whatever the reader's system happens to be set to, which is not a comparison.
+
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The generator, the generated page, and the corpus rule enforcing that they agree.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The deliveries under `assets/examples/`, which are built from templates already shown.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/sk-create-chart/scripts/build-gallery.cjs` | Create | Reads the directory, writes the page, and checks the page against the directory |
+| `.opencode/skills/sk-doc/sk-create-chart/assets/gallery.html` | Create | Generated: every form, twice |
+| `.opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs` | Modify | The `gallery` rule, and an exemption so the page is not checked as though it were a chart |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -65,20 +89,13 @@ contextType: "general"
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement |
-|----|-------------|
-| REQ-002 | [Requirement description] |
-
-> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
-> which is the document that decides whether this packet may close.
+| REQ-001 | The gallery is generated from the templates directory, not hand-listed. |
+| REQ-002 | Every form appears twice, once per colour scheme, with each frame pinned. |
+| REQ-003 | A form missing from the gallery is an error, and so is a gallery that has fallen behind the directory. Both watched failing before the rule is trusted. |
+| REQ-004 | The page is self-contained: no framework, no CDN, no build step for the charts it frames. |
+| REQ-005 | The gallery is not judged by the chart rules. It carries no data block and no colour system because it is a contact sheet, and asking it for either is a category error. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -86,8 +103,11 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The gallery carries all 26 forms in 52 frames.
+- **SC-002**: `build-gallery.cjs --check` passes against the written page.
+- **SC-003**: Dropping a form from the page fails the corpus, naming that form.
+- **SC-004**: Adding a form to the corpus without rebuilding fails, naming the count and the form.
+- **SC-005**: The corpus gate prints `RESULT: PASSED` with the gallery present.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -97,8 +117,10 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | The gallery drifts from the corpus | High: a stale contact sheet is worse than none, because it looks authoritative | Generated, and the rule fails on both a missing form and a count mismatch |
+| Risk | The chart rules are applied to a page that is not a chart | Medium: this happened, producing 24 failures demanding a data block from a contact sheet | The page is exempted by path and held to its own rule instead |
+| Risk | Frames show one scheme twice | Medium: the comparison silently becomes a duplicate | Each frame pins its scheme into the framed document on load, with the reader's own scheme as the degraded fallback |
+| Dependency | Children 002 and 003 | The gallery shows whatever the corpus contains at build time | Both complete; the page was generated after them and covers 26 forms |
 <!-- /ANCHOR:risks -->
 
 ---

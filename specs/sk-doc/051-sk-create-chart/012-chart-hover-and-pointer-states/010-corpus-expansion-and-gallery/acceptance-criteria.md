@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-corpus-expansion-and-gallery"
+    packet_pointer: "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery"
     last_updated_at: "2026-09-06T06:24:11Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

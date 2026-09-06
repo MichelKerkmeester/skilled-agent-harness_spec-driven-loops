@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Generate one gallery page rendering every form in both colour schemes [template:level-2/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Generate one gallery page rendering every form in both colour schemes"
+description: "Generate the gallery from the corpus, add the rule that keeps it honest, and watch that rule fail in both directions."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Establish what the gallery must read: each form's title, its declared colour system, and its path — Evidence: taken from the `fig-title` and `chart-color-system` each template already carries, so the page needs no metadata of its own
+- [x] T002 Decide generated over authored, and record why — Evidence: a hand-listed page omits the form added last week, and the omission is indistinguishable from deliberate exclusion
+
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Write the generator, with a `--check` mode that compares the written page against a fresh build — Evidence: `wrote assets/gallery.html: 26 forms, 52 frames`, then `RESULT: PASSED` from `--check`
+- [x] T004 Pin a colour scheme per frame — Evidence: each frame carries `data-scheme` and writes it into the framed document on load, since a scheme cannot be forced on a frame from outside
+- [x] T005 Exempt the page from the chart rules — Evidence: before this it produced 24 failures asking a contact sheet for a data block and a colour system
+- [x] T006 Add the `gallery` rule: the declared count must match the corpus, and every form must appear twice — Evidence: 27 assertions, 0 failures
+
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +56,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T007 Watch the rule fail when a form is dropped from the page — Evidence: removing `funnel` gave `FAIL [gallery] ... funnel appears in 0 gallery frame(s) and needs two`, then `RESULT: FAILED`
+- [x] T008 Watch it fail when the corpus grows and the page does not — Evidence: a 27th template produced both the count mismatch and the missing-form line, then `RESULT: FAILED`
+- [x] T009 Restore and re-pass — Evidence: gallery sha256 `852ff466ce16eb10` matching the pre-mutation value, probe template removed, `RESULT: PASSED`
+
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` — nine of nine
+- [x] No `[B]` blocked tasks remaining — none used
+- [x] Manual verification passed — the rule watched failing in both directions and restored
 <!-- /ANCHOR:completion -->
 
 ---

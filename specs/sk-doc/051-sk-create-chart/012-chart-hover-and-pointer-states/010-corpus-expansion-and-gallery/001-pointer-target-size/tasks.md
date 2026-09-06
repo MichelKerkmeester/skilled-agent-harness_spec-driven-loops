@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Give every mark a pointer target of at least 24 CSS pixels and enforce it [template:level-2/tasks.md]"
+title: "Tasks: Give every mark a pointer target of at least 24 CSS pixels and enforce it"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"

@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Prove the targets, the rules and the gallery from the final state [template:level-2/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Prove the targets, the rules and the gallery from the final state"
+description: "Prove the packet from its final state and reconcile every document that still describes the corpus as it was."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -34,9 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm every child has landed before proving anything — Evidence: 001 validated, 002 both stages gated, 003 at 26 templates, 004 gallery generated and its rule proven
+
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +43,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Gate the corpus from the final state — Evidence: `RESULT: PASSED`, 0 errors, 35 files, 26 chart forms
+- [x] T003 Reconcile the parent packet, which claimed completion while carrying a phase parent added afterwards — Evidence: status and phase map corrected
+- [x] T004 Regenerate metadata for every folder the packet touched — Evidence: description and graph metadata rebuilt per child
+
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +54,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T005 Validate the packet strictly, parent and all children — Evidence: recorded in the closure notes
+- [x] T006 Confirm the working state and report it exactly — Evidence: nothing committed, nothing pushed, nothing merged
+
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` — six of six
+- [x] No `[B]` blocked tasks remaining — none used
+- [x] Manual verification passed — the corpus gate from the final state, and both new rules watched failing
 <!-- /ANCHOR:completion -->
 
 ---

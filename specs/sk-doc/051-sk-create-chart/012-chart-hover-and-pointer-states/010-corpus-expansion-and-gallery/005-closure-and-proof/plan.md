@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Prove the targets, the rules and the gallery from the final state [template:level-2/plan.md]"
+title: "Implementation Plan: Prove the targets, the rules and the gallery from the final state"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"

@@ -48,6 +48,7 @@ This packet is a phase parent. The technical approach lives in the phase childre
 | 7 | `007-deliveries-to-parity/` | The six deliveries brought to contract parity |
 | 8 | `008-closure-and-proof/` | The render gate, the failure mutation, and the criteria walk |
 | 9 | `009-close-the-deferrals/` | The readout repairs, the two rules that enforce them, and the last open item closed |
+| 10 | `010-corpus-expansion-and-gallery/` | A phase parent of five: reachable pointer targets, believable figures, a restyle, five new forms, and a generated gallery |
 
 Phases 1 through 7 built; phase 8 proved. Phase 9 was added after phase 8's own measurement
 found a form whose card revealed readings its table never carried: it repaired that, turned the

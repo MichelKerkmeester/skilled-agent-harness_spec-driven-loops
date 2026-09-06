@@ -156,10 +156,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
       <title id="fig-title">From gross bookings to net revenue</title>
-      <desc id="fig-desc">Six columns showing a running total. Each column takes the swatch printed beside its name in the key: the first and last columns are anchors resting on the baseline, a column rising from the previous total is an increase, and a column falling from it is a decrease. Gross bookings of 4200 fall by 640 for discounting and 410 for churn, then rise by 380 for expansion and 210 for services, ending at a net of 3740. The table below the chart carries every step as text.</desc>
+      <desc id="fig-desc">Six columns showing a running total. Each column takes the swatch printed beside its name in the key: the first and last columns are anchors resting on the baseline, a column rising from the previous total is an increase, and a column falling from it is a decrease. Gross bookings of 4360 fall by 812 for discounting and 358 for churn, then rise by 464 for expansion and 189 for services, ending at a net of 3843. The table below the chart carries every step as text.</desc>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: finance data warehouse, full-year close export. Replace the data block at the top of the script and nothing else.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -173,11 +173,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 <script>
 /* CHART_DATA:BEGIN */
 const DATA = [
-  { label: 'Gross bookings', value: 4200, kind: 'start' },
-  { label: 'Discounting', value: -640, kind: 'step' },
-  { label: 'Churn', value: -410, kind: 'step' },
-  { label: 'Expansion', value: 380, kind: 'step' },
-  { label: 'Services', value: 210, kind: 'step' },
+  { label: 'Gross bookings', value: 4360, kind: 'start' },
+  { label: 'Discounting', value: -812, kind: 'step' },
+  { label: 'Churn', value: -358, kind: 'step' },
+  { label: 'Expansion', value: 464, kind: 'step' },
+  { label: 'Services', value: 189, kind: 'step' },
   { label: 'Net revenue', value: 0, kind: 'end' }
 ];
 /* CHART_DATA:END */
@@ -298,7 +298,12 @@ const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
-  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  // The end rungs keep their labels and give up their lines: the anchor columns' own feet
+  // draw the baseline, and a line at the top of the ladder frames the plot rather than
+  // helping a height be read. The interior rungs keep both.
+  if (t > 0 && t < TICKS) {
+    node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  }
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
 

@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | Complete, extended by phase 010 |
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | sk-doc/051-sk-create-chart |
@@ -35,6 +35,16 @@ contextType: "general"
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+
+> **This packet closed and was then extended.** Everything below describes the work that gave every
+> form a decided pointer contract, and it remains accurate. What it no longer describes is the
+> corpus: phase `010-corpus-expansion-and-gallery` followed, and it enlarged the catalogue from
+> twenty-one forms to twenty-six, replaced every placeholder figure with a believable one, restyled
+> the corpus, gave every mark-carrying file a nearest-mark pointer resolver, and added three rules
+> (`pointer-reach`, `gallery`, and the earlier `pointer-contract-coverage`) plus a generated gallery
+> showing each form in both colour schemes. Read that phase for the current state.
+
+
 
 ### Problem Statement
 

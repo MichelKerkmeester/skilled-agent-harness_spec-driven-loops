@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Restyle every existing form and replace demo data with realistic figures [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Restyle every existing form and replace demo data with realistic figures"
+description: "Twenty-one templates carry figures labelled demo, which makes the corpus read as a specimen sheet rather than as work someone would copy. This child replaces those figures with believable ones and then restyles within the tokens the checker already enforces, as two separately gated stages so a restyle can never quietly move a number."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -32,10 +32,11 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
+| **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/002-restyle-and-richer-data` |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Packet** | `010-corpus-expansion-and-gallery` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -44,10 +45,25 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+All 21 templates print `Source: demo figures`, and the numbers behind them are placeholder-grade.
+A reader opening the corpus sees a specimen sheet rather than work they would copy, and a form
+whose numbers are obviously invented teaches nothing about how the form reads when the data is
+real: a stack whose segments are 62, 21 and 11 is tidier than any month a business ever had.
+
+The six deliveries already carry believable scenarios, so this is a template problem.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+Every form reads as finished work, and the restyle improves how a form is composed without
+touching what it says.
+
+### Non-Goals
+
+- Changing the palette, the type scale, or the radius rungs. The checker enforces all three, and a
+  restyle that fights them is a different packet.
+- Changing any pointer contract, card readout or table shape. Those were decided and enforced in
+  the phases before this one.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -55,20 +71,34 @@ contextType: "general"
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
+### Two stages, gated separately, in this order
+
+**Stage A, the data.** Replace the figures inside each template's `CHART_DATA` block with
+believable ones. Nothing outside the block moves. This is safe by construction: every table in the
+corpus is generated from the same `DATA` the figure draws from, so the table cannot disagree with
+the chart unless something outside the block is touched, and that is exactly what the verification
+checks.
+
+**Stage B, the restyle.** Composition only, inside the tokens the checker already enforces:
+spacing, mark proportion, grid and tick treatment, label placement, whitespace. Colour, type size
+and corner radius are not available to it, which is what keeps the stage bounded.
+
+Running data before style means a restyle is never blamed for a number that moved, and a moved
+number is never hidden by a restyle.
+
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The 21 templates' data blocks and their source lines.
+- The 21 templates' composition, within the enforced tokens.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The six deliveries' data. They already carry believable scenarios.
+- Anything the palette, type-scale or radius rules own.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/sk-create-chart/assets/templates/*.html` | Modify | Stage A the data block, stage B the composition |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -80,16 +110,17 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | In stage A the diff for every template touches only the `CHART_DATA` block and the source line. Verified mechanically, per file, not by reading. |
+| REQ-002 | Figures are internally coherent: totals that are stated add up, ranges contain their own endpoints, percentages that claim to sum do, and a series described as declining declines. |
+| REQ-003 | The corpus gate prints `RESULT: PASSED` from the final state of each stage independently. |
+| REQ-004 | No form gains an external runtime, framework, CDN reference or build step. |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
-
-> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
-> which is the document that decides whether this packet may close.
+| REQ-005 | The stage B restyle changes no number and no table cell, proven by diffing rendered table text before and after. |
+| REQ-006 | Each form keeps a data block a reader can replace, and keeps saying so. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -97,8 +128,10 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Stage A diffs touch only the data block and the source line, on all 21 templates.
+- **SC-002**: Gate prints `RESULT: PASSED` after stage A and again after stage B.
+- **SC-003**: Rendered table text is identical before and after stage B on every form.
+- **SC-004**: No template still reads `Source: demo figures`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -108,8 +141,10 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A worker edits outside the data block | High: a silent change to drawing code would ship behind a data change | The diff check is mechanical and per file; anything outside the delimiters fails the stage |
+| Risk | Numbers that look real but do not add up | High: a chart that contradicts its own table is worse than an obvious placeholder | Coherence is a stated blocker, and totals are checked against the rendered table rather than the source |
+| Risk | The restyle drifts into colour or type | Medium: those are enforced tokens and a fight with the checker | Stage B is composition only, and the palette and type-scale rules fail it if not |
+| Dependency | Child 001 | The resolver and its rule are in every mark-carrying file | Complete, gate green |
 <!-- /ANCHOR:risks -->
 
 ---

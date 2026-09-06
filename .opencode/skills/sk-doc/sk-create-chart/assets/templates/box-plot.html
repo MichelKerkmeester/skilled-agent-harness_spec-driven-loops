@@ -157,11 +157,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
       <title id="fig-title">Days to resolve a case, by team</title>
-      <desc id="fig-desc">Five boxes, each running from the lower quartile to the upper quartile with a line at the median and whiskers to the extremes. Casework, Appeals and Complex all sit at a median of thirty days while their ranges run from 12 to 52, 18 to 44 and 4 to 78. The table below the chart carries all five numbers for every team.</desc>
+      <desc id="fig-desc">Five boxes, each running from the lower quartile to the upper quartile with a line at the median and whiskers to the extremes. Casework, Appeals and Complex sit at medians of 24, 36 and 38 days while their ranges run from 9 to 47, 21 to 58 and 6 to 91. The table below the chart carries all five numbers for every team.</desc>
       <g data-chart-tooltip id="tip-box-plot"></g>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  <p class="source" data-chart-part="source">Source: case management system, closed-case export, cases closed this year.</p>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -175,11 +175,11 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 <script>
 /* CHART_DATA:BEGIN */
 const DATA = [
-  { label: 'Casework', low: 12, q1: 22, median: 30, q3: 38, high: 52 },
-  { label: 'Appeals', low: 18, q1: 27, median: 30, q3: 34, high: 44 },
-  { label: 'Complex', low: 4, q1: 15, median: 30, q3: 49, high: 78, lead: true },
-  { label: 'Reviews', low: 24, q1: 33, median: 41, q3: 50, high: 61 },
-  { label: 'Triage', low: 8, q1: 19, median: 25, q3: 31, high: 40 }
+  { label: 'Casework', low: 9, q1: 17, median: 24, q3: 31, high: 47 },
+  { label: 'Appeals', low: 21, q1: 29, median: 36, q3: 44, high: 58 },
+  { label: 'Complex', low: 6, q1: 19, median: 38, q3: 57, high: 91, lead: true },
+  { label: 'Reviews', low: 31, q1: 38, median: 42, q3: 49, high: 63 },
+  { label: 'Triage', low: 3, q1: 7, median: 11, q3: 16, high: 29 }
 ];
 /* CHART_DATA:END */
 
@@ -338,8 +338,13 @@ const max = niceStep(peak / TICKS) * TICKS;
 const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
+// The value axis keeps the baseline and every other interior rung, and no rung above the
+// highest whisker, where no mark is left for a line to serve. A box's five numbers are read
+// from the card and the table, so the surviving ladder anchors the scale rather than
+// carrying them.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
+  if (t % 2 === 1 || value > peak) continue;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
