@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "metadata regeneration shared parser",
+      "metadata regeneration parser edges",
       "metadata regeneration pass",
       "drift census",
       "shared package dependency edge",
@@ -20,23 +22,21 @@
       "regenerate clean packets",
       "shared dependency file edge",
       "parser adopt deep-loop sk-doc",
-      "generators description graph metadata",
-      "metadata regeneration tasks",
-      "census drift 114 packets"
+      "generators description graph metadata"
     ],
     "key_topics": [
       "metadata",
       "regeneration",
+      "shared",
+      "parser",
+      "edges",
       "pass",
       "drift",
       "census",
-      "shared",
       "package",
       "dependency",
       "edge",
-      "sk-doc",
-      "scripts",
-      "manifest"
+      "sk-doc"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatter parser in their JavaScript callers.",
     "created_at": "2026-09-06T04:26:02Z",
-    "last_save_at": "2026-09-06T07:05:14.776Z",
+    "last_save_at": "2026-09-06T07:07:56.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89caad9d433c6dbc23bb4e02660611cb1d26df03775a7140a16e2f5d51c7ac18",
+    "source_fingerprint": "sha256:e9f8577117190323aa852cfb7807f8122d16e80485e822a351f81492ad0f839e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9363ceacd271d3a03873e61a0039af54089dbab9211d7ea2f035bb03103e9e2",
+      "spec.md": "eb46a4cac85346c47287dc21b1f2096c5399c3efded2ee803d9c865e817be95d",
       "plan.md": "c5d7cf495dd420df654bd5bd2374dc78c645eaa732f156b62f26adbaad9c3c51",
       "tasks.md": "aca103319fb3dd38b26153b51ac16110fa345f5c4c3d345dcacddda5f0b9162b",
       "implementation-summary.md": "92abda89d0603f7c47ba573c40f7be4ee0a94fee31edfecd6d2dbaa3626202bc"

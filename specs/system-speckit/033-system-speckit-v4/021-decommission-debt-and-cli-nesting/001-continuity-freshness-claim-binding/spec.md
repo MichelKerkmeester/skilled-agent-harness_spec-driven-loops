@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 1: continuity-freshness-claim-binding"
 description: "CONTINUITY_FRESHNESS reads completion claims from four documents but can only verify a fingerprint on one of them, so a legitimately closed packet and an unverifiable one both report the same silent pass."
 trigger_phrases:
+  - "continuity freshness claim binding"
   - "continuity freshness binding spec"
   - "CONTINUITY_FRESHNESS claim rule"
   - "six completion docs fingerprint"

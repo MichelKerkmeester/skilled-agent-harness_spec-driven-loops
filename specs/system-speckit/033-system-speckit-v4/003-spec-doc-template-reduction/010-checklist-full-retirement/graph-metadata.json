@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "checklist full retirement",
       "checklist retirement",
       "retire standalone checklist",
       "source fingerprint docset",
@@ -21,11 +22,11 @@
       "checklist deprecation",
       "ac coverage acceptance criteria",
       "checklist deprecation closure criteria",
-      "checklist deprecation closure",
-      "traceability precedence fixed"
+      "checklist deprecation closure"
     ],
     "key_topics": [
       "checklist",
+      "full",
       "retirement",
       "retire",
       "standalone",
@@ -35,8 +36,7 @@
       "verification",
       "lives",
       "tasks",
-      "coverage",
-      "evidence"
+      "coverage"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its three worked examples",
     "created_at": "2026-08-30T04:40:40Z",
-    "last_save_at": "2026-09-06T06:47:53.392Z",
+    "last_save_at": "2026-09-06T07:09:16.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:289ac89d7347dce80888f37221068fb070ab4ae9d495bb7c60a68e8bff46d153",
+    "source_fingerprint": "sha256:0bf8fc7f54aef90ed876a05728e37ec87b0f466e60ac5737be80265baf941931",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbcd60add7432c87a7ae3a17942f5fb9b5f19aac96303f844e3e417a29b0c63c",
+      "spec.md": "da17fcddff1b2c53c80954e928e61805f554f2215d5d86171910f9079da4a2af",
       "plan.md": "c7e8300529475d47a597b78a37e0b724a43147384523657212302b29a0e6c240",
       "tasks.md": "a90603f7584e927f61650028d6ff67fa72265f6f1cfdf0a9a6a0369c93d98f17",
       "implementation-summary.md": "88e916b4c1885181475bd52676065dc547cbfdeeab8c8e3f01925318dc86bd83"

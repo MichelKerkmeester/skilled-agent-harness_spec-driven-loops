@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "daemon reaper orphan classification",
+      "process reaper classification fix",
       "process reaper classification",
       "isExternalMcpProcess misclassification",
       "external mcp stdio false positive",
@@ -20,23 +22,21 @@
       "isExternalMcpProcess fix plan",
       "external MCP misclassification",
       "process-memory-harness regex tightening",
-      "orphaned project daemon",
-      "process-sweep negative control",
-      "guard order disjoint"
+      "orphaned project daemon"
     ],
     "key_topics": [
-      "process",
+      "daemon",
       "reaper",
+      "orphan",
       "classification",
+      "process",
       "isexternalmcpprocess",
       "misclassification",
       "external",
       "mcp",
       "stdio",
       "false",
-      "positive",
-      "orphaned",
-      "project"
+      "positive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
     "created_at": "2026-08-22T19:27:51.675Z",
-    "last_save_at": "2026-09-06T07:00:44.446Z",
+    "last_save_at": "2026-09-06T07:07:50.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e086280454d17ddfc661e31052da6abdf8558dd616ad11a79729b0ba4b01a147",
+    "source_fingerprint": "sha256:062e415ce19bb9911ab47d1f846bf5744bd8ebe52d8c587395c646c6ce524260",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1eec22248e4966c8763af2e9ee4c71f5e53a4c4f36ad705984537d537da6ea4",
+      "spec.md": "232d3ecd3215c9034b187ff009122d76ca7e21c69ce716d7c3ec932367113e60",
       "plan.md": "75d97dda94ebb7c67c8eb14aa8d37d301c9f3ab203c12372833bba4cd7b7bd9f",
       "tasks.md": "4da854725ddbc2541a5676609d692abdcd3e72a37e9a0c38843ca0d150543ec9",
       "implementation-summary.md": "e597e86bddd18baf7276fbd09f4b2ce418d5d3a55885f35b61a1b4fe8922e95a"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "restore level upgrade vocabulary invariance",
       "restore level upgrade",
       "upgrade-level fragments",
       "vocabulary invariance",
@@ -23,10 +24,10 @@
       "restore",
       "level",
       "upgrade",
-      "upgrade-level",
-      "fragments",
       "vocabulary",
       "invariance",
+      "upgrade-level",
+      "fragments",
       "template",
       "addendum",
       "derivation",
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "Two defects surfaced during this packet's review, both pre-dating it",
     "created_at": "2026-08-29T15:25:29Z",
-    "last_save_at": "2026-09-06T06:47:35.056Z",
+    "last_save_at": "2026-09-06T07:09:15.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0361a704e29235536a162db7a4fa0220455b0064807d5d7d7ccc56908ae10a95",
+    "source_fingerprint": "sha256:4513346fb0b8c39f296143d17517438be9692d71fb817728b05fbbcc9f1d041b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80d357d556a8408c04ac509601f126d93a847a645077b2dcaec4edf5d296c287",
+      "spec.md": "abfd47da21312615a2d81b44b2d0939f523831549e5be5ae170ef87ca7925c74",
       "plan.md": "37ef315184b96d9c109bc929d14a4c29b9d523091158dc6b4f169eb1fb59d55e",
       "tasks.md": "4e43dc247ac938505a5a73d233953a5bc243505ca0edfcb5a508bff17a6788e4",
       "implementation-summary.md": "20334cb468a86f123cf72dfc7e2daac0ad72d2b407127a06a0d4c286bd291ff2"

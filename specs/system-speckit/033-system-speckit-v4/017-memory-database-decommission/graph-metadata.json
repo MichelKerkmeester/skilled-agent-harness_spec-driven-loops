@@ -19,20 +19,20 @@
   },
   "derived": {
     "trigger_phrases": [
-      "049-memory-decommission",
+      "memory database decommission",
+      "memory decommission",
       "memory db decommission",
       "spec memory removal",
       "grep-first retrieval",
       "trigger index replacement",
-      "phase parent",
       "packet goal",
       "durable directive",
       "completion criteria",
       "goal binding"
     ],
     "key_topics": [
-      "049-memory-decommission",
       "memory",
+      "database",
       "decommission",
       "spec",
       "removal",
@@ -41,8 +41,8 @@
       "trigger",
       "index",
       "replacement",
-      "phase",
-      "parent"
+      "packet",
+      "goal"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -174,17 +174,17 @@
     ],
     "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-06T06:48:18.226Z",
+    "last_save_at": "2026-09-06T07:07:55.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1fba331187e13eaf88ef5bf1bbd3feb100ab0e79114de9fcb060b4452d869fb7",
+    "source_fingerprint": "sha256:d630b592fbe3af8d31b8512dbfb2b002881f3b58d23c8da13a783ae4b5c06907",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e16ef88b0b25eb740d777c56aaef9ff3244935e8d7aaa6f07ba7c0bc70e3119a"
+      "spec.md": "912657c1d57653bfe3452eabed1a8ffa6201ef05bfe364162a3d58e27b125188"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
     "last_active_at": null

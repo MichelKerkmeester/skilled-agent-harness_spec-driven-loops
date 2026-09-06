@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "active decisions design",
       "active decisions decision",
       "no replacement surface",
       "constitutional layer deprecation",
@@ -21,12 +22,12 @@
       "decisions and notes system",
       "constitutional memory replacement",
       "active decisions design plan",
-      "phase two design tasks",
-      "active decisions design"
+      "phase two design tasks"
     ],
     "key_topics": [
       "active",
       "decisions",
+      "design",
       "decision",
       "replacement",
       "surface",
@@ -35,8 +36,7 @@
       "deprecation",
       "keep",
       "rules",
-      "docs",
-      "spec"
+      "docs"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memorysearch`, and its cold-start injection is dead code",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-09-06T07:05:10.955Z",
+    "last_save_at": "2026-09-06T07:09:16.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd599958f3840e9ab8b7ae1949b7d0d916d6174628a34863e0c897268ec33998",
+    "source_fingerprint": "sha256:a33f0ffd5075093cf879ce7dd05bb80bee2637c7d19c1dad150d924252ce3614",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "905c3ef80a58ac9ccbf014e737479b8570640e33a56c886de44c1e239ef285f5",
+      "spec.md": "86fd567ca26efe2f1d72673affdec02126fb5d5db417219f0bf7768e54e43417",
       "plan.md": "61444a252d10f45936dae4e4b0d967c4f5d1dba9cfa17715b7dd86d414dd380e",
       "tasks.md": "907d0bacbe05d216548240136d3528b14b7645b566d22f3a3d2d104735a2b475",
       "implementation-summary.md": "9eca6c2a4a7146f16a89e42af0d2d178570051a4c1507d45ef98fd5a42f1f4a2"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "hook markers improvement family",
       "hook drift marker claude cursor",
       "mkHookDrift fallback",
       "improvement artifact family",
@@ -21,22 +22,21 @@
       "doctor health rows adapters",
       "parity marker per host",
       "hook drift marker claude cursor tasks",
-      "wrap adapter invocation fallback",
-      "improvement folder structure doc"
+      "wrap adapter invocation fallback"
     ],
     "key_topics": [
       "hook",
+      "markers",
+      "improvement",
+      "family",
       "drift",
       "marker",
       "claude",
       "cursor",
       "mkhookdrift",
       "fallback",
-      "improvement",
       "artifact",
-      "family",
-      "config",
-      "rule"
+      "config"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the deep-improvement commands write is documented in the folder structure and checked by a validator rule.",
     "created_at": "2026-09-05T21:16:58Z",
-    "last_save_at": "2026-09-06T07:05:00.361Z",
+    "last_save_at": "2026-09-06T07:09:10.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2d7148d094a3a57f44cd65b5a77c59f2d4d1644c5fa6fc43d82708ed544447e",
+    "source_fingerprint": "sha256:6d67b5d6c126dc31adb902a7aba87dcffab8ba2fc33be980ae2a1d4647976d80",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c7fe8620f74f600a4ca4bcc43d8f2c1b4348b6a903b0d3c13c815685767ef62",
+      "spec.md": "4dd335c8344ec24c6659b3696d05de9a4f7e52f3ccf52e9397b3274f925ecc1f",
       "plan.md": "5b674f76363dcb5787cd8240b2ca1354066f113764db8a11ddec22998c160255",
       "tasks.md": "30d6cd1a077fd3f29d56fa66798646d86fe55d759e9710d853a75dded9ca1712",
       "implementation-summary.md": "183285b1c04ccb21fbcb8007320e5e38c816ce771218d7572fa85af08f157c52"

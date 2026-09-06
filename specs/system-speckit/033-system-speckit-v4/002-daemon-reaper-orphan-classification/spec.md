@@ -2,6 +2,8 @@
 title: "Feature Specification: Process-Reaper MCP Classification Fix"
 description: "The daemon-reaper misclassifies an orphaned spec-memory server as an external MCP process because its external-MCP guard matches the mcp-server/ directory in the daemon's own path. Orphaned project daemons therefore leak instead of becoming termination candidates."
 trigger_phrases:
+  - "daemon reaper orphan classification"
+  - "process reaper classification fix"
   - "process reaper classification"
   - "isExternalMcpProcess misclassification"
   - "external mcp stdio false positive"

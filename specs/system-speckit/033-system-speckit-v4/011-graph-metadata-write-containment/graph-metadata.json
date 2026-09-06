@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
+      "graph metadata write containment",
+      "workspace path containment",
       "graph metadata write guard",
       "path includes specs false positive",
       "workspace specs root membership",
       "write outside repository",
       "symlinked specs tracks",
       "write guard membership proof",
-      "graph metadata write containment",
       "path includes specs substring",
       "membership before canonicalization",
       "reproduce write escape",
-      "configured specs root membership",
-      "getSpecsBasePaths reuse"
+      "configured specs root membership"
     ],
     "key_topics": [
       "graph",
       "metadata",
       "write",
-      "guard",
+      "containment",
+      "workspace",
       "path",
+      "guard",
       "includes",
       "specs",
       "false",
       "positive",
-      "workspace",
-      "root",
-      "membership"
+      "root"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
     "created_at": "2026-08-30T08:10:26.979Z",
-    "last_save_at": "2026-09-06T07:05:18.111Z",
+    "last_save_at": "2026-09-06T07:07:54.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:981e771b0746ff69866dfa19a7b82ad7cf13ec14f7a7e34d9ca577bfedce95eb",
+    "source_fingerprint": "sha256:a3c8d60d1aa22ce7bdf04cf29334a55fd96891bc6d1e13feaa081eec7c6d5e0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e0380723758464802e7aacec5713b6cd4a04053c72db636769bb047201bfa7a",
+      "spec.md": "8b01cfd5b2d80a8d361995286d90748068856903b0fdfa57428e5cc6431d2aaa",
       "plan.md": "9dd8b53be267fcd83b5c41ff77b0a7d89dba95cba65b16c87e70e00e59ad2bfb",
       "tasks.md": "b1ca13acc584f713704e83531d42543af624aadcb53c2beac26ab927aab4330a",
       "decision-record.md": "ee54a3726eb2da656fb96be491dcdeaf478dc074067fbdd1bf42d226d8c89917",

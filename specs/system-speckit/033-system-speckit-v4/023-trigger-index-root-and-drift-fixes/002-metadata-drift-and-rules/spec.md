@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 2: metadata-drift-and-rules"
 description: "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated. A refresh now prunes foreign-identity children, a registry rule reports any that remain, and a sweep reports declared-versus-actual child counts for every track root."
 trigger_phrases:
+  - "metadata drift rules"
   - "graph metadata child identity"
   - "phantom children after rename"
   - "track root sweep"

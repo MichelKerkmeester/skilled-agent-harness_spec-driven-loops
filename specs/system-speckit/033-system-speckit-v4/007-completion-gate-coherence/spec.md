@@ -2,6 +2,7 @@
 title: "Feature Specification: One Validation Verdict, Honestly Earned"
 description: "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself."
 trigger_phrases:
+  - "completion gate coherence"
   - "validation gate coherence"
   - "validator engine selection"
   - "strict validation failure rate"

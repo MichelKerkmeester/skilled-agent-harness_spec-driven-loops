@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "grep convention doc retrofit",
       "grep convention",
       "spec doc convention",
       "doc retrofit",
@@ -21,15 +22,14 @@
       "task breakdown",
       "acceptance criteria",
       "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "ac traceability"
     ],
     "key_topics": [
       "grep",
       "convention",
-      "spec",
       "doc",
       "retrofit",
+      "spec",
       "greppable",
       "docs",
       "frontmatter",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-09-06T06:46:59.799Z",
+    "last_save_at": "2026-09-06T07:09:13.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec1fefcee362180ecbec6c2533c09544797e5e16853929a7905d9b9475dae611",
+    "source_fingerprint": "sha256:629494563e55cb49feb255bc09f68c8a2fc9465640d147fc82f3ee257bfcbffe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "925b8c78091fb060796fa1cac918e6185dfb594c1fad6355aba9a605af67251a",
+      "spec.md": "08d6d3f2f342bcd8093d3bd2de87f622771da699a12f028ff081e9f305e0042a",
       "plan.md": "f79ec3818bcc9087f22ba5f1778e0eb26eaf29b6203cf7d69a936ba34faf1d7a",
       "tasks.md": "d2e5003807470285c432757d5b0426573a508825796e306d3ad1332e17869143",
       "implementation-summary.md": "3f5f15d8c3a3236e53cda644f589b4d7618b0d5244736d46ce7926f424ca2812"

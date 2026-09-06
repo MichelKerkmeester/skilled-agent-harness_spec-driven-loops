@@ -2,6 +2,7 @@
 title: "Feature Specification: deep review remediation of the memory decommission packet"
 description: "A ten-iteration deep review of the finished decommission packet returned CONDITIONAL with four P1 and two P2 findings; this phase verifies each against the files and fixes or answers it."
 trigger_phrases:
+  - "decommission review p1 p2 fixes"
   - "deep review remediation"
   - "trigger index reader fails closed"
   - "unchecked completion criteria"

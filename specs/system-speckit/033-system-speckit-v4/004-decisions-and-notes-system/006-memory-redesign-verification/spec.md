@@ -2,6 +2,8 @@
 title: "Feature Specification: Phase 6: verify-rollout [template:level-1/spec.md]"
 description: "Final verification and rollout for the memory-redesign packet: the full mcp-server test suite green under the new defaults, a negative control proving constitutional no longer surfaces, a blast-radius sweep of all references, confirmation that spec golden snapshots stay green (no required-doc added), and a no-stray-files sweep."
 trigger_phrases:
+  - "memory redesign verification"
+  - "verify rollout"
   - "verify rollout memory"
   - "negative control constitutional"
   - "blast-radius sweep"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "level for research",
       "research level",
       "research packet type",
       "research and audit packets",
@@ -21,12 +22,11 @@
       "enumeration follows failure",
       "manifest modelled on review",
       "contract set corpus shape",
-      "research level tasks",
-      "declare research shape"
+      "research level tasks"
     ],
     "key_topics": [
-      "research",
       "level",
+      "research",
       "packet",
       "type",
       "audit",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Give a research record a level it can meet, and make the rules agree with the",
     "created_at": "2026-08-30T09:39:26.002Z",
-    "last_save_at": "2026-09-06T07:05:06.464Z",
+    "last_save_at": "2026-09-06T07:07:53.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8eb97f04e0b13c952ee4e5c946104495af99dcbaf348f5000dd3e1368c07df9",
+    "source_fingerprint": "sha256:732b69e2fc70c18038a3e996fc16f57a79578a7f85f0bf0145de283d15554b41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a3dd9598d73146baf415a1cf89fe112f2c0bfda972c8a5a3039606bd86425ba",
+      "spec.md": "bdb8eb9f7d0621e3a15bd788ce30247f2d5731eca37a76b8355448a463bbf4f2",
       "plan.md": "d69ebb71c4ed84485cccdf520a787e01206bb7ca9a6c1262e9aaef34e932592b",
       "tasks.md": "fa08dfedb6c832b05804731fe391f480d1befeccbd2499241d43362077952901",
       "implementation-summary.md": "b84941af9a455546bc64d3455477d65eea65381549982d6a32b32798e93c7df7"

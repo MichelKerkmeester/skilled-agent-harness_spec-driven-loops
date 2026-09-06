@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "trigger index replacement",
       "trigger index",
       "trigger index generator",
       "grep-first retrieval",
@@ -21,16 +22,15 @@
       "retrieval replacement plan",
       "parity harness",
       "generate-trigger-index",
-      "trigger index tasks",
-      "parity harness tasks"
+      "trigger index tasks"
     ],
     "key_topics": [
       "trigger",
       "index",
+      "replacement",
       "generator",
       "grep-first",
       "retrieval",
-      "replacement",
       "ripgrep",
       "conventions",
       "parity",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-06T06:47:05.113Z",
+    "last_save_at": "2026-09-06T07:09:13.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be05ab988add2bb871c7dc6241e825df20bc3018b89c66e872b97634ee5caf7d",
+    "source_fingerprint": "sha256:6f0ef441ae3228a078f1a6a83b2f3ade2f44292fc73c6a8cd48afd028a4eb5e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b711f7ef1c372a72bd1173300815e4ace0340be65935f5f830609dc07eab6d0",
+      "spec.md": "0a5cfa28bbae8090b809ee22c3fc8e1079ae96a8dd715917d99d0e0fb2d76523",
       "plan.md": "a8435e392195bd32dbaf8b6653c737b1c68a8f8d49bca2f5fd7eef4b642c4c16",
       "tasks.md": "ca8024b5e5a58f41fce67b7727a3ea2856374ef54871090e5c1ddddb9bc0265c",
       "implementation-summary.md": "dd35b8028ea8c54992ec0ccae762acf4b9d4c05c1b2ecd81a217149e814d7b2f"

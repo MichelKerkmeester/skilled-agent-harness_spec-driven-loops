@@ -2,6 +2,7 @@
 title: "Feature Specification: A Gate Small Enough To Trust"
 description: "Reduce the completion gate to the few checks a machine actually reads, and make the rest impossible to violate rather than detected afterwards."
 trigger_phrases:
+  - "validation rule reduction"
   - "validation reduction"
   - "delete validation rules"
   - "strict gate too strict"

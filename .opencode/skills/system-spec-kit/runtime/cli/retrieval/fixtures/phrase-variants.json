@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9726c2524c13fb382d7d4cec3e070511b1ccb78646fcd72d2dec56292a6962e0",
+  "manifestHash": "f918eac7e46b29a28fabc6cc2c1bef300e280fa1f2004a977ab62d5e82892894",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7806,9 +7806,6 @@
     "045 010 upgrade safety operability audit": [
       "045-010-upgrade-safety-operability-audit"
     ],
-    "045 daemon and test harness hardening": [
-      "045-daemon-and-test-harness-hardening"
-    ],
     "045 hardening review": [
       "045 hardening review"
     ],
@@ -7856,9 +7853,6 @@
     ],
     "049 implementation summary": [
       "049 implementation summary"
-    ],
-    "049 memory decommission": [
-      "049-memory-decommission"
     ],
     "049 substrate stress": [
       "049 substrate stress"
@@ -11756,6 +11750,9 @@
     "amendment brief": [
       "amendment brief"
     ],
+    "analysis": [
+      "analysis"
+    ],
     "analysis phase approach": [
       "analysis phase approach"
     ],
@@ -12125,6 +12122,9 @@
     ],
     "apply mode phase b implementation": [
       "apply mode phase b implementation"
+    ],
+    "apply path candidate filter fixes": [
+      "apply path candidate filter fixes"
     ],
     "apply path enable decision": [
       "apply path enable decision"
@@ -18316,6 +18316,9 @@
     ],
     "checklist deprecation closure criteria": [
       "checklist deprecation closure criteria"
+    ],
+    "checklist full retirement": [
+      "checklist full retirement"
     ],
     "checklist item creation": [
       "checklist item creation"
@@ -25851,6 +25854,9 @@
     "completion freshness rule": [
       "completion freshness rule"
     ],
+    "completion gate coherence": [
+      "completion gate coherence"
+    ],
     "completion sentinel plugin": [
       "completion sentinel plugin"
     ],
@@ -30774,6 +30780,9 @@
     "daemon reaper maintenance marker": [
       "daemon reaper maintenance marker"
     ],
+    "daemon reaper orphan classification": [
+      "daemon reaper orphan classification"
+    ],
     "daemon recovery rebuild": [
       "daemon recovery rebuild"
     ],
@@ -30866,6 +30875,9 @@
     ],
     "daemon task registry shutdown": [
       "daemon task registry shutdown"
+    ],
+    "daemon test harness hardening": [
+      "daemon test harness hardening"
     ],
     "daemon versus python scorer": [
       "daemon versus python scorer"
@@ -31545,6 +31557,12 @@
     "decisions integrated with spec": [
       "decisions integrated with spec"
     ],
+    "decisions memory redesign": [
+      "decisions memory redesign"
+    ],
+    "decisions notes system": [
+      "decisions notes system"
+    ],
     "decisions system analysis": [
       "decisions system analysis"
     ],
@@ -31575,6 +31593,9 @@
     "decommission copilot hook bridge": [
       "decommission copilot hook bridge"
     ],
+    "decommission debt cli nesting": [
+      "decommission debt cli nesting"
+    ],
     "decommission debt fixes": [
       "decommission debt fixes"
     ],
@@ -31589,6 +31610,9 @@
     ],
     "decommission landing": [
       "decommission landing"
+    ],
+    "decommission review p1 p2 fixes": [
+      "decommission review p1 p2 fixes"
     ],
     "decommission superset": [
       "decommission superset"
@@ -36246,6 +36270,9 @@
     "derived metadata repair plan": [
       "derived metadata repair plan"
     ],
+    "derived metadata repair tool": [
+      "derived metadata repair tool"
+    ],
     "derived metadata vocabulary projection design": [
       "derived metadata vocabulary projection design"
     ],
@@ -36281,6 +36308,9 @@
     ],
     "derived repair": [
       "derived repair"
+    ],
+    "derived repair automation": [
+      "derived repair automation"
     ],
     "derived roster check": [
       "derived roster check"
@@ -40581,6 +40611,9 @@
     ],
     "durable slice cap": [
       "durable slice cap"
+    ],
+    "durable slice validator": [
+      "durable slice validator"
     ],
     "durable wave scheduler evidence": [
       "durable wave scheduler evidence"
@@ -48728,6 +48761,9 @@
     "goal documentation parity tasks": [
       "goal documentation parity tasks"
     ],
+    "goal file addon": [
+      "goal file addon"
+    ],
     "goal hook capability matrix": [
       "goal hook capability matrix"
     ],
@@ -49665,6 +49701,9 @@
     ],
     "grep convention": [
       "grep convention"
+    ],
+    "grep convention doc retrofit": [
+      "grep convention doc retrofit"
     ],
     "grep convention for spec docs": [
       "grep convention for spec docs"
@@ -50758,6 +50797,9 @@
     ],
     "hook live testing matrix": [
       "hook live testing matrix"
+    ],
+    "hook markers improvement family": [
+      "hook markers improvement family"
     ],
     "hook numbered sections": [
       "hook numbered sections"
@@ -52549,6 +52591,9 @@
     ],
     "index meta compatibility": [
       "index_meta compatibility"
+    ],
+    "index root docs": [
+      "index root docs"
     ],
     "index salvage result": [
       "index salvage result"
@@ -55062,6 +55107,9 @@
     "lazy add on tasks": [
       "lazy add-on tasks"
     ],
+    "lazy addon docs": [
+      "lazy addon docs"
+    ],
     "lazy addon lifecycle": [
       "lazy addon lifecycle"
     ],
@@ -55710,6 +55758,9 @@
     ],
     "level folder requirements": [
       "level folder requirements"
+    ],
+    "level for research": [
+      "level for research"
     ],
     "level gated templates": [
       "level gated templates"
@@ -57705,6 +57756,9 @@
     ],
     "manifest generator tasks": [
       "manifest generator tasks"
+    ],
+    "manifest goal template": [
+      "manifest goal template"
     ],
     "manifest impl plan": [
       "manifest impl plan"
@@ -60614,6 +60668,9 @@
     "memory data integrity audit": [
       "memory data integrity audit"
     ],
+    "memory database decommission": [
+      "memory database decommission"
+    ],
     "memory db corruption graph metadata churn": [
       "memory-db corruption graph-metadata churn"
     ],
@@ -60626,6 +60683,9 @@
     "memory db sqlite constraint primarykey corruption": [
       "memory db SQLITE_CONSTRAINT_PRIMARYKEY corruption"
     ],
+    "memory decommission": [
+      "memory decommission"
+    ],
     "memory decommission branch landing": [
       "memory decommission branch landing"
     ],
@@ -60634,6 +60694,9 @@
     ],
     "memory decommission inventory": [
       "memory decommission inventory"
+    ],
+    "memory decommission landing": [
+      "memory decommission landing"
     ],
     "memory decommission landing plan": [
       "memory decommission landing plan"
@@ -61822,6 +61885,9 @@
     "metadata drift root cause": [
       "metadata drift root cause"
     ],
+    "metadata drift rules": [
+      "metadata drift rules"
+    ],
     "metadata edge promoter": [
       "metadata edge promoter"
     ],
@@ -61884,6 +61950,9 @@
     ],
     "metadata regeneration implementation plan": [
       "metadata regeneration implementation plan"
+    ],
+    "metadata regeneration parser edges": [
+      "metadata regeneration parser edges"
     ],
     "metadata regeneration pass": [
       "metadata regeneration pass"
@@ -64596,6 +64665,9 @@
     ],
     "nested goal addon": [
       "nested goal addon"
+    ],
+    "nested goal template addon": [
+      "nested goal template addon"
     ],
     "nested opencode state leak": [
       "nested opencode state leak"
@@ -69193,6 +69265,9 @@
     "parent rollup tasks": [
       "parent rollup tasks"
     ],
+    "parent set string playbook": [
+      "parent set string playbook"
+    ],
     "parent skill canon verification": [
       "parent-skill canon verification"
     ],
@@ -73068,6 +73143,9 @@
     "plan cli opencode leg integration": [
       "plan cli-opencode leg integration"
     ],
+    "plan contract optimization": [
+      "plan contract optimization"
+    ],
     "plan core": [
       "plan core"
     ],
@@ -73083,11 +73161,17 @@
     "plan preflight nested packet plan": [
       "plan preflight nested packet plan"
     ],
+    "plan preflight nested packet resolution": [
+      "plan preflight nested packet resolution"
+    ],
     "plan preflight nested packet tasks": [
       "plan preflight nested packet tasks"
     ],
     "plan preflight specify feature override": [
       "plan preflight specify feature override"
+    ],
+    "plan preflight track packets": [
+      "plan preflight track packets"
     ],
     "plan scheduler opencode dispatch": [
       "plan scheduler opencode dispatch"
@@ -74868,6 +74952,9 @@
     ],
     "process reaper classification": [
       "process reaper classification"
+    ],
+    "process reaper classification fix": [
+      "process reaper classification fix"
     ],
     "process reaper classification plan": [
       "process reaper classification plan"
@@ -79535,6 +79622,9 @@
     "repair graph metadata tasks": [
       "repair graph metadata tasks"
     ],
+    "repair handle containment": [
+      "repair handle containment"
+    ],
     "repair handle containment tasks": [
       "repair handle containment tasks"
     ],
@@ -81039,6 +81129,9 @@
     "restore level upgrade": [
       "restore level upgrade"
     ],
+    "restore level upgrade vocabulary invariance": [
+      "restore level upgrade vocabulary invariance"
+    ],
     "restore relay database": [
       "restore relay database"
     ],
@@ -81317,6 +81410,9 @@
     ],
     "retire standalone checklist": [
       "retire standalone checklist"
+    ],
+    "retire sweep": [
+      "retire sweep"
     ],
     "retire the sweep": [
       "retire the sweep"
@@ -84552,6 +84648,9 @@
     "save research context": [
       "save research context"
     ],
+    "save resume freshness": [
+      "save resume freshness"
+    ],
     "save resume freshness plan": [
       "save resume freshness plan"
     ],
@@ -86206,6 +86305,9 @@
     "sequential thinking removal": [
       "sequential thinking removal"
     ],
+    "sequential thinking residue removal": [
+      "sequential thinking residue removal"
+    ],
     "serial authority loop": [
       "serial authority loop"
     ],
@@ -87075,6 +87177,9 @@
     ],
     "shared package dependency edge": [
       "shared package dependency edge"
+    ],
+    "shared parsers post run refresh": [
+      "shared parsers post run refresh"
     ],
     "shared parsing modules": [
       "shared parsing modules"
@@ -93758,6 +93863,9 @@
     "skills root state directories": [
       "skills root state directories"
     ],
+    "skills runtime state consolidation": [
+      "skills runtime state consolidation"
+    ],
     "skills state before after": [
       "skills state before after"
     ],
@@ -94755,6 +94863,9 @@
     "spec kit runtime published": [
       "@spec-kit/runtime published"
     ],
+    "spec kit runtime rename": [
+      "spec kit runtime rename"
+    ],
     "spec kit runtime subsystems": [
       "spec-kit runtime subsystems"
     ],
@@ -95080,6 +95191,9 @@
     ],
     "spec scripts": [
       "spec scripts"
+    ],
+    "spec template context optimization": [
+      "spec template context optimization"
     ],
     "spec template context optimizations": [
       "spec template context optimizations"
@@ -99637,6 +99751,9 @@
     "template contract validation": [
       "template contract validation"
     ],
+    "template contracts acceptance criteria": [
+      "template contracts acceptance criteria"
+    ],
     "template copy commands": [
       "template copy commands"
     ],
@@ -99645,6 +99762,9 @@
     ],
     "template dedup": [
       "template dedup"
+    ],
+    "template duplication analysis": [
+      "template duplication analysis"
     ],
     "template examples": [
       "template examples"
@@ -101242,6 +101362,9 @@
     ],
     "trigger index research": [
       "trigger index research"
+    ],
+    "trigger index root drift fixes": [
+      "trigger index root drift fixes"
     ],
     "trigger index runtime data move": [
       "trigger index runtime data move"
@@ -102959,6 +103082,9 @@
     ],
     "validation rule hierarchy": [
       "validation rule hierarchy"
+    ],
+    "validation rule reduction": [
+      "validation rule reduction"
     ],
     "validation rule registry": [
       "validation rule registry"
@@ -105131,6 +105257,9 @@
     ],
     "workspace lease": [
       "workspace lease"
+    ],
+    "workspace path containment": [
+      "workspace path containment"
     ],
     "workspace root helper": [
       "workspace root helper"

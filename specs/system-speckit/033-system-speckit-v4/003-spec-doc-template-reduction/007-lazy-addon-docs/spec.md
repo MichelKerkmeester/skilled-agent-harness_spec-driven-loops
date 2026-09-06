@@ -2,6 +2,7 @@
 title: "Feature Specification: Add Lazy On-Demand Add-On Documents Across Spec Kit Levels"
 description: "Define level-agnostic before-after, timeline, roadmap, and decision-record add-on documents for explicit use across every Spec Kit level"
 trigger_phrases:
+  - "lazy addon docs"
   - "lazy add-on docs"
   - "before-after document"
   - "timeline document"

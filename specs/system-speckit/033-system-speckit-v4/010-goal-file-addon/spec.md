@@ -2,6 +2,8 @@
 title: "Feature Specification: Nested Goal Addon"
 description: "Phase parent for a goal.md addon: a short durable parent directive that references per-phase child goal files, entering the Level contract as a lazy add-on and reaching the speckit command surface runtime-neutrally."
 trigger_phrases:
+  - "goal file addon"
+  - "nested goal template addon"
   - "nested goal addon"
   - "goal.md template"
   - "parent goal child phases"

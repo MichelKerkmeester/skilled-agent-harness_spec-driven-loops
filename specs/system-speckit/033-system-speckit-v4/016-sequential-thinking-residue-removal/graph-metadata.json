@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "sequential thinking residue removal",
       "decommissioned server residue",
       "sequential thinking doctor",
       "mcp doctor stale server",
@@ -21,22 +22,21 @@
       "decommissioned server tasks",
       "doctor removal tasks",
       "residue cleanup tasks",
-      "acceptance criteria",
-      "closure gate"
+      "acceptance criteria"
     ],
     "key_topics": [
-      "decommissioned",
-      "server",
-      "residue",
       "sequential",
       "thinking",
+      "residue",
+      "removal",
+      "decommissioned",
+      "server",
       "doctor",
       "mcp",
       "stale",
       "spec",
       "cleanup",
-      "plan",
-      "removal"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
     "created_at": "2026-08-31T13:24:32Z",
-    "last_save_at": "2026-09-06T06:48:20.006Z",
+    "last_save_at": "2026-09-06T07:07:55.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1dcd496cc1ba8b42f4ae58ee3246e68b42765ba3977234ecb9d0c4197e06e60",
+    "source_fingerprint": "sha256:5e2a1f96375172db051f999d5a78b1176fe7ed7f88aa0f15587c1ce42277fb89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "427a45dac6bdbe2337c2df31f69933182cf595feb5a146b163875007fd90d881",
+      "spec.md": "2629d78c005fcc87337d8248d1371909b99c1f6784600da266fc4001d2c88cf9",
       "plan.md": "6f559f8471549ec0894a9f386afed2d8688999810bb362ce1d91355b151d677e",
       "tasks.md": "fb81993de76400ec1b44a878c94c8bd0fbd52456b281f4b9d85183535c1b2f56",
       "implementation-summary.md": "d1e45e4dc14893b3834fb50271d103a7b1b581c1751f54687ae593c359c5ad81"

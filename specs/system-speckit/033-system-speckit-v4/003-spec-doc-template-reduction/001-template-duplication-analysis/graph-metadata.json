@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "template duplication analysis",
+      "analysis",
       "spec-kit template reduction",
       "template optimization",
       "tasks checklist merge",
@@ -20,13 +22,13 @@
       "template reduction analysis",
       "spec-kit recommendations",
       "template contract map",
-      "byte budget",
-      "analysis tasks",
-      "template reduction requirements"
+      "byte budget"
     ],
     "key_topics": [
-      "spec-kit",
       "template",
+      "duplication",
+      "analysis",
+      "spec-kit",
       "reduction",
       "optimization",
       "tasks",
@@ -34,9 +36,7 @@
       "merge",
       "continuity",
       "single",
-      "source",
-      "small-model",
-      "legibility"
+      "source"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-09-06T06:48:06.319Z",
+    "last_save_at": "2026-09-06T07:07:50.469Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:45679580d9fcde1191eac784fe175344794184709547c06fe9377d5aa51d66ea",
+    "source_fingerprint": "sha256:b06c685ebae4e106e6df3689d6dd3e40ccf9296fdef8b19d614d0ed676cf8c56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa40f02973cf90a7a6c30ce127857424644f124fd20d46cbd28027b63f6f5269",
+      "spec.md": "5df8ada2977558c22af43533318a4cfb7d0124cc9fbd4f8658ae119cc34b054d",
       "plan.md": "81517f48343e1a627da9a893895ab8548789bcf5dfc5dde6ef83c3bc3b729123",
       "tasks.md": "0b225855d7687c5e66d6e57a8fd42b2bf15bcf57ca9ec568b24a7984f3760f0e",
       "implementation-summary.md": "a92b1a6d0c8b95d5d3ebe042d86bfc59ea4cf18506238c3ecbaf33f3ab41ecca",

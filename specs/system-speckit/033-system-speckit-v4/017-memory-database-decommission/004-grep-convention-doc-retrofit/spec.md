@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 4: grep-convention-doc-retrofit"
 description: "Define a grep-optimized spec-doc convention, enforce it in templates and validate.sh, and retrofit it across the 22,127 active spec documents."
 trigger_phrases:
+  - "grep convention doc retrofit"
   - "grep convention"
   - "spec doc convention"
   - "doc retrofit"

@@ -2,6 +2,8 @@
 title: "Feature Specification: metadata-regeneration-and-parser-edges"
 description: "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatter parser in their JavaScript callers."
 trigger_phrases:
+  - "metadata regeneration shared parser"
+  - "metadata regeneration parser edges"
   - "metadata regeneration pass"
   - "drift census"
   - "shared package dependency edge"

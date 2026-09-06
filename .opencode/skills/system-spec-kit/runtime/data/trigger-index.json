@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9726c2524c13fb382d7d4cec3e070511b1ccb78646fcd72d2dec56292a6962e0",
+  "manifestHash": "f918eac7e46b29a28fabc6cc2c1bef300e280fa1f2004a977ab62d5e82892894",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -21774,9 +21774,6 @@
       8425,
       8426
     ],
-    "045 daemon and test harness hardening": [
-      13378
-    ],
     "045 hardening review": [
       13377
     ],
@@ -21825,9 +21822,6 @@
     ],
     "049 implementation summary": [
       9435
-    ],
-    "049 memory decommission": [
-      13429
     ],
     "049 substrate stress": [
       9437
@@ -23164,6 +23158,7 @@
     ],
     "active decisions design": [
       13213,
+      13215,
       13216
     ],
     "active decisions design plan": [
@@ -24166,6 +24161,7 @@
     ],
     "advisor integration": [
       13225,
+      13227,
       13228
     ],
     "advisor integration plan": [
@@ -26131,6 +26127,10 @@
     "amendment brief": [
       13414
     ],
+    "analysis": [
+      13153,
+      13211
+    ],
     "analysis phase approach": [
       13210
     ],
@@ -26527,6 +26527,9 @@
     ],
     "apply mode phase b implementation": [
       11261
+    ],
+    "apply path candidate filter fixes": [
+      13382
     ],
     "apply path enable decision": [
       13380
@@ -33056,11 +33059,15 @@
     ],
     "checklist deprecation closure": [
       13188,
-      13273
+      13273,
+      13275
     ],
     "checklist deprecation closure criteria": [
       13187,
       13271
+    ],
+    "checklist full retirement": [
+      13190
     ],
     "checklist item creation": [
       230
@@ -41127,6 +41134,9 @@
     "completion freshness rule": [
       1733
     ],
+    "completion gate coherence": [
+      13250
+    ],
     "completion sentinel plugin": [
       1699
     ],
@@ -42276,7 +42286,8 @@
       13449
     ],
     "continuity freshness claim binding": [
-      13446
+      13446,
+      13448
     ],
     "continuity freshness claim rule": [
       13448
@@ -42354,7 +42365,8 @@
     ],
     "continuity single source": [
       13153,
-      13163
+      13163,
+      13165
     ],
     "continuity single source plan": [
       13164
@@ -46309,6 +46321,9 @@
     "daemon reaper maintenance marker": [
       12559
     ],
+    "daemon reaper orphan classification": [
+      13149
+    ],
     "daemon recovery rebuild": [
       1549
     ],
@@ -46404,6 +46419,9 @@
     ],
     "daemon task registry shutdown": [
       11099
+    ],
+    "daemon test harness hardening": [
+      13378
     ],
     "daemon versus python scorer": [
       6635
@@ -47159,7 +47177,14 @@
     "decisions integrated with spec": [
       13233
     ],
+    "decisions memory redesign": [
+      13233
+    ],
+    "decisions notes system": [
+      13233
+    ],
     "decisions system analysis": [
+      13211,
       13212
     ],
     "decisions system analysis summary": [
@@ -47190,8 +47215,12 @@
     "decommission copilot hook bridge": [
       4346
     ],
+    "decommission debt cli nesting": [
+      13484
+    ],
     "decommission debt fixes": [
-      13482
+      13482,
+      13484
     ],
     "decommission debt plan": [
       13483
@@ -47204,6 +47233,9 @@
     ],
     "decommission landing": [
       13435
+    ],
+    "decommission review p1 p2 fixes": [
+      13425
     ],
     "decommission superset": [
       4345
@@ -51916,6 +51948,7 @@
       891
     ],
     "deprecation mechanics": [
+      13219,
       13220
     ],
     "deprecation mechanics approach": [
@@ -52041,6 +52074,9 @@
     "derived metadata repair plan": [
       13243
     ],
+    "derived metadata repair tool": [
+      13244
+    ],
     "derived metadata vocabulary projection design": [
       5173
     ],
@@ -52076,6 +52112,9 @@
       5146
     ],
     "derived repair": [
+      13244
+    ],
+    "derived repair automation": [
       13244
     ],
     "derived roster check": [
@@ -56621,6 +56660,9 @@
       13322,
       13323,
       13337
+    ],
+    "durable slice validator": [
+      13322
     ],
     "durable wave scheduler evidence": [
       7408
@@ -65349,6 +65391,9 @@
     "goal documentation parity tasks": [
       2732
     ],
+    "goal file addon": [
+      13337
+    ],
     "goal hook capability matrix": [
       2547
     ],
@@ -66223,6 +66268,7 @@
     "graph metadata write containment": [
       13340,
       13341,
+      13342,
       13343
     ],
     "graph metadata write guard": [
@@ -66375,6 +66421,9 @@
       13410,
       13411,
       13412
+    ],
+    "grep convention doc retrofit": [
+      13411
     ],
     "grep convention for spec docs": [
       1720
@@ -67475,7 +67524,8 @@
       11769
     ],
     "hook fallback failure signal": [
-      13466
+      13466,
+      13468
     ],
     "hook fallback signal plan": [
       13467
@@ -67540,6 +67590,9 @@
     ],
     "hook live testing matrix": [
       10679
+    ],
+    "hook markers improvement family": [
+      13503
     ],
     "hook numbered sections": [
       2137
@@ -69969,6 +70022,9 @@
     "index meta compatibility": [
       9721,
       11204
+    ],
+    "index root docs": [
+      13493
     ],
     "index salvage result": [
       10579
@@ -72595,6 +72651,9 @@
     "lazy add on tasks": [
       13178
     ],
+    "lazy addon docs": [
+      13177
+    ],
     "lazy addon lifecycle": [
       10817
     ],
@@ -73266,6 +73325,9 @@
     ],
     "level folder requirements": [
       1719
+    ],
+    "level for research": [
+      13309
     ],
     "level gated templates": [
       1769
@@ -75364,6 +75426,9 @@
     ],
     "manifest generator tasks": [
       3853
+    ],
+    "manifest goal template": [
+      13316
     ],
     "manifest impl plan": [
       9093
@@ -78261,7 +78326,8 @@
       11231
     ],
     "memory command family naming decision": [
-      13476
+      13476,
+      13479
     ],
     "memory command family rename": [
       13477
@@ -78335,6 +78401,7 @@
     "memory consumer rewire": [
       13397,
       13398,
+      13399,
       13400
     ],
     "memory context payload count invariant": [
@@ -78414,6 +78481,9 @@
     "memory data integrity audit": [
       10639
     ],
+    "memory database decommission": [
+      13429
+    ],
     "memory db corruption graph metadata churn": [
       10506
     ],
@@ -78426,14 +78496,21 @@
     "memory db sqlite constraint primarykey corruption": [
       10500
     ],
+    "memory decommission": [
+      13429
+    ],
     "memory decommission branch landing": [
-      13436
+      13436,
+      13438
     ],
     "memory decommission history": [
       13516
     ],
     "memory decommission inventory": [
       13421
+    ],
+    "memory decommission landing": [
+      13438
     ],
     "memory decommission landing plan": [
       13437
@@ -79107,6 +79184,7 @@
     ],
     "memory redesign verification": [
       13229,
+      13231,
       13232
     ],
     "memory redesign verification summary": [
@@ -79704,6 +79782,9 @@
     "metadata drift root cause": [
       10766
     ],
+    "metadata drift rules": [
+      13498
+    ],
     "metadata edge promoter": [
       11581,
       12056
@@ -79772,6 +79853,9 @@
     "metadata regeneration implementation plan": [
       5198
     ],
+    "metadata regeneration parser edges": [
+      13514
+    ],
     "metadata regeneration pass": [
       13514
     ],
@@ -79779,7 +79863,8 @@
       13513
     ],
     "metadata regeneration shared parser": [
-      13512
+      13512,
+      13514
     ],
     "metadata regeneration task breakdown": [
       5200
@@ -83320,6 +83405,9 @@
       5001
     ],
     "nested goal addon": [
+      13337
+    ],
+    "nested goal template addon": [
       13337
     ],
     "nested opencode state leak": [
@@ -86972,7 +87060,8 @@
       13472
     ],
     "orphaned types dead modules": [
-      13471
+      13471,
+      13473
     ],
     "orphaned types spec": [
       13473
@@ -88235,6 +88324,9 @@
     "parent rollup tasks": [
       1927,
       3299
+    ],
+    "parent set string playbook": [
+      13334
     ],
     "parent skill canon verification": [
       3693,
@@ -91817,7 +91909,6 @@
       9471,
       10408,
       11553,
-      13429,
       13516
     ],
     "phase parent 049": [
@@ -93466,6 +93557,9 @@
     "plan cli opencode leg integration": [
       7294
     ],
+    "plan contract optimization": [
+      13181
+    ],
     "plan core": [
       1895,
       1970,
@@ -93571,11 +93665,17 @@
     "plan preflight nested packet plan": [
       13144
     ],
+    "plan preflight nested packet resolution": [
+      13145
+    ],
     "plan preflight nested packet tasks": [
       13146
     ],
     "plan preflight specify feature override": [
       13143
+    ],
+    "plan preflight track packets": [
+      13145
     ],
     "plan scheduler opencode dispatch": [
       7290
@@ -95483,6 +95583,9 @@
       2777
     ],
     "process reaper classification": [
+      13149
+    ],
+    "process reaper classification fix": [
       13149
     ],
     "process reaper classification plan": [
@@ -99438,6 +99541,7 @@
     "rehome rules content": [
       13221,
       13222,
+      13223,
       13224
     ],
     "rehome rules content summary": [
@@ -100478,6 +100582,9 @@
     ],
     "repair graph metadata tasks": [
       9547
+    ],
+    "repair handle containment": [
+      13353
     ],
     "repair handle containment tasks": [
       13354
@@ -102136,6 +102243,9 @@
       13269,
       13270
     ],
+    "restore level upgrade vocabulary invariance": [
+      13269
+    ],
     "restore relay database": [
       566
     ],
@@ -102434,6 +102544,9 @@
     "retire standalone checklist": [
       13190
     ],
+    "retire sweep": [
+      13305
+    ],
     "retire the sweep": [
       13305
     ],
@@ -102539,7 +102652,8 @@
       12868
     ],
     "retrieval coverage alignment": [
-      13456
+      13456,
+      13458
     ],
     "retrieval coverage alignment plan": [
       13457
@@ -103181,7 +103295,8 @@
       3729,
       3730,
       3731,
-      3985
+      3985,
+      13382
     ],
     "review remediation 006 007": [
       9809
@@ -105317,13 +105432,15 @@
       13329
     ],
     "runtime neutral goal dispatch": [
-      13326
+      13326,
+      13328
     ],
     "runtime neutral hook helpers": [
       1779
     ],
     "runtime package rename": [
-      13441
+      13441,
+      13443
     ],
     "runtime package rename plan": [
       13442
@@ -105911,6 +106028,9 @@
     ],
     "save research context": [
       1317
+    ],
+    "save resume freshness": [
+      13463
     ],
     "save resume freshness plan": [
       13462
@@ -106747,7 +106867,8 @@
       4038
     ],
     "scripts into runtime nesting": [
-      13451
+      13451,
+      13453
     ],
     "scripts library": [
       1755
@@ -107672,6 +107793,9 @@
     "sequential thinking removal": [
       6270
     ],
+    "sequential thinking residue removal": [
+      13387
+    ],
     "serial authority loop": [
       7976
     ],
@@ -108376,7 +108500,8 @@
       10890
     ],
     "shared containment helper": [
-      13486
+      13486,
+      13488
     ],
     "shared context seam": [
       3865
@@ -108576,6 +108701,9 @@
     ],
     "shared package dependency edge": [
       13514
+    ],
+    "shared parsers post run refresh": [
+      13508
     ],
     "shared parsing modules": [
       1823
@@ -115664,6 +115792,9 @@
     "skills root state directories": [
       13237
     ],
+    "skills runtime state consolidation": [
+      13239
+    ],
     "skills state before after": [
       13234
     ],
@@ -116797,6 +116928,9 @@
     "spec kit runtime published": [
       13443
     ],
+    "spec kit runtime rename": [
+      13443
+    ],
     "spec kit runtime subsystems": [
       1644
     ],
@@ -117057,6 +117191,7 @@
     "spec memory server removal": [
       13403,
       13404,
+      13405,
       13406
     ],
     "spec memory shim": [
@@ -117138,6 +117273,9 @@
     ],
     "spec scripts": [
       1768
+    ],
+    "spec template context optimization": [
+      13256
     ],
     "spec template context optimizations": [
       13256
@@ -122866,6 +123004,9 @@
     "template contract validation": [
       1682
     ],
+    "template contracts acceptance criteria": [
+      13278
+    ],
     "template copy commands": [
       1740
     ],
@@ -122876,6 +123017,9 @@
       13159,
       13160,
       13161
+    ],
+    "template duplication analysis": [
+      13153
     ],
     "template examples": [
       1844
@@ -123038,7 +123182,8 @@
       13154
     ],
     "template reduction verification": [
-      13171
+      13171,
+      13173
     ],
     "template renderer": [
       1760
@@ -124550,6 +124695,7 @@
       13425
     ],
     "trigger index replacement": [
+      13393,
       13429
     ],
     "trigger index repo root": [
@@ -124567,6 +124713,9 @@
     ],
     "trigger index research": [
       13416
+    ],
+    "trigger index root drift fixes": [
+      13510
     ],
     "trigger index runtime data move": [
       13482
@@ -126397,6 +126546,9 @@
     "validation rule hierarchy": [
       1730
     ],
+    "validation rule reduction": [
+      13311
+    ],
     "validation rule registry": [
       1733
     ],
@@ -126992,7 +127144,8 @@
       13286
     ],
     "verify rollout": [
-      13173
+      13173,
+      13231
     ],
     "verify rollout memory": [
       13231
@@ -128805,6 +128958,9 @@
     ],
     "workspace lease": [
       1503
+    ],
+    "workspace path containment": [
+      13342
     ],
     "workspace root helper": [
       1609

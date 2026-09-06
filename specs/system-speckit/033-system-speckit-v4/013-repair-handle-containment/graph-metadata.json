@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "repair handle containment",
       "path containment followups",
       "repair scan to write gap",
       "directory swap symlink",
@@ -21,22 +22,21 @@
       "scan time observation to write",
       "remove process-derived root source",
       "directory swap fails first",
-      "repair handle containment tasks",
-      "compare handle after opening"
+      "repair handle containment tasks"
     ],
     "key_topics": [
-      "path",
-      "containment",
-      "followups",
       "repair",
+      "handle",
+      "containment",
+      "path",
+      "followups",
       "scan",
       "write",
       "gap",
       "directory",
       "swap",
       "symlink",
-      "branch",
-      "subsumed"
+      "branch"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
     "created_at": "2026-08-30T14:17:45Z",
-    "last_save_at": "2026-09-06T07:05:17.574Z",
+    "last_save_at": "2026-09-06T07:07:54.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b1f2261f31963e9ffdf186d3b4540b0aad4b0d59ebfca3a4bfa9cf481e899d5",
+    "source_fingerprint": "sha256:52b11c75a3a74b68251bf370033e8f46aa5b829af49f2839eb76267dbbae0036",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0a6916e09892c389faa8b5ef4f7d9928794f936ff5fc17766c60e03c81c8ae2e",
+      "spec.md": "30626a828764208847d0d615763963014ad5cf46c131dddd05359ed107df43ad",
       "plan.md": "04bacd77ee82eb8a9e537665457838c22155dc594943df6edf6147405e52110b",
       "tasks.md": "6f5ea0f71eddbb03edc7ff8b8d7589d3f6fd0625349961cac735144f63b15616",
       "decision-record.md": "577b952e14586e4629eae11224a4a92e5045b2330afde5392c2be720af9482c7",

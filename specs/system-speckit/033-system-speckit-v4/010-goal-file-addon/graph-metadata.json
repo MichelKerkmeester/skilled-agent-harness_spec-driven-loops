@@ -16,6 +16,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "goal file addon",
+      "nested goal template addon",
       "nested goal addon",
       "goal.md template",
       "parent goal child phases",
@@ -26,9 +28,10 @@
       "goal binding"
     ],
     "key_topics": [
-      "nested",
       "goal",
+      "file",
       "addon",
+      "nested",
       "template",
       "parent",
       "child",
@@ -36,8 +39,7 @@
       "durable",
       "slice",
       "cap",
-      "packet",
-      "directive"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -211,7 +213,7 @@
     ],
     "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
     "created_at": "2026-08-29T17:39:40Z",
-    "last_save_at": "2026-09-06T06:48:29.687Z",
+    "last_save_at": "2026-09-06T07:07:53.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +222,10 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:72942bbd5c806ae6c0115d95803633737e9f2e73fe82d16d8acf863e98f4b4f4",
+    "source_fingerprint": "sha256:6e8a7394d38a50035cd37d41531378ab708b12190e7bb4ddc40d54bb1cd6775e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "022b625548dd5a991effccdda42ab21ac24783875b9c7122579c41fbf17eeeed",
+      "spec.md": "e6732f7a418232d3979ede935a3fc2ff231bababad1829e3597fbaa8cc62ec28",
       "research/research.md": "6537e685b82de8bf8ac5ad818b8b3bb7bcd718f7cee6a715347123dfb9bbdb71",
       "resource-map.md": "926ab62bd35f55e764805f8aa6e23aa0897bf06f07000a09545d06bb0147e6ae"
     },

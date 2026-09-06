@@ -2,6 +2,8 @@
 title: "Feature Specification: Phase 1: analysis [template:level-1/spec.md]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
+  - "decisions system analysis"
+  - "analysis"
   - "deprecate constitutional memory"
   - "decisions and notes system"
   - "phase one decisions analysis"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "metadata drift rules",
       "graph metadata child identity",
       "phantom children after rename",
       "track root sweep",
@@ -21,12 +22,13 @@
       "track roots sweep script",
       "backfill prune prediction parity",
       "graph metadata child identity tasks",
-      "census drift 127 packets",
-      "prune foreign identity children"
+      "census drift 127 packets"
     ],
     "key_topics": [
-      "graph",
       "metadata",
+      "drift",
+      "rules",
+      "graph",
       "child",
       "identity",
       "phantom",
@@ -34,9 +36,7 @@
       "rename",
       "track",
       "root",
-      "sweep",
-      "validator",
-      "registry"
+      "sweep"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated. A refresh now prunes foreign-identity children, a registry rule reports any that remain, and a sweep reports declared-versus-actual child counts for every track root.",
     "created_at": "2026-09-05T21:16:57Z",
-    "last_save_at": "2026-09-06T07:05:00.610Z",
+    "last_save_at": "2026-09-06T07:09:10.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc632191425726b379ec70e024a5701036ccefe5bdeb88e59eea03542f2bb83d",
+    "source_fingerprint": "sha256:cff9ac99550ea495506a407a05c8c9e9a164a87e9112be344ea5d8df2cf752c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49edef57ab8dc6346e461ee89bc3e986eea31ca5fc74d662b812911a5446e3ef",
+      "spec.md": "b0739602df4e508166a1f8edadf837aa86664a9db1ac00e82415814e7aa26c87",
       "plan.md": "d1865c6b8293026dd8756d16c8285e8d18ade243e9819e7c05afb12442896440",
       "tasks.md": "8d71b8547b3c5d67665dd372ef220e07fcc42ff35941acbef592a19f6b927d67",
       "implementation-summary.md": "8b875ecf25cc120e73151c5953a9e42cd8f3b5c59c3f4dfc4c677668a5ad593b"

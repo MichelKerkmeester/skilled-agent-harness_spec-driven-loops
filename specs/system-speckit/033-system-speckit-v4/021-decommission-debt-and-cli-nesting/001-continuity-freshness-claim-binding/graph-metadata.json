@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "continuity freshness claim binding",
       "continuity freshness binding spec",
       "CONTINUITY_FRESHNESS claim rule",
       "six completion docs fingerprint",
@@ -21,15 +22,14 @@
       "validateContinuityFreshness reorder",
       "skip code family distinguish",
       "fingerprint stamp completion claim",
-      "fresh_completion verdict return",
-      "continuity-freshness.vitest.ts suite"
+      "fresh_completion verdict return"
     ],
     "key_topics": [
       "continuity",
       "freshness",
+      "claim",
       "binding",
       "spec",
-      "claim",
       "rule",
       "six",
       "completion",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md` and `handover.md` for a completion claim (`completionpct === 100` or a status matching `complete|completed|done|shipped|implemented`, read from either frontmatter `status` or the metadata-table `Status` row)",
     "created_at": "2026-09-05T06:13:03Z",
-    "last_save_at": "2026-09-06T07:05:02.465Z",
+    "last_save_at": "2026-09-06T07:09:12.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78cc180ff8c8ded4edf627adccf18e6620b4b86ac6237c82e024d58a801dc6a9",
+    "source_fingerprint": "sha256:e559fd8cb274d6507c67e05da864c957bcff04ea2a1ae30fa86f9a7df4611175",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ee4f66426f98642586e3bb9acb658aa83266c3a95533f2718d7c483ffe296d0",
+      "spec.md": "dd46bd9c88998256d2084f63d150800456fff5523fde902f80204e728460d864",
       "plan.md": "348f576fa3f4e7800963ffb37ad7e7e81402edc5119e9e7e1296bd7a3e3dc26a",
       "tasks.md": "194980fae29bd61ef1c715f65fb5754a672d148d08d9928d5bed1217ca64d27f",
       "implementation-summary.md": "ec04770e36cd66dfc12010b9199394d0d289952847d2f6e5ad60d176d1906f32"

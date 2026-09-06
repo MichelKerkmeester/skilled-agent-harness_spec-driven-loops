@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 5: hook-fallback-failure-signal"
 description: "Codex and Devin wrap every hook adapter as `node <adapter> || printf fallback`, so an adapter crash still returns a successful hook response; Codex's Stop cleanup chains an unconditional true that makes its own fallback unreachable; the Copilot wrappers always take the fallback because their compiled handlers do not exist."
 trigger_phrases:
+  - "hook fallback failure signal"
   - "hook fallback signal spec"
   - "codex devin adapter crash"
   - "mkHookDrift machine detectable"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "spec template context optimization",
       "spec template context optimizations",
       "implement 033 research recommendations",
       "research template gating",
@@ -21,13 +22,13 @@
       "template consolidation read guard",
       "plan adherence validation gates",
       "memory_search token budget",
-      "inline-gate-renderer level gating",
-      "spec kit template task list"
+      "inline-gate-renderer level gating"
     ],
     "key_topics": [
       "spec",
       "template",
       "context",
+      "optimization",
       "optimizations",
       "implement",
       "research",
@@ -35,8 +36,7 @@
       "gating",
       "coverage",
       "default",
-      "scope",
-      "adherence"
+      "scope"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-09-06T07:05:09.691Z",
+    "last_save_at": "2026-09-06T07:09:15.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f320265f07a923f96ae09c3b3fd756ca8b36d3deede20b89960437796495c843",
+    "source_fingerprint": "sha256:017e73103bb94f2215de428aa413199b4996f300a9a03270c49260b6df33b5fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b935fc50acc0abcfaf482b2673549895accc8168d546ce82dab265d86e1c4bc",
+      "spec.md": "7c1354da710b5f5eb6bf1001d98c09e8baadf7bba15c63e7d52143f9c05e6228",
       "plan.md": "0a61f30643aa9544ff779c0cecdad7b4796827bc612ef47e7dc01dc3f57a1d8e",
       "tasks.md": "912458ff1dfcadbd9f3c1da15c263eb8c4eef26c5f7717a51ca96e1a089b7a23",
       "decision-record.md": "fe9008f4e07b5453aeccc36a60d4df4d13691e1d2612d43042dbf3892dc94730",

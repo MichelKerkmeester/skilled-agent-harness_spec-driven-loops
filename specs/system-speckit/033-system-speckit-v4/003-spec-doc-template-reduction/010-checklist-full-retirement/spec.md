@@ -2,6 +2,7 @@
 title: "Feature Specification: Checklist Full Retirement"
 description: "Retire the standalone verification checklist the tasks/checklist merge left behind: its producer, its contract entries, its read-paths, its template, and the 2,270 packet copies. Includes the fingerprint-generation change that keeps the removal from forcing a repo-wide repair on everyone who pulls it."
 trigger_phrases:
+  - "checklist full retirement"
   - "checklist retirement"
   - "retire standalone checklist"
   - "source fingerprint docset"

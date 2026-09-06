@@ -2,6 +2,8 @@
 title: "Feature Specification: Automated Repair of Derived Packet Failures"
 description: "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did."
 trigger_phrases:
+  - "derived metadata repair tool"
+  - "derived repair automation"
   - "derived repair"
   - "repair-derived"
   - "spec packet autofix"

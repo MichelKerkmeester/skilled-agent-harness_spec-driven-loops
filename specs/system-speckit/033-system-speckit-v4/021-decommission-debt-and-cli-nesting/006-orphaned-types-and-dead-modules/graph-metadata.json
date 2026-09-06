@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "orphaned types dead modules",
       "orphaned types spec",
       "shared types database interface types",
       "vector store types sections",
@@ -21,12 +22,13 @@
       "seven orphaned type exports",
       "two orphaned runtime modules",
       "test files never run",
-      "empty catch reason or log",
-      "link checker roots dedupe"
+      "empty catch reason or log"
     ],
     "key_topics": [
       "orphaned",
       "types",
+      "dead",
+      "modules",
       "spec",
       "shared",
       "database",
@@ -34,9 +36,7 @@
       "vector",
       "store",
       "sections",
-      "two",
-      "never",
-      "run"
+      "two"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats` (239), and the structural `Database` (171), `DatabaseExtended` (179), and `PreparedStatement` (157) interfaces; a repository-wide search finds no importer of any of these seven symbols outside `types.ts` itself and `shared/index.ts`'s barrel re-export - no implementer, no caller, no test",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-09-06T07:05:01.281Z",
+    "last_save_at": "2026-09-06T07:09:11.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01440348cb88c5c1ab175ed6ef114fd74719dc5fac54e144b1b61f56d022ee9a",
+    "source_fingerprint": "sha256:a04ad3d6277c3913a30cd891cb63752a0fac3370ecd2e25bc2765e055f2b12a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe3de669b81a26b025e62b0e5272635dd87bbe3940be37871ffeea8c875e208d",
+      "spec.md": "ab817aa45e3dc7d720bbdb77855b60125ec985f45e080a2b4c82463823262c7c",
       "plan.md": "aee86f765c0b0f190d800267f839181cd149c034c90f9304ec144122892bd146",
       "tasks.md": "9caf7a4ffa3dee386ac4e52787d24045f17584327227b512e9852577348a65e2",
       "implementation-summary.md": "7358a9d842959e9009d24c5ca4857a7e78c1ab231c1268cc14715859f7118385"

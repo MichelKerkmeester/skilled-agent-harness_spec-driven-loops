@@ -2,6 +2,8 @@
 title: "Feature Specification: Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill"
 description: "Phase parent for Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill"
 trigger_phrases:
+  - "decisions notes system"
+  - "decisions memory redesign"
   - "deprecate constitutional memory"
   - "decisions and notes system"
   - "constitutional memory deprecation"

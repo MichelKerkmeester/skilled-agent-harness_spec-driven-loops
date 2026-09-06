@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "plan preflight track packets",
+      "plan preflight nested packet resolution",
       "plan preflight nested packet",
       "check-prerequisites nested path",
       "specify feature track packet",
@@ -20,23 +22,21 @@
       "check-prerequisites override guard",
       "specify feature branch validation skip",
       "plan preflight nested packet tasks",
-      "check-prerequisites override tasks",
-      "specify feature override",
-      "not on a feature branch"
+      "check-prerequisites override tasks"
     ],
     "key_topics": [
       "plan",
       "preflight",
+      "track",
+      "packets",
       "nested",
       "packet",
+      "resolution",
       "check-prerequisites",
       "path",
       "specify",
       "feature",
-      "track",
-      "speckit",
-      "branch",
-      "dir"
+      "speckit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`, then hard-rejects any branch that does not match `^[0-9]{3}-`",
     "created_at": "2026-08-15T13:24:44.384Z",
-    "last_save_at": "2026-09-06T07:00:42.963Z",
+    "last_save_at": "2026-09-06T07:07:49.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4c35b296da45952ca53dd06d76dcc824b8f1937eef0394bcafb46dbb795df9d",
+    "source_fingerprint": "sha256:d2378e498fb37843646716f7f663635ee9076b7fd64d488f0d0d94ced339eaeb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "930d49cd9084f0cc744086b5b2f0163abdb762c054f386af483425bc84523379",
+      "spec.md": "bbaa8d0ba63dbc343cc57451245f8d0343f1553c9f664f58dd91e26287ef1a87",
       "plan.md": "05ce3c50775977720424f114955fa71cdbe235bb4c0dab45b449757692c7ed9b",
       "tasks.md": "a19bea293608f7e94139579189e39bca85df818b1477441a3f58b50369572367",
       "implementation-summary.md": "309f2f27ac42717cb48b86361b44d09ab7a7a7ed6874d6f77ccab56a251e66de"

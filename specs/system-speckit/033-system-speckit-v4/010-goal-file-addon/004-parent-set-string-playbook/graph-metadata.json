@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "parent set string playbook",
       "set string playbook",
       "goal pointer",
       "completion criteria copied",
@@ -21,10 +22,10 @@
       "goal binding",
       "goal dispatch",
       "goal set string playbook",
-      "parent goal set string",
-      "goal objective pointer criteria"
+      "parent goal set string"
     ],
     "key_topics": [
+      "parent",
       "set",
       "string",
       "playbook",
@@ -35,8 +36,7 @@
       "copied",
       "stop",
       "evaluator",
-      "packet",
-      "durable"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Nothing dereferences a path inside a goal string",
     "created_at": "2026-08-29T18:09:19Z",
-    "last_save_at": "2026-09-06T07:05:05.454Z",
+    "last_save_at": "2026-09-06T07:09:14.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b27d1852082cb6b5406b6bfae754f7c09f6d367701033c26203fd76820531920",
+    "source_fingerprint": "sha256:aa067a612c16cb24d377afd56afcdb77af2778099afd2f49227403d6a9ad1ab2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cfb0e81b9ce0e8e1f0322b69098378a4c82f6b17b2e871c61c254ca9a305bfc7",
+      "spec.md": "ebafc30082a8f6fdb1505da3324018e170f82df6606f9173877e1acc26e28751",
       "plan.md": "b234d046b3be9660b96a179a746e74b5cbdc760d8826134504f5aa01268a0c27",
       "tasks.md": "e68bf84931285e7e4c182b4d49a4abfe5b6d3ca5f261767c35536e613073169b",
       "implementation-summary.md": "b816d2e8ac22252baa4b31a5fe8dcd71a133ad4ed47f1c975b066599be36b66d"

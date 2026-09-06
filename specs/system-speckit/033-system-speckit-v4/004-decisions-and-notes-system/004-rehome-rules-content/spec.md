@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 4: rehome-rules-content [template:level-1/spec.md]"
 description: "Rehome the 20 constitutional rule files' unique content and retarget the root-doc citations, then delete the folder. Most rules are already inlined in the root docs; the actionable citation set is concentrated in CLAUDE.md/AGENTS.md/BARTER.md, though a full census must precede deletion (420 raw refs exist, mostly non-load-bearing spec history)."
 trigger_phrases:
+  - "rehome rules content"
   - "rehome constitutional rules"
   - "citation census"
   - "retarget links"

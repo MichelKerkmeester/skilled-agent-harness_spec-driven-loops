@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "continuity single source",
       "memory continuity consolidation",
       "single-source continuity",
       "FRONTMATTER_MEMORY_BLOCK",
@@ -21,20 +22,19 @@
       "SESSION_LINEAGE scope",
       "resume ladder continuity",
       "continuity single source tasks",
-      "validator-first template dedup",
-      "canonical implementation-summary"
+      "validator-first template dedup"
     ],
     "key_topics": [
-      "memory",
       "continuity",
+      "single",
+      "source",
+      "memory",
       "consolidation",
       "single-source",
       "resume",
       "ladder",
       "spec",
       "core",
-      "single",
-      "source",
       "plan",
       "validator"
     ],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The ~16-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across five docs in an L2 packet",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-09-06T07:05:13.835Z",
+    "last_save_at": "2026-09-06T07:09:17.615Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75bd0a1903f4668f7b59119a277b8ff14f42c641f1e04a218031b87a07389f0e",
+    "source_fingerprint": "sha256:f03e00ca4d77e3c473676d06f153ca05791ab1d3086ee547440444bc1c3182cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a9061981db512ee1e8d0a77a8b416f6bd8bc78808c54b21b2997e323eddbb4c",
+      "spec.md": "2c5a8a0a960718b573979bb8ef0201becd383ad0c315d083a7ef928b6758079e",
       "plan.md": "9bd1864d953acdc73116d44c7610c893fb886e46a34b2b44b5f3cf89fded20c3",
       "tasks.md": "2ee2147251dd79f3a73c41d3595e7b72688e2bdf2b5bf4ee6c01ebec41907afd",
       "implementation-summary.md": "72ba0817ecebdc0f02301b536c180a52d41070f0a1ce251dc7e04985db8f2265"

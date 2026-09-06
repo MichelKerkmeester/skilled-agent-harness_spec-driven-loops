@@ -2,6 +2,7 @@
 title: "Feature Specification: Spec-Kit Template Optimization"
 description: "Phase parent for spec-kit document-template optimization: level-gated template contracts, context-cost reduction, and a canonical acceptance-criteria document that gates packet closure at Levels 2, 3 and 3+."
 trigger_phrases:
+  - "template contracts acceptance criteria"
   - "spec kit template optimization"
   - "acceptance criteria template"
   - "spec doc closure gate"

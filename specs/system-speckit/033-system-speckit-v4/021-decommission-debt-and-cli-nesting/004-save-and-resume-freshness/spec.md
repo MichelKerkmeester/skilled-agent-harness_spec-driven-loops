@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 4: save-and-resume-freshness"
 description: "A canonical continuity save never checks the trigger index against the packet's current phrases, and the resume ladder lets a newer unbound handover.md and a malformed thin-continuity fallback outrank validated, packet-bound continuity."
 trigger_phrases:
+  - "save resume freshness"
   - "save resume freshness spec"
   - "save time trigger index staleness"
   - "resume ladder trust ranking"

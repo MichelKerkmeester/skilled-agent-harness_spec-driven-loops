@@ -2,6 +2,8 @@
 title: "Feature Specification: A Level For Research"
 description: "Research and audit packets had no level whose contract they could meet; this adds one and fixes the rules that never knew the non-numeric levels existed."
 trigger_phrases:
+  - "level for research"
+  - "level for research"
   - "research level"
   - "research packet type"
   - "research and audit packets"

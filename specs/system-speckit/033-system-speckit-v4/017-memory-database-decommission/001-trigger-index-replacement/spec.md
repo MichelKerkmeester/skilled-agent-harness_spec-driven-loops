@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 1: trigger-index-replacement"
 description: "Build the generated trigger index and ripgrep retrieval conventions, proven at parity against the current LIKE-based trigger lane, before any part of the memory subsystem is removed."
 trigger_phrases:
+  - "trigger index replacement"
   - "trigger index"
   - "trigger index generator"
   - "grep-first retrieval"

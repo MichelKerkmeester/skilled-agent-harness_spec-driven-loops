@@ -2,6 +2,7 @@
 title: "Feature Specification: integration-research-remediation"
 description: "Phase parent for remediating the eleven findings of the Sonnet 5 integration research: the trigger-index root regression and README rule count, phantom children and unvalidated track roots, the deferred Claude and Cursor hook drift markers and the unregistered improvement family, and a shared frontmatter parser, a shared containment primitive and post-run packet metadata refresh across four skill families."
 trigger_phrases:
+  - "trigger index root drift fixes"
   - "integration research remediation"
   - "spec kit alignment findings"
   - "trigger index repo root regression"

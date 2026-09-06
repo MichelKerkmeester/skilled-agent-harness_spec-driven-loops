@@ -16,7 +16,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "045-daemon-and-test-harness-hardening",
+      "daemon test harness hardening",
       "orphaned launcher respawn lock",
       "production db isolation bypass",
       "vitest hang containment",
@@ -27,7 +27,10 @@
       "goal binding"
     ],
     "key_topics": [
-      "045-daemon-and-test-harness-hardening",
+      "daemon",
+      "test",
+      "harness",
+      "hardening",
       "orphaned",
       "launcher",
       "respawn",
@@ -35,10 +38,7 @@
       "production",
       "isolation",
       "bypass",
-      "vitest",
-      "hang",
-      "containment",
-      "live-follow"
+      "vitest"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -161,17 +161,17 @@
     ],
     "causal_summary": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding roughly 290% CPU for 2h35m–4h12m, and one orphaned spec-memory launcher alive at `ppid 1` for 2 days 14 hours",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-09-06T06:48:23.052Z",
+    "last_save_at": "2026-09-06T07:07:54.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c4116e2c254ad74828e820e59bd130ca1974b9348c99ecc6b6022bcd5ac09439",
+    "source_fingerprint": "sha256:281fc70dd0ca287ae02d2f6f554a55950f89db163d6d9a47b03575ba47a229a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dde3b5af7c1cec3b54ae5a5059b072281bdda2050527d20b4cba3cef1d8c40f1"
+      "spec.md": "227c531dae340d31fdd0ec8f8ba2d75f8a231b9b83fb769100237df51ae7e740"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-31T04:30:50.843Z"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "deprecation mechanics",
       "constitutional deprecation",
       "includeConstitutional false",
       "learned-triggers off",
@@ -21,12 +22,12 @@
       "deprecation mechanics plan",
       "memory deprecation approach",
       "phase three scope",
-      "phase three deprecation tasks",
-      "deprecation mechanics"
+      "phase three deprecation tasks"
     ],
     "key_topics": [
-      "constitutional",
       "deprecation",
+      "mechanics",
+      "constitutional",
       "includeconstitutional",
       "false",
       "learned-triggers",
@@ -35,8 +36,7 @@
       "learn",
       "spec",
       "core",
-      "phase",
-      "three"
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull constitutional files, and the indexer keeps scanning `constitutional/`",
     "created_at": "2026-08-26T05:34:12Z",
-    "last_save_at": "2026-09-06T07:05:10.710Z",
+    "last_save_at": "2026-09-06T07:09:16.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62fae4599b2395fc34255668632b80d7a8561bc56d9f54ae8d26df4de942c0ff",
+    "source_fingerprint": "sha256:81e1a5e6e0ee5b06ac22c7f76eec1f06b3130a81f762e661e21452757a7b5e75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3b6c1e79029028ec4ecf8dab31ec3b01d871e3786a22236803c3877506f6314",
+      "spec.md": "0d7076edca54151fc70e3070f3a89ebca415af4e6b3ff3760ed293f1b36a08bd",
       "plan.md": "50b4427b5a6ce76979780cea592ba747cf3342a43244c6f96e80d540cc60d383",
       "tasks.md": "4eabf4da3e22006f0effae8bc812bfd91e30944da617e407624f719a073db527",
       "implementation-summary.md": "663cc6faaeb6b9bd632e9aae026320894f2739cc7155fa853566866cab622c2d"

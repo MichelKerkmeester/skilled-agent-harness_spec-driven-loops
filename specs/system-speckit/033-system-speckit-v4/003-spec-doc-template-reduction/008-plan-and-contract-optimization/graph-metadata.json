@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "plan contract optimization",
       "spec-kit document contract",
       "implementation-summary lifecycle gate",
       "plan phase checkbox reduction",
@@ -21,22 +22,21 @@
       "implementation-summary contract",
       "plan phase duplication",
       "template golden snapshots",
-      "spec-kit optimization tasks",
-      "lifecycle-gated implementation summary"
+      "spec-kit optimization tasks"
     ],
     "key_topics": [
+      "plan",
+      "contract",
+      "optimization",
       "spec-kit",
       "document",
-      "contract",
       "implementation-summary",
       "lifecycle",
       "gate",
-      "plan",
       "phase",
       "checkbox",
       "reduction",
-      "template",
-      "optimization"
+      "template"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json:163-167`, Level 2 at `:290-295`, Level 3 at `:460-464`, and Level 3+ at `:657-662`",
     "created_at": "2026-08-27T17:51:28.951Z",
-    "last_save_at": "2026-09-06T06:47:56.399Z",
+    "last_save_at": "2026-09-06T07:09:17.132Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8027074a97a7790e56264a110234c648d0d6622192a07d4f5852d915c7a4ad6a",
+    "source_fingerprint": "sha256:2a95b6791660ac6a9ec853b03eb253a008e2e59c36b5e4a323a42890470cf0fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff41555591ccd97af9e574cb017a2ee8be0d2d15d53717eb3f9b32d399c8d15e",
+      "spec.md": "8e97ac0649ab3650fafabf8aaaa571a9a6baff6c5c89bcf892bf5fa4123e2daa",
       "plan.md": "fb532ffae41ee095dbfb8648a65e2e1e243061bf3809f603fc152cdbe5d6667a",
       "tasks.md": "6028b11cac8d5c6cdbb4994181dbd0ceacfc5fcb74d7d7148758066a4c6ba85e",
       "implementation-summary.md": "e04e184b8f8f283afeed245a0ad8281c108500a787b84f0d01e7d5cbbc83a93e"

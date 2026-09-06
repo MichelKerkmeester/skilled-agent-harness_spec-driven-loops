@@ -20,12 +20,14 @@
   },
   "derived": {
     "trigger_phrases": [
+      "validation rule reduction",
       "validation reduction",
       "delete validation rules",
       "strict gate too strict"
     ],
     "key_topics": [
       "validation",
+      "rule",
       "reduction",
       "delete",
       "rules",
@@ -35,8 +37,7 @@
       "completion",
       "fails",
       "roughly",
-      "two",
-      "thirds"
+      "two"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -89,16 +90,16 @@
     ],
     "causal_summary": "The completion gate fails roughly two thirds of the live corpus, and the",
     "created_at": "2026-08-29T17:24:49.641Z",
-    "last_save_at": "2026-09-06T06:48:31.102Z",
+    "last_save_at": "2026-09-06T07:07:53.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:92d14f047b2fc936fac0aaba16a92e3c2bab343a9a393adc47199f040a65b682",
+    "source_fingerprint": "sha256:7ac0ec7c689eaadb898b165c5deffe62c762450d9b093880b0db8923775a53f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d15fce61bbb20a8864cd46db65ecf83ce5dc6b76ccb2bbe6f9ac3d5de043c937"
+      "spec.md": "daf1835da12aaedce6d7e2c7249cedb63db52a5c8f2176c8fc6e3262386339e3"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
     "last_active_at": null

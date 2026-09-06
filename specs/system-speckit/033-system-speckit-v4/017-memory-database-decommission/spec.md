@@ -2,12 +2,12 @@
 title: "Feature Specification: memory db decommission"
 description: "Phase parent for removing the system-spec-memory MCP database subsystem and replacing it with grep-first retrieval"
 trigger_phrases:
-  - "049-memory-decommission"
+  - "memory database decommission"
+  - "memory decommission"
   - "memory db decommission"
   - "spec memory removal"
   - "grep-first retrieval"
   - "trigger index replacement"
-  - "phase parent"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

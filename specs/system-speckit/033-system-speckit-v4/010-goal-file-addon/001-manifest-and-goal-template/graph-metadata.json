@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "manifest goal template",
       "goal manifest entry",
       "goal template",
       "lazy add-on goal",
@@ -22,10 +23,10 @@
       "goal template shipped"
     ],
     "key_topics": [
-      "goal",
       "manifest",
-      "entry",
+      "goal",
       "template",
+      "entry",
       "lazy",
       "add-on",
       "tmpl",
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-09-06T06:47:19.450Z",
+    "last_save_at": "2026-09-06T07:09:14.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:784a5f361b448690f35802ef2b30fafaa054d70ab94040b434f7059c07f61a04",
+    "source_fingerprint": "sha256:6fe4de6367aaba5d140ac7d8c1b12bcc80135d29e9c8850a6b62d1821729846e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92a5fa5343db3821538d021b14b1badf402ffe47761ff34709d0eb5230a94fe3",
+      "spec.md": "7bf2ea850bcb66f163ef9e4aa9dc0431e3212b971e3f8bc498f3ad7134ae39ba",
       "plan.md": "8d16bf0c76df3d46a63e5ef704f016f18953d95e37acfc00ead6045fd064612a",
       "tasks.md": "5b091cd815a5c07f3f4aec139e42821dcb183362e3233992367008037b3d8716",
       "implementation-summary.md": "fd6f3115336eb32e2089a0a2746d4c5c855bea76dc2ff35d8bb46510b7e278ef"

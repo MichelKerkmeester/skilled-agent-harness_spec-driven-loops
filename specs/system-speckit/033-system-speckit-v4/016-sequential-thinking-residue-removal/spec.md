@@ -2,6 +2,7 @@
 title: "Feature Specification: Retire the decommissioned MCP server from the doctor tooling and clear stale spec residue"
 description: "The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit 7673da6bc24, and specs/sk-doc carries an empty false-start packet directory."
 trigger_phrases:
+  - "sequential thinking residue removal"
   - "decommissioned server residue"
   - "sequential thinking doctor"
   - "mcp doctor stale server"

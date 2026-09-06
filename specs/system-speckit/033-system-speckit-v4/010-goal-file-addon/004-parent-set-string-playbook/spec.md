@@ -2,6 +2,7 @@
 title: "Feature Specification: Parent Set-String Playbook"
 description: "The operator-facing contract for what actually gets set as the objective: a short pointer plus the completion criteria copied out, because no stop evaluator opens the referenced file."
 trigger_phrases:
+  - "parent set string playbook"
   - "set string playbook"
   - "goal pointer"
   - "completion criteria copied"

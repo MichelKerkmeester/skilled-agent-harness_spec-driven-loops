@@ -2,6 +2,7 @@
 title: "Feature Specification: Runtime-Neutral Goal Dispatch"
 description: "Make the speckit goal offer dispatch by runtime instead of calling one runtime's tool, and make the stale-filename assertion path-specific so a spec document named goal.md stops colliding with it."
 trigger_phrases:
+  - "runtime neutral goal dispatch"
   - "runtime neutral goal"
   - "goal offer dispatch"
   - "stale filename assertion"

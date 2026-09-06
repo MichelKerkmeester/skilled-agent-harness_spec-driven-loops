@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "template reduction verification",
       "verify rollout",
       "fleet validation",
       "golden snapshot suite",
@@ -21,10 +22,12 @@
       "deriveStatus fleet delta",
       "recursive strict validation",
       "verify rollout tasks",
-      "recursive validation gate",
-      "zero deriveStatus delta"
+      "recursive validation gate"
     ],
     "key_topics": [
+      "template",
+      "reduction",
+      "verification",
       "verify",
       "rollout",
       "fleet",
@@ -33,10 +36,7 @@
       "snapshot",
       "suite",
       "regression",
-      "baseline",
-      "spec",
-      "core",
-      "plan"
+      "baseline"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Each prior phase edits shipped, load-bearing templates and validators where a mis-sequenced change regresses the whole packet fleet",
     "created_at": "2026-08-26T05:33:59Z",
-    "last_save_at": "2026-09-06T06:47:59.257Z",
+    "last_save_at": "2026-09-06T07:07:50.799Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:978236728593f32bc3b79316c27611301a4643e7a7b917043f7337c580b075da",
+    "source_fingerprint": "sha256:19326e310245439fa67a25492b0f9b660dec6051f572e211577709741ff23b49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d374627135b2d9305bdc4676903f77ad456894982a42d709a6d44cc45a9fe854",
+      "spec.md": "5c34ebd4a8e019285fb5fd18128d5dbcb645cb25ca65a8ad9a197573009028bf",
       "plan.md": "ff2fd1a72c9f44d744561f0b6cd071e4cc3e8b79d356571a9e9b8bce49b8b579",
       "tasks.md": "a4e6eff1d85a367256c6883822ddfeca87753bced79ef2b8c025c2a35025084a",
       "implementation-summary.md": "f160b7b9913624a2e9fc04173a28c7d90095e9c96682c1a28ca25550bdb28c83"

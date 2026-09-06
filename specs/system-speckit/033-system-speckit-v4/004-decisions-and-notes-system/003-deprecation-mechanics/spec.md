@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 3: deprecation-mechanics [template:level-1/spec.md]"
 description: "Retire the constitutional memory layer: default includeConstitutional to false (the real lever), stop the MCP prime SQL and the indexer's constitutional scan, freeze /memory:learn, and flag-off the confirmed-empty learned-triggers — updating the ~6 memory tests that assume the old defaults. No replacement surface; steering already lives inlined in the root docs."
 trigger_phrases:
+  - "deprecation mechanics"
   - "constitutional deprecation"
   - "includeConstitutional false"
   - "learned-triggers off"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "retrieval coverage alignment",
       "retrieval coverage alignment spec",
       "corpus walker ripgrep drift",
       "install guides trigger index",
@@ -21,8 +22,7 @@
       "corpus walker documentation divergence",
       "install guides coverage question",
       "single exclusion manifest",
-      "parity test enforce agreement",
-      "deterministic index hash"
+      "parity test enforce agreement"
     ],
     "key_topics": [
       "retrieval",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The trigger-index corpus walker (`.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:20-31`) sets `CORPUSROOTS = ['specs', '.opencode/skills']` and excludes `zarchive`, `nodemodules`, `scratch`, `research/lineages` (pruned only directly under a `research` parent), `tests/fixtures`, and any `fixtures`/`fixtures`/`test-fixtures`/`-fixtures` directory name outside `specs/`",
     "created_at": "2026-09-05T06:13:05Z",
-    "last_save_at": "2026-09-06T07:05:01.986Z",
+    "last_save_at": "2026-09-06T07:09:12.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f38b758b2c95238b9b9c2e8976f3309013097509fd75e1d8487a496f7c7b11dd",
+    "source_fingerprint": "sha256:4cadfa40c8bb1cdc75bdc267603eab699ca54803e8b1f14c0d57a9b0e016e036",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "749258686be4ae8cb21c2a8439640aec482eca3166f80aab616a34f182fa8205",
+      "spec.md": "9046fdda77fdb8410d55e06ffa3eca453d8747a83e21ea5224ea69ada1cbd873",
       "plan.md": "c54d1a59aa39975b6e29ed69f60ce27d7206015f472c3275c7e8f2cefa779104",
       "tasks.md": "0e02cad52f31c247b14cee97026ac197a793ffb0d09aa061a420ece6627922c5",
       "implementation-summary.md": "4e415daab9d6284a57c5680e5b06df36def66c9189c0ec950a20b54f8f9d5cf7"

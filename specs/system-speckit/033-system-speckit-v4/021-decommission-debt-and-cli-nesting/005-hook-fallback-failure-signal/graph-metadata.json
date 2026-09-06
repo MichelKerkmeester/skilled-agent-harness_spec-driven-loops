@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "hook fallback failure signal",
       "hook fallback signal spec",
       "codex devin adapter crash",
       "mkHookDrift machine detectable",
@@ -21,12 +22,12 @@
       "mkHookDrift JSON field",
       "node adapter printf fallback chain",
       "codex stop cleanup diagnostic",
-      "copilot wrapper question",
-      "path resolution parity test"
+      "copilot wrapper question"
     ],
     "key_topics": [
       "hook",
       "fallback",
+      "failure",
       "signal",
       "spec",
       "codex",
@@ -35,8 +36,7 @@
       "crash",
       "mkhookdrift",
       "machine",
-      "detectable",
-      "stop"
+      "detectable"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook could not resolve; re-run the codex hooks installer with --check\"}}'` (for example lines 8, 13, 18, 27, 33, 40, 48, 56, 64, 72)",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-09-06T07:05:01.524Z",
+    "last_save_at": "2026-09-06T07:09:11.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:386ec45f70b6db3df60640aae231e178788eb4b414748e28285d2fc6cd1c5779",
+    "source_fingerprint": "sha256:89bf15c55ca9cd5fb5c6a415c77d9465358342230b0fb1cc0cf8cd2f355722eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f73e58328918f401e09bbdd28cfe18923e476e814e0d63d467559d5ec366c944",
+      "spec.md": "04168da9635914c6f06d3d169c058b41896ad80d3d9dc9c30fe246263ba474b6",
       "plan.md": "815a39a86e73fdd8b2cedb8e0cb7e07ce6bdbf4b9b3060e7319e52586f14871a",
       "tasks.md": "1c692bbe2369d90907ad1af21b866d44b0bc39a8bf158889b40abc9b9b13812b",
       "implementation-summary.md": "134e992b5990ae97bbbb9270c7a6beebbc61f985fc91027a3415e62f17b02e6f"

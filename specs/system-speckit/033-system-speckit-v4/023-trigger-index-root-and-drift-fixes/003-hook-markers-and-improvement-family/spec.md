@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 3: hook-markers-and-improvement-family"
 description: "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the deep-improvement commands write is documented in the folder structure and checked by a validator rule."
 trigger_phrases:
+  - "hook markers improvement family"
   - "hook drift marker claude cursor"
   - "mkHookDrift fallback"
   - "improvement artifact family"

@@ -2,6 +2,7 @@
 title: "Feature Specification: Spec-Kit Template & Context Optimizations"
 description: "Implement the six verified/multi-lineage optimization opportunities from the 033 deep-research packet: research-template level-gating, template source consolidation, a rendered-view read guard, AC-coverage activation, a scope-adherence validator, and a memory_search token budget."
 trigger_phrases:
+  - "spec template context optimization"
   - "spec template context optimizations"
   - "implement 033 research recommendations"
   - "research template gating"

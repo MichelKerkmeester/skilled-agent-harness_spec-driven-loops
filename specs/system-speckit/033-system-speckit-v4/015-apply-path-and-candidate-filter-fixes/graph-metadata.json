@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "apply path candidate filter fixes",
+      "review remediation",
       "review remediation specification",
       "fail open kill switch",
       "stale snapshot candidate filter",
@@ -20,11 +22,13 @@
       "review remediation plan",
       "plan-time parent gate",
       "contradictory permission precondition",
-      "deep-review P1 findings",
-      "negative control fails first",
-      "review remediation tasks"
+      "deep-review P1 findings"
     ],
     "key_topics": [
+      "apply",
+      "path",
+      "candidate",
+      "filter",
       "review",
       "remediation",
       "specification",
@@ -32,11 +36,7 @@
       "open",
       "kill",
       "switch",
-      "stale",
-      "snapshot",
-      "candidate",
-      "filter",
-      "cli-devin"
+      "stale"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A four-iteration deep review of the daemon-hardening packet, run across three independent models, closed at CONDITIONAL with three P1 findings that survived every pass",
     "created_at": "2026-08-31T04:50:04Z",
-    "last_save_at": "2026-09-06T07:05:17.030Z",
+    "last_save_at": "2026-09-06T07:07:54.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29dcdd6ba22b30a069a68d389d152fd38debf0fa333d5e3b081bc26a4bdeb9eb",
+    "source_fingerprint": "sha256:dae5fd0e048e66bc4ad75cd8eb077f9c18431e51d184731fafe7222c70ed5b0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cc4b7f2f1a60ee3234b576728e3caacf9d0227618afe092216ab4f9d035882bd",
+      "spec.md": "40a0a035fcbc98742589cc84dfa9ef69b57288997370d9d3ee786875f9f1b1df",
       "plan.md": "983ba65270abcb49c941d28190df0c3de1cf74fc4e572adc0e28703f2d73c46c",
       "tasks.md": "7f6fce3052fb13dfee5e4db7e9e9f06e15c9f1e0aea2146abd75db921f00d69e",
       "implementation-summary.md": "be9074c651c831eebf044ec42302ac9dc10805b39352246059ec77160a05394a"

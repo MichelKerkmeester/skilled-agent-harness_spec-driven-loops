@@ -1,9 +1,9 @@
 {
   "counts": {
-    "duplicate-phrase": 63,
+    "duplicate-phrase": 66,
     "missing-frontmatter": 6929,
     "non-yaml-frontmatter": 1,
-    "ok": 13455,
+    "ok": 13452,
     "valid-empty-list": 7944
   },
   "documentsScanned": 28392,
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "9726c2524c13fb382d7d4cec3e070511b1ccb78646fcd72d2dec56292a6962e0",
+  "manifestHash": "f918eac7e46b29a28fabc6cc2c1bef300e280fa1f2004a977ab62d5e82892894",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -96344,6 +96344,20 @@
       "reason": "declared empty trigger list"
     },
     {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": "specs/system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep/spec.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"retire sweep\""
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": "specs/system-speckit/033-system-speckit-v4/009-validation-rule-reduction/008-a-level-for-research/spec.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"level for research\""
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/research/research.md",
@@ -96412,6 +96426,13 @@
       "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/spec.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"daemon test harness hardening\""
     },
     {
       "category": "missing-frontmatter",

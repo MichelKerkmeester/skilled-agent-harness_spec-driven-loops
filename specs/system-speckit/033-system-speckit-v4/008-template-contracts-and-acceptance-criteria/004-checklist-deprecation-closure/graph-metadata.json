@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "checklist deprecation closure",
       "ac coverage evidence source",
       "traceability precedence",
       "canonical criteria read",
@@ -20,10 +21,12 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "checklist deprecation closure",
       "traceability precedence fixed"
     ],
     "key_topics": [
+      "checklist",
+      "deprecation",
+      "closure",
       "coverage",
       "evidence",
       "source",
@@ -32,10 +35,7 @@
       "canonical",
       "criteria",
       "read",
-      "checklist",
-      "deprecation",
-      "acceptance",
-      "closure"
+      "acceptance"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
     "created_at": "2026-08-29T20:32:46Z",
-    "last_save_at": "2026-09-06T06:47:33.522Z",
+    "last_save_at": "2026-09-06T07:09:15.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aebf65b413ac587bf455dbd3a7dec7a662d0d5fb6188083c426a093bf6ada297",
+    "source_fingerprint": "sha256:24e1896dd6ff44579211981dee40aff4ecf014c94a01acfa8a03b35b38f1a647",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55c58e57815760a6ef9c15f6aeb7c6140bc73a5cada128632c65e2360fa8505c",
+      "spec.md": "235225172c430cf73517b96f539bb2ca4276f21139284068252c06f55695d36f",
       "plan.md": "43c2d733a012b0ccf06d6c2855f43aa4e6bbadcabc8d8fa07591aade5c385584",
       "tasks.md": "f58ee998d504167541102eaa5e7937b33592b04008720ec0758129a0001bf15a",
       "implementation-summary.md": "8b5fae2c7e60ae10df585aef920b0bdde88a8ef9635df15e2a5e2b782030bf09"

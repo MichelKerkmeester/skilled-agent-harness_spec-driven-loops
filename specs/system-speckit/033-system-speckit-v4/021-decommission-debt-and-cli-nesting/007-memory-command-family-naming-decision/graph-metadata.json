@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "memory command family naming decision",
       "memory naming decision spec",
       "memory save search renamed",
       "doctor memory speckit-retrieval",
@@ -21,11 +22,12 @@
       "memory save search rename",
       "two naming options ADR",
       "blast radius reproducible count",
-      "decision gate not implementation",
-      "memory naming decision tasks"
+      "decision gate not implementation"
     ],
     "key_topics": [
       "memory",
+      "command",
+      "family",
       "naming",
       "decision",
       "spec",
@@ -34,9 +36,7 @@
       "renamed",
       "doctor",
       "speckit-retrieval",
-      "rename",
-      "hard",
-      "cutover"
+      "rename"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the `/memory:save` and `/memory:search` commands (`.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`); the writer itself, `scripts/memory/generate-context.ts`, compiled to `scripts/dist/memory/generate-context.js`; the `@spec-kit/scripts` package description, `\"CLI tools for spec-kit context generation and memory management\"` (`scripts/package.json:4`); the `/doctor memory` route (`.opencode/commands/doctor/routes.yaml:33-38`, target",
     "created_at": "2026-09-05T06:13:08Z",
-    "last_save_at": "2026-09-06T07:05:01.074Z",
+    "last_save_at": "2026-09-06T07:09:11.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6464e1b288088ef552e1488b81b3205dae233f0d9834c8ba2b6cdd598d56f111",
+    "source_fingerprint": "sha256:638fe62ea33f561114f128695bd8811908b83bd64af62f9415802c299421bebf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2dea807d9f046fa29776ee67a1c0cec43f5f3c9bbb507614cc86dd23dfe7abbc",
+      "spec.md": "a9e24d0577c6b32908e6f992d8681454550471bc64ddfac9751c930f82052b55",
       "plan.md": "27c2e1318170728eab2cf658cf896f7f231059e0d7582f0dc27c606f0683853c",
       "tasks.md": "d38f812eb4420ef05c42df976ce606e80ef193c2d03eefe3f898d6dbe94b640e",
       "decision-record.md": "8f5b678a22541d646da6128284c784d7a6a58ca96b444f2316c62bf7e57a05b7",

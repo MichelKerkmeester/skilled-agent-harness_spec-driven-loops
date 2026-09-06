@@ -11,11 +11,11 @@
   },
   "derived": {
     "trigger_phrases": [
+      "spec memory server removal",
       "spec memory removal",
       "mcp server deletion",
       "daemon removal",
       "subsystem decommission",
-      "spec memory server removal",
       "preserve set",
       "implementation plan",
       "task breakdown",
@@ -27,9 +27,9 @@
     "key_topics": [
       "spec",
       "memory",
+      "server",
       "removal",
       "mcp",
-      "server",
       "deletion",
       "daemon",
       "subsystem",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-09-06T06:47:01.518Z",
+    "last_save_at": "2026-09-06T07:09:13.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d962321775373f090e3bc664e5eda147db91d77e3badbd4a67c8a2397a60dc6",
+    "source_fingerprint": "sha256:d722e2deaaee6bd237bf18ae9fbaece66222410034bef07d625d7fbaeba5dfa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df3a123cf257725df3c10e0a24b1899d5073ceeb0786db333d3ff3535657f394",
+      "spec.md": "6cc3f83002766484aeeccf2ad9d9508c1545427aa68c72fc4df24b88b4ee590c",
       "plan.md": "4f8c33e5786f60d781a7af8db78c2fc4e2e7b633fe56d382fc197977b56b9525",
       "tasks.md": "49f8a1ded741a0d5ed45d59a69cf5a0c749fc40b968a74bd6b7c1bd54a8871c6",
       "implementation-summary.md": "d9d9d98f2643d0df411877340a823508a79d6c2310db231e4269678c49cfffaf"

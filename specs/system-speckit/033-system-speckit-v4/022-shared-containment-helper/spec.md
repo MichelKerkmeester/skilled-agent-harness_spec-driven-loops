@@ -2,6 +2,7 @@
 title: "Feature Specification: path-containment-seam"
 description: "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. One helper now owns the check so every boundary rejects the same escapes."
 trigger_phrases:
+  - "shared containment helper"
   - "path containment seam"
   - "write boundary helper"
   - "assertPathInsideRoot"

@@ -2,6 +2,7 @@
 title: "Feature Specification: Optimize Spec-Kit Core-Document Contract and Plan Template"
 description: "Define a lifecycle-honest core-document contract and remove duplicated phase checkboxes from Level-1 plans while preserving higher-level planning content and existing packet compatibility"
 trigger_phrases:
+  - "plan contract optimization"
   - "spec-kit document contract"
   - "implementation-summary lifecycle gate"
   - "plan phase checkbox reduction"

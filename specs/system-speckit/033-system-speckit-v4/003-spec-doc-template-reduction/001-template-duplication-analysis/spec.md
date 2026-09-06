@@ -2,6 +2,8 @@
 title: "Feature Specification: Phase 1: analysis"
 description: "Research-backed specification for reducing spec-kit template duplication, instructional comment leakage, redundant continuity metadata, and repeated acceptance-criteria guidance while preserving renderer and validator contracts."
 trigger_phrases:
+  - "template duplication analysis"
+  - "analysis"
   - "spec-kit template reduction"
   - "template optimization"
   - "tasks checklist merge"

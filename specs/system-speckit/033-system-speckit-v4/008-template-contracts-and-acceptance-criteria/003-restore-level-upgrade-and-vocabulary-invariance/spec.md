@@ -2,6 +2,7 @@
 title: "Feature Specification: Restore the Level-Upgrade Path and Clear the Vocabulary Invariance"
 description: "Two defects surfaced by this packet's review: upgrade-level.sh referenced template fragments the restructure deleted, and a vocabulary invariance failed on real artifact names and loose prose."
 trigger_phrases:
+  - "restore level upgrade vocabulary invariance"
   - "restore level upgrade"
   - "upgrade-level fragments"
   - "vocabulary invariance"

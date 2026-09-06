@@ -11,13 +11,13 @@
   },
   "derived": {
     "trigger_phrases": [
+      "rehome rules content",
       "rehome constitutional rules",
       "citation census",
       "retarget links",
       "delete constitutional folder",
       "spec core",
       "phase four rehome rules content",
-      "rehome rules content",
       "rules content relocation",
       "constitutional rules rehome",
       "rehome plan approach",
@@ -26,8 +26,9 @@
     ],
     "key_topics": [
       "rehome",
-      "constitutional",
       "rules",
+      "content",
+      "constitutional",
       "citation",
       "census",
       "retarget",
@@ -35,8 +36,7 @@
       "delete",
       "folder",
       "spec",
-      "core",
-      "phase"
+      "core"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
     "created_at": "2026-08-26T05:34:13Z",
-    "last_save_at": "2026-09-06T07:05:10.444Z",
+    "last_save_at": "2026-09-06T07:09:16.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a964d846ada28554038d40798b75307d115768d36eb50ef02776919977342699",
+    "source_fingerprint": "sha256:8d31a6b540eac57578e32da607d67af83578f6b4a087f31fa3a1cdeced91aad4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e43179de383bdd5b2ab5966564d0478c8d195f0e7d0c848a132ac23aecc67241",
+      "spec.md": "9cefb3c53a2de03900ee89b4dd7597dd0887ab78f6d92b5a58975517620b79c3",
       "plan.md": "fcbb554aa3abd03ee04ee31c385d8a6ecbed9211a55e80f9d3d5696ae0219dd4",
       "tasks.md": "a788fc234a034393579be1ced657a166e1fb3305fa0dc81878285d5d8514f994",
       "implementation-summary.md": "41327621eecd319f33295d8aa7db953aca5eaaef41201f9bdba27e3a4e274b6a",

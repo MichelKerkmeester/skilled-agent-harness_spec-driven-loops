@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "derived metadata repair tool",
+      "derived repair automation",
       "derived repair",
       "repair-derived",
       "spec packet autofix",
@@ -20,23 +22,21 @@
       "fleet checker precedent",
       "generated-metadata fingerprint re-derivation",
       "repair-derived reporting mode",
-      "repair-derived fixtures",
-      "derived failures recomputable",
-      "authored packet byte-identical"
+      "repair-derived fixtures"
     ],
     "key_topics": [
       "derived",
+      "metadata",
       "repair",
+      "tool",
+      "automation",
       "repair-derived",
       "spec",
       "packet",
       "autofix",
       "validation",
-      "metadata",
       "plan",
-      "outside",
-      "specs",
-      "tree"
+      "outside"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -171,7 +171,7 @@
     ],
     "causal_summary": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
     "created_at": "2026-08-28T19:49:57.185Z",
-    "last_save_at": "2026-09-06T07:05:19.560Z",
+    "last_save_at": "2026-09-06T07:07:52.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,10 +180,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0feec825a000f671885bc07b29b07d20f2109d1075f391f51b7f939082e511b",
+    "source_fingerprint": "sha256:b4767d30c13468ebe373bb90ac3acba28092c4da6dc71d6a6db98e7d479925af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f775d73fa86aae95bc62aa2ab97bf7886df9936dd3469b9085995b34eb89ea42",
+      "spec.md": "798fc8c37d8886b32de6ad6cd9900d746ee7250dbb6f30a1dce8afa52e58ef6e",
       "plan.md": "83a9601b6e30c5b219ac5897ebdae7a1e6b8153c88a001ef13f91ae76b1d3d9d",
       "tasks.md": "fb72ca5fa1c4f1de171afc8a502f7a7d517808da839e7dcb4c3fc3f9e6a7bc93",
       "implementation-summary.md": "1b72df3c438e5753dd27ea45261e2c4d7f17e0e80796f54d18f7d1626eeea426"

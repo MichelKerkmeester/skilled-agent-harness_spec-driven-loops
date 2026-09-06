@@ -16,6 +16,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "trigger index root drift fixes",
       "integration research remediation",
       "spec kit alignment findings",
       "trigger index repo root regression",
@@ -25,6 +26,10 @@
       "post run metadata refresh"
     ],
     "key_topics": [
+      "trigger",
+      "index",
+      "root",
+      "drift",
       "integration",
       "research",
       "remediation",
@@ -32,11 +37,7 @@
       "kit",
       "alignment",
       "findings",
-      "trigger",
-      "index",
-      "repo",
-      "root",
-      "regression"
+      "repo"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -153,16 +154,16 @@
     ],
     "causal_summary": "A ten-iteration Sonnet 5 research pass over the repository ranked eleven things that still needed fixing or aligning with system-spec-kit: a critical trigger-index regression that dropped every skill document, systemic phantom children after packet renames, four hand-found defects with no validator rule, a README rule count off by nine, a deferred hook drift marker for two hosts, an undocumented artifact family, track roots invisible to validation, and duplicated frontmatter and containment helpers across four skill families with no shared home",
     "created_at": "2026-09-05T21:16:55Z",
-    "last_save_at": "2026-09-06T07:05:15.021Z",
+    "last_save_at": "2026-09-06T07:07:56.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:39a49cd81ce819e68bd89b032dca41cdd5dac8505e68b9e76e27880772e11be9",
+    "source_fingerprint": "sha256:56c58d7132cfc51bf49fc394a31cd2130cc4a4f58ebce0b84c465c1141bd5d7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a251d4d4c83e6af26572eefa43a1e5872ebd92d11df09c826b962ab767760962"
+      "spec.md": "4c1c26041586fda9fc86a1db67e3efcf36f19ad250179308296bb56e312b50fe"
     },
     "last_active_at": null
   }

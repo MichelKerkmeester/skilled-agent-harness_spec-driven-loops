@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "runtime package rename",
+      "spec kit runtime rename",
       "runtime package rename spec",
       "mcp-server name misleading",
       "@spec-kit/runtime published",
@@ -20,23 +22,21 @@
       "runtime package rename plan",
       "git mv atomic commit",
       "dependency resolution audit",
-      "@spec-kit/runtime api surface",
-      "rewrite references same commit",
-      "dist-freshness new root"
+      "@spec-kit/runtime api surface"
     ],
     "key_topics": [
       "runtime",
       "package",
       "rename",
       "spec",
+      "kit",
       "mcp-server",
       "name",
       "misleading",
       "spec-kit",
       "published",
       "dependency",
-      "audit",
-      "resolution"
+      "audit"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator, the metadata refresh, the continuity writer and the per-runtime hook adapters live inside it",
     "created_at": "2026-09-04T19:16:06Z",
-    "last_save_at": "2026-09-06T07:05:15.743Z",
+    "last_save_at": "2026-09-06T07:07:56.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:265859a9f58f2879c1085868eca23671e1a472def67a919c48c76d86c808ac4f",
+    "source_fingerprint": "sha256:49601a59d57440f6f85960e2d9eb70048eefe066c3962665e9e504cee7424ff7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa6329fc1ca601c28f68ac95b67a56e02fe9933ae691baa9b1f897349daeb338",
+      "spec.md": "08a2d5238cd54fb90068641e3afbe3b97b0f8e47f23823e57385cdfea272b43b",
       "plan.md": "f868bab283f11f2b61c6aa63c2103c03afd22603db73b9c55878cca2d289d869",
       "tasks.md": "7c823451b1f0cce51833e2450701cc79c915337a529d51f9aba88fb7f09d1e88",
       "implementation-summary.md": "3a914421cf3cbb08538d094d01d5a7982f665eb8d37029ca7c0f720eb09111a3"

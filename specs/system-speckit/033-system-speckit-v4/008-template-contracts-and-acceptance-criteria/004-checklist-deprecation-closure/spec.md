@@ -2,6 +2,7 @@
 title: "Feature Specification: Checklist Deprecation Closure"
 description: "Repoint the acceptance-coverage advisory at the document it counts from, correct the traceability-source precedence the tasks/checklist merge left backwards, and give the rule its first unit suite."
 trigger_phrases:
+  - "checklist deprecation closure"
   - "ac coverage evidence source"
   - "traceability precedence"
   - "canonical criteria read"

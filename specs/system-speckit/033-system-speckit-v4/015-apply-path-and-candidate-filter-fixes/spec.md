@@ -2,6 +2,8 @@
 title: "Feature Specification: Review Remediation"
 description: "Three P1 findings survived four deep-review iterations across three models: an apply path that treated an omitted enable decision as permission, a candidate filter that judged from a stale snapshot, and a permission-mode precondition contradicting its own audit."
 trigger_phrases:
+  - "apply path candidate filter fixes"
+  - "review remediation"
   - "review remediation specification"
   - "fail open kill switch"
   - "stale snapshot candidate filter"

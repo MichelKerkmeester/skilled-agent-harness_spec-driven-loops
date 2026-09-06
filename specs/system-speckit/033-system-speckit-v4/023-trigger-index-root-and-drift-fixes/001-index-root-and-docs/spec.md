@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 1: index-root-and-docs"
 description: "The trigger-index generator resolved the repository root one directory short after the CLI nested under runtime/, so the published index carried spec documents only; the skill README also claimed a 46-rule registry against 37 real entries. Both are fixed with tests that pin them."
 trigger_phrases:
+  - "index root docs"
   - "trigger index repo root"
   - "skill docs missing from index"
   - "rule registry count"

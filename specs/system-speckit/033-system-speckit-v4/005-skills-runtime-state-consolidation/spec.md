@@ -2,6 +2,7 @@
 title: "Feature Specification: Consolidate the seven skills-root state directories into .state"
 description: "Seven runtime-state directories sit directly under .opencode/skills/, so the folder a user opens to find skills shows mostly machine state instead."
 trigger_phrases:
+  - "skills runtime state consolidation"
   - "skills state consolidation"
   - "dot state directories"
   - "advisor-state goal-state spec-gate-state"

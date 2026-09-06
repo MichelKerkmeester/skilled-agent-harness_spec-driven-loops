@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 2: active-decisions-design [template:level-1/spec.md]"
 description: "Evaluated an always-loaded DECISIONS.md surface as the constitutional-memory replacement and DECIDED against it. Deprecate the constitutional DB layer and keep the 20 rule files as plain docs (their content already lives inlined in the root instruction files). No new always-loaded surface, no CLAUDE.md import, no Cursor rule."
 trigger_phrases:
+  - "active decisions design"
   - "active decisions decision"
   - "no replacement surface"
   - "constitutional layer deprecation"

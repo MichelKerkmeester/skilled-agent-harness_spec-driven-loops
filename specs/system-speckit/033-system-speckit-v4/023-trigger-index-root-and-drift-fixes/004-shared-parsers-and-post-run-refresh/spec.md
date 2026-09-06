@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 4: shared-parsers-and-post-run-refresh"
 description: "One frontmatter parser and one write-boundary primitive now live in the spec-kit shared package and are used by the spec-kit CLI, the runtime orchestrator and the skill advisor; the fan-out runner refreshes the target packet's generated metadata after every run. Deep-loop and sk-doc adoption is blocked on a missing dependency edge and is recorded, not hacked."
 trigger_phrases:
+  - "shared parsers post run refresh"
   - "shared frontmatter parser"
   - "shared path containment"
   - "post-run metadata refresh"

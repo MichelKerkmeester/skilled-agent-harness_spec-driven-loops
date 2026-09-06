@@ -2,6 +2,7 @@
 title: "Feature Specification: Path Containment Follow-Ups"
 description: "The repair write decides a path is safe by inspecting it, then writes through a handle that can point somewhere else: swapping a scanned directory for a symlink overwrites a file outside the tree. Prove the handle reaches what the scan classified, and retire a containment branch that has been shown to decide nothing."
 trigger_phrases:
+  - "repair handle containment"
   - "path containment followups"
   - "repair scan to write gap"
   - "directory swap symlink"

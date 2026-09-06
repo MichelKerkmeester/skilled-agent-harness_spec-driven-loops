@@ -2,6 +2,8 @@
 title: "Feature Specification: Plan-Preflight Nested Packet Resolution"
 description: "The /speckit:plan Step-5 prerequisite helper resolves the feature dir from the git branch and hard-rejects any non-NNN branch, so it cannot target a track-nested packet such as specs/anobel.com/008-disable-cookie-modal. This blocks planning on the current nested spec-folder convention."
 trigger_phrases:
+  - "plan preflight track packets"
+  - "plan preflight nested packet resolution"
   - "plan preflight nested packet"
   - "check-prerequisites nested path"
   - "specify feature track packet"

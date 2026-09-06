@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "save resume freshness",
       "save resume freshness spec",
       "save time trigger index staleness",
       "resume ladder trust ranking",
@@ -21,8 +22,7 @@
       "checkTriggerIndexFreshness step eleven",
       "resume ladder parseContinuitySignal",
       "handover fingerprint verify",
-      "trigger index stale warning",
-      "workflow save completion seam"
+      "trigger index stale warning"
     ],
     "key_topics": [
       "save",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Problem A - save completes without proving index freshness",
     "created_at": "2026-09-05T06:13:06Z",
-    "last_save_at": "2026-09-06T07:05:01.734Z",
+    "last_save_at": "2026-09-06T07:09:11.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ea793190c4c66f77f5ec4ea6fc17f610bb709670cff78232b9bf20f24cb8279",
+    "source_fingerprint": "sha256:0318e03058d609879686d044144b1fb4abbb49903070b88d6aa6c016b668f559",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d043e2870e6aa48db62dcdff9ed9977b0ebb9a3ad35eef3dda998bbbe3af346",
+      "spec.md": "5331e8091697343e5e27d0adf491f0c8314e2d77cec3bb7b097956ea31687062",
       "plan.md": "f86b7d70d3a4f07311defa99630c299b0af4dd3b0edfe19435abac3c576ab8c0",
       "tasks.md": "a5fcb0e4a132f42c1d9aa03be4785ba590b386eb14c6e612554ed1c9f0b5d118",
       "implementation-summary.md": "31331ce27d5ecb93d22c4b7b93d74957e62f7d362c56d86e94d0ee6ed084a9fc"

@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "durable slice validator",
       "goal validator",
       "durable slice cap",
       "binding block check",
@@ -24,10 +25,10 @@
       "binding child paths"
     ],
     "key_topics": [
-      "goal",
-      "validator",
       "durable",
       "slice",
+      "validator",
+      "goal",
       "cap",
       "binding",
       "block",
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-09-06T06:47:17.547Z",
+    "last_save_at": "2026-09-06T07:09:14.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90053f7ad8206e04e8a88b788953b7258ad847163518d3b6904ca8166f9128bc",
+    "source_fingerprint": "sha256:ae9868f3a8e2925aa8d8f9b0f3f489f20761c28b1e7143866cfff03eafe0e928",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ed1c787514ce369a4a8a480150603055037316fe818d227fe58dcc2cb367ec6",
+      "spec.md": "f3a9c860aa737e7b58c925d17d6ebce441b7b42d0d85455c59d54140f0f9716d",
       "plan.md": "d8e5a158a6f4cd7d566eb2bd63ca7b8ab7f7dec80d3931ee2c1d76d1ce2f9d56",
       "tasks.md": "d6399b8f5e3a414d1f27cfc3cd2363533f0479bca04f62a37ff90a6c01b1b7b6",
       "implementation-summary.md": "92009b081cf436e2b650634fb40b365d89c35974640fcc8f178d1ad6cc5f2c73"

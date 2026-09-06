@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 2: memory-consumer-rewire"
 description: "Repoint AGENTS.md Gate 1 and every external consumer of the memory MCP surface at the trigger index and ripgrep conventions, while the old surface is still available to fall back to."
 trigger_phrases:
+  - "memory consumer rewire"
   - "consumer rewire"
   - "gate 1 rewire"
   - "memory tool call sites"

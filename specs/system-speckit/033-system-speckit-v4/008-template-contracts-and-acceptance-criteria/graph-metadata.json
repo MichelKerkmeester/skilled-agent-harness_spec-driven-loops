@@ -16,6 +16,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "template contracts acceptance criteria",
       "spec kit template optimization",
       "acceptance criteria template",
       "spec doc closure gate",
@@ -25,18 +26,18 @@
       "acceptance criteria goal"
     ],
     "key_topics": [
-      "spec",
-      "kit",
       "template",
-      "optimization",
+      "contracts",
       "acceptance",
       "criteria",
+      "spec",
+      "kit",
+      "optimization",
       "doc",
       "closure",
       "gate",
       "level",
-      "contract",
-      "goal"
+      "contract"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -146,17 +147,17 @@
     ],
     "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-09-06T06:48:32.444Z",
+    "last_save_at": "2026-09-06T07:07:53.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6bcac84baa55db37cd8efd71091846ef0bc05145f7f96cc7926f6097a42716d0",
+    "source_fingerprint": "sha256:8e31f100184c1b01964bf6ece6b15a42339dcac59b8f065813a977dfcf988081",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0c9fc955faf75e09dae0f67dcc5cf36e0473eb3cc6ccf460ebddce38b1e7dde"
+      "spec.md": "ea596c0aab05fb7025f0fbe26dd2b22a8a5acd495f281ad1049650f0bc4a8b38"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
     "last_active_at": null

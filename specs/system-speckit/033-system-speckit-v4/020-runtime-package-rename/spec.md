@@ -2,6 +2,8 @@
 title: "Feature Specification: spec-kit runtime rename "
 description: "The surviving spec-kit package still carries an MCP identity it no longer has: folder and npm name say mcp-server, the MCP SDK and six other dependencies have no importer, and about 140 live files point at the old path; this packet turns it into system-spec-kit/runtime shaped like the deep-loop runtime, drops the dead dependencies, and moves every reference."
 trigger_phrases:
+  - "runtime package rename"
+  - "spec kit runtime rename"
   - "runtime package rename spec"
   - "mcp-server name misleading"
   - "@spec-kit/runtime published"

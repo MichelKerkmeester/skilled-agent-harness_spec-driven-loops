@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 3: spec-memory-server-removal"
 description: "Delete the system-spec-memory server package, its MCP transport entries, plugin, bridge, hook, commands, flags and documentation, once nothing external calls it."
 trigger_phrases:
+  - "spec memory server removal"
   - "spec memory removal"
   - "mcp server deletion"
   - "daemon removal"

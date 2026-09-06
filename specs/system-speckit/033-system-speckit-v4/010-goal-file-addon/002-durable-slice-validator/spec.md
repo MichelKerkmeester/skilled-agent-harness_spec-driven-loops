@@ -2,6 +2,7 @@
 title: "Feature Specification: Durable Slice Validator"
 description: "A present-file rule that checks a goal document's shape: its durable and log headings, a binding block on phase parents, listed child paths that exist, and a durable slice within its character budget."
 trigger_phrases:
+  - "durable slice validator"
   - "goal validator"
   - "durable slice cap"
   - "binding block check"

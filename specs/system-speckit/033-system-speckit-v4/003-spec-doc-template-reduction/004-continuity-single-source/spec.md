@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 4: continuity-single-source"
 description: "The _memory.continuity block repeats at roughly 16 lines across five docs, about 80 near-identical lines per L2 packet, but only implementation-summary.md is read by the resume ladder. Consolidate to one canonical block, validator-first, so strict validation does not fail fleet-wide."
 trigger_phrases:
+  - "continuity single source"
   - "memory continuity consolidation"
   - "single-source continuity"
   - "FRONTMATTER_MEMORY_BLOCK"

@@ -11,6 +11,8 @@
   },
   "derived": {
     "trigger_phrases": [
+      "memory decommission branch landing",
+      "memory decommission landing",
       "memory decommission landing spec",
       "release branch still carried memory",
       "zvec semantic lane vendored",
@@ -20,17 +22,15 @@
       "memory decommission landing plan",
       "branch-side merge fast-forward",
       "validator-driven alignment sweep",
-      "bounded review loop fanout",
-      "validate_document per class",
-      "cli-codex gpt-5.6 executor"
+      "bounded review loop fanout"
     ],
     "key_topics": [
       "memory",
       "decommission",
+      "branch",
       "landing",
       "spec",
       "release",
-      "branch",
       "still",
       "carried",
       "zvec",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-06T07:05:15.950Z",
+    "last_save_at": "2026-09-06T07:07:55.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65b402739fa6a41aab0e3437fdae564e6e67cb02d79de3a0f9710082ae2112c2",
+    "source_fingerprint": "sha256:7181fc9a659d131ec25c9e542959aed35534a1ca81de3b7eeb81158f3f11b8f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44f3557d1de304d298897d544464f5cf6bd403893646114463533c5233d7b5a4",
+      "spec.md": "e78792e9ffb94dff2c1cf5fce86f64454f10d64027feb93328b03e3f526bcd03",
       "plan.md": "256921f88b9744af9fcaa879db0dfc3b6d5ab6322a3846b43359213576e801f6",
       "tasks.md": "b845174f0cb6639fe32ed73c0bc1486d7e365ff80a71fb13df38ff78fe3d1453",
       "implementation-summary.md": "202253d8301904f0e8dda717e842e31d9a79541adef5092dad87dd45103de6ca"

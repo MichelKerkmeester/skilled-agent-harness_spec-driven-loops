@@ -11,6 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
+      "shared parsers post run refresh",
       "shared frontmatter parser",
       "shared path containment",
       "post-run metadata refresh",
@@ -21,22 +22,21 @@
       "post run generators refresh",
       "advisor local sqlite declaration",
       "shared frontmatter parser tasks",
-      "inventory fence splitting parsers",
-      "create parse-frontmatter test"
+      "inventory fence splitting parsers"
     ],
     "key_topics": [
       "shared",
+      "parsers",
+      "post",
+      "run",
+      "refresh",
       "frontmatter",
       "parser",
       "path",
       "containment",
       "post-run",
       "metadata",
-      "refresh",
-      "no-metadata-refresh",
-      "flag",
-      "plan",
-      "parse-frontmatter"
+      "no-metadata-refresh"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "One frontmatter parser and one write-boundary primitive now live in the spec-kit shared package and are used by the spec-kit CLI, the runtime orchestrator and the skill advisor; the fan-out runner refreshes the target packet's generated metadata after every run. Deep-loop and sk-doc adoption is blocked on a missing dependency edge and is recorded, not hacked.",
     "created_at": "2026-09-05T21:16:59Z",
-    "last_save_at": "2026-09-06T07:05:00.115Z",
+    "last_save_at": "2026-09-06T07:09:10.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6201fae7e825a18ee78680cd7c7891b7556530d355eef52490de2934fb90fd5",
+    "source_fingerprint": "sha256:c5d2e1710660614ca86e938172939d2a2bd8190094938371524eb3e1c5bee259",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "628506251e4128bb7ee4802cc3b5cbd46d5bfbb2f3169f11737f24431ce138c1",
+      "spec.md": "b5339db47a0db804f60854abd018d6e6cd636f7ac1e03e55f7fe193992916da8",
       "plan.md": "9e87831c1745ec6149eab7331e64cde2730d4e1444b013791a707294883da7d6",
       "tasks.md": "f87a76c1a9daa1e930d95875682f34948116b15235887dc47eb4c7e92f387e62",
       "implementation-summary.md": "692cb30857d75ecd1b829447d7238a369f86608cdfad48df94f78430f6cbbd03"

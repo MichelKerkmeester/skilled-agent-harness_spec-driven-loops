@@ -2,6 +2,7 @@
 title: "Feature Specification: Manifest Entry and Goal Template"
 description: "Put a goal document into the documentation-level contract as a lazy add-on and author its gated template, so the durable directive, its binding block and its optional log all have one authored shape."
 trigger_phrases:
+  - "manifest goal template"
   - "goal manifest entry"
   - "goal template"
   - "lazy add-on goal"

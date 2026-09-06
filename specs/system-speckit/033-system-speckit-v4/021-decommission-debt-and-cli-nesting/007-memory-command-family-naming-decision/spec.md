@@ -2,6 +2,7 @@
 title: "Feature Specification: Phase 7: memory-command-family-naming-decision"
 description: "The surviving continuity writer and retrieval commands keep the word memory in their names and paths across at least 87 live files; this phase lays out the keep-literal-and-document versus rename-with-compatibility-window options with blast-radius evidence, so the operator can decide before any rename starts."
 trigger_phrases:
+  - "memory command family naming decision"
   - "memory naming decision spec"
   - "memory save search renamed"
   - "doctor memory speckit-retrieval"
