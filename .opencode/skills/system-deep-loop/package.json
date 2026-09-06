@@ -1,0 +1,13 @@
+{
+  "name": "@spec-kit/system-deep-loop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skill-root manifest for the deep-loop skill; it exists so the mode packets' scripts outside runtime/ can depend on the spec-kit shared package instead of carrying their own parsers.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "dependencies": {
+    "@spec-kit/shared": "file:../system-spec-kit/shared"
+  }
+}
