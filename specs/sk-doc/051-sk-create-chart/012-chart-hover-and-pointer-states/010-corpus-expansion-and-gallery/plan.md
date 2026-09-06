@@ -19,17 +19,16 @@ contextType: "general"
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
+Five children, ordered so each lands on a corpus that already satisfies the one before.
 
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+`001` makes pointers reach their marks and adds the rule that keeps them reaching. `002` replaces
+every placeholder figure and then restyles, as two separately gated stages. `003` adds five forms
+under an admission rule. `004` generates the gallery and makes a stale one an error. `005` proves
+the whole thing from the final state.
 
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+`002` and `003` overlap deliberately: new forms are new files, and the data stage only touches
+existing ones, so they cannot collide.
+
 <!-- /ANCHOR:summary -->
 
 ---
@@ -37,15 +36,15 @@ contextType: "general"
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
-### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+| Gate | Command | Pass condition |
+|------|---------|----------------|
+| Corpus, static | `node scripts/check-corpus.cjs` | literal `RESULT: PASSED` |
+| Corpus, rendered | `node scripts/check-corpus.cjs --render` | literal `RESULT: PASSED` |
+| Packet | `validate.sh <folder> --strict` | literal `RESULT: PASSED`, first `RESULT:` line |
 
-### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+An exit code is not a gate. The corpus checker buffers all output to the end and takes minutes, so
+an empty log means running rather than passing.
+
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -53,15 +52,13 @@ contextType: "general"
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Everything stays a self-contained static file. No framework, no CDN, no build step for the charts,
+readable with scripting unavailable. The only generated artifact is the gallery, and it is a page
+about the corpus rather than part of it.
 
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+Three rules were added to `check-corpus.cjs`, and each is enforced the same way the corpus already
+enforced everything else: watched failing on a real file before it is believed.
 
-### Data Flow
-[Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,11 +94,13 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+There is no unit-test harness here; the corpus checker is the suite. A rule is tested by mutating a
+real file until the rule fires, reading the message, and restoring from a byte-identical copy.
+
+Worker output is never trusted on its own account. Containment is checked against a pre-dispatch
+snapshot, arithmetic is recomputed from the data, and the restyle is checked by comparing rendered
+table text character by character.
+
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,9 +108,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+- Node and the headless Chrome the render pass already uses. Nothing installed.
+- Packet `012`'s first nine phases, which established the pointer contracts this phase makes reachable.
+
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +118,10 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Each child is separable. The resolver is one function per file; the rules are call sites in one
+script; the gallery is a generated page and its generator. Restoring the affected paths from the
+previous commit and re-running the gate returns the corpus to its prior state.
+
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -150,12 +151,11 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Phase | Complexity | Notes |
+|-------|------------|-------|
+| Measure and decide | Medium | The measurement is where this work goes wrong, not the edit |
+| Build | Low to medium | Bounded and mechanical once the decision is made |
+| Prove | Medium | Every new rule is watched failing before it is trusted |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +164,18 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Every changed file is tracked, so the working tree and `git` are the backup
+- [x] No flag applies: nothing here is deployed or feature-gated
+- [x] The corpus gate is the smoke test, run on demand
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Restore the affected paths from the previous commit.
+2. Re-run `node scripts/check-corpus.cjs --render` and confirm `RESULT: PASSED`.
+3. Confirm the rule tallies return to their prior counts.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A. Nothing outside this package is written.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +202,11 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| `001` pointer targets | None | A resolver on every mark-carrying file, and `pointer-reach` | 002, 003 |
+| `002` data and restyle | 001 | Believable figures, then a lighter corpus | 004 |
+| `003` new forms | 001 | Five forms, a contract row and catalogue entry each | 004 |
+| `004` gallery | 002, 003 | A generated page and the rule that keeps it fresh | 005 |
+| `005` closure | 004 | Proof from the final state, and the parent reconciled | None |
 <!-- /ANCHOR:dependency-graph -->
 
 ---

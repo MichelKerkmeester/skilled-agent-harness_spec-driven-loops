@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Four children changed the corpus from twenty-one forms with placeholder figures to twenty-six with",
     "created_at": "2026-09-06T06:26:46Z",
-    "last_save_at": "2026-09-06T09:55:50.160Z",
+    "last_save_at": "2026-09-06T10:16:03.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:659d0a2309ddbf9ca06dbb5dd4f341107e98fc4379339915b1dbe46d0c28095f",
+    "source_fingerprint": "sha256:4ead62bc0ed882e0bbde08863863e865b7fa7ea5879226458c290b1a2bfdc524",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55ec61311163bd1ddf9539fb24f2ad3cf00aff6b80a7597960bdb8c8f2a37523",
-      "plan.md": "5bcae884bfb0f458ede541ae6692e1078f7ed8f58a01b7f631d949168c087a6d",
+      "spec.md": "2dfe541254bb019997f2003266e5ed00403b3fa223378f848e95e5e14df09767",
+      "plan.md": "346646115a8ce2e90d687359e8558a00836788bbe97214f288ace35fedea07ae",
       "tasks.md": "ba99de39000fb4e55982edc9f67ebaa92e0b5aa08bd86aee82dc6aad24ad5b3e",
-      "implementation-summary.md": "3f965dcf6733e7fb67648d8124983e4860747a5c5a37e259a41c7f8a27cf0bfa"
+      "implementation-summary.md": "236b6a816327a32197b9ae204c021e247677d91787757b19fa1f55d207daaac0"
     },
     "last_active_at": null
   }

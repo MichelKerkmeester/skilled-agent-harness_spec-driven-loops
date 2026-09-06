@@ -57,19 +57,20 @@ from the state each child left.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The corpus gate run from the final state, after every child has landed.
+- Reconciliation of every document that describes a corpus which has since changed.
+- Strict validation across the phase parent and all five children.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Any further change to the corpus. This child proves and reconciles; it does not build.
+- The deferred items other children recorded. They are carried forward, not closed here.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `../spec.md`, `../plan.md` | Modify | Parent status reconciled and the phase map extended |
+| every child's generated metadata | Modify | Rebuilt from final content |
 <!-- /ANCHOR:scope -->
 
 ---

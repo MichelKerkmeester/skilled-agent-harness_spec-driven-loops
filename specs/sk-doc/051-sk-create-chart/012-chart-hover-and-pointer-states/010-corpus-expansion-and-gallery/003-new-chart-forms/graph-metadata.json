@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Twenty-one forms cover the common cases and leave gaps a reader hits quickly: there is no way to",
     "created_at": "2026-09-06T06:26:44Z",
-    "last_save_at": "2026-09-06T09:55:49.866Z",
+    "last_save_at": "2026-09-06T10:16:03.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:846aa25ef9d622b0ab03e32eca1e9897cf73d7ac2ce02c874d8394959c6f2deb",
+    "source_fingerprint": "sha256:dd60a737ce3321808ab0f0fde3b1c4fde86e14d7e4d15ae991c10e5a03f39bbf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b69376934a36157ac82f78ee5e3c098a3bfc83a1e2865bb06fdfc90fab210a02",
-      "plan.md": "ba9120b3fcc9cdfa56d780bdd5b0dede92b6cb3b539afa44f1d8c1f778210fa3",
+      "plan.md": "80400dac73955eb68473cb2923ac605dfd596801042c8f13edc86e8a4c6d9479",
       "tasks.md": "d66ed658dd0d8becf3f4b30da8d192a9d2b0df94370dbbba197b8ed1d55614e2",
-      "implementation-summary.md": "5696c2e89919efd53396d498c1c76b006d25e9489d479b71bf42a1c31fe80a1a"
+      "implementation-summary.md": "2695df365b0e94573b5a57946d71c6bff3e3f0f38d133afef0bdcfb1aa4d17eb"
     },
     "last_active_at": null
   }

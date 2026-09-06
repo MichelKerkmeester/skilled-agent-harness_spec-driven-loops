@@ -48,18 +48,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The catalogue grew from twenty-one forms to twenty-six, under a rule that gives "add more forms" an
+end: **a form joins only if it can honestly carry a data table holding everything its card
+reveals.** That is the corpus's accessibility floor, already enforced by `card-readout`, and it is
+what stops a catalogue filling with shapes that look impressive and hide their numbers.
 
-### [Feature Name]
+### The five, and the gap each closes
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`bullet` shows a measure against its target with qualitative bands behind it, which
+`progress-single` cannot do because it has neither. `funnel` shows sequential drop-off through
+stages of one flow, where `bar-rows` compares independent categories. `dumbbell` shows two readings
+per category and the change between them. `histogram` shows a binned distribution, where
+`distribution-strip` draws every observation and cannot show shape at volume.
+`population-pyramid` mirrors two populations about a centre, which no existing form does.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `assets/templates/bullet.html` and four more | Created | The five new forms |
+| `references/template-contract.md` | Modified | A pointer contract row per new form |
+| `references/catalog.md` | Modified | An index entry per new form, and the removal of a substitution that adding a histogram made false |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +76,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Adapted, not authored. Each new form names an existing form closest to it in structure and changes
+only the data, the drawing loop, the titles and the table builder. Everything the twenty corpus
+rules touch — the palette block, the geometry block, the card mechanism, the pointer resolver, the
+empty-data guard, the accessibility wiring — survives byte-for-byte.
+
+A form written from nothing fails several of those rules in ways that are tedious to find. Five
+were built in parallel outside the skill tree, because a half-built form inside `assets/templates/`
+fails the gate for all twenty-seven files at once.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +93,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| A stated admission rule | "Add new chart forms" has no end without one. Carrying a table is the floor, and it is enforced rather than asserted |
+| Adapt from the closest existing structure | Twenty rules is a lot to satisfy from scratch, and the parts that matter are exactly the parts worth not rewriting |
+| Build outside the tree, admit after passing | One half-built form fails the corpus for everything |
+| `sankey` deferred, not dismissed | It would carry a table cleanly as source, target and value. Drawing curved flows without a library is the whole job, and it would have dominated this child |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +106,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Corpus gate at 26 templates | `RESULT: PASSED`, 0 errors |
+| `card-readout` | 22 assertions, 0 failures, up from 17: the new forms are checked, not tolerated |
+| `pointer-reach` | 22 assertions, 0 failures |
+| `pointer-contract-coverage` | 52 assertions: 26 files against 26 rows, both directions |
+| Structural check before admission | Identity meta matching filename stem, a colour system the palette defines, table, resolver, zero external references |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +118,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **`sankey` is absent and the corpus says so.** It is the one candidate excluded for effort
+   rather than principle, and it remains the most defensible next addition.
+2. **Two forms inherited a gap from their base.** `population-pyramid` and `histogram` were adapted
+   from inert forms, gained a tooltip, and did not gain the focus hygiene rule a tooltip-carrying
+   form owes. Adapting from an inert base will keep producing this until the briefs name it.
+3. **Adding a form can make prose elsewhere false, and no rule catches that.** The catalogue
+   documented that this corpus draws no binned histogram and routed readers to
+   `distribution-strip`. Both statements had to be removed by hand.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -141,31 +141,31 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Procedure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Reversal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependency Matrix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The pointer targets are far smaller than the operator's \"sometimes way too small\" suggests",
     "created_at": "2026-09-06T06:24:10Z",
-    "last_save_at": "2026-09-06T09:55:49.410Z",
+    "last_save_at": "2026-09-06T10:16:02.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8043590033ae815a0659c1695e4dab11b0a2c081690c3b1ccb19afa4dafd63b3",
+    "source_fingerprint": "sha256:bea71f76ee07934a8cff74da0c5a57b3250e486efde12adef8b87cfb1597bca4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4df228c6d87dec924287a7ce5955094429fe456601faf53a782cc1b75163af4b",
-      "plan.md": "d38037b279abd8bee974254da6945abf6c8383dc2b4edb19271caecd984eaff7",
+      "plan.md": "3e8c9416ac18284009e417b898382060f6736e470dc8fb21fffbc8b40e62fe22",
       "tasks.md": "b6813160d224133d2b26a3491091ac6b94b2286e65225d023c0d6b7d2bf77d2f",
-      "implementation-summary.md": "04c0ce6d917ef05a915843ebd3e858b37bdd26fa931c86c6b7ac3da160e0993d"
+      "implementation-summary.md": "b7d48d9c2daa547bc19f7803464c4e61222559938ce86a91d1765ea088b9fc7f"
     },
     "last_active_child_id": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data",
     "last_active_at": "2026-09-06T09:51:58.308Z"

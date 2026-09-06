@@ -46,6 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scripts/README.md",
       ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
     ],
@@ -78,6 +79,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
     "created_at": "2026-09-06T06:26:42Z",
-    "last_save_at": "2026-09-06T08:15:53.378Z",
+    "last_save_at": "2026-09-06T10:16:02.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9f4f737c19847c4d53ae6127353771724da18784d7a13b060c4577d630ebcbf",
+    "source_fingerprint": "sha256:74b8166e61be3df3c1eec8b067903da72dd1c51e77051e78723f8295612601fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "864b3444f83d91354a73d4bf1a9278ce369d88b7bd90232ca857a8514feaf447",
       "plan.md": "72cab55524d0cb61aec88202e07f850166f7bbb9e139fc9a76185e74ef42c668",
       "tasks.md": "82eeddff55492b68711ab24900e94b915cdf12fed6098d8d9684995a385fae3f",
-      "implementation-summary.md": "c08188fc13f3d5c9a5d3bbf0e4e3acf0b1cddec984bdfaa255163ab250b80275"
+      "implementation-summary.md": "9cb38f35127fc9d068d338a341a3c3b7cfbe62e10103726e3073d90d629def3c"
     },
     "last_active_at": null
   }

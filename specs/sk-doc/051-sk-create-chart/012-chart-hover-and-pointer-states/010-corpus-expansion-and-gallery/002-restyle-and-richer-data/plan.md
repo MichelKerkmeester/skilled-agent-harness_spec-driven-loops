@@ -23,10 +23,10 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Self-contained HTML with inline SVG and vanilla JavaScript; Node for the checker |
+| **Framework** | None, and none permitted: a chart that needs one cannot be a single file |
+| **Storage** | None. Each chart carries its own data block |
+| **Testing** | `check-corpus.cjs`, which is the suite; a rule is tested by watching it fail |
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
@@ -57,11 +57,12 @@ contextType: "general"
 [MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **The chart file**: one self-contained document carrying its own palette, geometry, data, drawing code, card and table.
+- **The corpus checker**: the only test harness here, enforcing twenty rules across every file.
+- **The references**: the pointer contract and the catalogue, which the checker now reads rather than merely accompanying.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+A data block is read by drawing code that produces both the marks and the table, so the two cannot disagree. A pointer resolves to a mark, and the card reads from the same values the table prints.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -99,9 +100,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Corpus | Every file, every rule | `check-corpus.cjs`, with `--render` for anything needing a browser |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -152,10 +151,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Measure and decide | Medium | Where this work goes wrong is the measurement, not the edit |
+| Build | Low to medium | Bounded once the decision is made |
+| Prove | Medium | Every new rule is watched failing before it is trusted |
+| **Total** | | **Gated by render runs, which take minutes each** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +163,18 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Every changed file is tracked, so git is the backup
+- [x] No flag applies: nothing here is deployed or gated
+- [x] No monitoring applies: the corpus gate runs on demand
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Restore the affected paths from the previous commit.
+2. Re-run `node scripts/check-corpus.cjs --render` and confirm `RESULT: PASSED`.
+3. Confirm the printed rule tallies return to their prior counts.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A. Nothing outside this package is written.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +201,10 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Stage A, the data | None | Believable figures in all 21 templates | Stage B |
+| Table-text baseline | Stage A | The record stage B is checked against | Stage B |
+| Stage B, the restyle | Baseline | Less ink around the data, no number moved | Prose sweep |
+| Prose reconciliation | Stage A | Descriptions that match the new figures | None |
 <!-- /ANCHOR:dependency-graph -->
 
 ---

@@ -48,18 +48,24 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Proof rather than product. Four children changed the corpus underneath a packet that had already
+closed, and this child establishes that every claim now matches what the corpus does, measured from
+the final state rather than from the state each child left behind.
 
-### [Feature Name]
+### The parent had to be corrected
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Packet `012` read `Complete`. It then acquired a phase parent with five children that enlarged the
+catalogue, replaced every figure, restyled the corpus and added three rules. Its status now reads
+`Complete, extended by phase 010`, with a note at the top of its problem statement saying plainly
+that everything below remains accurate about the pointer contracts and no longer describes the
+corpus.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `../spec.md`, `../plan.md` | Modified | Status reconciled, phase map extended |
+| All five children's metadata | Regenerated | Descriptions and graph metadata rebuilt from final content |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +73,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Gate first, documents second. The corpus was proven green from its final state before any closure
+claim was written, so no document in this packet asserts a result that had not already been
+observed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +85,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| The parent keeps `Complete` and gains a qualifier | Its own work did finish and its criteria did close. What changed is the corpus underneath it, and that is what the qualifier says |
+| Reconcile by note rather than rewrite | Rewriting a closed packet's problem statement would erase the record of what it actually did |
+| Prove from the final state, not per child | Each child was green when it landed. Only the final state proves they compose |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +97,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Corpus gate, final state | `RESULT: PASSED`, 0 errors, 35 files, 26 chart forms |
+| `validate.sh --strict`, phase 010 | 6 of 6 `RESULT: PASSED`, 0 errors |
+| `validate.sh --strict`, packet 012 recursive | 11 of 11 `RESULT: PASSED`, 0 errors |
+| Rules watched failing | `pointer-reach` and `gallery`, both restored byte-identically |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +108,13 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Structural validation does not read for content.** Six implementation summaries in this phase
+   passed `validate.sh --strict` while still carrying template prose, because the validator checks
+   for scaffold signatures rather than for whether a document says anything. They were found by
+   grep, not by the gate.
+2. **Nothing checks prose against the corpus.** Two documentation defects this packet hit — stale
+   figures in six descriptions, and a catalogue advertising the absence of a form it now ships —
+   would both pass every rule in the checker.
 <!-- /ANCHOR:limitations -->
 
 ---

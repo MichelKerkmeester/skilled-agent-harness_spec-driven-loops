@@ -195,7 +195,7 @@
     ],
     "causal_summary": "All 21 templates print `Source: demo figures`, and the numbers behind them are placeholder-grade",
     "created_at": "2026-09-06T06:26:44Z",
-    "last_save_at": "2026-09-06T09:55:49.718Z",
+    "last_save_at": "2026-09-06T10:16:03.047Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edba6080792601b1d7aaccf4cd14e1d3e884ebf04681bc01d32fda41d391c201",
+    "source_fingerprint": "sha256:23a8919850a20c28d1e5b53c9133d83fef0cda3592dc27bf2ec1c03a6a6271db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35bc7ad25a7e0f0693fbe7f43acd25fb12578170d78167387388362271bdd64c",
-      "plan.md": "aa352c5492cbd10d1fd528207ecd0c06262160d90ac4020036e485cd15dd9b86",
+      "plan.md": "9197c644e935b1853d153928afef86281724b3652f16e0dafe45bf44fd825e53",
       "tasks.md": "4024c47e73c67df9a5c43285d0721f7f71e5bcb04b6da25082545343718fe3ee",
-      "implementation-summary.md": "b599da88f1a4b44d22ff361cb58b5492295f243eb4f78070c8141a2f5a1bd0b2"
+      "implementation-summary.md": "0854c7810efdb0da6527560f0ede4161ada4837c71c5ce28d1e4f27f3307c8f7"
     },
     "last_active_at": null
   }

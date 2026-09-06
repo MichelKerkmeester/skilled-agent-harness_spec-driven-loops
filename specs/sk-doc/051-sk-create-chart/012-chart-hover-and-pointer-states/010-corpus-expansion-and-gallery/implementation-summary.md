@@ -48,18 +48,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The corpus went from twenty-one chart forms carrying figures labelled demo, where 596 of 695 marks
+were too small to aim at, to twenty-six forms with believable data where every mark answers a
+pointer aimed at it and three rules keep all of that true.
 
-### [Feature Name]
+### Five children
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`001` gave every mark-carrying file a nearest-mark pointer resolver and the `pointer-reach` rule.
+`002` replaced every placeholder figure and restyled the corpus, as two separately gated stages.
+`003` added five forms under a stated admission rule. `004` generated a gallery showing each form
+in both colour schemes and made a stale one an error. `005` proved the whole thing from its final
+state and reconciled the parent packet.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `assets/templates/` | Modified and extended | 21 restyled and re-figured, 5 added, 17 given the resolver |
+| `assets/examples/` | Modified | 4 deliveries given the resolver |
+| `assets/gallery.html`, `scripts/build-gallery.cjs` | Created | The generated gallery and its generator |
+| `scripts/check-corpus.cjs` | Modified | `pointer-reach`, `gallery`, and the contact-sheet exemption |
+| `references/` | Modified | Contract rows, catalogue entries, and the rules stated |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +76,13 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Generative work went to workers; every claim they made was checked mechanically before it was
+believed. Containment against a pre-dispatch snapshot for the data stage, rendered table text
+compared character by character for the restyle, structural checks per file before a new form was
+admitted to the tree.
+
+Children 002 and 003 ran in parallel, because new forms are new files and the data stage only
+touched existing ones.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +92,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Resolve the pointer rather than enlarge the mark | A resolver gives each mark the largest region it can have without stealing a neighbour's, and needs no assumption about how a transparent stroke is hit-tested |
+| Every rule watched failing before it is trusted | A rule that has only ever passed is not evidence. Both new rules were mutated, and one of them caught a defect its own author had shipped |
+| Data and style as separate gated stages | So a moved number cannot hide inside a restyle |
+| A stated admission rule for the catalogue | It gives an open-ended instruction an end, and it is enforced by an existing check rather than by taste |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +105,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Corpus gate, final state | `RESULT: PASSED`, 0 errors, 35 files, 26 forms |
+| `pointer-reach` / `card-readout` / `gallery` | 22 / 22 / 27 assertions, 0 failures |
+| `pointer-contract-coverage` | 52 assertions, 26 files against 26 rows |
+| `validate.sh --strict`, recursive | 11 of 11 `RESULT: PASSED` |
+| Both new rules | Watched failing on a deliberate mutation, restored byte-identically |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +117,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The restyle's whitespace direction went largely unexecuted**, because the brief froze every
+   number when it meant every data number. Three workers said so independently.
+2. **`sankey` is deferred**, the one catalogue candidate excluded for effort rather than principle.
+3. **Nothing checks prose against the corpus.** Both documentation defects this packet hit — six
+   stale descriptions and a catalogue advertising the absence of a form it now ships — pass every
+   rule in the checker.
+4. **Structural validation does not read for content.** Six implementation summaries passed
+   `validate.sh --strict` while still carrying template prose.
 <!-- /ANCHOR:limitations -->
 
 ---

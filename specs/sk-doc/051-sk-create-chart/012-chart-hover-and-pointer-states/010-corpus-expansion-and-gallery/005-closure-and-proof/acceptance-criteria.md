@@ -83,8 +83,15 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes. Five of five `Met`.
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+The child that proves the others has the least to show and the most to get right: every claim in
+this phase now names something observed from the final state rather than from the state a child
+left behind.
+
+Two things were fixed here that no gate reported. The parent packet still read `Complete` while
+carrying five children that had changed the corpus after it closed, and six implementation
+summaries had passed strict validation while still carrying template prose. Structural validation
+checks for scaffold signatures, not for whether a document says anything, and both were found by
+reading rather than by running.
 <!-- /ANCHOR:closure -->
