@@ -211,7 +211,12 @@
     "parallel coordinates",
     "process diagram",
     "flow diagram",
-    "diagram the process"
+    "diagram the process",
+    "treemap",
+    "histogram",
+    "data viz",
+    "heat matrix",
+    "heat map"
   ],
   "derived": {
     "trigger_phrases": [

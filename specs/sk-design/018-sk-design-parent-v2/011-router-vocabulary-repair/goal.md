@@ -89,7 +89,17 @@ Done. 17 phrases added to sk-design, 2 removed from sk-doc; 9 of 11 fixed at gen
   list and reached nobody. It is the canonical question the mode exists to answer.
 - **`sk-doc` still carried `data visualization`.** The cutover moved the modes and left two chart
   phrases behind, so a data-visualisation request reached the documentation hub for the whole packet.
-- **Two remain.** `critique this` and `plot this` are two-word phrases that do not clear the bar even
-  when present in the vocabulary; that is a length limit, not a membership gap. `review this screen`
-  loses to `sk-code`, the same pattern as the deck-review case.
+- **Two remain from the manual probe.** `critique this` and `plot this` are two-word phrases that do
+  not clear the bar even when present in the vocabulary; that is a length limit, not a membership gap.
+  `review this screen` loses to `sk-code`, the same pattern as the deck-review case.
+- **The manual probe missed four more, and a checker found them.** Sampling fifteen declarations was
+  not enough. `ci-router-vocabulary-reach.cjs` probes every multi-word phrase a router declares and
+  found `data viz`, `heat matrix`, `heat map` and `decision branch` reaching other hubs.
+- **`sk-doc` held six chart form names, not two.** `treemap`, `histogram`, `data viz`, `heat matrix`,
+  `heat map` and `parallel coordinates`. The first pass removed only two because it filtered the
+  signal list by keyword instead of reading it, and a filter for `chart` and `heatmap` matches none of
+  `treemap`, `histogram` or `heat matrix`. All six now reach the design hub.
+- **The check fails on wrong-hub, reports no-reach.** A phrase reaching another hub is a defect. A
+  phrase reaching nobody is almost always too short to clear the bar, and a gate that fails on ten
+  unfixable rows stops being run.
 <!-- /ANCHOR:log -->

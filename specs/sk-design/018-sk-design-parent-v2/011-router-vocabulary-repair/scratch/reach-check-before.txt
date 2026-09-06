@@ -1,0 +1,18 @@
+FAIL sk-design                    declared= 77 wrong-hub=  4 no-reach= 10
+       wrong-hub  data viz                                   sk-doc=0.8286
+       wrong-hub  heat matrix                                sk-doc=0.8233
+       wrong-hub  heat map                                   sk-doc=0.8233
+       wrong-hub  decision branch                            sk-git=0.9452, sk-code=0.8200
+       no-reach   font size
+       no-reach   corner radius
+       no-reach   critique this
+       no-reach   text characters
+       no-reach   decision tree
+       no-reach   diagram the
+       no-reach   as a diagram
+       no-reach   from a url
+       no-reach   from a site
+       no-reach   style guide from
+
+checked=1 hub(s), wrong-hub=4, no-reach=10
+RESULT: FAILED
