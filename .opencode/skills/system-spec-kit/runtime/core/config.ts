@@ -3,10 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
-import fs from 'node:fs';
 import os from 'node:os';
 
-import { DB_PATH } from '@spec-kit/shared/paths';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -32,86 +30,6 @@ export const NODE_MODULES: string = path.join(SERVER_DIR, 'node_modules');
 export const LIB_DIR: string = path.join(import.meta.dirname, '..', 'lib');
 export const SHARED_DIR: string = path.join(SERVER_DIR, '..', 'shared');
 
-/** Resolved database directory, file path, and update-marker path for the current runtime. */
-export interface DatabasePaths {
-  databaseDir: string;
-  databasePath: string;
-  dbUpdatedFile: string;
-}
-
-function realpathAllowMissing(targetPath: string): string {
-  const resolvedPath = path.resolve(targetPath);
-  if (fs.existsSync(resolvedPath)) {
-    return fs.realpathSync(resolvedPath);
-  }
-
-  const parentPath = path.dirname(resolvedPath);
-  if (parentPath === resolvedPath) {
-    return resolvedPath;
-  }
-
-  return path.join(realpathAllowMissing(parentPath), path.basename(resolvedPath));
-}
-
-function isPathInside(candidate: string, prefix: string): boolean {
-  const relative = path.relative(prefix, candidate);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
-function computeDatabasePaths(): DatabasePaths {
-  // Re-check SPEC_KIT_DB_DIR at call time to support runtime overrides
-  // (e.g. tests that set the env var after module import). Directory overrides
-  // intentionally win over MEMORY_DB_PATH's parent directory so all entry points
-  // share the same lease, marker, and socket namespace.
-  const runtimeDbDir = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
-  const runtimeDbPath = process.env.MEMORY_DB_PATH?.trim();
-  const resolvedRuntimeDbPath = runtimeDbPath
-    ? path.resolve(process.cwd(), runtimeDbPath)
-    : null;
-  const databaseDir = runtimeDbDir
-    ? path.resolve(process.cwd(), runtimeDbDir)
-    : resolvedRuntimeDbPath
-      ? path.dirname(resolvedRuntimeDbPath)
-    : path.dirname(DB_PATH);
-
-  // Resolve symlinks before the boundary check so repo-local links cannot
-  // smuggle the database into an unrelated system path.
-  const resolved = realpathAllowMissing(databaseDir);
-  const allowedPrefixes = [process.cwd(), os.homedir()].map(realpathAllowMissing);
-  try {
-    const tmpDir = os.tmpdir();
-    allowedPrefixes.push(realpathAllowMissing(tmpDir));
-  } catch { /* os.tmpdir may be unavailable in test environments */ }
-  if (!allowedPrefixes.some((prefix) => isPathInside(resolved, prefix))) {
-    throw new Error(
-      `Database directory "${resolved}" is outside the allowed project, home, and temporary directories. ` +
-      `Set SPEC_KIT_DB_DIR to a path within one of those boundaries.`
-    );
-  }
-
-  return {
-    databaseDir: resolved,
-    databasePath: resolvedRuntimeDbPath
-      ? path.join(resolved, path.basename(resolvedRuntimeDbPath))
-      : path.join(resolved, path.basename(DB_PATH)),
-    dbUpdatedFile: path.join(resolved, '.db-updated')
-  };
-}
-
-export let DATABASE_DIR: string;
-export let DATABASE_PATH: string;
-export let DB_UPDATED_FILE: string;
-
-/** Re-read the database path env vars and refresh the exported DATABASE_* bindings. */
-export function resolveDatabasePaths(): DatabasePaths {
-  const resolvedDatabasePaths = computeDatabasePaths();
-  DATABASE_DIR = resolvedDatabasePaths.databaseDir;
-  DATABASE_PATH = resolvedDatabasePaths.databasePath;
-  DB_UPDATED_FILE = resolvedDatabasePaths.dbUpdatedFile;
-  return resolvedDatabasePaths;
-}
-
-resolveDatabasePaths();
 
 // ───────────────────────────────────────────────────────────────────
 // 3. RATE LIMITING CONFIGURATION

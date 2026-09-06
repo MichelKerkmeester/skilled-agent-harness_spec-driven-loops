@@ -101,7 +101,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |-------|--------|-------|--------|
 | 1 | 001-ripgrep-search-system/ | ten-iteration research lane: ripgrep search system | complete |
 | 2 | 002-cli-runtime-utilization/ | ten-iteration research lane: cli runtime utilization | complete |
-| 3 | 003-shared-package-utilization/ | ten-iteration research lane: shared package utilization | in progress |
+| 3 | 003-shared-package-utilization/ | ten-iteration research lane: shared package utilization | complete |
 | 4 | 004-template-system-and-acceptance-criteria/ | ten-iteration research lane: template system and acceptance criteria | in progress |
 | 5 | 005-overengineering-simplification/ | ten-iteration research lane: overengineering simplification | in progress |
 | 6 | 006-retrieval-drift-remediation/ | remediation of every confirmed finding from lane 001 | complete |
@@ -109,6 +109,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 7 | 007-cli-package-residue-removal/ | removal of every confirmed dead file from lane 002 and a CI runner for the CLI gates | complete |
 
 | 8 | 008-env-example-dead-flags/ | removal of every env template variable nothing reads, on the operator's observation | complete |
+
+| 9 | 009-shared-package-dead-half-removal/ | removal of the shared package's dead half and repair of its seams, from lane 003 | complete |
 
 ### Phase Transition Rules
 
@@ -124,6 +126,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 001-ripgrep-search-system | 006-retrieval-drift-remediation | research.md synthesized and every P1 row reproduced or dropped in `research/confirmed-findings.md` | `validate.sh 001-ripgrep-search-system --strict` prints RESULT: PASSED and the confirmed table names 006 |
 | 002-cli-runtime-utilization | 007-cli-package-residue-removal | research.md synthesized and every removal, merge and fix row censused in `research/confirmed-findings.md` | `validate.sh 002-cli-runtime-utilization --strict` prints RESULT: PASSED and the confirmed table names 007 |
 | 007-cli-package-residue-removal | 008-env-example-dead-flags | operator observation that the env template still carried memory-database flags | census over the real tree recorded in `008-env-example-dead-flags/implementation-summary.md` |
+| 003-shared-package-utilization | 009-shared-package-dead-half-removal | research.md synthesized and every P1 row censused in `research/confirmed-findings.md` | `validate.sh 003-shared-package-utilization --strict` prints RESULT: PASSED and the confirmed table names 009 |
 <!-- /ANCHOR:phase-map -->
 
 ---

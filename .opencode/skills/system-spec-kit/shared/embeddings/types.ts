@@ -17,6 +17,9 @@
  */
 export type BackendKind = 'ollama' | 'api' | 'sentence-transformers';
 
+/** Weight precision the local HF model server can serve. */
+export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
+
 /**
  * Static declaration of an embedder's properties. The registry holds an
  * array of these manifests; concrete adapters consume them at construction

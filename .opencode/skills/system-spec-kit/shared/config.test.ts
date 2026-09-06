@@ -2,7 +2,7 @@
 // colocated *.test.ts convention in shared/parsing. Run directly (tsx/node
 // type stripping); throws on the first failing assertion.
 //
-// The database directory must sit under the skill root, never under the shared
+// The telemetry directory must sit under the skill root, never under the shared
 // package itself. The test harness overrides the directory through the
 // environment, so the check runs in a child process with those variables
 // removed.
@@ -21,18 +21,18 @@ delete env.MEMORY_DB_PATH;
 
 const result = spawnSync(
   process.execPath,
-  ['--import', 'tsx', '-e', "import('./config.ts').then((m) => process.stdout.write(m.DB_UPDATED_FILE))"],
+  ['--import', 'tsx', '-e', "import('./config.ts').then((m) => process.stdout.write(m.TELEMETRY_STORE_DIR))"],
   { cwd: SHARED_DIR, env, encoding: 'utf8' },
 );
 if (result.status !== 0) {
   throw new Error(`config probe failed: ${result.stderr}`);
 }
-const databaseDir = path.dirname(result.stdout.trim());
+const databaseDir = result.stdout.trim();
 const expected = path.join(SKILL_ROOT, 'runtime', 'database');
 if (databaseDir !== expected) {
-  throw new Error(`DB_UPDATED_FILE dir failed: expected ${expected}, got ${databaseDir}`);
+  throw new Error(`TELEMETRY_STORE_DIR failed: expected ${expected}, got ${databaseDir}`);
 }
 if (databaseDir.startsWith(path.join(SHARED_DIR, 'runtime'))) {
-  throw new Error('database dir must not sit under the shared package');
+  throw new Error('telemetry dir must not sit under the shared package');
 }
 process.stdout.write('config package root ok\n');

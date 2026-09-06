@@ -1,0 +1,38 @@
+{
+  "lineage": "glm-5-3-flash-shared-package",
+  "sessionId": "fanout-glm-5-3-flash-shared-package-1788725855236-iy2iyg",
+  "loopType": "research",
+  "generatedAt": "2026-09-07T01:35:00Z",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "convergenceThresholdUsedAsTelemetryOnly": true,
+  "newInfoRatioTrend": [1.0, 1.0, 0.9, 0.85, 0.8, 0.85, 0.9, 0.8, 0.75, 0.5],
+  "p0Count": 0,
+  "p1Count": 10,
+  "p2Count": 23,
+  "findingsTotal": 53,
+  "questionsAnswered": ["q-census", "q-embeddings", "q-rank", "q-boundary", "q-layout", "q-env", "q-tests", "q-removal"],
+  "openQuestionsCarried": [],
+  "documentedUnknowns": [
+    "the exact locus of the deep-loop→/Users/…/MEGA/… resolution (observed; the ancestor-walk = inferred) — F1.5",
+    "the operator-side hook settings + the .github CI (outside the five-tree audited surface) — F9.5/F7.5/F5.5",
+    "the advisor's vec0 shadow-table naming (the 0-hit vec_memories_rowids census + the vec_${dim} convention match = dispositive; the nuance noted) — F2.4"
+  ],
+  "adversarialReprobes": [
+    "no root node_modules (the F1.5 mechanism = stays inference-flagged, the MEGA-observation = the fact)",
+    "the root opencode.json registers none of the four compact/precompact hooks (F9.5's outside-the-audit caveat stands)",
+    "vecTableNameForDim(dim) = `vec_${dim}` (schema.ts:60-62) = the factory's expectedTable convention — the inert-branch failure sharpens to the vec_memories_rowids gate alone (F2.4 sharpened, not weakened)"
+  ],
+  "headlineFindings": [
+    "L1 The dead half: 8 of 33 surfaces (embeddings.ts+barrel+shim, the ranking quartet, retrieval-trace+contracts/, quality-extractors, boolean-expr, the structure-chunker+ast-parser island, utils/retry) = ≈2,300+ lines, 0 production termination, 7-9 keeper suites their only exercise — while README §4/§6 documents the dead surface as the primary usage",
+    "L4 The proven-stale dist: the freshness machinery's own functions, executed read-only — hashSourceFiles(60 watched sources) = ec541613… vs the marker's a01c3f33… — and checkPackageFreshness = 'unprovisioned' in this checkout, so the 972-line engine cannot see its own flagship: production (runtime/cli via its symlink) executes the 12:13Z dist while the tests exercise the 16:29Z sources",
+    "L2 The database-path theater: five derivations of one directory whose target (runtime/database) does not exist; the .db-updated 'sentinel' = 4 derivation sites, 2 readers (both path.dirname()-only), 0 content/mtime reads, 0 writers",
+    "L3 The env-var ledger: 24 variables read in shared sources vs 7 declared in README §5, exposing the 2-spelling bug-family ×4 — including VOYAGE_API_URL (profile) vs VOYAGE_BASE_URL (startup validation): the same deployment fact, resolved differently",
+    "L1/F9.2 The memory-DB residue = six concentrations, not crust: the inert precedence-branch (the advisor's vec_${dim} tables match; only the vec_memories_rowids gate never passes), the monolith+barrel+shim+the 0-importer @huggingface/transformers dep, the dead rollout flag, the phantom DB-dir+sentinel, the retired naming over live function, the 2-spelled env pairs"
+  ],
+  "synthesis": "research.md",
+  "evidenceArtifacts": ["findings-registry.json", "iterations/iteration-001..010.md", "deltas/iter-001..010.jsonl"],
+  "writeSurfaceCompliance": "All writes confined to the lineage directory; repo untouched; no generate-context.js, no validate.sh, no git writes; the only executions beyond rg/ls/diff/wc = five node -e probes (two require.resolve, one metadata, two freshness — all print-only, the freshness probes = the machinery's own exported functions called read-only)",
+  "completedAt": "2026-09-07T01:35:00Z"
+}

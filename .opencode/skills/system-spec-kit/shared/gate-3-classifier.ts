@@ -13,7 +13,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import { DB_UPDATED_FILE } from './config.js';
+import { TELEMETRY_STORE_DIR } from './config.js';
 import { canonicalFold } from './unicode-normalization.js';
 
 function assertNever(value: never, label: string): never {
@@ -506,7 +506,7 @@ function isPhaseParent(folderPath: string): boolean {
 // telemetry store rather than the generated JSON, keyed by the specs-root-relative
 // folder id; the JSON pointer remains the fallback for un-migrated parents.
 function getLastActiveChildFromStore(specFolderId: string): string | null {
-  const store = readJsonRecord(path.join(path.dirname(DB_UPDATED_FILE), 'access-telemetry.json'));
+  const store = readJsonRecord(path.join(TELEMETRY_STORE_DIR, 'access-telemetry.json'));
   const record = store?.[specFolderId];
   if (record === null || typeof record !== 'object' || Array.isArray(record)) {
     return null;

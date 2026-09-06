@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 // Runner: `node --experimental-vm-modules .../registry.test.js` after tsc.
 // Standalone assertions (no Vitest dependency) — mirrors the
-// boolean-expr.test.ts + quality-extractors.test.ts convention in
+// boolean-expr.test.ts convention in
 // sibling directories.
 //
 // What this locks in:
@@ -16,7 +16,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
-  EmbedderNotConfiguredError,
   getCanonicalFallback,
   listManifests,
   MANIFESTS,
@@ -83,15 +82,5 @@ for (const provider of ['ollama', 'hf-local', 'voyage', 'openai'] as const) {
     );
   }
 }
-
-// 6. EmbedderNotConfiguredError is exported and inherits from Error
-assert(
-  new EmbedderNotConfiguredError('test') instanceof Error,
-  'EmbedderNotConfiguredError extends Error',
-);
-assert(
-  new EmbedderNotConfiguredError('test').name === 'EmbedderNotConfiguredError',
-  'EmbedderNotConfiguredError.name is set',
-);
 
 console.log('=== registry.test: DONE ===');

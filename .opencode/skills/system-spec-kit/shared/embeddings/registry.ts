@@ -108,6 +108,8 @@ export { MANIFESTS };
 
 export type CanonicalProvider = 'voyage' | 'openai' | 'hf-local' | 'ollama';
 
+// Thrown only when the manifest registry is empty, a programmer error no caller
+// catches, so the class stays internal.
 class EmbedderNotConfiguredError extends Error {
   constructor(detail: string) {
     super(`Embedder not configured: ${detail}`);
@@ -115,8 +117,6 @@ class EmbedderNotConfiguredError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
   }
 }
-
-export { EmbedderNotConfiguredError };
 
 const CLOUD_CANONICAL: Readonly<Record<'voyage' | 'openai', string>> = Object.freeze({
   voyage: 'voyage-code-3',

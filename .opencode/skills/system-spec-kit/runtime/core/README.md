@@ -28,7 +28,7 @@ Current responsibilities:
 
 | File | Responsibility |
 |---|---|
-| `config.ts` | Resolves and boundary-checks database paths, and exports path, batch, and input-limit constants. |
+| `config.ts` | Exports the package-relative path anchors and the input-limit constants. |
 
 ---
 
@@ -36,9 +36,7 @@ Current responsibilities:
 
 | Boundary | Rule |
 |---|---|
-| Paths | `computeDatabasePaths()` resolves symlinks (`realpathAllowMissing`) before checking containment inside the project cwd, home directory, or OS temp directory; a path outside all three throws. |
-| Environment | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` (directory override, wins) and `MEMORY_DB_PATH` (file override) are read on every `resolveDatabasePaths()` call, so a test can flip them after import. |
-| Mutable exports | `DATABASE_DIR`, `DATABASE_PATH`, and `DB_UPDATED_FILE` are `let` bindings refreshed by `resolveDatabasePaths()`, not frozen constants. |
+| Paths | Path anchors are derived from the module's own location; nothing here resolves a database directory since the memory database left. |
 
 ---
 
@@ -46,9 +44,7 @@ Current responsibilities:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `resolveDatabasePaths()` | Function | Re-derives and stores `DATABASE_DIR`, `DATABASE_PATH`, and `DB_UPDATED_FILE` from the current environment. |
 | `SERVER_DIR`, `NODE_MODULES`, `LIB_DIR`, `SHARED_DIR` | Constants | Package-relative path anchors. |
-| `BATCH_SIZE`, `BATCH_DELAY_MS` | Constants | Batch-processing tuning, overridable via `SPEC_KIT_BATCH_SIZE` / `SPEC_KIT_BATCH_DELAY_MS`. |
 | `INDEX_SCAN_COOLDOWN` | Constant | Minimum interval, in milliseconds, between index scans. |
 | `MAX_QUERY_LENGTH`, `INPUT_LIMITS` | Constants | Query and per-field length ceilings for input validation. |
 | `DEFAULT_BASE_PATH`, `ALLOWED_BASE_PATHS` | Constants | Base path defaults and the resolved allowlist for path-scoped operations. |

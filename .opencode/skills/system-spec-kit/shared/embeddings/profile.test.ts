@@ -2,8 +2,8 @@
 // MODULE: Profile — fallback-resolver invariant tests (closes 3 P0)
 // ───────────────────────────────────────────────────────────────────
 // Runner: `node --experimental-vm-modules .../profile.test.js` after tsc.
-// Standalone-assertion convention — matches boolean-expr.test.ts +
-// quality-extractors.test.ts + registry.test.ts in sibling directories.
+// Standalone-assertion convention — matches boolean-expr.test.ts and
+// registry.test.ts in sibling directories.
 //
 // What this locks in:
 // - resolveActiveProfileModel returns canonical values via getCanonicalFallback

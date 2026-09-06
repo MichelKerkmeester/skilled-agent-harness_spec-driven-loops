@@ -1,0 +1,75 @@
+{
+  "topic": "Dependency-and-utilization audit of @spec-kit/shared (.opencode/skills/system-spec-kit/shared) after the memory-database retirement: every module judged by what actually imports and calls it, never by its stated or README-claimed purpose. Consumers: system-spec-kit/runtime, system-skill-advisor, system-deep-loop, sk-doc, .opencode/bin. Non-goals: no edits; no redesign beyond the recommendation label; no prose-style review. One finding per entry: path:line, declared purpose, observed consumers, severity (P0/P1/P2), recommendation (remove/merge/move/fix/document). Close with a ranked simplification backlog.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
+  "createdAt": "2026-09-06T20:17:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-5-3-flash-shared-package-1788725855236-iy2iyg",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "fanout": {
+    "detached": true,
+    "inlineExecutor": true,
+    "artifactDirOverride": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/glm-5-3-flash-shared-package",
+    "note": "Nested CLI/agent dispatch is forbidden for this lineage; this process runs every iteration inline. The append gateway and validate.sh would write outside the lineage write surface, so state records, deltas, and the state log are written directly inside the lineage dir and no repo tooling is executed."
+  }
+}

@@ -83,6 +83,7 @@ phase and binds as if written here.
 | 006-retrieval-drift-remediation | `006-retrieval-drift-remediation/goal.md` |
 | 007-cli-package-residue-removal | `007-cli-package-residue-removal/goal.md` |
 | 008-env-example-dead-flags | `008-env-example-dead-flags/goal.md` |
+| 009-shared-package-dead-half-removal | `009-shared-package-dead-half-removal/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -124,7 +125,8 @@ and findings belong here.
 | Lane 001 ran, reproduced, remediated | Done | `001-ripgrep-search-system/research/confirmed-findings.md`; child `006-retrieval-drift-remediation` complete |
 | Lane 002 ran, censused, remediated | Done | `002-cli-runtime-utilization/research/confirmed-findings.md`; child `007-cli-package-residue-removal` complete, commit `3f161d2ee9` on both branches |
 | Operator observation: env template dead flags | Done | child `008-env-example-dead-flags` complete; 13 variables removed, drift guard repaired |
-| Lane 003 | Running | relaunched 22:17 in worktree 046 after the operator's pause |
+| Lane 003 ran, censused, remediated | Done | `003-shared-package-utilization/research/confirmed-findings.md`; child `009-shared-package-dead-half-removal` complete |
+| Lane 004 | Running | started 01:29 in worktree 046 |
 
 ### Deviations and findings
 
@@ -134,6 +136,8 @@ and findings belong here.
 | Child 007 appended to the binding | Durable slice changed again; parent resent in chat. |
 | Resource-map extractor wiring carried to lane 004 | Lane 002 found the deep commands never name `resource-map/extract-from-evidence.cjs`; lane 004 owns the resource-map addon, so the wiring decision lands with its remediation. |
 | Shared index hazard | Another session staged and amended in this checkout mid-commit; the 007 commit was rebuilt through a private index and the branch advanced with a compare-and-swap. |
+| Child 009 appended to the binding | Durable slice changed; parent resent in chat. |
+| Lane 003 audited its worktree | Four claims described worktree 046's provisioning, not the repository; recorded as environment facts, and later lanes are read with that in mind. |
 | Child 008 appended to the binding | Opened on the operator's observation rather than a lane synthesis; durable slice changed, parent resent in chat. |
 | D6 amended: private-index commits | A pathspec commit takes the working tree and would carry the other session's hunks; the durable slice was resent in chat as the objective, log excluded, to fit the 4,000-character cap. |
 <!-- /ANCHOR:log -->

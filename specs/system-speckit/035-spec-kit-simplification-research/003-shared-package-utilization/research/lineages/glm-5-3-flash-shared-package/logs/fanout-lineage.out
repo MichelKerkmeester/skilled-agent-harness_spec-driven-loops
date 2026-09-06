@@ -1,0 +1,11 @@
+**The lineage is complete.** Final state, verified:
+
+**10/10 iterations, `stopReason: "maxIterationsReached"`** — 53 findings (30 P1 / 23 P2 / 0 P0) deduplicated to 10 P1 L-rows, 8/8 charter questions answered, 0 open questions carried.
+
+**The verdict** (research.md): `@spec-kit/shared` is two packages wearing one directory — a live, production-terminated core (~60%) and a fully-built, fully-tested, entirely unwired second package (8 of 33 surfaces, ≈2,300+ lines, incl. the 1,011-line embeddings monolith whose only importer is a shim nothing imports). The defects concentrate in the seams, not the modules: the committed dist **proven stale by the freshness machinery's own exported functions** (60 watched sources hash to `ec541613…` vs the marker's `a01c3f33…`, while `checkPackageFreshness` reports *unprovisioned* — the 972-line guard cannot see its own flagship); five derivations of a database directory that doesn't exist, via a `.db-updated` "sentinel" nobody reads; 24 environment variables read against 7 documented, exposing the 2-spelling bug-family ×4; and four coupling conventions (spellings, the diverged repo-root copy, the launcher allowlist, the duplicated hf-socket constant) with zero mechanical watch. Memory-DB residue: six concentrations, named — not crust.
+
+**Artifacts** (52 entries, all inside `…/003-shared-package-utilization/research/lineages/glm-5-3-flash-shared-package/`): `research.md` (the synthesis, 19 KB), `findings-registry.json` (the L-ledger + the full F-index), `convergence-report.json`, `synthesis-record.json`, the config/state/strategy/dashboard, 10 iteration ledgers (113.8 KB), 10 deltas, `state-events.jsonl` (initialized + synthesis_recorded, both carrying the stop reason), `logs/fanout-lineage.out`.
+
+**Compliance**: write surface = the lineage directory only (git status: zero tracked-file modifications); no `generate-context.js`, no `validate.sh`, no git writes; no nested dispatches — every iteration executed inline; the 5 `node -e` probes were read-only. The final-state check caught and fixed one gap (the initially-missing `iteration-010.md`) before completion.
+
+FANOUT_LINEAGE_COMPLETE:glm-5-3-flash-shared-package

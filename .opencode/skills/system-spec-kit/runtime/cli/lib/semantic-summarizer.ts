@@ -13,7 +13,13 @@ import { SemanticSignalExtractor } from './semantic-signal-extractor.js';
 import { cleanDescription } from '../utils/file-helpers.js';
 import { CONFIG } from '../core/index.js';
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
-import type { WeightedDocumentSections } from '@spec-kit/shared/index';
+/** The sections a summary is weighted into before it is embedded. */
+interface WeightedDocumentSections {
+  title?: string | null;
+  decisions?: string[];
+  outcomes?: string[];
+  general?: string | null;
+}
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPES

@@ -53,7 +53,6 @@ import {
   formatSummaryAsMarkdown,
   extractFileChanges,
 } from '../lib/semantic-summarizer.js';
-import { EMBEDDING_DIM, MODEL_NAME } from '../lib/embeddings.js';
 import {
   evaluateMemorySufficiency,
 } from '@spec-kit/shared/parsing/memory-sufficiency';

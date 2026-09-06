@@ -1,0 +1,71 @@
+{
+  "run_id": "1788725855236-iy2iyg",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
+  "base_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm-5-3-flash-shared-package",
+      "state_log": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/glm-5-3-flash-shared-package/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-06T20:17:35.240Z",
+        "end_at_iso": "2026-09-06T23:29:51.252Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 11
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-06T23:35:00Z",
+          "deltaMs": 188748
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T00:05:00Z",
+          "deltaMs": 1988748
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T00:35:00Z",
+          "deltaMs": 3788748
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T01:05:00Z",
+          "deltaMs": 5588748
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T01:30:00Z",
+          "deltaMs": 7088748
+        }
+      ]
+    }
+  ]
+}

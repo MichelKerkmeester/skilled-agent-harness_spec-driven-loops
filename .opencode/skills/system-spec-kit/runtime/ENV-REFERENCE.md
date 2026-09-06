@@ -115,7 +115,7 @@ Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-con
 package. *Read by this package:* `SPECKIT_SPECS_DIR`.
 *Owned by the HF model server and the skill advisor, for the advisor's own database:*
 `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH` point the skill-advisor launcher at the
-database it owns; `shared/paths.ts` and `shared/config.ts` resolve the directory, and
+database it owns; `shared/config.ts` resolves the directory, and
 `shared/embeddings/factory.ts` and `shared/embeddings/profile.ts` read the same pair to keep the
 embedding layer pointed at it. The HF model server under `.opencode/bin` falls back to
 `runtime/database` as its own state directory only when the advisor has not pointed
@@ -134,8 +134,8 @@ this table because nothing reads them any more.
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_DB_DIR` | (derived) | string | Directory override for the skill-advisor's own database, resolved by `getDbDir()`. `SPEC_KIT_DB_DIR` is checked first and wins; either one is resolved against `process.cwd()` and must pass `validateResolvedPath()` or the call throws. Not read anywhere in this package's own `runtime/` code. | `shared/config.ts`, `shared/embeddings/profile.ts`, `shared/embeddings/factory.ts` |
-| `MEMORY_DB_PATH` | (unset) | string | Explicit file path whose parent directory becomes the skill-advisor's resolved database directory, but only when neither `SPEC_KIT_DB_DIR` nor `SPECKIT_DB_DIR` is set. The name predates the memory-engine removal: the retired spec-kit memory server was this directory's original owner, and the skill-advisor launcher is now the live caller that points it at its own database. The HF model server's `hf-local` provider reads the same variable to keep its spawn-authority lease beside that database, falling back to `runtime/database` when it is unset. | `shared/paths.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/providers/hf-local.ts` |
-| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root assigned to the exported `DEFAULT_BASE_PATH` constant. Nothing in `runtime/` imports that constant outside of a same-package parity test against `shared/paths.ts`, so this variable currently has no effect on running behavior. | `core/config.ts` |
+| `MEMORY_DB_PATH` | (unset) | string | Explicit file path whose parent directory becomes the skill-advisor's resolved database directory, but only when neither `SPEC_KIT_DB_DIR` nor `SPECKIT_DB_DIR` is set. The name predates the memory-engine removal: the retired spec-kit memory server was this directory's original owner, and the skill-advisor launcher is now the live caller that points it at its own database. The HF model server's `hf-local` provider reads the same variable to keep its spawn-authority lease beside that database, falling back to `runtime/database` when it is unset. | `shared/embeddings/factory.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/providers/hf-local.ts` |
+| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root assigned to the exported `DEFAULT_BASE_PATH` constant. Nothing in `runtime/` imports that constant outside of a same-package parity test, so this variable currently has no effect on running behavior. | `core/config.ts` |
 | `SPECKIT_SPECS_DIR` | (unset) | string | Fallback specs-root used when resolving a spec folder that is not directly under `process.cwd()`. `SPEC_KIT_SPECS_DIR` is checked first and wins. The candidate is `resolve(cwd, <override>, <specFolder>)` and is used only if it exists; otherwise resolution falls through to the spec-document finder. | `api/graph-refresh.ts` |
 | `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for launcher bridge mode. Set `1` to force legacy strict-single-writer behavior, where a secondary launcher prints `LEASE_HELD_BY` and exits instead of attaching to the daemon IPC socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
 | `SPECKIT_MAX_SECONDARY_CLIENTS` | `64` | number | Maximum concurrent secondary stdio clients the daemon IPC socket accepts before refusing new bridge connections. A refused connection (accept-then-close) is indistinguishable from a dead daemon to probes, so keep this above the realistic concurrent-session fleet. Pinned to `64` in the runtime configs. | `shared/ipc/socket-server.ts`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
@@ -233,9 +233,6 @@ test switch — went out with the memory engine that read them.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
-| `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
-| `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
 | `HF_EMBED_SERVER_URL` | (unset → `/tmp/system-hf-embed/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then the short model-server default `/tmp/system-hf-embed`. That last fallback is owned by the model server rather than by any database directory, so the client reaches the same socket whether or not a database exists; it must stay equal to `DEFAULT_MODEL_SERVER_SOCKET_DIR` in `.opencode/bin/lib/model-server-supervision.cjs`. Leave unset so every client reaches the one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
 | `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `45000` | number | Initial readiness budget while the `hf-local` client waits for a reachable model server. Once `/api/health` reports `state: "loading"`, the client keeps retrying under `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` instead of failing at 45 s. | `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` | (unset → disabled) | number | RSS ceiling (MB) for the launcher-supervised model-server process tree. Unset disables the watchdog. | `bin/lib/model-server-supervision.cjs` |
@@ -285,7 +282,7 @@ When the cascade selects `hf-local`, embeddings are served by a **launcher-super
 
 ## 7. SHARED RANKING ALGORITHMS
 
-Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still ships the RRF fusion and adaptive-fusion primitives. The memory pipeline that called them is gone, but these modules and their env reads survive for other consumers.
+Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts` ships the RRF fusion primitives the skill advisor's fusion scorer imports. The memory pipeline that first called them is gone; the adaptive-fusion module that sat beside them went with it.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -293,17 +290,6 @@ Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still 
 | `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower is more top-heavy, higher is flatter; must be greater than 0. | `shared/algorithms/rrf-fusion.ts` |
 | `SPECKIT_SCORE_NORMALIZATION` | `true` | boolean | Composite score normalization, read as `!== 'false'`. | `shared/algorithms/rrf-fusion.ts` |
 | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `true` | boolean | Multi-channel overlap bonus. Read directly off `process.env` in the fusion module, lower-cased and trimmed, rather than through a flag registry. | `shared/algorithms/rrf-fusion.ts` |
-
----
-
-## 8. DEPRECATED
-
-Names that appear in old configs and in source comments, but that no code branches on.
-
-| Variable | Status | Replacement | Notes | Source |
-|----------|--------|-------------|-------|--------|
-| `SPECKIT_EAGER_WARMUP` | **Deprecated (inert)** | (none) | The embedder loads lazily and only lazily. Both this and `SPECKIT_LAZY_LOADING` are named inert in the comment at line 378; no branch reads either. | `shared/embeddings.ts` |
-| `SPECKIT_LAZY_LOADING` | **Deprecated (inert)** | (none) | Historical alias for the inverse of the flag above. Also inert. | `shared/embeddings.ts` |
 
 ---
 
@@ -452,7 +438,7 @@ export SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true
 # Specs root used when a spec folder is not directly under the working directory
 export SPECKIT_SPECS_DIR=/path/to/specs
 
-# Database directory for resolveDatabasePaths(); must be inside cwd, $HOME, or the temp dir
+# Directory the telemetry store and the skill advisor's database resolve under
 export SPECKIT_DB_DIR=/path/to/db
 ```
 

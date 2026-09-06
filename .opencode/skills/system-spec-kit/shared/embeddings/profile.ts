@@ -78,16 +78,7 @@ export class EmbeddingProfile {
     return path.join(baseDir, 'context-index.sqlite');
   }
 
-  /** Get profile-specific vector/cache shard path. */
-  getVectorShardPath(baseDir: string): string {
-    const vectorDir = path.join(baseDir, 'vectors');
-    if (!fs.existsSync(vectorDir)) {
-      fs.mkdirSync(vectorDir, { recursive: true, mode: 0o700 });
-    }
-    return path.join(vectorDir, `context-vectors__${this.slug}.sqlite`);
-  }
-
-  /** Deprecated: use getCanonicalDatabasePath() plus getVectorShardPath(). */
+  /** The database path for this profile; the canonical form under another name, kept for its callers. */
   getDatabasePath(baseDir: string): string {
     return this.getCanonicalDatabasePath(baseDir);
   }
@@ -249,7 +240,7 @@ function createActiveProfileFromEnv(): EmbeddingProfile {
     dim: resolveActiveProfileDim(provider, model),
     dtype: resolveActiveProfileDtype(provider),
     baseUrl: provider === 'voyage'
-      ? (process.env.VOYAGE_API_URL || null)
+      ? (process.env.VOYAGE_BASE_URL?.trim() || null)
       : provider === 'ollama'
         ? ((process.env.OLLAMA_BASE_URL || 'http://127.0.0.1:11434').replace(/\/+$/, ''))
         : null,

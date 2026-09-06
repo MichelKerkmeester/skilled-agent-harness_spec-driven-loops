@@ -6,24 +6,21 @@
   "main": "dist/index.js",
   "exports": {
     "./workspace/repo-root.mjs": "./workspace/repo-root.mjs",
-    ".": "./dist/index.js",
+    "./review-research-paths.cjs": "./review-research-paths.cjs",
     "./compact-merger": "./dist/compact-merger.js",
     "./budget-allocator": "./dist/budget-allocator.js",
-    "./embeddings": "./dist/embeddings.js",
     "./*.js": "./dist/*.js",
     "./*": "./dist/*.js"
   },
   "scripts": {
     "build": "tsc --build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
-    "test": "node --import tsx --test '*.test.ts' 'frontmatter/*.test.ts' 'parsing/*.test.ts' 'predicates/*.test.ts' 'embeddings/*.test.ts' 'ranking/*.test.ts' 'ipc/*.test.ts' 'contracts/*.test.ts' 'algorithms/*.test.ts' 'scoring/*.test.ts' 'utils/*.test.ts' 'lib/*.test.ts'",
-    "test:task-enrichment": "echo 'No task-enrichment tests in @spec-kit/shared'"
+    "test": "node --import tsx --test '*.test.ts' 'frontmatter/*.test.ts' 'parsing/*.test.ts' 'predicates/*.test.ts' 'embeddings/*.test.ts' 'ipc/*.test.ts' 'scoring/*.test.ts' 'utils/*.test.ts'"
   },
   "engines": {
     "node": ">=20.11.0"
   },
   "dependencies": {
-    "@huggingface/transformers": "^3.8.1",
     "@modelcontextprotocol/sdk": "^1.24.3",
     "js-yaml": "^4.3.0"
   }

@@ -2,7 +2,7 @@
 // MODULE: Types
 // ───────────────────────────────────────────────────────────────────
 
-import type { HfLocalDtype } from './embeddings/providers/hf-local.js';
+import type { HfLocalDtype } from './embeddings/types.js';
 // Single source of truth for cross-workspace types.
 // Used across shared/, runtime/, and runtime/cli/.
 // ───────────────────────────────────────────────────────────────────

@@ -39,14 +39,17 @@ function resolvePackageRoot(): string {
 const PACKAGE_ROOT = resolvePackageRoot();
 const DEFAULT_DB_DIR = path.join(PACKAGE_ROOT, 'runtime', 'database');
 
-/** Defines database updated file. */
-export const DB_UPDATED_FILE: string = (() => {
+/**
+ * The directory the engine writes its access-telemetry store into. It is the
+ * directory the retired memory database lived in, kept under the same override
+ * so an operator who relocated that database relocates the telemetry with it.
+ */
+export const TELEMETRY_STORE_DIR: string = (() => {
   const configuredDir = getDbDir();
   if (configuredDir) {
-    const resolvedDir = path.isAbsolute(configuredDir)
+    return path.isAbsolute(configuredDir)
       ? configuredDir
       : path.resolve(PACKAGE_ROOT, configuredDir);
-    return path.join(resolvedDir, '.db-updated');
   }
-  return path.join(DEFAULT_DB_DIR, '.db-updated');
+  return DEFAULT_DB_DIR;
 })();

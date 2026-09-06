@@ -54,7 +54,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │                            │                                    │
 │  ┌────────────────┐     ┌──┴──────────────┐                     │
 │  │   runtime/cli/     │     │    shared/      │                     │
-│  │ create.sh      │────▶│ embeddings.ts   │                     │
+│  │ create.sh      │────▶│ embeddings/     │                     │
 │  │ validate.sh    │     │ trigger-extract │                     │
 │  │ generate-      │     │ chunking.ts     │                     │
 │  │ context.ts     │     │ algorithms/     │                     │
@@ -153,7 +153,7 @@ disagrees with it is the thing to fix.
 |---------|-------------|------------|
 | `runtime/data/trigger-index.json` | `runtime/cli/retrieval/generate-trigger-index.mjs` (writer), `lookup-trigger-index.mjs` (reader) | The committed Gate 1 retrieval index over author-declared trigger phrases |
 | `runtime/database/` | The HF model server in `.opencode/bin` | Its sockets, leases and logs; no index, no database of ours |
-| `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/paths.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
+| `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/config.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
 | `.opencode/skills/system-skill-advisor/mcp-server/database/` | The skill advisor | Its routing graph and doctor state; the only MCP daemon this repository still runs |
 | `.opencode/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
 | `runtime/cli/dist/continuity/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |

@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization"
-    last_updated_at: "2026-09-06T16:40:00Z"
+    last_updated_at: "2026-09-07T00:20:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed every criterion after remediation"
+    next_safe_action: "None; the lane is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,10 +72,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-shared-package/
-- [ ] research.md carries a per-module consumer census
-- [ ] Every P0 and P1 finding reproduces in-session
-- [ ] A ranked remove, merge or move list with evidence
+- [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-shared-package/
+- [x] research.md carries a per-module consumer census
+- [x] Every P0 and P1 finding reproduces in-session
+- [x] A ranked remove, merge or move list with evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -92,10 +92,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-shared-package/research.md`, stop reason maxIterationsReached; the first launch was paused by the operator before any iteration and relaunched clean at 22:17 |
+| Census | Done | `research/confirmed-findings.md`: 6 of 10 P1 rows confirmed, 3 corrected, 1 dropped |
+| Remediation | Done | `../009-shared-package-dead-half-removal` closed every row |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Worktree artifacts | The stale-dist, unprovisioned-root, broken-resolution and missing-directory claims held only in worktree 046; recorded as environment facts. |
+| Predicate module kept | Zero code importers, but four command contracts cite it as their predicate grammar. |
 <!-- /ANCHOR:log -->

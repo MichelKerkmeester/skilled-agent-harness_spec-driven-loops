@@ -1,0 +1,46 @@
+{
+  "sessionId": "fanout-glm-5-3-flash-shared-package-1788725855236-iy2iyg",
+  "lineage": "glm-5-3-flash-shared-package",
+  "loopType": "research",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/glm-5-3-flash-shared-package",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "inline": true,
+    "nestedDispatchUsed": false
+  },
+  "charter": {
+    "role": "Dependency-and-utilization auditor — every module judged by what actually imports and calls it, never by its stated or README-claimed purpose",
+    "target": "a defensible, evidence-backed utilization map with the memory-DB-era residue explicitly flagged and no unverified consumer claims",
+    "nonGoalsHonored": ["no edits", "no redesign beyond the recommendation label", "no evaluation of prose style"],
+    "earlyConvergence": false
+  },
+  "outcomes": {
+    "p0": 0,
+    "p1": 10,
+    "p2": 23,
+    "findingsTotal": 53,
+    "questionsAnswered": 8,
+    "openQuestionsCarried": 0,
+    "synthesis": "research.md",
+    "findingsRegistry": "findings-registry.json",
+    "convergenceReport": "convergence-report.json",
+    "dashboard": "deep-research-dashboard.md",
+    "stateLog": "deep-research-state.jsonl",
+    "deltas": "deltas/iter-001.jsonl..iter-010.jsonl",
+    "iterations": "iterations/iteration-001.md..iteration-010.md"
+  },
+  "headlineFindings": [
+    "L1 The dead half: 8 of 33 surfaces, ≈2,300+ lines, 0 production termination — the embeddings monolith + its barrel + the 0-importer shim, the 1,334-line ranking quartet, the 0-consumer retrieval-trace (a twice-defined DegradedModeContract), the two islands, the 397-line 0-importer retry — documented as the primary usage by the package's own README",
+    "L4 The proven-stale dist: the freshness engine's own functions, executed read-only, return ec541613… (60 watched sources, 0 missing) vs the committed marker's a01c3f33…, while checkPackageFreshness reports 'unprovisioned' — the 972-line guard cannot see its own flagship package, and the 12:13Z dist / 16:29Z source divergence between production and tests is proven, not hypothetical",
+    "L2 The database-path theater: five derivations of one directory; the .db-updated sentinel = 4 derivations, 2 dirname-only readers, 0 sentinel reads, 0 writers; the target directory does not exist",
+    "L3 The env-var ledger: 24 reads vs 7 documented, and the 2-spelling bug-family ×4 — SPEC_KIT_DB_DIR|SPECKIT_DB_DIR, VOYAGE_API_URL vs VOYAGE_BASE_URL, the 2× allowStale, the SPECKIT_ vs SPEC_KIT_ prefix split",
+    "L6/F9.2 The memory-DB residue = six named concentrations (the inert precedence-branch whose vec_${dim} tables match but whose vec_memories_rowids gate never passes; the monolith+barrel+shim+the 0-importer heaviest dep; the dead rollout flag; the phantom DB; the retired naming over live function; the repurposed 2-spelled env) — the live 60% of the package is current"
+  ],
+  "writeSurfaceCompliance": "All writes confined to the lineage directory; repo untouched; no generate-context.js, no validate.sh, no git write/checkout/commit executed",
+  "completedAt": "2026-09-07T01:35:00Z"
+}

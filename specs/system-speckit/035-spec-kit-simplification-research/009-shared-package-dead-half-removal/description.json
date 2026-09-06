@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal",
+  "description": "Roughly forty percent of the shared package was a second package nothing imported: an in-process embeddings library and the ranking, contract and",
+  "keywords": [
+    "roughly",
+    "forty",
+    "percent",
+    "shared",
+    "package",
+    "second",
+    "nothing",
+    "imported",
+    "in-process",
+    "embeddings",
+    "library",
+    "ranking",
+    "contract"
+  ],
+  "lastUpdated": "2026-09-06T23:37:48.960Z",
+  "specId": "009",
+  "folderSlug": "shared-package-dead-half-removal",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

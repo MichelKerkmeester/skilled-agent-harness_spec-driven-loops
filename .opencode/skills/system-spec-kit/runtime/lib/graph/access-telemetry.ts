@@ -11,7 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { DB_UPDATED_FILE } from '@spec-kit/shared/config.js';
+import { TELEMETRY_STORE_DIR } from '@spec-kit/shared/config.js';
 
 /** The access and freshness signals recorded for one spec folder. */
 // ───────────────────────────────────────────────────────────────────
@@ -34,8 +34,8 @@ const STORE_FILENAME = 'access-telemetry.json';
 /**
  * Resolve the telemetry store file path.
  *
- * Defaults to a single JSON file next to the runtime database, so the access and freshness
- * signal lives in the index layer rather than in any spec folder. Tests override it.
+ * Defaults to a single JSON file in the runtime's telemetry directory, so the access and
+ * freshness signal lives in the index layer rather than in any spec folder. Tests override it.
  *
  * @param opts - Optional store path override
  * @returns The absolute store file path
@@ -48,7 +48,7 @@ export function resolveTelemetryStorePath(opts: StoreOptions = {}): string {
   if (opts.storePath) {
     return opts.storePath;
   }
-  return path.join(path.dirname(DB_UPDATED_FILE), STORE_FILENAME);
+  return path.join(TELEMETRY_STORE_DIR, STORE_FILENAME);
 }
 
 function readStore(storePath: string): Record<string, AccessTelemetryRecord> {

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal",
+  "parent_id": "system-speckit/035-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared package dead half removal",
+      "embeddings monolith removed",
+      "telemetry store directory",
+      "shared readme rewrite",
+      "shared removal plan",
+      "real tree census",
+      "telemetry directory export",
+      "three package rebuild",
+      "shared removal tasks",
+      "dead half census tasks",
+      "telemetry directory tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "shared",
+      "package",
+      "dead",
+      "half",
+      "removal",
+      "embeddings",
+      "monolith",
+      "removed",
+      "telemetry",
+      "store",
+      "directory",
+      "readme"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "shared/config.ts",
+      "shared/gate-3-classifier.ts",
+      "runtime/lib/graph/access-telemetry.ts",
+      "shared/config.test.ts",
+      "runtime/core/config.ts",
+      "shared/types.ts",
+      "shared/package.json",
+      "shared/tsconfig.json",
+      "shared/embeddings/model-server-constants.test.ts",
+      "runtime/cli/lib/semantic-summarizer.ts",
+      "runtime/cli/core/workflow.ts",
+      "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
+      "runtime/cli/evals/import-policy-allowlist.json",
+      "shared/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": "shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "access-telemetry.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/access-telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.test.ts",
+        "kind": "test",
+        "path": "shared/config.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "shared/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "shared/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-constants.test.ts",
+        "kind": "test",
+        "path": "shared/embeddings/model-server-constants.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-summarizer.ts",
+        "kind": "code",
+        "path": "runtime/cli/lib/semantic-summarizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-allowlist.json",
+        "kind": "config",
+        "path": "runtime/cli/evals/import-policy-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Roughly forty percent of the shared package was a second package nothing imported: an in-process embeddings library and the ranking, contract and chunking modules built for the memory pipeline, kept alive by a root barrel and by tests written to explain them",
+    "created_at": "2026-09-06T23:32:43Z",
+    "last_save_at": "2026-09-06T23:37:49.110Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f480a8dbaeb8fdf654a279d0a18c182523ec75f24339bcfad22a4938a9180c2e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e5cdc71816f47c30fe828e343db1b964cf84d12ed95b3b3ce0e2edf86988cef",
+      "plan.md": "24561b59b8578f71323d5c54f2eccb9f57c788f09b9c6c0b23276e7e0ad62678",
+      "tasks.md": "b0a982d195f53d4306dcd56c5dce51354a6dbbaadd60930b1edfc592d1707d45",
+      "implementation-summary.md": "f53fd5c1dff226c13f6b755427f61365fb1234f7469da29bed181f7750fcdae9"
+    },
+    "last_active_at": null
+  }
+}

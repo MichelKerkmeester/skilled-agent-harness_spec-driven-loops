@@ -119,7 +119,8 @@ export function getPrefixFor(modelId: string, kind: 'document' | 'query'): strin
 // 2. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
+import type { HfLocalDtype } from '../types.js';
+export type { HfLocalDtype };
 
 type HfLocalServerState = 'loading' | 'ready' | 'error';
 type HfLocalInputType = 'document' | 'query' | 'raw';

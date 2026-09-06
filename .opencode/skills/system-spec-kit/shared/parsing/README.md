@@ -2,9 +2,9 @@
 title: "Parsing"
 description: "Shared parsers and health evaluators for memory frontmatter, spec documents and generated continuity evidence."
 trigger_phrases:
-  - "quality extractors"
-  - "quality score parsing"
-  - "frontmatter quality flags"
+  - "memory sufficiency gate"
+  - "template contract validation"
+  - "spec doc health checks"
   - "spec doc health"
   - "memory sufficiency"
 ---
@@ -30,15 +30,12 @@ parsing/
 ├── README.md
 ├── memory-sufficiency.ts
 ├── memory-template-contract.ts
-├── quality-extractors.ts
-├── quality-extractors.test.ts
 ├── spec-doc-health.ts
 └── spec-doc-health.test.ts
 ```
 
 | File | Purpose |
 | ---- | ------- |
-| `quality-extractors.ts` | Extracts `quality_score` and `quality_flags` from YAML frontmatter |
 | `memory-template-contract.ts` | Validates rendered memory documents for required anchors and template artifacts |
 | `memory-sufficiency.ts` | Scores whether memory evidence has enough concrete context to save |
 | `spec-doc-health.ts` | Computes lightweight spec folder health metadata for pipeline annotations |
@@ -50,8 +47,6 @@ parsing/
 
 | Export | Source | Purpose |
 | ------ | ------ | ------- |
-| `extractQualityScore` | `quality-extractors.ts` | Parse `quality_score` as a clamped number from `0` to `1` |
-| `extractQualityFlags` | `quality-extractors.ts` | Parse `quality_flags` as a string array |
 | `validateMemoryTemplateContract` | `memory-template-contract.ts` | Check rendered memory files for required metadata, sections and anchors |
 | `evaluateMemorySufficiency` | `memory-sufficiency.ts` | Reject vague memory evidence before it reaches persistence paths |
 | `evaluateSpecDocHealth` | `spec-doc-health.ts` | Produce pass, score and per-file issue metadata for spec folders |

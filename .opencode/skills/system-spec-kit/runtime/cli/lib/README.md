@@ -61,7 +61,6 @@ runtime/cli/lib/
 +-- cli-capture-shared.ts                  # CLI capture payload helpers
 +-- content-filter.ts                      # Content pre-processing helper
 +-- decision-tree-generator.ts             # Decision tree structures
-+-- embeddings.ts                          # Shared embedding wrapper
 +-- esm-entry.ts                           # Main-module detection and dirname helpers for ESM
 +-- esm-entry.js                           # Plain-JS mirror of esm-entry.ts kept alongside the source
 +-- flowchart-generator.ts                 # Flowchart output generation

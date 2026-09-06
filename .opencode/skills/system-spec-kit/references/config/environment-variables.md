@@ -27,7 +27,7 @@ This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtim
 
 ## 2. PATH RESOLUTION
 
-`runtime/core/config.ts` resolves the package's working directories. `resolveDatabasePaths()` still runs on module load and is exercised directly by tests, so the directory-override family below stays live.
+`runtime/core/config.ts` resolves the package's working directories. The database-path derivation it used to carry went with the memory database; the directory-override family below is now read by `shared/config.ts` for the telemetry store and by `shared/embeddings/` for the skill advisor's own database, so it stays live.
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
