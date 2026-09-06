@@ -1,26 +1,20 @@
 ---
 id: SD-007
-title: 'Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta'
-description: "This scenario validates ambiguous DOC_QUALITY and FLOWCHART routing for SD-007."
+title: 'Ambiguous prompt scores CHART and FLOWCHART within delta'
+description: "This scenario validates ambiguous CHART and FLOWCHART routing for SD-007."
 stage: routing
-expected_intent: sk-create-quality-control+sk-design-diagram
+expected_intent: sk-design-chart+sk-design-diagram
 expected_resources:
-  - shared/references/validation.md
-  - sk-create-quality-control/references/workflows.md
-  - shared/references/core-standards.md
-  - shared/references/evergreen-packet-id-rule.md
+  - sk-design-chart/references/catalog.md
+  - sk-design-chart/references/template-contract.md
   - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
   - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
-expected_workflow_mode: sk-create-quality-control+sk-design-diagram
+expected_workflow_mode: sk-design-chart+sk-design-diagram
 expected_leaf_resources:
-  - workflow_mode: sk-create-quality-control
-    leaf_resource_id: references/validation.md
-  - workflow_mode: sk-create-quality-control
-    leaf_resource_id: references/workflows.md
-  - workflow_mode: sk-create-quality-control
-    leaf_resource_id: references/core-standards.md
-  - workflow_mode: sk-create-quality-control
-    leaf_resource_id: references/evergreen-packet-id-rule.md
+  - workflow_mode: sk-design-chart
+    leaf_resource_id: references/catalog.md
+  - workflow_mode: sk-design-chart
+    leaf_resource_id: references/template-contract.md
   - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-design-diagram
@@ -36,7 +30,15 @@ This document captures the routing-gold contract, current behavior, execution no
 
 ## 1. OVERVIEW
 
-This scenario validates ambiguous DOC_QUALITY and FLOWCHART routing for `SD-007`. It focuses on preserving both candidate intents when a prompt asks for document improvement and flowchart additions.
+This scenario validates ambiguous CHART and FLOWCHART routing for `SD-007`. It focuses on preserving
+both candidate intents when a prompt asks to visualise something and the shape of the answer could be
+either a data chart or a process diagram.
+
+> **The pair changed when the modes moved.** Until the design hub took ownership of both canvases,
+> this scenario paired document quality with flowchart, and it lived in the documentation hub's
+> corpus. Those two modes now sit in different hubs, and the typed-gold gate is per-hub by design, so
+> the old pairing could not be validated anywhere. Benchmark reports dated 2026-07-21 that reference
+> `SD-007` describe the earlier pairing; the id is kept so those reports still resolve to a file.
 
 ### Why This Matters
 
@@ -48,10 +50,10 @@ Ambiguous prompts should surface a tie or combined route instead of silently dis
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify sk-doc routes the scenario to `DOC_QUALITY+FLOWCHART` with the expected resources.
+- Objective: Verify sk-design routes the scenario to `CHART+FLOWCHART` with the expected resources.
 - Real user request: `Improve doc quality and add flowcharts for the new feature docs.`
 - Prompt: `Improve doc quality and add flowcharts for the new feature docs.`
-- Expected signals: Intent resolves to `DOC_QUALITY+FLOWCHART`; loaded resources match `expected_resources`.
+- Expected signals: Intent resolves to `CHART+FLOWCHART`; loaded resources match `expected_resources`.
 - Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
 - Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
 
@@ -67,7 +69,7 @@ Ambiguous prompts should surface a tie or combined route instead of silently dis
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-doc intent the router would select for the input (pick from the 18-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
+1. Which sk-design intent the router would select for the input (pick from the hub's RESOURCE_MAP: VALUES, REVIEW, CHART, FLOWCHART, EXTRACT; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 
@@ -79,7 +81,7 @@ Improve doc quality and add flowcharts for the new feature docs.
 
 ### Expected
 
-Intent resolves to `DOC_QUALITY+FLOWCHART`; loaded resources match `expected_resources`.
+Intent resolves to `CHART+FLOWCHART`; loaded resources match `expected_resources`.
 
 ### Evidence
 
@@ -98,7 +100,7 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 
 **Expected Behavior**
 
-- **Intent picked**: top-2 within `AMBIGUITY_DELTA=1`: `DOC_QUALITY` and `FLOWCHART`
+- **Intent picked**: top-2 within `AMBIGUITY_DELTA=1`: `CHART` and `FLOWCHART`
 - **Resources loaded**: union set from both intents (validation/core_standards + flowchart assets)
 - **Outcome**: CLI either (a) loads both intents' resources and produces a combined response, or (b) explicitly asks the user to disambiguate, citing both candidate intents and their scores.
 
@@ -109,7 +111,7 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 
 **Success Criteria**
 
-- top-2 intents include both `DOC_QUALITY` and `FLOWCHART` within delta=1
+- top-2 intents include both `CHART` and `FLOWCHART` within delta=1
 - response either disambiguates OR loads union of expected_resources
 - false_positive_resource_load_count <= 2 (slack for union load)
 
@@ -129,7 +131,7 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The sk-doc router under test |
-| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---
 

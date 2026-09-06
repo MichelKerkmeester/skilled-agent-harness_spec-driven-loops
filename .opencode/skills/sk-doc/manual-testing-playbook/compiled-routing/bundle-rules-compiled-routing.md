@@ -73,7 +73,7 @@ The cutover executor runs this hub's compiled-routing parity command scoped to t
 run-skill-benchmark.cjs --skill sk-doc --compiled-routing-parity on --route-gold off --playbook-dir <this-dir> --scenarios SD-CR-001 --trace-mode router
 ```
 
-### Pass / Fail
+### Pass/Fail Criteria
 
 - **PASS** iff the captured evidence shows `servingAuthority: compiled` and the compiled routing decision (workflow-mode intents) matches the legacy decision.
 - **FAIL** iff the serving authority is not `compiled`, or the compiled routing decision names a different workflow mode than legacy (a real drift), or the compiled path is structurally broken (`resolver-missing`).

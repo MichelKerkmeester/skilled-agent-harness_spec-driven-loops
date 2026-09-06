@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/manual-testing-playbook/holdout/flowchart-natural.md",
-      ".opencode/skills/sk-doc/manual-testing-playbook/holdout/ind-flowchart.md",
-      ".opencode/skills/sk-doc/manual-testing-playbook/resource-loading/assets-only.md",
-      ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
       ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md",
       "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay/implementation-summary.md",
@@ -91,30 +87,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "flowchart-natural.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/flowchart-natural.md",
-        "source": "derived"
-      },
-      {
-        "name": "ind-flowchart.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/ind-flowchart.md",
-        "source": "derived"
-      },
-      {
-        "name": "assets-only.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual-testing-playbook/resource-loading/assets-only.md",
-        "source": "derived"
-      },
-      {
-        "name": "ambiguous-multi-intent.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
         "source": "derived"
       },
       {
@@ -172,13 +144,19 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Technical Context Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Relocation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -190,21 +168,39 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Task Format",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The closing phase measured the fleet and found two gates red",
     "created_at": "2026-09-06T16:22:20Z",
-    "last_save_at": "2026-09-06T16:27:33.377Z",
+    "last_save_at": "2026-09-06T17:41:57.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1266bdceb9b34f851c29d1b7d51a5605d8679acace7f237641bbc923ef06717",
+    "source_fingerprint": "sha256:2d50b12808b1a3fa278b5542fc1d7e6c646e3e6cd0b575625bef5ee192b76047",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f919abb07265a3302e2fd989a301d66a4bb2c4028193b50784192df562f1370e",
-      "plan.md": "29527ac8b497dd46b2946635b6a1af5e3f4094a024e08bce5aa3b762270e0470",
-      "tasks.md": "bac4d31b0091f42675587cd5c12057fb30212b2bc88a4000101a0fda34167b1c",
-      "implementation-summary.md": "cacf54e19db6336999384284a2c6e37e3d2409efe57cd8e118cc5b0a5edf46ce"
+      "spec.md": "942aa442b81d6cadc0d7a9645df78c86d2a3253bb064dfcbb84d476890a734ec",
+      "plan.md": "e3ab8ba17be3cc53ed7ed210d996cdeae24960761021affdc524508754337ad2",
+      "tasks.md": "a4d680ec36d7857085d69d4ff6b93e756b1e20e1c6fa3d657def9348fd112db6",
+      "implementation-summary.md": "eb23de8a3ab843ecb96918551ddfcf339d85873387a4d350c669aed7d2405a79"
     },
     "last_active_at": null
   }

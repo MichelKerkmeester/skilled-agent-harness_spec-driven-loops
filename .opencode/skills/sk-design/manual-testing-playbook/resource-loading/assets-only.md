@@ -36,7 +36,7 @@ Diagram requests should load reusable visual patterns, not broad documentation s
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify sk-doc routes the scenario to `FLOWCHART` with the expected resources.
+- Objective: Verify sk-design routes the scenario to `FLOWCHART` with the expected resources.
 - Real user request: `Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod, and rollback.`
 - Prompt: `Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod, and rollback.`
 - Expected signals: Intent resolves to `FLOWCHART`; loaded resources match `expected_resources`.
@@ -120,7 +120,7 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The sk-doc router under test |
-| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---
 

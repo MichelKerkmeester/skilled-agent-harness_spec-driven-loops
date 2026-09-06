@@ -33,7 +33,7 @@ _memory:
 | **Packet** | `sk-design/018-sk-design-parent-v2` |
 | **Level** | 2 (phase parent) |
 | **Phases** | 8 |
-| **Open** | 2 (`007`, `008`) |
+| **Open** | 1 (`008`) |
 | **Branch** | `skilled/v4.0.0.0` |
 
 `sk-design` was a hub until 19 August 2026 and was dismantled on purpose by
@@ -56,8 +56,8 @@ tree the previous one left green.
 | 4 | `001-sk-create-chart` | **Done** | 219 files carry the old pointer until repaired; the trigger index is stale until regenerated | `validate.sh --strict` on the moved packet; pointer sweep clean |
 | 5 | `005-closure-and-routing-proof` | **Done** | Nothing | Sixteen-phrase replay at generation 638: zero phrases reach nobody, against four at the baseline |
 | 6 | `006-design-mode-and-command-rename` | **Done** | Both command names change with no forwarder; 249 files move; the compiled routing must be re-minted in the same commit | Replay at or above the closing scores; the compiled-routing guard green; the corpus checker from the renamed path |
-| 7 | `007-close-inherited-failures` | **Now** | Nothing; it only repairs | Both hubs' typed-gold gates green, the compiled-routing scenario green, the router-unification packet 25 of 25 |
-| 8 | `008-fundamentals-beyond-ui` | Later | Broader vocabulary can pull a canvas phrase off the mode that owns it | New surface phrases above the bar with chart and diagram replayed as controls |
+| 7 | `007-close-inherited-failures` | **Done** | Nothing; it only repairs | Both hubs' typed-gold gates green, the compiled-routing scenario green, the router-unification packet 25 of 25 |
+| 8 | `008-fundamentals-beyond-ui` | **Now** | Broader vocabulary can pull a canvas phrase off the mode that owns it | New surface phrases above the bar with chart and diagram replayed as controls |
 
 **Now.** Step 7, closing the gates this packet left red. The rename landed with the replay
 byte-identical, so the fixtures can move once onto their final names.

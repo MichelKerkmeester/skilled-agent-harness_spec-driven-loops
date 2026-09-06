@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-design hub was dissolved from the skill tree, leaving the compiled-routing engine encoding a stale 7-hub topology; migrate the engine to the 6 surviving hubs, remove the mcp-tooling cross-hub judgment coupling to sk-design, and re-run the freshness ceremony so all 6 hubs resolve compiled again.",
     "created_at": "2026-08-22T08:41:36.413Z",
-    "last_save_at": "2026-08-30T15:39:15.468Z",
+    "last_save_at": "2026-09-06T16:47:53.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66c11fcbb2ca7741882c873e7d0a0a425cb70f98f590073e6c60b6402951e5da",
+    "source_fingerprint": "sha256:87d7e1bfaff8a0983bbd4642886e2f86c6d63846188225b0d5e8ec0d248ba11e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8de7538eb21893e8b65d7b1aaa3d1acace5e592d5c795e1ae0a2839ff9900ade",
       "plan.md": "41f8f3698f4cd52ae508bf5a5a9da8f44277d771d433ee402dda2a4f5847ef5f",
       "tasks.md": "d7581eb376caa46d737c238f0264903437f40738d30e36a7bb9790986835b7ca",
-      "decision-record.md": "55865189f6d60d5559141573a933f7472a1d4e16cdb610adc57781f724d2e2c4",
+      "decision-record.md": "98d647b3fc1b698183596167aad559caf253e1a6e986ca578892ab488b1ff61e",
       "implementation-summary.md": "3c1513641a3fac7ef5a39dbb95f92b98881a2690517fad88084794943e6095d0"
     },
     "last_active_child_id": null,

@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** `sk-design/018-sk-design-parent-v2/007-close-inherited-failures`
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given four fixtures asserting `sk-doc` owns FLOWCHART, When they move to the hub that owns the mode, Then both hubs' typed-gold gates pass | `sk-doc`: `verdict=PASS valid=28 blocked=0`, from `valid=28 blocked=4`. `sk-design`: `verdict=PASS valid=4 blocked=0`, on a corpus that did not exist | Met | - |
+| AC-002 | REQ-002 | Given a scenario the validator rejects for null criteria, When the cause is diagnosed, Then the validator passes it | `pass=1 fail=0`, exit 0. The criteria were always present under a heading reading `Pass / Fail`; the parser matches `Pass/Fail Criteria` | Met | - |
+| AC-003 | REQ-003 | Given two children failing on a malformed anchor and an empty required field, When each is repaired, Then the packet validates whole | `validate.sh --strict` on the router-unification packet: 25 of 25, from 23 of 25 | Met | - |
+| AC-004 | REQ-004 | Given benchmark reports keying results to fixture ids, When the fixtures move, Then git records renames and no id changes | `git diff --cached --name-status -M`: four `R100` entries; `SD-005`, `SD-007`, `SD-H05` and `SD-H10` unchanged | Met | - |
+| AC-005 | REQ-005 | Given two playbook indexes, When the corpus changes, Then each describes what it actually holds | `sk-doc`'s scenario ranges, per-scenario rows and holdout summary corrected; `sk-design`'s index created, naming the strict invocation | Met | - |
 
 ### Status values
 
@@ -79,8 +83,11 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 carried this phase, and AC-004 is what made it safe: the fixtures moved rather than being
+deleted or rewritten wholesale, so published reports still resolve to a file with the same id.
+`SD-007` is the one whose meaning changed, and both the fixture and the receiving index say so in
+plain terms rather than letting a reader of the 2026-07-21 reports assume continuity. Nothing was
+consciously left out; every gate this packet touched is green.
 <!-- /ANCHOR:closure -->

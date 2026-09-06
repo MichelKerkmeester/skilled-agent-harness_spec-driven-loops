@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/007-close-inherited-failures"
     last_updated_at: "2026-09-06T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the phase directive for the inherited failures"
-    next_safe_action: "Wait for the rename to land, then move the four playbook fixtures once"
+    recent_action: "Closed all four inherited gate failures"
+    next_safe_action: "Run phase 008: broaden fundamentals past screen UI"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/ROUTER.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-018-sk-design-parent-v2"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -85,9 +85,18 @@ Every red gate closes; the four fixtures move to the hub that owns their mode.
 
 ### Progress
 
-Planned. Not started.
+Done. Four fixtures moved as renames, a hub playbook created, two indexes corrected, one heading
+renamed and two spec documents repaired. Every gate green.
 
 ### Deviations and findings
 
-None yet.
+- **`SD-CR-001` was never missing its criteria.** It carried a full PASS/FAIL/SKIP section under a
+  heading reading `Pass / Fail`; the parser matches `Pass/Fail Criteria`. A diagnosis that read as
+  missing content was a heading mismatch, and writing new criteria would have duplicated a section the
+  document already had.
+- **The moved fixtures carried a relative gate path that broke on arrival.** Each pointed at
+  `../../sk-create-skill/scripts/...`, a sibling the design hub does not have. No gate checks a path
+  inside a fixture's source table, so this would have sat wrong indefinitely.
+- **`sk-doc`'s index named scenarios it no longer held.** Correcting the receiving hub alone would
+  have left the sending one lying.
 <!-- /ANCHOR:log -->

@@ -25,12 +25,12 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 | # | Category | Folder | Scenario IDs | One-line summary |
 |---|----------|--------|--------------|------------------|
 | 1 | Intent Detection | `intent-detection/` | SD-001 .. SD-003, SD-016 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION prompts. SD-017 (INSTALL_GUIDE) was never authored on disk — see the §01 note. |
-| 2 | Resource Loading | `resource-loading/` | SD-004 .. SD-006 | Router loads only the expected resource set: references-only (HVR), assets-only (FLOWCHART), and mixed (README_CREATION). |
-| 3 | Unknown Fallback | `unknown-fallback/` | SD-007 .. SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. |
+| 2 | Resource Loading | `resource-loading/` | SD-004, SD-006 | Router loads only the expected resource set: references-only (HVR) and mixed (README_CREATION). SD-005 moved to the design hub with the FLOWCHART mode. |
+| 3 | Unknown Fallback | `unknown-fallback/` | SD-008, SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. SD-007 moved to the design hub, which owns both of the canvases it now pairs. |
 | 4 | Cross-CLI Dispatch | `cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (opencode stdin mitigation), multi-step dispatch stability. |
 | 5 | Token Cost Baseline | `token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
 | 6 | Agent Dispatch | `agent-dispatch/` | SD-018, SD-020 | `@markdown` agent dispatch across cli-claude-code and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from the routing-trace-probe sections. SD-019 was never authored as a separate on-disk scenario — see the §06 note. |
-| 7 | Holdout | `holdout/` | SD-H01 .. SD-H13 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites (SD-H01..H05) + independent keyword-blind prompts (SD-H06..H13) across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / FLOWCHART / OPTIMIZATION / INSTALL_GUIDE / FEATURE_CATALOG. |
+| 7 | Holdout | `holdout/` | SD-H01 .. SD-H13, less H05 and H10 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites and independent keyword-blind prompts across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / OPTIMIZATION / INSTALL_GUIDE / FEATURE_CATALOG. The two FLOWCHART probes moved to the design hub with their mode. |
 | 8 | Compiled Routing | `compiled-routing/` | SD-CR-001 | Compiled-serving-authority parity: proves the compiled routing engine reproduces the legacy bundle-rules routing decision for a `create-skill` request. |
 
 ---
@@ -47,11 +47,9 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ### 02 — Resource Loading
 - **SD-004** — `resource-loading/references-global-only.md` — HVR loads only `references/hvr-rules.md`.
-- **SD-005** — `resource-loading/assets-only.md` — FLOWCHART loads only `assets/flowcharts/*`.
 - **SD-006** — `resource-loading/mixed-references-assets.md` — README_CREATION loads mixed references + assets.
 
 ### 03 — Unknown Fallback
-- **SD-007** — `unknown-fallback/ambiguous-multi-intent.md` — DOC_QUALITY + FLOWCHART tie within AMBIGUITY_DELTA=1.
 - **SD-008** — `unknown-fallback/no-keyword-match.md` — Zero-keyword prompt → UNKNOWN_FALLBACK_CHECKLIST.
 - **SD-009** — `unknown-fallback/disambiguation-required.md` — FEATURE_CATALOG ↔ PLAYBOOK tie disambiguation.
 
@@ -78,14 +76,12 @@ Natural-phrasing holdouts — same fitted scenario, decontaminated wording (no r
 - **SD-H02** — `holdout/doc-quality-natural.md` — DOC_QUALITY via natural phrasing.
 - **SD-H03** — `holdout/readme-natural.md` — README_CREATION via natural phrasing.
 - **SD-H04** — `holdout/changelog-natural.md` — CHANGELOG via natural phrasing.
-- **SD-H05** — `holdout/flowchart-natural.md` — FLOWCHART via natural phrasing.
 
 Independent holdouts — authored by an agent blind to the router keyword list:
 - **SD-H06** — `holdout/ind-skill-creation.md` — SKILL_CREATION, keyword-blind.
 - **SD-H07** — `holdout/ind-doc-quality.md` — DOC_QUALITY, keyword-blind.
 - **SD-H08** — `holdout/ind-readme.md` — README_CREATION, keyword-blind.
 - **SD-H09** — `holdout/ind-changelog.md` — CHANGELOG, keyword-blind.
-- **SD-H10** — `holdout/ind-flowchart.md` — FLOWCHART, keyword-blind.
 - **SD-H11** — `holdout/ind-optimization.md` — OPTIMIZATION, keyword-blind.
 - **SD-H12** — `holdout/ind-install-guide.md` — INSTALL_GUIDE, keyword-blind.
 - **SD-H13** — `holdout/ind-feature-catalog.md` — FEATURE_CATALOG, keyword-blind.

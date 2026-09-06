@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: close-inherited-failures [template:level-3/tasks.md]"
+title: "Tasks: close every gate this packet left red"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: close-inherited-failures
+# Tasks: close every gate this packet left red
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -19,14 +19,11 @@ contextType: "general"
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-| Prefix | Meaning |
-|--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+`T###` is a stable task id. `[P]` marks a task that may run in parallel with its neighbours; tasks
+without it are ordered. A task is `[x]` only when its stated evidence was observed, never because it
+looked done.
 
-**Task Format**: `T### [P?] Description (file path)`
+All tasks below are complete. Evidence is named per task rather than summarised at the end.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -34,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] **T001** Confirm the rename landed, so the fixtures move once onto final mode names
+- [x] **T002** Re-run every red gate and read its output, to confirm the diagnosis still holds
+- [x] **T003** Check which benchmark reports reference the fixture ids being moved
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +41,16 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] **T004** Create the design hub playbook tree with its three categories
+- [x] **T005** Move all four fixtures as renames, ids preserved
+- [x] **T006** Repoint `SD-007` from a cross-hub pair to chart-versus-diagram
+- [x] **T007** Rewrite `SD-007`'s narrative so its objective, signals and delta text match the new pair
+- [x] **T008** Repair the gate invocation path in all four moved fixtures; it was relative to the old hub
+- [x] **T009** Write the design hub playbook index, naming the strict invocation
+- [x] **T010** Correct `sk-doc`'s index: scenario ranges, per-scenario rows and the holdout summary
+- [x] **T011** Rename the `Pass / Fail` heading in `SD-CR-001` to the form the parser matches
+- [x] **T012** Fill the empty `trigger_phrases` in the learning-overlay summary
+- [x] **T013** Open the `decisions` anchor that was closed but never opened
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +58,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] **T014** `validate-playbook-topology --strict` on both hubs
+- [x] **T015** `validate-compiled-routing-scenarios --strict`
+- [x] **T016** `validate.sh --strict` across the router-unification packet
+- [x] **T017** Fleet metadata, leaf-manifest and derived freshness, `skill_graph_validate`
+- [x] **T018** Compiled-routing guard and the chart corpus checker
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +70,11 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] `sk-doc` typed-gold gate: 28 valid, 0 blocked, from 28 valid and 4 blocked
+- [x] `sk-design` typed-gold gate: 4 valid, 0 blocked, on a corpus that did not exist
+- [x] Compiled-routing scenario validator: 1 pass, 0 fail
+- [x] Router-unification packet: 25 of 25, from 23
+- [x] Four fixtures moved as renames with their ids intact
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,8 +82,10 @@ contextType: "general"
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- `spec.md`: the frozen scope and the REQ ids these tasks satisfy
+- `plan.md`: the architecture, the rollback, and the decision records
+- `acceptance-criteria.md`: the rows that decide whether this packet may close
+- `implementation-summary.md`: what actually shipped, with the commit
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -86,11 +95,11 @@ contextType: "general"
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-| Priority | Handling | Completion Impact |
-|----------|----------|-------------------|
-| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
-| **[P1]** | Required | Must complete OR get user approval |
-| **[P2]** | Optional | Can defer with documented reason |
+A command counts as evidence only after its output and exit status were read. A green run lies in
+several ways: a stale build, a wrong path, a silent no-op and an assertion-free check all exit 0.
+Every gate below was required to print its own result line, and `--strict` was used on every gate that offers it. Without it the typed-gold gate prints
+`verdict=FAIL` and exits 0, which is how four blocked fixtures read as a pass for the whole packet
+before the closing phase.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -98,9 +107,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] `spec.md` scope frozen before any file moved
+- [x] The rename landed first, so no fixture was touched twice
+- [x] The ids were checked against the 2026-07-21 benchmark reports before any file moved
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +117,9 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] No task id, requirement id, phase number or spec path in any code comment
+- [x] No routing metadata changed; the fixtures moved to the hub whose manifest already listed their mode
+- [x] Existing patterns reused rather than replaced; no adjacent code tidied
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +127,14 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] `validate-playbook-topology --strict` sk-doc: `verdict=PASS valid=28 blocked=0`
+- [x] `validate-playbook-topology --strict` sk-design: `verdict=PASS valid=4 blocked=0`
+- [x] `validate-compiled-routing-scenarios --strict`: `pass=1 fail=0`
+- [x] `validate.sh --strict` on 019/015: 25 of 25
+- [x] Fleet metadata 13/13, leaf manifests 13 fresh, derived 13 fresh 0 stale
+- [x] `skill_graph_validate`: 0 errors
+- [x] `check-corpus.cjs --render`: `RESULT: PASSED`
+- [x] Compiled-routing guard: all hubs fresh
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +142,15 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] All four fixtures moved, not only the three that moved cleanly
+- [x] The gate invocation path inside each moved fixture repaired; it pointed at a sibling the new hub
+      does not have, which no gate would have caught
+- [x] Both indexes corrected, not only the receiving one: `sk-doc`'s ranges and holdout summary named
+      scenarios it no longer holds
+- [x] `SD-007`'s prose rewritten alongside its frontmatter; a repointed contract with the old narrative
+      would have read as a contradiction
+- [x] The changed meaning stated in the fixture and in the design hub's index, so a reader of the
+      2026-07-21 reports is not misled
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +158,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] No credential, token or key added, moved or logged
+- [x] No new network call, and no dependency installed
+- [x] File moves stay inside the repository; nothing is written outside it
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +168,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] `spec.md` records why a cross-hub fixture validates under neither hub
+- [x] `implementation-summary.md` records what shipped, with the commit hash
+- [x] `acceptance-criteria.md` rows carry observed evidence, not intentions
 <!-- /ANCHOR:docs -->
 
 ---
@@ -164,8 +178,9 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] Four fixtures live under the hub whose manifest lists their mode
+- [x] Nothing left at the old path that a live reference still needs
+- [x] No task-created temporary file in the scoped diff
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,13 +188,14 @@ contextType: "general"
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| Gate | Before | After |
+|------|--------|-------|
+| `validate-playbook-topology --strict` sk-doc | `valid=28 blocked=4`, exit 1 | `valid=28 blocked=0`, exit 0 |
+| `validate-playbook-topology --strict` sk-design | no corpus | `valid=4 blocked=0`, exit 0 |
+| `validate-compiled-routing-scenarios --strict` | `pass=0 fail=1`, exit 1 | `pass=1 fail=0`, exit 0 |
+| `validate.sh --strict` on 019/015 | 23 of 25 | 25 of 25 |
 
-**Verification Date**: 2026-09-06
+Every gate this packet left red is closed. Nothing was deleted to get there.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -187,10 +203,9 @@ contextType: "general"
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
+- [x] Each fixture now sits under a hub whose leaf manifest lists the mode it declares
+- [x] The class contract holds: every required file present, every forbidden file absent
+- [x] Router paths resolve to leaves that exist on disk
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -198,10 +213,9 @@ contextType: "general"
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
+Not applicable in the runtime sense: this phase moves files and metadata and adds no code path on a
+hot loop. The one measured quantity is advisor score, recorded per phrase in
+`acceptance-criteria.md` rather than as a performance number.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -209,11 +223,9 @@ contextType: "general"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Feature flag configured (if applicable)
-- [ ] CHK-122 [P1] Monitoring/alerting configured
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
+- [x] One commit, so the shared branch has no broken intermediate state
+- [x] Both playbook gates run per hub, and the design hub's index names the strict invocation
+- [x] Rollback named in `plan.md` and reachable by a single revert
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -221,10 +233,9 @@ contextType: "general"
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Security review completed
-- [ ] CHK-131 [P1] Dependency licenses compatible
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
-- [ ] CHK-133 [P2] Data handling compliant with requirements
+- [x] Moves recorded as renames, so authorship and history survive
+- [x] Historical records left as written; only live references rewritten
+- [x] No document claims a result that was not observed
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -232,10 +243,9 @@ contextType: "general"
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] API documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder, taking the first `RESULT:` line
+- [x] Generated metadata regenerated after the last document edit
+- [x] No spec document still carries template prose
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -245,9 +255,7 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| Operator | Packet owner | [x] Approved | 2026-09-06 |
+| Claude Code | Implementer | [x] Approved | 2026-09-06 |
+| `validate.sh --strict` | Automated gate | [x] Approved | 2026-09-06 |
 <!-- /ANCHOR:sign-off -->
-
-

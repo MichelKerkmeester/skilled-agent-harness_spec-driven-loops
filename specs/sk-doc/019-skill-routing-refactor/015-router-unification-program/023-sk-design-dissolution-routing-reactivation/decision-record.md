@@ -30,6 +30,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:decisions -->
 ## ADR-001 — Reduce the compiled-routing topology from 7 hubs to 6 (remove sk-design)
 
 **Context.** `sk-design` has zero files in git HEAD; only 6 hubs carry `mode-registry.json`. The compiled-routing engine still encoded a 7-hub topology, so the whole fleet failed to resolve.

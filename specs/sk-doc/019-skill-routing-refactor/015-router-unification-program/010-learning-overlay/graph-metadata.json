@@ -19,7 +19,10 @@
       "overlay pointer CAS promotion",
       "learning overlay tasks",
       "offline correction overlay checklist",
-      "overlay promotion CAS tasks"
+      "overlay promotion CAS tasks",
+      "offline correction overlay",
+      "vocabulary assignment overlay",
+      "shadow promotion gate"
     ],
     "key_topics": [
       "learning",
@@ -192,7 +195,7 @@
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-09-03T22:19:08.403Z",
+    "last_save_at": "2026-09-06T16:47:51.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:245eaa9bdb367eb89fabd6f2abd071abcb6ebf300f9674a8570b2d74f9508fa0",
+    "source_fingerprint": "sha256:4afde77467764de2b7bc0528e07efd592dcda9afb42626ee35792a09d4546ff7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c19d7aaf9f3afd478b08c2b3c6666d22e826711640e3ba4df1ca7213d01ca32",
       "plan.md": "d64eaab8d0e55feb0d45b0e4de48d9afee3c8dcc33011c70f65a6a3d9158202f",
       "tasks.md": "ea19f6ac21d340f749323718f5f7ca01affe639e7f8d80ccddaa210afd10d6b6",
-      "implementation-summary.md": "27d3e4d278962f9a44a07dd44c030b71df2ea54a699b258159f3d5c7fd9d47dd"
+      "implementation-summary.md": "7e71c6dc8ee04c69e959fee14b8de08ac75b6eb6aca8ae30285bfb47d6173a2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

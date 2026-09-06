@@ -137,7 +137,7 @@ step does.
 | 4 | `001-sk-create-chart` | Done: 1,528 renames, 35 spec folders green |
 | 5 | `005-closure-and-routing-proof` | Done: generation 638, zero phrases reach nobody |
 | 6 | `006-design-mode-and-command-rename` | Done: 249 renames, replay byte-identical at generation 650 |
-| 7 | `007-close-inherited-failures` | Open |
+| 7 | `007-close-inherited-failures` | Done: every inherited gate green, nothing deleted |
 | 8 | `008-fundamentals-beyond-ui` | Open |
 
 ### Deviations and findings

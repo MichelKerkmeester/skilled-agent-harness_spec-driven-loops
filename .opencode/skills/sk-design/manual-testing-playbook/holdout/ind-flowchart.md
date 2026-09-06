@@ -1,7 +1,7 @@
 ---
-id: SD-H05
-title: 'Holdout — FLOWCHART via natural phrasing'
-description: "Routing-gold scenario SD-H05: Holdout — FLOWCHART via natural phrasing."
+id: SD-H10
+title: 'Independent holdout — FLOWCHART (keyword-blind)'
+description: "Routing-gold scenario SD-H10: Independent holdout — FLOWCHART (keyword-blind)."
 expected_intent: sk-design-diagram
 expected_resources:
   - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
@@ -16,29 +16,26 @@ stage: holdout
 version: 2.1.0.9
 ---
 
-# SD-H05: FLOWCHART Held-Out (decontaminated phrasing)
+# SD-H10: FLOWCHART Independent Holdout
 
-This document captures the routing-gold contract, current behavior, execution notes, source anchors, and metadata for `SD-H05`.
+This document captures the routing-gold contract, current behavior, execution notes, source anchors, and metadata for `SD-H10`.
 
 ---
 
 ## 1. OVERVIEW
 
-Generalization probe for the diagram intent. The fitted FLOWCHART scenario matches
-on the literal "flowchart"/"ascii" tokens; this one asks for the same artifact as
-a real user would ("text diagram", "decision branch"), so it measures whether the
-intent survives without its keyword present.
+Authored blind to the router keyword list.
 
 ### Why This Matters
 
-`SD-H05` guards the router decision for the Holdout category. A regression here silently degrades routing without failing a build.
+`SD-H10` guards the router decision for the Holdout category. A regression here silently degrades routing without failing a build.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - Objective: confirm the router selects `sk-design-diagram` for a keyword-blind phrasing
-- Prompt: `Sketch the approval process as a text diagram that shows each decision branch and where it loops back.`
+- Prompt: `Can you lay out our support ticket escalation steps using just text characters — the kind I can paste straight into a code comment — including the branches for whether the issue is urgent and whether a manager is actually available?`
 - Expected signals: intent resolves to `sk-design-diagram`; expected resources load
 - Desired user-visible outcome: the router trace names the expected intent and resources
 - Pass/fail: PASS when the routed intent matches `sk-design-diagram`; FAIL on a wrong intent
@@ -49,7 +46,7 @@ intent survives without its keyword present.
 
 ### Prompt
 
-- Prompt: `Sketch the approval process as a text diagram that shows each decision branch and where it loops back.`
+- Prompt: `Can you lay out our support ticket escalation steps using just text characters — the kind I can paste straight into a code comment — including the branches for whether the issue is urgent and whether a manager is actually available?`
 
 ### Note
 
@@ -70,14 +67,14 @@ This is a prompt-only holdout scenario. It carries no command sequence or captur
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The sk-doc router under test |
-| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---
 
 ## 5. SOURCE METADATA
 
 - Group: Holdout
-- Playbook ID: SD-H05
+- Playbook ID: SD-H10
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `holdout/flowchart-natural.md`
+- Feature file path: `holdout/ind-flowchart.md`
 
