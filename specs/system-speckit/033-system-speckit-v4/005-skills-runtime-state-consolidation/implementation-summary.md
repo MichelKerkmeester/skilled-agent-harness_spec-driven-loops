@@ -2,10 +2,10 @@
 title: "Implementation Summary: skills-root state consolidation"
 description: "Seven runtime-state directories moved under a single .state parent, so the skills root lists skills instead of mostly machine state."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "seven state directories relocated"
+  - "state parent implementation outcome"
+  - "skills root lists skills only"
+  - "daemon restart after state move"
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/hooks/goal/lib/goal-core.cjs"
       - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a7a2f84ce2b5d8e1ccf3a004f2e15a2f529ddf501aa87a44aff9e6a8282fc379"
       session_id: "038-skills-state-consolidation"
       parent_session_id: null
     completion_pct: 100

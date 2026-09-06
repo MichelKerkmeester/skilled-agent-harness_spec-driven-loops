@@ -25,7 +25,9 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "nested goal lineage resource map",
+      "goal addon research resources"
     ],
     "key_topics": [
       "goal",
@@ -213,7 +215,7 @@
     ],
     "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
     "created_at": "2026-08-29T17:39:40Z",
-    "last_save_at": "2026-09-06T07:07:53.975Z",
+    "last_save_at": "2026-09-06T07:45:44.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +224,12 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:6e8a7394d38a50035cd37d41531378ab708b12190e7bb4ddc40d54bb1cd6775e",
+    "source_fingerprint": "sha256:733d36dc41bd122c41a71dee28a9e43782ab5ac3aa70e40528b975c8ac0afd94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e6732f7a418232d3979ede935a3fc2ff231bababad1829e3597fbaa8cc62ec28",
       "research/research.md": "6537e685b82de8bf8ac5ad818b8b3bb7bcd718f7cee6a715347123dfb9bbdb71",
-      "resource-map.md": "926ab62bd35f55e764805f8aa6e23aa0897bf06f07000a09545d06bb0147e6ae"
+      "resource-map.md": "c6b5ced6f88ce90f8174ad921534f3a251d764a3650ab5f97ee013514b738e91"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
     "last_active_at": null

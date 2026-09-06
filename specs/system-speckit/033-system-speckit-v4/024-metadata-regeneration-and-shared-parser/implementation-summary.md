@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:7df6d268fb8e055cf589e4ab42680e7261767707bf315741129ec7494ec643dd"
+      fingerprint: "sha256:619623379ca0082b3e8b9df56968222e7575f51a12002eb781c7391f855eeb5d"
       session_id: "scaffold-057-metadata-regeneration-and-parser-edges"
       parent_session_id: null
     completion_pct: 100
@@ -100,6 +100,8 @@ Census and regeneration ran here from a scratchpad script that is not committed;
 | Strict validation sample | 4 of 6 PASSED; both failures reproduce at HEAD |
 | Import probes | deep-loop ESM and CommonJS resolve; sk-doc scripts ESM resolves |
 | Parser adoption, second lane | 14 deep-loop files and 13 spec-kit files; retrieval, trigger-index, grep and residue suites 277 of 279; skill-benchmark and mirror suites 21 of 21; orchestrate-session 5 of 5; codex and pi sync wrote 0 files; agent mirrors 12 of 12; index parity before and after |
+| Strict validation command | `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <packet> --strict` printed `RESULT: PASSED` for this packet and the regenerated sample |
+| Drift census command | `node .opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs` and `repair-derived.cjs --folder <packet>` reported the counts in the first row |
 | Parser adoption, first lane | 7 files adopted; drift suite 8 of 8, frontmatter-version test 23 of 23, consumer matrix 17, ten sk-create-skill tests exit 0, playbook contract 8 assertions; deep-loop typecheck 0 |
 <!-- /ANCHOR:verification -->
 

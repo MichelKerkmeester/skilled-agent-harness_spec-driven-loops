@@ -1,6 +1,24 @@
 ---
 title: "Resource map — grok46-xhigh nested-goal lineage"
-trigger_phrases: []
+trigger_phrases:
+  - "nested goal lineage resource map"
+  - "goal addon research resources"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-system-speckit-v4/010-goal-file-addon"
+    last_updated_at: "2026-08-30T04:17:55Z"
+    last_updated_by: "claude-code"
+    recent_action: "Emitted the resource map from the lineage iteration deltas"
+    next_safe_action: "Consult when planning the goal addon phases"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "grok46-xhigh-nested-goal-lineage"
+      parent_session_id: null
+    completion_pct: 10
+    open_questions: []
+    answered_questions: []
 ---
 # Resource map — grok46-xhigh nested-goal lineage
 
