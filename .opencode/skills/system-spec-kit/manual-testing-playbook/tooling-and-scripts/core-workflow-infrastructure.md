@@ -1,6 +1,6 @@
 ---
 title: "240 -- Core Workflow Infrastructure"
-description: "This scenario validates core workflow infrastructure for `240`. It focuses on confirming the shared indexing, post-save review, scoring, and workflow helper modules through targeted regression suites."
+description: "This scenario validates core workflow infrastructure for `240`. It focuses on confirming the shared post-save review, scoring, and workflow helper modules through targeted regression suites."
 version: 3.6.0.12
 id: tooling-and-scripts-core-workflow-infrastructure
 expected_workflow_mode: UNKNOWN
@@ -11,18 +11,18 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates core workflow infrastructure for `240`. It focuses on confirming the shared indexing, post-save review, scoring, and workflow helper modules through targeted regression suites.
+This scenario validates core workflow infrastructure for `240`. It focuses on confirming the shared post-save review, scoring, and workflow helper modules through targeted regression suites.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Confirm the shared workflow layer remains stable across indexing, review, scoring, and end-to-end workflow tests.
-- Real user request: `Please validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and tell me whether the expected signals are present: all targeted Vitest suites pass; post-save review assertions stay intact; indexing/scoring regressions do not fail.`
-- Prompt: `Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and report cited pass/fail evidence.`
+- Objective: Confirm the shared workflow layer remains stable across review, scoring, and CLI authority tests.
+- Real user request: `Please validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and tell me whether the expected signals are present: all targeted Vitest suites pass; post-save review assertions stay intact; scoring and trigger-index freshness regressions do not fail.`
+- Prompt: `Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: all targeted Vitest suites pass; post-save review assertions stay intact; indexing/scoring regressions do not fail
+- Expected signals: all targeted Vitest suites pass; post-save review assertions stay intact; scoring and trigger-index freshness regressions do not fail
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if the shared workflow module suites pass together without unexpected skips or failures
 
@@ -33,12 +33,12 @@ This scenario validates core workflow infrastructure for `240`. It focuses on co
 ### Prompt
 
 ```
-Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts and report cited pass/fail evidence.
+Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
+1. `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts`
 
 ### Expected
 

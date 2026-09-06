@@ -45,7 +45,7 @@ Validate Spec Validation Rule Engine against the documented validation surface a
 3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header --strict || true`
 4. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive --json`
 5. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/continuity-freshness.vitest.ts --config runtime/vitest.config.ts`
-6. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/evidence-marker-lint.vitest.ts --config runtime/vitest.config.ts`
+6. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/evidence-marker-audit.vitest.ts --config runtime/vitest.config.ts`
 7. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/normalizer-lint.vitest.ts --config runtime/vitest.config.ts`
 
 ### Expected

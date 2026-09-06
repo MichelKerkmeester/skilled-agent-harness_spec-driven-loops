@@ -65,7 +65,7 @@ Checksums before/after each run, hook/helper output, memory/index counter snapsh
 
 ### Failure Triage
 
-Inspect `lib/continuity/authored-continuity-snapshot.ts`, PreCompact hook wiring, and `tests/openltm-continuity-resilience.vitest.ts`. Confirm the sandbox contains the authored ladder files before expecting updates.
+Inspect `lib/continuity/authored-continuity-snapshot.ts`, PreCompact hook wiring, and `tests/thin-continuity-record.vitest.ts`. Confirm the sandbox contains the authored ladder files before expecting updates.
 
 ---
 

@@ -16,7 +16,7 @@ version: 3.6.0.13
 
 ## 1. OVERVIEW
 
-The post-save quality review runs after canonical packet continuity is written (Step 10.5 in the save workflow) and before indexing starts (Step 11). It compares the saved frontmatter and continuity metadata against the original JSON payload to detect propagation failures and field-level quality issues.
+The post-save quality review runs after canonical packet continuity is written and after the retired index step is skipped (Step 11.75 in the save workflow). It compares the saved frontmatter and continuity metadata against the original JSON payload to detect propagation failures and field-level quality issues.
 
 This is a verification step that catches cases where the rendering pipeline silently dropped or degraded caller-supplied fields — generic titles, path-fragment trigger phrases, missing decisions, wrong contextType — before those problems become permanent in the index. Think of it as a proof-reader who checks the printed form against the original application to make sure nothing was lost in transcription.
 
@@ -24,7 +24,7 @@ This is a verification step that catches cases where the rendering pipeline sile
 
 ## 2. HOW IT WORKS
 
-The post-save quality review runs as Step 10.5 in the save workflow, between file write and indexing. It is always active.
+The post-save quality review runs as Step 11.75 in the save workflow, after the file write and the trigger-index freshness check. It runs whenever the explicit save follow-ups run.
 
 Current detection checks:
 
@@ -61,8 +61,7 @@ The review output is machine-readable so callers and downstream quality monitors
 ### 3.1 Placement in the save workflow
 
 - Runs after `writeMemoryFile()` confirms the file exists on disk.
-- Runs before `indexMemoryFile()` embeds and persists the entry.
-- Failure findings are reported back to the caller in the save response. The save always proceeds to indexing — findings are advisory, not blocking.
+- Failure findings are reported back to the caller in the save response. The save has already landed when the review runs; findings are advisory, not blocking.
 
 ### 3.2 Severity model
 
@@ -77,8 +76,6 @@ The review output is machine-readable so callers and downstream quality monitors
 
 ### 3.4 Cross-references
 
-- Complements the **pre-storage quality gate** (entry `05-pre-storage-quality-gate.md`) which validates structure and semantic deduplication before write. The post-save review validates propagation fidelity after write.
-- Complements the **verify-fix-verify memory quality loop** (entry `01-verify-fix-verify-memory-quality-loop.md`) which handles iterative quality improvement. The post-save review is a single-pass snapshot check, not an iterative loop.
 - The RC1–RC5 propagation fixes documented in `tooling-and-scripts/json-mode-hybrid-enrichment.md` address the root causes that this review detects.
 
 ### 3.5 Score penalty computation
@@ -95,7 +92,7 @@ The review output is machine-readable so callers and downstream quality monitors
 | File | Type | Role |
 |---|---|---|
 | `runtime/cli/tests/post-save-review.vitest.ts` | Automated test | Severity classification, detection checks, machine-readable output shape, score-penalty computation |
-| `runtime/cli/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end coverage of Step 10.5 placement within the save workflow |
+| `runtime/cli/tests/post-save-review.vitest.ts` | Automated test | Coverage of the review's placement and its advisory result |
 
 ---
 

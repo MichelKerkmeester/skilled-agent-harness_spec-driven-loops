@@ -107,7 +107,7 @@ continues to derive a folder-name fallback label from the path when needed.
 |---|---|---|
 | `runtime/tests/folder-discovery.vitest.ts` | Automated test | PerFolderDescription schema, generation, required-field/array validation, path-containment hardening, `slugifyFolderName`, CRUD/staleness, and CRLF frontmatter stripping |
 | `runtime/tests/folder-discovery-integration.vitest.ts` | Automated test | Mixed-mode aggregation, fresh-vs-stale preference, corrupt/missing fallback, cache staleness, regeneration behavior, and performance checks |
-| `runtime/cli/tests/slug-uniqueness.vitest.ts` | Automated test | Filename collision resolution |
+| `runtime/cli/tests/slug-utils-boundary.vitest.ts` | Automated test | Slug derivation and collision boundaries |
 | `runtime/tests/workflow-memory-tracking.vitest.ts` | Automated test | Load-mutate-save cycle for `memorySequence` increment and `memoryNameHistory` ring buffer |
 | `runtime/tests/slug-utils-boundary.vitest.ts` | Numeric coercion and boundary cases for `Number(existing.memorySequence) \|\| 0` |
 

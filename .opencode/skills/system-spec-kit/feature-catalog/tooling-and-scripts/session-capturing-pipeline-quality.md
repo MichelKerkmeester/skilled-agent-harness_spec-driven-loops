@@ -208,12 +208,10 @@ The closure feature consists of these distinct shipped behaviors:
 | `runtime/cli/tests/memory-template-contract.vitest.ts` | Automated test | Rendered-memory structural contract coverage |
 | `runtime/cli/tests/quality-scorer-calibration.vitest.ts` | Automated test | Rich vs thin score differentiation |
 | `runtime/cli/tests/task-enrichment.vitest.ts` | Automated test | Task and summary enrichment behavior |
-| `runtime/cli/tests/memory-render-fixture.vitest.ts` | Automated test | Rendered-memory regression coverage |
 | `runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Automated test | Explicit CLI root-spec authority coverage plus `--stdin`, `--json`, and positional JSON file-input structured-path behavior |
 | `runtime/cli/tests/semantic-signal-golden.vitest.ts` | Automated test | Trigger-phrase quality regression coverage for the canonical continuity output-quality fixes |
 | `runtime/cli/tests/test-extractors-loaders.js` | Automated test | Dist/export regression suite for extractors and loader |
 | `runtime/cli/tests/test-integration.vitest.ts` | Automated test | End-to-end script workflows; legacy `test-integration.js` test file removed |
-| `runtime/cli/tests/workflow-e2e.vitest.ts` | Automated test | Real save-pipeline E2E coverage with temp-repo factory and the failed-embedding harness regression |
 | `runtime/cli/tests/test-memory-quality-lane.js` | Automated test | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
 
 ---
@@ -228,14 +226,13 @@ The closure feature consists of these distinct shipped behaviors:
 
 - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
 - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run build`
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/memory-render-fixture.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-extractors-loaders.js`
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts tests/workflow-e2e.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run build`
-- `cd .opencode/skills/system-spec-kit/runtime && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/runtime && npm run test`
 - `python3 .opencode/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli`
 

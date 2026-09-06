@@ -150,12 +150,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 | `runtime/cli/tests/project-phase-e2e.vitest.ts` | Automated test | Explicit `projectPhase` propagation through the save pipeline |
 | `runtime/cli/tests/quality-scorer-calibration.vitest.ts` | Automated test | Live scorer calibration coverage |
 | `runtime/cli/tests/task-enrichment.vitest.ts` | Automated test | Summary enrichment and count preservation behavior |
-| `runtime/cli/tests/template-mustache-sections.vitest.ts` | Automated test | Compact `toolCalls` and `exchanges` template sections |
 | `runtime/cli/tests/trigger-phrase-filter.vitest.ts` | Automated test | Trigger-phrase filter coverage for path fragments, short tokens, and shingle subsets |
 | `runtime/cli/tests/validation-v13-v14-v12.vitest.ts` | Automated test | V12/V13/V14 validation behavior |
-| `runtime/cli/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end save pipeline with structured JSON inputs |
-| `runtime/tests/embedding-retry-stats.vitest.ts` | Automated test | `embeddingRetry` type and zero-state contract |
-| `runtime/tests/retry-manager-health.vitest.ts` | Automated test | Zero-DB `embeddingRetry` snapshot accessor coverage |
 
 ---
 
@@ -167,8 +163,7 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 ### VERIFICATION SOURCES
 
 - `cd .opencode/skills/system-spec-kit/runtime/cli && npm run lint`
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/template-mustache-sections.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts tests/workflow-e2e.vitest.ts`
-- `cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/embedding-retry-stats.vitest.ts tests/retry-manager-health.vitest.ts`
+- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts`
 
 Related references:
 - [json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) — JSON-primary deprecation posture

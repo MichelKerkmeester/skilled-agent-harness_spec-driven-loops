@@ -80,7 +80,7 @@ node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-desc
   --description "Short description for memory search" \
   --level N
 
-node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/backfill-graph-metadata.js \
+node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js \
   --root <folder>
 ```
 
