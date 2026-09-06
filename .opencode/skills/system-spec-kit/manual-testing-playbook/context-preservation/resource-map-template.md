@@ -73,11 +73,11 @@ Validate 270b every discovery surface references resource-map.md
 
 ### Commands
 
-1. `rg -n "resource-map\\.md" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/references/templates/level-specifications.md .opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts CLAUDE.md`
+1. `rg -n "resource-map\\.md" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/references/templates/level-specifications.md .opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
 
 ### Expected
 
-Matches in every target, including `SKILL.md`, `README.md`, `references/templates/level-specifications.md`, `runtime/lib/config/spec-doc-paths.ts`, and `CLAUDE.md`
+Matches in every target, including `SKILL.md`, `README.md`, `references/templates/level-specifications.md`, and `runtime/lib/config/spec-doc-paths.ts`
 
 ### Evidence
 

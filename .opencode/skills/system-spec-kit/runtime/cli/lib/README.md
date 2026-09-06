@@ -19,9 +19,9 @@ Current state:
 
 - TypeScript modules cover rendering, semantic extraction, frontmatter, memory quality, trigger-phrase safety and activity signals.
 - Shell helpers centralize branch detection, template operations, boolean-flag parsing and shared validation utilities.
-- A standalone CommonJS cluster (`coverage-graph-*.cjs`, `wave-*.cjs`) implements the deep-loop review/research coverage graph and wave-mode segmentation as adapters over the deep-loop runtime's canonical algorithms — see each file's header for the authoritative runtime source it mirrors.
+- A standalone CommonJS cluster (`coverage-graph-*.cjs`) implements the deep-loop review/research coverage graph as adapters over the deep-loop runtime's canonical algorithms — see each file's header for the authoritative runtime source it mirrors.
 - Runtime JavaScript output for TypeScript sources is generated from those sources and should not be edited by hand.
-- `dist-freshness.cjs`, `completion-state.cjs`, and the `coverage-graph-*.cjs` / `wave-*.cjs` cluster are directly-executable CommonJS modules (no build step). `dist-freshness.cjs` is shared by four independent consumers — the three `.opencode/bin/*.cjs` CLI shims, `validate.sh`'s hard staleness backstop, the `sk-code` `claude-posttooluse.sh` hook, and the `system-dist-freshness-guard` OpenCode plugin.
+- `dist-freshness.cjs`, `completion-state.cjs`, and the `coverage-graph-*.cjs` cluster are directly-executable CommonJS modules (no build step). `dist-freshness.cjs` is shared by four independent consumers — the three `.opencode/bin/*.cjs` CLI shims, `validate.sh`'s hard staleness backstop, the `sk-code` `claude-posttooluse.sh` hook, and the `system-dist-freshness-guard` OpenCode plugin.
 
 ---
 
@@ -90,11 +90,6 @@ runtime/cli/lib/
 +-- coverage-graph-contradictions.cjs      # Same-session contradiction detection over a coverage graph
 +-- coverage-graph-convergence.cjs         # Graph-aware STOP-BLOCKING convergence guards (sourceDiversity, evidenceDepth)
 +-- coverage-graph-session.cjs             # Session-id normalization and filtering shared by the graph helpers above
-+-- wave-lifecycle.cjs                     # Wave-mode fan-out/join/prune/promote lifecycle helpers
-+-- wave-segment-planner.cjs               # Deterministic file/domain segmentation for wave mode
-+-- wave-segment-state.cjs                 # Per-segment state, JSONL lineage and merge helpers
-+-- wave-coordination-board.cjs            # Reducer-owned board.json execution ledger and status transitions
-+-- wave-convergence.cjs                   # Segment-level convergence and stuck-segment pruning
 +-- git-branch.sh                          # Git branch helper
 +-- parse-bool-flag.sh                     # Boolean CLI flag parser
 +-- shell-common.sh                        # Shared shell utility functions
@@ -135,9 +130,6 @@ Disallowed direction:
 | `coverage-graph-signals.cjs` | Degree, depth and cluster-metric signals (`computeDegree`, `computeClusterMetrics`) over a coverage graph. |
 | `coverage-graph-contradictions.cjs` | Detects same-session contradictions in a coverage graph (`scanContradictions`, `contradictionDensity`). |
 | `coverage-graph-convergence.cjs` | Graph-aware STOP-BLOCKING convergence guards (`sourceDiversity`, `evidenceDepth`) for deep-research/deep-review loop termination. |
-| `wave-lifecycle.cjs` | Wave-mode fan-out/join/prune/promote lifecycle helpers and phase/transition constants. |
-| `wave-segment-planner.cjs` | Deterministic file and research-domain segmentation, including hotspot inventory, for wave-mode activation. |
-| `wave-coordination-board.cjs` | Reducer-owned `board.json` execution ledger, status transitions and finding-merge state. |
 | `shell-common.sh` | Provides common shell functions for spec and rule scripts. |
 | `status-classifier.sh` | Shares pass/fail/regression classification vocabulary with `runtime/cli/sweep/strict-pass-freshness.ts`. |
 | `parse-bool-flag.sh` | Parses boolean CLI flags for shell entrypoints. |
@@ -215,7 +207,7 @@ npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
 ```
 
-Shell helper behavior is covered through the spec and rule validation scripts that source it. The `coverage-graph-*.cjs` and `wave-*.cjs` cluster is covered by the sibling Vitest suites named `coverage-graph-*.vitest.ts` and `deep-loop-wave-*.vitest.ts` under `../tests/`. `completion-state.test.mjs` imports Vitest but its `lib/*.test.mjs` path sits outside every configured Vitest `include` glob, so it currently runs under neither `npm test` nor `node --test`.
+Shell helper behavior is covered through the spec and rule validation scripts that source it. The `coverage-graph-*.cjs` cluster is covered by the sibling Vitest suites named `coverage-graph-*.vitest.ts` under `../tests/`. `completion-state.test.mjs` imports Vitest but its `lib/*.test.mjs` path sits outside every configured Vitest `include` glob, so it currently runs under neither `npm test` nor `node --test`.
 
 ---
 

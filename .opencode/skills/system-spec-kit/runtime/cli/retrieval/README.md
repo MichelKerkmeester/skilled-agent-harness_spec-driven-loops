@@ -18,7 +18,7 @@ trigger_phrases:
 Current state:
 
 - `generate-trigger-index.mjs` publishes the committed index at `../runtime/data/trigger-index.json` from the `trigger_phrases` frontmatter across `specs/`, `.opencode/skills/` and `.opencode/install-guides/`.
-- `lookup-trigger-index.mjs` is the read side: it scores a prompt against the committed index using the same normalization, tokenization and match-class ranking as the substring trigger lane in `runtime/lib/search/hybrid-search.ts`.
+- `lookup-trigger-index.mjs` is the read side: it scores a prompt against the committed index using the same normalization, tokenization and match-class ranking the retired substring trigger lane used, so its recorded results still diff against this lookup.
 - `rg-wrapper.mjs` runs the three documented ripgrep recipes (structured, path-only, count) behind one front door. Its glob set now excludes `scratch/` alongside `z_archive/`, `node_modules/` and `.git/` - see `references/retrieval/retrieval-conventions.md` Section 9 for the full root and exclusion coverage table shared with `lib/corpus.mjs`.
 - `retrofit-convention.mjs` applies the greppable-corpus convention to the spec corpus in an enumerate/dry-run/process/rescan pipeline; `sweep-memory-residue.mjs` answers one question with an exit code — does any live consumer of the retired memory MCP surface still exist outside its own subsystem tree.
 - All scripts are plain ESM `.mjs`, run directly with `node` (no build step), and read fixtures from `fixtures/` for tests and frozen baselines.

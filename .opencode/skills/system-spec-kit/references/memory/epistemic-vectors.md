@@ -207,7 +207,7 @@ Result: Uncertainty = 0.36 (MEDIUM - just over threshold)
 
 **MEDIUM (0.36-0.60):** Verify first
 - Read additional files to improve situational completeness
-- Search memory for related prior work
+- Search the trigger index and spec docs for related prior work
 - Check documentation for temporal updates
 - Consider: "What am I assuming that I should verify?"
 
@@ -309,10 +309,10 @@ UNCERTAINTY ASSESSMENT:
 
 ### Dual-Threshold Validation
 
-Gates now require BOTH thresholds to pass:
+Readiness is read on the single confidence scale in the root document's Gate 1 (proceed at 80 percent or more, proceed with caveats between 40 and 79, ask below 40); the uncertainty vector informs that reading but is not a second threshold:
 
 ```
-READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)
+READINESS = confidence on the Gate 1 scale, with uncertainty as evidence for the reading
 ```
 
 ### Gate Response States
@@ -330,12 +330,12 @@ When READINESS fails, investigate (max 3 iterations):
 
 **Iteration 1:** Local search
 - Read relevant files
-- Search memory for prior work
+- Search the trigger index and spec docs for prior work
 - Check spec folder documentation
 
 **Iteration 2:** Expand scope
 - Read adjacent/related files
-- Broader memory search
+- Broader ripgrep scan over spec and skill docs
 - Check external documentation
 
 **Iteration 3:** Final attempt
@@ -388,8 +388,7 @@ DUAL-THRESHOLD CHECK:
 ## 8. RELATED RESOURCES
 
 ### AGENTS.md Reference
-- **Section 4**: Confidence & Clarification Framework (includes uncertainty tracking)
-- **Section 2**: Mandatory Gates (dual-threshold validation in Gate 1)
+- **Section 2**: Mandatory Gates, Gate 1 and its Confidence Thresholds table, the single scale this reference reads against
 
 ### Related Skills
 - `system-spec-kit` - Parent skill using uncertainty tracking in gates

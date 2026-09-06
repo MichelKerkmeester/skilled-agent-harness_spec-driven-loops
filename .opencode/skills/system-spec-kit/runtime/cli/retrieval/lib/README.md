@@ -19,7 +19,7 @@ trigger_phrases:
 Current state:
 
 - All six modules are `.mjs` ESM, imported with relative `./lib/<name>.mjs` specifiers from the sibling `retrieval/` scripts and from `rules/check-grep-convention-helper.mjs`.
-- `normalize.mjs` and the ripgrep-facing functions in `rg-lane.mjs` intentionally mirror logic in `runtime/lib/search/hybrid-search.ts` so the generated index, the substring trigger lane and the ripgrep lane cannot silently diverge on what counts as a match.
+- `normalize.mjs` and the ripgrep-facing functions in `rg-lane.mjs` intentionally mirror the logic of the retired substring trigger lane so the generated index, its recorded fixtures and the ripgrep lane cannot silently diverge on what counts as a match.
 - `grep-convention.mjs` is the largest module: it is the pure, testable half of the document retrofit in `../retrofit-convention.mjs`, covering variant classification, the anchor grammar, the trigger allowlist and the diff classifier.
 
 ---
@@ -55,7 +55,7 @@ Current state:
 | Boundary | Rule |
 |---|---|
 | Filesystem | Only `artifact.mjs` (`publishJson`), `corpus.mjs` (`walkCorpus`) and `rg-lane.mjs` (`runRecipe`, which spawns ripgrep) touch disk or a subprocess. The other modules are pure functions over their arguments. |
-| Duplication with the runtime | `normalize.mjs` and the matching logic in `rg-lane.mjs` deliberately re-implement, rather than import, the equivalent TypeScript in `runtime/lib/search/hybrid-search.ts` — this tree runs as plain ESM `.mjs` with no build step, so it cannot import compiled runtime output without reintroducing the daemon/MCP path these tools exist to bypass. Keep the two in sync by hand when the runtime lane's scoring changes. |
+| Duplication with the runtime | `normalize.mjs` and the matching logic in `rg-lane.mjs` deliberately re-implement, rather than import, the equivalent TypeScript the retired lane carried — this tree runs as plain ESM `.mjs` with no build step, so it cannot import compiled runtime output without reintroducing the daemon/MCP path these tools exist to bypass. Keep the two in sync by hand when the runtime lane's scoring changes. |
 | Ownership | A function that needs filesystem or subprocess access belongs in one of the three modules above, not scattered into a sibling script. |
 
 ---

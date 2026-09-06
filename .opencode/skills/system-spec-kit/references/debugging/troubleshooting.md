@@ -352,7 +352,7 @@ Quick reference for common recovery scenarios with symptoms and actions.
 | **State Mismatch** | Files don't match expected state | Verify with `git status` and `git diff` |
 | **Content Not Found** | Retrieval returns no results | Run the ripgrep path-only recipe scoped to the packet, then widen to `specs` |
 | **Stale Context** | Information seems outdated | Compare `handover.md` and `_memory.continuity` timestamps against the packet's git log |
-| **Incomplete Handover** | Missing continuation context | Review the CONTINUE SESSION section in `handover.md` |
+| **Incomplete Handover** | Missing continuation context | Review the session summary and next steps in `handover.md` |
 | **Wrong Packet Surfaced** | Retrieval answers from a neighbor packet | Narrow the positional search root to the exact packet path |
 | **Declared-Phrase Gap** | Lookup misses obvious content | Add the phrase to that document's `trigger_phrases`, then regenerate the index |
 | **Continuity Unreadable** | Can't restore state | Rebuild from `handover.md`, `_memory.continuity`, and packet docs, in that order |

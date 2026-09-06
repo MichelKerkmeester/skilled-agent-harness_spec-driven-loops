@@ -210,22 +210,19 @@ All templates should include a source marker for validation and change tracking:
 
 | Template Type | Frontmatter | Reason |
 |---------------|-------------|--------|
-| Generated continuity support artifacts (`memory/*.md`) | Required | ANCHOR format for indexing |
+| Continuity block (`_memory.continuity` in `implementation-summary.md`) | Required | Written by the continuity writer |
 | Spec folder files | Optional | Human-readable metadata |
 | Reference files | Required | Skill system indexing |
 
-### Generated Continuity Support Artifact Frontmatter (ANCHOR Format)
+### Continuity Block Frontmatter
 
 ```yaml
----
-title: [Descriptive title for semantic search]
-specFolder: [###-folder-name]
-sessionId: [YYYYMMDD_HHMMSS]
-triggers:
-  - [keyword 1]
-  - [keyword 2]
-importanceTier: [normal / important / critical]
----
+_memory:
+  continuity:
+    packet_pointer: [track/NNN-name]
+    last_updated_at: [ISO timestamp]
+    recent_action: [one sentence]
+    next_safe_action: [one sentence]
 ```
 
 ### Spec Folder File Frontmatter

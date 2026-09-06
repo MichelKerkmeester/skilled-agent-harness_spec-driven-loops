@@ -78,8 +78,9 @@ node -e '
   const hooks = await plugin({ directory: process.cwd() });
   const exec = hooks.tool.system_speckit_completion.execute;
 
-  const level2Complete = ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync";
-  const level3 = ".opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation";
+  const level2Complete = "specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser";
+  const level2Incomplete = "specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool";
+  const level3 = "specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation";
 
   console.log("=== Level-2 COMPLETE ===");
   console.log(await exec({ specFolder: level2Complete }, { directory: process.cwd() }));
@@ -96,7 +97,7 @@ node -e '
 4. Claude/Bash CLI shim parity check on the same Level-2 COMPLETE fixture:
 
 ```bash
-node .opencode/bin/speckit-completion.cjs .opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync --project-dir "$PWD"
+node .opencode/bin/speckit-completion.cjs specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser --project-dir "$PWD"
 ```
 
 5. CLI shim usage/exit-1 path on missing args:

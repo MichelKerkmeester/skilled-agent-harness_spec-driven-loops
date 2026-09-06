@@ -24,9 +24,9 @@ expected_leaf_resources: []
 `dist/` output is stale relative to its source, so a Bash dispatch or a new session never
 silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()` /
 `checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
-against a fixed registry of seven watched packages (`system-spec-kit/shared`,
+against a fixed registry of six watched packages (`system-spec-kit/shared`,
 `system-spec-kit/runtime/cli`, `system-spec-kit/runtime`, `mcp-code-mode/mcp-server`,
-`sk-design/sk-design-md-generator/backend`).
+`system-skill-advisor/mcp-server`, `sk-design/sk-design-md-generator/backend`).
 
 The guard fires diagnostics on three triggers: OpenCode's `session.created` event (once per
 session, deduplicated by session ID up to `MAX_SESSION_IDS = 1000`), a risky Bash command
@@ -104,7 +104,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
    node .opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all --json
    ```
 
-   Expected: JSON `{"status": "stale"|"fresh"|"degraded", "results": [...]}` for the 7 packages;
+   Expected: JSON `{"status": "stale"|"fresh"|"degraded", "results": [...]}` for the 6 packages;
    exit code `69` (`STALE_EXIT_CODE`) when at least one package is stale, `0` otherwise.
 
 3. Drive the real plugin's `session.created` -> `experimental.chat.system.transform` path with

@@ -30,7 +30,6 @@ templates/
 ├── plan.md.tmpl             # Technical approach
 ├── tasks.md.tmpl            # Task breakdown
 ├── acceptance-criteria.md.tmpl  # Closure criteria (Level 2+)
-├── acceptance-criteria.md.tmpl  # Closure criteria
 ├── decision-record.md.tmpl  # Architecture decisions
 ├── implementation-summary.md.tmpl
 ├── phase-parent.spec.md.tmpl
@@ -188,7 +187,6 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `plan.md` (from Level 1) - Technical implementation plan
 - `tasks.md` (from Level 1) - Task breakdown by user story
 - `implementation-summary.md` (from Level 1) - Post-implementation documentation
-- `acceptance-criteria.md` (NEW at Level 2) - The criteria that gate packet closure
 - `acceptance-criteria.md` (required at Level 2) - the criteria that decide whether the packet may close
 
 ### Optional Files
@@ -234,7 +232,6 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `templates/core/plan.md.tmpl`
 - `templates/core/tasks.md.tmpl`
 - `templates/core/implementation-summary.md.tmpl`
-- `templates/addons/acceptance-criteria.md.tmpl`
 - `templates/addons/acceptance-criteria.md.tmpl`
 
 **Addendum source (+Verify):**
@@ -417,7 +414,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 4. Verify task dependencies are satisfied
 5. Load tasks.md and identify relevant P0/P1 verification items
 6. Check for blocking issues in decision-record.md
-7. Verify memory/ folder for context from previous sessions
+7. Verify handover.md and implementation-summary.md for context from previous sessions
 8. Confirm understanding of success criteria
 9. Begin implementation only after all checks pass
 

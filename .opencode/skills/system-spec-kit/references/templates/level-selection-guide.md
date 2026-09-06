@@ -207,7 +207,6 @@ Templates are selected from `templates/spec-kit-docs.json`:
 
 **Example paths:**
 - `templates/core/spec.md.tmpl` - Level-gated spec template
-- `templates/addons/acceptance-criteria.md.tmpl`
 - `templates/addons/acceptance-criteria.md.tmpl` - Level-gated checklist template
 - `templates/addons/decision-record.md.tmpl` - Level-gated ADR template
 - `templates/core/spec.md.tmpl` - Level 3+ spec sections are rendered by gate

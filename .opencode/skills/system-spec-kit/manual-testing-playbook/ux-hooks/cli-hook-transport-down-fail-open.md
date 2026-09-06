@@ -56,7 +56,7 @@ rm -rf "$SANDBOX"
 
 ### Expected
 
-- Both hooks exit 0 well inside their timeouts (the advisor hook returns in well under a second on the no-socket path).
+- The advisor hook exits 0 well inside its timeout (the advisor hook returns in well under a second on the no-socket path).
 - `before` and `after` launcher counts are identical — no prompt-time cold spawn.
 - No `daemon-ipc.sock` appears in the sandbox.
 
@@ -89,7 +89,6 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 | File | Role |
 |---|---|
 | `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Shared warm-only skill-advisor CLI fallback helper |
-| `runtime/hooks/claude/session-prime.ts` | Claude session adapter using the warm paths |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | OpenCode advisor bridge using the fallback |
 

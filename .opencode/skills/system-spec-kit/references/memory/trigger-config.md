@@ -217,28 +217,7 @@ Include any of these phrases in your message:
 
 ### Adding Custom Triggers
 
-Create or modify `config.jsonc` in your project root:
-
-```jsonc
-{
-  "memory": {
-    "triggers": {
-      // Add custom trigger phrases
-      "custom": [
-        "my custom phrase",
-        "another trigger",
-        "project-specific term"
-      ],
-      
-      // Disable default triggers (optional)
-      "disableDefaults": false,
-      
-      // Case sensitivity (default: false)
-      "caseSensitive": false
-    }
-  }
-}
-```
+Declare them in the document's own frontmatter under `trigger_phrases`; the trigger-index generator reads every spec doc and skill doc and folds those phrases into `runtime/data/trigger-index.json`. There is no `config.jsonc` trigger section.
 
 ### Custom Trigger Function
 

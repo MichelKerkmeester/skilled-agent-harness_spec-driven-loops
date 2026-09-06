@@ -48,7 +48,7 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
   - `sk-code/references/opencode/typescript/quality-standards.md` (file header and module boundary standards)
 - **File-level evidence (10 files, 1 header each at HEAD)**
   - `runtime/handlers/memory-save.ts` → `1`
-  - `runtime/lib/search/hybrid-search.ts` → `1`
+  - `runtime/lib/search/folder-discovery.ts` → `1`
   - `runtime/lib/search/folder-discovery.ts` → `1`
   - `runtime/lib/search/rsf-fusion.ts` (deleted) → was `1`
   - `runtime/lib/search/graph-search-fn.ts` → `1`
@@ -67,7 +67,7 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 - **File-level evidence**
   - `runtime/handlers/memory-save.ts:6-21` has grouped import blocks:
     - `Node built-ins` → `Shared packages` → `Internal modules`
-  - `runtime/lib/search/hybrid-search.ts:8-53` separates runtime imports and `type` imports.
+  - `runtime/lib/search/folder-discovery.ts` separates runtime imports and `type` imports.
   - `runtime/lib/search/graph-search-fn.ts:6-10` keeps runtime imports before `import type`.
 
 ### 4) Constant naming (`specFolderLocks` → `SPEC_FOLDER_LOCKS`)

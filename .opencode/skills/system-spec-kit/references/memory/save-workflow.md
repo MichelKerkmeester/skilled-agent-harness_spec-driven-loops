@@ -141,7 +141,7 @@ The continuity writer supports **2 independent execution paths**. Any method can
 
 ```
 /speckit:save       # Save current conversation context
-/speckit:search  # Unified retrieval + analysis: search, epistemic baselines, causal graph, evaluation
+/speckit:search  # Continuity retrieval: trigger-index lookup and ripgrep lexical scan
 ```
 
 ### Execution Flow
