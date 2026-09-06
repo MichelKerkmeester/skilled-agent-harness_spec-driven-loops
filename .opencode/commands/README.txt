@@ -143,9 +143,9 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Agent | `/create:agent <agent_name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Benchmark | `/create:benchmark <skill-or-mode> <spec-packet> --family=<family>` | Author or update family-keyed benchmark packages |
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a global or packet-local changelog entry from recent work |
-| Chart | `/create:chart <target-chart.html> <what the reader compares>` | Author a standalone HTML chart from a catalog of 21 forms |
+| Chart | `/design:chart <target-chart.html> <what the reader compares>` | Author a standalone HTML chart from a catalog of 21 forms |
 | Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
-| Diagram | `/create:diagram <target.html\|target.md> [description\|--import <src>]` | Create an HTML/SVG diagram, an ASCII/markdown flowchart, or a draw.io/Mermaid redraw |
+| Diagram | `/design:diagram <target.html\|target.md> [description\|--import <src>]` | Create an HTML/SVG diagram, an ASCII/markdown flowchart, or a draw.io/Mermaid redraw |
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |

@@ -40,7 +40,7 @@
 .opencode/skills/sk-design/sk-design-md-generator/manual-testing-playbook
 .opencode/skills/sk-design/manual-testing-playbook
 .opencode/skills/sk-doc/manual-testing-playbook
-.opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook
+.opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook

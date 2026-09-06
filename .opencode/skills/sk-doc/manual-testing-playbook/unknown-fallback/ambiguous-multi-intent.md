@@ -3,15 +3,15 @@ id: SD-007
 title: 'Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta'
 description: "This scenario validates ambiguous DOC_QUALITY and FLOWCHART routing for SD-007."
 stage: routing
-expected_intent: sk-create-quality-control+sk-create-diagram
+expected_intent: sk-create-quality-control+sk-design-diagram
 expected_resources:
   - shared/references/validation.md
   - sk-create-quality-control/references/workflows.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
-  - sk-create-diagram/assets/ascii-patterns/simple-workflow.md
-  - sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
-expected_workflow_mode: sk-create-quality-control+sk-create-diagram
+  - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
+  - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
+expected_workflow_mode: sk-create-quality-control+sk-design-diagram
 expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/validation.md
@@ -21,9 +21,9 @@ expected_leaf_resources:
     leaf_resource_id: references/core-standards.md
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
 version: 2.1.0.21
 ---

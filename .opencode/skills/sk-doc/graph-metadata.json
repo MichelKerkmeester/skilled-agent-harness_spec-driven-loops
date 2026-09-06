@@ -237,7 +237,7 @@
       ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
-      ".opencode/skills/sk-design/sk-create-chart/SKILL.md",
+      ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
@@ -312,7 +312,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to fifteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-chart, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
+    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to fifteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-design-diagram, sk-design-chart, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
     "source_docs": [
       "SKILL.md",
       "README.md",

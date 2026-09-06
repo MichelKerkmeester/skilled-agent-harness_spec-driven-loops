@@ -1,0 +1,369 @@
+# ─────────────────────────────────────────────────────────────────
+# CREATE CHART — AUTO MODE
+# ─────────────────────────────────────────────────────────────────
+role: Chart Author
+purpose: Turn the comparison a reader needs into one catalog form and ship a standalone HTML chart
+action: Resolve the question to a row, copy that form whole, fill the data block, then verify
+operating_mode:
+  workflow: linear
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+
+development_philosophy:
+  principle: Copy a form that already renders
+  approach: Question -> Row -> Copy -> Fill -> Colour -> Verify
+  mandate: >-
+    A chart assembled from a form file renders the way that file already rendered. A chart
+    written freehand does not, and the failure shows up in a browser rather than in a check.
+    When no row answers the question, report the gap. A reported gap is a successful run.
+
+skill_reference:
+  skill: sk-doc
+  mode: sk-design-chart
+  skill_md: .opencode/skills/sk-design/sk-design-chart/SKILL.md
+  references:
+    catalog: .opencode/skills/sk-design/sk-design-chart/references/catalog.md
+    template_contract: .opencode/skills/sk-design/sk-design-chart/references/template-contract.md
+    colour_systems: .opencode/skills/sk-design/sk-design-chart/references/color-system.md
+  assets:
+    forms: .opencode/skills/sk-design/sk-design-chart/assets/templates/
+    palettes: .opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json
+    worked_deliveries: .opencode/skills/sk-design/sk-design-chart/assets/examples/
+  scripts:
+    corpus_check: .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
+
+confidence_framework:
+  thresholds:
+    high:
+      range: 80-100%
+      action: Proceed with the resolved row cited by id
+    medium:
+      range: 40-79%
+      action: Proceed with caution, record which two rows were weighed
+    low:
+      range: 0-39%
+      action: STOP - offer the candidate rows and ask which comparison the reader needs
+  scoring_weights:
+    question_clarity: 0.35
+    data_shape_fit: 0.30
+    family_certainty: 0.20
+    colour_system_fit: 0.15
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which comparison does the reader need:
+    - A) [row id] - [the question that row answers]
+    - B) [row id] - [the question that row answers]
+    - C) something else, described in your own words"
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: Present the candidate rows with the question each one answers
+
+request_analysis_framework:
+  solution_flow:
+    - "Parse input: the target path, the reader's question, the data and any flags"
+    - "Name the comparison the reader will make, not the chart they named"
+    - "Resolve that comparison to one catalog row, checking both the index and the reader-name table"
+    - "Copy the form file whole and change only its data block"
+    - "Apply one colour system and write the headline as a conclusion"
+    - "Run the corpus check, then report what the check cannot see"
+  pre_change_validation:
+    items:
+      - "Is the comparison named as a question rather than as a chart type?"
+      - "Does exactly one catalog row answer it?"
+      - "Does the data match that row's documented shape?"
+      - "Is one colour system chosen, and does the data carry the property it encodes?"
+      - "Confidence 80% or better? (if not: ask)"
+    stop_conditions:
+      - No row answers the question
+      - The data has no values, only a description of values
+      - Two rows answer equally well and the data shape does not separate them
+    stop_action: STOP and report the gap or the ambiguity with the rows that were weighed
+
+input_contract:
+  required:
+    - create_chart_verified
+    - target_chart_path
+    - reader_question
+    - chart_data
+  optional:
+    - chart_form
+    - colour_system
+
+user_inputs:
+  target_chart_path: "[TARGET_CHART_PATH] - workspace-relative .html path. REQUIRED."
+  reader_question: "[READER_QUESTION] - the comparison the reader needs, in their words. REQUIRED."
+  chart_data: "[CHART_DATA] - the literal values, pasted or in a named file. REQUIRED."
+  chart_form: "[CHART_FORM] - a catalog row id. Resolved from the question when not given."
+  colour_system: "[neutral|ordered|categorical] - default neutral."
+
+field_handling:
+  target_chart_path:
+    validation: ends in .html, parent directory exists or can be created
+    required: true
+  reader_question:
+    validation: non-empty, states a comparison rather than a chart type
+    required: true
+    note: >-
+      A request that arrives as a chart name still needs the question behind it, because
+      the question picks the row and the name does not. Ask what the reader will do with
+      the picture.
+  chart_data:
+    validation: literal values, one readable set
+    required: true
+    note: >-
+      Every value a chart displays is typed into its data block. Nothing is fetched,
+      computed or read from a clock, so a described dataset is not a dataset.
+  chart_form:
+    validation: matches an id in the catalog index
+    default: resolved from reader_question
+  colour_system:
+    validation: "must be one of: neutral, ordered, categorical"
+    default: neutral
+  defaults:
+    forms_dir: .opencode/skills/sk-design/sk-design-chart/assets/templates/
+    one_system_per_delivery: true
+
+documentation_level:
+  default: Level 1 (Baseline)
+  required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+  note: >-
+    One delivered chart is Level 1 work. Escalate only when the run also changes the
+    corpus, which means adding a form file, a catalog row or a palette value.
+
+context_loading:
+  trigger: During setup, non-interactive resolution before step 1
+  applies_when: >-
+    Always. The catalog is what turns a question into a row, and no step below can run
+    without it.
+  auto_resolution:
+    default: >-
+      Read the catalog index, its reader-name table and its list of forms the corpus does
+      not draw, before naming a row. All three answer a different half of the same lookup.
+    on_absent: Stop. Without the catalog there is no form to copy.
+
+workflow_overview:
+  steps:
+    - id: step_1_name_the_comparison
+      purpose: State the question the reader arrives with
+    - id: step_2_resolve_the_form
+      purpose: Turn that question into exactly one catalog row
+    - id: step_3_copy_the_form
+      purpose: Copy the file whole, without rewriting its render code
+    - id: step_4_fill_the_data
+      purpose: Replace the data block with the reader's values
+    - id: step_5_colour_and_headline
+      purpose: Apply one system and write the top line as a conclusion
+    - id: step_6_verify
+      purpose: Run the corpus check and read its RESULT line
+    - id: step_7_report
+      purpose: Emit the delivered, gap or failure outcome
+
+workflow:
+
+  step_1_name_the_comparison:
+    purpose: State the question the reader arrives with
+    steps:
+      step_read_request:
+        action: "Write the comparison as a question a person would ask, not as a chart name"
+        note: "A request naming a chart type still needs the question behind it."
+
+  step_2_resolve_the_form:
+    purpose: Turn the question into exactly one row
+    steps:
+      step_read_catalog:
+        action: "Load catalog.md and read the index, the reader-name table and the not-drawn list"
+      step_pick_row:
+        action: "Resolve the question to one row. Where two rows answer it, the data shape decides."
+        on_ambiguous:
+          action: "Offer both rows with the question each answers and wait for the choice"
+        on_no_row:
+          action: "Report the gap with the rows that were weighed. HALT."
+          note: "A reported gap is the designed outcome, not an error."
+
+  step_3_copy_the_form:
+    purpose: Start from a file that already renders
+    steps:
+      step_copy:
+        action: "Copy assets/templates/<id>.html to the target path, whole"
+        note: "Never lift a fragment out of a form and never rewrite its drawing code."
+      step_identity:
+        action: "Keep the identity tag and the title consistent with the delivered file"
+
+  step_4_fill_the_data:
+    purpose: Put the reader's numbers in
+    steps:
+      step_swap_block:
+        action: "Replace only the region between the CHART_DATA sentinels"
+      step_labels:
+        action: "Write every period label the way the reader should see it"
+        note: >-
+          A template prints a label and does nothing else to it. Nothing parses a date or
+          derives a granularity, so the labels arrive display-ready. Values arrive as raw
+          numbers, because the file formats those.
+      step_ceilings:
+        action: "Check the row's documented data shape and reduce or merge the tail before drawing past a ceiling"
+
+  step_5_colour_and_headline:
+    purpose: Make it read as one product and say something
+    steps:
+      step_system:
+        action: "Apply exactly one colour system, chosen for what colour varies with"
+        note: "Ask what the colour encodes, not what the chart is about. neutral wins a tie."
+      step_headline:
+        action: "Write the headline as a conclusion rather than a label"
+        note: "A reader who takes nothing but the top line should still have learned something."
+      step_card:
+        action: "Fill all four card parts: headline, subtitle, figure, source"
+
+  step_6_verify:
+    purpose: Prove the file still holds the contract
+    steps:
+      step_corpus_check:
+        action: "Run `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs`"
+        verify:
+          - "The run prints RESULT: PASSED"
+          - "Every check reports a nonzero assertion count"
+          - "The delivered file opens from a file:// URL"
+        note: >-
+          Require the RESULT line rather than the absence of a failure line. A run that
+          dies before its first check prints neither.
+
+  step_7_report:
+    purpose: Emit the outcome
+    steps:
+      step_report:
+        action: "Emit the outcome using the completion_report template for the terminal state reached"
+
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  critical_steps:
+    step_2_resolve_the_form:
+      enforcement: MUST resolve to a named row id before any file is written
+      verification: The row id is quoted from the catalog index, not invented
+    step_3_copy_the_form:
+      enforcement: MUST start from the form file rather than from a blank document
+      verification: The delivered file's render code is byte-identical to the form it came from
+    step_6_verify:
+      enforcement: MUST read the RESULT line before reporting success
+      verification: The reported assertion counts come from the run output
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "Command Phase 0 verification must have passed"
+      fail_action: STOP and return to the command setup phase
+    H1_required_fields:
+      description: "A target path, a reader question and literal data are all present"
+      fail_action: STOP and collect the missing inputs
+    H2_row_resolved:
+      description: "Exactly one catalog row answers the question"
+      fail_action: STOP, report the gap or offer the tied rows
+    H3_template_first:
+      description: "The delivered file is a copy of a form file"
+      fail_action: STOP. A freehand chart is refused rather than shipped
+    H4_corpus_green:
+      description: "The corpus check prints RESULT: PASSED"
+      fail_action: STOP and repair the delivered file, never the validator
+  soft:
+    S1_colour_ceiling:
+      description: "The data stays inside the declared system's capacity"
+      fail_action: Merge the tail or move to neutral, and record which was done
+    S2_data_ceiling:
+      description: "The data stays inside the row's documented shape"
+      fail_action: Proceed and confirm the file printed its own ceiling notice
+
+circuit_breaker:
+  enabled: true
+  thresholds:
+    failures: 3
+    recovery_s: 60
+    success_to_close: 1
+  states:
+    CLOSED: normal operation
+    OPEN: skip optional steps, complete with warnings
+    HALF_OPEN: test single operation
+
+quality_standards:
+  template_fidelity:
+    minimum: The render code is unchanged from the form it was copied from
+    enforcement: Step 3 copies whole, step 4 edits only the data block
+  colour_discipline:
+    minimum: One system per delivery, applied throughout
+    enforcement: Step 5 selects once, and the corpus check fails a literal outside a palette block
+  reader_value:
+    minimum: The headline states a conclusion the numbers support
+    enforcement: Step 5 writes it, and a person confirms it by opening the file
+
+autonomous_execution:
+  principle: Execute all steps without user approval gates
+  self_validation: Verify outputs at each step before proceeding
+  error_handling: Auto-fix where possible, escalate on hard failures
+  pause_conditions:
+    - Confidence drops below 40%
+    - Two catalog rows answer the question and the data shape does not separate them
+    - The reader's word resolves to a substitution rather than a match, which changes what they get
+    - The data would need a form the corpus deliberately does not draw
+    - The delivered file would need a second colour system
+    - The corpus check fails on a file this run did not touch
+
+completion_report:
+  owner: presentation-contract
+  note: >-
+    Result wording lives only in create-chart-presentation.txt. Render the block named
+    below for the terminal state reached. Do not restate or reword it here.
+  render:
+    delivered: "presentation section 7. SUCCESS OUTPUT"
+    gap: "presentation section 8. GAP OUTPUT"
+    failed: "presentation section 9. FAILURE OUTPUT"
+  status_lines:
+    delivered: "STATUS=OK PATH={target_chart_path}"
+    gap: "STATUS=OK ACTION=gap-reported QUESTION=\"{reader_question}\""
+    failed: "STATUS=FAIL ERROR=\"{error_message}\""
+
+error_recovery:
+  no_row_answers_the_question:
+    action: Report the gap with the rows that were weighed and the question each answers
+    fallback: Never improvise a form. The gap is the answer
+  two_rows_tie:
+    action: Offer both with their data shapes and let the shape you hold decide
+    fallback: Ask the operator which comparison the reader needs
+  data_is_a_description:
+    action: Ask for the literal values or the file that holds them
+    fallback: Report that a chart cannot be built from a described dataset
+  past_a_colour_ceiling:
+    action: Merge the tail into one group or move the delivery to neutral
+    fallback: Report the count and the ceiling, and confirm the file printed its notice
+  corpus_check_fails:
+    action: Repair the delivered file against the template contract rule the check named
+    fallback: Report the failing check name and its assertion output
+  write_failure:
+    action: Check permissions, retry once
+    fallback: Report the target path and the error
+
+termination:
+  after_step: 7
+  message: Chart workflow complete.
+  next_steps:
+    owner: presentation-contract
+    render: "presentation section 10. NEXT STEPS"
+
+rules:
+  required:
+    - "Resolve the question to one catalog row before writing anything"
+    - "Copy a form file whole and change only its data block"
+    - "Apply exactly one colour system per delivery"
+    - "Ship one self-contained file that opens with no install step"
+    - "Read the corpus check RESULT line before reporting success"
+  forbidden:
+    - "Writing a chart freehand when a form for its question exists"
+    - "Copying a template or fragment from an outside chart library"
+    - "Mixing two colour systems in one artifact"
+    - "Typing a colour or a corner value outside a palette block"
+    - "Editing the validator to accept a file it was right to reject"
+    - "Handing over a gallery page instead of a delivery"

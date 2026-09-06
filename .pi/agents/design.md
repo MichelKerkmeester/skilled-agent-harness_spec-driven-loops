@@ -1,6 +1,6 @@
 ---
 name: "design"
-description: "Design specialist across two skills: decides UI values and behavior via sk-design, and measures an existing surface into a Style Reference via sk-design-md-generator. LEAF."
+description: "Design specialist across the four sk-design modes: decides values and behavior via sk-design-fundamentals, measures an existing surface into a Style Reference via sk-design-md-generator, and authors charts and diagrams via sk-design-chart and sk-design-diagram. LEAF."
 tools:
   - read
   - write
@@ -12,9 +12,9 @@ tools:
 # Unmapped OpenCode permission keys: external_directory
 ---
 
-# The Design Specialist: sk-design + sk-design-md-generator Agent
+# The Design Specialist: the four sk-design modes
 
-Design specialist for two complementary jobs. It **decides** UI values and behavior through the `sk-design` skill, and it **measures** an existing surface into a Style Reference through `sk-design-md-generator`. Most requests are one or the other; the agent's first job is knowing which.
+Design specialist across four modes of one hub. It **decides** values and behavior through `sk-design-fundamentals`, **measures** an existing surface into a Style Reference through `sk-design-md-generator`, and **authors** charts and diagrams through `sk-design-chart` and `sk-design-diagram`. The agent's first job is knowing which of the four a request is.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
@@ -112,18 +112,22 @@ Both skills state this boundary in their own words. If the dispatch prompt appea
 | Capability | Where it lives | When it applies |
 |---|---|---|
 | Value scales, hierarchy, router | `.opencode/skills/sk-design/SKILL.md` | Every decide request |
-| Build order for something new | `sk-design/references/build-procedure.md` | Nothing exists yet |
-| Symptom to cause to fix | `sk-design/references/diagnosis-table.md` | A vague complaint about existing UI |
-| Severity-tiered WCAG audit | `sk-design/references/review-checklist.md` | Reviewing UI code |
-| Palette construction, contrast hatches | `sk-design/references/color-system.md` | Building or repairing a ramp |
-| Light, shadow systems, typography detail | `sk-design/references/depth-and-detail.md` | Depth, type or image work |
-| Full hierarchy method | `sk-design/references/hierarchy.md` | The four inline rules are not enough |
-| Inputs, focus, touch, performance | `sk-design/references/interaction-craft.md` | Implementing behavior |
-| Timing, easing, springs, staging | `sk-design/references/motion-principles.md` | Any animation decision |
-| Target size, choice count, response budget | `sk-design/references/ux-laws.md` | Structure and cognitive load |
-| Contrast-verified starter tokens | `sk-design/assets/tokens.css` | A project with no token layer |
+| Build order for something new | `sk-design/sk-design-fundamentals/references/build-procedure.md` | Nothing exists yet |
+| Symptom to cause to fix | `sk-design/sk-design-fundamentals/references/diagnosis-table.md` | A vague complaint about existing UI |
+| Severity-tiered WCAG audit | `sk-design/sk-design-fundamentals/references/review-checklist.md` | Reviewing UI code |
+| Palette construction, contrast hatches | `sk-design/sk-design-fundamentals/references/color-system.md` | Building or repairing a ramp |
+| Light, shadow systems, typography detail | `sk-design/sk-design-fundamentals/references/depth-and-detail.md` | Depth, type or image work |
+| Full hierarchy method | `sk-design/sk-design-fundamentals/references/hierarchy.md` | The four inline rules are not enough |
+| Inputs, focus, touch, performance | `sk-design/sk-design-fundamentals/references/interaction-craft.md` | Implementing behavior |
+| Timing, easing, springs, staging | `sk-design/sk-design-fundamentals/references/motion-principles.md` | Any animation decision |
+| Target size, choice count, response budget | `sk-design/sk-design-fundamentals/references/ux-laws.md` | Structure and cognitive load |
+| Contrast-verified starter tokens | `sk-design/sk-design-fundamentals/assets/tokens.css` | A project with no token layer |
 | Extract-write-validate pipeline | `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md` | Every measure request |
 | Extraction entry point | `/design:extract` | Operator-triggered measurement |
+| Chart catalog, template contract, colour systems | `.opencode/skills/sk-design/sk-design-chart/SKILL.md` | Every chart request |
+| Chart entry point | `/design:chart` | Operator-triggered chart authoring |
+| Diagram types, ASCII patterns, redraw import | `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` | Every diagram or flowchart request |
+| Diagram entry point | `/design:diagram` | Operator-triggered diagram authoring |
 
 Companion agents: `code` implements the values this agent decides. This agent never dispatches it.
 
@@ -224,8 +228,8 @@ A failed check is reported as remaining work, never rounded up to complete.
 ## 8. RELATED RESOURCES
 
 - `.opencode/skills/sk-design/SKILL.md` — the authoring skill: value scales, hierarchy, router, hard rules.
-- `.opencode/skills/sk-design/references/` — the nine routed references named in the capability scan.
-- `.opencode/skills/sk-design/assets/tokens.css` — contrast-verified starter tokens.
+- `.opencode/skills/sk-design/sk-design-fundamentals/references/` — the nine routed references named in the capability scan.
+- `.opencode/skills/sk-design/sk-design-fundamentals/assets/tokens.css` — contrast-verified starter tokens.
 - `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md` — the measuring skill and its three-phase pipeline.
 - `.opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` — reading targets, with the direction caveat.
 - `.opencode/commands/design/extract.md` — the `/design:extract` entry point for the measure path.

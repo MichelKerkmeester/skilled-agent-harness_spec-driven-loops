@@ -47,9 +47,9 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **agent** | `/create:agent <agent_name> [agent_description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
 | **benchmark** | `/create:benchmark <skill-or-mode> <spec-packet> [create\|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Author or update family-keyed benchmark packages |
 | **changelog** | `/create:changelog <spec-folder-or-component> [--nested] [--bump <major\|minor\|patch\|build>] [--release] [:auto\|:confirm]` | Create a global or packet-local changelog entry; topology-aware, with an optional GitHub release |
-| **chart** | `/create:chart <target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral\|ordered\|categorical] [:auto\|:confirm]` | Author a standalone HTML chart from a catalog of 21 forms, one per reader question |
+| **chart** | `/design:chart <target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral\|ordered\|categorical] [:auto\|:confirm]` | Author a standalone HTML chart from a catalog of 21 forms, one per reader question |
 | **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |
-| **diagram** | `/create:diagram <target.html\|target.md> [description\|--import <src>] [--output-format html-svg\|ascii-markdown] [--type <t>] [--format <f>] [:auto\|:confirm]` | Create an HTML/SVG diagram across 27 types, an ASCII/markdown flowchart, or a redraw of a draw.io/Mermaid source |
+| **diagram** | `/design:diagram <target.html\|target.md> [description\|--import <src>] [--output-format html-svg\|ascii-markdown] [--type <t>] [--format <f>] [:auto\|:confirm]` | Create an HTML/SVG diagram across 27 types, an ASCII/markdown flowchart, or a redraw of a draw.io/Mermaid source |
 | **diff** | `/create:diff <target-document \| --before old --after new> [--report out.html] [--view unified\|side-by-side] [:auto\|:confirm]` | Create a self-contained before/after document diff report via the create-diff engine |
 | **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
 | **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
@@ -79,9 +79,9 @@ create/
 ├── agent.md                      # /create:agent command
 ├── benchmark.md                  # /create:benchmark command
 ├── changelog.md                  # /create:changelog command
-├── chart.md                      # /create:chart command
+├── chart.md                      # /design:chart command
 ├── command.md                    # /create:command command
-├── diagram.md                    # /create:diagram command
+├── diagram.md                    # /design:diagram command
 ├── diff.md                       # /create:diff command
 ├── feature-catalog.md            # /create:feature-catalog command
 ├── manual-testing-playbook.md    # /create:manual-testing-playbook command
@@ -160,10 +160,10 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 /create:changelog sk-doc --bump minor :confirm
 
 # Author a standalone HTML chart from the form catalog
-/create:chart revenue-by-region.html "revenue compared across regions" :auto
+/design:chart revenue-by-region.html "revenue compared across regions" :auto
 
 # Redraw an existing draw.io source as an HTML/SVG diagram
-/create:diagram architecture.html --import legacy-architecture.drawio :confirm
+/design:diagram architecture.html --import legacy-architecture.drawio :confirm
 
 # Review what changed in a locally edited document
 /create:diff proposal.md --report proposal-diff.html :auto

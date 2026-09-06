@@ -144,14 +144,14 @@
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
-        "sk-create-diagram"
+        "sk-design-diagram"
       ],
       "gold": {
         "expectedIntents": [
-          "sk-create-diagram"
+          "sk-design-diagram"
         ],
         "expectedResources": [
-          "sk-create-diagram/SKILL.md"
+          "sk-design-diagram/SKILL.md"
         ]
       }
     },
@@ -161,14 +161,14 @@
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
-        "sk-create-chart"
+        "sk-design-chart"
       ],
       "gold": {
         "expectedIntents": [
-          "sk-create-chart"
+          "sk-design-chart"
         ],
         "expectedResources": [
-          "sk-create-chart/SKILL.md"
+          "sk-design-chart/SKILL.md"
         ]
       }
     },

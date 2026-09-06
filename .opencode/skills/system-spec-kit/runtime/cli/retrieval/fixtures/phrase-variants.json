@@ -1,5 +1,5 @@
 {
-  "manifestHash": "237de51493a6a0413ebf338a3649f9d3307dc4b2e07cdc10c33c92e578aede7c",
+  "manifestHash": "52871008b82d1355ca498ba6c01acd34962541e7136ca168c217959327b2c390",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21687,6 +21687,9 @@
     "closeout verification": [
       "closeout verification"
     ],
+    "closure decisions": [
+      "closure decisions"
+    ],
     "closure document placeholder": [
       "closure document placeholder"
     ],
@@ -25139,6 +25142,15 @@
     "commits since 036 was published": [
       "commits since 036 was published"
     ],
+    "committed pair criterion": [
+      "committed pair criterion"
+    ],
+    "committed pair doctor check": [
+      "committed pair doctor check"
+    ],
+    "committed pair mismatch": [
+      "committed pair mismatch"
+    ],
     "common evaluator canary promotion schema plan": [
       "common evaluator canary promotion schema plan"
     ],
@@ -26096,6 +26108,9 @@
     ],
     "concept intersection": [
       "concept intersection"
+    ],
+    "concept lane removal": [
+      "concept lane removal"
     ],
     "concept level novelty": [
       "concept-level novelty"
@@ -28566,7 +28581,6 @@
       "create dataview query"
     ],
     "create diagram": [
-      "/create:diagram",
       "create diagram"
     ],
     "create diagram auto confirm mode": [
@@ -36685,6 +36699,9 @@
     "design context loading contract": [
       "design context loading contract"
     ],
+    "design diagram": [
+      "/design:diagram"
+    ],
     "design extract command rename": [
       "design extract command rename"
     ],
@@ -39604,6 +39621,9 @@
     ],
     "doctor commands verify and ux tasks": [
       "doctor commands verify and ux tasks"
+    ],
+    "doctor committed pair check": [
+      "doctor committed pair check"
     ],
     "doctor confirm dry run dq": [
       "doctor confirm dry-run dq"
@@ -42725,6 +42745,12 @@
     ],
     "excluded for memory z archive": [
       "EXCLUDED_FOR_MEMORY z_archive"
+    ],
+    "exclusion record parity": [
+      "exclusion record parity"
+    ],
+    "exclusion record tasks": [
+      "exclusion record tasks"
     ],
     "executable edge route parsing": [
       "executable edge route parsing"
@@ -46228,6 +46254,9 @@
     ],
     "flowchart example widening": [
       "flowchart example widening"
+    ],
+    "flowchart fixture supersession": [
+      "flowchart fixture supersession"
     ],
     "flowchart full deprecation": [
       "flowchart full deprecation"
@@ -78969,6 +78998,9 @@
     "reject out of scope council write": [
       "reject out-of-scope council write"
     ],
+    "rejected edges gate": [
+      "rejected edges gate"
+    ],
     "rejected idea reset": [
       "rejected idea reset"
     ],
@@ -81735,6 +81767,12 @@
     "retrieval diagnostics complete": [
       "retrieval diagnostics complete"
     ],
+    "retrieval drift remediation": [
+      "retrieval drift remediation"
+    ],
+    "retrieval drift reproduction": [
+      "retrieval drift reproduction"
+    ],
     "retrieval evaluation research session": [
       "retrieval evaluation research session"
     ],
@@ -81812,6 +81850,18 @@
     ],
     "retrieval regression gate": [
       "retrieval regression gate"
+    ],
+    "retrieval remediation criteria": [
+      "retrieval remediation criteria"
+    ],
+    "retrieval remediation plan": [
+      "retrieval remediation plan"
+    ],
+    "retrieval remediation summary": [
+      "retrieval remediation summary"
+    ],
+    "retrieval remediation tasks": [
+      "retrieval remediation tasks"
     ],
     "retrieval replacement plan": [
       "retrieval replacement plan"
@@ -81924,8 +81974,23 @@
     "retroactive time log": [
       "retroactive time log"
     ],
+    "retrofit convention moved to ops": [
+      "retrofit convention moved to ops"
+    ],
+    "retrofit convention ops move": [
+      "retrofit convention ops move"
+    ],
+    "retrofit convention relocation": [
+      "retrofit convention relocation"
+    ],
     "retrofit diagnostics schema": [
       "retrofit diagnostics schema"
+    ],
+    "retrofit move tasks": [
+      "retrofit move tasks"
+    ],
+    "retrofit relocation plan": [
+      "retrofit relocation plan"
     ],
     "retry manager drain": [
       "retry manager drain"
@@ -82610,6 +82675,9 @@
     ],
     "ripgrep search system": [
       "ripgrep search system"
+    ],
+    "ripgrep search system confirmed findings": [
+      "ripgrep search system confirmed findings"
     ],
     "ripgrep search system findings": [
       "ripgrep search system findings"
@@ -89435,9 +89503,6 @@
     "sk create diagram scope boundary": [
       "sk-create-diagram scope boundary"
     ],
-    "sk create diagram scripts": [
-      "sk-create-diagram scripts"
-    ],
     "sk create diagram skill md": [
       "sk-create-diagram SKILL.md"
     ],
@@ -89776,6 +89841,12 @@
     ],
     "sk design design motion plan": [
       "sk-design design-motion plan"
+    ],
+    "sk design diagram": [
+      "sk-design-diagram"
+    ],
+    "sk design diagram scripts": [
+      "sk-design-diagram scripts"
     ],
     "sk design dissolution routing": [
       "sk-design dissolution routing"
@@ -97343,6 +97414,9 @@
     "strict fast mode env": [
       "strict fast-mode env"
     ],
+    "strict gate invocation": [
+      "strict gate invocation"
+    ],
     "strict gate too strict": [
       "strict gate too strict"
     ],
@@ -101608,6 +101682,9 @@
     "trigger index behavior": [
       "trigger index behavior"
     ],
+    "trigger index committed pair": [
+      "trigger index committed pair"
+    ],
     "trigger index determinism regenerate": [
       "trigger index determinism regenerate"
     ],
@@ -105032,8 +105109,8 @@
     "what does create with human voice do": [
       "what does create-with-human-voice do"
     ],
-    "what does sk create chart do": [
-      "what does sk-create-chart do"
+    "what does sk design chart do": [
+      "what does sk-design-chart do"
     ],
     "what does spec kit do": [
       "what does spec kit do"
@@ -105046,6 +105123,9 @@
     ],
     "what shipped": [
       "what shipped"
+    ],
+    "what shipped retrieval drift": [
+      "what shipped retrieval drift"
     ],
     "when does a folder need code md": [
       "when does a folder need code.md"

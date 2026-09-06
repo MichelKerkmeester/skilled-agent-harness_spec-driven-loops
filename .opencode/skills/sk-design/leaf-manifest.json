@@ -44,8 +44,8 @@
         "references/color-system.md",
         "references/template-contract.md"
       ],
-      "packet": "sk-create-chart",
-      "workflowMode": "sk-create-chart"
+      "packet": "sk-design-chart",
+      "workflowMode": "sk-design-chart"
     },
     {
       "leaves": [
@@ -142,8 +142,8 @@
         "references/types/type-tree.md",
         "references/types/type-venn.md"
       ],
-      "packet": "sk-create-diagram",
-      "workflowMode": "sk-create-diagram"
+      "packet": "sk-design-diagram",
+      "workflowMode": "sk-design-diagram"
     },
     {
       "leaves": [

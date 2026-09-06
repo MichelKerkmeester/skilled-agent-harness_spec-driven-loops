@@ -46,7 +46,7 @@ The dispatch table rows, in priority order (`resolveDispatch` returns the first 
 | Priority | Label | Fires when | Checker | Surface rule |
 |---|---|---|---|---|
 | 1 | `comment-hygiene` | In-scope source file (`.ts`/`.tsx`/`.js`/`.mjs`/`.cjs`/`.py`/`.sh`/`.bash`/`.jsonc`) outside `dist`/`node_modules`/`.git` | `check-comment-hygiene.sh` | `exit1-with-stdout` (exit 1 AND non-empty stdout) |
-| 2 | `flowchart` | `.md` file whose name contains "flowchart" or lives under `sk-create-diagram/ascii-patterns/` | `validate-flowchart.sh` | `exit1` |
+| 2 | `flowchart` | `.md` file whose name contains "flowchart" or lives under `sk-design-diagram/ascii-patterns/` | `validate-flowchart.sh` | `exit1` |
 | 3 | `frontmatter-versions` | Versioned skill doc under `.opencode/skills/` (`SKILL.md`, `README.md` adjacent to a `SKILL.md`, or any file under `references`/`assets`/`feature-catalog`/`manual-testing-playbook`) | `check-frontmatter-versions.sh --skill <name>` | `exit1` (deduped per skill per session) |
 | 4 | `placeholders` | Spec doc (`spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`decision-record.md`) under `specs/` | `check-placeholders.sh <dir>` | `exit1` |
 | 5 | `wikilinks` | `.md` under `.opencode/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `check-links.sh <skill dir>` | `exit1` |

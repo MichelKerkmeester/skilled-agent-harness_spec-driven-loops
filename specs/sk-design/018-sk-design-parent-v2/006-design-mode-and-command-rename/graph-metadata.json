@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,15 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/commands/create/chart.md",
+      ".opencode/commands/design/chart.md",
+      ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/agents/design.md",
-      ".opencode/agents/markdown.md"
+      ".opencode/agents/markdown.md",
+      ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      "scratch/deferred-form-count.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      "scratch/baseline-before-rename.txt"
     ],
     "entities": [
       {
@@ -93,19 +97,19 @@
       {
         "name": "chart.md",
         "kind": "doc",
-        "path": ".opencode/commands/create/chart.md",
+        "path": ".opencode/commands/design/chart.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
         "source": "derived"
       },
       {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -118,6 +122,30 @@
         "name": "markdown.md",
         "kind": "doc",
         "path": ".opencode/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deferred-form-count.md",
+        "kind": "doc",
+        "path": "scratch/deferred-form-count.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-before-rename.txt",
+        "kind": "file",
+        "path": "scratch/baseline-before-rename.txt",
         "source": "derived"
       },
       {
@@ -163,45 +191,21 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Technical Context Chart",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Rename",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Chart and diagram live under `sk-design` but still carry `sk-create-` in their mode names and",
     "created_at": "2026-09-06T16:22:19Z",
-    "last_save_at": "2026-09-06T16:27:33.232Z",
+    "last_save_at": "2026-09-06T16:44:37.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d72c9992242d797b80ad01924958beebe12b2398320de178070026e0ae06ba67",
+    "source_fingerprint": "sha256:aa88bbe9118f17df3f026bf65d3fc55c25261c84570cab048a7dcefba0417006",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ffb1ff6e1430ede1fb4c3761c999c6a22967c89f295b7b836088d6c13bfc406",
-      "plan.md": "0b13cfedb300490e1d42321278f3b60ec40a748572ea10f10b5e20c53b29ee10",
-      "tasks.md": "fac66bd8132f5f5028dbdd730cada5763bf7a0d71f34d1701f39ec299413612d",
-      "implementation-summary.md": "c1f86262f557cd98c0fbcf9938e11e542f45aada601c6873d09c5401d4d8ac65"
+      "spec.md": "f0821342081c39e60ac08081818dcb4ee0266ef7aac8bf3222814e9ae191b65c",
+      "plan.md": "6279a360aa088d617e1f47de8ded07d41dad35b858384ebd45534bea441a4cbb",
+      "tasks.md": "26c913a42bea877b6e99f303c0bfc0468c1ba1e9d1762664d50694b7790b1396",
+      "implementation-summary.md": "77291dccc67a661e676f803f849aa008c7e1be33e6d34539937f07d50eb68c91"
     },
     "last_active_at": null
   }

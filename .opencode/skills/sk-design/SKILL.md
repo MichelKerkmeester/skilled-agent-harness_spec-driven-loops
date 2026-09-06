@@ -37,8 +37,8 @@ which picks the resources a mode actually loads.
 |------|------|--------------------------|
 | `sk-design-fundamentals` | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
 | `sk-design-md-generator` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, style reference, from a url |
-| `sk-create-chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
-| `sk-create-diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
+| `sk-design-chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
+| `sk-design-diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
 
 Four modes. Fundamentals and the generator are complements rather than alternatives: one decides values, the other reads values back
 off something that already exists. A request that names an existing surface belongs to the
@@ -63,8 +63,8 @@ request rather than by reading a row.
 | `ROUTER.md` | Stage two: which resources a chosen mode loads |
 | `sk-design-fundamentals/` | The values mode, and everything it owns |
 | `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
-| `sk-create-chart/` | The chart corpus, its checker and its gallery |
-| `sk-create-diagram/` | The diagram forms and their validator |
+| `sk-design-chart/` | The chart corpus, its checker and its gallery |
+| `sk-design-diagram/` | The diagram forms and their validator |
 | `command-metadata.json` | The commands this hub owns, and which mode owns each |
 
 ---

@@ -56,16 +56,16 @@ expected_resources:
   - sk-create-feature-catalog/references/README.md
   - sk-create-feature-catalog/references/common-pitfalls.md
   - sk-create-feature-catalog/references/examples.md
-  - sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md
-  - sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
-  - sk-create-diagram/assets/ascii-patterns/parallel-execution.md
-  - sk-create-diagram/assets/ascii-patterns/simple-workflow.md
-  - sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md
-  - sk-create-diagram/assets/ascii-patterns/user-onboarding.md
-  - sk-create-diagram/references/ascii-format/README.md
-  - sk-create-diagram/references/ascii-format/notation-and-validator.md
-  - sk-create-diagram/references/ascii-format/pattern-selection.md
-  - sk-create-diagram/references/ascii-format/worked-example.md
+  - sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md
+  - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
+  - sk-design-diagram/assets/ascii-patterns/parallel-execution.md
+  - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
+  - sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md
+  - sk-design-diagram/assets/ascii-patterns/user-onboarding.md
+  - sk-design-diagram/references/ascii-format/README.md
+  - sk-design-diagram/references/ascii-format/notation-and-validator.md
+  - sk-design-diagram/references/ascii-format/pattern-selection.md
+  - sk-design-diagram/references/ascii-format/worked-example.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
   - sk-create-manual-testing-playbook/references/README.md
@@ -115,7 +115,7 @@ expected_resources:
   - sk-create-skill/references/shared/validation-and-packaging.md
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/references/skill/examples-and-maintenance.md
-expected_workflow_mode: sk-create-agent+sk-create-benchmark+sk-create-changelog+sk-create-command+sk-create-diff+sk-create-feature-catalog+sk-create-diagram+sk-create-manual-testing-playbook+sk-create-quality-control+sk-create-readme+sk-create-skill+sk-create-skill-parent
+expected_workflow_mode: sk-create-agent+sk-create-benchmark+sk-create-changelog+sk-create-command+sk-create-diff+sk-create-feature-catalog+sk-design-diagram+sk-create-manual-testing-playbook+sk-create-quality-control+sk-create-readme+sk-create-skill+sk-create-skill-parent
 full_inventory_intent: true
 expected_leaf_resources:
   - workflow_mode: sk-create-agent
@@ -226,25 +226,25 @@ expected_leaf_resources:
     leaf_resource_id: references/common-pitfalls.md
   - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/examples.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/approval-workflow-loops.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/parallel-execution.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/system-architecture-swimlane.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/user-onboarding.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: references/README.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: references/notation-and-validator.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: references/pattern-selection.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: references/worked-example.md
   - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: assets/manual-testing-playbook-snippet-template.md

@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** `sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename`
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given two mode trees carrying the wrong hub's prefix, When they are renamed, Then git records renames rather than delete-plus-add | `git diff --cached --name-status -M`: 249 mode files, 8 command files and 2 docs all `R` | Met | - |
+| AC-002 | REQ-002 | Given the old command paths, When the move lands, Then `/design:chart` and `/design:diagram` resolve and `/create:chart` and `/create:diagram` do not exist | Both new files present under `.opencode/commands/design/`; both old paths absent; `command-metadata.json` binds each to its mode | Met | - |
+| AC-003 | REQ-003 | Given the markdown agent advertising every `/create:*` command, When the rebind lands, Then the design agent claims both and the markdown agent claims neither | Both agents rewritten across five runtime forms each; `check-agent-mirror-sync` reports all mirrors in sync | Met | - |
+| AC-004 | REQ-004 | Given a guard that refuses a hub whose inputs do not compile, When it runs, Then every hub reports fresh | `compiled-route-guard`: all hubs fresh, serving matches inputs and the runtime matches its source | Met | - |
+| AC-005 | REQ-005 | Given the pre-rename replay, When the sixteen phrases are replayed after the rename, Then no phrase is below its baseline | Replay at generation 650 byte-identical to `scratch/baseline-before-rename.txt`; `sk-design-chart` and `sk-design-diagram` themselves route at 0.9139, above the 0.82 the old names scored | Met | - |
+| AC-006 | REQ-006 | Given 165 live references and 527 historical ones, When the sweep runs, Then no live file resolves to an old name and no historical record is rewritten | Live sweep clean outside generated retrieval fixtures; 527 `specs/` files and 8 benchmark reports left as written, after a mid-phase over-sweep of the reports was caught and reverted | Met | - |
 
 ### Status values
 
@@ -79,8 +84,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-005 carried this phase: a rename is only safe if nothing stops arriving, and the replay came back
+byte-identical. AC-006 is the one that nearly failed — a mid-phase sweep rewrote eight benchmark
+reports into describing a run that never happened, and was caught and reverted. Consciously left out:
+the four documents inside the chart mode still claiming twenty-one forms, recorded in
+`scratch/deferred-form-count.md` for the mode's owner, and the retrieval fixtures belonging to another
+packet's test corpus.
 <!-- /ANCHOR:closure -->

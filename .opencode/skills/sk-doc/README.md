@@ -132,7 +132,7 @@ The scripts own the deterministic work. `extract_structure.py` parses, measures,
 
 Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build an install guide, a feature catalog, a testing playbook, a flowchart, a changelog or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
-You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:diagram`, `/create:readme`, `/create:changelog` and `/create:diff`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/design:diagram`, `/create:readme`, `/create:changelog` and `/create:diff`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
 Skip sk-doc when the task belongs to a neighbor:
 
@@ -177,7 +177,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which `/create:*` command do I use?**
 
-A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/create:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/create:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
+A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/design:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/design:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
 
 ---
 
@@ -218,7 +218,7 @@ The skill ships the checks that prove a document is ready.
 | [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
 | [`sk-create-diff/README.md`](sk-create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
 | [`sk-create-diff/references/workflow.md`](sk-create-diff/references/workflow.md) | The sk-create-diff capture/compare workflow and CLI reference |
-| [`sk-create-chart/README.md`](sk-create-chart/README.md) | Standalone HTML data charts: twenty-one forms across six families, the colour system and the corpus validator |
+| [`sk-design-chart/README.md`](sk-design-chart/README.md) | Standalone HTML data charts: twenty-one forms across six families, the colour system and the corpus validator |
 | [`sk-create-frontmatter/README.md`](sk-create-frontmatter/README.md) | Frontmatter field contracts by document class, the description budget and the 4-part version standard |
 | [`sk-create-repo-rule/README.md`](sk-create-repo-rule/README.md) | Creating, revising and retiring a repository rule, and the router that indexes them |
 | [`sk-create-changelog/README.md`](sk-create-changelog/README.md) | Changelog entries and the version story a skill tells about itself |
@@ -228,5 +228,5 @@ The skill ships the checks that prove a document is ready.
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
 | [`sk-create-skill/assets/skill/`](./sk-create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`sk-create-diagram/assets/ascii-patterns/`](./sk-create-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`sk-design-diagram/assets/ascii-patterns/`](./sk-design-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
 | [`changelog/`](./changelog/) | Per-release entries, one file per version |

@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 20,
+    "commandMetadata": 21,
     "allowList": 8,
-    "generated": 28,
+    "generated": 29,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -95,40 +95,10 @@
       }
     },
     {
-      "id": "command-create-chart",
-      "command": "/create:chart",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-create-chart",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
       "id": "command-create-command",
       "command": "/create:command",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-command",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-create-diagram",
-      "command": "/create:diagram",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-create-diagram",
       "source": ".opencode/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -447,6 +417,51 @@
       "skillId": "system-deep-loop",
       "ownerMode": "skill-benchmark",
       "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-design-chart",
+      "command": "/design:chart",
+      "skillId": "sk-design",
+      "ownerMode": "sk-design-chart",
+      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-design-diagram",
+      "command": "/design:diagram",
+      "skillId": "sk-design",
+      "ownerMode": "sk-design-diagram",
+      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-design-extract",
+      "command": "/design:extract",
+      "skillId": "sk-design",
+      "ownerMode": "sk-design-md-generator",
+      "source": ".opencode/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false

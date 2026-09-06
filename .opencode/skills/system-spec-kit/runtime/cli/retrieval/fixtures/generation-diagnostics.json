@@ -1,12 +1,12 @@
 {
   "counts": {
-    "duplicate-phrase": 63,
+    "duplicate-phrase": 62,
     "missing-frontmatter": 6938,
     "non-yaml-frontmatter": 1,
-    "ok": 13535,
+    "ok": 13557,
     "valid-empty-list": 7943
   },
-  "documentsScanned": 28480,
+  "documentsScanned": 28501,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "237de51493a6a0413ebf338a3649f9d3307dc4b2e07cdc10c33c92e578aede7c",
+  "manifestHash": "52871008b82d1355ca498ba6c01acd34962541e7136ca168c217959327b2c390",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -12505,434 +12505,427 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/SKILL.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/changelog/v1.0.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/changelog/v1.1.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.1.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/changelog/v1.2.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.2.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/corpus-integrity/a-chart-that-draws-nothing.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/corpus-integrity/a-chart-that-draws-nothing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/corpus-integrity/catalog-resolves-both-ways.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/corpus-integrity/catalog-resolves-both-ways.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/delivery-and-routing/form-choice-and-the-diagram-boundary.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/form-choice-and-the-diagram-boundary.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/delivery-and-routing/opens-with-no-build-step.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/opens-with-no-build-step.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/reading-the-chart/axis-ladder-fits-the-tallest-mark.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/reading-the-chart/axis-ladder-fits-the-tallest-mark.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/reading-the-chart/headline-agrees-with-the-data.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/reading-the-chart/headline-agrees-with-the-data.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-chart/manual-testing-playbook/reading-the-chart/nothing-runs-past-the-drawing-edge.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/reading-the-chart/nothing-runs-past-the-drawing-edge.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/SKILL.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--export-guidance/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--hub-registration/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--mermaid-import/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--onboarding-flow/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--primitive-variants/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/README.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/failed-runs.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/failed-runs.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/findings-and-recommendations.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/findings-and-recommendations.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/skill-benchmark-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/source.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--type-selection-and-routing/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 9,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/feature-catalog/diagram-generation/type-selection-and-routing.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"create diagram\""
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/command-and-hub-integration/create-diagram-command.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/command-and-hub-integration/hub-registration.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/command-and-hub-integration/design-diagram-command.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/diagram-generation/editorial-style-and-connectors.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/command-and-hub-integration/hub-registration.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/editorial-style-and-connectors.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/diagram-generation/primitive-variants.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/diagram-generation/type-selection-and-routing.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/primitive-variants.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/import-export/drawio-import.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/type-selection-and-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/import-export/export-guidance.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/import-export/drawio-import.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/import-export/mermaid-import.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/import-export/export-guidance.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md",
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/import-export/mermaid-import.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -99055,6 +99048,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/007-close-inherited-failures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/scratch",
       "reason": "excluded directory"
     },
@@ -101403,6 +101408,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/scratch",
       "reason": "excluded directory"
     },
@@ -101420,10 +101429,6 @@
     },
     {
       "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation/scratch",
       "reason": "excluded directory"
     },
     {

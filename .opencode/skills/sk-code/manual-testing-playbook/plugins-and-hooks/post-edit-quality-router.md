@@ -231,7 +231,7 @@ check, and `.claude/settings.json` wiring).
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
   - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
-  - `.opencode/skills/sk-design/sk-create-diagram/scripts/validate-flowchart.sh`
+  - `.opencode/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh`
   - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
   - `.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh`
   - `.opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh`
@@ -332,7 +332,7 @@ Checker-path existence check (all six canonical paths `post-edit-router.cjs` dis
 
 ```text
 OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
-OK  .opencode/skills/sk-design/sk-create-diagram/scripts/validate-flowchart.sh
+OK  .opencode/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh
 OK  .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
 OK  .opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh
 OK  .opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh

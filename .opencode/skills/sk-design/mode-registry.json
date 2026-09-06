@@ -86,7 +86,7 @@
       }
     },
     {
-      "workflowMode": "sk-create-diagram",
+      "workflowMode": "sk-design-diagram",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
       "toolSurface": {
@@ -104,10 +104,10 @@
         "mutatesWorkspace": true,
         "bashAllowlist": []
       },
-      "packet": "sk-create-diagram",
-      "packetSkillName": "sk-create-diagram",
+      "packet": "sk-design-diagram",
+      "packetSkillName": "sk-design-diagram",
       "grandfatheredFolderMismatch": false,
-      "command": "/create:diagram",
+      "command": "/design:diagram",
       "aliases": [
         "create diagram",
         "diagram",
@@ -142,7 +142,7 @@
       }
     },
     {
-      "workflowMode": "sk-create-chart",
+      "workflowMode": "sk-design-chart",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
       "toolSurface": {
@@ -160,10 +160,10 @@
         "mutatesWorkspace": true,
         "bashAllowlist": []
       },
-      "packet": "sk-create-chart",
-      "packetSkillName": "sk-create-chart",
+      "packet": "sk-design-chart",
+      "packetSkillName": "sk-design-chart",
       "grandfatheredFolderMismatch": false,
-      "command": "/create:chart",
+      "command": "/design:chart",
       "aliases": [
         "create a chart",
         "make a chart",

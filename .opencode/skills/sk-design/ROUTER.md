@@ -54,13 +54,13 @@ RESOURCE_MAP = {
         "sk-design-fundamentals/references/diagnosis-table.md",
     ],
     "CHART": [
-        "sk-create-chart/references/catalog.md",
-        "sk-create-chart/references/color-system.md",
-        "sk-create-chart/references/template-contract.md"
+        "sk-design-chart/references/catalog.md",
+        "sk-design-chart/references/color-system.md",
+        "sk-design-chart/references/template-contract.md"
     ],
     "FLOWCHART": [
-        "sk-create-diagram/assets/ascii-patterns/simple-workflow.md",
-        "sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md"
+        "sk-design-diagram/assets/ascii-patterns/simple-workflow.md",
+        "sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md"
     ],
     "EXTRACT": [
         "sk-design-md-generator/references/extraction-workflow.md",

@@ -7,8 +7,8 @@
     "tieBreak": [
       "sk-design-md-generator",
       "sk-design-fundamentals",
-      "sk-create-chart",
-      "sk-create-diagram"
+      "sk-design-chart",
+      "sk-design-diagram"
     ],
     "outcomes": {
       "single": "one dominant mode, load it",
@@ -36,22 +36,22 @@
         "sk-design-md-generator/SKILL.md"
       ]
     },
-    "sk-create-diagram": {
+    "sk-design-diagram": {
       "weight": 3,
       "classes": [
         "create-diagram-aliases"
       ],
       "resources": [
-        "sk-create-diagram/SKILL.md"
+        "sk-design-diagram/SKILL.md"
       ]
     },
-    "sk-create-chart": {
+    "sk-design-chart": {
       "weight": 3,
       "classes": [
         "create-chart-aliases"
       ],
       "resources": [
-        "sk-create-chart/SKILL.md"
+        "sk-design-chart/SKILL.md"
       ]
     }
   },

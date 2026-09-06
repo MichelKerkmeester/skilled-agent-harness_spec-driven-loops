@@ -2,15 +2,15 @@
 id: SD-H05
 title: 'Holdout — FLOWCHART via natural phrasing'
 description: "Routing-gold scenario SD-H05: Holdout — FLOWCHART via natural phrasing."
-expected_intent: sk-create-diagram
+expected_intent: sk-design-diagram
 expected_resources:
-  - sk-create-diagram/assets/ascii-patterns/simple-workflow.md
-  - sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
-expected_workflow_mode: sk-create-diagram
+  - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
+  - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
+expected_workflow_mode: sk-design-diagram
 expected_leaf_resources:
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
 stage: holdout
 version: 2.1.0.9
@@ -37,11 +37,11 @@ intent survives without its keyword present.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm the router selects `sk-create-diagram` for a keyword-blind phrasing
+- Objective: confirm the router selects `sk-design-diagram` for a keyword-blind phrasing
 - Prompt: `Sketch the approval process as a text diagram that shows each decision branch and where it loops back.`
-- Expected signals: intent resolves to `sk-create-diagram`; expected resources load
+- Expected signals: intent resolves to `sk-design-diagram`; expected resources load
 - Desired user-visible outcome: the router trace names the expected intent and resources
-- Pass/fail: PASS when the routed intent matches `sk-create-diagram`; FAIL on a wrong intent
+- Pass/fail: PASS when the routed intent matches `sk-design-diagram`; FAIL on a wrong intent
 
 ---
 

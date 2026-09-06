@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename"
     last_updated_at: "2026-09-06T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the phase directive for the mode and command rename"
-    next_safe_action: "Capture the sixteen-phrase baseline, then rename both mode directories as git renames"
+    recent_action: "Renamed both modes and both commands and rebound them to the design agent"
+    next_safe_action: "Run phase 007: move the four playbook fixtures onto the renamed modes"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/ROUTER.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-018-sk-design-parent-v2"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -94,9 +94,21 @@ Both modes and both commands take the hub's name; the old command paths are remo
 
 ### Progress
 
-Planned. Not started.
+Done. 249 mode files, 8 command files and 2 docs moved as renames; 138 live reference files rewritten;
+every generated artifact regenerated. Replay at generation 650 byte-identical to the pre-rename
+capture.
 
 ### Deviations and findings
 
-None yet.
+- **The design agent had nine dead reference paths.** Its capability table still pointed at
+  `sk-design/references/*`, which moved into the fundamentals mode during the hub conversion. No gate
+  reported it; it surfaced only because the rename opened the file. Fixed here.
+- **The command-metadata choreography paths are not covered by a name sweep.** The fleet gate caught
+  two asset paths that still named the old command family after every textual sweep had passed.
+- **A mid-phase sweep rewrote eight benchmark reports and was reverted.** They record runs against a
+  tree that was named differently; rewriting them describes a run that never happened. Verified
+  byte-identical to `HEAD` after the revert.
+- **The new names score higher than the old ones.** `sk-design-chart` and `sk-design-diagram` reach
+  0.9139, where `sk-create-chart` reached 0.82. A hub-consistent name is worth advisor score, which
+  neither phase 004 nor this phase's own plan predicted.
 <!-- /ANCHOR:log -->

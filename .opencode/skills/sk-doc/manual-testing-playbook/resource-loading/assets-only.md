@@ -3,15 +3,15 @@ id: SD-005
 title: 'FLOWCHART intent loads only assets/ascii-patterns/*'
 description: "This scenario validates FLOWCHART assets-only resource loading for SD-005."
 stage: routing
-expected_intent: sk-create-diagram
+expected_intent: sk-design-diagram
 expected_resources:
-  - sk-create-diagram/assets/ascii-patterns/simple-workflow.md
-  - sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
-expected_workflow_mode: sk-create-diagram
+  - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
+  - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
+expected_workflow_mode: sk-design-diagram
 expected_leaf_resources:
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
-  - workflow_mode: sk-create-diagram
+  - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
 version: 2.1.0.20
 ---
