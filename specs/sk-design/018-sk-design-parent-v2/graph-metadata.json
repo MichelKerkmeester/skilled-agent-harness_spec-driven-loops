@@ -8,7 +8,10 @@
     "sk-design/018-sk-design-parent-v2/002-hub-and-fundamentals",
     "sk-design/018-sk-design-parent-v2/003-md-generator-as-mode",
     "sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover",
-    "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof"
+    "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof",
+    "sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename",
+    "sk-design/018-sk-design-parent-v2/007-close-inherited-failures",
+    "sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui"
   ],
   "manual": {
     "depends_on": [],
@@ -142,17 +145,17 @@
     ],
     "causal_summary": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-09-06T15:52:57.365Z",
+    "last_save_at": "2026-09-06T16:26:56.395Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:09e557c13caec9180ae4da828874fc887084527ec8c52afb9b7f124f6c840401",
+    "source_fingerprint": "sha256:46f1f1c5fae4aa00a7834a7fc351525ce153d713056750303c6ee6861ec5837e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4af4988be8023ef7df169b0c29e2b939ff68ac97de726a77d97ad2c81343f454"
+      "spec.md": "15192f65e820070c49e7d350bf2d3cea4f5600946eda5736a943eba4dea090c7"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-06T15:29:55.408Z"

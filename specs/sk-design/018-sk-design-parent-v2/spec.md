@@ -167,18 +167,29 @@ path and matches by exact blob hash.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-sk-create-chart/` | The chart corpus packet, relocated from `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart`. Not authored here: moved | Pending |
-| 2 | `002-hub-and-fundamentals/` | `sk-design` becomes a hub with one mode, built from content the root already owns | Pending |
-| 3 | `003-md-generator-as-mode/` | The md generator returns as a mode, 7,946 files moved as renames | Pending |
-| 4 | `004-chart-and-diagram-cutover/` | Chart and diagram leave `sk-doc` for `sk-design`, both hubs edited together | Pending |
-| 5 | `005-closure-and-routing-proof/` | The baseline replayed from the final state, the daemon rebuilt, the packet closed | Pending |
+| 1 | `001-sk-create-chart/` | The chart corpus packet, filed under the hub that owns its skill. Not authored here: moved | Complete |
+| 2 | `002-hub-and-fundamentals/` | `sk-design` becomes a hub with one mode, built from content the root already owns | Complete |
+| 3 | `003-md-generator-as-mode/` | The md generator returns as a mode, 7,942 files moved as renames | Complete |
+| 4 | `004-chart-and-diagram-cutover/` | Chart and diagram leave `sk-doc` for `sk-design`, both hubs edited together | Complete |
+| 5 | `005-closure-and-routing-proof/` | The baseline replayed from the closing state, the daemon rebuilt, the packet measured | Complete |
+| 6 | `006-design-mode-and-command-rename/` | The two moved modes take the hub's name and their commands move to the `/design:` surface, bound to the design agent | Planned |
+| 7 | `007-close-inherited-failures/` | Every gate this packet left red closes: four playbook fixtures, a scenario with no criteria, two malformed spec documents | Planned |
+| 8 | `008-fundamentals-beyond-ui/` | Fundamentals stops being a UI-only skill; slide decks, print and document surfaces are first-class | Planned |
+
+### Two constraints this packet reversed on operator instruction
+
+Phase 004 decided to keep the `sk-create-` prefix under `sk-design`, recorded as its ADR-002, and the
+packet goal carried "do not rename modes or commands" as a binding rule. The operator has since
+directed both renames. Phase 006 carries them, and records the reversal rather than quietly dropping
+the earlier decision: the reasoning in 004 was cost-versus-benefit, and the operator has decided the
+legibility is worth the cost.
 
 ### Execution order is not the numbering
 
 The numbering reads in a sensible order; the work runs in another, because each step must land on a
 tree the previous one left green.
 
-**002, then 003, then 004, then 001, then 005.**
+**002, then 003, then 004, then 001, then 005, then 006, then 007, then 008.**
 
 `002` first because it is the smallest possible hub, assembled from content the root already holds,
 which makes every later step "add a mode to a shipped hub" rather than "author a hub while moving
@@ -193,6 +204,10 @@ moved yet.
 | `003` | `004` | The md generator resolves as a mode and its two phrases match baseline | Stage-two replay, `skill_graph_validate` clean, its own test suite from the new path |
 | `004` | `001` | Chart and diagram phrases name `sk-design`, and `sk-doc` no longer claims them | Phrase replay against baseline on both hubs, both parent-skill checks, chart corpus checker from the new location |
 | `001` | `005` | The relocated packet validates from its new path and nothing points at the old one | `validate.sh --strict`, pointer sweep, trigger index regenerated |
+| `005` | `006` | The fleet is measured and every claim matches it, so a rename lands on a known-good baseline | Sixteen-phrase replay at a named daemon generation, every gate's output read |
+| `006` | `007` | Both modes and both commands carry the hub's name, every live reference resolves, and the replay holds | Phrase replay, both hub gates, the compiled-routing guard, the corpus checker from the renamed path |
+| `007` | `008` | No gate this packet touched is red, and the two it inherited are closed or owned elsewhere in writing | Every gate re-run with output read; `validate.sh --strict` across the affected packets |
+| `008` | — | Fundamentals answers a non-UI surface question as well as it answers a UI one | Replay of surface-specific phrases against the recorded baseline |
 <!-- /ANCHOR:phase-map -->
 
 ---

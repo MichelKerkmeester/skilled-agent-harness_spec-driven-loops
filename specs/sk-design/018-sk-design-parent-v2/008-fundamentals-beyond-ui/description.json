@@ -1,0 +1,19 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui",
+  "description": "`sk-design-fundamentals` reads as a UI skill",
+  "keywords": [
+    "sk-design-fundamentals",
+    "reads",
+    "skill"
+  ],
+  "lastUpdated": "2026-09-06T16:25:30.489Z",
+  "specId": "008",
+  "folderSlug": "fundamentals-beyond-ui",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

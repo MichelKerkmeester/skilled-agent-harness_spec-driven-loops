@@ -31,8 +31,9 @@ disagrees with this file, this file wins.**
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-Reinstate `sk-design` as a parent hub carrying four modes, and finish with every request that
-reached a skill before still reaching one, proven by replay rather than by configuration.
+Reinstate `sk-design` as a parent hub carrying four modes, give every one of them the hub's own
+name, and finish with every request that reached a skill before still reaching one, proven by replay
+rather than by configuration.
 
 ### Read first, do not re-derive
 
@@ -55,9 +56,9 @@ Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_sign
 
 ### Operator copy
 
-Four modes under one hub, and a replay proving nothing stopped arriving. All five steps are done.
-One item leaves the packet: `sk-doc`'s playbook gate is red because four of its fixtures assert
-`sk-doc` owns FLOWCHART, and fixing it belongs to the owner of that benchmark corpus.
+Four modes under one hub, all four carrying the hub's name, and a replay proving nothing stopped
+arriving. Steps 1 to 5 are done and the fleet is measured. Steps 6 to 8 rename the two moved modes
+and their commands, close every gate this packet left red, and broaden fundamentals past screen UI.
 <!-- /ANCHOR:directive -->
 
 <!-- ANCHOR:binding -->
@@ -79,6 +80,8 @@ One item leaves the packet: `sk-doc`'s playbook gate is red because four of its 
    in a code comment.
 6. **Do not restore what `016` retired**: the interface mode, the `commands/interface/` surface, or
    the design-taste layer.
+   *Note: this rule once also forbade renaming modes and commands. The operator reversed that on
+   2026-09-06, and step 6 carries the renames. What `016` retired still stays retired.*
 7. **Run artifacts are evidence, not text to update.** Fan-out logs, iteration deltas and recorded
    command output describe what was on disk when they were written. A path rewrite that touches them
    falsifies the record. Live cross-references follow a move; historical evidence does not.
@@ -133,6 +136,9 @@ step does.
 | 3 | `004-chart-and-diagram-cutover` | Done |
 | 4 | `001-sk-create-chart` | Done: 1,528 renames, 35 spec folders green |
 | 5 | `005-closure-and-routing-proof` | Done: generation 638, zero phrases reach nobody |
+| 6 | `006-design-mode-and-command-rename` | Open |
+| 7 | `007-close-inherited-failures` | Open |
+| 8 | `008-fundamentals-beyond-ui` | Open |
 
 ### Deviations and findings
 
