@@ -173,7 +173,7 @@ export function resetRedactionStats(): void {
    SCRUBBING
 ----------------------------------------------------------------*/
 
-let activePatterns: SecretPattern[] = SECRET_PATTERNS;
+const activePatterns: SecretPattern[] = SECRET_PATTERNS;
 
 /**
  * Scrub secrets from a text field and report what was redacted.
@@ -242,10 +242,3 @@ function applyReplacementTemplate(pattern: SecretPattern, match: string): string
    TEST SURFACE
 ----------------------------------------------------------------*/
 
-/** Test-only hooks for fail-closed verification and pattern inspection. */
-export const __secretScrubberTestables = {
-  defaultPatterns: SECRET_PATTERNS,
-  setPatternsForTest(patterns: SecretPattern[] | null): void {
-    activePatterns = patterns ?? SECRET_PATTERNS;
-  },
-};

@@ -71,7 +71,6 @@ The legacy module check (`npm run test:legacy`) additionally runs `tests/test-ex
 | `git-context-extractor.ts` | Enriches captured sessions with git context. |
 | `implementation-guide-extractor.ts` | Extracts implementation guidance from source data. |
 | `quality-scorer.ts` | Scores extraction quality and validation signals. |
-| `session-activity-signal.ts` | Detects session-activity signals for capture gating. |
 | `session-extractor.ts` | Extracts session-level facts, ids, channel and duration metadata. |
 | `spec-folder-extractor.ts` | Reads spec-folder context for capture enrichment. |
 | `index.ts` | Barrel export for extractor modules. |

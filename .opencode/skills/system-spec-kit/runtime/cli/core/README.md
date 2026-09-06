@@ -107,7 +107,6 @@ runtime/cli/core/
 +-- find-predecessor-memory.ts   # Prior memory lookup support
 +-- frontmatter-editor.ts        # Frontmatter injection and trigger rendering
 +-- index.ts                     # Barrel exports
-+-- memory-indexer.ts            # Indexing hooks and metadata preparation
 +-- memory-metadata.ts           # Memory classification and evidence snapshots
 +-- post-save-review.ts          # Post-save frontmatter drift review
 +-- quality-gates.ts             # Save and indexing gate decisions
@@ -144,7 +143,6 @@ runtime/cli/core/
 | `subfolder-utils.ts` | Resolves spec folders, child folders and subfolder-aware save targets. |
 | `save-context-path.ts` | Computes canonical save paths for generated context output. |
 | `memory-metadata.ts` | Builds metadata used by memory records, deduplication, causal links and evidence snapshots. |
-| `memory-indexer.ts` | Prepares indexing calls and memory metadata for saved artifacts. |
 | `frontmatter-editor.ts` | Injects quality and spec-doc-health metadata and renders trigger-phrase frontmatter. |
 | `post-save-review.ts` | Compares saved frontmatter with JSON payloads and reports drift findings. |
 | `quality-gates.ts` | Decides whether save and indexing quality gates pass or abort. |

@@ -15,7 +15,7 @@
   "scripts": {
     "build": "tsc --build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
-    "test": "node --import tsx --test '*.test.ts' 'frontmatter/*.test.ts' 'parsing/*.test.ts' 'predicates/*.test.ts' 'embeddings/*.test.ts'",
+    "test": "node --import tsx --test '*.test.ts' 'frontmatter/*.test.ts' 'parsing/*.test.ts' 'predicates/*.test.ts' 'embeddings/*.test.ts' 'ranking/*.test.ts'",
     "test:task-enrichment": "echo 'No task-enrichment tests in @spec-kit/shared'"
   },
   "engines": {

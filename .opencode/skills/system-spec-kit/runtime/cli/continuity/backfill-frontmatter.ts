@@ -17,6 +17,7 @@ import {
   type ClassifiedDocument,
 } from '../lib/frontmatter-migration.js';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
+import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -82,8 +83,7 @@ interface MigrationReport {
 
 function resolveProjectRoot(): string {
   const candidates = [
-    path.resolve(moduleDir, '../../../../../..'),
-    path.resolve(moduleDir, '../../../..'),
+    findRepoRoot(moduleDir),
     process.cwd(),
   ];
 

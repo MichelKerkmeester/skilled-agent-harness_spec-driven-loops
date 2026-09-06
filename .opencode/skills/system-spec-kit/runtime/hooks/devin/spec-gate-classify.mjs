@@ -16,6 +16,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
+import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -26,23 +27,13 @@ function approve() {
   process.exit(0);
 }
 
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  let payload;
-  try {
-    payload = JSON.parse(await readStdin());
-  } catch {
-    return approve(); // no/invalid payload -> fail open
-  }
+  const payload = parseJsonFailOpen(await readStdin());
+  if (payload === null) return approve(); // no/invalid payload -> fail open
 
   const prompt = typeof payload?.prompt === 'string' ? payload.prompt : '';
   const sessionID = typeof payload?.session_id === 'string' ? payload.session_id : '';

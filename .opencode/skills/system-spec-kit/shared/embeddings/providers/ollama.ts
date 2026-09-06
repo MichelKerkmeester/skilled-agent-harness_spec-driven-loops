@@ -422,8 +422,3 @@ export class OllamaProvider implements IEmbeddingProvider {
   }
 }
 
-export const __ollamaProviderTestables = {
-  resetAvailabilityCache(): void {
-    availabilityPromise = null;
-  },
-};

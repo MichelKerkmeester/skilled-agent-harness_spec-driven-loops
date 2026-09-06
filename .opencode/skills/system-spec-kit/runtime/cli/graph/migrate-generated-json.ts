@@ -53,6 +53,7 @@ import {
   type PruneReportReceipt,
 } from './backfill-graph-metadata.js';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
+import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -151,22 +152,7 @@ function resolveRepoRoot(): string {
   if (fs.existsSync(path.join(cwdCandidate, 'specs'))) {
     return cwdCandidate;
   }
-  let current = path.resolve(moduleDir);
-  let lastMatch: string | null = null;
-  while (true) {
-    if (fs.existsSync(path.join(current, 'specs'))) {
-      lastMatch = current;
-    }
-    const parent = path.dirname(current);
-    if (parent === current) {
-      break;
-    }
-    current = parent;
-  }
-  if (lastMatch) {
-    return lastMatch;
-  }
-  return path.resolve(moduleDir, '..', '..', '..', '..', '..');
+  return findRepoRoot(moduleDir);
 }
 
 /** Whether a directory directly carries either generated-JSON source marker. */

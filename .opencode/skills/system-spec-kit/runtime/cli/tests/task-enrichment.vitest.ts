@@ -198,7 +198,7 @@ vi.mock('../loaders/data-loader', () => ({
 }));
 
 vi.mock('../core/quality-scorer', () => ({
-  scoreMemoryQuality: vi.fn(() => qualityHarness.legacyResult),
+  scoreRenderQuality: vi.fn(() => qualityHarness.legacyResult),
 }));
 
 vi.mock('../extractors/quality-scorer', () => ({

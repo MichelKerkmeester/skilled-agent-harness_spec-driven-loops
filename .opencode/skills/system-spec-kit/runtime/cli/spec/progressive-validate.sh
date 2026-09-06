@@ -169,13 +169,6 @@ log_fix() {
     fi
 }
 
-log_suggest() {
-    local label="$1" detail="$2"
-    [[ "$JSON_MODE" == "true" ]] && return 0
-    [[ "$QUIET_MODE" == "true" ]] && return 0
-    printf "${YELLOW}[SUGGEST]${NC} ${BOLD}%s${NC}: %s\n" "$label" "$detail"
-}
-
 log_verbose() {
     [[ "$VERBOSE" != "true" ]] && return 0
     [[ "$JSON_MODE" == "true" ]] && return 0

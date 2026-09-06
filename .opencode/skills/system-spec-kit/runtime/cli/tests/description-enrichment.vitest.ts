@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { scoreMemoryQuality } from '../core/quality-scorer';
+import { scoreRenderQuality } from '../core/quality-scorer';
 import { extractFilesFromData } from '../extractors/file-extractor';
 import { deriveModificationMagnitude } from '../extractors/git-context-extractor';
 import { validateDescription } from '../utils/file-helpers';
@@ -45,10 +45,10 @@ describe('description enrichment', () => {
       [{ TITLE: 'Implement shared validator', NARRATIVE: 'Unified description validation across extractors and scoring.' }],
     ] as const;
 
-    const gitResult = scoreMemoryQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'git' }], args[3]);
-    const toolResult = scoreMemoryQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'tool' }], args[3]);
-    const syntheticResult = scoreMemoryQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'tool', _synthetic: true }], args[3]);
-    const unknownResult = scoreMemoryQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription }], args[3]);
+    const gitResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'git' }], args[3]);
+    const toolResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'tool' }], args[3]);
+    const syntheticResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'tool', _synthetic: true }], args[3]);
+    const unknownResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription }], args[3]);
 
     expect(gitResult.breakdown.fileDescriptions).toBe(20);
     expect(toolResult.breakdown.fileDescriptions).toBe(16);
