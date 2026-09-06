@@ -4,15 +4,15 @@
   "spec_folder": "system-speckit",
   "parent_id": null,
   "children_ids": [
+    "system-speckit/000-release",
+    "system-speckit/000-rust-backend-rewrite-research",
     "system-speckit/026-graph-and-context-optimization",
     "system-speckit/027-xce-research-based-refinement",
     "system-speckit/028-memory-search-intelligence",
-    "system-speckit/029-rust-backend-rewrite-research",
+    "system-speckit/029-spec-root-resolution-hardening",
     "system-speckit/031-memory-reindex-embed-performance",
-    "system-speckit/031-spec-gate-enforce-readiness",
-    "system-speckit/032-phased-spec-preference",
-    "system-speckit/033-system-speckit-v4",
-    "system-speckit/z_archive"
+    "system-speckit/032-relocate-specs-folder",
+    "system-speckit/033-system-speckit-v4"
   ],
   "manual": {
     "depends_on": [],
