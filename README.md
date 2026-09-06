@@ -104,10 +104,6 @@ npm install
 node .opencode/bin/system-skill-advisor-launcher.cjs --help
 ```
 
-### Set Up Embeddings
-
-Retrieval is lexical and needs no embedder. The one surviving embedding stack belongs to the skill advisor, which manages its own model server. Check it with `/doctor embeddings`.
-
 ### Verify Installation
 
 ```bash
