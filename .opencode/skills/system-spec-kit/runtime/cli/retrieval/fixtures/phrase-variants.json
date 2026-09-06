@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f918eac7e46b29a28fabc6cc2c1bef300e280fa1f2004a977ab62d5e82892894",
+  "manifestHash": "00bedea1756ff09de85e46c84b26b23ab219c2be74618633e53d38c6f0f72730",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9435,6 +9435,9 @@
     ],
     "adr decision records": [
       "adr decision records"
+    ],
+    "adr devpass roster": [
+      "adr devpass roster"
     ],
     "adr disposition": [
       "adr disposition"
@@ -67716,6 +67719,9 @@
     "openrouter compat tasks": [
       "openrouter compat tasks"
     ],
+    "openrouter devpass two models": [
+      "openrouter devpass two models"
+    ],
     "openrouter session affinity fix": [
       "openrouter session affinity fix"
     ],
@@ -81414,9 +81420,6 @@
     "retire sweep": [
       "retire sweep"
     ],
-    "retire the sweep": [
-      "retire the sweep"
-    ],
     "retire the sweep plan": [
       "retire the sweep plan"
     ],
@@ -82793,6 +82796,9 @@
     ],
     "root specs directory": [
       "root specs directory"
+    ],
+    "roster narrowing decision": [
+      "roster narrowing decision"
     ],
     "roster single sourcing": [
       "roster single sourcing"
@@ -97860,6 +97866,9 @@
     ],
     "superseded hook evidence": [
       "superseded hook evidence"
+    ],
+    "superseded roster criterion": [
+      "superseded roster criterion"
     ],
     "supersedes burst auto cap": [
       "supersedes burst auto cap"

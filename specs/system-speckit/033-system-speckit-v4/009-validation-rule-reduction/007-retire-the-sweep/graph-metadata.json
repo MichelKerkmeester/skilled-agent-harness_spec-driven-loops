@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "retire sweep",
-      "retire the sweep",
       "changed packet validation",
       "spec packet merge gate",
       "retire the sweep plan",
@@ -22,7 +21,8 @@
       "gate blocks and passes",
       "cron retired after proven",
       "retire the sweep tasks",
-      "changed packet resolution rule"
+      "changed packet resolution rule",
+      "packet-resolution rule tested"
     ],
     "key_topics": [
       "retire",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Make the gate block the thing it can fairly block: the packets a change",
     "created_at": "2026-08-30T06:31:14.942Z",
-    "last_save_at": "2026-09-06T07:07:53.546Z",
+    "last_save_at": "2026-09-06T07:13:10.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ccdaf9e3ce289169bff380ffe5222caa54e28df8bcc6ea435905d87c01732b92",
+    "source_fingerprint": "sha256:b08565777b59257045092ceb4992400cf94b1891e94304caccc70b5f8eaa24dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5d971857723093b5a5f28df50dd89904ffe06d90b0a1d7bba34045a43e415a1",
+      "spec.md": "6d610eaee7ad02604cfe84bc51a35c8538a932698c15bb4ae0c1aadc9a7af667",
       "plan.md": "77acc35396b079c1be0338b0916e0b65a3498ab9ba91ee4c247f783b4a24dca5",
       "tasks.md": "02c03c86e929e12534922467b67c6869b0c19ad32ac11b047cb8750a50e1994a",
       "implementation-summary.md": "6e428ea4cac083cf00e6fe6f28e63744f63e6ade60e5715ff4b7ae0c8debf8b3"

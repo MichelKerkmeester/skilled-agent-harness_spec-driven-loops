@@ -21,7 +21,6 @@
       "decisions notes system",
       "decisions memory redesign",
       "deprecate constitutional memory",
-      "decisions and notes system",
       "constitutional memory deprecation",
       "actively-used decisions system",
       "decisions integrated with spec",
@@ -92,16 +91,16 @@
     ],
     "causal_summary": "This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill across independently executable child phase folders",
     "created_at": "2026-08-26T05:34:10Z",
-    "last_save_at": "2026-09-06T07:07:51.094Z",
+    "last_save_at": "2026-09-06T07:13:10.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a1ca81c09c339b9ceb363a2d69356c6fe8da934c99d7d4d6b90082466355db8a",
+    "source_fingerprint": "sha256:feca8efeef2bf7856f4015b89e48f0982edfdcce3b1f7d0e87e063eb6b7bd354",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7165e899165816abccf6b81c7ac9cd21ca154e944b362fb9b5f465796f44135a"
+      "spec.md": "ef535a23f1bc5f26673e192d11334ce407ba08c53d227ca866962dee8bd0a60e"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
     "last_active_at": "2026-08-27T20:23:46.107Z"

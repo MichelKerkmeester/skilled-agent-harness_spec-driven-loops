@@ -3,8 +3,6 @@ title: "Feature Specification: A Gate That Can Actually Block"
 description: "Replace a weekly cron that could not fail a merge with a pull-request check scoped to the packets the change touched."
 trigger_phrases:
   - "retire sweep"
-  - "retire sweep"
-  - "retire the sweep"
   - "changed packet validation"
   - "spec packet merge gate"
 importance_tier: "critical"

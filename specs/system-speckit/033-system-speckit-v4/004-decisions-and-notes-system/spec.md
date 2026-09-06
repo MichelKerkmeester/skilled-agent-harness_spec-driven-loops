@@ -5,7 +5,6 @@ trigger_phrases:
   - "decisions notes system"
   - "decisions memory redesign"
   - "deprecate constitutional memory"
-  - "decisions and notes system"
   - "constitutional memory deprecation"
   - "actively-used decisions system"
   - "decisions integrated with spec"

@@ -75,12 +75,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,20 +97,26 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-06T06:49:21.748Z",
+    "last_save_at": "2026-09-06T07:15:33.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7ac4b9cb504d9dd2be48021e7949b768f1336e613ddd5bf9dd27d838fe831407",
+    "source_fingerprint": "sha256:358f1784e67ef8bcd9602f89f47299f3ab819844e0f5cd57164f709741d45ea2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b428e2c0f1d4500e13a24fdb04dce63ce142cf56c62c66587a0578d706b6b6c"
+      "spec.md": "6629be2c6031ee9e806a89ef4f029b83ff110a9bfbb6ca5c4201c1862d43b599"
     },
     "last_active_at": null
   }

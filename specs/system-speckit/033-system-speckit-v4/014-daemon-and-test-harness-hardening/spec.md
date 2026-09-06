@@ -3,7 +3,6 @@ title: "Feature Specification: Daemon Lifecycle and Test-Harness Hardening"
 description: "Phase parent for four production-observed failure classes in daemon supervision and the vitest harness, each traced to a safety mechanism that exists and is correct but is never reached at runtime."
 trigger_phrases:
   - "daemon test harness hardening"
-  - "daemon test harness hardening"
   - "orphaned launcher respawn lock"
   - "production db isolation bypass"
   - "vitest hang containment"
