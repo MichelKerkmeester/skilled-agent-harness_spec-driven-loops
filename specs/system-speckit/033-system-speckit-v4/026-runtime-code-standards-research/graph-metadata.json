@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality standards kept evolving",
     "created_at": "2026-09-06T07:54:25Z",
-    "last_save_at": "2026-09-06T09:09:20.739Z",
+    "last_save_at": "2026-09-06T09:25:28.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d2aa786da193d062ef39c9449bb781c2d8c5ac3c0f3e7ef29d0277216700d2d",
+    "source_fingerprint": "sha256:4accf84c00ddce84d0437081f74582db60e59a78cb47aea6b6fe67d6286c3248",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8cc1dd3bf61849efd32a5c20824311ab6f94dcfb8669a7c65d29a82b5c50535a",
       "plan.md": "5425cf3aa28dd94e6246bc8998de2ceb3c2cda2122edfeccd4888573ea89e3f3",
       "tasks.md": "5e0316169744d5872287d30f28807877e359e516d043d35e1f5ea64c37c6dea2",
-      "implementation-summary.md": "eb8b08a98a1fb3f5739aa75d805b75bd24b5f3766ba4841e3ac2f7149d4219a7"
+      "implementation-summary.md": "c70e29247efde31f22f46617bb9474ccaf9bc2af4e024f701c940b7ea6ca81d6"
     },
     "last_active_at": null
   }

@@ -84,13 +84,13 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 
 **2026-09-06:** `024-metadata-regeneration-and-shared-parser` (was `057-metadata-regeneration-and-parser-edges`) started; 5 commits over 0 nested phases. Outcome: Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatt. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `025-docs-reality-alignment-research` started; 1 commit over 0 nested phases. Outcome: A ten-iteration DeepSeek V4 Flash lane on the pi CLI checked the playbook, catalog and references against the runtime; seventeen mismatches reported, fourteen reproduced. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `025-docs-reality-alignment-research` started; 1 commit over 0 nested phases. Outcome: A ten-iteration DeepSeek V4 Flash lane on the pi CLI checked the playbook, catalog and references against the runtime; seventeen mismatches reported, fourteen reproduced; a two-iteration Gemini 3.8 Flash pass added nineteen more, eighteen reproduced. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `026-runtime-code-standards-research` started; 1 commit over 0 nested phases. Outcome: A parallel ten-iteration lane audited the shared package and runtime against the sk-code standards; eighteen deviations reported, twelve confirmed, four dropped with evidence. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `026-runtime-code-standards-research` started; 1 commit over 0 nested phases. Outcome: A parallel ten-iteration lane audited the shared package and runtime against the sk-code standards; eighteen deviations reported, twelve confirmed, four dropped with evidence; a two-iteration Gemini 3.8 Flash pass added sixteen more, all reproduced, including the misplaced telemetry store. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `027-doc-path-strict-mode-and-retired-capability-fixes` started; 1 commit over 0 nested phases. Outcome: The fourteen confirmed doc mismatches fixed at their cited lines plus three same-class sites; strict mode, moved paths, phantom rules and retired capabilities now match the runtime. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `027-doc-path-strict-mode-and-retired-capability-fixes` started; 1 commit over 0 nested phases. Outcome: The fourteen confirmed doc mismatches plus eighteen from the Gemini pass fixed at their cited lines, plus same-class sites; strict mode, moved paths, phantom rules and retired capabilities now match the runtime. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `028-header-tags-hook-catch-and-script-test-fixes` started; 1 commit over 0 nested phases. Outcome: Header tags normalized across 38 files, a silent hook catch made to report, a dead barrel removed, two scripts given tests, and an errexit bug in the completeness clamp fixed. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `028-header-tags-hook-catch-and-script-test-fixes` started; 1 commit over 0 nested phases. Outcome: Header tags normalized, silent hook catches made to report, dead modules and migrations removed, scripts and the API given tests, the completeness errexit bug fixed, and the shared config root bug that lost phase parents' active-child pointers fixed with the classifier taught to read the store. Status Complete; last commit 2026-09-06.
 
 ### Chronology table
 

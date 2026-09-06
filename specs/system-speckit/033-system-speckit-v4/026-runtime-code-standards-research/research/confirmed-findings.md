@@ -32,3 +32,24 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited cod
 | F5.2 | `runtime/cli/lib/embeddings.ts` is imported by `runtime/cli/core/workflow.ts:56` |
 | F8.2 | shellcheck reports no SC2164 on the three files because `set -e` is active |
 | F4.3, F6.1, F8.1, F10.3 | Conventions the standard does not forbid: a test-enforced boundary, frontmatter key mirrors, an `eval` over `printf %q` output, a per-call root option |
+
+## Second pass: Gemini 3.8 Flash High, two iterations over runtime/lib, runtime/api, runtime/hooks, CLI scripts and shared
+
+| ID | Sev | Code | Actual | Decision |
+|----|-----|------|--------|----------|
+| F1.1 | P1 | `runtime/api/graph-refresh.ts:12` | Imports a handler while a lib seam exists | Fixed: import the seam |
+| F1.2 | P1 | `runtime/lib/validation/orchestrator.ts:76-78`, `spec-doc-structure.ts:104-107` | lib points at cli registry, rules and dist | No change: the rule registry and scripts are the CLI package's and the orchestrator runs them by path; the module map already records that no checker enforces internal layering |
+| F1.3 | P1 | `thin-continuity-record.ts:108`, `packet-synopsis.ts:52` | Own frontmatter regexes | Kept with a stated reason: they accept a BOM or a leading HTML comment the strict shared parser rejects |
+| F1.4 | P1 | `spec-doc-structure.ts:1250-1256,1337` | Success output on stderr | Fixed: stdout |
+| F1.5 | P1 | `generated-metadata-integrity.ts:150-154` | Uncomputable fingerprint passes silently | Fixed: `SOURCE_FINGERPRINT_UNCOMPUTABLE` violation; the allowlist catch stays because returning false is already fail-closed |
+| F1.6 | P1 | `runtime/api/graph-refresh.ts` | No test | Fixed: resolver exported and tested, happy path and error |
+| F1.7 | P2 | 155 files with 63-dash headers; four modules without banners | Off the 67-character standard | Fixed: 248 files normalized, banners added to four modules |
+| F1.8 | P2 | `description-schema.ts:28,66` | `trigger_phrases` beside camelCase | No change: mirrors the frontmatter key |
+| F2.1 | P0 | `migrate-deep-loop-*.cjs:12-17` | Repo root resolved one level short | Removed: one-off migrations for a retired path, never runnable |
+| F2.2 | P1 | three `completion-evidence-stop.cjs:128-146` | `main().catch(() => approve())` | Fixed: report on stderr, then approve |
+| F2.3 | P1 | five `wave-*.cjs`, four tests | No caller outside their own tests | Removed with their tests and README rows |
+| F2.4 | P1 | `shared/config.ts:23-32`, `shared/paths.ts:80` | Shared package computes the runtime database path | Root cause fixed: `resolvePackageRoot` returned the shared package itself, so the telemetry store landed under `shared/runtime/database`; it now resolves the skill root |
+| F2.5 | P1 | `shared/gate-3-classifier.ts:504-517` | Ignores the telemetry store the hardening flag writes to | Fixed: store consulted first, JSON pointer second |
+| F2.6 | P1 | `shared/package.json:18` | `test` is an echo while six script tests exist | Fixed: `node --test` over the script tests; one had rotted against a renamed asset and a renamed step |
+| F2.7 | P2 | `shared/utils/retry.ts:74-75` | SQLite retry patterns | Removed |
+| F2.8 | P2 | four script headers | `use strict` before the header, a bare filename title, a docstring header | Fixed |

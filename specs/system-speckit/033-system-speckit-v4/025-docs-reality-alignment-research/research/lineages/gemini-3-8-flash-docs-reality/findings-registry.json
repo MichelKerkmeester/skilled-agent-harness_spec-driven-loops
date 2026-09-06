@@ -1,0 +1,161 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "P1 manual-testing-playbook scenarios in context-preservation, lifecycle, plugins-and-hooks, retrieval and ux-hooks",
+    "P2 references/cli, references/config, references/debugging, references/memory, references/templates and feature-catalog/lifecycle, governance, context-preservation, ux-hooks"
+  ],
+  "keyFindings": [
+    {
+      "id": "G-P0-01",
+      "title": "Speckit Completion Exposer Playbook Script ReferenceError and Phantom Spec Paths",
+      "severity": "P0",
+      "doc": "manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md:81-87",
+      "actual": "level2Incomplete is undeclared in script causing unhandled ReferenceError; .opencode/specs path does not exist",
+      "fix": "Declare const level2Incomplete = 'specs/...' with a valid spec path and change .opencode/specs/ to specs/"
+    },
+    {
+      "id": "G-P0-02",
+      "title": "/speckit:search Advertises Retired Capabilities as Live",
+      "severity": "P0",
+      "doc": "references/memory/save-workflow.md:144",
+      "actual": "search.md:111-120 explicitly declares epistemic baselines, causal graph, and evaluation unsupported and retired",
+      "fix": "Update description of /speckit:search to 'Continuity retrieval: trigger-index lookup and ripgrep lexical scan'"
+    },
+    {
+      "id": "G-P1-01",
+      "title": "Autopilot Contract Test Path Non-Existent Directory",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md:41",
+      "actual": ".opencode/skills/runtime/ does not exist; merged into .opencode/skills/system-deep-loop/runtime/",
+      "fix": "Change cd .opencode/skills/runtime/ to cd .opencode/skills/system-deep-loop/runtime/"
+    },
+    {
+      "id": "G-P1-02",
+      "title": "Dist Freshness Guard Watched Package Count and Enumeration Mismatch",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md:27-29, 107",
+      "actual": "dist-freshness.cjs:23-143 defines exactly 6 packages; doc claims 7 but enumerates only 5",
+      "fix": "Update package count to 6 and enumerate all 6 packages matching DIST_PACKAGES"
+    },
+    {
+      "id": "G-P1-03",
+      "title": "Comment Hygiene Baseline Phantom Context Server File",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/ux-hooks/comment-hygiene-checker-baseline.md:31, 52",
+      "actual": "runtime/context-server.ts does not exist on disk (decommissioned with memory server)",
+      "fix": "Replace runtime/context-server.ts with a surviving clean production TypeScript file"
+    },
+    {
+      "id": "G-P1-04",
+      "title": "Comment Hygiene PostToolUse Hook Uses Obsolete Script Target",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/ux-hooks/comment-hygiene-claude-code-hook.md:52, 75",
+      "actual": ".claude/settings.json:175 wires node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs; python script is obsolete and fails warning test",
+      "fix": "Change test command and table anchor to target claude-posttooluse.cjs"
+    },
+    {
+      "id": "G-P1-05",
+      "title": "Epistemic Vectors Claims Decommissioned Memory Search and Contradicts AGENTS.md Gate 1 Scale",
+      "severity": "P1",
+      "doc": "references/memory/epistemic-vectors.md:210, 315, 333, 338, 390-392",
+      "actual": "Memory search is decommissioned; AGENTS.md:88-97 enforces a single confidence scale and forbids second scales",
+      "fix": "Remove references to searching memory and align readiness with AGENTS.md Gate 1 confidence scale"
+    },
+    {
+      "id": "G-P1-06",
+      "title": "Template Guide Claims Save Touches DB_UPDATED_FILE and Re-indexes Database",
+      "severity": "P1",
+      "doc": "references/templates/template-guide.md:619-620",
+      "actual": "runtime/cli/continuity/generate-context.ts has no references to DB_UPDATED_FILE and does not update any database",
+      "fix": "Remove the claim that saves touch DB_UPDATED_FILE and re-index a database"
+    },
+    {
+      "id": "G-P1-07",
+      "title": "Template Style Guide Documents Decommissioned memory/*.md and Semantic Search",
+      "severity": "P1",
+      "doc": "references/templates/template-style-guide.md:213, 217-229",
+      "actual": "memory/*.md and semantic search decommissioned in Phase 018; continuity lives in _memory.continuity",
+      "fix": "Remove memory/*.md frontmatter section and replace with implementation-summary.md _memory.continuity"
+    },
+    {
+      "id": "G-P1-08",
+      "title": "Level Specifications Instructs Verifying Non-Existent memory/ Folder",
+      "severity": "P1",
+      "doc": "references/templates/level-specifications.md:420",
+      "actual": "memory/ folder decommissioned in Phase 018; continuity is in _memory.continuity and handover.md",
+      "fix": "Update step 7 to verify handover.md and implementation-summary.md instead of memory/ folder"
+    },
+    {
+      "id": "G-P1-09",
+      "title": "Trigger Config Documents Unimplemented config.jsonc Memory Triggers",
+      "severity": "P1",
+      "doc": "references/memory/trigger-config.md:220-241",
+      "actual": "No runtime code parses config.jsonc for memory.triggers; triggers are generated from markdown frontmatter",
+      "fix": "Remove the config.jsonc memory trigger configuration block or mark it as retired"
+    },
+    {
+      "id": "G-P1-10",
+      "title": "Troubleshooting Reference Commands Cite Non-Existent .opencode/specs Path",
+      "severity": "P1",
+      "doc": "references/debugging/troubleshooting.md:155, 158, 161, 182, 183",
+      "actual": ".opencode/specs directory does not exist; spec folders live at specs/",
+      "fix": "Replace .opencode/specs with specs in all debugging command examples"
+    },
+    {
+      "id": "G-P2-01",
+      "title": "Transport-Down Playbook Phantom Session Adapter and Miscounted Hook",
+      "severity": "P2",
+      "doc": "manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md:59, 92",
+      "actual": "Script executes only 1 hook; session-prime.ts was removed with memory server and has no socket fallback",
+      "fix": "Update expected signals to single advisor hook and remove session-prime.ts row from table"
+    },
+    {
+      "id": "G-P2-02",
+      "title": "Resource Map Template Playbook Lists Unmatched CLAUDE.md Target",
+      "severity": "P2",
+      "doc": "manual-testing-playbook/context-preservation/resource-map-template.md:76, 80",
+      "actual": "CLAUDE.md contains 0 matches for resource-map.md, causing playbook grep verification to fail",
+      "fix": "Remove CLAUDE.md from the grep target list or add reference to CLAUDE.md"
+    },
+    {
+      "id": "G-P2-03",
+      "title": "Authored Continuity Snapshot Playbook Cites Phantom OpenLTM Test Suite",
+      "severity": "P2",
+      "doc": "manual-testing-playbook/feature-flag-reference/authored-continuity-snapshot.md:87",
+      "actual": "runtime/tests/openltm-continuity-resilience.vitest.ts does not exist on disk",
+      "fix": "Replace openltm-continuity-resilience.vitest.ts with runtime/tests/thin-continuity-record.vitest.ts"
+    },
+    {
+      "id": "G-P2-04",
+      "title": "Trigger Index Lookup Comment Cites Phantom Hybrid-Search Source",
+      "severity": "P2",
+      "doc": "runtime/cli/retrieval/lookup-trigger-index.mjs:6-8",
+      "actual": "runtime/lib/search/hybrid-search.ts does not exist; only folder-discovery.ts remains",
+      "fix": "Update comment to remove reference to hybrid-search.ts"
+    },
+    {
+      "id": "G-P2-05",
+      "title": "Troubleshooting Reference Cites Removed CONTINUE SESSION Section",
+      "severity": "P2",
+      "doc": "references/debugging/troubleshooting.md:355",
+      "actual": "CONTINUE SESSION section was removed from handover.md ladder in Phase 018",
+      "fix": "Replace 'CONTINUE SESSION section' with 'Session summary and next steps in handover.md'"
+    },
+    {
+      "id": "G-P2-06",
+      "title": "Daemon CLI Reference Duplicates OPENCODE_PROMPT_TIME",
+      "severity": "P2",
+      "doc": "references/cli/daemon-cli-reference.md:114",
+      "actual": "OPENCODE_PROMPT_TIME is repeated twice consecutively in prompt-time marker list",
+      "fix": "Remove duplicate OPENCODE_PROMPT_TIME token"
+    },
+    {
+      "id": "G-P2-07",
+      "title": "Level Specifications and Selection Guide Duplicate acceptance-criteria.md Lines",
+      "severity": "P2",
+      "doc": "references/templates/level-specifications.md:32-33, 191-192, 237-238 and references/templates/level-selection-guide.md:210-211",
+      "actual": "acceptance-criteria.md and acceptance-criteria.md.tmpl entries are duplicated consecutively",
+      "fix": "Deduplicate consecutive acceptance-criteria.md entries in both template documents"
+    }
+  ]
+}

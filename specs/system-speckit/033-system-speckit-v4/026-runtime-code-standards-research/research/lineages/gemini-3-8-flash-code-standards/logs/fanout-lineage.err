@@ -1,0 +1,4 @@
+Error: Agent error: Your daily usage quota has been exhausted. Visit https://app.devin.ai/settings/usage to purchase on-demand usage or turn on auto-reload. (trace ID: bd2beab68bace8516479324d140df988): {
+  "cognition.ai/errorKind": "resource_exhausted",
+  "cognition.ai/retryable": true
+}

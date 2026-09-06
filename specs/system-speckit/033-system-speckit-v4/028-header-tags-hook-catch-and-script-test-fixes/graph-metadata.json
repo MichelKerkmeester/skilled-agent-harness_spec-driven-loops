@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows every failure, one barrel nobody imports, one comment kept alive by a hygiene marker, and two public CLI scripts with no test at all",
     "created_at": "2026-09-06T08:18:05Z",
-    "last_save_at": "2026-09-06T09:09:23.146Z",
+    "last_save_at": "2026-09-06T09:25:32.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ed71bd2d81eb02a8d4f4685461b83ae1920bbd5c810772b8f6aa9b81bbc6981",
+    "source_fingerprint": "sha256:2332bc5721212811a7b12ede03faeccdc17904418603ebe4e93f7334edadf090",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aee66c37a105f4170cee156fa7fe05a6b4290b05d6ece7cc8735ca7e4d391166",
       "plan.md": "1d8d14b37bf28e4551bc84030c14adeaa5123acacfb66cde472e70cc699d3885",
       "tasks.md": "f6c2f8aad5d94a8d96616c53e2ec2931c1a87428c57d1edd07272a8965e2deaf",
-      "implementation-summary.md": "1a78836cf4a0e6c8cb8cb6155d92a126c4ef1502b82013e9b866422e34a40523"
+      "implementation-summary.md": "3b9c9d495e15e1c433ed7dfd2356471e4d9742733058fd519a6382cbb057f8b8"
     },
     "last_active_at": null
   }

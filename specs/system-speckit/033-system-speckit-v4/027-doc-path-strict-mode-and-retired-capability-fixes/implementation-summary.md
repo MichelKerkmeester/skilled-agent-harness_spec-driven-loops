@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Doc path, strict-mode and retired-capability fixes"
-description: "Readers of the spec-kit docs now get the runtime's real behavior: `--strict` selects rules and never turns a warning into a failure, moved scripts are cited at their runtime/cli paths, four phantom rule scripts are gone from five documents, and the retired vector search, decay and re-index steps no longer appear as live.."
+description: "Readers of the spec-kit docs now get the runtime's real behavior. Two waves landed: the fourteen DeepSeek rows, then eighteen Gemini rows over documents the first lane never opened, among them a playbook script that threw a ReferenceError, a save reference that still advertised epistemic baselines and causal graphs, and a style guide still documenting `memory/*.md` frontmatter. First wave: `--strict` selects rules and never turns a warning into a failure, moved scripts are cited at their runtime/cli paths, four phantom rule scripts are gone from five documents, and the retired vector search, decay and re-index steps no longer appear as live.."
 trigger_phrases:
   - "doc mismatch fixes shipped"
   - "strict mode doc corrected"
@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:77e877943519053839b040662839bcd7291cc043f7ee416a3e8681b5b99031be"
+      fingerprint: "sha256:f10a36c0fae35cef7cd916ffad09705e4af0cef09b453683aa480c7bbb5d4461"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -68,6 +68,9 @@ Each confirmed row was replaced by an asserted exact-text edit, so a stale ancho
 | references/validation/template-compliance-contract.md | Modified | Real rule list |
 | feature-catalog (5 files) | Modified | Description discovery, doctor routes, config contract, rule engine, template composition |
 | manual-testing-playbook (3 files) | Modified | Build path, recorded suite output, doctor snapshot wording |
+| Second wave: references/memory (save-workflow, epistemic-vectors, trigger-config), references/templates (template-guide, template-style-guide, level-specifications, level-selection-guide), references/debugging/troubleshooting.md, references/cli/daemon-cli-reference.md | Modified | Retired capabilities, single confidence scale, continuity block, duplicates |
+| Second wave: manual-testing-playbook (speckit-completion-exposer, speckit-autopilot-lifecycle, dist-freshness-guard, comment-hygiene-checker-baseline, comment-hygiene-claude-code-hook, cli-hook-transport-down-fail-open, resource-map-template, authored-continuity-snapshot) | Modified | Broken script fixtures, moved paths, real hook target, real counts |
+| Second wave: runtime/cli/retrieval READMEs, feature-catalog/tooling-and-scripts/code-standards-alignment.md | Modified | Retired trigger lane no longer cited as a live file |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -96,7 +99,7 @@ One Python pass with an assertion per row, a ripgrep sweep for every retired nam
 
 | Check | Result |
 |-------|--------|
-| Residue sweep | ripgrep for the retired names across references, feature-catalog, playbook and README: 0 hits |
+| Residue sweep | ripgrep for the retired names across references, feature-catalog, playbook and README: 0 hits, both waves |
 | Doc validator | `validate_document.py --blocking-only` on 18 touched files: 0 blocking issues |
 | Trigger index | Regenerated, malformedDocuments 0 |
 | Strict validation | `validate.sh <child> --strict` printed RESULT: PASSED |

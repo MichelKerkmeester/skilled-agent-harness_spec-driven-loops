@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:14c53d22f4ff6b51b3e36d59d0eb2f7157ef9b5c0c2659a21fe5752f7fc3b24b"
+      fingerprint: "sha256:7f59c47c1f1fab468fa79c442a8535edc6abf88a54c31e6ab8492467b870f400"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards and reported eighteen deviations across eight angles. Twelve reproduced; four were dropped after checking consumers, importers and shellcheck; the rest were conventions the standards do not forbid.
+A ten-iteration DeepSeek V4 Flash lane audited the spec-kit shared package and runtime against the sk-code-opencode and sk-code-quality standards and reported eighteen deviations; twelve reproduced. A second, two-iteration Gemini 3.8 Flash pass over the surfaces the first lane never opened reported sixteen more, all reproduced, including a shared config bug that sent the telemetry store under the shared package so phase parents lost their active-child pointer.
 
 ### The research lane
 
@@ -58,7 +58,8 @@ One cli-pi lineage rotated the eight charted angles, reading the standard clause
 | File | Action | Purpose |
 |------|--------|---------|
 | research/lineages/deepseek-v4-flash-code-standards/** | Created | Ten iteration files, state ledger, strategy, dashboard and the synthesized research.md |
-| research/confirmed-findings.md | Created | Mechanical, judgment and dropped tables, consumed by phase 028 |
+| research/lineages/gemini-3-8-flash-code-standards/** | Created | Two Gemini 3.8 Flash iterations over runtime/lib, runtime/api, runtime/hooks, the CLI scripts and shared, run in a worktree |
+| research/confirmed-findings.md | Created | Mechanical, judgment and dropped tables for both passes, consumed by phase 028 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -89,7 +90,7 @@ Same launch shape as phase 025, in parallel. Each cited line was opened here; ri
 |-------|--------|
 | Iteration count | 10 files under iterations/, 10 iteration events |
 | Angle coverage | All eight angles appear in the focus lines |
-| Reproduction | 12 of 18 rows confirmed, 4 dropped with evidence, 2 recorded as no-change |
+| Reproduction | First pass: 12 of 18 confirmed, 4 dropped, 2 no-change. Second pass: 16 of 16 reproduced; 13 fixed, 3 recorded as no-change with reasons |
 | Strict validation | `validate.sh <child> --strict` printed RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

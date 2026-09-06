@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Header tags, hook catch and script test fixes"
-description: "Every shell script under runtime/cli now opens with the documented COMPONENT or SPECKIT tag and every module script with MODULE, the cursor response hook reports a failure instead of hiding it, an unused barrel is gone, and two public scripts have their first tests."
+description: "Two waves landed. The second, from a Gemini 3.8 Flash pass over runtime/lib, runtime/api, runtime/hooks, the CLI scripts and shared, found the most serious defect of the program: the shared config resolved the shared package as the skill root, so the telemetry store that carries a phase parent's active-child pointer under generator hardening was written under a directory that does not exist, and the Gate 3 classifier never read the store at all. Both are fixed, with a script test pinning the root. The same wave removed five dead wave-orchestration modules and two broken one-off migrations, gave the three remaining stop hooks a stderr report, moved a validation CLI's success output to stdout, made an uncomputable fingerprint a violation, normalized 248 header widths, wired the shared package's six script tests into its test command and repaired the one that had rotted. First wave: every shell script under runtime/cli now opens with the documented COMPONENT or SPECKIT tag and every module script with MODULE, the cursor response hook reports a failure instead of hiding it, an unused barrel is gone, and two public scripts have their first tests."
 trigger_phrases:
   - "header tag fixes shipped"
   - "completeness clamp errexit bug"
@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:7512abbfe1da688e612e4776b21a099cffa3f89873c847516022c316f1eb6bb8"
+      fingerprint: "sha256:33013989da00eda679436b3a549f46104d5b3531eb72169cd6a625920b418136"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -65,6 +65,13 @@ Line-three substitutions across 38 files, one deletion, one comment rewrite, one
 | shared/embeddings.ts | Modified | Durable comment instead of a catalog pointer |
 | runtime/cli/spec/calculate-completeness.sh | Modified | Clamp written as a full if; the false branch no longer ends the function non-zero |
 | runtime/cli/tests/quality-audit-script.vitest.ts, calculate-completeness-script.vitest.ts | Created | Happy path and edge case each |
+| shared/config.ts, shared/gate-3-classifier.ts, shared/config.test.ts | Modified, Created | Skill-root resolution, store-first pointer lookup, root pinned by a test |
+| runtime/api/graph-refresh.ts, runtime/tests/api-graph-refresh.vitest.ts | Modified, Created | Seam import, exported resolver, happy path and error test |
+| runtime/lib/validation/spec-doc-structure.ts, generated-metadata-integrity.ts | Modified | stdout for success output; uncomputable fingerprint reported |
+| runtime/hooks/{claude,codex,devin}/completion-evidence-stop.cjs | Modified | stderr report before approve |
+| runtime/cli/lib/wave-*.cjs (5), runtime/cli/tests/deep-loop-wave-*.vitest.ts (4), runtime/cli/migrate-deep-loop-*.cjs (2) | Deleted | No caller; one-off migrations against a retired path |
+| shared/package.json, shared/predicates/boolean-expr.test.ts, shared/utils/retry.ts | Modified | Real test command; rotten assertion repointed; SQLite residue removed |
+| 248 files under runtime and shared | Modified | Header dividers at the documented width; banners in four modules |
 | runtime/cli/retrieval/generate-trigger-index.mjs, retrofit-convention.mjs, runtime/cli/codex/generate-command-routers.cjs | Modified | Delegate repo-root resolution to the hooks module instead of three private walk-ups |
 <!-- /ANCHOR:what-built -->
 
@@ -89,6 +96,9 @@ Substitutions verified by a tag census, the two tests run under the CLI vitest p
 | Consolidate the repo-root resolvers onto the hooks module | The sentinel-file resolver in `runtime/hooks/lib/workspace/repo-root.mjs` is the one with a written rationale; the retrieval generator, the retrofit script and the codex router now delegate to it, and the pinned retrieval root test and the router self-check still pass |
 | Keep doctor exit codes 20, 26 and 64 | Documented in the script header; 64 is the sysexits usage code |
 | Keep the legacy test-* names | Wired by package scripts, not by a glob |
+| Keep the orchestrator's cli paths | The rule registry and scripts belong to the CLI package and the orchestrator runs them by path |
+| Keep the two continuity regexes | They accept a BOM or leading comment the shared parser rejects; each now says so |
+| Remove rather than fix the migrations | Both targeted a packet path retired before the CLI move and had never run successfully |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -99,6 +109,11 @@ Substitutions verified by a tag census, the two tests run under the CLI vitest p
 | Check | Result |
 |-------|--------|
 | Tag census | grep over runtime/cli: 0 RULE, 0 SPEC-KIT, 0 SCRIPT shell headers; 0 SCRIPT module headers |
+| Shared tests | `npm test` in shared: 7 of 7 script tests pass, including the new config root test |
+| Runtime suites | api-graph-refresh, generated-metadata-integrity, spec-doc-structure, resume-ladder: 56 of 56 |
+| CLI suites | coverage-graph, retrieval root, import policy, boundary enforcement, script tests: 144 of 144 |
+| Builds | shared, runtime and CLI typecheck and build clean; dist freshness all fresh |
+| Store path | `resolveTelemetryStorePath()` now returns `<skill>/runtime/database/access-telemetry.json` |
 | Tests | `vitest run` on the two new files: 4 passed |
 | Typecheck | `npm run typecheck` in runtime/cli: exit 0 |
 | Dist freshness | `dist-freshness.cjs check-all`: all fresh after rebuild |

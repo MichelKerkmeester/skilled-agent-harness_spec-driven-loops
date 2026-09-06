@@ -1,0 +1,103 @@
+{
+  "openQuestions": ["Q2"],
+  "resolvedQuestions": ["Q1"],
+  "keyFindings": [
+    {
+      "id": "F1.1",
+      "iteration": 1,
+      "angle": "boundaries",
+      "severity": "P1",
+      "code": "runtime/api/graph-refresh.ts:12",
+      "clause": "runtime/lib/MODULE-MAP.md §3.5, §4; shared/code-organization/imports-and-exports.md §1",
+      "summary": "runtime/api directly imports from handlers/spec-doc-discovery.js bypassing the runtime/lib/discovery/spec-document-finder.js seam"
+    },
+    {
+      "id": "F1.2",
+      "iteration": 1,
+      "angle": "boundaries",
+      "severity": "P1",
+      "code": "runtime/lib/validation/orchestrator.ts:76-78; spec-doc-structure.ts:104-107",
+      "clause": "runtime/lib/MODULE-MAP.md §1, §3.3, §3.5; shared/code-organization/imports-and-exports.md §3",
+      "summary": "Core lib modules depend outward on CLI files (validator-registry.json, rules/*.sh, dist/validation, frontmatter-grandfather-allowlist.json)"
+    },
+    {
+      "id": "F1.3",
+      "iteration": 1,
+      "angle": "dup",
+      "severity": "P1",
+      "code": "runtime/lib/continuity/thin-continuity-record.ts:108-109,476-486; runtime/lib/description/packet-synopsis.ts:52-63",
+      "clause": "shared/frontmatter/parse-frontmatter.ts:5-10; shared/code-organization/imports-and-exports.md §1",
+      "summary": "Hand-rolled regex frontmatter parsers in thin-continuity-record.ts and packet-synopsis.ts duplicate @spec-kit/shared/frontmatter/parse-frontmatter"
+    },
+    {
+      "id": "F1.4",
+      "iteration": 1,
+      "angle": "errors",
+      "severity": "P1",
+      "code": "runtime/lib/validation/spec-doc-structure.ts:1250-1256,1337",
+      "clause": "universal/code-quality-standards.md §3 P0#4; shell/quality-standards/validation-security-and-shellcheck.md §3",
+      "summary": "CLI entry point in spec-doc-structure.ts emits standard programmatic data (JSON and TSV results) to process.stderr on exit 0"
+    },
+    {
+      "id": "F1.5",
+      "iteration": 1,
+      "angle": "errors",
+      "severity": "P1",
+      "code": "runtime/lib/validation/generated-metadata-integrity.ts:150-154; spec-doc-structure.ts:527-529",
+      "clause": "universal/code-quality-standards.md §3 P0#4",
+      "summary": "Swallowed exceptions in computeSourceFingerprintForFolder and allowlist JSON parsing suppress validation errors"
+    },
+    {
+      "id": "F1.6",
+      "iteration": 1,
+      "angle": "coverage",
+      "severity": "P1",
+      "code": "runtime/api/index.ts; runtime/api/graph-refresh.ts",
+      "clause": "sk-code-quality/SKILL.md; universal/code-quality-standards.md §4 P1#2",
+      "summary": "Public package entry point runtime/api has zero dedicated test coverage in runtime/tests/"
+    },
+    {
+      "id": "F1.7",
+      "iteration": 1,
+      "angle": "header",
+      "severity": "P2",
+      "code": "runtime/lib/graph/access-telemetry.ts:1; is-phase-parent.ts:1; canonical-path.ts:1; shared-payload.ts:1; content-normalizer.ts:164",
+      "clause": "typescript/style-guide/overview-strict-and-naming.md §2, §4",
+      "summary": "66-char header boxes vs 67-char standard, missing section dividers in utility modules, and broken divider lines in content-normalizer.ts"
+    },
+    {
+      "id": "F1.8",
+      "iteration": 1,
+      "angle": "naming",
+      "severity": "P2",
+      "code": "runtime/lib/description/description-schema.ts:28,66",
+      "clause": "typescript/style-guide/overview-strict-and-naming.md §5",
+      "summary": "Mixed snake_case (trigger_phrases) and camelCase properties in perFolderDescriptionSchema"
+    }
+  ],
+  "ruledOutDirections": [
+    "Treating runtime/lib/discovery/spec-document-finder.ts as a boundary violation (MODULE-MAP explicitly establishes it as the seam)"
+  ],
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 1,
+    "resolvedQuestions": 1,
+    "keyFindings": 8,
+    "convergenceScore": 0,
+    "sourceFindings": 8,
+    "reconstructionGaps": 0,
+    "coverageBySources": {"source": 8, "standardClauses": 6}
+  },
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "divergence": {
+    "completed": ["runtime/lib and runtime/api audit"],
+    "failures": [],
+    "overrides": [],
+    "saturatedDirections": ["runtime/lib boundary and frontmatter scans"],
+    "remainingFrontier": "runtime/hooks, runtime/cli (.cjs/.mjs), shared/**"
+  }
+}

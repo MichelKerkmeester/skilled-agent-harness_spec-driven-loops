@@ -133,8 +133,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 24 | 024-metadata-regeneration-and-shared-parser/ | was `057-metadata-regeneration-and-parser-edges`; first commit 2026-09-06, last 2026-09-06 | complete |
 | 25 | 025-docs-reality-alignment-research/ | ten-iteration research lane: playbook, catalog and references against the runtime | complete |
 | 26 | 026-runtime-code-standards-research/ | ten-iteration research lane: shared and runtime code against the sk-code standards | complete |
-| 27 | 027-doc-path-strict-mode-and-retired-capability-fixes/ | fourteen confirmed doc mismatches fixed at their cited lines | complete |
-| 28 | 028-header-tags-hook-catch-and-script-test-fixes/ | confirmed code-standards deviations fixed; two scripts gain tests | complete |
+| 27 | 027-doc-path-strict-mode-and-retired-capability-fixes/ | thirty-two confirmed doc mismatches fixed at their cited lines, two waves | complete |
+| 28 | 028-header-tags-hook-catch-and-script-test-fixes/ | twenty-five confirmed code-standards deviations fixed, two waves; store path and classifier bugs included | complete |
 
 ### Phase Transition Rules
 

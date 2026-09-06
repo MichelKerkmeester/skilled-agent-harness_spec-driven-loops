@@ -20,3 +20,27 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited doc
 | F6-03 | P2 | `references/config/environment-variables.md:36` | `MEMORY_BASE_PATH` is used for path validation | `runtime/ENV-REFERENCE.md:138`: nothing imports the constant | Confirmed |
 | F8-03 | P2 | `references/templates/level-specifications.md:78` | `check-completion.sh` is missing | It exists at `runtime/cli/spec/check-completion.sh` | Dropped |
 | F8-02 | P2 | `level-selection-guide.md:191` | duplicate of F10-01 | folded into F10-01 | Merged |
+
+## Second pass: Gemini 3.8 Flash High, two iterations over documents the first lane never opened
+
+| ID | Sev | Doc | Claim | Actual | Verdict |
+|----|-----|-----|-------|--------|---------|
+| G-P0-01 | P0 | `manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md:81-87,100` | Script declares its fixtures | `level2Incomplete` is never declared and both fixture packets no longer exist | Confirmed; the path-prefix part was wrong, `.opencode/specs` is a symlink |
+| G-P0-02 | P1 | `references/memory/save-workflow.md:144` | `/speckit:search` offers epistemic baselines, causal graph, evaluation | The command declares those unsupported | Confirmed |
+| G-P1-01 | P1 | `manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md:41` | `cd .opencode/skills/runtime/` | Directory is `system-deep-loop/runtime` | Confirmed |
+| G-P1-02 | P1 | `manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md:27-29,107` | Seven watched packages, five listed | `DIST_PACKAGES` has six | Confirmed |
+| G-P1-03 | P1 | `manual-testing-playbook/ux-hooks/comment-hygiene-checker-baseline.md:31,52` | Runs the checker on `runtime/context-server.ts` | File retired with the memory server | Confirmed |
+| G-P1-04 | P1 | `manual-testing-playbook/ux-hooks/comment-hygiene-claude-code-hook.md:52,56,75` | Hook is `claude-posttooluse.sh` | `.claude/settings.json` wires `claude-posttooluse.cjs`, which does not call the script | Confirmed |
+| G-P1-05 | P1 | `references/memory/epistemic-vectors.md:210,315,333,338,390-392` | Search memory; dual-threshold readiness in Gate 1 | Memory search is retired; Gate 1 is one scale | Confirmed |
+| G-P1-06 | P1 | `references/templates/template-guide.md:619-620` | Save re-indexes and touches `DB_UPDATED_FILE` | The continuity writer does neither | Confirmed |
+| G-P1-07 | P1 | `references/templates/template-style-guide.md:213,217-229` | `memory/*.md` frontmatter for semantic search | Surface retired; continuity block replaces it | Confirmed |
+| G-P1-08 | P1 | `references/templates/level-specifications.md:420` | Verify the `memory/` folder | Folder retired | Confirmed |
+| G-P1-09 | P1 | `references/memory/trigger-config.md:220-241` | `config.jsonc` memory trigger section | No reader exists; phrases come from frontmatter | Confirmed |
+| G-P1-10 | P1 | `references/debugging/troubleshooting.md:155-183` | `.opencode/specs` commands fail | `.opencode/specs` is a symlink to `specs`; the commands run | Dropped |
+| G-P2-01 | P2 | `manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md:59,92` | Two hooks; session-prime uses warm paths | One hook runs; session-prime has no warm path | Confirmed |
+| G-P2-02 | P2 | `manual-testing-playbook/context-preservation/resource-map-template.md:76,80` | `CLAUDE.md` matches `resource-map.md` | Zero matches | Confirmed |
+| G-P2-03 | P2 | `manual-testing-playbook/feature-flag-reference/authored-continuity-snapshot.md:87` | `openltm-continuity-resilience.vitest.ts` | Retired; `thin-continuity-record.vitest.ts` survives | Confirmed |
+| G-P2-04 | P2 | `runtime/cli/retrieval/lookup-trigger-index.mjs:6-8` and three retrieval docs | Cites `runtime/lib/search/hybrid-search.ts` | File retired | Confirmed, widened to the READMEs and the catalog example |
+| G-P2-05 | P2 | `references/debugging/troubleshooting.md:355` | CONTINUE SESSION section | Removed from the ladder | Confirmed |
+| G-P2-06 | P2 | `references/cli/daemon-cli-reference.md:114` | Duplicate env var | Listed twice | Confirmed |
+| G-P2-07 | P2 | `references/templates/level-specifications.md:32-33,191-192,237-238`, `level-selection-guide.md:210-211` | Duplicate lines | Present | Confirmed |
