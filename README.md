@@ -197,9 +197,9 @@ Checklist items in `tasks.md` carry a priority so reviewers know what blocks shi
 
 - **P0** - Hard blocker. Cannot ship without this. Cannot defer.
 - **P1** - Required. Must complete or get explicit user approval to defer.
-- **P2** - Optional. Nice to have. Can defer without approval.
+- **P2** - Optional. Nice to have. Can defer without approval, except under `--strict`, where an incomplete P2 blocks.
 
-`check-completion.sh` reads these items from the verification section of `tasks.md` and requires every one to carry a P0, P1 or P2 tag. That section is Level 2+, so a Level 1 packet without it exits the check unenforced. `acceptance-criteria.md` does not use priorities: each of its rows is `Met`, `Unmet`, `Waived` or `Superseded`, and a `Waived` or `Superseded` row must name an ADR that exists in `decision-record.md`.
+`check-completion.sh` reads these items from the verification section of `tasks.md` and requires every one to carry a P0, P1 or P2 tag. That section is Level 2+, so a Level 1 packet without it exits the check unenforced. `acceptance-criteria.md` is the other gate and does not use priorities. It answers whether the packet may close rather than whether the work is done: each row is `Met`, `Unmet`, `Waived` or `Superseded`, and a `Waived` or `Superseded` row must name an ADR that exists in `decision-record.md`. The two are linked, because the `AC_COVERAGE` rule requires each criterion's evidence to trace back into `tasks.md`.
 
 &nbsp;
 #### Phase Decomposition

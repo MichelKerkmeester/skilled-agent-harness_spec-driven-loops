@@ -404,8 +404,24 @@ def route_speckit_resources(task):
 1. Gate 3 selects an existing, new, related, skipped, or phase spec folder before file changes.
 2. For new folders, estimate level from LOC, risk, affected systems, and verification needs; create from contract-backed templates.
 3. Keep phase parents lean: parent folders hold `spec.md`, `description.json`, and `graph-metadata.json`; child phases hold working docs.
-4. Use checklist priority as the completion gate: P0 cannot defer, P1 requires completion or approved deferral, and P2 is optional.
+4. Clear both completion gates before claiming done: the priority-ordered checklist in the `tasks.md` verification section, and the closure verdict in `acceptance-criteria.md`. See Two Completion Gates below.
 5. Preserve continuity in `implementation-summary.md` or through canonical `/speckit:save` with `generate-context.js`.
+
+### Two Completion Gates
+
+Level 2+ packets close through two different documents. They are often conflated, so keep the question each one answers distinct.
+
+| | `tasks.md` verification section | `acceptance-criteria.md` |
+|---|---|---|
+| Answers | Is the work done? | May the packet close? |
+| Unit | A checklist item | A criterion, written Given / When / Then |
+| Vocabulary | `[ ]` / `[x]`, tagged P0, P1 or P2 | `Met`, `Unmet`, `Waived`, `Superseded` |
+| Enforced by | `check-completion.sh` | `AC_CLOSURE` and `AC_COVERAGE` in `validate.sh` |
+| Blocks when | A P0 or P1 item is incomplete, an item carries no priority tag, or a completed P0/P1 item cites no evidence. P2 blocks only under `--strict` | Any criterion is still `Unmet`, or a `Waived` or `Superseded` row names a decision record that does not exist |
+
+The two are linked rather than parallel. `AC_COVERAGE` requires every criterion's evidence to trace back into the merged tasks document, so `tasks.md` is where the proof lives and `acceptance-criteria.md` is where the verdict lives. A criterion marked `Met` with no traceable item behind it is the failure that rule exists to catch.
+
+`acceptance-criteria.md` is an optional add-on: `validate.sh` warns when a Level 2+ packet has none. Once the file exists, `AC_CLOSURE` is an error-severity gate on that packet.
 
 ### Retrieval and Continuity
 
@@ -450,7 +466,7 @@ The local `/goal` surface is `.opencode/plugins/opencode-goal.js` plus `.opencod
 5. **Prefer coordinated related packets before new top-level folders** - Check active and related specs, their scope, status, and Phase Documentation Map. When related work qualifies for phase decomposition, recommend one phased packet rather than separate single-spec folders.
 6. **Get explicit user approval before changes** - Show level, path, templates, approach
 7. **Use consistent folder naming** - `specs/###-short-name/` format
-8. **Use the tasks.md verification section to verify (Level 2+)** - Load before claiming done
+8. **Clear both completion gates (Level 2+)** - The `tasks.md` verification checklist AND the `acceptance-criteria.md` closure verdict. Load both before claiming done; see §3 Two Completion Gates
 9. **Mark items `[x]` with evidence** - Include links, test outputs, screenshots
 10. **Complete P0/P1 before claiming done** - No exceptions
 11. **Suggest handover.md on session-end keywords** - "continue later", "next session"
@@ -472,7 +488,7 @@ The local `/goal` surface is `.opencode/plugins/opencode-goal.js` plus `.opencod
 3. **Make changes before spec + approval** - Spec folder is prerequisite
 4. **Leave placeholders in final docs** - All must be replaced
 5. **Decide autonomously update vs create** - Always ask user
-6. **Claim done without checklist verification** - Level 2+ requirement
+6. **Claim done without clearing both completion gates** - Level 2+ requires the `tasks.md` verification checklist verified with evidence AND every `acceptance-criteria.md` criterion `Met`, `Waived` or `Superseded`
 7. **Proceed without spec folder confirmation** - Wait for A/B/C/D/E
 8. **Skip validation before completion** - Completion Verification hard block
 9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, and `resource-map.md` must not contain ToC headings
@@ -494,7 +510,7 @@ The local `/goal` surface is `.opencode/plugins/opencode-goal.js` plus `.opencod
 
 ## 5. SUCCESS CRITERIA
 
-Success means the selected spec folder uses the right template set, placeholders and sample content are removed, links between packet docs work, continuity is saved or updated, Level 2+ checklist P0/P1 items are verified with evidence, and `validate.sh --strict` has no blocking errors.
+Success means the selected spec folder uses the right template set, placeholders and sample content are removed, links between packet docs work, continuity is saved or updated, Level 2+ `tasks.md` P0/P1 checklist items are verified with evidence, every `acceptance-criteria.md` criterion is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` has no blocking errors.
 
 ---
 
