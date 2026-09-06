@@ -4,6 +4,7 @@ import os from 'node:os';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
@@ -156,7 +157,7 @@ Use detect_changes before reporting structural impact.
     const withoutCodex = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
     expect(withoutCodex.missingRuntimes).toEqual([]);
 
-    const codexBody = CANONICAL.replace(/^---[\s\S]*?---\n+/, '').trim();
+    const codexBody = parseFrontmatter(CANONICAL).body.trim();
     writeFile(
       `.codex/agents/${AGENT_NAME}.toml`,
       `name = "${AGENT_NAME}"\ndescription = "Mirror sync fixture"\ndeveloper_instructions = '''\n${codexBody}\n'''\n`,

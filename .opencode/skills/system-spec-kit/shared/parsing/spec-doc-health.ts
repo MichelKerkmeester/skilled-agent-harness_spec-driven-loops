@@ -11,6 +11,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
 
 // ---------------------------------------------------------------
 // Types
@@ -43,7 +44,6 @@ export interface SpecDocHealthResult {
 
 const SPECKIT_LEVEL_RE = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
 const SPECKIT_TEMPLATE_SOURCE_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:\s*.+\s*-->/;
-const YAML_FRONTMATTER_RE = /^---\r?\n[\s\S]*?\r?\n---/;
 const ANCHOR_OPEN_RE = /<!--\s*ANCHOR:(\S+)\s*-->/g;
 const ANCHOR_CLOSE_RE = /<!--\s*\/ANCHOR:(\S+)\s*-->/g;
 const FOLDER_NAMING_RE = /^\d{3}-[a-z0-9]([a-z0-9-]*[a-z0-9])?$/;
@@ -163,7 +163,7 @@ function checkFrontmatter(folderPath: string): SpecDocHealthIssue[] {
 
   try {
     const content = fs.readFileSync(specPath, 'utf-8');
-    if (!YAML_FRONTMATTER_RE.test(content)) {
+    if (parseFrontmatter(content).raw === null) {
       issues.push({
         rule: 'FRONTMATTER_VALID',
         severity: 'error',
@@ -280,8 +280,7 @@ function checkContentSubstance(folderPath: string): SpecDocHealthIssue[] {
 
       const content = fs.readFileSync(filePath, 'utf-8').trim();
       // Strip frontmatter and comments for substance check
-      const stripped = content
-        .replace(YAML_FRONTMATTER_RE, '')
+      const stripped = parseFrontmatter(content).body
         .replace(/<!--[\s\S]*?-->/g, '')
         .replace(/^#.*$/gm, '')
         .trim();

@@ -9,6 +9,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -33,8 +34,15 @@ function normalizeText(value) {
 }
 
 function stripRubricMetadata(content) {
-  return String(content)
-    .replace(/^---[\s\S]*?\n---\s*/m, '')
+  const text = String(content);
+  // A rubric fence is normally the document's leading frontmatter block, which
+  // the shared parser owns. A block can also sit mid-document, which a
+  // leading-block parser does not cover, so that shape keeps its own removal;
+  // either way only the first block is stripped, matching the historical hash.
+  const withoutBlock = parseFrontmatter(text).raw !== null
+    ? parseFrontmatter(text).body
+    : text.replace(/^---[\s\S]*?\n---\s*/m, '');
+  return withoutBlock
     .replace(/<!--\s*DAI_RUBRIC[\s\S]*?-->/gi, '')
     .replace(/<!--\s*scoring-rubric[\s\S]*?-->/gi, '');
 }

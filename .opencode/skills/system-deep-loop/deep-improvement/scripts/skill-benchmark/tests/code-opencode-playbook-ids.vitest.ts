@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { resolve, join } from 'node:path';
 import { readFileSync, readdirSync } from 'node:fs';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 // Fail-closed integrity gate for the sk-code-opencode manual-testing-playbook.
 //
@@ -25,8 +26,9 @@ function countFeatureFiles(dir: string): number {
     if (e.isDirectory()) n += countFeatureFiles(join(dir, e.name));
     else if (e.isFile() && e.name.endsWith('.md')
       && e.name !== 'manual-testing-playbook.md' && e.name !== 'feature-catalog.md') {
-      const fm = /^---\n([\s\S]*?)\n---/.exec(readFileSync(join(dir, e.name), 'utf8'));
-      if (fm && /(?:^|\n)[ \t]*(?:id|expected_intent|expected_resources)[ \t]*:/.test(fm[1])) n += 1;
+      const parsed = parseFrontmatter(readFileSync(join(dir, e.name), 'utf8'));
+      const block = parsed.raw === null ? null : parsed.raw.slice(4, -4);
+      if (block !== null && /(?:^|\n)[ \t]*(?:id|expected_intent|expected_resources)[ \t]*:/.test(block)) n += 1;
     }
   }
   return n;

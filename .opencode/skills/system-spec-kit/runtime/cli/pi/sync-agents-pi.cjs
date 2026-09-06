@@ -10,6 +10,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -77,12 +78,18 @@ function parseScalar(value) {
 }
 
 function parseSource(contents, sourcePath) {
-  const match = contents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
-  if (!match) {
+  const raw = parseFrontmatterDoc(contents).raw;
+  if (raw === null) {
     throw new Error(`missing YAML frontmatter in ${sourcePath}`);
   }
 
-  const frontmatter = match[1];
+  // Keys stay line-read verbatim; only the fence split comes from the shared
+  // parser. The body starts after one optional fence terminator, exactly as
+  // the rendered `---` + body join expects.
+  const rest = contents.slice(raw.length);
+  const terminator = /^(\r?\n?)/.exec(rest)[1].length;
+  const frontmatter = raw.slice(raw.indexOf('\n') + 1, raw.lastIndexOf('\n')).replace(/\r$/, '');
+
   const nameMatch = frontmatter.match(/^name:\s*(.+)$/m);
   const descriptionMatch = frontmatter.match(/^description:\s*(.+)$/m);
   if (!nameMatch || !descriptionMatch) {
@@ -102,7 +109,7 @@ function parseSource(contents, sourcePath) {
     name: parseScalar(nameMatch[1]),
     description: parseScalar(descriptionMatch[1]),
     permissions,
-    body: match[2],
+    body: rest.slice(terminator),
   };
 }
 

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0f23e1378b6966c89daf9f80673bac630b7fa9068831cc30c9ac7000c350788b",
+  "manifestHash": "3a04faba31254e582b1fe120e9027b24cce0319dc7ca7bd7d0a386d7803daf85",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -142,9 +142,6 @@
     ],
     "001 implementation summary": [
       "001 implementation summary"
-    ],
-    "001 integration research remediation": [
-      "001-integration-research-remediation"
     ],
     "001 local embeddings foundation changelog index": [
       "001-local-embeddings-foundation changelog index"
@@ -8691,6 +8688,9 @@
     "abstraction layers": [
       "abstraction layers"
     ],
+    "ac 005 restatement": [
+      "ac-005 restatement"
+    ],
     "ac closure adr": [
       "ac closure adr"
     ],
@@ -8732,6 +8732,9 @@
     ],
     "ac coverage rule": [
       "AC_COVERAGE rule"
+    ],
+    "ac discharge map": [
+      "ac discharge map"
     ],
     "ac format normalization": [
       "AC-format normalization"
@@ -16506,6 +16509,9 @@
     "card sync guard rewrite tasks": [
       "card-sync-guard-rewrite tasks"
     ],
+    "card versus table enforcement": [
+      "card versus table enforcement"
+    ],
     "cardinal fidelity rule": [
       "cardinal fidelity rule"
     ],
@@ -17292,6 +17298,9 @@
     "chart capability analysis": [
       "chart capability analysis"
     ],
+    "chart card readout rule": [
+      "chart card readout rule"
+    ],
     "chart catalog": [
       "chart catalog"
     ],
@@ -17427,6 +17436,9 @@
     "chart corpus chrome": [
       "chart corpus chrome"
     ],
+    "chart corpus expansion": [
+      "chart corpus expansion"
+    ],
     "chart corpus record": [
       "chart corpus record"
     ],
@@ -17526,17 +17538,26 @@
     "chart headline audit": [
       "chart headline audit"
     ],
+    "chart hit target size": [
+      "chart hit target size"
+    ],
     "chart hover dim": [
       "chart hover dim"
     ],
     "chart hover phases": [
       "chart hover phases"
     ],
+    "chart hover plan": [
+      "chart hover plan"
+    ],
     "chart hover state": [
       "chart hover state"
     ],
     "chart hover synthesis": [
       "chart hover synthesis"
+    ],
+    "chart hover tasks": [
+      "chart hover tasks"
     ],
     "chart hover tooltip": [
       "chart hover tooltip"
@@ -17562,11 +17583,17 @@
     "chart interaction layer": [
       "chart interaction layer"
     ],
+    "chart interaction phase tasks": [
+      "chart interaction phase tasks"
+    ],
     "chart interaction phasing": [
       "chart interaction phasing"
     ],
     "chart interaction plan": [
       "chart interaction plan"
+    ],
+    "chart interaction rollout": [
+      "chart interaction rollout"
     ],
     "chart interaction summary": [
       "chart interaction summary"
@@ -17714,6 +17741,9 @@
     ],
     "chart research tasks": [
       "chart research tasks"
+    ],
+    "chart restyle": [
+      "chart restyle"
     ],
     "chart reveal wipe": [
       "chart reveal wipe"
@@ -21308,6 +21338,9 @@
     "close browser pages finally": [
       "close browser pages finally"
     ],
+    "close chart deferrals": [
+      "close chart deferrals"
+    ],
     "close completion rows": [
       "close completion rows"
     ],
@@ -21379,6 +21412,12 @@
     ],
     "closure gate tasks": [
       "closure gate tasks"
+    ],
+    "closure phase acceptance": [
+      "closure phase acceptance"
+    ],
+    "closure phase summary": [
+      "closure phase summary"
     ],
     "closure rows with evidence": [
       "closure rows with evidence"
@@ -38446,6 +38485,9 @@
     "distinctive visual design": [
       "distinctive visual design"
     ],
+    "distribution strip table": [
+      "distribution strip table"
+    ],
     "diverged warning spam": [
       "diverged warning spam"
     ],
@@ -39560,6 +39602,9 @@
     ],
     "drift audit fixes complete": [
       "drift audit fixes complete"
+    ],
+    "drift census": [
+      "drift census"
     ],
     "drift census execution": [
       "drift census execution"
@@ -48566,6 +48611,9 @@
     "graph metadata child drift": [
       "graph-metadata child drift"
     ],
+    "graph metadata child identity": [
+      "graph metadata child identity"
+    ],
     "graph metadata children": [
       "graph metadata children"
     ],
@@ -49436,6 +49484,9 @@
     "heat matrix band defect": [
       "heat matrix band defect"
     ],
+    "heaviest form correction": [
+      "heaviest form correction"
+    ],
     "held out and gold sets": [
       "held-out and gold sets"
     ],
@@ -49777,6 +49828,9 @@
     ],
     "hook docs relocation": [
       "hook docs relocation"
+    ],
+    "hook drift marker claude cursor": [
+      "hook drift marker claude cursor"
     ],
     "hook entrypoints registration": [
       "hook entrypoints registration"
@@ -51395,6 +51449,9 @@
     "improvement": [
       "improvement"
     ],
+    "improvement artifact family": [
+      "improvement artifact family"
+    ],
     "improvement charter": [
       "improvement charter"
     ],
@@ -51409,6 +51466,9 @@
     ],
     "improvement config reference": [
       "improvement config reference"
+    ],
+    "improvement config rule": [
+      "improvement config rule"
     ],
     "improvement dashboard": [
       "improvement dashboard"
@@ -52111,6 +52171,9 @@
     ],
     "integration protocol wires": [
       "integration protocol wires"
+    ],
+    "integration research remediation": [
+      "integration research remediation"
     ],
     "integration scan report": [
       "integration scan report"
@@ -54873,6 +54936,9 @@
     ],
     "lift socket server pattern": [
       "lift socket-server pattern"
+    ],
+    "light dark chart gallery": [
+      "light dark chart gallery"
     ],
     "light dark system dark": [
       "light dark system dark"
@@ -60750,6 +60816,9 @@
     "metadata regeneration implementation plan": [
       "metadata regeneration implementation plan"
     ],
+    "metadata regeneration pass": [
+      "metadata regeneration pass"
+    ],
     "metadata regeneration task breakdown": [
       "metadata regeneration task breakdown"
     ],
@@ -61442,6 +61511,9 @@
     ],
     "mk to system": [
       "mk to system"
+    ],
+    "mkhookdrift fallback": [
+      "mkHookDrift fallback"
     ],
     "mmr only stage 3": [
       "mmr only stage 3"
@@ -63039,6 +63111,9 @@
     "mutation path audit": [
       "mutation path audit"
     ],
+    "mutation proof": [
+      "mutation proof"
+    ],
     "mutation representation format": [
       "mutation representation format"
     ],
@@ -63402,6 +63477,9 @@
     "never invent story values": [
       "never invent story values"
     ],
+    "new chart forms": [
+      "new chart forms"
+    ],
     "new child 005 not 002": [
       "new child 005 not 002"
     ],
@@ -63561,6 +63639,9 @@
     "no live edit handoff tasks": [
       "no live edit handoff tasks"
     ],
+    "no metadata refresh flag": [
+      "no-metadata-refresh flag"
+    ],
     "no network task fetch": [
       "no network task fetch"
     ],
@@ -63632,6 +63713,9 @@
     ],
     "no screen reader session has run": [
       "no screen reader session has run"
+    ],
+    "no script interpretation ruling": [
+      "no-script interpretation ruling"
     ],
     "no spec ids in comments": [
       "no spec ids in comments"
@@ -64534,6 +64618,9 @@
     ],
     "o nofollow final component": [
       "o_nofollow final component"
+    ],
+    "o3 silence passes decision": [
+      "o3 silence-passes decision"
     ],
     "o6 hardening done": [
       "o6 hardening done"
@@ -68849,6 +68936,9 @@
     "perspective inversion technique": [
       "perspective inversion technique"
     ],
+    "phantom children after rename": [
+      "phantom children after rename"
+    ],
     "phantom children ids prune": [
       "phantom children_ids prune"
     ],
@@ -70063,6 +70153,9 @@
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
+    ],
+    "phase acceptance criteria": [
+      "phase acceptance criteria"
     ],
     "phase b handoff": [
       "phase b handoff"
@@ -72173,8 +72266,20 @@
     "pointer cleanup phase": [
       "pointer cleanup phase"
     ],
+    "pointer contract closure rulings": [
+      "pointer contract closure rulings"
+    ],
+    "pointer contract coverage": [
+      "pointer contract coverage"
+    ],
     "pointer contract implementation plan": [
       "pointer contract implementation plan"
+    ],
+    "pointer contract phases": [
+      "pointer contract phases"
+    ],
+    "pointer contract task order": [
+      "pointer contract task order"
     ],
     "pointer coverage": [
       "pointer coverage"
@@ -72603,6 +72708,9 @@
     ],
     "post review remediation tasks": [
       "post review remediation tasks"
+    ],
+    "post run metadata refresh": [
+      "post-run metadata refresh"
     ],
     "post save fingerprint ordering": [
       "post save fingerprint ordering"
@@ -77725,6 +77833,9 @@
     "render contract probe harness artifact": [
       "render contract probe harness artifact"
     ],
+    "render gate evidence": [
+      "render gate evidence"
+    ],
     "render in figma": [
       "render in figma"
     ],
@@ -81573,6 +81684,9 @@
     "rule refusal test": [
       "rule refusal test"
     ],
+    "rule registry count": [
+      "rule registry count"
+    ],
     "rule router shipped": [
       "rule router shipped"
     ],
@@ -81839,6 +81953,9 @@
     ],
     "runtime agnostic session lifecycle scripts": [
       "runtime-agnostic session lifecycle scripts"
+    ],
+    "runtime api boundary": [
+      "runtime api boundary"
     ],
     "runtime bootstrap tsxchildenv": [
       "runtime-bootstrap tsxChildEnv"
@@ -84988,6 +85105,9 @@
     "shared feedback aggregation": [
       "shared feedback aggregation"
     ],
+    "shared frontmatter parser": [
+      "shared frontmatter parser"
+    ],
     "shared hf embed server url socket": [
       "shared HF_EMBED_SERVER_URL socket"
     ],
@@ -85060,8 +85180,14 @@
     "shared output wrapper seam": [
       "shared output wrapper seam"
     ],
+    "shared package dependency edge": [
+      "shared package dependency edge"
+    ],
     "shared parsing modules": [
       "shared parsing modules"
+    ],
+    "shared path containment": [
+      "shared path containment"
     ],
     "shared payload": [
       "shared payload",
@@ -88413,6 +88539,9 @@
     "sk doc scripts implementation plan": [
       "sk-doc scripts implementation plan"
     ],
+    "sk doc scripts manifest": [
+      "sk-doc scripts manifest"
+    ],
     "sk doc scripts naming": [
       "sk-doc scripts naming"
     ],
@@ -90893,6 +91022,9 @@
     "skill docs benchmark coverage audit": [
       "skill docs benchmark coverage audit"
     ],
+    "skill docs missing from index": [
+      "skill docs missing from index"
+    ],
     "skill docs sweep": [
       "skill docs sweep"
     ],
@@ -92490,6 +92622,9 @@
     ],
     "spec kit advisor ref cleanup": [
       "spec-kit advisor ref cleanup"
+    ],
+    "spec kit alignment findings": [
+      "spec kit alignment findings"
     ],
     "spec kit architecture": [
       "spec kit architecture"
@@ -98587,6 +98722,9 @@
     "track research strategy": [
       "track research strategy"
     ],
+    "track root sweep": [
+      "track root sweep"
+    ],
     "track time on task": [
       "track time on task"
     ],
@@ -98914,6 +99052,9 @@
     ],
     "trigger index replacement": [
       "trigger index replacement"
+    ],
+    "trigger index repo root": [
+      "trigger index repo root"
     ],
     "trigger index research": [
       "trigger index research"
@@ -100607,6 +100748,9 @@
     ],
     "validator promotion": [
       "validator promotion"
+    ],
+    "validator registry rule": [
+      "validator registry rule"
     ],
     "validator repair swarm plan": [
       "validator repair swarm plan"

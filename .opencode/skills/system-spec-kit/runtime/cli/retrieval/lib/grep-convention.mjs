@@ -30,6 +30,7 @@
 
 import { createHash } from 'node:crypto';
 
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 import { CATEGORY, readTriggerPhrases } from './frontmatter.mjs';
 import { compareCodeUnits, MAX_PHRASE_LENGTH, normalizeTriggerText } from './normalize.mjs';
 
@@ -390,17 +391,21 @@ export function locateFrontmatter(text) {
   if (text.slice(start, firstLineEnd).replace(/\r$/, '').trim() !== '---') return absent;
 
   const openLine = lineNumberAt(text, start);
-  const closingRegex = /^---\s*$/gm;
-  closingRegex.lastIndex = firstLineEnd + 1;
-  const closing = closingRegex.exec(text);
-  if (!closing) return { ...absent, hasOpener: true, openLine };
+  // The fence split comes from the shared parser over the tail that follows
+  // any skipped trivia (skipLeadingTrivia lands on the fence's first `---`,
+  // so the parser's own opening-fence rule agrees). The closing fence line is
+  // the parser's raw block's last line, which reproduces the scanned offsets.
+  const parsed = parseFrontmatter(text.slice(start));
+  if (parsed.raw === null) return { ...absent, hasOpener: true, openLine };
 
-  const closeEnd = text.indexOf('\n', closing.index);
+  const raw = parsed.raw;
+  const closeStart = start + raw.length - raw.slice(raw.lastIndexOf('\n') + 1).length;
+  const closeEnd = text.indexOf('\n', closeStart);
   const bodyOffset = closeEnd === -1 ? text.length : closeEnd + 1;
 
   return {
     bodyOffset,
-    closeLine: lineNumberAt(text, closing.index),
+    closeLine: lineNumberAt(text, closeStart),
     hasOpener: true,
     openLine,
     present: true,

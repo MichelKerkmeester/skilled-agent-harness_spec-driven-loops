@@ -9,6 +9,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -33,7 +34,7 @@ function parseJsonc(filePath) {
 }
 
 function stripFrontmatter(content) {
-  return content.replace(/^---[\s\S]*?---\n/, '');
+  return parseFrontmatter(content).body;
 }
 
 function safeReadBody(file) {

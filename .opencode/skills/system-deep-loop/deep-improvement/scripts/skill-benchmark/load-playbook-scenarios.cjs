@@ -31,6 +31,14 @@
 
 const fs = require('fs');
 const path = require('path');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
+
+// Gold is parsed AS AUTHORED over the raw block text, so the shared parser
+// owns only the fence split and the inner text stays line-read verbatim.
+function frontmatterBlock(text) {
+  const parsed = parseFrontmatter(text || '');
+  return parsed.raw === null ? null : parsed.raw.slice(4, -4);
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -189,9 +197,9 @@ function parseFrontmatterList(block, keys) {
 }
 
 function parseExpectedRankBelowSkillIds(text) {
-  const fm = /^---\n([\s\S]*?)\n---/.exec(text || '');
-  if (!fm) return [];
-  return parseFrontmatterList(fm[1], [
+  const block = frontmatterBlock(text);
+  if (block === null) return [];
+  return parseFrontmatterList(block, [
     'rankBelowSkillIds',
     'rank_below_skill_ids',
     'expected_rank_below_skill_ids',
@@ -442,7 +450,7 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
   // Explicit per-scenario kind (skill-agnostic) wins over any heuristic. Parsed
   // from this feature file's own frontmatter; absent for legacy scenarios, so
   // classification falls through to category/surface/advisor signals.
-  const fmBlock = (/^---\n([\s\S]*?)\n---/.exec(text) || [])[1] || '';
+  const fmBlock = frontmatterBlock(text) || '';
   const declaredKind = parseFrontmatterScalar(fmBlock, 'scenario_kind') || parseFrontmatterScalar(fmBlock, 'kind');
   const classKind = classifyKind(id, category, expectedSurface, passCriteria, declaredKind);
 
@@ -542,9 +550,8 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
           || e.name === 'manual-testing-playbook.md' || e.name === 'feature-catalog.md') continue;
       const text = readFileSafe(full);
       if (!text) continue;
-      const fm = /^---\n([\s\S]*?)\n---/.exec(text);
-      if (!fm) continue;
-      const block = fm[1];
+      const block = frontmatterBlock(text);
+      if (block === null) continue;
       if (!/(?:^|\n)[ \t]*(?:id|expected_intent|expected_resources)[ \t]*:/.test(block)) continue;
       const idM = /(?:^|\n)[ \t]*id:\s*["']?([A-Za-z0-9-]+)/.exec(block);
       const intentGold = parseExpectedIntentGold(block);

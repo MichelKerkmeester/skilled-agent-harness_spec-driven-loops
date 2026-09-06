@@ -1,9 +1,6 @@
 ---
 title: "Cursor Hooks: Lifecycle Adapters"
 description: "Cursor CLI hook adapters that normalize Cursor lifecycle payloads and delegate to the existing Claude hook implementations."
-
-> **Fallback contract.** Every registration in `.cursor/hooks.json` wraps its adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`, so the hook always answers its host. On a primary-adapter failure the fallback prints `mk-hook-drift host=cursor event=<event> adapter=<name>` to stderr and returns the host's expected JSON with `"mkHookDrift": true`, which the runtime-mirrors doctor asset reads as a degraded-adapter signal.
-
 ---
 
 # Cursor Hooks: Lifecycle Adapters
@@ -13,6 +10,8 @@ description: "Cursor CLI hook adapters that normalize Cursor lifecycle payloads 
 ## 1. OVERVIEW
 
 `hooks/cursor/` adapts Cursor CLI's lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Cursor payload, spawns the matching compiled Claude adapter with a normalized input, and translates the result back into Cursor's native `{permission, user_message, agent_message}` hook response envelope — a materially different shape from Codex's `hookSpecificOutput` envelope. No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters so the command transports cannot drift apart.
+
+> **Fallback contract.** Every registration in `.cursor/hooks.json` wraps its adapter as `node <adapter> || { <stderr line>; <fallback JSON>; }`, so the hook always answers its host. On a primary-adapter failure the fallback prints `mk-hook-drift host=cursor event=<event> adapter=<name>` to stderr and returns the host's expected JSON with `"mkHookDrift": true`, which the runtime-mirrors doctor asset reads as a degraded-adapter signal.
 
 **Blast radius (read before registering `.cursor/hooks.json`).** Unlike `.codex/hooks.json` or `.devin/hooks.v1.json`, Cursor's hook config is NOT tool-private — `.cursor/hooks.json` (project) and `~/.cursor/hooks.json` (user) are the exact same files the Cursor **editor** reads. Registering these adapters in a project `.cursor/hooks.json` also fires them for anyone using the Cursor editor on this repo, not only dispatched `cursor-agent` CLI sessions. Every adapter here fails open (never blocks on malformed/missing stdin), which is the load-bearing mitigation for that shared blast radius — see `decision-record.md` ADR-001 for the full reasoning and rejected alternatives.
 

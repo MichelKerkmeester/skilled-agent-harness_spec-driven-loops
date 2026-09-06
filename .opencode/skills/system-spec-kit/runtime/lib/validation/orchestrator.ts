@@ -896,7 +896,7 @@ function validateFrontmatterBasics(folder: string, level: SpecKitLevel): Validat
     if (content === null) continue;
     // An opened-but-unterminated block is its own fault, and reporting it as a
     // set of empty fields would send the reader looking for the wrong thing.
-    if (/^---\r?\n/u.test(content) && frontmatterOf(docName) === null) {
+    if (parseFrontmatter(content).raw === null && /^---\r?\n/u.test(content)) {
       empty.push(`${docName}: Unclosed YAML frontmatter (missing closing ---)`);
       continue;
     }

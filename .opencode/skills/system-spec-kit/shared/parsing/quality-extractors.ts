@@ -2,7 +2,7 @@
 // MODULE: Quality Extractors
 // ---------------------------------------------------------------
 
-const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
+import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
 
 /**
  * Extract the YAML frontmatter block (between --- delimiters).
@@ -10,8 +10,11 @@ const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
  * be parsed as metadata.
  */
 function extractFrontmatter(content: string): string {
-  const match = content.match(FRONTMATTER_RE);
-  return match ? match[1] : '';
+  const raw = parseFrontmatter(content).raw;
+  if (raw === null) return '';
+  // Inner block text between the fence lines, line-read verbatim; a CRLF
+  // terminator's \r belongs to the fence, not the value.
+  return raw.slice(raw.indexOf('\n') + 1, raw.lastIndexOf('\n')).replace(/\r$/, '');
 }
 
 /**

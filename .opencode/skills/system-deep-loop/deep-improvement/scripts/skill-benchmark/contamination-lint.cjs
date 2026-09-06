@@ -22,6 +22,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 const { parseRouter } = require('./router-replay.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -38,10 +39,12 @@ function readIfExists(p) {
  * @returns {string[]} Trigger phrases plus the frontmatter name, if present.
  */
 function frontmatterTriggers(skillMd) {
-  const fm = /^---\n([\s\S]*?)\n---/.exec(skillMd);
-  if (!fm) return [];
+  const parsed = parseFrontmatter(skillMd || '');
+  if (parsed.raw === null) return [];
+  // Trigger phrases are line-read verbatim so odd YAML never rewrites them;
+  // only the fence split comes from the shared parser.
+  const block = parsed.raw.slice(4, -4);
   const triggers = [];
-  const block = fm[1];
   const tm = /trigger_phrases:\s*\n((?:\s*-\s*.+\n?)+)/.exec(block);
   if (tm) {
     for (const line of tm[1].split('\n')) {

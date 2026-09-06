@@ -1,5 +1,5 @@
 {
-  "corpusHash": "51a05e17310e3a98bae95919cdff1750c6cf8f3f27af3aeb5f062f38c96a18d9",
+  "corpusHash": "c0efe3be11472f22eb065c21509ec3695840f05e89cd092ecbe5ed86b11c7eed",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -16,7 +16,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28342,
+  "includedPathCount": 28383,
   "includedPaths": [
     ".opencode/install-guides/README.md",
     ".opencode/install-guides/install-scripts/README.md",
@@ -15317,10 +15317,46 @@
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity/spec.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity/tasks.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/decision-record.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/implementation-summary.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/plan.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/spec.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/tasks.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/acceptance-criteria.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/implementation-summary.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/plan.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/spec.md",
+    "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/tasks.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/acceptance-criteria.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/plan.md",
     "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/research/deep-research-strategy.md",
@@ -28359,10 +28395,15 @@
     "specs/system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh/plan.md",
     "specs/system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh/spec.md",
     "specs/system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh/tasks.md",
-    "specs/system-speckit/056-integration-research-remediation/spec.md"
+    "specs/system-speckit/056-integration-research-remediation/spec.md",
+    "specs/system-speckit/057-metadata-regeneration-and-parser-edges/acceptance-criteria.md",
+    "specs/system-speckit/057-metadata-regeneration-and-parser-edges/implementation-summary.md",
+    "specs/system-speckit/057-metadata-regeneration-and-parser-edges/plan.md",
+    "specs/system-speckit/057-metadata-regeneration-and-parser-edges/spec.md",
+    "specs/system-speckit/057-metadata-regeneration-and-parser-edges/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0f23e1378b6966c89daf9f80673bac630b7fa9068831cc30c9ac7000c350788b",
+  "manifestHash": "3a04faba31254e582b1fe120e9027b24cce0319dc7ca7bd7d0a386d7803daf85",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28457,6 +28498,10 @@
     },
     {
       "path": ".opencode/skills/sk-design-md-generator/backend/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-doc/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -30005,6 +30050,34 @@
     },
     {
       "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31937,6 +32010,10 @@
     },
     {
       "path": "specs/system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/057-metadata-regeneration-and-parser-edges/scratch",
       "reason": "excluded directory"
     },
     {

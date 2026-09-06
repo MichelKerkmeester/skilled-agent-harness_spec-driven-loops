@@ -22,6 +22,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 const { parseRouter } = require('./router-replay.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -223,9 +224,12 @@ function normalizeIntentKeyword(value) {
 function extractFrontmatterName(skillMdPath) {
   if (!fs.existsSync(skillMdPath)) return null;
   const text = fs.readFileSync(skillMdPath, 'utf8');
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return null;
-  const name = match[1].match(/^name:\s*"?([^"\n]+)"?\s*$/m);
+  const parsed = parseFrontmatter(text);
+  if (parsed.raw === null) return null;
+  // The name stays line-read verbatim; only the fence split comes from the
+  // shared parser.
+  const block = parsed.raw.slice(4, -4);
+  const name = block.match(/^name:\s*"?([^"\n]+)"?\s*$/m);
   return name ? name[1].trim() : null;
 }
 

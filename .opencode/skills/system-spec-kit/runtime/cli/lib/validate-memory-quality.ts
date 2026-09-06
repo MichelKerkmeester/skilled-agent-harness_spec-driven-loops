@@ -916,7 +916,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
       }
     }
   }
-  const bodyContent = content.replace(/^---\n[\s\S]*?\n---\n?/, '');
+  const bodyContent = parseFrontmatter(content).body;
   const specIdCounts = countDistinctSpecIds(bodyContent);
   const keyTopics = parseYamlListFromContent(content, 'key_topics');
   const frontmatterSpecCounts = countSpecIdsInValues([...triggerPhrases, ...keyTopics]);
@@ -1073,7 +1073,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
     v13Message = `malformed frontmatter YAML: ${frontMatterParseError}`;
   } else {
     // Content density check: strip the leading frontmatter block then count non-whitespace chars
-    const bodyText = content.replace(/^---\n[\s\S]*?\n---\n?/, '').replace(/```yaml\n[\s\S]*?\n```/gi, '');
+    const bodyText = parseFrontmatter(content).body.replace(/```yaml\n[\s\S]*?\n```/gi, '');
     const nonWhitespaceCount = (bodyText.match(/\S/g) ?? []).length;
     if (nonWhitespaceCount < 50) {
       v13Failed = true;

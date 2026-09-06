@@ -2,7 +2,8 @@
 // MODULE: Memory Sufficiency
 // ───────────────────────────────────────────────────────────────────
 
-const FRONTMATTER_RE = /^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/;
+import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
+
 const COMMENT_RE = /<!--[\s\S]*?-->/g;
 const CODE_FENCE_RE = /```[\s\S]*?```/g;
 const WORD_RE = /\b[a-z][a-z0-9_-]{2,}\b/gi;
@@ -116,7 +117,7 @@ export interface MemorySufficiencyResult {
 export const MANUAL_FALLBACK_SOURCE = 'manual-fallback' as const;
 
 function stripFrontmatter(content: string): string {
-  return content.replace(FRONTMATTER_RE, '');
+  return parseFrontmatter(content).body;
 }
 
 function stripDecorativeContent(content: string): string {

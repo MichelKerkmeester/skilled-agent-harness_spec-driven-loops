@@ -26,6 +26,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 const { scoreD1Inter, scoreModePrecision, scoreRelativeAdvisorRanking } = require('./advisor-probe.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -474,11 +475,14 @@ function wrapperPathForCommand({ command, skillRoot }) {
   return path.resolve(skillRoot, '..', '..', 'commands', 'design', `${name}.md`);
 }
 
+// Scalar values stay line-read verbatim so YAML-shaped hints (e.g. `[page]`)
+// never get YAML-interpreted; only the fence split comes from the shared parser.
 function parseFrontmatter(markdown) {
-  const m = /^---\n([\s\S]*?)\n---/.exec(markdown || '');
-  if (!m) return {};
+  const parsed = parseFrontmatterDoc(markdown || '');
+  if (parsed.raw === null) return {};
+  const block = parsed.raw.slice(4, -4);
   const out = {};
-  for (const line of m[1].split(/\r?\n/)) {
+  for (const line of block.split(/\r?\n/)) {
     const kv = /^([A-Za-z0-9_-]+):\s*(.*)$/.exec(line);
     if (!kv) continue;
     out[kv[1]] = kv[2].trim().replace(/^"|"$/g, '');

@@ -15,6 +15,7 @@ const {
   makeTypedError,
   serializeTypedError,
 } = require('../lib/typed-errors.cjs');
+const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -89,11 +90,14 @@ function logProfileSelection(stateDir, candidateHash, chosenProfile, rationale, 
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. FRONTMATTER PARSER
 // ─────────────────────────────────────────────────────────────────────────────
+// The shared parser owns the fence split; key values stay line-read verbatim so
+// YAML-shaped scalars (e.g. `[page]` hints) never get YAML-interpreted.
 function parseFrontmatter(content) {
-  const fm = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!fm) { return {}; }
+  const parsed = parseFrontmatterDoc(String(content || ''));
+  if (parsed.raw === null) { return {}; }
+  const block = parsed.raw.slice(4, -4);
   const meta = {};
-  for (const line of fm[1].split('\n')) {
+  for (const line of block.split('\n')) {
     const kv = line.match(/^(\w[\w-]*):\s+(.+)$/);
     if (kv && kv[2].trim()) { meta[kv[1]] = kv[2].trim(); }
   }
@@ -101,9 +105,10 @@ function parseFrontmatter(content) {
 }
 
 function parsePermissions(content) {
-  const fm = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!fm) { return {}; }
-  const pb = fm[1].match(/permission:\s*\n((?:\s+\w+:\s+\w+\n?)+)/);
+  const parsed = parseFrontmatterDoc(String(content || ''));
+  if (parsed.raw === null) { return {}; }
+  const block = parsed.raw.slice(4, -4);
+  const pb = block.match(/permission:\s*\n((?:\s+\w+:\s+\w+\n?)+)/);
   if (!pb) { return {}; }
   const perms = {};
   for (const line of pb[1].split('\n')) {
@@ -125,7 +130,7 @@ function permSummary(perms) {
 // 5. SECTION PARSER
 // ─────────────────────────────────────────────────────────────────────────────
 function parseSections(content) {
-  const body = content.replace(/^---[\s\S]*?---\n/, '');
+  const body = parseFrontmatterDoc(String(content || '')).body;
   const marks = allMatches(SECTION_RE, body);
   const secs = {};
   for (let i = 0; i < marks.length; i++) {

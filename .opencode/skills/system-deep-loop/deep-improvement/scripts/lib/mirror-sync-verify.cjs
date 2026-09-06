@@ -9,6 +9,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -61,7 +62,7 @@ function resolveMirrorPath(repoRoot, template, agentName) {
  * @returns {string} Content with the leading frontmatter block removed.
  */
 function stripFrontmatter(content) {
-  return String(content || '').replace(/^---[\s\S]*?---\n/, '');
+  return parseFrontmatter(String(content || '')).body;
 }
 
 /**
@@ -136,12 +137,15 @@ function extractDeclaredToolSurface(content, format = 'markdown') {
   if (format !== 'markdown') {
     return { comparable: false, tools: [] };
   }
-  const match = String(content || '').match(/^---\r?\n([\s\S]*?)\r?\n---(?=\r?\n|$)/);
-  if (!match) return { comparable: false, tools: [] };
+  // Tool declarations stay line-read verbatim (quoted or comma forms must not
+  // be YAML-interpreted); only the fence split comes from the shared parser.
+  const parsed = parseFrontmatter(String(content || ''));
+  if (parsed.raw === null) return { comparable: false, tools: [] };
+  const block = parsed.raw.slice(4, -4);
 
   const tools = new Set();
   let listSection = false;
-  for (const line of match[1].split(/\r?\n/)) {
+  for (const line of block.split(/\r?\n/)) {
     const listStart = line.match(/^\s*(tools|allowed-tools):\s*(.*?)\s*$/i);
     if (listStart) {
       listSection = true;

@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 const [folder, selectedRule] = process.argv.slice(2);
 
@@ -95,9 +96,12 @@ function readContinuityPacketPointer(folderPath) {
     const filePath = path.join(folderPath, candidate);
     if (!fs.existsSync(filePath)) continue;
     const content = fs.readFileSync(filePath, 'utf8');
-    const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-    if (!frontmatterMatch) continue;
-    const pointerMatch = frontmatterMatch[1].match(
+    // The pointer value stays line-read verbatim; only the fence split comes
+    // from the shared parser.
+    const raw = parseFrontmatter(content).raw;
+    if (raw === null) continue;
+    const block = raw.slice(raw.indexOf('\n') + 1, raw.lastIndexOf('\n')).replace(/\r$/, '');
+    const pointerMatch = block.match(
       /^[ \t]*packet_pointer:\s*(?:"([^"\n]+)"|'([^'\n]+)'|([^\n#]+))/m,
     );
     const pointer = pointerMatch?.[1] || pointerMatch?.[2] || pointerMatch?.[3];

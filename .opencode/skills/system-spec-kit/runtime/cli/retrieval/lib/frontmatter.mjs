@@ -15,6 +15,7 @@
 // only null, booleans, and numbers are non-string scalars.
 // ───────────────────────────────────────────────────────────────
 
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 import { MAX_PHRASE_LENGTH, normalizeTriggerText } from './normalize.mjs';
 
 // ───────────────────────────────────────────────────────────────
@@ -316,10 +317,12 @@ export function readTriggerPhrases(rawContent) {
     return empty(CATEGORY.MISSING_FRONTMATTER, 1, 'no opening frontmatter delimiter');
   }
 
-  const closingRegex = /^---\s*$/gm;
-  closingRegex.lastIndex = firstLineEnd + 1;
-  const closing = closingRegex.exec(content);
-  if (!closing) {
+  // The fence split comes from the shared parser over the tail that follows
+  // any skipped trivia (skipLeadingTrivia lands on the fence's first `---`, so
+  // the parser's own opening-fence rule agrees). Line addressing below stays
+  // offset-based, so only the fence scan is delegated.
+  const parsed = parseFrontmatter(content.slice(start));
+  if (parsed.raw === null) {
     const remainder = content.slice(firstLineEnd + 1);
     if (/^[A-Za-z_][A-Za-z0-9_-]*\s*:/m.test(remainder)) {
       return empty(
@@ -331,8 +334,12 @@ export function readTriggerPhrases(rawContent) {
     return empty(CATEGORY.MISSING_FRONTMATTER, 1, 'no closing frontmatter delimiter');
   }
 
+  // The closing fence line is raw's last line (raw keeps its inline trailing
+  // spaces), so its start offset reproduces the scanned `closing.index`.
+  const raw = parsed.raw;
+  const closingIndex = start + raw.length - raw.slice(raw.lastIndexOf('\n') + 1).length;
   const blockStart = firstLineEnd + 1;
-  const block = content.slice(blockStart, closing.index);
+  const block = content.slice(blockStart, closingIndex);
   if (!isLikelyYamlFrontmatter(block)) {
     return empty(
       CATEGORY.NON_YAML_FRONTMATTER,

@@ -10,6 +10,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -70,13 +71,16 @@ function listFiles(directory, extension) {
 }
 
 function parseFrontmatter(source, sourcePath) {
-  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?=\r?\n|$)/);
-  if (!match) {
+  const raw = parseFrontmatterDoc(source).raw;
+  if (raw === null) {
     throw new Error(`${sourcePath}: missing YAML frontmatter`);
   }
+  // Scalar keys stay line-read verbatim; only the fence split comes from the
+  // shared parser. `body` keeps the closing fence's own terminator — the
+  // rendered developer_instructions block depends on that leading newline.
   return {
-    frontmatter: match[1],
-    body: source.slice(match[0].length),
+    frontmatter: raw.slice(raw.indexOf('\n') + 1, raw.lastIndexOf('\n')).replace(/\r$/, ''),
+    body: source.slice(raw.length),
   };
 }
 

@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 63,
-    "missing-frontmatter": 6931,
+    "missing-frontmatter": 6929,
     "non-yaml-frontmatter": 1,
-    "ok": 13400,
+    "ok": 13443,
     "valid-empty-list": 7947
   },
-  "documentsScanned": 28342,
+  "documentsScanned": 28383,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "0f23e1378b6966c89daf9f80673bac630b7fa9068831cc30c9ac7000c350788b",
+  "manifestHash": "3a04faba31254e582b1fe120e9027b24cce0319dc7ca7bd7d0a386d7803daf85",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -54956,12 +54956,6 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/plan.md",
-      "reason": "no frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
       "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -55018,12 +55012,6 @@
       "line": 1,
       "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/research/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/tasks.md",
-      "reason": "no frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -97773,6 +97761,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/sk-doc/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/sk-doc/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -99318,6 +99310,34 @@
     },
     {
       "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/scratch",
       "reason": "excluded directory"
     },
     {
@@ -101250,6 +101270,10 @@
     },
     {
       "path": "specs/system-speckit/056-integration-research-remediation/004-shared-parsers-and-post-run-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/057-metadata-regeneration-and-parser-edges/scratch",
       "reason": "excluded directory"
     },
     {

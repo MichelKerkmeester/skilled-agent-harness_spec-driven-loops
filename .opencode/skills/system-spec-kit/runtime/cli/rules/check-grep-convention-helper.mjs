@@ -13,6 +13,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 import { normalizeTriggerText } from '../retrieval/lib/normalize.mjs';
 import {
   ALIAS_KEY as ALIAS_TRIGGER_KEY,
@@ -132,17 +133,20 @@ function detectFrontmatter(lines) {
   if (start >= lines.length) return { found: false, openLine: 0 };
   if (lines[start].trim() !== '---') return { found: false, openLine: 0 };
 
-  for (let index = start + 1; index < lines.length; index += 1) {
-    if (/^---\s*$/u.test(lines[index])) {
-      return {
-        found: true,
-        openLine: start + 1,
-        blockLines: lines.slice(start + 1, index),
-        blockOffset: start + 1,
-      };
-    }
-  }
-  return { found: false, unclosed: true, openLine: start + 1 };
+  // The fence split comes from the shared parser over the rejoined tail (its
+  // opening-fence line must start the string, so the line's own leading
+  // whitespace is dropped first, matching the trim above). Block lines stay
+  // verbatim for the YAML classification below.
+  const parsed = parseFrontmatter(lines.slice(start).join('\n').replace(/^[ \t]+/, ''));
+  if (parsed.raw === null) return { found: false, unclosed: true, openLine: start + 1 };
+  const raw = parsed.raw;
+  const block = raw.slice(raw.indexOf('\n') + 1, raw.lastIndexOf('\n'));
+  return {
+    found: true,
+    openLine: start + 1,
+    blockLines: block.length > 0 ? block.split(/\r?\n/) : [],
+    blockOffset: start + 1,
+  };
 }
 
 // ───────────────────────────────────────────────────────────────

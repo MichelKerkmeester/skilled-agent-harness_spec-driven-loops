@@ -8,6 +8,8 @@
 // folder-discovery and packet-synopsis extraction both normalize through the
 // two composed entry points below before deriving text from a document.
 
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+
 // ───────────────────────────────────────────────────────────────
 // 1. PRIMITIVE STRIP / NORMALIZE HELPERS
 // ───────────────────────────────────────────────────────────────
@@ -19,14 +21,11 @@
  * trigger_phrases, context_type, etc.), so including it verbatim in the
  * embedding text just adds repetitive key-value noise.
  *
- * Matches the canonical `---\n…\n---` form that starts at the very
- * first character of the document.
+ * Only a block whose opening `---` is the document's first line is stripped,
+ * so mid-document `---` (e.g. HR rules) never truncates the text.
  */
 export function stripYamlFrontmatter(content: string): string {
-  // Must start at position 0.  The closing `---` must be on its own line.
-  // Without the `m` flag, `^` anchors to position 0 only (document start),
-  // Preventing accidental matches on mid-document `---` (e.g. HR rules).
-  return content.replace(/^---[\s\S]*?\n---\s*\n?/, '');
+  return parseFrontmatter(content).body;
 }
 
 /**

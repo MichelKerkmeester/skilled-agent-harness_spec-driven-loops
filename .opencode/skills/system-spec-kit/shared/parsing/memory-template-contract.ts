@@ -2,7 +2,8 @@
 // MODULE: Memory Template Contract
 // ───────────────────────────────────────────────────────────────────
 
-const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
+import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
+
 const RAW_MUSTACHE_RE = /\{\{[^}]+\}\}/;
 // Deprecated legacy generated-memory banner detection retained for historical saves
 // created before the v3.4.0.0 template retirement.
@@ -62,15 +63,20 @@ interface ParsedFrontmatterSection {
 }
 
 function extractFrontmatter(content: string): { found: boolean; body: string; block: string } {
-  const match = content.match(FRONTMATTER_RE);
-  if (!match) {
+  const raw = parseFrontmatter(content).raw;
+  if (raw === null) {
     return { found: false, body: content, block: '' };
   }
 
+  // `body` starts after the closing fence's own terminator — the blank-line
+  // check below reads it to decide whether one separates fence and text. The
+  // block stays line-read verbatim between the fence lines.
+  const rest = content.slice(raw.length);
+  const terminator = rest.startsWith('\r\n') ? 2 : rest.startsWith('\n') ? 1 : 0;
   return {
     found: true,
-    block: match[1],
-    body: content.slice(match[0].length),
+    block: raw.slice(raw.indexOf('\n') + 1, raw.lastIndexOf('\n')).replace(/\r$/, ''),
+    body: rest.slice(terminator),
   };
 }
 

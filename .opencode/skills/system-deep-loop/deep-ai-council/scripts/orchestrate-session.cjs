@@ -13,6 +13,7 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const { spawn } = require('node:child_process');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 const { buildLineageCommand } = require('../../runtime/scripts/fanout-run.cjs');
 const { appendRoundStateRecord } = require('../../runtime/lib/council/round-state-jsonl.cjs');
 const { evaluateCouncilCostGuards, normalizeCostGuards } = require('../../runtime/lib/council/cost-guards.cjs');
@@ -84,7 +85,7 @@ function loadCouncilConfig(configPath = COUNCIL_CONFIG_PATH) {
 }
 
 function stripFrontmatter(content) {
-  return String(content || '').replace(/^---[\s\S]*?---\n/, '');
+  return parseFrontmatter(String(content || '')).body;
 }
 
 function loadPromptTemplate(promptPath = PROMPT_PACK_PATH) {

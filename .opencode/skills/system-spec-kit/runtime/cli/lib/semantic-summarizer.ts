@@ -12,6 +12,7 @@ import os from 'os';
 import { SemanticSignalExtractor } from './semantic-signal-extractor.js';
 import { cleanDescription } from '../utils/file-helpers.js';
 import { CONFIG } from '../core/index.js';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import type { WeightedDocumentSections } from '@spec-kit/shared/index';
 
 // ───────────────────────────────────────────────────────────────
@@ -145,7 +146,6 @@ const CLASSIFICATION_PATTERNS = {
 
 const DESC_MIN_LENGTH: number = 10;
 const DESC_MAX_LENGTH: number = 100;
-const FRONTMATTER_RE: RegExp = /^---[\s\S]*?\n---\s*\n?/;
 
 // ───────────────────────────────────────────────────────────────
 // 4. MESSAGE CLASSIFICATION
@@ -656,7 +656,7 @@ function formatSummaryAsMarkdown(summary: ImplementationSummary): string {
 }
 
 function stripFrontmatter(markdown: string): string {
-  return markdown.replace(FRONTMATTER_RE, '');
+  return parseFrontmatter(markdown).body;
 }
 
 function normalizeHeadingLabel(heading: string): string {

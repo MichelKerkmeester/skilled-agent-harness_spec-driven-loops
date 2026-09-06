@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -48,14 +49,17 @@ function walk(dir, acc) {
 }
 
 function stripFrontmatter(content) {
-  return content.replace(/^---[\s\S]*?---\n/, '');
+  return parseFrontmatterDoc(String(content || '')).body;
 }
 
+// Field values stay line-read verbatim so YAML-shaped scalars never get
+// YAML-interpreted; only the fence split comes from the shared parser.
 function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return null;
+  const parsed = parseFrontmatterDoc(String(content || ''));
+  if (parsed.raw === null) return null;
+  const block = parsed.raw.slice(4, -4);
   const fm = {};
-  for (const line of match[1].split('\n')) {
+  for (const line of block.split('\n')) {
     const idx = line.indexOf(':');
     if (idx < 0) continue;
     const key = line.slice(0, idx).trim();

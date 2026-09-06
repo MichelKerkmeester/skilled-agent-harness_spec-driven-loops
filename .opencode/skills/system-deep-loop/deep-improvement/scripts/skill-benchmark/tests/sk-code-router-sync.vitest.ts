@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, resolve, relative } from 'node:path';
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 // Drift guard for sk-code's machine-readable router. sk-code keeps its
 // authoritative router as prose tables in root ROUTER.md and a flat,
@@ -359,8 +360,11 @@ function routingScenarios(): Array<{ file: string; root: string; expected: strin
       if (!entry.name.endsWith('.md')) continue;
       if (entry.name === 'manual-testing-playbook.md' || entry.name.toLowerCase() === 'readme.md') continue;
       const text = readFileSync(entry.path, 'utf8');
-      if (!text.startsWith('---')) continue;
-      const fm = text.slice(3).split('\n---')[0];
+      const parsed = parseFrontmatter(text);
+      if (parsed.raw === null) continue;
+      // Scenario keys stay line-read verbatim; only the fence split comes
+      // from the shared parser.
+      const fm = parsed.raw.slice(4, -4);
       if (!/^expected_intent:/m.test(fm)) continue;
       const category = /^category:\s*(\S+)/m.exec(fm);
       if (category && NON_CONTRACT_CATEGORIES.has(category[1])) continue;

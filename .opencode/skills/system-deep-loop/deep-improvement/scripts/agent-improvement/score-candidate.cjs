@@ -27,6 +27,7 @@ const {
   parseTypedError,
   serializeTypedError,
 } = require('../lib/typed-errors.cjs');
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 const {
   WEIGHTED_SCORE_GATE,
   PROMOTION_GATES,
@@ -442,7 +443,7 @@ function scoreDimSystemFitness(profile, content) {
 
   // Check frontmatter completeness
   maxPossible += 30;
-  const hasFrontmatter = /^---\n[\s\S]*?\n---/.test(content);
+  const hasFrontmatter = parseFrontmatter(content).raw !== null;
   const hasName = /^name:\s+\S/m.test(content);
   const hasMode = /^mode:\s+\S/m.test(content);
   const hasPermission = /^permission:\s*$/m.test(content);
