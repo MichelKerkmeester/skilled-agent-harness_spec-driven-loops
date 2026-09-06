@@ -9,6 +9,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+// Same shared parser the engine uses, so the assertion reads the closing fence
+// the way any reader of the document does.
+import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ENGINE = path.join(here, '..', 'frontmatter-version.mjs');
@@ -88,7 +91,7 @@ ok(!skillMd.includes('version: 2.1.0\n'), 'old 2.1.0 removed from SKILL.md');
 
 const ref5 = fs.readFileSync(path.join(skill, 'references', 'ref-5field.md'), 'utf8');
 const lines = ref5.split('\n');
-const closeIdx = lines.indexOf('---', 1);
+const closeIdx = parseFrontmatter(ref5).raw.split('\n').length - 1;
 ok(lines[closeIdx - 1] === 'version: 2.3.0.0', 'version inserted as LAST key before closing ---');
 ok(ref5.includes('  - "phrase one"\n  - "phrase two"\n  - "phrase three"'), 'trigger_phrases array intact (not reflowed)');
 

@@ -3,6 +3,10 @@
 
 const fs = require('fs');
 const path = require('path');
+// One shared fence parser for every skill: leading-fence position, closing-fence
+// and CRLF rules stay identical across readers of the same documents. Field
+// parsing below stays line-level over the block it returns.
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 const EXIT_OK = 0;
 const EXIT_VIOLATIONS = 1;
@@ -102,10 +106,15 @@ function isWithin(candidate, parent) {
 }
 
 function extractFrontmatter(text) {
-  const match = /^(?:\s*<!--(?:[\s\S]*?)-->\s*)?---\s*\n([\s\S]*?)\n---\s*(?:\n|$)/.exec(text);
-  if (!match) return null;
+  // A scenario may carry an explanatory comment ahead of the fence; skip it so
+  // the shared parser, which requires the fence on the first line, sees the block.
+  const prefixMatch = /^\s*<!--[\s\S]*?-->\s*/.exec(text);
+  const prefix = prefixMatch ? prefixMatch[0] : '';
+  const parsed = parseFrontmatter(text.slice(prefix.length));
+  if (parsed.raw === null) return null;
+  const block = parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
   const fields = {};
-  for (const line of match[1].split('\n')) {
+  for (const line of block.split('\n')) {
     const field = /^\s*([A-Za-z0-9_-]+)\s*:\s*(.*?)\s*$/.exec(line);
     if (!field) continue;
     let value = field[2];
@@ -114,7 +123,8 @@ function extractFrontmatter(text) {
     }
     fields[field[1]] = value;
   }
-  return { block: match[1], fields, end: match[0].length };
+  const consumed = prefix.length + parsed.raw.length + (text[prefix.length + parsed.raw.length] === '\n' ? 1 : 0);
+  return { block, fields, end: consumed };
 }
 
 function hasRoutingGoldSignature(frontmatter) {

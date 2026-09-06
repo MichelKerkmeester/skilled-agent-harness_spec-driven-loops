@@ -82,6 +82,15 @@ function stageDoctorSupport(tempRoot) {
     path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json'),
     path.join(libDir, 's-class-config-defaults.json'),
   );
+  // root-router-contract.cjs parses fences through the shared spec-kit parser,
+  // so the staged copy needs the same dependency edge the real skill root has:
+  // a @spec-kit/shared entry under the staged skill's node_modules.
+  fs.mkdirSync(path.join(tempRoot, 'sk-doc', 'node_modules', '@spec-kit'), { recursive: true });
+  fs.symlinkSync(
+    path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit', 'shared'),
+    path.join(tempRoot, 'sk-doc', 'node_modules', '@spec-kit', 'shared'),
+    'dir',
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,13 @@
+{
+  "name": "@sk-doc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dependency root for the sk-doc skill's Node scripts. Lives at the skill root rather than under scripts/ so both scripts/ and shared/scripts/ (whose scripts cannot walk up past their own tree) resolve @spec-kit/shared; the previous scripts/package.json was folded into this manifest for that reason.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "dependencies": {
+    "@spec-kit/shared": "file:../system-spec-kit/shared"
+  }
+}

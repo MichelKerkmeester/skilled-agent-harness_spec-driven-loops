@@ -24,6 +24,9 @@ import path from 'node:path';
 import { execFileSync, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import process from 'node:process';
+// One shared fence parser for every skill: leading-fence position, closing-fence
+// and CRLF rules stay identical across readers of the same documents.
+import { parseFrontmatter as parseFencedFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 const execFileP = promisify(execFile);
 const GIT_CONCURRENCY = 16;
@@ -127,12 +130,11 @@ function tupleStr(t) {
 function parseFrontmatter(content) {
   const eol = content.includes('\r\n') ? '\r\n' : '\n';
   const lines = content.split(/\r?\n/);
-  if (lines[0] !== '---') return { hasFrontmatter: false, eol, lines };
-  let closeIdx = -1;
-  for (let i = 1; i < lines.length; i += 1) {
-    if (lines[i] === '---') { closeIdx = i; break; }
-  }
-  if (closeIdx === -1) return { hasFrontmatter: false, eol, lines };
+  const parsed = parseFencedFrontmatter(content);
+  if (parsed.raw === null) return { hasFrontmatter: false, eol, lines };
+  // raw spans the opening fence through the closing fence line, so its line
+  // count minus one is the closing fence's index in the full document.
+  const closeIdx = parsed.raw.split(/\r?\n/).length - 1;
   let versionLineIdx = -1;
   let versionValue = null;
   for (let i = 1; i < closeIdx; i += 1) {

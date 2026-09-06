@@ -7,6 +7,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+// One shared fence parser for every skill: leading-fence position, closing-fence
+// and CRLF rules stay identical across readers of the same documents.
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
+
 const compiler = require('./compile-command-contracts.cjs');
 
 const {
@@ -327,13 +331,6 @@ function parseContractAllowedTools(contractText) {
   return parseYamlListBlock(extractSection(contractText, 'tools'), 'allowed');
 }
 
-function parseFrontmatter(commandMarkdown) {
-  if (!commandMarkdown.startsWith('---\n')) return '';
-  const end = commandMarkdown.indexOf('\n---', 4);
-  if (end === -1) return '';
-  return commandMarkdown.slice(4, end);
-}
-
 function expandAllowedTool(toolName) {
   const tools = new Set([toolName]);
   if (toolName.startsWith('mcp__')) {
@@ -344,9 +341,11 @@ function expandAllowedTool(toolName) {
 }
 
 function parseCommandAllowedTools(commandMarkdown) {
-  const frontmatter = parseFrontmatter(commandMarkdown);
+  const parsed = parseFrontmatter(commandMarkdown);
+  // Tool parsing stays line-level over the raw block: the inline
+  // `allowed-tools: a, b` and dash-list forms are two shapes of one key.
+  const lines = parsed.raw === null ? [] : parsed.raw.split(/\r?\n/).slice(1, -1);
   const tools = new Set();
-  const lines = frontmatter.split(/\r?\n/);
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
     const inlineMatch = line.match(/^allowed-tools:\s*(.+)$/);

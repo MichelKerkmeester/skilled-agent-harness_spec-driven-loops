@@ -35,6 +35,10 @@
 const fs = require('fs');
 const path = require('path');
 const contract = require('./lib/leaf-resource-contract.cjs');
+// One shared fence parser for every skill: leading-fence position, closing-fence
+// and CRLF rules stay identical across readers of the same documents. Typed-gold
+// parsing below stays line-level over the block it returns.
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -88,8 +92,9 @@ function readFileSafe(filePath) {
 }
 
 function extractFrontmatter(text) {
-  const m = /^---\n([\s\S]*?)\n---/.exec(text || '');
-  return m ? m[1] : null;
+  const parsed = parseFrontmatter(text || '');
+  if (parsed.raw === null) return null;
+  return parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
 }
 
 // Splits a scenario's declared route on its two legal separators:

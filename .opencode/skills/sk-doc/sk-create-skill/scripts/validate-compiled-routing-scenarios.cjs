@@ -54,6 +54,10 @@
 const fs = require('fs');
 const path = require('path');
 const contract = require('./lib/leaf-resource-contract.cjs');
+// One shared fence parser for every skill: leading-fence position, closing-fence
+// and CRLF rules stay identical across readers of the same documents. Key and
+// typed-gold parsing below stays line-level over the block it returns.
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -88,13 +92,13 @@ function readFileSafe(filePath) {
 }
 
 function extractFrontmatter(text) {
-  const m = /^---\n([\s\S]*?)\n---/.exec(text || '');
-  return m ? m[1] : null;
+  const parsed = parseFrontmatter(text || '');
+  if (parsed.raw === null) return null;
+  return parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
 }
 
 function bodyAfterFrontmatter(text) {
-  const m = /^---\n[\s\S]*?\n---\n?([\s\S]*)$/.exec(text || '');
-  return m ? m[1] : String(text || '');
+  return parseFrontmatter(String(text || '')).body;
 }
 
 // Single-line scalar, quote-tolerant, matching the loader's own convention so a

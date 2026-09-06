@@ -57,6 +57,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const leafContract = require('./leaf-resource-contract.cjs');
+// One shared fence parser for every skill: leading-fence position, closing-fence
+// and CRLF rules stay identical across readers of the same documents.
+const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -111,8 +114,9 @@ const CODES = Object.freeze({
 
 /** The YAML frontmatter block of a markdown document, or '' when absent. */
 function extractFrontmatter(text) {
-  const m = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(text || '');
-  return m ? m[1] : '';
+  const parsed = parseFrontmatter(text || '');
+  if (parsed.raw === null) return '';
+  return parsed.raw.split(/\r?\n/).slice(1, -1).join('\n');
 }
 
 /** Every value of one `name:` field in a frontmatter block, in order. */
