@@ -69,3 +69,21 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited cod
 | F5.2 | P2 | `shared/ranking/matrix-math.ts` | No direct test | Fixed: script test with a well-posed and a singular system |
 | F3.2 | P2 | 14 rule scripts without a direct-run guard | Loader-only rules documented as if directly runnable | No change: their `run_check` takes the loader's folder and level arguments, so a direct-run guard fails under `set -u`; the rules are the loader's contract, not a CLI |
 | F4.2 | P2 | `hooks/cursor/spec-gate-classify.mjs:6-19` | Dormant hook with a cursor-shaped output | No change: documented as dormant until cursor-agent delivers the event |
+
+## Verification pass: Claude Fable 5 high through the second account, read-only, against the closed program
+
+| ID | Sev | Code | Actual | Decision |
+|----|-----|------|--------|----------|
+| V-C1 | P0 | `shared/frontmatter/parse-frontmatter.ts:12` | Claimed the shared typecheck fails for want of js-yaml types | Dropped: `shared/js-yaml.d.ts` declares the module and the typecheck passes; the verifier's worktree resolved through symlinked dependencies |
+| V-C2 | P0 | `runtime/cli/check-api-boundary.sh:16` | Resolved `runtime/runtime`, so `npm run check` aborted | Fixed; the gate then exposed 20 pre-existing import-policy violations, two expired allowlist entries and two orphaned dist files, all resolved; `npm run check` now passes end to end |
+| V-C3 | P1 | `runtime/cli/retrieval/lib/corpus.mjs:65` | Build output under `shared/dist` was indexed | Fixed: `dist` excluded; ten artifact entries left the index |
+| V-C4 | P1 | `runtime/cli/continuity/generate-context.ts` | Telemetry store had readers but no production writer | Fixed: the phase-parent pointer save records to the store through a new api export |
+| V-C5 | P1 | 13 hook entry points and three `shared.ts` adapters | `main().catch(() => approve())` | Fixed: every one reports on stderr before its fail-open or fail-closed fallback |
+| V-C6 | P1 | `runtime/cli/continuity/migrate-trigger-phrase-residual.ts:130` | `.opencode/skill/` sentinel typo | Fixed: delegates to the hooks resolver |
+| V-C7 | P1 | `runtime/cli/codex/generate-command-routers.cjs:43` | `require()` of an ES module below the declared engine floor | Fixed: the CLI package now declares Node 22.12 or later |
+| V-C8 | P1 | `shared/package.json` test globs; four untested modules | Six subdirectories excluded; no tests | Fixed: globs widened; script tests for the secret scrubber, the retrieval trace and the socket-server helpers |
+| V-C9 | P2 | `core/quality-scorer.ts:123,139` | Comments named a nonexistent export | Fixed |
+| V-C10 | P2 | 92 files | Divider lines off the documented width, two files without `use strict`, one hyphen shell header | Fixed |
+| V-C11 | P2 | `utils/README.md:42`, `quality-extractors.ts:22,35`, `calculate-completeness.sh:231`, `retrofit-convention.mjs:129` | README row, stale comments, a finding id, a hard-coded packet path | Fixed; the retrofit default output now lives in the temp directory |
+| V-C12 | P1 | eleven remaining private repo-root walk-ups in scripts outside the consolidation | Reported | Kept: they are CommonJS and shell entry points outside the TypeScript packages; recorded as follow-up |
+| V-C13 | P2 | `shared/predicates/boolean-expr.ts`, `runtime/lib/search/folder-discovery.ts` catches | Unconsumed module; uncommented catches | Kept: the predicate module is a public shared export with its own test; the discovery catches guard optional reads |

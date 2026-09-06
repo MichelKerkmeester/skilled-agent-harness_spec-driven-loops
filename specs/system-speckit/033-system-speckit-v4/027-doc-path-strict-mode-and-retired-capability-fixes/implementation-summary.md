@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Doc path, strict-mode and retired-capability fixes"
-description: "Readers of the spec-kit docs now get the runtime's real behavior. Three waves landed: the fourteen DeepSeek rows, then eighteen Gemini rows, then eleven DeepSeek rows and a twenty-file phantom-test sweep over the post-save review, the session-capturing and core-workflow playbooks, the governance docs and two workflow references over documents the first lane never opened, among them a playbook script that threw a ReferenceError, a save reference that still advertised epistemic baselines and causal graphs, and a style guide still documenting `memory/*.md` frontmatter. First wave: `--strict` selects rules and never turns a warning into a failure, moved scripts are cited at their runtime/cli paths, four phantom rule scripts are gone from five documents, and the retired vector search, decay and re-index steps no longer appear as live.."
+description: "Readers of the spec-kit docs now get the runtime's real behavior. Four waves landed, the fourth from an independent Claude Fable 5 verification through the second account that confirmed the earlier fixes and found fifteen more residue sites, all fixed: the fourteen DeepSeek rows, then eighteen Gemini rows, then eleven DeepSeek rows and a twenty-file phantom-test sweep over the post-save review, the session-capturing and core-workflow playbooks, the governance docs and two workflow references over documents the first lane never opened, among them a playbook script that threw a ReferenceError, a save reference that still advertised epistemic baselines and causal graphs, and a style guide still documenting `memory/*.md` frontmatter. First wave: `--strict` selects rules and never turns a warning into a failure, moved scripts are cited at their runtime/cli paths, four phantom rule scripts are gone from five documents, and the retired vector search, decay and re-index steps no longer appear as live.."
 trigger_phrases:
   - "doc mismatch fixes shipped"
   - "strict mode doc corrected"
@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:d8ded445a23832cd055905b0230c43d8a901c501309f802e9fe02d3a05ea48a1"
+      fingerprint: "sha256:7dd125107ff9a58f769accbd9dde4f0f76070437a95364664cf0cceef6ec0bd0"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -79,7 +79,7 @@ Each confirmed row was replaced by an asserted exact-text edit, so a stale ancho
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One Python pass with an assertion per row, a ripgrep sweep for every retired name across the three doc trees, the sk-doc validator over each touched file, and a trigger-index regeneration with zero malformed documents. Committed as fc71f4d121.
+One Python pass with an assertion per row, a ripgrep sweep for every retired name across the three doc trees, the sk-doc validator over each touched file, and a trigger-index regeneration with zero malformed documents. Committed as fc71f4d121 and the later wave commits.
 <!-- /ANCHOR:how-delivered -->
 
 ---

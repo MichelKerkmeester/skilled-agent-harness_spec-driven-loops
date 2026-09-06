@@ -61,3 +61,23 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited doc
 | F5-01 | P2 | `references/workflows/agent-io-contract.md:186` | `runtime//lib/deep-loop/post-dispatch-validate.ts` | Lives under system-deep-loop | Confirmed |
 | F5-02 | P2 | `references/workflows/spec-folder-write-recipe.md:83` | `dist/spec-folder/backfill-graph-metadata.js` | `dist/graph/` | Confirmed |
 | sweep | P1 | nine docs | 20 test files cited that no longer exist | Same-class inventory over every `tests/*.vitest.ts` citation; nine skill-advisor citations were correctly rooted and kept | Confirmed, widened |
+
+## Verification pass: Claude Fable 5 high through the second account, read-only, against the closed program
+
+| ID | Sev | Doc | Actual | Verdict |
+|----|-----|-----|--------|---------|
+| V-D1 | P1 | `references/validation/validation-rules.md:689,703` | Still said strict fails on warnings | Confirmed, fixed |
+| V-D2 | P1 | `feature-catalog/doctor-commands/category-overview.md:3,19`, `feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md:37,45` | Retired routes and mutation classes | Confirmed, fixed from `_routes.yaml` |
+| V-D3 | P1 | `manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md:160` | `completion-state.test.mjs` never existed | Confirmed, repointed to the core module |
+| V-D4 | P2 | `post-save-quality-review.md:55`, `dist-freshness-guard.md:29`, `spec-folder-description-discovery.md:110` | Step 10.5, wrong package id, wrong test root | Confirmed, fixed |
+| V-D5 | P1 | `references/config/hook-system.md:23,46` | Omits the OpenCode spec-gate adapter and the Pi adapter family | Confirmed, fixed |
+| V-D6 | P1 | `references/validation/path-scoped-rules.md:114,151` | Strict-mode claim, retired command name | Confirmed, fixed |
+| V-D7 | P1 | `references/memory/embedder-pluggability.md:97,202,220` | `UNKNOWN_EMBEDDER` and `ram_mb`/`disk_mb` do not exist | Confirmed, fixed against `registry.ts` |
+| V-D8 | P1 | `feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md:39,52,61` | Shim described as the script; wrong packet path | Confirmed, fixed |
+| V-D9 | P2 | `feature-catalog/tooling-and-scripts/derived-packet-repair.md:64` | Wrong workflow file name | Confirmed, fixed |
+| V-D10 | P1 | `manual-testing-playbook/tooling-and-scripts/validate-sh-dist-freshness-backstop.md:48,75-78` | Retired cache prefix; wrong message text | Confirmed, fixed |
+| V-D11 | P1 | `manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md:51-54,192-193` | Stale counts; wrong expected command shape | Confirmed, fixed |
+| V-D12 | P2 | `references/workflows/quick-reference.md:415`, `references/cli/shared-smart-router.md:139`, `references/workflows/execution-methods.md:217` | Option D, duplicate slug, twelve steps | Confirmed, fixed |
+| V-D13 | P2 | `README.md:417-419` | Counts drifted after the deletions | Confirmed, recounted |
+| V-D14 | P2 | `session-capturing-pipeline-quality-coverage.md:120-124` | Recorded output of a retired workspace names two test files | Kept: it is a recorded block, not an instruction |
+| V-D15 | P2 | `references/validation/validation-rules.md` | The harness remedy for symlinked dist directories was undocumented | Added: `NODE_OPTIONS` with both preserve-symlinks flags |

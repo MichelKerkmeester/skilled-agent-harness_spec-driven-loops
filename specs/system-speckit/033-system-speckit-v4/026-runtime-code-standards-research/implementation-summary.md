@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:68351b93c302ceabb1dcf2a2eaec188fb4c524bb8dd83cebf912915280fc7a69"
+      fingerprint: "sha256:7ae367be1a2e4f903241107b27cabc71ac1ab63709752695c8855241aceb6041"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -91,7 +91,7 @@ Same launch shape as phase 025, in parallel. Each cited line was opened here; ri
 |-------|--------|
 | Iteration count | 10 files under iterations/, 10 iteration events |
 | Angle coverage | All eight angles appear in the focus lines |
-| Reproduction | First pass: 12 of 18 confirmed, 4 dropped, 2 no-change. Second pass: 16 of 16 reproduced; 13 fixed, 3 recorded as no-change with reasons. Third pass: 11 of 11 reproduced; 9 fixed, 2 recorded as no-change with reasons |
+| Reproduction | First pass: 12 of 18 confirmed, 4 dropped, 2 no-change. Second pass: 16 of 16 reproduced; 13 fixed, 3 recorded as no-change with reasons. Third pass: 11 of 11 reproduced; 9 fixed, 2 recorded as no-change with reasons. Verification pass: 13 rows, 1 dropped with evidence, 10 fixed, 2 kept with reasons |
 | Strict validation | `validate.sh <child> --strict` printed RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

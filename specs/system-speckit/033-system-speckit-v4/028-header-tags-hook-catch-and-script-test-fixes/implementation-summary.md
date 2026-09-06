@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Header tags, hook catch and script test fixes"
-description: "Three waves landed. The third, from a five-iteration DeepSeek pass, renamed the render-quality scorer so two scorers stop sharing a name, routed three more private root walk-ups through the hooks resolver by exporting it from the runtime package with a declaration file, put the cursor and devin classify adapters on the shared stdin helpers, removed a type-only indexer stub, a re-export shim, a dead shell helper and two unconsumed test hooks, and gave fact coercion and the matrix helpers their first tests. The second, from a Gemini 3.8 Flash pass over runtime/lib, runtime/api, runtime/hooks, the CLI scripts and shared, found the most serious defect of the program: the shared config resolved the shared package as the skill root, so the telemetry store that carries a phase parent's active-child pointer under generator hardening was written under a directory that does not exist, and the Gate 3 classifier never read the store at all. Both are fixed, with a script test pinning the root. The same wave removed five dead wave-orchestration modules and two broken one-off migrations, gave the three remaining stop hooks a stderr report, moved a validation CLI's success output to stdout, made an uncomputable fingerprint a violation, normalized 248 header widths, wired the shared package's six script tests into its test command and repaired the one that had rotted. First wave: every shell script under runtime/cli now opens with the documented COMPONENT or SPECKIT tag and every module script with MODULE, the cursor response hook reports a failure instead of hiding it, an unused barrel is gone, and two public scripts have their first tests."
+description: "Four waves landed. The fourth, from an independent Claude Fable 5 verification, repaired the CLI quality gate that had been dead since the CLI nesting (a wrong runtime directory in the boundary script) and everything it had been hiding, gave the telemetry store its production writer, made every remaining hook entry point report before failing open, excluded build output from the corpus, and pinned the CLI's engine floor. The third, from a five-iteration DeepSeek pass, renamed the render-quality scorer so two scorers stop sharing a name, routed three more private root walk-ups through the hooks resolver by exporting it from the runtime package with a declaration file, put the cursor and devin classify adapters on the shared stdin helpers, removed a type-only indexer stub, a re-export shim, a dead shell helper and two unconsumed test hooks, and gave fact coercion and the matrix helpers their first tests. The second, from a Gemini 3.8 Flash pass over runtime/lib, runtime/api, runtime/hooks, the CLI scripts and shared, found the most serious defect of the program: the shared config resolved the shared package as the skill root, so the telemetry store that carries a phase parent's active-child pointer under generator hardening was written under a directory that does not exist, and the Gate 3 classifier never read the store at all. Both are fixed, with a script test pinning the root. The same wave removed five dead wave-orchestration modules and two broken one-off migrations, gave the three remaining stop hooks a stderr report, moved a validation CLI's success output to stdout, made an uncomputable fingerprint a violation, normalized 248 header widths, wired the shared package's six script tests into its test command and repaired the one that had rotted. First wave: every shell script under runtime/cli now opens with the documented COMPONENT or SPECKIT tag and every module script with MODULE, the cursor response hook reports a failure instead of hiding it, an unused barrel is gone, and two public scripts have their first tests."
 trigger_phrases:
   - "header tag fixes shipped"
   - "completeness clamp errexit bug"
@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:ad34889502cd8fdce6a16d35ffe36b7c568d8440a328b35fe12bfd8cbef710d1"
+      fingerprint: "sha256:34c5b0dee1c93414a4e844cdf0c4ed98ab78a705f7798e33355b90512138a97c"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -117,7 +117,8 @@ Substitutions verified by a tag census, the two tests run under the CLI vitest p
 | Check | Result |
 |-------|--------|
 | Tag census | grep over runtime/cli: 0 RULE, 0 SPEC-KIT, 0 SCRIPT shell headers; 0 SCRIPT module headers |
-| Shared tests | `npm test` in shared: 7 of 7 script tests pass, including the new config root test |
+| Shared tests | `npm test` in shared: 11 of 11 script tests pass, including the config root, matrix, scrubber, trace and socket helper tests |
+| CLI check gate | `npm run check` in runtime/cli: lint, import policy, api boundary, architecture boundary, allowlist expiry, source/dist alignment, AST import policy and handler cycles all pass |
 | Runtime suites | api-graph-refresh, generated-metadata-integrity, spec-doc-structure, resume-ladder: 56 of 56 |
 | CLI suites | coverage-graph, retrieval root, import policy, boundary enforcement, script tests: 144 of 144 |
 | Builds | shared, runtime and CLI typecheck and build clean; dist freshness all fresh |

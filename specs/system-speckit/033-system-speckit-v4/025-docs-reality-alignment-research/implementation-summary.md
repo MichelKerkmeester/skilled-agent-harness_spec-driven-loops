@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:6e663f99c6522874df59f83c1a05edeaf81a946eeb885c544d5c98f2128ed7f8"
+      fingerprint: "sha256:8cbb74ff3f328fee03136eaba620b46dab6b9f8313b246fb84c91eb3df9bc205"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -91,7 +91,7 @@ The lane launched detached through fanout-run.cjs with stop policy max-iteration
 |-------|--------|
 | Iteration count | 10 files under iterations/, 10 iteration events in deep-research-state.jsonl |
 | Angle coverage | All seven angles appear in the iteration focus lines |
-| Reproduction | 14 of 17 first-pass rows reproduced; 1 dropped, 2 merged. Second pass: 18 of 19 reproduced, 1 dropped because `.opencode/specs` is a symlink. Third pass: 11 of 11 reproduced, plus a same-class sweep that found 20 phantom test citations |
+| Reproduction | 14 of 17 first-pass rows reproduced; 1 dropped, 2 merged. Second pass: 18 of 19 reproduced, 1 dropped because `.opencode/specs` is a symlink. Third pass: 11 of 11 reproduced, plus a same-class sweep that found 20 phantom test citations. Verification pass: 14 residue sites confirmed and fixed, one kept as recorded output |
 | Strict validation | `validate.sh <child> --strict` printed RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
