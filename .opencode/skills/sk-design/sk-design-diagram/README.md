@@ -149,3 +149,26 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 | [`references/import-export/import-mermaid.md`](./references/import-export/import-mermaid.md) | Mermaid redraw procedure |
 | [`references/import-export/export.md`](./references/import-export/export.md) | PNG/SVG export procedure |
 | [`references/types/type-architecture.md`](./references/types/type-architecture.md) | Example of a per-type layout-convention reference |
+
+## SCREENSHOTS
+
+Every template and example in this mode is rendered to a PNG under
+[`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
+judged without opening a browser.
+
+Regenerate after changing any template:
+
+```bash
+node ../shared/scripts/render-screenshots.cjs \
+  ./assets ./screenshots
+node ../shared/scripts/render-screenshots.cjs \
+  ./assets ./screenshots --check   # every source covered
+```
+
+The captures sit beside `assets/` rather than inside it: a leaf is something a mode
+loads into context, and a picture for a human to read is not one.
+
+The colour scheme follows the host machine. Chrome ignores the scheme flags in
+headless capture, so a regenerated set matches whichever theme the operator's
+system is set to. Both themes are valid corpus output and each is validated on its
+own, so regenerate on the machine whose theme you want committed.

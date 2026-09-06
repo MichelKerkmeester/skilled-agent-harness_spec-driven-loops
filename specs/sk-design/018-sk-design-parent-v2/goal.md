@@ -141,6 +141,8 @@ step does.
 | 8 | `008-fundamentals-beyond-ui` | Done: three dead surface phrases route, controls held |
 | 9 | `009-router-conformance` | Done: peer shape, replay unchanged at generation 653 |
 | 10 | `010-readme-human-voice` | Done: 909 prose em-dashes removed from 147 authored READMEs |
+| 11 | `011-router-vocabulary-repair` | Done: 9 of 11 dead router phrases fixed at generation 667 |
+| 12 | `012-template-screenshots` | Done: 75 rendered pictures, coverage checked |
 
 ### Deviations and findings
 
@@ -150,6 +152,10 @@ step does.
 - **Step 4 collided on two canonical filenames.** The relocated packet brought its own `spec.md` and
   `goal.md`. The packet's documents keep the canonical names; the relocation's own documents were
   renamed to `relocation-note.md` and `relocation-goal.md`.
+- **A baseline proves what it samples.** Every replay in this packet passed while eleven phrases the
+  sk-design router advertises reached nobody, because the sixteen-phrase baseline never sampled one of
+  them. The packet's central claim is narrower than it read: no phrase *in the baseline* stopped
+  arriving.
 - **Constraint 7 was added after a violation, not before.** Seven run artifacts were rewritten during
   step 4 and reverted from `HEAD` once caught.
 - **A validator that reads a built artefact cannot see a defect the build repairs.** Step 5 found four

@@ -1,0 +1,15 @@
+what should this look like             NOTHING
+does this look right                   NOTHING
+why does this look wrong               NOTHING
+critique this                          NOTHING
+visual audit                           NOTHING
+review this screen                     sk-code=0.935, sk-design=0.82
+measure this surface                   NOTHING
+css extraction                         NOTHING
+style guide from a url                 sk-design=0.82
+chart the data                         sk-design=0.82
+data visualization                     sk-doc=0.878
+calendar heatmap                       sk-design=0.82
+parallel coordinates                   sk-doc=0.82
+process diagram                        NOTHING
+flow diagram                           NOTHING

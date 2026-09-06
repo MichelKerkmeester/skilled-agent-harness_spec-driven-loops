@@ -1,6 +1,6 @@
 {
   "name": "sk-doc",
-  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to thirteen nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-design-diagram (HTML/SVG diagrams and ASCII/markdown flowcharts, one output-format dial), sk-design-chart (standalone HTML data charts from a 20-form catalog across six question families, with three colour systems), sk-create-changelog, sk-create-diff (local before/after document reviews), sk-create-repo-rule, sk-create-frontmatter (the YAML frontmatter contract: per-class field rules, the description budget, and the 4-part version derivation), sk-create-with-human-voice (apply or score prose against the Human Voice Rules, with a scope gate, a scanner that parses the standard at run time, and a re-scan after the rewrite), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline \u2014 validators, global standards, frontmatter/llms/template assets \u2014 lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
+  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to thirteen nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-design-diagram (HTML/SVG diagrams and ASCII/markdown flowcharts, one output-format dial), sk-design-chart (standalone HTML data charts from a 20-form catalog across six question families, with three colour systems), sk-create-changelog, sk-create-diff (local before/after document reviews), sk-create-repo-rule, sk-create-frontmatter (the YAML frontmatter contract: per-class field rules, the description budget, and the 4-part version derivation), sk-create-with-human-voice (apply or score prose against the Human Voice Rules, with a scope gate, a scanner that parses the standard at run time, and a re-scan after the rewrite), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
   "version": "2.1.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -19,7 +19,6 @@
     "sk-create-feature-catalog",
     "sk-create-manual-testing-playbook",
     "sk-create-benchmark",
-    "data visualization",
     "treemap",
     "sk-create-changelog",
     "sk-create-diff",

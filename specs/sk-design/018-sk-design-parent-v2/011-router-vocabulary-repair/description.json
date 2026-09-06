@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/011-router-vocabulary-repair",
+  "description": "The sk-design router declares 55 keywords its own scoring vocabulary never sees",
+  "keywords": [
+    "sk-design",
+    "router",
+    "declares",
+    "keywords",
+    "own",
+    "scoring",
+    "vocabulary",
+    "never",
+    "sees"
+  ],
+  "lastUpdated": "2026-09-06T21:05:19.723Z",
+  "specId": "011",
+  "folderSlug": "router-vocabulary-repair",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

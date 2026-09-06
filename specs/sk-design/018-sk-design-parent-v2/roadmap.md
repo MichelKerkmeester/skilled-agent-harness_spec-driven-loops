@@ -32,7 +32,7 @@ _memory:
 |-------|-------|
 | **Packet** | `sk-design/018-sk-design-parent-v2` |
 | **Level** | 2 (phase parent) |
-| **Phases** | 10 |
+| **Phases** | 12 |
 | **Open** | 0; the packet is closed |
 | **Branch** | `skilled/v4.0.0.0` |
 
@@ -60,6 +60,8 @@ tree the previous one left green.
 | 8 | `008-fundamentals-beyond-ui` | **Done** | Broader vocabulary can pull a canvas phrase off the mode that owns it | New surface phrases above the bar with chart and diagram replayed as controls |
 | 9 | `009-router-conformance` | **Done** | Nothing; prose and structure only | Peer section skeleton, every path resolving, replay unchanged |
 | 10 | `010-readme-human-voice` | **Done** | Nothing; prose only, but easy to damage silently | 0 prose em-dashes, 0 splices, 0 out-of-scope edits |
+| 11 | `011-router-vocabulary-repair` | **Done** | Vocabulary on two hubs at once | 9 of 11 dead phrases route; both control sets unchanged |
+| 12 | `012-template-screenshots` | **Done** | Nothing; additive | 75 pictures, coverage checked, leaf hash unchanged |
 
 **Now.** Nothing. All ten steps are done.
 

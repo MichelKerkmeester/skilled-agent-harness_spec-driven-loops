@@ -194,7 +194,24 @@
     "report layout",
     "long-form layout",
     "poster layout",
-    "laid out"
+    "laid out",
+    "what should this look like",
+    "what should this button look like",
+    "does this look right",
+    "why does this look wrong",
+    "critique this design",
+    "visual audit",
+    "design critique",
+    "measure this surface",
+    "css extraction",
+    "extract the css",
+    "data visualization",
+    "data visualisation",
+    "chart the data",
+    "parallel coordinates",
+    "process diagram",
+    "flow diagram",
+    "diagram the process"
   ],
   "derived": {
     "trigger_phrases": [

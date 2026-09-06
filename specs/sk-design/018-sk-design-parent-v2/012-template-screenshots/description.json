@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/012-template-screenshots",
+  "description": "Both canvas modes ship HTML that has to be opened in a browser to be judged",
+  "keywords": [
+    "canvas",
+    "modes",
+    "ship",
+    "html",
+    "opened",
+    "browser",
+    "judged"
+  ],
+  "lastUpdated": "2026-09-06T21:05:19.724Z",
+  "specId": "012",
+  "folderSlug": "template-screenshots",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
