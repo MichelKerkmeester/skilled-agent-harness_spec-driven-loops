@@ -1,0 +1,27 @@
+{
+  "name": "sk-design",
+  "description": "Design parent hub. One advisor identity routing through mode-registry.json and hub-router.json to nested workflow packets: sk-design-fundamentals for the values, spacing, colour and typography decisions a surface needs, and further modes as they land. Reinstated after the August 2026 deprecation, with a mode count and a shared subject the two-mode hub did not have.",
+  "version": "2.0.0.0",
+  "importance_tier": "important",
+  "keywords": [
+    "design",
+    "visual design",
+    "spacing",
+    "padding",
+    "typography",
+    "colour",
+    "color",
+    "contrast",
+    "contrast ratio",
+    "accessibility contrast",
+    "layout",
+    "hierarchy",
+    "design decision",
+    "what should this look like",
+    "design review",
+    "ux laws",
+    "design fundamentals",
+    "visual hierarchy"
+  ],
+  "lastUpdated": "2026-09-06"
+}

@@ -1,0 +1,22 @@
+{
+  "specFolder": "001-reinstate-design-parent",
+  "description": "Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes",
+  "keywords": [
+    "reinstate",
+    "sk-design",
+    "parent",
+    "hub",
+    "absorb",
+    "chart",
+    "diagram",
+    "generator",
+    "modes"
+  ],
+  "lastUpdated": "2026-09-06T13:52:15.364Z",
+  "specId": "001",
+  "folderSlug": "reinstate-design-parent",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

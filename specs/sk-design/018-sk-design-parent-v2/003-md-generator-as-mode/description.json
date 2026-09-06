@@ -1,0 +1,17 @@
+{
+  "specFolder": "001-reinstate-design-parent/002-phase-2-PROVIDE-DESCRIPTIVE-SLUG",
+  "description": "Phase 2: phase-2-PROVIDE-DESCRIPTIVE-SLUG",
+  "keywords": [
+    "phase",
+    "phase-2-provide-descriptive-slug"
+  ],
+  "lastUpdated": "2026-09-06T13:52:16.705Z",
+  "specId": "002",
+  "folderSlug": "phase-2-provide-descriptive-slug",
+  "parentChain": [
+    "001-reinstate-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

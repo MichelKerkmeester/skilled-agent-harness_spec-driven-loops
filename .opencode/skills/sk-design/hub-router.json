@@ -1,0 +1,55 @@
+{
+  "skill": "sk-design",
+  "version": "2.0.0.0",
+  "routerPolicy": {
+    "defaultMode": "sk-design-fundamentals",
+    "ambiguityDelta": 1,
+    "tieBreak": [
+      "sk-design-fundamentals"
+    ],
+    "outcomes": {
+      "single": "one dominant mode, load it",
+      "ambiguous": "scores within the delta, ask which decision is wanted",
+      "none": "no signal, fall to the default mode"
+    }
+  },
+  "routerSignals": {
+    "sk-design-fundamentals": {
+      "weight": 4,
+      "classes": [
+        "design-decisions",
+        "design-review"
+      ],
+      "resources": [
+        "sk-design-fundamentals/SKILL.md"
+      ]
+    }
+  },
+  "vocabularyClasses": {
+    "design-decisions": {
+      "keywords": [
+        "padding",
+        "spacing",
+        "margin",
+        "type scale",
+        "typography",
+        "colour",
+        "color",
+        "contrast",
+        "radius",
+        "elevation",
+        "hierarchy"
+      ]
+    },
+    "design-review": {
+      "keywords": [
+        "design review",
+        "does this look right",
+        "ux laws",
+        "critique",
+        "visual audit",
+        "accessibility contrast"
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "skill": "sk-design",
+  "version": "2.0.0.0",
+  "resourceContractVersion": "1.0.0",
+  "description": "Routes one design identity to the mode that owns the decision being asked for.",
+  "discriminator": "workflowMode is the public mode key; packetKind says whether a mode acts or only supplies evidence; backendKind says what runs it.",
+  "advisorRoutingContract": {
+    "identity": "sk-design",
+    "note": "Nested modes carrying routingClass metadata are resolved by hub membership and hold no advisor entry of their own. Their vocabulary reaches the advisor only through the hub graph-metadata.json."
+  },
+  "modes": [
+    {
+      "workflowMode": "sk-design-fundamentals",
+      "packetKind": "workflow",
+      "backendKind": "surface-router",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-design-fundamentals",
+      "packetSkillName": "sk-design-fundamentals",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "design fundamentals",
+        "what padding should this have",
+        "spacing scale",
+        "type scale",
+        "contrast ratio",
+        "colour decision",
+        "color decision",
+        "visual hierarchy",
+        "design review",
+        "ux laws"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    }
+  ]
+}
