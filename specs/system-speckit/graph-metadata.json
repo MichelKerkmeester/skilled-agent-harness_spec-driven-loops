@@ -13,7 +13,8 @@
     "system-speckit/031-memory-reindex-embed-performance",
     "system-speckit/032-relocate-specs-folder",
     "system-speckit/033-system-speckit-v4",
-    "system-speckit/034-goal-operator-resync-rule"
+    "system-speckit/034-goal-operator-resync-rule",
+    "system-speckit/035-spec-kit-simplification-research"
   ],
   "manual": {
     "depends_on": [],

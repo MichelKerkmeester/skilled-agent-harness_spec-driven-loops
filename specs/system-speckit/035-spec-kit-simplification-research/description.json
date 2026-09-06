@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research",
+  "description": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
+  "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
+    "spec-kit",
+    "simplification",
+    "research",
+    "across",
+    "independently",
+    "executable",
+    "child",
+    "phase",
+    "folders"
+  ],
+  "lastUpdated": "2026-09-06T14:33:48.461Z",
+  "specId": "035",
+  "folderSlug": "spec-kit-simplification-research",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system",
+    "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+    "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
+    "system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+    "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "001-quiet-spec-kit",
+      "phase parent",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "001-quiet-spec-kit",
+      "phase",
+      "parent",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding",
+      "phased",
+      "decomposition"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-ripgrep-search-system/goal.md",
+      "002-cli-runtime-utilization/goal.md",
+      "003-shared-package-utilization/goal.md",
+      "004-template-system-and-acceptance-criteria/goal.md",
+      "005-overengineering-simplification/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "ten",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
+    "created_at": "2026-09-06T14:29:29Z",
+    "last_save_at": "2026-09-06T14:34:32.520Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:8da7886d5653ff746601d011d50fb488b6ce5598db3497fa05418a759a20ac41",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c7d991a649b1dd63b3c93c54272052067716f80ea24599a6f1e308af3761e2f1"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f157b3a2c332f891e4040566aaa0939ec4cd544246e68d20572c1fd77dc2c84a",
+  "manifestHash": "ad8fecb63f3cfca0dc431dfe88eb858250b04fcb1b8cabe605698695b90a7955",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -815,53 +815,6 @@
     ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/provider-adapters-and-execution.md",
     ".opencode/skills/sk-communication/feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md",
     ".opencode/skills/sk-communication/references/visual-explanation.md",
-    ".opencode/skills/sk-design-md-generator/README.md",
-    ".opencode/skills/sk-design-md-generator/assets/cardinal-rules-card.md",
-    ".opencode/skills/sk-design-md-generator/assets/design-md-prompt-template.md",
-    ".opencode/skills/sk-design-md-generator/assets/source-of-truth-router-card.md",
-    ".opencode/skills/sk-design-md-generator/backend/README.md",
-    ".opencode/skills/sk-design-md-generator/backend/scripts/README.md",
-    ".opencode/skills/sk-design-md-generator/backend/tests/README.md",
-    ".opencode/skills/sk-design-md-generator/changelog/v1.1.0.0.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/extract/extract.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/feature-catalog.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/feature-extractors/feature-extractors.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/interaction-capture/interaction-capture.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/report-preview/report-preview.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/validate/validate.md",
-    ".opencode/skills/sk-design-md-generator/feature-catalog/write-design-md/write-design-md.md",
-    ".opencode/skills/sk-design-md-generator/procedures/design-system-extraction.md",
-    ".opencode/skills/sk-design-md-generator/references/anti-patterns.md",
-    ".opencode/skills/sk-design-md-generator/references/authoring-boundary.md",
-    ".opencode/skills/sk-design-md-generator/references/color-role-taxonomy.md",
-    ".opencode/skills/sk-design-md-generator/references/component-taxonomy.md",
-    ".opencode/skills/sk-design-md-generator/references/creation-contract.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/anti-slop-principles.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/cognitive-laws.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/design-principles-digest.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/design-token-vocabulary.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/register-card.md",
-    ".opencode/skills/sk-design-md-generator/references/design-knowledge/register.md",
-    ".opencode/skills/sk-design-md-generator/references/design-md-format.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/editorial-exemplar.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/linear/DESIGN.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/linear/writing-notes.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/stripe/DESIGN.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/stripe/writing-notes.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/supabase/DESIGN.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/supabase/writing-notes.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/vercel/DESIGN.md",
-    ".opencode/skills/sk-design-md-generator/references/examples/vercel/writing-notes.md",
-    ".opencode/skills/sk-design-md-generator/references/extraction-workflow.md",
-    ".opencode/skills/sk-design-md-generator/references/guided-run.md",
-    ".opencode/skills/sk-design-md-generator/references/quality-checklist.md",
-    ".opencode/skills/sk-design-md-generator/references/sk-code-handoff.md",
-    ".opencode/skills/sk-design-md-generator/references/troubleshooting.md",
-    ".opencode/skills/sk-design-md-generator/references/writing-style-guide.md",
-    ".opencode/skills/sk-design-md-generator/styles/scripts/README.md",
     ".opencode/skills/sk-design/ROUTER.md",
     ".opencode/skills/sk-design/sk-design-fundamentals/README.md",
     ".opencode/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md",
@@ -878,6 +831,53 @@
     ".opencode/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
     ".opencode/skills/sk-design/sk-design-fundamentals/references/review-checklist.md",
     ".opencode/skills/sk-design/sk-design-fundamentals/references/ux-laws.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/README.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/assets/source-of-truth-router-card.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/backend/README.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/backend/scripts/README.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/backend/tests/README.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/extract/extract.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/feature-extractors/feature-extractors.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/interaction-capture/interaction-capture.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/report-preview/report-preview.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/validate/validate.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/feature-catalog/write-design-md/write-design-md.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/procedures/design-system-extraction.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/anti-patterns.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/authoring-boundary.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/anti-slop-principles.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/cognitive-laws.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-principles-digest.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-token-vocabulary.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/register-card.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-knowledge/register.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/design-md-format.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/editorial-exemplar.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/linear/DESIGN.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/linear/writing-notes.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/stripe/DESIGN.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/stripe/writing-notes.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/supabase/DESIGN.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/supabase/writing-notes.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/vercel/DESIGN.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/examples/vercel/writing-notes.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/guided-run.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/quality-checklist.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/troubleshooting.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/references/writing-style-guide.md",
+    ".opencode/skills/sk-design/sk-design-md-generator/styles/scripts/README.md",
     ".opencode/skills/sk-doc/README.md",
     ".opencode/skills/sk-doc/ROUTER.md",
     ".opencode/skills/sk-doc/benchmark/README.md",
@@ -13569,7 +13569,39 @@
     "specs/system-speckit/034-goal-operator-resync-rule/implementation-summary.md",
     "specs/system-speckit/034-goal-operator-resync-rule/plan.md",
     "specs/system-speckit/034-goal-operator-resync-rule/spec.md",
-    "specs/system-speckit/034-goal-operator-resync-rule/tasks.md"
+    "specs/system-speckit/034-goal-operator-resync-rule/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/spec.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -13793,6 +13825,9 @@
     ],
     "001 provisioning results": [
       2979
+    ],
+    "001 quiet spec kit": [
+      13591
     ],
     "001 reinstate design parent": [
       4267
@@ -22578,7 +22613,7 @@
       1292
     ],
     "6 digit lowercase hex": [
-      821
+      837
     ],
     "65 target readme manifest": [
       8645,
@@ -23090,7 +23125,12 @@
       13534,
       13539,
       13544,
-      13549
+      13549,
+      13560,
+      13566,
+      13572,
+      13578,
+      13584
     ],
     "acceptance criteria closure gate": [
       13280
@@ -23130,7 +23170,7 @@
       3715
     ],
     "accepted design handoff": [
-      827
+      843
     ],
     "accepted deviation set sk code": [
       7203
@@ -23154,16 +23194,16 @@
       12748
     ],
     "accessibility audit checklist": [
-      866
+      819
     ],
     "accessibility class naming": [
       753
     ],
     "accessibility contract checklist": [
-      847
+      863
     ],
     "accessibility detection": [
-      816
+      832
     ],
     "accessibility hardening plan": [
       3647
@@ -24863,7 +24903,7 @@
       4177
     ],
     "aesthetic usability effect": [
-      829
+      845
     ],
     "aesthetics foundations mcp tooling references": [
       4020
@@ -25321,10 +25361,10 @@
       1256
     ],
     "agent prompt guide section": [
-      835
+      851
     ],
     "agent prompt self containment": [
-      850
+      866
     ],
     "agent proposal event parity": [
       7663
@@ -26168,7 +26208,7 @@
       4795
     ],
     "ambiguity resolution": [
-      825
+      841
     ],
     "ambiguity window": [
       1532,
@@ -26310,7 +26350,7 @@
       3644
     ],
     "animation duration for ui": [
-      865
+      818
     ],
     "animation initialization safeguards": [
       706
@@ -26376,10 +26416,10 @@
       1260
     ],
     "anti hallucination design reference": [
-      815
+      831
     ],
     "anti pattern catalog": [
-      823
+      839
     ],
     "anti patterns checklist": [
       740
@@ -26388,7 +26428,7 @@
       3960
     ],
     "anti slop design": [
-      828
+      844
     ],
     "anti slop review": [
       3686
@@ -28112,7 +28152,7 @@
       3968
     ],
     "authoring boundary": [
-      824
+      840
     ],
     "authoring checklist": [
       674
@@ -28449,10 +28489,10 @@
       254
     ],
     "avoid ai default design": [
-      828
+      844
     ],
     "avoid templated default look": [
-      830
+      846
     ],
     "b1 b2 b3 b4 b5 b6 batch remediation": [
       11124
@@ -28479,7 +28519,7 @@
       4068
     ],
     "backend vitest suite": [
-      811
+      827
     ],
     "backendkind embeddermanifest": [
       11001
@@ -28608,7 +28648,7 @@
       1090
     ],
     "banned words in design docs": [
-      850
+      866
     ],
     "banner suppression plan": [
       11930
@@ -30171,7 +30211,7 @@
       3968
     ],
     "brand context requirements": [
-      847
+      863
     ],
     "brand first authoring lane": [
       3965,
@@ -30184,13 +30224,13 @@
       969
     ],
     "brand product fill in card": [
-      833
+      849
     ],
     "brand vs product register": [
-      834
+      850
     ],
     "brand vs structural color": [
-      825
+      841
     ],
     "brat beta theme install": [
       490
@@ -30330,7 +30370,7 @@
       10476
     ],
     "brief provided values": [
-      824
+      840
     ],
     "broad suite timeout hang": [
       10676
@@ -30467,7 +30507,7 @@
       11301
     ],
     "build a color palette": [
-      860
+      813
     ],
     "build advanced canvas presentation": [
       444
@@ -31386,7 +31426,7 @@
       1008
     ],
     "capture interaction states": [
-      817
+      833
     ],
     "capture normalize project render": [
       3552
@@ -31395,7 +31435,7 @@
       147
     ],
     "capture website css": [
-      805
+      821
     ],
     "card field renderer parameter classes": [
       586
@@ -31416,7 +31456,7 @@
       6607
     ],
     "cardinal fidelity rule": [
-      821
+      837
     ],
     "cardinal rules card conformance": [
       4066
@@ -33388,10 +33428,10 @@
       1551
     ],
     "choose a typeface for ui": [
-      861
+      814
     ],
     "choose a value by elimination": [
-      859
+      812
     ],
     "choose flowchart pattern": [
       957
@@ -33527,7 +33567,7 @@
       11590
     ],
     "chunk information into groups": [
-      867
+      820
     ],
     "chunk markdown": [
       1822
@@ -36023,6 +36063,27 @@
     "cli runtime integration tasks": [
       11787
     ],
+    "cli runtime utilization": [
+      13570
+    ],
+    "cli runtime utilization findings": [
+      13570
+    ],
+    "cli runtime utilization lane closure": [
+      13566
+    ],
+    "cli runtime utilization lane plan": [
+      13569
+    ],
+    "cli runtime utilization lane summary": [
+      13568
+    ],
+    "cli runtime utilization lane tasks": [
+      13571
+    ],
+    "cli runtime utilization research lane": [
+      13570
+    ],
     "cli sessionid scoping": [
       10586
     ],
@@ -36723,7 +36784,12 @@
       13534,
       13539,
       13544,
-      13549
+      13549,
+      13560,
+      13566,
+      13572,
+      13578,
+      13584
     ],
     "closure gate blocks evidence": [
       13220
@@ -36797,10 +36863,10 @@
       9198
     ],
     "cluster tokens by stability": [
-      813
+      829
     ],
     "cluster validate formatters tests": [
-      811
+      827
     ],
     "co located stories ts component": [
       577
@@ -39337,7 +39403,7 @@
       4573
     ],
     "cognitive laws design": [
-      829
+      845
     ],
     "cold p95 advisory": [
       10871
@@ -39418,25 +39484,25 @@
       1145
     ],
     "color frequency interpretation": [
-      825
+      841
     ],
     "color mix state interpolation": [
       717
     ],
     "color role assignment": [
-      825
+      841
     ],
     "color role naming": [
-      813
+      829
     ],
     "color role taxonomy": [
-      825
+      841
     ],
     "color type layout tokens": [
-      831
+      847
     ],
     "colour naming format": [
-      850
+      866
     ],
     "column chart comparison": [
       974
@@ -40548,7 +40614,7 @@
       514
     ],
     "comparative framing": [
-      850
+      866
     ],
     "compare against latest baseline": [
       1008
@@ -41183,7 +41249,13 @@
       13426,
       13431,
       13436,
-      13445
+      13445,
+      13561,
+      13567,
+      13573,
+      13579,
+      13585,
+      13590
     ],
     "completion criteria copied": [
       13347,
@@ -41274,13 +41346,13 @@
       767
     ],
     "component decision logic": [
-      826
+      842
     ],
     "component documentation": [
-      826
+      842
     ],
     "component extraction checklist": [
-      826
+      842
     ],
     "component header codemod": [
       3388
@@ -41298,19 +41370,19 @@
       5698
     ],
     "component quality check": [
-      866
+      819
     ],
     "component readme voice": [
       1051
     ],
     "component state matrix": [
-      826
+      842
     ],
     "component story required": [
       551
     ],
     "component taxonomy": [
-      826
+      842
     ],
     "component token blast radius": [
       557
@@ -41334,7 +41406,7 @@
       9100
     ],
     "compose style reference from tokens": [
-      807
+      823
     ],
     "composeafter requiresauthorityfrom build": [
       4844
@@ -42618,7 +42690,7 @@
       11228
     ],
     "contrast motion spacing type thresholds": [
-      832
+      848
     ],
     "control knobs fail closed": [
       3520,
@@ -43644,10 +43716,10 @@
       10302
     ],
     "crawl blocked 403": [
-      849
+      865
     ],
     "crawl website for css": [
-      814
+      830
     ],
     "create": [
       4419,
@@ -45281,13 +45353,13 @@
       675
     ],
     "css token extraction": [
-      822
+      838
     ],
     "css validation architecture": [
       714
     ],
     "css variable naming": [
-      825
+      841
     ],
     "css vs motion dev": [
       705
@@ -46569,7 +46641,7 @@
       7366
     ],
     "dark developer style reference example": [
-      841
+      857
     ],
     "dark flag graduation": [
       12921
@@ -46596,13 +46668,13 @@
       7403
     ],
     "dark mode color ramp": [
-      860
+      813
     ],
     "dark mode detection": [
-      816
+      832
     ],
     "dark mode omission": [
-      823
+      839
     ],
     "dark palette derivation": [
       6534
@@ -46623,7 +46695,7 @@
       7770
     ],
     "dark style reference example": [
-      837
+      853
     ],
     "dashboard": [
       1377
@@ -52353,7 +52425,7 @@
       5828
     ],
     "description quality": [
-      847
+      863
     ],
     "description schema enum": [
       12596,
@@ -52384,7 +52456,7 @@
       4074
     ],
     "design a new screen": [
-      859
+      812
     ],
     "design advisor overclaim": [
       4000
@@ -52472,7 +52544,7 @@
       4004
     ],
     "design build manifest": [
-      848
+      864
     ],
     "design command benchmark scorecard": [
       3950
@@ -52575,22 +52647,22 @@
       4231
     ],
     "design extraction failed": [
-      849
+      865
     ],
     "design extraction handoff": [
-      845
+      861
     ],
     "design extraction implementation plan": [
       3650
     ],
     "design extraction pipeline scripts": [
-      810
+      826
     ],
     "design extraction task list": [
       3652
     ],
     "design extractor backend": [
-      809
+      825
     ],
     "design faithful fenced cas activation": [
       4882
@@ -52617,13 +52689,13 @@
       5365
     ],
     "design implementation handoff": [
-      848
+      864
     ],
     "design intent routing": [
-      852
+      805
     ],
     "design intent vs slop": [
-      830
+      846
     ],
     "design interface aesthetics folder": [
       4177
@@ -52749,7 +52821,7 @@
       3641
     ],
     "design is the product": [
-      834
+      850
     ],
     "design library research plan": [
       3834
@@ -52887,35 +52959,35 @@
       3653
     ],
     "design md anti patterns": [
-      823
+      839
     ],
     "design md cardinal rules": [
-      806
+      822
     ],
     "design md exemplar conformance adr": [
       4064
     ],
     "design md feature catalog": [
-      815
+      831
     ],
     "design md fidelity check": [
-      820
+      836
     ],
     "design md format specification": [
-      835
+      851
     ],
     "design md generation": [
-      815,
-      822
+      831,
+      838
     ],
     "design md generation prompt": [
-      807
+      823
     ],
     "design md generator assets conformance": [
       4066
     ],
     "design md generator backend scripts": [
-      810
+      826
     ],
     "design md generator backend structure conformance": [
       4068
@@ -52960,7 +53032,7 @@
       4063
     ],
     "design md generator private card": [
-      818
+      834
     ],
     "design md generator procedure integration": [
       3680
@@ -52996,28 +53068,28 @@
       3853
     ],
     "design md html preview": [
-      819
+      835
     ],
     "design md pipeline tasks": [
       3652
     ],
     "design md pre validate check": [
-      806
+      822
     ],
     "design md provenance": [
-      824
+      840
     ],
     "design md section order": [
-      835
+      851
     ],
     "design md token pipeline plan": [
       3650
     ],
     "design md value provenance card": [
-      808
+      824
     ],
     "design md write prompt": [
-      807
+      823
     ],
     "design mode bloat": [
       3894
@@ -53092,10 +53164,10 @@
       5711
     ],
     "design operating register": [
-      834
+      850
     ],
     "design pipeline unit tests": [
-      811
+      827
     ],
     "design presentation asset decision": [
       3719
@@ -53107,7 +53179,7 @@
       3722
     ],
     "design principles digest": [
-      830
+      846
     ],
     "design principles rewrite": [
       4012
@@ -53158,14 +53230,14 @@
       6199
     ],
     "design register checklist": [
-      833
+      849
     ],
     "design resource map": [
-      852
+      805
     ],
     "design review findings": [
-      853,
-      866
+      806,
+      819
     ],
     "design review negation bug": [
       3810
@@ -53174,25 +53246,25 @@
       3656
     ],
     "design serves the product": [
-      834
+      850
     ],
     "design skill change record": [
       4234
     ],
     "design skill first release": [
-      857
+      810
     ],
     "design skill next steps": [
       4238
     ],
     "design skill operator scenarios": [
-      858
+      811
     ],
     "design skill packet": [
       4246
     ],
     "design slop test": [
-      828
+      844
     ],
     "design subagent sk design": [
       4244
@@ -53201,17 +53273,17 @@
       3997
     ],
     "design system extraction": [
-      815,
-      822
+      831,
+      838
     ],
     "design system extraction card": [
-      818
+      834
     ],
     "design system extraction template audit": [
       4067
     ],
     "design system extractor cli": [
-      809
+      825
     ],
     "design system guardrails": [
       555
@@ -53223,7 +53295,7 @@
       548
     ],
     "design thresholds": [
-      832
+      848
     ],
     "design token audit rubric adapter": [
       7199
@@ -53241,19 +53313,19 @@
       714
     ],
     "design token vocabulary": [
-      831
+      847
     ],
     "design tokens from folder": [
       960
     ],
     "design tokens from url": [
-      805
+      821
     ],
     "design tokens json": [
       279
     ],
     "design writing style": [
-      850
+      866
     ],
     "designer catalog tuning": [
       580
@@ -54181,7 +54253,7 @@
       10911
     ],
     "diagnose existing ui": [
-      862
+      815
     ],
     "diagnostic counters": [
       9728
@@ -55060,10 +55132,10 @@
       9692
     ],
     "distinctive components": [
-      826
+      842
     ],
     "distinctive visual design": [
-      830
+      846
     ],
     "distribution strip table": [
       6607
@@ -56737,7 +56809,13 @@
       13426,
       13431,
       13436,
-      13445
+      13445,
+      13561,
+      13567,
+      13573,
+      13579,
+      13585,
+      13590
     ],
     "durable fan in failure plan": [
       7434
@@ -56975,7 +57053,7 @@
       12457
     ],
     "ecommerce extraction study": [
-      836
+      852
     ],
     "econnreset epipe readiness retry": [
       10211,
@@ -57072,7 +57150,7 @@
       579
     ],
     "editorial extraction exemplar": [
-      836
+      852
     ],
     "editorial html diagram skill": [
       6178
@@ -57895,7 +57973,7 @@
       6504
     ],
     "emphasize by de emphasizing": [
-      863
+      816
     ],
     "empty catch reason or log": [
       13490
@@ -57934,7 +58012,7 @@
       6381
     ],
     "emulate a light source css": [
-      861
+      814
     ],
     "enable 5dim scorer": [
       1252
@@ -58736,7 +58814,7 @@
       13244
     ],
     "everything competes for attention": [
-      863
+      816
     ],
     "evidence and proof": [
       6292
@@ -59510,23 +59588,23 @@
       8735
     ],
     "extract cluster validate pipeline": [
-      810
+      826
     ],
     "extract comparable text from documents": [
       1003
     ],
     "extract creation contract": [
-      827
+      843
     ],
     "extract design system": [
-      805
+      821
     ],
     "extract design tokens": [
-      814
+      830
     ],
     "extract design tokens from url": [
-      815,
-      845
+      831,
+      861
     ],
     "extract from evidence cjs": [
       10804
@@ -59567,10 +59645,10 @@
       960
     ],
     "extract ts flags": [
-      809
+      825
     ],
     "extract ts not running": [
-      849
+      865
     ],
     "extraction": [
       8392
@@ -60749,7 +60827,7 @@
       2790
     ],
     "fast no interaction flag": [
-      817
+      833
     ],
     "fast path prompt quality": [
       1129
@@ -61219,7 +61297,7 @@
       8855
     ],
     "feature extractor": [
-      816
+      832
     ],
     "feature flag all hooks": [
       2747
@@ -61409,13 +61487,13 @@
       171
     ],
     "fidelity checklist": [
-      806
+      822
     ],
     "fidelity ledger": [
       961
     ],
     "fidelity proof artifact": [
-      819
+      835
     ],
     "fidelity render handover": [
       3477
@@ -62139,10 +62217,10 @@
       2052
     ],
     "fitts law target size": [
-      867
+      820
     ],
     "fitts s law": [
-      829
+      845
     ],
     "five boundary cutover test": [
       7971
@@ -62804,7 +62882,7 @@
       591
     ],
     "focus ring and keyboard navigation": [
-      864
+      817
     ],
     "focus ring data focus visible": [
       546
@@ -63116,7 +63194,7 @@
       11525
     ],
     "format inconsistency": [
-      823
+      839
     ],
     "format md consolidation": [
       9802
@@ -63204,7 +63282,7 @@
       430
     ],
     "forward authoring out of scope": [
-      824
+      840
     ],
     "forward plan": [
       3454,
@@ -63381,7 +63459,7 @@
       1233
     ],
     "framework detection": [
-      816
+      832
     ],
     "framework doc matches behaviour": [
       13312,
@@ -64602,10 +64680,10 @@
       13507
     ],
     "generate design md": [
-      805
+      821
     ],
     "generate design md workflow": [
-      845
+      861
     ],
     "generate literal phase names": [
       1690
@@ -64626,7 +64704,7 @@
       13477
     ],
     "generate visual report": [
-      819
+      835
     ],
     "generated command bridge projection": [
       1614
@@ -64779,7 +64857,7 @@
       13531
     ],
     "generic description": [
-      823
+      839
     ],
     "generic loop degeneration monitor": [
       7489
@@ -64791,7 +64869,7 @@
       11714
     ],
     "generic ui critique": [
-      828
+      844
     ],
     "get a note": [
       416
@@ -65342,6 +65420,13 @@
     "glm parent hub routing synthesis": [
       4719
     ],
+    "glm research lane spec kit": [
+      13564,
+      13570,
+      13576,
+      13582,
+      13588
+    ],
     "glm thinking tier": [
       2437
     ],
@@ -65484,7 +65569,13 @@
       13431,
       13436,
       13445,
-      13453
+      13453,
+      13561,
+      13567,
+      13573,
+      13579,
+      13585,
+      13590
     ],
     "goal capability probes": [
       2546
@@ -66600,7 +66691,7 @@
       11261
     ],
     "grayscale first": [
-      859
+      812
     ],
     "greenfield command generator": [
       7294
@@ -66765,7 +66856,7 @@
       11520
     ],
     "guided run wrapper": [
-      846
+      862
     ],
     "h 56 1 canonical save fix": [
       9198
@@ -67376,10 +67467,10 @@
       3960
     ],
     "hex accuracy check": [
-      820
+      836
     ],
     "hex color classification": [
-      825
+      841
     ],
     "hf embed pid single winner channel": [
       11133
@@ -67563,10 +67654,10 @@
       11396
     ],
     "hick s law": [
-      829
+      845
     ],
     "hicks law too many choices": [
-      867
+      820
     ],
     "hidden test final state": [
       1860
@@ -67981,7 +68072,7 @@
       1195
     ],
     "hover focus active capture": [
-      817
+      833
     ],
     "hover template enforcement": [
       6644
@@ -68011,7 +68102,7 @@
       1023
     ],
     "how much white space": [
-      859
+      812
     ],
     "how skill routing changed": [
       5255
@@ -68029,13 +68120,13 @@
       903
     ],
     "how to style a destructive button": [
-      863
+      816
     ],
     "how to use the style library": [
       3835
     ],
     "hsl shade ramp": [
-      860
+      813
     ],
     "html document diff": [
       4453
@@ -68430,7 +68521,7 @@
       4801
     ],
     "hue rotation for contrast": [
-      860
+      813
     ],
     "huggingface gated repo": [
       9248
@@ -68864,7 +68955,7 @@
       466
     ],
     "icon system detection": [
-      816
+      832
     ],
     "iconic backup": [
       468
@@ -70318,7 +70409,7 @@
       13219
     ],
     "information density": [
-      850
+      866
     ],
     "infra failure vs weak candidate": [
       1272
@@ -70479,7 +70570,7 @@
       7980
     ],
     "input and form details": [
-      864
+      817
     ],
     "input contract": [
       4456
@@ -70905,7 +70996,7 @@
       10675
     ],
     "interaction capture ts": [
-      817
+      833
     ],
     "interaction gated checklist": [
       534
@@ -71036,10 +71127,10 @@
       6006
     ],
     "interface feels cheap": [
-      862
+      815
     ],
     "interface feels janky": [
-      864
+      817
     ],
     "interface foundations audit subworkflows": [
       3996
@@ -71302,7 +71393,7 @@
       1058
     ],
     "is this value measured": [
-      808
+      824
     ],
     "isdefaultenduserscope predicate": [
       11264
@@ -71989,7 +72080,7 @@
       13232
     ],
     "keep saturation from washing out": [
-      860
+      813
     ],
     "keep screenshots current after a change": [
       598
@@ -72100,7 +72191,7 @@
       12492
     ],
     "l1 l2 l3 l4 tokens": [
-      813
+      829
     ],
     "l1 security disposition": [
       11978
@@ -72343,7 +72434,12 @@
     ],
     "lane launch and monitoring": [
       13538,
-      13543
+      13543,
+      13565,
+      13571,
+      13577,
+      13583,
+      13589
     ],
     "lane lists shadow pipeline plumbing": [
       12877
@@ -73729,10 +73825,10 @@
       562
     ],
     "light developer style reference example": [
-      843
+      859
     ],
     "light style reference example": [
-      839
+      855
     ],
     "limit task results": [
       201
@@ -73802,19 +73898,19 @@
       7443
     ],
     "linear design md example": [
-      837
+      853
     ],
     "linear design md writing notes": [
-      838
+      854
     ],
     "linear extraction caveats": [
-      838
+      854
     ],
     "linear sequential process": [
       939
     ],
     "linear style reference validation": [
-      838
+      854
     ],
     "link based population count": [
       13210
@@ -75497,10 +75593,10 @@
       5250
     ],
     "make this look better": [
-      853
+      806
     ],
     "make this look less amateur": [
-      862
+      815
     ],
     "make this presentable": [
       965
@@ -78225,7 +78321,7 @@
       4070
     ],
     "md generator procedure card inventory": [
-      818
+      834
     ],
     "md generator procedure template check": [
       4067
@@ -78237,7 +78333,7 @@
       6013
     ],
     "md generator readme rewrite": [
-      812,
+      828,
       6014
     ],
     "md generator readme tasks": [
@@ -78274,7 +78370,7 @@
       3793
     ],
     "md generator smoke lane": [
-      846
+      862
     ],
     "md generator study exemplars": [
       3857
@@ -78292,7 +78388,7 @@
       4068
     ],
     "md generator tests": [
-      811
+      827
     ],
     "md generator upgrade plan": [
       3838
@@ -78331,10 +78427,10 @@
       3651
     ],
     "measured extraction card": [
-      818
+      834
     ],
     "measured motion section": [
-      835
+      851
     ],
     "measured motion section design md": [
       3962
@@ -78352,10 +78448,10 @@
       3908
     ],
     "measured or inferred card": [
-      808
+      824
     ],
     "measured vs authored": [
-      824
+      840
     ],
     "measurement and receipts foundation": [
       2461
@@ -80414,7 +80510,7 @@
       13464
     ],
     "missing interaction states": [
-      823
+      839
     ],
     "missing mcp tools catalog root": [
       5838
@@ -82220,7 +82316,7 @@
       4055
     ],
     "motion token extraction": [
-      816
+      832
     ],
     "motion version pin": [
       693
@@ -82782,7 +82878,7 @@
       231
     ],
     "named colour tokens": [
-      835
+      851
     ],
     "named refusal not raw errno": [
       13364
@@ -84160,7 +84256,7 @@
       5206
     ],
     "non saas exemplar": [
-      836
+      852
     ],
     "non streaming executor cli pi stall": [
       1168
@@ -84273,7 +84369,7 @@
       398
     ],
     "nothing draws the eye": [
-      863
+      816
     ],
     "notion": [
       331
@@ -84800,10 +84896,10 @@
       10668
     ],
     "npx ts node scripts extract ts": [
-      814
+      830
     ],
     "npx ts node scripts validate ts": [
-      820
+      836
     ],
     "ntime": [
       9227
@@ -84860,13 +84956,13 @@
       1109
     ],
     "numeric design laws": [
-      832
+      848
     ],
     "numeric thresholds release": [
       570
     ],
     "numerical accuracy validation": [
-      847
+      863
     ],
     "numstat gated edit count": [
       1026
@@ -85862,7 +85958,7 @@
       7656
     ],
     "oklch color clustering": [
-      813
+      829
     ],
     "old and new state replay fixtures": [
       7504
@@ -87479,7 +87575,26 @@
       6292
     ],
     "overengineering simplification": [
-      12336
+      12336,
+      13588
+    ],
+    "overengineering simplification findings": [
+      13588
+    ],
+    "overengineering simplification lane closure": [
+      13584
+    ],
+    "overengineering simplification lane plan": [
+      13587
+    ],
+    "overengineering simplification lane summary": [
+      13586
+    ],
+    "overengineering simplification lane tasks": [
+      13589
+    ],
+    "overengineering simplification research lane": [
+      13588
     ],
     "overengineering simplification summary": [
       12334
@@ -88125,7 +88240,13 @@
       13431,
       13436,
       13445,
-      13453
+      13453,
+      13561,
+      13567,
+      13573,
+      13579,
+      13585,
+      13590
     ],
     "packet handoff alignment": [
       4750
@@ -89678,7 +89799,7 @@
       13514
     ],
     "phantom color": [
-      823
+      839
     ],
     "phantom deletions restore from origin": [
       1121
@@ -92122,7 +92243,8 @@
       9488,
       10425,
       11570,
-      13554
+      13554,
+      13591
     ],
     "phase parent 049": [
       8935
@@ -94377,7 +94499,7 @@
       6442
     ],
     "playwright chromium error": [
-      849
+      865
     ],
     "playwright design token workflow": [
       3650
@@ -95382,7 +95504,7 @@
       92
     ],
     "preflight extract write prompt validate": [
-      846
+      862
     ],
     "preimage blob hash rewrite": [
       5308
@@ -95524,7 +95646,7 @@
       6826
     ],
     "primary secondary tertiary content": [
-      863
+      816
     ],
     "primitive derived roles": [
       562
@@ -95973,10 +96095,10 @@
       5226
     ],
     "progressive design brief": [
-      827
+      843
     ],
     "progressive disclosure": [
-      867
+      820
     ],
     "progressive disclosure cursor": [
       12566,
@@ -96809,7 +96931,7 @@
       1787
     ],
     "publication quality gate": [
-      847
+      863
     ],
     "pull design context example": [
       276
@@ -97003,7 +97125,7 @@
       6309
     ],
     "quality checklist": [
-      847
+      863
     ],
     "quality checklist path rename": [
       5336
@@ -97331,10 +97453,10 @@
       6287
     ],
     "quick start css tailwind": [
-      835
+      851
     ],
     "quick start fidelity": [
-      820
+      836
     ],
     "quick troubleshooting lookup": [
       1741
@@ -97486,7 +97608,7 @@
       12699
     ],
     "raised and inset elements": [
-      861
+      814
     ],
     "rank council blockers after max rounds": [
       1197
@@ -99155,7 +99277,7 @@
       2897
     ],
     "refero extraction harness": [
-      851,
+      867,
       3822
     ],
     "refero fan out": [
@@ -99420,7 +99542,7 @@
       506
     ],
     "refero sitemap crawler": [
-      851
+      867
     ],
     "refero sk design dedup": [
       2897
@@ -99601,7 +99723,7 @@
       124
     ],
     "register card": [
-      833
+      849
     ],
     "register child identity rule": [
       13517
@@ -101141,7 +101263,7 @@
       6364
     ],
     "report gen ts tokens json": [
-      819
+      835
     ],
     "report graph health": [
       1434
@@ -101169,6 +101291,13 @@
     ],
     "reproduce write escape": [
       13361
+    ],
+    "reproduction before remediation": [
+      13563,
+      13569,
+      13575,
+      13581,
+      13587
     ],
     "reproduction pass before remediation": [
       13536,
@@ -101820,11 +101949,28 @@
     ],
     "research lane execution plan": [
       13536,
-      13541
+      13541,
+      13563,
+      13569,
+      13575,
+      13581,
+      13587
+    ],
+    "research lane in progress": [
+      13562,
+      13568,
+      13574,
+      13580,
+      13586
     ],
     "research lane tasks": [
       13538,
-      13543
+      13543,
+      13565,
+      13571,
+      13577,
+      13583,
+      13589
     ],
     "research legal stop gates": [
       1337
@@ -103197,7 +103343,7 @@
       541
     ],
     "retune the token file": [
-      854
+      807
     ],
     "reuse buildlineagecommand in benchmark modes": [
       7897
@@ -103669,7 +103815,7 @@
       5088
     ],
     "review this ui code": [
-      866
+      819
     ],
     "review traceability checks": [
       1391
@@ -103861,6 +104007,27 @@
     ],
     "ripgrep retrieval synthesis": [
       13432
+    ],
+    "ripgrep search system": [
+      13564
+    ],
+    "ripgrep search system findings": [
+      13564
+    ],
+    "ripgrep search system lane closure": [
+      13560
+    ],
+    "ripgrep search system lane plan": [
+      13563
+    ],
+    "ripgrep search system lane summary": [
+      13562
+    ],
+    "ripgrep search system lane tasks": [
+      13565
+    ],
+    "ripgrep search system research lane": [
+      13564
     ],
     "risky followup remediation": [
       8053
@@ -105203,7 +105370,7 @@
       1259
     ],
     "run design extraction": [
-      845
+      861
     ],
     "run doctor subsystem diagnostic": [
       1654
@@ -105215,7 +105382,7 @@
       599
     ],
     "run extraction phase": [
-      814
+      830
     ],
     "run generate context at close": [
       5216
@@ -107824,7 +107991,7 @@
       7450
     ],
     "semantic color roles": [
-      825
+      841
     ],
     "semantic command validation": [
       7293
@@ -107855,7 +108022,7 @@
       1369
     ],
     "semantic correctness check": [
-      847
+      863
     ],
     "semantic directory rename map": [
       5573
@@ -107882,7 +108049,7 @@
       12116
     ],
     "semantic misattribution": [
-      823
+      839
     ],
     "semantic naming rule": [
       10445
@@ -107931,7 +108098,7 @@
       5296
     ],
     "semantic role layer tokens": [
-      854
+      807
     ],
     "semantic role retint": [
       560
@@ -108822,7 +108989,7 @@
       3660
     ],
     "shared design tokens": [
-      831
+      847
     ],
     "shared document listener": [
       764,
@@ -108958,6 +109125,27 @@
     ],
     "shared package duplicate helpers": [
       13542
+    ],
+    "shared package utilization": [
+      13576
+    ],
+    "shared package utilization findings": [
+      13576
+    ],
+    "shared package utilization lane closure": [
+      13572
+    ],
+    "shared package utilization lane plan": [
+      13575
+    ],
+    "shared package utilization lane summary": [
+      13574
+    ],
+    "shared package utilization lane tasks": [
+      13577
+    ],
+    "shared package utilization research lane": [
+      13576
     ],
     "shared parsers post run refresh": [
       13526
@@ -109561,7 +109749,7 @@
       3391
     ],
     "similar brands section": [
-      835
+      851
     ],
     "similarity score mandate": [
       11730
@@ -110181,7 +110369,7 @@
       11512
     ],
     "sk code handoff schema": [
-      848
+      864
     ],
     "sk code header": [
       10914
@@ -111223,19 +111411,19 @@
       3648
     ],
     "sk design benchmark": [
-      855
+      808
     ],
     "sk design benchmark and feature catalog": [
       3660
     ],
     "sk design benchmark artifacts": [
-      855
+      808
     ],
     "sk design benchmark execution": [
       5388
     ],
     "sk design benchmark index": [
-      856
+      809
     ],
     "sk design benchmark naming decision": [
       5385
@@ -111250,7 +111438,7 @@
       4696
     ],
     "sk design benchmark reports": [
-      856
+      809
     ],
     "sk design benchmark tasks": [
       3277
@@ -111606,7 +111794,7 @@
       3795
     ],
     "sk design manual testing": [
-      858
+      811
     ],
     "sk design manual testing playbook execution": [
       5384
@@ -111642,7 +111830,7 @@
       4233
     ],
     "sk design md generator v1 1 0 0": [
-      812
+      828
     ],
     "sk design mode a benchmark reconciliation": [
       3715
@@ -111694,7 +111882,7 @@
       4237
     ],
     "sk design playbook": [
-      858
+      811
     ],
     "sk design playbook gap analysis": [
       3712
@@ -112003,7 +112191,7 @@
       3878
     ],
     "sk design surface router": [
-      852
+      805
     ],
     "sk design task breakdown": [
       3640
@@ -112024,7 +112212,7 @@
       4697
     ],
     "sk design v1 0 0 0": [
-      857
+      810
     ],
     "sk design verification": [
       4240
@@ -116542,10 +116730,10 @@
       3858
     ],
     "source of truth labels": [
-      824
+      840
     ],
     "source of truth router card": [
-      808
+      824
     ],
     "source phase metadata cleanup": [
       5838
@@ -116564,7 +116752,7 @@
       6419
     ],
     "spacing and type scale": [
-      853
+      806
     ],
     "spacy lemmatization fts": [
       12421
@@ -118150,7 +118338,7 @@
       606
     ],
     "spring versus easing curve": [
-      865
+      818
     ],
     "sprint list default": [
       178
@@ -118414,7 +118602,7 @@
       1739
     ],
     "stagger and overshoot": [
-      865
+      818
     ],
     "stagger follow through": [
       704
@@ -118828,7 +119016,7 @@
       1065
     ],
     "standard component definitions": [
-      826
+      842
     ],
     "standards alignment audit": [
       8681,
@@ -118900,7 +119088,7 @@
       215
     ],
     "starter design tokens css": [
-      854
+      807
     ],
     "startup guard warnings": [
       1702
@@ -118978,10 +119166,10 @@
       744
     ],
     "state matrix generation": [
-      817
+      833
     ],
     "state matrix validation": [
-      847
+      863
     ],
     "state migration cutover tasks": [
       7766
@@ -119731,16 +119919,16 @@
       1793
     ],
     "stripe design md example": [
-      839
+      855
     ],
     "stripe design md writing notes": [
-      840
+      856
     ],
     "stripe extraction caveats": [
-      840
+      856
     ],
     "stripe style reference validation": [
-      840
+      856
     ],
     "stroke weight comparison": [
       6507
@@ -119847,16 +120035,16 @@
       3858
     ],
     "study linear design tokens": [
-      837
+      853
     ],
     "study stripe design tokens": [
-      839
+      855
     ],
     "study supabase design tokens": [
-      841
+      857
     ],
     "study vercel design tokens": [
-      843
+      859
     ],
     "style auto fix": [
       12608,
@@ -119902,7 +120090,7 @@
       3849
     ],
     "style reference schema": [
-      835
+      851
     ],
     "style retrieval architecture": [
       3879
@@ -120043,7 +120231,7 @@
       3864
     ],
     "styles library extractor": [
-      851
+      867
     ],
     "styles library restructure kebab rename": [
       3915
@@ -120562,16 +120750,16 @@
       9852
     ],
     "supabase design md example": [
-      841
+      857
     ],
     "supabase design md writing notes": [
-      842
+      858
     ],
     "supabase extraction caveats": [
-      842
+      858
     ],
     "supabase style reference validation": [
-      842
+      858
     ],
     "supersede pi caching build gate": [
       2652
@@ -120956,7 +121144,7 @@
       11653
     ],
     "symptom to fix table": [
-      862
+      815
     ],
     "sync barrier stall": [
       564
@@ -122159,7 +122347,7 @@
       248
     ],
     "tagline and intro rules": [
-      850
+      866
     ],
     "tail append graduate verdict deep k": [
       12877
@@ -123520,6 +123708,27 @@
       1831,
       10832
     ],
+    "template system and acceptance criteria": [
+      13582
+    ],
+    "template system and acceptance criteria findings": [
+      13582
+    ],
+    "template system and acceptance criteria lane closure": [
+      13578
+    ],
+    "template system and acceptance criteria lane plan": [
+      13581
+    ],
+    "template system and acceptance criteria lane summary": [
+      13580
+    ],
+    "template system and acceptance criteria lane tasks": [
+      13583
+    ],
+    "template system and acceptance criteria research lane": [
+      13582
+    ],
     "template system explained": [
       9143
     ],
@@ -123875,7 +124084,7 @@
       4438
     ],
     "text over photos readable": [
-      861
+      814
     ],
     "theme css runtime vars css stand in": [
       601
@@ -124269,13 +124478,13 @@
       552
     ],
     "token stability classification": [
-      813
+      829
     ],
     "token stuffing dispersion guard": [
       10735
     ],
     "token system terms": [
-      831
+      847
     ],
     "token telemetry implementation": [
       8752
@@ -124296,19 +124505,19 @@
       10833
     ],
     "tokens json from url": [
-      814
+      830
     ],
     "tokens json output": [
-      815
+      831
     ],
     "tokens json output path": [
-      845
+      861
     ],
     "tokens json pipeline": [
-      809
+      825
     ],
     "tokens json pipeline modules": [
-      810
+      826
     ],
     "tombstone edge promotion": [
       11664
@@ -124539,7 +124748,7 @@
       1448
     ],
     "touch device interface rules": [
-      864
+      817
     ],
     "touch target 44px": [
       546
@@ -125254,7 +125463,7 @@
       10914
     ],
     "ts node design extraction": [
-      809
+      825
     ],
     "tsc incremental build dist": [
       10481
@@ -125315,7 +125524,7 @@
       13324
     ],
     "twelve principles of animation": [
-      865
+      818
     ],
     "twenty packet drift sample": [
       13214
@@ -125405,7 +125614,7 @@
       13490
     ],
     "two part box shadow": [
-      861
+      814
     ],
     "two pass extraction research": [
       9067
@@ -125526,7 +125735,7 @@
       4723
     ],
     "typed design evidence": [
-      827
+      843
     ],
     "typed edges decision": [
       3868
@@ -125685,14 +125894,14 @@
       579
     ],
     "ui component classification": [
-      826
+      842
     ],
     "ui design value scales": [
       4239
     ],
     "ui looks off": [
-      853,
-      862
+      806,
+      815
     ],
     "ui reference search": [
       501
@@ -126450,10 +126659,10 @@
       3854
     ],
     "v3 section completeness": [
-      820
+      836
     ],
     "v3 style reference design system handoff": [
-      821
+      837
     ],
     "v4 deep review cleanup": [
       9304
@@ -126561,8 +126770,8 @@
       13193
     ],
     "validate design md": [
-      805,
-      820
+      821,
+      836
     ],
     "validate diff report safety": [
       1007
@@ -126677,7 +126886,7 @@
       5212
     ],
     "validate ts hex mismatch": [
-      849
+      865
     ],
     "validatecontinuityfreshness reorder": [
       13465
@@ -126968,7 +127177,7 @@
       7294
     ],
     "value embedding in prose": [
-      850
+      866
     ],
     "value of computation allocation": [
       7485
@@ -127194,10 +127403,10 @@
       12100
     ],
     "verbatim value contract": [
-      821
+      837
     ],
     "verbatim value rule": [
-      806
+      822
     ],
     "verbose internal logging": [
       182
@@ -127206,16 +127415,16 @@
       213
     ],
     "vercel design md example": [
-      843
+      859
     ],
     "vercel design md writing notes": [
-      844
+      860
     ],
     "vercel extraction caveats": [
-      844
+      860
     ],
     "vercel style reference validation": [
-      844
+      860
     ],
     "verdict determination": [
       1362
@@ -127600,7 +127809,7 @@
       1150
     ],
     "visual design preview": [
-      819
+      835
     ],
     "visual direction reference": [
       519
@@ -128298,7 +128507,7 @@
       546
     ],
     "wcag design review": [
-      866
+      819
     ],
     "weak model drops query fix": [
       12107
@@ -128326,7 +128535,7 @@
       705
     ],
     "web interface guidelines": [
-      864
+      817
     ],
     "web search": [
       22,
@@ -128765,7 +128974,7 @@
       1824
     ],
     "when not to animate": [
-      865
+      818
     ],
     "when to create an agent": [
       890
@@ -128801,7 +129010,7 @@
       5251
     ],
     "where do i start designing": [
-      859
+      812
     ],
     "where do skill benchmark reports live": [
       911
@@ -128876,7 +129085,7 @@
       6771
     ],
     "which grey for which text": [
-      854
+      807
     ],
     "which json files does a skill need": [
       1079
@@ -129014,7 +129223,7 @@
       1087
     ],
     "why does this feel overwhelming": [
-      867
+      820
     ],
     "why flowchart passes validation": [
       958
@@ -129596,7 +129805,7 @@
       242
     ],
     "write design md": [
-      821
+      837
     ],
     "write guard membership proof": [
       13359
@@ -129624,7 +129833,7 @@
       11601
     ],
     "write phase prompt template": [
-      807
+      823
     ],
     "write provenance tagging": [
       11695

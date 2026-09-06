@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+  "description": "The root README mentions a resource map as if it were part of every packet, the timeline and roadmap addons are barely mentioned, and three surfaces",
+  "keywords": [
+    "root",
+    "readme",
+    "mentions",
+    "resource",
+    "map",
+    "part",
+    "every",
+    "packet",
+    "timeline",
+    "roadmap",
+    "addons",
+    "barely",
+    "mentioned",
+    "three",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-09-06T14:35:10.732Z",
+  "specId": "004",
+  "folderSlug": "template-system-and-acceptance-criteria",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

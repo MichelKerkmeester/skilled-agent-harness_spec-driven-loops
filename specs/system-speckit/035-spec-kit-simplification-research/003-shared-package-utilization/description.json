@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
+  "description": "The shared package grew as the neutral layer under a memory server that no longer exists",
+  "keywords": [
+    "shared",
+    "package",
+    "grew",
+    "neutral",
+    "layer",
+    "memory",
+    "server",
+    "longer",
+    "exists"
+  ],
+  "lastUpdated": "2026-09-06T14:35:10.732Z",
+  "specId": "003",
+  "folderSlug": "shared-package-utilization",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

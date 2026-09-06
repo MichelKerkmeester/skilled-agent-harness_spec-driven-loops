@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "description": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
+  "keywords": [
+    "cli",
+    "package",
+    "holds",
+    "roughly",
+    "thirty",
+    "directories",
+    "registry",
+    "lists",
+    "fourteen",
+    "entry",
+    "points",
+    "readme",
+    "describes",
+    "context",
+    "generation"
+  ],
+  "lastUpdated": "2026-09-06T14:35:10.732Z",
+  "specId": "002",
+  "folderSlug": "cli-runtime-utilization",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
