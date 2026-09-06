@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals",
+  "spec_folder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals",
+  "parent_id": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart card readout rule",
+      "pointer contract coverage",
+      "distribution strip table",
+      "close chart deferrals",
+      "card versus table enforcement",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "chart",
+      "card",
+      "readout",
+      "rule",
+      "pointer",
+      "contract",
+      "coverage",
+      "distribution",
+      "strip",
+      "table",
+      "close",
+      "deferrals"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/distribution-strip.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/examples/pick-times-by-depot.html",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "distribution-strip.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/distribution-strip.html",
+        "source": "derived"
+      },
+      {
+        "name": "stacked-area.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html",
+        "source": "derived"
+      },
+      {
+        "name": "pick-times-by-depot.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/examples/pick-times-by-depot.html",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Procedure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Reversal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet closed honestly and left four things written down rather than done",
+    "created_at": "2026-09-06T04:34:06Z",
+    "last_save_at": "2026-09-06T04:59:16.791Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6cc9ed93696228330a01e1b02a83965cb069d03c96913f432f9e0770d6ac9af6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0094aa2e6614906c691ef116d9bd255e66bcacd594f82e7617e1e2ae641170d1",
+      "plan.md": "57cd361c45040d4f3e3f8f7b7552b2a02a0e89cbdfa2062deeec14e7db893ad3",
+      "tasks.md": "c6c6dd4fdb8cbbfd3d5c15e328749f0619e9536406872ac9cb74bb813846e9af",
+      "implementation-summary.md": "ef63d6f61757ab5b6d9e0c05c8958e4d944e7749513bcddc3bd5caf6ef7f8bc4"
+    },
+    "last_active_at": null
+  }
+}

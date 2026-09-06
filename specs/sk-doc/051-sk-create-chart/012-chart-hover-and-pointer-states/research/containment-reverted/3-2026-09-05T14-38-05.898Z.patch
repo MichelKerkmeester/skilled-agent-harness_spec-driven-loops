@@ -1,0 +1,1342 @@
+diff --git a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/description.json b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/description.json
+index 3282fca000..7c0f58bfbf 100644
+--- a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/description.json
++++ b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/description.json
+@@ -6,7 +6,7 @@
+     "suite",
+     "complete"
+   ],
+-  "lastUpdated": "2026-09-05T13:50:48.171Z",
++  "lastUpdated": "2026-09-05T14:36:57.860Z",
+   "specId": "007",
+   "folderSlug": "spec-kit-residue",
+   "parentChain": [
+diff --git a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/graph-metadata.json b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/graph-metadata.json
+index d8523df68d..627165ee53 100644
+--- a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/graph-metadata.json
++++ b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/graph-metadata.json
+@@ -210,7 +210,7 @@
+     ],
+     "causal_summary": "The suite does not complete",
+     "created_at": "2026-09-02T16:34:09Z",
+-    "last_save_at": "2026-09-05T13:54:22.516Z",
++    "last_save_at": "2026-09-05T14:37:41.437Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -222,13 +222,13 @@
+       "decision-record.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:fc1280333e941944d9788ed84fb46b2e727a78eece95ca9cad2937dee1752146",
++    "source_fingerprint": "sha256:cbe40680a9d6acd610f5369812e105ec2a0f9fcebdda8a4892b494f2b642e103",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "f4bc40fd60335b1533871ca52191474ce5001c5e604c280e72832d59c8e5fa93",
+-      "plan.md": "017cabcfcce310bc1e0e12be8caa0b239171e0ec38141cb3421b8cae68efed47",
+-      "tasks.md": "dd0041c23bcf4f6b0221c375c52d993fef93fbaddc43b9e728e477d13fd45816",
+-      "decision-record.md": "bbab184ac5f5a35ae23f4470639dfc66325f9e2f46bd86ef9ce1eed968e85136",
++      "spec.md": "1ee7a7c1db1bb630a5cc5774bb16aa9a8a2ece255c3312f92c1f801e97847260",
++      "plan.md": "c220aaebd3dba0b019644d82bacbd5ead6488ad10e5284fda9c8133c3ff2103b",
++      "tasks.md": "f15cfb970d6f498203d82f55409f65e44242e74ed6f007e27f2556c00ed6b94b",
++      "decision-record.md": "94fb031f45c8c3ad697e48ef07f0ce288591193ed679227d2ea070cacf7c4a53",
+       "implementation-summary.md": "30c36de8899046f8be425774fa7d3ca852204d9a7ba701a1ad69658ada00941f"
+     },
+     "last_active_child_id": null,
+diff --git a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/plan.md b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/plan.md
+index 9aadf1d0f3..171b114a5f 100644
+--- a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/plan.md
++++ b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/plan.md
+@@ -64,7 +64,7 @@ Decide against the delete list first, then implement only what survives it.
+ - **The sharded runner**: run to completion once so the residue is a count read from the run rather than an estimate
+ 
+ ### Data Flow
+-A decision names its subject paths; each path is checked on disk and against the delete list; a surviving path gets its edit and its test run red then green; a deleted path gets a superseded note with the reason. The suite run then produces the residue, which is grouped by mechanism where the tree survives and counted by file where it does not.
++A decision names its subject paths. Each path is checked on disk and against the delete list. A surviving path gets its edit and its test run red then green. A deleted path gets a superseded note with the reason. The suite run then produces the residue, which is grouped by mechanism where the tree survives and counted by file where it does not.
+ <!-- /ANCHOR:architecture -->
+ 
+ ---
+@@ -77,7 +77,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
+ | Surface | Current Role | Action | Verification |
+ |---------|--------------|--------|--------------|
+ | `generate-context.ts` `main()` | Producer: resolves the packet and acquires its lock | update, defaulted third parameter | The CLI authority suite builds a temp packet and leaves `git status` clean |
+-| `CONFIG.PROJECT_ROOT` readers | Four downstream resolvers read the root from `CONFIG` | unchanged | `rg -n 'CONFIG.PROJECT_ROOT'` shows every reader; binding once upstream reaches all of them |
++| `CONFIG.PROJECT_ROOT` readers | Four downstream resolvers read the root from `CONFIG` | unchanged | `rg -n 'CONFIG.PROJECT_ROOT'` shows every reader. Binding once upstream reaches all of them |
+ | `coverage-graph-*.vitest.ts` | Consumers of the moved coverage-graph modules | update, one import specifier each | 47 assertions collected where zero were before |
+ | `session-isolation.vitest.ts` | Consumer of five retired handler modules | deleted | No relocated equivalent exists for any of the five |
+ | `lib/coverage-graph-convergence.cjs` parity comment | Points at the pre-move handler path | update, comment only | The two repaired tests load it as their parity subject |
+@@ -85,8 +85,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
+ Required inventories:
+ - Same-class producers: `rg -n 'mcp-server/lib/coverage-graph' scripts/tests` found the four files, and no fifth.
+ - Consumers of changed symbols: `main()` has one caller, the module's own entry guard, and the test that now passes a root.
+-- Matrix axes: subject path in {surviving, inside the delete} by decision state in {implemented, superseded}; every ADR sits in exactly one cell.
+-- Algorithm invariant: no test writes into the real `specs/` tree; the write guard that rejected the archived packet is untouched.
++- Matrix axes: subject path in {surviving, inside the delete} by decision state in {implemented, superseded}. Every ADR sits in exactly one cell.
++- Algorithm invariant: no test writes into the real `specs/` tree. The write guard that rejected the archived packet is untouched.
+ <!-- /ANCHOR:affected-surfaces -->
+ 
+ 
+@@ -117,7 +117,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ 
+ | Dependency | Type | Status | Impact if Blocked |
+ |------------|------|--------|-------------------|
+-| Packet 049's delete list | Internal | Green at ruling time, 049 was Draft | A moved scope makes a superseded note wrong; the check date sits beside each |
++| Packet 049's delete list | Internal | Green at ruling time, 049 was Draft | A moved scope makes a superseded note wrong. The check date sits beside each |
+ | `system-deep-loop/runtime/lib/coverage-graph/` exporting every symbol the tests name | Internal | Green | The three repoints would collect zero tests again |
+ | Operator ruling on the two drifted assertions | Internal | Green, ruled: tests follow the producer, no deep-loop runtime code changes | The two tests stay red as findings |
+ <!-- /ANCHOR:dependencies -->
+@@ -128,7 +128,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ ## 7. ROLLBACK PLAN
+ 
+ - **Trigger**: a repointed test collecting zero assertions, or the CLI authority suite writing into the real `specs/` tree
+-- **Procedure**: `git checkout` the nine code files; the deleted test returns with its dead imports, which is the pre-phase state
++- **Procedure**: `git checkout` the nine code files. The deleted test returns with its dead imports, which is the pre-phase state
+ <!-- /ANCHOR:rollback -->
+ 
+ ---
+@@ -171,7 +171,7 @@ Rule (each ADR against 049) ──► Implement (ADR-005, ADR-008) ──► Run
+ 
+ ### Pre-deployment Checklist
+ - [x] Backup created: not needed, every change is a tracked file
+-- [x] Feature flag configured: none; the new `main()` parameter defaults to the current root
++- [x] Feature flag configured: none. The new `main()` parameter defaults to the current root
+ - [x] Monitoring alerts set: the CLI authority suite and the coverage-graph suites are the alerts
+ 
+ ### Rollback Procedure
+diff --git a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md
+index dfb468d644..ab90ccf9dc 100644
+--- a/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md
++++ b/specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md
+@@ -177,7 +177,7 @@ worth buying, and the five contract questions are decided by their owner.
+ 
+ | ID | Requirement |
+ |----|-------------|
+-| REQ-003 | Every failure in a surviving tree is grouped by mechanism with a file and a line; failures inside 049's delete are counted and attributed by file |
++| REQ-003 | Every failure in a surviving tree is grouped by mechanism with a file and a line. Failures inside 049's delete are counted and attributed by file |
+ | REQ-004 | Unresolved references in surviving test files are fixed, and those inside the delete are recorded with their count |
+ 
+ > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+@@ -213,10 +213,10 @@ worth buying, and the five contract questions are decided by their owner.
+ ## 7. NON-FUNCTIONAL REQUIREMENTS
+ 
+ ### Performance
+-- **NFR-P01**: The sharded suite completes inside its per-shard bound; the slowest shard ran 409s against a bound that used to kill the run
++- **NFR-P01**: The sharded suite completes inside its per-shard bound. The slowest shard ran 409s against a bound that used to kill the run
+ 
+ ### Security
+-- **NFR-S01**: No test writes into the real `specs/` tree; the write guard that rejected the archived packet stays in force
++- **NFR-S01**: No test writes into the real `specs/` tree. The write guard that rejected the archived packet stays in force
+ 
+ ### Reliability
+ - **NFR-R01**: A shard that times out keeps its non-zero status, so a killed shard and a failing shard stay distinguishable by the per-shard line
+@@ -252,8 +252,8 @@ worth buying, and the five contract questions are decided by their owner.
+ 
+ | Risk ID | Description | Impact | Likelihood | Mitigation |
+ |---------|-------------|--------|------------|------------|
+-| R-001 | 049's scope moves after a decision is closed as superseded | M | L | The check date is recorded beside each note; re-check before acting on any of them |
+-| R-002 | A drifted assertion gets rewritten to match the code, writing the drift down as the specification | H | M | Both producers were read first and both already documented the behavior; the assertions now state the contract with its reason |
++| R-001 | 049's scope moves after a decision is closed as superseded | M | L | The check date is recorded beside each note. Re-check before acting on any of them |
++| R-002 | A drifted assertion gets rewritten to match the code, writing the drift down as the specification | H | M | Both producers were read first and both already documented the behavior. The assertions now state the contract with its reason |
+ 
+ ---
+ 
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/acceptance-criteria.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/acceptance-criteria.md
+index 6fce7ccd50..e0af624498 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/acceptance-criteria.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/acceptance-criteria.md
+@@ -62,9 +62,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
+ | AC-001 | REQ-001 | Given the 388-signal Gate A corpus, When every signal is sent to the live daemon and classified by the phase 002 rules, Then a per-row artifact is committed with the recorded bucket beside the re-run bucket | `research/gate-a-rerun-2026-09-05.tsv:1` holds 388 rows: 343 RESOLVED, 21 DEFERRED, 16 WRONG_HUB, 7 NO_RECOMMENDATION, 1 MULTI, two rows differing from the 2026-09-04 recording. `research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv:1` holds the run after ADR-003: 344 RESOLVED, one row differing, the retired signal | Met | - |
+ | AC-002 | REQ-001 | Given the 180-prompt Gate B corpus, When every prompt is sent to the live daemon, Then a per-row artifact records the full prompt, the top skill, the compiled target, and whether the intended mode was the top pick | `research/gate-b-rerun-2026-09-05.tsv:1`, 180 rows with the full corpus prompt in each, 0 errors: 20 intended-mode top picks, 37 owning-hub top picks, 93 empty replies. At `c328d601d8` phase 003 recorded 21 top picks and 95 empty, in `../003-gate-b-realistic-corpus/tasks.md:78` | Met | - |
+ | AC-003 | REQ-002 | Given a Level 3 scaffold with `--with-lazy-addons`, When `create.sh` runs, Then every document the contract names exists and the scaffold suite passes in full | Scratch packet held spec, plan, tasks, acceptance-criteria, implementation-summary, decision-record, before-after, timeline, roadmap, description.json, graph-metadata.json. `scaffold-golden-snapshots.vitest.ts:98` is the assertion that failed before the fix and passes after, 9 of 9. `inline-gate-renderer.vitest.ts:99` is the fourth loader spelling, fixed here, 12 of 12 | Met | - |
+-| AC-004 | REQ-003, REQ-004 | Given a Gate A row whose bucket changed, When the mechanism is read, Then the row is fixed at its producer | `spec kit runtime`: two lines removed at `.opencode/skills/cli-external-orchestration/graph-metadata.json:58` and its derived mirror, mint `already-exists`, guard fresh, live replay `system-spec-kit` 0.93 first. `trigger_phrases`: keyword removed at `.opencode/skills/system-spec-kit/SKILL.md:8`, mechanism at `fusion.ts:808`, live replay `sk-doc` 0.487 after the daemon rebuild | Met | - |
+-| AC-005 | REQ-003 | Given the Python and TypeScript parity suite, When it runs from the final tree, Then it passes and a local skill-graph rebuild cannot move its number | `scripts/skill_advisor.py:246` resolves the database through `SYSTEM_SKILL_ADVISOR_DB_DIR`; `python-ts-parity.vitest.ts:15` pins the regime before a dynamic import; pins at `python-ts-parity.vitest.ts:200` read 109 and 102 with seven accepted rows. Two consecutive runs: 2 passed each. Six sibling suites: 41 passed | Met | - |
+-| AC-006 | REQ-005 | Given phase 007's continuity and the parent's documents, When each named path and status is checked against the tree, Then every named path exists and every status and count agrees | All nine `key_files` across `../007-spec-kit-residue/implementation-summary.md:19`, `tasks.md:19` and `decision-record.md:20` exist on disk; the eight rows at `../007-spec-kit-residue/spec.md:154` name `runtime/cli/` paths. `../research/findings-register.md:14` reads forty-five. `../spec.md:271` maps eight phases Complete. `../goal.md:93` and `../spec.md:152` carry the same register tally | Met | - |
++| AC-004 | REQ-003, REQ-004 | Given a Gate A row whose bucket changed, When the mechanism is read, Then the row is fixed at its producer | `spec kit runtime`: two lines removed at `.opencode/skills/cli-external-orchestration/graph-metadata.json:53` and its derived mirror, mint `already-exists`, guard fresh, live replay `system-spec-kit` 0.93 first. `trigger_phrases`: keyword removed at `.opencode/skills/system-spec-kit/SKILL.md:8`, mechanism at `fusion.ts:808`, live replay `sk-doc` 0.487 after the daemon rebuild | Met | - |
++| AC-005 | REQ-003 | Given the Python and TypeScript parity suite, When it runs from the final tree, Then it passes and a local skill-graph rebuild cannot move its number | `scripts/skill_advisor.py:250` resolves the database through `SYSTEM_SKILL_ADVISOR_DB_DIR`. `python-ts-parity.vitest.ts:20` pins the regime before a dynamic import. Pins at `python-ts-parity.vitest.ts:209` read 109 and 102 with seven accepted rows. Two consecutive runs: 2 passed each. Six sibling suites: 41 passed | Met | - |
++| AC-006 | REQ-005 | Given phase 007's continuity and the parent's documents, When each named path and status is checked against the tree, Then every named path exists and every status and count agrees | All nine `key_files` across `../007-spec-kit-residue/implementation-summary.md:19`, `tasks.md:19` and `decision-record.md:20` exist on disk. The eight rows at `../007-spec-kit-residue/spec.md:154` name `runtime/cli/` paths. `../research/findings-register.md:14` reads forty-five. `../spec.md:274` maps eight phases Complete. `../goal.md:93` and `../spec.md:153` carry the same register tally | Met | - |
+ 
+ ### Status values
+ 
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/decision-record.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/decision-record.md
+index e98c9903af..54e711f7a9 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/decision-record.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/decision-record.md
+@@ -34,7 +34,7 @@ _memory:
+       - "The scaffold is fixed at the wrapper's root resolution, and the same edit landed concurrently in 743e626543."
+       - "The parity pin was never reachable from committed inputs. Both scorers now honour the database directory override, the test pins the CI regime, and the pins read 109 and 102."
+       - "trigger_phrases died because spec-kit's keyword list gained trigger-phrases, whose variants tie sk-doc's explicit evidence and trip the low-information abstention. The keyword is removed and the signal resolves again."
+-      - "The strict validator's placeholder rule matches two marker forms only, never bracketed template text, which is why a boilerplate spec validated. Recorded with owner system-spec-kit."
++      - "The strict validator's placeholder rule matches four marker forms only, never bracketed template text, which is why a boilerplate spec validated. Recorded with owner system-spec-kit."
+ ---
+ # Decision Record: what moved after closure, and what was done about each
+ 
+@@ -146,9 +146,9 @@ SQLite`.
+ The investigation traced both leaks. The test disabled only the built-in semantic lane for
+ the Python spawn and imported the native scorer statically, so
+ `lib/scorer/projection.ts:58` had already read the database directory before any test code
+-ran. The sibling suites pin all three regime variables before a dynamic import; this one
++ran. The sibling suites pin all three regime variables before a dynamic import. This one
+ did not. The Python reference resolved its database off its own file location at
+-`scripts/skill_advisor.py:246` and never read the override, while the native resolver at
++`scripts/skill_advisor.py:246` (now the override block at line 250) and never read the override, while the native resolver at
+ `lib/skill-graph/skill-graph-db.ts:270` honours it. One scorer could be isolated from the
+ local graph and its reference could not.
+ 
+@@ -163,7 +163,7 @@ The two rows that join the accepted list are `rr-iter2-020`, a request to audit
+ `memory_save` prompts are documented across packet docs, and `rr-iter3-146`, a read-only
+ review of the routing taxonomy. Both carry gold `sk-code`, both are won by the Python
+ reference, and both are lost by the native scorer to `sk-doc` by under 0.04.
+-`sk-code`'s metadata declares the phrase `review packet docs`; `sk-doc`'s nearest mode acts
++`sk-code`'s metadata declares the phrase `review packet docs`. `sk-doc`'s nearest mode acts
+ on an existing document rather than assessing one. That the gold labels are right and the
+ scorer bleeds vocabulary is a judgment, and it is recorded as one.
+ 
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json
+index a6023877ba..d18ee860e1 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json
+@@ -15,7 +15,7 @@
+     "hold",
+     "still"
+   ],
+-  "lastUpdated": "2026-09-05T13:57:43.081Z",
++  "lastUpdated": "2026-09-05T14:37:41.099Z",
+   "specId": "008",
+   "folderSlug": "drift-after-closure",
+   "parentChain": [
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md
+index 7214801e7b..52351d61ba 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md
+@@ -13,7 +13,7 @@ _memory:
+     packet_pointer: "sk-doc/052-routing-completeness/008-drift-after-closure"
+     last_updated_at: "2026-09-05T16:30:00Z"
+     last_updated_by: "claude-code"
+-    recent_action: "Closed every criterion on the re-run artifacts and the green scaffold suite"
++    recent_action: "Fixed both owned findings at their producers and worked through the independent review"
+     next_safe_action: "Close the parent packet"
+     blockers: []
+     key_files: []
+@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
+ 
+ Copy these into the objective verbatim. Nothing dereferences a path.
+ 
+-- [x] Gate A re-run artifact committed with 388 rows and every bucket change ruled. Two changed: one retired, one recorded under ADR-003
++- [x] Gate A re-run artifacts committed with 388 rows each, before and after the fixes. Two rows changed, one retired and one fixed, and the after run differs from the recording only by the retirement
+ - [x] Gate B re-run artifact committed with 180 rows and the hit count recorded. 20 of 180, 93 empty, 0 errors
+ - [x] The scaffold suite passes in full from the final tree. 9 of 9, against 1 failed before the fix
+ - [x] Every hub gate is green after the retirement. Doctor check OK on five hubs, guard fresh, three skill-root gates 14 of 14
+@@ -84,8 +84,10 @@ and findings belong here.
+ | Gate A re-run | Done | `research/gate-a-rerun-2026-09-05.tsv`, two rows moved |
+ | Scaffold loader paths | Done | Three literals, suite 9 of 9, scratch packet eleven documents. The same edit landed concurrently in `743e626543` from packet 054 phase 002 |
+ | Signal retirement | Done | Mint `already-exists`, guard fresh, live replay on `system-spec-kit` |
+-| Parity pin | Recorded | ADR-002, three readings across two regimes, file unedited |
+-| `trigger_phrases` | Recorded | ADR-003, owner `system-skill-advisor` |
++| Parity pin | Done | ADR-002, both scorers honour the database override, regime pinned in the test, 109 and 102 twice |
++| `trigger_phrases` | Done | ADR-003, spec-kit keyword removed, `sk-doc` 0.487 on replay, Gate A 344 of 388 after |
++| Validator gap | Recorded | ADR-004, owner `system-spec-kit` |
++| Independent review | Done | Three false claims, nine stale paths, a miscount, a truncated artifact and a seventh spelling, all corrected |
+ | Phase 007 and parent reconciled | Done | Six key files exist, phase map eight rows Complete, roadmap names 049 Complete |
+ 
+ ### Deviations and findings
+@@ -93,6 +95,7 @@ and findings belong here.
+ | Item | Note |
+ |------|------|
+ | Level 3 over the script's Level 1 | The size score is honest and the phase is small, but it rules on three decisions, and the packet convention is to go higher when the script and judgment differ |
+-| The parity suite stays red | Deliberate. Re-pinning is a scoring judgment D2 forbids, and the number is regime-dependent; the next owner has all three readings |
++| The parity suite was first recorded rather than fixed | The first pass read it as a scoring judgment. A fresh investigation showed the pin had never been reachable from committed inputs and that both scorers leaked a local graph. Fixing the leaks is not a scoring change, so it was fixed |
++| The first reconciliation overstated the tree | The independent review found three claims that were false and several counts that were wrong. Every one is corrected and the review is recorded in `implementation-summary.md` |
+ | The mint changed nothing | Intent signals are not among the manifest's hashed inputs, so the retirement reached the daemon through the metadata rescan rather than through a re-mint. The guard was still run, since the rule is to run it after any routing edit |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/graph-metadata.json b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/graph-metadata.json
+index b3338de447..6d82c7c83f 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/graph-metadata.json
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/graph-metadata.json
+@@ -16,13 +16,13 @@
+       "gate a rerun",
+       "gate b rerun",
+       "parity pin regime",
++      "keyword collision",
+       "drift after closure plan",
+       "loader path fix",
+       "gate rerun plan",
+       "hub signal retirement",
+       "drift after closure tasks",
+-      "gate rerun tasks",
+-      "loader path tasks"
++      "gate rerun tasks"
+     ],
+     "key_topics": [
+       "drift",
+@@ -35,8 +35,8 @@
+       "parity",
+       "pin",
+       "regime",
+-      "plan",
+-      "loader"
++      "keyword",
++      "collision"
+     ],
+     "importance_tier": "normal",
+     "status": "complete",
+@@ -51,14 +51,16 @@
+       ".opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh",
+       ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+       ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
++      ".opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
++      ".opencode/skills/system-spec-kit/SKILL.md",
+       ".opencode/skills/cli-external-orchestration/graph-metadata.json",
++      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
++      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts",
+       "research/gate-a-rerun-2026-09-05.tsv",
++      "research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
+       "research/gate-b-rerun-2026-09-05.tsv",
+       "runtime/cli/templates/inline-gate-renderer.sh",
+-      "runtime/cli/lib/template-utils.sh",
+-      "runtime/cli/spec/create.sh",
+-      "runtime/cli/spec/validate.sh",
+-      "node_modules/tsx/dist/loader.mjs"
++      "runtime/cli/lib/template-utils.sh"
+     ],
+     "entities": [
+       {
+@@ -121,18 +123,48 @@
+         "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+         "source": "derived"
+       },
++      {
++        "name": "inline-gate-renderer.vitest.ts",
++        "kind": "test",
++        "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
++        "source": "derived"
++      },
++      {
++        "name": "SKILL.md",
++        "kind": "doc",
++        "path": ".opencode/skills/system-spec-kit/SKILL.md",
++        "source": "derived"
++      },
+       {
+         "name": "graph-metadata.json",
+         "kind": "config",
+         "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+         "source": "derived"
+       },
++      {
++        "name": "skill_advisor.py",
++        "kind": "file",
++        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
++        "source": "derived"
++      },
++      {
++        "name": "python-ts-parity.vitest.ts",
++        "kind": "test",
++        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts",
++        "source": "derived"
++      },
+       {
+         "name": "gate-a-rerun-2026-09-05.tsv",
+         "kind": "file",
+         "path": "research/gate-a-rerun-2026-09-05.tsv",
+         "source": "derived"
+       },
++      {
++        "name": "gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
++        "kind": "file",
++        "path": "research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv",
++        "source": "derived"
++      },
+       {
+         "name": "gate-b-rerun-2026-09-05.tsv",
+         "kind": "file",
+@@ -145,12 +177,6 @@
+         "path": "runtime/cli/lib/template-utils.sh",
+         "source": "derived"
+       },
+-      {
+-        "name": "loader.mjs",
+-        "kind": "file",
+-        "path": "node_modules/tsx/dist/loader.mjs",
+-        "source": "derived"
+-      },
+       {
+         "name": "Feature Specification",
+         "kind": "proper_noun",
+@@ -180,35 +206,11 @@
+         "kind": "proper_noun",
+         "path": "spec.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "Phase Context This",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Implementation Plan",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Technical Context",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Overview Measure",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "A packet that closes on measured numbers stays true only while its inputs hold still",
+     "created_at": "2026-09-05T13:40:04Z",
+-    "last_save_at": "2026-09-05T13:57:43.252Z",
++    "last_save_at": "2026-09-05T14:37:41.266Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -220,14 +222,14 @@
+       "decision-record.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:e1b9519d64bdced3a6c70f0ccec4d5a339e016ae293a763c19908209b094d590",
++    "source_fingerprint": "sha256:8d1544ace8754d3307b17347636856e05b39288c0ba10300106af1a887cc5d23",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "2e5a7f3037a569117b7982f61ada292af3720dfd03c45bb1a0c3553a0b4498a5",
+-      "plan.md": "7ea883b4b4d3d89af31f24da1fee485ac41b671a700e465164afc1dc262eb0bb",
+-      "tasks.md": "986cf0ce893b5c75111c3d296316c2a7633cd56697a2048d1dc571c8b3dd5cbc",
+-      "decision-record.md": "316ea42fae52f82b45319c228ccc9f8695fef3db60680fd1e5a2178d92a14ebe",
+-      "implementation-summary.md": "72925f8f388b12dc9fc997cd4d9ddfe604a6c0a03288f3801ccf065831111a8b"
++      "spec.md": "e332e2cb08bffeedf4fdfeb84353917729fb82ac73e320833cb03c0ef8612baf",
++      "plan.md": "f40026ac8395d16e29acb1742948f4402ca0ee9902ad3f7baa10e149014c2106",
++      "tasks.md": "d1c378426adecc418e54af1acd15acc9efdd94e59408ee33d57d850694cf3c1b",
++      "decision-record.md": "ff004b70dbb14e14ff3d774207b7480d0139137a8e4b4f2c12007f1ba4db6503",
++      "implementation-summary.md": "4a8efd8bb168e672c8e09fb185c2acab78c09739db2106b086570181e59e7ef4"
+     },
+     "last_active_child_id": null,
+     "last_active_at": null
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/implementation-summary.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/implementation-summary.md
+index feefd6f040..b5f3fc4ce4 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/implementation-summary.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/implementation-summary.md
+@@ -187,11 +187,11 @@ tree, and its findings were worked through rather than argued with.
+ 
+ | Decision | Why |
+ |----------|-----|
+-| Fix the loader at the wrapper's root, not in the fallback | The fallback is a second renderer for an environment this tree does not have; the wrapper's spelling is the defect and its sibling library already had the right one |
+-| Remove spec-kit's `trigger-phrases` keyword rather than change the anchor test | Spec-kit's declared signal is `trigger index`; the field name belongs to sk-doc's frontmatter mode; changing the scorer's anchor test is a scoring change D2 forbids |
+-| Fix the Python reference's database resolution rather than override it in the test | One scorer honoured the directory override and its reference did not; that seam is what produced the drift, and a test-side override would have left it |
+-| Re-pin only after the regime was deterministic and the number reproduced twice | A pin captured against a live graph was wrong within minutes; the new pin moves only with a diff |
+-| Retire `spec kit runtime` from the CLI hub | Spec-kit already wins it at 0.93 and the CLI hub's written boundary is executor dispatch; phase 004's rule decides collisions by the losing hub's boundary |
++| Fix the loader at the wrapper's root, not in the fallback | The fallback is a second renderer for an environment this tree does not have. The wrapper's spelling is the defect and its sibling library already had the right one |
++| Remove spec-kit's `trigger-phrases` keyword rather than change the anchor test | Spec-kit's declared signal is `trigger index`. The field name belongs to sk-doc's frontmatter mode. Changing the scorer's anchor test is a scoring change D2 forbids |
++| Fix the Python reference's database resolution rather than override it in the test | One scorer honoured the directory override and its reference did not. That seam is what produced the drift, and a test-side override would have left it |
++| Re-pin only after the regime was deterministic and the number reproduced twice | A pin captured against a live graph was wrong within minutes. The new pin moves only with a diff |
++| Retire `spec kit runtime` from the CLI hub | Spec-kit already wins it at 0.93 and the CLI hub's written boundary is executor dispatch. Phase 004's rule decides collisions by the losing hub's boundary |
+ | Record the validator gap rather than widen the rule | Widening it is a fleet gate change that would fail every packet still carrying scaffold text, and that blast radius is the operator's to accept |
+ | Level 3 for this phase | The level script scored it Level 1 on size, but the phase rules on four decisions, and the packet rule is to go higher when judgment and the script differ |
+ <!-- /ANCHOR:decisions -->
+@@ -203,7 +203,7 @@ tree, and its findings were worked through rather than argued with.
+ 
+ | Check | Result |
+ |-------|--------|
+-| `scaffold-golden-snapshots.vitest.ts` under the CLI workspace config | PASS, 9 of 9; 1 failed before the fix on `before-after.md` |
++| `scaffold-golden-snapshots.vitest.ts` under the CLI workspace config | PASS, 9 of 9. 1 failed before the fix on `before-after.md` |
+ | `inline-gate-renderer.vitest.ts` with its loader path corrected | PASS, 12 of 12 |
+ | Scratch `create.sh --level 3 --skip-branch --with-lazy-addons` | PASS, eleven documents rendered |
+ | `parent-skill-check.cjs` on all five hubs, hub path passed | PASS, `all hard invariants passed` on each |
+@@ -212,11 +212,11 @@ tree, and its findings were worked through rather than argued with.
+ | `skill_graph_compiler.py --validate-only` after the keyword removal | PASS |
+ | Live replay `spec kit runtime` | `system-spec-kit` 0.93 first, CLI hub 0.467 second |
+ | Live replay `delegate to opencode for code generation` | CLI hub 0.811 first with target `cli-opencode` |
+-| Live replay `trigger_phrases` after the daemon rebuild | `sk-doc` 0.487; `trigger index` still `system-spec-kit` 0.70 |
++| Live replay `trigger_phrases` after the daemon rebuild | `sk-doc` 0.487. `trigger index` still `system-spec-kit` 0.70 |
+ | `python-ts-parity.vitest.ts` from the final tree, twice | PASS, 2 of 2 each run, report 109 and 102 with seven accepted rows both times |
+ | Six sibling advisor suites after both advisor changes | PASS, 41 tests |
+ | Voice-scanner self-checks `test_hvr_scan.py` | PASS, `ALL PASS` over eleven checks |
+-| Gate A re-run, before and after the keyword fix | 343 then 344 of 388; the one remaining difference is the retired signal |
++| Gate A re-run, before and after the keyword fix | 343 then 344 of 388. The one remaining difference is the retired signal |
+ | Gate B re-run | 20 of 180 intended-mode top picks, 93 empty, 0 errors, full prompts stored |
+ | Independent review: 20 random corpus rows re-queried live | 20 of 20 reproduce |
+ | `validate.sh --strict --recursive` on the parent | PASS, `RESULT: PASSED` on all nine folders |
+@@ -229,10 +229,10 @@ tree, and its findings were worked through rather than argued with.
+ ## Known Limitations
+ 
+ 1. **The validator's placeholder rule still does not read bracketed template text.** ADR-004 records the mechanism and the owner. Until it changes, run `check-placeholders.sh` beside `validate.sh` before any completion claim.
+-2. **The scorer's space-keyed anchor test remains.** Two hubs declaring the same underscored token will trip it again. This is the second recorded instance; changing the test is a scoring change outside this packet.
++2. **The scorer's space-keyed anchor test remains.** Two hubs declaring the same underscored token will trip it again. This is the second recorded instance. Changing the test is a scoring change outside this packet.
+ 3. **The inline render fallback still cannot batch.** A tree with no tsx installed anywhere would fail the scaffold the same way. ADR-001 records why it was not widened.
+ 4. **One figure in ADR-002 is the investigation's, not re-run here.** The Python reference reading 107 against the metadata as committed at the pin commit and at HEAD. What was verified here is that the isolated regime reproduces and that 112 is not among its readings.
+-5. **The phase 007 narrative still names the pre-nesting `scripts/` tree in prose.** Its continuity paths and its files table are current; the body describes the tree as it stood when the phase ran, which is what a record should do.
++5. **The phase 007 narrative still names the pre-nesting `scripts/` tree in prose.** Its continuity paths and its files table are current. The body describes the tree as it stood when the phase ran, which is what a record should do.
+ <!-- /ANCHOR:limitations -->
+ 
+ ---
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/plan.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/plan.md
+index e78fb0cc3b..397c15dac7 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/plan.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/plan.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Plan: Phase 8: drift after closure"
+-description: "Re-measure both routing gates first, then fix only what the measurement and the failing checks prove: three loader paths in the spec-kit CLI, one misowned signal in the CLI hub, and the stale paths and template sections the closed phases left behind."
++description: "Re-measure both routing gates first, then fix only what the measurement and the failing checks prove: four loader paths in the spec-kit CLI, one misowned signal in the CLI hub, one colliding keyword, the parity suite's regime, and the stale paths and template sections the closed phases left behind."
+ trigger_phrases:
+   - "drift after closure plan"
+   - "loader path fix"
+@@ -25,7 +25,7 @@ contextType: "general"
+ |--------|-------|
+ | **Language/Stack** | Bash wrappers over a TypeScript renderer, JSON hub metadata, Markdown spec docs |
+ | **Framework** | spec-kit CLI under `runtime/cli/`, the skill-advisor daemon and its compiled-route tooling |
+-| **Storage** | None written by this phase beyond the packet tree; the advisor's SQLite graph is read, never written |
++| **Storage** | None written by this phase beyond the packet tree. The advisor's SQLite graph is read, never written |
+ | **Testing** | vitest for the scaffold and parity suites, the doctor hub check, the compiled-route guard, `validate.sh --strict --recursive` |
+ 
+ ### Overview
+@@ -49,7 +49,7 @@ D2 forbids.
+ 
+ ### Definition of Done
+ - [x] All acceptance criteria met
+-- [x] Tests passing: the scaffold suite, the hub gates, the voice-scanner checks
++- [x] Tests passing: the scaffold suite, the renderer test, the parity suite, the hub gates, the voice-scanner self-checks
+ - [x] Docs updated: this phase, phase 007, the parent
+ <!-- /ANCHOR:quality-gates -->
+ 
+@@ -68,7 +68,7 @@ Measure, then repair at the producer. No new module, no new option, no new fallb
+ 
+ ### Data Flow
+ The corpus row goes to the daemon as the prompt. The daemon's first recommendation gives
+-the hub; its compiled route gives the target mode. The classification compares both with the
++the hub. Its compiled route gives the target mode. The classification compares both with the
+ row's owning hub and intended mode, and the artifact keeps the recorded bucket in the same
+ row so a diff is a column comparison.
+ <!-- /ANCHOR:architecture -->
+@@ -82,16 +82,20 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
+ 
+ | Surface | Current Role | Action | Verification |
+ |---------|--------------|--------|--------------|
+-| `runtime/cli/templates/inline-gate-renderer.sh` | Producer: resolves the loader, renders templates | update | Scaffold in scratch renders 11 documents; `scaffold-golden-snapshots.vitest.ts` 9 of 9 |
++| `runtime/cli/templates/inline-gate-renderer.sh` | Producer: resolves the loader, renders templates | update | Scaffold in scratch renders 11 documents. `scaffold-golden-snapshots.vitest.ts` 9 of 9 |
+ | `runtime/cli/lib/template-utils.sh` | Same resolution, spelled correctly at three levels up | unchanged | `grep -n 'node_modules/tsx' runtime/cli/lib/template-utils.sh` shows the three-level path |
+ | `runtime/cli/spec/create.sh` line 1678 | Consumer: backfill loader | update | Backfill runs on a real packet, skipped only outside a specs root |
+ | `runtime/cli/spec/validate.sh` line 28 | Consumer: TypeScript orchestrator lane | update | `validate.sh --strict` still prints rule lines and `RESULT: PASSED` |
+ | `cli-external-orchestration/graph-metadata.json` | Routing input: two intent-signal lists | update | Guard fresh, doctor check OK, live replay on `system-spec-kit` |
++| `system-spec-kit/SKILL.md` line 8 | Routing input: the keyword line the scorer expands into variants | update, one keyword removed | Daemon rebuilt, `trigger_phrases` resolves to `sk-doc`, `trigger index` unchanged, six advisor suites pass |
++| `system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Producer: the Python reference's database path | update, honours the directory override | Prints `SQLite unavailable` under the override, parity suite 2 of 2 twice |
++| `python-ts-parity.vitest.ts` | Consumer: pins the regime and the counts | update | Passes from the final tree twice, siblings 41 passed |
++| `runtime/cli/tests/inline-gate-renderer.vitest.ts` line 99 | Consumer: the renderer's own test loader | update | 12 of 12 |
+ | `013-live-activation/activation/cli-external-orchestration/manifest.json` | Serving manifest | unchanged, confirmed by mint | Mint reports `already-exists`, guard reports fresh |
+ 
+ Required inventories:
+-- Same-class producers: `rg -n 'node_modules/tsx/dist/loader.mjs' .opencode/skills/system-spec-kit/runtime --glob '!node_modules'` finds six spellings; three were one level short and are fixed, two are absolute and correct, one in `template-utils.sh` was already three levels up.
+-- Consumers of changed symbols: none. The three edits change a path literal each, and no symbol.
++- Same-class producers: `rg -n 'node_modules/tsx/dist/loader.mjs' .opencode/skills/system-spec-kit/runtime --glob '!node_modules'` finds seven spellings. Four were one level short and are fixed, the fourth in the renderer's own test file found by the independent review, two are absolute and correct, one in `template-utils.sh` was already three levels up.
++- Consumers of changed symbols: none. The four loader edits change a path literal each, and no symbol.
+ - Matrix axes: level in {1, 2, 3, 3+, phase} by add-ons in {off, on}. The scaffold suite covers Level 3 both ways and Levels 1 to 3+ without add-ons.
+ - Algorithm invariant: every rendered file lands inside the target packet, held by `_ensure_dest_within_dir`, which this phase does not touch.
+ <!-- /ANCHOR:affected-surfaces -->
+@@ -136,7 +140,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ ## 7. ROLLBACK PLAN
+ 
+ - **Trigger**: a scaffold that renders fewer documents than its contract names, or a hub the guard reports stale after the retirement
+-- **Procedure**: `git checkout` the three CLI files and the hub metadata; the mint left the manifest unchanged, so no serving artifact needs reverting
++- **Procedure**: `git checkout` the three CLI files and the hub metadata. The mint left the manifest unchanged, so no serving artifact needs reverting
+ <!-- /ANCHOR:rollback -->
+ 
+ ---
+@@ -179,7 +183,7 @@ Measure (both gates, all checks) ──► Repair (loader paths, signal) ──
+ 
+ ### Pre-deployment Checklist
+ - [x] Backup created: none needed, every change is a tracked file with a clean prior revision
+-- [x] Feature flag configured: none; the scaffold wrapper has no flag, and the fallback remains for a tree without tsx
++- [x] Feature flag configured: none. The scaffold wrapper has no flag, and the fallback remains for a tree without tsx
+ - [x] Monitoring alerts set: the scaffold test and the route guard are the alerts, both in the repository
+ 
+ ### Rollback Procedure
+@@ -233,7 +237,7 @@ Measure (both gates, all checks) ──► Repair (loader paths, signal) ──
+ 3. **Loader fix and scaffold suite** - minutes - CRITICAL
+ 4. **Parent validation, recursive** - minutes - CRITICAL
+ 
+-**Total Critical Path**: the two sweeps dominate; everything else is minutes
++**Total Critical Path**: the two sweeps dominate. Everything else is minutes
+ 
+ **Parallel Opportunities**:
+ - The check sweep runs while the gate sweeps run, since it does not call the daemon
+@@ -257,9 +261,9 @@ Measure (both gates, all checks) ──► Repair (loader paths, signal) ──
+ ## L3: ARCHITECTURE DECISION RECORD
+ 
+ Decisions live in `decision-record.md`: ADR-001 fixes the loader at the wrapper rather than
+-teaching the fallback to honour `--out-dir`, ADR-002 leaves the parity pin alone and
+-records both regime numbers, ADR-003 retires the signal and records the one that died
+-without a known cause.
++teaching the fallback to honour `--out-dir`, ADR-002 makes the parity pin deterministic at
++both scorers and re-baselines it, ADR-003 retires the CLI hub's signal and removes the
++keyword that killed sk-doc's, ADR-004 records the validator gap with its owner.
+ 
+ ---
+ 
+@@ -277,7 +281,7 @@ without a known cause.
+ | Rule | Application here |
+ |------|------------------|
+ | Fix the producer | The wrapper's root, not the fallback's argument parsing |
+-| Never weaken a check | The parity pin is left as written; the movement is recorded, not absorbed |
++| Never weaken a check | The parity pin is left as written. The movement is recorded, not absorbed |
+ | Re-mint after a routing edit | The mint ran and the guard was read after it |
+ | Replay both stages | The retired phrase and a kept phrase were replayed live |
+ 
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/spec.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/spec.md
+index 41a3abed23..70f406e2ee 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/spec.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/spec.md
+@@ -1,12 +1,13 @@
+ ---
+ title: "Feature Specification: Phase 8: drift after closure"
+-description: "Two days after the packet closed, a runtime nesting broke the spec-kit scaffolder, two Gate A signals moved, and an advisor parity pin started tracking a live database. This phase re-measures both gates, repairs what the measurement proves, and records what it cannot."
++description: "Two days after the packet closed, a runtime nesting broke the spec-kit scaffolder, one declared signal died of a keyword collision, and an advisor parity pin started tracking a live database. This phase re-measures both gates, fixes each drift at its producer, and records the one finding that is a fleet gate change."
+ trigger_phrases:
+   - "drift after closure"
+   - "scaffold stopped rendering"
+   - "gate a rerun"
+   - "gate b rerun"
+   - "parity pin regime"
++  - "keyword collision"
+ importance_tier: "normal"
+ contextType: "general"
+ ---
+@@ -24,13 +25,17 @@ The packet closed on 2026-09-03 with every phase green. A review on 2026-09-05 r
+ both routing gates against the live advisor and ran every check the phases had added.
+ Gate A reproduced at 343 of 388 against 345 recorded, Gate B at 20 of 180 against 21, and
+ three things had broken underneath: the spec-kit scaffolder rendered no documents at all
+-after its CLI workspace was nested, one advisor parity pin now moves between two identical
+-runs, and one signal each in two hubs no longer lands where it was recorded.
++after its CLI workspace was nested, one advisor parity pin moved between two identical
++runs, and one signal each in two hubs no longer landed where it was recorded. All three
++are fixed at their producers, Gate A reads 344 after the fixes, and an independent review
++of this phase's own documents found and closed the places where they had overstated the tree.
+ 
+ **Key Decisions**: the scaffold loader paths are fixed at the wrapper that lost them, not
+-by widening the fallback; the parity pin is not re-baselined here because its number
+-depends on which skill-graph database the run sees; the CLI hub gives up a signal that
+-spec-kit now owns.
++by widening the fallback. The parity pin is re-baselined only after both scorers honour
++the same database override and the test pins the CI regime. The CLI hub gives up a signal
++that spec-kit now owns, and spec-kit gives up the keyword that killed sk-doc's signal. The
++validator's placeholder gap is recorded with its mechanism and owner because widening it
++is a fleet gate change.
+ 
+ **Critical Dependencies**: the advisor daemon holding still, exactly as D2 in the parent
+ goal requires.
+@@ -50,7 +55,7 @@ goal requires.
+ | **Phase** | 8 of 8 |
+ | **Predecessor** | 007-spec-kit-residue |
+ | **Successor** | None |
+-| **Handoff Criteria** | Both gates re-measured with committed artifacts, the scaffold renders a full packet again, and every moved number has a fix or an owner |
++| **Handoff Criteria** | Both gates re-measured with committed artifacts, the scaffold renders a full packet again, every moved number fixed at its producer, and the one remaining finding recorded with its mechanism and owner |
+ <!-- /ANCHOR:metadata -->
+ 
+ ---
+@@ -60,23 +65,22 @@ goal requires.
+ 
+ This is **Phase 8** of the routing completeness packet. Phases 1 to 7 measured routing,
+ fixed what the numbers pointed at, and closed. This phase is the re-measurement two days
+-later, and the repairs that re-measurement earned.
++later, the repairs that re-measurement earned, and the independent review of both.
+ 
+ **Scope Boundary**: the drift the 2026-09-05 review observed, and nothing the review did
+ not observe. A number that moved is in scope. A number that could move is not.
+ 
+ **Dependencies**:
+-- The advisor daemon at generation 593 to 597 on 2026-09-05, live, with the scorer unchanged
+-- The `b4c2484696` nesting of the spec-kit CLI workspace under `runtime/`, which is the
+-  cause of the scaffold break and the reason phase 007's continuity paths are stale
++- The advisor daemon live on 2026-09-05, generation 593 at the first sweep and rebuilt once after the keyword removal, with the scorer unchanged
++- The `b4c2484696` nesting of the spec-kit CLI workspace under `runtime/`, which is the cause of the scaffold break and the reason phase 007's continuity paths were stale
+ 
+ **Deliverables**:
+-- Three loader paths repaired in the spec-kit CLI, with the scaffold test green
+-- Gate A and Gate B re-run artifacts under `research/`, one row per signal and per prompt
+-- One signal retired from the CLI hub, with the hub re-minted and its gates green
+-- Two findings recorded with owners rather than fixed: the dead underscore signal and
+-  the regime-dependent parity pin
+-- Phase 007's continuity paths repointed, and the parent packet's documents reconciled
++- Four loader paths repaired in the spec-kit CLI, with the scaffold suite and the renderer test green
++- Gate A re-run artifacts before and after the fixes, and a Gate B artifact with the full prompt per row, under `research/`
++- One signal retired from the CLI hub and one keyword removed from spec-kit, with the daemon rebuilt, the hubs re-minted, the gates green, and both signals replayed live
++- The parity suite made deterministic at both scorers and re-pinned, passing twice
++- One finding recorded with its mechanism and owner rather than fixed: the validator's placeholder rule
++- Phase 007's continuity paths and files table repointed, and the parent packet's documents reconciled and re-checked by an independent reviewer
+ 
+ **Changelog**:
+ - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+@@ -91,16 +95,16 @@ not observe. A number that moved is in scope. A number that could move is not.
+ 
+ A packet that closes on measured numbers stays true only while its inputs hold still.
+ Between 2026-09-03 and 2026-09-05 the spec-kit engine was moved under `runtime/` and its
+-CLI workspace nested one level deeper, and the routing surfaces this packet measured were
+-never re-measured against the tree that resulted. The review that did re-measure them found
+-a scaffolder that writes a packet with no spec documents, a test pin that reads a different
+-number on consecutive runs, and two signals that no longer resolve where the register says
+-they do.
++CLI workspace nested one level deeper, spec-kit's keyword line was merged from another
++branch, and the routing surfaces this packet measured were never re-measured against the
++tree that resulted. The review that did re-measure them found a scaffolder that writes a
++packet with no spec documents, a test pin that reads a different number on consecutive
++runs, and two signals that no longer resolve where the register says they do.
+ 
+ ### Purpose
+ 
+ Every number this packet recorded is either reproduced on 2026-09-05, repaired to reproduce,
+-or written down as moved with an owner.
++or written down as moved with its mechanism and an owner.
+ <!-- /ANCHOR:problem -->
+ 
+ ---
+@@ -112,28 +116,36 @@ or written down as moved with an owner.
+ - Re-run Gate A over the 388-signal corpus and Gate B over the 180-prompt corpus, and commit both artifacts
+ - Repair the spec-kit scaffold so a Level 3 packet renders its full document set again
+ - Retire `spec kit runtime` from the CLI hub, re-mint the hub, and replay both routing stages
+-- Record the `trigger_phrases` signal loss and the parity-pin regime dependence as owned findings
+-- Repoint phase 007's continuity key files to their post-nesting locations
+-- Reconcile the parent packet: phase map, goal criteria, roadmap, and the unfilled template sections
++- Trace the `trigger_phrases` loss to its producer and fix it there
++- Make the parity suite deterministic at both scorers and re-pin it to what the CI regime reads
++- Record the validator's placeholder gap with its mechanism and owner
++- Repoint phase 007's continuity key files and files table to their post-nesting locations
++- Reconcile the parent packet: phase map, goal criteria, roadmap, register, and the unfilled template sections
++- Have a fresh reviewer check every claim these documents make against the tree, and work through what it finds
+ 
+ ### Out of Scope
+-- Re-baselining the Python and TypeScript parity pin. The number depends on the local skill-graph database regime, and D2 forbids a scoring change while these gates stand
+-- Diagnosing the advisor's tokenization of `trigger_phrases`. Both scorers return nothing with no rejection reason; that is an advisor investigation with its own owner
+-- Restoring the provider vocabulary phase 002 retired. Those signals returned nothing before retirement and return nothing after it; nothing moved
++- Changing the scorer's low-information anchor test at `fusion.ts:808`. It is the rule that turned a keyword collision into an empty reply, and it is a scoring change D2 forbids. Its second recorded instance is in ADR-003
++- Widening the validator's placeholder rule to what the shell checker counts. It is a fleet gate change with an unmeasured blast radius, recorded in ADR-004 with `system-spec-kit` as owner
++- Restoring the provider vocabulary phase 002 retired. Those signals returned nothing before retirement and return nothing after it. Nothing moved
+ 
+ ### Files to Change
+ 
+ | File Path | Change Type | Description |
+ |-----------|-------------|-------------|
+ | `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Modify, landed in `743e626543` | Resolve the tsx loader from the skill root, three levels up, not one |
+-| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | Same root for the graph-metadata backfill loader |
+-| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modify | Same root for the TypeScript orchestrator lane |
++| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify, landed in `743e626543` | Same root for the graph-metadata backfill loader |
++| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modify, landed in `743e626543` | Same root for the TypeScript orchestrator lane |
++| `.opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts` | Modify | The fourth one-level-short loader spelling, found by the review of this phase |
++| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | `trigger-phrases` removed from the keyword line |
+ | `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modify | Retire `spec kit runtime` from both intent-signal lists |
+-| `research/gate-a-rerun-2026-09-05.tsv` | Create | 388 signals, recorded bucket beside the re-run bucket |
+-| `research/gate-b-rerun-2026-09-05.tsv` | Create | 180 prompts, top skill, compiled target, and hit flag |
+-| `../007-spec-kit-residue/implementation-summary.md` | Modify | Continuity key files repointed under `runtime/cli/` |
+-| `../007-spec-kit-residue/spec.md` | Modify | Template sections filled from the phase's own record |
+-| `../spec.md`, `../goal.md`, `../roadmap.md` | Modify | Parent reconciled with what the tree says |
++| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Modify | Resolve the skill-graph database through the directory override the native resolver honours |
++| `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/python-ts-parity.vitest.ts` | Modify | Pin the regime before a dynamic import, re-pin to 109 and 102, seven accepted rows |
++| `research/gate-a-rerun-2026-09-05.tsv` | Create | 388 signals before the fixes, recorded bucket beside the re-run bucket |
++| `research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv` | Create | 388 signals after the keyword fix |
++| `research/gate-b-rerun-2026-09-05.tsv` | Create | 180 prompts in full, top skill, compiled target, and hit flag |
++| `../007-spec-kit-residue/implementation-summary.md`, `tasks.md`, `decision-record.md` | Modify | Continuity key files repointed under `runtime/cli/`, or dropped where 049 deleted the file |
++| `../007-spec-kit-residue/spec.md`, `plan.md` | Modify | Template sections filled from the phase's own record, files table repointed |
++| `../spec.md`, `../goal.md`, `../roadmap.md`, `../research/findings-register.md` | Modify | Parent reconciled with what the tree says |
+ <!-- /ANCHOR:scope -->
+ 
+ ---
+@@ -147,14 +159,14 @@ or written down as moved with an owner.
+ |----|-------------|
+ | REQ-001 | Both gates are re-run against the live daemon and the per-row artifacts are committed under `research/` |
+ | REQ-002 | A Level 3 scaffold with lazy add-ons renders every document its contract names, and the scaffold test file passes in full |
+-| REQ-003 | Every row whose bucket differs from the recorded one has a fix in this phase or an owner in `decision-record.md` |
++| REQ-003 | Every row whose bucket differs from the recorded one, and every check that moved, is fixed at its producer or recorded in `decision-record.md` with its mechanism and an owner |
+ 
+ ### P1 - Required (complete OR user-approved deferral)
+ 
+ | ID | Requirement |
+ |----|-------------|
+ | REQ-004 | The CLI hub no longer declares `spec kit runtime`, its compiled manifest is fresh, and a live replay lands the phrase on `system-spec-kit` |
+-| REQ-005 | Phase 007's continuity names files that exist, and the parent packet's status, phase map, and goal criteria agree with the tree |
++| REQ-005 | Phase 007's continuity names files that exist, and the parent packet's status, phase map, register, and goal criteria agree with the tree and with each other |
+ 
+ > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+ > which is the document that decides whether this packet may close.
+@@ -165,9 +177,10 @@ or written down as moved with an owner.
+ <!-- ANCHOR:success-criteria -->
+ ## 5. SUCCESS CRITERIA
+ 
+-- **SC-001**: `scaffold-golden-snapshots.vitest.ts` reports 9 of 9 passing from the final tree, where it reported 8 of 9 before the fix
+-- **SC-002**: Gate A re-run tallies 388 rows with every bucket change named, and Gate B re-run tallies 180 rows with the hit count recorded
+-- **SC-003**: `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for all nine folders, and the placeholder checker reports zero patterns on the parent, phase 007, and this phase
++- **SC-001**: `scaffold-golden-snapshots.vitest.ts` reports 9 of 9 passing from the final tree, where it reported 8 of 9 before the fix, and `inline-gate-renderer.vitest.ts` reports 12 of 12
++- **SC-002**: Gate A re-run tallies 388 rows twice, before and after the fixes, with every bucket change named, and Gate B re-run tallies 180 rows with the full prompt and the hit count recorded
++- **SC-003**: `python-ts-parity.vitest.ts` passes twice in a row from the final tree, and `trigger_phrases` resolves to `sk-doc` on a live replay
++- **SC-004**: `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for all nine folders, and the placeholder checker reports zero patterns on the parent, phase 007, and this phase
+ <!-- /ANCHOR:success-criteria -->
+ 
+ ---
+@@ -177,9 +190,10 @@ or written down as moved with an owner.
+ 
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+-| Dependency | The advisor daemon and its skill-graph database | Every re-run number reads the daemon; a generation bump mid-run mixes two states | Both re-runs completed inside one generation window, and the generation is recorded in the summary |
+-| Risk | Editing a hub's routing input without re-minting drops it to legacy routing silently | Medium | `compiled-route-guard.cjs` run after the edit and the mint, and the phrase replayed live |
+-| Risk | A re-run number read as a regression when it is only the daemon regime | Medium | The parity pin is run under both regimes and the pair recorded, not one number |
++| Dependency | The advisor daemon and its skill-graph database | Every re-run number reads the daemon. A generation bump mid-run mixes two states | Each sweep completed inside one generation window, and the post-fix sweep ran after one explicit rebuild |
++| Risk | Editing a hub's routing input without re-minting drops it to legacy routing silently | Medium | `compiled-route-guard.cjs` run after every routing edit, and the phrases replayed live |
++| Risk | A re-run number read as a regression when it is only the daemon regime | Medium | The parity pin was made regime-independent before it was re-pinned |
++| Risk | These documents overstate the tree | Medium | An independent reviewer checked every claim, and its findings were worked through |
+ <!-- /ANCHOR:risks -->
+ 
+ ---
+@@ -192,10 +206,10 @@ or written down as moved with an owner.
+ - **NFR-P01**: A full Gate B re-run of 180 daemon calls completes within one daemon generation window, so the rows describe one state
+ 
+ ### Security
+-- **NFR-S01**: No change here widens what the scaffolder writes; the loader path fix keeps every write inside the target packet, which the existing `_ensure_dest_within_dir` guard already enforces
++- **NFR-S01**: No change here widens what the scaffolder writes. The loader path fix keeps every write inside the target packet, which the existing `_ensure_dest_within_dir` guard already enforces
+ 
+ ### Reliability
+-- **NFR-R01**: The scaffold fix is proven by the same test that was red before it, run from the final tree
++- **NFR-R01**: Every fix is proven by the same check that was red before it, run from the final tree
+ 
+ ---
+ 
+@@ -203,7 +217,7 @@ or written down as moved with an owner.
+ 
+ ### Data Boundaries
+ - Empty input: a Gate B prompt that returns no recommendation is counted as empty, never as a wrong hub
+-- Maximum length: the corpus files are fixed at 388 and 180 rows; a re-run that returns a different row count is a runner defect, not a measurement
++- Maximum length: the corpus files are fixed at 388 and 180 rows. A re-run that returns a different row count is a runner defect, not a measurement
+ 
+ ### Error Scenarios
+ - External service failure: a daemon call that errors is recorded as an error row and excluded from the tally, and the tally states the error count
+@@ -215,12 +229,12 @@ or written down as moved with an owner.
+ 
+ | Dimension | Score | Triggers |
+ |-----------|-------|----------|
+-| Scope | 8/25 | Files: 9 edited, 2 created; LOC under 50 in code; Systems: spec-kit CLI, advisor hub inputs |
+-| Risk | 10/25 | Auth: N, API: N, Breaking: a routing input and a scaffold shared by every packet creation |
+-| Research | 12/20 | Two root causes traced, one left open with evidence |
+-| Multi-Agent | 0/15 | Single session |
++| Scope | 10/25 | Files: 8 code files, 3 artifacts, 12 documents. LOC under 60 in code. Systems: spec-kit CLI, the advisor scorer and its reference, two hubs' inputs |
++| Risk | 12/25 | Auth: N, API: N, Breaking: a routing input, a scaffold shared by every packet creation, and a scorer reference's path resolution |
++| Research | 16/20 | Three root causes traced, two by fresh investigators, one gap recorded with mechanism |
++| Multi-Agent | 6/15 | Three fresh models, each with one bounded question and no write authority |
+ | Coordination | 6/15 | Depends on the parent packet's D2 and on the nesting commit |
+-| **Total** | **36/100** | **Level 3**, held at the sibling level because the phase records decisions |
++| **Total** | **50/100** | **Level 3**, held at the sibling level because the phase records four decisions |
+ 
+ ---
+ 
+@@ -228,9 +242,9 @@ or written down as moved with an owner.
+ 
+ | Risk ID | Description | Impact | Likelihood | Mitigation |
+ |---------|-------------|--------|------------|------------|
+-| R-001 | Another path in the CLI still spells the loader one level up | M | L | All three spellings found by one grep were fixed; the grep is recorded in the summary |
+-| R-002 | The retired signal was carrying traffic the CLI hub should keep | L | L | Live replay before and after: `system-spec-kit` won at 0.93 already, and the hub lost nothing it owned |
+-| R-003 | The parity pin is re-baselined by someone reading only the local number | M | M | ADR-002 records both regime numbers and why neither is a pin |
++| R-001 | Another path in the CLI still spells the loader one level up | M | L | One grep found seven spellings. Four were short and are fixed, two are absolute, one was already correct |
++| R-002 | The retired signal or the removed keyword was carrying traffic its hub should keep | L | L | Live replay before and after each: `system-spec-kit` won the phrase at 0.93 already, and `trigger index` still resolves to spec-kit at 0.70 |
++| R-003 | The parity pin drifts again on a machine with a live graph | L | L | The regime is pinned inside the test before the scorer loads, and the reference honours the same override |
+ 
+ ---
+ 
+@@ -246,7 +260,7 @@ or written down as moved with an owner.
+ 
+ ### US-002: A reviewer re-reads the routing numbers (Priority: P1)
+ 
+-**As a** reviewer, **I want** the re-run artifacts beside the originals with the recorded bucket in the same row, **so that** a moved number is one column comparison and not a re-derivation.
++**As a** reviewer, **I want** the re-run artifacts beside the originals with the recorded bucket and the full prompt in the same row, **so that** a moved number is one column comparison and not a re-derivation.
+ 
+ **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+ 
+@@ -254,11 +268,10 @@ or written down as moved with an owner.
+ 
+ ## 12. OPEN QUESTIONS
+ 
+-One, and it is an advisor question rather than a packet question. `trigger_phrases` is
+-declared in `sk-doc`'s derived trigger phrases, resolved at 0.488 on 2026-09-04, and returns
+-nothing from both scorers on 2026-09-05 with no rejection reason, while `importance_tier`
+-and `contextType` beside it still resolve. Nothing in the hub's metadata changed between the
+-two dates. The mechanism is not known, and ADR-003 records the evidence and the owner.
++None inside this phase. The two questions it opened, why `trigger_phrases` died and why
++the parity pin moved, are answered in ADR-003 and ADR-002 with the evidence that answered
++them. The validator's placeholder gap is not a question but a decision for the owner of
++the gate, recorded in ADR-004.
+ <!-- /ANCHOR:questions -->
+ 
+ ---
+diff --git a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/tasks.md b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/tasks.md
+index 3c17e234d5..625e1bfe71 100644
+--- a/specs/sk-doc/052-routing-completeness/008-drift-after-closure/tasks.md
++++ b/specs/sk-doc/052-routing-completeness/008-drift-after-closure/tasks.md
+@@ -37,7 +37,7 @@ contextType: "general"
+ - [x] T001 Confirm the daemon is live and note the generation (`advisor_status`: live, generation 593 at start, 597 at the end)
+ - [x] T002 [P] Re-run Gate B: 180 prompts through `advisor_recommend`, top skill and compiled target per row (`research/gate-b-rerun-2026-09-05.tsv`, 180 rows, 0 errors)
+ - [x] T003 [P] Re-run Gate A: 388 signals through `advisor_recommend`, classified by the phase 002 rules, recorded bucket kept beside the new one (`research/gate-a-rerun-2026-09-05.tsv`, 388 rows)
+-- [x] T004 [P] Run every check the phases added: voice-scanner checks, doctor hub check on all five hubs, compiled-route guard, three skill-root gates, the advisor routing suites, the spec-kit CLI tests the phases touched (`ALL PASS`, `OK` on five hubs, `All hubs fresh`, `14 of 14` three times, `6 passed | 1 failed` in the advisor suites, `56 passed | 1 failed` in the CLI tests)
++- [x] T004 [P] Run every check the phases added: voice-scanner checks, doctor hub check on all five hubs, compiled-route guard, three skill-root gates, the advisor routing suites, the four spec-kit CLI tests the closed phases touched (`ALL PASS`, `OK` on five hubs, `All hubs fresh`, `14 of 14` three times, `6 passed | 1 failed` across seven advisor suites with `python-ts-parity` the failure, `56 passed | 1 failed` across `generate-context-cli-authority`, `scaffold-golden-snapshots`, `coverage-graph-cross-layer` and `tree-thinning` with the scaffold suite the failure)
+ <!-- /ANCHOR:phase-1 -->
+ 
+ ---
+@@ -46,13 +46,13 @@ contextType: "general"
+ ## Phase 2: Implementation
+ 
+ - [x] T005 Reproduce the scaffold failure in scratch: `create.sh --level 3 --with-lazy-addons` writes `description.json`, `graph-metadata.json`, `scratch/` and nothing else, and prints template text where the file tree should be (scratch run, 2026-09-05)
+-- [x] T006 Name the mechanism: the wrapper resolves `SKILL_ROOT` one directory up from itself, which after `b4c2484696` is `runtime/cli`, a directory with no `node_modules`; the loader test fails and the inline fallback prints the last template to stdout, ignoring `--out-dir` (`inline-gate-renderer.sh:10`, loader present only at the skill root)
+-- [x] T007 Fix the three loader spellings that were one level short (`runtime/cli/templates/inline-gate-renderer.sh:10`, `runtime/cli/spec/create.sh:1678`, `runtime/cli/spec/validate.sh:28`; the identical edit landed concurrently in `743e626543`, so no diff remains in this tree)
++- [x] T006 Name the mechanism: the wrapper resolves `SKILL_ROOT` one directory up from itself, which after `b4c2484696` is `runtime/cli`, a directory with no `node_modules`. The loader test fails and the inline fallback prints the last template to stdout, ignoring `--out-dir` (`inline-gate-renderer.sh:10`, loader present only at the skill root)
++- [x] T007 Fix the four loader spellings that were one level short (`runtime/cli/templates/inline-gate-renderer.sh:10`, `runtime/cli/spec/create.sh:1678`, `runtime/cli/spec/validate.sh:28`, where the identical edit landed concurrently in `743e626543` so no diff remains for those three, and `runtime/cli/tests/inline-gate-renderer.vitest.ts:99`, found by the independent review and fixed here, 12 of 12)
+ - [x] T008 Retire `spec kit runtime` from the CLI hub's two intent-signal lists, mint, and read the guard (`cli-external-orchestration/graph-metadata.json`, mint `already-exists`, guard `All hubs fresh or excused`)
+-- [x] T009 Record the parity-pin movement under both regimes rather than re-pinning (`decision-record.md` ADR-002: 113/108/5 and 114/108/6 on consecutive local runs, 114/107/7 with the database directory pointed at an empty folder)
+-- [x] T010 Record the `trigger_phrases` loss with the evidence and an owner (`decision-record.md` ADR-003)
+-- [x] T011 [P] Repoint phase 007's six continuity key files under `runtime/cli/` (`../007-spec-kit-residue/implementation-summary.md`, all six paths exist on disk)
+-- [x] T012 [P] Fill phase 007's template sections from its own record (`../007-spec-kit-residue/spec.md` §4 to §6, §10, §11)
++- [x] T009 Make the parity suite deterministic and re-pin it (`scripts/skill_advisor.py:246` honours the database override, `python-ts-parity.vitest.ts` pins the regime before a dynamic import, pins 109 and 102 with seven accepted rows, 2 passed twice in a row, six sibling suites 41 passed)
++- [x] T010 Trace the `trigger_phrases` loss to its producer and fix it (`system-spec-kit/SKILL.md:8` keyword `trigger-phrases` removed, mechanism at `fusion.ts:808`, daemon rebuilt, `sk-doc` 0.487 on replay, Gate A re-run 344 of 388 in `research/gate-a-rerun-2026-09-05-after-keyword-fix.tsv`)
++- [x] T011 [P] Repoint phase 007's continuity key files under `runtime/cli/` and drop the four 049 deleted (`../007-spec-kit-residue/implementation-summary.md`, `tasks.md`, `decision-record.md`. All nine surviving paths exist on disk, and the eight rows of `spec.md`'s files table are repointed)
++- [x] T012 [P] Fill phase 007's template sections from its own record (`../007-spec-kit-residue/spec.md` §4 to §11, and `plan.md` §3 to the L3 sections, 139 lines)
+ - [x] T013 [P] Reconcile the parent: template sections filled, phase map statuses, goal criteria and continuity, roadmap against 049 Complete (`../spec.md`, `../goal.md`, `../roadmap.md`)
+ <!-- /ANCHOR:phase-2 -->
+ 
+@@ -63,10 +63,11 @@ contextType: "general"
+ 
+ - [x] T014 Scaffold suite from the final tree (`scaffold-golden-snapshots.vitest.ts`: 9 passed, where the pre-fix run had 1 failed on `before-after.md`)
+ - [x] T015 Scratch scaffold with add-ons renders the full set (11 documents: spec, plan, tasks, acceptance-criteria, implementation-summary, decision-record, before-after, timeline, roadmap, description.json, graph-metadata.json)
+-- [x] T016 Live replay after the retirement (`spec kit runtime` gives `system-spec-kit` 0.93 then the CLI hub 0.467; `delegate to opencode for code generation` still gives the CLI hub at 0.811 with target `cli-opencode`)
++- [x] T016 Live replay after the retirement (`spec kit runtime` gives `system-spec-kit` 0.93 then the CLI hub 0.467. `delegate to opencode for code generation` still gives the CLI hub at 0.811 with target `cli-opencode`)
+ - [x] T017 Hub gates after the retirement (doctor check on the CLI hub `OK`, guard fresh, derived freshness `14 fresh`)
+ - [x] T018 Regenerate the generated metadata for every edited folder and run the strict recursive validation on the parent (`RESULT: PASSED` on all nine folders)
+ - [x] T019 Placeholder checker on the parent, phase 007, and this phase (zero patterns on each)
++- [x] T020 Independent review of every claim in this phase by a fresh model with no write authority, and its findings worked through (three false claims corrected, nine stale paths repointed, the summary recounted, the Gate B artifact rebuilt with full prompts, the seventh loader spelling fixed, ADR-004 added)
+ <!-- /ANCHOR:phase-3 -->
+ 
+ ---
+@@ -117,9 +118,9 @@ contextType: "general"
+ <!-- ANCHOR:code-quality -->
+ ## Code Quality
+ 
+-- [x] CHK-010 [P0] Code passes lint/format checks (three path literals; `bash -n` clean on all three files, and each script ran to completion afterwards)
++- [x] CHK-010 [P0] Code passes lint/format checks (three path literals. `bash -n` clean on all three files, and each script ran to completion afterwards)
+ - [x] CHK-011 [P0] No console errors or warnings (the scaffold's only remaining warning is the backfill skip outside a specs root, which is the guard working)
+-- [x] CHK-012 [P1] Error handling implemented (unchanged; the wrapper still falls back when no loader exists anywhere)
++- [x] CHK-012 [P1] Error handling implemented (unchanged. The wrapper still falls back when no loader exists anywhere)
+ - [x] CHK-013 [P1] Code follows project patterns (the three-level root is the spelling `template-utils.sh` already used)
+ <!-- /ANCHOR:code-quality -->
+ 
+@@ -130,7 +131,7 @@ contextType: "general"
+ 
+ - [x] CHK-020 [P0] All acceptance criteria met
+ - [x] CHK-021 [P0] Manual testing complete (scratch scaffold, live replays)
+-- [x] CHK-022 [P1] Edge cases tested (Level 3 with and without add-ons through the suite; a packet outside a specs root through the scratch run)
++- [x] CHK-022 [P1] Edge cases tested (Level 3 with and without add-ons through the suite. A packet outside a specs root through the scratch run)
+ - [x] CHK-023 [P1] Error scenarios validated (the pre-fix failure reproduced before the edit, and the same test proves the fix)
+ <!-- /ANCHOR:testing -->
+ 
+@@ -140,8 +141,8 @@ contextType: "general"
+ ## Fix Completeness
+ 
+ - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: the loader paths are `class-of-bug` (three spellings, one cause), the signal retirement is `instance-only`, the parity pin and the dead signal are `matrix/evidence`
+-- [x] CHK-FIX-002 [P0] Same-class producer inventory completed: one grep over `runtime/` found six loader spellings; three fixed, two absolute, one already correct
+-- [x] CHK-FIX-003 [P0] Consumer inventory completed: the edits change path literals only; `create.sh` and `validate.sh` are the two consumers of the loader and both were fixed in the same pass
++- [x] CHK-FIX-002 [P0] Same-class producer inventory completed: one grep over `runtime/` found seven loader spellings. Four fixed, two absolute, one already correct
++- [x] CHK-FIX-003 [P0] Consumer inventory completed: the edits change path literals only. `create.sh` and `validate.sh` are the two consumers of the loader and both were fixed in the same pass
+ - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests: not applicable, the write-inside-target guard is untouched and the suite's temp-root case exercises it
+ - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (`plan.md` affected surfaces: level by add-ons)
+ - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed: the parity suite was run with `SYSTEM_SKILL_ADVISOR_DB_DIR` pointed at an empty directory, which is the CI regime
+@@ -164,7 +165,7 @@ contextType: "general"
+ ## Documentation
+ 
+ - [x] CHK-040 [P1] Spec/plan/tasks synchronized
+-- [x] CHK-041 [P1] Code comments adequate (no comment added; each edit is a path literal whose reason is the directory layout)
++- [x] CHK-041 [P1] Code comments adequate (no comment added. Each edit is a path literal whose reason is the directory layout)
+ - [x] CHK-042 [P2] README updated (not applicable)
+ <!-- /ANCHOR:docs -->
+ 
+@@ -184,9 +185,9 @@ contextType: "general"
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+-| P0 Items | 14 | 14/14 |
+-| P1 Items | 15 | 15/15 |
+-| P2 Items | 8 | 8/8 |
++| P0 Items | 15 | 15/15 |
++| P1 Items | 23 | 23/23 |
++| P2 Items | 9 | 9/9 |
+ 
+ **Verification Date**: 2026-09-05
+ <!-- /ANCHOR:summary -->
+@@ -218,7 +219,7 @@ contextType: "general"
+ <!-- ANCHOR:deploy-ready -->
+ ## L3+: Deployment Readiness
+ 
+-- [x] CHK-120 [P0] Rollback procedure documented and tested (`plan.md` §7; a `git checkout` of four files)
++- [x] CHK-120 [P0] Rollback procedure documented and tested (`plan.md` §7. A `git checkout` of four files)
+ - [x] CHK-121 [P0] Feature flag configured (not applicable)
+ - [x] CHK-122 [P1] Monitoring/alerting configured (the scaffold suite and the route guard are the alerts)
+ - [x] CHK-123 [P1] Runbook created (`plan.md` enhanced rollback)
+diff --git a/specs/sk-doc/052-routing-completeness/description.json b/specs/sk-doc/052-routing-completeness/description.json
+index 7ffd7a5b8e..05d647ea0f 100644
+--- a/specs/sk-doc/052-routing-completeness/description.json
++++ b/specs/sk-doc/052-routing-completeness/description.json
+@@ -10,7 +10,7 @@
+     "still",
+     "reachable"
+   ],
+-  "lastUpdated": "2026-09-05T13:53:32.759Z",
++  "lastUpdated": "2026-09-05T14:36:57.854Z",
+   "specId": "052",
+   "folderSlug": "routing-completeness",
+   "parentChain": [
+diff --git a/specs/sk-doc/052-routing-completeness/goal.md b/specs/sk-doc/052-routing-completeness/goal.md
+index d45a4f8190..53e6ef4148 100644
+--- a/specs/sk-doc/052-routing-completeness/goal.md
++++ b/specs/sk-doc/052-routing-completeness/goal.md
+@@ -14,7 +14,7 @@ _memory:
+     last_updated_at: "2026-09-05T16:30:00Z"
+     last_updated_by: "claude-code"
+     recent_action: "Closed phase 008, the re-measurement after closure, and reconciled the parent with the tree"
+-    next_safe_action: "Hand register rows 42 to 44 to their owners"
++    next_safe_action: "Hand register row 44 to system-spec-kit"
+     blockers: []
+     key_files: []
+     session_dedup:
+@@ -48,9 +48,9 @@ Frozen choices. Changing one is an amendment.
+ 
+ | ID | Decision |
+ |----|----------|
+-| D1 | The advisor daemon governs; every number here comes from it |
++| D1 | The advisor daemon governs. Every number here comes from it |
+ | D2 | The scorer does not change here, because changing it voids every number |
+-| D3 | Gate A counts declared signals reaching one mode; Gate B counts realistic phrasings reaching the intended mode |
++| D3 | Gate A counts declared signals reaching one mode. Gate B counts realistic phrasings reaching the intended mode |
+ | D4 | Every finding is fixed, owned by a phase, or closed as a decision |
+ | D5 | Vocabulary work that moves no Gate B row is reported as such |
+ | D6 | Phase 007 re-reads each decision against packet 049 first |
+@@ -76,7 +76,7 @@ as if written here.
+ | 007-spec-kit-residue | `007-spec-kit-residue/goal.md` |
+ | 008-drift-after-closure | `008-drift-after-closure/goal.md` |
+ 
+-**Precedence.** Decisions above outrank child detail; child detail outranks any
++**Precedence.** Decisions above outrank child detail. Child detail outranks any
+ summary of it. Name a conflict rather than resolving it silently.
+ 
+ **Stop.** Only the criteria below decide done.
+@@ -90,8 +90,8 @@ summary of it. Name a conflict rather than resolving it silently.
+ Copy these into the objective verbatim. Nothing dereferences a path.
+ 
+ - [x] `validate.sh --strict --recursive` prints RESULT: PASSED for all nine folders. Run 2026-09-05 from the final tree
+-- [x] Every findings-register row reads Fixed, Planned or Decision. 45 distinct rows: 25 Fixed, 13 Planned, 7 Decision, counting the three that live only in the closed-by-decision table
+-- [x] Gate A and Gate B each have a committed corpus that reproduces its number on a second run. Gate A 345 then 343 of 388 across 2026-09-04 and 2026-09-05 with both moved rows ruled; Gate B 21 then 20 of 180
++- [x] Every findings-register row reads Fixed, Planned or Decision. 45 distinct rows: 27 Fixed, 11 Planned, 7 Decision, counting the three that live only in the closed-by-decision table
++- [x] Gate A and Gate B each have a committed corpus that reproduces its number on a second run. Gate A 345 on 2026-09-04, then 343 and 344 of 388 on 2026-09-05 before and after the fixes, with both moved rows fixed. Gate B 21 then 20 of 180
+ - [x] All eight phases hold a goal.md with criteria checkable by exit code, count or artifact
+ - [x] Each of the eight ADRs in 007 is implemented or recorded superseded, with its reason. A ninth, ADR-009, rules on the residue itself
+ <!-- /ANCHOR:completion -->
+@@ -110,14 +110,14 @@ and findings belong here.
+ | Item | State | Evidence |
+ |------|-------|----------|
+ | 001 transport and baseline | Done | `03f5db4876` settles which scorer governs |
+-| 002 Gate A signal closure | Done | `dbc8678c9d` measures 234 of 444; `08eb67a0de` resolves half the vocabulary that reached nothing; `726af58b4c` closes at 345 of 388 |
+-| 003 Gate B realistic corpus | Done | `4a5de9e52b` measures 8 of 180; `8c6d6fd455` drops the command-surface modes from the denominator |
++| 002 Gate A signal closure | Done | `dbc8678c9d` measures 234 of 444. `08eb67a0de` resolves half the vocabulary that reached nothing. `726af58b4c` closes at 345 of 388 |
++| 003 Gate B realistic corpus | Done | `4a5de9e52b` measures 8 of 180. `8c6d6fd455` drops the command-surface modes from the denominator |
+ | 004 cross-hub vocabulary | Done | `4a5de9e52b` re-scoped the phase the Gate B number invalidated |
+ | 005 hub surface truth | Done | `8bb9011584` records the findings closed and the check that keeps them closed |
+-| 006 validator and template debt | Done | `a1a213d2cf` authored the phase; `82938b3e1c`, `970a033381`, `cac56b9082` and `cb9fdb44f3` shipped it |
++| 006 validator and template debt | Done | `a1a213d2cf` authored the phase. `82938b3e1c`, `970a033381`, `cac56b9082` and `cb9fdb44f3` shipped it |
+ | 007 spec-kit residue | Done | Nine decisions ruled, two implemented. The suite runs to the end sharded, 12 of 12 shards in 34m00s, and its 181 failures split into 31 grouped by mechanism and 150 inside 049's delete |
+-| 008 drift after closure | Done | Both gates re-run on 2026-09-05 with per-row artifacts; scaffold suite 9 of 9 after three loader paths; one signal retired, two findings owned |
+-| Findings register | Done | `d7f70069b9` gives every finding an owner and every phase a runnable gate; phase 008 adds rows 41 to 45 |
++| 008 drift after closure | Done | Both gates re-run on 2026-09-05 with per-row artifacts. Scaffold suite 9 of 9 after four loader paths. One signal retired, one keyword collision fixed, the parity pin made deterministic, one validator finding owned, and an independent review worked through |
++| Findings register | Done | `d7f70069b9` gives every finding an owner and every phase a runnable gate. Phase 008 adds rows 41 to 45 |
+ 
+ ### Deviations and findings
+ 
+@@ -126,6 +126,6 @@ and findings belong here.
+ | Phase 004 narrowed after measurement | It was scoped believing vocabulary collision was the main obstacle. Gate B showed 94 of 180 prompts match no declared word in any form, so keyword ownership cannot reach them |
+ | The semantic lane left off | Enabling it is a scoring change, and D2 forbids one here. It moves to its own packet under `specs/system-skill-advisor/` |
+ | Phase 007 overtaken by packet 049 | `specs/system-speckit/049-memory-decommission` deletes the tree most of the residue lives in. The 007 goal carries the per-decision mapping, and ADR-009 extends the same test to the residue itself. 049 has since closed and the tree is gone |
+-| The parent documents lagged the tree | The map read Pending for six closed phases, the goal's criteria were unchecked though met, and the roadmap called 049 Pending after it closed. Reconciled in phase 008; the validator had passed throughout, which is a finding about the validator recorded in the register |
++| The parent documents lagged the tree | The map read Pending for six closed phases, the goal's criteria were unchecked though met, and the roadmap called 049 Pending after it closed. Reconciled in phase 008. The validator had passed throughout, which is a finding about the validator recorded in the register |
+ | The spec-kit scaffolder broke two days after closure | `b4c2484696` nested the CLI workspace and the render wrapper lost its loader. Every Level 3 scaffold wrote no documents until phase 008 fixed three path literals |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/sk-doc/052-routing-completeness/graph-metadata.json b/specs/sk-doc/052-routing-completeness/graph-metadata.json
+index b3a58f6e07..4673ad5280 100644
+--- a/specs/sk-doc/052-routing-completeness/graph-metadata.json
++++ b/specs/sk-doc/052-routing-completeness/graph-metadata.json
+@@ -53,6 +53,8 @@
+       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+       ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
++      ".opencode/skills/system-spec-kit/SKILL.md",
++      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+       "research/findings-register.md",
+       "001-transport-and-baseline/goal.md",
+       "002-gate-a-signal-closure/goal.md",
+@@ -100,6 +102,18 @@
+         "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+         "source": "derived"
+       },
++      {
++        "name": "SKILL.md",
++        "kind": "doc",
++        "path": ".opencode/skills/system-spec-kit/SKILL.md",
++        "source": "derived"
++      },
++      {
++        "name": "skill_advisor.py",
++        "kind": "file",
++        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
++        "source": "derived"
++      },
+       {
+         "name": "findings-register.md",
+         "kind": "doc",
+@@ -181,17 +195,17 @@
+     ],
+     "causal_summary": "A hub can be complete in every registry and still not be reachable",
+     "created_at": "2026-09-02T16:33:39Z",
+-    "last_save_at": "2026-09-05T13:55:09.942Z",
++    "last_save_at": "2026-09-05T14:37:41.610Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+       "spec.md",
+       "goal.md"
+     ],
+-    "source_fingerprint": "sha256:06324592d50f6ea3a0ca4b42f59ed939d675dda1b0f2a9912fc2c63b70269350",
++    "source_fingerprint": "sha256:f9923084e753f60152fa731263b254eec5a822d04e0e2065f01d5392c7c361df",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "a4121d4af25879445fd3668008cf9c56e972c7977285815ab7c2eb5096264039"
++      "spec.md": "d0b6c4ab562cd371915d6fd5dc16ef31d489d9cb08cf93703d139876b60b2784"
+     },
+     "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+     "last_active_at": "2026-09-02T21:41:53.247Z"
+diff --git a/specs/sk-doc/052-routing-completeness/research/findings-register.md b/specs/sk-doc/052-routing-completeness/research/findings-register.md
+index 1ba4ad8064..b2719d3d93 100644
+--- a/specs/sk-doc/052-routing-completeness/research/findings-register.md
++++ b/specs/sk-doc/052-routing-completeness/research/findings-register.md
+@@ -56,9 +56,9 @@ with those phases rather than being asserted from this document.
+ | 16 | Bare single-word tokens let one hub swallow another hub's core purpose | 004 | Fixed | `f8c2595ce0` qualified the three tokens |
+ | 17 | Stage-one signals existed with no stage-two class to resolve to | 004 | Fixed | `461ef9261f` gave four of the five a class |
+ | 18 | The benchmark mode reached its hub and resolved to nothing | 004 | Fixed | `461ef9261f` |
+-| 41 | `spec kit runtime` declared by the CLI hub is won by `system-spec-kit` at 0.93 once the spec-kit engine moved under `runtime/` | 008 | Fixed | Retired from both intent-signal lists on 2026-09-05; mint `already-exists`, guard fresh, live replay `system-spec-kit` first and `delegate to opencode` still on the CLI hub. `008-drift-after-closure/decision-record.md` ADR-003 |
+-| 42 | `trigger_phrases`, declared by `sk-doc` and resolved at 0.488 on 2026-09-04, returns nothing from both scorers on 2026-09-05 with no rejection reason and no change to the hub's metadata | 008 | Planned | Owner `system-skill-advisor`. `importance_tier` and `contextType` beside it still resolve. ADR-003 in phase 008 holds the evidence; a sweep of every underscored declared signal is the first step |
+-| 43 | The Python and TypeScript parity pin reads three different numbers in one session, 113/108, 114/108 and 114/107 with two added regressions under an empty database directory, because the Python reference loads the daemon's local skill graph | 008 | Planned | Owner `system-skill-advisor`. Not in CI. Left unedited by D2; ADR-002 in phase 008 records all three readings and the two row ids |
++| 41 | `spec kit runtime` declared by the CLI hub is won by `system-spec-kit` at 0.93 once the spec-kit engine moved under `runtime/` | 008 | Fixed | Retired from both intent-signal lists on 2026-09-05. Mint `already-exists`, guard fresh, live replay `system-spec-kit` first and `delegate to opencode` still on the CLI hub. `008-drift-after-closure/decision-record.md` ADR-003 |
++| 42 | `trigger_phrases`, declared by `sk-doc` and resolved at 0.488 on 2026-09-04, returned nothing from both scorers on 2026-09-05 | 008 | Fixed | Spec-kit's keyword line had gained `trigger-phrases`, whose underscore variant tied sk-doc's explicit evidence and tripped the low-information abstention at `fusion.ts:808`. Keyword removed, daemon rebuilt, `sk-doc` 0.487 on replay, Gate A 344 of 388 after. ADR-003 in phase 008 |
++| 43 | The Python and TypeScript parity pin read three different numbers in one session because the test imported the scorer after it had read the local database and the Python reference never honoured the directory override | 008 | Fixed | `skill_advisor.py` honours `SYSTEM_SKILL_ADVISOR_DB_DIR`, the test pins the regime before a dynamic import, pins re-baselined to 109 and 102 with seven accepted rows, 2 passed twice. ADR-002 in phase 008 |
+ 
+ ---
+ 
+@@ -85,7 +85,7 @@ with those phases rather than being asserted from this document.
+ | 28 | Forty-eight planning documents carry boilerplate from a template since corrected | 006 | Fixed | `d229b0a24d` rewrote fifty-six documents, not forty-eight. Re-verified 2026-09-02: one match remains across `specs/`, the acceptance criterion that quotes the retired sentence |
+ | 29 | A rule template emitted a banned character on the line its contract called verbatim | 006 | Fixed | `c1b3b780c3` corrected the template, and all nine shipped rules already used the other form |
+ | 30 | Sixteen documents lacked the overview section the validator requires | 006 | Fixed | `d87e8dd162` fixed fourteen and left two scanner fixtures under the exemption |
+-| 44 | The spec validator reported `PLACEHOLDER_FILLED` passing on a parent `spec.md` carrying 69 bracket placeholders, and `AC_CLOSURE` inactive below Level 2 on a Level 3 phase parent, so a closed packet with template boilerplate validated strict | 008 | Planned | Owner `system-spec-kit`. `check-placeholders.sh` counted 69 on the parent and 50 on phase 007 while `validate.sh --strict` printed `RESULT: PASSED`. The documents were filled by hand in phase 008; the rule gap is the finding |
++| 44 | The spec validator reported `PLACEHOLDER_FILLED` passing on a parent `spec.md` carrying 69 bracket placeholders, and `AC_CLOSURE` inactive below Level 2 on a Level 3 phase parent, so a closed packet with template boilerplate validated strict | 008 | Planned | Owner `system-spec-kit`. The rule at `orchestrator.ts:631` matches four marker forms and never the bracketed text the shell checker counts. Widening it is a fleet gate change. ADR-004 in phase 008 |
+ 
+ ---
+ 
+@@ -100,7 +100,7 @@ with those phases rather than being asserted from this document.
+ | 35 | Twelve test files collected no tests at all while reporting as failures | 007 | Fixed | Owned by phase 007 |
+ | 36 | A launcher killed itself on a redirected stdin, under the repository's own rule | 007 | Fixed | Owned by phase 007 |
+ | 37 | A daemon socket path exceeded the platform limit and could never bind | 007 | Fixed | Owned by phase 007 |
+-| 45 | After `b4c2484696` nested the CLI workspace, the render wrapper resolved its skill root one level up, found no tsx loader, and fell into an inline renderer that writes to stdout, so every Level 3 scaffold produced no documents | 008 | Fixed | Three loader literals repointed to the skill root, landed in `743e626543` from `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting` concurrently with this phase's identical edit. `scaffold-golden-snapshots.vitest.ts` 9 of 9 from 1 failed; a scratch Level 3 packet renders eleven documents. ADR-001 in phase 008 |
++| 45 | After `b4c2484696` nested the CLI workspace, the render wrapper resolved its skill root one level up, found no tsx loader, and fell into an inline renderer that writes to stdout, so every Level 3 scaffold produced no documents | 008 | Fixed | Four loader literals repointed to the skill root, three landed in `743e626543` from `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting` concurrently with this phase's identical edit. `scaffold-golden-snapshots.vitest.ts` 9 of 9 from 1 failed. A scratch Level 3 packet renders eleven documents. ADR-001 in phase 008 |
+ 
+ ---
+ 
+diff --git a/specs/sk-doc/052-routing-completeness/roadmap.md b/specs/sk-doc/052-routing-completeness/roadmap.md
+index dbc36f832f..822240758e 100644
+--- a/specs/sk-doc/052-routing-completeness/roadmap.md
++++ b/specs/sk-doc/052-routing-completeness/roadmap.md
+@@ -22,7 +22,7 @@ contextType: "general"
+ ## 1. METADATA
+ 
+ **Subject:** Routing completeness, findings closure, and what follows them
+-**Status:** Closed, with three owned follow-ups outside the packet
++**Status:** Closed, with one owned follow-up outside the packet
+ **Horizon:** 2026-09 onward
+ **Owner:** Operator
+ **Last updated:** 2026-09-05
+@@ -36,17 +36,18 @@ contextType: "general"
+ **Now:** The packet is closed. Phase `008-drift-after-closure` re-measured both gates on
+ 2026-09-05 against the tree as it stands after `b4c2484696` nested the spec-kit CLI under
+ `runtime/` and after `specs/system-speckit/049-memory-decommission` closed and removed
+-`mcp-server/`. Gate A reads 343 of 388, two rows off its 2026-09-04 recording, both ruled.
++`mcp-server/`. Gate A reads 343 of 388 before the fixes and 344 after, with the retired signal the only row still off its 2026-09-04 recording.
+ Gate B reads 20 of 180, one prompt off. The scaffolder the nesting had broken renders a full
+ packet again, proven by the suite that was red.
+ 
+-Three findings leave the packet with an owner rather than a fix, all recorded in phase 008's
+-decision record and in register rows 42 to 44. Two belong to `system-skill-advisor`: a
+-declared signal that returns nothing from both scorers with no known mechanism, and a parity
+-pin that reads three numbers in one session because the Python reference loads the daemon's
+-local skill graph. One belongs to `system-spec-kit`: the strict validator passed a parent
+-spec carrying 69 bracket placeholders and reports acceptance closure inactive on a Level 3
+-phase parent.
++One finding leaves the packet with an owner rather than a fix, recorded in phase 008's
++ADR-004 and in register row 44, and it belongs to `system-spec-kit`: the strict validator's
++placeholder rule matches four marker forms and never the bracketed template text the shell
++checker counts, so a parent spec carrying 69 placeholders validated strict. Widening the
++rule is a fleet gate change. The two advisor findings the first pass had owned were both
++traced and fixed: a keyword collision that killed a declared signal, and a parity pin that
++tracked a local database because one scorer honoured the directory override and its
++reference did not.
+ 
+ **Next:** Planned. Four items, three of them skill follow-ups already scaffolded and one
+ fleet sweep.
+@@ -74,7 +75,7 @@ deliverable and some of those characters are load-bearing. Exit signal: every on
+ templates has a recorded decision, fix or keep with the reason.
+ 
+ All three follow-up phases hold a goal.md, authored on 2026-09-02. Read the phase goal
+-before working the phase; its criteria bind.
++before working the phase. Its criteria bind.
+ 
+ **Later:** Done as a plan. Focus: `specs/system-skill-advisor/023-semantic-lane-enablement`,
+ five planned phases, no code change. Gate B measures 8 of 172 realistic phrasings, 4.7 percent,
+@@ -96,15 +97,15 @@ while these numbers stand.
+ Evidence: `03f5db4876`, "plan routing completeness, and settle which scorer governs it".
+ 
+ **Gate A measured across five hubs:** phase Now, target 2026-09-02. Status: Done. Evidence:
+-`dbc8678c9d` records 234 of 444; `08eb67a0de` resolves half the vocabulary that reached
+-nothing; `726af58b4c` closes the signal audit at 345 of 388.
++`dbc8678c9d` records 234 of 444. `08eb67a0de` resolves half the vocabulary that reached
++nothing. `726af58b4c` closes the signal audit at 345 of 388.
+ 
+ **Gate B measured on a realistic corpus:** phase Now, target 2026-09-02. Status: Done.
+-Evidence: `4a5de9e52b` records 8 of 180; `8c6d6fd455` fixes the denominator to 172.
++Evidence: `4a5de9e52b` records 8 of 180. `8c6d6fd455` fixes the denominator to 172.
+ 
+ **Every finding owned:** phase Now, target 2026-09-02. Status: Done. Evidence: `d7f70069b9`,
+ "give every finding an owner and every phase a runnable gate", and
+-`research/findings-register.md`, forty-five rows on 2026-09-05.
++`research/findings-register.md`, forty-five rows on 2026-09-05, 27 Fixed.
+ 
+ **Hub surfaces reconciled with a check behind them:** phase Now, target 2026-09-02. Status:
+ Done. Evidence: `8bb9011584`.
+@@ -113,7 +114,7 @@ Done. Evidence: `8bb9011584`.
+ "the suite never completed because of an infinite loop on the save path".
+ 
+ **Residue decisions closed against 049:** phase Now, target on 049 phase 003 landing. Status:
+-Done. Evidence: `0467949fc8` and `4be7058385`; nine rulings in
++Done. Evidence: `0467949fc8` and `4be7058385`. Nine rulings in
+ `007-spec-kit-residue/decision-record.md`, and 049 has since closed with the tree removed in
+ `aef7852400`.
+ 
+@@ -122,7 +123,7 @@ Evidence: `008-drift-after-closure/research/`, two artifacts with the recorded b
+ the re-run bucket, and the scaffold suite at 9 of 9.
+ 
+ **Three follow-up phases authored:** phase Next, target after the residue closes. Status: In
+-Progress. Evidence: a goal.md exists at each of the three paths above as of 2026-09-02; none
++Progress. Evidence: a goal.md exists at each of the three paths above as of 2026-09-02. None
+ of the three phases has run yet.
+ 
+ **Fleet template sweep decided:** phase Next, target after the follow-up phases. Status:
+@@ -145,8 +146,8 @@ delete that happened rather than one that was planned. Nothing remains to re-che
+ 
+ **The advisor scorer holding still:** needed by every measurement in this packet, owner
+ Operator. Status: Ready. Risk and mitigation: changing the scorer voids Gate A and Gate B
+-together. The semantic lane work is deliberately a separate packet for this reason, and phase
+-008's parity finding is left for the advisor owner for the same reason.
++together. The semantic lane work is deliberately a separate packet for this reason. Phase 008's
++parity fix touched the reference's database path and the test's regime, not the scorer.
+ 
+ **Goal documents for the three follow-up phases:** needed by the Next milestone, owner
+ whoever picks the phase up. Status: Ready. Risk and mitigation: all three exist as of
+diff --git a/specs/sk-doc/052-routing-completeness/spec.md b/specs/sk-doc/052-routing-completeness/spec.md
+index 2f8019194f..1af71b5dc4 100644
+--- a/specs/sk-doc/052-routing-completeness/spec.md
++++ b/specs/sk-doc/052-routing-completeness/spec.md
+@@ -24,13 +24,13 @@ Routing across the five parent hubs was measured instead of assumed, and the mea
+ became the packet: Gate A counts declared signals that reach exactly one mode, Gate B counts
+ phrasings people actually type that reach the intended mode. Seven phases moved Gate A from
+ 234 of 444 to 345 of 388, found that Gate B is bounded by a structural cause keywords cannot
+-reach, gave every one of forty findings an owner, and closed the spec-kit residue against
++reach, gave every one of forty-five findings an owner, and closed the spec-kit residue against
+ the packet that deletes most of it. An eighth phase re-measured both gates two days after
+ closure, repaired the scaffolder a runtime nesting had broken, and recorded the two numbers
+ that moved.
+ 
+ **Key Decisions**: the advisor daemon governs and the scorer does not change while these
+-numbers stand; every finding is fixed, owned by a phase, or closed as a recorded decision;
++numbers stand. Every finding is fixed, owned by a phase, or closed as a recorded decision.
+ a collision between hubs is decided by the losing hub's own written boundary.
+ 
+ **Critical Dependencies**: the advisor scorer holding still, and packet 049's delete list
+@@ -112,7 +112,8 @@ authority. At packet level the surfaces are:
+ | `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modify | Invariant 6c, the mode table's command column against the registry |
+ | `.opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py` | Modify | Template payload scanning, fence closing on a marker at least as long as the opener, emitted frontmatter masked |
+ | `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Modify | Fixture-tree exemption matching the packaging gate |
+-| `.opencode/skills/system-spec-kit/runtime/cli/` tests, `generate-context.ts`, and three loader path literals | Modify | Residue closed against 049, injectable project root, scaffold loader resolved from the skill root |
++| `.opencode/skills/system-spec-kit/runtime/cli/` tests, `generate-context.ts`, and four loader path literals | Modify | Residue closed against 049, injectable project root, scaffold loader resolved from the skill root |
++| `.opencode/skills/system-spec-kit/SKILL.md` and `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Modify | A colliding keyword removed, and the Python reference made to honour the database override |
+ | `research/findings-register.md` | Create | Forty-five findings, each Fixed, Planned or Decision |
+ <!-- /ANCHOR:scope -->
+ 
+@@ -148,8 +149,8 @@ authority. At packet level the surfaces are:
+ ## 5. SUCCESS CRITERIA
+ 
+ - **SC-001**: Gate A reads 345 of 388 on 2026-09-04 and 343 of 388 on 2026-09-05, both from committed per-row artifacts, with the two moved rows ruled
+-- **SC-002**: Gate B reads 8 of 180 at baseline, 21 of 180 after the vocabulary fixes, and 20 of 180 on 2026-09-05, each from a committed artifact
+-- **SC-003**: All forty-five register rows carry a state, and `validate.sh --strict --recursive` prints `RESULT: PASSED` for the parent and every child
++- **SC-002**: Gate B reads 8 of 180 at baseline and 20 of 180 on 2026-09-05, each from a committed per-row artifact, and 21 of 180 after the vocabulary fixes as recorded in phase 003's acceptance evidence
++- **SC-003**: All forty-five register rows read Fixed, Planned or Decision, counting the closed-by-decision table as Decision, and `validate.sh --strict --recursive` prints `RESULT: PASSED` for the parent and every child
+ <!-- /ANCHOR:success-criteria -->
+ 
+ ---
+@@ -160,8 +161,8 @@ authority. At packet level the surfaces are:
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+ | Dependency | The advisor scorer holding still | Any scoring change voids Gate A and Gate B together | The semantic lane work moved to its own packet under `specs/system-skill-advisor/` |
+-| Dependency | Packet 049's delete list | A residue decision closed as superseded is wrong if the scope moves | Each ruling records the check date; 049 has since closed |
+-| Risk | A green gate that reads registries and nothing else | High | Phase 005 added the command-column check; phase 006 made templates scan their payload |
++| Dependency | Packet 049's delete list | A residue decision closed as superseded is wrong if the scope moves | Each ruling records the check date. 049 has since closed |
++| Risk | A green gate that reads registries and nothing else | High | Phase 005 added the command-column check. Phase 006 made templates scan their payload |
+ | Risk | The tree moving under the numbers after closure | Med | Phase 008 re-measured within two days and fixed the scaffold the move broke |
+ <!-- /ANCHOR:risks -->
+ 
+@@ -175,7 +176,7 @@ authority. At packet level the surfaces are:
+ - **NFR-P01**: A full Gate B sweep of 180 daemon calls completes inside one daemon generation window, so every row describes one state
+ 
+ ### Security
+-- **NFR-S01**: No test in the residue writes into the real `specs/` tree; the save path's write guard stays in force
++- **NFR-S01**: No test in the residue writes into the real `specs/` tree. The save path's write guard stays in force
+ 
+ ### Reliability
+ - **NFR-R01**: Every number in this packet is reproducible by re-running the committed corpus through the committed command
+@@ -185,8 +186,8 @@ authority. At packet level the surfaces are:
+ ## 8. EDGE CASES
+ 
+ ### Data Boundaries
+-- Empty input: a prompt that returns no recommendation is counted as empty, never as a wrong hub; 93 of 180 do
+-- Maximum length: the corpora are fixed at 388 signals and 180 prompts; a run returning a different count is a runner defect
++- Empty input: a prompt that returns no recommendation is counted as empty, never as a wrong hub. 93 of 180 do
++- Maximum length: the corpora are fixed at 388 signals and 180 prompts. A run returning a different count is a runner defect
+ 
+ ### Error Scenarios
+ - External service failure: a daemon call that errors is an error row, excluded from the tally, with the error count stated
+@@ -198,7 +199,7 @@ authority. At packet level the surfaces are:
+ 
+ | Dimension | Score | Triggers |
+ |-----------|-------|----------|
+-| Scope | 20/25 | Files: five hubs, the advisor, the doctor check, two scanners, the spec-kit CLI; Systems: routing, validation, spec-kit |
++| Scope | 20/25 | Files: five hubs, the advisor, the doctor check, two scanners, the spec-kit CLI. Systems: routing, validation, spec-kit |
+ | Risk | 16/25 | Auth: N, API: N, Breaking: routing inputs every packet creation and every prompt pass through |
+ | Research | 18/20 | Two gates defined and measured, forty-five findings traced |
+ | Multi-Agent | 6/15 | Parallel review passes fed the register |
+@@ -277,7 +278,7 @@ misses.
+ | 5 | 005-hub-surface-truth/ | The hub documents that contradict their own registries, and a gate so they cannot again | Complete |
+ | 6 | 006-validator-and-template-debt/ | The fixture exemption, the template scanning gap, and the boilerplate a template keeps seeding | Complete |
+ | 7 | 007-spec-kit-residue/ | The remaining suite failures, the untypechecked tests, and the five calls that need a human | Complete |
+-| 8 | 008-drift-after-closure/ | Both gates re-measured after the runtime nesting, the scaffold it broke repaired, and the two moved numbers ruled | Complete |
++| 8 | 008-drift-after-closure/ | Both gates re-measured after the runtime nesting, the scaffold it broke repaired, the two moved numbers fixed at their producers, and the phase itself independently reviewed | Complete |
+ 
+ ### Phase Transition Rules
+ 

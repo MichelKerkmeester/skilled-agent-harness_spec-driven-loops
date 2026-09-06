@@ -1,6 +1,6 @@
 {
   "topic": "Hover and pointer states for the sk-create-chart corpus: what the twenty forms should do when a pointer arrives, and what logic and templates must carry it",
-  "maxIterations": 20,
+  "maxIterations": 5,
   "convergenceThreshold": 0.05,
   "antiConvergence": {
     "minIterations": 3,

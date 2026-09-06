@@ -1,0 +1,524 @@
+diff --git a/.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts b/.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts
+index ef12e22204..8735493846 100644
+--- a/.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts
++++ b/.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts
+@@ -315,6 +315,11 @@ export interface GatewayAllowResult {
+   readonly verdict: 'allow';
+   readonly decision: AuthorizationDecisionRecord;
+   readonly proof: GatewayAllowProof;
++  // The gateway never populates this on an allow path — it exists so a
++  // caller defensively logging the deny reason after checking both the
++  // verdict and the proof together can read the field on either member
++  // of the result union without narrowing first.
++  readonly reasonCode?: AuthorizationReasonCode;
+ }
+ 
+ export interface GatewayDenyResult {
+diff --git a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts
+index 1ff4d81f07..0eedfb4277 100644
+--- a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts
++++ b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts
+@@ -17,6 +17,7 @@ import type {
+ } from '../event-envelope/index.js';
+ import type {
+   LegacyProjectionContract,
++  LegacyProjectionJsonObject,
+   LegacyProjectionSurfaceContract,
+ } from './legacy-projection-types.js';
+ 
+@@ -50,11 +51,11 @@ import type {
+ // run to prove the test can go red.
+ const EMIT_COUNCIL_COMPLETE_ROW = true;
+ 
+-export interface CouncilStateProjectionState extends JsonObject {
++export interface CouncilStateProjectionState extends LegacyProjectionJsonObject {
+   readonly rows: readonly JsonObject[];
+ }
+ 
+-export interface CouncilSessionStateProjectionState extends JsonObject {
++export interface CouncilSessionStateProjectionState extends LegacyProjectionJsonObject {
+   readonly rows: readonly JsonObject[];
+ }
+ 
+diff --git a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts
+index 8de6eaf257..17455d5dad 100644
+--- a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts
++++ b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts
+@@ -17,6 +17,7 @@ import type {
+ } from '../event-envelope/index.js';
+ import type {
+   LegacyProjectionContract,
++  LegacyProjectionJsonObject,
+   LegacyProjectionSurfaceContract,
+ } from './legacy-projection-types.js';
+ 
+@@ -52,11 +53,11 @@ import type {
+ // red.
+ const EMIT_CLAIMS = true;
+ 
+-export interface DeepResearchProjectionsProjectionState extends JsonObject {
++export interface DeepResearchProjectionsProjectionState extends LegacyProjectionJsonObject {
+   readonly sources: readonly JsonObject[];
+-  readonly evidence: readonly JsonObject[];
+-  readonly claims: readonly JsonObject[];
+-  readonly supersessions: readonly JsonObject[];
++  readonly evidence: readonly LegacyProjectionJsonObject[];
++  readonly claims: readonly LegacyProjectionJsonObject[];
++  readonly supersessions: readonly LegacyProjectionJsonObject[];
+ }
+ 
+ export interface CreateDeepResearchProjectionsProjectionContractOptions {
+@@ -132,7 +133,7 @@ function buildEvidenceRecord(
+   scope: Record<string, unknown>,
+   data: Record<string, unknown>,
+   occurredAt: string,
+-): JsonObject {
++): LegacyProjectionJsonObject {
+   return Object.freeze({
+     iteration: iterationFrom(scope),
+     sourceVersionId: asString(scope.sourceVersionId),
+@@ -152,7 +153,7 @@ function buildClaimRecord(
+   scope: Record<string, unknown>,
+   data: Record<string, unknown>,
+   occurredAt: string,
+-): JsonObject {
++): LegacyProjectionJsonObject {
+   // claim_asserted carries no relatedClaimVersionId and asserts the
+   // 'asserts' relation; claim_relation_recorded carries an explicit
+   // relatedClaimVersionId and relation. Both populate the same registry
+@@ -182,7 +183,7 @@ function buildSupersessionRecord(
+   scope: Record<string, unknown>,
+   data: Record<string, unknown>,
+   occurredAt: string,
+-): JsonObject {
++): LegacyProjectionJsonObject {
+   return Object.freeze({
+     iteration: iterationFrom(scope),
+     priorClaimVersionId: asString(data.priorClaimVersionId),
+diff --git a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts
+index ba08e40917..a09032cabc 100644
+--- a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts
++++ b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts
+@@ -17,6 +17,7 @@ import type {
+ } from '../event-envelope/index.js';
+ import type {
+   LegacyProjectionContract,
++  LegacyProjectionJsonObject,
+   LegacyProjectionSurfaceContract,
+ } from './legacy-projection-types.js';
+ 
+@@ -51,10 +52,10 @@ import type {
+ // the negative-control run to prove the findings assertion can go red.
+ const EMIT_FINDINGS = true;
+ 
+-export interface DeepReviewProjectionsProjectionState extends JsonObject {
+-  readonly findings: readonly JsonObject[];
++export interface DeepReviewProjectionsProjectionState extends LegacyProjectionJsonObject {
++  readonly findings: readonly LegacyProjectionJsonObject[];
+   readonly evidence: readonly JsonObject[];
+-  readonly adjudications: readonly JsonObject[];
++  readonly adjudications: readonly LegacyProjectionJsonObject[];
+   readonly lineage: readonly JsonObject[];
+ }
+ 
+@@ -102,7 +103,7 @@ function buildFindingRecord(
+   scope: Record<string, unknown>,
+   data: Record<string, unknown>,
+   occurredAt: string,
+-): JsonObject {
++): LegacyProjectionJsonObject {
+   return Object.freeze({
+     candidateId: asString(scope.candidateId),
+     dimensionId: asString(scope.dimensionId),
+@@ -161,7 +162,7 @@ function buildAdjudicationRecord(
+   scope: Record<string, unknown>,
+   data: Record<string, unknown>,
+   occurredAt: string,
+-): JsonObject {
++): LegacyProjectionJsonObject {
+   return Object.freeze({
+     findingId: asString(scope.findingId),
+     candidateId: asString(scope.candidateId),
+diff --git a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts
+index 1235025054..3f2f64640a 100644
+--- a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts
++++ b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts
+@@ -17,6 +17,7 @@ import type {
+ } from '../event-envelope/index.js';
+ import type {
+   LegacyProjectionContract,
++  LegacyProjectionJsonObject,
+ } from './legacy-projection-types.js';
+ 
+ // ───────────────────────────────────────────────────────────────────
+@@ -30,7 +31,7 @@ import type {
+ // only by the negative-control run to prove the test can go red.
+ const EMIT_ITERATION_ROWS = true;
+ 
+-export interface DeepReviewProjectionState extends JsonObject {
++export interface DeepReviewProjectionState extends LegacyProjectionJsonObject {
+   readonly rows: readonly JsonObject[];
+ }
+ 
+diff --git a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts
+index 23367f732b..1c41511c1e 100644
+--- a/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts
++++ b/.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts
+@@ -9,6 +9,7 @@ import type {
+ import type {
+   EventReadResult,
+   JsonObject,
++  JsonPrimitive,
+ } from '../event-envelope/index.js';
+ import type { DerivedReplayFingerprint } from '../replay-fingerprint/index.js';
+ import type {
+@@ -25,8 +26,31 @@ export type LegacyProjectionFormat = 'json' | 'jsonl' | 'md';
+ /** Existing writer boundary at which a shadow artifact becomes eligible to refresh. */
+ export type LegacyProjectionRefreshBoundary = 'event' | 'lifecycle';
+ 
++// Every fold below builds its state with Object.freeze end to end, so the
++// row and array-valued fields are declared `readonly` to keep that
++// immutability visible in the type. JsonObject's index signature only
++// accepts a mutable JsonValue[], so a state shape carrying a genuinely
++// frozen `readonly X[]` field cannot satisfy JsonObject directly without
++// either dropping the freeze or dropping the readonly annotation — both
++// would misdescribe what the fold actually returns. This pair mirrors
++// JsonValue/JsonObject's own recursive shape with the array arm widened
++// to readonly, so a frozen projection state can satisfy one index
++// signature without losing its readonly element type or its
++// Object.freeze call. A plain JsonObject is still assignable here since
++// every one of its arms (primitives, nested JsonObject, mutable arrays)
++// is a narrower case of the arms below.
++export type LegacyProjectionJsonValue =
++  | JsonPrimitive
++  | LegacyProjectionJsonObject
++  | readonly LegacyProjectionJsonValue[];
++
++/** JSON object shape identical to JsonObject except each property may also hold a readonly array. */
++export interface LegacyProjectionJsonObject {
++  [key: string]: LegacyProjectionJsonValue;
++}
++
+ /** Immutable starting point for a projection fold. */
+-export interface LegacyProjectionBase<TState extends JsonObject> {
++export interface LegacyProjectionBase<TState extends LegacyProjectionJsonObject> {
+   readonly baseSha: string;
+   readonly baseDigest: string;
+   readonly bytes: Uint8Array;
+@@ -35,7 +59,7 @@ export interface LegacyProjectionBase<TState extends JsonObject> {
+ }
+ 
+ /** Versioned pure fold plus the exact legacy serializer for one artifact. */
+-export interface LegacyProjectionContract<TState extends JsonObject> {
++export interface LegacyProjectionContract<TState extends LegacyProjectionJsonObject> {
+   readonly artifactId: string;
+   readonly censusSurfaceId: string;
+   readonly ledgerId: string;
+diff --git a/.opencode/skills/system-spec-kit/README.md b/.opencode/skills/system-spec-kit/README.md
+index 86aebc22aa..f8ae74beac 100644
+--- a/.opencode/skills/system-spec-kit/README.md
++++ b/.opencode/skills/system-spec-kit/README.md
+@@ -443,8 +443,8 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
+ | [`SKILL.md`](./SKILL.md) | AI agent instructions: routing rules, gates, validation procedures, template application |
+ | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `runtime/cli/` and `runtime/` |
+ | [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
+-| [`runtime/cli/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
+-| [`runtime/cli/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
++| [`runtime/cli/spec/create.sh`](./runtime/cli/spec/create.sh) | create spec folders with level-appropriate template files |
++| [`runtime/cli/spec/validate.sh`](./runtime/cli/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
+ | `runtime/cli/dist/continuity/generate-context.js` | update packet continuity state from structured JSON |
+ | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |
+ | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | manual scenarios that validate the catalog |
+diff --git a/.opencode/skills/system-spec-kit/SKILL.md b/.opencode/skills/system-spec-kit/SKILL.md
+index 65a0a47964..5791d4eedd 100644
+--- a/.opencode/skills/system-spec-kit/SKILL.md
++++ b/.opencode/skills/system-spec-kit/SKILL.md
+@@ -100,7 +100,7 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
+ - Template usage and composition rules: [template-guide.md](./references/templates/template-guide.md)
+ - Use the Level contract for operational templates; `create.sh` and the Level contract resolver share the same template index.
+ - Use `templates/changelog/` for packet-local nested changelog generation at completion time.
+-- Script architecture, build outputs, and runtime entrypoints: [runtime/cli/README.md](./scripts/README.md)
++- Script architecture, build outputs, and runtime entrypoints: [runtime/cli/README.md](./runtime/cli/README.md)
+ - Memory save JSON schema and workflow contracts: [save-workflow.md](./references/memory/save-workflow.md)
+ - Nested packet changelog workflow: [nested-changelog.md](./references/workflows/nested-changelog.md)
+ 
+@@ -507,7 +507,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
+ | Command | Usage |
+ | --- | --- |
+ | Canonical intake | `/speckit:plan --intake-only "Description"` |
+-| Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
++| Create spec folder | `./runtime/cli/spec/create.sh "Description" --short-name name --level 2` |
+ | Validate | `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/` |
+ | Verify code alignment drift | `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
+ | Save context | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/.scan-one-fast.sh b/.opencode/skills/system-spec-kit/runtime/cli/.scan-one-fast.sh
+deleted file mode 100755
+index 36843f3a86..0000000000
+--- a/.opencode/skills/system-spec-kit/runtime/cli/.scan-one-fast.sh
++++ /dev/null
+@@ -1,31 +0,0 @@
+-#!/usr/bin/env bash
+-# Validate ONE spec folder with 15s timeout, single summary line.
+-set -euo pipefail
+-folder="${1:?folder required}"
+-VALIDATE="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+-ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs"
+-tmp=$(mktemp)
+-( bash "$VALIDATE" "$folder" --strict >"$tmp" 2>&1 ) & pid=$!
+-( sleep 15 && kill -9 "$pid" 2>/dev/null || true ) & killer=$!
+-wait "$pid" 2>/dev/null || true
+-kill "$killer" 2>/dev/null || true
+-wait "$killer" 2>/dev/null || true
+-out=$(cat "$tmp")
+-rm -f "$tmp"
+-rel="${folder#$ROOT/}"
+-summary=$(printf '%s\n' "$out" | grep -E "^  Summary:" | head -1 || true)
+-if [ -z "$summary" ]; then
+-  echo "TIMEOUT_OR_FAIL | $rel"
+-  exit 0
+-fi
+-errs=$(printf '%s\n' "$summary" | sed -n 's/.*Errors: \([0-9]*\).*/\1/p' || true)
+-warns=$(printf '%s\n' "$summary" | sed -n 's/.*Warnings: \([0-9]*\).*/\1/p' || true)
+-if [ "${errs:-0}" -gt 0 ]; then
+-  rules=$(printf '%s\n' "$out" | grep -E "^✗ [A-Z_]+:" | sed 's/^✗ \([A-Z_]*\):.*/\1/' | sort -u | paste -sd, - || true)
+-  echo "ERR=${errs} WARN=${warns} | $rel | rules=$rules"
+-elif [ "${warns:-0}" -gt 0 ]; then
+-  rules=$(printf '%s\n' "$out" | grep -E "^⚠ [A-Z_]+:" | sed 's/^⚠ \([A-Z_]*\):.*/\1/' | sort -u | paste -sd, - || true)
+-  echo "ERR=0 WARN=${warns} | $rel | rules=$rules"
+-else
+-  echo "CLEAN | $rel"
+-fi
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/.scan-validate-all.py b/.opencode/skills/system-spec-kit/runtime/cli/.scan-validate-all.py
+deleted file mode 100644
+index 439335d347..0000000000
+--- a/.opencode/skills/system-spec-kit/runtime/cli/.scan-validate-all.py
++++ /dev/null
+@@ -1,73 +0,0 @@
+-#!/usr/bin/env python3
+-"""Run validate.sh --strict across every spec folder and summarize failures."""
+-import subprocess
+-import re
+-from pathlib import Path
+-
+-ROOT = Path('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs')
+-VALIDATE = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh'
+-EXCLUDES = ('/z_archive/', '/z-future/', '/research/iterations/', '/review/iterations/',
+-            '/.tmp/', '/tmp-test-fixtures/')
+-
+-folders = set()
+-for p in ROOT.rglob('spec.md'):
+-    s = str(p)
+-    if any(seg in s for seg in EXCLUDES):
+-        continue
+-    folders.add(str(p.parent))
+-
+-folders = sorted(folders)
+-print(f'Scanning {len(folders)} spec folders...')
+-
+-passed = 0
+-warns_only = 0
+-errors = 0
+-error_list = []
+-warn_list = []
+-
+-for f in folders:
+-    try:
+-        r = subprocess.run(['bash', VALIDATE, f, '--strict'],
+-                           capture_output=True, text=True, timeout=60)
+-        out = r.stdout + r.stderr
+-    except subprocess.TimeoutExpired:
+-        errors += 1
+-        rel = f[len(str(ROOT))+1:]
+-        error_list.append(f'{rel} | TIMEOUT')
+-        continue
+-    m = re.search(r'Summary: Errors: (\d+)\s+Warnings: (\d+)', out)
+-    if not m:
+-        errors += 1
+-        rel = f[len(str(ROOT))+1:]
+-        error_list.append(f'{rel} | NO_SUMMARY')
+-        continue
+-    e, w = int(m.group(1)), int(m.group(2))
+-    rel = f[len(str(ROOT))+1:]
+-    if e > 0:
+-        errors += 1
+-        # Collect error rule names
+-        err_rules = re.findall(r'^✗ ([A-Z_]+):', out, re.MULTILINE)
+-        error_list.append(f'{rel} | errors={e} warns={w} | rules={",".join(set(err_rules))}')
+-    elif w > 0:
+-        warns_only += 1
+-        warn_rules = re.findall(r'^⚠ ([A-Z_]+):', out, re.MULTILINE)
+-        warn_list.append(f'{rel} | warns={w} | rules={",".join(set(warn_rules))}')
+-    else:
+-        passed += 1
+-
+-print()
+-print('=== SUMMARY ===')
+-print(f'Total:       {len(folders)}')
+-print(f'PASSED:      {passed}')
+-print(f'WARNS only:  {warns_only}')
+-print(f'HAS ERRORS:  {errors}')
+-print()
+-print('=== FOLDERS WITH ERRORS ===')
+-for line in error_list:
+-    print(line)
+-print()
+-print(f'=== FOLDERS WITH WARNINGS ONLY ({len(warn_list)}) ===')
+-for line in warn_list[:30]:
+-    print(line)
+-if len(warn_list) > 30:
+-    print(f'...(and {len(warn_list)-30} more)')
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/package.json b/.opencode/skills/system-spec-kit/runtime/cli/package.json
+index 36216794ba..7ca0976ef3 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/package.json
++++ b/.opencode/skills/system-spec-kit/runtime/cli/package.json
+@@ -15,7 +15,7 @@
+     "rebuild": "npm run clean && npm run build",
+     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
+     "lint": "tsc --noEmit",
+-    "test": "vitest run --config ../vitest.config.ts --root . && npm run test:legacy && npm run test:validation",
++    "test": "vitest run --config ../../vitest.config.ts --project cli && npm run test:legacy && npm run test:validation",
+     "test:task-enrichment": "vitest run tests/task-enrichment.vitest.ts --config ../vitest.config.ts --root .",
+     "test:legacy": "npm run build && node tests/test-scripts-modules.js && node tests/test-extractors-loaders.js",
+     "test:validation": "node tests/test-validation-system.cjs && bash tests/test-validation.sh && bash tests/test-validation-extended.sh",
+diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+index 1bc012e35e..b2f2b4496f 100644
+--- a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
++++ b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+@@ -243,9 +243,11 @@ function buildProviderConfigFingerprint(provider: string): string {
+ function resolveSpecKitPackageRoot(): string | null {
+   let currentDir = path.dirname(fileURLToPath(import.meta.url));
+   while (currentDir !== path.dirname(currentDir)) {
++    // The package root is the directory that holds both workspaces. The database
++    // directory is what this root is used to derive, so its absence cannot be a
++    // reason to fail the lookup.
+     if (
+-      existsSync(path.join(currentDir, 'runtime', 'database'))
+-      && existsSync(path.join(currentDir, 'scripts'))
++      existsSync(path.join(currentDir, 'runtime', 'cli'))
+       && existsSync(path.join(currentDir, 'shared'))
+     ) {
+       return currentDir;
+diff --git a/.opencode/skills/system-spec-kit/templates/changelog/README.md b/.opencode/skills/system-spec-kit/templates/changelog/README.md
+index 5ecfc64495..58bfa110b6 100644
+--- a/.opencode/skills/system-spec-kit/templates/changelog/README.md
++++ b/.opencode/skills/system-spec-kit/templates/changelog/README.md
+@@ -88,7 +88,7 @@ Generation flow:
+ Run from the repository root after template edits:
+ 
+ ```bash
+-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
++bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+ ```
+ 
+ Generated changelogs should reference available packet docs and avoid claiming task completion beyond those docs.
+diff --git a/specs/system-speckit/052-memory-decommission-landing/goal.md b/specs/system-speckit/052-memory-decommission-landing/goal.md
+index befd005759..b7371529ec 100644
+--- a/specs/system-speckit/052-memory-decommission-landing/goal.md
++++ b/specs/system-speckit/052-memory-decommission-landing/goal.md
+@@ -130,6 +130,7 @@ and findings belong here.
+ | Nesting review remediation and the CLI package rename | Done | review of the `scripts/` to `runtime/cli/` move (packet 054 phase 002) returned CONDITIONAL, 1 P0 and 8 P1; F001 fixed at `6166bbc6df`, F002 to F009 at `e354f144b5` (package renamed `@spec-kit/cli`, build wrapped in the freshness pair, CI install step, script and spec-root registries, skill-root vitest projects, hoisted tsx and vitest), install strategy hoisted at `57ef5fe600`, disposition table and level reconcile at `743e626543`. Gates at `e354f144b5`: typecheck 0, dist fresh, 002 and control packet PASSED, route-validate OK, guard fresh, sweep live 0 |
+ | Retrieval exclusion lists derived from the shared corpus table | Done | `retrofit-convention.mjs` and `sweep-memory-residue.mjs` now derive from `corpus.mjs` plus a declared, reasoned delta; parity test fails on any undeclared difference; residue counts identical before and after (live 0), retrofit inventory byte-identical; in `e354f144b5` |
+ | Red-test lanes (busy work, GLM 5.3 Flash max) | Done | lane A (OpenRouter via cli-opencode) fixed five spec-kit red tests at the producer: chronology pointer carried verbatim so prune prediction matches apply, checklist read into the nested changelog, two registry entries whose resolvers left with the memory engine dropped, repair fixtures nested where packet rules apply. Lane B (DevPass via cli-pi) was killed after partial edits; its two behavioral changes reversed committed decisions (the reducer's warning-and-continue from the 016 audit, the council payload containment) and were reverted; the stale CLI-tree tests were aligned to the committed contracts instead, and the council guard now accepts a first write into a not-yet-created root. Three spawn-based tests repointed at the hoisted tsx loader. CLI project 1568 of 1589 passing, one red left: `recursive-child-manifest` targets the operator's in-flight 036 packet. Fixes landed inside the operator's in-flight commits `4497487153` and `9b485d7c67` (this session's pathspec commits found nothing left to stage). Deep-loop typecheck: 53 real errors surfaced once the node10 deprecation stopped masking them; a Sonnet lane is fixing them under packet 042 |
++| Nesting review, pass 2, attempt 1 | Done, rejected by the runner | ten iterations requested over the widened 453-file scope at `96843dcfc0`, GPT-5.6 LUNA max through DevPass (cli-opencode) after codex and the openai OAuth route were out of quota. The leaf ran all iterations inside one session in 19 minutes, wrote iterations 7 to 10 to malformed paths (a leading space, a `system-spec-kit` track typo); the containment check reverted eight paths and the runner declared the lineage fatal with six iterations and one state record on disk. Kept in the worktree as `luna-max-review-2.rejected`; findings triaged below |
+ 
+ ### Review findings and fixes
+ 
+diff --git a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/acceptance-criteria.md b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/acceptance-criteria.md
+index 933c496705..35b28d9918 100644
+--- a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/acceptance-criteria.md
++++ b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/acceptance-criteria.md
+@@ -44,7 +44,7 @@ _memory:
+ 
+ **Packet:** system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting
+ **Level:** 2
+-**Status:** Planned
++**Status:** Complete
+ **Date:** 2026-09-05
+ <!-- /ANCHOR:metadata -->
+ 
+diff --git a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/description.json b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/description.json
+index f7d0661db8..796e71b8dc 100644
+--- a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/description.json
++++ b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/description.json
+@@ -18,7 +18,7 @@
+     "validation",
+     "metadata"
+   ],
+-  "lastUpdated": "2026-09-05T14:49:19.230Z",
++  "lastUpdated": "2026-09-05T15:11:43.258Z",
+   "specId": "002",
+   "folderSlug": "scripts-into-runtime-nesting",
+   "parentChain": [
+diff --git a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/graph-metadata.json b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/graph-metadata.json
+index 08a7546468..3aeda58184 100644
+--- a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/graph-metadata.json
++++ b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/graph-metadata.json
+@@ -210,7 +210,7 @@
+     ],
+     "causal_summary": "`.opencode/skills/system-spec-kit/` runs two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (the `@spec-kit/scripts` CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
+     "created_at": "2026-09-05T06:13:04Z",
+-    "last_save_at": "2026-09-05T14:49:55.939Z",
++    "last_save_at": "2026-09-05T15:12:03.851Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -220,13 +220,13 @@
+       "acceptance-criteria.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:1f0110914bd4a59043f5be50e656f1ddd8ffa7bdf622529c7fbb09381ecfdc8b",
++    "source_fingerprint": "sha256:96d94eee6579bb44ae0dd40b1062c65939a54b18bbb62d2d6b7c62a44985d43a",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+       "spec.md": "1e3ae213bc7cd33a48c872fa6a3090a54618d131c42b6ef62f0904775f842d50",
+-      "plan.md": "1d9b8f76670caf398d00e6d474a9d42704ddaff454eb229b74f453129c87a562",
++      "plan.md": "0fe25c5670b5e640c009d9b3bddf7621aad600e0c1debe868451bd25f1dc4400",
+       "tasks.md": "142193e0c0c7531428eb9b997d3e4de62cf9ae1c418c0d9a407a38cdd04f9883",
+-      "implementation-summary.md": "abbe6a61838838658006360d22abfdd95b69bb5b7bb6ec3e83960591160ce4d7"
++      "implementation-summary.md": "b272db861bf8bb0e26334cd4fd4bbee8c81146a6bf5cc9cf364e84b86ee2726e"
+     },
+     "last_active_child_id": null,
+     "last_active_at": null
+diff --git a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/implementation-summary.md b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/implementation-summary.md
+index e95020b00e..6a8556a557 100644
+--- a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/implementation-summary.md
++++ b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/implementation-summary.md
+@@ -32,7 +32,7 @@ _memory:
+ <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+ # Implementation Summary
+ 
+-<!-- SPECKIT_LEVEL: 3 -->
++<!-- SPECKIT_LEVEL: 2 -->
+ <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+ 
+ ---
+diff --git a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/plan.md b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/plan.md
+index 07800a4aaa..1176e78fd9 100644
+--- a/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/plan.md
++++ b/specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting/plan.md
+@@ -43,9 +43,9 @@ This phase does not move any file. It builds a resolution-based inventory of eve
+ - [x] Dependencies identified
+ 
+ ### Definition of Done
+-- [ ] All acceptance criteria met
+-- [ ] `recommend-level.sh` run and its result recorded
+-- [ ] Docs updated (spec/plan/tasks)
++- [x] All acceptance criteria met — AC-001 to AC-004 Met in `acceptance-criteria.md`
++- [x] `recommend-level.sh` run and its result recorded — score 73 noted in `spec.md` metadata; executed at the Level 2 document set by operator instruction
++- [x] Docs updated (spec/plan/tasks)
+ <!-- /ANCHOR:quality-gates -->
+ 
+ ---
+@@ -163,9 +163,9 @@ Setup (rg pass + resolution filter) ──► Core (target-layout decision + lev
+ ## L2: ENHANCED ROLLBACK
+ 
+ ### Pre-deployment Checklist
+-- [ ] Backup created (if data changes) - not applicable, no data changes in this phase
+-- [ ] Feature flag configured - not applicable
+-- [ ] Monitoring alerts set - not applicable
++- [x] Backup created (if data changes) - not applicable, no data changes in this phase
++- [x] Feature flag configured - not applicable
++- [x] Monitoring alerts set - not applicable
+ 
+ ### Rollback Procedure
+ 1. Not applicable - this phase makes no filesystem change outside its own four documents.

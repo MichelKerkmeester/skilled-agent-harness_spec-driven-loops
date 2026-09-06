@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof",
+  "description": "Phases 001 through 007 land the register, the annotations and the delivery transfers, but nothing yet proves the corpus checker actually fails a form",
+  "keywords": [
+    "phases",
+    "land",
+    "register",
+    "annotations",
+    "delivery",
+    "transfers",
+    "nothing",
+    "proves",
+    "corpus",
+    "checker",
+    "actually",
+    "fails",
+    "form"
+  ],
+  "lastUpdated": "2026-09-06T04:42:30.067Z",
+  "specId": "008",
+  "folderSlug": "closure-and-proof",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

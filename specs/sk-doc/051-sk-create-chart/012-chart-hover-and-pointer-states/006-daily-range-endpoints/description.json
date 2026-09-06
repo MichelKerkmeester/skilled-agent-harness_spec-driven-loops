@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/006-daily-range-endpoints",
+  "description": "`daily-range` carries no interaction register at all today",
+  "keywords": [
+    "daily-range",
+    "carries",
+    "interaction",
+    "register",
+    "today"
+  ],
+  "lastUpdated": "2026-09-06T04:46:05.891Z",
+  "specId": "006",
+  "folderSlug": "daily-range-endpoints",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

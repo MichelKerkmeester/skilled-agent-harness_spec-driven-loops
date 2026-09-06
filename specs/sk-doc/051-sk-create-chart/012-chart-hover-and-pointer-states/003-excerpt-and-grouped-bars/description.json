@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/003-excerpt-and-grouped-bars",
+  "description": "`box-plot.html` carries a complete, working hover card, a click-to-pin path, a reduced-motion guard and a no-script fallback, all self-contained,",
+  "keywords": [
+    "box-plot",
+    "html",
+    "carries",
+    "complete",
+    "working",
+    "hover",
+    "card",
+    "click-to-pin",
+    "path",
+    "reduced-motion",
+    "guard",
+    "no-script",
+    "fallback",
+    "self-contained"
+  ],
+  "lastUpdated": "2026-09-06T04:46:05.890Z",
+  "specId": "003",
+  "folderSlug": "excerpt-and-grouped-bars",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -25,6 +25,7 @@ const { execFileSync } = require('child_process');
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
 const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
+const POINTER_CONTRACT = path.join(PACKAGE_ROOT, 'references', 'template-contract.md');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
 const EXAMPLE_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
 const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
@@ -1129,6 +1130,11 @@ function styleRules(css) {
 // merely styles the register would otherwise read as a file that carries it.
 const INTERACTION_REGISTERS = ['data-chart-tooltip', 'data-chart-legend', 'data-chart-dim'];
 const HYGIENE_RULE = /:focus\s*:not\(\s*:focus-visible\s*\)/;
+// A form that answers no pointer says so, and says why, in one attribute. It never joins
+// INTERACTION_REGISTERS: that array drives the focus-ring requirement below, and a form
+// that refuses the pointer owes no focus rule.
+const INERT_ATTR = 'data-chart-inert';
+const INERT_RULE = /\bdata-chart-inert\s*=\s*"([^"]*)"/;
 
 // A form that gains a pointer carries one line of interaction hygiene, and it is the narrowed
 // form: the focus ring is dropped for a reader who clicked and kept for a reader who tabbed.
@@ -1138,11 +1144,24 @@ const HYGIENE_RULE = /:focus\s*:not\(\s*:focus-visible\s*\)/;
 function checkInteractionHygiene(file, src) {
   const { styles, markup } = regionsOf(stripHtmlComments(src));
   const css = stripJsComments(styles.join('\n'));
-  tally('interaction-hygiene', 2);
+  tally('interaction-hygiene', 4);
 
   const carried = INTERACTION_REGISTERS.filter(function (attr) {
     return new RegExp('\\b' + attr + '\\b').test(markup);
   });
+
+  const inertMatch = INERT_RULE.exec(markup);
+  if (inertMatch) {
+    const reason = inertMatch[1].trim();
+    if (carried.length) {
+      record('interaction-hygiene', 'error', file,
+        `the markup declares data-chart-inert and ${carried.join(', ')}. A form cannot both refuse the pointer and answer it. Remove the inert declaration or the carried register`);
+    } else if (!reason) {
+      record('interaction-hygiene', 'error', file,
+        'the markup declares data-chart-inert with no reason. The value is the why, and an inert form that cannot say why the static figure suffices has not made the declaration');
+    }
+  }
+
   if (carried.length && !HYGIENE_RULE.test(css)) {
     record('interaction-hygiene', 'error', file,
       `the markup declares ${carried.join(', ')} and the stylesheet carries no ":focus:not(:focus-visible)" rule. A form that answers a pointer drops the focus ring for the reader who clicked and keeps it for the reader who tabbed, and a form that skips the line leaves a ring on every click`);
@@ -1592,6 +1611,9 @@ function findBrowser() {
 // times over is deliberate: a budget that only just clears the settle time turns every slow
 // machine into a failure nobody can reproduce.
 const RENDER_BUDGET_MS = 3000;
+// One extra attempt, not a loop: a spawn that lost a race succeeds immediately on the second
+// try, and a browser that genuinely cannot open the file fails just as fast twice.
+const RENDER_SPAWN_ATTEMPTS = 2;
 // Tall enough that the whole card and the table under it sit inside one frame. A short window
 // crops the page, and a comparison that only sees the top of a document is not a comparison of
 // the document.
@@ -1609,16 +1631,130 @@ function openOnce(browser, file, shot, scheme) {
   // picture sitting at this path, and comparing a stale artifact is how a check reports a pass
   // on something it never looked at.
   fs.rmSync(shot, { force: true });
-  try {
-    const dom = execFileSync(browser, [
-      '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars', scheme,
-      `--window-size=${RENDER_WINDOW}`, `--virtual-time-budget=${RENDER_BUDGET_MS}`,
-      '--dump-dom', `--screenshot=${shot}`, `file://${file}`,
-    ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
-    return { dom, pixels: fs.existsSync(shot) ? fs.readFileSync(shot) : null };
-  } catch (err) {
-    return { error: err.message };
+  // One run opens every file three or four times, so a full pass spawns the browser well over a
+  // hundred times in sequence. On a loaded machine one of those spawns occasionally dies before it
+  // writes anything, and the file it happens to land on is different every time. That is the
+  // machine, not the chart: the same file opens byte-identically when asked again. A single retry
+  // is what separates a real rendering failure, which repeats, from a spawn that lost a race,
+  // which does not. Only the spawn is retried; a document that comes back and disagrees with its
+  // twin is still a failure, because that is the condition these checks exist to catch.
+  let last;
+  for (let attempt = 0; attempt < RENDER_SPAWN_ATTEMPTS; attempt += 1) {
+    try {
+      const dom = execFileSync(browser, [
+        '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars', scheme,
+        `--window-size=${RENDER_WINDOW}`, `--virtual-time-budget=${RENDER_BUDGET_MS}`,
+        '--dump-dom', `--screenshot=${shot}`, `file://${file}`,
+      ], { encoding: 'utf8', timeout: 45000, stdio: ['ignore', 'pipe', 'ignore'] });
+      return { dom, pixels: fs.existsSync(shot) ? fs.readFileSync(shot) : null };
+    } catch (err) {
+      last = err;
+    }
   }
+  return { error: last.message };
+}
+
+
+// A card is the one part of a chart a static read cannot see: it exists only while a pointer is
+// on a mark, so no amount of reading the source proves what it says. This driver opens the card
+// on a sample of marks and reports the numbers it found, which is the only way to compare what
+// the pointer reveals against what the table carries.
+const CARD_READOUT_SAMPLES = 8;
+
+const CARD_READOUT_DRIVER = `<script>
+(function () {
+  var out = [];
+  // A cell may hold one number or a comma-and-space separated list of them. A thousands
+  // separator is a comma with no space after it, so splitting on comma-then-space is what
+  // separates a list of readings from a single large one.
+  function tokens(text) {
+    return text.split(/,\\s+/).map(function (t) { return t.replace(/[,\\s]/g, '').replace('\\u2212', '-'); });
+  }
+  function isNumber(t) { return /^-?\\d+(\\.\\d+)?%?$/.test(t); }
+  var result = { state: 'ok', sampled: 0, missing: [] };
+  try {
+    var marks = document.querySelectorAll('[data-mark]');
+    var table = document.querySelector('[data-chart-table]');
+    if (!marks.length) { result.state = 'no-marks'; }
+    else if (!table) { result.state = 'no-table'; }
+    else {
+      var cells = [];
+      table.querySelectorAll('td,th').forEach(function (c) { cells = cells.concat(tokens(c.textContent)); });
+      var step = Math.max(1, Math.floor(marks.length / ${CARD_READOUT_SAMPLES}));
+      for (var i = 0; i < marks.length; i += step) {
+        marks[i].dispatchEvent(new PointerEvent('pointermove', { bubbles: true, cancelable: true }));
+        var card = document.querySelector('[data-chart-tooltip]');
+        if (!card || !card.hasAttribute('data-open')) continue;
+        result.sampled++;
+        var shown = [];
+        card.querySelectorAll('text,tspan').forEach(function (n) {
+          if (!n.children.length) shown = shown.concat(tokens(n.textContent));
+        });
+        shown.filter(isNumber).forEach(function (v) {
+          if (cells.indexOf(v) === -1 && cells.indexOf(v.replace('%', '')) === -1) {
+            if (result.missing.indexOf(v) === -1) result.missing.push(v);
+          }
+        });
+      }
+      if (!result.sampled) result.state = 'card-never-opened';
+    }
+  } catch (err) {
+    result.state = 'driver-error';
+    result.detail = String(err && err.message ? err.message : err);
+  }
+  var node = document.createElement('pre');
+  node.id = 'chart-card-readout';
+  node.textContent = JSON.stringify(result);
+  document.body.appendChild(node);
+})();
+</script>`;
+
+function checkCardReadout(browser, file, shots, work) {
+  const src = fs.readFileSync(file, 'utf8');
+  // A form that refuses the pointer, or answers it with something other than a card, has no
+  // readout to compare. Those forms are covered by the register rules instead.
+  if (!/data-chart-tooltip/.test(src)) return;
+  tally('card-readout', 1);
+  const cut = src.lastIndexOf('</body>');
+  if (cut === -1) {
+    record('card-readout', 'error', rel(file), 'the file has no </body>, so the readout driver could not be attached');
+    return;
+  }
+  const instrumented = path.join(work, path.basename(file));
+  fs.writeFileSync(instrumented, src.slice(0, cut) + CARD_READOUT_DRIVER + src.slice(cut));
+  const opened = openOnce(browser, instrumented, path.join(shots, 'readout.png'), SCHEME_LIGHT);
+  if (opened.error) {
+    record('card-readout', 'error', rel(file), `the browser did not return a document for the readout walk: ${opened.error}`);
+    return;
+  }
+  const found = /<pre id="chart-card-readout">([\s\S]*?)<\/pre>/.exec(opened.dom);
+  if (!found) {
+    record('card-readout', 'error', rel(file), 'the readout driver produced no result, so what the card shows is unknown rather than proven');
+    return;
+  }
+  let result;
+  try {
+    result = JSON.parse(found[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
+  } catch (err) {
+    record('card-readout', 'error', rel(file), `the readout driver returned something that is not JSON: ${err.message}`);
+    return;
+  }
+  if (result.state === 'no-table') {
+    record('card-readout', 'error', rel(file), 'this form opens a card and carries no data table, so every value the card shows is reachable only with a pointer');
+    return;
+  }
+  if (result.state === 'no-marks' || result.state === 'card-never-opened') {
+    record('card-readout', 'error', rel(file),
+      `this form declares a card and no pointer could open one (${result.state}). A declared readout that never appears is a contract the form does not keep`);
+    return;
+  }
+  if (result.state !== 'ok') {
+    record('card-readout', 'error', rel(file), `the readout walk did not complete: ${result.state}${result.detail ? ` (${result.detail})` : ''}`);
+    return;
+  }
+  if (!result.missing.length) return;
+  record('card-readout', 'error', rel(file),
+    `the card shows ${result.missing.length} value(s) the data table does not carry (${result.missing.slice(0, 8).join(', ')}). A reader without a pointer cannot reach them, so the figure keeps data from anyone not holding a mouse`);
 }
 
 function checkRenders(files) {
@@ -1644,8 +1780,10 @@ function checkRenders(files) {
   // time with the scheme pinned dark, and requiring a different picture, is what observes it.
   tally('dark-render', files.length);
   const shots = fs.mkdtempSync(path.join(os.tmpdir(), 'chart-corpus-render-'));
+  const work = fs.mkdtempSync(path.join(os.tmpdir(), 'chart-corpus-readout-'));
   try {
     for (const file of files) {
+      checkCardReadout(browser, file, shots, work);
       const first = openOnce(browser, file, path.join(shots, 'first.png'), SCHEME_LIGHT);
       if (first.error) {
         record('render', 'error', rel(file), `the browser did not return a document: ${first.error}`);
@@ -1699,6 +1837,7 @@ function checkRenders(files) {
     }
   } finally {
     fs.rmSync(shots, { recursive: true, force: true });
+    fs.rmSync(work, { recursive: true, force: true });
   }
 }
 
@@ -1764,6 +1903,59 @@ function main() {
   // proof sheet. The set is derived from the two directories rather than listed, so a new form
   // joins it by existing.
   checkGeometryBlock([...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(path.join(ASSET_ROOT, 'color'))]);
+
+/* ------------------------------------------------------- pointer-contract coverage */
+
+// The per-form table is the only place a form's pointer behaviour is decided, and until now a
+// form could ship without a row in it. Silence read as approval: an unannotated form drew no
+// error, so the table described a corpus that no longer matched the directory. Requiring the
+// row makes the decision a precondition of shipping the form rather than a description written
+// afterwards.
+const CONTRACT_TABLE_HEADING = '### The pointer contract, per form';
+
+function parsePointerContract() {
+  if (!fs.existsSync(POINTER_CONTRACT)) return null;
+  const text = fs.readFileSync(POINTER_CONTRACT, 'utf8');
+  const start = text.indexOf(CONTRACT_TABLE_HEADING);
+  if (start === -1) return null;
+  // The file holds several tables whose first cell is a backticked name, so the section has to
+  // be cut at the next heading before its rows are read.
+  const after = text.slice(start + CONTRACT_TABLE_HEADING.length);
+  const end = after.search(/\n#{2,3} /);
+  const section = end === -1 ? after : after.slice(0, end);
+  const forms = new Set();
+  for (const line of section.split('\n')) {
+    const row = /^\|\s*`([a-z0-9-]+)`\s*\|/.exec(line);
+    if (row) forms.add(row[1]);
+  }
+  return forms;
+}
+
+function checkContractCoverage(templateFiles) {
+  const declared = parsePointerContract();
+  if (declared === null) {
+    tally('pointer-contract-coverage', 1);
+    record('pointer-contract-coverage', 'error', rel(POINTER_CONTRACT),
+      `no "${CONTRACT_TABLE_HEADING}" table was found, so no form's pointer contract can be checked against it`);
+    return;
+  }
+  tally('pointer-contract-coverage', templateFiles.length + declared.size);
+  const onDisk = new Set();
+  for (const file of templateFiles) {
+    const form = path.basename(file, '.html');
+    onDisk.add(form);
+    if (declared.has(form)) continue;
+    record('pointer-contract-coverage', 'error', rel(file),
+      'this form has no row in the pointer contract table. Every form states what a pointer does on it, including the forms whose answer is nothing, so a form that says nothing is undecided rather than inert');
+  }
+  for (const form of declared) {
+    if (onDisk.has(form)) continue;
+    record('pointer-contract-coverage', 'error', rel(POINTER_CONTRACT),
+      `the contract table has a row for "${form}" and no such form exists under assets/templates. A row describing a form nobody ships is a decision about nothing`);
+  }
+}
+
+  checkContractCoverage(htmlFilesUnder(TEMPLATE_DIR));
 
   const catalog = parseCatalog();
   checkCatalogResolves(catalog, templateIdentities);

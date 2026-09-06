@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | sk-doc/051-sk-create-chart |
@@ -105,7 +105,7 @@ These are self-contained static files. A chart must not stop being static on fir
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | Every one of the 21 templates has a recorded pointer contract, and a contract of "inert" names the reason the static figure already suffices. |
-| REQ-002 | Anything a pointer reveals is reachable without a pointer. A hover-only affordance that hides data from keyboard and screen-reader users does not ship. |
+| REQ-002 | Anything a pointer reveals is reachable without a pointer. A hover-only affordance that hides data from keyboard and screen-reader users does not ship. **MET across all 21 templates and all 6 deliveries.** It was briefly false of two files: `distribution-strip` revealed each individual observation on hover while its table carried only `Records`, `Lowest`, `Median` and `Highest` per cohort, and its delivery `pick-times-by-depot` inherited the same gap. Phase `009-close-the-deferrals` repaired both, gave `stacked-area` the totals foot its card reads out, and turned the property into a corpus rule (`card-readout`) that opens each card under a pointer and compares what it shows against the table. The rule was watched failing before it was trusted. |
 | REQ-003 | Every form still renders as a readable static figure with scripting unavailable, and still paints correctly on first paint. |
 | REQ-004 | Pointer behaviour is carried by a shared surface. A new form inherits the contract rather than reimplementing it. |
 | REQ-005 | `check-corpus.cjs` fails a form whose rendered output does not match its declared pointer contract. |

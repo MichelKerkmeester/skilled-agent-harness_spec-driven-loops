@@ -139,6 +139,24 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
    are there to be copied out of it. */
 .figure svg :focus:not(:focus-visible) { outline: none; }
 
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-card { fill: var(--chart-surface); stroke: color-mix(in srgb, var(--chart-rule) 50%, transparent); stroke-width: 1; rx: var(--chart-radius-track); }
+.tip-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { fill: var(--chart-muted); font-size: 12px; }
+/* The figures in the card take the same mono face as the axis and the table, so a value read
+   off a mark and the same value read out of the table sit digit under digit. */
+.tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+/* The printed values sit in the middle of the segment they name, so they let the pointer
+   through to the segment underneath rather than reading as a hole in the middle of it. */
+.on-dark, .on-light { pointer-events: none; }
+
 /* A stack grows as one shape. Every segment scales about the axis rather than about its own
    foot, because a segment that scales about itself detaches from the one below it and the
    column arrives in pieces, which is an order the data does not have. The origin is the
@@ -156,12 +174,13 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
   animation: chart-grow 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
   animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
 }
-/* A reader whose system asks for less motion gets the settled picture immediately. The
-   motion is removed rather than shortened, because a fast animation is still an animation
-   to somebody it makes ill. */
+/* A reader whose system asks for less motion gets the settled picture immediately, and the
+   card with no fade. The motion is removed rather than shortened, because a fast animation
+   is still an animation and a fast fade is still a fade, to somebody it makes ill. */
 @media (prefers-reduced-motion: reduce) {
   .seg { animation: none; }
   [data-series] { transition: none; }
+  [data-chart-tooltip] { transition: none; }
 }
 </style>
 </head>
@@ -174,6 +193,7 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
       <title id="fig-title">Revenue by product line within each market</title>
       <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Each product line takes the swatch printed beside its name in the key, left to right, and the segments stack in the same order from the foot of every column upward: platform, then services, then support. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
       <g data-chart-legend id="legend-stacked-bars"></g>
+      <g data-chart-tooltip id="tip-stacked-bars"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -247,6 +267,90 @@ function fmt(v, decimals) {
   const whole = dot === -1 ? body : body.slice(0, dot);
   const rest = dot === -1 ? '' : body.slice(dot);
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// printed labels or with the table under the chart.
+//
+// This replaces the browser's own title tooltip on these marks. Nothing is lost to a screen
+// reader by that: the drawing declares role="img", which makes its whole subtree one image,
+// so a title on a mark inside it was never announced. The table below the chart is, and still
+// is, the complete reading.
+const TIP_PAD = 10;
+const TIP_LINE = 16;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 1;
+const tipLayer = document.getElementById('tip-stacked-bars');
+const MARKS = new Map();
+
+function tipNode(name, cls) {
+  const el = document.createElementNS(SVG, name);
+  el.setAttribute('class', cls);
+  tipLayer.appendChild(el);
+  return el;
+}
+
+const tipCard = tipNode('rect', 'tip-card');
+const tipName = tipNode('text', 'tip-name');
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  tipRows.push({ label: tipNode('text', 'tip-label'), value: tipNode('text', 'tip-value') });
+}
+tipName.setAttribute('x', TIP_PAD);
+tipName.setAttribute('y', TIP_PAD + 12);
+tipRows.forEach(function (row, i) {
+  row.label.setAttribute('x', TIP_PAD);
+  row.label.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('text-anchor', 'end');
+});
+
+// A mark answers a pointer only once it is registered here. That is what keeps the forms
+// that earn a card apart from the ones whose marks already print their own value.
+function markable(el, name, rows) {
+  el.setAttribute('data-mark', '');
+  MARKS.set(el, { name: name, rows: rows });
+  return el;
+}
+
+// The card is sized from the text that is actually in it. A character count assumes an
+// advance this font stack does not promise, and the floor stops a short reading collapsing
+// into a chip narrow enough to break a two-word label across two lines.
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    row.label.textContent = info.rows[i][0];
+    row.value.textContent = info.rows[i][1];
+  });
+  let width = Math.max(TIP_FLOOR, (tipName.getComputedTextLength() || 0) + TIP_PAD * 2);
+  tipRows.forEach(function (row) {
+    const used = (row.label.getComputedTextLength() || 0) + (row.value.getComputedTextLength() || 0);
+    width = Math.max(width, used + TIP_PAD * 2 + 18);
+  });
+  const height = TIP_PAD * 2 + 12 + TIP_LINE * tipRows.length;
+  tipCard.setAttribute('width', width);
+  tipCard.setAttribute('height', height);
+  tipRows.forEach(function (row) { row.value.setAttribute('x', width - TIP_PAD); });
+
+  // A card that would open past the right edge or above the top opens on the other side of
+  // its mark instead, so it is never drawn outside the frame the chart is allowed to use.
+  const view = svg.getAttribute('viewBox').split(' ');
+  const box = mark.getBBox();
+  let x = box.x + box.width + 12;
+  if (x + width > Number(view[2])) x = box.x - width - 12;
+  if (x < 0) x = 0;
+  let y = box.y + box.height / 2 - height / 2;
+  if (y < 0) y = 0;
+  if (y + height > Number(view[3])) y = Number(view[3]) - height;
+  tipLayer.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
 }
 
 function channel(c) {
@@ -325,11 +429,14 @@ DATA.forEach(function (d, i) {
     const top = s === d.values.length - 1;
     // Every segment of a column carries the column's index, so the whole stack grows on one
     // timing and arrives as one shape. An index is where a mark sits in the drawing, so
-    // nothing in the data block reaches the timing.
-    node(top ? 'path' : 'rect', top
+    // nothing in the data block reaches the timing. The card names the product line and the
+    // market it sits in, because a segment past the printed-number gate carries its value
+    // twice: once on the mark, once in the card, and the two come from the same fmt call.
+    // Below the gate the figure prints nothing and the card is the only reading.
+    markable(node(top ? 'path' : 'rect', top
       ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R), style: '--mark-index:' + i, 'data-series': s + 1 }
       : { x: cx - barWidth / 2, y: y, width: barWidth, height: h, style: '--mark-index:' + i, 'data-series': s + 1 },
-      'seg ' + seriesClass(s));
+      'seg ' + seriesClass(s)), SEGMENTS[s] + ', ' + d.label, [['Value', fmt(v)]]);
     if (h >= 22) {
       // The printed value belongs to its segment, so it dims with it rather than staying at
       // full strength over a segment that has stepped back.
@@ -454,6 +561,107 @@ entries.forEach(function (entry) {
     latch(entry.getAttribute('data-series'));
   });
 });
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+// The reach a pointer gets when it lands on no mark at all. Far enough that a small mark is easy
+// to hit, short enough that pointing at empty space still means nothing.
+const REACH = 36;
+const BOXES = new Map();
+
+// getBBox reports the geometry the element was drawn with, independent of layout and of the entry
+// animation's transform. A region measured from the painted box would move while the mark grows in.
+function markBox(el) {
+  let box = BOXES.get(el);
+  if (box === undefined) {
+    try {
+      const g = el.getBBox();
+      box = { x: g.x, y: g.y, w: g.width, h: g.height };
+    } catch (err) {
+      box = null;
+    }
+    BOXES.set(el, box);
+  }
+  return box;
+}
+
+function pointerInDrawing(e) {
+  const ctm = svg.getScreenCTM();
+  if (!ctm) return null;
+  const p = svg.createSVGPoint();
+  p.x = e.clientX;
+  p.y = e.clientY;
+  return p.matrixTransform(ctm.inverse());
+}
+
+// These marks sit closer together than a comfortable pointer target is wide, so growing each one
+// to a usable size would make neighbours overlap and steal each other's card. Handing every mark
+// the region that is nearer to it than to any other gives it the largest target it can have
+// without taking one away from its neighbour.
+function markAt(e) {
+  const target = e && e.target;
+  const direct = target && target.closest ? target.closest('[data-mark]') : null;
+  if (direct) return direct;
+  const at = pointerInDrawing(e);
+  if (!at) return null;
+  let inside = null;
+  let nearest = null;
+  let best = Infinity;
+  MARKS.forEach(function (_info, el) {
+    const box = markBox(el);
+    if (!box) return;
+    const area = box.w * box.h;
+    // A pointer within a mark's own box belongs to that mark even when a smaller neighbour's
+    // centre is nearer, which is what distance alone gets wrong on a stacked column.
+    if (at.x >= box.x && at.x <= box.x + box.w && at.y >= box.y && at.y <= box.y + box.h) {
+      if (!inside || area < inside.area) inside = { el: el, area: area };
+      return;
+    }
+    const dx = at.x - (box.x + box.w / 2);
+    const dy = at.y - (box.y + box.h / 2);
+    const d = dx * dx + dy * dy;
+    // A tie goes to the larger mark. Where a form draws an emphasised mark over an ordinary one at
+    // the same point, the emphasised one is what the figure prints and what the reader is aiming at.
+    if (d < best || (d === best && nearest && area > nearest.area)) {
+      best = d;
+      nearest = { el: el, area: area };
+    }
+  });
+  if (inside) return inside.el;
+  return best <= REACH * REACH && nearest ? nearest.el : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card is raised above the marks once the drawing is finished, so it is never painted
+// underneath the mark it is describing.
+svg.appendChild(tipLayer);
 // The drawing ends here. Everything above it ran because the data block held something to draw.
 }
 </script>

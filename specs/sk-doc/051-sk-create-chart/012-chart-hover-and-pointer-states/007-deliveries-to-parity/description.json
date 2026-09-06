@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity",
+  "description": "Six delivered charts live under `assets/examples/`, and measured across all six, none carries `data-chart-tooltip`, `data-chart-legend`,",
+  "keywords": [
+    "six",
+    "delivered",
+    "charts",
+    "live",
+    "assets",
+    "examples",
+    "measured",
+    "across",
+    "none",
+    "carries",
+    "data-chart-tooltip",
+    "data-chart-legend"
+  ],
+  "lastUpdated": "2026-09-06T02:18:58.301Z",
+  "specId": "007",
+  "folderSlug": "deliveries-to-parity",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

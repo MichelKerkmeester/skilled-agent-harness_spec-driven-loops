@@ -143,6 +143,21 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
    are there to be copied out of it. */
 .figure svg :focus:not(:focus-visible) { outline: none; }
 
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-card { fill: var(--chart-surface); stroke: color-mix(in srgb, var(--chart-rule) 50%, transparent); stroke-width: 1; rx: var(--chart-radius-track); }
+.tip-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { fill: var(--chart-muted); font-size: 12px; }
+/* The figures in the card take the same mono face as the axis and the table, so a value read
+   off a mark and the same value read out of the table sit digit under digit. */
+.tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
 /* The figure reveals itself left to right on first paint, so a reader watches the series
    arrive in reading order instead of finding it already there. The wipe takes the whole
    figure rather than the marks alone: a reveal that leaves the axis standing reads as a
@@ -159,6 +174,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
 @media (prefers-reduced-motion: reduce) {
   .figure svg { animation: none; }
   [data-series] { transition: none; }
+  [data-chart-tooltip] { transition: none; }
 }
 </style>
 </head>
@@ -171,6 +187,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
       <title id="fig-title">Revenue by licence type over twenty-four months</title>
       <desc id="fig-desc">Four bands stacked over a continuous time axis. Each licence type takes the swatch printed beside its name in the key, left to right, and the bands stack in the same order from the foot of the chart upward: perpetual, then subscription, then services, then training. The perpetual band narrows from 52 to 18 while the subscription band widens from 14 to 50, crossing in month fourteen. The total stays between 92 and 106 throughout. The table below the chart carries every month as text.</desc>
       <g data-chart-legend id="legend-stacked-area"></g>
+      <g data-chart-tooltip id="tip-stacked-area"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -181,6 +198,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
       <caption>Revenue by licence type, in millions, twenty-four months.</caption>
       <thead><tr id="head-row"><th scope="col">Month</th></tr></thead>
       <tbody id="rows"></tbody>
+      <tfoot id="foot"></tfoot>
     </table>
   </div>
 </div>
@@ -264,6 +282,90 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// axis or with the table under the chart.
+//
+// This replaces the browser's own title tooltip on these marks. Nothing is lost to a screen
+// reader by that: the drawing declares role="img", which makes its whole subtree one image,
+// so a title on a mark inside it was never announced. The table below the chart is, and still
+// is, the complete reading.
+const TIP_PAD = 10;
+const TIP_LINE = 16;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 1;
+const tipLayer = document.getElementById('tip-stacked-area');
+const MARKS = new Map();
+
+function tipNode(name, cls) {
+  const el = document.createElementNS(SVG, name);
+  el.setAttribute('class', cls);
+  tipLayer.appendChild(el);
+  return el;
+}
+
+const tipCard = tipNode('rect', 'tip-card');
+const tipName = tipNode('text', 'tip-name');
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  tipRows.push({ label: tipNode('text', 'tip-label'), value: tipNode('text', 'tip-value') });
+}
+tipName.setAttribute('x', TIP_PAD);
+tipName.setAttribute('y', TIP_PAD + 12);
+tipRows.forEach(function (row, i) {
+  row.label.setAttribute('x', TIP_PAD);
+  row.label.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('text-anchor', 'end');
+});
+
+// A mark answers a pointer only once it is registered here. That is what keeps the forms
+// that earn a card apart from the ones whose marks already print their own value.
+function markable(el, name, rows) {
+  el.setAttribute('data-mark', '');
+  MARKS.set(el, { name: name, rows: rows });
+  return el;
+}
+
+// The card is sized from the text that is actually in it. A character count assumes an
+// advance this font stack does not promise, and the floor stops a short reading collapsing
+// into a chip narrow enough to break a two-word label across two lines.
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    row.label.textContent = info.rows[i][0];
+    row.value.textContent = info.rows[i][1];
+  });
+  let width = Math.max(TIP_FLOOR, (tipName.getComputedTextLength() || 0) + TIP_PAD * 2);
+  tipRows.forEach(function (row) {
+    const used = (row.label.getComputedTextLength() || 0) + (row.value.getComputedTextLength() || 0);
+    width = Math.max(width, used + TIP_PAD * 2 + 18);
+  });
+  const height = TIP_PAD * 2 + 12 + TIP_LINE * tipRows.length;
+  tipCard.setAttribute('width', width);
+  tipCard.setAttribute('height', height);
+  tipRows.forEach(function (row) { row.value.setAttribute('x', width - TIP_PAD); });
+
+  // A card that would open past the right edge or above the top opens on the other side of
+  // its mark instead, so it is never drawn outside the frame the chart is allowed to use.
+  const view = svg.getAttribute('viewBox').split(' ');
+  const box = mark.getBBox();
+  let x = box.x + box.width + 12;
+  if (x + width > Number(view[2])) x = box.x - width - 12;
+  if (x < 0) x = 0;
+  let y = box.y + box.height / 2 - height / 2;
+  if (y < 0) y = 0;
+  if (y + height > Number(view[3])) y = Number(view[3]) - height;
+  tipLayer.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
 function niceStep(v) {
   const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
   const n = v / pow;
@@ -332,6 +434,14 @@ function bandClass(i) {
 
 const floors = DATA.map(function () { return 0; });
 SERIES.forEach(function (name, s) {
+  // The card's one row reports the series total the table's own Total column reports, read
+  // along the other axis: the same sum taken over every period instead of every series. A
+  // band is one path spanning the whole width, so pointing at it selects a series and never
+  // a period, and the value is fixed at registration rather than recomputed under a moving
+  // pointer. A reading the stack omits contributes to the sum exactly as it contributes to
+  // the table's Total column: null counts as nothing, and a non-numeric reading turns the
+  // whole sum into the em dash, so the card and the table cannot disagree about a gap.
+  const total = DATA.reduce(function (t, d) { return t + d.values[s]; }, 0);
   runs.forEach(function (indices) {
     const upper = [];
     const lower = [];
@@ -340,10 +450,10 @@ SERIES.forEach(function (name, s) {
       floors[i] += DATA[i].values[s];
       upper.push(x(i) + ',' + y(floors[i]));
     });
-    node('path', {
+    markable(node('path', {
       d: 'M' + upper.join(' L') + ' L' + lower.reverse().join(' L') + ' Z',
       'data-series': s + 1
-    }, 'band ' + bandClass(s));
+    }, 'band ' + bandClass(s)), name, [['Total, whole period', fmt(total)]]);
   });
 });
 
@@ -442,6 +552,26 @@ DATA.forEach(function (d) {
   rows.appendChild(tr);
 });
 
+// A band's path spans the whole width, so the card cannot read a value at a point and reads the
+// band's whole-period total instead. That total is the one number the monthly rows never state,
+// and a reader without a pointer would otherwise have to add a column by hand to reach it.
+const foot = document.getElementById('foot');
+const footRow = document.createElement('tr');
+const footHead = document.createElement('th');
+footHead.setAttribute('scope', 'row');
+footHead.textContent = 'Total, whole period';
+footRow.appendChild(footHead);
+const seriesTotals = SERIES.map(function (_name, si) {
+  return DATA.reduce(function (t, d) { return t + d.values[si]; }, 0);
+});
+seriesTotals.concat([seriesTotals.reduce(function (t, v) { return t + v; }, 0)]).forEach(function (v) {
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = fmt(v);
+  footRow.appendChild(td);
+});
+foot.appendChild(footRow);
+
 // Pointing at a mark or at a key entry is a hover and clears itself. Clicking an entry holds
 // the same state until the same entry is clicked again. Leaving the drawing clears a hover, so
 // no chart can be left permanently dimmed by a pointer that wandered off the page.
@@ -477,6 +607,45 @@ entries.forEach(function (entry) {
     latch(entry.getAttribute('data-series'));
   });
 });
+
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+function markAt(target) {
+  return target && target.closest ? target.closest('[data-mark]') : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e.target);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e.target);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card is raised above the marks once the drawing is finished, so it is never painted
+// underneath the mark it is describing.
+svg.appendChild(tipLayer);
 // The drawing ends here. Everything above it ran because the data block held something to draw.
 }
 </script>

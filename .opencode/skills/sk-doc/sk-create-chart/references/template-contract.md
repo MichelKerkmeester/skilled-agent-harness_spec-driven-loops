@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the sixteen rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the seventeen rules the corpus check enforces on every one."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -276,7 +276,7 @@ than a shared value.
 
 ---
 
-## 7. THE SIXTEEN RULES
+## 7. THE NINETEEN RULES
 
 Every rule below is enforced, and three are enforced in part. The check name is what appears in the
 corpus check output, so a failure points at the rule it broke.
@@ -307,6 +307,9 @@ Section 9 carries the full account of what a run does not observe.
 | 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox`. The table region can scroll sideways too | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other, or a wide table dragging the whole page sideways with it |
 | 15 | No corner value outside the palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one | `radius` | Twenty files agreeing on one corner by coincidence, and the twenty-first quietly disagreeing |
 | 16 | An indexed data class carries the palette token of its own index, the indices run from one without a gap, and they stop at the declared system's capacity | `series-mapping` | An encoding quietly reversed or shuffled, agreeing with its own legend and with nothing else |
+| 17 | A form that refuses the pointer says why, and cannot also carry a register that answers one | `interaction-hygiene` | A form claiming both that it needs no pointer and that it answers one, or an inert claim nobody can act on because it names no reason |
+| 18 | Every number a card can show appears in the form's data table | `card-readout` | A hover that reveals a reading no other route reaches, which hides data from every reader not holding a pointer |
+| 19 | Every form on disk has a row in the per-form pointer contract, and every row has a form | `pointer-contract-coverage` | A form shipping with no decision recorded about what a pointer does on it, or a row describing a form nobody ships |
 
 Rule 4 used to say exactly one block, and it said so for a good reason: one block per file is one
 place a colour can drift, and a diff shows it. A theme is the one thing that argument does not
@@ -400,7 +403,23 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 ## 10. WHAT A FILE MAY DO WITH A POINTER
 
-A chart answers a pointer. Thirteen forms do, counting all three registers rather than the hover card alone, and the eight that do not are the ones whose marks already print their own value, where a card would repeat what the reader is looking at.
+This contract binds every rendered chart artifact this skill ships, the 21 forms under
+`assets/templates/` and the deliveries under `assets/examples/` alike. A delivery inherits its
+parent template's contract, and it does not get to answer the pointer differently just because it is
+a rendered example rather than a template.
+
+That inheritance is a state the corpus is in, not an aspiration, and it is stated so a reader can
+disagree with it by opening the files. Every delivery's pointer contract matches its own parent
+template's, mechanism for mechanism: a delivery whose parent carries the hover card carries the
+same card, the same listeners and the same hygiene line, adapted to the delivery's own marks and
+data, and a delivery whose parent is inert declares `data-chart-inert` with the parent's own reason
+string, copied rather than restated. As of this packet all six deliveries hold that state: the four
+built from `heat-matrix`, `distribution-strip`, `scatter` and `daily-line` answer the pointer, and
+the two built from `unit-grid` and `bar-rows` declare why they do not. A delivery found behind its
+parent is a defect in the delivery, the same way a drifted palette block is, and the fix is to bring
+the delivery forward, never to excuse it.
+
+A chart answers a pointer. Thirteen forms do today, counting all three registers rather than the hover card alone. Of the eight that do not, seven are forms whose marks already print their own value, where a card would repeat what the reader is looking at. The eighth, `daily-range`, prints neither of the two values it encodes and is the reason this packet exists. See the per-form table below for the decided contract of all 21 forms.
 
 Three of the rules below are now checked and the rest are still a register, which is a rule written down before anything asserts it. The split is marked here so nobody reads a green run as agreement with the whole section.
 
@@ -408,15 +427,79 @@ Three of the rules below are now checked and the rest are still a register, whic
 
 Everything else here is unasserted. What a handler may do, where a card flips, whether a figure inside a card is also in the table, and whether a selection latches are all read by a person.
 
-### The three registers
+### The four registers
 
 | Attribute | Where it goes | What it means |
 | --- | --- | --- |
 | `data-chart-tooltip` | a group inside the drawing | The form carries a hover card. The group is declared in the markup, empty, and the drawing code fills it and raises it above the marks |
 | `data-chart-legend` | a group inside the drawing | The form carries its key inside the figure. Each entry is a button, because the key is also the control for the dim |
 | `data-chart-dim` | the `svg` element | The form can hold one series against the rest. The attribute is empty until a reader asks, and the series index fills it |
+| `data-chart-inert` | the chart's figure wrapper (the `<div class="figure" data-chart-part="figure">` element, not a literal `<figure>` tag) | The form correctly answers a pointer with nothing. The attribute's value is the reason, and an empty or whitespace-only value fails the check |
 
 A form that gains any of the three also carries one line of interaction hygiene: `:focus:not(:focus-visible) { outline: none; }`. That drops the focus ring for a reader who clicked and keeps it for a reader who tabbed. Text stays selectable. A delivered chart is a document, and the numbers in it are meant to be copied out.
+
+### The pointer contract, per form
+
+| Form | Contract | Reason |
+| --- | --- | --- |
+| `box-plot` | `tooltip` | Reference implementation. Five-number summary per box, none of it printed in the drawing |
+| `calendar-grid` | `tooltip` | Shipped and working. No defect found |
+| `candlestick` | `tooltip` | Shipped and working. No defect found |
+| `distribution-strip` | `tooltip` | One dot per record, and the card opens any single dot. Its five-number summary describes the shape and states none of the readings that make it, so the table carries every record behind the summary rather than the summary alone. Without that the card was the only route to an observation |
+| `heat-matrix` | `tooltip` | Shipped and working. No defect found |
+| `scatter` | `tooltip` | Shipped and working. No defect found |
+| `treemap` | `tooltip` | Shipped and working. No defect found |
+| `stacked-bars` | `tooltip` | A segment under 22 units prints no value, and the form draws no tick ladder a reader could interpolate against |
+| `stacked-area` | `tooltip` | Band values and the stack total exist only as thickness in the drawing. The Total column exists in the table and nowhere in the figure. See the readout table below: the card's scope is the pointed band's identity, not every band's value. The card reads the band's whole-period total, which the monthly rows never state, so the table carries a foot row of per-series totals |
+| `grouped-bars` | `tooltip` | Column values are geometry with nothing printed on the mark. The axis ticks bracket a reading rather than giving one |
+| `bar-line-composed` | `tooltip` | Two ladders share one gridline set, so an off-scale bar height cannot be converted with confidence even by a willing reader |
+| `daily-line` | `tooltip` | The emphasised low is the only printed reading. Every other point on the line is position only |
+| `daily-range` | `tooltip` | Each day's minimum and maximum exist only as the two endpoints of a bar and are never printed |
+| `parallel-axes` | `terminal` | Every dot carries a native `<title>` naming its label, axis, value and unit, and both axis bounds are printed in the figure. The title is a pointer-only affordance: every svg in this corpus carries `role="img"`, so a mark-level title is announced to nobody by a screen reader. Keyboard and screen-reader users reach the same values through the data table |
+| `waterfall` | `terminal`, native title | Every step's delta is printed above its bar, and each bar carries a native `<title>` naming the value and the running total. This form declares none of the three interaction registers today: it is not a legend-or-dim form, it carries no register of any kind. As with `parallel-axes`, the title reaches a pointer and the data table, not a screen reader |
+| `progress-single` | `inert` | The datum, its goal, its share and its pace comparison are each printed in the figure |
+| `unit-ring` | `inert` | Each group's count is printed in the key beside its swatch, and the total is printed at the ring's centre |
+| `unit-grid` | `inert` | Each part's share is printed in the key with its percent sign, and a square is one percent by construction |
+| `independent-percentages` | `inert` | Each track's percentage is printed to its right and its name to its left |
+| `bar-columns` | `inert` | Each column's value is printed above it |
+| `bar-rows` | `inert` | Each bar's value is printed at its end, with its unit suffix |
+
+### What a card owes its table
+
+Every number a card can show appears in that form's data table. The table is the corpus's
+accessibility floor, so a reading a pointer can reach and a keyboard cannot is data the figure
+keeps from part of its audience. The rule holds in the direction that matters: a card may show
+less than the table, never more.
+
+That constrains the table rather than the card. A form whose card opens an individual mark owes
+a table listing those marks, which is why `scatter` lists every point and `heat-matrix` every
+cell. A form whose card reads a derived figure owes that figure too, which is why `stacked-area`
+carries a foot of whole-period totals: every input was already in the table and the sum was not,
+and a reader without a pointer should not have to add a column by hand.
+
+`card-readout` enforces this by opening each card under a pointer and comparing what it shows
+against the table. It is the only rule that cannot be satisfied by reading the source, because a
+card exists only while a pointer is on a mark.
+
+### The readout the six newly-tooltip forms owe
+
+| Form | Card name | Rows | `TIP_ROWS` |
+| --- | --- | --- | --- |
+| `stacked-bars` | the segment | its value | 1 |
+| `grouped-bars` | the series (`Last year` or `This year`) | its value | 1 |
+| `daily-line` | the day | its value | 1 |
+| `daily-range` | the day | low, high. Never a midpoint: a midpoint is the average this form exists to refuse | 2 |
+| `bar-line-composed` | the period | count, rate, each row tagged with the ladder it reads against | 2 |
+| `stacked-area` | the pointed band's series name | its total across the period, summed the way the table's own `Total` column is summed (`stacked-area.html:421`). A band's path spans the whole width, so the card cannot place a period on it, and the value is therefore a band-level aggregate rather than a reading at the pointer | 1 |
+
+
+A card takes every colour from the palette custom properties and never from a literal. `--chart-surface` for its fill, `--chart-rule` for its border, `--chart-ink` for a name and a value, `--chart-muted` for a label. Each template redefines those under `prefers-color-scheme: dark`, so a card built this way inverts with the page and needs no theme code of its own. A literal colour looks right in whichever theme its author was using and disappears in the other, and only the theme nobody checks breaks.
+
+This `stacked-area` row overrides an earlier figure from the research (`all four band values plus
+the total`), which assumed per-x hit targets that were never built. Build a one-row card: the
+band's series name plus its period total, per the `Card name` and `Rows` cells above. Not a
+five-row card, and not a name-only card either, since a per-x reading is not buildable without
+machinery this packet excludes.
 
 ### What a handler may do
 
@@ -433,6 +516,20 @@ A form that gains any of the three also carries one line of interaction hygiene:
 - Print a figure the table below the chart does not also carry. The table is the complete reading and stays the accessibility floor, so nothing may exist only inside a card.
 - Format a number any way but through the file's own formatter. A locale-dependent one makes a delivered file read differently on the machine that opens it, which is the failure the fixed-comma formatter exists to prevent.
 - Take a focus ring away from anything a reader can reach with a keyboard, and never add a control a pointer can use that a keyboard cannot.
+
+### Touch
+
+A tap on a mark opens and pins its readout. A tap on a different mark re-pins to it. A second
+tap on the same mark, or a tap anywhere outside the drawing, dismisses it. Hover yields while a
+mark is pinned, so the two input modes do not fight each other.
+
+Not guaranteed, and stated so rather than left silent: drag to scrub across marks (a pointer
+move is ignored while pinned, by design), long press or any other native touch affordance, and
+dismissal from inside the drawing except through the pinned mark itself. None of it applies to a
+form that has not received the hover mechanism.
+
+Nothing in `check-corpus.cjs` asserts any of this. The gesture is runtime behaviour a static
+check cannot see.
 
 ---
 

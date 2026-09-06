@@ -70,14 +70,22 @@ also holds the two facts either side of the mapping: the indices run from one wi
 they stop at the declared system's capacity. Both are the same failure from another angle, because
 a class the stylesheet cannot paint is painted black rather than left alone.
 
-Six more run per file and enforce clauses the contract states outside its numbered table. Each of the six existed as a written rule before it existed as a check, and a rule the tooling does not check is a wish:
+Eight more enforce clauses the contract states outside its numbered table. Six run per file. The last two do not: `pointer-contract-coverage` compares the whole template directory against the contract in one pass, and `card-readout` runs only under `--render`, and only on the files that carry a card. Each of the six existed as a written rule before it existed as a check, and a rule the tooling does not check is a wish:
 
 - `empty-notice` requires every chart form and every delivery to carry the `CHART_EMPTY_NOTICE` guard, to sit below the data block it reads, and to carry the labelled block and the break that let it stop the drawing. A guard that prints the notice and then draws anyway prints it over the empty frame it was warning about. The deliveries were exempt until the stated ground for it was read: the exemption said each carried the notice of the form it came from, and none of the six did. A proof sheet is still exempt, and for a ground that holds, because its data block is the palette it draws.
 - `interaction-hygiene` requires the one hygiene line in any file whose markup declares an interaction register, and separately rejects an unconditional `outline: none` on a focus and any `user-select: none`. Those are the two ways the line could be widened into taking a focus ring or a copyable number away from a reader, and both pass every other rule here.
+- `interaction-hygiene` also reads the inert declaration. A form may declare `data-chart-inert` on its
+  root to say it answers no pointer deliberately, and the value carries the reason. Two ways that fails:
+  an empty reason, because an inert form that cannot say why the static figure suffices has not made the
+  declaration, and declaring inert alongside any of the three pointer registers, because a form cannot
+  both refuse the pointer and answer it. Silence stays legal: a form declaring nothing is not a defect,
+  which is what lets the rule land on a green corpus before any form is annotated.
 - `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. Neither failure is visible to the render path: a file that opens already dimmed paints the same picture on both of its pointer-free opens, so `settled-render` agrees with it exactly as it agrees with a correct file.
 - `number-format` rejects any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define a formatter of its own. A locale-dependent formatter is invisible on the machine that authored the file and changes the grouping mark, the decimal mark and the digits on the machine that opens it.
 - `type-scale` rejects a font size that is on neither the six published rungs nor the three named departures. The nine values live in the palette source beside the corner ladder, so the check reads them rather than restating them, and all three routes are covered: a size declared in the stylesheet, a size passed to `setAttribute` directly, and a size handed to the `node(name, attrs, cls)` helper that every chart form builds its marks through. The third was the route the rule missed and the only one the corpus actually uses, so the check covered a path no file takes and skipped the path all of them take.
 - `gradient-sweep` resolves a gradient's stops through the classes that carry them and rejects a gradient naming two different series values in a file whose declared system is not `ordered`. A gradient naming one series value at two opacities is a fade and is left alone.
+- `pointer-contract-coverage` requires a row in the contract's per-form pointer table for every form under `assets/templates/`, and a form under `assets/templates/` for every row. It closes the older behaviour where an unannotated form drew no error at all: absence read as approval, so the table could describe a corpus the directory had already moved past. The rule reads only the per-form section, cut at the next heading, because the contract holds several tables whose first cell is a backticked name.
+- `card-readout` runs under `--render` only, and it is the one rule that opens a card. A card exists only while a pointer is on a mark, so no static read can see what it says: the rule writes an instrumented copy of each card-carrying file to a temporary directory, drives `pointermove` across a sample of its marks, collects the numbers each card shows, and requires every one of them to appear in that file's data table. A card that can outrun its table keeps data from anyone not holding a mouse, and that is exactly the failure no declaration-versus-declaration rule can express. The corpus files themselves are never modified. Its own failure modes are errors rather than silent passes: driver not attached, driver produced nothing, card never opened, and a form that declares a card while carrying no table. The number matcher splits a cell on comma-then-space, because a thousands separator is a comma with no space after it and a list of readings is a comma with one.
 
 With `--render` three more run, and all three need a browser:
 
@@ -106,6 +114,34 @@ cp assets/color/palette-sheet-neutral.html /tmp/keep.html
 sed -i '' 's/var(--chart-muted)/#888888/' assets/color/palette-sheet-neutral.html
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on colour-literals
 cp /tmp/keep.html assets/color/palette-sheet-neutral.html
+node scripts/check-corpus.cjs   # expect RESULT: PASSED
+```
+
+```bash
+# a card that shows a reading its table does not carry
+cp assets/templates/distribution-strip.html /tmp/keep.html
+# drop the column that carries the individual records, leaving the summary alone
+sed -i '' 's/tr.appendChild(every);//' assets/templates/distribution-strip.html
+node scripts/check-corpus.cjs --render   # expect RESULT: FAILED on card-readout, naming the form and the values
+cp /tmp/keep.html assets/templates/distribution-strip.html
+node scripts/check-corpus.cjs --render   # expect RESULT: PASSED
+```
+
+```bash
+# a form on disk with no row in the pointer contract table
+cp references/template-contract.md /tmp/keep-contract.md
+sed -i '' '/^| `treemap` | `tooltip`/d' references/template-contract.md
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on pointer-contract-coverage, naming treemap
+cp /tmp/keep-contract.md references/template-contract.md
+node scripts/check-corpus.cjs   # expect RESULT: PASSED
+```
+
+```bash
+# a contract row naming a form nobody ships
+cp references/template-contract.md /tmp/keep-contract.md
+sed -i '' 's|^| `treemap` | `tooltip`|| `sunburst` | `tooltip` | invented |\n| `treemap` | `tooltip`|' references/template-contract.md
+node scripts/check-corpus.cjs   # expect RESULT: FAILED on pointer-contract-coverage, naming sunburst
+cp /tmp/keep-contract.md references/template-contract.md
 node scripts/check-corpus.cjs   # expect RESULT: PASSED
 ```
 
@@ -285,6 +321,18 @@ cp assets/templates/grouped-bars.html /tmp/keep.html
 sed -i '' 's|^.figure svg :focus:not(:focus-visible) { outline: none; }$||' assets/templates/grouped-bars.html
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on interaction-hygiene
 cp /tmp/keep.html assets/templates/grouped-bars.html
+
+# an inert declaration on a form that already answers a pointer
+cp assets/templates/heat-matrix.html /tmp/keep-hm.html
+sed -i '' 's|<figure|<figure data-chart-inert="every encoded value is printed beside its mark"|' assets/templates/heat-matrix.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED, the form named, inert alongside a tooltip
+cp /tmp/keep-hm.html assets/templates/heat-matrix.html
+
+# an inert declaration with no reason in it
+cp assets/templates/progress-single.html /tmp/keep-ps.html
+sed -i '' 's|<figure|<figure data-chart-inert=""|' assets/templates/progress-single.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED, the value is the why and it is empty
+cp /tmp/keep-ps.html assets/templates/progress-single.html
 
 # a form shipped already dimmed, which every render check agrees with
 sed -i '' 's|id="chart" data-chart-dim=""|id="chart" data-chart-dim="1"|' assets/templates/grouped-bars.html

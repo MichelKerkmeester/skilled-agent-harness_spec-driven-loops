@@ -108,6 +108,34 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The day and hour labels keep the body face, because they are names rather than figures. */
 .on-dark, .on-light, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-card { fill: var(--chart-surface); stroke: color-mix(in srgb, var(--chart-rule) 50%, transparent); stroke-width: 1; rx: var(--chart-radius-track); }
+.tip-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { fill: var(--chart-muted); font-size: 12px; }
+/* The figures in the card take the same mono face as the axis and the table, so a value read
+   off a mark and the same value read out of the table sit digit under digit. */
+.tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+/* The printed value sits on top of its cell, so it lets the pointer through to the cell
+   underneath rather than reading as a gap in the grid. */
+.on-dark, .on-light { pointer-events: none; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+/* A reader whose system asks for less motion gets the card with no fade. The motion is
+   removed rather than shortened, because a fast fade is still a fade to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  [data-chart-tooltip] { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -118,6 +146,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 290" id="chart">
       <title id="fig-title">Calls answered by day of the week and time of day</title>
       <desc id="fig-desc">A grid of seven weekdays by twelve two-hour slots, shaded darker for higher call volume, with every value printed in its cell. Weekday volume peaks in the 08 and 14 slots and the whole weekend sits below 70 calls in every slot. The table below the chart carries the same grid as text.</desc>
+      <g data-chart-tooltip id="tip-calls-by-day-and-hour"></g>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: telephony platform, eight-week average to 22 August.</p>
@@ -180,6 +209,110 @@ if (!HAS_READABLE_DATA) {
 }
 /* CHART_EMPTY_NOTICE:END */
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// axis or with the table under the chart.
+//
+// This replaces the browser's own title tooltip on these marks. Nothing is lost to a screen
+// reader by that: the drawing declares role="img", which makes its whole subtree one image,
+// so a title on a mark inside it was never announced. The table below the chart is, and still
+// is, the complete reading.
+const TIP_PAD = 10;
+const TIP_LINE = 16;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 1;
+const tipLayer = document.getElementById('tip-calls-by-day-and-hour');
+const MARKS = new Map();
+
+function tipNode(name, cls) {
+  const el = document.createElementNS(SVG, name);
+  el.setAttribute('class', cls);
+  tipLayer.appendChild(el);
+  return el;
+}
+
+const tipCard = tipNode('rect', 'tip-card');
+const tipName = tipNode('text', 'tip-name');
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  tipRows.push({ label: tipNode('text', 'tip-label'), value: tipNode('text', 'tip-value') });
+}
+tipName.setAttribute('x', TIP_PAD);
+tipName.setAttribute('y', TIP_PAD + 12);
+tipRows.forEach(function (row, i) {
+  row.label.setAttribute('x', TIP_PAD);
+  row.label.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
+  row.value.setAttribute('text-anchor', 'end');
+});
+
+// A mark answers a pointer only once it is registered here. That is what keeps the forms
+// that earn a card apart from the ones whose marks already print their own value.
+function markable(el, name, rows) {
+  el.setAttribute('data-mark', '');
+  MARKS.set(el, { name: name, rows: rows });
+  return el;
+}
+
+// The card is sized from the text that is actually in it. A character count assumes an
+// advance this font stack does not promise, and the floor stops a short reading collapsing
+// into a chip narrow enough to break a two-word label across two lines.
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    row.label.textContent = info.rows[i][0];
+    row.value.textContent = info.rows[i][1];
+  });
+  let width = Math.max(TIP_FLOOR, (tipName.getComputedTextLength() || 0) + TIP_PAD * 2);
+  tipRows.forEach(function (row) {
+    const used = (row.label.getComputedTextLength() || 0) + (row.value.getComputedTextLength() || 0);
+    width = Math.max(width, used + TIP_PAD * 2 + 18);
+  });
+  const height = TIP_PAD * 2 + 12 + TIP_LINE * tipRows.length;
+  tipCard.setAttribute('width', width);
+  tipCard.setAttribute('height', height);
+  tipRows.forEach(function (row) { row.value.setAttribute('x', width - TIP_PAD); });
+
+  // A card that would open past the right edge or above the top opens on the other side of
+  // its mark instead, so it is never drawn outside the frame the chart is allowed to use.
+  const view = svg.getAttribute('viewBox').split(' ');
+  const box = mark.getBBox();
+  let x = box.x + box.width + 12;
+  if (x + width > Number(view[2])) x = box.x - width - 12;
+  if (x < 0) x = 0;
+  let y = box.y + box.height / 2 - height / 2;
+  if (y < 0) y = 0;
+  if (y + height > Number(view[3])) y = Number(view[3]) - height;
+  tipLayer.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
 function channel(c) {
   const v = c / 255;
   return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
@@ -241,16 +374,16 @@ VALUES.forEach(function (row, r) {
     .textContent = ROWS[r];
   row.forEach(function (v, c) {
     const cls = cellClass(v);
-    node('rect', {
+    markable(node('rect', {
       x: GUTTER + c * CELL_W, y: TOP + r * CELL_H, width: CELL_W, height: CELL_H
-    }, 'cell ' + cls);
+    }, 'cell ' + cls), ROWS[r], [[COLUMNS[c], fmt(v)]]);
     // The empty swatch is the ground held back rather than a colour of its own, so the number
     // printed on it is chosen against the ground. Reading the rule value here instead would
     // hand the contrast maths an alpha on the dark theme, which it cannot parse.
     const fill = cls === 'empty' ? resolve('--chart-surface') : resolve('--chart-' + cls);
     node('text', {
       x: GUTTER + c * CELL_W + CELL_W / 2, y: TOP + r * CELL_H + CELL_H / 2 + 4, 'text-anchor': 'middle'
-    }, labelClass(fill)).textContent = String(v);
+    }, labelClass(fill)).textContent = fmt(v);
   });
 });
 
@@ -272,11 +405,50 @@ VALUES.forEach(function (row, r) {
   row.forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);
 });
+
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+function markAt(target) {
+  return target && target.closest ? target.closest('[data-mark]') : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e.target);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e.target);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card is raised above the marks once the drawing is finished, so it is never painted
+// underneath the mark it is describing.
+svg.appendChild(tipLayer);
 // The drawing ends here. Everything above it ran because the data block held something to draw.
 }
 </script>

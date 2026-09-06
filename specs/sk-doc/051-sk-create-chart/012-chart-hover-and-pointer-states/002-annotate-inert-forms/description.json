@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/002-annotate-inert-forms",
+  "description": "`progress-single`, `unit-ring`, `unit-grid`, `independent-percentages`, `bar-columns` and `bar-rows` each print every value they encode beside the",
+  "keywords": [
+    "progress-single",
+    "unit-ring",
+    "unit-grid",
+    "independent-percentages",
+    "bar-columns",
+    "bar-rows",
+    "print",
+    "every",
+    "value",
+    "encode",
+    "beside"
+  ],
+  "lastUpdated": "2026-09-05T21:12:56.537Z",
+  "specId": "002",
+  "folderSlug": "annotate-inert-forms",
+  "parentChain": [
+    "sk-doc",
+    "051-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -3,7 +3,17 @@
   "packet_id": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
   "spec_folder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
   "parent_id": "sk-doc/051-sk-create-chart",
-  "children_ids": [],
+  "children_ids": [
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/001-register-and-contract",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/002-annotate-inert-forms",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/003-excerpt-and-grouped-bars",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/004-transfer-three-forms",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/005-stacked-area-pointed-band",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/006-daily-range-endpoints",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof",
+    "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -16,10 +26,13 @@
       "chart tooltip corpus",
       "sk-create-chart interaction layer",
       "hover template enforcement",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "chart hover plan",
+      "pointer contract phases",
+      "chart interaction rollout",
+      "chart hover tasks",
+      "pointer contract task order",
+      "chart interaction phase tasks",
+      "acceptance criteria"
     ],
     "key_topics": [
       "chart",
@@ -33,7 +46,7 @@
       "layer",
       "template",
       "enforcement",
-      "acceptance"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -42,7 +55,9 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs"
+      "research/research.md",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -70,19 +85,25 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -112,6 +133,12 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -124,55 +151,81 @@
         "source": "derived"
       },
       {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Location This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Location",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "scripting",
-        "kind": "key_phrase",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. CRITERIA",
-        "kind": "heading",
+        "name": "The Verification",
+        "kind": "proper_noun",
         "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
     "created_at": "2026-09-05T11:11:08Z",
-    "last_save_at": "2026-09-05T13:42:55.859Z",
+    "last_save_at": "2026-09-06T04:48:19.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:ceceff1426da0f2efbaf0990a74887de8ac3085519e8952184f8bc40b86e0ba5",
+    "source_fingerprint": "sha256:2c556936143d8207a4bc8820ad1ac93bd3f42a798914ec519a6ecc34553af446",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2cf393a6565855106c18f3ea701b0b34f4ce4de97aec316ed33a154e35773a11",
-      "plan.md": "fc9166c715db09945f00099c615ba443faf9bbd91f305588065961f0db127c35",
-      "tasks.md": "cb64cfb0e62c1cd9e06dbbc65eab509de60fbcabc538a31ddd115e41804fe0a4"
+      "spec.md": "425501b51a3f11186f9eab1492d36217445f31e1271af438d064d55b0b750045",
+      "plan.md": "5079fdc2e7a804ef904daa04c10d3c07e6aa2b8c9fc0e7ac89de42e2b891c800",
+      "tasks.md": "08a7a64e425745e5579dde95f9974ebd5bcc49b4a30ad1dd110dbde7c5b89c25",
+      "research/research.md": "7a633af5fae46b0c2a0aad4080424ae85657b8bbd31d5cadda200d51eb70a108"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/004-transfer-three-forms",
+    "last_active_at": "2026-09-05T23:20:20.621Z"
   }
 }

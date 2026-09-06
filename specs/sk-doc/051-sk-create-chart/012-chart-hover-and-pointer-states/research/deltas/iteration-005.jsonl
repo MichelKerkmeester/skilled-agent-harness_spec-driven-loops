@@ -1,0 +1,15 @@
+{"type":"iteration","iteration":5,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","sessionId":"deep-research-20260905-131433-chart-hover","lineageId":"deep-research-20260905-131433-chart-hover","newInfoRatio":0.7,"status":"insight","focus":"FINAL: decide keyboard (marks not focusable, table is the answer) and touch (tap pins, outside-tap dismisses, mechanism must ship the click path)"}
+{"type":"node","id":"f-dec1-keyboard","kind":"FINDING","label":"Decision 1: marks are not focusable; data-chart-table is the whole keyboard answer"}
+{"type":"node","id":"f-dec2-touch","kind":"FINDING","label":"Decision 2: tap pins the readout, second tap or outside tap dismisses; shipped mechanism must carry the click-pin path"}
+{"type":"node","id":"f-tabindex-controls","kind":"FINDING","label":"The six tabindex occurrences are legend dim controls (role=button), not marks; leave untouched"}
+{"type":"edge","id":"e-dec1-src","source":"f-dec1-keyboard","target":"n-iter001-s-reads","relation":"CITES"}
+{"type":"edge","id":"e-dec1-table","source":"f-dec1-keyboard","target":"n-iter001-c-table","relation":"SUPPORTS"}
+{"type":"edge","id":"e-dec2-src","source":"f-dec2-touch","target":"n-iter001-s-reads","relation":"CITES"}
+{"type":"edge","id":"e-dec2-wf","source":"f-dec2-touch","target":"f-wf","relation":"COVERS"}
+{"type":"edge","id":"e-dec2-sb","source":"f-dec2-touch","target":"f-sb","relation":"COVERS"}
+{"type":"edge","id":"e-dec2-sa","source":"f-dec2-touch","target":"f-sa","relation":"COVERS"}
+{"type":"edge","id":"e-dec2-gb","source":"f-dec2-touch","target":"f-gb","relation":"COVERS"}
+{"type":"edge","id":"e-dec2-blc","source":"f-dec2-touch","target":"f-blc","relation":"COVERS"}
+{"type":"edge","id":"e-dec2-dl","source":"f-dec2-touch","target":"f-dl","relation":"COVERS"}
+{"type":"edge","id":"e-dec2-dr","source":"f-dec2-touch","target":"f-dr","relation":"COVERS"}
+{"type":"edge","id":"e-dec1-covers-q","source":"f-dec1-keyboard","target":"n-iter001-q-a11y","relation":"ANSWERS"}
