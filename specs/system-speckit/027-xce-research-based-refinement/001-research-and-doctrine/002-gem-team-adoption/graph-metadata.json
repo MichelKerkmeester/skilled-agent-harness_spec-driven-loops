@@ -4,9 +4,6 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
   "parent_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
-    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
-    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
     "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
     "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
     "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint"
@@ -106,7 +103,7 @@
     ],
     "causal_summary": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) showed they collapse onto a single shared advisory contract (`agent-io-contract.md`) emitted/consumed centrally by `@orchestrate`",
     "created_at": "2026-06-06T10:11:02.043Z",
-    "last_save_at": "2026-08-30T15:39:33.258Z",
+    "last_save_at": "2026-09-06T04:28:31.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

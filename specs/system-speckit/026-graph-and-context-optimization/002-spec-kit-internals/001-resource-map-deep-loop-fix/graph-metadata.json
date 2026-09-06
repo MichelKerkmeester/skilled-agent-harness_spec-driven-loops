@@ -4,9 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
   "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
@@ -48,7 +45,6 @@
       "spec.md",
       "resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
       "001-reverse-parent-research-review-folders/spec.md",
       "003-resource-map-deep-loop-integration/spec.md"
     ],
@@ -69,12 +65,6 @@
         "name": "review-research-paths.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "extract-from-evidence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
         "source": "derived"
       },
       {
@@ -152,7 +142,7 @@
     ],
     "causal_summary": "Reviewers and successor phases had no quick way to answer \"what files did this packet touch\" without reading `implementation-summary.md` end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:29.192Z",
+    "last_save_at": "2026-09-06T04:27:56.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

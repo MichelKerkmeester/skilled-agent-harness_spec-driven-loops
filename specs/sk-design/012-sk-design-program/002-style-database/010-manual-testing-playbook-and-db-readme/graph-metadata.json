@@ -4,8 +4,6 @@
   "spec_folder": "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme",
   "parent_id": "sk-design/012-sk-design-program/002-style-database",
   "children_ids": [
-    "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate",
-    "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme/002-database-readme-speckit-alignment",
     "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate",
     "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/002-database-readme-speckit-alignment"
   ],
@@ -85,7 +83,7 @@
     ],
     "causal_summary": "Phase-parent packet: realign two off-canon styles-library documents. Child 001 rewrites the manual-testing playbook to the sk-doc create-manual-testing-playbook standard and relocates it out of docs/; child 002 expands styles/database/README.md to the spec-kit database-folder README style. Documentation-only.",
     "created_at": "2026-07-22T05:45:30.888Z",
-    "last_save_at": "2026-08-30T15:39:12.756Z",
+    "last_save_at": "2026-09-06T04:27:44.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

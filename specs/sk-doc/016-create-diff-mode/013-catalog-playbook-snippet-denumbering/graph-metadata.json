@@ -4,12 +4,6 @@
   "spec_folder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering",
   "parent_id": "sk-doc/016-create-diff-mode",
   "children_ids": [
-    "sk-doc/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
-    "sk-doc/013-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
-    "sk-doc/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
-    "sk-doc/013-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
-    "sk-doc/013-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard",
-    "sk-doc/013-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
     "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
     "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
     "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
@@ -162,7 +156,7 @@
     ],
     "causal_summary": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`, `NNN-feature-name.md`) that \"continues across categories and does not reset.\" That prefix makes the packages hard to maintain: inserting, reordering, or moving a feature forces a renumber, the global sequence drifts (real folders already mix `007` next to `024`), and two features can only be told apart by their number — producing duplicate slugs once the number is stripped",
     "created_at": "2026-06-06T06:46:12.378Z",
-    "last_save_at": "2026-08-30T15:39:14.353Z",
+    "last_save_at": "2026-09-06T04:27:44.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

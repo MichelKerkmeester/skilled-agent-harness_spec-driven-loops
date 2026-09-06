@@ -4,12 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture",
   "children_ids": [
-    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
-    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
-    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
-    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
-    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
-    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
     "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
     "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
     "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
@@ -90,7 +84,7 @@
     ],
     "causal_summary": "The last planning gate before implementation ratifies the cross-mode spine, freezes all 178 recommendations into a bijective single-disposition ledger, and fixes the transition, versioning, compatibility, cutover, and rollback contract that governs later writers.",
     "created_at": "2026-07-16T03:43:58.126Z",
-    "last_save_at": "2026-08-30T15:39:20.442Z",
+    "last_save_at": "2026-09-06T04:27:46.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

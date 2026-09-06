@@ -4,9 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit"
@@ -88,7 +85,7 @@
     ],
     "causal_summary": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the program had hundreds of shipped phases with almost no packet-local changelogs",
     "created_at": "2026-06-01T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.840Z",
+    "last_save_at": "2026-09-06T04:27:55.011Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

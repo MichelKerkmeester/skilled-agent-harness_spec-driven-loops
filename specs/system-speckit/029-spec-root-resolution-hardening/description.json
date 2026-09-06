@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "system-speckit/029-spec-root-resolution-hardening",
   "description": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only,",
   "keywords": [
@@ -15,7 +16,7 @@
     "legacy-first",
     "canonical-only"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.631Z",
+  "lastUpdated": "2026-09-04T17:50:20.827Z",
   "specId": "029",
   "folderSlug": "spec-root-resolution-hardening",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "17-07-26_10-30__deep-research-completed-at-the-requested-10.md"
-  ],
-  "level": "phase"
+  ]
 }

@@ -4,12 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
   "children_ids": [
-    "system-deep-loop/065-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
-    "system-deep-loop/065-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
-    "system-deep-loop/065-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
-    "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
-    "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
-    "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
     "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
     "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
     "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
@@ -99,7 +93,7 @@
     ],
     "causal_summary": "Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates.",
     "created_at": "2026-07-16T03:44:00.676Z",
-    "last_save_at": "2026-08-30T15:39:21.513Z",
+    "last_save_at": "2026-09-06T04:27:51.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

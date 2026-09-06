@@ -4,10 +4,6 @@
   "spec_folder": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research",
   "parent_id": "sk-design/012-sk-design-program/001-research",
   "children_ids": [
-    "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/001-restructure",
-    "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests",
-    "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/003-db-fate",
-    "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/004-commands",
     "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/001-restructure",
     "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/002-naming-manifests",
     "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/003-db-fate",
@@ -139,7 +135,7 @@
     ],
     "causal_summary": "Phase parent for forced GPT-5.6-SOL deep-research on the four confirmed gaps in the sk-design styles library and /interface:* commands, feeding an evidence-backed remediation plan.",
     "created_at": "2026-07-21T09:46:40.846Z",
-    "last_save_at": "2026-09-03T22:17:38.759Z",
+    "last_save_at": "2026-09-06T04:27:43.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

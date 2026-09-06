@@ -4,8 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/004-deep-alignment-integrity/001-alignment-registry-sealing",
-    "system-deep-loop/036-deep-loop-innovation/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor"
   ],
@@ -85,7 +83,7 @@
     ],
     "causal_summary": "Group the deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path.",
     "created_at": "2026-08-08T07:14:12.196Z",
-    "last_save_at": "2026-08-30T15:39:21.985Z",
+    "last_save_at": "2026-09-06T04:27:52.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

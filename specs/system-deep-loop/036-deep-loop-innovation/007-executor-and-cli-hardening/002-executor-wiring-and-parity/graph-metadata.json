@@ -4,11 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/002-cli-devin-executor-wiring",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity",
@@ -91,7 +86,7 @@
     ],
     "causal_summary": "Group the deep-loop CLI fan-out executor work: wiring individual executor kinds and proving every cli/provider/model combination is reachable end-to-end.",
     "created_at": "2026-08-08T07:14:10.069Z",
-    "last_save_at": "2026-08-30T15:39:21.814Z",
+    "last_save_at": "2026-09-06T04:27:51.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

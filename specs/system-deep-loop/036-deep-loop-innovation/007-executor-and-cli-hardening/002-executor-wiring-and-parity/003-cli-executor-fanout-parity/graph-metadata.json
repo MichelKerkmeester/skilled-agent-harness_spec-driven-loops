@@ -4,12 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix",
-    "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening",
@@ -95,7 +89,7 @@
     ],
     "causal_summary": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
     "created_at": "2026-07-29T08:25:06.055Z",
-    "last_save_at": "2026-08-30T15:39:21.840Z",
+    "last_save_at": "2026-09-06T04:27:51.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

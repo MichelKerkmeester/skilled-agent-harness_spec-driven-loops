@@ -1,5 +1,5 @@
 {
-  "level": 1,
+  "level": "1",
   "specFolder": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
   "description": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`,",
   "keywords": [

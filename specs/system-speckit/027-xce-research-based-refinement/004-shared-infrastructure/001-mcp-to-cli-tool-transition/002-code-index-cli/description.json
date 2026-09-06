@@ -6,7 +6,7 @@
     "mk_code_index cli",
     "028 002 research"
   ],
-  "level": 2,
+  "level": "2",
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
   "status": "phase-parent",

@@ -4,18 +4,6 @@
   "spec_folder": "system-deep-loop/035-command-surface-benchmark",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-    "system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle",
-    "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter",
-    "system-deep-loop/066-command-surface-benchmark/004-command-lane-integration",
-    "system-deep-loop/066-command-surface-benchmark/005-command-behavior-evaluator",
-    "system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot",
-    "system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout",
-    "system-deep-loop/066-command-surface-benchmark/008-bounded-command-matrix",
-    "system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout",
-    "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family",
-    "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command",
-    "system-deep-loop/066-command-surface-benchmark/011-create-benchmark-completeness-remediation",
     "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract",
     "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
     "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
@@ -65,8 +53,7 @@
     "key_files": [
       "spec.md",
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-      ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
+      ".opencode/commands/scripts/validate-command-references.cjs"
     ],
     "entities": [
       {
@@ -85,12 +72,6 @@
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -132,7 +113,7 @@
     ],
     "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (36 baseline, 37 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
     "created_at": "2026-07-14T20:25:28.626Z",
-    "last_save_at": "2026-08-30T15:39:20.215Z",
+    "last_save_at": "2026-09-06T04:27:46.391Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

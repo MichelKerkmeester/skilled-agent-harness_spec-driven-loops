@@ -4,8 +4,6 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine",
   "parent_id": "system-speckit/027-xce-research-based-refinement",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
-    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
     "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
     "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption"
   ],
@@ -37,7 +35,7 @@
       "reviewer"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -87,7 +85,7 @@
     ],
     "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:33.143Z",
+    "last_save_at": "2026-09-06T04:28:30.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

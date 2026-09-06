@@ -4,10 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
@@ -91,7 +87,7 @@
     ],
     "causal_summary": "Phase parent for post-program cleanup and followup quality work across 4 child packets. Covers quality passes, runtime cleanup, test recovery, and iterative improvements after major releases.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-08-30T15:39:28.155Z",
+    "last_save_at": "2026-09-06T04:27:53.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

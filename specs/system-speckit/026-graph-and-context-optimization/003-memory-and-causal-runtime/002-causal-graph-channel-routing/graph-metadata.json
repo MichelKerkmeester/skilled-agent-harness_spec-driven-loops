@@ -4,8 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing",
   "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
-    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
     "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
     "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"
   ],
@@ -96,7 +94,7 @@
     ],
     "causal_summary": "Phase parent for the graph-channel routing override and its post-delivery remediation. 001 ships the initial routing override (delivered 2026-05-08); 002 resolves the 0 P0 / 3 P1 / 39 P2 findings from the 2026-05-11 deep review (10-iter, cli-opencode + deepseek/deepseek-v4-pro).",
     "created_at": "2026-05-11T10:36:32.859Z",
-    "last_save_at": "2026-08-30T15:39:29.530Z",
+    "last_save_at": "2026-09-06T04:28:23.287Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

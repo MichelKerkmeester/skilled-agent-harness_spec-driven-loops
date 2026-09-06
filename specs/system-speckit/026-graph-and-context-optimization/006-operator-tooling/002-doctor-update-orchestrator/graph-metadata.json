@@ -4,11 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
   "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
     "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
     "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
     "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
@@ -67,12 +62,10 @@
       "001-implement-initial-doctor-command-set/handover.md",
       "001-implement-initial-doctor-command-set/ai-council/council-report.md",
       ".opencode/skills/system-spec-kit/package-lock.json",
-      "dist/context-server.js",
       ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/commands/doctor/scripts/audit_descriptions.py",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh"
+      ".opencode/commands/doctor/scripts/audit_descriptions.py"
     ],
     "entities": [
       {
@@ -118,12 +111,6 @@
         "source": "derived"
       },
       {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
         "name": "doctor-runtime-bootstrap.sh",
         "kind": "script",
         "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
@@ -139,12 +126,6 @@
         "name": "audit_descriptions.py",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
         "source": "derived"
       },
       {
@@ -218,11 +199,23 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Update Orchestrator Parent Aggregate",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-08-30T15:39:32.102Z",
+    "last_save_at": "2026-09-06T04:28:29.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

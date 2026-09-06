@@ -4,9 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/003-write-containment-hardening/001-cli-codex-write-containment",
-    "system-deep-loop/036-deep-loop-innovation/003-write-containment-hardening/002-fanout-containment-sibling",
-    "system-deep-loop/036-deep-loop-innovation/003-write-containment-hardening/003-write-containment-concurrent-safety",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/001-cli-codex-write-containment",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety"
@@ -87,7 +84,7 @@
     ],
     "causal_summary": "Group the deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes.",
     "created_at": "2026-08-08T07:14:11.279Z",
-    "last_save_at": "2026-08-30T15:39:21.953Z",
+    "last_save_at": "2026-09-06T04:27:51.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

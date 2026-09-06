@@ -5,11 +5,6 @@
   "parent_id": "system-speckit/000-migration-from-soa-and-cleanup",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
-    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/002-data-canonicalization",
-    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
-    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
-    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
     "system-speckit/029-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
     "system-speckit/029-spec-root-resolution-hardening/002-data-canonicalization",
     "system-speckit/029-spec-root-resolution-hardening/003-writer-canonicalization",
@@ -47,19 +42,13 @@
     "key_files": [
       "spec.md",
       "research/research.md",
-      "scripts/core/config.ts",
       "spec/create.sh",
-      "scripts/dist/memory/generate-context.js",
       "research/iterations/iteration-001.md",
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/findings-registry.json",
       "research/deep-research-dashboard.md",
       "research/resource-map.md",
-      ".opencode/skills/system-spec-kit/scripts/core/config.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
       ".claude/settings.json"
     ],
@@ -77,21 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "scripts/core/config.ts",
-        "source": "derived"
-      },
-      {
         "name": "create.sh",
         "kind": "script",
         "path": "spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -122,18 +99,6 @@
         "name": "deep-research-dashboard.md",
         "kind": "doc",
         "path": "research/deep-research-dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -207,22 +172,28 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Verified Resolver And Writer Inventory This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract",
     "created_at": "2026-07-17T09:30:14.185Z",
-    "last_save_at": "2026-08-30T15:39:36.338Z",
+    "last_save_at": "2026-09-06T04:28:35.695Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ab238eefdeeec2e28d576d95333dbfa0971e13b9dbdc8517f0e4278bc1e70498",
+    "source_fingerprint": "sha256:711a0e5db408a1d908f9b21e540b2d7355970f6807b8cd5e5519edc0bbc20023",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aba1c5e39051a4056aff74391348c2654ea86245a39711878a86c4ad52e9b92f",
-      "research/research.md": "ce4ec60c4a62ebeabe361cf62e2b51a3f0eda955dc7bd8863269098d065f6c1d"
+      "research/research.md": "d3e69e445cf7d7119eed309de76f21fb83ed8a4d162c6cd7024be9fd461f6ef2"
     },
     "last_active_child_id": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
     "last_active_at": null

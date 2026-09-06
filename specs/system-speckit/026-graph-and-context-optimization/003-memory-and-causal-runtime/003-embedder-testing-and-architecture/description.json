@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
   "description": "Umbrella phase parent for embedder and reranker architecture across mk-spec-memory, mcp-coco-index, skill-advisor, launcher support, cross-cutting QA,",
   "keywords": [
@@ -16,7 +17,7 @@
     "support",
     "cross-cutting"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.231Z",
+  "lastUpdated": "2026-09-04T17:50:19.768Z",
   "specId": "003",
   "folderSlug": "embedder-testing-and-architecture",
   "parentChain": [
@@ -29,6 +30,5 @@
     "17-05-26_07-35__scaffolded-013-embedder-testing-and-architecture-as.md",
     "18-05-26_21-38__autonomous-run-kick-off-after-pre-compaction.md",
     "23-05-26_11-00__renumbered-016-to-013-and-absorbed-010-into-009.md"
-  ],
-  "level": "phase"
+  ]
 }

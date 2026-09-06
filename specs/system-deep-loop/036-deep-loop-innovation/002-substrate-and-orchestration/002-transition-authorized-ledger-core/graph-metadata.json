@@ -4,14 +4,6 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
   "children_ids": [
-    "system-deep-loop/065-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope",
-    "system-deep-loop/065-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger",
-    "system-deep-loop/065-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints",
-    "system-deep-loop/065-deep-loop-innovation/002-transition-authorized-ledger-core/004-transition-authorization-gateway",
-    "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope",
-    "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger",
-    "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints",
-    "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/004-transition-authorization-gateway",
     "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/001-versioned-event-envelope",
     "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger",
     "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints",
@@ -93,7 +85,7 @@
     ],
     "causal_summary": "The versioned event envelope, typed append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway must co-land as one dark substrate while legacy writers remain authoritative.",
     "created_at": "2026-07-16T03:43:58.654Z",
-    "last_save_at": "2026-08-30T15:39:20.483Z",
+    "last_save_at": "2026-09-06T04:27:47.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

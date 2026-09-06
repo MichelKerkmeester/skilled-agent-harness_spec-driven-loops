@@ -4,13 +4,6 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
   "parent_id": "system-speckit/027-xce-research-based-refinement",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
     "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
     "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
     "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
@@ -100,7 +93,7 @@
     ],
     "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.212Z",
+    "last_save_at": "2026-09-06T04:28:34.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

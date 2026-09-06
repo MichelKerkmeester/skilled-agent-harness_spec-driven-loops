@@ -1,5 +1,6 @@
 {
   "title": "032 substrate-repair-followups (phase parent)",
+  "level": "phase",
   "schema_version": 1,
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
@@ -25,7 +26,7 @@
     "substrate-repair",
     "work"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.527Z",
+  "lastUpdated": "2026-09-04T17:50:19.518Z",
   "specId": "032",
   "folderSlug": "substrate-repair-followups",
   "parentChain": [
@@ -38,6 +39,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "14-05-26_14-53__scoped-scaffolded-and-shipped-the-032-substrate.md"
-  ],
-  "level": "phase"
+  ]
 }

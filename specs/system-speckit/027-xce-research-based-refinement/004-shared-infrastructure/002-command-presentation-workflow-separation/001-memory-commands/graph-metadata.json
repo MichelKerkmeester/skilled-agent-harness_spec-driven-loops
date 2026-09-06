@@ -4,10 +4,6 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands",
   "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire",
@@ -93,7 +89,7 @@
     ],
     "causal_summary": "The memory commands command family owns presentation instructions inline with routing instructions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:33.925Z",
+    "last_save_at": "2026-09-06T04:28:33.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

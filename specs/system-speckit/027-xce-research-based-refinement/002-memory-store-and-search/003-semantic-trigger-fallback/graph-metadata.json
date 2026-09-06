@@ -4,10 +4,6 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
   "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
     "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
     "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
     "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
@@ -50,8 +46,6 @@
       "resource-map.md",
       "description.json",
       "graph-metadata.json",
-      "lib/triggers/semantic-trigger-matcher.ts",
-      "handlers/memory-triggers.ts",
       "shared/embeddings/factory.ts",
       "shared/embeddings/auto-select.ts",
       ".opencode/skills/system-spec-kit/SKILL.md",
@@ -86,18 +80,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "semantic-trigger-matcher.ts",
-        "kind": "code",
-        "path": "lib/triggers/semantic-trigger-matcher.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-triggers.ts",
-        "kind": "code",
-        "path": "handlers/memory-triggers.ts",
         "source": "derived"
       },
       {
@@ -201,11 +183,23 @@
         "kind": "proper_noun",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "WHEN TO USE THIS TEMPLATE",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase-parent control packet for the hybrid lexical+semantic trigger fallback: schema + backfill, semantic matcher, hybrid handler integration, and tests/goldens/shadow eval. Lexical stays primary; semantic is a feature-flagged UNION fallback, default-off and shadow-first.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-08-30T15:39:33.377Z",
+    "last_save_at": "2026-09-06T04:28:31.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -7,7 +7,7 @@
     "skill readme template",
     "skills index readme"
   ],
-  "level": 3,
+  "level": "3",
   "schema_version": 1,
   "packet_id": "sk-doc/014-skill-readme-standardization",
   "status": "phase-parent",
