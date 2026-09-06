@@ -1582,12 +1582,10 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'mimo-v2.5-pro': 'xiaomi',
       'mimo-v2.5-pro-ultraspeed': 'xiaomi',
       'qwen3.8-max': 'opencode-go',
-      // OpenRouter routes DeepSeek V4 Flash, GLM-5.3-Flash, and Gemini 3.7 Flash, each dispatched
-      // as openrouter/<upstream>/<id>; the Flash and GLM ids stay on the max thinking pin, Gemini
-      // (tops at high) does not.
+      // OpenRouter routes exactly DeepSeek V4 Flash and GLM-5.3-Flash, each dispatched as
+      // openrouter/<upstream>/<id>; both stay on the max thinking pin.
       'deepseek/deepseek-v4-flash-vision-exp': 'openrouter',
       'z-ai/glm-5.3-flash': 'openrouter',
-      'google/gemini-3.8-flash': 'openrouter',
       // DevPass routes GLM-5.3-Flash under its bare literal → llmgateway/glm-5.3-flash, the
       // two-segment form that gateway requires. opencode-go fronts the same model, but one
       // literal maps to one provider, so that route is direct-dispatch only.
@@ -1605,7 +1603,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // DeepSeek V4 Flash (bare, provider-prefixed, or the -latest / -vision-exp variants) and
       // GLM-5.3-Flash (bare opencode-go or vendor-prefixed OpenRouter literal) are pinned to the
       // max thinking tier, so they always carry --thinking max even when the lineage names no
-      // reasoningEffort; the other picker ids (incl. Gemini 3.8 Flash) carry no --thinking here.
+      // reasoningEffort; the other picker ids carry no --thinking here.
       const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|glm-5\.3-flash)$/.test(model);
       const expectedArgs = isFlashPinned
         ? ['-p', '--offline', '--model', `${provider}/${model}`, '--thinking', 'max', 'bounded prompt']

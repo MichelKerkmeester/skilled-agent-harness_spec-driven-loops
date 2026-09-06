@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax xiaomi gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.4.0.29
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -40,7 +40,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** — `--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids — so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first — never dispatch an unlisted id ad hoc.
+> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** — `--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids — so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first — never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and those extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
 
 OpenCode resolves models through configured providers; the model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install — but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
 
@@ -81,13 +81,12 @@ opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 
 OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-segment `openrouter/<upstream>/<model-id>` to `--model`. Confirm live slugs via `opencode models openrouter`. The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--variant max` by the same policy as the direct and opencode-go flash ids.
 
-> **OpenRouter here carries exactly three models: DeepSeek V4 Flash (`openrouter/deepseek/deepseek-v4-flash-latest`), GLM-5.3-Flash (`openrouter/z-ai/glm-5.3-flash`), and Gemini 3.8 Flash (`openrouter/google/gemini-3.8-flash`).** Do not route any other model (e.g. GPT-5.6 Luna/Sol) through OpenRouter here — use their own providers (`openai`, etc.) instead.
+> **OpenRouter here carries exactly two models: DeepSeek V4 Flash (`openrouter/deepseek/deepseek-v4-flash-vision-exp`) and GLM-5.3-Flash (`openrouter/z-ai/glm-5.3-flash`).** Do not route any other model through OpenRouter here, whatever it fronts and whatever another provider on this page carries.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `openrouter/deepseek/deepseek-v4-flash-vision-exp` | — | DeepSeek V4 Flash Vision via OpenRouter; reasoning model pinned to `--variant max` by policy; accepts images. Id accepted by the live OpenRouter API on 2026-09-05 |
 | `openrouter/z-ai/glm-5.3-flash` | — | GLM-5.3-Flash via OpenRouter; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--variant max`; ladder re-verified in `opencode models openrouter --verbose` on 2026-09-04. Replaces the retired Ox Alpha stealth route. **GLM-5.3-Flash's top tier is per-route, not per-model:** `max` here and on opencode-go, `xhigh` only on Cline, and **both** on the DevPass `llmgateway` route below |
-| `openrouter/google/gemini-3.8-flash` | — | Gemini 3.8 Flash via OpenRouter; reasoning model (variants `low`/`medium`/`high`) dispatched at its top tier `--variant high` — no `xhigh`, no `max`; list-verified in `opencode models openrouter` on 2026-09-04 |
 
 ### cline-pass
 
@@ -103,18 +102,16 @@ Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-
 
 DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible; pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login` — the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway`.
 
-> **The gateway takes BARE model ids.** `llmgateway/deepseek-v4-flash-vision-exp` is provider + id, and the id sent on the wire is `deepseek-v4-flash-vision-exp`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`gonka24/…`, `zai/…`, `google-vertex/…`, `azure/…`); those names are informational and are never sent.
+> **The gateway takes BARE model ids.** `llmgateway/deepseek-v4-flash-vision-exp` is provider + id, and the id sent on the wire is `deepseek-v4-flash-vision-exp`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`gonka24/…`, `zai/…`); those names are informational and are never sent.
 
-> **DevPass is flat-price**, so these bill the subscription rather than per token. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). Every model below is **Standard** — the most expensive is Gemini 3.8 Flash at $3.75/1M output — so **no weekly cap applies to this roster**.
+> **DevPass is flat-price**, so these bill the subscription rather than per token. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). Both models below are **Standard**, so **no weekly cap applies to this roster**.
 
-> **`llmgateway` fronts 183 models; exactly the four below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
+> **`llmgateway` fronts 183 models; exactly the two below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `llmgateway/deepseek-v4-flash-vision-exp` | — | DeepSeek V4 Flash Vision via DevPass; reasoning **and images**; sparse ladder `none`/`low`/`high`/**`max`** (no `minimal`/`medium`/`xhigh`); pinned `--variant max`; context 1.05M, output 384K. DevPass is flat-price, so the paper premium over plain flash never bills. Dispatch-tested 2026-09-04. **Its image reads are unreliable** — 1 correct in 3 solid-colour probes; the image arrives, a single visual answer should not be trusted |
 | `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
-| `llmgateway/gpt-5.6-luna` | — | GPT-5.6 Luna via DevPass; reasoning **and vision** (image round-trip verified 2026-09-04, correct colour identified); ladder `none`→**`max`** so `--variant max`; context 1.05M (input cap 922K), output 128K. **`temperature` is not supported** on this entry — do not pass one. Dispatch-tested 2026-09-04. Distinct from the `openai` provider's `gpt-5.6-luna` slugs above: same model family, different route and different billing |
-| `llmgateway/gemini-3.8-flash` | — | Gemini 3.8 Flash via DevPass; reasoning and vision (image round-trip verified 2026-09-04, correct colour identified); ladder tops at **`high`** — no `xhigh`, no `max`, so `--variant high`. Context 1.05M, output 1.05M. Dispatch-tested 2026-09-04 |
 
 ---
 
@@ -152,7 +149,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 | `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4-flash-vision-exp` (sparse ladder: no `minimal`/`medium`/`xhigh`), `glm-5.3-flash` and `gpt-5.6-luna` reach **`max`**; `gemini-3.8-flash` tops at **`high`**. Always pass `--variant` explicitly here |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4-flash-vision-exp` (sparse ladder: no `minimal`/`medium`/`xhigh`) and `glm-5.3-flash` both reach **`max`**. Always pass `--variant` explicitly here |
 
 ---
 

@@ -58,12 +58,12 @@ The model `id` MUST be the exact `modelType/model` Cline expects — never bare.
 
 ## 3. LLMGATEWAY (DEVPASS)
 
-Routes four models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass is a flat-price plan, so these four cost the subscription rather than per-token metering.
+Routes two models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass is a flat-price plan, so these four cost the subscription rather than per-token metering.
 
 ### Where It Lives
 
-- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with four models
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash-vision-exp"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/gpt-5.6-luna"`, `"llmgateway/gemini-3.8-flash"`
+- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with two models. The gateway fronts many more; only these two are on the roster
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash-vision-exp"` and `"llmgateway/glm-5.3-flash"`
 - Not a default: `defaultProvider` stays `cline-pass`
 
 **Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
@@ -74,28 +74,26 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4-flash-vision-exp --thinking max
 ```
 
-Swap the id for `glm-5.3-flash`, `gpt-5.6-luna` or `gemini-3.8-flash`.
+Swap the id for `glm-5.3-flash`. No other id is on the roster for this provider.
 
 ### Thinking And Effort
 
-All four are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
+Both are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
 | `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. **Image-capable**, and the same effective cost as plain flash under a flat-price plan. Reads images unreliably: 1 correct of 3 probes |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
-| `gpt-5.6-luna` | `max` | Full ladder minus `minimal`, so the active range here is `low`→`max`. **Image-capable, verified** by a real image round-trip on 2026-09-04. The provider catalog reports **no `temperature` support**, so do not pass one — pi's own entry declares no temperature key either way |
-| `gemini-3.8-flash` | `high` | No `xhigh`, no `max` — requesting either sends a tier the model does not have |
 
-The global `defaultThinkingLevel` is `xhigh`, which only three of these four accept. Pass `--thinking` explicitly rather than relying on the default.
+The global `defaultThinkingLevel` is `xhigh`, which only GLM-5.3-Flash accepts on this route. Pass `--thinking` explicitly rather than relying on the default.
 
-No provider-level `compat.thinkingFormat` is set. The block spans four model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to two of them; pi's default OpenAI-compatible parsing handles all four, confirmed by real dispatches.
+No provider-level `compat.thinkingFormat` is set. The block spans two model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to one of them; pi's default OpenAI-compatible parsing handles both, confirmed by real dispatches.
 
 ### The Gotcha: Bare Ids, Not Slashed
 
 The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed one. Confirmed against the live API: `"model": "deepseek-v4-flash-vision-exp"` returns `200`, while `"model": "llmgateway/deepseek-v4-flash-vision-exp"` returns `400`. That is the exact inverse of the cline-pass rule directly above, so the two blocks must not be copied into each other. As with Cline, the failure hides from `--list-models` and `pi auth check` and appears only on a real dispatch.
 
-The gateway rewrites the id upstream — a `deepseek-v4-flash-vision-exp` request comes back reporting `deepseek/deepseek-v4-flash-vision-exp`, GLM as `zai/glm-5.3-flash`, Gemini as `google-vertex/gemini-3.8-flash`. That upstream name is informational; never send it.
+The gateway rewrites the id upstream — a `deepseek-v4-flash-vision-exp` request comes back reporting `deepseek/deepseek-v4-flash-vision-exp`, GLM as `zai/glm-5.3-flash`. That upstream name is informational; never send it.
 
 ---
 
@@ -136,10 +134,10 @@ For llmgateway:
 pi --list-models | grep llmgateway
 # real round-trip (needs a key) — proves each bare id is accepted:
 pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash-vision-exp --thinking max --mode text
-pi -p "reply OK" --provider llmgateway --model llmgateway/gemini-3.8-flash --thinking high --mode text
+pi -p "reply OK" --provider llmgateway --model llmgateway/glm-5.3-flash --thinking max --mode text
 ```
 
-Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…/z-ai/glm-5.3-flash` rows plus the four `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…/z-ai/glm-5.3-flash` rows plus the two `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value — including an unresolved placeholder that Cline will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 

@@ -2079,12 +2079,12 @@ const PI_ALLOWED_MODELS = new Set([
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
-  // OpenRouter carries DeepSeek V4 Flash, GLM-5.3-Flash, and Gemini 3.7 Flash; each id keeps
-  // its upstream provider path so `${provider}/${model}` composes the full
-  // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
+  // OpenRouter carries exactly DeepSeek V4 Flash and GLM-5.3-Flash; each id keeps its
+  // upstream provider path so `${provider}/${model}` composes the full
+  // openrouter/<upstream>/<model> selector. A live catalog is not a roster: no other model
+  // routes through OpenRouter from here.
   'deepseek/deepseek-v4-flash-vision-exp',
   'z-ai/glm-5.3-flash',
-  'google/gemini-3.8-flash',
   // DevPass fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}` composes
   // llmgateway/glm-5.3-flash — distinct from the OpenRouter `z-ai/` literal above. Cline and
   // opencode-go front the same model, but one literal maps to one provider, so both of those
@@ -2284,12 +2284,11 @@ const PI_MODEL_PROVIDERS = new Map([
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
-  // OpenRouter fronts DeepSeek V4 Flash `-latest`, GLM-5.3-Flash, and Gemini 3.7 Flash. Each
-  // model id already carries its upstream provider path, so `${provider}/${model}` yields
-  // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
+  // OpenRouter fronts exactly DeepSeek V4 Flash and GLM-5.3-Flash here. Each model id
+  // already carries its upstream provider path, so `${provider}/${model}` yields the
+  // 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
   ['deepseek/deepseek-v4-flash-vision-exp', 'openrouter'],
   ['z-ai/glm-5.3-flash', 'openrouter'],
-  ['google/gemini-3.8-flash', 'openrouter'],
   // DevPass (LLM Gateway) fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
   // yields the two-segment llmgateway/glm-5.3-flash selector the gateway requires: it 400s on a
   // provider-prefixed id, which is the inverse of the cline-pass three-segment shape. Distinct
