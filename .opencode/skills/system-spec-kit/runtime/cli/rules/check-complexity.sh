@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-COMPLEXITY
+# COMPONENT: CHECK-COMPLEXITY
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

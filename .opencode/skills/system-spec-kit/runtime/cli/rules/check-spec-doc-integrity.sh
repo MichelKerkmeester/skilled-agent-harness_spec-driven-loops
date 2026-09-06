@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-SPEC-DOC-INTEGRITY
+# COMPONENT: CHECK-SPEC-DOC-INTEGRITY
 # ───────────────────────────────────────────────────────────────
 
 set -euo pipefail

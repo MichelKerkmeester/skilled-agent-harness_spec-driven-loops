@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Trigger Index Lookup
+// MODULE: Trigger Index Lookup
 // ───────────────────────────────────────────────────────────────
 // Resolves a prompt against the committed trigger index using the same
 // candidate gate, score classes and scope filter as the substring trigger lane

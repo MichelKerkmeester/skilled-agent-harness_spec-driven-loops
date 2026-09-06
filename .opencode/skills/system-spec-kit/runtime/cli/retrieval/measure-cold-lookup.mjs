@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Cold Lookup Latency Measurement
+// MODULE: Cold Lookup Latency Measurement
 // ───────────────────────────────────────────────────────────────
 // Spawns one fresh Node process per sample and times it end to end, because
 // the number that matters is what a caller waits for on a cold start — process

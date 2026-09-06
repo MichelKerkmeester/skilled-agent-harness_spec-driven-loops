@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-FOLDER-NAMING
+# COMPONENT: CHECK-FOLDER-NAMING
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-GRAPH-METADATA
+# COMPONENT: CHECK-GRAPH-METADATA
 # ───────────────────────────────────────────────────────────────
 
 set -euo pipefail

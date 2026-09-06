@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-FILES
+# COMPONENT: CHECK-FILES
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

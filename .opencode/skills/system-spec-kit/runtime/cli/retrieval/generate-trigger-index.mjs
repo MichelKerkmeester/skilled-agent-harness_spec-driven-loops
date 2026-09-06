@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Trigger Index Generator
+// MODULE: Trigger Index Generator
 // ───────────────────────────────────────────────────────────────
 // Walks the documentation corpus, reads the trigger-phrase frontmatter out of
 // every markdown document, and publishes one deterministic many-to-many index

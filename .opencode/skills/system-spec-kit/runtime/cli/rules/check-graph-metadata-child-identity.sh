@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-GRAPH-METADATA-CHILD-IDENTITY
+# COMPONENT: CHECK-GRAPH-METADATA-CHILD-IDENTITY
 # ───────────────────────────────────────────────────────────────
 # Flags graph-metadata.json children_ids entries whose leading path segments
 # do not name this packet's own current identity. A children_ids entry is

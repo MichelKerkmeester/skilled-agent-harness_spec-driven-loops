@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Grep Convention Retrofit
+// MODULE: Grep Convention Retrofit
 // ───────────────────────────────────────────────────────────────
 // Applies the grep convention to the active spec corpus as an ordered pipeline:
 // enumerate, dry-run, process, rescan. No stage begins before the previous

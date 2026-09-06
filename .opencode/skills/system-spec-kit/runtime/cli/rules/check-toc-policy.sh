@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-TOC-POLICY
+# COMPONENT: CHECK-TOC-POLICY
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

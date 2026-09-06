@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-LEVEL
+# COMPONENT: CHECK-LEVEL
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

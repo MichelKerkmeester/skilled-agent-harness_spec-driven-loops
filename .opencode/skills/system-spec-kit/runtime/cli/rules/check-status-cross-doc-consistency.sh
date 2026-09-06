@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-STATUS-CROSS-DOC-CONSISTENCY
+# COMPONENT: CHECK-STATUS-CROSS-DOC-CONSISTENCY
 # ───────────────────────────────────────────────────────────────
 # Enforcing-by-default: flags spec.md and implementation-summary.md
 # Status fields that classify to different buckets. Graduated to enforcing

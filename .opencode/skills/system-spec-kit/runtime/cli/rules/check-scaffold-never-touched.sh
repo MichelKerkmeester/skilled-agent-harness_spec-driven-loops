@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-SCAFFOLD-NEVER-TOUCHED
+# COMPONENT: CHECK-SCAFFOLD-NEVER-TOUCHED
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

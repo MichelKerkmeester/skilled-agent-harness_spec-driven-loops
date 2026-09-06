@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SCRIPT: Quality KPI
+# COMPONENT: Quality KPI
 # Computes memory quality KPI rates and prints JSON + summary
 # ───────────────────────────────────────────────────────────────
 set -euo pipefail

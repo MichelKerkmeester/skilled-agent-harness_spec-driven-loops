@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPEC-KIT: RECOMMEND LEVEL
+# SPECKIT: RECOMMEND LEVEL
 # ───────────────────────────────────────────────────────────────
 #
 # SpecKit Level Recommendation Algorithm

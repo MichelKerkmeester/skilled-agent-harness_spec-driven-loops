@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-IMPROVEMENT-ARTIFACTS
+# COMPONENT: CHECK-IMPROVEMENT-ARTIFACTS
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

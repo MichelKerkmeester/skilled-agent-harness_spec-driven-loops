@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Memory Residue Sweep
+// MODULE: Memory Residue Sweep
 // ───────────────────────────────────────────────────────────────
 // Answers one question with an exit code: does any live consumer of the
 // retired memory MCP surface still exist outside its own subsystem tree?

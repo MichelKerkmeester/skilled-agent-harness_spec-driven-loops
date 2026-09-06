@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPEC-KIT: CALCULATE COMPLETENESS
+# SPECKIT: CALCULATE COMPLETENESS
 # ───────────────────────────────────────────────────────────────
 #
 # Calculate placeholder replacement progress in spec folders.
@@ -291,8 +291,12 @@ calculate_spec_completeness() {
   if [[ "$TOTAL_LINES" -gt 0 ]] && [[ "$TOTAL_PLACEHOLDERS" -gt 0 ]]; then
     OVERALL_PERCENTAGE=$(echo "scale=2; (1 - $TOTAL_PLACEHOLDERS / $TOTAL_LINES) * 100" | bc)
     OVERALL_PERCENTAGE=$(printf "%.0f" "$OVERALL_PERCENTAGE")
-    # P1-13 FIX: Clamp to 0 when placeholders exceed total lines
-    [[ "$OVERALL_PERCENTAGE" -lt 0 ]] && OVERALL_PERCENTAGE=0
+    # Clamp to 0 when placeholders exceed total lines. Written as a full if so
+    # the false branch does not leave the function with a non-zero status,
+    # which errexit would turn into a silent exit before any output.
+    if [[ "$OVERALL_PERCENTAGE" -lt 0 ]]; then
+      OVERALL_PERCENTAGE=0
+    fi
   elif [[ "$TOTAL_PLACEHOLDERS" -gt 0 ]]; then
     OVERALL_PERCENTAGE=0
   fi

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-GRAPH-METADATA-CHILD-DRIFT
+# COMPONENT: CHECK-GRAPH-METADATA-CHILD-DRIFT
 # ───────────────────────────────────────────────────────────────
 # Flags a phase parent whose graph-metadata.json children_ids is missing
 # on-disk phase children the graph-metadata writer would add on its next

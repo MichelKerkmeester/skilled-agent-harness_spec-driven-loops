@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-GRAPH-METADATA-SHAPE
+# COMPONENT: CHECK-GRAPH-METADATA-SHAPE
 # ───────────────────────────────────────────────────────────────
 
 # Sourced by validate.sh and compatible with strict mode.

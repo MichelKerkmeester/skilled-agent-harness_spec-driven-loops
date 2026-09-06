@@ -6,6 +6,10 @@
 // 1. FRONTMATTER MIGRATION
 // ───────────────────────────────────────────────────────────────
 // Shared helpers for safe markdown frontmatter normalization.
+//
+// Keeps its own fence detection instead of the shared parser on purpose: a
+// migration has to classify malformed legacy blocks the strict parser rejects,
+// and it must report each malformed shape separately to choose a repair.
 
 import * as path from 'path';
 import { CANONICAL_CONTEXT_TYPES, LEGACY_CONTEXT_TYPE_ALIASES } from '@spec-kit/shared/context-types';

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-CANONICAL-SAVE
+# COMPONENT: CHECK-CANONICAL-SAVE
 # ───────────────────────────────────────────────────────────────
 #
 # Grandfathering windows for the canonical-save hardening rollout:

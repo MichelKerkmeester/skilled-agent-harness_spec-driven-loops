@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-METADATA-DISK-CONSISTENCY
+# COMPONENT: CHECK-METADATA-DISK-CONSISTENCY
 # ───────────────────────────────────────────────────────────────
 # Enforcing-by-default: flags a description.json/graph-metadata.json
 # path mismatch against the folder's on-disk path. Graduated to enforcing

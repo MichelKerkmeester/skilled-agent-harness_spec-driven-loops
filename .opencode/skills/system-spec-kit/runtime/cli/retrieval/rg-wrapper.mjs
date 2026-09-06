@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Ripgrep Recipe Wrapper
+// MODULE: Ripgrep Recipe Wrapper
 // ───────────────────────────────────────────────────────────────
 // The three convention recipes behind one front door, with the caller-side rank
 // applied and the exit status read on every invocation.

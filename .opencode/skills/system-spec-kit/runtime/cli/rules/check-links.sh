@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-LINKS
+# COMPONENT: CHECK-LINKS
 # ───────────────────────────────────────────────────────────────
 # Validates wikilinks across skill markdown files.
 # Compatible with validate.sh (sourced run_check) and standalone execution.

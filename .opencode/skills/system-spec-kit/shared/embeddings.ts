@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Embeddings
 // ---------------------------------------------------------------
-// Feature catalog: Hybrid search pipeline // hygiene-ok
+// Embedding provider contract and factory; the skill-advisor daemon is the live consumer.
 
 // Node stdlib
 import crypto from 'crypto';

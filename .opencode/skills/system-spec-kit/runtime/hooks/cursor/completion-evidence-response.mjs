@@ -62,4 +62,8 @@ async function main() {
   }
 }
 
-main().catch(() => {});
+main().catch((error) => {
+  // A response hook must never fail the host session, but a swallowed failure
+  // hides a broken sentinel; report it on stderr and still exit clean.
+  process.stderr.write(`completion-evidence-response: ${error instanceof Error ? error.message : String(error)}\n`);
+});
