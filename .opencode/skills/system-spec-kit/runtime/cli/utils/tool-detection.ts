@@ -1,19 +1,19 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Tool Detection
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TOOL DETECTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Detects tool calls, classifies conversation phases, and identifies prose context
 
 import { classifyConversationPhase as classifyPhaseViaSignals } from '../lib/phase-classifier.js';
 
 import type { ConversationPhaseLabel } from '../types/session-types.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Confidence level for tool call detection */
 export type ToolConfidence = 'high' | 'medium' | 'low';
 
@@ -32,9 +32,9 @@ export interface ToolCallRecord {
 /** Conversation phase classification labels */
 export type ConversationPhase = ConversationPhaseLabel;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. TOOL CALL DETECTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function detectToolCall(text: string): ToolUsage | null {
   if (!text || typeof text !== 'string') return null;
 
@@ -61,9 +61,9 @@ function detectToolCall(text: string): ToolUsage | null {
   return null;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. PROSE CONTEXT DETECTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function isProseContext(text: string, matchStartIndex: number): boolean {
   if (matchStartIndex < 0) return false;
 
@@ -95,17 +95,17 @@ function isProseContext(text: string, matchStartIndex: number): boolean {
   return false;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. CONVERSATION PHASE CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Pass-through wrapper. Prefer classifyPhaseViaSignals from phase-classifier.ts directly. */
 function classifyConversationPhase(toolCalls: ToolCallRecord[], messageContent: string): ConversationPhase {
   return classifyPhaseViaSignals(toolCalls, messageContent);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   detectToolCall,
   isProseContext,

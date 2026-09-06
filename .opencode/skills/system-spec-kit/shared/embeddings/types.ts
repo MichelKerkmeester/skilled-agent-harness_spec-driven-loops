@@ -1,11 +1,11 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Embedders — types (shared contract surface)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical BackendKind + EmbedderManifest for the shared embedding stack owned
 // by the skill advisor. A consumer's local `mcp-server/lib/embedders/types.ts`
 // re-exports from here, so every consumer names a backend and reads a manifest
 // the same way.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Backend kinds supported by the embedder layer.

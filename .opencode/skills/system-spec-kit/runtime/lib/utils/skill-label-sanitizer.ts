@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Skill Label Sanitizer Utility
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Spec-kit keeps this prompt-safety helper local so shared payload validation
 // does not import advisor renderer internals.
 

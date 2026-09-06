@@ -4,9 +4,9 @@
 
 import type { SaveMode } from './save-mode.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. SESSION TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical type definitions shared between simulation-factory and extractors.
 // Eliminates parallel type hierarchies that previously drifted out of sync.
 
@@ -291,9 +291,9 @@ export interface CodePattern {
   USAGE: string;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1b. QUALITY TYPES (shared between core/ and extractors/)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export type QualityFlag =
   | 'has_contamination'
@@ -356,9 +356,9 @@ export interface QualityScoreResult {
   insufficiency: QualityInsufficiencySummary | null;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. DECISION TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Option within a decision — canonical type.
  * Index signature removed: validateDataStructure() now accepts generic T extends Record. */
 export interface DecisionOption {
@@ -409,9 +409,9 @@ export interface DecisionData {
   FOLLOWUP_COUNT: number;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. PHASE / CONVERSATION TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Phase entry — canonical type (used by diagram + conversation extractors). */
 export interface PhaseEntry {
   PHASE_NAME: string;
@@ -494,9 +494,9 @@ export interface ConversationData {
   DATE: string;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. DIAGRAM TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Diagram output entry — canonical type.
  * Index signature removed: validateDataStructure() now accepts generic T extends Record. */
 export interface DiagramOutput {
@@ -547,9 +547,9 @@ export interface DiagramData {
   PATTERN_SUMMARY: PatternSummaryEntry[];
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. SESSION TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Outcome entry — canonical type */
 export interface OutcomeEntry {
   OUTCOME: string;

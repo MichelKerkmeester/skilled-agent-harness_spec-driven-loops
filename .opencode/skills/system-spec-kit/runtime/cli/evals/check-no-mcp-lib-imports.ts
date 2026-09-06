@@ -4,9 +4,9 @@
 // Scans scripts/ for prohibited internal runtime imports.
 // Violations not in the allowlist cause a non-zero exit.
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -16,9 +16,9 @@ import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 interface AllowlistException {
   file: string;
@@ -59,9 +59,9 @@ interface ScanFileResult {
   localImports: LocalImport[];
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // When running from dist/evals/, moduleDir resolves to dist/ which is wrong.
 // Detect compiled mode and go up one additional level to reach the source scripts/ root.
@@ -342,9 +342,9 @@ function findTsFiles(dir: string): string[] {
   return files;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. MAIN LOGIC
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function main(): void {
   const allowlist = loadAllowlist();

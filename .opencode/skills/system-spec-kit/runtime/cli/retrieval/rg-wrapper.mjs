@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Ripgrep Recipe Wrapper
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // The three convention recipes behind one front door, with the caller-side rank
 // applied and the exit status read on every invocation.
 //
@@ -31,7 +31,7 @@
 //                       [--search-root <dir>]... [--json]
 //
 // Exit codes: 0 = match, 1 = no match, 2 = execution or configuration error.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
 import process from 'node:process';
@@ -52,9 +52,9 @@ import {
   runRecipe,
 } from './lib/rg-lane.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Report schema; bump when a consumer would have to change to read it. */
 export const SCHEMA_VERSION = 1;
@@ -87,9 +87,9 @@ const HEAD_FLAGS = Object.freeze(['--no-config', '--hidden']);
 
 export { EXIT_ERROR_FLOOR, EXIT_MATCH, EXIT_NO_MATCH };
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. RECIPE BUILDERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Structured search, for line-addressable evidence.
@@ -164,9 +164,9 @@ export function assertRecipeParity(phrase, roots = DEFAULT_SEARCH_ROOTS) {
   return divergences;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. EXECUTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Runs one recipe and shapes its output for the recipe's own mode.
@@ -235,9 +235,9 @@ export function search(recipe, phrase, options = {}) {
   return record;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. CLI
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string[]} argv Arguments after the script name.

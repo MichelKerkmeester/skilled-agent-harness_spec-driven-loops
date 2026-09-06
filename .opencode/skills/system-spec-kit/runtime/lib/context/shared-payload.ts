@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Shared Payload Contract
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Common payload and provenance envelope
 // shared by startup, recovery, and compaction surfaces.
 
@@ -12,6 +12,10 @@ import { sanitizeSkillLabel } from '../utils/skill-label-sanitizer.js';
 
 import type { UnicodeRuntimeFingerprint } from '@spec-kit/shared/unicode-normalization';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. VALUE SETS AND TYPES
+// ───────────────────────────────────────────────────────────────────
+
 export const SHARED_PAYLOAD_KIND_VALUES = [
   'startup',
   'resume',
@@ -22,7 +26,7 @@ export const SHARED_PAYLOAD_KIND_VALUES = [
 
 export type SharedPayloadKind = (typeof SHARED_PAYLOAD_KIND_VALUES)[number];
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Trust-state vocabulary expansion.
 // Canonical axes keep 'live' and 'stale' for existing-but-freshness
 // semantics and add 'absent' (does not exist for this scope) and
@@ -337,6 +341,10 @@ export class StructuralTrustPayloadError extends Error {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 2. GUARDS AND ASSERTIONS
+// ───────────────────────────────────────────────────────────────────
+
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
 }
@@ -532,6 +540,10 @@ function assertAdvisorSkillLabel(value: unknown): string | null {
 }
 
 /** Validate an advisor envelope metadata payload, rejecting unknown or missing keys. */
+// ───────────────────────────────────────────────────────────────────
+// 3. VALIDATORS AND BUILDERS
+// ───────────────────────────────────────────────────────────────────
+
 export function validateAdvisorEnvelopeMetadata(value: unknown): AdvisorEnvelopeMetadata {
   if (!isRecord(value)) {
     throw new Error('advisor envelope metadata requires an object payload.');

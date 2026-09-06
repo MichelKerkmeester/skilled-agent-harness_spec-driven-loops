@@ -7,17 +7,17 @@
 //   check-no-mcp-lib-imports-ast.ts (AST-based, with allowlist governance)
 // Both checks should be run together for full boundary compliance.
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CHECK ARCHITECTURE BOUNDARIES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Enforces two rules from ARCHITECTURE.md that were
 // Previously documentation-only:
 //   GAP A — shared/ must not import from runtime/ or scripts/
 //   GAP B — runtime/scripts/ files must be thin wrappers only
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import * as fs from 'fs';
 import * as path from 'path';
 import ts from 'typescript';
@@ -25,9 +25,9 @@ import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 interface GapAViolation {
   file: string;
   line: number;
@@ -47,9 +47,9 @@ interface WrapperSignals {
   hasScriptsSourceReference: boolean;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const REQUIRED_ROOT_DIRS = ['shared', 'runtime', 'runtime/cli'] as const;
 
 // Absolute prohibition — shared/ must remain neutral (no allowlist)
@@ -62,9 +62,9 @@ const PACKAGE_ROOT = resolvePackageRoot(moduleDir);
 const CHILD_PROCESS_MODULE_SPECIFIERS = new Set(['child_process', 'node:child_process']);
 const CHILD_PROCESS_WRAPPER_APIS = new Set(['spawn', 'spawnSync', 'exec', 'execSync', 'execFile', 'execFileSync', 'fork']);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function findSourceFiles(dir: string): string[] {
   const files: string[] = [];
 
@@ -370,9 +370,9 @@ function collectWrapperSignals(content: string, filePath: string): WrapperSignal
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. CORE LOGIC
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function checkSharedNeutrality(packageRoot = PACKAGE_ROOT): GapAViolation[] {
   const resolvedRoot = resolveCheckRoot(packageRoot);
   const sharedDir = path.join(resolvedRoot, 'shared');
@@ -445,9 +445,9 @@ function runArchitectureBoundaryCheck(packageRoot = PACKAGE_ROOT): { gapAViolati
   return { gapAViolations, gapBViolations };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. MAIN
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function main(): void {
   const { gapAViolations, gapBViolations } = runArchitectureBoundaryCheck();
   const resolvedRoot = resolveCheckRoot(PACKAGE_ROOT);

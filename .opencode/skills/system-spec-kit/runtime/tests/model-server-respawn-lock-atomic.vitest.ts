@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: hf-model-server Respawn-Lock Atomic Reclaim Tests
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Regression for the respawn-lock stale-reclaim race: a bare unlink+open is not
 // mutually exclusive (A unlink, A open/holds, B unlink removes A's lock, B
 // open/holds -> both hold). The fix claims the stale lock via an atomic rename

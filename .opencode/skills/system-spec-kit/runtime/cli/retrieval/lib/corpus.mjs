@@ -1,20 +1,20 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Corpus Walker
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Deterministic markdown discovery over the two documentation roots. The walk
 // is sorted at every level and dedupes by real path, so a document reachable
 // through more than one route is indexed exactly once and two runs on the same
 // tree visit files in the same order.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
 
 import { compareCodeUnits } from './normalize.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONTRACT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Walk roots, in the order they are visited. `.opencode/install-guides`
@@ -91,9 +91,9 @@ const DOCUMENT_ROOT = 'specs';
 const ALIAS_PREFIX = '.opencode/specs/';
 const ALIAS_TARGET = 'specs/';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Folds the `.opencode/specs` alias onto its canonical `specs` form.
@@ -126,9 +126,9 @@ export function isExcludedDirectory(name, parentName, relativePath = '') {
   return FIXTURE_DIR_PATTERN.test(name) && relativePath.split('/')[0] !== DOCUMENT_ROOT;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. WALK
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Collects every markdown document in the corpus.

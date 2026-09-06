@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: PreCompact Hook — Compact Inject
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Runs on Claude Code PreCompact event. Precomputes critical context
 // using the merge pipeline (Memory, Code Graph, session state)
 // and caches to hook state for later injection by SessionStart hook.

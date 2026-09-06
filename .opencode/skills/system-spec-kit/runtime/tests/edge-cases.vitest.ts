@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: Edge Cases — Hook + Code Graph Resilience
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Tests for empty transcript, missing dependencies, expired cache,
 // concurrent sessions, and other boundary conditions.
 

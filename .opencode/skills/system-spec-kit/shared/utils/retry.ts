@@ -71,8 +71,6 @@ export const TRANSIENT_ERROR_PATTERNS: readonly RegExp[] = [
   /server error/i,
   /network error/i,
   /connection reset/i,
-  /SQLITE_BUSY/,   // SQLite database is locked/busy
-  /SQLITE_LOCKED/, // SQLite table is locked
 ];
 
 /** Defines permanent error patterns. */

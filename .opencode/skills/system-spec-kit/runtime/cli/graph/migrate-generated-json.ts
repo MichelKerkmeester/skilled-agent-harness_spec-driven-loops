@@ -1,4 +1,4 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Migrate Generated JSON
 // Usage:
 //   node .../graph/migrate-generated-json.js [--dry-run] [--verify]
@@ -28,7 +28,7 @@
 //
 // One bad folder is reported failed and the run continues over every healthy
 // folder. A --dry-run reports what each folder would do without writing.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import crypto from 'node:crypto';
 import fs from 'node:fs';

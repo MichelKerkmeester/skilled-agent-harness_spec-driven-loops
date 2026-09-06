@@ -1,17 +1,17 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Embedders — Ollama adapter (shared)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical OllamaAdapter for the shared embedding stack owned by the skill
 // advisor. A consumer's local `mcp-server/lib/embedders/adapters/ollama.ts`
 // re-exports from here, so a fix to the daemon protocol lands once.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter, EmbedderOptions } from '../adapter.js';
 import type { BackendKind, EmbedderManifest } from '../types.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export type OllamaInputType = 'document' | 'query';
 
@@ -33,9 +33,9 @@ interface OllamaEmbedResponse {
   readonly embedding?: unknown;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. ERRORS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export class OllamaAdapterError extends Error {
   constructor(message: string) {
@@ -77,9 +77,9 @@ export class OllamaDimensionMismatchError extends OllamaAdapterError {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_OLLAMA_BASE_URL = 'http://127.0.0.1:11434';
 
@@ -96,9 +96,9 @@ const OLLAMA_QUERY_TIMEOUT_MS = 5_000;
 const OLLAMA_DOCUMENT_BASE_TIMEOUT_MS = 30_000;
 const OLLAMA_DOCUMENT_PER_INPUT_TIMEOUT_MS = 2_000;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function getOllamaBaseUrl(): string {
   return (process.env.OLLAMA_BASE_URL || DEFAULT_OLLAMA_BASE_URL).replace(/\/+$/, '');
@@ -213,9 +213,9 @@ function parseOllamaTagNames(body: unknown): Set<string> {
   return new Set(names);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export class OllamaAdapter implements EmbedderAdapter {
   readonly name: string;

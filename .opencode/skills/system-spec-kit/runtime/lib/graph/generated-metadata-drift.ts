@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Generated Metadata Drift Gate
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Re-derives one spec folder and compares the two stored synopsis fields against a fresh
 // derivation, so a description.json or graph-metadata.json that fell out of sync with the docs
 // it summarizes is provable rather than silently stale. The gate reads and reports only: it

@@ -1,12 +1,12 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Content Cleaner
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // HTML stripping and anchor escaping utilities for rendered memory content.
 // Extracted from workflow.ts to reduce module size.
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. REGEX CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export const CODE_FENCE_SEGMENT_RE = /(```[\s\S]*?```)/g;
 export const WORKFLOW_HTML_COMMENT_RE = /<!--(?!\s*\/?ANCHOR:)[\s\S]*?-->/g;
@@ -16,9 +16,9 @@ export const WORKFLOW_INLINE_HTML_TAG_RE = /<\/?(?:code|em|i|kbd|small|span|stro
 export const WORKFLOW_PRESERVED_ANCHOR_ID_RE = /<a id="[^"]+"><\/a>/gi;
 export const WORKFLOW_ANY_HTML_TAG_RE = /<\/?\s*[A-Za-z][\w:-]*(?:\s[^<>]*?)?\s*\/?>/g;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export function stripWorkflowHtmlOutsideCodeFences(rawContent: string): string {
   const segments = rawContent.split(CODE_FENCE_SEGMENT_RE);

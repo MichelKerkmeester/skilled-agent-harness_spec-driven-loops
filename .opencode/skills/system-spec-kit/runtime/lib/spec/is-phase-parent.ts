@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Is Phase Parent
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Single-source-of-truth detection rule for phase-parent folders.
 // Contract: a folder is a phase parent when:
 //   1. It has ≥1 direct child matching ^[0-9]{3}-[a-z0-9-]+$
@@ -11,6 +11,10 @@ import * as path from 'node:path';
 
 import { isSpecLeafSegment } from '../config/spec-doc-paths.js';
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 1. PHASE CHILD DISCOVERY
+// ───────────────────────────────────────────────────────────────────
 
 const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
@@ -58,6 +62,10 @@ export function listPhaseChildren(specFolderAbsPath: string): PhaseChildEntry[] 
 // `warning` = manifest readability degrading; `error` = manifest unmanageable
 // in a single review pass. Buckets are advisory; callers decide whether to
 // fail validation or merely report.
+// ───────────────────────────────────────────────────────────────────
+// 2. PHASE PARENT DETECTION
+// ───────────────────────────────────────────────────────────────────
+
 export const PHASE_PARENT_WARNING_THRESHOLD = 20;
 export const PHASE_PARENT_ERROR_THRESHOLD = 40;
 
@@ -114,6 +122,10 @@ export function isPhaseParent(specFolderAbsPath: string): boolean {
 // reflects manifest size (what an author actually scrolls past), not the
 // strict phase-parent qualifier. Returns 0 when the folder is not a phase
 // parent or cannot be read.
+// ───────────────────────────────────────────────────────────────────
+// 3. HEALTH ASSESSMENT
+// ───────────────────────────────────────────────────────────────────
+
 function countPhaseChildren(specFolderAbsPath: string): number {
   try {
     const entries = fs.readdirSync(specFolderAbsPath);

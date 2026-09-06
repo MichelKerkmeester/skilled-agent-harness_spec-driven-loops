@@ -1,12 +1,12 @@
 'use strict';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Signals
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Extracted and adapted from runtime/lib/graph/graph-signals.ts
 // Provides signal computation for in-memory coverage graphs:
 // degree, depth, recent-edge activity, and cluster metrics.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const {
   getFilteredEdges,

@@ -166,7 +166,7 @@ function findExistingPacket(rootDir, specFolder, mode) {
 
 // SCRIPT_DIR: .opencode/skills/system-spec-kit/shared -> repo root is 4 levels
 // up. Mirrors the REPO_ROOT convention already used by
-// scripts/migrate-deep-loop-local-owner.cjs, so this stays a portable,
+// the retired owner-map migration scripts, so this stays a portable,
 // __dirname-relative anchor rather than a hardcoded absolute path.
 const REPO_ROOT = path.resolve(__dirname, '../../../../');
 
@@ -254,7 +254,7 @@ function getRegisteredWorktreeRoots(repoRoot = REPO_ROOT) {
 /**
  * Allowed roots for resolveArtifactRoot() writes: this repo's two spec-folder
  * roots (.opencode/specs, specs — the convention also used by
- * normalizeSpecFolderReference() above and by migrate-deep-loop-local-owner.cjs),
+ * normalizeSpecFolderReference() above),
  * plus the OS temp dir. The temp dir is included because the reducer unit test
  * suites (both here and under system-deep-loop/runtime) deliberately build
  * isolated fixture trees under `os.tmpdir()` rather than the live repo tree —

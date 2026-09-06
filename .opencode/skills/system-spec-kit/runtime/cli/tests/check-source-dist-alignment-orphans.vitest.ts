@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Check Source/Dist Alignment Orphan Detection Tests
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Tests that the broadened alignment checker scans the full set
 // of runtime-critical dist subtrees and flags any *.js file whose matching
 // .ts source no longer exists. Builds a synthetic dist + source layout under

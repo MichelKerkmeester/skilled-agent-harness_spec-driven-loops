@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Packet Synopsis Extractor
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // One shared synopsis extractor for the two generated fields that summarize a spec
 // folder: the description in description.json and the causal_summary in graph-metadata.json.
 // Both fields previously ran two divergent local extractors, so they could drift from the
@@ -49,6 +49,8 @@ function sentenceBoundaryWithinLimit(text: string, limit: number): number {
   return bestBoundary;
 }
 
+// Regex on purpose: a synopsis source may carry a BOM or a leading HTML
+// comment before the fence, which the strict shared parser rejects.
 function extractFrontmatterDescription(raw: string): string | null {
   const match = raw.match(/^(?:﻿)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n([\s\S]*?)\r?\n---/);
   if (!match) {

@@ -21,11 +21,19 @@ function findUp(filename: string, startDir: string): string | undefined {
 }
 
 function resolvePackageRoot(): string {
-  const fromPackageJson = findUp('package.json', import.meta.dirname);
-  if (fromPackageJson && fs.existsSync(path.join(fromPackageJson, 'runtime', 'database'))) {
-    return fromPackageJson;
+  // The skill root is the directory that holds both the shared and the runtime
+  // packages. The nearest package.json above this file is the shared package's
+  // own, so walking to it would plant the database directory under shared/.
+  let current = path.resolve(import.meta.dirname);
+  for (let depth = 0; depth < 8; depth += 1) {
+    if (fs.existsSync(path.join(current, 'runtime')) && fs.existsSync(path.join(current, 'shared'))) {
+      return current;
+    }
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
   }
-  return fromPackageJson || path.resolve(import.meta.dirname, '..');
+  return findUp('package.json', import.meta.dirname) || path.resolve(import.meta.dirname, '..');
 }
 
 const PACKAGE_ROOT = resolvePackageRoot();

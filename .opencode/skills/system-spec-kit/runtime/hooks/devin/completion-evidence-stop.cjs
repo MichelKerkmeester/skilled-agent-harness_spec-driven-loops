@@ -125,4 +125,9 @@ async function main() {
 // 4. ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-main().catch(() => approve());
+main().catch((error) => {
+  // A stop hook must stay fail-open, but a swallowed failure hides a broken
+  // sentinel; report it on stderr and still approve.
+  process.stderr.write(`completion-evidence-stop: ${error instanceof Error ? error.message : String(error)}\n`);
+  approve();
+});

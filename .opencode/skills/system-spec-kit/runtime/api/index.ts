@@ -1,6 +1,6 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Index, Public API surface
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // @public, Only export what external consumers (runtime/cli/, other packages) need.
 // Internal runtime code should import from lib/ directly, not through this barrel.
 // Consumer scripts import from '@spec-kit/runtime/api' instead of lib/.

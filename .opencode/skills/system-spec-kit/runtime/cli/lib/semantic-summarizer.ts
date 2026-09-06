@@ -1,10 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Semantic Summarizer
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. SEMANTIC SUMMARIZER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Node stdlib
 import os from 'os';
 
@@ -15,9 +15,9 @@ import { CONFIG } from '../core/index.js';
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import type { WeightedDocumentSections } from '@spec-kit/shared/index';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Message type classification labels */
 export type MessageType = 'intent' | 'plan' | 'implementation' | 'result' | 'decision' | 'question' | 'context';
 
@@ -96,9 +96,9 @@ interface MarkdownSectionMatch {
   end: number;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const MESSAGE_TYPES: Record<string, MessageType> = {
   INTENT: 'intent',
   PLAN: 'plan',
@@ -147,9 +147,9 @@ const CLASSIFICATION_PATTERNS = {
 const DESC_MIN_LENGTH: number = 10;
 const DESC_MAX_LENGTH: number = 100;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. MESSAGE CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function classifyMessage(content: string): MessageType {
   if (!content || typeof content !== 'string') {
     return MESSAGE_TYPES.CONTEXT;
@@ -188,9 +188,9 @@ function classifyMessages(messages: SemanticMessage[]): Map<MessageType, Semanti
   return classified;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. FILE CHANGE EXTRACTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function findFilePosition(content: string, filePath: string, searchFrom: number = 0): number {
   const searchContent: string = content.substring(searchFrom);
   const index: number = searchContent.indexOf(filePath);
@@ -311,9 +311,9 @@ function extractFileChanges(messages: SemanticMessage[], observations: SemanticO
   return fileChanges;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. DESCRIPTION UTILITIES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // CleanDescription is imported from '../utils/file-helpers.js' (canonical location)
 
 // NOTE: Similar to utils/file-helpers.ts:isDescriptionValid but differs in garbage patterns.
@@ -418,9 +418,9 @@ function extractChangeDescription(context: string, filePath: string): string {
   return `Updated ${humanReadable}`;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. DECISION EXTRACTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function extractDecisions(messages: SemanticMessage[]): ExtractedDecision[] {
   const decisions: ExtractedDecision[] = [];
 
@@ -462,9 +462,9 @@ function extractDecisions(messages: SemanticMessage[]): ExtractedDecision[] {
   return decisions;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. IMPLEMENTATION SUMMARY GENERATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function generateImplementationSummary(messages: SemanticMessage[], observations: SemanticObservation[] = []): ImplementationSummary {
   const classified: Map<MessageType, SemanticMessage[]> = classifyMessages(messages);
   const fileChanges: Map<string, FileChangeInfo> = extractFileChanges(messages, observations);
@@ -757,9 +757,9 @@ function buildWeightedEmbeddingSections(
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   MESSAGE_TYPES,
   classifyMessage,

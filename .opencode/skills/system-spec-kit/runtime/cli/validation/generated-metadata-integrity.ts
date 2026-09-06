@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Generated Metadata Integrity Bridge
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Strict-mode bridge for the generated-metadata integrity check. Validates the
 // description.json and graph-metadata.json a spec folder carries through the shared
 // schemas plus the path-prefix and status-enum invariants, then emits the validate.sh

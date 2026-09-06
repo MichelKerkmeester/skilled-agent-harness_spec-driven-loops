@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: live hf-model-server integration (real spawned process)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Spawns the REAL .opencode/bin/hf-model-server.cjs over a unix socket and exercises the
 // hardened transport/route/reclaim machinery. The transport subset (bind, route-404,
 // SIGKILL stale-socket lingering) runs everywhere — it needs no model. The embed-success and

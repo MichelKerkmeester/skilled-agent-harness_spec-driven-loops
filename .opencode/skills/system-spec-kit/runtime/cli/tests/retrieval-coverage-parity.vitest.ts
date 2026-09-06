@@ -15,9 +15,9 @@ import {
   GLOB_DELTA as SWEEP_GLOB_DELTA,
 } from '../retrieval/sweep-memory-residue.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // The two-lane divergence table
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // This is the single source of truth this test enforces. It must match
 // Section 9 of references/retrieval/retrieval-conventions.md exactly: a
 // change to either side that is not mirrored in the other, or not recorded
@@ -85,9 +85,9 @@ const SCOPED_DIVERGENCES: ReadonlyArray<{
   },
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Root coverage
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 describe('root coverage parity', () => {
   it('walks the roots the coverage decision names, in both lanes', () => {
@@ -116,9 +116,9 @@ describe('root coverage parity', () => {
   });
 });
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Exclusion coverage
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 describe('exclusion coverage parity', () => {
   it('agrees on every universally-excluded directory name', () => {
@@ -164,9 +164,9 @@ describe('exclusion coverage parity', () => {
   });
 });
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Doc-versus-code parity: the documented recipes must copy the code exactly
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 describe('retrieval-conventions.md glob parity', () => {
   /**
@@ -202,7 +202,7 @@ describe('retrieval-conventions.md glob parity', () => {
   });
 });
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Two more consumers of the shared corpus policy: the grep-convention
 // retrofit pipeline and the memory-residue sweep. Each imports the real
 // EXCLUDED_DIR_NAMES set rather than keeping its own hand-copied list, and
@@ -212,7 +212,7 @@ describe('retrieval-conventions.md glob parity', () => {
 // nothing but the shared table plus the declared deltas, so an undeclared
 // drift on either side fails here instead of surfacing as a silent behavior
 // change in the pipeline or the sweep.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 describe('retrofit-convention.mjs exclusion parity', () => {
   it('derives its effective exclusion set from the shared table minus its declared delta, and nothing else', () => {

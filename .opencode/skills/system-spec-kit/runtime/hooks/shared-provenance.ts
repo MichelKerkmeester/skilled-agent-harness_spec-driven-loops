@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Shared Provenance Helpers
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Shared provenance helpers consumed by Claude and Copilot
 // hook runtimes. Previously in hooks/claude/shared.ts; extracted per
 // T-W1-HOK-02 to enable Copilot compact-cache parity in T-W1-HOK-01.

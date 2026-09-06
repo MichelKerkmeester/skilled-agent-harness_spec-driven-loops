@@ -2,9 +2,9 @@
 // MODULE: Generate Context
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. GENERATE CONTEXT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
 
 // Node stdlib
@@ -44,9 +44,9 @@ interface ParsedCliArguments {
   plannerMode: 'plan-only' | 'full-auto' | 'hybrid';
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. INTERFACES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Result of validating a requested spec folder reference. */
 export interface SpecFolderValidation {
   valid: boolean;
@@ -63,9 +63,9 @@ const canonicalSaveHeartbeats = new Map<string, ReturnType<typeof setInterval>>(
 
 type CanonicalSaveLockOwnerState = 'alive' | 'dead' | 'unknown';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. HELP TEXT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const HELP_TEXT = `
 Usage: node generate-context.js [options] <input>
 
@@ -193,9 +193,9 @@ function installSignalHandlers(): void {
   signalHandlersInstalled = true;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. SPEC FOLDER VALIDATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function isUnderApprovedSpecsRoot(normalizedInput: string): boolean {
   const resolved = path.resolve(CONFIG.PROJECT_ROOT, normalizedInput);
   if (fsSync.existsSync(resolved)) {
@@ -726,9 +726,9 @@ async function parseStructuredModeArguments(
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. CLI ARGUMENT PARSING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 async function parseArguments(
   argv: string[] = process.argv.slice(2),
   stdinReader: (stdin?: NodeJS.ReadStream) => Promise<string> = readAllStdin,
@@ -903,9 +903,9 @@ function validateArguments(): void {
   process.exit(1);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. MAIN ENTRY POINT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 async function main(
   argv: string[] = process.argv.slice(2),
   stdinReader: (stdin?: NodeJS.ReadStream) => Promise<string> = readAllStdin,
@@ -975,9 +975,9 @@ async function main(
   }
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 if (isMainModule(import.meta.url)) {
   installSignalHandlers();
   main().catch((error: unknown) => {

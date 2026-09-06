@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // FEATURE FLAG CEILING TEST
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: Validates that every SPECKIT_* gate the package still registers can be
 // Activated at once without interaction, and that a newly registered flag
 // Cannot drift in unnoticed. The ceiling used to span the search pipeline; the

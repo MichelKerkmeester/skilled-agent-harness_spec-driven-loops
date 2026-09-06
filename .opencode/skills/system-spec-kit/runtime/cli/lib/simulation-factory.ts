@@ -1,10 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Simulation Factory
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. SIMULATION FACTORY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import crypto from 'crypto';
 
 // Canonical shared types — single source of truth, avoids parallel type hierarchies
@@ -77,9 +77,9 @@ export interface SimulationMetadata {
   [key: string]: unknown;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. UTILITIES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function secureRandomString(length: number = 9): string {
   return crypto.randomBytes(Math.ceil(length * 0.75))
     .toString('base64')
@@ -135,9 +135,9 @@ function generateSessionId(): string {
   return `session-${Date.now()}-${secureRandomString(9)}`;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. SESSION DATA FACTORY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function createSessionData(config: SessionConfig = {}): SessionData {
   const now: Date = new Date();
   const sessionId: string = config.sessionId || generateSessionId();
@@ -264,9 +264,9 @@ function createSessionData(config: SessionConfig = {}): SessionData {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. CONVERSATION DATA FACTORY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function createConversationData(config: SessionConfig = {}): ConversationData {
   const userMessage: string = config.userMessage || 'This is a simulated user message.';
   const assistantMessage: string = config.assistantMessage || 'This is a simulated assistant response.';
@@ -334,9 +334,9 @@ function createConversationData(config: SessionConfig = {}): ConversationData {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. DECISION DATA FACTORY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function createDecisionData(config: SessionConfig = {}): DecisionData {
   const title: string = config.title || 'Simulated Decision Example';
   const context: string = config.context || 'This is a simulated decision for testing purposes.';
@@ -409,9 +409,9 @@ function createDecisionData(config: SessionConfig = {}): DecisionData {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. DIAGRAM DATA FACTORY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function createDiagramData(config: SessionConfig = {}): DiagramData {
   const title: string = config.title || 'Example Workflow';
   const description: string = config.description || 'Simulated workflow diagram';
@@ -464,9 +464,9 @@ function createDiagramData(config: SessionConfig = {}): DiagramData {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. FLOWCHART AND PHASES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function createSimulationFlowchart(initialRequest: string = 'User Request'): string {
   const pad = (text: string, length: number): string => {
     const truncated: string = text.substring(0, length);
@@ -508,9 +508,9 @@ function createSimulationPhases(): PhaseEntry[] {
   ];
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. FULL SIMULATION AND DETECTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** @deprecated Orphaned — no callers in the tree. Scheduled for removal. */
 export function createFullSimulation(config: SessionConfig = {}): FullSimulation {
   return {
@@ -533,9 +533,9 @@ function requiresSimulation(collectedData: SimCollectedData | null): boolean {
   return !hasUserPrompts && !hasObservations && !hasRecentContext;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. SIMULATION WARNING UTILITIES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** @deprecated Orphaned — no callers in the tree. Scheduled for removal. */
 export function addSimulationWarning(content: string): string {
   const warning: string = `<!-- WARNING: This is simulated/placeholder content - NOT from a real session -->\n\n`;
@@ -551,9 +551,9 @@ export function markAsSimulated(metadata: SimulationMetadata): SimulationMetadat
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 10. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   createConversationData,
   createSimulationFlowchart,

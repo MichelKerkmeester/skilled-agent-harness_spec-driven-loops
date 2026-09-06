@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // COVERAGE GRAPH DB INTEGRATION TESTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Tests for the coverage graph database projection contract.
 // Validates upsert, query, replay, and latency expectations
 // for the MCP-maintained SQLite graph projection.

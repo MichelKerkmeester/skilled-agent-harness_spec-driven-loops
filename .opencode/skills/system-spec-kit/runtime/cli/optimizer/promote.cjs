@@ -5,14 +5,14 @@
 'use strict';
 
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Advisory Promotion Gate
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Evaluates candidates against baseline and produces advisory-only
 // promotion reports. NEVER auto-promotes. Production promotion is
 // blocked until replay fixtures AND behavioral
 // suites exist.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');

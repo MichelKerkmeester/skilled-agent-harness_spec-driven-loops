@@ -1,6 +1,6 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Config
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
 import fs from 'node:fs';
@@ -8,9 +8,9 @@ import os from 'node:os';
 
 import { DB_PATH } from '@spec-kit/shared/paths';
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TYPES
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Input validation limits configuration */
 export interface InputLimitsConfig {
@@ -23,9 +23,9 @@ export interface InputLimitsConfig {
   filePath: number;
 }
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. PATH CONSTANTS
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export const SERVER_DIR: string = path.join(import.meta.dirname, '..');
 export const NODE_MODULES: string = path.join(SERVER_DIR, 'node_modules');
@@ -113,24 +113,24 @@ export function resolveDatabasePaths(): DatabasePaths {
 
 resolveDatabasePaths();
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. BATCH PROCESSING CONFIGURATION
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const parsedBatchSize = parseInt(process.env.SPEC_KIT_BATCH_SIZE || '5', 10);
 export const BATCH_SIZE: number = Number.isFinite(parsedBatchSize) && parsedBatchSize > 0 ? parsedBatchSize : 5;
 const parsedBatchDelayMs = parseInt(process.env.SPEC_KIT_BATCH_DELAY_MS || '100', 10);
 export const BATCH_DELAY_MS: number = Number.isFinite(parsedBatchDelayMs) && parsedBatchDelayMs > 0 ? parsedBatchDelayMs : 100;
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. RATE LIMITING CONFIGURATION
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export const INDEX_SCAN_COOLDOWN: number = 30000;
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. QUERY VALIDATION LIMITS
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export const MAX_QUERY_LENGTH: number = 10000;
 
@@ -144,9 +144,9 @@ export const INPUT_LIMITS: Readonly<InputLimitsConfig> = {
   filePath: 500
 } as const;
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. PATH VALIDATION
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export const DEFAULT_BASE_PATH: string = process.env.MEMORY_BASE_PATH || process.cwd();
 

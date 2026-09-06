@@ -1,13 +1,13 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Embedders — registry (shared contract surface)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical MANIFESTS + factory functions for the shared embedding stack owned
 // by the skill advisor. A consumer's local `mcp-server/lib/embedders/registry.ts`
 // re-exports from here.
 //
 // Text-tuned embedder manifests are intentionally kept separate from future
 // code-tuned consumers.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter } from './adapter.js';
 import { OllamaAdapter } from './adapters/ollama.js';
@@ -93,9 +93,9 @@ export function getAdapter(name: string): EmbedderAdapter | undefined {
  */
 export { MANIFESTS };
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical per-provider fallback
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Single source of truth for "what model do we use when no env var is set,
 // no `vec_metadata.active_embedder_name` row exists, and the cascade probe
 // has not run yet". Replaces scattered `DEFAULT_MODEL` constants across

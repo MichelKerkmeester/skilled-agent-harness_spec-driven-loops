@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Spec Document Finder Lib Seam
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Lib-level wrapper around the existing `findSpecDocuments`
 // implementation in `handlers/spec-doc-discovery.ts`. The implementation
 // can stay in handlers (it is consumed by handler-level code paths too), but

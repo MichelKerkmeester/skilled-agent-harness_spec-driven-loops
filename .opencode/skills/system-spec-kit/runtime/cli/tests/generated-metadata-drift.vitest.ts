@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Generated Metadata Drift Gate and Shared Synopsis Extractor
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Proves the two synopsis-and-freshness fixes. The shared extractor derives both the
 // description and the causal_summary from one precedence over the same spec.md, each honoring
 // its own length limit, so flipping the source doc moves both fields together. The drift gate

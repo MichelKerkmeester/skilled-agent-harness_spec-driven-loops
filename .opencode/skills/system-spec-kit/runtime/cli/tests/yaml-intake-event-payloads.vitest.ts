@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: YAML intake-event payload vocabulary boundary
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // The /speckit: plan and /speckit: complete
 // assets emit `intake_triggered` / `intake_completed` events that
 // MUST carry BOTH `folderState` (local classifier) and `startState`
@@ -15,7 +15,7 @@
 // test pins the contract at the YAML layer so asset edits that
 // break it fail the suite before any runtime emits a degraded
 // event.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';

@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Grep Convention Primitives
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // The pure, testable half of the document retrofit: variant classification,
 // the body preimage, the anchor grammar, the trigger allowlist and the diff
 // classifier. Nothing here touches the filesystem, so every rule below can be
@@ -26,7 +26,7 @@
 // `_memory`: the only lines this module rewrites are the alias key it renames,
 // the keys it creates, and the members it removes as duplicates. Scalar quoting
 // is left exactly as the author wrote it.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
 
@@ -34,9 +34,9 @@ import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter
 import { CATEGORY, readTriggerPhrases } from './frontmatter.mjs';
 import { compareCodeUnits, MAX_PHRASE_LENGTH, normalizeTriggerText } from './normalize.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONTRACT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * The frontmatter variant taxonomy. Every in-scope document resolves to exactly
@@ -202,9 +202,9 @@ const SAFE_SEGMENT_RE = /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/;
 /** Fence toggles, matched the way the surviving anchor validator matches them. */
 const FENCE_RE = /^\s*(?:```|~~~)/;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. LINE MODEL
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Splits text into lines that remember their own terminator, so reassembly is
@@ -239,9 +239,9 @@ export function joinLines(lines) {
   return lines.map((line) => `${line.text}${line.terminator}`).join('');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. ANCHOR GRAMMAR
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reads one line as an anchor marker. The line must be the marker and nothing
@@ -362,9 +362,9 @@ export function analyzeAnchors(text) {
   return { duplicates, markers, nonConformingIds, unmatched };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. FRONTMATTER BLOCK EXTENTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Locates the leading frontmatter block. Delimiter rules follow the strict
@@ -565,9 +565,9 @@ function stripTrailingComment(value) {
   return value;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. BODY PREIMAGE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * SHA-256 over the body region: everything after the closing frontmatter fence,
@@ -609,9 +609,9 @@ export function bodyPreimage(text) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. VARIANT CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Maps the strict reader's category onto a variant label. The reader answers a
@@ -717,9 +717,9 @@ export function classifyVariant(text) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. TRIGGER ALLOWLIST
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Judges one phrase against the convention's negative classes. The judgement is
@@ -824,9 +824,9 @@ export function packetFolderTokens(relativePath) {
     .filter((token) => token.length >= MIN_FOLDER_TOKEN_LENGTH);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. NAMING GRAMMAR
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reports paths that break the naming grammar. Nothing is renamed: a rename
@@ -865,9 +865,9 @@ export function classifyNaming(relativePath) {
   return exceptions;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. DIFF CLASSIFIER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Ceiling on the window a line diff will search after trimming common edges. */
 const MAX_DIFF_WINDOW = 4000;
@@ -1003,9 +1003,9 @@ export function renderUnifiedDiff(relativePath, before, after) {
   return `${lines.join('\n')}\n`;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 10. PER-VARIANT HANDLERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reports an edit that would leave the frontmatter less parseable than it was.

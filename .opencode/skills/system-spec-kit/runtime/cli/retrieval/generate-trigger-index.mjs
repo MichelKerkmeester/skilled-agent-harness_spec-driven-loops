@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Trigger Index Generator
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Walks the documentation corpus, reads the trigger-phrase frontmatter out of
 // every markdown document, and publishes one deterministic many-to-many index
 // plus the manifest and diagnostics that describe the snapshot it was built
@@ -29,7 +29,7 @@
 //                                   [--variants <path>]
 //
 // Exit codes: 0 = published, 1 = malformed corpus (nothing published), 2 = bad invocation.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
@@ -43,9 +43,9 @@ import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontm
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Bumped whenever the frontmatter reader changes what it accepts or how it classifies. */
 export const PARSER_VERSION = '1.0.0';
@@ -89,9 +89,9 @@ export const DEFAULT_REPO_ROOT = findRepoRoot();
 const NUL = Buffer.from([0x00]);
 const LF = Buffer.from([0x0a]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. BUILD
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reads the corpus and assembles the artifact, the manifest, the diagnostics
@@ -284,9 +284,9 @@ export function buildIndex(options) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. PUBLICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Builds the artifact and publishes it unless the corpus contains a document
@@ -408,9 +408,9 @@ function elapsedMs(started) {
   return Number(process.hrtime.bigint() - started) / 1e6;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. CLI
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string[]} argv Arguments after the script name.

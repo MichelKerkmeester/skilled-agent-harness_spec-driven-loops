@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Cold Lookup Latency Measurement
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Spawns one fresh Node process per sample and times it end to end, because
 // the number that matters is what a caller waits for on a cold start — process
 // startup, module load, artifact parse and the query, not the query alone. An
@@ -17,7 +17,7 @@
 //                                [--runs <n>] [--warmup <n>] [--out <path>] [--json] [--quiet]
 //
 // Exit codes: 0 = within budget, 1 = over budget, 2 = bad invocation.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -27,9 +27,9 @@ import { fileURLToPath } from 'node:url';
 
 import { publishJson } from './lib/artifact.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SKILL_ROOT = path.resolve(SCRIPT_DIR, '..', '..', '..');
@@ -62,9 +62,9 @@ export const PROMPTS = Object.freeze([
   'documentation quality validation',
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. MEASUREMENT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Times one cold lookup. The clock brackets the spawn, so process startup and
@@ -239,9 +239,9 @@ function round(value) {
   return Math.round(value * 1000) / 1000;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CLI
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string[]} argv Arguments after the script name.

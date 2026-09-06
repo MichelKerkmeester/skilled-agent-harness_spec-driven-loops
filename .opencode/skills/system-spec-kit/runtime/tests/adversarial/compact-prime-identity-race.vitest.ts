@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // ADVERSARIAL TEST: Compact-Prime Identity Race
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Exercises identity-based `clearCompactPrime` guard
 // Scenario (per FINAL-synthesis-and-review.md §8.3):
 //   1. Consumer A reads compact prime payload #1 (cachedAt = T1).

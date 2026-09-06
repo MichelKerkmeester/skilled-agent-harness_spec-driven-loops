@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: hooks/shared-provenance helpers
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Verifies that the 3 provenance helpers behave identically after
 // extraction from hooks/claude/shared.ts into hooks/shared-provenance.ts.
 // Also verifies that Claude re-exports resolve to the same

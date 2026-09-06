@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Architecture Seam Verification
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Advisor-owned seams moved with system-skill-advisor. This file now verifies
 // only spec-kit-local seams so spec-kit tests do not import advisor internals.
 

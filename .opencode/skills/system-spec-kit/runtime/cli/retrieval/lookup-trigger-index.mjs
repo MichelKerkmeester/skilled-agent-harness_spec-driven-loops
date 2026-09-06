@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Trigger Index Lookup
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Resolves a prompt against the committed trigger index using the same
-// candidate gate, score classes and scope filter as the substring trigger lane
-// in runtime/lib/search/hybrid-search.ts, so results from the two can be
-// diffed directly.
+// candidate gate, score classes and scope filter the retired substring trigger
+// lane used, so its recorded results still diff against this lookup.
 //
 // Everything here is synchronous and the import list is deliberately short:
 // the whole point is a single answer from a cold Node process, and every extra
@@ -20,7 +19,7 @@
 //                                 [--limit <n>] [--no-index-hash] [--json]
 //
 // Exit codes: 0 = candidates found, 1 = no candidates, 2 = bad invocation or unreadable index.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
 import { assertTriggerIndexShape } from './lib/artifact.mjs';
@@ -37,9 +36,9 @@ import {
   scorePhrase,
 } from './lib/normalize.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,9 +50,9 @@ export const DEFAULT_LIMIT = 20;
 /** Class given to a candidate the SQL substring gate admits but the score function rejects. */
 export const PARTIAL_CLASS = 'partial';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. LOADING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reads and parses the artifact once. Hashing the file bytes is the dominant
@@ -87,9 +86,9 @@ export function loadIndex(indexPath = DEFAULT_INDEX_PATH, options = {}) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. LOOKUP
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reproduces the SQL scope filter: a document is in scope when its own folder
@@ -213,9 +212,9 @@ function normalizeSpecFolder(specFolder) {
   return trimmed.length > 0 ? trimmed : null;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. CLI
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Everything after a bare `--` is prompt text, so a prompt beginning with a

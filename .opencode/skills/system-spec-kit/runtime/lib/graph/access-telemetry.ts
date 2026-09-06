@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Access and Freshness Telemetry Store
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Index-layer record for the access and freshness signals that used to live inside
 // graph-metadata.json: last_accessed_at plus the phase-parent last_active_child_id and
 // last_active_at pointers. Keeping them here means a read event or a resume updates the
@@ -14,6 +14,10 @@ import path from 'node:path';
 import { DB_UPDATED_FILE } from '@spec-kit/shared/config.js';
 
 /** The access and freshness signals recorded for one spec folder. */
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPES
+// ───────────────────────────────────────────────────────────────────
+
 export interface AccessTelemetryRecord {
   last_accessed_at?: string;
   last_active_child_id?: string;
@@ -36,6 +40,10 @@ const STORE_FILENAME = 'access-telemetry.json';
  * @param opts - Optional store path override
  * @returns The absolute store file path
  */
+// ───────────────────────────────────────────────────────────────────
+// 2. STORE ACCESS
+// ───────────────────────────────────────────────────────────────────
+
 export function resolveTelemetryStorePath(opts: StoreOptions = {}): string {
   if (opts.storePath) {
     return opts.storePath;
@@ -83,6 +91,10 @@ function upsert(specFolder: string, patch: AccessTelemetryRecord, opts: StoreOpt
  * @param opts - The access timestamp and an optional store path override
  * @returns Whether the write succeeded; false on a fail-closed store error
  */
+// ───────────────────────────────────────────────────────────────────
+// 3. RECORD WRITES
+// ───────────────────────────────────────────────────────────────────
+
 export function recordAccessEvent(
   specFolder: string,
   opts: StoreOptions & { now: string },
@@ -111,6 +123,10 @@ export function recordFreshnessPointer(
  * @param opts - Optional store path override
  * @returns The stored record, or null when none is present
  */
+// ───────────────────────────────────────────────────────────────────
+// 4. RECORD READS
+// ───────────────────────────────────────────────────────────────────
+
 export function readAccessRecord(
   specFolder: string,
   opts: StoreOptions = {},

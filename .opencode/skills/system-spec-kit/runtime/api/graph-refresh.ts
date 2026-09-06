@@ -1,6 +1,6 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Graph Refresh
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // @public — scripts should import from here, not handlers/ or lib/ internals.
 // The save workflow names a spec folder however the caller wrote it (absolute
 // path, cwd-relative, or bare folder id), so the resolver below has to try each
@@ -9,14 +9,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { findSpecDocuments } from '../handlers/spec-doc-discovery.js';
+import { findSpecDocuments } from '../lib/discovery/spec-document-finder.js';
 import {
   refreshGraphMetadata as refreshGraphMetadataForResolvedFolder,
   type GraphMetadataRefreshOptions,
   type GraphMetadataRefreshResult,
 } from '../lib/graph/graph-metadata-parser.js';
 
-function resolveSpecFolderPath(specFolder: string): string {
+/** Resolves a caller-supplied spec folder name to an absolute directory; exported for tests. */
+export function resolveSpecFolderPath(specFolder: string): string {
   if (path.isAbsolute(specFolder) && fs.existsSync(specFolder)) {
     return specFolder;
   }

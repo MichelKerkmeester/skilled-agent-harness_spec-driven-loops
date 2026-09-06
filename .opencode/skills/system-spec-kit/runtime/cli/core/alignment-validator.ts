@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Alignment Validator
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Spec folder alignment checking and tree-thinning application
 // for file change lists. Extracted from workflow.ts to reduce module size.
 
@@ -11,18 +11,18 @@ import { capText } from './workflow-accessors.js';
 import type { FileChange } from '../types/session-types.js';
 import type { ThinningResult } from './tree-thinning.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export type AlignmentTargets = {
   fileTargets: string[];
   keywordTargets: string[];
 };
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const PREFERRED_PARENT_FILES = new Set([
   'spec.md',
@@ -77,9 +77,9 @@ function updateMergedCarrier(
   );
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export async function resolveAlignmentTargets(specFolderPath: string): Promise<AlignmentTargets> {
   const keywordTargets = buildAlignmentKeywords(specFolderPath);

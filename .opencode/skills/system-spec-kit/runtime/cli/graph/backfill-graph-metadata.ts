@@ -1,4 +1,4 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Backfill Graph Metadata
 // Usage:
 //   node .../graph/backfill-graph-metadata.js <spec-folder> [--dry-run]
@@ -18,7 +18,7 @@
 // so a single-packet intent can no longer dirty unrelated sessions' folders.
 // In --all mode z-future/ is always skipped (it is not a supported specs root)
 // and z_archive/ is included unless --active-only is passed.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import crypto from 'node:crypto';
 import fs from 'node:fs';

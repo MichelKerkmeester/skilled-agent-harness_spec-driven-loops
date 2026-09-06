@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: Embedding Circuit Breaker
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Verifies the embedding API circuit breaker behaves correctly:
 // opens after threshold failures, auto-resets after cooldown (half-open),
 // resets on success, and can be disabled via env var.

@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: ENV_REFERENCE Drift Guard
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Collects every SPECKIT_* environment token read by the spec-kit
 // runtime package source and asserts each one is either documented in
 // ENV_REFERENCE.md or listed on the explicit internal ignore-list. This stops

@@ -1,10 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: Grep Convention Validator Rule
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Drives runtime/cli/rules/check-grep-convention.sh through the same wrapper
 // contract the validation orchestrator uses, so the shell relay is exercised
 // rather than only the node helper it delegates to.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';

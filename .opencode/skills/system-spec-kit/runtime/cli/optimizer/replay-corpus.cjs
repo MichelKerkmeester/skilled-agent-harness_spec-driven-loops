@@ -5,13 +5,13 @@
 'use strict';
 
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Replay Corpus Builder
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Extracts replay corpus from packet JSONL data for offline
 // loop optimization. Packet family 040 is REQUIRED. 028 is an
 // optional holdout. 042 is excluded until traces exist.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');

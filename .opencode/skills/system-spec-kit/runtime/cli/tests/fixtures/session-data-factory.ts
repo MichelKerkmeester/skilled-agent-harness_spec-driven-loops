@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Session Data Factory
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Shared SessionData fixture builders for E2E and integration tests.
 // Provides a complete, type-safe default that individual tests can
 // override via Partial<SessionData> spreads.

@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Folder Discovery
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Resolves a packet's description from its canonical documents so search and
 // routing read one merged answer rather than each guessing from a filename.
 import * as fs from 'node:fs';
@@ -25,9 +25,9 @@ import {
 import { derivePacketSynopsis, truncateSynopsisAtWordBoundary } from '../description/packet-synopsis.js';
 import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../utils/index-scope.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Describes a single spec folder with its cached description
@@ -77,9 +77,9 @@ export type LoadResult =
     detail?: string;
   };
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. STOP WORDS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const STOP_WORDS = new Set([
   'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to',
@@ -315,9 +315,9 @@ export function getRepairMergeSafe(): boolean {
   return DESCRIPTION_REPAIR_MERGE_SAFE;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CONTENT FINGERPRINTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Serialize a value with sorted object keys so two structurally-equal payloads
@@ -581,9 +581,9 @@ function collectDiscoveredSpecStateWithTtl(basePaths: string[], nowMs = Date.now
   return state;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. DESCRIPTION EXTRACTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Extract a short 1-sentence description from spec.md content.
@@ -670,9 +670,9 @@ export function extractDescription(specContent: string): string {
   return '';
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. KEYWORD EXTRACTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Extract significant keywords from a description string.
@@ -709,9 +709,9 @@ export function extractKeywords(description: string): string[] {
   return keywords;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. RELEVANCE SCORING / LOOKUP
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Find the most relevant spec folders for a given query using
@@ -831,9 +831,9 @@ export function passesPerTokenSimilarityGate(
   });
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. CACHE GENERATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Scan spec base paths for spec.md files and generate a
@@ -1018,9 +1018,9 @@ function _processSpecFolder(
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7a. SLUG HELPER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Slugify a spec folder name: strip numeric prefix, replace non-alphanumeric
@@ -1042,9 +1042,9 @@ function extractDescriptionWithFolderFallback(specContent: string, folderPath: s
     || folderName;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7b. PER-FOLDER DESCRIPTION OPERATIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Generate a PerFolderDescription by reading the spec.md in a folder.
@@ -1234,9 +1234,9 @@ export function isPerFolderDescriptionStale(folderPath: string): boolean {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. CACHE I/O
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Load a DescriptionCache from a JSON file on disk.
@@ -1365,9 +1365,9 @@ export function upsertDescriptionCacheEntry(
   return { written: true, reason: targetIndex >= 0 ? 'updated' : 'inserted' };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. INTEGRATION HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Resolve the standard specs base paths for a workspace.

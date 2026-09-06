@@ -1,10 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Content Filter
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONTENT FILTER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
@@ -14,9 +14,9 @@ import { dirnameFromImportMeta } from './esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Content type classification labels */
 export type ContentType = 'noise' | 'empty' | 'duplicate' | 'lowQuality' | 'valid';
 
@@ -176,9 +176,9 @@ function summarizeMatchCounts(matchCounts: Map<string, number>): string[] {
   return [...matchCounts.entries()].map(([label, count]) => `${label} x${count}`);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function loadFilterConfig(): FilterConfig {
   const defaultConfig: FilterConfig = {
     pipeline: {
@@ -260,9 +260,9 @@ function loadFilterConfig(): FilterConfig {
   return defaultConfig;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. NOISE PATTERNS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const NOISE_PATTERNS: readonly RegExp[] = [
   // Placeholder text
   /^User message$/i,
@@ -312,9 +312,9 @@ const STRIP_PATTERNS: readonly StripPattern[] = [
   { pattern: /<system-reminder>[\s\S]*?<\/system-reminder>/g, replacement: '' },
 ] as const;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. FILTERING PIPELINE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Factory function to create a fresh stats object per invocation
 // (avoids a module-level mutable singleton shared across callers)
 function createFilterStats(): FilterStats {
@@ -469,9 +469,9 @@ function calculateQualityScore(items: PromptItem[], config: FilterConfig): numbe
   );
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. MAIN FILTER FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function createFilterPipeline(customConfig: Partial<FilterConfig> = {}): FilterPipeline {
   // Deep merge to preserve nested defaults (e.g., pipeline.stages).
   // Shallow spread drops nested defaults when customConfig partially overrides pipeline.
@@ -659,9 +659,9 @@ export function filterContent(prompts: PromptItem[], options: Partial<FilterConf
   return pipeline.filter(prompts);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   createFilterPipeline,
   isNoiseContent,

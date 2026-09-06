@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Secret Scrubber
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Pre-index secret redaction for the memory write path. Runs at the
 // head of memory content parsing, BEFORE content-hash, embedding,
 // FTS, and any persisted field derivation, so credentials never

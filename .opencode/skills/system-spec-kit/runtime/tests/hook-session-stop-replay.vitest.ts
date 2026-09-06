@@ -100,7 +100,7 @@ describe.sequential('Claude session-stop replay harness', () => {
   });
 });
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // (paired with)
 // Autosave-ENABLED replay with failure injection. The prior harness
 // only exercises `autosaveMode: 'disabled'` (which trivially always
@@ -113,7 +113,7 @@ describe.sequential('Claude session-stop replay harness', () => {
 // so the `autosaveMode: 'enabled'` branch in processStopHook is driven
 // directly and deterministically from a test — the SessionStopProcessResult
 // is what the consumer (session-stop hook main + replay harness) observes.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 describe.sequential('Claude session-stop autosave-enabled failure injection (T-TEST-06)', () => {
   const fixturePath = fileURLToPath(new URL('./fixtures/hooks/session-stop-replay.jsonl', import.meta.url));

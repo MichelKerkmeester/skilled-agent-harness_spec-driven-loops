@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Ripgrep Retrieval Lane
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Executes the recipes written in references/retrieval/retrieval-conventions.md
 // verbatim and applies the caller-side rank tuple that document specifies.
 // Ripgrep produces evidence and never ranks it, so ordering is computed here
@@ -12,7 +12,7 @@
 // set, and `--` keeps a phrase starting with a hyphen from being read as a
 // flag. Each output mode is its own invocation because ripgrep silently lets
 // the last output-mode flag win rather than rejecting the combination.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -21,9 +21,9 @@ import process from 'node:process';
 
 import { compareCodeUnits, normalizeTriggerText, scorePhrase } from './normalize.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONTRACT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Flags shared by every recipe. `--hidden` is part of the contract because the
@@ -84,9 +84,9 @@ const MAX_STDOUT_BYTES = 128 * 1024 * 1024;
  */
 export const RIPGREP_BIN_ENV = 'SPECKIT_RG_BIN';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. RECIPE BUILDERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string} phrase Literal phrase.
@@ -129,9 +129,9 @@ export function countRecipe(phrase, roots = DEFAULT_ROOTS) {
   return [...BASE_FLAGS, '--count', ...GLOBS, '--', phrase, ...roots];
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. EXECUTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Runs one recipe and classifies its exit status. A missing search root and a
@@ -259,9 +259,9 @@ function quoteArgument(value) {
   return /^[A-Za-z0-9_./:@=-]+$/.test(value) ? value : `'${value.replace(/'/g, `'\\''`)}'`;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. PARSING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Extracts match records from JSONL output. Non-match record types (begin,
@@ -299,9 +299,9 @@ export function parseJsonLines(stdout) {
   return { matches, unparsedLines };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. EVIDENCE FIELD CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Maps a document's leading frontmatter to the one-based line ranges that
@@ -357,9 +357,9 @@ export function isAnchorMarker(lineText) {
   return /<!--\s*\/?ANCHOR:[^>]*-->/.test(lineText);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. RANKING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Applies the caller-side rank tuple: evidence field, then normalized match

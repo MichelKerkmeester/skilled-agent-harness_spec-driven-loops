@@ -1,14 +1,17 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Coverage Graph Convergence
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 // sourceDiversity is an adapter replicating the deep-loop runtime's canonical algorithm. Do not diverge. See .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Convergence
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Graph-aware convergence helpers that combine graph-structural
 // signals with stop-trace convergence scoring. Provides
 // STOP-BLOCKING guards (sourceDiversity, evidenceDepth) that must
 // pass before a deep-research or deep-review loop can terminate.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
 

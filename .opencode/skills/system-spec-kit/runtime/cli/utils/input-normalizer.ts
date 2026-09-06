@@ -1,10 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Input Normalizer
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. INPUT NORMALIZER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Validates, normalizes, and transforms raw input data into structured session format
 import { structuredLog } from './logger.js';
 import {
@@ -18,9 +18,9 @@ import { truncateOnWordBoundary } from '../lib/truncate-on-word-boundary.js';
 import { resolveSaveMode, type SaveMode } from '../types/save-mode.js';
 import type { Observation, RecentContextEntry } from '../types/session-types.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Data source type indicating where loaded data came from */
 export type DataSource =
   | 'file'
@@ -280,9 +280,9 @@ export interface TransformedCapture {
   _relevanceFallback?: boolean;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. DECISION TRANSFORMATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function extractAlternativeLabel(alt: unknown): string {
   if (typeof alt === 'string') return alt;
   if (typeof alt === 'object' && alt !== null) {
@@ -364,9 +364,9 @@ function transformKeyDecision(decisionItem: string | DecisionItemObject | null):
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. OBSERVATION BUILDERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Builds a feature observation from a session summary string and optional trigger phrases.
  * @param summary - The session summary text to use as title and narrative.
@@ -475,9 +475,9 @@ function hasPersistedNextStepsObservation(observations: Observation[]): boolean 
   });
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. INPUT NORMALIZATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function cloneInputData<T>(data: T): T {
   if (typeof structuredClone === 'function') {
     return structuredClone(data);
@@ -1031,9 +1031,9 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
   return normalized;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. INPUT VALIDATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Validates raw input data, throwing an error if required fields are missing or fields have incorrect types.
  * @param data - The raw input data object to validate.
@@ -1369,9 +1369,9 @@ function isSafeSpecFallback(
   return specSegments.some((segment) => normalizedText.includes(segment));
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. OPENCODE CAPTURE TRANSFORMATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Transforms a raw OpenCode session capture into a structured TransformedCapture with observations, prompts, and file entries.
  * @param capture - The raw OpenCode capture containing exchanges, tool calls, and metadata.
@@ -1730,9 +1730,9 @@ function transformOpencodeCapture(
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   // Primary exports
   transformKeyDecision,

@@ -1,12 +1,12 @@
 'use strict';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Random Search Optimizer
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Searches bounded deterministic numeric config space via random
 // sampling. Records an audit trail for ALL candidates, both
 // accepted and rejected.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: SessionStart Hook — Session Prime
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Runs on Claude Code SessionStart event. Injects context via stdout
 // based on the session source (compact, startup, resume, clear).
 

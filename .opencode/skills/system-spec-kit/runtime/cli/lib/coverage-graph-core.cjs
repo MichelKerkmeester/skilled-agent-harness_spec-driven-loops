@@ -1,12 +1,12 @@
 'use strict';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Core
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Extracted and adapted from runtime/lib/storage/causal-edges.ts
 // Provides edge management primitives for in-memory coverage graphs
 // used by deep-research and deep-review semantic coverage tracking.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const {
   matchesSession,

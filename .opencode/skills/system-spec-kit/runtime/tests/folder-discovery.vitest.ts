@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TEST — FOLDER DISCOVERY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Tests: extractDescription, extractKeywords, findRelevantFolders,
 // GenerateFolderDescriptions, loadDescriptionCache,
 // SaveDescriptionCache, PerFolderDescription operations

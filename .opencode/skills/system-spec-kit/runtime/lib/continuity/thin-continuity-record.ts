@@ -105,6 +105,9 @@ type YamlScalar = string | number | boolean | null;
 type YamlValue = YamlScalar | YamlValue[] | { [key: string]: YamlValue };
 type UnknownRecord = Record<string, unknown>;
 
+// Kept as a regex rather than the shared fence parser on purpose: continuity
+// records may start with a BOM or an HTML comment ahead of the fence, which
+// the strict shared parser treats as no frontmatter at all.
 const FRONTMATTER_RE = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n([\s\S]*?)\r?\n---(?:\s*\r?\n|$)/;
 const BODY_AFTER_FRONTMATTER_RE = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n[\s\S]*?\r?\n---(?:\s*\r?\n|$)?/;
 const QUESTION_ID_RE = /^Q[1-9][0-9]*$/;

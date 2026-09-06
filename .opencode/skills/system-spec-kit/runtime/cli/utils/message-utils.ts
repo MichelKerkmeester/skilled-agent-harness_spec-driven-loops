@@ -1,22 +1,22 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Message Utils
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. MESSAGE UTILS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Timestamp formatting, exchange summarization, and tool output truncation
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import { CONFIG } from '../core/index.js';
 import { structuredLog } from './logger.js';
 import type { ToolCallEntry } from '../types/session-types.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Supported timestamp formats */
 export type TimestampFormat = 'iso' | 'readable' | 'date' | 'date-dutch' | 'time' | 'time-short' | 'filename';
 
@@ -61,9 +61,9 @@ export interface ErrorArtifact {
   timestamp?: string;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. TIMESTAMP FORMATTING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // NOTE: Similar to lib/simulation-factory.ts:formatTimestamp but differs in:
 // - Applies CONFIG.TIMEZONE_OFFSET_HOURS adjustment (simulation-factory uses raw UTC)
 // - Logs structuredLog warn for invalid dates (simulation-factory silently falls back)
@@ -117,9 +117,9 @@ function formatTimestamp(date: Date | string | number = new Date(), format: Time
   }
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. OUTPUT TRUNCATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function truncateToolOutput(output: string, maxLines: number = CONFIG.MAX_TOOL_OUTPUT_LINES): string {
   if (!output) return '';
 
@@ -145,9 +145,9 @@ function truncateToolOutput(output: string, maxLines: number = CONFIG.MAX_TOOL_O
   ].join('\n');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. EXCHANGE SUMMARIZATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function summarizeExchange(userMessage: string, assistantResponse: string, toolCalls: ToolCallEntry[] = []): ExchangeArtifactSummary {
   let userIntent: string;
   if (userMessage.length <= 200) {
@@ -175,9 +175,9 @@ function summarizeExchange(userMessage: string, assistantResponse: string, toolC
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   formatTimestamp,
   truncateToolOutput,

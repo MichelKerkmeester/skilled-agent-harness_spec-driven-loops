@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Memory Metadata
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Memory classification, session dedup, causal links, and evidence
 // snapshot construction. Extracted from workflow.ts to reduce module size.
 
@@ -16,9 +16,9 @@ import type { MemoryEvidenceSnapshot } from '@spec-kit/shared/parsing/memory-suf
 import type { FileChange } from '../types/session-types.js';
 import { buildContinuityFingerprint, ZERO_CONTINUITY_FINGERPRINT } from '@spec-kit/runtime/api';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export type MemoryClassificationContext = {
   MEMORY_TYPE: string;
@@ -67,9 +67,9 @@ export type WorkflowOutcomeEvidence = {
   OUTCOME?: string;
 };
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export function inferMemoryType(contextType: string, importanceTier: string): string {
   if (importanceTier === 'constitutional') {

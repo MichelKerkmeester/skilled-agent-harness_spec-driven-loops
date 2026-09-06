@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Shared Hook Utilities
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Copilot imports these helpers straight from ../shared-provenance.js, so
 // drift in any one runtime silently forks the recovered-payload contract.
 

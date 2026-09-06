@@ -2,31 +2,31 @@
 // MODULE: Template Renderer
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TEMPLATE RENDERER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Mustache-based template engine — renders memory files from collected session data
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import fs from 'fs/promises';
 import path from 'path';
 import { CONFIG } from '../core/index.js';
 import { structuredLog } from '../utils/logger.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Template context data: a record of string keys to arbitrary values */
 export type TemplateContext = Record<string, unknown>;
 
 /** Template data item that can be an object or primitive */
 type TemplateDataItem = Record<string, unknown> | string | number | boolean;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. OPTIONAL PLACEHOLDERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // V2.2 placeholders that are spec'd but not yet implemented.
 // Suppress warnings for these to reduce noise until features are built
 const OPTIONAL_PLACEHOLDERS: Set<string> = new Set([
@@ -46,9 +46,9 @@ const OPTIONAL_PLACEHOLDERS: Set<string> = new Set([
   'TOOL_CALLS_COMPACT', 'EXCHANGES_COMPACT', 'hasToolCalls', 'hasExchanges',
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. HELPER FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function isFalsy(value: unknown): boolean {
   // "false" strings and empty arrays treated as falsy for template conditionals
   if (value === undefined || value === null || value === false) return true;
@@ -86,9 +86,9 @@ function stripTemplateConfigComments(text: string): string {
   return result;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. CORE RENDERING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function renderTemplate(template: string, data: TemplateContext, parentData: TemplateContext = {}): string {
   let result: string = template;
   const mergedData: TemplateContext = { ...parentData, ...data };
@@ -170,9 +170,9 @@ function renderTemplate(template: string, data: TemplateContext, parentData: Tem
   return cleanupExcessiveNewlines(result);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. PUBLIC API
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 async function populateTemplate(templateName: string, data: TemplateContext): Promise<string> {
   const templateDir: string = CONFIG.TEMPLATE_DIR;
   const templatePath: string = path.join(templateDir, `${templateName}_template.md`);
@@ -205,9 +205,9 @@ async function populateTemplate(templateName: string, data: TemplateContext): Pr
   return stripTemplateConfigComments(rendered);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   populateTemplate,
   renderTemplate,

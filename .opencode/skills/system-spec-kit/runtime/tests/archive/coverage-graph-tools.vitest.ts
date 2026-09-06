@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // COVERAGE GRAPH TOOLS INTEGRATION TESTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Tests for the MCP tool surface that exposes coverage graph
 // operations. Validates tool input/output schemas, error handling,
 // and integration with the reducer's graph contract.

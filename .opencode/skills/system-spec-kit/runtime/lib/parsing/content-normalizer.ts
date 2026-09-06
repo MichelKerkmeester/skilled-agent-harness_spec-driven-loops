@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Content Normalizer
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Normalizes raw markdown content before it feeds embedding generation or
 // BM25 indexing. Raw markdown carries structural noise (YAML frontmatter,
 // HTML comment anchors, pipe-table syntax, fence markers, checkbox notation)
@@ -10,9 +10,9 @@
 
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. PRIMITIVE STRIP / NORMALIZE HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Strip YAML frontmatter block from the top of a markdown file.
@@ -160,10 +160,10 @@ export function normalizeHeadings(content: string): string {
   );
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. WHITESPACE CLEANUP
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Collapse runs of blank lines to a single blank line, and trim
  * leading / trailing whitespace from the whole document.
@@ -177,10 +177,10 @@ function collapseWhitespace(content: string): string {
     .trim();
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. PUBLIC COMPOSITE FUNCTIONS
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Normalize markdown content for use in embedding generation.
  *

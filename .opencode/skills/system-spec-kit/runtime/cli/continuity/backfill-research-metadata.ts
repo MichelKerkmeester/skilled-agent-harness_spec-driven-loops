@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Backfill Research Metadata
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Missing-only backfill for research/*/iterations folders so
 // description.json + graph-metadata.json exist for iteration packs.
 

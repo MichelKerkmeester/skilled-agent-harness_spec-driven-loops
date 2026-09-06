@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. ALIGNMENT VALIDATOR DRIFT TESTS (ESM)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // PURPOSE: Validate telemetry schema/docs drift detection behavior
 //
 // Migrated from CommonJS in. The validator source uses

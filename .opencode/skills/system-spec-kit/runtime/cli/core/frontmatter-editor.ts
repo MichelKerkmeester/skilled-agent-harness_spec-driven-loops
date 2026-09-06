@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Frontmatter Editor
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Frontmatter injection and trigger phrase rendering utilities.
 // Extracted from workflow.ts to reduce module size.
 
@@ -25,9 +25,9 @@ const FOLDER_STOPWORDS = new Set([
   'generation', 'epic', 'audit', 'enforcement', 'remediation',
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
   // Require `---` at string start for strict frontmatter detection.

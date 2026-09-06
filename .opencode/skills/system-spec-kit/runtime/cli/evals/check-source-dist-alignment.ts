@@ -26,9 +26,9 @@
 //   packet; the broadened scan ensures the same drift surfaces a
 //   violation rather than going silent.
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -36,9 +36,9 @@ import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 interface AllowlistException {
   file: string;
@@ -59,9 +59,9 @@ interface DistTarget {
   sourceRoot: string;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const REQUIRED_ROOT_DIRS = ['runtime', 'shared'] as const;
 // Time-bounded allowlist for known stragglers surfaced by the
@@ -91,9 +91,9 @@ const ALLOWLIST_EXCEPTIONS: AllowlistException[] = [
   },
 ];
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function resolvePackageRoot(startDir: string): string {
   let cursor = path.resolve(startDir);
@@ -262,9 +262,9 @@ function findAllowlistEntry(distFile: string): AllowlistException | undefined {
   return ALLOWLIST_EXCEPTIONS.find((entry) => entry.file === distFile);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. MAIN LOGIC
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function main(): void {
   const packageRoot = resolvePackageRoot(moduleDir);

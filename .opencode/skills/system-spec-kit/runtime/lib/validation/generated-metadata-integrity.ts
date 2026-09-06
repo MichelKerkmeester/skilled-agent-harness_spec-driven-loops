@@ -149,8 +149,15 @@ function assertSourceFingerprint(
   let expected: string | null = null;
   try {
     expected = computeSourceFingerprintForFolder(path.dirname(filePath));
-  } catch {
-    expected = null;
+  } catch (error) {
+    // A digest that cannot be recomputed cannot be compared; staying quiet here
+    // would let an unreadable document set pass as if it matched.
+    violations.push({
+      file: 'graph-metadata.json',
+      code: 'SOURCE_FINGERPRINT_UNCOMPUTABLE',
+      message: `source_fingerprint could not be re-derived from the current source docs: ${error instanceof Error ? error.message : String(error)}`,
+    });
+    return;
   }
 
   if (!storedFingerprint) {

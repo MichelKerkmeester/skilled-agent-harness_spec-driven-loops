@@ -1,7 +1,7 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TEST: filterTriggerPhrases — 3-stage trigger phrase filter pipeline
 // Path fragments, short tokens, shingle dedup
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import { filterTriggerPhrases } from '../core/workflow';

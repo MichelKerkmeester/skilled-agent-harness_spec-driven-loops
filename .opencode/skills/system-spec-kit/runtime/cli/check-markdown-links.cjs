@@ -1,9 +1,8 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Markdown Link Integrity Guard
+// ───────────────────────────────────────────────────────────────────
 'use strict';
-
-// ─────────────────────────────────────────────────────────────────
-// check-markdown-links.cjs — markdown-link integrity guard
-// ─────────────────────────────────────────────────────────────────
 // Complements check-links.sh (which validates wikilinks `[[...]]`): this walks the
 // active skills/commands/agents docs and verifies every relative markdown link `](path)`
 // (and `[id]: path` ref-def) resolves on disk. It exists because feature removal/migration

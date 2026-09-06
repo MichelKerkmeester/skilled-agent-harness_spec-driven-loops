@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Workflow Path Utils
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // File path normalization and spec folder file listing utilities.
 // Named workflow-path-utils to avoid conflicts with any existing path-utils.
 // Extracted from workflow.ts to reduce module size.
@@ -10,9 +10,9 @@ import * as fsSync from 'node:fs';
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 import type { FileChange } from '../types/session-types.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export function normalizeFilePath(rawPath: string): string {
   return rawPath

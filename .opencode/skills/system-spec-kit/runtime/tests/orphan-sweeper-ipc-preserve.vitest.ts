@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Orphan Sweeper IPC-Socket Preserve Tests
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Regression for the orphan sweeper preserving a live re-elected MCP daemon
 // that bridges a sibling session over its UNIX daemon-ipc.sock. The sweeper's
 // TCP-only listener guard never covered the UNIX-socket daemons, so a still-

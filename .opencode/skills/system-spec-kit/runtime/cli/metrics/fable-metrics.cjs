@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-'use strict';
-
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Fable Metrics
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+'use strict';
 // Runtime-agnostic behavioral metric reader for fable-5 efficiency.
 //
 // WHY this exists: the only prior behavioral metric (leak_test.py) reads

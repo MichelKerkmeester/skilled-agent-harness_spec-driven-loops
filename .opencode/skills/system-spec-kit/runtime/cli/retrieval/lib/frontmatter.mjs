@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Strict Trigger-Phrase Frontmatter Reader
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // A deliberately narrow YAML-frontmatter reader scoped to one key. It exists
 // instead of reusing scripts/lib/frontmatter-migration.ts for two reasons:
 // that module is TypeScript and is only reachable through build output, and
@@ -13,14 +13,14 @@
 //
 // Scalars are read as YAML 1.2 core: `yes` / `no` / `on` / `off` are strings,
 // only null, booleans, and numbers are non-string scalars.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 import { MAX_PHRASE_LENGTH, normalizeTriggerText } from './normalize.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CATEGORIES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export const CATEGORY = Object.freeze({
   ALIAS: 'alias',
@@ -73,9 +73,9 @@ const YAML_BOOL_RE = /^(true|True|TRUE|false|False|FALSE)$/;
 const YAML_NUMBER_RE = /^[-+]?(?:0[xX][0-9a-fA-F_]+|0[oO][0-7_]+|(?:\d[\d_]*)?\.?\d[\d_]*(?:[eE][-+]?\d+)?)$/;
 const YAML_SPECIAL_FLOAT_RE = /^[-+]?(?:\.inf|\.Inf|\.INF|\.nan|\.NaN|\.NAN)$/;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TEXT HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Skips leading whitespace and complete HTML comments, matching what the
@@ -273,9 +273,9 @@ function classifyMember(raw) {
   return { kind: 'string', value: unquote(scalar) };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. READER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reads the trigger-phrase declaration out of a markdown document.

@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Repository Root Resolution
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Every runtime writer that persists state must anchor to the repository root.
 // Deriving a write root from the working directory instead plants a nested
 // `.opencode/` tree wherever the process happened to run, and that nested tree

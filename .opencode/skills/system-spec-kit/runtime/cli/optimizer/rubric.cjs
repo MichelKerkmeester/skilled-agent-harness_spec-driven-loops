@@ -1,13 +1,13 @@
 'use strict';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Quality Rubric
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Defines a quality rubric with per-dimension scoring for
 // evaluating deep-loop replay runs. Dimensions include
 // convergenceEfficiency, recoverySuccessRate, findingAccuracy,
 // and synthesisQuality. Scores are broken down by dimension.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS

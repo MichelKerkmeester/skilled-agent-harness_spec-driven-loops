@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Embedders — adapter interface (shared contract surface)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical EmbedderAdapter contract for the shared embedding stack owned by
 // the skill advisor. A consumer's local `mcp-server/lib/embedders/adapter.ts`
 // re-exports from here instead of keeping its own copy of the interface, so the
@@ -9,7 +9,7 @@
 // The interface carries the wider surface (an optional `options?:
 // EmbedderOptions` parameter) so the query-versus-document hint survives at the
 // type level rather than being reconstructed by each caller.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import type { BackendKind } from './types.js';
 

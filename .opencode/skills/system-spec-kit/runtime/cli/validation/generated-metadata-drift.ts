@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Generated Metadata Drift Bridge
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Strict-mode bridge for the generated-metadata drift gate. Re-derives a spec folder and
 // compares the stored description and causal_summary against a fresh derivation ignoring
 // volatile timestamps, then emits the validate.sh bridge protocol. The gate reads and reports

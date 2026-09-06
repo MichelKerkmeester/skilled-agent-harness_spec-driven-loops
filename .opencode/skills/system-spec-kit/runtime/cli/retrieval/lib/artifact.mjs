@@ -1,12 +1,12 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deterministic Artifact Serialization
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // JSON.stringify orders integer-like object keys ahead of everything else, and
 // several trigram windows are integer-like ("123"). A hand-rolled writer keeps
 // one invariant instead — every object's keys are in code-unit order — which is
 // what makes `stableStringify(JSON.parse(text)) === text` a usable validation
 // of a freshly written artifact.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
@@ -16,9 +16,9 @@ import { compareCodeUnits } from './normalize.mjs';
 
 const INDENT = '  ';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. SERIALIZATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Serializes a value the way `JSON.stringify(value, null, 2)` formats it, but
@@ -78,9 +78,9 @@ function writeValue(value, depth, chunks) {
   chunks.push(`${pad}}`);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. HASHING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string | Buffer} data Content to digest.
@@ -90,9 +90,9 @@ export function sha256(data) {
   return createHash('sha256').update(data).digest('hex');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. PUBLICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Writes a JSON artifact through a same-directory temporary file, re-reads and
@@ -138,9 +138,9 @@ export function publishJson(targetPath, value, validate) {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // TRIGGER INDEX SHAPE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Schema the committed trigger index is written and read at. */
 export const TRIGGER_INDEX_SCHEMA_VERSION = 2;

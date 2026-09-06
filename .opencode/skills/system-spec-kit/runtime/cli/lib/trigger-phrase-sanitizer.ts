@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Trigger Phrase Sanitizer
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Keep the blocklist and allowlist narrow, shape-based, and aligned to the
 // empirical corpus guidance the module's design was validated against.
 

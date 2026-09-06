@@ -13,6 +13,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
+import { DB_UPDATED_FILE } from './config.js';
 import { canonicalFold } from './unicode-normalization.js';
 
 function assertNever(value: never, label: string): never {
@@ -501,7 +502,26 @@ function isPhaseParent(folderPath: string): boolean {
   return false;
 }
 
-function getLastActiveChildId(folderPath: string): string | null {
+// Under generator hardening the freshness pointer lives in the index-layer
+// telemetry store rather than the generated JSON, keyed by the specs-root-relative
+// folder id; the JSON pointer remains the fallback for un-migrated parents.
+function getLastActiveChildFromStore(specFolderId: string): string | null {
+  const store = readJsonRecord(path.join(path.dirname(DB_UPDATED_FILE), 'access-telemetry.json'));
+  const record = store?.[specFolderId];
+  if (record === null || typeof record !== 'object' || Array.isArray(record)) {
+    return null;
+  }
+  const candidate = (record as Record<string, unknown>).last_active_child_id;
+  return typeof candidate === 'string' && candidate.trim().length > 0 ? candidate.trim() : null;
+}
+
+function getLastActiveChildId(folderPath: string, specFolderId: string | null = null): string | null {
+  if (specFolderId !== null) {
+    const stored = getLastActiveChildFromStore(specFolderId);
+    if (stored !== null) {
+      return stored;
+    }
+  }
   const metadata = readJsonRecord(path.join(folderPath, 'graph-metadata.json'));
   if (metadata === null) {
     return null;
@@ -569,7 +589,8 @@ function validateSpecFolderCandidate(
   }
 
   if (isPhaseParent(realFolderPath)) {
-    const lastActiveChildId = getLastActiveChildId(realFolderPath);
+    const specFolderId = path.relative(realSpecRoot, realFolderPath).split(path.sep).join('/');
+    const lastActiveChildId = getLastActiveChildId(realFolderPath, specFolderId);
     if (lastActiveChildId === null) {
       return invalidBinding('phase_parent_without_active_child', toWorkspaceRelative(realFolderPath, workspaceRoot));
     }

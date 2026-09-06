@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: IPC Socket Server (multi-client launcher bridge)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Canonical bridge logic shared by every daemon launcher (memory,
 // code-index, skill-advisor). Each service supplies its own socket/db
 // PATHS; only the bind/reclaim/serve LOGIC lives here so the security

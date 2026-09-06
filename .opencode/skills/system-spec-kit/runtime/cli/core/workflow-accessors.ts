@@ -1,12 +1,12 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Workflow Accessors
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Safe typed accessors for reading values from loosely-typed objects.
 // Extracted from workflow.ts to reduce module size.
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Accepts both Record<string, unknown> (readNamedObject results) and typed interfaces
  * (CollectedDataFull) without requiring an index signature on the typed interface.

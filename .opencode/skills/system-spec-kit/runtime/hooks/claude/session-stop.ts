@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Stop Hook — Session Stop
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Runs on Claude Code Stop event (async). Parses transcript for
 // token usage, stores a snapshot, and updates lightweight session state.
 

@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Ephemeral Pointer Audit
+// ───────────────────────────────────────────────────────────────────
 /**
  * Ephemeral-pointer audit — enforces sk-code §4 "No Ephemeral-Artifact Pointers".
  *

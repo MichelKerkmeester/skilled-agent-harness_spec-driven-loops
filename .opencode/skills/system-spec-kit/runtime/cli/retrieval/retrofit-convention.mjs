@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Grep Convention Retrofit
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Applies the grep convention to the active spec corpus as an ordered pipeline:
 // enumerate, dry-run, process, rescan. No stage begins before the previous
 // stage's artifact is on disk, which is what makes a corpus-wide change
@@ -48,7 +48,7 @@
 // Re-enumerate first, and the second process writes nothing.
 //
 // Exit codes: 0 = clean, 1 = residue or mismatch, 2 = execution error.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -79,9 +79,9 @@ import { ripgrepVersion } from './lib/rg-lane.mjs';
 import { RECIPES, search } from './rg-wrapper.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Report schema; bump when a consumer would have to change to read it. */
 export const SCHEMA_VERSION = 1;
@@ -149,9 +149,9 @@ const REFUSAL_SKIPS = Object.freeze(['refused-unsafe-edit', 'refused-partial-can
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. SCOPE WALK
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Collects every in-scope document. The walk is sorted at each level and
@@ -296,9 +296,9 @@ export function trackOf(relativePath) {
   return segments.length >= 2 ? `${segments[0]}/${segments[1]}` : segments[0];
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. ENUMERATE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Freezes the in-scope manifest, classifies every document into exactly one
@@ -520,9 +520,9 @@ function buildBaseline(input) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. DRY-RUN
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Computes every edit and emits the diff without touching a document. This is
@@ -588,9 +588,9 @@ export function dryRun(options) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. PROCESS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Applies the planned edits, one file at a time, through a same-directory
@@ -782,9 +782,9 @@ export function checkGates(relativePath, before, after) {
   return { counts: diff.counts, ok: true, path: relativePath, reason: '' };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. RESCAN
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Re-walks the frozen manifest and asks one question: is any document still
@@ -872,9 +872,9 @@ export function rescan(options) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. VERIFY PREIMAGE
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Rehashes every document against the captured manifest. This is the
@@ -928,9 +928,9 @@ export function verifyPreimage(options) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. ARTIFACT HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string} outDir Artifact directory.
@@ -1001,9 +1001,9 @@ function countCategories(diagnostics) {
   return counts;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. CLI
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string[]} argv Arguments after the script name.

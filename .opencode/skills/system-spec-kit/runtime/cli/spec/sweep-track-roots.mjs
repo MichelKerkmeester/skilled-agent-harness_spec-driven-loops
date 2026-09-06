@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Sweep Track Roots
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Per-packet validation never reaches a track root: the orchestrator treats a
 // spec-less directory directly under specs/ as a track and skips every packet
 // rule, so a track's generated children_ids can drift from what is actually on
@@ -24,7 +24,7 @@
 //
 // Exit codes: 0 = every track's declared and actual counts agree,
 //             1 = at least one track differs (or metadata was unreadable).
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';

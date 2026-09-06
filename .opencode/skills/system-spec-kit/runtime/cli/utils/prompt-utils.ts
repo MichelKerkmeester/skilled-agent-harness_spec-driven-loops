@@ -1,22 +1,22 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Prompt Utils
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. PROMPT UTILS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Interactive CLI prompt utilities — confirmation dialogs and user input handling
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. IMPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import readline from 'readline';
 
 import { getSessionScopedSaveContextExample } from '../core/index.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. INTERACTIVE MODE DETECTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function requireInteractiveMode(operation: string): never {
   console.error('ERROR: This operation requires user input but running in non-interactive mode.');
   console.error(`Operation: ${operation}`);
@@ -31,9 +31,9 @@ function requireInteractiveMode(operation: string): never {
   throw new Error('Unreachable');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. USER PROMPTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function promptUser(question: string, defaultValue: string = '', requireInteractive: boolean = true): Promise<string> {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
     if (requireInteractive && defaultValue === '') {
@@ -91,9 +91,9 @@ async function promptUserChoice(question: string, maxChoice: number, maxAttempts
   throw new Error('Maximum retry attempts exceeded. Please run the command again.');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   promptUser,
   promptUserChoice,

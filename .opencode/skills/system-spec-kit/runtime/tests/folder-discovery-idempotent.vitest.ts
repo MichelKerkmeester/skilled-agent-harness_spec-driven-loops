@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Folder Discovery idempotent write and targeted upsert coverage
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Proves the content-hash gated description write and the targeted
 // global-cache upsert. With the flag on, a re-derive that changes only
 // the volatile lastUpdated writes nothing and preserves the prior stamp,

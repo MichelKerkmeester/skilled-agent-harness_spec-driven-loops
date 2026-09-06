@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Capability Flags
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // The gates that gard generated-metadata derivation and the validation
 // orchestrator. Each one defaults to the shipped behavior and is overridden
 // only by an explicit opt-in or opt-out value.

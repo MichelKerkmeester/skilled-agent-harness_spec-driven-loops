@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Title Builder
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Memory title construction and normalization utilities.
 // Extracted from workflow.ts to reduce module size.
 
@@ -10,9 +10,9 @@ import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter
 import { pickBestContentName } from '../utils/slug-utils.js';
 import { normalizeSpecTitleForMemory } from '../utils/task-enrichment.js';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 export function normalizeMemoryTitleCandidate(raw: string): string {
   return raw

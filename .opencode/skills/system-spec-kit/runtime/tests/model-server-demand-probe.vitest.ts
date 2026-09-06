@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Model-server demand listener probe-vs-demand discrimination
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // A launcher liveness probe must never be treated as embed demand. The
 // demand HTTP listener distinguishes an internal probe (carrying the
 // x-speckit-probe: liveness marker) from a genuine consumer demand: the

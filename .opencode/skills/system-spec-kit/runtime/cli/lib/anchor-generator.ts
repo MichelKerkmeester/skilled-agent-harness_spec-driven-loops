@@ -2,14 +2,14 @@
 // MODULE: Anchor Generator
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. ANCHOR GENERATOR
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 import * as crypto from 'crypto';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Anchor tag type representing the semantic category of a section */
 export type AnchorTag =
   | 'decision'
@@ -21,9 +21,9 @@ export type AnchorTag =
   | 'integration'
   | 'summary';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. WORD FILTER SETS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 const STOP_WORDS: Set<string> = new Set([
   'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
   'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
@@ -45,9 +45,9 @@ const ACTION_VERBS: Set<string> = new Set([
   'use', 'using', 'used',
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. SLUG GENERATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Extracts 3-5 meaningful words, filtering stop words and action verbs */
 function generateSemanticSlug(title: string, maxWords: number = 4): string {
   if (!title || typeof title !== 'string') return 'unnamed';
@@ -68,9 +68,9 @@ function generateShortHash(content: string): string {
   return crypto.createHash('md5').update(content).digest('hex').substring(0, 8);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. ANCHOR ID GENERATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Format: {type}-{semantic-slug}-{8char-hash} */
 function generateAnchorId(
   sectionTitle: string,
@@ -94,9 +94,9 @@ function generateAnchorId(
   return `${normalizedCategory}-${slug}-${hash}`;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. SECTION CATEGORIZATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Priority: decision > implementation > guide > architecture > files > discovery > integration */
 function categorizeSection(sectionTitle: string, content: string = ''): AnchorTag {
   const text: string = (sectionTitle + ' ' + content).toLowerCase();
@@ -112,9 +112,9 @@ function categorizeSection(sectionTitle: string, content: string = ''): AnchorTa
   return 'implementation';
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. ANCHOR VALIDATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /** Appends -2, -3, etc. on collision */
 function validateAnchorUniqueness(anchorId: string, existingAnchors: string[]): string {
   if (!existingAnchors.includes(anchorId)) return anchorId;
@@ -128,9 +128,9 @@ function validateAnchorUniqueness(anchorId: string, existingAnchors: string[]): 
   return uniqueId;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. KEYWORD EXTRACTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function slugify(keywords: string[]): string {
   if (!keywords || keywords.length === 0) return 'unnamed';
   return keywords
@@ -141,17 +141,17 @@ function slugify(keywords: string[]): string {
     .replace(/^-|-$/g, '');
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. UTILITY FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 function extractSpecNumber(specFolder: string): string {
   const match: RegExpMatchArray | null = specFolder.match(/^(\d{3})-/);
   return match ? match[1] : '000';
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 10. TEMPLATE ANCHOR WRAPPING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 /**
  * Detects ## headings and wraps sections with ANCHOR tags
  * Preserves existing ANCHORs and detects collisions
@@ -274,9 +274,9 @@ function wrapSectionsWithAnchors(
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 11. EXPORTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 export {
   generateAnchorId,
   categorizeSection,

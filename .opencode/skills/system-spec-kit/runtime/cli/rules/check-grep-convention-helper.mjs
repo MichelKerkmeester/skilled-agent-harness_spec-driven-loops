@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Check Grep Convention Helper
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Classifies every markdown document directly inside one spec folder against
 // the greppable-corpus convention and emits one diagnostic row per finding.
 //
@@ -8,7 +8,7 @@
 // classification here and only relays the result. Duplicate detection imports
 // the trigger index's normalizer rather than reimplementing it, so a phrase
 // the index would collapse is the same phrase this rule calls a duplicate.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,9 +28,9 @@ import {
 const [folderArg, ruleArg] = process.argv.slice(2);
 const RULE_ID = ruleArg || 'GREP_CONVENTION';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. LOCAL CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 //
 // Budgets, key spellings, the trigger vocabulary and the category severity
 // table are imported from the retrofit's shared module rather than restated
@@ -71,9 +71,9 @@ const VARIANT_PRECEDENCE = [
   'valid-empty',
 ];
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. DIAGNOSTICS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const diagnostics = [];
 
@@ -97,9 +97,9 @@ function addDiagnostic({ file, line, category, reason, rawKey }) {
   });
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. FRONTMATTER DETECTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Mirrors the migration module's reader so the validator and the retrofit
 // agree on where a block starts: a leading HTML comment is allowed above the
@@ -149,9 +149,9 @@ function detectFrontmatter(lines) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. LINE ADDRESSING INSIDE THE BLOCK
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function findKeyLine(block, offset, key) {
   const pattern = new RegExp(`^${key}\\s*:`, 'u');
@@ -176,9 +176,9 @@ function findMemberLines(block, offset, key) {
   return lines;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. TRIGGER PHRASE JUDGEMENT
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 // Delegated to the retrofit's shared judge so the two enforcers reject the same
 // phrases for the same stated reason. The negative class it returns is folded
@@ -188,9 +188,9 @@ function genericTriggerReason(raw, folderTokens) {
   return verdict ? `${verdict.reason} (${verdict.negativeClass})` : null;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. PER-DOCUMENT CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function classifyDocument(file, text, folderTokens) {
   const lines = text.split(/\r?\n/u);
@@ -353,9 +353,9 @@ function classifyDocument(file, text, folderTokens) {
   return { variants, lines };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 7. ANCHOR GRAMMAR
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function checkAnchors(file, lines) {
   const openers = new Map();
@@ -424,9 +424,9 @@ function checkAnchors(file, lines) {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 8. NAMING RULES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function checkFolderNaming(folder) {
   const base = path.basename(path.resolve(folder));
@@ -455,9 +455,9 @@ function checkDocumentNaming(file) {
   });
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 9. RULE ENTRY
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function emit(status, message, details) {
   process.stdout.write(`rule\t${RULE_ID}\n`);

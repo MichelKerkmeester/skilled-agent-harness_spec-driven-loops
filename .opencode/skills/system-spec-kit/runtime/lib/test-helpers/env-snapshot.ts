@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Test Env Snapshot Helper
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Snapshot a list of process.env keys at call time and return a
 // restore() function that re-sets each key to its captured value
 // (re-set if it had a value, delete if it was undefined).

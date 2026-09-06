@@ -1,14 +1,14 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Spec Document Discovery Helpers
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Walks a workspace to find canonical spec documents for generated metadata,
 // detect a folder's level, and locate graph-metadata.json files. This is
 // filesystem discovery, not an index into a memory database.
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -24,9 +24,9 @@ import {
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { shouldIndexForMemory } from '../lib/utils/index-scope.js';
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const SPEC_DISCOVERY_MAX_DEPTH = 20;
 const SPEC_DISCOVERY_MAX_NODES = 50_000;
@@ -55,9 +55,9 @@ function shouldAbortDiscoveryWalk(state: DiscoveryWalkState, label: string): boo
   return false;
 }
 
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. DISCOVERY FUNCTIONS
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Scope filter for a spec-document or graph-metadata discovery walk. */
 export interface SpecDiscoveryOptions {

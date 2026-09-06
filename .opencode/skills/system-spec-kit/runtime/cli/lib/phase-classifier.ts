@@ -1,10 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Phase Classifier
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS & TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { SemanticSignalExtractor } from './semantic-signal-extractor.js';
 import type {
@@ -58,9 +58,9 @@ export interface PhaseClassificationResult {
   uniquePhaseCount: number;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const PHASE_PRIORITY: readonly ConversationPhaseLabel[] = [
   'Debugging',
@@ -91,9 +91,9 @@ const PHASE_KEYWORDS: Record<Exclude<ConversationPhaseLabel, 'Discussion'>, read
   Verification: ['test', 'tests', 'spec', 'vitest', 'jest', 'assert', 'coverage', 'verify', 'validate', 'check', 'pass', 'fail'],
 };
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. VECTOR OPERATIONS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function createEmptyPhaseScores(): PhaseScoreMap {
   return {
@@ -256,9 +256,9 @@ function buildExchangeSignals(exchange: PhaseClassifierExchangeInput): ExchangeS
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. SCORING & CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function keywordScore(vector: WeightedVector, keywords: readonly string[]): number {
   let score = 0;
@@ -365,9 +365,9 @@ function classifyCluster(cluster: InternalTopicCluster, exchanges: ClassifiedExc
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. FLOW PATTERN DERIVATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function deriveFlowPattern(clusters: InternalTopicCluster[]): string {
   if (clusters.length === 0) {
@@ -434,9 +434,9 @@ function toClassifiedExchange(exchange: PhaseClassifierExchangeInput): Classifie
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 6. PUBLIC API
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Classifies conversation exchanges into topic clusters, phases, and a flow pattern. */
 export function classifyConversationExchanges(exchanges: PhaseClassifierExchangeInput[]): PhaseClassificationResult {

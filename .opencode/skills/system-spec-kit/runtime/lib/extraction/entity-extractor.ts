@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Entity Extractor
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Pure-TS rule-based extraction of entities from generated packet metadata
 // content (headings, quoted strings, proper nouns, …). Zero npm dependencies.
 import fs from 'node:fs';
@@ -28,9 +28,9 @@ export function normalizeEntityName(name: string): string {
     .trim();
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** A single entity extracted from memory content. */
 export interface ExtractedEntity {
@@ -42,9 +42,9 @@ export interface ExtractedEntity {
   frequency: number;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. EXTRACTION RULES
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * A declarative entity-extraction rule: a regex applied over content whose
@@ -208,9 +208,9 @@ export function extractEntities(content: string): ExtractedEntity[] {
   return deduplicateEntities(raw);
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. FILTERING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Filter entities through denylist + length checks.
@@ -239,9 +239,9 @@ export function filterEntities(entities: ExtractedEntity[]): ExtractedEntity[] {
   });
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. INTERNAL HELPERS (exported for testing)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Deduplicate raw extraction results by normalized text.

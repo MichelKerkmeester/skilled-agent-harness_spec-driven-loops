@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Memory Residue Sweep
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Answers one question with an exit code: does any live consumer of the
 // retired memory MCP surface still exist outside its own subsystem tree?
 //
@@ -28,7 +28,7 @@
 //                                 [--report <path>] [--json]
 //
 // Exit codes: 0 = no live hits, 1 = live hits remain, 2 = ripgrep or invocation error.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
@@ -42,9 +42,9 @@ import { EXCLUDED_DIR_NAMES as CORPUS_EXCLUDED_DIR_NAMES } from './lib/corpus.mj
 import { compareCodeUnits } from './lib/normalize.mjs';
 import { formatCommand, parseJsonLines, resolveRipgrep, ripgrepVersion } from './lib/rg-lane.mjs';
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
@@ -223,9 +223,9 @@ export const UNATTRIBUTED_TERM = 'unattributed';
 /** Live paths listed in the report, longest first. */
 const TOP_LIVE_PATH_LIMIT = 20;
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. TERM MATCHING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string} value Literal text.
@@ -265,9 +265,9 @@ export function buildArgv() {
   return argv;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string} relativePath Repo-relative POSIX path.
@@ -379,9 +379,9 @@ export function loadAllowlist(allowlistPath) {
   });
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 4. EXECUTION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Streams one ripgrep run and hands every match record to the caller. Output is
@@ -511,9 +511,9 @@ export async function sweep(options = {}) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 5. CLI
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * @param {string[]} argv Arguments after the script name.

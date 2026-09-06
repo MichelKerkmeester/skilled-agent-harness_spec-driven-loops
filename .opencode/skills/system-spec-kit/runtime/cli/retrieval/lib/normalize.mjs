@@ -1,16 +1,16 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Trigger Text Normalization
-// ───────────────────────────────────────────────────────────────
-// Mirrors the substring trigger lane in
-// runtime/lib/search/hybrid-search.ts (normalizeTriggerText,
-// triggerQueryTokens, computeTriggerMatchScore) so the generated index and
-// the SQL lane admit and rank the same candidates. Any change here changes
-// the relation the two lanes are compared on, so the two must move together.
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// Mirrors the retired substring trigger lane (normalizeTriggerText,
+// triggerQueryTokens, computeTriggerMatchScore) so the generated index still
+// admits and ranks the same candidates its recorded results were compared on.
+// Any change here changes that relation, so the recorded fixtures must move
+// together with it.
+// ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /** Scoring-side token floor: the phrase/query token filter inside the score function. */
 export const MIN_TOKEN_LENGTH = 2;
@@ -47,9 +47,9 @@ export const MATCH_CLASSES = Object.freeze([
   'partial',
 ]);
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 2. NORMALIZATION
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Lowercase, collapse every run of non-ASCII-alphanumeric characters to one
@@ -113,9 +113,9 @@ export function queryTokens(query) {
   return { discardedTokens, tokens: eligible.slice(0, MAX_QUERY_TOKENS) };
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // 3. SCORING
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Reproduces computeTriggerMatchScore. A phrase carrying fewer than two tokens

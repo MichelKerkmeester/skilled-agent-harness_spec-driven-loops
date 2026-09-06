@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Directive Lifecycle Boundary Bridge
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Runtime lifecycle owners notify the advisor store through one bounded,
 // fail-open process boundary.
 

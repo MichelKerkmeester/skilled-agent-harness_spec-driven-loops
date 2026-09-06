@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Directive Lifecycle Adapter Parity Tests
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
 import { lstatSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';

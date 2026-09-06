@@ -1,6 +1,10 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Index Scope Invariants
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. POLICY TYPES
+// ───────────────────────────────────────────────────────────────────
 
 const SEGMENT_BOUNDARY = '(^|/)';
 const SEGMENT_END = '(/|$)';
@@ -46,6 +50,10 @@ const CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS = {
   specs: ['**/.opencode/specs/**', '**/specs/**'],
   plugins: ['**/.opencode/plugins/**'],
 } as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. POLICY RESOLUTION
+// ───────────────────────────────────────────────────────────────────
 
 function compileSegmentPattern(segment: string): RegExp {
   return new RegExp(`${SEGMENT_BOUNDARY}${segment}${SEGMENT_END}`, 'i');
@@ -160,6 +168,10 @@ function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}): Inde
 // memory index and is deprioritized by ARCHIVE_MULTIPLIERS (0.1) in
 // shared/scoring/folder-scoring.ts. Excluding it here would override the
 // decay design and remove archived content from search entirely.
+// ───────────────────────────────────────────────────────────────────
+// 3. EXCLUSION LISTS
+// ───────────────────────────────────────────────────────────────────
+
 export const EXCLUDED_FOR_MEMORY = [
   compileSegmentPattern('z-future'),
   compileSegmentPattern('external'),
@@ -185,6 +197,10 @@ export const EXCLUDED_FOR_CODE_GRAPH = [
 export const EXCLUDED_FOR_GENERATED_METADATA = [
   compileSegmentPattern('z-future'),
 ] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. SCOPE PREDICATES
+// ───────────────────────────────────────────────────────────────────
 
 function getCodeGraphPolicy(
   policyInput?: IndexScopePolicy | ResolveIndexScopePolicyInput,

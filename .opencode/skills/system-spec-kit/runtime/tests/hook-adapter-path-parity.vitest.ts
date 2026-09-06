@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Hook Adapter Path Parity
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 //
 // Every runtime hook registration (Claude, Codex, Cursor, Devin, Pi and
 // OpenCode) names an adapter file by path, directly or through a shell

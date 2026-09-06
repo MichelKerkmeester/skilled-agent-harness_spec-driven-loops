@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Spec Doc Structure Validation
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -1247,11 +1247,11 @@ export function runSpecDocStructureRule(options: SpecDocRuleOptions): RuleResult
 }
 
 function emitTsv(result: RuleResult): void {
-  process.stderr.write(`rule\t${result.rule}\n`);
-  process.stderr.write(`status\t${result.status}\n`);
-  process.stderr.write(`message\t${result.message}\n`);
+  process.stdout.write(`rule\t${result.rule}\n`);
+  process.stdout.write(`status\t${result.status}\n`);
+  process.stdout.write(`message\t${result.message}\n`);
   for (const diagnostic of result.diagnostics) {
-    process.stderr.write(`detail\t${diagnostic.code}: ${diagnostic.detail}\n`);
+    process.stdout.write(`detail\t${diagnostic.code}: ${diagnostic.detail}\n`);
   }
 }
 
@@ -1334,7 +1334,7 @@ function main(argv: string[]): number {
   const result = runSpecDocStructureRule(options);
 
   if (options.output === 'json') {
-    process.stderr.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
   } else {
     emitTsv(result);
   }
