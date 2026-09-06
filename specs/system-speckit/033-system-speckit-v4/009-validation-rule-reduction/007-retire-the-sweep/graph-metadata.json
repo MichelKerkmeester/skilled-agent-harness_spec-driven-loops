@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Make the gate block the thing it can fairly block: the packets a change",
     "created_at": "2026-08-30T06:31:14.942Z",
-    "last_save_at": "2026-08-30T15:39:36.752Z",
+    "last_save_at": "2026-09-06T06:47:22.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea3720be6bfb91a8d2e18dc235957a825408e301165393f3cb832b075f5a8bfe",
+    "source_fingerprint": "sha256:d40be719f6cbb9825e4bd9d8d13554705373a324218bd6d7896eef39ed18bfa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7fb097c60df8aed3dff9aff872e391f3744edf3a2002dd6137035a1c0f075d1c",
-      "plan.md": "678474813c142a04006647dc5ee513d9cef918327eb700659216e16f20b0c051",
-      "tasks.md": "65d856189b4aa34366e3480a7012f48d3c22dda44ba7b71222c0daf86ffe39c3",
-      "implementation-summary.md": "76e57f333420f5b265a751a309d8ebe7c1bf7597c8a204be06bbaa4ee95c5089"
+      "spec.md": "735dae8862ce281d4965816b240669ff62c595fe3b62fd666e5cac5192386d74",
+      "plan.md": "3ab0ff80dc4d024149a9ed49d0d6c90a3edbfa9d8c82d57b2e50ac95b229c149",
+      "tasks.md": "3780bc1cabdc3257e03c1e6d53819fc3baa69a9cd1b928c225e23123ab1543b2",
+      "implementation-summary.md": "9e69acaafd356d8e0a29b3e240806d748e0e7b96f3566d7119168edb4601cd47"
     },
     "last_active_child_id": null,
     "last_active_at": null

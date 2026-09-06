@@ -10,12 +10,13 @@
     "review",
     "pre-dating"
   ],
-  "lastUpdated": "2026-08-30T04:17:56.018Z",
+  "lastUpdated": "2026-09-06T06:44:46.165Z",
   "specId": "003",
   "folderSlug": "restore-level-upgrade-and-vocabulary-invariance",
   "parentChain": [
     "system-speckit",
-    "033-spec-kit-template-optimization"
+    "033-system-speckit-v4",
+    "008-template-contracts-and-acceptance-criteria"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

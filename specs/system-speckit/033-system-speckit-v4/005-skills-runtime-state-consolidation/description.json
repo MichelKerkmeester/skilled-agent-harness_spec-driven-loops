@@ -17,11 +17,12 @@
     "goal",
     "loop-guard"
   ],
-  "lastUpdated": "2026-08-28T09:06:37.514Z",
-  "specId": "038",
-  "folderSlug": "skills-state-consolidation",
+  "lastUpdated": "2026-09-06T06:48:36.912Z",
+  "specId": "005",
+  "folderSlug": "skills-runtime-state-consolidation",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

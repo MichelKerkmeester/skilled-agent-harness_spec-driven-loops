@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-a-level-for-research |
+| **Spec Folder** | 008-a-level-for-research |
 | **Status** | Complete |
 | **Level** | 1 |
 

@@ -19,12 +19,13 @@
     "lines",
     "across"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.590Z",
+  "lastUpdated": "2026-09-06T06:44:45.978Z",
   "specId": "004",
   "folderSlug": "continuity-single-source",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

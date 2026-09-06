@@ -18,11 +18,12 @@
     "via",
     "common"
   ],
-  "lastUpdated": "2026-08-15T14:50:25.071Z",
-  "specId": "034",
-  "folderSlug": "plan-preflight-nested-packet-resolution",
+  "lastUpdated": "2026-09-06T06:48:42.344Z",
+  "specId": "001",
+  "folderSlug": "plan-preflight-track-packets",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

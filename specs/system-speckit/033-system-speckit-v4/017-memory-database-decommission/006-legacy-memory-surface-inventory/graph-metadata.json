@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "research/lineages/luna-max/research.md",
       "research/lineages/luna-max/iterations/iteration-001.md",
-      "research/lineages/luna-max/inventory.external.json",
       "research/deep-research-config.json",
       "research/lineages/luna-max/iterations/iteration-002.md",
       "research/lineages/luna-max/iterations/iteration-003.md",
@@ -90,12 +89,6 @@
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/lineages/luna-max/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "inventory.external.json",
-        "kind": "config",
-        "path": "research/lineages/luna-max/inventory.external.json",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002 and 003 were scoped against a parent estimate of roughly 167 logical consumers, a figure derived by judgment rather than by scanning",
     "created_at": "2026-09-02T16:29:03Z",
-    "last_save_at": "2026-09-04T08:23:05.683Z",
+    "last_save_at": "2026-09-06T06:46:56.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7da08252e3d3e40ba883cd4d8bdd54d27f04cf371fb0368eb1f3d60d7daf62e",
+    "source_fingerprint": "sha256:5744691d52b4092ad09c46f737319109e94e91d5ad15d94e12710f72d9cc9ebe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9617e6e25ddc3c842af21ad9aebc05ab3d6597873ce5658e728d7a314978b67",
       "plan.md": "1a87e74d02cc0569267d9c342155f7fc7ca3910867789b29cb94d515abf19415",
       "tasks.md": "ffc9677fe149cd054c3f50df6077d3c043a467b42bf66ab9bdca3d098b55cadb",
-      "implementation-summary.md": "e61acdf5bc8fa4ff72b28d51deab4da42c2209d442829a4475481fb94ce80798"
+      "implementation-summary.md": "21b0d99b66b9cf609e333c79f386e8fa4f004347d5b4ac618c9d8d36862af477"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -24,6 +24,10 @@ contextType: "general"
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-09-05 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 22 of 24 |
+| **Predecessor** | `../021-decommission-debt-and-cli-nesting/spec.md` |
+| **Successor** | `../023-trigger-index-root-and-drift-fixes/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 

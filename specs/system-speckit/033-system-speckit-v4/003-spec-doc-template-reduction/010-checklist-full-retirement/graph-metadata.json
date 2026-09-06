@@ -47,18 +47,8 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-      "scripts/spec/upgrade-level.sh",
       "templates/spec-kit-docs.json",
-      "mcp-server/lib/graph/graph-metadata-parser.ts",
-      "mcp-server/lib/validation/generated-metadata-integrity.ts",
-      "scripts/tests/fingerprint-docset-generation.sh",
-      "mcp-server/lib/resume/resume-ladder.ts",
-      "mcp-server/scripts/repair-graph-metadata.mjs",
-      "scripts/utils/template-structure.js",
-      "scripts/tests/check-ac-coverage.sh",
-      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md",
-      "mcp-server/tool-schemas.ts"
+      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md"
     ],
     "entities": [
       {
@@ -95,60 +85,6 @@
         "name": "spec-kit-docs.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "upgrade-level.sh",
-        "kind": "script",
-        "path": "scripts/spec/upgrade-level.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fingerprint-docset-generation.sh",
-        "kind": "script",
-        "path": "scripts/tests/fingerprint-docset-generation.sh",
-        "source": "derived"
-      },
-      {
-        "name": "resume-ladder.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/resume/resume-ladder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "repair-graph-metadata.mjs",
-        "kind": "file",
-        "path": "mcp-server/scripts/repair-graph-metadata.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": "scripts/tests/check-ac-coverage.sh",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp-server/tool-schemas.ts",
         "source": "derived"
       },
       {
@@ -204,11 +140,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its three worked examples",
     "created_at": "2026-08-30T04:40:40Z",
-    "last_save_at": "2026-08-30T15:39:36.612Z",
+    "last_save_at": "2026-09-06T06:47:53.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e4790b6b689e2bdccec4e9e75ba9291f90abbd56958611b2dbc9caaf2ea623e",
+    "source_fingerprint": "sha256:289ac89d7347dce80888f37221068fb070ab4ae9d495bb7c60a68e8bff46d153",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1e250447c9915435a3a8b8b27ed2bb8e824a3d84f6069bc3d5d7ac369378d4d4",
-      "plan.md": "70fe813bbbadf6680b34818de2077435fbcab1c7329fa3de20c42938edc671a4",
-      "tasks.md": "df1f479175a77e6fe7c3ee38839df27f4257b6cb1dbc8b17f3c67c4d1b19263e",
-      "implementation-summary.md": "973cea588e276bfd2654d12a3b040b648c32b1e1aac76875c661b78745d43206"
+      "spec.md": "cbcd60add7432c87a7ae3a17942f5fb9b5f19aac96303f844e3e417a29b0c63c",
+      "plan.md": "c7e8300529475d47a597b78a37e0b724a43147384523657212302b29a0e6c240",
+      "tasks.md": "a90603f7584e927f61650028d6ff67fa72265f6f1cfdf0a9a6a0369c93d98f17",
+      "implementation-summary.md": "88e916b4c1885181475bd52676065dc547cbfdeeab8c8e3f01925318dc86bd83"
     },
     "last_active_child_id": null,
     "last_active_at": null

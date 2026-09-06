@@ -45,16 +45,12 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
       ".opencode/skills/system-spec-kit/templates/core/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-      ".opencode/skills/system-spec-kit/references/templates/template-guide.md",
-      ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh"
+      ".opencode/skills/system-spec-kit/references/templates/template-guide.md"
     ],
     "entities": [
       {
@@ -79,12 +75,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
         "source": "derived"
       },
       {
@@ -118,27 +108,9 @@
         "source": "derived"
       },
       {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
         "name": "template-guide.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/templates/template-guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "inline-gate-renderer.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -200,11 +172,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Authoring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The inline-gate renderer strips only IF gates, not plain HTML comments, so SELF-CHECK blocks, per-field voice guides, and footer size notes survive into every scaffolded doc's bytes — measured at 15.5% of packet bytes (implementation-summary 43.6%)",
     "created_at": "2026-08-26T05:33:58Z",
-    "last_save_at": "2026-08-30T15:39:36.575Z",
+    "last_save_at": "2026-09-06T06:48:00.710Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +209,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c9f656cb97228a1b10801b045506612eb41ba1daa832a3bf97914cf806e22ed",
+    "source_fingerprint": "sha256:4a68249ceda8eb5c9aa373bb2e2657c5314a978f772717b7f1576aaa2c377e3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7bede4a143d439bda05f2d11f30c66302c5c832d096383eee14367c957c16ec0",
+      "spec.md": "1d4ba6edbb1c9db057c177227779f49115d4d8762f550c87b9c4f2cea6873aae",
       "plan.md": "b0de61a87b6bdc17b2e66de5557938fdd1b409179f2dfaa709b268f0642e6b75",
       "tasks.md": "6b45ac9cf3753ab17bfb102aecb754852ea936a27b52d2e65b19b7e192e42435",
       "implementation-summary.md": "dfe34101ec47a807953cc15007b886f5d4c377914b446c5cf996678c06317dd8"

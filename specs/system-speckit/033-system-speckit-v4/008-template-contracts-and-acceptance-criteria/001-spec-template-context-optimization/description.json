@@ -17,12 +17,13 @@
     "against",
     "system-speckit"
   ],
-  "lastUpdated": "2026-08-30T04:11:48.811Z",
+  "lastUpdated": "2026-09-06T06:44:46.129Z",
   "specId": "001",
   "folderSlug": "spec-template-context-optimization",
   "parentChain": [
     "system-speckit",
-    "033-spec-kit-template-optimization"
+    "033-system-speckit-v4",
+    "008-template-contracts-and-acceptance-criteria"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

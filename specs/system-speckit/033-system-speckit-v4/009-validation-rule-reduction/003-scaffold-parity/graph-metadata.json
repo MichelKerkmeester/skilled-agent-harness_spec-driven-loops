@@ -35,7 +35,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/templates/core/spec.md.tmpl"
     ],
     "entities": [
@@ -61,12 +60,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -182,11 +175,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Untouched Level",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A packet created with no human input stops failing validation the moment it exists.",
     "created_at": "2026-08-29T17:48:11.238Z",
-    "last_save_at": "2026-08-30T15:39:36.728Z",
+    "last_save_at": "2026-09-06T06:47:29.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6226e97b92f4da3a5a7e53e923726078c045c51c3ac29943943a29c1a06e4e2",
+    "source_fingerprint": "sha256:86f6d8d77d98f27311b772ca6d6e9d38b37f38259120d62c98a82bc25b248cbf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e8e0f3144ee882e9f813e65d48598df8e44d9a586000563cf4c481b79f6771e4",
-      "plan.md": "9c082307d36f7f2e218dd5baf4787c0ab3fe9ba28e97ed249dd1ebe61e93fe72",
-      "tasks.md": "715d1dddfedbdbbfcd3a88df02a5ffd39dfe5f5824c50f546f501357235b9c67",
-      "implementation-summary.md": "17d4792db47b3bb437ed99a221aa0f7a490c90070f010241153dcff7e26d77ce"
+      "spec.md": "d6f1ed613aabc8a3d0254e4871cca45d51cc86f19e1b1f10b69ff46d5ae5feef",
+      "plan.md": "f128a940856ab324fbc181befacd88bb08d96ab1f4cfb9ee1f5cc58bf6e93afb",
+      "tasks.md": "33c4f555f074e4bec03256ed21ea9fac4ed84427a28438f309dd1857e0b18ea5",
+      "implementation-summary.md": "f851af3475ac5cb104c55941198a372bb808c259416cc6603d025a0e27ab79da"
     },
     "last_active_child_id": null,
     "last_active_at": null

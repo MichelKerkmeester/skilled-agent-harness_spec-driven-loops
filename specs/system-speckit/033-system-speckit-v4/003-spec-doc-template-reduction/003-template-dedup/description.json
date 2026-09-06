@@ -12,12 +12,13 @@
     "across",
     "blocks"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.587Z",
+  "lastUpdated": "2026-09-06T06:44:45.976Z",
   "specId": "003",
   "folderSlug": "template-dedup",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -11,11 +11,12 @@
     "index",
     "specs"
   ],
-  "lastUpdated": "2026-09-04T17:50:21.134Z",
-  "specId": "049",
-  "folderSlug": "memory-decommission",
+  "lastUpdated": "2026-09-06T06:46:17.940Z",
+  "specId": "017",
+  "folderSlug": "memory-database-decommission",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

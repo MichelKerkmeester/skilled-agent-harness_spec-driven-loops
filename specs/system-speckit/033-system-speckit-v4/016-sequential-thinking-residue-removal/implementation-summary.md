@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 048-decommissioned-server-residue |
+| **Spec Folder** | 016-sequential-thinking-residue-removal |
 | **Completed** | 2026-08-31 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

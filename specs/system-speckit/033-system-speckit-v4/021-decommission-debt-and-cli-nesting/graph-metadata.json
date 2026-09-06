@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
   "spec_folder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
     "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
@@ -137,6 +137,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -156,12 +162,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures as sources, the fan-out runner discarded lineage stderr, the review leaf could write iteration files at the cwd, a rollback runbook documented retired automation, a dead response type and a stale test name survived",
     "created_at": "2026-09-05T03:23:43Z",
-    "last_save_at": "2026-09-05T18:39:07.577Z",
+    "last_save_at": "2026-09-06T06:48:12.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa533de21896587d9b70ebd2aaab4ead765143aac98af48a6bcdc85ae9f0e2b5",
+    "source_fingerprint": "sha256:a56fafa3e21ccc048168eb0a7e844f826764120a2d941011996d175893fd59e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "23532db68ad898138594754cf61230fd7409037f362bda5d48f8bbb8da797b6c",
+      "spec.md": "2a6738a6065ed6c1369a1f344a0d05e0ba373e628ce98470cb3ae86fb82fdbda",
       "plan.md": "d3e8d36de30a64e86f8f63b19b6d7f449b7a4714199dc9620c5d0627ec230b48",
       "tasks.md": "c196b1ade5967c0ffabd7e5594115af3515b928bb52dadb5815b6f9fdb5bff6a",
-      "implementation-summary.md": "b6d55641f882395b1ca279fe557a9d089a6718a3af22789269ee30075ac1912a"
+      "implementation-summary.md": "3a00f874b183094ae256a67132248076284b3263c6dbedd69b7eca210eb9b630"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
     "last_active_at": null

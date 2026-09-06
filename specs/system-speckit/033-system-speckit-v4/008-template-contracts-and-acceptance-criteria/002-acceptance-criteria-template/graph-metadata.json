@@ -49,18 +49,14 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh",
       "templates/addons/acceptance-criteria.md.tmpl",
       "templates/spec-kit-docs.json",
       "templates/core/spec.md.tmpl",
-      "scripts/rules/check-ac-closure.sh",
-      "scripts/rules/check-ac-coverage.sh",
-      "scripts/lib/validator-registry.json",
       "references/validation/validation-rules.md",
-      "mcp-server/ENV-REFERENCE.md",
       "templates/README.md",
       "templates/CONTRACT.md",
-      ".opencode/skills/system-spec-kit/README.md"
+      ".opencode/skills/system-spec-kit/README.md",
+      "shared/parsing/spec-doc-health.ts"
     ],
     "entities": [
       {
@@ -112,12 +108,6 @@
         "source": "derived"
       },
       {
-        "name": "check-ac-closure.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh",
-        "source": "derived"
-      },
-      {
         "name": "acceptance-criteria.md.tmpl",
         "kind": "file",
         "path": "templates/addons/acceptance-criteria.md.tmpl",
@@ -130,27 +120,9 @@
         "source": "derived"
       },
       {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-ac-coverage.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "validation-rules.md",
         "kind": "doc",
         "path": "references/validation/validation-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp-server/ENV-REFERENCE.md",
         "source": "derived"
       },
       {
@@ -163,6 +135,12 @@
         "name": "CONTRACT.md",
         "kind": "doc",
         "path": "templates/CONTRACT.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-health.ts",
+        "kind": "code",
+        "path": "shared/parsing/spec-doc-health.ts",
         "source": "derived"
       },
       {
@@ -206,11 +184,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-30T15:39:36.483Z",
+    "last_save_at": "2026-09-06T06:47:36.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eed1ca675d67bc729b1003387285a6de6fcd956f507496bec566157e162320be",
+    "source_fingerprint": "sha256:8a627d2e1a580a8c83f212b023a63a9be2fb39d548f40ff1cc95c3996f6ffd93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "74029f5bcdcaea74a7d33fe8bbce1762c8435905f5f25a179772debe8bcbdbd3",
-      "plan.md": "20be41bb9e7720db236550127b5d9fdf2dc3573cce7b237f63a1fd8e33425b82",
-      "tasks.md": "33d1b24bb1366b0816cd10982abfda13509f0e54567fbd9eaa4c208b7375fda1",
-      "decision-record.md": "b96b09360fde2bc2eb64a15f31ee6e0d4185cfea1a20309c94467b124b9a3452",
-      "implementation-summary.md": "971fbe4fe3bbd8e79b904c01c1d0f1117cbef25578c5678f1572e651116f62c7"
+      "spec.md": "137a87f65bd09a0b0090c6623718ece3b06e29c1d9489415ed1e405f32645fd6",
+      "plan.md": "d2afa140e7dbb04b4147457491b4ef39b65ba946f00f5c6b178a6c3251c44f9e",
+      "tasks.md": "d4e9941497486bd9b62147bd8c0e37ecffe47955f2cd064412c3b9c68db64643",
+      "decision-record.md": "66caddd1d97eeb52ce30388673f4825f3b968c38c62adea4f38fa9dda53daaa1",
+      "implementation-summary.md": "1c525b5d9c02be3ffcfb58a6a36b41916fe7acc0c581c062d31c562795f18311"
     },
     "last_active_child_id": null,
     "last_active_at": null

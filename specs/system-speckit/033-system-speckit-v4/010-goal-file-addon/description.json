@@ -13,11 +13,12 @@
     "frozen",
     "moment"
   ],
-  "lastUpdated": "2026-08-30T04:17:56.142Z",
-  "specId": "042",
-  "folderSlug": "nested-goal-template-addon",
+  "lastUpdated": "2026-09-06T06:46:17.936Z",
+  "specId": "010",
+  "folderSlug": "goal-file-addon",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

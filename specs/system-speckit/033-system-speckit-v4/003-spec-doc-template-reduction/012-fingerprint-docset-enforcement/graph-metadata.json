@@ -46,13 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh",
-      "scripts/tests/fingerprint-docset-generation.sh",
-      "mcp-server/lib/graph/graph-metadata-schema.ts",
-      "mcp-server/lib/validation/generated-metadata-integrity.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -89,24 +83,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fingerprint-docset-generation.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh",
         "source": "derived"
       },
       {
@@ -198,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
     "created_at": "2026-08-30T13:58:20Z",
-    "last_save_at": "2026-08-30T15:48:37.527Z",
+    "last_save_at": "2026-09-06T06:47:50.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9dedb761c7f919727b2ecca69fbb722760d4f1dd4282ff2d72d053d41b6a357",
+    "source_fingerprint": "sha256:7abac86155170c039767f908aa1e9d95f8d98a1cfa4086b0e19061112a15f6a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3182fdeb8298c09c53c130c5f11ce83a84686fc7a7eb330aba42434df6cee52",
+      "spec.md": "02077b7f70051a67168e3921e2d16397acd8219fe6f7c9717ff7a7739435b082",
       "plan.md": "bd03e81ee495aded38131bd96a4e0f5be7187dad81e73be612a800b13cbfdcd3",
       "tasks.md": "346d6ec8e8164abcc0a55c046e6cddeee6ce0294ef1977770524d77262ac45f8",
-      "decision-record.md": "409c24a164ac994674e098e301e07fc5b89861c990951ab58e78f020d0453db8",
-      "implementation-summary.md": "21caaa1bc503b859d32909047648975acd855194696d4aab147984de07f747b2"
+      "decision-record.md": "3ff0b29ef95cdc22d05601cb99561b934c890c879c8c40e0ed4480c936f22386",
+      "implementation-summary.md": "6b3ac0b45f35c41a473112015cdbfd3c12360789e938914865201e261fd08754"
     },
     "last_active_child_id": null,
     "last_active_at": null

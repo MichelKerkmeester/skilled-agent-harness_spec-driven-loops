@@ -12,12 +12,13 @@
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.611Z",
+  "lastUpdated": "2026-09-06T06:47:46.617Z",
   "specId": "001",
-  "folderSlug": "analysis",
+  "folderSlug": "decisions-system-analysis",
   "parentChain": [
     "system-speckit",
-    "037-decisions-memory-redesign"
+    "033-system-speckit-v4",
+    "004-decisions-and-notes-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

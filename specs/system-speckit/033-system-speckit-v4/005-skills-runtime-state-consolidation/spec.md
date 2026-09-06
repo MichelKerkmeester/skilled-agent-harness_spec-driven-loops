@@ -36,6 +36,10 @@ contextType: "general"
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-08-28 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 5 of 24 |
+| **Predecessor** | `../004-decisions-and-notes-system/spec.md` |
+| **Successor** | `../006-derived-metadata-repair-tool/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 

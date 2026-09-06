@@ -17,12 +17,13 @@
     "corpusroots",
     "specs"
   ],
-  "lastUpdated": "2026-09-05T18:37:47.727Z",
+  "lastUpdated": "2026-09-06T06:44:45.993Z",
   "specId": "003",
   "folderSlug": "retrieval-coverage-alignment",
   "parentChain": [
     "system-speckit",
-    "054-decommission-debt-fixes"
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The trigger-index generator resolved the repository root one directory short after the CLI nested under runtime/, so the published index carried spec documents only; the skill README also claimed a 46-rule registry against 37 real entries. Both are fixed with tests that pin them.",
     "created_at": "2026-09-05T21:16:56Z",
-    "last_save_at": "2026-09-05T22:19:47.265Z",
+    "last_save_at": "2026-09-06T06:46:41.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8021c8cb544f37d9ca2f94ad290b189a178ee08d9240addad8dfa731cbf3553",
+    "source_fingerprint": "sha256:c065f029e178e664aa7eb635142a97bfdee42e92aa4a900fb56c8a99cab63326",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f52b4a472963292095bf34920c3fdd50898e6815ac617d9d1fe4def354592799",
       "plan.md": "107a8f844c8036e070d4a53244612f2f286b00ef3b5a548eff6f785fff9211aa",
       "tasks.md": "d16af8a6e5803b106650192b65717a7ef19887be572db9e658e3dd6a340b3668",
-      "implementation-summary.md": "78cfb8cf9ed463811266cd1a84dfab55aeaded977c577f4764f04fb246fff513"
+      "implementation-summary.md": "a4f6445d37cf397e701665de900fb8020420c06b428e1524247cedf506516d9f"
     },
     "last_active_at": null
   }

@@ -12,11 +12,12 @@
     "live",
     "corpus"
   ],
-  "lastUpdated": "2026-08-30T14:02:51.955Z",
-  "specId": "041",
-  "folderSlug": "validation-reduction",
+  "lastUpdated": "2026-09-06T06:46:17.934Z",
+  "specId": "009",
+  "folderSlug": "validation-rule-reduction",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

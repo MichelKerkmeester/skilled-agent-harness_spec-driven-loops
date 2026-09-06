@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
   "spec_folder": "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,11 +40,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
-      "scripts/ops/process-memory-harness.ts",
-      "scripts/dist/ops/process-memory-harness.js",
-      "dist/ops/process-memory-harness.js",
-      ".opencode/skills/system-spec-kit/scripts/dist/ops/process-memory-harness.js"
+      "dist/ops/process-memory-harness.js"
     ],
     "entities": [
       {
@@ -72,15 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "process-memory-harness.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
-        "source": "derived"
-      },
-      {
         "name": "process-memory-harness.js",
         "kind": "code",
-        "path": "scripts/dist/ops/process-memory-harness.js",
+        "path": "dist/ops/process-memory-harness.js",
         "source": "derived"
       },
       {
@@ -91,6 +81,12 @@
       },
       {
         "name": "Classification Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,12 +105,6 @@
       },
       {
         "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -190,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
     "created_at": "2026-08-22T19:27:51.675Z",
-    "last_save_at": "2026-09-03T22:24:00.923Z",
+    "last_save_at": "2026-09-06T06:48:41.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5718dbd0f60e9fb1bbd90251a1babb099805162741280090b774613130f9f96",
+    "source_fingerprint": "sha256:3b80fe543dbc5674ad8b8158bd1c8b4efbb3a4de46985dde5d9b70b4325898d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "491ebf18164b01bff228e5ba5119eacdadc7201578515074be867c10807bc0d8",
-      "plan.md": "c9b06b02795e55e354dccc7c6e20f384dbd3b233922a06c0b6f72e8fb8e1d13b",
-      "tasks.md": "b8c11132b4f0e88f1b13fbb75e2af94642f7f03647d8faee6e59c952f5c5ed20",
-      "implementation-summary.md": "faf1c9a59384fd5d97eb9cebf828425ac52485cdc409d10b005e9a54a2d98cdc"
+      "spec.md": "b1eec22248e4966c8763af2e9ee4c71f5e53a4c4f36ad705984537d537da6ea4",
+      "plan.md": "405c78c03bf4d9c514203a7c060ad9469882a21877887711fae8fd9be8a2bd9a",
+      "tasks.md": "0069539aa94ed9477bb6ce07eab2a738baefe6fa40e1d0f2fa5fc109c7e5b5e7",
+      "implementation-summary.md": "2de38a41c63367eba6d30a18d62f291679507dc4cd7b5f8a5fe0af966ee88d39"
     },
     "last_active_child_id": null,
     "last_active_at": null

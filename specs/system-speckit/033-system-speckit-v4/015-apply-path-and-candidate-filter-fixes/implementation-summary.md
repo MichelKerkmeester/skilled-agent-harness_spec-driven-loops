@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 047-review-remediation |
+| **Spec Folder** | 015-apply-path-and-candidate-filter-fixes |
 | **Completed** | 2026-08-31 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

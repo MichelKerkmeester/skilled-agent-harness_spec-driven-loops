@@ -45,12 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/retrieval/lib/artifact.mjs",
-      "scripts/retrieval/generate-trigger-index.mjs",
-      "scripts/tests/trigger-index.vitest.ts",
-      "shared/embeddings/providers/hf-local.ts",
-      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/artifact.mjs",
-      ".opencode/skills/system-spec-kit/scripts/tests/trigger-index.vitest.ts"
+      "shared/embeddings/providers/hf-local.ts"
     ],
     "entities": [
       {
@@ -75,24 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "artifact.mjs",
-        "kind": "file",
-        "path": "scripts/retrieval/lib/artifact.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "generate-trigger-index.mjs",
-        "kind": "file",
-        "path": "scripts/retrieval/generate-trigger-index.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/trigger-index.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +173,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The packet closed with every phase Complete, but a read-only deep review over ten forced iterations found contradictions between what the documents claim and what they record, plus one runtime gap: the committed trigger-index reader accepted a parseable but malformed artifact and silently returned fewer results than it held",
     "created_at": "2026-09-04T07:21:40Z",
-    "last_save_at": "2026-09-04T09:15:50.026Z",
+    "last_save_at": "2026-09-06T06:46:55.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bedd014eca705849c93ae12f3da2166acd2dc7ab92cb9711ceaaef1600dc0198",
+    "source_fingerprint": "sha256:158296225e5876df9f74dead809788929ff4c88a690bae1bc55183c1a806c677",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "459668d229cb2c55b6e8eb5af1bda734d9e0dc39c9447dde9f83bde70987baf9",
       "plan.md": "b7c2575a82641bdaea6eb95adc28bef4a56355f18c827b4e82524a95b5cbd6e2",
       "tasks.md": "b27e024daab09c01bcde632a393eb4daf2571db13ee4ed37f718ff9c5e0ac280",
-      "implementation-summary.md": "87a7a315b8da9285d5f44703582a44b42b67bfd00315b6d8fbde74964cb15084"
+      "implementation-summary.md": "25e32f5812a1b5a976b5cb53d1bf251cd7f54960ae3484d40996bf4594692366"
     },
     "last_active_child_id": null,
     "last_active_at": null

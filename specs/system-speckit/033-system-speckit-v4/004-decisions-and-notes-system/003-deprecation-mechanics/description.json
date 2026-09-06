@@ -16,12 +16,13 @@
     "still",
     "pull"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.627Z",
+  "lastUpdated": "2026-09-06T06:44:46.040Z",
   "specId": "003",
   "folderSlug": "deprecation-mechanics",
   "parentChain": [
     "system-speckit",
-    "037-decisions-memory-redesign"
+    "033-system-speckit-v4",
+    "004-decisions-and-notes-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

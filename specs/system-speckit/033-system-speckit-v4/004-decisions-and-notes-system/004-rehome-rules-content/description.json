@@ -19,12 +19,13 @@
     "cites",
     "rule"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.645Z",
+  "lastUpdated": "2026-09-06T06:44:46.071Z",
   "specId": "004",
   "folderSlug": "rehome-rules-content",
   "parentChain": [
     "system-speckit",
-    "037-decisions-memory-redesign"
+    "033-system-speckit-v4",
+    "004-decisions-and-notes-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

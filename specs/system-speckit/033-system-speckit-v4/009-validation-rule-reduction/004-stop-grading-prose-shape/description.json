@@ -16,12 +16,13 @@
     "reads",
     "them"
   ],
-  "lastUpdated": "2026-08-29T18:28:19.252Z",
+  "lastUpdated": "2026-09-06T06:44:45.853Z",
   "specId": "004",
   "folderSlug": "stop-grading-prose-shape",
   "parentChain": [
     "system-speckit",
-    "041-validation-reduction"
+    "033-system-speckit-v4",
+    "009-validation-rule-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

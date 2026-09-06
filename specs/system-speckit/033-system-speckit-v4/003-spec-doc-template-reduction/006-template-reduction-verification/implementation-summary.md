@@ -21,7 +21,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-verify-rollout |
+| **Spec Folder** | 006-template-reduction-verification |
 | **Completed** | Not stated in the reviewed evidence |
 | **Authored** | 2026-08-27 |
 | **Level** | 1 |

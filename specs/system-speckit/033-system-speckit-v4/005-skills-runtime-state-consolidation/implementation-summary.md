@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 038-skills-state-consolidation |
+| **Spec Folder** | 005-skills-runtime-state-consolidation |
 | **Completed** | 2026-08-28 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

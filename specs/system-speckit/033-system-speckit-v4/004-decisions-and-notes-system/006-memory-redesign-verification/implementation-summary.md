@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-verify-rollout |
+| **Spec Folder** | 006-memory-redesign-verification |
 | **Completed** | 2026-08-26 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

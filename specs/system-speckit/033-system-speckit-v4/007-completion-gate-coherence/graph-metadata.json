@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
   "spec_folder": "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,10 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -87,24 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -123,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "no",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -130,12 +115,6 @@
       },
       {
         "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -193,11 +172,29 @@
         "kind": "key_phrase",
         "path": "acceptance-criteria.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constraints The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
     "created_at": "2026-08-29T07:44:49.812Z",
-    "last_save_at": "2026-08-30T15:39:36.703Z",
+    "last_save_at": "2026-09-06T06:48:33.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b76be0e72cc1f39b1731348db31a460dc302f8067030fb4e8e4c41ab896341d",
+    "source_fingerprint": "sha256:cc9ed041b7c930fa7a2a8e54d6b69bdfa705baca4c5fb1a6892188f37c0053db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca54a8ec56638bbbfa3f93622b9138c0a085fcb75918bad4ecdc45ad22e0c27f",
-      "plan.md": "bb81d9745abe1ee9f179e35781d52193dcf4553ce0c6990935060aa07527e76a",
-      "tasks.md": "4042a5376091505e132ad36377dc07fdbc84731d7d1d2f386259bf30d048d54d",
-      "decision-record.md": "9309012a6c48c32e86d79ed9898498ce8f7becc9fb9b9a7e5d175d5244851c34",
-      "implementation-summary.md": "d0a915579e27761af48daa9062d3b99b859c0d40293c68819ed985f8412e1144"
+      "spec.md": "8a3d3bf6e8048c441b1d7b8722192ddbdcfa4f9aa8d1665a84810b4c25ae4ca2",
+      "plan.md": "73e0eb428f47ba23ce3b5eeb3b6387572133f1ad989ef2cd546e41eaa1656b87",
+      "tasks.md": "2e70e689353c0885635bfa01f102f0bb69215aa0919c8b7255cc3b6854ba934d",
+      "decision-record.md": "941eafe5951a7ed9e6d5c3c1106754b907bcf67abeaafb3fd3c5602c1ad1b9e3",
+      "implementation-summary.md": "e0adeeb98caaba39b6a453dbb9e7ff5f4dffb0bded7c4d44f5486995195249d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

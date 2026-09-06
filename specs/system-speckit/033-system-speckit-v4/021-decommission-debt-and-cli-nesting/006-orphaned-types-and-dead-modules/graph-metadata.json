@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats` (239), and the structural `Database` (171), `DatabaseExtended` (179), and `PreparedStatement` (157) interfaces; a repository-wide search finds no importer of any of these seven symbols outside `types.ts` itself and `shared/index.ts`'s barrel re-export - no implementer, no caller, no test",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-09-05T18:38:14.961Z",
+    "last_save_at": "2026-09-06T06:46:45.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d474d20e02aebffd6928dbb66a2c291f4e4e4929e0d527dbf75906b3615537f",
+    "source_fingerprint": "sha256:65c5af9eef789d6008f0d60535e97a0e6fd5e139160ff3109c3ddee7e9ff0c50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b82897b739713a608465e7fdef49c944f579d4e075f23820f50a5668d866234d",
       "plan.md": "98e747cfdf8144a1f5100729781ad2e13e745ca620d2d5f895bbe06d8ec98fa7",
       "tasks.md": "d108d7985c466333d6c146cedc74e59edebdb4b4f77240602e1b654806c0e3ae",
-      "implementation-summary.md": "ce48be53c2f8ec5182494eb433b76306a19bebb35b2c91b7240b37cf1d2e1401"
+      "implementation-summary.md": "a04b84e89bcf16588a9040d60426c006466c39bc5652fc64942263c8728d32a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

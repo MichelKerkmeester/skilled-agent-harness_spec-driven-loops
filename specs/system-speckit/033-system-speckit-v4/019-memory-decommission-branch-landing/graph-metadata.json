@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
   "spec_folder": "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -151,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Packets",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -170,12 +176,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-06T06:29:38.346Z",
+    "last_save_at": "2026-09-06T06:48:15.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd4919ae719ac07b35ef0847af3b9624ef0f9ec4ab371883bfac30d61d28172f",
+    "source_fingerprint": "sha256:b98d441999299889f1bb5baf6ad8fb5b59b5f34f630b70d1a2a2a58c14bedb58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "888936604bd95b147d0ef42390180d292fb43021ce98824bc693c3a1793c419c",
+      "spec.md": "e88692d76ca2c69b7389a971cc7fe6e764384b9a953a5a0cee1ab6dafa55db69",
       "plan.md": "ff3471f9cbd346847a94f8fa39c356df112925cf83929786c249ef3b97436992",
       "tasks.md": "4260d46bca200bb529fcec22a929cbd69229b0d7b1d3ab2eddfd3d83a8241599",
-      "implementation-summary.md": "e03b912ac7f9ac001f37650d90e767cde0249ccfef9b5f01f388c9a9a711d21c"
+      "implementation-summary.md": "841edd8f928450f7228381623dd3d894b2bebadf4a2a78b6e93d857c5f63a29f"
     },
     "last_active_child_id": null,
     "last_active_at": null

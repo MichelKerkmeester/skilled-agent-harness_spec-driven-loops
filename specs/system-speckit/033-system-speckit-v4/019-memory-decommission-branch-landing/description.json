@@ -16,11 +16,12 @@
     "vendored",
     "engine"
   ],
-  "lastUpdated": "2026-09-06T06:24:08.761Z",
-  "specId": "052",
-  "folderSlug": "memory-decommission-landing",
+  "lastUpdated": "2026-09-06T06:48:15.200Z",
+  "specId": "019",
+  "folderSlug": "memory-decommission-branch-landing",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -18,12 +18,13 @@
     "chooses",
     "call"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.620Z",
+  "lastUpdated": "2026-09-06T06:44:46.032Z",
   "specId": "002",
   "folderSlug": "active-decisions-design",
   "parentChain": [
     "system-speckit",
-    "037-decisions-memory-redesign"
+    "033-system-speckit-v4",
+    "004-decisions-and-notes-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

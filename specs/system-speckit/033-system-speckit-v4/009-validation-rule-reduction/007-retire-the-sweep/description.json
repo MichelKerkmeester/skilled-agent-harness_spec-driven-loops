@@ -10,12 +10,13 @@
     "packets",
     "change"
   ],
-  "lastUpdated": "2026-08-30T14:07:48.070Z",
-  "specId": "009",
+  "lastUpdated": "2026-09-06T06:47:22.784Z",
+  "specId": "007",
   "folderSlug": "retire-the-sweep",
   "parentChain": [
     "system-speckit",
-    "041-validation-reduction"
+    "033-system-speckit-v4",
+    "009-validation-rule-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

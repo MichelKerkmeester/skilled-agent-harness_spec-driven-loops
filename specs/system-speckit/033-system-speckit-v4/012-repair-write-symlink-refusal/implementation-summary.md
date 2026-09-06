@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 044-repair-write-symlink-refusal |
+| **Spec Folder** | 012-repair-write-symlink-refusal |
 | **Completed** | 2026-08-30 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

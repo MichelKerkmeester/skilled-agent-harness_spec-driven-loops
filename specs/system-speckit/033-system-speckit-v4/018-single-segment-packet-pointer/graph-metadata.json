@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
   "spec_folder": "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,9 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/tests/spec-doc-structure.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,18 +72,6 @@
         "source": "derived"
       },
       {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/spec-doc-structure.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Segment Packet Pointer",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -93,6 +79,12 @@
       },
       {
         "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -111,12 +103,6 @@
       },
       {
         "name": "no",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -176,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`SPECDOCFRONTMATTER004` accepts a `packetpointer` with one safe segment as well as two-or-more, so a flattened `specs/` layout can pass validation without weakening any of the rule's other guards",
     "created_at": "2026-09-02T17:16:27Z",
-    "last_save_at": "2026-09-02T17:35:45.148Z",
+    "last_save_at": "2026-09-06T06:48:16.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa0094e46e9657034ca07c9818c564cd29593309b6382635ffbb01682b608dbd",
+    "source_fingerprint": "sha256:d651363ad1a5a5471c59eac890be1674290b61f457acac8d35752a5d6cd7b257",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88815243d5838ee9b57d67ef40d88ef885a1c4dfbe2033e2d04b9dffcf7a949e",
-      "plan.md": "cd6e33643c5eced1e6c46348f4818c628aa789c68f48a5ba73d855d4fbc4f130",
-      "tasks.md": "3a6e81e4e14b43731c4abf774cb4f68d8e7572bddfbf6bc963fa4dd47286324b",
-      "implementation-summary.md": "ae411e5730f20e8bab50838078b4255d09550cdd88c94647b4b3efc04734527d"
+      "spec.md": "d7d71f0a35dffe8577ccce9cf69e3babaf4aa27854efb8bb64e82f659b532e3b",
+      "plan.md": "0e2f925f12081f71a01c2e3d15113338f718556d1bea4f82c86cbe35e4c9404f",
+      "tasks.md": "07bc192612f6a7a57c959a6af3cc8618898439b69b5d421e72e94ed3f19db144",
+      "implementation-summary.md": "cf9df359413eef8e8eb4d6b918d1def38a91a9e7177e0718062012874691b503"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -50,17 +50,9 @@
       "research/research.md",
       "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/research/research.md",
       "references/templates/template-guide.md",
-      "mcp-server/handlers/memory-search.ts",
-      "mcp-server/tests/memory-search-token-budget.vitest.ts",
-      "scripts/rules/check-ac-coverage.sh",
-      "scripts/lib/validator-registry.json",
       "references/validation/validation-rules.md",
-      "scripts/tests/research-template-gating.vitest.ts",
-      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
       "changelog/v3.9.0.0.md",
-      ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-      "scripts/spec/check-completion.sh"
+      ".opencode/skills/system-spec-kit/references/templates/template-guide.md"
     ],
     "entities": [
       {
@@ -112,63 +104,15 @@
         "source": "derived"
       },
       {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp-server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search-token-budget.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/memory-search-token-budget.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-ac-coverage.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "validation-rules.md",
         "kind": "doc",
         "path": "references/validation/validation-rules.md",
         "source": "derived"
       },
       {
-        "name": "research-template-gating.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/research-template-gating.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
         "name": "v3.9.0.0.md",
         "kind": "doc",
         "path": "changelog/v3.9.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "inline-gate-renderer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-completion.sh",
-        "kind": "script",
-        "path": "scripts/spec/check-completion.sh",
         "source": "derived"
       },
       {
@@ -206,11 +150,59 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "focused",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impl Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolve Open Question",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-30T15:39:36.473Z",
+    "last_save_at": "2026-09-06T06:47:38.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,15 +214,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:deb339286a000400e39e0219abb839febbf664182aa1eeab0a92179ba327cf3f",
+    "source_fingerprint": "sha256:9a4a46862aa11161b6631d5d219371195d2aeb68f6dc10dda1d6db9c2ac4331d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "34be02752b6d02cecd8913327e1d705940330f68c9fd74027df89a0b0aee7ec0",
-      "plan.md": "cd874d1f662c4cf5cd4aa41839ac23d161556f6969c29c89d51c79d1e2af4f28",
-      "tasks.md": "df0735c3b1f94d70c29791f3104c40631a13ff1aa55fb00f63b3e9ee5c5813b5",
-      "decision-record.md": "737fd7bd28fa1e333ba727bba1d01821f95a0ec900805d8a5bbdb137699168c5",
-      "implementation-summary.md": "f030cb7020b14a8bfb5d6820ded0084de74ed030936d17066417d6521d154ce1",
-      "research/research.md": "dd31944295aa48933d1a022dab903852758477b27182ceb14bac27afc0a9b583"
+      "spec.md": "7b935fc50acc0abcfaf482b2673549895accc8168d546ce82dab265d86e1c4bc",
+      "plan.md": "8a3059ce55cd636344f41e344155eb4decee49294b13b6af2ab307f2001d6b75",
+      "tasks.md": "912458ff1dfcadbd9f3c1da15c263eb8c4eef26c5f7717a51ca96e1a089b7a23",
+      "decision-record.md": "fe9008f4e07b5453aeccc36a60d4df4d13691e1d2612d43042dbf3892dc94730",
+      "implementation-summary.md": "c18545447c52b4e936f7d85bce2af6d7ea736e9bc17e9c1807b771ba5a06ebec",
+      "research/research.md": "a39b7e0672f5dd7befdc14fc15567315cd7d878a769b419fff00dfb2ac371241"
     },
     "last_active_child_id": null,
     "last_active_at": null

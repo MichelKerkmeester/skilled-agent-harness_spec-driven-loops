@@ -16,12 +16,13 @@
     "searchresult",
     "storestats"
   ],
-  "lastUpdated": "2026-09-05T18:37:47.953Z",
+  "lastUpdated": "2026-09-06T06:44:46.087Z",
   "specId": "006",
   "folderSlug": "orphaned-types-and-dead-modules",
   "parentChain": [
     "system-speckit",
-    "054-decommission-debt-fixes"
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

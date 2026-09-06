@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/010-goal-file-addon",
   "spec_folder": "system-speckit/033-system-speckit-v4/010-goal-file-addon",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
     "system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator",
@@ -48,7 +48,6 @@
       "resource-map.md",
       "templates/spec-kit-docs.json",
       "templates/addons/goal.md.tmpl",
-      "scripts/utils/template-structure.js",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
       "001-manifest-and-goal-template/goal.md",
       "002-durable-slice-validator/goal.md",
@@ -56,12 +55,13 @@
       "004-parent-set-string-playbook/goal.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
       ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
-      ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl"
+      ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/goal-plugin.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs"
     ],
     "entities": [
       {
@@ -101,12 +101,6 @@
         "source": "derived"
       },
       {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
         "name": "speckit-goal-offer-contract.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
@@ -119,24 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "level-contract-resolver.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "phase-definitions.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
@@ -146,6 +122,36 @@
         "name": "phase-parent.spec.md.tmpl",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
         "source": "derived"
       },
       {
@@ -201,17 +207,11 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
     "created_at": "2026-08-29T17:39:40Z",
-    "last_save_at": "2026-08-30T15:39:36.769Z",
+    "last_save_at": "2026-09-06T06:48:29.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e752edb95568575840a91e8b6dcbd3b187bb322f410bfbceab46f9724f2c8d15",
+    "source_fingerprint": "sha256:72942bbd5c806ae6c0115d95803633737e9f2e73fe82d16d8acf863e98f4b4f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "774485ff3e823c808221394789132c9ecd9603ef8d2556953e23b369df24dc7a",
-      "research/research.md": "ace2291925f302fc0732524cecd51440e501cc389863663222f1b0f658afb081",
-      "resource-map.md": "2ce377a03c562fc3e106677d0839f1dae5d3d3fe279daa1588cfca2f3aef75cc"
+      "spec.md": "022b625548dd5a991effccdda42ab21ac24783875b9c7122579c41fbf17eeeed",
+      "research/research.md": "6537e685b82de8bf8ac5ad818b8b3bb7bcd718f7cee6a715347123dfb9bbdb71",
+      "resource-map.md": "926ab62bd35f55e764805f8aa6e23aa0897bf06f07000a09545d06bb0147e6ae"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
     "last_active_at": null

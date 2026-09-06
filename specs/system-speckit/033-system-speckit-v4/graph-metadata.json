@@ -1,26 +1,123 @@
 {
   "schema_version": 1,
-  "packet_id": "001-system-speckit-v4",
-  "spec_folder": "001-system-speckit-v4",
+  "packet_id": "system-speckit/033-system-speckit-v4",
+  "spec_folder": "system-speckit/033-system-speckit-v4",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets",
+    "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
+    "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
+    "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
+    "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+    "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
+    "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
+    "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+    "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
+    "system-speckit/033-system-speckit-v4/010-goal-file-addon",
+    "system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment",
+    "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal",
+    "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
+    "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
+    "system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
+    "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
+    "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
+    "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
+    "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
+    "system-speckit/033-system-speckit-v4/020-runtime-package-rename",
+    "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+    "system-speckit/033-system-speckit-v4/022-shared-containment-helper",
+    "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
+    "system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "system speckit v4",
+      "spec kit v4 timeline",
+      "memory decommission history",
+      "template reduction history",
+      "phase parent"
+    ],
+    "key_topics": [
+      "system",
+      "speckit",
+      "spec",
+      "kit",
+      "timeline",
+      "memory",
+      "decommission",
+      "history",
+      "template",
+      "reduction",
+      "phase",
+      "parent"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix through the metadata regeneration, consolidated in chronological order with a timeline",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Twenty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-06T06:42:39Z",
+    "last_save_at": "2026-09-06T06:49:21.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7ac4b9cb504d9dd2be48021e7949b768f1336e613ddd5bf9dd27d838fe831407",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8b428e2c0f1d4500e13a24fdb04dce63ce142cf56c62c66587a0578d706b6b6c"
+    },
+    "last_active_at": null
   }
 }

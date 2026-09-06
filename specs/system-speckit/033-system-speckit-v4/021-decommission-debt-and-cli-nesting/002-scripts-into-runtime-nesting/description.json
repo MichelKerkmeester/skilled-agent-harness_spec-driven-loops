@@ -17,12 +17,13 @@
     "spec-kit",
     "engine"
   ],
-  "lastUpdated": "2026-09-05T18:38:44.376Z",
+  "lastUpdated": "2026-09-06T06:44:46.060Z",
   "specId": "002",
   "folderSlug": "scripts-into-runtime-nesting",
   "parentChain": [
     "system-speckit",
-    "054-decommission-debt-fixes"
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

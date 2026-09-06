@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 057-metadata-regeneration-and-parser-edges |
+| **Spec Folder** | 024-metadata-regeneration-and-shared-parser |
 | **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

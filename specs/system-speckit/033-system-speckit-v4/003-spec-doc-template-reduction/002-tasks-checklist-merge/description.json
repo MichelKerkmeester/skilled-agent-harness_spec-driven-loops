@@ -19,12 +19,13 @@
     "rows",
     "duplicate"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.585Z",
+  "lastUpdated": "2026-09-06T06:44:45.959Z",
   "specId": "002",
   "folderSlug": "tasks-checklist-merge",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

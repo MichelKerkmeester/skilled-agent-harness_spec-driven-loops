@@ -46,11 +46,8 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
       "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/research.md",
-      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md",
-      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
+      "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md"
     ],
     "entities": [
       {
@@ -81,24 +78,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
         "source": "derived"
       },
       {
@@ -196,11 +175,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-30T15:39:36.542Z",
+    "last_save_at": "2026-09-06T06:48:06.319Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b10f2265e53a8d5aeffb0dc164de115a6f9fcedfd0a7d1ef3248eddae2dfb2ce",
+    "source_fingerprint": "sha256:45679580d9fcde1191eac784fe175344794184709547c06fe9377d5aa51d66ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ccdf6547d62511ddd16e1368fd3453dcacb2e956b30d24057744d80dbc0deed",
-      "plan.md": "26c8fb8bfcf6d131149e0873cd2d6f6487870c21397c1e54389aea6ab3d2f7d2",
+      "spec.md": "fa40f02973cf90a7a6c30ce127857424644f124fd20d46cbd28027b63f6f5269",
+      "plan.md": "81517f48343e1a627da9a893895ab8548789bcf5dfc5dde6ef83c3bc3b729123",
       "tasks.md": "0b225855d7687c5e66d6e57a8fd42b2bf15bcf57ca9ec568b24a7984f3760f0e",
-      "implementation-summary.md": "871a37673d78a56c69049c6cc06b1bbaca917eaed530888cadc2df9a896ea21c",
-      "research/research.md": "07577d4a3ecc53b19a7a383800c10227a4691e3882cab61051b34fe5a00c2366"
+      "implementation-summary.md": "a92b1a6d0c8b95d5d3ebe042d86bfc59ea4cf18506238c3ecbaf33f3ab41ecca",
+      "research/research.md": "accc1833c0febf0dc53ee88bbfecfd73457afdb65873566de72298c06760d59e"
     },
     "last_active_child_id": null,
     "last_active_at": null

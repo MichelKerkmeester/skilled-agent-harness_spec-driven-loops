@@ -44,12 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,36 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -195,11 +160,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "rebuilt",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Reduction Verification",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Each prior phase edits shipped, load-bearing templates and validators where a mis-sequenced change regresses the whole packet fleet",
     "created_at": "2026-08-26T05:33:59Z",
-    "last_save_at": "2026-08-30T15:39:36.582Z",
+    "last_save_at": "2026-09-06T06:47:59.257Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60be2517f442e4f8e16c8376b497b6804d73ca67129def73f91b4874c89afcb5",
+    "source_fingerprint": "sha256:978236728593f32bc3b79316c27611301a4643e7a7b917043f7337c580b075da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c0432ba95abfa738cd5241afbf59b63c9c64a97c5d6b6afa5dcfa59ea1307d9",
-      "plan.md": "8b386ad561352080ae0d8b944aa391e94db9ea18578135acdb350d535fa9caf2",
-      "tasks.md": "425190dd5f1af8671e8a3299c90363567ea9a1ea7d35a5640b5e49450d47187e",
-      "implementation-summary.md": "8a98fce1c60c3b2b3121ed415cb920cde8a4181885681fa956d263bf4e955e42"
+      "spec.md": "d374627135b2d9305bdc4676903f77ad456894982a42d709a6d44cc45a9fe854",
+      "plan.md": "ff2fd1a72c9f44d744561f0b6cd071e4cc3e8b79d356571a9e9b8bce49b8b579",
+      "tasks.md": "a4e6eff1d85a367256c6883822ddfeca87753bced79ef2b8c025c2a35025084a",
+      "implementation-summary.md": "f160b7b9913624a2e9fc04173a28c7d90095e9c96682c1a28ca25550bdb28c83"
     },
     "last_active_child_id": null,
     "last_active_at": null

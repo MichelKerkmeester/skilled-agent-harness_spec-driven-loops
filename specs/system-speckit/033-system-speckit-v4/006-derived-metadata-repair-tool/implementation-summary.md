@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 039-derived-repair-automation |
+| **Spec Folder** | 006-derived-metadata-repair-tool |
 | **Status** | In Progress |
 | **Level** | 2 |
 

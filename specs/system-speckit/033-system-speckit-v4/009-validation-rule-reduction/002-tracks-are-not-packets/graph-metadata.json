@@ -33,8 +33,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,12 +58,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
         "source": "derived"
       },
       {
@@ -180,11 +173,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Both",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A track directory stops being graded as though it were a packet.",
     "created_at": "2026-08-29T17:34:28.731Z",
-    "last_save_at": "2026-08-30T15:39:36.722Z",
+    "last_save_at": "2026-09-06T06:47:30.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:399427caabfa05da72de071c127fc45cf0b003bf9dad86c2fbcb04703a969f34",
+    "source_fingerprint": "sha256:b01af4cdfae7a1ed727c3e1eadc33df30a2c34513428b7ba0034d8641f53edad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7efdda81ac98c3329218fc857552638c85aa715808b104d2a28245471e46ea98",
-      "plan.md": "06dbd4898db39167093d69f9c72b3562fd419ae6385adb23a5641943de0deaf2",
-      "tasks.md": "5bcb204f588d8bb139ac34b76aca19ab0d268e31c86ace5482c30895c22a2ba3",
-      "implementation-summary.md": "bcdfb144532e2bc81eeb844dc22b41ca5ef4367f490e4a0f388b1f3b74b74606"
+      "spec.md": "21e55629563e1cb07a0ac6dd615a3bc4e45ca5e73bbc8560ea3d637086cbfe5c",
+      "plan.md": "0974d1ad0e270683e75a5379f8370562aa5e9fa11f86773f2eb2793c8c3f55c5",
+      "tasks.md": "19a7b447c86fdde0b014586e57b30b9f9cb369aa78caf687706a0912e5423d60",
+      "implementation-summary.md": "e0b86dcc89f29bf72b6fec2811fd215a8b3dd7eb9d50f7b2f078e3d805bcc18e"
     },
     "last_active_child_id": null,
     "last_active_at": null

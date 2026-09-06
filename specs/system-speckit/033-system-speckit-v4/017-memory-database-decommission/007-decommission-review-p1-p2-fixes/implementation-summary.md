@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-review-remediation |
+| **Spec Folder** | 007-decommission-review-p1-p2-fixes |
 | **Completed** | 2026-09-04 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

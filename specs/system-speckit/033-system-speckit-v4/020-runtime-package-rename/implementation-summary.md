@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 053-spec-kit-runtime-rename |
+| **Spec Folder** | 020-runtime-package-rename |
 | **Completed** | 2026-09-04 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

@@ -47,13 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/bin/system-spec-memory-launcher.cjs",
       ".opencode/bin/lib/model-server-supervision.cjs",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
       "ops/README.md",
-      ".opencode/plugins/session-cleanup.js",
-      ".opencode/skills/system-spec-kit/scripts/ops/README.md"
+      ".opencode/plugins/session-cleanup.js"
     ],
     "entities": [
       {
@@ -93,27 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "system-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/system-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "model-server-supervision.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/model-server-supervision.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "process-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "process-memory-harness.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
         "source": "derived"
       },
       {
@@ -199,11 +177,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
     "created_at": "2026-08-30T09:55:27Z",
-    "last_save_at": "2026-08-31T04:07:52.354Z",
+    "last_save_at": "2026-09-06T06:47:09.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2e4384ab3bf9a6d5ed14a7e62a9ac7f472ecfd3b354d41b345363486ec3f061",
+    "source_fingerprint": "sha256:429b5ac3a451d6a2ba4b230668b06309b16c7eae8252d7672c475c0696886ca4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6bbf1838d86fe3a2e3ddb582cfec1125779c00473cba092216e355118f8dff1",
+      "spec.md": "d92a1b924f135a076c4a4609168cd5f2d636782754469d14a6dabfc9e9d9b507",
       "plan.md": "bdcb7b162c47582f182449d04be886ccd3ced2e92a828a4c6f8b016ceb5a1b8e",
       "tasks.md": "f63b9d953cfe16a0d7591fafb9f61ec3abcd1fa19da6bfc6d7f927149af39be4",
-      "implementation-summary.md": "c600b99b8b463036b0109a137bb781b61c2533223fc2631178b7c6e1a50d061c"
+      "implementation-summary.md": "43bb8837e2bd5fa8f5e6ea1d9c3878748fe77725b9cb01870a8740e585b2e8e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

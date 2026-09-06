@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 054-decommission-debt-fixes |
+| **Spec Folder** | 021-decommission-debt-and-cli-nesting |
 | **Completed** | 2026-09-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

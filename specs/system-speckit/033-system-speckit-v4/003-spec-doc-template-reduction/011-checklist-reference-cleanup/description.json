@@ -10,12 +10,13 @@
     "deleted",
     "document"
   ],
-  "lastUpdated": "2026-08-30T14:07:48.067Z",
+  "lastUpdated": "2026-09-06T06:44:45.919Z",
   "specId": "011",
   "folderSlug": "checklist-reference-cleanup",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

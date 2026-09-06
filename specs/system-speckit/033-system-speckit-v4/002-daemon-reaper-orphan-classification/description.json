@@ -13,11 +13,12 @@
     "termination",
     "candidate"
   ],
-  "lastUpdated": "2026-08-22T19:35:01.687Z",
-  "specId": "035",
-  "folderSlug": "process-reaper-classification-fix",
+  "lastUpdated": "2026-09-06T06:46:17.931Z",
+  "specId": "002",
+  "folderSlug": "daemon-reaper-orphan-classification",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -14,11 +14,12 @@
     "graph",
     "metadata"
   ],
-  "lastUpdated": "2026-08-30T08:11:15.744Z",
-  "specId": "043",
-  "folderSlug": "workspace-path-containment",
+  "lastUpdated": "2026-09-06T06:48:28.083Z",
+  "specId": "011",
+  "folderSlug": "graph-metadata-write-containment",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

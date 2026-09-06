@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
   "spec_folder": "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,15 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/repair-write-symlink-refusal.sh",
-      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-write-containment.sh",
-      "mcp-server/scripts/repair-graph-metadata.mjs",
-      "scripts/tests/repair-write-symlink-refusal.sh",
-      "scripts/tests/graph-metadata-write-containment.sh",
-      "mcp-server/lib/graph/graph-metadata-parser.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -94,30 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "repair-graph-metadata.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "repair-write-symlink-refusal.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/repair-write-symlink-refusal.sh",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-write-containment.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-write-containment.sh",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,6 +93,12 @@
       },
       {
         "name": "Path Containment Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -143,12 +117,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
     "created_at": "2026-08-30T14:17:45Z",
-    "last_save_at": "2026-08-30T15:16:59.853Z",
+    "last_save_at": "2026-09-06T06:48:24.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c39c6dac7cda882ebb6c4b0ae3b143a0c92cb364ad265bcd993664979589fad1",
+    "source_fingerprint": "sha256:0e2e2752d5c4ef8676cb44783355c4ccaa02e60f0422a74f544338a3a3523a94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "492bbf59556fd8c0b55ee3abb7977dc2bb10d55f8c67ea4263daaed00b0102cf",
+      "spec.md": "0a6916e09892c389faa8b5ef4f7d9928794f936ff5fc17766c60e03c81c8ae2e",
       "plan.md": "d73e95dce0bcc13d02345ef7ec1f085d40f40fb7fdfdf7c7dd9b49a8402a319a",
       "tasks.md": "9136a84d6aa8cca61913825a78a8d7350c570e3c1c6d0eac42c73c7f68f57de8",
-      "decision-record.md": "a4eaf058984c1ff7625118c3d8f44638382357398de984a5c0793e8066e99573",
-      "implementation-summary.md": "0f251dec1810dc6e397efdb6578576d3740745c3051e36c488dd116853835cd8"
+      "decision-record.md": "c96990d128d3f63da9743dee208b68c213b967eb564587f1e235be75ee786073",
+      "implementation-summary.md": "2ffb95330947fa49fb7ea3396e099a82e22f645616b59e79da823d82df2b752c"
     },
     "last_active_child_id": null,
     "last_active_at": null

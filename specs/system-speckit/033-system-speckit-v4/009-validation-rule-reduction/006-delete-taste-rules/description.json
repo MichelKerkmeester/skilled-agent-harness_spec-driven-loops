@@ -11,12 +11,13 @@
     "workflow",
     "reads"
   ],
-  "lastUpdated": "2026-08-30T06:20:22.419Z",
+  "lastUpdated": "2026-09-06T06:44:45.840Z",
   "specId": "006",
   "folderSlug": "delete-taste-rules",
   "parentChain": [
     "system-speckit",
-    "041-validation-reduction"
+    "033-system-speckit-v4",
+    "009-validation-rule-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

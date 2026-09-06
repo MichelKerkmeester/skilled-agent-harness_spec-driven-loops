@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
   "spec_folder": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Commit",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -176,12 +182,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
     "created_at": "2026-08-31T13:24:32Z",
-    "last_save_at": "2026-08-31T13:41:00.489Z",
+    "last_save_at": "2026-09-06T06:48:20.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:436e09cb8eeb3dacc0b00bcffe8a0fcbbcf4eb43695dd0183be3afa28142c9d7",
+    "source_fingerprint": "sha256:a1dcd496cc1ba8b42f4ae58ee3246e68b42765ba3977234ecb9d0c4197e06e60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "825047dd53620278bb9b47a04b1dc6d637199394a450f0238237e30456fb2e1a",
-      "plan.md": "a87b9427ce842bcc3c6b9d6e4ba1c9102c14b5a60e449008723dbb4e68de79cc",
+      "spec.md": "427a45dac6bdbe2337c2df31f69933182cf595feb5a146b163875007fd90d881",
+      "plan.md": "6f559f8471549ec0894a9f386afed2d8688999810bb362ce1d91355b151d677e",
       "tasks.md": "fb81993de76400ec1b44a878c94c8bd0fbd52456b281f4b9d85183535c1b2f56",
-      "implementation-summary.md": "7ab2b54286758b68c2962a33ba3fe94457359c5230a230096d61d6bd0ce14452"
+      "implementation-summary.md": "d1e45e4dc14893b3834fb50271d103a7b1b581c1751f54687ae593c359c5ad81"
     },
     "last_active_child_id": null,
     "last_active_at": null

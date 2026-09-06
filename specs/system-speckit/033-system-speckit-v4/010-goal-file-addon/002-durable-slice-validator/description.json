@@ -8,12 +8,13 @@
     "goal",
     "document"
   ],
-  "lastUpdated": "2026-08-30T04:17:56.113Z",
+  "lastUpdated": "2026-09-06T06:44:46.360Z",
   "specId": "002",
   "folderSlug": "durable-slice-validator",
   "parentChain": [
     "system-speckit",
-    "042-nested-goal-template-addon"
+    "033-system-speckit-v4",
+    "010-goal-file-addon"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

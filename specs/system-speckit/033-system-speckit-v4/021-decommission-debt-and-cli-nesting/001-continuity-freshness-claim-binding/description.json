@@ -14,12 +14,13 @@
     "spec",
     "plan"
   ],
-  "lastUpdated": "2026-09-05T18:37:47.585Z",
+  "lastUpdated": "2026-09-06T06:44:46.118Z",
   "specId": "001",
   "folderSlug": "continuity-freshness-claim-binding",
   "parentChain": [
     "system-speckit",
-    "054-decommission-debt-fixes"
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

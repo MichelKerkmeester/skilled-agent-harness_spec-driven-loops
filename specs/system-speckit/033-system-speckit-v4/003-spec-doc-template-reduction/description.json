@@ -20,11 +20,12 @@
     "historic",
     "context"
   ],
-  "lastUpdated": "2026-08-30T14:12:30.160Z",
-  "specId": "036",
+  "lastUpdated": "2026-09-06T06:46:17.931Z",
+  "specId": "003",
   "folderSlug": "spec-doc-template-reduction",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

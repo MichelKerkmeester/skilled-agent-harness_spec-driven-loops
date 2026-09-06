@@ -1,26 +1,27 @@
 {
-  "specFolder": "001-system-speckit-v4",
-  "description": "Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix through the metadata regeneration, consolidated in ch",
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4",
+  "description": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation",
   "keywords": [
-    "phase",
-    "parent",
-    "repo",
-    "system-spec-kit",
     "twenty-four",
     "packets",
-    "plan-preflight",
-    "metadata",
-    "regeneration",
-    "consolidated",
-    "chronological",
-    "order",
-    "timeline"
+    "shipped",
+    "system-spec-kit",
+    "fourth",
+    "generation",
+    "between",
+    "separate",
+    "top-level",
+    "folders",
+    "numbered",
+    "creation"
   ],
-  "lastUpdated": "2026-09-06T06:42:40.054Z",
-  "specId": "001",
+  "lastUpdated": "2026-09-06T06:49:01.258Z",
+  "specId": "033",
   "folderSlug": "system-speckit-v4",
-  "parentChain": [],
+  "parentChain": [
+    "system-speckit"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

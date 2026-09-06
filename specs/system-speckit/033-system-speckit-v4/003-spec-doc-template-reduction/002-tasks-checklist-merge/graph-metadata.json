@@ -46,19 +46,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-      "templates/spec-kit-docs.json",
-      "scripts/spec/create.sh",
-      "scripts/spec/validate.sh",
-      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
+      "templates/spec-kit-docs.json"
     ],
     "entities": [
       {
@@ -92,57 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
         "name": "spec-kit-docs.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
         "source": "derived"
       },
       {
@@ -204,11 +145,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "standalone",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist item intent, and `deriveStatus` ranks `implementation-summary > checklist > tasks`, so whenever `checklist.md` exists its checkboxes are counted and the `tasks.md` checkboxes are ignored",
     "created_at": "2026-08-26T05:33:56Z",
-    "last_save_at": "2026-08-30T15:39:36.549Z",
+    "last_save_at": "2026-09-06T06:48:04.889Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0ae43281b84cdb1d2396c6a8ed51adce2cbeb0f689fa66d969760e98301d19c",
+    "source_fingerprint": "sha256:7610f911ea44c38018e00d2191f070a5a61956a594e768ed665ce1b3980a9953",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b648bb68d7f41140bf0b4895ccc480fe6e63778ba80a853d35554960c04e6cb2",
+      "spec.md": "8c61198093af655b9f7c727162c73a0c874bd6e2e897608942cc2b8dca3425bb",
       "plan.md": "4d0ed5bd22ac4ffd7219a40e7d623cc6138a4bb0b8ea4670fdc8bbf67a60f034",
       "tasks.md": "98dfc7df6a045ceea38a2685c4e2931f08262625e509777082e59067e1ff6a2e",
       "implementation-summary.md": "b3d6785d84d1e0c6d4fab020fdf9e2011ddf277229fd86b5331349ec9b3a7802"

@@ -44,13 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/search/pipeline/stage1-candidate-gen.ts",
-      "lib/search/pipeline/stage2-fusion.ts",
-      "handlers/memory-search.ts",
-      "lib/search/learned-feedback.ts",
-      "hooks/memory-surface.ts",
-      "handlers/memory-index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -75,42 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-candidate-gen.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage1-candidate-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "learned-feedback.ts",
-        "kind": "code",
-        "path": "lib/search/learned-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -196,11 +154,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-30T15:39:36.678Z",
+    "last_save_at": "2026-09-06T06:47:39.726Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aedec6d53e1e2617c3d92dcd624795c24cdfb605b41cdb8adeef24bef4215d81",
+    "source_fingerprint": "sha256:f39be94430804db9773fee4ee02538650fe617ad3438809cc974157a5d78fc5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d49a7af048a4e06843a17ee70aea4b4c08c753082675c84d77b31dd27409a411",
+      "spec.md": "c15bdf2d12b2b7233b173347c1c01420cb731932d73d49381a002a6fa88a4b31",
       "plan.md": "c0645a0f1ec0fbb892c39a83162d61bc5f763f1a5fc48e66bafef785fb448d7e",
-      "tasks.md": "e91d2336dd1aac4f9045110d9671204afca328f7410656747fb34fb9f1bf3cea",
-      "implementation-summary.md": "25e87ee1c0ae48e809f36cb3e75f166f80d0633a8f86a2a0d6cf48514a673a23"
+      "tasks.md": "92e17d498f42b530f7e1363f1c46511e2756f1736af2ac9f234114afa7eca9bc",
+      "implementation-summary.md": "4fdb5dd35e42a2292f6e28736b13e67c67bad93bce6341c2a0fa21d3a324b602"
     },
     "last_active_child_id": null,
     "last_active_at": null

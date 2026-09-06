@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
   "spec_folder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/001-index-root-and-docs",
     "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
@@ -149,16 +149,16 @@
     ],
     "causal_summary": "A ten-iteration Sonnet 5 research pass over the repository ranked eleven things that still needed fixing or aligning with system-spec-kit: a critical trigger-index regression that dropped every skill document, systemic phantom children after packet renames, four hand-found defects with no validator rule, a README rule count off by nine, a deferred hook drift marker for two hosts, an undocumented artifact family, track roots invisible to validation, and duplicated frontmatter and containment helpers across four skill families with no shared home",
     "created_at": "2026-09-05T21:16:55Z",
-    "last_save_at": "2026-09-05T23:03:41.175Z",
+    "last_save_at": "2026-09-06T06:48:09.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:413e61644ce0d5b24b823347251b2e0c51f6e0eaab0a76082033c88460f3ce89",
+    "source_fingerprint": "sha256:4dc8995db75cf2127524ae79d85471debc4b22bd13ec295dbe7cfae792530f8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b255997c5c692523e39146872703dfed39d55a6b1602e3df4bf486632bc7f7a3"
+      "spec.md": "59a33098f0248603a6b74e468d62b598d48dd4f720a5ebec539799a66398b606"
     },
     "last_active_at": null
   }

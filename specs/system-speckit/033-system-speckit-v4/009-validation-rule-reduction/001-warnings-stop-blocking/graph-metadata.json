@@ -37,9 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,18 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -185,11 +171,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Strict mode decides which rules run; it stops deciding what a warning means.",
     "created_at": "2026-08-29T17:25:57.562Z",
-    "last_save_at": "2026-08-30T15:39:36.717Z",
+    "last_save_at": "2026-09-06T06:47:32.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8336e7f4cd094d6e8f6b88f909d2eb0c62402db8072725b8f938d80d1a65096e",
+    "source_fingerprint": "sha256:cb645542d20ad4feace9906bd00ae9623d3314119f77d7406f4816be43b9352c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c7e68328893c5c3d39899fdf0310cfe13658a91345e20cfe5dab67e72b2aeb05",
-      "plan.md": "2dda903645c56694c52bba7c1f26ee59ef798e8ac6dd88063a72e42f3fa1a89b",
-      "tasks.md": "39a4cd7d54a2278230ac8424e0e85baaf7f1f74e8656eef9e6a324e1ce93f4a1",
-      "implementation-summary.md": "1e9ce24b8d7d75a0989cc01063f803a7cbe3617abd791c583682d001cc079840"
+      "spec.md": "d6ee2b418b6ac2a8e79d92d6314afa403322c0bffbb05b272232f72a70beb905",
+      "plan.md": "e6c3b438335b3b19e3d720c0bd6f94a9d10d3e07a46ef2d9954bc3ab74226964",
+      "tasks.md": "db5f009d7a87fe6143a72509fdb2c3ca2eae7484976efdea232f0951f5d9953d",
+      "implementation-summary.md": "2d2e625f2075909e762e5917cef5cc22efd733655e0b002894a42521f01371bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

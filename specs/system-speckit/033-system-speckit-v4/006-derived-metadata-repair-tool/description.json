@@ -16,11 +16,12 @@
     "work",
     "person"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.658Z",
-  "specId": "039",
-  "folderSlug": "derived-repair-automation",
+  "lastUpdated": "2026-09-06T06:48:35.331Z",
+  "specId": "006",
+  "folderSlug": "derived-metadata-repair-tool",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

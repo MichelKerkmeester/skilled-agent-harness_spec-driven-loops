@@ -25,6 +25,10 @@ contextType: "general"
 | **Priority** | [P0/P1/P2] |
 | **Status** | Complete |
 | **Created** | 2026-08-31 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 15 of 24 |
+| **Predecessor** | `../014-daemon-and-test-harness-hardening/spec.md` |
+| **Successor** | `../016-sequential-thinking-residue-removal/spec.md` |
 | **Branch** | `scaffold/047-review-remediation` |
 <!-- /ANCHOR:metadata -->
 

@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-retire-the-sweep |
+| **Spec Folder** | 007-retire-the-sweep |
 | **Status** | Complete |
 | **Level** | 1 |
 

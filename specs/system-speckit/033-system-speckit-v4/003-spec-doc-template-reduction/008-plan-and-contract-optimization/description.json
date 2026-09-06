@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
   "description": "The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at",
   "keywords": [
@@ -11,17 +12,17 @@
     "level",
     "including"
   ],
-  "lastUpdated": "2026-08-27T20:20:59.358Z",
+  "lastUpdated": "2026-09-06T06:44:45.954Z",
   "specId": "008",
   "folderSlug": "plan-and-contract-optimization",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [
     "27-08-26_18-51__scaffold-smoke-proves-the-generator-fix.md",
     "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
-  ],
-  "level": "1"
+  ]
 }

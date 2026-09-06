@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
   "description": "This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and",
   "keywords": [
@@ -17,11 +17,12 @@
     "integrated",
     "spec"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.655Z",
-  "specId": "037",
-  "folderSlug": "decisions-memory-redesign",
+  "lastUpdated": "2026-09-06T06:46:17.932Z",
+  "specId": "004",
+  "folderSlug": "decisions-and-notes-system",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

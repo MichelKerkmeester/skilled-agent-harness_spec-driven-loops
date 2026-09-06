@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 050-single-segment-packet-pointer |
+| **Spec Folder** | 018-single-segment-packet-pointer |
 | **Completed** | 2026-09-02 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

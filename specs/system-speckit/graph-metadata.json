@@ -8,19 +8,11 @@
     "system-speckit/027-xce-research-based-refinement",
     "system-speckit/028-memory-search-intelligence",
     "system-speckit/029-rust-backend-rewrite-research",
+    "system-speckit/031-memory-reindex-embed-performance",
     "system-speckit/031-spec-gate-enforce-readiness",
     "system-speckit/032-phased-spec-preference",
-    "system-speckit/033-vitest-invariance-maintenance",
-    "system-speckit/034-cmd-merge-spec-kit-phase",
-    "system-speckit/035-cmd-spec-kit-ux-upgrade",
-    "system-speckit/036-spec-kit-ux-adoptions",
-    "system-speckit/037-spec-kit-coco-sk-code-research",
-    "system-speckit/038-spec-kit-auto-mode-noninteractive-contract",
-    "system-speckit/039-subphase-recatalog-and-archive",
-    "system-speckit/040-base-files-renumbering-name-cleanup",
-    "system-speckit/041-cmd-speckit-family-rename",
-    "system-speckit/z_archive",
-    "system-speckit/031-memory-reindex-embed-performance"
+    "system-speckit/033-system-speckit-v4",
+    "system-speckit/z_archive"
   ],
   "manual": {
     "depends_on": [],

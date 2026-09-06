@@ -48,9 +48,7 @@
       "research/research.md",
       "CLAUDE.md",
       "AGENTS.md",
-      "BARTER.md",
-      ".opencode/bin/spec-memory.cjs",
-      "mcp-server/dist/spec-memory-cli.js"
+      "BARTER.md"
     ],
     "entities": [
       {
@@ -99,18 +97,6 @@
         "name": "BARTER.md",
         "kind": "doc",
         "path": "BARTER.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-memory.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli.js",
-        "kind": "code",
-        "path": "mcp-server/dist/spec-memory-cli.js",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
     "created_at": "2026-08-26T05:34:13Z",
-    "last_save_at": "2026-08-30T15:39:36.665Z",
+    "last_save_at": "2026-09-06T06:47:42.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +208,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:332062c0cd83b820a9b58efb64de093ac6fe5e6c4646429c1b031e4e7fc7e6b8",
+    "source_fingerprint": "sha256:be1087d3551f975842e7fef555643b6a8858c67c6e577211568af512926273b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4bb1c912469ea24c64c843928ba363403b7679b0f91ff0dbe04a279a5e84e4c",
-      "plan.md": "ed2aeac6c367b52e3b20275ca6fa1006963ac3c7d207b114825bd5496e6e02a0",
-      "tasks.md": "50b5ab0ea851413cd347d1f509d8e543935745b9b5100de578a9261e338ee442",
-      "implementation-summary.md": "5548f53de236bea6ef51b52eb093485734cbd1a3f6f4d37900528f5fa2e424dc",
-      "research/research.md": "c441d07044ac21a24546f6cdbcac7ae98d80a4adda95747bf5d30975dbd81a13"
+      "spec.md": "e43179de383bdd5b2ab5966564d0478c8d195f0e7d0c848a132ac23aecc67241",
+      "plan.md": "e59b32be15e5b67939955ce65bc4a3640a5d13ceeedf39056a03b648aa041a50",
+      "tasks.md": "740559866f08e921da5f85e0303d62720189766f8f3dc6ba5819cbe19db0b0f5",
+      "implementation-summary.md": "cdc226f36828d5c62c279a2b6dae85c467c128e05ff5892f57441b5e4e5bb048",
+      "research/research.md": "65d60affc61c68b5c0fa65864e378abc1572d0a9bee5b181c487e105b590c0a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

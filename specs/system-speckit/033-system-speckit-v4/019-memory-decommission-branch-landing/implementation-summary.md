@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 052-memory-decommission-landing |
+| **Spec Folder** | 019-memory-decommission-branch-landing |
 | **Completed** | In progress; see the goal log for the open items |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

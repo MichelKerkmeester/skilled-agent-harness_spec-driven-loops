@@ -15,11 +15,12 @@
     "shape",
     "left"
   ],
-  "lastUpdated": "2026-08-30T15:16:38.016Z",
-  "specId": "046",
-  "folderSlug": "path-containment-followups",
+  "lastUpdated": "2026-09-06T06:46:17.938Z",
+  "specId": "013",
+  "folderSlug": "repair-handle-containment",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

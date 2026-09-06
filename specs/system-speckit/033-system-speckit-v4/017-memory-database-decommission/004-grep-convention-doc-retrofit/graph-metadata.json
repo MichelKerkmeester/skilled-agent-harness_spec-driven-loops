@@ -48,19 +48,16 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/references/structure/grep-convention.md",
-      ".opencode/skills/system-spec-kit/scripts/retrieval/retrofit-convention.mjs",
-      ".opencode/skills/system-spec-kit/scripts/retrieval/lib/grep-convention.mjs",
-      ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-grep-convention.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       "scratch/baseline.json",
-      "scripts/core/frontmatter-editor.ts",
-      "scripts/lib/frontmatter-migration.ts",
-      "scripts/rules/check-grep-convention.sh",
       "scratch/manifest.json",
       "scratch/variant-inventory.json",
       "scratch/preimage-manifest.json",
-      "scratch/exception-inventory.json"
+      "scratch/exception-inventory.json",
+      "scratch/diagnostics.json",
+      "scratch/plan.diff",
+      "scratch/dry-run-report.json",
+      "scratch/residue-report.json",
+      "scratch/preimage-verification.json"
     ],
     "entities": [
       {
@@ -106,51 +103,9 @@
         "source": "derived"
       },
       {
-        "name": "retrofit-convention.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/retrofit-convention.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "grep-convention.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/lib/grep-convention.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "rg-wrapper.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-grep-convention.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-grep-convention.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "baseline.json",
         "kind": "config",
         "path": "scratch/baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-editor.ts",
-        "kind": "code",
-        "path": "scripts/core/frontmatter-editor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-migration.ts",
-        "kind": "code",
-        "path": "scripts/lib/frontmatter-migration.ts",
         "source": "derived"
       },
       {
@@ -175,6 +130,36 @@
         "name": "exception-inventory.json",
         "kind": "config",
         "path": "scratch/exception-inventory.json",
+        "source": "derived"
+      },
+      {
+        "name": "diagnostics.json",
+        "kind": "config",
+        "path": "scratch/diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.diff",
+        "kind": "file",
+        "path": "scratch/plan.diff",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run-report.json",
+        "kind": "config",
+        "path": "scratch/dry-run-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "residue-report.json",
+        "kind": "config",
+        "path": "scratch/residue-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "preimage-verification.json",
+        "kind": "config",
+        "path": "scratch/preimage-verification.json",
         "source": "derived"
       },
       {
@@ -206,11 +191,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-09-04T17:48:20.586Z",
+    "last_save_at": "2026-09-06T06:46:59.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22ad9d18749b279bbe095445c021d26efe7958b3f4bcb5fff4e314f6aa7da372",
+    "source_fingerprint": "sha256:ec1fefcee362180ecbec6c2533c09544797e5e16853929a7905d9b9475dae611",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32b266b3c9ad3469a8aedea8428ee212b5cfb70eac4af4bc4ca15eecc8363827",
-      "plan.md": "996275f66ea43ce686352f1e07b3796424a03f21aeb9cb63f071cc9ce8b5590a",
-      "tasks.md": "0f22da52266e219fb451382c71834afb4da14dd96b6f10964a77775c80d58324",
-      "implementation-summary.md": "db42fcc5c698eee533d1da9ecce108939b6e1307c26c95526ecf8e1d55f71c2e"
+      "spec.md": "925b8c78091fb060796fa1cac918e6185dfb594c1fad6355aba9a605af67251a",
+      "plan.md": "f79ec3818bcc9087f22ba5f1778e0eb26eaf29b6203cf7d69a936ba34faf1d7a",
+      "tasks.md": "d2e5003807470285c432757d5b0426573a508825796e306d3ad1332e17869143",
+      "implementation-summary.md": "3f5f15d8c3a3236e53cda644f589b4d7618b0d5244736d46ce7926f424ca2812"
     },
     "last_active_child_id": null,
     "last_active_at": null

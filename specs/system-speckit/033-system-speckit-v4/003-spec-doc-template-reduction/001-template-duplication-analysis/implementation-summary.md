@@ -21,7 +21,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-analysis |
+| **Spec Folder** | 001-template-duplication-analysis |
 | **Completed** | Not stated in the reviewed evidence |
 | **Authored** | 2026-08-27 |
 | **Level** | 1 |

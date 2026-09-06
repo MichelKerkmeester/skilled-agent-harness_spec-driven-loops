@@ -34,7 +34,7 @@ trigger_phrases: []
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 034-plan-preflight-nested-packet-resolution |
+| **Spec Folder** | 001-plan-preflight-track-packets |
 | **Completed** | 2026-08-15 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

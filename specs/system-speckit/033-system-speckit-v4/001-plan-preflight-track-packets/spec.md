@@ -45,6 +45,10 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-08-15 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 1 of 24 |
+| **Predecessor** | None |
+| **Successor** | `../002-daemon-reaper-orphan-classification/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 

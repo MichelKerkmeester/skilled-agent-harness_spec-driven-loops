@@ -18,11 +18,12 @@
     "generator",
     "fixtures"
   ],
-  "lastUpdated": "2026-09-05T18:39:07.251Z",
-  "specId": "054",
-  "folderSlug": "decommission-debt-fixes",
+  "lastUpdated": "2026-09-06T06:48:11.999Z",
+  "specId": "021",
+  "folderSlug": "decommission-debt-and-cli-nesting",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

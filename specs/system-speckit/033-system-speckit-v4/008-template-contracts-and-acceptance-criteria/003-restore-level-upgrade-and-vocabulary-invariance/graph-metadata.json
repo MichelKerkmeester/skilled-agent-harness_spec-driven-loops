@@ -42,9 +42,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
-      "scripts/spec/upgrade-level.sh",
-      "scripts/tests/workflow-invariance.vitest.ts",
       "feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
       "feature-catalog/tooling-and-scripts/derived-packet-repair.md",
       "manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md"
@@ -84,18 +81,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "upgrade-level.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
-        "source": "derived"
-      },
-      {
-        "name": "workflow-invariance.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workflow-invariance.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +178,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two defects surfaced during this packet's review, both pre-dating it",
     "created_at": "2026-08-29T15:25:29Z",
-    "last_save_at": "2026-08-30T15:39:36.492Z",
+    "last_save_at": "2026-09-06T06:47:35.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:280a7281d449f16e7ede1ba145212b526141dbfeeb6e08e3bfa7cc60c4912907",
+    "source_fingerprint": "sha256:0361a704e29235536a162db7a4fa0220455b0064807d5d7d7ccc56908ae10a95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53e5e1987dc370a61f6b45184d26c6692e6398115aab4d70550653c57916ac3e",
-      "plan.md": "efae1a08c41605dc8d95f51af5faccede7f585bfaceca4c582206476a8a4dfa7",
-      "tasks.md": "2436109cd9f64649c13bb918f7024811f25b6662258a9240dba3f85ef070516f",
-      "implementation-summary.md": "9c851e39e6b6dfec875b988e1a928bd7882164c64c01efaa2635ba8a210252b9"
+      "spec.md": "80d357d556a8408c04ac509601f126d93a847a645077b2dcaec4edf5d296c287",
+      "plan.md": "37ef315184b96d9c109bc929d14a4c29b9d523091158dc6b4f169eb1fb59d55e",
+      "tasks.md": "4e43dc247ac938505a5a73d233953a5bc243505ca0edfcb5a508bff17a6788e4",
+      "implementation-summary.md": "20334cb468a86f123cf72dfc7e2daac0ad72d2b407127a06a0d4c286bd291ff2"
     },
     "last_active_child_id": null,
     "last_active_at": null

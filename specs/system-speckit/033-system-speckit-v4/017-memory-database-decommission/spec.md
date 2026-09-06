@@ -60,7 +60,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `claude/speckit-memory-db-review-3gheky` |
-| **Parent Spec** | None (top-level packet) |
+| **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-speckit/033-system-speckit-v4/017-memory-database-decommission |
 | **Predecessor** | 028-memory-search-intelligence |
 | **Successor** | None |

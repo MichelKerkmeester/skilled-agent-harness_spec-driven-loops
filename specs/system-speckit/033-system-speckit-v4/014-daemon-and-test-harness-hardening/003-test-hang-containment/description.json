@@ -14,12 +14,13 @@
     "roughly",
     "core"
   ],
-  "lastUpdated": "2026-08-30T18:56:28.482Z",
+  "lastUpdated": "2026-09-06T06:44:45.668Z",
   "specId": "003",
   "folderSlug": "test-hang-containment",
   "parentChain": [
     "system-speckit",
-    "045-daemon-and-test-harness-hardening"
+    "033-system-speckit-v4",
+    "014-daemon-and-test-harness-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

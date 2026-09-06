@@ -44,6 +44,10 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-08-30 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 13 of 24 |
+| **Predecessor** | `../012-repair-write-symlink-refusal/spec.md` |
+| **Successor** | `../014-daemon-and-test-harness-hardening/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Handoff Criteria** | The repair write cannot reach a file the scan did not classify, and no containment branch remains that decides nothing |
 <!-- /ANCHOR:metadata -->

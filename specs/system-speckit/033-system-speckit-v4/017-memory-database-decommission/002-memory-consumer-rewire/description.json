@@ -9,12 +9,13 @@
     "mcp",
     "surface"
   ],
-  "lastUpdated": "2026-09-04T17:50:20.929Z",
+  "lastUpdated": "2026-09-06T06:44:45.781Z",
   "specId": "002",
   "folderSlug": "memory-consumer-rewire",
   "parentChain": [
     "system-speckit",
-    "049-memory-decommission"
+    "033-system-speckit-v4",
+    "017-memory-database-decommission"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

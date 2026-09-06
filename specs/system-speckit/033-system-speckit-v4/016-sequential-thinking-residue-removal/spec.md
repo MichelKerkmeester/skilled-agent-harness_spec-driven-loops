@@ -24,6 +24,10 @@ contextType: "general"
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-08-31 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 16 of 24 |
+| **Predecessor** | `../015-apply-path-and-candidate-filter-fixes/spec.md` |
+| **Successor** | `../017-memory-database-decommission/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 

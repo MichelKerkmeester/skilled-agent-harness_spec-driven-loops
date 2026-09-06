@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment",
   "spec_folder": "system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,9 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "mcp-server/lib/graph/graph-metadata-parser.ts",
-      "scripts/tests/graph-metadata-write-containment.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -88,18 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-write-containment.sh",
-        "kind": "script",
-        "path": "scripts/tests/graph-metadata-write-containment.sh",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -107,6 +93,12 @@
       },
       {
         "name": "Workspace Path Containment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -125,12 +117,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
     "created_at": "2026-08-30T08:10:26.979Z",
-    "last_save_at": "2026-08-30T14:50:53.484Z",
+    "last_save_at": "2026-09-06T06:48:28.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33bd39eab2440e403cdb08fc5705b5438e241c7aae44414b2b7e1bb17ff85d59",
+    "source_fingerprint": "sha256:ab1f36b8477a91237b8725e2404f2573af96cd54d4cca9059c9a6e6b9b01e761",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04b9920edfc003ed1c06c9585443816c0bcddb0d2652da887b9c7050ce9ee9fc",
-      "plan.md": "6c2eace33ba0f21093f6923be5fe7a5bc26ff3ed3ac81c73e4d81726417056e1",
+      "spec.md": "437a952a101e8ffabf06d1771d0f27807c6baf3317a3174f37f63b0803d3dd7d",
+      "plan.md": "5b8958d3a874c0e444a78e489947d0b3eb51f1a353bc8f210c2f2523e6a9b7ce",
       "tasks.md": "6cd2d2930516203042c12ee2abd15a2481a7b1efac064c2df892528b78ed2646",
-      "decision-record.md": "d2be76be88aa5c72fb5b5c6757067d83c8107faae8e9c7b0f0a4ca1fcdf1daa5",
-      "implementation-summary.md": "fd983b235f120393c51be487121720d5dda89aa06b88d196e25812e6870c1f4d"
+      "decision-record.md": "ee54a3726eb2da656fb96be491dcdeaf478dc074067fbdd1bf42d226d8c89917",
+      "implementation-summary.md": "5372517b0e491f2740cb6912c8139e26e1f51793654a6e23722ecffb3c0c34de"
     },
     "last_active_child_id": null,
     "last_active_at": null

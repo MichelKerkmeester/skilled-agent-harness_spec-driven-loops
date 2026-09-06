@@ -16,12 +16,13 @@
     "child",
     "server"
   ],
-  "lastUpdated": "2026-08-30T18:31:32.912Z",
+  "lastUpdated": "2026-09-06T06:44:45.611Z",
   "specId": "002",
   "folderSlug": "orphan-daemon-reaping",
   "parentChain": [
     "system-speckit",
-    "045-daemon-and-test-harness-hardening"
+    "033-system-speckit-v4",
+    "014-daemon-and-test-harness-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

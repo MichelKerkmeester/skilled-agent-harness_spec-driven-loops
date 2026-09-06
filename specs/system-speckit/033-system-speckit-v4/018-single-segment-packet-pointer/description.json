@@ -17,11 +17,12 @@
     "pass",
     "validation"
   ],
-  "lastUpdated": "2026-09-02T17:35:06.205Z",
-  "specId": "050",
+  "lastUpdated": "2026-09-06T06:48:16.751Z",
+  "specId": "018",
   "folderSlug": "single-segment-packet-pointer",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

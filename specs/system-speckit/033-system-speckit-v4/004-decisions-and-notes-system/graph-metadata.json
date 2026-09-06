@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
   "spec_folder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
     "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis",
@@ -86,16 +86,16 @@
     ],
     "causal_summary": "This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill across independently executable child phase folders",
     "created_at": "2026-08-26T05:34:10Z",
-    "last_save_at": "2026-08-30T15:39:36.639Z",
+    "last_save_at": "2026-09-06T06:48:38.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ede1bada36d1bc68a47209ab4795980922d328ee5d1f2456c960678d4e04a3b9",
+    "source_fingerprint": "sha256:0e79ff9736725ed548002ff3c3608f58c47ef51ac34aa3726ae9944b141efeba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd43212526e4a37510fc1401dc116a83b33fb398fc2b7150d5d7c08b00dfdd22"
+      "spec.md": "935a633fff4e8c3ae0ff58d6d0c64fd0ec8fce897a73cd13e7cfd74b37aa8628"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
     "last_active_at": "2026-08-27T20:23:46.107Z"

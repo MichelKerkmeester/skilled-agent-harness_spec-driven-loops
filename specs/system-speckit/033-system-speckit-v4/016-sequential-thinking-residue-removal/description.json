@@ -17,11 +17,12 @@
     "script",
     "unregistered"
   ],
-  "lastUpdated": "2026-08-31T13:40:52.893Z",
-  "specId": "048",
-  "folderSlug": "decommissioned-server-residue",
+  "lastUpdated": "2026-09-06T06:48:19.888Z",
+  "specId": "016",
+  "folderSlug": "sequential-thinking-residue-removal",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

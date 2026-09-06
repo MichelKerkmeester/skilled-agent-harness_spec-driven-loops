@@ -17,11 +17,12 @@
     "system-spec-kit",
     "critical"
   ],
-  "lastUpdated": "2026-09-05T23:03:40.997Z",
-  "specId": "056",
-  "folderSlug": "integration-research-remediation",
+  "lastUpdated": "2026-09-06T06:46:17.946Z",
+  "specId": "023",
+  "folderSlug": "trigger-index-root-and-drift-fixes",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

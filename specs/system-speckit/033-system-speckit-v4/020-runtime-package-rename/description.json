@@ -18,11 +18,12 @@
     "validation",
     "orchestrator"
   ],
-  "lastUpdated": "2026-09-05T18:37:48.244Z",
-  "specId": "053",
-  "folderSlug": "spec-kit-runtime-rename",
+  "lastUpdated": "2026-09-06T06:48:13.542Z",
+  "specId": "020",
+  "folderSlug": "runtime-package-rename",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

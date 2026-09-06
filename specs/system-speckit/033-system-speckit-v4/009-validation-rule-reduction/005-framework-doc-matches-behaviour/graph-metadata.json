@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
     "created_at": "2026-08-29T19:48:08.557Z",
-    "last_save_at": "2026-08-30T15:39:36.740Z",
+    "last_save_at": "2026-09-06T06:47:26.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52834fc94dd77d625f69e03f641b762e2afe3c871c15523c725b2c8e8332f995",
+    "source_fingerprint": "sha256:b19b61836202cec5a3e67dfce589e61c3fbc822f4af082b7d720734f07e2f8df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85cbb948fc95ca034a67b9dbd0a44e9cc1a760eb97bce29d06c5465204098d01",
-      "plan.md": "01bc9d05e36cc64637653127d02533c610073485f580766fad20669d30dabf39",
-      "tasks.md": "1f311610c9022cc31a3b7862557b921edf3edd525fc92779f9f1441300630aee",
-      "implementation-summary.md": "db93b6ce2bae4c0f2beb82073438adf20bf7b6f72d9a755731eb69eed73d9994"
+      "spec.md": "19d70c41630935aa09abbfbdc019e7b904ebdbd6bbbf8e430c183ba2b54bf1c4",
+      "plan.md": "dac7ec92a3ac53fcdfaf0e07599b62e3e1013593ccb160021325b09bcb82f43d",
+      "tasks.md": "355e4ec9ee4b0656e664505bc80eaff9685b45d81c1bf45c085f73c0ffcdce36",
+      "implementation-summary.md": "b5eef2aaf9e3ae8ec64eb008aac77d5b17e9762567888702ec883afa51e03d36"
     },
     "last_active_child_id": null,
     "last_active_at": null

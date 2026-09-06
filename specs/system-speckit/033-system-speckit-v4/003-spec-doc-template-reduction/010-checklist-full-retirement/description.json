@@ -17,12 +17,13 @@
     "kept",
     "along"
   ],
-  "lastUpdated": "2026-08-30T08:55:22.095Z",
+  "lastUpdated": "2026-09-06T06:44:45.991Z",
   "specId": "010",
   "folderSlug": "checklist-full-retirement",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

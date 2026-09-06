@@ -46,9 +46,7 @@
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       "templates/addons/goal.md.tmpl",
-      "templates/spec-kit-docs.json",
-      "scripts/utils/template-structure.js",
-      "scripts/tests/level-contract-resolver.vitest.ts"
+      "templates/spec-kit-docs.json"
     ],
     "entities": [
       {
@@ -97,18 +95,6 @@
         "name": "goal.md.tmpl",
         "kind": "file",
         "path": "templates/addons/goal.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "level-contract-resolver.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/level-contract-resolver.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-08-30T15:39:36.778Z",
+    "last_save_at": "2026-09-06T06:47:19.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80d03688186d3d680fde2e73d5131c0bf1a1dfed4514c8960ff3ca85ce7e5147",
+    "source_fingerprint": "sha256:784a5f361b448690f35802ef2b30fafaa054d70ab94040b434f7059c07f61a04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d05a843dda452d9d015baecbafe8c0a69227baad4a433ee06ba433fc4fcbebca",
-      "plan.md": "1508c69af88d885d4f1033f41a1a5ebc95fab41634c1e5f4e6f3166db0cc3697",
-      "tasks.md": "c3f6f40a3b5edd3a908b966ddeced89d3dc8474ca0414f30356926877e066517",
-      "implementation-summary.md": "aa0f0224d3f62d57547015f74b7a2b9bd1d660e97a22d5bd8156ae79036b8e20"
+      "spec.md": "92a5fa5343db3821538d021b14b1badf402ffe47761ff34709d0eb5230a94fe3",
+      "plan.md": "8d16bf0c76df3d46a63e5ef704f016f18953d95e37acfc00ead6045fd064612a",
+      "tasks.md": "5b091cd815a5c07f3f4aec139e42821dcb183362e3233992367008037b3d8716",
+      "implementation-summary.md": "fd6f3115336eb32e2089a0a2746d4c5c855bea76dc2ff35d8bb46510b7e278ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

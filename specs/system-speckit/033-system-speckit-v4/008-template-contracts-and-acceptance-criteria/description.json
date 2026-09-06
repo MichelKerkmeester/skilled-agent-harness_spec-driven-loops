@@ -11,11 +11,12 @@
     "unresolved",
     "costs"
   ],
-  "lastUpdated": "2026-08-30T04:17:56.036Z",
-  "specId": "033",
-  "folderSlug": "spec-kit-template-optimization",
+  "lastUpdated": "2026-09-06T06:46:17.934Z",
+  "specId": "008",
+  "folderSlug": "template-contracts-and-acceptance-criteria",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

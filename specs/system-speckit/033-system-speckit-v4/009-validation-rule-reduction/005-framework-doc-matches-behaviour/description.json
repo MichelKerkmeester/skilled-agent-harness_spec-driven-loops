@@ -14,12 +14,13 @@
     "measured",
     "behaviour"
   ],
-  "lastUpdated": "2026-08-29T19:49:09.222Z",
+  "lastUpdated": "2026-09-06T06:44:45.905Z",
   "specId": "005",
   "folderSlug": "framework-doc-matches-behaviour",
   "parentChain": [
     "system-speckit",
-    "041-validation-reduction"
+    "033-system-speckit-v4",
+    "009-validation-rule-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

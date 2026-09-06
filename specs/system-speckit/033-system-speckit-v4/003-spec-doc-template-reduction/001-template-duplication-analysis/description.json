@@ -12,12 +12,13 @@
     "context",
     "waste"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.583Z",
+  "lastUpdated": "2026-09-06T06:48:06.202Z",
   "specId": "001",
-  "folderSlug": "analysis",
+  "folderSlug": "template-duplication-analysis",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

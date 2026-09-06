@@ -11,12 +11,13 @@
     "rules",
     "agree"
   ],
-  "lastUpdated": "2026-08-30T12:18:30.532Z",
-  "specId": "010",
+  "lastUpdated": "2026-09-06T06:47:21.085Z",
+  "specId": "008",
   "folderSlug": "a-level-for-research",
   "parentChain": [
     "system-speckit",
-    "041-validation-reduction"
+    "033-system-speckit-v4",
+    "009-validation-rule-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

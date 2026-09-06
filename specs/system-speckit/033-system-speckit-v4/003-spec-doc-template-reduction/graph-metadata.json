@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
   "spec_folder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
     "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
@@ -95,16 +95,16 @@
     ],
     "causal_summary": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-30T14:12:56.121Z",
+    "last_save_at": "2026-09-06T06:48:39.543Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7f0ffed33b5230894caebaac7d6683c39ac54e26a6f748dd78f4adac1a6c6038",
+    "source_fingerprint": "sha256:df44abaa4dd72021ff8532445bb5c5a4277277967c086dca1e127150996eda22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f512e5ea36a22c3d1d9c32cd2b37eb259e3385e5dfad54a5726f7632e23fd67"
+      "spec.md": "1b649dd4c89722932d4ac52263fc5cf29c539891d5874fbf6868419ef460b291"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
     "last_active_at": "2026-08-27T20:21:06.358Z"

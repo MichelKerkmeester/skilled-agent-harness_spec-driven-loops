@@ -20,12 +20,13 @@
     "never",
     "validated"
   ],
-  "lastUpdated": "2026-09-05T22:19:48.763Z",
+  "lastUpdated": "2026-09-06T06:44:46.193Z",
   "specId": "002",
   "folderSlug": "metadata-drift-and-rules",
   "parentChain": [
     "system-speckit",
-    "056-integration-research-remediation"
+    "033-system-speckit-v4",
+    "023-trigger-index-root-and-drift-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -39,10 +39,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
-      "templates/spec-kit-docs.json",
-      "scripts/utils/template-structure.js",
-      "scripts/rules/check-level-match.sh"
+      "templates/spec-kit-docs.json"
     ],
     "entities": [
       {
@@ -73,18 +70,6 @@
         "name": "spec-kit-docs.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "check-level-match.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
         "source": "derived"
       },
       {
@@ -188,11 +173,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Give a research record a level it can meet, and make the rules agree with the",
     "created_at": "2026-08-30T09:39:26.002Z",
-    "last_save_at": "2026-08-30T13:02:48.010Z",
+    "last_save_at": "2026-09-06T06:47:21.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f05b7219ae3f97fa367906a242d84043f68997bccf3ec74744c7aff41296a1ea",
+    "source_fingerprint": "sha256:3f78802a55a41a91f9a5a0bbce3061adad55f12a8a2d0a9eb48031ef5f69aff1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42bb24797b1563c81f8593af7443b0a9c10573c05e1a4477d5ab02ce89783587",
-      "plan.md": "2ee61e74a5f3f4f1f99e3ed06e44888626d42ed99df813d63ab1355957bdea32",
-      "tasks.md": "dc7cf3232282b162b6600e6f003a28839262883c4f108964fcbd4e4dd2bb5d9f",
-      "implementation-summary.md": "d117bb8c610fe8ffda13af118485a48f7172d035202e2deab8eea41511793822"
+      "spec.md": "f11dc39f4391fd1295fc5a7da6e496d3412be6650b6c39c530c31cc195181bf4",
+      "plan.md": "cedc84108ca97ca2127ea4244ed8650bc5ee6547c81fafc38b47346432f4a244",
+      "tasks.md": "a8d50db5ca208a0352e4b46f505f3cd44326054d273ea8248e9d5bc3b14b08b6",
+      "implementation-summary.md": "d8ab7950b791d15e2826affa83b5ad403cb545369b55c43664e9ceb1c0f74065"
     },
     "last_active_child_id": null,
     "last_active_at": null

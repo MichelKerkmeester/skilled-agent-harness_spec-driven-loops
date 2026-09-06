@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-analysis |
+| **Spec Folder** | 001-decisions-system-analysis |
 | **Completed** | 2026-08-26 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

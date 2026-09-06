@@ -18,12 +18,13 @@
     "package",
     "metadata"
   ],
-  "lastUpdated": "2026-09-05T18:37:48.032Z",
+  "lastUpdated": "2026-09-06T06:44:46.069Z",
   "specId": "007",
   "folderSlug": "memory-command-family-naming-decision",
   "parentChain": [
     "system-speckit",
-    "054-decommission-debt-fixes"
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

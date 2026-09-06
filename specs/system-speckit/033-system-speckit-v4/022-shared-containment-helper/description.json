@@ -16,11 +16,12 @@
     "realpath-only",
     "description"
   ],
-  "lastUpdated": "2026-09-05T19:36:52.025Z",
-  "specId": "055",
-  "folderSlug": "path-containment-seam",
+  "lastUpdated": "2026-09-06T06:48:10.527Z",
+  "specId": "022",
+  "folderSlug": "shared-containment-helper",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

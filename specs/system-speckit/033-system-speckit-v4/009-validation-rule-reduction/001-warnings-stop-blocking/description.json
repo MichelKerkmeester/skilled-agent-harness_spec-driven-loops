@@ -13,12 +13,13 @@
     "warning",
     "means"
   ],
-  "lastUpdated": "2026-08-29T17:26:18.086Z",
+  "lastUpdated": "2026-09-06T06:44:45.917Z",
   "specId": "001",
   "folderSlug": "warnings-stop-blocking",
   "parentChain": [
     "system-speckit",
-    "041-validation-reduction"
+    "033-system-speckit-v4",
+    "009-validation-rule-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

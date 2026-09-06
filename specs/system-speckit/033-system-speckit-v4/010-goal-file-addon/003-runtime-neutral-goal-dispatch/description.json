@@ -16,12 +16,13 @@
     "tool",
     "name"
   ],
-  "lastUpdated": "2026-08-30T04:17:56.054Z",
+  "lastUpdated": "2026-09-06T06:44:46.369Z",
   "specId": "003",
   "folderSlug": "runtime-neutral-goal-dispatch",
   "parentChain": [
     "system-speckit",
-    "042-nested-goal-template-addon"
+    "033-system-speckit-v4",
+    "010-goal-file-addon"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -46,9 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
-      ".opencode/skills/system-spec-kit/templates/addons/research.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/system-spec-kit/templates/addons/research.md.tmpl"
     ],
     "entities": [
       {
@@ -85,18 +83,6 @@
         "name": "research.md.tmpl",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/templates/addons/research.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-08-30T15:39:36.559Z",
+    "last_save_at": "2026-09-06T06:48:03.465Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b13c0c040f9f4acec55c377967d3461a46f1ce0d3a7161b977554a7f16be2d51",
+    "source_fingerprint": "sha256:f9f105a4c5050ccbf34f08c3f44c402c73b1d3611c63a1e0f70761bebf5839b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e7af5f59b7b7e00b5a9ed5e13e8fe409e044d3de2eb4d3e5884d99f8f4880351",
+      "spec.md": "dacf555c311ab78dd0142d90521ecb18f0b967cdda36387f4b1c8f06dea87e82",
       "plan.md": "9377fba47992b4c5456165053befdd643ebaaa8189c360ffc29779ac9091a47b",
       "tasks.md": "86fef7d97c3f92c15651c2ce7f9d4266345a95a812aeafebd2793c376d813e83",
       "implementation-summary.md": "4eaeebc841760b25799910616b70be55f879ef1107f2ce3a29d0c94d9f0e7126"

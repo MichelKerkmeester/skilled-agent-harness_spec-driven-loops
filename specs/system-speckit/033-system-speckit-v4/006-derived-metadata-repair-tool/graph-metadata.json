@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
   "spec_folder": "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,8 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
     ],
     "entities": [
@@ -70,18 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "repair-derived.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -115,13 +101,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -140,6 +126,12 @@
       },
       {
         "name": "fixtures",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -177,7 +169,7 @@
     ],
     "causal_summary": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
     "created_at": "2026-08-28T19:49:57.185Z",
-    "last_save_at": "2026-08-30T15:39:36.695Z",
+    "last_save_at": "2026-09-06T06:48:35.440Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,13 +178,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5673267d8f26951edcc5df3f4a8aac7bc4f0f18910bc0cfb42744f48a51ed123",
+    "source_fingerprint": "sha256:292bc7994b76b9ed673b374d000f7d949b5ba4549d9dcf5e30cd4be305f778c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a9d96b589382ae2018ec542c5636017843133e223674ccc8366bea7de2dc227d",
-      "plan.md": "ce2f2c0a0e16f1668c81bb9168d86e70cd013ee3872cb26a0aa2e5f4ca112b68",
-      "tasks.md": "46e398d0f63e99669941618198ccdbd09d0543086412bd00e5d4b389e4755a4c",
-      "implementation-summary.md": "f9777d93f09be61600dc568ec17c80fa3d86a9bc457b1c8b6ce2319e6111e44c"
+      "spec.md": "f775d73fa86aae95bc62aa2ab97bf7886df9936dd3469b9085995b34eb89ea42",
+      "plan.md": "e61dc29f460f3141f2b4187be60a0bb8d3031eed363cc9535fbc3fcef255efb9",
+      "tasks.md": "61da59127d36bf4197fb83391423c2204c1052a01bee03d23fe089f3437e0243",
+      "implementation-summary.md": "c7a4294dfa9cf2ca3adf2b11377ea0c4b3969beb83545e70b835de2a9a58f895"
     },
     "last_active_child_id": null,
     "last_active_at": null

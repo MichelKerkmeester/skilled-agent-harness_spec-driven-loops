@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 040-validation-gate-coherence |
+| **Spec Folder** | 007-completion-gate-coherence |
 | **Status** | Complete |
 | **Level** | 2 |
 

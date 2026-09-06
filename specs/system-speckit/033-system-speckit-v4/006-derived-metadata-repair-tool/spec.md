@@ -43,6 +43,10 @@ _memory:
 | **Priority** | P1 |
 | **Status** | In Progress |
 | **Created** | 2026-08-28 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 6 of 24 |
+| **Predecessor** | `../005-skills-runtime-state-consolidation/spec.md` |
+| **Successor** | `../007-completion-gate-coherence/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 

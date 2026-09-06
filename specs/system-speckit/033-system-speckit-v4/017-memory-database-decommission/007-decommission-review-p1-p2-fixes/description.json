@@ -19,12 +19,13 @@
     "between",
     "documents"
   ],
-  "lastUpdated": "2026-09-04T17:50:21.025Z",
+  "lastUpdated": "2026-09-06T06:46:55.124Z",
   "specId": "007",
-  "folderSlug": "deep-review-remediation",
+  "folderSlug": "decommission-review-p1-p2-fixes",
   "parentChain": [
     "system-speckit",
-    "049-memory-decommission"
+    "033-system-speckit-v4",
+    "017-memory-database-decommission"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

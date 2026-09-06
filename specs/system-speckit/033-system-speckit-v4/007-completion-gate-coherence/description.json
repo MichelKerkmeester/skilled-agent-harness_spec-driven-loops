@@ -20,11 +20,12 @@
     "checks",
     "packet"
   ],
-  "lastUpdated": "2026-08-29T14:45:18.958Z",
-  "specId": "040",
-  "folderSlug": "validation-gate-coherence",
+  "lastUpdated": "2026-09-06T06:48:33.853Z",
+  "specId": "007",
+  "folderSlug": "completion-gate-coherence",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

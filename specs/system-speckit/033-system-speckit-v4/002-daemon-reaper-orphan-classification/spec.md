@@ -43,6 +43,10 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete — fix implemented and verified (negative control → fix → both suites green); awaiting commit go-ahead |
 | **Created** | 2026-08-22 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 2 of 24 |
+| **Predecessor** | `../001-plan-preflight-track-packets/spec.md` |
+| **Successor** | `../003-spec-doc-template-reduction/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | system-speckit |
 | **Predecessor** | Surfaced by the code-graph purge (the 2 pre-existing `process-sweep` failures) |

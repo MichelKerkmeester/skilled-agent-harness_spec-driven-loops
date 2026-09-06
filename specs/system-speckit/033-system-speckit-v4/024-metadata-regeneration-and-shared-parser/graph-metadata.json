@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
   "spec_folder": "system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -134,6 +134,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,12 +160,6 @@
       {
         "name": "any",
         "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatter parser in their JavaScript callers.",
     "created_at": "2026-09-06T04:26:02Z",
-    "last_save_at": "2026-09-06T06:29:28.570Z",
+    "last_save_at": "2026-09-06T06:48:07.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8d2993799d5a4d588dd36bec5e498f42118d243bd64e67f90f53f4659ee3028",
+    "source_fingerprint": "sha256:1de190aba02c17eb15bcc7ea88adcf585ac98dedf5e672bae297bb4ca7386f9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee44929512c5a96709e80742a7819c72dae9e69b831a0b1214aa7a2f9485180b",
+      "spec.md": "f9363ceacd271d3a03873e61a0039af54089dbab9211d7ea2f035bb03103e9e2",
       "plan.md": "a8fa3e628dce206ce5df02fdd0c0cb7cfe50e0085f64cf6170270064c780f438",
       "tasks.md": "e1e3492cbb03475e9c080d999e897c25b54f1f55f3f43e2a6e7d8378d6bfe061",
-      "implementation-summary.md": "300440b92ee215c96453a18ac0e7c2313e182b7ed68e5d558ec8fc8dbb068359"
+      "implementation-summary.md": "70d7a5f038a5943656e173b677fd94c066c2cedb3b81884b4a0baf4424829fe8"
     },
     "last_active_at": null
   }

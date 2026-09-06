@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Before this phase, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
     "created_at": "2026-09-05T06:13:04Z",
-    "last_save_at": "2026-09-05T18:39:07.419Z",
+    "last_save_at": "2026-09-06T06:46:51.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b65e8314d5575a7cd7a3f64f13e5c35f4184b634348786659bae5cc1c7b27af4",
+    "source_fingerprint": "sha256:7d75fe21260416e427c16bf86dd0ccf055a357fc1a8dcdb304e4bf86ae1c3817",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "418683f294d0fa1450a941863075914c7fe294e0bece69db95aa5c81ab24e498",
-      "plan.md": "aa9e48f1cef7f720cafab62b6303b06e2509c6ed227c19410bd8231fc734f0a4",
+      "spec.md": "4cb86d6f1382eb6c50fc167834f6abd6006d74799eb3dcdf4cd920a332869cf4",
+      "plan.md": "f805ec96162c26e57adb9bfefdebe7a24c1c732dd13f8f83c617c21a161ffcf9",
       "tasks.md": "20277610b50b3da92b645bcaa77f4fe7e419dbaa9dc948a191e32e5bf0f4d36b",
-      "implementation-summary.md": "f05d5637f7623bdc312c3e159ae5086b348102e1ec806444c78cf4e80cc03380"
+      "implementation-summary.md": "77750811110c3f2ef2accaeb6d64f99d988a19a8eec35371ee4efe7aa8572c6a"
     },
     "last_active_child_id": null,
     "last_active_at": null

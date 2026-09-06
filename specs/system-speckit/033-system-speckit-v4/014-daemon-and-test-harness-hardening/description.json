@@ -19,11 +19,12 @@
     "trees",
     "holding"
   ],
-  "lastUpdated": "2026-08-31T04:30:48.794Z",
-  "specId": "045",
+  "lastUpdated": "2026-09-06T06:46:17.938Z",
+  "specId": "014",
   "folderSlug": "daemon-and-test-harness-hardening",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

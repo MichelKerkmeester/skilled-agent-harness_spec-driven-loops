@@ -13,12 +13,13 @@
     "almost",
     "nothing"
   ],
-  "lastUpdated": "2026-08-30T15:48:21.264Z",
+  "lastUpdated": "2026-09-06T06:44:45.965Z",
   "specId": "012",
   "folderSlug": "fingerprint-docset-enforcement",
   "parentChain": [
     "system-speckit",
-    "036-spec-doc-template-reduction"
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

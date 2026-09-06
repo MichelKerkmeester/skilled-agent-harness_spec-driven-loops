@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
   "spec_folder": "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,12 +48,8 @@
       "implementation-summary.md",
       ".opencode/hooks/goal/lib/goal-core.cjs",
       ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/authority-root/resolve-authority-root.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
-      ".opencode/scripts/run-node-tests.mjs",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
+      ".opencode/scripts/run-node-tests.mjs"
     ],
     "entities": [
       {
@@ -99,39 +95,15 @@
         "source": "derived"
       },
       {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "completion-evidence-sentinel.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
-        "source": "derived"
-      },
-      {
         "name": "resolve-authority-root.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/authority-root/resolve-authority-root.ts",
         "source": "derived"
       },
       {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "run-node-tests.mjs",
         "kind": "file",
         "path": ".opencode/scripts/run-node-tests.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
         "source": "derived"
       },
       {
@@ -153,6 +125,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Seven",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -160,12 +138,6 @@
       },
       {
         "name": "Purpose One",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,11 +171,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard, smart-router-telemetry and spec-gate",
     "created_at": "2026-08-28T08:49:09Z",
-    "last_save_at": "2026-08-30T15:39:36.687Z",
+    "last_save_at": "2026-09-06T06:48:37.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab97c9c1b975e1d1a87a871761a21be1274cc85e0acc7361ef27b69d95d91186",
+    "source_fingerprint": "sha256:5bb8b6fb02ce138600400b42d60ca936da1960de9b803bfa89e495f5a6a5346d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc35c774842a76f3f2c67e2771f215c8ae3bad8bd3868e5cf6e9b9bb73025db2",
+      "spec.md": "2f4110999cb2c957b4d42caedb579152dbdb919520e46ce2ca65c5fe45d4d9c2",
       "plan.md": "82de6a43fdf5d6f3fcb520b8469f9b91e728dc92360083746190a384c7895a41",
-      "tasks.md": "32c996c05340fb5aae357893ac065fa00bddf30f0eb6e6a023b92b95c0e7715b",
-      "decision-record.md": "d56673b0cf7b9b11ba09ee0456c8e2afc99433ce96312eab29d2fb0e14ccca75",
-      "implementation-summary.md": "d6c7f84ca2cd530cb7b73a7f053773063b0ef917bae75e425e974caeaad0d643"
+      "tasks.md": "cbed642130aa21c772fa87929fee816df0987d1487a3bbb1571fadcb044bd3cf",
+      "decision-record.md": "231a5d11e2e1448b4b11b9dde742a4413375d3a300b38b5c911a07b1343fb107",
+      "implementation-summary.md": "3218384c1721a25f36ad3b01b0cfcc621b696c128c669bce90e3b3158daccb23"
     },
     "last_active_child_id": null,
     "last_active_at": null

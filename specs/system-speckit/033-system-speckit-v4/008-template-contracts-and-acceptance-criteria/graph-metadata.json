@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
   "spec_folder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
     "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
@@ -45,16 +45,12 @@
       "goal.md",
       "templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      "scripts/lib/validator-registry.json",
       "002-acceptance-criteria-template/decision-record.md",
       "001-spec-template-context-optimization/goal.md",
       "002-acceptance-criteria-template/goal.md",
       "003-restore-level-upgrade-and-vocabulary-invariance/goal.md",
       "004-checklist-deprecation-closure/goal.md",
-      "templates/addons/acceptance-criteria.md.tmpl",
-      "scripts/rules/check-ac-closure.sh",
-      "scripts/spec/upgrade-level.sh"
+      "templates/addons/acceptance-criteria.md.tmpl"
     ],
     "entities": [
       {
@@ -76,27 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "acceptance-criteria.md.tmpl",
         "kind": "file",
         "path": "templates/addons/acceptance-criteria.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-closure.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-ac-closure.sh",
-        "source": "derived"
-      },
-      {
-        "name": "upgrade-level.sh",
-        "kind": "script",
-        "path": "scripts/spec/upgrade-level.sh",
         "source": "derived"
       },
       {
@@ -168,17 +146,17 @@
     ],
     "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-30T15:39:36.464Z",
+    "last_save_at": "2026-09-06T06:48:32.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4ffa9f101ecce83845f1c28719207efddfe12455676c2128eb7217f6d0d686ff",
+    "source_fingerprint": "sha256:6bcac84baa55db37cd8efd71091846ef0bc05145f7f96cc7926f6097a42716d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8da74987e00e9b9a2114b06793bfa97fe3239a0b7670df1454fdca517e295861"
+      "spec.md": "a0c9fc955faf75e09dae0f67dcc5cf36e0473eb3cc6ccf460ebddce38b1e7dde"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
     "last_active_at": null

@@ -11,12 +11,13 @@
     "every",
     "turn"
   ],
-  "lastUpdated": "2026-08-29T12:13:22.650Z",
+  "lastUpdated": "2026-09-06T06:44:46.046Z",
   "specId": "005",
   "folderSlug": "advisor-integration",
   "parentChain": [
     "system-speckit",
-    "037-decisions-memory-redesign"
+    "033-system-speckit-v4",
+    "004-decisions-and-notes-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -11,12 +11,13 @@
     "index",
     "freshness"
   ],
-  "lastUpdated": "2026-09-05T18:37:47.804Z",
+  "lastUpdated": "2026-09-06T06:44:46.092Z",
   "specId": "004",
   "folderSlug": "save-and-resume-freshness",
   "parentChain": [
     "system-speckit",
-    "054-decommission-debt-fixes"
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

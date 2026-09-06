@@ -11,12 +11,13 @@
     "documents",
     "owned"
   ],
-  "lastUpdated": "2026-08-30T04:17:56.035Z",
+  "lastUpdated": "2026-09-06T06:44:46.147Z",
   "specId": "002",
   "folderSlug": "acceptance-criteria-template",
   "parentChain": [
     "system-speckit",
-    "033-spec-kit-template-optimization"
+    "033-system-speckit-v4",
+    "008-template-contracts-and-acceptance-criteria"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

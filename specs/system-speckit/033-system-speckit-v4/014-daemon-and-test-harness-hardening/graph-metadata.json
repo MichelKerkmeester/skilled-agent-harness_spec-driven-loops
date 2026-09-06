@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
   "spec_folder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
     "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
@@ -46,9 +46,7 @@
       "spec.md",
       "goal.md",
       ".opencode/skills/system-spec-kit/vitest.config.ts",
-      ".opencode/bin/system-spec-memory-launcher.cjs",
       ".opencode/bin/lib/model-server-supervision.cjs",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
       ".opencode/bin/git-live-follow.sh",
       "tests/_support/vitest-setup.ts",
       "ops/README.md",
@@ -77,21 +75,9 @@
         "source": "derived"
       },
       {
-        "name": "system-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/system-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "model-server-supervision.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/model-server-supervision.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "process-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
         "source": "derived"
       },
       {
@@ -175,17 +161,17 @@
     ],
     "causal_summary": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding roughly 290% CPU for 2h35m–4h12m, and one orphaned spec-memory launcher alive at `ppid 1` for 2 days 14 hours",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-08-31T04:30:50.843Z",
+    "last_save_at": "2026-09-06T06:48:23.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6404d175f86657b3a6c16b1d36eb08157adf9210e7d1a06cd3b15b32ecf7e744",
+    "source_fingerprint": "sha256:c4116e2c254ad74828e820e59bd130ca1974b9348c99ecc6b6022bcd5ac09439",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a340eefc0bde35d06a9c83f288e2e95dda89a92465203d3db17ad00b760b3680"
+      "spec.md": "dde3b5af7c1cec3b54ae5a5059b072281bdda2050527d20b4cba3cef1d8c40f1"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-31T04:30:50.843Z"

@@ -18,11 +18,12 @@
     "dependency",
     "edge"
   ],
-  "lastUpdated": "2026-09-06T06:29:28.392Z",
-  "specId": "057",
-  "folderSlug": "metadata-regeneration-and-parser-edges",
+  "lastUpdated": "2026-09-06T06:48:07.718Z",
+  "specId": "024",
+  "folderSlug": "metadata-regeneration-and-shared-parser",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

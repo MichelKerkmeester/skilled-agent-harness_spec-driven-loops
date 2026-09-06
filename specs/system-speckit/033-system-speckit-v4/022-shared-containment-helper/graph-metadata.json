@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/022-shared-containment-helper",
   "spec_folder": "system-speckit/033-system-speckit-v4/022-shared-containment-helper",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -121,6 +121,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -141,12 +147,6 @@
       {
         "name": "a",
         "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. One helper now owns the check so every boundary rejects the same escapes.",
     "created_at": "2026-09-05T19:16:53Z",
-    "last_save_at": "2026-09-05T19:36:52.185Z",
+    "last_save_at": "2026-09-06T06:48:10.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3d8d9798a7a5210519e00de4a0c45b4ffce34f25c86c4f9962f15ea4ec5a9f1",
+    "source_fingerprint": "sha256:c7bbd33a431f1082befd801432536aacb01a841f08f4f13288cef0bc7a175727",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d9f5e253c9e89943148f5bcda2cae292d161746fd9b09f32516c26011988005",
+      "spec.md": "15926ed368f2b74f3527ee1f31e34dceb7d3cfe0810ed28f486e3b2a0c9f3559",
       "plan.md": "7c558c53519b07f1939445020f228b4b21f0735a822ca135968c882daaff2560",
       "tasks.md": "f7be594e3bce51cb34d3a00060412e5eb1cd4d9a3aadc29d179b9b359c1641c5",
-      "implementation-summary.md": "d615755cdbe9cc38087f83674a43c73d8e03f4218ca6e58c4c06a4dd46f18a9d"
+      "implementation-summary.md": "f31fcaa8af289b911e029ad47e21ec4aa1aead24f2b2b272e39a345b5a269972"
     },
     "last_active_at": null
   }

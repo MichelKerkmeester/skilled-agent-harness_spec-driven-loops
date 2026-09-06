@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 043-workspace-path-containment |
+| **Spec Folder** | 011-graph-metadata-write-containment |
 | **Status** | Complete |
 | **Completed** | 2026-08-30 |
 | **Level** | 2 |

@@ -46,9 +46,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scripts/lib/validator-registry.json",
-      "references/validation/validation-rules.md",
-      "mcp-server/ENV-REFERENCE.md"
+      "references/validation/validation-rules.md"
     ],
     "entities": [
       {
@@ -88,21 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "validation-rules.md",
         "kind": "doc",
         "path": "references/validation/validation-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp-server/ENV-REFERENCE.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-30T15:39:36.787Z",
+    "last_save_at": "2026-09-06T06:47:17.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:370e1418a8440bd5150d68496fc6b264bfae296049e7e97de7a3f22ee6935426",
+    "source_fingerprint": "sha256:90053f7ad8206e04e8a88b788953b7258ad847163518d3b6904ca8166f9128bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b90bd84c84aed7ca5f9cd0adea2c914474275afea944980555b5f0aee999ea09",
-      "plan.md": "704a648f71b07fc6f76a2a90f492fc2a58da9eca811caa76a3723df363f71d94",
-      "tasks.md": "7b36a08629af81a6668424238c69df88b27a4abc6ce1e3231a86419d9a2ba938",
-      "implementation-summary.md": "c115286b3598812f80b8f9224ad317ddfca004b8af9fdf583c683dc746b628e4"
+      "spec.md": "1ed1c787514ce369a4a8a480150603055037316fe818d227fe58dcc2cb367ec6",
+      "plan.md": "d8e5a158a6f4cd7d566eb2bd63ca7b8ab7f7dec80d3931ee2c1d76d1ce2f9d56",
+      "tasks.md": "d6399b8f5e3a414d1f27cfc3cd2363533f0479bca04f62a37ff90a6c01b1b7b6",
+      "implementation-summary.md": "92009b081cf436e2b650634fb40b365d89c35974640fcc8f178d1ad6cc5f2c73"
     },
     "last_active_child_id": null,
     "last_active_at": null

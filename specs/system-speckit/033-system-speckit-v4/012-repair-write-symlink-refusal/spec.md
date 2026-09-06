@@ -25,6 +25,10 @@ contextType: "implementation"
 | **Priority** | [P0/P1/P2] |
 | **Status** | Complete |
 | **Created** | 2026-08-30 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 12 of 24 |
+| **Predecessor** | `../011-graph-metadata-write-containment/spec.md` |
+| **Successor** | `../013-repair-handle-containment/spec.md` |
 | **Branch** | `scaffold/044-repair-write-symlink-refusal` |
 <!-- /ANCHOR:metadata -->
 

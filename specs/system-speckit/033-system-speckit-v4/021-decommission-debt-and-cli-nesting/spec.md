@@ -24,6 +24,10 @@ contextType: "general"
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-09-05 |
+| **Parent Spec** | `../spec.md` |
+| **Phase** | 21 of 24 |
+| **Predecessor** | `../020-runtime-package-rename/spec.md` |
+| **Successor** | `../022-shared-containment-helper/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 

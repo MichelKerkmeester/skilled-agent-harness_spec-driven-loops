@@ -47,15 +47,8 @@
       "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs",
       ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/parse-bool-flag.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
-      "scripts/spec/create.sh",
-      "scripts/spec/upgrade-level.sh",
-      "scripts/lib/completion-state.cjs",
-      "shared/parsing/spec-doc-health.ts",
-      "scripts/lib/parse-bool-flag.sh"
+      "shared/parsing/spec-doc-health.ts"
     ],
     "entities": [
       {
@@ -95,33 +88,9 @@
         "source": "derived"
       },
       {
-        "name": "completion-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "spec-doc-health.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "parse-bool-flag.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/parse-bool-flag.sh",
-        "source": "derived"
-      },
-      {
-        "name": "upgrade-level.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -201,11 +170,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Each of these was reproduced against the live tree",
     "created_at": "2026-08-30T13:58:21Z",
-    "last_save_at": "2026-08-30T15:23:14.940Z",
+    "last_save_at": "2026-09-06T06:47:48.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c935e698a415a3a7bda7d3c30b727d39e46258dadd76fff23a27e3c3de36bd31",
+    "source_fingerprint": "sha256:903d0f8f3dc6a0c03395fac4061b4afde03e4bc9651eeb4087c2d5a836810027",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83745aa135061e4f62250b8061694663784d55874817aa7d7c89b9c45f6caabc",
+      "spec.md": "61dc5ecb56cd9cab2afbf0e89d42a1e7015a10a249b0939896ab54b8e76b7cb8",
       "plan.md": "4ce64df7e8138d6a364a6ccf63e819474706359205c000d2aaf49fec6d48e024",
       "tasks.md": "0ca9e433a79dab5404bc34f49b49ddd2a76d29acedd6ce436fbfb71a781bf132",
-      "decision-record.md": "13c87fd55a5a9e02a4a6700c5750eaa4a7edb31676db0a32e8d3faddcb6009c0",
-      "implementation-summary.md": "c39dbfa70fdc90551c6e2f894e5d8c5219e175e27fea59dcacbcfc3a51e4f942"
+      "decision-record.md": "15f9d91bddaf35a53c22d96500be2002a45272d78937ab17820a538b5f73e0bc",
+      "implementation-summary.md": "75f5aa3639617f224ea1dde0bb13b867df0c4ecf676658d31804e25600dda324"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -45,10 +45,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
-      "mcp-server/scripts/run-tests.mjs",
-      "mcp-server/vitest.config.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -79,18 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-tests.mjs",
-        "kind": "file",
-        "path": "mcp-server/scripts/run-tests.mjs",
         "source": "derived"
       },
       {
@@ -194,11 +179,23 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "recorded",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
     "created_at": "2026-08-30T09:55:28Z",
-    "last_save_at": "2026-08-31T04:07:53.894Z",
+    "last_save_at": "2026-09-06T06:47:08.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d09a37ec03c4b2805f7c1c361d32231a45b83546ba0ae3f6de10270e820a89a",
+    "source_fingerprint": "sha256:c46d8fabaa5b2ee9b599f18575b4728ae1e151752ca6bf3b984b4ce6c483b3be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c4ec08d5205f7b437a6895476c7b6d04b10f8ebcb8da00d6946737867b0220c",
+      "spec.md": "9a11eac2fe28cbd1504d607c49d7a3e77c299962332a2a0ee6fe1bde774ec383",
       "plan.md": "304a0ad8619333ab6bc6ad9461ecf23d560588635e4f70942a9b97622a78847d",
       "tasks.md": "fa4d0c0b3e50a0d19e667f62c0ee9e5138b0614005e3c81dcedc17d62c55a077",
-      "implementation-summary.md": "fd4cf83dbc085b7789c2815fc0e59ca11331e37f2c2dc3c3a01feaa233a5b761"
+      "implementation-summary.md": "923372ad87c64df50a43956da6787f4ce8cb5661cb3f1826f477a28cbf58bbe9"
     },
     "last_active_child_id": null,
     "last_active_at": null

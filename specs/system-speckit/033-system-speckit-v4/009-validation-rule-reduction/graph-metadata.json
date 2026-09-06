@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
   "spec_folder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
     "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
@@ -41,37 +41,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      "mcp-server/lib/validation/orchestrator.ts",
-      "scripts/lib/validator-registry.json",
-      "scripts/spec/create.sh"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -113,16 +89,16 @@
     ],
     "causal_summary": "The completion gate fails roughly two thirds of the live corpus, and the",
     "created_at": "2026-08-29T17:24:49.641Z",
-    "last_save_at": "2026-08-30T14:03:04.299Z",
+    "last_save_at": "2026-09-06T06:48:31.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9ba5fec61da5e3ab3c4a0c4abb4c65dd01147c72152103eb4f9d07e5cc69456f",
+    "source_fingerprint": "sha256:92d14f047b2fc936fac0aaba16a92e3c2bab343a9a393adc47199f040a65b682",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44b3838b4e02c805de1514a5341ae00e72513fc9c52dbd43bba12b76a28a281e"
+      "spec.md": "d15fce61bbb20a8864cd46db65ecf83ce5dc6b76ccb2bbe6f9ac3d5de043c937"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
     "last_active_at": null

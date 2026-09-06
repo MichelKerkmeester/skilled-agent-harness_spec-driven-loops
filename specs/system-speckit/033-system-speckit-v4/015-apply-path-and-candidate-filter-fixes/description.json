@@ -17,11 +17,12 @@
     "conditional",
     "findings"
   ],
-  "lastUpdated": "2026-08-31T05:35:07.767Z",
-  "specId": "047",
-  "folderSlug": "review-remediation",
+  "lastUpdated": "2026-09-06T06:48:21.497Z",
+  "specId": "015",
+  "folderSlug": "apply-path-and-candidate-filter-fixes",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "033-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

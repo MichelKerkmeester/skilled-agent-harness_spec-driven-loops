@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
   "spec_folder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
-  "parent_id": null,
+  "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [
     "system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement",
     "system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire",
@@ -52,7 +52,6 @@
       ".claude/mcp.json",
       "AGENTS.md",
       "specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
-      "scripts/spec/validate.sh",
       "001-trigger-index-replacement/goal.md",
       "002-memory-consumer-rewire/goal.md",
       "003-spec-memory-server-removal/goal.md",
@@ -61,9 +60,7 @@
       "006-legacy-memory-surface-inventory/goal.md",
       ".codex/config.toml",
       ".cursor/mcp.json",
-      ".pi/mcp.json",
-      "scripts/lib/validator-registry.json",
-      "lib/description/repair.ts"
+      ".pi/mcp.json"
     ],
     "entities": [
       {
@@ -97,27 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "repair.ts",
-        "kind": "code",
-        "path": "lib/description/repair.ts",
         "source": "derived"
       },
       {
@@ -195,17 +174,17 @@
     ],
     "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-04T09:15:52.846Z",
+    "last_save_at": "2026-09-06T06:48:18.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b3e6187cc512b471d1a8d563f1c666e511e1a387960bad6f8f135297dbb153c6",
+    "source_fingerprint": "sha256:1fba331187e13eaf88ef5bf1bbd3feb100ab0e79114de9fcb060b4452d869fb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0519d22a974a9a6762ef4e6749400dbbe30661906141d9aaf7ecfdf0b0d1fa7d"
+      "spec.md": "e16ef88b0b25eb740d777c56aaef9ff3244935e8d7aaa6f07ba7c0bc70e3119a"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
     "last_active_at": null
