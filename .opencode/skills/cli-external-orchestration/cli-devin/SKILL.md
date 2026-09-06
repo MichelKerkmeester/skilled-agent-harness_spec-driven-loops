@@ -32,7 +32,7 @@ hard_rules:
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 
-Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspective, multi-model selection (DeepSeek, Gemini, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-1.7), subagent delegation with `run_subagent`, cloud handoff via `/handoff`, or parallel code generation.
+Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspective, multi-model selection (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-1.7), subagent delegation with `run_subagent`, cloud handoff via `/handoff`, or parallel code generation.
 
 **Core Principle**: Use Devin for what it does best. Delegate, validate, integrate. The calling AI stays the conductor.
 
@@ -45,7 +45,7 @@ Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspe
 - **Cross-AI Validation** — code review second perspective, security audit alternative analysis, bug detection, independent implementation attempts.
 - **Cloud Handoff** — long-running tasks, complex refactors, CI-like validation, browser-dependent workflows offloaded to a cloud Devin session via `/handoff`.
 - **Subagent Delegation** — specialized profile matches (`subagent_explore`, `subagent_general`, custom `.devin/agents/[name]/AGENT.md` profiles), parallel task processing through Devin's native subagent system.
-- **Multi-Model Dispatch** — tasks that specifically want a model available through Devin's multi-model surface (DeepSeek, Gemini, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-1.7), selected per-dispatch with `--model`.
+- **Multi-Model Dispatch** — tasks that specifically want a model available through Devin's multi-model surface (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-1.7), selected per-dispatch with `--model`.
 - **Parallel Code Generation** — offloading generation, simultaneous code generations, background docs/test generation through subagents.
 - **Specialized Generation** — explicit Devin requests, test suite generation, code translation, batch documentation, visual input via clipboard paste or `@` file mentions.
 
@@ -246,7 +246,7 @@ Honor whichever dimensions the user names. Model stays on `swe` and permission m
 
 ### Model Selection
 
-Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-flash-max`), Gemini (`gemini-3-8-flash-high`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-flash-max`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
 **Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-1-7` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 

@@ -13,7 +13,8 @@
     "cli-external-orchestration/032-per-mode-provider-model-reference",
     "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
     "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
-    "cli-external-orchestration/035-improved-communication"
+    "cli-external-orchestration/035-improved-communication",
+    "cli-external-orchestration/065-retire-gemini-devin-route"
   ],
   "manual": {
     "depends_on": [],

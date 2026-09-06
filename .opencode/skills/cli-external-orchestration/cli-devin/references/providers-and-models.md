@@ -22,7 +22,7 @@ The single catalog of the models, aliases, defaults, permission-mode lever, and 
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the five families kept in scope for cli-devin: DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max only), and SWE-1.7.
+One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the families kept in scope for cli-devin: DeepSeek, GLM-5.2, GPT-5.6 (Luna Max only), Grok, and SWE-1.7. Gemini 3.8 Flash High was retired from this route on 2026-09-06 (see the note below).
 
 ### When to Use
 - Choosing a `--model <alias>` for a `devin -p` dispatch
@@ -50,7 +50,6 @@ Alphabetical by family, then by model uid within each family.
 | Family | Model uid | Context | Notes |
 |--------|-----------|---------|-------|
 | DeepSeek | `deepseek-v4-flash-max` | 1M | DeepSeek V4 Flash, Max thinking tier (added 2026-08-14) |
-| Gemini | `gemini-3-8-flash-high` | 1M | Google Gemini 3.8 Flash High thinking tier; family slug `gemini-3.8-flash`, alias `gemini` (added 2026-08-15) |
 | GLM-5.2 | `glm-5-2` | 200K | High — free tier |
 | GLM-5.2 | `glm-5-2-1m` | 1M | High, 1M context |
 | GLM-5.2 | `glm-5-2-max` | 200K | Max (paid) |
@@ -67,7 +66,7 @@ Alphabetical by family, then by model uid within each family.
 - Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias currently resolves to `swe-1-7-lightning`; pin the exact uid in scripts for predictability.
 - **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` (the Max thinking tier of the DeepSeek V4 Flash family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. These four were **list-verified only, not dispatch-tested** (operator decision).
 - **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max` — on devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking (`--thinking max` / `--variant max`).
-**Gemini 3.8 Flash High joins (2026-08-15).** `gemini-3-8-flash-high` is the first Gemini uid in this catalog (four families → five). Devin labels it "Gemini 3.8 Flash High" with a 1M context window; the minimal/low/medium sibling tiers stay out of scope. The uid was confirmed present verbatim in the live `devin models list` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
+**Gemini 3.8 Flash High retired from cli-devin (2026-09-06).** The uid `gemini-3-8-flash-high` was in scope from 2026-08-15 and is now rejected by the fan-out allowlist: Devin bills it at twice the 3.7 rate and a single two-iteration research pass exhausted the daily quota. Gemini 3.8 Flash High stays reachable through the cursor route; do not dispatch it through Devin.
 - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled; `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
 - This is a curated subset. Devin's full 37-family roster (Claude, GPT, other Gemini, Kimi, older SWE, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
 - Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default, `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.

@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/065-retire-gemini-devin-route",
+  "description": "Devin bills Gemini 3.8 Flash High at twice the 3.7 rate",
+  "keywords": [
+    "devin",
+    "bills",
+    "gemini",
+    "flash",
+    "high",
+    "twice",
+    "rate"
+  ],
+  "lastUpdated": "2026-09-06T09:42:59.636Z",
+  "specId": "065",
+  "folderSlug": "retire-gemini-devin-route",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

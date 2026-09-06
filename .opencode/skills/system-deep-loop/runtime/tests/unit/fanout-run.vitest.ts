@@ -1470,7 +1470,6 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
       'deepseek-v4-flash-max',
-      'gemini-3-8-flash-high',
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
       'gpt-5-6-luna-max', 'gpt-5-6-luna-max-priority',
       'swe', 'swe-1-7', 'swe-1-7-lightning', 'swe-1-7-medium',
@@ -1485,7 +1484,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const binDir = makeTempDir('fanout-run-devin-rejected-model-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus', 'gemini-3-8-flash-low', 'gemini-3-7-flash-high', 'deepseek-v4', 'deepseek-v4-pro', 'deepseek-v4-pro-max']) {
+    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus', 'gemini-3-8-flash-high', 'gemini-3-8-flash-low', 'gemini-3-7-flash-high', 'deepseek-v4', 'deepseek-v4-pro', 'deepseek-v4-pro-max']) {
       expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }

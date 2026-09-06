@@ -325,7 +325,7 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * Enforced allowlist of devin --model ids. Devin exposes 37 model families and
  * accepts a family slug, an alias, or a full model uid, which is far more
  * surface than deep-loop dispatch needs or has prompt-craft data for. This set
- * is the curated six-family scope: DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna
+ * is the curated five-family scope: DeepSeek, GLM-5.2, GPT-5.6 (Luna
  * Max only), Grok (4.5 and 4.6), and SWE-1.7. Every entry was read from the
  * live `devin models list` — no id here was inferred from documentation.
  * Entries are sorted alphabetically, not grouped by family.
@@ -353,19 +353,13 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * four were list-verified only, NOT dispatch-tested (operator decision) — no
  * dispatch-test claim is made for them.
  *
- * Gemini 3.7 Flash High joined this allowlist (2026-08-15):
- * gemini-3-8-flash-high — the Gemini uid in the curated Devin scope, moved up
- * from 3.7 on 2026-09-04. Devin also moved its bare `gemini` alias onto the 3.8
- * family, and prices 3.8 at twice 3.7
- * (sixth curated family). Devin labels it "Gemini 3.7 Flash High" with a 1M
- * context window; the minimal/low/medium sibling tiers stay out of scope.
- * Confirmed present verbatim in the live `devin models list` output and
- * dispatch-tested end-to-end (probe dispatch returned a live model response,
- * exit 0) on 2026-08-15.
+ * Gemini 3.8 Flash High was in this scope from 2026-08-15 to 2026-09-06 and was
+ * retired by operator decision: Devin bills it at twice the 3.7 rate and one
+ * research pass exhausted the daily quota. It stays reachable through the
+ * cursor route only.
  */
 export const DEVIN_SUPPORTED_MODELS = [
   'deepseek-v4-flash-max',
-  'gemini-3-8-flash-high',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',

@@ -2188,12 +2188,11 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // DeepSeek max tiers (deepseek-v4-flash-max, deepseek-v4-pro-max) and the first
 // GPT-5.6 persona uids (gpt-5-6-luna-max, gpt-5-6-luna-max-priority; -priority
 // is Devin's Fast variant) joined 2026-08-14, list-verified via `devin models
-// list` (not dispatch-tested). Gemini 3.8 Flash High (gemini-3-8-flash-high)
-// joined 2026-08-15, the first Gemini uid in the curated Devin scope —
-// list-verified and dispatch-tested.
+// list` (not dispatch-tested). Gemini 3.8 Flash High was retired from this
+// scope on 2026-09-06: Devin bills it at twice the 3.7 rate and one research
+// pass exhausted the daily quota; it remains reachable through cursor only.
 const DEVIN_ALLOWED_MODELS = new Set([
   'deepseek-v4-flash-max',
-  'gemini-3-8-flash-high',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',
