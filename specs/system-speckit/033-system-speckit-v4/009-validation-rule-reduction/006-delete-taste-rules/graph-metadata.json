@@ -16,8 +16,13 @@
       "validation rule deletion",
       "delete taste rules plan",
       "advisory rule deletion plan",
+      "advisory rules no reader",
+      "corpus verdicts identical",
+      "repo-wide consumer search",
       "delete taste rules tasks",
-      "delete taste rules summary"
+      "nine advisory rules deleted",
+      "validator-registry entries removed",
+      "pinned sample verdicts identical"
     ],
     "key_topics": [
       "delete",
@@ -29,9 +34,9 @@
       "rule",
       "deletion",
       "plan",
-      "tasks",
-      "summary",
-      "remove"
+      "reader",
+      "corpus",
+      "verdicts"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -190,7 +195,7 @@
     ],
     "causal_summary": "Remove the rules that no code path and no downstream workflow reads, so that",
     "created_at": "2026-08-30T06:17:43Z",
-    "last_save_at": "2026-09-06T06:47:24.524Z",
+    "last_save_at": "2026-09-06T07:05:06.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:501636231f75ab1b0c79c05f799fa6ab86a8a6c8d9411a1104347600d3a36ce3",
+    "source_fingerprint": "sha256:f2f67df768e56d7241b497b875438e428cca4ace38638db364c9d25017094054",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a37440d9c2f7e2ad60d081a426691fe5a061032e0d8234ea732aea6ed51b291",
-      "plan.md": "1739ba78f0a29e9849c44e6ff25385981d628d1e823199279fea8e35ff5e0249",
-      "tasks.md": "c05b14d10006c75513424910e09457366fca9a61d942daa7cfd08082911ec156",
-      "implementation-summary.md": "17994ab2b6872bbf2321683eba1d134dc3fafebad6e22149bfe2173c87160523"
+      "plan.md": "73e17e81013fb5e98e137612d94dc616cc4dcc84b4be725e2b1d6b5ead6ef151",
+      "tasks.md": "b56af4629affecad17f466b6e3c544184511103725c3d3ebfe9460bfe13d2397",
+      "implementation-summary.md": "4d953ae143937e7d6082eddf468c7a13ff27f671194252802955650fa9a5ccd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

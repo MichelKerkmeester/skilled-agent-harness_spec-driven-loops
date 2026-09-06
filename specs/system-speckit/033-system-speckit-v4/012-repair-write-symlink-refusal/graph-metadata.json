@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "symlink refusal scope",
-      "directory swap write through"
+      "repair write symlink refusal",
+      "writeExistingFileNoFollow helper",
+      "symlink traversal disabled at open",
+      "path swapped after scan",
+      "scan classifies regular file",
+      "declined resume containment finding",
+      "repair write symlink plan",
+      "open with traversal disabled",
+      "named refusal not raw errno",
+      "graph metadata repair write path",
+      "repair write symlink tasks",
+      "refuse symlink traversal at open"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
+      "repair",
+      "write",
       "symlink",
       "refusal",
-      "scope"
+      "writeexistingfilenofollow",
+      "helper",
+      "traversal",
+      "disabled",
+      "open",
+      "path",
+      "swapped",
+      "scan"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry — which reports on the link itself, so symlinks are correctly skipped",
     "created_at": "2026-08-30T08:24:08Z",
-    "last_save_at": "2026-09-06T06:48:26.482Z",
+    "last_save_at": "2026-09-06T07:05:17.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b7284f5efe0265bdde709c35318a882f923153afe45a5190f38559c50cc4569",
+    "source_fingerprint": "sha256:db0d1cd40f9542928ebb709ac0ffd89a7f338d0b987a52b9a3a48f26bd04a01a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "00d96897a75c1496111d9d56cce1bd936f2f5d1f39cee06cf221ace35763e9e3",
-      "plan.md": "fe4e15999b047a9409074d2fc5d4898acf5086701d3f92afbf125e5f18b1d615",
-      "tasks.md": "cd732555159e960de4d095299cff830dce8455f0f15c2ddc180c9bd59a201da3",
+      "spec.md": "e756ec0b0dd174325abf5bfa7791a4f48a861435c01cb0a621d6c445cc3a7f22",
+      "plan.md": "0783bfa2078189cd523cf5c40e3ba93147eb2e5d528f102394ac6f263ca8fa45",
+      "tasks.md": "10b22b0477fd26aef0479fc7f570eb91637718848013399ce28f37468053014b",
       "decision-record.md": "4318e38ea077097305a09676c8bc810042c8729b6cb838af9f6c9e13c9e207ce",
-      "implementation-summary.md": "8e10bdd87f3c0605c206063b802ee92e2ffc0dd436e98da282069f988278b0af"
+      "implementation-summary.md": "b1aa5c36ec9d1d30b5cd7f7b35b36ff0f4c7c53007c42f66003f8509ddc63464"
     },
     "last_active_child_id": null,
     "last_active_at": null

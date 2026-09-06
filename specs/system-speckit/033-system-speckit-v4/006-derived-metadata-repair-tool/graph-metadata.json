@@ -15,12 +15,14 @@
       "repair-derived",
       "spec packet autofix",
       "packet validation repair",
-      "derived repair plan",
-      "repair-derived plan",
-      "derived repair tasks",
-      "repair-derived tasks",
-      "derived repair summary",
-      "repair-derived status"
+      "derived metadata repair plan",
+      "repair outside specs tree",
+      "fleet checker precedent",
+      "generated-metadata fingerprint re-derivation",
+      "repair-derived reporting mode",
+      "repair-derived fixtures",
+      "derived failures recomputable",
+      "authored packet byte-identical"
     ],
     "key_topics": [
       "derived",
@@ -30,11 +32,11 @@
       "packet",
       "autofix",
       "validation",
+      "metadata",
       "plan",
-      "tasks",
-      "summary",
-      "status",
-      "spec-packet"
+      "outside",
+      "specs",
+      "tree"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -169,7 +171,7 @@
     ],
     "causal_summary": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
     "created_at": "2026-08-28T19:49:57.185Z",
-    "last_save_at": "2026-09-06T06:48:35.440Z",
+    "last_save_at": "2026-09-06T07:05:19.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,13 +180,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:292bc7994b76b9ed673b374d000f7d949b5ba4549d9dcf5e30cd4be305f778c8",
+    "source_fingerprint": "sha256:e0feec825a000f671885bc07b29b07d20f2109d1075f391f51b7f939082e511b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f775d73fa86aae95bc62aa2ab97bf7886df9936dd3469b9085995b34eb89ea42",
-      "plan.md": "e61dc29f460f3141f2b4187be60a0bb8d3031eed363cc9535fbc3fcef255efb9",
-      "tasks.md": "61da59127d36bf4197fb83391423c2204c1052a01bee03d23fe089f3437e0243",
-      "implementation-summary.md": "c7a4294dfa9cf2ca3adf2b11377ea0c4b3969beb83545e70b835de2a9a58f895"
+      "plan.md": "83a9601b6e30c5b219ac5897ebdae7a1e6b8153c88a001ef13f91ae76b1d3d9d",
+      "tasks.md": "fb72ca5fa1c4f1de171afc8a502f7a7d517808da839e7dcb4c3fc3f9e6a7bc93",
+      "implementation-summary.md": "1b72df3c438e5753dd27ea45261e2c4d7f17e0e80796f54d18f7d1626eeea426"
     },
     "last_active_child_id": null,
     "last_active_at": null

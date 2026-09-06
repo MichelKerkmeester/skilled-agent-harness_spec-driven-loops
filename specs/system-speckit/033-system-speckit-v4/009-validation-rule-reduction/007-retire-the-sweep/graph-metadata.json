@@ -16,8 +16,13 @@
       "spec packet merge gate",
       "retire the sweep plan",
       "changed packet gate plan",
+      "packet resolution rule",
+      "nearest ancestor spec",
+      "gate blocks and passes",
+      "cron retired after proven",
       "retire the sweep tasks",
-      "retire the sweep summary"
+      "changed packet resolution rule",
+      "packet-resolution rule tested"
     ],
     "key_topics": [
       "retire",
@@ -29,9 +34,9 @@
       "merge",
       "gate",
       "plan",
-      "tasks",
-      "summary",
-      "block"
+      "resolution",
+      "rule",
+      "nearest"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -190,7 +195,7 @@
     ],
     "causal_summary": "Make the gate block the thing it can fairly block: the packets a change",
     "created_at": "2026-08-30T06:31:14.942Z",
-    "last_save_at": "2026-09-06T06:47:22.917Z",
+    "last_save_at": "2026-09-06T07:05:06.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d40be719f6cbb9825e4bd9d8d13554705373a324218bd6d7896eef39ed18bfa8",
+    "source_fingerprint": "sha256:13e61abbd6044af3d89129a79083e48bddfb4158fc3f3409d2534f45dfa09611",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "735dae8862ce281d4965816b240669ff62c595fe3b62fd666e5cac5192386d74",
-      "plan.md": "3ab0ff80dc4d024149a9ed49d0d6c90a3edbfa9d8c82d57b2e50ac95b229c149",
-      "tasks.md": "3780bc1cabdc3257e03c1e6d53819fc3baa69a9cd1b928c225e23123ab1543b2",
-      "implementation-summary.md": "9e69acaafd356d8e0a29b3e240806d748e0e7b96f3566d7119168edb4601cd47"
+      "plan.md": "77acc35396b079c1be0338b0916e0b65a3498ab9ba91ee4c247f783b4a24dca5",
+      "tasks.md": "02c03c86e929e12534922467b67c6869b0c19ad32ac11b047cb8750a50e1994a",
+      "implementation-summary.md": "6e428ea4cac083cf00e6fe6f28e63744f63e6ade60e5715ff4b7ae0c8debf8b3"
     },
     "last_active_child_id": null,
     "last_active_at": null

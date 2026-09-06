@@ -16,13 +16,13 @@
       "retarget links",
       "delete constitutional folder",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "phase four rehome rules content",
+      "rehome rules content",
+      "rules content relocation",
+      "constitutional rules rehome",
+      "rehome plan approach",
+      "phase four rehome tasks",
+      "rules relocation tasks"
     ],
     "key_topics": [
       "rehome",
@@ -36,7 +36,7 @@
       "folder",
       "spec",
       "core",
-      "implementation"
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
     "created_at": "2026-08-26T05:34:13Z",
-    "last_save_at": "2026-09-06T06:47:42.529Z",
+    "last_save_at": "2026-09-06T07:05:10.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:be1087d3551f975842e7fef555643b6a8858c67c6e577211568af512926273b1",
+    "source_fingerprint": "sha256:a964d846ada28554038d40798b75307d115768d36eb50ef02776919977342699",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e43179de383bdd5b2ab5966564d0478c8d195f0e7d0c848a132ac23aecc67241",
-      "plan.md": "e59b32be15e5b67939955ce65bc4a3640a5d13ceeedf39056a03b648aa041a50",
-      "tasks.md": "740559866f08e921da5f85e0303d62720189766f8f3dc6ba5819cbe19db0b0f5",
-      "implementation-summary.md": "cdc226f36828d5c62c279a2b6dae85c467c128e05ff5892f57441b5e4e5bb048",
+      "plan.md": "fcbb554aa3abd03ee04ee31c385d8a6ecbed9211a55e80f9d3d5696ae0219dd4",
+      "tasks.md": "a788fc234a034393579be1ced657a166e1fb3305fa0dc81878285d5d8514f994",
+      "implementation-summary.md": "41327621eecd319f33295d8aa7db953aca5eaaef41201f9bdba27e3a4e274b6a",
       "research/research.md": "65d60affc61c68b5c0fa65864e378abc1572d0a9bee5b181c487e105b590c0a9"
     },
     "last_active_child_id": null,

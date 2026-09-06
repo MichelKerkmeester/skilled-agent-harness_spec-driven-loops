@@ -15,14 +15,14 @@
       "phantom children after rename",
       "track root sweep",
       "validator registry rule",
-      "implementation plan",
-      "technical approach",
-      "task breakdown",
-      "implementation tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "graph metadata child identity plan",
+      "identity aware pruning merge",
+      "GRAPH_METADATA_CHILD_IDENTITY shell rule",
+      "track roots sweep script",
+      "backfill prune prediction parity",
+      "graph metadata child identity tasks",
+      "census drift 127 packets",
+      "prune foreign identity children"
     ],
     "key_topics": [
       "graph",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated. A refresh now prunes foreign-identity children, a registry rule reports any that remain, and a sweep reports declared-versus-actual child counts for every track root.",
     "created_at": "2026-09-05T21:16:57Z",
-    "last_save_at": "2026-09-06T06:46:39.260Z",
+    "last_save_at": "2026-09-06T07:05:00.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe4101d1546d792bc73e8c4af1682c5a7c97ca1125a9c9365625b45e695764bf",
+    "source_fingerprint": "sha256:fc632191425726b379ec70e024a5701036ccefe5bdeb88e59eea03542f2bb83d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49edef57ab8dc6346e461ee89bc3e986eea31ca5fc74d662b812911a5446e3ef",
-      "plan.md": "71927cb2631cce5f434797bfaee9058c870d83a3c0e665dd0c9bcf6db4a7f3cc",
-      "tasks.md": "8fe54456a1680ba4aa3fe9f8d8b4e3c58ceaa0ac8d9e189bf388a7553661e7e2",
-      "implementation-summary.md": "c16b4b583b3a7682a4130a825c0c786dc5e4a26cbbc2fefd85cdccb4e3daf425"
+      "plan.md": "d1865c6b8293026dd8756d16c8285e8d18ade243e9819e7c05afb12442896440",
+      "tasks.md": "8d71b8547b3c5d67665dd372ef220e07fcc42ff35941acbef592a19f6b927d67",
+      "implementation-summary.md": "8b875ecf25cc120e73151c5953a9e42cd8f3b5c59c3f4dfc4c677668a5ad593b"
     },
     "last_active_at": null
   }

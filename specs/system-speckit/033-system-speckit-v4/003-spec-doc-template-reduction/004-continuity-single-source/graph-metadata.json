@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The ~16-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across five docs in an L2 packet",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-09-06T06:48:02.143Z",
+    "last_save_at": "2026-09-06T07:05:13.835Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6f517e9590dd07b4a773106a81b43cfabcb43599b917f47f395dd212974ca30",
+    "source_fingerprint": "sha256:75bd0a1903f4668f7b59119a277b8ff14f42c641f1e04a218031b87a07389f0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a9061981db512ee1e8d0a77a8b416f6bd8bc78808c54b21b2997e323eddbb4c",
       "plan.md": "9bd1864d953acdc73116d44c7610c893fb886e46a34b2b44b5f3cf89fded20c3",
       "tasks.md": "2ee2147251dd79f3a73c41d3595e7b72688e2bdf2b5bf4ee6c01ebec41907afd",
-      "implementation-summary.md": "86c21ed67763d353fff7a7c471ea22e75d2b30ed57ebe545881920bdf8264c15"
+      "implementation-summary.md": "72ba0817ecebdc0f02301b536c180a52d41070f0a1ce251dc7e04985db8f2265"
     },
     "last_active_child_id": null,
     "last_active_at": null

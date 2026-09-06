@@ -15,14 +15,14 @@
       "mkHookDrift fallback",
       "improvement artifact family",
       "improvement config rule",
-      "implementation plan",
-      "technical approach",
-      "task breakdown",
-      "implementation tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "claude cursor fallback wrap",
+      "improvement artifact family doc",
+      "IMPROVEMENT_ARTIFACTS rule",
+      "doctor health rows adapters",
+      "parity marker per host",
+      "hook drift marker claude cursor tasks",
+      "wrap adapter invocation fallback",
+      "improvement folder structure doc"
     ],
     "key_topics": [
       "hook",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the deep-improvement commands write is documented in the folder structure and checked by a validator rule.",
     "created_at": "2026-09-05T21:16:58Z",
-    "last_save_at": "2026-09-06T06:46:37.690Z",
+    "last_save_at": "2026-09-06T07:05:00.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef8325d49ac05c24a2047798d4de66480444c4a1f0d6b13df27b1d0757999253",
+    "source_fingerprint": "sha256:d2d7148d094a3a57f44cd65b5a77c59f2d4d1644c5fa6fc43d82708ed544447e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c7fe8620f74f600a4ca4bcc43d8f2c1b4348b6a903b0d3c13c815685767ef62",
-      "plan.md": "8ba80f43392b5d7eafdd41eac86059e67de73092c10c97a972f015d659289dc9",
-      "tasks.md": "1362030a63494bf50849d8467cc51ce8bf39c63621c75727ac60312a928d0fcc",
-      "implementation-summary.md": "bacad529e75b46a2ad630799d507ba2a51c5582e856f7a21c8b72a02b3d1b82d"
+      "plan.md": "5b674f76363dcb5787cd8240b2ca1354066f113764db8a11ddec22998c160255",
+      "tasks.md": "30d6cd1a077fd3f29d56fa66798646d86fe55d759e9710d853a75dded9ca1712",
+      "implementation-summary.md": "183285b1c04ccb21fbcb8007320e5e38c816ce771218d7572fa85af08f157c52"
     },
     "last_active_at": null
   }

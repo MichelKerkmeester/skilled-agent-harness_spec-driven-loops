@@ -17,12 +17,12 @@
       "verification region missing from scaffold",
       "read path closure plan",
       "scaffold verification region",
+      "level inference replacement document",
+      "flag parser unrecognized value",
+      "level two tasks verification region",
+      "reference sweep historical mentions",
       "read path closure tasks",
-      "acceptance criteria",
-      "closure gate",
-      "read path closure criteria",
-      "evidence rule successor",
-      "advisory rule deleted"
+      "scaffold honors requested level"
     ],
     "key_topics": [
       "retirement",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Each of these was reproduced against the live tree",
     "created_at": "2026-08-30T13:58:21Z",
-    "last_save_at": "2026-09-06T06:47:48.367Z",
+    "last_save_at": "2026-09-06T07:05:11.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:903d0f8f3dc6a0c03395fac4061b4afde03e4bc9651eeb4087c2d5a836810027",
+    "source_fingerprint": "sha256:50cffb2e29f493713aa868335e477a75b6a5aa3b2acc85c3d0482267fa73b3fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61dc5ecb56cd9cab2afbf0e89d42a1e7015a10a249b0939896ab54b8e76b7cb8",
-      "plan.md": "4ce64df7e8138d6a364a6ccf63e819474706359205c000d2aaf49fec6d48e024",
-      "tasks.md": "0ca9e433a79dab5404bc34f49b49ddd2a76d29acedd6ce436fbfb71a781bf132",
-      "decision-record.md": "15f9d91bddaf35a53c22d96500be2002a45272d78937ab17820a538b5f73e0bc",
-      "implementation-summary.md": "75f5aa3639617f224ea1dde0bb13b867df0c4ecf676658d31804e25600dda324"
+      "plan.md": "fdda80015c9e97b4d3b597071895cce310a8e073a11209f7aee385fa7847b1f8",
+      "tasks.md": "1ff7dd5dbb3c284833065056f4f93c606e904f682e877bae94fc6e0d1fcc7d97",
+      "decision-record.md": "2b9e09777261f8a15bdc536ec897f98f12936046ab50c23d85ab434526c0f9cf",
+      "implementation-summary.md": "f0631c7d0b8c8fe93339ffbe40cf5c0126dc3d064d1f8844a3c6fc175eecbab4"
     },
     "last_active_child_id": null,
     "last_active_at": null

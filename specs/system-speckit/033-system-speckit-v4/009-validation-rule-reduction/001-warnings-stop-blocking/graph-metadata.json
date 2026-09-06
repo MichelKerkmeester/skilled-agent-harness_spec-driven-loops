@@ -13,9 +13,16 @@
     "trigger_phrases": [
       "warnings stop blocking",
       "strict warn promotion",
+      "warnings no longer fail",
+      "strict selects which rules run",
+      "promotion clause removed",
+      "per-packet sample compare",
       "warnings stop blocking plan",
-      "warnings stop blocking tasks",
-      "warnings stop blocking status"
+      "fixed sample measure",
+      "promotion clause removal",
+      "enforcement path restore",
+      "no packet passing to failing",
+      "warnings stop blocking tasks"
     ],
     "key_topics": [
       "warnings",
@@ -24,12 +31,12 @@
       "strict",
       "warn",
       "promotion",
-      "plan",
-      "tasks",
-      "status",
-      "mode",
-      "decides",
-      "rules"
+      "longer",
+      "fail",
+      "selects",
+      "rules",
+      "run",
+      "clause"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -187,7 +194,7 @@
     ],
     "causal_summary": "Strict mode decides which rules run; it stops deciding what a warning means.",
     "created_at": "2026-08-29T17:25:57.562Z",
-    "last_save_at": "2026-09-06T06:47:32.030Z",
+    "last_save_at": "2026-09-06T07:05:08.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb645542d20ad4feace9906bd00ae9623d3314119f77d7406f4816be43b9352c",
+    "source_fingerprint": "sha256:da851de7593a748346442fb34aa9a393f1508edcfadbe30e55567c2bfec897c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6ee2b418b6ac2a8e79d92d6314afa403322c0bffbb05b272232f72a70beb905",
-      "plan.md": "e6c3b438335b3b19e3d720c0bd6f94a9d10d3e07a46ef2d9954bc3ab74226964",
-      "tasks.md": "db5f009d7a87fe6143a72509fdb2c3ca2eae7484976efdea232f0951f5d9953d",
-      "implementation-summary.md": "2d2e625f2075909e762e5917cef5cc22efd733655e0b002894a42521f01371bb"
+      "spec.md": "d53b68274c97ecf559bd364bc4033c63d2dd5fac3f96f02191a3569bdeeb6f8d",
+      "plan.md": "b93a7697ddfd4d222b35dadb42b0cd36f5198fff5f936a7dc0ba33f7b223319d",
+      "tasks.md": "dc7a04badcf204a8cbcf744ca7e433a0b4e7d9e36cdc30d1d4793716a66e41b3",
+      "implementation-summary.md": "1f6eabe8096c5c44575721d1005cf75e86fcb4f43cf70332ed0d55f9e10ce6d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,13 +16,13 @@
       "every-turn injection",
       "injection contract stale claim",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "phase five advisor integration",
+      "skill advisor integration",
+      "decisions advisor hookup",
+      "advisor integration plan",
+      "phase five approach",
+      "phase five advisor tasks",
+      "advisor integration"
     ],
     "key_topics": [
       "advisor",
@@ -36,7 +36,7 @@
       "claim",
       "spec",
       "core",
-      "implementation"
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The advisor injects three hardcoded directives every turn",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-09-06T06:47:41.166Z",
+    "last_save_at": "2026-09-06T07:05:10.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2edf580b66ea22e1b0dfcc1ab9a9bb1c4f8ee8bb91534d1e3e42898dc1db725b",
+    "source_fingerprint": "sha256:7fd6d13589e2344257fcb1f1e0ecaf843d5b289170df0eeab807f48b300dda82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "161f996f02fe097c128e1c67a57b5330e41c9186878bf13da95d7716ce2a740e",
-      "plan.md": "5913bf20cd4584083cfc87de84917b2a69d431464b9b718005949005be3ab220",
-      "tasks.md": "16d73e8eaef8232aaa353a53bfd9e184760630b7eb5182bca368e27b334138b8",
-      "implementation-summary.md": "f2682dc5ddbdfdfb4a1af06cade1c462d3770d7fed851b904dcaad1a8e843186"
+      "plan.md": "9521956791247e8a706c38ecdf0c15947d431f817bf55c106325585e3b2fad06",
+      "tasks.md": "ec16fd48af0a1ddaef8649e0b7b65524cd47debbbae512fab8164eef876220e4",
+      "implementation-summary.md": "dd6090678c9f3bff081e4942aafc5cb911f7e54aef1758cd005877560e8e6a37"
     },
     "last_active_child_id": null,
     "last_active_at": null

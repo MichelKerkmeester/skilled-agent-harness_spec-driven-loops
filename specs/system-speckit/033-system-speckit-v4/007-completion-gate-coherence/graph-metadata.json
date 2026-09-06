@@ -15,12 +15,14 @@
       "validator engine selection",
       "strict validation failure rate",
       "validation gate coherence plan",
+      "engine selection verdicts identical",
+      "freshness rule single entry point",
+      "duplicate finding measured refuted",
+      "stale hardcoded child list",
+      "command tree comparison repository check",
       "validation gate coherence tasks",
-      "validation gate acceptance criteria",
-      "closure gate",
-      "validation gate decision record",
-      "anchors template headers merge",
-      "validation gate coherence status"
+      "verdict flip reproduced",
+      "thirty packets four engine selections"
     ],
     "key_topics": [
       "validation",
@@ -33,8 +35,8 @@
       "failure",
       "rate",
       "plan",
-      "tasks",
-      "acceptance"
+      "verdicts",
+      "identical"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +196,7 @@
     ],
     "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
     "created_at": "2026-08-29T07:44:49.812Z",
-    "last_save_at": "2026-09-06T06:48:33.964Z",
+    "last_save_at": "2026-09-06T07:05:19.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc9ed041b7c930fa7a2a8e54d6b69bdfa705baca4c5fb1a6892188f37c0053db",
+    "source_fingerprint": "sha256:04fbc8250ac3e3dd17c3448c966b1af5111bc8758664b765ce28ebcf175880ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a3d3bf6e8048c441b1d7b8722192ddbdcfa4f9aa8d1665a84810b4c25ae4ca2",
-      "plan.md": "73e0eb428f47ba23ce3b5eeb3b6387572133f1ad989ef2cd546e41eaa1656b87",
-      "tasks.md": "2e70e689353c0885635bfa01f102f0bb69215aa0919c8b7255cc3b6854ba934d",
-      "decision-record.md": "941eafe5951a7ed9e6d5c3c1106754b907bcf67abeaafb3fd3c5602c1ad1b9e3",
+      "plan.md": "de07f14268b82bd3f9c07d0afaf79af5ead96e83bc0edf59f4e28630dababb9c",
+      "tasks.md": "1f6a4819e6e5129820071020317d755011a59ab23e290d65e62983e0b1cfe4fe",
+      "decision-record.md": "f7f88f06dacb25ea93a9df61a2fc47b5ca6293321b6b89d8f84c77679da08952",
       "implementation-summary.md": "e0adeeb98caaba39b6a453dbb9e7ff5f4dffb0bded7c4d44f5486995195249d9"
     },
     "last_active_child_id": null,

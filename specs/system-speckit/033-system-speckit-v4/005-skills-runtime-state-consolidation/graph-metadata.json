@@ -16,13 +16,13 @@
       "advisor-state goal-state spec-gate-state",
       "clean up the skills folder",
       "runtime state relocation",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "skills root state directories",
+      "state directory consolidation",
+      "skills state path rewrites",
+      "state ignore rules rewrite",
+      "skills dotstate directory",
+      "state directory consolidation tasks",
+      "goal-core state resolver"
     ],
     "key_topics": [
       "skills",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard, smart-router-telemetry and spec-gate",
     "created_at": "2026-08-28T08:49:09Z",
-    "last_save_at": "2026-09-06T06:48:37.022Z",
+    "last_save_at": "2026-09-06T07:05:19.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bb8b6fb02ce138600400b42d60ca936da1960de9b803bfa89e495f5a6a5346d",
+    "source_fingerprint": "sha256:48befc7e9b5e3e02aaaf18bcd1a5eadab7d24ed00ecacdc754d58954899c0945",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f4110999cb2c957b4d42caedb579152dbdb919520e46ce2ca65c5fe45d4d9c2",
-      "plan.md": "82de6a43fdf5d6f3fcb520b8469f9b91e728dc92360083746190a384c7895a41",
-      "tasks.md": "cbed642130aa21c772fa87929fee816df0987d1487a3bbb1571fadcb044bd3cf",
+      "plan.md": "c135ac1b10227d1bd738b8a7a002a2d2aac899681564237794d5764b061fc8b1",
+      "tasks.md": "f39211eb94dca423739daa94ee40a30e0873b26221461762ce1da19e5f97f1b2",
       "decision-record.md": "231a5d11e2e1448b4b11b9dde742a4413375d3a300b38b5c911a07b1343fb107",
       "implementation-summary.md": "3218384c1721a25f36ad3b01b0cfcc621b696c128c669bce90e3b3158daccb23"
     },

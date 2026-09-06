@@ -20,7 +20,9 @@
       "check-prerequisites override guard",
       "specify feature branch validation skip",
       "plan preflight nested packet tasks",
-      "check-prerequisites override tasks"
+      "check-prerequisites override tasks",
+      "specify feature override",
+      "not on a feature branch"
     ],
     "key_topics": [
       "plan",
@@ -154,13 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "override",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "override",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -192,7 +194,7 @@
     ],
     "causal_summary": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`, then hard-rejects any branch that does not match `^[0-9]{3}-`",
     "created_at": "2026-08-15T13:24:44.384Z",
-    "last_save_at": "2026-09-06T06:48:42.446Z",
+    "last_save_at": "2026-09-06T07:00:42.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c17dbd267aa1df3ab2e4e83ef93a8cd78787a91aaebfce74d8d0c4768b7ea3a",
+    "source_fingerprint": "sha256:a4c35b296da45952ca53dd06d76dcc824b8f1937eef0394bcafb46dbb795df9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "930d49cd9084f0cc744086b5b2f0163abdb762c054f386af483425bc84523379",
       "plan.md": "05ce3c50775977720424f114955fa71cdbe235bb4c0dab45b449757692c7ed9b",
-      "tasks.md": "6968557d407d56bfedb00c2b936f6a0d86b8be7207a4d0c3649dd02d71e24bb7",
-      "implementation-summary.md": "de074b20e56c2ff00b79c8ce95565f32bf1be4912568daa9f3c97fcd988e4420"
+      "tasks.md": "a19bea293608f7e94139579189e39bca85df818b1477441a3f58b50369572367",
+      "implementation-summary.md": "309f2f27ac42717cb48b86361b44d09ab7a7a7ed6874d6f77ccab56a251e66de"
     },
     "last_active_child_id": null,
     "last_active_at": null

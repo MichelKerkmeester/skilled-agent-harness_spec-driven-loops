@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "framework doc matches behaviour",
-      "agents md validation claims"
+      "agents md validation claims",
+      "strict mode warning promotion",
+      "freshness grandfather claim",
+      "always-loaded framework document",
+      "test each claim gate",
+      "warnings-only exit code",
+      "freshness grandfather mechanism",
+      "exit-code claim tested",
+      "grandfather claim tested",
+      "git claims verified",
+      "strict mode warning promotion claim"
     ],
     "key_topics": [
       "framework",
@@ -22,11 +32,11 @@
       "agents",
       "validation",
       "claims",
-      "two",
-      "always-loaded",
-      "document",
-      "corrected",
-      "match"
+      "strict",
+      "mode",
+      "warning",
+      "promotion",
+      "freshness"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -185,7 +195,7 @@
     ],
     "causal_summary": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
     "created_at": "2026-08-29T19:48:08.557Z",
-    "last_save_at": "2026-09-06T06:47:26.137Z",
+    "last_save_at": "2026-09-06T07:05:07.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b19b61836202cec5a3e67dfce589e61c3fbc822f4af082b7d720734f07e2f8df",
+    "source_fingerprint": "sha256:d4af8d0365e5aeac52af98f5a0e28f33fcf76e6ec6dbdb369c702a6e275447d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19d70c41630935aa09abbfbdc019e7b904ebdbd6bbbf8e430c183ba2b54bf1c4",
-      "plan.md": "dac7ec92a3ac53fcdfaf0e07599b62e3e1013593ccb160021325b09bcb82f43d",
-      "tasks.md": "355e4ec9ee4b0656e664505bc80eaff9685b45d81c1bf45c085f73c0ffcdce36",
-      "implementation-summary.md": "b5eef2aaf9e3ae8ec64eb008aac77d5b17e9762567888702ec883afa51e03d36"
+      "spec.md": "ecb9bc209a237dc9b722282ef6d64c5eac2fc400f394233638670f1a5d898210",
+      "plan.md": "010414aecfcd7ed45128a6c7aa6450a1e6e0d28a5bac203a11195510d5feeece",
+      "tasks.md": "eb9bd31def3ceeaa515bf1a932a13a914462809aa6dd3b9857b1df0edeb4e2ba",
+      "implementation-summary.md": "8f6f2b811a24ca9b836d13d76a65f4f001f303d8bc6de6b0d5a1c5044e2df97f"
     },
     "last_active_child_id": null,
     "last_active_at": null

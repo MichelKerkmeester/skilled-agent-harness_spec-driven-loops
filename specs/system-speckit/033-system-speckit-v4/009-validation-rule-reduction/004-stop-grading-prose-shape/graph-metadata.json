@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "stop grading prose shape",
-      "template conformance removed"
+      "template conformance removed",
+      "heading shape grading removed",
+      "anchors checked integrity",
+      "documents diffed against templates",
+      "anchors read by code",
+      "template moving target",
+      "anchor integrity unique ids",
+      "heading shape grading gone",
+      "section count rule removed",
+      "delete unreachable rule scripts",
+      "anchor integrity checks"
     ],
     "key_topics": [
       "stop",
@@ -22,11 +32,11 @@
       "template",
       "conformance",
       "removed",
-      "documents",
-      "diffed",
-      "against",
-      "templates",
-      "change"
+      "heading",
+      "anchors",
+      "checked",
+      "integrity",
+      "documents"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -154,7 +164,7 @@
     ],
     "causal_summary": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
     "created_at": "2026-08-29T18:27:06.222Z",
-    "last_save_at": "2026-09-06T06:47:27.564Z",
+    "last_save_at": "2026-09-06T07:05:07.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,13 +173,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bbc23deb901e59280e7ee019269d6f38bbd2a9a7ad934dd0ef113e414e64f3c",
+    "source_fingerprint": "sha256:79377c4aeb4a331ca0cafa2a6d9b923db0002fea2fcdc1809ff6b19a3754be34",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97518e0a899d87b85dae8bc14f923d05afc146bd93ac43e5ad9f8fe843fa2d5b",
-      "plan.md": "fab97d9cb4995f94cd85698b99329a59fd87685d9f2ba5e6d68d52776883927f",
-      "tasks.md": "df86d787927cbb9452c6ffb2145697ac47366df2c3c99671ce159cbed6ffca29",
-      "implementation-summary.md": "1bba67861789add205df2c97b443fabf274502e21f007d3113f774c466f481dc"
+      "spec.md": "58c1fc3e3c6cc6ce96218fcea95c224d0505e0a3bd85b0ddef9099cfe4a71dc2",
+      "plan.md": "0e2915bc755d8e433e0e38a8a8f5882f64ad7a1b200b822588cd41e4e83a5558",
+      "tasks.md": "950252fd4162aa77e2bbbc0e34489ff7cdbf7fd5585a547cf7a77479d3b8ba59",
+      "implementation-summary.md": "2103e05a0449fb8649f20fd0005d252b017a73b75d93fd54314d0b37f45497e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

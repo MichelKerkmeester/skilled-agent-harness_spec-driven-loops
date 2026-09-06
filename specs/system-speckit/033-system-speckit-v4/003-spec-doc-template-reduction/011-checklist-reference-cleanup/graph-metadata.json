@@ -15,8 +15,14 @@
       "dead checklist links",
       "spec doc integrity checklist",
       "checklist reference cleanup plan",
+      "extract_markdown_link_targets rule",
+      "link-based population count",
+      "checklist pointer disposition",
+      "demote link rather than delete",
+      "dead checklist link rescan",
       "checklist reference cleanup tasks",
-      "checklist reference cleanup summary"
+      "checklist dead link rescan",
+      "pointer-only lines dropped"
     ],
     "key_topics": [
       "checklist",
@@ -28,9 +34,9 @@
       "doc",
       "integrity",
       "plan",
-      "tasks",
-      "summary",
-      "finish"
+      "rule",
+      "link-based",
+      "population"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +194,7 @@
     ],
     "causal_summary": "Finish the retirement: remove what pointed at the deleted document",
     "created_at": "2026-08-30T07:11:39.824Z",
-    "last_save_at": "2026-09-06T06:47:51.687Z",
+    "last_save_at": "2026-09-06T07:05:11.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e7468a6c2e47e250a7223555c45571e9983d039505a2f16d7bdb8808b1776ed",
+    "source_fingerprint": "sha256:a182bdd7e9949c2082ea2892e745cdd55c2795069ce2d035968953ae5bc84255",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f484e7039f990a2fdf62548fb1dace316cf0be92eb6316039e5519ae11154f0",
-      "plan.md": "9da948615982a5be480e6b5c46522ca3f3324bfa48cfd18ec528a9737383aa9c",
-      "tasks.md": "0860da7af1c1140c76662f77ab016a7df38e2f3d158ef4eb111d7b058159a348",
-      "implementation-summary.md": "bbacd464f397be4910bdd2e5ccc4767c4656e923816bd2a8ff425181f4f53194"
+      "plan.md": "4226819ba55c52cf26fff7da8b69be93e07ad44748e7f00416734602c6a6d7a7",
+      "tasks.md": "70f43b9570c776510d855fcd1affda6bdfec3acb2853b0a5632d0ea100398ca3",
+      "implementation-summary.md": "798ca7dccdda99d6ef65f715147d0999258d3acd97482a20ce6692875911c1d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

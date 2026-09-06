@@ -17,7 +17,12 @@
       "orphaned project daemon not reaped",
       "daemon sweep classification fix",
       "process reaper classification plan",
-      "isExternalMcpProcess fix plan"
+      "isExternalMcpProcess fix plan",
+      "external MCP misclassification",
+      "process-memory-harness regex tightening",
+      "orphaned project daemon",
+      "process-sweep negative control",
+      "guard order disjoint"
     ],
     "key_topics": [
       "process",
@@ -190,7 +195,7 @@
     ],
     "causal_summary": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
     "created_at": "2026-08-22T19:27:51.675Z",
-    "last_save_at": "2026-09-06T06:48:41.027Z",
+    "last_save_at": "2026-09-06T07:00:44.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b80fe543dbc5674ad8b8158bd1c8b4efbb3a4de46985dde5d9b70b4325898d2",
+    "source_fingerprint": "sha256:e086280454d17ddfc661e31052da6abdf8558dd616ad11a79729b0ba4b01a147",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1eec22248e4966c8763af2e9ee4c71f5e53a4c4f36ad705984537d537da6ea4",
-      "plan.md": "405c78c03bf4d9c514203a7c060ad9469882a21877887711fae8fd9be8a2bd9a",
-      "tasks.md": "0069539aa94ed9477bb6ce07eab2a738baefe6fa40e1d0f2fa5fc109c7e5b5e7",
-      "implementation-summary.md": "2de38a41c63367eba6d30a18d62f291679507dc4cd7b5f8a5fe0af966ee88d39"
+      "plan.md": "75d97dda94ebb7c67c8eb14aa8d37d301c9f3ab203c12372833bba4cd7b7bd9f",
+      "tasks.md": "4da854725ddbc2541a5676609d692abdcd3e72a37e9a0c38843ca0d150543ec9",
+      "implementation-summary.md": "e597e86bddd18baf7276fbd09f4b2ce418d5d3a55885f35b61a1b4fe8922e95a"
     },
     "last_active_child_id": null,
     "last_active_at": null

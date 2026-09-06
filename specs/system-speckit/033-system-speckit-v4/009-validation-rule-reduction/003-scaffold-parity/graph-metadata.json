@@ -12,21 +12,31 @@
   "derived": {
     "trigger_phrases": [
       "scaffold parity",
-      "fresh scaffold passes"
+      "fresh scaffold passes",
+      "untouched scaffold five errors",
+      "author first gate experience",
+      "generator defects",
+      "untouched scaffold zero errors",
+      "generator not rules fix",
+      "scaffold and validate test",
+      "scaffold real default status",
+      "closure placeholder replaced",
+      "graph deriver run",
+      "generator status field menu"
     ],
     "key_topics": [
       "scaffold",
       "parity",
       "fresh",
       "passes",
-      "packet",
-      "human",
-      "input",
-      "stops",
-      "failing",
-      "validation",
-      "moment",
-      "exists"
+      "untouched",
+      "five",
+      "errors",
+      "author",
+      "first",
+      "gate",
+      "experience",
+      "generator"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -185,7 +195,7 @@
     ],
     "causal_summary": "A packet created with no human input stops failing validation the moment it exists.",
     "created_at": "2026-08-29T17:48:11.238Z",
-    "last_save_at": "2026-09-06T06:47:29.093Z",
+    "last_save_at": "2026-09-06T07:05:08.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86f6d8d77d98f27311b772ca6d6e9d38b37f38259120d62c98a82bc25b248cbf",
+    "source_fingerprint": "sha256:86cc0c79114718a4902280d478f659454c5e5d175f02d70de1832adb2c5b26e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6f1ed613aabc8a3d0254e4871cca45d51cc86f19e1b1f10b69ff46d5ae5feef",
-      "plan.md": "f128a940856ab324fbc181befacd88bb08d96ab1f4cfb9ee1f5cc58bf6e93afb",
-      "tasks.md": "33c4f555f074e4bec03256ed21ea9fac4ed84427a28438f309dd1857e0b18ea5",
-      "implementation-summary.md": "f851af3475ac5cb104c55941198a372bb808c259416cc6603d025a0e27ab79da"
+      "spec.md": "39e342fcf277131687491d08534ffaefdc1ad1a0c1ac4700d1de4a8a9ad03c28",
+      "plan.md": "9de4361a04417ef394f6cbe93800f947ffa3d176231d76386722e67148958d94",
+      "tasks.md": "ad2368b00dee73000701c1a4f4e2f26f092f45abd1a2596d4906be03f8e37c04",
+      "implementation-summary.md": "1ab1c093c215430eba762f2a63f2ba6a4a3b56cbfb1c5a11d44e4afcb2ddca54"
     },
     "last_active_child_id": null,
     "last_active_at": null

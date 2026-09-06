@@ -13,23 +13,30 @@
     "trigger_phrases": [
       "research level",
       "research packet type",
+      "research and audit packets",
+      "non-numeric levels",
+      "check-level-match level set",
       "research level plan",
+      "model level on review",
+      "enumeration follows failure",
+      "manifest modelled on review",
+      "contract set corpus shape",
       "research level tasks",
-      "research level summary"
+      "declare research shape"
     ],
     "key_topics": [
       "research",
       "level",
       "packet",
       "type",
+      "audit",
+      "packets",
+      "non-numeric",
+      "levels",
+      "check-level-match",
+      "set",
       "plan",
-      "tasks",
-      "summary",
-      "give",
-      "record",
-      "meet",
-      "rules",
-      "agree"
+      "model"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -189,7 +196,7 @@
     ],
     "causal_summary": "Give a research record a level it can meet, and make the rules agree with the",
     "created_at": "2026-08-30T09:39:26.002Z",
-    "last_save_at": "2026-09-06T06:47:21.247Z",
+    "last_save_at": "2026-09-06T07:05:06.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f78802a55a41a91f9a5a0bbce3061adad55f12a8a2d0a9eb48031ef5f69aff1",
+    "source_fingerprint": "sha256:b8eb97f04e0b13c952ee4e5c946104495af99dcbaf348f5000dd3e1368c07df9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f11dc39f4391fd1295fc5a7da6e496d3412be6650b6c39c530c31cc195181bf4",
-      "plan.md": "cedc84108ca97ca2127ea4244ed8650bc5ee6547c81fafc38b47346432f4a244",
-      "tasks.md": "a8d50db5ca208a0352e4b46f505f3cd44326054d273ea8248e9d5bc3b14b08b6",
-      "implementation-summary.md": "d8ab7950b791d15e2826affa83b5ad403cb545369b55c43664e9ceb1c0f74065"
+      "spec.md": "2a3dd9598d73146baf415a1cf89fe112f2c0bfda972c8a5a3039606bd86425ba",
+      "plan.md": "d69ebb71c4ed84485cccdf520a787e01206bb7ca9a6c1262e9aaef34e932592b",
+      "tasks.md": "fa08dfedb6c832b05804731fe391f480d1befeccbd2499241d43362077952901",
+      "implementation-summary.md": "b84941af9a455546bc64d3455477d65eea65381549982d6a32b32798e93c7df7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -19,10 +19,10 @@
       "sweep apply path",
       "launcher self exit",
       "orphan daemon reaping tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "stdin close shutdown handler",
+      "isRespawnLockStale orphaned holder",
+      "guarded apply path process-sweep",
+      "session-start orphan sweep flag"
     ],
     "key_topics": [
       "orphan",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
     "created_at": "2026-08-30T09:55:27Z",
-    "last_save_at": "2026-09-06T06:47:09.779Z",
+    "last_save_at": "2026-09-06T07:05:04.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:429b5ac3a451d6a2ba4b230668b06309b16c7eae8252d7672c475c0696886ca4",
+    "source_fingerprint": "sha256:4747aa6bc135864999e9d50e849fa1eb571d2a7be64fdb34f93aea8b8fc0f032",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d92a1b924f135a076c4a4609168cd5f2d636782754469d14a6dabfc9e9d9b507",
       "plan.md": "bdcb7b162c47582f182449d04be886ccd3ced2e92a828a4c6f8b016ceb5a1b8e",
-      "tasks.md": "f63b9d953cfe16a0d7591fafb9f61ec3abcd1fa19da6bfc6d7f927149af39be4",
-      "implementation-summary.md": "43bb8837e2bd5fa8f5e6ea1d9c3878748fe77725b9cb01870a8740e585b2e8e8"
+      "tasks.md": "96278b4a83955b17b424e8b45b9895c8188f61f6518912d71f119ed1de389511",
+      "implementation-summary.md": "72b7e08e9efd6ca79adc4eae26bd752c37d5005317372f02e96990b52b0f1a87"
     },
     "last_active_child_id": null,
     "last_active_at": null

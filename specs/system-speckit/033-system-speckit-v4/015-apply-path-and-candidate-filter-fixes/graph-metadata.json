@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "review remediation specification",
+      "fail open kill switch",
+      "stale snapshot candidate filter",
+      "cli-devin playbook smart precondition",
+      "sweep default safe judgement fresh",
+      "three P1 deep-review findings",
+      "review remediation plan",
+      "plan-time parent gate",
+      "contradictory permission precondition",
+      "deep-review P1 findings",
+      "negative control fails first",
+      "review remediation tasks"
     ],
     "key_topics": [
-      "feature",
+      "review",
+      "remediation",
       "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "fail",
+      "open",
+      "kill",
+      "switch",
+      "stale",
+      "snapshot",
+      "candidate",
+      "filter",
+      "cli-devin"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A four-iteration deep review of the daemon-hardening packet, run across three independent models, closed at CONDITIONAL with three P1 findings that survived every pass",
     "created_at": "2026-08-31T04:50:04Z",
-    "last_save_at": "2026-09-06T06:48:21.635Z",
+    "last_save_at": "2026-09-06T07:05:17.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47675d7c9c786c5e917cf777f394af0d7a8991acdcd204f8b0bfa8c03bb058ee",
+    "source_fingerprint": "sha256:29dcdd6ba22b30a069a68d389d152fd38debf0fa333d5e3b081bc26a4bdeb9eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b0ee65e83e66de4235467f38290111d6afec67ef8b1b0c9693b5e6bd0bc2c9d",
-      "plan.md": "19d2995f0be0054e1dc25178ac61ef324a529c20fe63d08e3efeab0cb36d7131",
-      "tasks.md": "f9d89241e73bb0f558d304fc534870685e1c9960b931bc92d67cf688b353afa5",
-      "implementation-summary.md": "24d7c8eb06ddd6d996fffce3d18542283fae8fd1968cbc8cc01250674f04eaca"
+      "spec.md": "cc4b7f2f1a60ee3234b576728e3caacf9d0227618afe092216ab4f9d035882bd",
+      "plan.md": "983ba65270abcb49c941d28190df0c3de1cf74fc4e572adc0e28703f2d73c46c",
+      "tasks.md": "7f6fce3052fb13dfee5e4db7e9e9f06e15c9f1e0aea2146abd75db921f00d69e",
+      "implementation-summary.md": "be9074c651c831eebf044ec42302ac9dc10805b39352246059ec77160a05394a"
     },
     "last_active_child_id": null,
     "last_active_at": null

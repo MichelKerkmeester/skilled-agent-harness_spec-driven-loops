@@ -18,11 +18,11 @@
       "scope adherence validator",
       "memory search token budget",
       "spec template optimizations plan",
-      "034 implementation phases",
-      "spec kit template task list",
-      "033 implementation tasks",
-      "template context optimization tasks",
-      "packet goal"
+      "template consolidation read guard",
+      "plan adherence validation gates",
+      "memory_search token budget",
+      "inline-gate-renderer level gating",
+      "spec kit template task list"
     ],
     "key_topics": [
       "spec",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-09-06T06:47:38.276Z",
+    "last_save_at": "2026-09-06T07:05:09.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +214,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9a4a46862aa11161b6631d5d219371195d2aeb68f6dc10dda1d6db9c2ac4331d",
+    "source_fingerprint": "sha256:f320265f07a923f96ae09c3b3fd756ca8b36d3deede20b89960437796495c843",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b935fc50acc0abcfaf482b2673549895accc8168d546ce82dab265d86e1c4bc",
-      "plan.md": "8a3059ce55cd636344f41e344155eb4decee49294b13b6af2ab307f2001d6b75",
+      "plan.md": "0a61f30643aa9544ff779c0cecdad7b4796827bc612ef47e7dc01dc3f57a1d8e",
       "tasks.md": "912458ff1dfcadbd9f3c1da15c263eb8c4eef26c5f7717a51ca96e1a089b7a23",
       "decision-record.md": "fe9008f4e07b5453aeccc36a60d4df4d13691e1d2612d43042dbf3892dc94730",
       "implementation-summary.md": "c18545447c52b4e936f7d85bce2af6d7ea736e9bc17e9c1807b771ba5a06ebec",

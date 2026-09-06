@@ -11,21 +11,31 @@
   },
   "derived": {
     "trigger_phrases": [
-      "tracks are not packets"
+      "tracks are not packets",
+      "track directory exemption",
+      "three digit numeric prefix",
+      "track graded as packet",
+      "packets filed under tracks",
+      "three digit prefix rule",
+      "no packet takes exemption",
+      "measure the track claim",
+      "prove no over-reach",
+      "verify premise evidence",
+      "track identity definition"
     ],
     "key_topics": [
       "tracks",
       "packets",
       "track",
       "directory",
-      "stops",
+      "exemption",
+      "three",
+      "digit",
+      "numeric",
+      "prefix",
       "graded",
-      "though",
       "packet",
-      "feature",
-      "specification",
-      "implementation",
-      "plan"
+      "filed"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -183,7 +193,7 @@
     ],
     "causal_summary": "A track directory stops being graded as though it were a packet.",
     "created_at": "2026-08-29T17:34:28.731Z",
-    "last_save_at": "2026-09-06T06:47:30.582Z",
+    "last_save_at": "2026-09-06T07:05:08.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b01af4cdfae7a1ed727c3e1eadc33df30a2c34513428b7ba0034d8641f53edad",
+    "source_fingerprint": "sha256:c676a8c86af2dc7a0f3087246e9cfd6822aac623bbf850392177dde813c99450",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "21e55629563e1cb07a0ac6dd615a3bc4e45ca5e73bbc8560ea3d637086cbfe5c",
-      "plan.md": "0974d1ad0e270683e75a5379f8370562aa5e9fa11f86773f2eb2793c8c3f55c5",
-      "tasks.md": "19a7b447c86fdde0b014586e57b30b9f9cb369aa78caf687706a0912e5423d60",
-      "implementation-summary.md": "e0b86dcc89f29bf72b6fec2811fd215a8b3dd7eb9d50f7b2f078e3d805bcc18e"
+      "spec.md": "8e86aa7d70382c96fab4d58183f7df5c7a9288521b49a1ebf20517fb3709a889",
+      "plan.md": "56486120fe422c4577446a8d3a02164f99bed761e613ab26f56eaa269c601a10",
+      "tasks.md": "4d7fcf36b7ca5db06b011682ea677a92e75993d9278cb86384499c2576dcf9ec",
+      "implementation-summary.md": "d1c447ec3383a80f83ec04b929b6bbd70941183c12ac3f437b5843c76284e399"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,13 +16,13 @@
       "constitutional layer deprecation",
       "keep rules as docs",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "phase two active decisions design",
+      "active decisions schema design",
+      "decisions and notes system",
+      "constitutional memory replacement",
+      "active decisions design plan",
+      "phase two design tasks",
+      "active decisions design"
     ],
     "key_topics": [
       "active",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memorysearch`, and its cold-start injection is dead code",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-09-06T06:47:45.280Z",
+    "last_save_at": "2026-09-06T07:05:10.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cbe02bb946ff43e6cf0e7171112a17e10d8bb0b71734019e8277223d4b7a79c",
+    "source_fingerprint": "sha256:dd599958f3840e9ab8b7ae1949b7d0d916d6174628a34863e0c897268ec33998",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "905c3ef80a58ac9ccbf014e737479b8570640e33a56c886de44c1e239ef285f5",
-      "plan.md": "c69c21ad8c8af3b3eb6e0a4fea5f61f3929d9946e258a39a5c271e1793933c7c",
-      "tasks.md": "a617b19d84b310354fe44259d8f04d950a746b0e12321189335ee24d88edbef9",
-      "implementation-summary.md": "8a587649c67b9bfa89f9e4c4b06756ef6c55053a4d9ce50e3250fb590a04c0f1"
+      "plan.md": "61444a252d10f45936dae4e4b0d967c4f5d1dba9cfa17715b7dd86d414dd380e",
+      "tasks.md": "907d0bacbe05d216548240136d3528b14b7645b566d22f3a3d2d104735a2b475",
+      "implementation-summary.md": "9eca6c2a4a7146f16a89e42af0d2d178570051a4c1507d45ef98fd5a42f1f4a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

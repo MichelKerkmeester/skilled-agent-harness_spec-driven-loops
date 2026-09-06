@@ -16,13 +16,13 @@
       "follower log rotation",
       "live follow log hygiene plan",
       "state change logging",
+      "edge-triggered divergence report",
+      "LIVE_FOLLOW_LOG_MAX_BYTES cap",
+      "git-live-follow.sh poll loop",
+      "retained generation rotation",
       "live follow log hygiene tasks",
-      "packet goal",
-      "durable directive",
-      "completion criteria",
-      "goal binding",
-      "implementation",
-      "summary"
+      "log_state_change early return",
+      "fetch-failed state gated"
     ],
     "key_topics": [
       "live",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
     "created_at": "2026-08-30T09:55:29Z",
-    "last_save_at": "2026-09-06T06:47:06.667Z",
+    "last_save_at": "2026-09-06T07:05:04.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91801c4dd2029921bad23ca92ead3199d12a8ad89b7f0703d5ac0484d4c75952",
+    "source_fingerprint": "sha256:c70231373a55721bd223ed5289309db3d6ab4d88d0e98754f4cfcf3f95c81c0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "630006220cc71406f275b99ff4883bba65ecdea7fdc349e3eb487a8be3125879",
-      "plan.md": "a79af8fd859dd26db8049217dd4bd9a3458cca44b2a72d15f820c8abebb8cf02",
-      "tasks.md": "6a52ad43195afda2535ec0f6268a44ce75b30f768823772657dddd36b7e189bb",
-      "implementation-summary.md": "3225be4a65c94a1d959a3c2dd9714b9603cab9516b56423b76e6061f77e8c134"
+      "plan.md": "1db6d2e1caa8707c3a105499578d0dfeaf5daf4f73e31d3a76c4b65dfeb59c57",
+      "tasks.md": "355e7320f360ce4b3292a612adbacee47323ceee4026095787c2c6ad1f04c3c9",
+      "implementation-summary.md": "49a6ea9a916902ff64b1dbb2ba5dfc47618e6db2952c6695b785ccd114fef898"
     },
     "last_active_child_id": null,
     "last_active_at": null
