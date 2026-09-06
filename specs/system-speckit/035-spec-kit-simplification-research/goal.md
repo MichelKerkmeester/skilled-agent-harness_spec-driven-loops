@@ -53,7 +53,7 @@ Frozen choices. Changing one is an amendment.
 | D3 | Every charter is improved through sk-prompt before launch |
 | D4 | Each research finding is a hypothesis until reproduced here; unreproducible findings are dropped with a note |
 | D5 | Remediation children are created after synthesis, named for what they fix, and nothing is deferred |
-| D6 | Gates before every commit: shared, runtime and CLI typecheck and build, named vitest files, npm run check in the CLI, validate.sh --strict on touched packets, residue sweeps; commit by pathspec; push v4 and main after each green commit |
+| D6 | Gates before every commit: shared, runtime and CLI typecheck and build, named vitest files, npm run check in the CLI, validate.sh --strict on touched packets, residue sweeps; commit through a private index so another session's staged work is never swallowed; push v4 and main after each green commit |
 
 ### Operator copy
 
@@ -132,4 +132,5 @@ and findings belong here.
 | Child 007 appended to the binding | Durable slice changed again; parent resent in chat. |
 | Resource-map extractor wiring carried to lane 004 | Lane 002 found the deep commands never name `resource-map/extract-from-evidence.cjs`; lane 004 owns the resource-map addon, so the wiring decision lands with its remediation. |
 | Shared index hazard | Another session staged and amended in this checkout mid-commit; the 007 commit was rebuilt through a private index and the branch advanced with a compare-and-swap. |
+| D6 amended: private-index commits | A pathspec commit takes the working tree and would carry the other session's hunks; the durable slice was resent in chat as the objective, log excluded, to fit the 4,000-character cap. |
 <!-- /ANCHOR:log -->
