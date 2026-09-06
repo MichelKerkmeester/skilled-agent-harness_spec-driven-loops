@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/057-metadata-regeneration-and-parser-edges",
+  "description": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the",
+  "keywords": [
+    "run",
+    "identity-aware",
+    "metadata",
+    "writer",
+    "every",
+    "drifted",
+    "packet",
+    "clean",
+    "git",
+    "give",
+    "system-deep-loop",
+    "sk-doc",
+    "dependency",
+    "edge"
+  ],
+  "lastUpdated": "2026-09-06T05:02:39.242Z",
+  "specId": "057",
+  "folderSlug": "metadata-regeneration-and-parser-edges",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
