@@ -47,7 +47,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Draft |
 | **Created** | 2026-08-26 |
 | **Branch** | `scaffold/001-analysis` |
 | **Parent Spec** | ../spec.md |

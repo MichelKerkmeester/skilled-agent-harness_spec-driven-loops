@@ -39,7 +39,7 @@
       "broken"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -92,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +111,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-09-06T06:47:46.735Z",
+    "last_save_at": "2026-09-06T06:53:39.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e65f1c2fe495fa2d11c912c3face9cb323d5d340895d5279f93452b1454bf207",
+    "source_fingerprint": "sha256:a028b07f8bd1fa42a1351ed60b55ad23eb506a7f93518ae4ba7279419e9abbdd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3826ff5dca03166a174dc8e81d8d70a330319483fef7a24b65ff849edbfe04f",
+      "spec.md": "d24807233012bb3c72945aa9c679edf9f1800fc8e83571c7b19a4e8659b86f66",
       "plan.md": "c3f3ec72adfb8072d724a61b01cd7cb815d88114adcd3661a5d38eb1b60fcf2a",
       "tasks.md": "b650b794aa47242be4a1d913470d0ca6bac4426221faa2d262910cc48a55f730",
       "implementation-summary.md": "3a898b50e0797621f6fd311d309344a470e3c3602f7fbb70f09b96dd528b5c6e",
