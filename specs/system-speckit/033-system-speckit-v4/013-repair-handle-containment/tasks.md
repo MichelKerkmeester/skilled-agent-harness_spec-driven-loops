@@ -2,10 +2,12 @@
 title: "Tasks: Path Containment Follow-Ups"
 description: "Work items and verification for proving the repair write reaches the file the scan classified."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "repair handle containment tasks"
+  - "compare handle after opening"
+  - "device and inode match"
+  - "directory swap refused"
+  - "symlinked track walk never yields"
+  - "containment suite one root source"
 importance_tier: "normal"
 contextType: "general"
 ---

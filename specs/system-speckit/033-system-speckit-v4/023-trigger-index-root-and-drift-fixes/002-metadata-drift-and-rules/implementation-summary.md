@@ -2,10 +2,12 @@
 title: "Implementation Summary"
 description: "Graph metadata refreshes now drop children that belong to a packet's former identity, a validator rule reports any that remain, and a sweep reaches the track roots ordinary validation never visits."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "graph metadata child identity"
+  - "phantom children pruning merge"
+  - "GRAPH_METADATA_CHILD_IDENTITY rule"
+  - "track root sweep script"
+  - "backfill prediction apply parity"
+  - "twelve foreign children gone"
 importance_tier: "normal"
 contextType: "general"
 _memory:

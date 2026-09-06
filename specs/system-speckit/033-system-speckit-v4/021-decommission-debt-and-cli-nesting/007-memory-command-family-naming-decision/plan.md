@@ -2,10 +2,11 @@
 title: "Implementation Plan: Phase 7: memory-command-family-naming-decision"
 description: "Present the keep-literal and rename-with-compatibility-window options with grep-counted blast radius, and require a decision-record.md before any rename work is scheduled - no code changes in this phase."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "memory command naming plan"
+  - "memory save search rename"
+  - "two naming options ADR"
+  - "blast radius reproducible count"
+  - "decision gate not implementation"
 importance_tier: "normal"
 contextType: "general"
 ---

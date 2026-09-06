@@ -3,6 +3,11 @@ title: "Tasks: Phase 2: Orphan Daemon Reaping"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "orphan daemon reaping tasks"
+  - "stdin close shutdown handler"
+  - "isRespawnLockStale orphaned holder"
+  - "guarded apply path process-sweep"
+  - "session-start orphan sweep flag"
+  - "negative control orphanSurvived"
 importance_tier: "important"
 contextType: "implementation"
 ---

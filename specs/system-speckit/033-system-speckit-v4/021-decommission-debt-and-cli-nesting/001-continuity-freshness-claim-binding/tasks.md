@@ -2,10 +2,12 @@
 title: "Tasks: Phase 1: continuity-freshness-claim-binding"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "continuity freshness binding tasks"
+  - "baseline continuity-freshness vitest"
+  - "reorder validateContinuityFreshness"
+  - "CONTINUITY_FRESHNESS_SKIP_CODES skip codes"
+  - "stampCompletionFingerprintIfNeeded stamp"
+  - "052 stale fall-through bug"
 importance_tier: "normal"
 contextType: "general"
 ---

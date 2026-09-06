@@ -2,10 +2,12 @@
 title: "Implementation Plan: Phase 3: retrieval-coverage-alignment"
 description: "Compare the trigger-index walker's roots and exclusions against the documented ripgrep recipes, converge or document every divergence, add a parity test, and prove two index regenerations hash identically."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "retrieval coverage alignment plan"
+  - "corpus walker documentation divergence"
+  - "install guides coverage question"
+  - "single exclusion manifest"
+  - "parity test enforce agreement"
+  - "deterministic index hash"
 importance_tier: "normal"
 contextType: "general"
 ---

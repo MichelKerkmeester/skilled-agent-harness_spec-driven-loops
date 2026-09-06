@@ -4,7 +4,11 @@ description: "Phase parent for remediating the eleven findings of the Sonnet 5 i
 trigger_phrases:
   - "integration research remediation"
   - "spec kit alignment findings"
-  - "phase parent"
+  - "trigger index repo root regression"
+  - "phantom children graph metadata"
+  - "hook drift marker claude cursor"
+  - "shared frontmatter parser adoption"
+  - "post run metadata refresh"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

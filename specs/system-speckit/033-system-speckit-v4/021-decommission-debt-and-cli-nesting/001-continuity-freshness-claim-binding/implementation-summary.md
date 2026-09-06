@@ -2,10 +2,12 @@
 title: "Implementation Summary: Phase 1: continuity-freshness-claim-binding"
 description: "Bound a completion claim to implementation-summary.md's own fingerprint so CONTINUITY_FRESHNESS stops silently discarding a zero-fingerprint skip as an unrelated timestamp warning."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "continuity freshness claim binding"
+  - "CONTINUITY_FRESHNESS fingerprint verdict"
+  - "implementation summary attestation point"
+  - "missing fingerprint verdict"
+  - "stampCompletionFingerprintIfNeeded stamp"
+  - "packet 052 live instance"
 importance_tier: "normal"
 contextType: "general"
 _memory:

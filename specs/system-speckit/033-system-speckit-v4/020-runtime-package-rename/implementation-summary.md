@@ -2,10 +2,12 @@
 title: "Implementation Summary: spec-kit runtime rename"
 description: "The spec-kit engine moved to system-spec-kit/runtime, dropped eight dependencies no consumer reaches, and took 703 references with it in one change."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "runtime package rename"
+  - "mcp-server to runtime move"
+  - "git mv 324 tracked files"
+  - "@spec-kit/runtime npm name"
+  - "dependencies by resolution trace"
+  - "chokidar dead dependency"
 importance_tier: "normal"
 contextType: "general"
 _memory:

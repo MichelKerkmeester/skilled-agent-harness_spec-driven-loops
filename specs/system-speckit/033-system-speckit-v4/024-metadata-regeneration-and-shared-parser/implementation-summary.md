@@ -2,10 +2,12 @@
 title: "Implementation Summary"
 description: "The drifted graph metadata is regenerated across every clean packet, and system-deep-loop and sk-doc now depend on the spec-kit shared package so their frontmatter parsers can adopt the shared one."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "metadata regeneration shared parser"
+  - "census 114 packets drift"
+  - "regenerate 113 clean packets"
+  - "@spec-kit/shared file dependency edge"
+  - "sk-doc skill root manifest"
+  - "force-track package manifest"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,12 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "test hang containment bound"
+  - "run-tests.mjs process group kill"
+  - "SPECKIT_TEST_RUN_TIMEOUT_MS env"
+  - "start_new_session killpg"
+  - "hanging-process reporter"
+  - "runtime bound margin logging"
 importance_tier: "normal"
 contextType: "general"
 _memory:

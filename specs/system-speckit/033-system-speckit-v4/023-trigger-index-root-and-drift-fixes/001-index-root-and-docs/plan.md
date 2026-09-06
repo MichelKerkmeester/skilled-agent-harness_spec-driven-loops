@@ -2,9 +2,12 @@
 title: "Implementation Plan: Phase 1: index-root-and-docs"
 description: "Derive the repository root by walking up, regenerate the trigger index, and pin the root and the README's rule count with tests."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "trigger index repo root"
+  - "trigger index repo root plan"
+  - "findRepoRoot walk up"
+  - "hop count constant replacement"
+  - "trigger index determinism regenerate"
+  - "validator registry doc count"
+  - "46 rule registry correction"
 importance_tier: "normal"
 contextType: "general"
 ---

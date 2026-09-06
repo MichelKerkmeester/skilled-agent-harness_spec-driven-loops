@@ -2,10 +2,12 @@
 title: "Implementation Summary: Phase 7: memory-command-family-naming-decision"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "memory command family rename"
+  - "speckit save search commands"
+  - "doctor speckit-retrieval rename"
+  - "ADR-001 hard cutover no aliases"
+  - "command contract continuity key"
+  - "stage b writer compile path"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -3,6 +3,11 @@ title: "Tasks: Phase 4: Live-Follow Log Hygiene"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "live follow log hygiene tasks"
+  - "log_state_change early return"
+  - "fetch-failed state gated"
+  - "LIVE_FOLLOW_LOG_MAX_BYTES cap"
+  - "held divergence four to one"
+  - "cap boundary pid lock"
 importance_tier: "normal"
 contextType: "implementation"
 ---

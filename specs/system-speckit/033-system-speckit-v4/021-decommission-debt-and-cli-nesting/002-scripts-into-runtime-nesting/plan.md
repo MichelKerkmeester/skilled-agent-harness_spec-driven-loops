@@ -2,10 +2,12 @@
 title: "Implementation Plan: Phase 2: scripts-into-runtime-nesting"
 description: "Build the resolution-based reference inventory, decide the target layout that avoids the runtime/scripts collision, and hand off a Level 3 execution packet - this phase does not run git mv."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "scripts nesting plan"
+  - "runtime cli move"
+  - "runtime scripts collision"
+  - "resolution inventory consumers"
+  - "level 3 execution recommendation"
+  - "atomic commit plan"
 importance_tier: "normal"
 contextType: "general"
 ---

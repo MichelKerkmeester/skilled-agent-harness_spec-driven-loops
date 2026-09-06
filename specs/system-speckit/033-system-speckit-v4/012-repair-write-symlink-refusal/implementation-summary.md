@@ -2,10 +2,12 @@
 title: "Implementation Summary: Repair Write Symlink Refusal"
 description: "The repair script decided a path was a regular file during its scan and wrote it later. The write now refuses to traverse a symlink itself. Also records why the sibling resume-containment finding was declined: its remedy would break every symlinked track."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "repair write symlink refusal"
+  - "writeExistingFileNoFollow helper"
+  - "refuses symlink traversal at open"
+  - "declined resume containment finding"
+  - "symlinked track breaks resume"
+  - "negative control protection removed"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

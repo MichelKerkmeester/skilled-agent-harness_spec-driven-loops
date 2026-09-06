@@ -2,10 +2,12 @@
 title: "Tasks: spec-kit runtime rename "
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "runtime package rename tasks"
+  - "git mv 324 files"
+  - "manifest @spec-kit/runtime"
+  - "rewrite 379 references"
+  - "npm run rebuild freshness"
+  - "main fast-forward to new tree"
 importance_tier: "normal"
 contextType: "general"
 ---

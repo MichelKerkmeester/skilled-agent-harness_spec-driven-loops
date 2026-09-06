@@ -2,10 +2,12 @@
 title: "Feature Specification: Phase 2: scripts-into-runtime-nesting"
 description: "The skill runs two npm workspace packages side by side, runtime/ (the engine) and scripts/ (the CLI over it); the operator wants scripts/ to live inside runtime/, a rename on the scale of the earlier mcp-server-to-runtime move."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "scripts nesting spec"
+  - "scripts beside runtime engine"
+  - "runtime cli move target"
+  - "scripts workspace resolution"
+  - "level score 73 signal"
+  - "atomic commit git mv"
 importance_tier: "normal"
 contextType: "general"
 ---

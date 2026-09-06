@@ -2,9 +2,12 @@
 title: "Tasks: path-containment-seam"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "path containment seam"
+  - "path containment seam tasks"
+  - "inventory containment sites"
+  - "canonicalizeExistingPrefix export"
+  - "nested-changelog helper replace"
+  - "generate-description realpath check"
+  - "path-containment unit test"
 importance_tier: "normal"
 contextType: "general"
 ---

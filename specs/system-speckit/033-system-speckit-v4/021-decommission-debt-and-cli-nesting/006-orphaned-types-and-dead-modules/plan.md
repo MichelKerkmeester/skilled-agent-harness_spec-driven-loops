@@ -2,10 +2,12 @@
 title: "Implementation Plan: Phase 6: orphaned-types-and-dead-modules"
 description: "Grep-prove and delete or re-home six named dead-code items, wire two orphaned tests into a real vitest include glob or delete them, log or reason the empty catch, and dedupe the link-checker's roots - typecheck before and after."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "orphaned types cleanup plan"
+  - "seven orphaned type exports"
+  - "two orphaned runtime modules"
+  - "test files never run"
+  - "empty catch reason or log"
+  - "link checker roots dedupe"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,11 +2,12 @@
 title: "Feature Specification: Review Remediation"
 description: "Three P1 findings survived four deep-review iterations across three models: an apply path that treated an omitted enable decision as permission, a candidate filter that judged from a stale snapshot, and a permission-mode precondition contradicting its own audit."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "review remediation specification"
+  - "fail open kill switch"
+  - "stale snapshot candidate filter"
+  - "cli-devin playbook smart precondition"
+  - "sweep default safe judgement fresh"
+  - "three P1 deep-review findings"
 importance_tier: "normal"
 contextType: "general"
 ---

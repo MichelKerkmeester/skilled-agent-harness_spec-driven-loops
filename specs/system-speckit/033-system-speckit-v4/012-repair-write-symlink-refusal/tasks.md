@@ -2,10 +2,12 @@
 title: "Tasks: Repair Write Symlink Refusal"
 description: "The repair script decided a path was a regular file during its scan and wrote it later. The write now refuses to traverse a symlink itself. Also records why the sibling resume-containment finding was declined: its remedy would break every symlinked track."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "repair write symlink tasks"
+  - "writeExistingFileNoFollow helper"
+  - "refuse symlink traversal at open"
+  - "swapped path refusal test"
+  - "repair-write-symlink-refusal.sh test"
+  - "normal file still writes"
 importance_tier: "important"
 contextType: "implementation"
 ---

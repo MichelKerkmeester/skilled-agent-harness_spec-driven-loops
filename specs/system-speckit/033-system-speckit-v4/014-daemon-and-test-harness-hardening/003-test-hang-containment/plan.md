@@ -4,6 +4,10 @@ description: "Bound test invocation runtime against a measured baseline and enab
 trigger_phrases:
   - "test hang containment plan"
   - "vitest runtime bound"
+  - "process group killpg"
+  - "hanging-process reporter"
+  - "SPECKIT_TEST_RUN_TIMEOUT_MS env"
+  - "containment plus observability"
 importance_tier: "normal"
 contextType: "implementation"
 ---

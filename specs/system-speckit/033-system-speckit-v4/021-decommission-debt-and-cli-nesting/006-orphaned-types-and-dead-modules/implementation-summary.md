@@ -2,10 +2,12 @@
 title: "Implementation Summary: Phase 6 orphaned-types-and-dead-modules"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "orphaned types dead modules"
+  - "shared types vector store deletion"
+  - "rollout-policy description repair modules"
+  - "never-run test files wired or deleted"
+  - "silent catch now logs"
+  - "link checker root dedup"
 importance_tier: "normal"
 contextType: "general"
 _memory:

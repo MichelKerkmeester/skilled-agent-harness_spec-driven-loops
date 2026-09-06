@@ -3,6 +3,11 @@ title: "Tasks: Phase 3: Test Hang Containment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "test hang containment tasks"
+  - "terminate process group sigterm"
+  - "SPECKIT_TEST_RUN_TIMEOUT_MS env"
+  - "hanging-process reporter named handle"
+  - "leaked timer reproduction"
+  - "runtime bound margin exit 124"
 importance_tier: "normal"
 contextType: "implementation"
 ---

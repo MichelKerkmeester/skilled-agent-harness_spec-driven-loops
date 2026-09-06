@@ -2,10 +2,12 @@
 title: "Implementation Plan: Phase 5: hook-fallback-failure-signal"
 description: "Add a machine-detectable drift marker and structured stderr to every Codex/Devin hook fallback, fix Codex's unreachable Stop-cleanup diagnostic, decide and implement the Copilot wrapper fate, and add a path-resolution parity test."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "hook fallback signal plan"
+  - "mkHookDrift JSON field"
+  - "node adapter printf fallback chain"
+  - "codex stop cleanup diagnostic"
+  - "copilot wrapper question"
+  - "path resolution parity test"
 importance_tier: "normal"
 contextType: "general"
 ---

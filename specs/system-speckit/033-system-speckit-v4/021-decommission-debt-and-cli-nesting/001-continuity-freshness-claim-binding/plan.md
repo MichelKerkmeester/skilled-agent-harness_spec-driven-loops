@@ -2,10 +2,12 @@
 title: "Implementation Plan: Phase 1: continuity-freshness-claim-binding"
 description: "Bind a completion claim to implementation-summary.md's fingerprint, stop the timestamp check from silently overriding the completion verdict, and add a skip signal the orchestrator can carry without moving any exit code."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "continuity freshness binding plan"
+  - "validateContinuityFreshness reorder"
+  - "skip code family distinguish"
+  - "fingerprint stamp completion claim"
+  - "fresh_completion verdict return"
+  - "continuity-freshness.vitest.ts suite"
 importance_tier: "normal"
 contextType: "general"
 ---

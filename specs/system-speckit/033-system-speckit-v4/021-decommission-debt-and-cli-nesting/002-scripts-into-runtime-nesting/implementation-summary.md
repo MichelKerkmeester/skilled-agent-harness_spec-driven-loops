@@ -2,10 +2,12 @@
 title: "Implementation Summary: Phase 2: scripts-into-runtime-nesting"
 description: "The spec-kit CLI workspace moved from scripts/ to runtime/cli/, carrying the memory-command-family Stage B rename (scripts/memory -> runtime/cli/continuity) in the same atomic change."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "scripts into runtime nesting"
+  - "runtime cli target layout"
+  - "runtime scripts collision avoided"
+  - "memory folder continuity rename"
+  - "resolution based consumers inventory"
+  - "atomic commit pattern packet 053"
 importance_tier: "normal"
 contextType: "general"
 _memory:

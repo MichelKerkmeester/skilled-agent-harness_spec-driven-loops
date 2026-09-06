@@ -2,10 +2,13 @@
 title: "Tasks: Decommission debt fixes and runtime alignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "decommission debt tasks"
+  - "dist-freshness fixture exclusion"
+  - "fanout lineage err retention"
+  - "review path resolution rule"
+  - "rollback runbook delete"
+  - "runtime data trigger index move"
+  - "five sonnet agents disjoint folders"
 importance_tier: "normal"
 contextType: "general"
 ---

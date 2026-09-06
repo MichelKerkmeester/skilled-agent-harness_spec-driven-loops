@@ -2,9 +2,12 @@
 title: "Tasks: Phase 3: hook-markers-and-improvement-family"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "hook drift marker claude cursor"
+  - "hook drift marker claude cursor tasks"
+  - "wrap adapter invocation fallback"
+  - "improvement folder structure doc"
+  - "register improvement config rule"
+  - "bump rule count 39"
+  - "per host parity assertions"
 importance_tier: "normal"
 contextType: "general"
 ---

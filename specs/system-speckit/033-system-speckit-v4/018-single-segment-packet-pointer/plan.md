@@ -6,6 +6,10 @@ completion_pct: 100
 trigger_phrases:
   - "single segment packet pointer plan"
   - "packet_pointer regex widening plan"
+  - "SPECDOC_FRONTMATTER_004 rule"
+  - "red then green vitest"
+  - "single safe segment accepted"
+  - "METADATA_DISK_PATH_CONSISTENCY bind"
 importance_tier: "high"
 contextType: "plan"
 parent: "system-speckit"

@@ -2,10 +2,11 @@
 title: "Tasks: Phase 3: retrieval-coverage-alignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "retrieval coverage tasks"
+  - "generate trigger index twice baseline"
+  - "corpus-manifest consumer inventory"
+  - "divergence table confirmed"
+  - "parity test coverage enforce"
 importance_tier: "normal"
 contextType: "general"
 ---

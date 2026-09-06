@@ -2,9 +2,12 @@
 title: "Implementation Plan: metadata-regeneration-and-parser-edges"
 description: "Census the drift, regenerate the clean packets, add the shared-package dependency edges in each package root, and adopt the parser through one GLM lane."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "metadata regeneration pass"
+  - "metadata regeneration plan"
+  - "census declared children disk"
+  - "regenerate clean packets"
+  - "shared dependency file edge"
+  - "parser adopt deep-loop sk-doc"
+  - "generators description graph metadata"
 importance_tier: "normal"
 contextType: "general"
 ---

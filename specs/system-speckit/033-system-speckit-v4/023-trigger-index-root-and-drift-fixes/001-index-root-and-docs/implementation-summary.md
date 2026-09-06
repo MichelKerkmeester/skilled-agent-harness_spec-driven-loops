@@ -2,10 +2,12 @@
 title: "Implementation Summary"
 description: "The trigger index covers skill documents again after the generator learned to find the repository root by its anchors, and the README's rule count now checks itself against the registry."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "trigger index repo root regression"
+  - "findRepoRoot anchor derivation"
+  - "skill documents vanished published index"
+  - "46 rule became 37 registry"
+  - "retrieval-repo-root vitest"
+  - "validator registry doc count test"
 importance_tier: "normal"
 contextType: "general"
 _memory:

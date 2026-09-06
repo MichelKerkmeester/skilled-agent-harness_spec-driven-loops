@@ -2,10 +2,12 @@
 title: "Tasks: Phase 5: hook-fallback-failure-signal"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "hook fallback signal tasks"
+  - "rg printf fallback chains"
+  - "copilot evidence absent"
+  - "doctor asset health checks"
+  - "drift marker stderr line"
+  - "path resolution parity test"
 importance_tier: "normal"
 contextType: "general"
 ---

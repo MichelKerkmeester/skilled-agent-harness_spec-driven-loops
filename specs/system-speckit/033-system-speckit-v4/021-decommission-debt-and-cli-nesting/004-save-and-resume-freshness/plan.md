@@ -2,10 +2,12 @@
 title: "Implementation Plan: Phase 4: save-and-resume-freshness"
 description: "Replace the save workflow's reminder-only trigger-index log with an actual staleness check, and narrow the resume ladder's trust so a malformed or unbound signal can no longer outrank validated, packet-bound continuity."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "save resume freshness plan"
+  - "checkTriggerIndexFreshness step eleven"
+  - "resume ladder parseContinuitySignal"
+  - "handover fingerprint verify"
+  - "trigger index stale warning"
+  - "workflow save completion seam"
 importance_tier: "normal"
 contextType: "general"
 ---

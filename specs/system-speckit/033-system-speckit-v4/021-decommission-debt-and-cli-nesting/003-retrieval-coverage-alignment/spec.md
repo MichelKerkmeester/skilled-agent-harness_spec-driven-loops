@@ -2,10 +2,12 @@
 title: "Feature Specification: Phase 3: retrieval-coverage-alignment"
 description: "The trigger-index corpus walker and the documented ripgrep recipes maintain two independent exclusion lists and root sets, so the same query can return different results depending on which lane answers it."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "retrieval coverage alignment spec"
+  - "corpus walker ripgrep drift"
+  - "install guides trigger index"
+  - "root readme mirrors excluded"
+  - "research lineages documented divergence"
+  - "parity test coverage agreement"
 importance_tier: "normal"
 contextType: "general"
 ---

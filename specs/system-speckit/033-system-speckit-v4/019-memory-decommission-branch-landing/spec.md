@@ -2,10 +2,12 @@
 title: "Feature Specification: memory decommission landing and verification "
 description: "The memory-database decommission existed only on a side branch while the release branch and main still carried the memory server, its hooks and its commands; this packet lands the branch, aligns the changed documents with their templates, and proves zero drift through a review loop."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "memory decommission landing spec"
+  - "release branch still carried memory"
+  - "zvec semantic lane vendored"
+  - "seventy one commits ahead"
+  - "no memory surface left"
+  - "ten-iteration review finds P0 P1"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -4,6 +4,9 @@ description: "Why the symlinked-track criterion could not be met as written: the
 trigger_phrases:
   - "symlinked track out of scope"
   - "repair walk skips symlinks"
+  - "entry.isDirectory false for symlink"
+  - "criterion superseded not fabricated"
+  - "handle identity device and inode"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

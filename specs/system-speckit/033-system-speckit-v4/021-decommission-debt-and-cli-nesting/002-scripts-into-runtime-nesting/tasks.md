@@ -2,10 +2,11 @@
 title: "Tasks: Phase 2: scripts-into-runtime-nesting"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "scripts nesting tasks"
+  - "rg system-spec-kit scripts"
+  - "runtime scripts collision read"
+  - "workspaces three member list"
+  - "memory continuity fold rename"
 importance_tier: "normal"
 contextType: "general"
 ---

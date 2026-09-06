@@ -2,10 +2,11 @@
 title: "Tasks: Phase 7: memory-command-family-naming-decision"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "memory naming decision tasks"
+  - "blast radius rg re-run"
+  - "goal d7 literal precedent"
+  - "command frontmatter key continuity"
+  - "hard cutover no aliases"
 importance_tier: "normal"
 contextType: "general"
 ---

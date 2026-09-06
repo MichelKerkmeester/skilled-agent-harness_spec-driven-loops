@@ -2,10 +2,12 @@
 title: "Tasks: Phase 4: save-and-resume-freshness"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "save resume freshness tasks"
+  - "baseline resume ladder suite"
+  - "workflow trigger index fresh"
+  - "resume ladder parseContinuitySignal"
+  - "packet pointer handover check"
+  - "save completion reminder drift"
 importance_tier: "normal"
 contextType: "general"
 ---

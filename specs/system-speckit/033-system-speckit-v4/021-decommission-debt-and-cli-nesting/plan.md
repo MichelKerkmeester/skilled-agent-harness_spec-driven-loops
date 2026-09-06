@@ -2,10 +2,12 @@
 title: "Implementation Plan: Decommission debt fixes and runtime alignment"
 description: "Fix the six recorded debt items at source with tests, move the trigger index under runtime, then align both packages with the OpenCode standards through five fresh agents on disjoint folder sets, verifying behavior is unchanged before and after."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "decommission debt plan"
+  - "two lanes alignment"
+  - "freshness walker fixtures ignored"
+  - "fan-out runner lineage stderr"
+  - "runtime data trigger index"
+  - "code readmes one per folder"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,12 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "live follow log hygiene"
+  - "log_state_change state gate"
+  - "diverged ahead behind key"
+  - "size cap retained generation"
+  - "edge-triggered poll logging"
+  - "LIVE_FOLLOW_LOG_MAX_BYTES cap"
 importance_tier: "normal"
 contextType: "general"
 _memory:

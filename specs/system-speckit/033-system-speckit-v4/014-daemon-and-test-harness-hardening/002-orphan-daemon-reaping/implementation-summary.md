@@ -2,10 +2,12 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "orphan daemon reaping triggers"
+  - "system-spec-memory-launcher stdio close"
+  - "isRespawnLockStale orphaned holder"
+  - "process-sweep.ts apply path"
+  - "SPECKIT_SESSION_START_ORPHAN_SWEEP env"
+  - "orphan predicate existing heartbeat"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,9 +2,13 @@
 title: "Implementation Summary"
 description: "One shared helper now decides whether a CLI write stays inside its root; the changelog and description generators call it instead of carrying their own weaker checks."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
+  - "shared containment helper"
+  - "assertPathInsideRoot helper"
+  - "canonicalizeExistingPrefix canonicalizer"
   - "path containment seam"
+  - "three write boundary checks one"
+  - "nested-changelog output override"
+  - "path-containment.vitest four cases"
 importance_tier: "normal"
 contextType: "general"
 _memory:

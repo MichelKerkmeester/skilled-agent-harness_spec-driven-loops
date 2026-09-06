@@ -2,10 +2,12 @@
 title: "Implementation Summary: Decommission debt fixes and runtime alignment"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "decommission debt fixes"
+  - "freshness walker fixture exclusion"
+  - "trigger index runtime data move"
+  - "rollback runbook deleted"
+  - "unused mcp response type removed"
+  - "runtime scripts standards alignment"
 importance_tier: "normal"
 contextType: "general"
 _memory:

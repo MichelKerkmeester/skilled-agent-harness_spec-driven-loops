@@ -2,10 +2,12 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "production database isolation"
+  - "ProductionDatabaseResolutionError refusal"
+  - "fail closed test context refusal"
+  - "realpath production directory match"
+  - "vitest config setupFiles reconcile"
+  - "test scoped blast radius"
 importance_tier: "normal"
 contextType: "general"
 _memory:

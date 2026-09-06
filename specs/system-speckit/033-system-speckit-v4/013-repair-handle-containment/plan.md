@@ -4,6 +4,10 @@ description: "Close the scan-to-write gap by making the write prove its own prec
 trigger_phrases:
   - "path containment plan"
   - "handle identity check"
+  - "write proves its own precondition"
+  - "scan time observation to write"
+  - "remove process-derived root source"
+  - "directory swap fails first"
 importance_tier: "important"
 contextType: "implementation"
 ---

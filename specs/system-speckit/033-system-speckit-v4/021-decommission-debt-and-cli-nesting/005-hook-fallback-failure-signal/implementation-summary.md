@@ -2,10 +2,12 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hook fallback failure signal"
+  - "mkHookDrift drift marker"
+  - "codex devin hook fallback chains"
+  - "stop cleanup || true removed"
+  - "copilot wrapper scripts deleted"
+  - "doctor route degraded adapters"
 importance_tier: "normal"
 contextType: "general"
 _memory:

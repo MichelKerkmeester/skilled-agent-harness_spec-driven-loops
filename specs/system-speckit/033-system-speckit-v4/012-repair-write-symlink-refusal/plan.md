@@ -2,11 +2,11 @@
 title: "Implementation Plan: Repair Write Symlink Refusal"
 description: "The repair script decided a path was a regular file during its scan and wrote it later. The write now refuses to traverse a symlink itself. Also records why the sibling resume-containment finding was declined: its remedy would break every symlinked track."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "repair write symlink plan"
+  - "writeExistingFileNoFollow helper"
+  - "open with traversal disabled"
+  - "named refusal not raw errno"
+  - "graph metadata repair write path"
 importance_tier: "important"
 contextType: "implementation"
 ---

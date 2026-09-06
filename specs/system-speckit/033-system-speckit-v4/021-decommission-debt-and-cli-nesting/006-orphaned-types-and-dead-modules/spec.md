@@ -2,10 +2,12 @@
 title: "Feature Specification: Phase 6: orphaned-types-and-dead-modules"
 description: "Seven structural types survive in shared/types.ts with no implementer or caller, two runtime modules have no production caller, two test files sit outside every vitest include glob and never run, one catch block swallows every error, and the markdown-link checker double-counts two of its roots."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "orphaned types spec"
+  - "shared types database interface types"
+  - "vector store types sections"
+  - "two never run tests"
+  - "rollout policy dead module"
+  - "check-markdown-links roots"
 importance_tier: "normal"
 contextType: "general"
 ---

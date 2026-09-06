@@ -2,11 +2,12 @@
 title: "Feature Specification: Repair Write Symlink Refusal"
 description: "The repair script decided a path was a regular file during its scan and wrote it later. The write now refuses to traverse a symlink itself. Also records why the sibling resume-containment finding was declined: its remedy would break every symlinked track."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "repair write symlink refusal"
+  - "writeExistingFileNoFollow helper"
+  - "symlink traversal disabled at open"
+  - "path swapped after scan"
+  - "scan classifies regular file"
+  - "declined resume containment finding"
 importance_tier: "important"
 contextType: "implementation"
 ---

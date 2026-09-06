@@ -2,10 +2,12 @@
 title: "Implementation Summary: Review Remediation"
 description: "Closing the three P1 findings that survived four review iterations, each code fix proven by a control observed failing first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "apply path enable decision"
+  - "fail open kill switch fix"
+  - "candidate filter stale snapshot"
+  - "reapability from parent evidence"
+  - "permission precondition version scoped"
+  - "termination opt in operator layer"
 importance_tier: "normal"
 contextType: "general"
 _memory:

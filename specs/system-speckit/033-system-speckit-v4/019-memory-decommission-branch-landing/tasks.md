@@ -2,10 +2,12 @@
 title: "Tasks: memory decommission landing and verification "
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "memory decommission landing tasks"
+  - "merge skilled v4 resolve conflicts"
+  - "validate changed docs by class"
+  - "fast-forward main to v4"
+  - "sweep live zero trigger index"
+  - "eleven P1 fixed at source"
 importance_tier: "normal"
 contextType: "general"
 ---

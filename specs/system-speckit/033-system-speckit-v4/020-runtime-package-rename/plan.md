@@ -2,10 +2,12 @@
 title: "Implementation Plan: spec-kit runtime rename "
 description: "Move the engine package to system-spec-kit/runtime with git mv in one commit, update every reference in the same commit, prune dependencies on a resolution audit, rebuild and re-stamp, then run a ten-iteration review on the moved tree."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "runtime package rename plan"
+  - "git mv atomic commit"
+  - "dependency resolution audit"
+  - "@spec-kit/runtime api surface"
+  - "rewrite references same commit"
+  - "dist-freshness new root"
 importance_tier: "normal"
 contextType: "general"
 ---

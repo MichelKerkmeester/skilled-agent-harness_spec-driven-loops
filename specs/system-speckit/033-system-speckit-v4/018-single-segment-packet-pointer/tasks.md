@@ -6,6 +6,10 @@ completion_pct: 100
 trigger_phrases:
   - "single segment packet pointer tasks"
   - "packet_pointer regex widening tasks"
+  - "SPECDOC_FRONTMATTER_004 rejected"
+  - "validate.sh obsidian flattened packet"
+  - "npm run build mcp-server"
+  - "segment group plus to star"
 importance_tier: "high"
 contextType: "tasks"
 parent: "system-speckit"

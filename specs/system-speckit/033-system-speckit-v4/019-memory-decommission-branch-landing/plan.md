@@ -2,10 +2,12 @@
 title: "Implementation Plan: memory decommission landing and verification "
 description: "Merge v4 into the branch so the release branch fast-forwards, regenerate derived metadata, validate changed documents against their template classes, then run a bounded deep review with gpt-5.6-luna and fix at source until it reports no P0 or P1."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "memory decommission landing plan"
+  - "branch-side merge fast-forward"
+  - "validator-driven alignment sweep"
+  - "bounded review loop fanout"
+  - "validate_document per class"
+  - "cli-codex gpt-5.6 executor"
 importance_tier: "normal"
 contextType: "general"
 ---

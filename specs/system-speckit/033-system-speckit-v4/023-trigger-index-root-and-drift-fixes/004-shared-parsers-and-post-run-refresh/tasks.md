@@ -2,9 +2,12 @@
 title: "Tasks: Phase 4: shared-parsers-and-post-run-refresh"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "shared frontmatter parser"
+  - "shared frontmatter parser tasks"
+  - "inventory fence splitting parsers"
+  - "create parse-frontmatter test"
+  - "adopt spec-kit modules"
+  - "move containment primitive"
+  - "post run refresh unit tests"
 importance_tier: "normal"
 contextType: "general"
 ---

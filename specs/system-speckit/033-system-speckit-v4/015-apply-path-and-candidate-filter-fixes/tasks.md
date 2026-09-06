@@ -2,10 +2,12 @@
 title: "Tasks: Review Remediation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "review remediation tasks"
+  - "omitted enable decision control"
+  - "parent died after snapshot control"
+  - "explicit enable decision required"
+  - "fresh parent evidence reapability"
+  - "permission precondition version scoped"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,10 +2,12 @@
 title: "Implementation Summary: Phase 4 save-and-resume-freshness"
 description: "A canonical save now proves the committed trigger index matches the packet's own trigger_phrases instead of only logging a manual reminder, and the resume ladder no longer lets a malformed continuity record or a merely-newer unbound handover outrank validated, packet-bound continuity."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "save and resume freshness"
+  - "checkTriggerIndexFreshness save step"
+  - "trigger phrases set equality"
+  - "resume ladder trust ranking"
+  - "handover outranking continuity fixed"
+  - "lenient manual field extraction"
 importance_tier: "normal"
 contextType: "general"
 _memory:

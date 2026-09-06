@@ -4,6 +4,10 @@ description: "Track the last reported divergence state in the poll loop and emit
 trigger_phrases:
   - "live follow log hygiene plan"
   - "state change logging"
+  - "edge-triggered divergence report"
+  - "LIVE_FOLLOW_LOG_MAX_BYTES cap"
+  - "git-live-follow.sh poll loop"
+  - "retained generation rotation"
 importance_tier: "normal"
 contextType: "implementation"
 ---

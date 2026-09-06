@@ -3,6 +3,11 @@ title: "Tasks: Phase 1: Production Database Isolation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "production db isolation tasks"
+  - "ProductionDatabaseResolutionError refusal"
+  - "fail closed isTestContext refusal"
+  - "config setupFiles reconciled"
+  - "production-db-isolation.vitest.ts suite"
+  - "negative control named error"
 importance_tier: "important"
 contextType: "implementation"
 ---

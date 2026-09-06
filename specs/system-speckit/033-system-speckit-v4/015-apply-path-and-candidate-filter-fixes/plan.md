@@ -2,11 +2,12 @@
 title: "Implementation Plan: Review Remediation"
 description: "Reproduce each surviving finding with a control that fails first, then make the sweep default safe, its judgement fresh, and the playbook self-consistent."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "review remediation plan"
+  - "fail open kill switch"
+  - "plan-time parent gate"
+  - "contradictory permission precondition"
+  - "deep-review P1 findings"
+  - "negative control fails first"
 importance_tier: "normal"
 contextType: "general"
 ---

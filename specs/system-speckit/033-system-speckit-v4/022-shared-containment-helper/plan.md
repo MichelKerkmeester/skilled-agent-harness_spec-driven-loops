@@ -2,9 +2,12 @@
 title: "Implementation Plan: path-containment-seam"
 description: "Add the shared containment helper to the CLI utilities, switch the two generators to it, and prove the boundary with one focused unit test."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "path containment seam"
+  - "path containment seam plan"
+  - "assertPathInsideRoot helper"
+  - "canonicalizeExistingPrefix lexical tail"
+  - "nested-changelog generate-description adopters"
+  - "single owner write check"
+  - "path-containment boundary unit test"
 importance_tier: "normal"
 contextType: "general"
 ---

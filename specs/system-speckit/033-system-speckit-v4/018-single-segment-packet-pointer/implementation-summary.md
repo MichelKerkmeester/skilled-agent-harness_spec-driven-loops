@@ -2,10 +2,12 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "single segment packet pointer"
+  - "SPECDOC_FRONTMATTER_004 widening"
+  - "packet_pointer regex star group"
+  - "obsidian plugin flattened specs"
+  - "setContinuityField test helper"
+  - "rejects unsafe packet_pointer shapes"
 importance_tier: "normal"
 contextType: "general"
 _memory:

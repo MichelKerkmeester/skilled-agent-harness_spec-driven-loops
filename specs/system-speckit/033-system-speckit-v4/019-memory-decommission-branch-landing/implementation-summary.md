@@ -2,10 +2,12 @@
 title: "Implementation Summary: memory decommission landing"
 description: "The memory-database decommission is landed and pushed on skilled/v4.0.0.0 and main, the READMEs describe continuity instead of a memory store, the git hooks and engine no longer serve the removed index, and a ten-iteration review with gpt-5.6-luna found ten defects that are fixed at source; a second pass and the runtime rename are still running, so this summary is in progress."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "memory decommission branch landing"
+  - "branch-side merge fast-forward"
+  - "residue decommission missed"
+  - "ten-iteration gpt-5.6 review"
+  - "zvec semantic lane retired"
+  - "routing registry drift guard"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -2,10 +2,12 @@
 title: "Implementation Summary: Phase 3: retrieval-coverage-alignment"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "retrieval coverage alignment"
+  - "install guides trigger index corpus"
+  - "scratch exclusion convergence"
+  - "mirrors join neither lane"
+  - "research lineages divergence"
+  - "retrieval-coverage-parity test"
 importance_tier: "normal"
 contextType: "general"
 _memory:

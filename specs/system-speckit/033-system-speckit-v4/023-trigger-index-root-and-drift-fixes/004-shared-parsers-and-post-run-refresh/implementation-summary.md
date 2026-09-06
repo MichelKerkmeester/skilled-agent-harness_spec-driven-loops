@@ -2,10 +2,12 @@
 title: "Implementation Summary"
 description: "The spec-kit shared package now owns one frontmatter parser and one containment primitive used across spec-kit and the skill advisor, and fan-out runs refresh their packet's generated metadata when they end."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "shared frontmatter parser"
+  - "parse-frontmatter fence split"
+  - "path containment primitive shared"
+  - "post run metadata refresh fanout"
+  - "--no-metadata-refresh flag"
+  - "advisor build better-sqlite3 declaration"
 importance_tier: "normal"
 contextType: "general"
 _memory:

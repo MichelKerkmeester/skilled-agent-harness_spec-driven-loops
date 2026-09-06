@@ -2,9 +2,12 @@
 title: "Tasks: Phase 2: metadata-drift-and-rules"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "graph metadata child identity"
+  - "graph metadata child identity tasks"
+  - "census drift 127 packets"
+  - "prune foreign identity children"
+  - "register child identity rule"
+  - "track root sweep document"
+  - "regenerate proof packet"
 importance_tier: "normal"
 contextType: "general"
 ---

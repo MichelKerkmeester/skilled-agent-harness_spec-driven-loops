@@ -2,10 +2,12 @@
 title: "Tasks: Phase 6: orphaned-types-and-dead-modules"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "orphaned types tasks"
+  - "baseline check-markdown-links counts"
+  - "rg shared types symbols"
+  - "delete orphaned module grep proof"
+  - "fix orphaned test files"
+  - "link checker broken list retained"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -2,9 +2,11 @@
 title: "Implementation Plan: Phase 2: metadata-drift-and-rules"
 description: "Prune foreign-identity children in the writer, add the child-identity rule to the registry, and add a read-only sweep over track roots."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "graph metadata child identity"
+  - "graph metadata child identity plan"
+  - "identity aware pruning merge"
+  - "GRAPH_METADATA_CHILD_IDENTITY shell rule"
+  - "track roots sweep script"
+  - "backfill prune prediction parity"
 importance_tier: "normal"
 contextType: "general"
 ---

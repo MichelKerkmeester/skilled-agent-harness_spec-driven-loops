@@ -2,10 +2,12 @@
 title: "Feature Specification: Decommission debt fixes and runtime alignment"
 description: "Close the debt the memory-decommission review loop recorded, move the trigger index under runtime, and align the runtime and scripts packages with the OpenCode code standards and code-folder README contract."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "decommission debt spec"
+  - "scripts freshness counted fixtures"
+  - "fan-out runner discarded stderr"
+  - "two data folders collapsed"
+  - "runtime scripts code drift"
+  - "alignment stylistic not behavioral"
 importance_tier: "normal"
 contextType: "general"
 ---

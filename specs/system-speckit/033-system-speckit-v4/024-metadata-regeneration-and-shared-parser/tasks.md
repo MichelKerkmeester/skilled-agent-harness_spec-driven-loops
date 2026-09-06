@@ -2,9 +2,12 @@
 title: "Tasks: metadata-regeneration-and-parser-edges"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "metadata regeneration pass"
+  - "metadata regeneration tasks"
+  - "census drift 114 packets"
+  - "regenerate 113 clean packets"
+  - "shared dependency manifest add"
+  - "adopt parser GLM lane"
+  - "force-track swallowed manifest"
 importance_tier: "normal"
 contextType: "general"
 ---

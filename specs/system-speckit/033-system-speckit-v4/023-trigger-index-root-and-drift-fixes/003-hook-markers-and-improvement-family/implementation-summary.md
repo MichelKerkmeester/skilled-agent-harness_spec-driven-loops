@@ -2,10 +2,12 @@
 title: "Implementation Summary"
 description: "Claude and Cursor hooks now fail loud the way Codex and Devin do, and the improvement/ artifact family is documented and shape-checked."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "claude cursor hook drift markers"
+  - "mkHookDrift fallback claude cursor"
+  - "improvement artifact family"
+  - "IMPROVEMENT_ARTIFACTS rule"
+  - "rule count 39 registry"
+  - "doctor rows new adapters"
 importance_tier: "normal"
 contextType: "general"
 _memory:

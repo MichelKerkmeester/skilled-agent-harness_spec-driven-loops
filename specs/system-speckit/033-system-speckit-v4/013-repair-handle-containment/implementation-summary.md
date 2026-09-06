@@ -2,10 +2,13 @@
 title: "Implementation Summary: Path Containment Follow-Ups"
 description: "The repair write now proves the handle it opened is the file the scan classified, and truncates only after that — the refusal was otherwise landing after the damage."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "repair handle identity check"
+  - "write proves the file scanned"
+  - "device and inode comparison"
+  - "ftruncate after identity proven"
+  - "directory swap case test"
+  - "bystander content assertion"
+  - "removed process-derived root source"
 importance_tier: "normal"
 contextType: "general"
 _memory:

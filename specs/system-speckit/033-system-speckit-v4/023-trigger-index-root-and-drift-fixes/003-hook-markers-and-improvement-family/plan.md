@@ -2,9 +2,12 @@
 title: "Implementation Plan: Phase 3: hook-markers-and-improvement-family"
 description: "Mirror the Codex and Devin drift fallback onto the Claude and Cursor hook registrations, extend the doctor asset and parity test, and document and validate the improvement/ artifact family."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
   - "hook drift marker claude cursor"
+  - "claude cursor fallback wrap"
+  - "improvement artifact family doc"
+  - "IMPROVEMENT_ARTIFACTS rule"
+  - "doctor health rows adapters"
+  - "parity marker per host"
 importance_tier: "normal"
 contextType: "general"
 ---

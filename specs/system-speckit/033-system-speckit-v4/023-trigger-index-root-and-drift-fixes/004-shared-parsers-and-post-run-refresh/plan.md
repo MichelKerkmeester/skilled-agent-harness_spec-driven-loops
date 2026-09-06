@@ -2,9 +2,11 @@
 title: "Implementation Plan: Phase 4: shared-parsers-and-post-run-refresh"
 description: "Create the shared frontmatter parser and containment primitive, adopt them where an import edge exists, and add a flag-guarded post-run metadata refresh to the fan-out runner."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "shared frontmatter parser"
+  - "shared frontmatter parser plan"
+  - "parse-frontmatter dependency"
+  - "path containment primitive move"
+  - "post run generators refresh"
+  - "advisor local sqlite declaration"
 importance_tier: "normal"
 contextType: "general"
 ---
