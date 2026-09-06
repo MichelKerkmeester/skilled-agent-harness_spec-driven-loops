@@ -33,7 +33,7 @@ This mode is where you find out what the validators are checking for and why.
 - Someone asks what `trigger_phrases`, `importance_tier` or `contextType` are for.
 - A document class is being added and needs a frontmatter rule of its own.
 
-Keyword triggers: `yaml frontmatter`, `frontmatter block`, `frontmatter template`, `frontmatter field`, `frontmatter fields`, `trigger_phrases`, `trigger phrases`, `importance_tier`, `contextType`, `description budget`, `4-part version`, `X.Y.Z.W`, `frontmatter versioning`, `frontmatter version`, `version field`, `frontmatter validation`, `missing frontmatter`, `frontmatter contract`.
+Keyword triggers: `yaml frontmatter`, `frontmatter block`, `frontmatter template`, `frontmatter field`, `frontmatter fields`, `trigger_phrases`, `trigger phrases`, `importance_tier`, `contextType`, `description budget`, `4-part version`, `X.Y.Z.W`, `frontmatter versioning`, `frontmatter version`, `version field`, `frontmatter validation`, `missing frontmatter`, `frontmatter contract`, `yaml header`, `goes at the top of the file`, `version number at the top`, `importance tier`, `versioning pass`, `stopped showing up in suggestions`, `validator says my file is missing`, `description too long`, `edit count`, `field the validator wants`.
 
 ### When NOT to Use
 

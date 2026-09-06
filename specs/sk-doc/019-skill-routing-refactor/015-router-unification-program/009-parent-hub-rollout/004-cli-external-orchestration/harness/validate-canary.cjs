@@ -104,11 +104,11 @@ const PROTECTED_DIGESTS = Object.freeze({
   // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
   // file cell the playbook-authoring template now emits.
   'load-playbook-scenarios.cjs':
-    'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
+    '87526532135615c3d0862e1849bfea66a10d0221cefe86a0af93bda20607f1f5',
   'router-replay.cjs':
     '95b5df3b9fc6332fc15c19ab2ad399cc05bcb35a04054573d5081c1c96df5d1d',
   'score-skill-benchmark.cjs':
-    '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
+    '1e42813a43d1221614114bfbd9236dfafca25021c83026a41f63c49a7bb52ba9',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

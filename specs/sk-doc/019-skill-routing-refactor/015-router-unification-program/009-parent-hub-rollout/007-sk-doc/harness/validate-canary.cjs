@@ -80,12 +80,13 @@ const SCORER_ROOT = path.join(
 const PROTECTED_DIGESTS = Object.freeze({
   // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
   // file cell the playbook-authoring template now emits.
-  'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
+  // Re-pinned after the benchmark loader and scorer changed at HEAD; the pin had not followed.
+  'load-playbook-scenarios.cjs': '87526532135615c3d0862e1849bfea66a10d0221cefe86a0af93bda20607f1f5',
   // Re-pinned when the replay was taught to read the intent dict a mode template
   // actually writes. The scorer source moved and the pin did not follow it, so this
   // canary and its four siblings had been red on an unchanged working tree since.
   'router-replay.cjs': '95b5df3b9fc6332fc15c19ab2ad399cc05bcb35a04054573d5081c1c96df5d1d',
-  'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
+  'score-skill-benchmark.cjs': '1e42813a43d1221614114bfbd9236dfafca25021c83026a41f63c49a7bb52ba9',
 });
 // These attest the authored hub sources the compiler reads: the hub SKILL.md, both
 // routing-stage files, and one SKILL.md per registered packet. They are a drift
@@ -94,8 +95,8 @@ const PROTECTED_DIGESTS = Object.freeze({
 // mirrors what the loader collects, so adding a packet to the registry adds a row here.
 const AUTHORED_DIGESTS = Object.freeze({
   'SKILL.md': '1d42271665aa6a2c133bb4c3cd9a236d75da14c2152874ce1c5b2c8441984b16',
-  'hub-router.json': '59dd210808a4cacaf6929021e92a33fc11adf5a05d2ec9b788f53b8bdb3cfeae',
-  'mode-registry.json': '36cb54bf3be88a41bf7b20d3872c56a570e5468ec8d02b0fa9ec62eec7565f84',
+  'hub-router.json': 'da146bf06470800769c086016a4bfadc8e18103b55e1b46e49e122432a8c3c06',
+  'mode-registry.json': 'fab56b3d4c174bce2fcfe27ee1528ded235a3f46e79403fed3d9746ed97d87ea',
   'packets/sk-create-agent/SKILL.md': 'a9b4d2350a6e96adf2deb30a9b7aac90c9026c33a922737575534bbbad066b7e',
   'packets/sk-create-benchmark/SKILL.md': 'e1ab6aca520103e1cc46fa3445b8cdbb7b78f425b786800670b47211cfc75d9a',
   'packets/sk-create-changelog/SKILL.md': 'dc143329da4e2c1e352cc165599c787126328c0ce7c353e680322d3dcfaf9118',
@@ -104,7 +105,7 @@ const AUTHORED_DIGESTS = Object.freeze({
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
   'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',
   'packets/sk-create-feature-catalog/SKILL.md': 'f4ab47733e43ebdbede265edbf8eb5b469a57a789b1cbc5ad0bdbee28683f43e',
-  'packets/sk-create-frontmatter/SKILL.md': '1f4df89fb26c89d2b77519252d59463cda5ebac7f3a435dc69a8b1a18db8e02a',
+  'packets/sk-create-frontmatter/SKILL.md': '2b07dacf22765a96d3015f7d2b427b2306273eb8cdc610dc095900db79bd8a87',
   'packets/sk-create-manual-testing-playbook/SKILL.md': '3295f8af59aefdc56643a40e91500e5a59908bb860fd44e02599e291a4b39c8a',
   'packets/sk-create-quality-control/SKILL.md': '8e7cce8a51b7aa7e4f631766f98051dc80a811be53716a093cf2bf1d9697c741',
   'packets/sk-create-readme/SKILL.md': 'b5abb270e52b6cda650556098a21465221c37b35ed06f718ad67213dc1ea31e3',
