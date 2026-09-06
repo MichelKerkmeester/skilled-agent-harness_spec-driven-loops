@@ -154,7 +154,7 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-06T15:09:34.864Z",
+    "last_save_at": "2026-09-06T16:00:14.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,6 +167,6 @@
       "spec.md": "3a1e6819fa9b09c5d016a782d6d8168de77bfd2acc25854c6a0762c7cf0831b0"
     },
     "last_active_child_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/011-chart-command-surface",
-    "last_active_at": null
+    "last_active_at": "2026-09-06T16:00:14.610Z"
   }
 }
