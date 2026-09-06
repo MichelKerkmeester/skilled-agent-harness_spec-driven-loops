@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 2: phase-2-PROVIDE-DESCRIPTIVE-SLUG
+# Feature Specification: sk-design-md-generator as the EXTRACT mode
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -33,14 +33,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/002-phase-2-provide-descriptive-slug` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 4 |
-| **Predecessor** | 001-phase-1-PROVIDE-DESCRIPTIVE-SLUG |
-| **Successor** | 003-phase-3-PROVIDE-DESCRIPTIVE-SLUG |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Predecessor** | 002-hub-and-fundamentals |
+| **Successor** | 004-chart-and-diagram-cutover |
+| **Handoff Criteria** | One identity answers design requests and `validate this design.md` routes again, so chart and diagram vocabulary can be added without splitting a phrase |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,13 +50,18 @@ contextType: "general"
 
 This is **Phase 2** of the Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: The `sk-design-md-generator` tree, the hub's vocabulary, and the 44 live references to the old path. The 30 historical records under `specs/` are explicitly out of scope. The shared `styles/` corpus moves with the tree but is not restructured.
 
 **Dependencies**:
-- [To be defined during planning]
+- `002-hub-and-fundamentals`: the hub must exist and be class H
+- The metadata contract's rule that a second identity below a hub root is rejected
+- The regression `002` left open, which this phase is obliged to close
 
 **Deliverables**:
-- [To be defined during planning]
+- `sk-design/sk-design-md-generator/`, 7,942 files moved as renames
+- One advisor identity: 24 domains and 90 intent signals, up from 19 and 72
+- 44 live path references rewritten and 30 historical records left as written
+- `validate this design.md` routing again, measured at daemon generation 618
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.

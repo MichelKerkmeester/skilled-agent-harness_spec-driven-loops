@@ -4,15 +4,50 @@ description: "Replay the baseline, rebuild the daemon, reconcile every document 
 importance_tier: important
 contextType: reference
 version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof"
+    last_updated_at: "2026-09-06T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Authored the closure directive; the replay has not been run from the final state"
+    next_safe_action: "Rebuild the advisor daemon, replay the sixteen phrases, compare against the baseline"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/ROUTER.md"
+      - ".opencode/skills/sk-design/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-06-018-sk-design-parent-v2"
+      parent_session_id: null
 ---
 
-# Goal
+# Goal: closure and routing proof
 
-Every claim this packet makes matches what the fleet does, measured from the final state.
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 
 **Inherits the parent `goal.md`. Where this file and that one disagree, that one wins.**
 
-## Proof, in this order
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
+
+Every claim this packet makes matches what the fleet does, measured from the final state.
+
+### Decisions
+
+**Reconcile what now lies.** Two canon tables name the old fleet shape: the root-metadata contract's
+fleet list, and the nested-packets note. `016`'s spec is superseded in part and should say so from
+its own side. Any document still describing `sk-design` as standalone or `sk-doc` as the home of
+chart and diagram is wrong and is this phase's to fix.
+
+### Operator copy
+
+Prove the routing from the final state, then make every document agree with it.
+<!-- /ANCHOR:directive -->
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+### Proof, in this order
 
 1. Rebuild the advisor daemon and observe its generation number move. A green replay against a stale
    daemon proves nothing, and the rebuild is never chained automatically.
@@ -22,15 +57,31 @@ Every claim this packet makes matches what the fleet does, measured from the fin
    the chart corpus checker.
 4. `validate.sh --strict` across this packet and the relocated chart packet.
 
-## Reconcile what now lies
+Structural validation does not read for content. Nothing may claim completion on a document that
+still carries template prose, so check that by reading.
+<!-- /ANCHOR:binding -->
 
-Two canon tables name the old fleet shape: the root-metadata contract's fleet list, and the
-nested-packets note. `016`'s spec is superseded in part and should say so from its own side. Any
-document still describing `sk-design` as standalone or `sk-doc` as the home of chart and diagram is
-wrong and is this phase's to fix.
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
 
-## Done
+| # | Criterion | How it is proven |
+|---|-----------|------------------|
+| 1 | The daemon actually rebuilt | Its generation number observed to move |
+| 2 | No phrase below baseline | Sixteen-phrase replay against `scratch/routing-baseline.txt` |
+| 3 | Every gate green from the final state | Each gate's own `RESULT: PASSED` line, read not inferred |
+| 4 | Packet validates | `validate.sh --strict` across this packet and the relocated chart packet |
+| 5 | No document still describes the old shape | The two canon tables and `016`'s spec reconciled |
+| 6 | Every criterion resolved | `Met`, `Waived` or `Superseded` with observed evidence |
+<!-- /ANCHOR:completion -->
 
-All criteria `Met`, `Waived` or `Superseded` with observed evidence. Metadata regenerated. Nothing
-claiming completion on a document that still carries template prose: structural validation does not
-read for content, so check by reading.
+<!-- ANCHOR:log -->
+## 4. LOG
+
+### Progress
+
+Open. Steps 1 to 4 of the packet are done; this phase has not run.
+
+### Deviations and findings
+
+None yet.
+<!-- /ANCHOR:log -->

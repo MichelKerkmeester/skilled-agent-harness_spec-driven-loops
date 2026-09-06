@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG
+# Feature Specification: Reinstate the sk-design parent hub
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -33,14 +33,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/001-phase-1-provide-descriptive-slug` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 4 |
 | **Predecessor** | None |
-| **Successor** | 002-phase-2-PROVIDE-DESCRIPTIVE-SLUG |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Successor** | 003-md-generator-as-mode |
+| **Handoff Criteria** | The hub passes the class H gate and `sk-design-fundamentals` resolves with a non-empty leaf set, so a second mode can be added |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,13 +50,18 @@ contextType: "general"
 
 This is **Phase 1** of the Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: The `sk-design` skill root and the content moving down into `sk-design-fundamentals/`. No other skill is touched. What `016` retired stays retired: the interface mode, the `commands/interface/` surface and the design-taste layer.
 
 **Dependencies**:
-- [To be defined during planning]
+- The skill-root metadata contract, which defines the hub and standalone classes
+- `016-deprecate-sk-design-interface`, whose hub decision this reverses and whose scope decisions it keeps
+- Nothing else in this packet; this is the first step by construction
 
 **Deliverables**:
-- [To be defined during planning]
+- A class H `sk-design` root: `ROUTER.md`, `description.json`, `mode-registry.json`, `hub-router.json`
+- `sk-design-fundamentals/` carrying the former root content as 28 renames
+- `scratch/routing-baseline.txt`, the sixteen-phrase measurement taken before anything moved
+- The one routing regression named and handed to phase 003 as an acceptance criterion
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.

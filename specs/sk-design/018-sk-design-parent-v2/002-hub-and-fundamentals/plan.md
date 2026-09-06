@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: reinstate the sk-design parent hub"
+description: "Convert the sk-design root from a standalone skill to a parent hub, move its content down into sk-design-fundamentals as the first mode, and measure the routing effect rather than assume it."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG
+# Implementation Plan: reinstate the sk-design parent hub
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -21,15 +21,19 @@ contextType: "general"
 
 ### Technical Context
 
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+`sk-design` is a standalone skill: a 501-line root `SKILL.md` doing both the routing and the work,
+with `leaf-manifest.config.json` and `leaf-aliases.json` as its standalone identity files. The
+metadata contract makes hub and standalone two classes, not two configurations of one class, so this
+is a class change. Three files are required on a hub and forbidden on a standalone
+(`description.json`, `mode-registry.json`, `hub-router.json`); `leaf-manifest.config.json` is the
+mirror and must go.
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Convert the root, move today's content down into `sk-design-fundamentals/` as renames, and land it
+as one commit so the shared branch never shows a hub root without its `SKILL.md`. Capture the
+sixteen-phrase routing baseline **before** anything moves, because it cannot be recaptured
+afterwards.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +42,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] The problem statement and frozen scope are in `spec.md`
+- [x] Success criteria are observable commands, not adjectives
+- [x] The sixteen-phrase baseline is captured and committed to `scratch/routing-baseline.txt`
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every acceptance criterion in `acceptance-criteria.md` is `Met`, `Waived` or `Superseded`
+- [x] The fleet metadata gate classifies `sk-design` class H with no forbidden file
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +58,26 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Two-stage hub routing. The advisor scores the hub as one identity; the hub's `hub-router.json`
+and root `ROUTER.md` then pick the mode. Modes with `routingClass: "metadata"` are resolved by hub
+membership and reach the advisor only through the hub's `graph-metadata.json`.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+
+- **`ROUTER.md`**: the hub's intent model. Needs `router_state`, `version` and `skill_pointer` in
+  frontmatter, `## OVERVIEW` and `## INTENT MODEL` sections, and `INTENT_SIGNALS` and `RESOURCE_MAP`
+  as dictionaries whose paths resolve to declared leaves.
+- **`mode-registry.json`**: declares which modes exist below the hub.
+- **`hub-router.json`**: stage-two routing from an intent to a mode.
+- **`description.json`**: the hub's advisor identity record.
+- **`sk-design-fundamentals/`**: the former root content, moved down intact.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+A request is scored against the hub's `graph-metadata.json` `intent_signals`. If the hub wins,
+`hub-router.json` and `ROUTER.md` resolve an intent to a mode, and the mode's own `SKILL.md` takes
+over. Keywords in `description.json` play no part in the score.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,27 +85,28 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Surface | Change | Why it must move with the rest |
+|---------|--------|-------------------------------|
+| `.opencode/skills/sk-design/SKILL.md` | Reduced to routing | A hub root that still does the work is not a hub |
+| `.opencode/skills/sk-design/ROUTER.md` | Created | Required for an active hub root |
+| `description.json`, `mode-registry.json`, `hub-router.json` | Created | Required on a hub |
+| `leaf-manifest.config.json`, `leaf-aliases.json` | Deleted | Forbidden and generated, respectively |
+| `leaf-manifest.json` | Regenerated | Must list the new mode's leaves |
+| `sk-design-fundamentals/**` | 28 renames | The work the root used to do |
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+| Step | What | Gate |
+|------|------|------|
+| 1 | Capture the sixteen-phrase baseline before touching anything | The file exists and is committed |
+| 2 | Move the root content into `sk-design-fundamentals/` | `git diff --cached -M` shows renames |
+| 3 | Author the hub root: `SKILL.md`, `ROUTER.md`, the three identity files | Fleet gate class H |
+| 4 | Delete the standalone identity files, regenerate the leaf manifest | Fleet gate reports no forbidden file |
+| 5 | Replay the sixteen phrases and diff against the baseline | Every phrase accounted for |
 <!-- /ANCHOR:phases -->
 
 ---
@@ -97,11 +114,14 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Check | How |
+|-------|-----|
+| Class contract | The fleet metadata audit, class H for `sk-design` |
+| Stage-two resolution | `mode-registry.json` plus the regenerated `leaf-manifest.json` |
+| Routing effect | Sixteen-phrase replay diffed against `scratch/routing-baseline.txt` |
+| History preserved | `git diff --cached --name-status -M`, requiring `R` status |
+
+A registry row is not proof a request arrives. Every routing claim comes from the replay.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,9 +129,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Depends on | Nature |
+|-----------|--------|
+| The metadata contract in `sk-create-skill/references/shared/skill-root-metadata-contract.md` | Defines which files are required and forbidden per class |
+| `016-deprecate-sk-design-interface` | This packet reverses its hub decision and keeps its scope decisions |
+| Nothing else in this packet | This is step one; every other phase lands on what it leaves |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,30 +141,21 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert `112d5471f4`. The commit is self-contained: the hub files it created, the standalone files
+it deleted and the 28 renames all move together, so a single revert restores the standalone skill
+with its history intact. Nothing outside `.opencode/skills/sk-design/` and this packet is touched.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
-```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
-```
+| This phase | Blocks | Reason |
+|-----------|--------|--------|
+| `002-hub-and-fundamentals` | `003`, `004`, `001`, `005` | Nothing can be a mode of a hub that does not exist |
 
-| Phase | Depends On | Blocks |
-|-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+It depends on nothing. It is the first step by construction.
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -150,12 +163,14 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Item | Size |
+|------|------|
+| Files moved | 28, as renames |
+| Files created | 5 |
+| Files deleted | 2 |
+| Commits | 1 |
+
+The cost is concentrated in the root `SKILL.md` rewrite, not in the move.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,23 +179,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] The routing baseline is captured and committed; it cannot be recaptured later
+- [x] Renames verified with `git diff --cached --name-status -M` before committing
+- [x] No intermediate state leaves the hub root without a `SKILL.md`
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. `git revert 112d5471f4`
+2. Rebuild the advisor daemon and observe its generation move
+3. Replay the sixteen phrases; they should match the baseline exactly
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+
+None. This phase moves and rewrites files. It stores no state and migrates no data.
 <!-- /ANCHOR:enhanced-rollback -->
-
----
-
 
 ---
 
@@ -188,25 +199,30 @@ Phase 1.5 (Config) ───┘
 ## L3: DEPENDENCY GRAPH
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
+routing baseline (captured first, unrepeatable)
+        |
+        v
+move root content -> sk-design-fundamentals (28 renames)
+        |
+        v
+author hub root: SKILL.md, ROUTER.md, 3 identity files
+        |
+        v
+delete standalone identity files, regenerate leaf manifest
+        |
+        v
+replay 16 phrases, diff against baseline
 ```
 
 ### Dependency Matrix
 
-| Component | Depends On | Produces | Blocks |
-|-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Step | Needs | Produces |
+|------|-------|----------|
+| Baseline | A tree nobody has touched | `scratch/routing-baseline.txt` |
+| Move | Baseline captured | `sk-design-fundamentals/` |
+| Hub root | The move | A class H root |
+| Cleanup | The hub root | A gate that passes |
+| Replay | All of the above | The regression this packet owns, named |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +230,9 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
-
-**Total Critical Path**: [Sum of durations]
-
-**Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+The baseline is the critical step and it is first, because it is the only one that cannot be redone.
+Everything after it is recoverable by revert. The single commit is the second constraint: on a shared
+branch, an intermediate state without a root `SKILL.md` would break other sessions.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -230,31 +240,51 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
-| Milestone | Description | Success Criteria | Target |
-|-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| Milestone | Evidence |
+|-----------|----------|
+| Baseline captured | `scratch/routing-baseline.txt` committed |
+| Hub exists | Fleet gate class H |
+| Fundamentals routes | Non-empty leaf set for the mode |
+| Effect measured | Replay diffed; 15 of 16 unchanged, 1 regression named |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Convert the class rather than add hub files
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: `sk-design` is a standalone skill. The metadata contract treats hub and standalone as
+two classes with mirrored required and forbidden file sets, and the fleet gate enforces both halves.
 
-**Decision**: [What we decided]
+**Decision**: Treat the conversion as a class change: add the three hub-required files and delete
+`leaf-manifest.config.json` in the same commit.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The gate passes on the first run rather than reporting a mixed class.
+- The standalone identity is gone, so a revert is the only way back; that is acceptable because the
+  commit is self-contained.
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Add hub files and leave the standalone ones: fails the forbidden-file half of the gate.
+
+### ADR-002: Leave the regressed phrase for phase 003
+
+**Status**: Accepted
+
+**Context**: The conversion creates a second identity carrying design vocabulary, and
+`validate this design.md` drops below the bar because the phrase splits between them.
+
+**Decision**: Record it as an acceptance criterion of phase 003 rather than tuning keywords here.
+
+**Consequences**:
+- One phrase is knowingly broken between two commits on a shared branch.
+- No tuning work is done twice, because phase 003 merges the identities and would undo it.
+
+**Alternatives Rejected**:
+- Trim keywords now: the next phase makes the tuning meaningless.
 
 ---
 

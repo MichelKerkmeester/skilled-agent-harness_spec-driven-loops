@@ -4,14 +4,37 @@ description: "The binding goal for the whole packet. Every child goal.md inherit
 importance_tier: important
 contextType: reference
 version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "sk-design/018-sk-design-parent-v2"
+    last_updated_at: "2026-09-06T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Authored the binding goal, roadmap and routing baseline for the whole packet"
+    next_safe_action: "Finish phase 001's relocation, then run phase 005's closure replay"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/ROUTER.md"
+      - ".opencode/skills/sk-design/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-06-018-sk-design-parent-v2"
+      parent_session_id: null
 ---
 
-# Goal
+# Goal: reinstate sk-design as a parent hub
+
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
+
+**The binding goal for the whole packet. Every child `goal.md` inherits these rules; where a child
+disagrees with this file, this file wins.**
+
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
 
 Reinstate `sk-design` as a parent hub carrying four modes, and finish with every request that
 reached a skill before still reaching one, proven by replay rather than by configuration.
 
-## Read first, do not re-derive
+### Read first, do not re-derive
 
 - `roadmap.md` beside this file: order, what each step breaks, what proves it fixed.
 - `spec.md`: why this reverses `016-deprecate-sk-design-interface` and what stays retired.
@@ -20,14 +43,24 @@ reached a skill before still reaching one, proven by replay rather than by confi
 - `scratch/routing-regressions.md`: the one regression this packet owns and the one weakness it
   inherits.
 
-## The rule that governs every step
+### Decisions
 
 **A registry row, a vocabulary entry and a green gate prove nothing about whether a request
 arrives.** The baseline already demonstrates this: `sk-doc` carries 27 chart and diagram vocabulary
 strings, including `ascii flowchart` verbatim, and the phrase `ascii flowchart of the approval loop`
 reaches nobody. Every step ends by replaying the sixteen phrases and comparing against the baseline.
 
-## Binding constraints
+Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
+`description.json` move no score at all; that was measured twice during this packet, not assumed.
+
+### Operator copy
+
+Four modes under one hub, and a replay proving nothing stopped arriving. Steps 1 to 4 are done;
+step 5 is the replay.
+<!-- /ANCHOR:directive -->
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
 
 1. **One commit per step.** Work happens on the shared branch and other sessions write here. No
    commit may leave a skill root without its `SKILL.md`, or a router signal pointing at a packet not
@@ -45,16 +78,35 @@ reaches nobody. Every step ends by replaying the sixteen phrases and comparing a
    in a code comment.
 6. **Do not restore what `016` retired**: the interface mode, the `commands/interface/` surface, or
    the design-taste layer.
+7. **Run artifacts are evidence, not text to update.** Fan-out logs, iteration deltas and recorded
+   command output describe what was on disk when they were written. A path rewrite that touches them
+   falsifies the record. Live cross-references follow a move; historical evidence does not.
 
-## Definition of done
+### Escalate rather than continue
 
-Four modes under one hub. Both hubs green on their own checks and the fleet metadata gate. The
-sixteen-phrase replay showing no phrase below its baseline, chart and diagram phrases naming
-`sk-design`, and `sk-doc` no longer claiming them. The regression this packet owns closed, or
-escalated with evidence if it did not close where expected. `validate.sh --strict` clean across the
-packet. The advisor daemon rebuilt and its generation observed to move.
+A gate failing twice on one cause after a real repair. A spec contradicting the code. A change that
+would touch a file outside the phase's declared scope. Anything that would delete tracked content.
+A routing regression that does not close where this packet said it would.
+<!-- /ANCHOR:binding -->
 
-## Keeping this file true, and telling the operator when it changes
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+
+| # | Criterion | How it is proven |
+|---|-----------|------------------|
+| 1 | Four modes under one hub | `mode-registry.json` and `hub-router.json` list all four; each mode root holds its own `SKILL.md` |
+| 2 | Both hubs green | The fleet metadata gate passes class H for `sk-design` and for `sk-doc` |
+| 3 | No phrase below baseline | The sixteen-phrase replay compared line by line against `scratch/routing-baseline.txt` |
+| 4 | Chart and diagram phrases name `sk-design` | Replay output, with `sk-doc` no longer claiming them |
+| 5 | The owned regression closed | `validate this design.md` reaches the merged mode, or is escalated with evidence |
+| 6 | Packet validates | `validate.sh --strict` prints `RESULT: PASSED` for the parent and every child, taking the first `RESULT:` line |
+| 7 | The daemon actually rebuilt | Its generation number observed to move, not assumed |
+<!-- /ANCHOR:completion -->
+
+<!-- ANCHOR:log -->
+## 4. LOG
+
+### Keeping this file true, and telling the operator when it changes
 
 This goal is not written once. It is the working contract, and it goes stale the moment the work
 teaches something the plan did not know. Update it whenever any of these happen:
@@ -65,13 +117,30 @@ teaches something the plan did not know. Update it whenever any of these happen:
 - A new open item appears that a later phase must carry, or a carried item closes.
 - A measurement contradicts something this file asserts. The file loses; the measurement stands.
 
-**Then say so.** Print the revised goal back to the operator in chat, under 4,000 characters, with a
-one-line note naming what changed and why, so the operator can update the goal they are holding.
-A goal file that has drifted from the work is worse than none, because it still reads as authority.
-Do not wait until closure to report a change that alters what the next step does.
+**Then say so.** Print the revised goal back to the operator in chat, in a copyable block, under
+4,000 characters, with a one-line note naming what changed and why, so the operator can update the
+goal they are holding. A goal file that has drifted from the work is worse than none, because it
+still reads as authority. Do not wait until closure to report a change that alters what the next
+step does.
 
-## Escalate rather than continue
+### Progress
 
-A gate failing twice on one cause after a real repair. A spec contradicting the code. A change that
-would touch a file outside the phase's declared scope. Anything that would delete tracked content.
-A routing regression that does not close where this packet said it would.
+| Step | Phase | State |
+|------|-------|-------|
+| 1 | `002-hub-and-fundamentals` | Done, `112d5471f4` |
+| 2 | `003-md-generator-as-mode` | Done |
+| 3 | `004-chart-and-diagram-cutover` | Done |
+| 4 | `001-sk-create-chart` | Done: 1,528 renames, 35 spec folders green |
+| 5 | `005-closure-and-routing-proof` | Open |
+
+### Deviations and findings
+
+- **Keywords in `description.json` move no advisor score.** Measured twice. Vocabulary belongs in
+  `graph-metadata.json` `intent_signals`; eleven signals added there fixed all four previously dead
+  phrases. This likely generalises beyond this packet.
+- **Step 4 collided on two canonical filenames.** The relocated packet brought its own `spec.md` and
+  `goal.md`. The packet's documents keep the canonical names; the relocation's own documents were
+  renamed to `relocation-note.md` and `relocation-goal.md`.
+- **Constraint 7 was added after a violation, not before.** Seven run artifacts were rewritten during
+  step 4 and reverted from `HEAD` once caught.
+<!-- /ANCHOR:log -->

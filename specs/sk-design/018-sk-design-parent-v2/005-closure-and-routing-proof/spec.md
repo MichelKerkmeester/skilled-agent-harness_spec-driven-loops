@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: phase-4-PROVIDE-DESCRIPTIVE-SLUG [template:level-3/spec.md]"
+title: "Feature Specification: Closure and routing proof"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 4: phase-4-PROVIDE-DESCRIPTIVE-SLUG
+# Feature Specification: Closure and routing proof
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -35,12 +35,12 @@ contextType: "general"
 | **Priority** | [P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/004-phase-4-provide-descriptive-slug` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 4 |
-| **Predecessor** | 003-phase-3-PROVIDE-DESCRIPTIVE-SLUG |
+| **Predecessor** | 001-sk-create-chart |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Nothing follows; this phase closes the packet |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,13 +50,18 @@ contextType: "general"
 
 This is **Phase 4** of the Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Measurement and reconciliation only. No skill tree moves. The two canon tables naming the old fleet shape, and `016`'s spec saying from its own side that it is superseded in part.
 
 **Dependencies**:
-- [To be defined during planning]
+- Every other phase in this packet, including the relocated `001-sk-create-chart`
+- An explicitly rebuilt advisor daemon; a replay against a stale one proves nothing
+- `scratch/routing-baseline.txt`, which cannot be recaptured
 
 **Deliverables**:
-- [To be defined during planning]
+- The sixteen-phrase replay taken from the final state and diffed against the baseline
+- Every gate green from the final state, each read rather than inferred
+- The two canon tables and `016`'s spec reconciled with the fleet's actual shape
+- Every acceptance criterion across the packet `Met`, `Waived` or `Superseded` with observed evidence
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.

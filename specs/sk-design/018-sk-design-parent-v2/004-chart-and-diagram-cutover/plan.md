@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 3: phase-3-PROVIDE-DESCRIPTIVE-SLUG [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: chart and diagram as sk-design modes"
+description: "Move sk-create-chart and sk-create-diagram from the documentation hub to the design hub in one commit across both hubs, and prove the routing by replay rather than by registry."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: phase-3-PROVIDE-DESCRIPTIVE-SLUG
+# Implementation Plan: chart and diagram as sk-design modes
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -21,15 +21,19 @@ contextType: "general"
 
 ### Technical Context
 
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+`sk-create-chart` and `sk-create-diagram` are modes of `sk-doc`, whose other thirteen modes produce
+prose. They produce visual artefacts judged by design criteria.
+
+A router signal naming a packet that is not on disk fails check five on whichever hub is wrong, and
+this is a shared branch, so both hubs must change together. Four chart and diagram phrases reached
+nobody at baseline despite `sk-doc` carrying 27 chart and diagram vocabulary strings; the packet had
+recorded that as an inherited weakness and put it out of scope.
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Move both packets under `sk-design/` as renames, edit both hubs in one commit, and close two silent
+windows explicitly: the advisor daemon serves its previous generation until rebuilt, and `sk-doc`
+serves legacy compiled routing until its manifest is re-minted. Neither reports itself.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +42,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] The problem statement and frozen scope are in `spec.md`
+- [x] Success criteria are observable commands, not adjectives
+- [x] Both hubs are class H and their current router signals resolve to packets on disk
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every acceptance criterion in `acceptance-criteria.md` is `Met`, `Waived` or `Superseded`
+- [x] Both hubs pass the fleet gate in the same commit and the corpus checker is green from the new path
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +58,25 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Cross-hub cutover. Vocabulary, router signals and registry rows move from one hub's metadata to
+another's in a single commit, with the mode trees moving as renames beneath them.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+
+- **`sk-design/sk-create-chart/`, `sk-create-diagram/`**: the moved mode trees.
+- **`sk-design/graph-metadata.json`**: gains the chart and diagram vocabulary, including eleven new
+  intent signals.
+- **`sk-doc/graph-metadata.json`**: loses it.
+- **Both hubs' `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md`**: mode tables,
+  intents, resource maps and the counts written in prose.
+- **`post-edit-router.cjs`**: a genuine runtime path, not a document reference.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+A chart request scores against `sk-design`'s `intent_signals`, the hub resolves the CHART intent,
+and `sk-create-chart/SKILL.md` takes over. Before this phase the same request scored against
+`sk-doc`, or against nobody.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,27 +84,33 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Surface | Change |
+|---------|--------|
+| Both mode trees | 249 renames under `sk-design/` |
+| Both hubs' registry rows and the counts in prose | Moved together |
+| Router signals, vocabulary classes, tie-break order | Moved together |
+| Both `ROUTER.md` intents and resource maps | Moved together |
+| `graph-metadata.json` on both hubs | Vocabulary moved; eleven signals added |
+| `description.json` keywords and prose on both hubs | Updated, though keywords move no score |
+| `command-metadata.json` for `/create:chart` and `/create:diagram` | Rebound to `sk-design` |
+| The Python scorer shim hardcoding `diagram` and `flowchart` to `sk-doc` | Updated |
+| Four runtime command mirrors | Regenerated by their own scripts, not by hand |
+| The `sk-doc` compiled-routing canaries | Re-minted |
+| Live path references | 56 |
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+| Step | What | Gate |
+|------|------|------|
+| 1 | Move both mode trees under `sk-design/` | `git diff --cached -M` shows renames |
+| 2 | Edit both hubs' registries, routers and vocabulary together | Both hubs class H |
+| 3 | Rebind the command surface and regenerate the four mirrors | The mirrors match their generators |
+| 4 | Re-mint the `sk-doc` compiled routing | The guard passes |
+| 5 | Rebuild the daemon, then replay | Chart and diagram name `sk-design`; controls unchanged |
 <!-- /ANCHOR:phases -->
 
 ---
@@ -97,11 +118,13 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Check | How |
+|-------|-----|
+| Both hubs class H | The fleet metadata audit, in the same commit |
+| Chart and diagram route | Replay at daemon generation 628 after an explicit rebuild |
+| No collateral damage to `sk-doc` | Its three control phrases, replayed |
+| The skill still works | `check-corpus.cjs --render` from the new location, 26 forms |
+| History preserved | `git diff --cached --name-status -M` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,9 +132,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Depends on | Nature |
+|-----------|--------|
+| `002-hub-and-fundamentals` | The target hub must exist |
+| `003-md-generator-as-mode` | Lands first so the hub's vocabulary is already merged when chart and diagram vocabulary is added |
+| The `sk-doc` hub | Edited in the same commit; it is not a bystander |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,30 +144,20 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert `e34e225517`, then rebuild the daemon and re-mint the `sk-doc` compiled routing. The revert
+alone is not enough: both the daemon generation and the compiled manifest are caches that keep
+serving the post-cutover shape until refreshed, which is the same pair of silent windows the forward
+change had to close.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
-```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
-```
-
-| Phase | Depends On | Blocks |
-|-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| This phase | Depends on | Blocks |
+|-----------|-----------|--------|
+| `004-chart-and-diagram-cutover` | `002`, `003` | `001` (the spec packet follows its skill), `005` |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -150,12 +165,13 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-| Phase | Complexity | Estimated Effort |
-|-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Item | Size |
+|------|------|
+| Files moved | 249, as renames |
+| Hubs edited | 2, in one commit |
+| Live path references | 56 |
+| Intent signals added | 11 |
+| Commits | 1 |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,23 +180,21 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Both hubs edited together, so no intermediate state has a signal naming an absent packet
+- [x] Renames verified before committing
+- [x] The daemon rebuilt and its generation observed before any routing number is quoted
+- [x] The `sk-doc` compiled routing re-minted rather than assumed fresh
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. `git revert e34e225517`
+2. Re-mint the `sk-doc` compiled routing manifest
+3. Rebuild the advisor daemon and observe its generation move
+4. Replay: chart and diagram should name `sk-doc` again
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+
+None. The cutover moves files and metadata. Two caches must be refreshed on the way back, named above.
 <!-- /ANCHOR:enhanced-rollback -->
-
----
-
 
 ---
 
@@ -188,25 +202,30 @@ Phase 1.5 (Config) ───┘
 ## L3: DEPENDENCY GRAPH
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
+002 hub exists -> 003 identity merged
+        |
+        v
+move 249 files as renames
+        |
+        v
+edit BOTH hubs in one commit (registries, routers, vocabulary, counts)
+        |
+        v
+rebind commands -> regenerate 4 mirrors -> re-mint sk-doc compiled routing
+        |
+        v
+rebuild daemon (gen 628) -> replay -> chart+diagram name sk-design
 ```
 
 ### Dependency Matrix
 
-| Component | Depends On | Produces | Blocks |
-|-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Step | Needs | Produces |
+|------|-------|----------|
+| Move | A hub with merged vocabulary | Both mode trees under `sk-design/` |
+| Dual-hub edit | The move | Two hubs that both pass check five |
+| Commands and mirrors | The dual-hub edit | A command surface that resolves |
+| Re-mint | The dual-hub edit | A compiled route that is not stale |
+| Replay | An explicit rebuild | The routing evidence |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +233,10 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
-
-**Total Critical Path**: [Sum of durations]
-
-**Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+The single dual-hub commit is the constraint. Splitting it would leave the shared branch with a
+router signal naming a packet that is not on disk, failing whichever hub is wrong for every other
+session. The second constraint is that both the daemon and the compiled routing keep serving the old
+shape silently, so both must be refreshed by name before any claim is made.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -230,31 +244,69 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
-| Milestone | Description | Success Criteria | Target |
-|-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| Milestone | Evidence |
+|-----------|----------|
+| Both hubs green together | Fleet gate in commit `e34e225517` |
+| Chart and diagram arrive | Replay at generation 628 |
+| `sk-doc` unharmed | Three control phrases unchanged |
+| Four dead phrases fixed | Above the bar after eleven intent signals |
+| The skill still builds | `RESULT: PASSED`, 26 forms, from the new path |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Edit both hubs in one commit
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: A router signal naming a packet that is not on disk fails check five on whichever hub is
+wrong, and other sessions write to this branch.
 
-**Decision**: [What we decided]
+**Decision**: Move the trees and edit both hubs' registries, routers and vocabulary in a single
+commit.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The commit is large and touches two skills, which is harder to review.
+- No intermediate state breaks the branch for other sessions.
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Two commits, one per hub: leaves the branch failing between them.
+
+### ADR-002: Keep the `sk-create-` prefix under `sk-design`
+
+**Status**: Accepted
+
+**Context**: The moved modes keep a prefix that names their old hub.
+
+**Decision**: Do not rename. Record the mismatch as a known deviation.
+
+**Consequences**:
+- The names read slightly wrong under the new hub.
+- The path rewrite does not double across four mirrors, the scorer shim, the command bridges and the
+  canaries.
+
+**Alternatives Rejected**:
+- Rename to `sk-design-chart`: doubles the rewrite surface and buys nothing measurable.
+
+### ADR-003: Put vocabulary in `graph-metadata.json`, not `description.json`
+
+**Status**: Accepted
+
+**Context**: Four phrases reached nobody at baseline while `sk-doc` carried 27 chart and diagram
+vocabulary strings, including `ascii flowchart` verbatim.
+
+**Decision**: Add eleven `intent_signals` to the hub's `graph-metadata.json`.
+
+**Consequences**:
+- All four phrases moved above the bar, and a regression where `chart template` briefly reached
+  nobody was fixed at the same time.
+- The long-phrase weakness elsewhere in the fleet is probably not a threshold problem but vocabulary
+  in a file the scorer does not read, which is worth checking before anyone writes a tuning packet.
+
+**Alternatives Rejected**:
+- Add keywords to `description.json`: tried twice, moved no score either time.
 
 ---
 

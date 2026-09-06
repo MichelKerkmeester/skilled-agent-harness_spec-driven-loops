@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: phase-4-PROVIDE-DESCRIPTIVE-SLUG [template:level-3/plan.md]"
+title: "Implementation Plan: Closure and routing proof"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: phase-4-PROVIDE-DESCRIPTIVE-SLUG
+# Implementation Plan: Closure and routing proof
 
 <!-- SPECKIT_LEVEL: 3 -->
 

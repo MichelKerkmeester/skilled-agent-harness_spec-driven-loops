@@ -1,26 +1,225 @@
 {
   "schema_version": 1,
-  "packet_id": "001-reinstate-design-parent/002-phase-2-PROVIDE-DESCRIPTIVE-SLUG",
-  "spec_folder": "001-reinstate-design-parent/002-phase-2-PROVIDE-DESCRIPTIVE-SLUG",
-  "parent_id": null,
+  "packet_id": "sk-design/018-sk-design-parent-v2/003-md-generator-as-mode",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/003-md-generator-as-mode",
+  "parent_id": "sk-design/018-sk-design-parent-v2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: phase-2-PROVIDE-DESCRIPTIVE-SLUG",
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".claude/agents/design.md",
+      ".opencode/commands/design/extract.md",
+      ".opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".claude/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/extract.md",
+        "source": "derived"
+      },
+      {
+        "name": "extraction-defers-to-md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Identity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design-md-generator` is a standalone skill with its own advisor identity",
     "created_at": "2026-09-06T13:52:16Z",
-    "last_save_at": "2026-09-06T13:52:16Z",
+    "last_save_at": "2026-09-06T15:26:02.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ca7bcec3f4e4ee0c421ba2b352666334cb94a60a37605cfa1d3d0eb99b36829",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "739a1d69a45c10bea27bbe79bf30fdfdc56018903ea62fe5c244add89d81a142",
+      "plan.md": "f6f43dae7c5d8ec414d4af3f97177c23eab8519bf4b3179836aab02d240fb7fc",
+      "tasks.md": "d08a9ca730295208126993843d98c652c1419e4370abb4d6ec6ae04b2fb71f69",
+      "implementation-summary.md": "3ad467c300fef0188de66fce12d07cde875dc21c9be0a5d53b551ec042053008"
+    },
+    "last_active_at": null
   }
 }

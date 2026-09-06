@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 4: phase-4-PROVIDE-DESCRIPTIVE-SLUG"
+title: "Acceptance Criteria: Closure and routing proof"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 4: phase-4-PROVIDE-DESCRIPTIVE-SLUG
+# Acceptance Criteria: Closure and routing proof
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

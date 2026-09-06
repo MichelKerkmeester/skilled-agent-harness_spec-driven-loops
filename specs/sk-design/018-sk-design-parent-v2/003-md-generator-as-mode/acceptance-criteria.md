@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 2: phase-2-PROVIDE-DESCRIPTIVE-SLUG"
+title: "Acceptance Criteria: sk-design-md-generator as the EXTRACT mode"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 2: phase-2-PROVIDE-DESCRIPTIVE-SLUG
+# Acceptance Criteria: sk-design-md-generator as the EXTRACT mode
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** `sk-design/018-sk-design-parent-v2/003-md-generator-as-mode`
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the regression phase 002 introduced, When the generator becomes a mode of the hub, Then `validate this design.md` routes above the 0.8 bar again | Replayed at daemon generation 618 after an explicit rebuild: 0.82, reaching the hub | Met | - |
+| AC-002 | REQ-002 | Given the generator's second baseline phrase, When it is replayed from the merged identity, Then it still reaches the owner above the bar | `extract design tokens from stripe.com` at 0.896, generation 618 | Met | - |
+| AC-003 | REQ-003 | Given a hub root, When the fleet gate runs, Then it reports no nested identity and `sk-design` stays class H | Fleet metadata audit after deleting the packet's four identity files | Met | - |
+| AC-004 | REQ-004 | Given 74 files carrying the old path, When they are classified, Then all 44 live references resolve and none of the 30 historical records is rewritten | 24 in-tree plus 20 live rewritten in `fa35e09653`; the `016` records left as written | Met | - |
+| AC-005 | REQ-005 | Given 7,942 moved files, When the index is inspected before commit, Then git records renames | `git diff --cached --name-status -M`, verified before committing | Met | - |
+| AC-006 | REQ-006 | Given a shared branch, When the move and its rewrites land, Then they are one commit and no intermediate state carries a dead load path | Commit `fa35e09653` | Met | - |
 
 ### Status values
 
@@ -79,8 +84,11 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+REQ-001 carried this phase: it was written as the closing condition for a regression the previous
+phase created, and the phase could not close until the phrase routed. Two criteria originally
+phrased as 'at or above the baseline score' were corrected rather than declared met, because the
+baselines belonged to a standalone identity and the answering identity is now the hub. Lifting the
+`styles/` corpus was consciously left out; it is a separate packet.
 <!-- /ANCHOR:closure -->

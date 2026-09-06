@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 3: phase-3-PROVIDE-DESCRIPTIVE-SLUG
+# Feature Specification: Chart and diagram as sk-design modes
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -33,14 +33,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
-| **Branch** | `scaffold/003-phase-3-provide-descriptive-slug` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 4 |
-| **Predecessor** | 002-phase-2-PROVIDE-DESCRIPTIVE-SLUG |
-| **Successor** | 004-phase-4-PROVIDE-DESCRIPTIVE-SLUG |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Predecessor** | 003-md-generator-as-mode |
+| **Successor** | 001-sk-create-chart |
+| **Handoff Criteria** | The chart skill lives under `sk-design`, so its spec packet can be filed there |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,13 +50,18 @@ contextType: "general"
 
 This is **Phase 3** of the Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Both hubs. `sk-doc` is not a bystander: its registry rows, router signals, vocabulary and prose counts change in the same commit. The `sk-create-` prefix is deliberately not renamed.
 
 **Dependencies**:
-- [To be defined during planning]
+- `002-hub-and-fundamentals` and `003-md-generator-as-mode`, in that order
+- The `sk-doc` hub, which loses two modes in the same commit
+- The advisor daemon and the `sk-doc` compiled routing, both of which serve stale answers until refreshed by name
 
 **Deliverables**:
-- [To be defined during planning]
+- `sk-design/sk-create-chart/` and `sk-create-diagram/`, 249 files moved as renames
+- Both hubs class H in one commit, with registry rows, router signals, vocabulary and prose counts moved together
+- Eleven `intent_signals` that fix four phrases which reached nobody at baseline
+- `check-corpus.cjs --render` printing `RESULT: PASSED` from the new location
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.

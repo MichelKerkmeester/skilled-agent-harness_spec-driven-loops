@@ -147,7 +147,7 @@ one, and the proof is a replayed request rather than a configuration row.
 | `.opencode/skills/sk-design-md-generator/` | Move | Becomes a mode under the hub |
 | `.opencode/skills/sk-doc/sk-create-chart/`, `sk-create-diagram/` | Move | Become modes under the hub |
 | Both hubs' routing surfaces | Modify | Registry, router, ROUTER.md, graph metadata, description, SKILL.md, command metadata, leaf manifests |
-| `specs/sk-doc/051-sk-create-chart/` | Move | Becomes `001-sk-create-chart` under this parent |
+| `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/` | Move | Becomes `001-sk-create-chart` under this parent |
 
 ### The constraint the operator chose
 
@@ -167,7 +167,7 @@ path and matches by exact blob hash.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-sk-create-chart/` | The chart corpus packet, relocated from `specs/sk-doc/051-sk-create-chart`. Not authored here: moved | Pending |
+| 1 | `001-sk-create-chart/` | The chart corpus packet, relocated from `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart`. Not authored here: moved | Pending |
 | 2 | `002-hub-and-fundamentals/` | `sk-design` becomes a hub with one mode, built from content the root already owns | Pending |
 | 3 | `003-md-generator-as-mode/` | The md generator returns as a mode, 7,946 files moved as renames | Pending |
 | 4 | `004-chart-and-diagram-cutover/` | Chart and diagram leave `sk-doc` for `sk-design`, both hubs edited together | Pending |

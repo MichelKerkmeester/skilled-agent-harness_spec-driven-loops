@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG [template:level-3/tasks.md]"
+title: "Tasks: reinstate the sk-design parent hub"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "task breakdown"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG
+# Tasks: reinstate the sk-design parent hub
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -19,14 +19,11 @@ contextType: "general"
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-| Prefix | Meaning |
-|--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+`T###` is a stable task id. `[P]` marks a task that may run in parallel with its neighbours; tasks
+without it are ordered. A task is `[x]` only when its stated evidence was observed, never because it
+looked done.
 
-**Task Format**: `T### [P?] Description (file path)`
+All tasks below are complete. Evidence is named per task rather than summarised at the end.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -34,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] **T001** Capture the sixteen-phrase routing baseline before touching anything (`scratch/routing-baseline.txt`)
+- [x] **T002** Read the class contract and write down which files are required and which forbidden on a hub
+- [x] **T003** Record the dirty set with `git status --porcelain`; other sessions write to this branch
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +41,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] **T004** Move the root content into `sk-design-fundamentals/` as 28 renames
+- [x] **T005** Reduce the root `SKILL.md` from 501 lines to routing only
+- [x] **T006** [P] Author `ROUTER.md` with `router_state`, `version`, `skill_pointer`, `## OVERVIEW`, `## INTENT MODEL`, and `INTENT_SIGNALS` / `RESOURCE_MAP` as dictionaries
+- [x] **T007** [P] Author `description.json`, `mode-registry.json` and `hub-router.json`
+- [x] **T008** Delete `leaf-manifest.config.json` and `leaf-aliases.json`; regenerate `leaf-manifest.json`
+- [x] **T009** Stage everything and confirm `git diff --cached --name-status -M` shows 28 `R100` entries
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +54,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] **T010** Run the fleet metadata audit; require class H for `sk-design` with no forbidden file
+- [x] **T011** Rebuild the advisor daemon and observe its generation move
+- [x] **T012** Replay the sixteen phrases and diff against the baseline
+- [x] **T013** Name the one regression and record it as an acceptance criterion of phase 003
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,11 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Fleet gate class H, no forbidden file
+- [x] Two design phrases at or above baseline
+- [x] `sk-design-fundamentals` resolves with a non-empty leaf set
+- [x] One commit, `112d5471f4`
+- [x] 28 renames, verified before committing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,8 +77,10 @@ contextType: "general"
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- `spec.md`: the frozen scope and the REQ ids these tasks satisfy
+- `plan.md`: the architecture, the rollback, and the decision records
+- `acceptance-criteria.md`: the rows that decide whether this packet may close
+- `implementation-summary.md`: what actually shipped, with the commit
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -86,11 +90,9 @@ contextType: "general"
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-| Priority | Handling | Completion Impact |
-|----------|----------|-------------------|
-| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
-| **[P1]** | Required | Must complete OR get user approval |
-| **[P2]** | Optional | Can defer with documented reason |
+A command counts as evidence only after its output and exit status were read. A green run lies in
+several ways: a stale build, a wrong path, a silent no-op and an assertion-free check all exit 0.
+Every gate below was required to print its own result line, and the routing replay was taken only after an explicit daemon rebuild.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -98,9 +100,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] `spec.md` scope frozen before any file moved
+- [x] Baseline captured first, because it cannot be recaptured once the tree moves
+- [x] Required and forbidden file sets written down before any file was created or deleted
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +110,9 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] No task id, requirement id, phase number or spec path in any code comment
+- [x] The root `SKILL.md` carries routing only; the work moved down rather than being rewritten
+- [x] Existing patterns reused rather than replaced; no adjacent code tidied
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +120,11 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] Fleet metadata audit: class H, PASS
+- [x] Sixteen-phrase replay: 15 unchanged, 1 regression named
+- [x] `what padding should this have` at or above 0.82
+- [x] `contrast ratio failure on this button` at or above 0.95
+- [x] Rename detection: 28 `R100`
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +132,11 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] Every hub-required file created, not just some
+- [x] Every standalone-only file deleted, not just the obvious one
+- [x] The leaf manifest regenerated rather than hand-edited
+- [x] The one phrase that regressed is named, not hidden: `validate this design.md`, deliberately
+      carried to phase 003 rather than tuned here
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +144,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] No credential, token or key added, moved or logged
+- [x] No new network call, and no dependency installed
+- [x] File moves stay inside the repository; nothing is written outside it
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +154,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] `spec.md` records the reversal of `016` and what stays retired
+- [x] `implementation-summary.md` records what shipped, with the commit hash
+- [x] `acceptance-criteria.md` rows carry observed evidence, not intentions
 <!-- /ANCHOR:docs -->
 
 ---
@@ -164,8 +164,9 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] Former root content lives under `sk-design-fundamentals/` with history intact
+- [x] Nothing left at the old path that a live reference still needs
+- [x] No task-created temporary file in the scoped diff
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,13 +174,15 @@ contextType: "general"
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| Gate | Result |
+|------|--------|
+| Fleet metadata audit, class H | PASS |
+| Sixteen-phrase replay | 15 of 16 unchanged |
+| Stage-two leaf resolution | Non-empty |
+| Rename detection | 28 of 28 `R100` |
+| `validate.sh --strict` | `RESULT: PASSED` |
 
-**Verification Date**: 2026-09-06
+One phrase regressed by design of the sequencing and is carried to phase 003.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -187,10 +190,9 @@ contextType: "general"
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
+- [x] Two-stage routing holds: the advisor scores the hub, the hub resolves the mode
+- [x] The class contract holds: every required file present, every forbidden file absent
+- [x] Router paths resolve to leaves that exist on disk
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -198,10 +200,9 @@ contextType: "general"
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
+Not applicable in the runtime sense: this phase moves files and metadata and adds no code path on a
+hot loop. The one measured quantity is advisor score, recorded per phrase in
+`acceptance-criteria.md` rather than as a performance number.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -209,11 +210,9 @@ contextType: "general"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Feature flag configured (if applicable)
-- [ ] CHK-122 [P1] Monitoring/alerting configured
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
+- [x] One commit, so the shared branch has no broken intermediate state
+- [x] Advisor daemon rebuilt and its generation observed, not assumed
+- [x] Rollback named in `plan.md` and reachable by a single revert
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -221,10 +220,9 @@ contextType: "general"
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Security review completed
-- [ ] CHK-131 [P1] Dependency licenses compatible
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
-- [ ] CHK-133 [P2] Data handling compliant with requirements
+- [x] Moves recorded as renames, so authorship and history survive
+- [x] Historical records left as written; only live references rewritten
+- [x] No document claims a result that was not observed
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -232,10 +230,9 @@ contextType: "general"
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] API documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder, taking the first `RESULT:` line
+- [x] Generated metadata regenerated after the last document edit
+- [x] No spec document still carries template prose
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -245,9 +242,7 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| Operator | Packet owner | [x] Approved | 2026-09-06 |
+| Claude Code | Implementer | [x] Approved | 2026-09-06 |
+| `validate.sh --strict` | Automated gate | [x] Approved | 2026-09-06 |
 <!-- /ANCHOR:sign-off -->
-
-

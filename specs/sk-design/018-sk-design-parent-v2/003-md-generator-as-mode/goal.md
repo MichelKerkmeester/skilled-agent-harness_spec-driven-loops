@@ -4,39 +4,64 @@ description: "Move 7,946 files as renames, fold one advisor identity into anothe
 importance_tier: important
 contextType: reference
 version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "sk-design/018-sk-design-parent-v2/003-md-generator-as-mode"
+    last_updated_at: "2026-09-06T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Moved sk-design-md-generator in as the EXTRACT mode and rewrote its live references"
+    next_safe_action: "None open; phase 005 replays the sixteen phrases from the final state"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/ROUTER.md"
+      - ".opencode/skills/sk-design/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-06-018-sk-design-parent-v2"
+      parent_session_id: null
 ---
 
-# Goal
+# Goal: sk-design-md-generator as the EXTRACT mode
 
-`sk-design-md-generator` becomes a mode of `sk-design`, and `validate this design.md` routes again.
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 
 **Inherits the parent `goal.md`. Where this file and that one disagree, that one wins.**
 
-## The obligation this phase carries from the last one
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
 
-Converting the root created a second identity carrying design vocabulary, and a weak phrase now
-splits between them. `validate this design.md` scored `sk-design-md-generator=0.8451` at baseline and
-returns nothing today. Merging the two identities should close it.
+`sk-design-md-generator` becomes a mode of `sk-design`, and `validate this design.md` routes again.
 
-**That is an acceptance criterion, not an expectation.** If the phrase still returns nothing after
-the generator is a mode, the vocabulary needs tuning here and the phase does not close until it
-routes.
+### Decisions
 
-## What must go, and why
+**The obligation this phase carries from the last one.** Converting the root created a second
+identity carrying design vocabulary, and a weak phrase now splits between them.
+`validate this design.md` scored `sk-design-md-generator=0.8451` at baseline and returned nothing
+after the hub conversion. Merging the two identities should close it. That is an acceptance
+criterion, not an expectation: if the phrase still returns nothing after the generator is a mode,
+the vocabulary needs tuning here and the phase does not close until it routes.
 
-The moved packet cannot keep its own identity files. A second identity below a hub root is rejected
-outright. So its `graph-metadata.json`, `leaf-manifest.config.json`, `leaf-manifest.json` and
-`leaf-aliases.json` are removed, and its intent signals, domains and cross-skill edges fold into the
-hub's `graph-metadata.json`. Inbound edges from other skills retarget to `sk-design`.
+**What must go, and why.** The moved packet cannot keep its own identity files. A second identity
+below a hub root is rejected outright. So its `graph-metadata.json`, `leaf-manifest.config.json`,
+`leaf-manifest.json` and `leaf-aliases.json` are removed, and its intent signals, domains and
+cross-skill edges fold into the hub's `graph-metadata.json`. Inbound edges from other skills
+retarget to `sk-design`.
 
-## Scale, and the one thing that protects it
+**Scale, and the one thing that protects it.** 7,946 tracked files, 216 MB, of which the `styles/`
+corpus is 7,812. Do not lift `styles/` out; that is a separate packet and doing it here would bury
+the move.
 
-7,946 tracked files, 216 MB, of which the `styles/` corpus is 7,812. Do not lift `styles/` out; that
-is a separate packet and doing it here would bury the move.
+### Operator copy
+
+The generator becomes the hub's EXTRACT mode, and the phrase the last phase broke routes again.
+<!-- /ANCHOR:directive -->
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
 
 The move commit must record renames. Verify before committing, not after.
 
-## Paths that break until rewritten, measured rather than estimated
+### Paths that break until rewritten, measured rather than estimated
 
 74 files carry the path `skills/sk-design-md-generator`, and they split three ways:
 
@@ -59,9 +84,30 @@ retrieval fixtures, the lexical `trigger-index.json`, one genuine runtime code p
 That last one needs reading rather than rewriting: `extraction-defers-to-md-generator.md` asserts
 where fundamentals stops and extraction begins, and that boundary changes meaning once both are
 modes of one hub.
+<!-- /ANCHOR:binding -->
 
-## Done
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
 
-Both hub gates green. `skill_graph_validate` clean with no dangling edges. The generator's own test
-suite passing from its new location. Its two baseline phrases at or above baseline, and the
-regression closed.
+| # | Criterion | How it is proven |
+|---|-----------|------------------|
+| 1 | Both hub gates green | The class H check on `sk-design` and the fleet metadata audit |
+| 2 | No dangling graph edges | `skill_graph_validate` clean |
+| 3 | The generator still works from its new home | Its own test suite run from the new location |
+| 4 | Its two baseline phrases at or above baseline | Replay compared against `scratch/routing-baseline.txt` |
+| 5 | The owned regression closed | `validate this design.md` reaches the merged mode |
+<!-- /ANCHOR:completion -->
+
+<!-- ANCHOR:log -->
+## 4. LOG
+
+### Progress
+
+Done. The generator is the hub's EXTRACT mode and the 24 internal plus 20 live references were
+rewritten; the 30 historical records were left as written.
+
+### Deviations and findings
+
+- A prior planner estimated 16 external references. The measured total was 74. Count, never estimate.
+- The `016` historical records were deliberately not rewritten, under parent binding rule 7.
+<!-- /ANCHOR:log -->

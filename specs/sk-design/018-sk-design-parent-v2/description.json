@@ -1,22 +1,28 @@
 {
-  "specFolder": "001-reinstate-design-parent",
-  "description": "Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes",
+  "level": "phase",
+  "specFolder": "sk-design/018-sk-design-parent-v2",
+  "description": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
   "keywords": [
-    "reinstate",
     "sk-design",
-    "parent",
     "hub",
-    "absorb",
-    "chart",
-    "diagram",
-    "generator",
-    "modes"
+    "four",
+    "coherent",
+    "modes",
+    "every",
+    "request",
+    "reached",
+    "mode",
+    "still",
+    "reaches"
   ],
-  "lastUpdated": "2026-09-06T13:52:15.364Z",
-  "specId": "001",
-  "folderSlug": "reinstate-design-parent",
-  "parentChain": [],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "lastUpdated": "2026-09-06T14:52:12.232Z",
+  "specId": "018",
+  "folderSlug": "sk-design-parent-v2",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-09-26_15-50__phase-004-committed-as-e34e225517-both-hubs-class.md"
+  ]
 }

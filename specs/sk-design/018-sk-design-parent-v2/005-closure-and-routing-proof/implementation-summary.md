@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation summary"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-phase-4-provide-descriptive-slug"
+    packet_pointer: "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof"
     last_updated_at: "2026-09-06T13:52:18Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -19,7 +19,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-004-phase-4-PROVIDE-DESCRIPTIVE-SLUG"
+      session_id: "2026-09-06-018-sk-design-parent-v2"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-phase-4-PROVIDE-DESCRIPTIVE-SLUG |
+| **Spec Folder** | 005-closure-and-routing-proof |
 | **Completed** | 2026-09-06 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

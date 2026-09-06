@@ -1,26 +1,160 @@
 {
   "schema_version": 1,
-  "packet_id": "001-reinstate-design-parent",
-  "spec_folder": "001-reinstate-design-parent",
+  "packet_id": "sk-design/018-sk-design-parent-v2",
+  "spec_folder": "sk-design/018-sk-design-parent-v2",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+    "sk-design/018-sk-design-parent-v2/002-hub-and-fundamentals",
+    "sk-design/018-sk-design-parent-v2/003-md-generator-as-mode",
+    "sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover",
+    "sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "001-reinstate-design-parent",
+      "phase parent"
+    ],
+    "key_topics": [
+      "001-reinstate-design-parent",
+      "phase",
+      "parent",
+      "sk-design",
+      "hub",
+      "four",
+      "coherent",
+      "modes",
+      "every",
+      "request",
+      "reached",
+      "mode"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "Reinstate sk-design as a parent hub and absorb chart, diagram and the md generator as its modes",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "scratch/routing-baseline.txt",
+      "scratch/routing-regressions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-baseline.txt",
+        "kind": "file",
+        "path": "scratch/routing-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "routing-regressions.md",
+        "kind": "doc",
+        "path": "scratch/routing-regressions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read first, do not re-derive",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-09-06T13:52:15Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-06T15:15:31.902Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:85689050c3accb9fc95ea5fcb3cd3fbb873e4dc1aa82714ed4383f0f4fb20b66",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4af4988be8023ef7df169b0c29e2b939ff68ac97de726a77d97ad2c81343f454"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-09-06T14:50:24.209Z"
   }
 }

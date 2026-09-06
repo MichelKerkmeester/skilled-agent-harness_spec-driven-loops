@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG"
+title: "Acceptance Criteria: Reinstate the sk-design parent hub"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 1: phase-1-PROVIDE-DESCRIPTIVE-SLUG
+# Acceptance Criteria: Reinstate the sk-design parent hub
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** `sk-design/018-sk-design-parent-v2/002-hub-and-fundamentals`
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a standalone `sk-design`, When the root is converted, Then the fleet metadata gate classifies it class H with every hub-required file present and no hub-forbidden file | Fleet metadata audit, class H pass; `description.json`, `mode-registry.json`, `hub-router.json` added and `leaf-manifest.config.json` deleted in `112d5471f4` | Met | - |
+| AC-002 | REQ-002 | Given the recorded baseline, When the two design phrases are replayed, Then both score at or above their baseline | `what padding should this have` and `contrast ratio failure on this button` at or above 0.82 and 0.95 in the replay beside `scratch/routing-baseline.txt` | Met | - |
+| AC-003 | REQ-003 | Given the hub router, When stage two resolves, Then `sk-design-fundamentals` returns a non-empty leaf set | `mode-registry.json` and the regenerated `leaf-manifest.json` at `.opencode/skills/sk-design/` | Met | - |
+| AC-004 | REQ-004 | Given a shared branch, When the conversion lands, Then it is one commit and no intermediate state shows a hub root without its `SKILL.md` | Commit `112d5471f4`, single commit covering the root rewrite and the 28 moves | Met | - |
+| AC-005 | REQ-005 | Given the moved content, When the index is inspected before commit, Then git records renames rather than delete-plus-add | `git diff --cached --name-status -M` showing 28 `R100` entries | Met | - |
 
 ### Status values
 
@@ -79,8 +83,10 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+REQ-001 and REQ-005 carried this phase: the class conversion is what makes `sk-design` a hub at all,
+and the rename requirement is what keeps the fundamentals history readable. One phrase regressed by
+design of the sequencing and was deliberately left for phase 003 rather than tuned here, because the
+tuning would have been undone by the merge; it is recorded as a known limitation rather than waived.
 <!-- /ANCHOR:closure -->

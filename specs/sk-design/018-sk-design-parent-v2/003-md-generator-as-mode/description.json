@@ -1,17 +1,22 @@
 {
-  "specFolder": "001-reinstate-design-parent/002-phase-2-PROVIDE-DESCRIPTIVE-SLUG",
-  "description": "Phase 2: phase-2-PROVIDE-DESCRIPTIVE-SLUG",
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/003-md-generator-as-mode",
+  "description": "`sk-design-md-generator` is a standalone skill with its own advisor identity",
   "keywords": [
-    "phase",
-    "phase-2-provide-descriptive-slug"
+    "sk-design-md-generator",
+    "standalone",
+    "skill",
+    "own",
+    "advisor",
+    "identity"
   ],
-  "lastUpdated": "2026-09-06T13:52:16.705Z",
-  "specId": "002",
-  "folderSlug": "phase-2-provide-descriptive-slug",
+  "lastUpdated": "2026-09-06T15:25:53.694Z",
+  "specId": "003",
+  "folderSlug": "md-generator-as-mode",
   "parentChain": [
-    "001-reinstate-design-parent"
+    "sk-design",
+    "018-sk-design-parent-v2"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }
