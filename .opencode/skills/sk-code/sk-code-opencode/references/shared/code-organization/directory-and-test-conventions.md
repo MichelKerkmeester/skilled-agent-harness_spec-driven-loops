@@ -143,8 +143,6 @@ mcp-server/
 ```
 scripts/
 ├── common.sh                   # Shared shell utilities
-├── registry-loader.sh          # Script registry loader
-├── scripts-registry.json       # Script metadata registry
 ├── package.json
 ├── tsconfig.json
 ├── core/                       # Core script logic
@@ -178,11 +176,7 @@ scripts/
 │   └── data-loader.ts
 ├── memory/                     # Memory management
 │   ├── generate-context.ts
-│   ├── validate-memory-quality.ts
-│   └── rank-memories.ts
-├── renderers/                  # Template renderers
-│   ├── index.ts
-│   └── template-renderer.ts
+│   └── validate-memory-quality.ts
 ├── rules/                      # Validation rules (shell)
 │   ├── check-ai-protocols.sh
 │   ├── check-anchors.sh

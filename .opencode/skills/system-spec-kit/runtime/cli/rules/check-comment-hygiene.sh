@@ -9,6 +9,9 @@ set -euo pipefail
 # Rule: COMMENT_HYGIENE_MARKER
 # Severity: error
 # Description: Detects ephemeral finding markers inside HTML comments.
+# Scope: spec-folder documents at validate time. Code comments are scanned by
+# the sk-code-quality checker that the pre-commit hook and the comment-hygiene
+# workflow run; the two lanes read different files and neither replaces the other.
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION

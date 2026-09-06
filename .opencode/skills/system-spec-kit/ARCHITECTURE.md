@@ -20,7 +20,7 @@ importance_tier: "important"
 
 `system-spec-kit` is split into three authored zones plus generated build output:
 
-- `runtime/cli/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
+- `runtime/cli/` owns the continuity save pipeline, the spec-folder validation dispatch, packet metadata generation, retrieval tooling, cross-runtime mirror sync, evaluations and setup checks. TypeScript and shell.
 - `runtime/` owns the spec-kit engine: spec folder validation, generated packet metadata, description generation, and the per-runtime hook adapters. It is consumed as a library, not run as a service. TypeScript.
 - `shared/` owns neutral modules imported by both scripts and the engine. TypeScript.
 - Each zone carries its own generated `dist/`, gitignored and rebuilt from source. Not authored.
@@ -97,7 +97,7 @@ Allowed dependency direction:
 - `runtime/ ──▶ shared/`
 - `runtime/cli/ ──▶ shared/`
 
-Reverse imports are blocked by lint and CI. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `runtime/cli/evals/` unless they carry a governed allowlist entry.
+Reverse imports are blocked by the CLI package's `npm run check`, which the `spec-kit-check` GitHub workflow runs on every pull request that touches the skill. Imports that reach past `runtime/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `runtime/cli/evals/` unless they carry a governed allowlist entry.
 
 ---
 
@@ -177,7 +177,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 Spec-kit's quality gates run at three layers.
 
-**Spec folder validation.** `runtime/cli/spec/validate.sh` enforces 20 rules across required files, anchor structure, frontmatter shape, template source markers, continuity freshness, and phase-parent detection. Strict mode treats warnings as failures.
+**Spec folder validation.** `runtime/cli/spec/validate.sh` hands the folder to the compiled engine orchestrator, which dispatches the 39 rules registered in `runtime/cli/lib/validator-registry.json` (20 authored-template, 13 operational-runtime and 6 structural) across required files, anchor structure, frontmatter shape, template source markers, continuity freshness and phase-parent detection. Strict mode treats warnings as failures.
 
 **Save gate.** Every `/speckit:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 

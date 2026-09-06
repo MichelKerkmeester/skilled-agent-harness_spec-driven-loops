@@ -1,6 +1,6 @@
 // TEST: Live Quality Scorer Calibration (extractors/quality-scorer.ts)
 // Ensures the scorer has discriminative power: clean sessions score high, penalised sessions score low.
-// Import fixed from core/quality-scorer → extractors/quality-scorer (live scorer)
+// Exercises the live scorer in extractors/; the retired core scorer had no production caller.
 import { describe, expect, it } from 'vitest';
 
 import { scoreMemoryQuality } from '../extractors/quality-scorer';

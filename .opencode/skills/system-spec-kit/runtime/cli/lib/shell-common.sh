@@ -40,7 +40,7 @@ _json_escape() {
 # ───────────────────────────────────────────────────────────────
 # Phase parent detection — determines whether a folder is a phase
 # parent (contains at least one populated NNN-* child folder).
-# Contract: ≥1 direct child matching ^[0-9]{3}-[a-z0-9-]+$ AND
+# Contract: ≥1 direct child matching ^[0-9]{3}-[a-z0-9][a-z0-9-]*$ AND
 # ≥1 such child has spec.md OR description.json.
 # Usage: is_phase_parent "/path/to/spec-folder"
 # Returns: 0 if phase parent, 1 if not

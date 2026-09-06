@@ -45,7 +45,7 @@ Non-core scripts should import config through this folder. The canonical config 
 Allowed direction:
 
 ```text
-extractors/renderers/loaders -> scripts/config -> scripts/core/config
+extractors/loaders -> runtime/cli/config -> runtime/cli/core/config
 ```
 
 ---

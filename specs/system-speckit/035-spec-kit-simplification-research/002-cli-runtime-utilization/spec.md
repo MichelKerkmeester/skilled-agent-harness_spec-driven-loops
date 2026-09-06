@@ -75,7 +75,7 @@ This is **Phase 2** of the spec-kit simplification research: a research lane who
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation while its heaviest callers are validation and retrieval. Nobody has mapped what is live.
+The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation. The research lane measured the callers: continuity is the most-referenced half, validation carries the heaviest execution, and every retrieval reference is a reminder rather than a mechanism. Before the lane, nobody had mapped what is live.
 
 ### Purpose
 Establish what every directory of the @spec-kit/cli package is for, who actually calls it, what is dead or test-only, and what should be removed or merged.

@@ -6,7 +6,7 @@
 // 1. CONFIG BARREL
 // ───────────────────────────────────────────────────────────────────
 // Re-exports CONFIG and spec-directory utilities so that non-core
-// modules (extractors, renderers, loaders, etc.) can import from
+// modules (extractors, loaders, etc.) can import from
 // '../config' instead of reaching into '../core'.
 //
 // This eliminates the upward-dependency from extractors → core

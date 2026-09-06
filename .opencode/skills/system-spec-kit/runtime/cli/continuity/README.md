@@ -40,8 +40,8 @@ Current state:
         │                         │                        │
         ▼                         ▼                        ▼
 ┌────────────────┐     ┌────────────────────┐     ┌─────────────────┐
-│ maintenance    │     │ ast-parser.ts      │     │ validators and  │
-│ index CLIs     │     │ markdown sections  │     │ ranked output   │
+│ maintenance    │     │ shared frontmatter │     │ validators and  │
+│ index CLIs     │     │ and section parse  │     │ quality output  │
 └───────┬────────┘     └──────────┬─────────┘     └────────┬────────┘
         │                         │                        │
         ▼                         ▼                        ▼
@@ -50,7 +50,7 @@ Current state:
 └──────────────────────────────────────────────────────────────────┘
 
 Dependency direction:
-runtime/cli/continuity/*.ts ───▶ runtime/cli/core, extractors, loaders, renderers and lib helpers
+runtime/cli/continuity/*.ts ───▶ runtime/cli/core, extractors, loaders and lib helpers
 compiled CLIs ───▶ runtime/cli/dist/continuity/*.js
 runtime hooks and slash commands invoke the compiled CLIs directly
 ```
@@ -63,12 +63,9 @@ runtime hooks and slash commands invoke the compiled CLIs directly
 runtime/cli/continuity/
 +-- generate-context.ts                  # Canonical context-save CLI
 +-- validate-memory-quality.ts           # Rendered memory quality gates
-+-- ast-parser.ts                        # Markdown heading, table and code block parser
-+-- rank-memories.ts                     # Candidate ranking utility
 +-- backfill-frontmatter.ts              # Bulk frontmatter normalization
 +-- backfill-research-metadata.ts        # Research metadata backfill helper
 +-- migrate-trigger-phrase-residual.ts   # Trigger phrase residual cleanup
-+-- fix-memory-h1.mjs                    # H1 format repair helper
 `-- README.md
 ```
 
@@ -78,7 +75,6 @@ Allowed dependency direction:
 runtime/cli/continuity/ → runtime/cli/core/
 runtime/cli/continuity/ → runtime/cli/extractors/
 runtime/cli/continuity/ → runtime/cli/loaders/
-runtime/cli/continuity/ → scripts/renderers/
 runtime/cli/continuity/ → scripts/lib/ and shared packages
 ```
 
@@ -96,13 +92,10 @@ maintenance CLIs → silent mutation without an explicit command mode or target
 
 ```text
 runtime/cli/continuity/
-+-- ast-parser.ts
 +-- backfill-frontmatter.ts
 +-- backfill-research-metadata.ts
-+-- fix-memory-h1.mjs
 +-- generate-context.ts
 +-- migrate-trigger-phrase-residual.ts
-+-- rank-memories.ts
 +-- validate-memory-quality.ts
 `-- README.md
 ```
@@ -115,12 +108,9 @@ runtime/cli/continuity/
 |---|---|
 | `generate-context.ts` | Parses save arguments, rejects unsafe temp paths, validates explicit spec-folder targets, accepts `--stdin`, `--json`, or JSON file input, and runs the canonical memory workflow. |
 | `validate-memory-quality.ts` | Checks rendered memory artifacts for structure, semantic sufficiency, duplicate risk, trigger quality, and post-save review output. |
-| `ast-parser.ts` | Parses markdown into heading, code block, table, and section-aware structures used by memory extraction and validation. |
-| `rank-memories.ts` | Scores and ranks memory candidates from JSON input. |
 | `backfill-frontmatter.ts` | Normalizes managed frontmatter keys across targeted markdown roots. |
 | `backfill-research-metadata.ts` | Adds or repairs metadata needed by research memory artifacts. |
 | `migrate-trigger-phrase-residual.ts` | Cleans residual trigger phrase metadata that no longer matches the current schema. |
-| `fix-memory-h1.mjs` | Repairs H1 formatting in older generated memory artifacts. |
 
 ---
 
@@ -181,7 +171,6 @@ Run compiled commands from the repository root after the TypeScript build has pr
 |---|---|---|
 | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin` | CLI | Save structured session context from stdin. |
 | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{...}' <spec-folder>` | CLI | Save structured context from an inline JSON string with an explicit packet target. |
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/rank-memories.js /tmp/memories.json` | CLI | Rank candidate memory records from JSON input. |
 | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/validate-memory-quality.js <file>` | CLI | Check rendered continuity quality before accepting the output. |
 | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --dry-run --include-archive` | CLI | Preview frontmatter normalization changes. |
 | `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json` | CLI | Apply frontmatter normalization and write a report. |

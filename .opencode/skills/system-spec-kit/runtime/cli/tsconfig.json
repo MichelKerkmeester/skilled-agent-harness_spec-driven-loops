@@ -29,7 +29,6 @@
     "loaders/**/*.ts",
     "observability/**/*.ts",
     "ops/**/*.ts",
-    "renderers/**/*.ts",
     "spec/**/*.ts",
     "spec-folder/**/*.ts",
     "types/**/*.ts",

@@ -88,5 +88,4 @@ The legacy module check (`npm run test:legacy`) additionally runs `tests/test-ex
 ## 7. RELATED
 
 - `../loaders/README.md`
-- `../renderers/README.md`
 - `../utils/README.md`

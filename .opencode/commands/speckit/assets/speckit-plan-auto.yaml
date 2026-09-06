@@ -693,7 +693,7 @@ workflow:
       note: 'Read SKILL.md to activate context saving'
     outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"]
     validation: context_saved_successfully
-    post_save_indexing:
+    post_save_write:
       pre_index_instruction:
         command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_path}"
         note: "First compose structured JSON, then run generate-context.js. Nothing else runs after it."

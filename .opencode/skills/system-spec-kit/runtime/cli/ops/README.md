@@ -1,18 +1,18 @@
 ---
-title: "Ops Self-Healing Scripts"
-description: "Deterministic runbook helpers for spec-kit operational failure classes with bounded retry and escalation output."
+title: "Ops Helpers"
+description: "Process inventory and sweep helpers for the spec-kit runtime, plus the one-time grep-convention retrofit."
 trigger_phrases:
-  - "ops runbook"
-  - "self-healing scripts"
-  - "index drift remediation"
-  - "telemetry drift drill"
+  - "ops helpers"
+  - "process sweep"
+  - "memory harness"
+  - "grep convention retrofit"
 ---
 
-# Ops Self-Healing Scripts
+# Ops Helpers
 
 ## 1. OVERVIEW
 
-`runtime/cli/ops/` contains deterministic shell runbooks for known spec-kit operational failure classes. `runbook.sh` still lists and dispatches to both registered failure classes, but neither `heal-*.sh` script currently completes a detect/repair/verify cycle: `heal-session-ambiguity.sh` is a deprecated stub that logs a deprecation notice and exits before running any step, and `heal-telemetry-drift.sh` parses and validates its options but always reports that its verifier was removed and exits with an error. Both wait on a replacement remediation path.
+`runtime/cli/ops/` holds the maintenance tools that are not part of a save or a validation: the process inventory and sweep helpers the session-cleanup plugin calls, and the manifest-frozen retrofit that applied the grep convention across the corpus. The self-healing runbook that used to live here shipped two healers that never completed a cycle, one a deprecation stub and one whose verifier had been removed, so the runbook, both healers and their shared helper were retired rather than left as a drill that could only report their absence.
 
 ---
 
@@ -20,22 +20,14 @@ trigger_phrases:
 
 | Flow | Input | Output |
 | --- | --- | --- |
-| Class listing | `runbook.sh list` | Supported failure class keys |
-| Runbook detail | `runbook.sh show <class>` | Human-readable runbook for one class |
-| Drill execution | `runbook.sh drill <class|all> --scenario <success|escalate>` | Deprecation notice (`session-ambiguity`, exit 0) or a removed-verifier error (`telemetry-drift`, exit 1) |
-| Healer execution | Failure class plus retry options | Currently a deprecation stub or a removed-verifier error, not a live detect/repair/verify sequence |
-
-Registered classes are `session-ambiguity` and `telemetry-drift`; both healers are stubs pending a replacement remediation path (see Overview).
+| Process inventory | `process-memory-harness.ts` | Process, RSS, swap and wired snapshots with exact-identity classification |
+| Process sweep | `process-sweep.ts` with `dry-run` or `apply` | A plan, or `no-terminable-class-registered` while no class is registered |
+| Grep-convention retrofit | `retrofit-convention.mjs enumerate|dry-run|process|rescan` | A frozen manifest, a dry-run report, rewritten documents, a rescan report |
 
 ---
 
 ## 3. ENTRYPOINTS
 
-- `runbook.sh list` prints supported failure classes.
-- `runbook.sh show <class>` prints one class runbook.
-- `runbook.sh drill <class|all> --scenario <success|escalate> --max-attempts <n>` runs bounded remediation drills.
-- `heal-*.sh` scripts hold the class-specific detect, repair, and verify flow structure, but each currently stops before completing a cycle (see Overview).
-- `ops-common.sh` provides shared retry, logging, and escalation helpers.
 - `retrofit-convention.mjs enumerate|dry-run|process|rescan` is the one-time grep-convention retrofit over the spec corpus. Each stage reads the manifest `enumerate` froze, so `process` never sees a document that changed after enumeration. It imports `../retrieval/lib/` and `../retrieval/rg-wrapper.mjs`; run it from the repository root.
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
 - `process-sweep.ts` emits dry-run plans and an `apply` result. No terminable process class is registered, so `apply` signals nothing and reports `no-terminable-class-registered`; termination returns only when a class is registered together with the ownership evidence that proves the process is this repository's to kill.
@@ -47,9 +39,8 @@ Registered classes are `session-ambiguity` and `telemetry-drift`; both healers a
 Run ops validation from the repository root:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/ops/runbook.sh list
-bash .opencode/skills/system-spec-kit/runtime/cli/ops/runbook.sh show session-ambiguity
-bash .opencode/skills/system-spec-kit/runtime/cli/ops/runbook.sh drill all --scenario success --max-attempts 1
+npx tsx .opencode/skills/system-spec-kit/runtime/cli/ops/process-sweep.ts dry-run
+node .opencode/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs --help
 python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli/ops
 ```
 
@@ -59,11 +50,7 @@ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignmen
 
 | File | Purpose |
 | --- | --- |
-| `ops-common.sh` | Shared retry, logging, option parsing, and escalation helpers |
 | `retrofit-convention.mjs` | Manifest-frozen enumerate/dry-run/process/rescan pipeline that applied the grep convention across the corpus once; kept for a repeat run, not for lookup time |
-| `heal-session-ambiguity.sh` | Deprecated stub: logs a deprecation notice and exits 0 before the retained (unreachable) detect/repair logic runs. Session ambiguity is now handled by the memory-save pipeline (`generate-context.js`). |
-| `heal-telemetry-drift.sh` | Parses and validates its options, then always reports that its telemetry-drift verifier was removed and exits 1. No replacement verifier is wired yet. |
-| `runbook.sh` | Class listing, runbook display, and drill orchestration |
 | `process-memory-harness.ts` | Process inventory, memory snapshot and exact-identity classification helper |
 | `process-sweep.ts` | Dry-run planner plus a report-only apply path; it signals nothing while no terminable class is registered |
 
@@ -79,9 +66,9 @@ Arc 009 lifecycle helper map:
 
 ## 6. BOUNDARIES
 
-- Ops scripts model known failure classes; they are not a general incident-management system.
-- Healers must keep bounded retries and emit one escalation JSON line on retry exhaustion.
-- Scripts should remain deterministic so drills and release gates are repeatable.
+- Ops scripts are maintenance tools, not a general incident-management system.
+- The sweep terminates nothing until a process class is registered with ownership evidence.
+- Scripts stay deterministic so a rerun reproduces the same report.
 
 ---
 

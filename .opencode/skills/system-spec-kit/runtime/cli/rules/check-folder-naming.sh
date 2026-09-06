@@ -42,7 +42,7 @@ run_check() {
     esac
     
     # Pattern: 3 digits, hyphen, lowercase alphanumeric with hyphens
-    local pattern='^[0-9]{3}-[a-z0-9-]+$'
+    local pattern='^[0-9]{3}-[a-z0-9][a-z0-9-]*$'
     
     if [[ ! "$folder_name" =~ $pattern ]]; then
         RULE_STATUS="fail"

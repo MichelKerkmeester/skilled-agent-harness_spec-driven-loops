@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 
-import { scoreRenderQuality } from '../core/quality-scorer';
 import { extractFilesFromData } from '../extractors/file-extractor';
 import { deriveModificationMagnitude } from '../extractors/git-context-extractor';
 import { validateDescription } from '../utils/file-helpers';
@@ -34,26 +33,6 @@ describe('description enrichment', () => {
     expect(
       validateDescription('Derived MODIFICATION_MAGNITUDE from git diff stats and commit-touch counts in scripts/extractors/git-context-extractor.ts so downstream summaries can rank change significance.').tier
     ).toBe('high-confidence');
-  });
-
-  it('weights file description quality by provenance trust', () => {
-    const highConfidenceDescription = 'Derived MODIFICATION_MAGNITUDE from git diff stats and commit-touch counts in scripts/extractors/git-context-extractor.ts so downstream summaries can rank change significance.';
-    const args = [
-      buildContent('Description trust weighting'),
-      ['description weighting', 'provenance trust', 'quality scoring', 'git context'],
-      ['description', 'provenance', 'quality'],
-      [{ TITLE: 'Implement shared validator', NARRATIVE: 'Unified description validation across extractors and scoring.' }],
-    ] as const;
-
-    const gitResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'git' }], args[3]);
-    const toolResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'tool' }], args[3]);
-    const syntheticResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription, _provenance: 'tool', _synthetic: true }], args[3]);
-    const unknownResult = scoreRenderQuality(args[0], args[1], args[2], [{ DESCRIPTION: highConfidenceDescription }], args[3]);
-
-    expect(gitResult.breakdown.fileDescriptions).toBe(20);
-    expect(toolResult.breakdown.fileDescriptions).toBe(16);
-    expect(syntheticResult.breakdown.fileDescriptions).toBe(10);
-    expect(unknownResult.breakdown.fileDescriptions).toBe(6);
   });
 
   it('preserves git-derived modification magnitude and defaults non-git entries to unknown', () => {

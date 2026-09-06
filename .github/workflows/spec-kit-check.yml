@@ -1,0 +1,77 @@
+name: Spec-Kit Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/system-spec-kit/**'
+      - '.github/workflows/spec-kit-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Typecheck, import policy and test suites for the spec-kit packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Only the package root carries a lockfile; shared, runtime and
+      # runtime/cli are workspaces of it, so the root install provisions all
+      # three. The CLI's check gate maps dist files back to sources, so every
+      # package is built before it runs.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
+      # The CLI check is the only gate that rejects a reverse import into the
+      # engine's internals; before this workflow nothing ran it outside a
+      # developer's shell.
+      - name: CLI check gate and typecheck
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run check
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run typecheck
+
+      - name: Shared package tests
+        run: npm --prefix .opencode/skills/system-spec-kit/shared test
+
+      - name: CLI vitest project
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/system-spec-kit/runtime/cli
+          npx vitest run --config ../../vitest.config.ts --project cli
+
+  mirrors:
+    name: Runtime mirrors agree with their sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The same read-only checks /doctor runtime-mirrors runs on demand. The
+      # agent-mirror workflow covers agents only; these cover commands, prompts,
+      # the agent roster and the command catalog, so prompt and command drift
+      # stops being invisible to CI.
+      - name: Mirror parity checks
+        run: |
+          set -euo pipefail
+          node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
+          node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
+          node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs

@@ -112,7 +112,6 @@ Status: Implemented and strongly verified for the shared runtime contract. The a
 | `runtime/cli/utils/validation-utils.ts` | Render validation helpers that ignore literal template syntax inside code spans |
 | `runtime/cli/continuity/validate-memory-quality.ts` | V1-V11 post-render quality gate for rendered spec-doc record output, including exported `HARD_BLOCK_RULES` |
 | `runtime/cli/utils/slug-utils.ts` | Memory title and filename normalization after captured operator/debug text |
-| `runtime/cli/core/quality-scorer.ts` | Legacy quality-score calibration and insufficiency caps |
 | `runtime/cli/extractors/quality-scorer.ts` | V2 quality-score calibration and insufficiency flags |
 | `runtime/cli/extractors/session-extractor.ts` | Session identity and project-state snapshot behavior |
 | `runtime/cli/core/file-writer.ts` | Atomic writes and rollback |

@@ -65,7 +65,7 @@ Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder t
 | **3+: Extended**    | Level 3 + approval workflow + compliance + stakeholders | Review tracking + coordination | See Level 3+ commands below |
 | **Phase Parent**    | `spec.md` + `description.json` + `graph-metadata.json` (lean trio) | None (control file only) | `create.sh --phase --phases N --phase-names a,b,c <description>` |
 
-**Phase Parent** rows above apply when the target folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND ≥1 such child has `spec.md` OR `description.json`). At a phase parent:
+**Phase Parent** rows above apply when the target folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9][a-z0-9-]*$` AND ≥1 such child has `spec.md` OR `description.json`). At a phase parent:
 - **Required:** `spec.md` (lean, rendered from `templates/packet-types/phase-parent.spec.md.tmpl`), `description.json`, `graph-metadata.json`
 - **Prohibited at parent (live in children only):** `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
 - **Optional:** `templates/packet-types/context-index.md.tmpl` (migration bridge, only if reorganized)

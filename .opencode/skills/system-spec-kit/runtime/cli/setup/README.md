@@ -29,7 +29,6 @@ Current state:
 
 ```text
 runtime/cli/setup/
-+-- _utils.sh                   # Shared installer and setup helpers
 +-- check-prerequisites.sh       # Spec-folder readiness checks
 +-- check-native-modules.sh      # Native module availability checks
 +-- rebuild-native-modules.sh    # Native module rebuild helper
@@ -55,7 +54,6 @@ Disallowed direction:
 
 | File | Responsibility |
 |---|---|
-| `_utils.sh` | Provides shared logging, version, JSON and project-root helpers for setup installers. |
 | `check-prerequisites.sh` | Checks spec-folder presence, required docs, optional task docs and validation status. |
 | `check-native-modules.sh` | Verifies native modules required by the scripts workspace can load. |
 | `rebuild-native-modules.sh` | Rebuilds native modules after Node.js or dependency changes. |

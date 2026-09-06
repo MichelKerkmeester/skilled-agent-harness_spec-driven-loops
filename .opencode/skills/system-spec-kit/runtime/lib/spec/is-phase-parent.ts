@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 // Single-source-of-truth detection rule for phase-parent folders.
 // Contract: a folder is a phase parent when:
-//   1. It has ≥1 direct child matching ^[0-9]{3}-[a-z0-9-]+$
+//   1. It has ≥1 direct child matching ^[0-9]{3}-[a-z0-9][a-z0-9-]*$
 //   2. ≥1 such child has spec.md OR description.json
 
 import * as fs from 'node:fs';

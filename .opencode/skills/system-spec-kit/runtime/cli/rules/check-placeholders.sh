@@ -11,6 +11,8 @@ set -euo pipefail
 # Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:]
 # Parity: mirrors the runtime orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
 # (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
+# The post-edit hook runs the broader bracket scan at spec/check-placeholders.sh
+# instead; that one catches leftovers of upgrade-level, this one gates closure.
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION

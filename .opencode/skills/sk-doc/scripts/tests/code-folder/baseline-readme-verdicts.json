@@ -5315,16 +5315,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/system-spec-kit/runtime/cli/kpi/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".opencode/skills/system-spec-kit/runtime/cli/lib/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -5396,16 +5386,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-spec-kit/runtime/cli/pi/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-spec-kit/runtime/cli/renderers/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

@@ -144,7 +144,7 @@ The inventory is derived from the files in each folder and from the import edges
 
 - Purpose: Owns the single detection rule for phase-parent folders, so no caller re-implements the traversal.
 - Key files:
-  - `is-phase-parent.ts` — a folder is a phase parent when it has at least one `^[0-9]{3}-[a-z0-9-]+$` child and at least one such child carries `spec.md` or `description.json`.
+  - `is-phase-parent.ts` — a folder is a phase parent when it has at least one `^[0-9]{3}-[a-z0-9][a-z0-9-]*$` child and at least one such child carries `spec.md` or `description.json`.
 - Primary consumers:
   - `lib/validation/orchestrator.ts`
   - `lib/graph/graph-metadata-parser.ts`

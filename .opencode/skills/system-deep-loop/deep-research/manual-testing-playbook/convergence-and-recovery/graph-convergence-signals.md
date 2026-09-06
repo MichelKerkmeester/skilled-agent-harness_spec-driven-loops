@@ -48,17 +48,17 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
-1. `bash: rg -n 'SOURCE_DIVERSITY_THRESHOLD|evaluateGraphGates|sourceDiversityGate|allPass' .opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs`
+1. `bash: rg -n 'gate_evidence_density_pass|sourceDiversity|STOP_BLOCKED' .opencode/commands/deep/assets/deep-research-auto.yaml`
 2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n 'sourceDiversity|threshold: 0.4|blocking' .opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts`
+3. `bash: rg -n 'sourceDiversity' .opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts`
 ### Expected
-`SOURCE_DIVERSITY_THRESHOLD = 0.4`; low `sourceDiversity` fails the guard; deep-research convergence persists blocked-stop state when legal-stop gates fail.
+The command contract names `sourceDiversity` and `evidenceDepth` as the blockers that fail the evidence-density gate and force `STOP_BLOCKED`; the ledger schema carries `sourceDiversity` as a convergence gate status; deep-research convergence persists blocked-stop state when legal-stop gates fail.
 ### Evidence
-Capture the helper threshold definition, the `evaluateGraphGates()` pass/fail logic, the convergence reference blocked-stop persistence lines, and one test assertion showing the `0.4` threshold.
+Capture the contract's blocked-stop branch, the convergence reference blocked-stop persistence lines, and the ledger-schema gate status.
 ### Pass/Fail
 PASS if low `sourceDiversity` fails the graph stop gate and blocked-stop persistence is documented for failed legal-stop evaluation; FAIL if either the threshold enforcement or blocked-stop persistence is missing or contradictory.
 ### Failure Triage
-Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `references/convergence/convergence.md` for the deep-research stop-state behavior. If wording differs between `blocked_stop` event name and `blockedStop` stop reason, treat both as the same blocked-stop pathway and note the distinction in the operator verdict.
+Privilege the command contract for the enforcement rule and `references/convergence/convergence.md` for the deep-research stop-state behavior. If wording differs between `blocked_stop` event name and `blockedStop` stop reason, treat both as the same blocked-stop pathway and note the distinction in the operator verdict.
 ---
 
 ## 4. SOURCE FILES
@@ -73,9 +73,9 @@ Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `ref
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs` | Canonical graph stop-guard helper; threshold constants and `evaluateGraphGates()` |
+| `.opencode/commands/deep/assets/deep-research-auto.yaml` | The stop rule: inline vote plus `graph_decision`, with `sourceDiversity` and `evidenceDepth` as the evidence-density blockers |
 | `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts` | Cross-layer threshold assertions for graph stop-guard behavior |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | `sourceDiversity` as a typed convergence gate status |
 
 ---
 

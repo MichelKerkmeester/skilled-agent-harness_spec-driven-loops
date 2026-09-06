@@ -1116,83 +1116,6 @@ async function testLoadersDataLoader() {
   }
 }
 
-async function testRenderersTemplateRenderer() {
-  log('\n🔬 RENDERERS: template-renderer.js');
-
-  try {
-    const {
-      populateTemplate,
-      renderTemplate,
-      cleanupExcessiveNewlines,
-      stripTemplateConfigComments,
-      isFalsy
-    } = require(path.join(SCRIPTS_DIR, 'renderers', 'template-renderer'));
-
-    // Test 1: isFalsy handles various falsy values
-    assertEqual(isFalsy(null), true, 'T-018a: isFalsy(null)');
-    assertEqual(isFalsy(undefined), true, 'T-018b: isFalsy(undefined)');
-    assertEqual(isFalsy(false), true, 'T-018c: isFalsy(false)');
-    assertEqual(isFalsy('false'), true, 'T-018d: isFalsy("false")');
-    assertEqual(isFalsy([]), true, 'T-018e: isFalsy([])');
-    assertEqual(isFalsy(''), true, 'T-018f: isFalsy("")');
-    assertEqual(isFalsy('value'), false, 'T-018g: isFalsy("value")');
-    assertEqual(isFalsy([1]), false, 'T-018h: isFalsy([1])');
-
-    // Test 2: renderTemplate replaces variables
-    const template = 'Hello {{NAME}}, your score is {{SCORE}}';
-    const rendered = renderTemplate(template, { NAME: 'Test', SCORE: 100 });
-    if (rendered === 'Hello Test, your score is 100') {
-      pass('T-018i: renderTemplate replaces variables', rendered);
-    } else {
-      fail('T-018i: renderTemplate replaces variables', rendered);
-    }
-
-    // Test 3: renderTemplate handles array loops
-    const loopTemplate = '{{#ITEMS}}{{NAME}},{{/ITEMS}}';
-    const loopRendered = renderTemplate(loopTemplate, { ITEMS: [{ NAME: 'A' }, { NAME: 'B' }] });
-    if (loopRendered === 'A,B,') {
-      pass('T-018j: renderTemplate handles array loops', loopRendered);
-    } else {
-      fail('T-018j: renderTemplate handles array loops', loopRendered);
-    }
-
-    // Test 4: renderTemplate handles inverted sections
-    const invertedTemplate = '{{^EMPTY}}Has content{{/EMPTY}}';
-    const invertedRendered = renderTemplate(invertedTemplate, { EMPTY: [] });
-    if (invertedRendered === 'Has content') {
-      pass('T-018k: renderTemplate handles inverted sections', invertedRendered);
-    } else {
-      fail('T-018k: renderTemplate handles inverted sections', invertedRendered);
-    }
-
-    // Test 5: cleanupExcessiveNewlines collapses newlines
-    const multiNewline = 'Line1\n\n\n\n\nLine2';
-    const cleaned = cleanupExcessiveNewlines(multiNewline);
-    if (cleaned === 'Line1\n\nLine2') {
-      pass('T-018l: cleanupExcessiveNewlines collapses newlines', 'Reduced to 2');
-    } else {
-      fail('T-018l: cleanupExcessiveNewlines collapses newlines', `Got: ${cleaned.split('\n').length} lines`);
-    }
-
-    // Test 6: stripTemplateConfigComments removes config comments
-    const withComments = '<!-- Template Configuration Comments -->\nContent';
-    const stripped = stripTemplateConfigComments(withComments);
-    if (!stripped.includes('Template Configuration') && stripped.includes('Content')) {
-      pass('T-018m: stripTemplateConfigComments removes config comments', 'Comments stripped');
-    } else {
-      fail('T-018m: stripTemplateConfigComments removes config comments', 'Comments remain');
-    }
-
-  } catch (error) {
-    fail('T-018: Template renderer module', error.message);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   8. EXTRACTOR TESTS
-────────────────────────────────────────────────────────────────
-*/
-
 async function testExtractorsFile() {
   log('\n🔬 EXTRACTORS: file-extractor.js');
 
@@ -2801,138 +2724,6 @@ async function testMemoryGenerateContext() {
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   24. MEDIUM PRIORITY: MEMORY/RANK-MEMORIES.JS TESTS
-────────────────────────────────────────────────────────────────
-*/
-
-async function testMemoryRankMemories() {
-  log('\n🔬 MEMORY: rank-memories.js');
-
-  try {
-    const {
-      formatRelativeTime,
-      computeFolderScore,
-      processMemories,
-      isArchived,
-      simplifyFolderPath,
-      TIER_WEIGHTS,
-      DECAY_RATE
-    } = require(path.join(SCRIPTS_DIR, 'continuity', 'rank-memories'));
-
-    // Test 1: format_relative_time is a function
-    assertType(formatRelativeTime, 'function', 'T-043a: format_relative_time is a function');
-
-    // Test 2: format_relative_time handles recent timestamps
-    const recentTime = formatRelativeTime(new Date(Date.now() - 30 * 60 * 1000).toISOString());
-    if (recentTime.includes('h') || recentTime === 'just now') {
-      pass('T-043b: format_relative_time handles recent time', recentTime);
-    } else {
-      fail('T-043b: format_relative_time handles recent time', recentTime);
-    }
-
-    // Test 3: format_relative_time handles old timestamps
-    const oldTime = formatRelativeTime(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString());
-    if (oldTime.includes('w') || oldTime.includes('mo')) {
-      pass('T-043c: format_relative_time handles old time', oldTime);
-    } else {
-      fail('T-043c: format_relative_time handles old time', oldTime);
-    }
-
-    // Test 4: format_relative_time handles invalid input
-    const invalidTime = formatRelativeTime('not-a-date');
-    if (invalidTime === 'unknown') {
-      pass('T-043d: format_relative_time handles invalid input', invalidTime);
-    } else {
-      fail('T-043d: format_relative_time handles invalid input', invalidTime);
-    }
-
-    // Test 5: compute_folder_score is a function
-    assertType(computeFolderScore, 'function', 'T-043e: compute_folder_score is a function');
-
-    // Test 6: compute_folder_score returns a number
-    const testMemories = [
-      { importanceTier: 'normal', updatedAt: new Date().toISOString() }
-    ];
-    const score = computeFolderScore('test-folder', testMemories);
-    if (typeof score === 'number' && score >= 0 && score <= 1) {
-      pass('T-043f: compute_folder_score returns valid score', `Score: ${score}`);
-    } else {
-      fail('T-043f: compute_folder_score returns valid score', `Score: ${score}`);
-    }
-
-    // Test 7: process_memories is a function
-    assertType(processMemories, 'function', 'T-043g: process_memories is a function');
-
-    // Test 8: process_memories handles empty input
-    const emptyMemResult = processMemories([]);
-    if (emptyMemResult && emptyMemResult.stats && emptyMemResult.stats.totalMemories === 0) {
-      pass('T-043h: process_memories handles empty input', 'Returns valid structure');
-    } else {
-      fail('T-043h: process_memories handles empty input', 'Invalid structure');
-    }
-
-    // Test 9: process_memories returns all expected sections
-    const testData = [
-      { id: 1, title: 'Test', specFolder: '042-test', importanceTier: 'normal', createdAt: new Date().toISOString() },
-      { id: 2, title: 'Constitutional', specFolder: '001-core', importanceTier: 'constitutional', createdAt: new Date().toISOString() }
-    ];
-    const memResult = processMemories(testData);
-    if (memResult.constitutional && memResult.recentlyActive && memResult.recentMemories && memResult.stats) {
-      pass('T-043i: process_memories returns all sections', 'All sections present');
-    } else {
-      fail('T-043i: process_memories returns all sections', 'Missing sections');
-    }
-
-    // Test 10: is_archived detects archived folders (requires z_archive/ pattern)
-    if (isArchived('z_archive/some-folder')) {
-      pass('T-043j: is_archived detects z_archive/ pattern', 'Detected');
-    } else {
-      fail('T-043j: is_archived detects z_archive/ pattern', 'Not detected');
-    }
-
-    // Test 11: is_archived allows active folders
-    if (!isArchived('042-active-feature')) {
-      pass('T-043k: is_archived allows active folders', 'Not archived');
-    } else {
-      fail('T-043k: is_archived allows active folders', 'Incorrectly marked archived');
-    }
-
-    // Test 12: simplify_folder_path simplifies paths
-    const simplified = simplifyFolderPath('specs/042-feature/subfolder');
-    if (simplified && !simplified.includes('specs/')) {
-      pass('T-043l: simplify_folder_path simplifies paths', simplified);
-    } else {
-      skip('T-043l: simplify_folder_path simplifies paths', 'Varies by implementation');
-    }
-
-    // Test 13: TIER_WEIGHTS is defined
-    if (TIER_WEIGHTS && typeof TIER_WEIGHTS === 'object') {
-      pass('T-043m: TIER_WEIGHTS is defined', Object.keys(TIER_WEIGHTS).join(', '));
-    } else {
-      fail('T-043m: TIER_WEIGHTS is defined', typeof TIER_WEIGHTS);
-    }
-
-    // Test 14: DECAY_RATE is defined
-    if (typeof DECAY_RATE === 'number' && DECAY_RATE > 0) {
-      pass('T-043n: DECAY_RATE is defined', `Rate: ${DECAY_RATE}`);
-    } else {
-      fail('T-043n: DECAY_RATE is defined', typeof DECAY_RATE);
-    }
-
-  } catch (error) {
-    fail('T-043: Rank memories module', error.message);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   WRAP-ALL-TEMPLATES SHIPPED PATH COVERAGE
-   Test coverage is skewed toward helper smoke tests
-   (generateAnchorId, categorizeSection, etc.), not the shipped
-   wrapping path (wrap-all-templates.ts → wrapSectionsWithAnchors).
-────────────────────────────────────────────────────────────────
-*/
-
 async function testWrapAllTemplatesShippedPath() {
   log('\n\uD83D\uDD2C T233: wrap-all-templates shipped path');
 
@@ -3068,7 +2859,6 @@ async function main() {
 
   // Loader/Renderer modules
   await testLoadersDataLoader();
-  await testRenderersTemplateRenderer();
 
   // Extractor modules
   await testExtractorsFile();
@@ -3103,7 +2893,6 @@ async function main() {
   await testExtractorsDiagram();
   await testExtractorsDecisionTree();
   await testMemoryGenerateContext();
-  await testMemoryRankMemories();
 
   // Summary
   log('\n=============================================');

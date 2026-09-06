@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`runtime/cli/types/` contains shared TypeScript types used by extractors, renderers, simulation helpers and context-generation modules. The folder keeps data contracts and one small ambient module declaration in a few source files so script modules can share session payload shapes without redefining them.
+`runtime/cli/types/` contains shared TypeScript types used by extractors, simulation helpers and context-generation modules. The folder keeps data contracts and one small ambient module declaration in a few source files so script modules can share session payload shapes without redefining them.
 
 Current state:
 
@@ -113,7 +113,7 @@ test -f .opencode/skills/system-spec-kit/runtime/cli/dist/types/session-types.d.
 | Boundary | Rule |
 |---|---|
 | Ownership | This folder owns script payload interfaces only. |
-| Runtime | Keep runtime logic in extractors, renderers, core modules or libraries. |
+| Runtime | Keep runtime logic in extractors, core modules or libraries. |
 | Imports | Prefer type-only imports when consumers only need compile-time shapes. |
 | Public APIs | Runtime package request and response contracts belong under `runtime/`. |
 
@@ -140,6 +140,5 @@ Expected result: TypeScript compiles and emits declarations for `session-types.t
 ## 7. RELATED
 
 - [`../extractors/README.md`](../extractors/README.md)
-- [`../renderers/README.md`](../renderers/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../README.md`](../README.md)

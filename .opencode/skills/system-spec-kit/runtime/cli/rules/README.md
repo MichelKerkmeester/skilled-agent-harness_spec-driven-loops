@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- Rule metadata and dispatch order come from `runtime/cli/lib/validator-registry.json`.
+- Rule metadata and dispatch order come from `runtime/cli/lib/validator-registry.json`. The hop is `spec/validate.sh` → `runtime/dist/lib/validation/orchestrator.js` → that registry → one spawn per rule script; validate.sh never sources a rule itself.
 - Authored rules validate packet files, template markers, anchors, sections and metadata.
 - Runtime rules validate generated artifacts, save contracts, link scans and continuity support files.
 - Shell modules stay small and defer shared logic to `runtime/cli/lib/` when possible.

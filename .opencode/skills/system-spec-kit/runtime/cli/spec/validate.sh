@@ -198,7 +198,7 @@ load_child_manifest() {
 
     while IFS= read -r line || [[ -n "$line" ]]; do
         [[ -z "$line" ]] && continue
-        [[ "$line" =~ ^[0-9]{3}-[a-z0-9-]+$ ]] || { echo "ERROR: invalid child manifest entry: $line" >&2; return 2; }
+        [[ "$line" =~ ^[0-9]{3}-[a-z0-9][a-z0-9-]*$ ]] || { echo "ERROR: invalid child manifest entry: $line" >&2; return 2; }
         if child_manifest_contains "$line"; then
             echo "ERROR: duplicate child manifest entry: $line" >&2
             return 2

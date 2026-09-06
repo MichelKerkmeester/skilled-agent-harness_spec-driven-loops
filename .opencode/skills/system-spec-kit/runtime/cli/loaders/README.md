@@ -65,5 +65,4 @@ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignmen
 ## 7. RELATED
 
 - `../extractors/README.md`
-- `../renderers/README.md`
 - `../utils/README.md`

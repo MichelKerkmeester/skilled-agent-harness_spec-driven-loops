@@ -1,7 +1,7 @@
 {
   "name": "@spec-kit/cli",
   "version": "1.7.2",
-  "description": "CLI tools for spec-kit context generation and continuity management",
+  "description": "Continuity saves, spec-folder validation dispatch, packet metadata, retrieval tooling and cross-runtime mirrors for spec-kit",
   "type": "module",
   "main": "dist/continuity/generate-context.js",
   "engines": {

@@ -5,6 +5,11 @@
 # Scan spec folder .md files for remaining bracket placeholder
 # Patterns after upgrade-level.sh + auto-populate.
 # Bash 3.2+ compatible (macOS and Linux).
+#
+# This is the broad post-edit scan the quality hook runs: any bracket that
+# still looks like a template placeholder. The validator rule at
+# rules/check-placeholders.sh is narrower on purpose, flagging only the two
+# canonical markers, so the two are not the same check with two homes.
 
 set -euo pipefail
 

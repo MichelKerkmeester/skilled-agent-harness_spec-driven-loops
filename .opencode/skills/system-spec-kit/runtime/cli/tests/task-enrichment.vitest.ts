@@ -10,7 +10,6 @@ import { validateMemoryQualityContent } from '../continuity/validate-memory-qual
 import { createFilterPipeline } from '../lib/content-filter';
 import type { SessionData } from '../types/session-types';
 import { collectSessionData } from '../extractors/collect-session-data';
-import { populateTemplate } from '../renderers';
 
 const workflowHarness = vi.hoisted(() => ({
   specFolderPath: '',
@@ -115,67 +114,6 @@ vi.mock('../extractors', () => ({
   enhanceFilesWithSemanticDescriptions: vi.fn((files) => files),
 }));
 
-vi.mock('../renderers', () => ({
-  populateTemplate: vi.fn(async (_templateName: string, data: Record<string, unknown>) => [
-    '---',
-    `title: "${String(data.MEMORY_TITLE ?? 'Test Memory')}"`,
-    'description: "Workflow seam regression content preserved for testing."',
-    String(data.TRIGGER_PHRASES_YAML ?? 'trigger_phrases: []'),
-    'importance_tier: "normal"',
-    'contextType: "implementation"',
-    `_sourceTranscriptPath: "${String(data.SOURCE_TRANSCRIPT_PATH ?? '')}"`,
-    `_sourceSessionId: "${String(data.SOURCE_SESSION_ID ?? '')}"`,
-    `captured_file_count: ${String(data.CAPTURED_FILE_COUNT ?? 0)}`,
-    `filesystem_file_count: ${String(data.FILESYSTEM_FILE_COUNT ?? 0)}`,
-    `git_changed_file_count: ${String(data.GIT_CHANGED_FILE_COUNT ?? 0)}`,
-    '---',
-    '',
-    `# ${String(data.MEMORY_TITLE ?? 'Test Memory')}`,
-    '',
-    '## SESSION SUMMARY',
-    '',
-    '| **Meta Data** | **Value** |',
-    '|:--------------|:----------|',
-    '| Total Messages | 1 |',
-    '',
-    '<!-- ANCHOR:continue-session -->',
-    '## CONTINUE SESSION',
-    '',
-    'Resume this workflow test.',
-    '',
-    '<!-- ANCHOR:project-state-snapshot -->',
-    '## PROJECT STATE SNAPSHOT',
-    '',
-    'Current regression state.',
-    '',
-    '<!-- ANCHOR:decisions -->',
-    '## 2. DECISIONS',
-    '',
-    'No decisions recorded.',
-    '',
-    '<!-- ANCHOR:session-history -->',
-    '## 3. CONVERSATION',
-    '',
-    'Single workflow seam regression message.',
-    '',
-    '<!-- ANCHOR:recovery-hints -->',
-    '## RECOVERY HINTS',
-    '',
-    'No recovery hints required.',
-    '',
-    '<!-- ANCHOR:metadata -->',
-    '## MEMORY METADATA',
-    '',
-    '```yaml',
-    'session_id: "test-session"',
-    '```',
-    '',
-    '<!-- /ANCHOR:metadata -->',
-    '',
-    'Workflow seam regression content.',
-  ].join('\n')),
-}));
-
 vi.mock('../loaders/data-loader', () => ({
   loadCollectedData: vi.fn(async (options?: { dataFile?: string | null; specFolderArg?: string | null }) => {
     workflowHarness.loaderSnapshots.push({
@@ -195,10 +133,6 @@ vi.mock('../loaders/data-loader', () => ({
       userPrompts: [{ prompt: 'Development session', timestamp: '2026-03-06T09:01:00Z' }],
     };
   }),
-}));
-
-vi.mock('../core/quality-scorer', () => ({
-  scoreRenderQuality: vi.fn(() => qualityHarness.legacyResult),
 }));
 
 vi.mock('../extractors/quality-scorer', () => ({
@@ -1329,74 +1263,6 @@ describe('workflow seam guardrail', () => {
     } finally {
       process.chdir(originalCwd);
       CONFIG.QUALITY_ABORT_THRESHOLD = previousThreshold;
-      fs.rmSync(tempRoot, { recursive: true, force: true });
-    }
-  });
-
-  // Obsolete after 8dd4406c77: Path A retired the legacy rendered memory artifact;
-  // canonical-doc template-contract checks now live in memory-save routing.
-  it.skip('rejects malformed rendered memories before write when the template contract is violated', async () => {
-    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const originalCwd = process.cwd();
-    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', '009-perfect-session-capturing');
-    const contextDir = path.join(tempRoot, 'memory');
-    fs.mkdirSync(specFolderPath, { recursive: true });
-    fs.mkdirSync(contextDir, { recursive: true });
-    fs.writeFileSync(
-      path.join(specFolderPath, 'spec.md'),
-      ['---', 'title: "Spec: Perfect Session Capturing"', '---', '# Spec'].join('\n'),
-      'utf-8'
-    );
-
-    workflowHarness.specFolderPath = specFolderPath;
-    workflowHarness.contextDir = contextDir;
-
-    const populateTemplateMock = vi.mocked(populateTemplate);
-    const previousImplementation = populateTemplateMock.getMockImplementation();
-    populateTemplateMock.mockImplementationOnce(async () => [
-      '---',
-      'title: "Broken render"',
-      'description: "Missing required anchors."',
-      'trigger_phrases:',
-      '  - "broken render"',
-      'importance_tier: "normal"',
-      'contextType: "implementation"',
-      '---',
-      '',
-      '# Broken render',
-      '',
-      '## SESSION SUMMARY',
-      '',
-      'No mandatory sections follow.',
-    ].join('\n'));
-
-    const { runWorkflow } = await import('../core/workflow');
-
-    try {
-      process.chdir(tempRoot);
-      await expect(runWorkflow({
-        dataFile: '/tmp/context.json',
-        collectedData: {
-          _source: 'file',
-          userPrompts: [{ prompt: 'Perfect session capturing', timestamp: '2026-03-15T15:00:00Z' }],
-          observations: [
-            {
-              title: 'Contract proof',
-              narrative: 'This explicit JSON fixture is rich enough to pass sufficiency but the rendered template is broken.',
-              files: ['spec.md'],
-            },
-          ],
-        },
-        collectSessionDataFn: async (_collectedData, specFolderName) => createSessionData(specFolderName || '009-perfect-session-capturing'),
-        silent: true,
-      })).rejects.toThrow(/QUALITY_GATE_ABORT: Rendered memory violated template contract/);
-
-      expect(workflowHarness.writtenFiles).toHaveLength(0);
-    } finally {
-      process.chdir(originalCwd);
-      if (previousImplementation) {
-        populateTemplateMock.mockImplementation(previousImplementation);
-      }
       fs.rmSync(tempRoot, { recursive: true, force: true });
     }
   });

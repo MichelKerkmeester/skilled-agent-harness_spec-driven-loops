@@ -75,7 +75,6 @@ The guard is wired into CI through `.github/workflows/markdown-link-integrity.ym
 
 - Guard script: `.opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`
 - CI workflow: `.github/workflows/markdown-link-integrity.yml`
-- Registry entry: `.opencode/skills/system-spec-kit/runtime/cli/scripts-registry.json`
 
 ---
 

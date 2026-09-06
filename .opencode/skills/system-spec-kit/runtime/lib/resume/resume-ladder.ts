@@ -149,7 +149,7 @@ const SPEC_DOC_PRIORITY = [
 const RESTORE_PANEL_MAX_ITEMS = 8;
 const RESTORE_PANEL_MAX_CHARS = 1200;
 const PHASE_PARENT_REDIRECT_MAX_DEPTH = 5;
-const PHASE_CHILD_NAME_RE = /^[0-9]{3}-[a-z0-9-]+$/u;
+const PHASE_CHILD_NAME_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/u;
 
 /**
  * Follow a phase parent's `derived.last_active_child_id` pointer down to the

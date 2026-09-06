@@ -71,13 +71,13 @@ field_handling:
     # explicit for workflow authors and documentation consumers. Runtime behavior
     # is unchanged.
     phase_path_grammar:
-      note: "Phase folder paths are NOT limited to two levels. Any folder matching `^[0-9]{3}-[a-z0-9-]+$` whose direct child also matches that regex AND has spec.md OR description.json becomes a phase parent. Recursion is unbounded; depth is data, not policy."
+      note: "Phase folder paths are NOT limited to two levels. Any folder matching `^[0-9]{3}-[a-z0-9][a-z0-9-]*$` whose direct child also matches that regex AND has spec.md OR description.json becomes a phase parent. Recursion is unbounded; depth is data, not policy."
       shapes:
         flat: "specs/{NNN-name}/" # leaf packet, no children
         two_level: "specs/{NNN-parent}/{NNN-phase}/" # one layer of phases
         three_level: "specs/{NNN-grandparent}/{NNN-parent}/{NNN-phase}/" # nested phases (e.g., 026/000/005)
         deep: "specs/{NNN-A}/{NNN-B}/{NNN-C}/{NNN-D}/{NNN-E}/" # deeply nested phase-child topology
-      detection_rule: "isPhaseParent(folder) — at .opencode/skills/system-spec-kit/runtime/lib/spec/is-phase-parent.ts and the shell mirror is_phase_parent in scripts/lib/shell-common.sh. Both must agree."
+      detection_rule: "isPhaseParent(folder) — at .opencode/skills/system-spec-kit/runtime/lib/spec/is-phase-parent.ts and the shell mirror is_phase_parent in runtime/cli/lib/shell-common.sh. Both must agree; the save path keeps its own copy in runtime/cli/spec/is-phase-parent.ts because it also recognises derived children and hardened membership."
       spec_id_derivation: "spec_id is the FIRST {NNN} segment under specs/. For deep nests, parent_chain accumulates from outermost to innermost, and graph-metadata.json.parent_id encodes the immediate parent."
   scope_policy: { default: "**", rule: "Implementation may edit any workspace file. Narrow to [FILES] scope when explicitly provided by the user." }
 

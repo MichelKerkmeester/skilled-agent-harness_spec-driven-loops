@@ -53,7 +53,6 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 | `runtime/cli/core/post-save-review.ts` | Post-save review logic, severity grading, MEMORY METADATA-aware field checks, `computeReviewScorePenalty()`, multi-token path fragment detection |
 | `runtime/cli/extractors/contamination-filter.ts` | Contamination filter extension: 4 additional text fields, 18 new patterns (33 -> 51 total) |
 | `runtime/cli/lib/validate-memory-quality.ts` | V13 YAML parsing and memory-quality validation |
-| `runtime/cli/renderers/template-renderer.ts` | Optional-placeholder handling for compact tool/exchange sections |
 | `runtime/cli/continuity/generate-context.ts` | CLI help text and structured-first save workflow documentation |
 
 ### FEATURE BREAKDOWN
