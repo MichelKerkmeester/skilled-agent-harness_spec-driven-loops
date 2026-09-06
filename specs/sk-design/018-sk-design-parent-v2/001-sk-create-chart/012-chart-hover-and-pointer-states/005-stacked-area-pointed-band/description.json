@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/005-stacked-area-pointed-band",
+  "description": "`stacked-area` carries a legend and a dim but no tooltip",
+  "keywords": [
+    "stacked-area",
+    "carries",
+    "legend",
+    "dim",
+    "tooltip"
+  ],
+  "lastUpdated": "2026-09-06T14:59:06.227Z",
+  "specId": "005",
+  "folderSlug": "stacked-area-pointed-band",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

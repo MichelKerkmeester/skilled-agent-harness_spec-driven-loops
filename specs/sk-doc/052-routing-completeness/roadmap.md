@@ -52,7 +52,7 @@ phase parent.
 fleet sweep.
 
 Chart fidelity and library research sits at
-`specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research/goal.md`. Its packet
+`specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md`. Its packet
 last moved in `abf77df9d0`. Exit signal: the research question is answered against a named
 library rather than an impression.
 

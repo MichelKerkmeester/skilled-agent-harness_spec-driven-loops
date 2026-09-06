@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/004-transfer-three-forms",
+  "description": "`stacked-bars`, `daily-line` and `bar-line-composed` each carry a legend, a dim or both, but none of the three opens a hover card",
+  "keywords": [
+    "stacked-bars",
+    "daily-line",
+    "bar-line-composed",
+    "carry",
+    "legend",
+    "dim",
+    "none",
+    "three",
+    "opens",
+    "hover",
+    "card"
+  ],
+  "lastUpdated": "2026-09-06T14:59:06.191Z",
+  "specId": "004",
+  "folderSlug": "transfer-three-forms",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-09-26_00-20__phase-004-transfer-three-forms-implemented-copied.md"
+  ]
+}

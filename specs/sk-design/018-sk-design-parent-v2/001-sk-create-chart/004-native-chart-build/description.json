@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/004-native-chart-build",
+  "description": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
+  "keywords": [
+    "reference",
+    "implementation",
+    "polyform",
+    "noncommercial",
+    "repository",
+    "mit",
+    "public"
+  ],
+  "lastUpdated": "2026-09-06T14:54:10.214Z",
+  "specId": "004",
+  "folderSlug": "native-chart-build",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

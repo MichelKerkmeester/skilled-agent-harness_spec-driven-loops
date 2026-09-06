@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/005-dark-theme",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/007-composed-form-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart visual overhaul",
+      "chart corpus chrome",
+      "sk-create-chart appearance",
+      "evilcharts adoption build",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "chart",
+      "visual",
+      "overhaul",
+      "corpus",
+      "chrome",
+      "sk-create-chart",
+      "appearance",
+      "evilcharts",
+      "adoption",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-visual-proof-and-forks/goal.md",
+      "002-chrome-rollout/goal.md",
+      "003-motion-layer/goal.md",
+      "004-interaction-layer/goal.md",
+      "005-dark-theme/goal.md",
+      "006-catalog-and-contract/goal.md",
+      "007-composed-form-and-closeout/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Level Score",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chart Visual Overhaul",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator does not like how `sk-create-chart` looks",
+    "created_at": "2026-09-03T08:03:14.282Z",
+    "last_save_at": "2026-09-06T14:59:17.759Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:0d689aa55f18447ad0558451bddb28fb5be9aa35303bb7509834a99d87a44215",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "08f7d0e29a76f313b8cc1d9fb295858087a0c251e471a04a2faa2285b43ff3b8"
+    },
+    "last_active_child_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer",
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "description": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
+  "keywords": [
+    "lieflat-charts",
+    "data-visualization",
+    "skill",
+    "elsewhere",
+    "chart",
+    "report",
+    "templates"
+  ],
+  "lastUpdated": "2026-09-06T14:54:10.152Z",
+  "specId": "001",
+  "folderSlug": "sk-create-chart",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

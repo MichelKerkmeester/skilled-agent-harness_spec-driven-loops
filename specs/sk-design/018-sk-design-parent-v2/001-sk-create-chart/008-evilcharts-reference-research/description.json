@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research",
+  "description": "The mode ships twenty templates, three colour systems and a corpus validator",
+  "keywords": [
+    "mode",
+    "ships",
+    "twenty",
+    "templates",
+    "three",
+    "colour",
+    "systems",
+    "corpus",
+    "validator"
+  ],
+  "lastUpdated": "2026-09-06T14:59:05.404Z",
+  "specId": "008",
+  "folderSlug": "evilcharts-reference-research",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

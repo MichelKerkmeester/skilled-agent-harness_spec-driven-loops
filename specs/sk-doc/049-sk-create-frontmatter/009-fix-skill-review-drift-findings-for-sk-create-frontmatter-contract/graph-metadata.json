@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The mode exists so that one place is accountable for what a frontmatter block must carry",
     "created_at": "2026-09-05T13:26:46Z",
-    "last_save_at": "2026-09-05T14:08:36.787Z",
+    "last_save_at": "2026-09-06T15:09:17.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4954e3362d126f89ff72071dd572a08bab88b53d6064590f7b8fc6f112364026",
+    "source_fingerprint": "sha256:2d59a6a23ede332541061a631f3e0ad767785414a3893d3c08847bc6eda8a39b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d65217a01737a06a99d18864984b47afa71e4db490aa13791e05f5a1b7d00c4f",
       "plan.md": "6fa5684679d8f8b2f8f9813dcfdd5dae98280e9a655cd5af98776dabeeaf5045",
       "tasks.md": "531b382758c02faff4300ad6079c2fd560ce9b28ae1272dc69e4113b2ab7b615",
       "decision-record.md": "3c5bd9224f1f1005dc58d87e29ef9fdbf8cb83f7992b040f56e42d0746266a38",
-      "implementation-summary.md": "32312ee44e3edffc91f06ee3b5d1fdb36281c819dbb3eeb8226d91440e1f3c09"
+      "implementation-summary.md": "15e6785c1a9528f3d687ece8ecffe7bc37b76c1ab5e576656bb903128bde933a"
     },
     "last_active_child_id": null,
     "last_active_at": null

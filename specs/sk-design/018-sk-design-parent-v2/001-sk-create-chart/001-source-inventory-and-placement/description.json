@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement",
+  "description": "The source repository is already shaped like a skill",
+  "keywords": [
+    "source",
+    "repository",
+    "already",
+    "shaped",
+    "like",
+    "skill"
+  ],
+  "lastUpdated": "2026-09-06T14:54:11.129Z",
+  "specId": "001",
+  "folderSlug": "source-inventory-and-placement",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

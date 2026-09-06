@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/005-dark-theme",
+  "description": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
+  "keywords": [
+    "twenty",
+    "chart",
+    "forms",
+    "six",
+    "family",
+    "deliveries",
+    "three",
+    "palette",
+    "proof",
+    "sheets",
+    "paint",
+    "warm",
+    "paper",
+    "surface"
+  ],
+  "lastUpdated": "2026-09-06T14:59:05.660Z",
+  "specId": "005",
+  "folderSlug": "dark-theme",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "009-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

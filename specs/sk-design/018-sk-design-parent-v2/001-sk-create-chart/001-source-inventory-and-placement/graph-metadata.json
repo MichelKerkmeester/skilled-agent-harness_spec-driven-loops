@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart source inventory",
+      "lieflat placement decision",
+      "mode or standalone skill",
+      "adoption inventory",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "chart",
+      "source",
+      "inventory",
+      "lieflat",
+      "placement",
+      "decision",
+      "mode",
+      "standalone",
+      "skill",
+      "adoption",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/classify.mjs",
+      "research/inventory.md",
+      "scratch/scan-source.mjs",
+      "scratch/emit-tables.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "classify.mjs",
+        "kind": "file",
+        "path": "scratch/classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "research/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "scan-source.mjs",
+        "kind": "file",
+        "path": "scratch/scan-source.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "emit-tables.mjs",
+        "kind": "file",
+        "path": "scratch/emit-tables.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Clone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The source repository is already shaped like a skill",
+    "created_at": "2026-09-02T07:56:48Z",
+    "last_save_at": "2026-09-06T14:59:17.306Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:06bb25cba076b92d1574d31465b90e27437e63e86df3ee96162e55ac052b15ca",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "464aec1c534c59ea42a4cf6b809154dd639cec4894ebff0a40fa87b464bde187",
+      "plan.md": "fd30bcf2054d65042ce83a6679352fffed28e76e18f929e8fb38ee25d0b94a87",
+      "tasks.md": "379a49e7084ca44b9a4f5d17f3282e3d2961f442eb9587c8bfc4009b113e9ca0",
+      "decision-record.md": "829c353e3629619f4f76623027d482b7a8a0a724ca934a0d13276670ae577936",
+      "implementation-summary.md": "b8237cff93c973b51e8fc91b73da6e59d2464e2128db5ebf3d72ea4c1abc5ef4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

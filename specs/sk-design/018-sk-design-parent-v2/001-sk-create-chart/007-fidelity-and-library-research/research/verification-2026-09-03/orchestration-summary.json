@@ -1,0 +1,22 @@
+{
+  "run_id": "1788404469193-3b2771",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research",
+  "base_artifact_dir": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/research/verification-2026-09-03",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

@@ -244,7 +244,7 @@ first `RESULT:` line of the parent run is the parent's own verdict, since a phas
    `description.json` and `graph-metadata.json` files remain in place because a delete is not
    reversible and some sit inside other sessions' untracked packets:
    `specs/system-deep-loop/035-command-surface-benchmark/` holds twelve, `specs/system-speckit/000-release/`
-   seven, two each under `specs/sk-doc/051-sk-create-chart/`, `specs/sk-doc/052-routing-completeness/` and
+   seven, two each under `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/`, `specs/sk-doc/052-routing-completeness/` and
    `specs/system-deep-loop/041-cli-pi-devpass-glm-route/`, and one each under
    `specs/hooks/002-injection-bloat-reduction/`, `specs/hooks/010-hook-feature-flags-and-hub-index/`,
    `specs/sk-design/013-structure-naming-cleanup/`, `specs/sk-doc/029-doc-divider-and-anchor-standard/` and

@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/003-packet-scaffold",
+  "description": "The source has its own document conventions",
+  "keywords": [
+    "source",
+    "own",
+    "document",
+    "conventions"
+  ],
+  "lastUpdated": "2026-09-06T14:54:11.057Z",
+  "specId": "003",
+  "folderSlug": "packet-scaffold",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

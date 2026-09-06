@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals",
+  "description": "The packet closed honestly and left four things written down rather than done",
+  "keywords": [
+    "packet",
+    "closed",
+    "honestly",
+    "left",
+    "four",
+    "things",
+    "written",
+    "rather",
+    "done"
+  ],
+  "lastUpdated": "2026-09-06T14:59:06.406Z",
+  "specId": "009",
+  "folderSlug": "close-the-deferrals",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "012-chart-hover-and-pointer-states"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/010-chart-review-remediation",
+  "description": "The corpus check passed on every one of these",
+  "keywords": [
+    "corpus",
+    "check",
+    "passed",
+    "every",
+    "one"
+  ],
+  "lastUpdated": "2026-09-06T14:59:05.984Z",
+  "specId": "010",
+  "folderSlug": "chart-review-remediation",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

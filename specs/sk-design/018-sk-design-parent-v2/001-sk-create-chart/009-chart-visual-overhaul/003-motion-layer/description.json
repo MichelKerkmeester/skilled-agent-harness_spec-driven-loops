@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer",
+  "description": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
+  "keywords": [
+    "grep",
+    "prefers-reduced-motion",
+    "assets",
+    "corpus",
+    "returns",
+    "nothing",
+    "search"
+  ],
+  "lastUpdated": "2026-09-06T14:54:12.290Z",
+  "specId": "003",
+  "folderSlug": "motion-layer",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "009-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

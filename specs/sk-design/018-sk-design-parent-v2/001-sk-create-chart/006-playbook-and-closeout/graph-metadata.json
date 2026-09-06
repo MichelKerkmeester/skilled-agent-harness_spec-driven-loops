@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart manual testing playbook",
+      "operator scenario contract",
+      "fleet gate closeout",
+      "lane c fields skip trap",
+      "chart playbook plan",
+      "operator scenario contract plan",
+      "chart closeout gates",
+      "playbook negative control",
+      "chart playbook tasks",
+      "chart closeout checklist",
+      "playbook package verification",
+      "fleet gate tasks"
+    ],
+    "key_topics": [
+      "chart",
+      "manual",
+      "testing",
+      "playbook",
+      "operator",
+      "scenario",
+      "contract",
+      "fleet",
+      "gate",
+      "closeout",
+      "lane",
+      "fields"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/spec.md",
+      "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/spec.md",
+      "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/plan.md",
+      "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/tasks.md",
+      "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/acceptance-criteria.md",
+      "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/decision-record.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
+    "created_at": "2026-09-02T07:56:52Z",
+    "last_save_at": "2026-09-06T14:59:16.267Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7af50afec23a25d4d8f305db5a0ce31bf19b39fa1a4000a4f843fb1122c2df50",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "01cb40892d3078e64772c49f40ee7a5f005a8eabdf4218bac3d91ba23a151672",
+      "plan.md": "fbb536319d304507d8116830be49caebf836f4d63d14f4432b5cb8996e4db235",
+      "tasks.md": "7befa7de4b8fb15727384173fb9dcced1973e8242ee4defda05268b391e1265d",
+      "decision-record.md": "c75d7a3d73b7bdb8c6b67d9f49eb1b96f7419457bbe4bbc0962f3da748a79c74",
+      "implementation-summary.md": "1aa61e5fb4560b9a135d7fc836ce93c113629f04e9a1cbabace69ce776e9fa2a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

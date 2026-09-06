@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/010-chart-review-remediation",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/010-chart-review-remediation",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart review remediation",
+      "heat matrix band defect",
+      "chart series capacity",
+      "chart headline audit",
+      "series mapping check",
+      "chart remediation plan",
+      "chart review fixes",
+      "black cell fix plan",
+      "chart remediation tasks",
+      "chart review task list",
+      "black cell tasks",
+      "chart remediation criteria"
+    ],
+    "key_topics": [
+      "chart",
+      "review",
+      "remediation",
+      "heat",
+      "matrix",
+      "band",
+      "defect",
+      "series",
+      "capacity",
+      "headline",
+      "audit",
+      "mapping"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/checker-holes-closed.txt",
+      "scripts/README.md",
+      "scratch/baseline-render.txt",
+      "scratch/band-zero-and-negative.txt",
+      "scratch/capacity-before-after.txt",
+      "scratch/headline-audit.txt",
+      "scratch/narrow-500-before.txt",
+      "scratch/narrow-500-after.txt",
+      "scratch/parallel-axes-bbox-after.txt",
+      "scratch/negative-controls.txt",
+      "scratch/final-render.txt",
+      "scratch/final-render-rerun.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checker-holes-closed.txt",
+        "kind": "file",
+        "path": "scratch/checker-holes-closed.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-render.txt",
+        "kind": "file",
+        "path": "scratch/baseline-render.txt",
+        "source": "derived"
+      },
+      {
+        "name": "band-zero-and-negative.txt",
+        "kind": "file",
+        "path": "scratch/band-zero-and-negative.txt",
+        "source": "derived"
+      },
+      {
+        "name": "capacity-before-after.txt",
+        "kind": "file",
+        "path": "scratch/capacity-before-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "headline-audit.txt",
+        "kind": "file",
+        "path": "scratch/headline-audit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "narrow-500-before.txt",
+        "kind": "file",
+        "path": "scratch/narrow-500-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "narrow-500-after.txt",
+        "kind": "file",
+        "path": "scratch/narrow-500-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "parallel-axes-bbox-after.txt",
+        "kind": "file",
+        "path": "scratch/parallel-axes-bbox-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "negative-controls.txt",
+        "kind": "file",
+        "path": "scratch/negative-controls.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-render.txt",
+        "kind": "file",
+        "path": "scratch/final-render.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-render-rerun.txt",
+        "kind": "file",
+        "path": "scratch/final-render-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corpus check passed on every one of these",
+    "created_at": "2026-09-04T07:19:37.295Z",
+    "last_save_at": "2026-09-06T14:59:17.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c2076784d805768fa430af78820c7ef8e6e3ed851471c7ffd4decc75e4ce331d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aa71aa27e6dbc267f09d01870887d08fde7aad2400e5fe541c6b0e99cf1f3b66",
+      "plan.md": "8961478299b7f45225e813376b985bdbd8feff3fa84b310aaa4a2df8d8fbd220",
+      "tasks.md": "c8ac179c21f5671fdc25aff776b76c98283f9c13fcaa58434e06cbb8cd1ed094",
+      "implementation-summary.md": "d3eba4f89d0f69cbe5cdc17828c5dc27151ab9c9bff905626f241db0f1164be7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

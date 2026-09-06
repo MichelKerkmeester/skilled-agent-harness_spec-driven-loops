@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart hover tooltip",
+      "chart in-figure legend",
+      "chart hover dim",
+      "chart interaction layer",
+      "chart interaction plan",
+      "chart tooltip recipe",
+      "per form interaction table",
+      "chart interaction tasks",
+      "chart tooltip tasks",
+      "chart legend tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "hover",
+      "tooltip",
+      "in-figure",
+      "legend",
+      "dim",
+      "interaction",
+      "layer",
+      "plan",
+      "recipe",
+      "per",
+      "form"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/first-paint.txt",
+      "scratch/pointer-touch-keyboard.txt",
+      "scratch/check-after.txt",
+      "scratch/hvr.txt",
+      "scratch/formatter-inventory.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "first-paint.txt",
+        "kind": "file",
+        "path": "scratch/first-paint.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pointer-touch-keyboard.txt",
+        "kind": "file",
+        "path": "scratch/pointer-touch-keyboard.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-after.txt",
+        "kind": "file",
+        "path": "scratch/check-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hvr.txt",
+        "kind": "file",
+        "path": "scratch/hvr.txt",
+        "source": "derived"
+      },
+      {
+        "name": "formatter-inventory.txt",
+        "kind": "file",
+        "path": "scratch/formatter-inventory.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Headless Chrome",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify                                     Legend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty chart forms draw values and none of them respond to a pointer",
+    "created_at": "2026-09-03T07:46:51.907Z",
+    "last_save_at": "2026-09-06T14:59:18.207Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0f2f20653235b18ee7d1f1c3977f348e8f321be189c5500802b2c1150826c0d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dc55a11aa46fa509e0ff1505e299572c08c2af63973777069895944255e50c2e",
+      "plan.md": "c8830039cbb2fd6126d8a0f893ea0d375268b2fb44668d7448e58934eea2b076",
+      "tasks.md": "ce4880cd819477f2b294cff1622fcfcc32c8775718761b1f208fa82f2359230c",
+      "decision-record.md": "cd2179637b8e6557b98de0675a27ba1951b5ebc45b215f513f8dc327e862f8ee",
+      "implementation-summary.md": "869321e59161dcd06b4febde7d974ac4d93acedb1259c47abc5c4bc04c56c8a8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

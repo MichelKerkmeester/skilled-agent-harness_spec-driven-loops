@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms",
+  "description": "Twenty-one forms cover the common cases and leave gaps a reader hits quickly: there is no way to",
+  "keywords": [
+    "twenty-one",
+    "forms",
+    "cover",
+    "common",
+    "cases",
+    "leave",
+    "gaps",
+    "reader",
+    "hits",
+    "quickly",
+    "way"
+  ],
+  "lastUpdated": "2026-09-06T14:52:15.063Z",
+  "specId": "003",
+  "folderSlug": "new-chart-forms",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "012-chart-hover-and-pointer-states",
+    "010-corpus-expansion-and-gallery"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

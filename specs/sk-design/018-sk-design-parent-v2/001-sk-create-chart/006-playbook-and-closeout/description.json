@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout",
+  "description": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
+  "keywords": [
+    "nothing",
+    "states",
+    "skill",
+    "doing",
+    "job",
+    "looks",
+    "like",
+    "tell",
+    "later",
+    "reader",
+    "whether",
+    "change",
+    "broke"
+  ],
+  "lastUpdated": "2026-09-06T14:54:10.310Z",
+  "specId": "006",
+  "folderSlug": "playbook-and-closeout",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

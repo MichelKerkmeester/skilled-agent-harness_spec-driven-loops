@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart chrome proof",
+      "stroke weight fork",
+      "chart glow fork",
+      "chart visual decision record",
+      "chart chrome proof plan",
+      "stroke weight comparison",
+      "glow layer comparison",
+      "chart chrome proof tasks",
+      "fork comparison tasks",
+      "chart decision tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "chart",
+      "chrome",
+      "proof",
+      "stroke",
+      "weight",
+      "fork",
+      "glow",
+      "visual",
+      "decision",
+      "record",
+      "plan",
+      "comparison"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/forks/stroke-weight.html",
+      "scratch/chrome-before.txt",
+      "scratch/validator-after.txt",
+      "scratch/validator-before.txt",
+      "scratch/shots/daily-line-before.png",
+      "scratch/shots/bar-columns-before.png",
+      "scratch/shots/stroke-weight-sheet.png",
+      "scratch/shots/daily-line-after.png"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stroke-weight.html",
+        "kind": "file",
+        "path": "scratch/forks/stroke-weight.html",
+        "source": "derived"
+      },
+      {
+        "name": "chrome-before.txt",
+        "kind": "file",
+        "path": "scratch/chrome-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validator-after.txt",
+        "kind": "file",
+        "path": "scratch/validator-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validator-before.txt",
+        "kind": "file",
+        "path": "scratch/validator-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "daily-line-before.png",
+        "kind": "file",
+        "path": "scratch/shots/daily-line-before.png",
+        "source": "derived"
+      },
+      {
+        "name": "bar-columns-before.png",
+        "kind": "file",
+        "path": "scratch/shots/bar-columns-before.png",
+        "source": "derived"
+      },
+      {
+        "name": "stroke-weight-sheet.png",
+        "kind": "file",
+        "path": "scratch/shots/stroke-weight-sheet.png",
+        "source": "derived"
+      },
+      {
+        "name": "daily-line-after.png",
+        "kind": "file",
+        "path": "scratch/shots/daily-line-after.png",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Twenty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
+    "created_at": "2026-09-03T08:02:24.685Z",
+    "last_save_at": "2026-09-06T14:59:18.057Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7347179b8df61f2811707dea80b2a26eb600d84dba19bd50b903ffbe488767fe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebb523114f2e9093370752d90af530720866bcb0a90591846b12b8c7f8b79462",
+      "plan.md": "4a500ea40c8aa0f23180f14bdf58cabd3322295aacaeecd677325593d633d558",
+      "tasks.md": "a39dec368e47c152d8c21b307c115eedffcb2624b1a6c628dd00a1bd199bcbed",
+      "decision-record.md": "2438de7efc4ee5c7e188c283b67580c29e51782b6d85dde49a0d67e513535752",
+      "implementation-summary.md": "ab7dc03fbd2c5567ca4cd319444bc15902ecef816b1cd412a45a374844c75c2a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks",
+  "description": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
+  "keywords": [
+    "twenty",
+    "templates",
+    "share",
+    "one",
+    "visual",
+    "register",
+    "chrome",
+    "change",
+    "twenty-file"
+  ],
+  "lastUpdated": "2026-09-06T14:54:11.616Z",
+  "specId": "001",
+  "folderSlug": "visual-proof-and-forks",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "009-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

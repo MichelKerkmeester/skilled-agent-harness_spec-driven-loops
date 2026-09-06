@@ -13829,6 +13829,543 @@
       "lastUpdated": "2026-08-28T16:24:15.216Z"
     },
     {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+      "description": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
+      "keywords": [
+        "lieflat-charts",
+        "data-visualization",
+        "skill",
+        "elsewhere",
+        "chart",
+        "report",
+        "templates"
+      ],
+      "lastUpdated": "2026-09-05T08:46:26.122Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement",
+      "description": "The source repository is already shaped like a skill",
+      "keywords": [
+        "source",
+        "repository",
+        "already",
+        "shaped",
+        "like",
+        "skill"
+      ],
+      "lastUpdated": "2026-09-02T14:09:35.705Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/002-translation-and-voice",
+      "description": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
+      "keywords": [
+        "roughly",
+        "chinese",
+        "characters",
+        "sit",
+        "across",
+        "six",
+        "authored",
+        "documents",
+        "largest",
+        "source",
+        "skill"
+      ],
+      "lastUpdated": "2026-09-02T14:09:35.852Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/003-packet-scaffold",
+      "description": "The source has its own document conventions",
+      "keywords": [
+        "source",
+        "own",
+        "document",
+        "conventions"
+      ],
+      "lastUpdated": "2026-09-02T14:09:35.972Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/004-native-chart-build",
+      "description": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
+      "keywords": [
+        "reference",
+        "implementation",
+        "polyform",
+        "noncommercial",
+        "repository",
+        "mit",
+        "public"
+      ],
+      "lastUpdated": "2026-09-02T08:53:20.066Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/005-routing-integration",
+      "description": "A registry entry is not a route",
+      "keywords": [
+        "registry",
+        "entry",
+        "route"
+      ],
+      "lastUpdated": "2026-09-02T13:59:53.327Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/006-playbook-and-closeout",
+      "description": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
+      "keywords": [
+        "nothing",
+        "states",
+        "skill",
+        "doing",
+        "job",
+        "looks",
+        "like",
+        "tell",
+        "later",
+        "reader",
+        "whether",
+        "change",
+        "broke"
+      ],
+      "lastUpdated": "2026-09-02T14:02:50.640Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research",
+      "description": "Three reference overviews start at `## 0",
+      "keywords": [
+        "three",
+        "reference",
+        "overviews",
+        "start"
+      ],
+      "lastUpdated": "2026-09-02T19:22:35.789Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research",
+      "description": "The mode ships twenty templates, three colour systems and a corpus validator",
+      "keywords": [
+        "mode",
+        "ships",
+        "twenty",
+        "templates",
+        "three",
+        "colour",
+        "systems",
+        "corpus",
+        "validator"
+      ],
+      "lastUpdated": "2026-09-03T07:27:44.355Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul",
+      "description": "The operator does not like how `sk-create-chart` looks",
+      "keywords": [
+        "operator",
+        "like",
+        "sk-create-chart",
+        "looks"
+      ],
+      "lastUpdated": "2026-09-05T08:29:27.504Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks",
+      "description": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
+      "keywords": [
+        "twenty",
+        "templates",
+        "share",
+        "one",
+        "visual",
+        "register",
+        "chrome",
+        "change",
+        "twenty-file"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.804Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout",
+      "description": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
+      "keywords": [
+        "twenty",
+        "templates",
+        "authored",
+        "one",
+        "time",
+        "every",
+        "them",
+        "re-types",
+        "same",
+        "chrome"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.790Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer",
+      "description": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
+      "keywords": [
+        "grep",
+        "prefers-reduced-motion",
+        "assets",
+        "corpus",
+        "returns",
+        "nothing",
+        "search"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.869Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer",
+      "description": "Twenty chart forms draw values and none of them respond to a pointer",
+      "keywords": [
+        "twenty",
+        "chart",
+        "forms",
+        "draw",
+        "values",
+        "none",
+        "them",
+        "respond",
+        "pointer"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.817Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/005-dark-theme",
+      "description": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
+      "keywords": [
+        "twenty",
+        "chart",
+        "forms",
+        "six",
+        "family",
+        "deliveries",
+        "three",
+        "palette",
+        "proof",
+        "sheets",
+        "paint",
+        "warm",
+        "paper",
+        "surface"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.832Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract",
+      "description": "Five separate defects, one theme",
+      "keywords": [
+        "five",
+        "separate",
+        "defects",
+        "one",
+        "theme"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.866Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/007-composed-form-and-closeout",
+      "description": "Three problems, and they close the packet together",
+      "keywords": [
+        "three",
+        "problems",
+        "close",
+        "packet",
+        "together"
+      ],
+      "lastUpdated": "2026-09-05T08:27:18.849Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/010-chart-review-remediation",
+      "description": "The corpus check passed on every one of these",
+      "keywords": [
+        "corpus",
+        "check",
+        "passed",
+        "every",
+        "one"
+      ],
+      "lastUpdated": "2026-09-05T08:29:27.504Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/011-chart-command-surface",
+      "description": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
+      "keywords": [
+        "sk-doc",
+        "routes",
+        "fifteen",
+        "workflow",
+        "packets",
+        "fourteen",
+        "them",
+        "own",
+        "slash",
+        "command"
+      ],
+      "lastUpdated": "2026-09-05T08:29:27.505Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states",
+      "description": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
+      "keywords": [
+        "corpus",
+        "answers",
+        "pointer",
+        "inconsistently",
+        "inconsistency",
+        "design",
+        "decision"
+      ],
+      "lastUpdated": "2026-09-06T04:47:05.338Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/001-register-and-contract",
+      "description": "`check-corpus.cjs` recognizes three interaction registers, `data-chart-tooltip`, `data-chart-legend` and `data-chart-dim`, and enforces hygiene, state",
+      "keywords": [
+        "check-corpus",
+        "cjs",
+        "recognizes",
+        "three",
+        "interaction",
+        "registers",
+        "data-chart-tooltip",
+        "data-chart-legend",
+        "data-chart-dim",
+        "enforces",
+        "hygiene",
+        "state"
+      ],
+      "lastUpdated": "2026-09-06T02:18:58.300Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/002-annotate-inert-forms",
+      "description": "`progress-single`, `unit-ring`, `unit-grid`, `independent-percentages`, `bar-columns` and `bar-rows` each print every value they encode beside the",
+      "keywords": [
+        "progress-single",
+        "unit-ring",
+        "unit-grid",
+        "independent-percentages",
+        "bar-columns",
+        "bar-rows",
+        "print",
+        "every",
+        "value",
+        "encode",
+        "beside"
+      ],
+      "lastUpdated": "2026-09-05T21:12:56.537Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/003-excerpt-and-grouped-bars",
+      "description": "`box-plot.html` carries a complete, working hover card, a click-to-pin path, a reduced-motion guard and a no-script fallback, all self-contained,",
+      "keywords": [
+        "box-plot",
+        "html",
+        "carries",
+        "complete",
+        "working",
+        "hover",
+        "card",
+        "click-to-pin",
+        "path",
+        "reduced-motion",
+        "guard",
+        "no-script",
+        "fallback",
+        "self-contained"
+      ],
+      "lastUpdated": "2026-09-06T04:46:05.890Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/004-transfer-three-forms",
+      "description": "`stacked-bars`, `daily-line` and `bar-line-composed` each carry a legend, a dim or both, but none of the three opens a hover card",
+      "keywords": [
+        "stacked-bars",
+        "daily-line",
+        "bar-line-composed",
+        "carry",
+        "legend",
+        "dim",
+        "none",
+        "three",
+        "opens",
+        "hover",
+        "card"
+      ],
+      "lastUpdated": "2026-09-05T23:22:18.704Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/005-stacked-area-pointed-band",
+      "description": "`stacked-area` carries a legend and a dim but no tooltip",
+      "keywords": [
+        "stacked-area",
+        "carries",
+        "legend",
+        "dim",
+        "tooltip"
+      ],
+      "lastUpdated": "2026-09-06T01:54:21.205Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/006-daily-range-endpoints",
+      "description": "`daily-range` carries no interaction register at all today",
+      "keywords": [
+        "daily-range",
+        "carries",
+        "interaction",
+        "register",
+        "today"
+      ],
+      "lastUpdated": "2026-09-06T04:46:05.891Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity",
+      "description": "Six delivered charts live under `assets/examples/`, and measured across all six, none carries `data-chart-tooltip`, `data-chart-legend`,",
+      "keywords": [
+        "six",
+        "delivered",
+        "charts",
+        "live",
+        "assets",
+        "examples",
+        "measured",
+        "across",
+        "none",
+        "carries",
+        "data-chart-tooltip",
+        "data-chart-legend"
+      ],
+      "lastUpdated": "2026-09-06T02:18:58.301Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof",
+      "description": "Phases 001 through 007 land the register, the annotations and the delivery transfers, but nothing yet proves the corpus checker actually fails a form",
+      "keywords": [
+        "phases",
+        "land",
+        "register",
+        "annotations",
+        "delivery",
+        "transfers",
+        "nothing",
+        "proves",
+        "corpus",
+        "checker",
+        "actually",
+        "fails",
+        "form"
+      ],
+      "lastUpdated": "2026-09-06T04:42:30.067Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals",
+      "description": "The packet closed honestly and left four things written down rather than done",
+      "keywords": [
+        "packet",
+        "closed",
+        "honestly",
+        "left",
+        "four",
+        "things",
+        "written",
+        "rather",
+        "done"
+      ],
+      "lastUpdated": "2026-09-06T04:59:05.188Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery",
+      "description": "The pointer targets are far smaller than the operator's \"sometimes way too small\" suggests",
+      "keywords": [
+        "pointer",
+        "targets",
+        "far",
+        "smaller",
+        "operator",
+        "sometimes",
+        "way",
+        "too",
+        "small",
+        "suggests"
+      ],
+      "lastUpdated": "2026-09-06T06:26:24.614Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size",
+      "description": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
+      "keywords": [
+        "markable",
+        "sets",
+        "data-mark",
+        "visible",
+        "geometry",
+        "pointer",
+        "target",
+        "drawn",
+        "mark"
+      ],
+      "lastUpdated": "2026-09-06T06:29:01.740Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-06T06:26:44.866Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-06T06:26:45.932Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-06T06:26:46.812Z"
+    },
+    {
+      "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-06T06:26:47.673Z"
+    },
+    {
       "specFolder": "sk-doc/014-sk-doc-parent",
       "description": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management,",
       "keywords": [
@@ -25005,543 +25542,6 @@
         "meta-and-quality"
       ],
       "lastUpdated": "2026-09-01T11:48:01.612Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart",
-      "description": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
-      "keywords": [
-        "lieflat-charts",
-        "data-visualization",
-        "skill",
-        "elsewhere",
-        "chart",
-        "report",
-        "templates"
-      ],
-      "lastUpdated": "2026-09-05T08:46:26.122Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/001-source-inventory-and-placement",
-      "description": "The source repository is already shaped like a skill",
-      "keywords": [
-        "source",
-        "repository",
-        "already",
-        "shaped",
-        "like",
-        "skill"
-      ],
-      "lastUpdated": "2026-09-02T14:09:35.705Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/002-translation-and-voice",
-      "description": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
-      "keywords": [
-        "roughly",
-        "chinese",
-        "characters",
-        "sit",
-        "across",
-        "six",
-        "authored",
-        "documents",
-        "largest",
-        "source",
-        "skill"
-      ],
-      "lastUpdated": "2026-09-02T14:09:35.852Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/003-packet-scaffold",
-      "description": "The source has its own document conventions",
-      "keywords": [
-        "source",
-        "own",
-        "document",
-        "conventions"
-      ],
-      "lastUpdated": "2026-09-02T14:09:35.972Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/004-native-chart-build",
-      "description": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
-      "keywords": [
-        "reference",
-        "implementation",
-        "polyform",
-        "noncommercial",
-        "repository",
-        "mit",
-        "public"
-      ],
-      "lastUpdated": "2026-09-02T08:53:20.066Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/005-routing-integration",
-      "description": "A registry entry is not a route",
-      "keywords": [
-        "registry",
-        "entry",
-        "route"
-      ],
-      "lastUpdated": "2026-09-02T13:59:53.327Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
-      "description": "Nothing yet states what this skill doing its job looks like, so nothing can tell a later reader whether a change broke it",
-      "keywords": [
-        "nothing",
-        "states",
-        "skill",
-        "doing",
-        "job",
-        "looks",
-        "like",
-        "tell",
-        "later",
-        "reader",
-        "whether",
-        "change",
-        "broke"
-      ],
-      "lastUpdated": "2026-09-02T14:02:50.640Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
-      "description": "Three reference overviews start at `## 0",
-      "keywords": [
-        "three",
-        "reference",
-        "overviews",
-        "start"
-      ],
-      "lastUpdated": "2026-09-02T19:22:35.789Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/008-evilcharts-reference-research",
-      "description": "The mode ships twenty templates, three colour systems and a corpus validator",
-      "keywords": [
-        "mode",
-        "ships",
-        "twenty",
-        "templates",
-        "three",
-        "colour",
-        "systems",
-        "corpus",
-        "validator"
-      ],
-      "lastUpdated": "2026-09-03T07:27:44.355Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul",
-      "description": "The operator does not like how `sk-create-chart` looks",
-      "keywords": [
-        "operator",
-        "like",
-        "sk-create-chart",
-        "looks"
-      ],
-      "lastUpdated": "2026-09-05T08:29:27.504Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks",
-      "description": "Twenty templates share one visual register, so any chrome change is a twenty-file change",
-      "keywords": [
-        "twenty",
-        "templates",
-        "share",
-        "one",
-        "visual",
-        "register",
-        "chrome",
-        "change",
-        "twenty-file"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.804Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout",
-      "description": "Twenty templates were authored one at a time, and every one of them re-types the same chrome by",
-      "keywords": [
-        "twenty",
-        "templates",
-        "authored",
-        "one",
-        "time",
-        "every",
-        "them",
-        "re-types",
-        "same",
-        "chrome"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.790Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/003-motion-layer",
-      "description": "`grep -rn 'prefers-reduced-motion' assets/` over the corpus returns nothing, and so does a search",
-      "keywords": [
-        "grep",
-        "prefers-reduced-motion",
-        "assets",
-        "corpus",
-        "returns",
-        "nothing",
-        "search"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.869Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer",
-      "description": "Twenty chart forms draw values and none of them respond to a pointer",
-      "keywords": [
-        "twenty",
-        "chart",
-        "forms",
-        "draw",
-        "values",
-        "none",
-        "them",
-        "respond",
-        "pointer"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.817Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/005-dark-theme",
-      "description": "Twenty chart forms, six family deliveries and three palette proof sheets all paint on a warm paper surface",
-      "keywords": [
-        "twenty",
-        "chart",
-        "forms",
-        "six",
-        "family",
-        "deliveries",
-        "three",
-        "palette",
-        "proof",
-        "sheets",
-        "paint",
-        "warm",
-        "paper",
-        "surface"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.832Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract",
-      "description": "Five separate defects, one theme",
-      "keywords": [
-        "five",
-        "separate",
-        "defects",
-        "one",
-        "theme"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.866Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/009-chart-visual-overhaul/007-composed-form-and-closeout",
-      "description": "Three problems, and they close the packet together",
-      "keywords": [
-        "three",
-        "problems",
-        "close",
-        "packet",
-        "together"
-      ],
-      "lastUpdated": "2026-09-05T08:27:18.849Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/010-chart-review-remediation",
-      "description": "The corpus check passed on every one of these",
-      "keywords": [
-        "corpus",
-        "check",
-        "passed",
-        "every",
-        "one"
-      ],
-      "lastUpdated": "2026-09-05T08:29:27.504Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/011-chart-command-surface",
-      "description": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
-      "keywords": [
-        "sk-doc",
-        "routes",
-        "fifteen",
-        "workflow",
-        "packets",
-        "fourteen",
-        "them",
-        "own",
-        "slash",
-        "command"
-      ],
-      "lastUpdated": "2026-09-05T08:29:27.505Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states",
-      "description": "The corpus answers a pointer inconsistently, and the inconsistency is not a design decision",
-      "keywords": [
-        "corpus",
-        "answers",
-        "pointer",
-        "inconsistently",
-        "inconsistency",
-        "design",
-        "decision"
-      ],
-      "lastUpdated": "2026-09-06T04:47:05.338Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/001-register-and-contract",
-      "description": "`check-corpus.cjs` recognizes three interaction registers, `data-chart-tooltip`, `data-chart-legend` and `data-chart-dim`, and enforces hygiene, state",
-      "keywords": [
-        "check-corpus",
-        "cjs",
-        "recognizes",
-        "three",
-        "interaction",
-        "registers",
-        "data-chart-tooltip",
-        "data-chart-legend",
-        "data-chart-dim",
-        "enforces",
-        "hygiene",
-        "state"
-      ],
-      "lastUpdated": "2026-09-06T02:18:58.300Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/002-annotate-inert-forms",
-      "description": "`progress-single`, `unit-ring`, `unit-grid`, `independent-percentages`, `bar-columns` and `bar-rows` each print every value they encode beside the",
-      "keywords": [
-        "progress-single",
-        "unit-ring",
-        "unit-grid",
-        "independent-percentages",
-        "bar-columns",
-        "bar-rows",
-        "print",
-        "every",
-        "value",
-        "encode",
-        "beside"
-      ],
-      "lastUpdated": "2026-09-05T21:12:56.537Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/003-excerpt-and-grouped-bars",
-      "description": "`box-plot.html` carries a complete, working hover card, a click-to-pin path, a reduced-motion guard and a no-script fallback, all self-contained,",
-      "keywords": [
-        "box-plot",
-        "html",
-        "carries",
-        "complete",
-        "working",
-        "hover",
-        "card",
-        "click-to-pin",
-        "path",
-        "reduced-motion",
-        "guard",
-        "no-script",
-        "fallback",
-        "self-contained"
-      ],
-      "lastUpdated": "2026-09-06T04:46:05.890Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/004-transfer-three-forms",
-      "description": "`stacked-bars`, `daily-line` and `bar-line-composed` each carry a legend, a dim or both, but none of the three opens a hover card",
-      "keywords": [
-        "stacked-bars",
-        "daily-line",
-        "bar-line-composed",
-        "carry",
-        "legend",
-        "dim",
-        "none",
-        "three",
-        "opens",
-        "hover",
-        "card"
-      ],
-      "lastUpdated": "2026-09-05T23:22:18.704Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/005-stacked-area-pointed-band",
-      "description": "`stacked-area` carries a legend and a dim but no tooltip",
-      "keywords": [
-        "stacked-area",
-        "carries",
-        "legend",
-        "dim",
-        "tooltip"
-      ],
-      "lastUpdated": "2026-09-06T01:54:21.205Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/006-daily-range-endpoints",
-      "description": "`daily-range` carries no interaction register at all today",
-      "keywords": [
-        "daily-range",
-        "carries",
-        "interaction",
-        "register",
-        "today"
-      ],
-      "lastUpdated": "2026-09-06T04:46:05.891Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/007-deliveries-to-parity",
-      "description": "Six delivered charts live under `assets/examples/`, and measured across all six, none carries `data-chart-tooltip`, `data-chart-legend`,",
-      "keywords": [
-        "six",
-        "delivered",
-        "charts",
-        "live",
-        "assets",
-        "examples",
-        "measured",
-        "across",
-        "none",
-        "carries",
-        "data-chart-tooltip",
-        "data-chart-legend"
-      ],
-      "lastUpdated": "2026-09-06T02:18:58.301Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/008-closure-and-proof",
-      "description": "Phases 001 through 007 land the register, the annotations and the delivery transfers, but nothing yet proves the corpus checker actually fails a form",
-      "keywords": [
-        "phases",
-        "land",
-        "register",
-        "annotations",
-        "delivery",
-        "transfers",
-        "nothing",
-        "proves",
-        "corpus",
-        "checker",
-        "actually",
-        "fails",
-        "form"
-      ],
-      "lastUpdated": "2026-09-06T04:42:30.067Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/009-close-the-deferrals",
-      "description": "The packet closed honestly and left four things written down rather than done",
-      "keywords": [
-        "packet",
-        "closed",
-        "honestly",
-        "left",
-        "four",
-        "things",
-        "written",
-        "rather",
-        "done"
-      ],
-      "lastUpdated": "2026-09-06T04:59:05.188Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery",
-      "description": "The pointer targets are far smaller than the operator's \"sometimes way too small\" suggests",
-      "keywords": [
-        "pointer",
-        "targets",
-        "far",
-        "smaller",
-        "operator",
-        "sometimes",
-        "way",
-        "too",
-        "small",
-        "suggests"
-      ],
-      "lastUpdated": "2026-09-06T06:26:24.614Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/001-pointer-target-size",
-      "description": "`markable()` sets `data-mark` on the visible geometry, so the pointer target is the drawn mark and",
-      "keywords": [
-        "markable",
-        "sets",
-        "data-mark",
-        "visible",
-        "geometry",
-        "pointer",
-        "target",
-        "drawn",
-        "mark"
-      ],
-      "lastUpdated": "2026-09-06T06:29:01.740Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data",
-      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-      "keywords": [
-        "broken",
-        "missing",
-        "inefficient",
-        "sentences",
-        "describing",
-        "specific",
-        "pain",
-        "point"
-      ],
-      "lastUpdated": "2026-09-06T06:26:44.866Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/003-new-chart-forms",
-      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-      "keywords": [
-        "broken",
-        "missing",
-        "inefficient",
-        "sentences",
-        "describing",
-        "specific",
-        "pain",
-        "point"
-      ],
-      "lastUpdated": "2026-09-06T06:26:45.932Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/004-light-dark-gallery",
-      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-      "keywords": [
-        "broken",
-        "missing",
-        "inefficient",
-        "sentences",
-        "describing",
-        "specific",
-        "pain",
-        "point"
-      ],
-      "lastUpdated": "2026-09-06T06:26:46.812Z"
-    },
-    {
-      "specFolder": "sk-doc/051-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/005-closure-and-proof",
-      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-      "keywords": [
-        "broken",
-        "missing",
-        "inefficient",
-        "sentences",
-        "describing",
-        "specific",
-        "pain",
-        "point"
-      ],
-      "lastUpdated": "2026-09-06T06:26:47.673Z"
     },
     {
       "specFolder": "sk-doc/052-routing-completeness",

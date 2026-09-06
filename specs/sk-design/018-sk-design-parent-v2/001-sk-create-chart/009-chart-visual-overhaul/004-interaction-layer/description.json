@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer",
+  "description": "Twenty chart forms draw values and none of them respond to a pointer",
+  "keywords": [
+    "twenty",
+    "chart",
+    "forms",
+    "draw",
+    "values",
+    "none",
+    "them",
+    "respond",
+    "pointer"
+  ],
+  "lastUpdated": "2026-09-06T14:59:05.589Z",
+  "specId": "004",
+  "folderSlug": "interaction-layer",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "009-chart-visual-overhaul"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

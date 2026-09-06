@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/010-corpus-expansion-and-gallery/002-restyle-and-richer-data",
+  "description": "All 21 templates print `Source: demo figures`, and the numbers behind them are placeholder-grade",
+  "keywords": [
+    "templates",
+    "print",
+    "source",
+    "demo",
+    "figures",
+    "numbers",
+    "behind",
+    "them",
+    "placeholder-grade"
+  ],
+  "lastUpdated": "2026-09-06T14:52:13.241Z",
+  "specId": "002",
+  "folderSlug": "restyle-and-richer-data",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart",
+    "012-chart-hover-and-pointer-states",
+    "010-corpus-expansion-and-gallery"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "06-09-26_09-18__child-002-underway-design-decisions-worth-stating.md",
+    "06-09-26_09-32__stage-b-verification-harness-is-ready-ahead-of.md",
+    "06-09-26_10-51__documents-for-children-002-003-and-004-are.md"
+  ]
+}
