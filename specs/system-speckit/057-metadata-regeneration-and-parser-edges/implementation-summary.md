@@ -13,12 +13,12 @@ _memory:
     packet_pointer: "system-speckit/057-metadata-regeneration-and-parser-edges"
     last_updated_at: "2026-09-05T21:16:57Z"
     last_updated_by: "template-author"
-    recent_action: "Regenerated, edges added, parser adopted"
+    recent_action: "Edges, adoptions, index regenerated"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:68862831674ebdfa4a48ee897c2c02c64f2b3eea334fa2aa18fe07bb051e6b11"
+      fingerprint: "sha256:7df6d268fb8e055cf589e4ab42680e7261767707bf315741129ec7494ec643dd"
       session_id: "scaffold-057-metadata-regeneration-and-parser-edges"
       parent_session_id: null
     completion_pct: 100
@@ -58,6 +58,10 @@ A census over every `graph-metadata.json` under `specs/` found 114 packets whose
 | `system-deep-loop/runtime/package.json`, `package-lock.json` | Modify, force-track | Shared dependency edge |
 | `sk-doc/package.json`, `package-lock.json` | Add, force-track | Shared dependency edge for every script directory |
 | `system-deep-loop/runtime/scripts/check-contract-drift.cjs` | Modify | Shared parser |
+| `system-deep-loop/package.json`, `package-lock.json` | Add, force-track | Skill-root dependency edge for the mode scripts |
+| 14 deep-loop mode scripts and test readers under `deep-ai-council/scripts` and `deep-improvement/scripts` | Modify | Shared parser |
+| 13 spec-kit files: `shared/parsing/*`, `runtime/cli/lib/{validate-memory-quality,semantic-summarizer}.ts`, `runtime/lib/parsing/content-normalizer.ts`, `runtime/lib/validation/orchestrator.ts`, `runtime/cli/{codex,pi}/sync-agents*.cjs`, three rule helpers, `runtime/cli/retrieval/lib/{frontmatter,grep-convention}.mjs` | Modify | Shared parser |
+| `runtime/hooks/cursor/README.md`, `runtime/data/trigger-index.json` | Modify, Regenerate | A fallback note had landed inside the README's frontmatter; moved into the body and the index regenerated |
 | `sk-doc/shared/scripts/frontmatter-version.mjs`, `sk-doc/scripts/tests/test-frontmatter-version.mjs`, `sk-doc/sk-create-skill/scripts/{validate-compiled-routing-scenarios,validate-playbook-topology}.cjs`, `sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs`, `sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | Modify | Shared parser |
 | `sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs` | Modify | Stages the shared package into its scaffold |
 <!-- /ANCHOR:what-built -->
@@ -93,7 +97,8 @@ Census and regeneration ran here from a scratchpad script that is not committed;
 | Generator errors | 0 |
 | Strict validation sample | 4 of 6 PASSED; both failures reproduce at HEAD |
 | Import probes | deep-loop ESM and CommonJS resolve; sk-doc scripts ESM resolves |
-| Parser adoption | 7 files adopted; drift suite 8 of 8, frontmatter-version test 23 of 23, consumer matrix 17, ten sk-create-skill tests exit 0, playbook contract 8 assertions; deep-loop typecheck 0 |
+| Parser adoption, second lane | 14 deep-loop files and 13 spec-kit files; retrieval, trigger-index, grep and residue suites 277 of 279; skill-benchmark and mirror suites 21 of 21; orchestrate-session 5 of 5; codex and pi sync wrote 0 files; agent mirrors 12 of 12; index parity before and after |
+| Parser adoption, first lane | 7 files adopted; drift suite 8 of 8, frontmatter-version test 23 of 23, consumer matrix 17, ten sk-create-skill tests exit 0, playbook contract 8 assertions; deep-loop typecheck 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -103,5 +108,6 @@ Census and regeneration ran here from a scratchpad script that is not committed;
 
 - Thirteen track roots still declare stale children; nothing generates a track-root `graph-metadata.json`, so the sweep reports them until a generator exists.
 - Three packets declare children that no longer exist on disk; the writer keeps own-identity entries by design.
-- 38 hand-rolled parse sites remain: 16 in deep-loop directories outside its runtime package (no dependency edge; a manifest for `deep-improvement/scripts` and `deep-ai-council/scripts` would be the next step), 16 spec-kit internals that the parser's own skill should adopt in its own lane, one advisor checker, spec-kit test helpers, and seven Python parsers under sk-doc.
+- Remaining hand-rolled sites: one caller-owned scanner in `frontmatter-migration.ts` kept for its leading-comment tolerance and 50-line cap; the advisor's scripts checker, dependency-free by its own header; eleven sites the last lane did not own (deep-loop runtime stress adapter, advisor daemon watcher, spec-kit post-save review, rg lane, nested changelog, phase-map sync, test helpers); seven Python parsers under sk-doc.
+- A validation-orchestrator bridge test still expects the retired `scripts/dist` path and stays red; it predates this packet.
 <!-- /ANCHOR:limitations -->

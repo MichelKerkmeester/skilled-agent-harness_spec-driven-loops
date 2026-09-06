@@ -46,6 +46,10 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "runtime/lib/parsing/content-normalizer.ts",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/hooks/cursor/README.md",
+      "runtime/data/trigger-index.json",
       "tests/path-containment.vitest.ts",
       "tests/nested-changelog.vitest.ts",
       "tests/generate-description-identity-safety.vitest.ts"
@@ -79,6 +83,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "content-normalizer.ts",
+        "kind": "code",
+        "path": "runtime/lib/parsing/content-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/hooks/cursor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
         "source": "derived"
       },
       {
@@ -170,35 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatter parser in their JavaScript callers.",
     "created_at": "2026-09-06T04:26:02Z",
-    "last_save_at": "2026-09-06T05:02:39.427Z",
+    "last_save_at": "2026-09-06T06:29:28.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4fdaeb662978d018fc2fe4f64a799fe215ad225d82886542e23e47bed04347d9",
+    "source_fingerprint": "sha256:a8d2993799d5a4d588dd36bec5e498f42118d243bd64e67f90f53f4659ee3028",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16941d04da2adcbdaf0dbf733c02cd543586146cd43c9113837bbaa8fc699414",
+      "spec.md": "ee44929512c5a96709e80742a7819c72dae9e69b831a0b1214aa7a2f9485180b",
       "plan.md": "a8fa3e628dce206ce5df02fdd0c0cb7cfe50e0085f64cf6170270064c780f438",
-      "tasks.md": "bd165b5ddfbe2b1c611deb966f89979b1c908f4db726151c530d5a72579ca889",
-      "implementation-summary.md": "8387f75079175c7109617d7faf3a3903ff79fe46f37a873346084d70e03b402e"
+      "tasks.md": "e1e3492cbb03475e9c080d999e897c25b54f1f55f3f43e2a6e7d8378d6bfe061",
+      "implementation-summary.md": "300440b92ee215c96453a18ac0e7c2313e182b7ed68e5d558ec8fc8dbb068359"
     },
     "last_active_at": null
   }

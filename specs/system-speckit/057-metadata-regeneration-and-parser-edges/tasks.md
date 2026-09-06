@@ -44,6 +44,8 @@ contextType: "general"
 - [x] T003 Add the shared dependency to the deep-loop runtime and install in its root; force-track the manifest the ignore rule had swallowed (`system-deep-loop/runtime/package.json`)
 - [x] T004 Create sk-doc's manifest with the shared dependency and install in its root; moved from `scripts/` to the skill root so every script directory resolves it (`sk-doc/package.json`)
 - [x] T005 Adopt the shared parser in deep-loop's and sk-doc's JavaScript callers (GLM lane) — `check-contract-drift.cjs`; `frontmatter-version.mjs`, its test, `validate-compiled-routing-scenarios.cjs`, `validate-playbook-topology.cjs`, `root-router-contract.cjs`, `validate-playbook-package.cjs`; the journey-proof test stages the shared package into its scaffold
+- [x] T009 Add a deep-loop skill-root manifest with the shared dependency and install in its root so the mode script directories resolve the parser (`system-deep-loop/package.json`)
+- [x] T010 Adopt the shared parser at the remaining deep-loop, spec-kit-internal and advisor sites (GLM lane) — 14 deep-loop files including three test readers, 16 spec-kit sites in 13 files; index parity proven before and after; codex and pi agent sync wrote 0 files; agent mirrors 12 of 12; the advisor's scripts checker stays dependency-free by its own header
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,6 +56,7 @@ contextType: "general"
 - [x] T006 Census after: 4 packets remain (1 dirty, 3 declaring children no longer on disk), 13 track roots; sample of six regenerated packets: four PASSED, two failures predate the pass (a missing referenced file; a `parent_id` already `"null"` at HEAD)
 - [x] T007 Import probes: the shared parser resolves from the deep-loop runtime in ESM and CommonJS and from sk-doc's scripts
 - [x] T008 Adopters' tests and the deep-loop typecheck green after adoption — drift suite 8 of 8; frontmatter-version test 23 of 23; consumer matrix 17; ten sk-create-skill tests exit 0; playbook package contract 8 assertions; typecheck 0 errors
+- [x] T011 Final inventory of remaining hand-rolled sites with reasons — one caller-owned scanner kept (`frontmatter-migration.ts` tolerates leading comments and caps at 50 lines), eleven sites outside the lane's file list (deep-loop runtime stress adapter, advisor daemon watcher, spec-kit post-save review, rg lane, nested changelog, phase-map sync, test helpers), seven Python parsers
 <!-- /ANCHOR:phase-3 -->
 
 ---

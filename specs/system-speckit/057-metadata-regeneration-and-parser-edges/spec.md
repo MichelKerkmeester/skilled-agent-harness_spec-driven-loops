@@ -47,6 +47,7 @@ Packet 056 fixed the graph-metadata writer and reported the drift it had left be
 - `generate-description.js` and `backfill-graph-metadata.js` over every clean drifted packet; the dirty packet skipped and reported.
 - `@spec-kit/shared` as a `file:` dependency in `system-deep-loop/runtime/package.json` and a new manifest for sk-doc's scripts, installed in those package roots only.
 - Adoption of the shared parser in deep-loop's and sk-doc's JavaScript callers; Python parsers listed, not rewritten.
+- A deep-loop skill-root manifest so the mode packets' scripts outside `runtime/` resolve the shared package, and adoption at the remaining deep-loop, spec-kit-internal and advisor sites.
 
 ### Out of Scope
 - Track-root `graph-metadata.json` files: no generator owns them; the sweep keeps reporting them.
