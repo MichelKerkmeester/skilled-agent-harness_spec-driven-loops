@@ -219,8 +219,10 @@ function scoreTieBreakOrder(hubRouter) {
 // an order that depends on which of two DIFFERENT scores won for a given
 // prompt (e.g. create-quality-control:4 outscoring create-diagram:3), only
 // on a fixed mode-to-mode priority.
+// A rule may only pair modes this hub still owns. The diagram mode moved to the
+// design hub, so a pairing that reaches across hubs can never fire and the
+// compiler refuses the whole registry rather than emit an unreachable route.
 const SUPPLEMENTAL_BUNDLE_RULES = [
-  { name: 'quality-then-diagram', whenAll: ['sk-create-quality-control', 'sk-create-diagram'] },
   { name: 'feature-catalog-then-playbook', whenAll: ['sk-create-feature-catalog', 'sk-create-manual-testing-playbook'] },
   { name: 'agent-then-command', whenAll: ['sk-create-agent', 'sk-create-command'] },
   { name: 'skill-then-quality-then-changelog', whenAll: ['sk-create-skill', 'sk-create-quality-control', 'sk-create-changelog'] },

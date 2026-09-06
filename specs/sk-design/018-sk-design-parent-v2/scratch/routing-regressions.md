@@ -127,3 +127,33 @@ took `rejectedEdges` to 0 and raised the indexed edge count from 50 to 52. It al
 So the rejected edges were not inert. They were costing score on exactly the phrases the merge was
 supposed to help, and nothing in the packet would have caught it: the routing replay passed, the
 graph validator passed, and only the rebuild's own warning stream named the problem.
+
+## A dead bundle rule was costing score too, and it blocked the push
+
+The pre-push route gate refused both branches: `sk-doc  inputs-do-not-compile`. The hub's compiled
+routing could not be rebuilt at all, so the gate could not re-mint it.
+
+The cause was a hardcoded supplemental bundle rule in sk-doc's own registry compiler pairing
+`sk-create-quality-control` with `sk-create-diagram`. That pairing stopped existing when the diagram
+mode moved to the design hub, and the compiler fails closed rather than emit a route that can never
+fire: `bundleRules[1] references missing mode sk-create-diagram`.
+
+Nothing in the packet had surfaced it. The advisor answered normally, every hub gate passed, and the
+compiled-routing guard is not part of the gate sweep — it runs on push. A hub can serve legacy routing
+for as long as nobody pushes.
+
+Removing the rule, refreshing the manifest and resyncing the authored copy took the guard to
+`sk-doc  fresh`. Rebuilding at generation 642 moved three more scores, all upward and none owner-changing:
+
+| Phrase | Before the fix | After |
+|--------|---------------|-------|
+| `make a chart of orders by month` | `sk-design=0.8277` | `sk-design=0.8282` |
+| `extract design tokens from stripe.com` | `sk-design=0.9026` | `sk-design=0.9068` |
+| `create a repo rule file` | `sk-doc=0.9405` | `sk-doc=0.9424` |
+
+The last one is a `sk-doc` control that had matched its baseline exactly through every earlier replay.
+It is now above it. A dead cross-hub rule was costing score on a phrase in the hub that still owned it.
+
+This is the same fact as the four blocked FLOWCHART fixtures: sk-doc used to own both modes, and the
+places that encoded the pairing did not all move with the mode. The compiler is fixed because it
+blocked delivery; the fixtures still need the decision recorded in this phase's decision record.
