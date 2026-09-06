@@ -160,6 +160,7 @@ function resolveRealPathSafe(targetPath: string): string | null {
   try {
     return fs.realpathSync.native(targetPath);
   } catch (_error: unknown) {
+    // A dangling or unreadable path is a normal discovery miss, not a failure.
     try {
       return fs.realpathSync(targetPath);
     } catch (_nestedError: unknown) {
@@ -407,6 +408,7 @@ function readRawPerFolderDescription(descPath: string): Record<string, unknown> 
     const parsed = JSON.parse(raw);
     return parsed && typeof parsed === 'object' ? (parsed as Record<string, unknown>) : null;
   } catch (_error: unknown) {
+    // A missing or malformed description is treated as absent; the caller falls back to spec.md.
     return null;
   }
 }
@@ -432,6 +434,7 @@ function normalizeBasePaths(basePaths: string[]): string[] {
     try {
       stat = fs.statSync(absoluteCandidate);
     } catch (_error: unknown) {
+      // A candidate that vanished between listing and stat is skipped, not reported.
       continue;
     }
 
@@ -483,6 +486,7 @@ function discoverSpecFolders(basePath: string): DiscoveredSpecFolder[] {
     try {
       entries = fs.readdirSync(currentPath, { withFileTypes: true });
     } catch (_error: unknown) {
+      // An unreadable directory ends this branch of the walk; siblings continue.
       return;
     }
 
@@ -499,6 +503,7 @@ function discoverSpecFolders(basePath: string): DiscoveredSpecFolder[] {
       try {
         folderStat = fs.statSync(canonicalFolderPath);
       } catch (_error: unknown) {
+        // A folder that vanished between listing and stat is skipped, not reported.
         continue;
       }
       if (!folderStat.isDirectory()) continue;

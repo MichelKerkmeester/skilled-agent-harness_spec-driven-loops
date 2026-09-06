@@ -8,7 +8,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const REPO_ROOT = path.resolve(__dirname, '../../../../../..');
+const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
+const REPO_ROOT = findRepoRoot(__dirname);
 
 const CATEGORY_ORDER = [
   {

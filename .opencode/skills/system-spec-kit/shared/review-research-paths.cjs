@@ -164,11 +164,10 @@ function findExistingPacket(rootDir, specFolder, mode) {
   return matches.at(-1) || null;
 }
 
-// SCRIPT_DIR: .opencode/skills/system-spec-kit/shared -> repo root is 4 levels
-// up. Mirrors the REPO_ROOT convention already used by
-// the retired owner-map migration scripts, so this stays a portable,
+// Resolved through the shared sentinel-file resolver so every package agrees on the root.
 // __dirname-relative anchor rather than a hardcoded absolute path.
-const REPO_ROOT = path.resolve(__dirname, '../../../../');
+const { findRepoRoot } = require('./workspace/repo-root.mjs');
+const REPO_ROOT = findRepoRoot(__dirname);
 
 /**
  * Canonicalize a path via realpath when possible, falling back to the plain

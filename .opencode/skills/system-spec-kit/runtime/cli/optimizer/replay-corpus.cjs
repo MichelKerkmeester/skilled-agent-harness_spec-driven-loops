@@ -55,7 +55,8 @@ const ITERATION_TYPES = new Set(['iteration']);
  */
 const EVENT_TYPES = new Set(['event']);
 
-const REPO_ROOT = path.resolve(__dirname, '../../../../../..');
+const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
+const REPO_ROOT = findRepoRoot(__dirname);
 const APPROVED_CORPUS_ROOTS = Object.freeze([
   path.join(REPO_ROOT, '.opencode', 'specs'),
   path.join(REPO_ROOT, 'specs'),

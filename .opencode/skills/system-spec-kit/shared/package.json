@@ -5,6 +5,7 @@
   "type": "module",
   "main": "dist/index.js",
   "exports": {
+    "./workspace/repo-root.mjs": "./workspace/repo-root.mjs",
     ".": "./dist/index.js",
     "./compact-merger": "./dist/compact-merger.js",
     "./budget-allocator": "./dist/budget-allocator.js",

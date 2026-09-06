@@ -16,7 +16,8 @@ const { isCanonicalMirrorExcluded } = require('../runtime-mirrors/command-scope.
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const REPO_ROOT = path.resolve(__dirname, '../../../../../..');
+const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
+const REPO_ROOT = findRepoRoot(__dirname);
 const SOURCE_DIR = path.join(REPO_ROOT, '.opencode', 'commands');
 const OUTPUT_DIR = path.join(REPO_ROOT, '.codex', 'prompts');
 const EXCLUDED_DIRECTORIES = new Set(['assets', 'scripts', 'fixtures']);

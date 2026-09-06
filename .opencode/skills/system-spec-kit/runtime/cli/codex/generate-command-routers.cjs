@@ -40,7 +40,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { findRepoRoot: resolveRepoRoot } = require('../../hooks/lib/workspace/repo-root.mjs');
+const { findRepoRoot: resolveRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

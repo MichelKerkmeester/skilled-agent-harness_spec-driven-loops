@@ -18,7 +18,8 @@ const DEFAULT_EXCLUDED_SEGMENTS = new Set(['node_modules', 'dist']);
 const CACHE_VERSION = 2;
 const CACHE_TEMP_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
-const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
+const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
+const WORKSPACE_ROOT = findRepoRoot(__dirname);
 
 const DIST_PACKAGES = Object.freeze([
   {

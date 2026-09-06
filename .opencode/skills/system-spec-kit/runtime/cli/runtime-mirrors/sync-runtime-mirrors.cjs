@@ -29,7 +29,8 @@ const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('./command
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const REPO_ROOT = path.resolve(__dirname, '../../../../../..');
+const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
+const REPO_ROOT = findRepoRoot(__dirname);
 const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
 
 // Cursor and Devin parse the Claude agent dialect (`tools:`), not OpenCode's
