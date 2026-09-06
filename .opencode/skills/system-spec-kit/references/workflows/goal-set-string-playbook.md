@@ -65,7 +65,25 @@ If it still will not fit, the packet is trying to be one goal when it is two. Sp
 
 ---
 
-## 5. WORKED EXAMPLE
+## 5. KEEPING THE OPERATOR'S COPY CURRENT
+
+The objective the operator set is a copy of the durable slice, and copies drift.
+The goal document is the source, so the agent working the packet owns the resync:
+
+1. Whenever anything above the log changes (the objective, a decision, the
+   binding table, a criterion), resend the full text of the parent `goal.md` in
+   chat, unprompted, so the operator can paste it over the session objective.
+2. A child `goal.md` change that alters a parent decision or criterion is an
+   amendment to the parent: apply it there first, then resend the parent. A
+   child change that stays inside its own phase needs no resend.
+3. Log entries never trigger a resend; the log is not part of the objective.
+
+The template carries this rule in its directive section, so a scaffolded goal
+document tells the next agent the same thing.
+
+---
+
+## 6. WORKED EXAMPLE
 
 From a real four-phase packet whose durable slice measures 1,986 characters against a 3,000 budget:
 
@@ -88,7 +106,7 @@ difference is what the pointer buys.
 
 ---
 
-## 6. RELATED
+## 7. RELATED
 
 | Document | Role |
 |---|---|

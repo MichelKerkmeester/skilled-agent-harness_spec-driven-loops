@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-goal-operator-resync-rule",
+  "spec_folder": "system-speckit/034-goal-operator-resync-rule",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal resync rule",
+      "operator copy of goal",
+      "parent goal resend in chat",
+      "nested goal amendment",
+      "goal resync plan",
+      "goal template edit",
+      "goal resync tasks",
+      "goal resync shipped"
+    ],
+    "key_topics": [
+      "goal",
+      "resync",
+      "rule",
+      "operator",
+      "copy",
+      "parent",
+      "resend",
+      "chat",
+      "nested",
+      "amendment",
+      "plan",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+      ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator sets a session objective by pasting a packet's durable goal slice",
+    "created_at": "2026-09-06T14:24:58Z",
+    "last_save_at": "2026-09-06T14:28:27.051Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:782b16ee4f3d311fcd612f4c98403566138242b60992f2036cb2d875394258cb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73c755686e2b6910e1f64b5b6b0d636d393b93c1edf15686cddcaacf9c34d6d1",
+      "plan.md": "72cd315782284eb30be9f0bc507df259f32c48d6898e9e4901045283cbd28fa2",
+      "tasks.md": "629384f00363448ffa5ba35adfc312c4e2d1b70eb012245eb12310bded6ae4b9",
+      "implementation-summary.md": "396d51c984112139a21bffe849fc0eb6c46efc6da4c0266f19db265c8df9159f"
+    },
+    "last_active_at": null
+  }
+}
