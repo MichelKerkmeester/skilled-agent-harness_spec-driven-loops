@@ -1,0 +1,26 @@
+{
+  "specFolder": "001-system-speckit-v4",
+  "description": "Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix through the metadata regeneration, consolidated in ch",
+  "keywords": [
+    "phase",
+    "parent",
+    "repo",
+    "system-spec-kit",
+    "twenty-four",
+    "packets",
+    "plan-preflight",
+    "metadata",
+    "regeneration",
+    "consolidated",
+    "chronological",
+    "order",
+    "timeline"
+  ],
+  "lastUpdated": "2026-09-06T06:42:40.054Z",
+  "specId": "001",
+  "folderSlug": "system-speckit-v4",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}
