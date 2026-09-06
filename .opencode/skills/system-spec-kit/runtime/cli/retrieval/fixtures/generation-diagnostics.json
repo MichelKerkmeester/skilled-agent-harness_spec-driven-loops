@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 63,
-    "missing-frontmatter": 6929,
+    "missing-frontmatter": 6931,
     "non-yaml-frontmatter": 1,
-    "ok": 13456,
-    "valid-empty-list": 7944
+    "ok": 13492,
+    "valid-empty-list": 7943
   },
-  "documentsScanned": 28393,
+  "documentsScanned": 28430,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "00bedea1756ff09de85e46c84b26b23ab219c2be74618633e53d38c6f0f72730",
+  "manifestHash": "49566f345ee96cd981d0b73e72c9e4fff11a88c9408bcd8c346e660d1149829f",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -96352,13 +96352,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/resource-map.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 4,
       "path": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/review/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
@@ -97648,6 +97641,18 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/review/lineages/luna-max-review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/research/confirmed-findings.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/confirmed-findings.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -97666,6 +97671,10 @@
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/skills/mcp-code-mode/mcp-server/dist",
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/node_modules",
@@ -97724,11 +97733,19 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".opencode/skills/sk-communication/cli-communication-projection/dist",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/node_modules",
       "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-design-md-generator/backend/dist",
       "reason": "excluded directory"
     },
     {
@@ -97765,6 +97782,10 @@
     },
     {
       "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-vision/vision-runtime/dist",
       "reason": "excluded directory"
     },
     {
@@ -97824,6 +97845,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/dist",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/embeddings",
       "reason": "symlinked directory"
     },
@@ -97860,6 +97885,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-spec-kit/runtime/cli/dist",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-spec-kit/runtime/cli/node_modules",
       "reason": "excluded directory"
     },
@@ -97882,6 +97911,10 @@
     {
       "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/test-fixtures",
       "reason": "symlinked directory"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/runtime/dist",
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/node_modules",
@@ -97917,6 +97950,10 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/tmp-test-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/shared/dist",
       "reason": "excluded directory"
     },
     {
@@ -98169,6 +98206,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/060-devpass-roster-vision-gemini-3-8/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/065-retire-gemini-devin-route/scratch",
       "reason": "excluded directory"
     },
     {
@@ -98737,6 +98778,22 @@
     },
     {
       "path": "specs/sk-design/017-design-skill/002-agent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/002-hub-and-fundamentals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99749,6 +99806,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist",
       "reason": "excluded directory"
     },
     {
@@ -101257,6 +101318,30 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/scratch",
       "reason": "excluded directory"
     },
     {

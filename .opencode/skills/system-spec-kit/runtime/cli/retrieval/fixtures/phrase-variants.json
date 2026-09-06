@@ -1,5 +1,5 @@
 {
-  "manifestHash": "00bedea1756ff09de85e46c84b26b23ab219c2be74618633e53d38c6f0f72730",
+  "manifestHash": "49566f345ee96cd981d0b73e72c9e4fff11a88c9408bcd8c346e660d1149829f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -202,6 +202,9 @@
     ],
     "001 provisioning results": [
       "001-provisioning results"
+    ],
+    "001 reinstate design parent": [
+      "001-reinstate-design-parent"
     ],
     "001 release readiness changelog index": [
       "001-release-readiness changelog index"
@@ -12537,9 +12540,6 @@
     "archive root graph node tasks": [
       "archive root graph node tasks"
     ],
-    "archive scoring multiplier": [
-      "archive scoring multiplier"
-    ],
     "archived backup restore": [
       "archived backup restore"
     ],
@@ -15306,9 +15306,6 @@
     "boolean expression": [
       "boolean expression"
     ],
-    "boolean expression predicates": [
-      "boolean expression predicates"
-    ],
     "boot attach repair resume": [
       "boot attach repair resume"
     ],
@@ -16217,6 +16214,9 @@
     ],
     "caching build gate closed": [
       "caching build gate closed"
+    ],
+    "calculate completeness script test": [
+      "calculate completeness script test"
     ],
     "calibrated auto route certificate corpus": [
       "calibrated auto-route certificate corpus"
@@ -21108,6 +21108,9 @@
     "cli shell completion generation": [
       "cli shell completion generation"
     ],
+    "cli sibling enumeration fix": [
+      "cli sibling enumeration fix"
+    ],
     "cli skill doc contract": [
       "cli skill doc contract"
     ],
@@ -23545,6 +23548,9 @@
     "code standards alignment": [
       "code standards alignment"
     ],
+    "code standards research outcome": [
+      "code standards research outcome"
+    ],
     "code standards summary": [
       "code standards summary"
     ],
@@ -25803,6 +25809,9 @@
     "complete with note": [
       "complete with note"
     ],
+    "completeness clamp errexit bug": [
+      "completeness clamp errexit bug"
+    ],
     "completeness measurement": [
       "completeness measurement"
     ],
@@ -26267,6 +26276,9 @@
     ],
     "confirm no do not edit fence changed": [
       "confirm no do-not-edit fence changed"
+    ],
+    "confirmed row application": [
+      "confirmed row application"
     ],
     "conflict guard implementation": [
       "conflict guard implementation"
@@ -30159,6 +30171,9 @@
     "cursor hook mirror": [
       "cursor hook mirror"
     ],
+    "cursor hook stderr report": [
+      "cursor hook stderr report"
+    ],
     "cursor hook symlink gotcha": [
       "cursor hook symlink gotcha"
     ],
@@ -30837,6 +30852,9 @@
     "daemon responsiveness reindex instrumentation": [
       "daemon responsiveness reindex instrumentation"
     ],
+    "daemon restart after state move": [
+      "daemon restart after state move"
+    ],
     "daemon restart follow up": [
       "daemon restart follow-up"
     ],
@@ -31367,6 +31385,9 @@
     ],
     "dead man switch ioc scan": [
       "dead-man switch IOC scan"
+    ],
+    "dead memory frontmatter barrel": [
+      "dead memory frontmatter barrel"
     ],
     "dead path row drain": [
       "dead path row drain"
@@ -35493,6 +35514,12 @@
     "deepseek prefix cache research": [
       "deepseek prefix cache research"
     ],
+    "deepseek research lane spec kit code": [
+      "deepseek research lane spec kit code"
+    ],
+    "deepseek research lane spec kit docs": [
+      "deepseek research lane spec kit docs"
+    ],
     "deepseek v4 flash": [
       "deepseek v4 flash"
     ],
@@ -37532,6 +37559,9 @@
     "devin agents skills rules parity tasks": [
       "devin agents skills rules parity tasks"
     ],
+    "devin allowlist edit plan": [
+      "devin allowlist edit plan"
+    ],
     "devin allowlist grok": [
       "devin allowlist grok"
     ],
@@ -37546,6 +37576,9 @@
     ],
     "devin allowlist prune": [
       "devin allowlist prune"
+    ],
+    "devin allowlist removal tasks": [
+      "devin allowlist removal tasks"
     ],
     "devin approval gate": [
       "devin approval gate"
@@ -38012,6 +38045,9 @@
     "devin prune tasks": [
       "devin prune tasks"
     ],
+    "devin quota exhausted gemini": [
+      "devin quota exhausted gemini"
+    ],
     "devin quota tiers": [
       "devin quota tiers"
     ],
@@ -38026,6 +38062,9 @@
     ],
     "devin review prompt template": [
       "devin review prompt template"
+    ],
+    "devin roster removal": [
+      "devin roster removal"
     ],
     "devin run subagent": [
       "devin run_subagent"
@@ -39194,6 +39233,9 @@
     "doc improvement modes": [
       "doc improvement modes"
     ],
+    "doc mismatch fixes shipped": [
+      "doc mismatch fixes shipped"
+    ],
     "doc optimization patterns": [
       "doc optimization patterns"
     ],
@@ -39355,6 +39397,12 @@
     ],
     "docs quality audit research": [
       "docs quality audit research"
+    ],
+    "docs reality alignment research": [
+      "docs reality alignment research"
+    ],
+    "docs reality research outcome": [
+      "docs reality research outcome"
     ],
     "docs rollup plan": [
       "docs rollup plan"
@@ -39657,6 +39705,9 @@
     ],
     "doctor route implementation status": [
       "doctor route implementation status"
+    ],
+    "doctor route list correction": [
+      "doctor route list correction"
     ],
     "doctor route manifest decision": [
       "doctor route manifest decision"
@@ -40946,6 +40997,9 @@
     "eight rule validation": [
       "eight rule validation"
     ],
+    "eighteen code deviations found": [
+      "eighteen code deviations found"
+    ],
     "eighteen item no go list plan": [
       "eighteen item no-go list plan"
     ],
@@ -41407,9 +41461,6 @@
     ],
     "embedding provider env vars": [
       "embedding provider env vars"
-    ],
-    "embedding provider factory": [
-      "embedding provider factory"
     ],
     "embedding provider memory leak rc 1": [
       "embedding provider memory leak RC-1"
@@ -42590,6 +42641,9 @@
     ],
     "exact sha gate tasks": [
       "exact-SHA gate tasks"
+    ],
+    "exact string replacement gate": [
+      "exact string replacement gate"
     ],
     "exacttriggersearch parity": [
       "exactTriggerSearch parity"
@@ -44119,6 +44173,9 @@
     "fanout allowlist task list": [
       "fanout allowlist task list"
     ],
+    "fanout allowlist test update": [
+      "fanout allowlist test update"
+    ],
     "fanout builder re map plan": [
       "fanout builder re-map plan"
     ],
@@ -44139,6 +44196,9 @@
     ],
     "fanout containment sibling scope": [
       "fanout containment sibling scope"
+    ],
+    "fanout devin allowlist gemini": [
+      "fanout devin allowlist gemini"
     ],
     "fanout dispatch": [
       "fanout dispatch"
@@ -44223,6 +44283,9 @@
     ],
     "fanout run cjs": [
       "fanout-run.cjs"
+    ],
+    "fanout run cli pi lineage": [
+      "fanout run cli pi lineage"
     ],
     "fanout run devin adapter": [
       "fanout-run devin adapter"
@@ -44575,6 +44638,9 @@
     ],
     "feature catalog source traceability": [
       "feature catalog source traceability"
+    ],
+    "feature catalog stale entries": [
+      "feature catalog stale entries"
     ],
     "feature catalog standards": [
       "feature catalog standards"
@@ -45347,6 +45413,9 @@
     "finalize dist mjs postbuild": [
       "finalize-dist mjs postbuild"
     ],
+    "finalize dist path fix": [
+      "finalize dist path fix"
+    ],
     "find 3 remaining sidecar p2": [
       "find 3 remaining sidecar p2"
     ],
@@ -45400,6 +45469,9 @@
     ],
     "finding remediation tasks": [
       "finding remediation tasks"
+    ],
+    "finding reproduction tasks": [
+      "finding reproduction tasks"
     ],
     "finding set stability": [
       "finding-set stability"
@@ -46730,6 +46802,9 @@
     "four uncertainty factors": [
       "four uncertainty factors"
     ],
+    "fourteen confirmed doc findings": [
+      "fourteen confirmed doc findings"
+    ],
     "fourteen fix map": [
       "fourteen fix map"
     ],
@@ -47828,6 +47903,9 @@
     "gemini 3 7 flash openrouter cli": [
       "gemini 3.7 flash openrouter cli"
     ],
+    "gemini 3 8 flash devin quota": [
+      "gemini 3.8 flash devin quota"
+    ],
     "gemini 3 8 flash roster swap": [
       "gemini 3.8 flash roster swap"
     ],
@@ -47839,6 +47917,9 @@
     ],
     "gemini 3 8 swap status": [
       "gemini 3.8 swap status"
+    ],
+    "gemini devin route retired": [
+      "gemini devin route retired"
     ],
     "gemini flash high roster": [
       "gemini flash high roster"
@@ -48685,6 +48766,9 @@
     ],
     "goal adapter isolation plan": [
       "goal adapter isolation plan"
+    ],
+    "goal addon research resources": [
+      "goal addon research resources"
     ],
     "goal and key result setup": [
       "goal and key result setup"
@@ -50173,6 +50257,9 @@
     ],
     "header sweep tasks": [
       "header sweep tasks"
+    ],
+    "header tag fixes shipped": [
+      "header tag fixes shipped"
     ],
     "heading anchor requirements": [
       "heading anchor requirements"
@@ -54618,6 +54705,9 @@
     "lane identity injective normalizer": [
       "lane identity injective normalizer"
     ],
+    "lane launch and monitoring": [
+      "lane launch and monitoring"
+    ],
     "lane lists shadow pipeline plumbing": [
       "lane lists shadow pipeline plumbing"
     ],
@@ -55299,9 +55389,6 @@
     ],
     "learned feedback expiry cap": [
       "learned feedback expiry cap"
-    ],
-    "learned ranking combiner": [
-      "learned ranking combiner"
     ],
     "learned stage2 blend": [
       "learned stage2 blend"
@@ -58213,9 +58300,6 @@
     "markdown chunker": [
       "markdown chunker"
     ],
-    "markdown chunking": [
-      "markdown chunking"
-    ],
     "markdown delivery standards": [
       "markdown delivery standards"
     ],
@@ -58308,9 +58392,6 @@
     ],
     "matrix execution validation": [
       "matrix execution validation"
-    ],
-    "matrix math ranking": [
-      "matrix math ranking"
     ],
     "matrix meta runner": [
       "matrix meta-runner"
@@ -59910,9 +59991,6 @@
     "mcp shared dependency startup fix": [
       "mcp shared dependency startup fix"
     ],
-    "mcp shared package": [
-      "mcp shared package"
-    ],
     "mcp startup race root cause": [
       "mcp startup race root cause"
     ],
@@ -60715,6 +60793,9 @@
     ],
     "memory decommission research": [
       "memory decommission research"
+    ],
+    "memory decommission timeline": [
+      "memory decommission timeline"
     ],
     "memory delete causal cleanup": [
       "memory delete causal cleanup"
@@ -61698,9 +61779,6 @@
     ],
     "memory sufficiency": [
       "memory sufficiency"
-    ],
-    "memory sufficiency parsing": [
-      "memory sufficiency parsing"
     ],
     "memory surface census": [
       "memory surface census"
@@ -64668,6 +64746,9 @@
     ],
     "nested goal addon": [
       "nested goal addon"
+    ],
+    "nested goal lineage resource map": [
+      "nested goal lineage resource map"
     ],
     "nested goal template addon": [
       "nested goal template addon"
@@ -69703,9 +69784,6 @@
     "path scoped validation rules": [
       "path-scoped validation rules"
     ],
-    "path security helper": [
-      "path security helper"
-    ],
     "path swapped after scan": [
       "path swapped after scan"
     ],
@@ -70386,6 +70464,12 @@
     ],
     "phantom gap convention": [
       "phantom gap convention"
+    ],
+    "phantom rule scripts removed from docs": [
+      "phantom rule scripts removed from docs"
+    ],
+    "phantom validator rule scripts": [
+      "phantom validator rule scripts"
     ],
     "phase": [
       "phase"
@@ -73626,6 +73710,9 @@
     "playbook validator ownership decision": [
       "playbook validator ownership decision"
     ],
+    "playbook versus runtime mismatch": [
+      "playbook versus runtime mismatch"
+    ],
     "playbook violation burndown": [
       "playbook violation burndown"
     ],
@@ -74493,9 +74580,6 @@
     ],
     "preconnect resource hints": [
       "preconnect resource hints"
-    ],
-    "predicate evaluator": [
-      "predicate evaluator"
     ],
     "predicate ownership decision": [
       "predicate ownership decision"
@@ -76063,6 +76147,9 @@
     ],
     "quality assessment framework": [
       "quality assessment framework"
+    ],
+    "quality audit script test": [
+      "quality audit script test"
     ],
     "quality auto fix default on": [
       "quality auto fix default on"
@@ -79138,6 +79225,9 @@
     "remediation dispatch harness": [
       "remediation dispatch harness"
     ],
+    "remediation execution plan": [
+      "remediation execution plan"
+    ],
     "remediation fixes verification report": [
       "remediation fixes verification report"
     ],
@@ -79971,6 +80061,9 @@
     "reproduce write escape": [
       "reproduce write escape"
     ],
+    "reproduction pass before remediation": [
+      "reproduction pass before remediation"
+    ],
     "req 001 req 004 req 016 intent stability": [
       "REQ-001 REQ-004 REQ-016 intent stability"
     ],
@@ -80548,6 +80641,12 @@
     ],
     "research known context capture": [
       "research known context capture"
+    ],
+    "research lane execution plan": [
+      "research lane execution plan"
+    ],
+    "research lane tasks": [
+      "research lane tasks"
     ],
     "research legal stop gates": [
       "research legal stop gates"
@@ -81378,6 +81477,12 @@
     "retire dry run": [
       "retire dry run"
     ],
+    "retire gemini devin route": [
+      "retire gemini devin route"
+    ],
+    "retire gemini devin tasks": [
+      "retire gemini devin tasks"
+    ],
     "retire governor directive": [
       "retire governor directive"
     ],
@@ -81432,11 +81537,17 @@
     "retired benchmark handling": [
       "retired benchmark handling"
     ],
+    "retired capability still documented": [
+      "retired capability still documented"
+    ],
     "retired compiled routing paths catalog": [
       "retired compiled routing paths catalog"
     ],
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
+    ],
+    "retired vector search docs cleanup": [
+      "retired vector search docs cleanup"
     ],
     "retirement audit to planner first": [
       "retirement audit to planner-first"
@@ -81672,9 +81783,6 @@
     "retrieval trace": [
       "retrieval trace"
     ],
-    "retrieval trace contract": [
-      "retrieval trace contract"
-    ],
     "retrieval work branch decision arc 011": [
       "RETRIEVAL_WORK branch decision arc 011"
     ],
@@ -81734,9 +81842,6 @@
     ],
     "retrofit diagnostics schema": [
       "retrofit diagnostics schema"
-    ],
-    "retry helper": [
-      "retry helper"
     ],
     "retry manager drain": [
       "retry manager drain"
@@ -83529,6 +83634,9 @@
     "rule scaffold": [
       "rule scaffold"
     ],
+    "rule script component header": [
+      "rule script component header"
+    ],
     "rule scripts": [
       "rule scripts"
     ],
@@ -83844,6 +83952,9 @@
     "runtime cli move target": [
       "runtime cli move target"
     ],
+    "runtime cli shell script standards": [
+      "runtime cli shell script standards"
+    ],
     "runtime cli target layout": [
       "runtime cli target layout"
     ],
@@ -83864,6 +83975,9 @@
     ],
     "runtime code review tasks": [
       "runtime code review tasks"
+    ],
+    "runtime code standards research": [
+      "runtime code standards research"
     ],
     "runtime codex dispatch helper": [
       "runtime codex dispatch helper"
@@ -86749,6 +86863,12 @@
     "seven orphaned type exports": [
       "seven orphaned type exports"
     ],
+    "seven state directories relocated": [
+      "seven state directories relocated"
+    ],
+    "seventeen doc mismatches found": [
+      "seventeen doc mismatches found"
+    ],
     "seventeen stage rollout sequence plan": [
       "seventeen stage rollout sequence plan"
     ],
@@ -86938,9 +87058,6 @@
     "shared adr body": [
       "shared ADR body"
     ],
-    "shared algorithms": [
-      "shared algorithms"
-    ],
     "shared artifact writer tasks": [
       "shared artifact writer tasks"
     ],
@@ -87004,9 +87121,6 @@
     "shared context seam tasks": [
       "shared context seam tasks"
     ],
-    "shared contracts": [
-      "shared contracts"
-    ],
     "shared cross cutting dependency closures": [
       "shared cross-cutting dependency closures"
     ],
@@ -87061,9 +87175,6 @@
     "shared embedder logic skill advisor": [
       "shared embedder logic skill-advisor"
     ],
-    "shared embeddings": [
-      "shared embeddings"
-    ],
     "shared embeddings factory ollama": [
       "shared embeddings factory ollama"
     ],
@@ -87087,9 +87198,6 @@
     ],
     "shared evidence and control services": [
       "shared evidence and control services"
-    ],
-    "shared exports": [
-      "shared exports"
     ],
     "shared factory parity": [
       "shared factory parity"
@@ -87184,11 +87292,11 @@
     "shared package dependency edge": [
       "shared package dependency edge"
     ],
+    "shared package duplicate helpers": [
+      "shared package duplicate helpers"
+    ],
     "shared parsers post run refresh": [
       "shared parsers post run refresh"
-    ],
-    "shared parsing modules": [
-      "shared parsing modules"
     ],
     "shared path containment": [
       "shared path containment"
@@ -87287,9 +87395,6 @@
     "shared utilities": [
       "shared utilities"
     ],
-    "shared utils": [
-      "shared utils"
-    ],
     "shared verdict tasks": [
       "shared verdict tasks"
     ],
@@ -87310,6 +87415,9 @@
     ],
     "shell conditionals reference": [
       "shell conditionals reference"
+    ],
+    "shell header tag normalization": [
+      "shell header tag normalization"
     ],
     "shell output formatting": [
       "shell output formatting"
@@ -87730,6 +87838,9 @@
     ],
     "silent failure harness repair implementation": [
       "silent failure harness repair implementation"
+    ],
+    "silent hook catch stderr": [
+      "silent hook catch stderr"
     ],
     "silent skip false green test": [
       "silent skip false green test"
@@ -88543,6 +88654,9 @@
     ],
     "sk code opencode audit file ledger": [
       "sk-code-opencode audit file ledger"
+    ],
+    "sk code opencode conformance spec kit": [
+      "sk code opencode conformance spec kit"
     ],
     "sk code opencode esm exemption": [
       "sk-code-opencode esm exemption"
@@ -93863,6 +93977,9 @@
     "skills library index rewrite": [
       "skills library index rewrite"
     ],
+    "skills root lists skills only": [
+      "skills root lists skills only"
+    ],
     "skills root state": [
       "skills root state"
     ],
@@ -94510,9 +94627,6 @@
     "spec document finder": [
       "spec document finder"
     ],
-    "spec document health parsing": [
-      "spec document health parsing"
-    ],
     "spec document naming closure plan": [
       "spec document naming closure plan"
     ],
@@ -94624,9 +94738,6 @@
     "spec folder question noise": [
       "spec folder question noise"
     ],
-    "spec folder ranking": [
-      "spec folder ranking"
-    ],
     "spec folder readme rewrite": [
       "spec folder readme rewrite"
     ],
@@ -94707,6 +94818,9 @@
     ],
     "spec kit code graph decoupling": [
       "spec kit code graph decoupling"
+    ],
+    "spec kit code standards audit": [
+      "spec kit code standards audit"
     ],
     "spec kit command audit": [
       "spec kit command audit",
@@ -94841,6 +94955,9 @@
     ],
     "spec kit refactor plan": [
       "spec-kit refactor plan"
+    ],
+    "spec kit references drift audit": [
+      "spec kit references drift audit"
     ],
     "spec kit relocation": [
       "spec kit relocation"
@@ -95862,9 +95979,6 @@
     "stage 2 ranking": [
       "stage 2 ranking"
     ],
-    "stage 2 ranking weights": [
-      "stage 2 ranking weights"
-    ],
     "stage 3 generated json migration": [
       "stage 3 generated json migration"
     ],
@@ -96508,6 +96622,9 @@
     "state migration cutover tasks": [
       "state migration cutover tasks"
     ],
+    "state parent implementation outcome": [
+      "state parent implementation outcome"
+    ],
     "state path guard": [
       "state path guard"
     ],
@@ -97106,11 +97223,17 @@
     "strict mode directive placement": [
       "strict mode directive placement"
     ],
+    "strict mode doc corrected": [
+      "strict mode doc corrected"
+    ],
     "strict mode warning promotion": [
       "strict mode warning promotion"
     ],
     "strict mode warning promotion claim": [
       "strict mode warning promotion claim"
+    ],
+    "strict mode warning semantics doc fix": [
+      "strict mode warning semantics doc fix"
     ],
     "strict package validator plan": [
       "strict package validator plan"
@@ -97228,8 +97351,7 @@
       "structural validation rules"
     ],
     "structure aware chunker": [
-      "structure aware chunker",
-      "structure-aware chunker"
+      "structure aware chunker"
     ],
     "structured council recovery context": [
       "structured council recovery context"
@@ -101642,6 +101764,9 @@
     "tv 005 sr 002 sr 003": [
       "TV-005 SR-002 SR-003"
     ],
+    "twelve confirmed code findings": [
+      "twelve confirmed code findings"
+    ],
     "twelve foreign children gone": [
       "twelve foreign children gone"
     ],
@@ -104771,9 +104896,6 @@
     ],
     "when does a folder need code md": [
       "when does a folder need code.md"
-    ],
-    "when field parser": [
-      "when field parser"
     ],
     "when field validation": [
       "when field validation"
