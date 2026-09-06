@@ -2,10 +2,11 @@
 title: "Tasks: Phase 3: deprecation-mechanics [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "phase three deprecation tasks"
+  - "constitutional memory deprecation"
+  - "deprecation mechanics"
+  - "phase three deliverables"
+  - "deprecation tasks list"
 importance_tier: "normal"
 contextType: "general"
 _memory:

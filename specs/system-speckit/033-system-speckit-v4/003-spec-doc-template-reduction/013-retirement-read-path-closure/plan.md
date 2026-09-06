@@ -4,6 +4,10 @@ description: "Five independent fixes, ordered so the one that changes what every
 trigger_phrases:
   - "read path closure plan"
   - "scaffold verification region"
+  - "level inference replacement document"
+  - "flag parser unrecognized value"
+  - "level two tasks verification region"
+  - "reference sweep historical mentions"
 importance_tier: "important"
 contextType: "implementation"
 ---

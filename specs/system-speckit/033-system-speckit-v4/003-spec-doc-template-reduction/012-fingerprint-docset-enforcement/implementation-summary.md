@@ -2,10 +2,12 @@
 title: "Implementation Summary: Fingerprint Docset Enforcement"
 description: "The drift gate was inert on nine packets in ten. One repository-wide refresh and one rule change make it compare everything that carries a digest."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "source fingerprint docset missing"
+  - "fleet digest refresh"
+  - "drift gate inert nine in ten"
+  - "fingerprint marker mandatory"
+  - "migration lands before rule"
+  - "schema refinement cross-field"
 importance_tier: "normal"
 contextType: "general"
 _memory:

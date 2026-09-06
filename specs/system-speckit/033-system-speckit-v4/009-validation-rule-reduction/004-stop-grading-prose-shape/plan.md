@@ -4,6 +4,9 @@ description: "Trace the consumers, delete what has none, narrow what does, and m
 trigger_phrases:
   - "stop grading prose shape"
   - "template conformance removed"
+  - "heading shape grading removed"
+  - "anchors read by code"
+  - "template moving target"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

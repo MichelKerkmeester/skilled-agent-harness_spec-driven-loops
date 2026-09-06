@@ -4,6 +4,9 @@ description: "Test each claim, correct what disagrees, verify the neighbouring g
 trigger_phrases:
   - "framework doc matches behaviour"
   - "agents md validation claims"
+  - "exit-code claim tested"
+  - "grandfather claim tested"
+  - "git claims verified"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

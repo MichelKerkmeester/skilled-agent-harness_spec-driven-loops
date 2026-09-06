@@ -3,6 +3,10 @@ title: "Task Breakdown: A Warning Stops Being A Failure"
 description: "Measure, remove the promotion, restore the enforcement that depended on it, reconcile the tests."
 trigger_phrases:
   - "warnings stop blocking tasks"
+  - "promotion clause removal"
+  - "warnings enforcement path restore"
+  - "registry ceilings raised"
+  - "fixed stride sample baseline"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

@@ -2,10 +2,12 @@
 title: "Implementation Summary: Workspace Path Containment"
 description: "The graph-metadata write guard classified a destination as spec-shaped and wrote it, so any path containing a specs segment was accepted - including one outside the repository. Membership is now proven against the configured roots."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "graph metadata write containment"
+  - "writeGraphMetadataFile membership"
+  - "path includes specs segment"
+  - "configured specs root membership"
+  - "symlinked track write"
+  - "membership before canonicalization"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

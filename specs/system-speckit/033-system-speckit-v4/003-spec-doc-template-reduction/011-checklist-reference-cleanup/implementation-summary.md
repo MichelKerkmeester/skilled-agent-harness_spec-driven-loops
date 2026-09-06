@@ -3,6 +3,11 @@ title: "Implementation Summary: Nothing Points At The Retired Checklist"
 description: "108 documents carried dead links to the deleted checklist; 72 pointer lines removed, 52 links demoted, 0 regressions."
 trigger_phrases:
   - "checklist reference cleanup summary"
+  - "checklist dead links"
+  - "extract_markdown_link_targets rule"
+  - "pointer-only lines removed"
+  - "check-spec-doc-integrity rule"
+  - "worktree_checklist excluded"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

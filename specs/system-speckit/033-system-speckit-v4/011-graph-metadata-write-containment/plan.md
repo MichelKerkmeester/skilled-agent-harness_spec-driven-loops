@@ -2,11 +2,11 @@
 title: "Implementation Plan: Workspace Path Containment"
 description: "The graph-metadata write guard classified a destination as spec-shaped and wrote it, so any path containing a specs segment was accepted - including one outside the repository. Membership is now proven against the configured roots."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "write guard membership proof"
+  - "graph metadata write containment"
+  - "path includes specs substring"
+  - "membership before canonicalization"
+  - "symlinked specs tracks"
 importance_tier: "important"
 contextType: "implementation"
 ---

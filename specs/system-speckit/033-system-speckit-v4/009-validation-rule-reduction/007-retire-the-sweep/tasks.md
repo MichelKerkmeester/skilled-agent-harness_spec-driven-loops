@@ -3,6 +3,10 @@ title: "Task Breakdown: A Gate That Can Actually Block"
 description: "Resolution, both directions, then retire the cron."
 trigger_phrases:
   - "retire the sweep tasks"
+  - "changed packet resolution rule"
+  - "packet-resolution rule tested"
+  - "explicit result passed line"
+  - "cron trigger cannot block"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

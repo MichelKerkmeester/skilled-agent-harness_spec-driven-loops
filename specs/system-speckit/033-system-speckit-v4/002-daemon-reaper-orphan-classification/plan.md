@@ -4,6 +4,11 @@ description: "Single-phase plan to tighten the reaper's external-MCP guard so a 
 trigger_phrases:
   - "process reaper classification plan"
   - "isExternalMcpProcess fix plan"
+  - "external MCP misclassification"
+  - "process-memory-harness regex tightening"
+  - "orphaned project daemon"
+  - "process-sweep negative control"
+  - "guard order disjoint"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

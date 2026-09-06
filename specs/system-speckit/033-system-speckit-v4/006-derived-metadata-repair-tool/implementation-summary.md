@@ -2,8 +2,12 @@
 title: "Implementation Summary: Automated Repair of Derived Packet Failures"
 description: "Prototype repairs the derivable packet failures and refuses the authored ones; hardening, tests, generator audit, workflow wiring and the fleet run remain."
 trigger_phrases:
-  - "derived repair summary"
-  - "repair-derived status"
+  - "repair-derived tool"
+  - "derived packet failures"
+  - "folder name recorded in summary"
+  - "frontmatter pointer repair"
+  - "generated metadata re-derived"
+  - "refuses authored failures"
 importance_tier: "high"
 contextType: "general"
 _memory:

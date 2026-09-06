@@ -4,6 +4,10 @@ description: "Why the deleted evidence rule gets no successor: the document that
 trigger_phrases:
   - "evidence rule successor"
   - "advisory rule deleted"
+  - "deleted evidence rule no successor"
+  - "closure gate blocks evidence"
+  - "acceptance-criteria required level two"
+  - "id filter expected three digits"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

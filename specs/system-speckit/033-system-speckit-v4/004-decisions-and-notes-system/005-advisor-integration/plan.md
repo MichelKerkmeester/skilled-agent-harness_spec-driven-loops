@@ -2,11 +2,11 @@
 title: "Implementation Plan: Phase 5: advisor-integration [template:level-1/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "phase five advisor integration"
+  - "skill advisor integration"
+  - "decisions advisor hookup"
+  - "advisor integration plan"
+  - "phase five approach"
 importance_tier: "normal"
 contextType: "general"
 _memory:

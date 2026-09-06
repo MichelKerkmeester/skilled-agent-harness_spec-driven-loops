@@ -2,11 +2,12 @@
 title: "Implementation Plan: skills-root state consolidation"
 description: "Rewrite every reference to seven state directories, regenerate the affected build outputs, and replace fifteen ignore rules with a shape that survives the extra directory level."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "skills root state directories"
+  - "state directory consolidation"
+  - "skills state path rewrites"
+  - "state ignore rules rewrite"
+  - "skills dotstate directory"
+  - "skills state consolidation"
 importance_tier: "normal"
 contextType: "general"
 ---

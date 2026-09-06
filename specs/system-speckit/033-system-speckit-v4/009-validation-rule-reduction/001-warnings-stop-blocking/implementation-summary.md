@@ -3,6 +3,11 @@ title: "Implementation Summary: A Warning Stops Being A Failure"
 description: "One clause removed, two enforcement paths restored, and the pass rate measured per packet before and after."
 trigger_phrases:
   - "warnings stop blocking status"
+  - "warnings no longer fail"
+  - "strict selects which rules run"
+  - "promotion clause removed"
+  - "warnings enforcement path restored"
+  - "registry ceilings raised"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

@@ -4,6 +4,10 @@ description: "Work items and the verification protocol for making the drift mark
 trigger_phrases:
   - "fingerprint docset tasks"
   - "stamp migration tasks"
+  - "baseline fingerprint marker counts"
+  - "stamp-only migration idempotent"
+  - "absent marker not skipped"
+  - "older generation skips"
 importance_tier: "important"
 contextType: "implementation"
 ---

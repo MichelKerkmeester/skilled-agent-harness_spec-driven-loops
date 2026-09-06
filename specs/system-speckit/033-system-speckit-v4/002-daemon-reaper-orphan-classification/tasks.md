@@ -20,7 +20,13 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "process-sweep classification tests"
+  - "isExternalMcpProcess regex tighten"
+  - "orphaned project daemon eligible"
+  - "process-memory-harness snapshot regression"
+  - "reaper external MCP guard"
+  - "tsc noemit typecheck"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

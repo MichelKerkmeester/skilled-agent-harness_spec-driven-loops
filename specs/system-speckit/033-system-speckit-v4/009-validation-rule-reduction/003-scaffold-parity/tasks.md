@@ -4,6 +4,9 @@ description: "Reproduce, fix each cause, lock with a test that was proven agains
 trigger_phrases:
   - "scaffold parity"
   - "fresh scaffold passes"
+  - "scaffold real default status"
+  - "closure placeholder replaced"
+  - "graph deriver run"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

@@ -2,11 +2,11 @@
 title: "Implementation Plan: Phase 1: analysis [template:level-1/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "deprecate constitutional memory plan"
+  - "phase one analysis plan"
+  - "decisions and notes system design"
+  - "constitutional memory deprecation"
+  - "analysis phase approach"
 importance_tier: "normal"
 contextType: "general"
 _memory:

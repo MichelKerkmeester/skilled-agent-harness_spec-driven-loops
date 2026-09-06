@@ -3,6 +3,10 @@ title: "Task Breakdown: Tracks Are Not Packets"
 description: "Verify the premise, implement the exemption, prove it does not over-reach."
 trigger_phrases:
   - "tracks are not packets"
+  - "track directory exemption"
+  - "three digit prefix rule"
+  - "prove no over-reach"
+  - "verify premise evidence"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

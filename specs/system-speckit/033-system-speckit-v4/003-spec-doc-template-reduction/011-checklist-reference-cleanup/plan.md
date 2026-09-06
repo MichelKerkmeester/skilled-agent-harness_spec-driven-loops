@@ -3,6 +3,11 @@ title: "Implementation Plan: Nothing Points At The Retired Checklist"
 description: "Match link targets rather than mentions, choose a disposition per line, apply, and re-measure."
 trigger_phrases:
   - "checklist reference cleanup plan"
+  - "extract_markdown_link_targets rule"
+  - "link-based population count"
+  - "checklist pointer disposition"
+  - "demote link rather than delete"
+  - "dead checklist link rescan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

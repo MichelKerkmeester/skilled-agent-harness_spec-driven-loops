@@ -2,10 +2,11 @@
 title: "Tasks: Phase 4: rehome-rules-content [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "phase four rehome tasks"
+  - "rehome rules content"
+  - "rules relocation tasks"
+  - "phase four deliverables"
+  - "rules rehome steps"
 importance_tier: "normal"
 contextType: "general"
 _memory:

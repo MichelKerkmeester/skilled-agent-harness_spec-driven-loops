@@ -3,7 +3,11 @@ title: "Implementation Summary: Parent Set-String Playbook"
 description: "The operator-facing contract for what gets typed when setting a packet goal: a pointer plus the completion criteria copied out."
 trigger_phrases:
   - "goal dispatch"
-  - "set string shape"
+  - "goal set string playbook"
+  - "parent goal set string"
+  - "goal objective pointer criteria"
+  - "completion criteria copied verbatim"
+  - "goal set string cut order"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

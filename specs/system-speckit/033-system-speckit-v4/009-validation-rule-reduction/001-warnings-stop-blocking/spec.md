@@ -4,6 +4,10 @@ description: "Strict mode decides which rules run; it stops deciding what a warn
 trigger_phrases:
   - "warnings stop blocking"
   - "strict warn promotion"
+  - "warnings no longer fail"
+  - "strict selects which rules run"
+  - "promotion clause removed"
+  - "per-packet sample compare"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

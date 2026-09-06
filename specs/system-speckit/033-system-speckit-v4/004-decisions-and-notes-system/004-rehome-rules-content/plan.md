@@ -2,11 +2,11 @@
 title: "Implementation Plan: Phase 4: rehome-rules-content [template:level-1/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "phase four rehome rules content"
+  - "rehome rules content"
+  - "rules content relocation"
+  - "constitutional rules rehome"
+  - "rehome plan approach"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -4,6 +4,9 @@ description: "A packet created with no human input stops failing validation the 
 trigger_phrases:
   - "scaffold parity"
   - "fresh scaffold passes"
+  - "untouched scaffold five errors"
+  - "author first gate experience"
+  - "generator defects"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

@@ -4,6 +4,9 @@ description: "Research and audit packets had no level whose contract they could 
 trigger_phrases:
   - "research level"
   - "research packet type"
+  - "research and audit packets"
+  - "non-numeric levels"
+  - "check-level-match level set"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

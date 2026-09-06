@@ -3,6 +3,10 @@ title: "Feature Specification: Tracks Are Not Packets"
 description: "A track directory stops being graded as though it were a packet."
 trigger_phrases:
   - "tracks are not packets"
+  - "track directory exemption"
+  - "three digit numeric prefix"
+  - "track graded as packet"
+  - "packets filed under tracks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -4,6 +4,9 @@ description: "Run the gate, compare each claim to what it prints, correct what d
 trigger_phrases:
   - "framework doc matches behaviour"
   - "agents md validation claims"
+  - "test each claim gate"
+  - "warnings-only exit code"
+  - "freshness grandfather mechanism"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -4,6 +4,9 @@ description: "Reproduce the day-zero failure, fix each cause in the generator, t
 trigger_phrases:
   - "scaffold parity"
   - "fresh scaffold passes"
+  - "untouched scaffold zero errors"
+  - "generator not rules fix"
+  - "scaffold and validate test"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

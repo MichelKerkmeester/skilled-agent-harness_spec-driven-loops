@@ -3,6 +3,10 @@ title: "Implementation Summary: Tracks Are Not Packets"
 description: "Fourteen tracks stopped failing rules they could never satisfy, and half the phase was dropped as unnecessary."
 trigger_phrases:
   - "tracks are not packets"
+  - "track directory exemption"
+  - "three digit numeric prefix"
+  - "track graded as packet"
+  - "track identity definition"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

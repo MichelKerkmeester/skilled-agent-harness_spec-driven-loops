@@ -2,10 +2,11 @@
 title: "Tasks: Phase 2: active-decisions-design [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "phase two design tasks"
+  - "active decisions design"
+  - "decisions system design"
+  - "phase two deliverables"
+  - "active decisions contract"
 importance_tier: "normal"
 contextType: "general"
 _memory:

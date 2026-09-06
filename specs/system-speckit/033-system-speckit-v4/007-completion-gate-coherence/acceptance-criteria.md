@@ -3,7 +3,12 @@ title: "Acceptance Criteria: One Validation Verdict, Honestly Earned"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "validation gate acceptance criteria"
-  - "closure gate"
+  - "one validation verdict"
+  - "engine selection verdict identical"
+  - "duplicate finding merge"
+  - "unsatisfiable condition removed"
+  - "engine named in output"
+  - "freshness rule applicability"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

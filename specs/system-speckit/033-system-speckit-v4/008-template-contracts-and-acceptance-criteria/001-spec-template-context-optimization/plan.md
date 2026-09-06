@@ -3,7 +3,11 @@ title: "Implementation Plan: Spec-Kit Template & Context Optimizations"
 description: "Four-phase implementation plan for the six 033 recommendations: research-template gating, template consolidation + read guard, plan-adherence validation gates, and a memory_search token budget."
 trigger_phrases:
   - "spec template optimizations plan"
-  - "034 implementation phases"
+  - "research template gating"
+  - "template consolidation read guard"
+  - "plan adherence validation gates"
+  - "memory_search token budget"
+  - "inline-gate-renderer level gating"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

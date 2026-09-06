@@ -2,10 +2,11 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "deprecation mechanics summary"
+  - "constitutional memory deprecation"
+  - "decisions and notes system"
+  - "phase three deprecation summary"
+  - "deprecation mechanics approach"
 importance_tier: "normal"
 contextType: "general"
 _memory:

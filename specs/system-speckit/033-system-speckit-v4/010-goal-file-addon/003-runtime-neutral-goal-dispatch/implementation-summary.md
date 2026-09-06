@@ -3,7 +3,10 @@ title: "Implementation Summary: Runtime-Neutral Goal Dispatch"
 description: "The speckit goal offer dispatches by runtime instead of naming one runtime's tool, and the stale-filename guard no longer forbids naming a spec document."
 trigger_phrases:
   - "goal dispatch"
-  - "set string shape"
+  - "runtime neutral goal dispatch"
+  - "stale filename guard command path"
+  - "spec documentation goal offer"
+  - "set string objective shape"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

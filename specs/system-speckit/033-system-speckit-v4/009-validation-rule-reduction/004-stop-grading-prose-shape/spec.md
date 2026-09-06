@@ -4,6 +4,9 @@ description: "Documents stop being diffed against templates that change weekly; 
 trigger_phrases:
   - "stop grading prose shape"
   - "template conformance removed"
+  - "heading shape grading removed"
+  - "anchors checked integrity"
+  - "documents diffed against templates"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

@@ -2,11 +2,11 @@
 title: "Implementation Plan: Phase 2: active-decisions-design [template:level-1/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "phase two active decisions design"
+  - "active decisions schema design"
+  - "decisions and notes system"
+  - "constitutional memory replacement"
+  - "active decisions design plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -3,6 +3,10 @@ title: "Task Breakdown: A Level For Research"
 description: "Measure, add, follow failures, apply, verify."
 trigger_phrases:
   - "research level tasks"
+  - "declare research shape"
+  - "follow each failure enumeration"
+  - "research research-file lazy addon"
+  - "measure packet shapes"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

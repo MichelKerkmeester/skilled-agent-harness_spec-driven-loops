@@ -2,10 +2,11 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "memory redesign verification summary"
+  - "memory redesign verification"
+  - "decisions and notes system"
+  - "phase six verify rollout summary"
+  - "rollout verification approach"
 importance_tier: "normal"
 contextType: "general"
 _memory:

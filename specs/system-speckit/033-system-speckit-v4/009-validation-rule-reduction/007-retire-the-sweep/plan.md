@@ -4,6 +4,10 @@ description: "Prove the resolution rule against real diffs, prove the gate both 
 trigger_phrases:
   - "retire the sweep plan"
   - "changed packet gate plan"
+  - "packet resolution rule"
+  - "nearest ancestor spec"
+  - "gate blocks and passes"
+  - "cron retired after proven"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

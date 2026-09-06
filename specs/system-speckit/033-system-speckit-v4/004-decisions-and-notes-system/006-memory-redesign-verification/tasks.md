@@ -2,10 +2,11 @@
 title: "Tasks: Phase 6: verify-rollout [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "phase six verify rollout"
+  - "memory redesign verification"
+  - "rollout verification tasks"
+  - "phase six deliverables"
+  - "verify rollout steps"
 importance_tier: "normal"
 contextType: "general"
 _memory:

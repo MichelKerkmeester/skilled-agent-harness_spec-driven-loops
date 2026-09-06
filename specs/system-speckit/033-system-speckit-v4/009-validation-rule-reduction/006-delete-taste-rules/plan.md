@@ -4,6 +4,9 @@ description: "Prove each rule has no reader, delete it whole, and show the corpu
 trigger_phrases:
   - "delete taste rules plan"
   - "advisory rule deletion plan"
+  - "advisory rules no reader"
+  - "corpus verdicts identical"
+  - "repo-wide consumer search"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

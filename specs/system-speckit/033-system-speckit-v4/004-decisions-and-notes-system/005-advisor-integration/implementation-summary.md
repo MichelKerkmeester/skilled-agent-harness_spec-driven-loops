@@ -2,10 +2,11 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "advisor integration summary"
+  - "advisor integration"
+  - "decisions and notes system"
+  - "phase five advisor summary"
+  - "skill advisor integration"
 importance_tier: "normal"
 contextType: "general"
 _memory:

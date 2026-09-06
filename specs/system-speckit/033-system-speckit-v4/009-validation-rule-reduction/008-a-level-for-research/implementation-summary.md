@@ -3,6 +3,10 @@ title: "Implementation Summary: A Level For Research"
 description: "A research level plus the six enumerations that had to accept it, and a shell rule that never knew non-numeric levels existed."
 trigger_phrases:
   - "research level summary"
+  - "levels.research manifest"
+  - "required core docs spec"
+  - "twelve patterns check-level-match"
+  - "thirteen packets research review"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

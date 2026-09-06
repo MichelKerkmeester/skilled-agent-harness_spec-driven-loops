@@ -3,6 +3,11 @@ title: "Implementation Summary: Rules Nothing Reads"
 description: "Nine advisory rules removed after a repo-wide reader check; 300 of 300 packets verdict-identical."
 trigger_phrases:
   - "delete taste rules summary"
+  - "nine advisory rules deleted"
+  - "validator registry forty-five to thirty-six"
+  - "advisory rules with no reader"
+  - "verdict identical pinned sample"
+  - "ac coverage not deleted"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

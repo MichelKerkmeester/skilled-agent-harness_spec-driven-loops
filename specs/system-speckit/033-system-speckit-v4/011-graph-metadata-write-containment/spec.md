@@ -2,11 +2,11 @@
 title: "Feature Specification: Workspace Path Containment"
 description: "The graph-metadata write guard classified a destination as spec-shaped and wrote it, so any path containing a specs segment was accepted - including one outside the repository. Membership is now proven against the configured roots."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "graph metadata write guard"
+  - "path includes specs false positive"
+  - "workspace specs root membership"
+  - "write outside repository"
+  - "symlinked specs tracks"
 importance_tier: "important"
 contextType: "implementation"
 ---

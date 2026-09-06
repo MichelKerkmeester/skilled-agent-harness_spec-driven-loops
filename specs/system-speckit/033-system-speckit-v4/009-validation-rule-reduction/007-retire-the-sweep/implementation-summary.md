@@ -3,6 +3,11 @@ title: "Implementation Summary: A Gate That Can Actually Block"
 description: "A changed-packet pull-request check replaces a weekly cron that reported success on a known-failure state."
 trigger_phrases:
   - "retire the sweep summary"
+  - "changed-packet validation workflow"
+  - "pull request packet resolution"
+  - "cron replaced by block gate"
+  - "nearest ancestor spec"
+  - "strict pass freshness sweep deleted"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

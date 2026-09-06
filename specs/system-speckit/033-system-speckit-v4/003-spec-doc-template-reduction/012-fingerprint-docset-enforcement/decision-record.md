@@ -2,8 +2,12 @@
 title: "Decision Record: Fingerprint Docset Enforcement"
 description: "Why the migration refreshes digests instead of stamping around them, reversing this packet's own plan once the drift rate was measured."
 trigger_phrases:
-  - "stamp only reversed"
+  - "stamp only migration reversed"
   - "fleet digest refresh"
+  - "twenty-packet drift sample"
+  - "refresh digests not stamp"
+  - "marker mandatory beside digest"
+  - "source fingerprint docset"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

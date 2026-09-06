@@ -3,6 +3,11 @@ title: "Task Breakdown: One Validation Verdict, Honestly Earned"
 description: "Ordered tasks to make the completion gate environment-independent, move the unsatisfiable check out, merge the duplicated finding, and delete unreachable code."
 trigger_phrases:
   - "validation gate coherence tasks"
+  - "verdict flip reproduced"
+  - "thirty packets four engine selections"
+  - "freshness rule applicability"
+  - "duplicate finding merge refuted"
+  - "unreachable validation path deleted"
 importance_tier: "high"
 contextType: "general"
 _memory:

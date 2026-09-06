@@ -4,6 +4,10 @@ description: "Two rules that graded prose against a weekly-changing template are
 trigger_phrases:
   - "stop grading prose shape"
   - "template conformance removed"
+  - "heading shape grading removed"
+  - "anchor integrity checks"
+  - "section count rule removed"
+  - "anchors read by retrieval"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

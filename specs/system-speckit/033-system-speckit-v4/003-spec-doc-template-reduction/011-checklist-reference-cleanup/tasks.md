@@ -3,6 +3,11 @@ title: "Task Breakdown: Nothing Points At The Retired Checklist"
 description: "Establish the real population, dry run, apply, verify."
 trigger_phrases:
   - "checklist reference cleanup tasks"
+  - "checklist dead link rescan"
+  - "pointer-only lines dropped"
+  - "demoted links inside prose"
+  - "pinned sample regression"
+  - "check-spec-doc-integrity extractor"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -2,10 +2,12 @@
 title: "Implementation Summary: Retirement Read-Path Closure"
 description: "Five read-paths the checklist retirement left reporting green while doing nothing, each closed with a measured before and after."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "scaffold honors requested level"
+  - "upgrade-level re-assembles tasks"
+  - "inferLevel keyed acceptance-criteria"
+  - "parse-bool-flag unrecognized value"
+  - "verification region phase children"
+  - "retirement read path fixes"
 importance_tier: "normal"
 contextType: "general"
 _memory:

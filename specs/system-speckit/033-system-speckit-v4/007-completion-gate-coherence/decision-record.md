@@ -3,7 +3,10 @@ title: "Decision Record: One Validation Verdict, Honestly Earned"
 description: "The decisions that changed what this packet delivered, each with the evidence that forced it."
 trigger_phrases:
   - "validation gate decision record"
-  - "anchors template headers merge"
+  - "two template-shape rules not merged"
+  - "duplicate finding merge refuted"
+  - "single validation verdict"
+  - "failure count lowered bar"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

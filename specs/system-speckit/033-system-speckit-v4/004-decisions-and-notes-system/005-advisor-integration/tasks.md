@@ -2,10 +2,11 @@
 title: "Tasks: Phase 5: advisor-integration [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "phase five advisor tasks"
+  - "advisor integration"
+  - "decisions advisor integration"
+  - "phase five deliverables"
+  - "advisor integration steps"
 importance_tier: "normal"
 contextType: "general"
 _memory:

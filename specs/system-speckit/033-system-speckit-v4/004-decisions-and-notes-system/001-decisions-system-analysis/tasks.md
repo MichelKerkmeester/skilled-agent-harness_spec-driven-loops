@@ -2,10 +2,11 @@
 title: "Tasks: Phase 1: analysis [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "phase one analysis tasks"
+  - "deprecate constitutional memory"
+  - "decisions system analysis"
+  - "analysis phase setup"
+  - "analysis phase deliverables"
 importance_tier: "normal"
 contextType: "general"
 _memory:

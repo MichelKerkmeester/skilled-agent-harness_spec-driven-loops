@@ -3,6 +3,10 @@ title: "Implementation Plan: Tracks Are Not Packets"
 description: "Measure the claim, define track identity narrowly, prove no packet takes the exemption."
 trigger_phrases:
   - "tracks are not packets"
+  - "track directory exemption"
+  - "three digit prefix rule"
+  - "no packet takes exemption"
+  - "measure the track claim"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

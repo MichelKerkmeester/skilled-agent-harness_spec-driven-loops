@@ -4,6 +4,9 @@ description: "Two false claims corrected; the git rules were checked and were al
 trigger_phrases:
   - "framework doc matches behaviour"
   - "agents md validation claims"
+  - "strict mode warning promotion claim"
+  - "freshness grandfather claim"
+  - "warnings-only packet exits zero"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -3,6 +3,11 @@ title: "Implementation Plan: One Validation Verdict, Honestly Earned"
 description: "Land the gate fixes one at a time, each with a before-and-after comparison across a real sample, starting with the verdict flip."
 trigger_phrases:
   - "validation gate coherence plan"
+  - "engine selection verdicts identical"
+  - "freshness rule single entry point"
+  - "duplicate finding measured refuted"
+  - "stale hardcoded child list"
+  - "command tree comparison repository check"
 importance_tier: "high"
 contextType: "general"
 _memory:

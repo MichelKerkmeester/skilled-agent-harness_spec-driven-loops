@@ -2,10 +2,11 @@
 title: "Tasks: skills-root state consolidation"
 description: "Ordered relocation tasks and the verification checklist, with observed command evidence against each gate."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "state directory consolidation tasks"
+  - "goal-core state resolver"
+  - "state path rewrite"
+  - "skills root state"
+  - "state relocation tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

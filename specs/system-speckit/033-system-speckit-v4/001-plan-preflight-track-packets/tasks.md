@@ -4,6 +4,10 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "plan preflight nested packet tasks"
   - "check-prerequisites override tasks"
+  - "specify feature override"
+  - "not on a feature branch"
+  - "nested packet resolves via override"
+  - "check-prerequisites branch guard"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

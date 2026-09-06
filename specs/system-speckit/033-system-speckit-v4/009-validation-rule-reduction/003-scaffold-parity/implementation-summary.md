@@ -4,6 +4,11 @@ description: "Five errors on an untouched scaffold became zero, and a test now h
 trigger_phrases:
   - "scaffold parity"
   - "fresh scaffold passes"
+  - "untouched scaffold five errors"
+  - "generator status field menu"
+  - "closure document placeholder"
+  - "generator graph metadata guess"
+  - "not-yet-filed marker"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

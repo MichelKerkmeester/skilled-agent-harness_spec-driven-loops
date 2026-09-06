@@ -2,10 +2,11 @@
 title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "rehome rules content summary"
+  - "rehome rules content"
+  - "constitutional rules rehome"
+  - "phase four rehome summary"
+  - "rules content relocation"
 importance_tier: "normal"
 contextType: "general"
 _memory:

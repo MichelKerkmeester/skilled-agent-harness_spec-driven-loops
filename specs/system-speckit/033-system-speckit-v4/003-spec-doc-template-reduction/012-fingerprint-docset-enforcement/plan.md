@@ -4,6 +4,10 @@ description: "Land the migration before the rule, so no packet is ever in the co
 trigger_phrases:
   - "fingerprint docset plan"
   - "stamp only migration"
+  - "fingerprint without marker count"
+  - "backfill-graph-metadata reuse"
+  - "integrity rule absent marker skip"
+  - "stamp-only migration first"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,8 +2,11 @@
 title: "Task Breakdown: Automated Repair of Derived Packet Failures"
 description: "Ordered tasks to harden the repair tool, prove it with fixtures, audit the derived-field generators, wire it in reporting mode, and measure the fleet."
 trigger_phrases:
-  - "derived repair tasks"
-  - "repair-derived tasks"
+  - "repair-derived fixtures"
+  - "derived failures recomputable"
+  - "authored packet byte-identical"
+  - "validator report shapes"
+  - "exit codes clean repairable"
 importance_tier: "high"
 contextType: "general"
 _memory:

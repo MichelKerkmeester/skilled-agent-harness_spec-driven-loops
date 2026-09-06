@@ -4,6 +4,9 @@ description: "Two validation claims in the always-loaded framework document are 
 trigger_phrases:
   - "framework doc matches behaviour"
   - "agents md validation claims"
+  - "strict mode warning promotion"
+  - "freshness grandfather claim"
+  - "always-loaded framework document"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

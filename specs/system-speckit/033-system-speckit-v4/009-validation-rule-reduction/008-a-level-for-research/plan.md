@@ -3,6 +3,10 @@ title: "Implementation Plan: A Level For Research"
 description: "Model the level on review, then follow each failure to the enumeration that caused it."
 trigger_phrases:
   - "research level plan"
+  - "model level on review"
+  - "enumeration follows failure"
+  - "manifest modelled on review"
+  - "contract set corpus shape"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

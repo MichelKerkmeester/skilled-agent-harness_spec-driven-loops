@@ -2,8 +2,11 @@
 title: "Implementation Plan: Automated Repair of Derived Packet Failures"
 description: "Harden the repair tool, prove it with fixtures, audit the generators that produce derived fields, wire it into a workflow in reporting mode, and measure the fleet delta."
 trigger_phrases:
-  - "derived repair plan"
-  - "repair-derived plan"
+  - "derived metadata repair plan"
+  - "repair outside specs tree"
+  - "fleet checker precedent"
+  - "generated-metadata fingerprint re-derivation"
+  - "repair-derived reporting mode"
 importance_tier: "high"
 contextType: "general"
 _memory:

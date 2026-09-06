@@ -20,7 +20,13 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "plan preflight specify feature override"
+  - "track nested packet resolution"
+  - "check-prerequisites branch guard"
+  - "not on a feature branch"
+  - "speckit plan step five preflight"
+  - "validate-strict nested packet"
 ---
 # Implementation Summary
 

@@ -3,6 +3,10 @@ title: "Task Breakdown: Rules Nothing Reads"
 description: "Measure, establish readers, delete, prove no drift."
 trigger_phrases:
   - "delete taste rules tasks"
+  - "nine advisory rules deleted"
+  - "validator-registry entries removed"
+  - "pinned sample verdicts identical"
+  - "ac coverage consumer search"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

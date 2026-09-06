@@ -2,11 +2,11 @@
 title: "Implementation Plan: Phase 3: deprecation-mechanics [template:level-1/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "phase three deprecation mechanics"
+  - "constitutional memory deprecation"
+  - "deprecation mechanics plan"
+  - "memory deprecation approach"
+  - "phase three scope"
 importance_tier: "normal"
 contextType: "general"
 _memory:

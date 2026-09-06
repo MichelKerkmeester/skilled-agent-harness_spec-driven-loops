@@ -4,6 +4,10 @@ description: "Trace, replace, converge to zero regressions, clean the references
 trigger_phrases:
   - "stop grading prose shape"
   - "template conformance removed"
+  - "anchor integrity unique ids"
+  - "heading shape grading gone"
+  - "section count rule removed"
+  - "delete unreachable rule scripts"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

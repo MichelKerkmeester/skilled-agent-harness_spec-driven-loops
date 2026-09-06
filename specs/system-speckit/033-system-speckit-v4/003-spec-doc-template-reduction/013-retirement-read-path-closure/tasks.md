@@ -3,6 +3,11 @@ title: "Tasks: Retirement Read-Path Closure"
 description: "Work items and the verification protocol for the five read-paths the checklist retirement left behind."
 trigger_phrases:
   - "read path closure tasks"
+  - "scaffold honors requested level"
+  - "upgrade path re-assembles tasks"
+  - "inferLevel acceptance-criteria"
+  - "parse-bool-flag reports unrecognized"
+  - "five read-path controls"
 importance_tier: "important"
 contextType: "implementation"
 ---

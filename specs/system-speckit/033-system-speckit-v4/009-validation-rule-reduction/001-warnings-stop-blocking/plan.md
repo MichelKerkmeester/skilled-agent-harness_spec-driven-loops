@@ -3,6 +3,10 @@ title: "Implementation Plan: A Warning Stops Being A Failure"
 description: "Measure a fixed sample, remove the promotion clause, then restore whatever enforcement depended on it."
 trigger_phrases:
   - "warnings stop blocking plan"
+  - "fixed sample measure"
+  - "promotion clause removal"
+  - "enforcement path restore"
+  - "no packet passing to failing"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

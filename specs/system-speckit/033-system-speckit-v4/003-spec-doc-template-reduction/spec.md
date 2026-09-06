@@ -2,8 +2,12 @@
 title: "Feature Specification: Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility"
 description: "Phase parent for Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility"
 trigger_phrases:
-  - "036-spec-doc-template-reduction"
-  - "phase parent"
+  - "spec doc template reduction"
+  - "merge tasks and checklist"
+  - "small-model legibility"
+  - "reduce spec-kit doc templates"
+  - "less doc-template bloat"
+  - "historic context preservation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
