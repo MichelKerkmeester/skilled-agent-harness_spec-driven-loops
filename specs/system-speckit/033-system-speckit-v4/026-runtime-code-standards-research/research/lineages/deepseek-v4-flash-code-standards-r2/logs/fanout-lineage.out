@@ -1,0 +1,9 @@
+All lineage artifacts are consistent and fully contained within the lineage directory. Verification complete:
+
+- **State log:** 11 valid JSONL records, 5 iteration records, terminal event carries `stopReason: maxIterationsReached`.
+- **Iterations/deltas:** `iteration-001…005.md` + `iter-001…005.jsonl` (5/5).
+- **Findings:** 11 (4 P1, 7 P2) across the 5 priority surfaces, each cited to a code path and a standard clause; 5 confirming baselines; 7 ruled-out directions.
+- **Synthesis:** `research.md`, `synthesis-v1.md`, `resource-map.md`, updated config (status `complete`), strategy, findings-registry, dashboard.
+- **Write containment:** all writes landed under `…/research/lineages/deepseek-v4-flash-code-standards-r2/`; the `M`/`??` entries shown by `git status` (observability-events.jsonl, orchestration-summary.json, sibling lineage, `dist/`) are the concurrent fan-out harness and sibling-lineage artifacts I did not touch — I ran no generate-context.js, no validate.sh, and no git write/checkout/commit.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v4-flash-code-standards-r2

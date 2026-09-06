@@ -44,3 +44,20 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited doc
 | G-P2-05 | P2 | `references/debugging/troubleshooting.md:355` | CONTINUE SESSION section | Removed from the ladder | Confirmed |
 | G-P2-06 | P2 | `references/cli/daemon-cli-reference.md:114` | Duplicate env var | Listed twice | Confirmed |
 | G-P2-07 | P2 | `references/templates/level-specifications.md:32-33,191-192,237-238`, `level-selection-guide.md:210-211` | Duplicate lines | Present | Confirmed |
+
+## Third pass: DeepSeek V4 Flash max, five iterations over the families the first two passes never opened
+
+| ID | Sev | Doc | Claim | Actual | Verdict |
+|----|-----|-----|-------|--------|---------|
+| F2-01 | P1 | `feature-catalog/memory-quality-and-indexing/post-save-quality-review.md:19,27,64-65` | Review runs at Step 10.5 before `indexMemoryFile()` indexing | Indexing is retired; the review runs at Step 11.75 after the trigger-index freshness check | Confirmed |
+| F2-02 | P2 | same doc, line 98 | `workflow-e2e.vitest.ts` covers placement | File does not exist; `post-save-review.vitest.ts` does | Confirmed |
+| F2-03 | P2 | same doc, lines 80-81 | Two companion entries | Neither file exists | Confirmed |
+| F2-04 | P2 | `feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md:46` | `runtime/handlers/memory-save.ts` invokes the validator | Handler gone; the registry runs it | Confirmed |
+| F4-01 | P1 | `manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md:82-91` | Commands run five named test files | Five files do not exist | Confirmed, widened |
+| F4-02 | P2 | same doc, lines 27,130,142 | Save indexes successfully | Index step retired | Confirmed |
+| F5-03 | P1 | `manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md:22-41` | Runs two phantom test files, asserts indexing regressions | Files absent, indexing retired | Confirmed |
+| F1-01 | P2 | `feature-catalog/governance/feature-flag-governance.md:72` | `ENV-REFERENCE.md` documents the compiled-routing flags | Zero occurrences there | Confirmed |
+| F3-01 | P2 | both feature-flag-governance docs | Four cause codes | `compiled-route-status.cjs` assigns eight | Confirmed |
+| F5-01 | P2 | `references/workflows/agent-io-contract.md:186` | `runtime//lib/deep-loop/post-dispatch-validate.ts` | Lives under system-deep-loop | Confirmed |
+| F5-02 | P2 | `references/workflows/spec-folder-write-recipe.md:83` | `dist/spec-folder/backfill-graph-metadata.js` | `dist/graph/` | Confirmed |
+| sweep | P1 | nine docs | 20 test files cited that no longer exist | Same-class inventory over every `tests/*.vitest.ts` citation; nine skill-advisor citations were correctly rooted and kept | Confirmed, widened |

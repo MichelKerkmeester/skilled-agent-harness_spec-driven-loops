@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The system-spec-kit documentation grew through the memory-database era and the CLI move from `scripts/` to `runtime/cli/`",
     "created_at": "2026-09-06T07:54:24Z",
-    "last_save_at": "2026-09-06T09:25:26.471Z",
+    "last_save_at": "2026-09-06T10:03:19.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac24c30151dcd31af4db7a348c326e9a03003eef6529ff5e48b91671a3d13d18",
+    "source_fingerprint": "sha256:9564058b01b55630cda4a6b243952022053347dba3e5b20af321431a3eea201a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd407c0b3d8a515e85cb6c9755aab65e57b08552bf113f44d895c81ac03118ba",
       "plan.md": "d8e778ff6a9cae73304b4b0b4dc995200c3648468ad47a37bc2b4da64d4fd552",
       "tasks.md": "3e65e6d3ab463a46e378453c67db3d1cfa1215bf6070d844da37f74f1beec4f1",
-      "implementation-summary.md": "e3424cb80434c0744d0f871ffe2400934b8c67d637e8c5953915113c006dc19c"
+      "implementation-summary.md": "6af3ff8645b815649624fb8f1230ba028666df966f33657bea7afdf31063e7a9"
     },
     "last_active_at": null
   }

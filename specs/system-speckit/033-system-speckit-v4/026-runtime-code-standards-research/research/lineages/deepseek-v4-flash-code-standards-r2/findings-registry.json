@@ -1,0 +1,48 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": ["Q1", "Q2", "Q3", "Q4", "Q5"],
+  "keyFindings": [
+    {"id": "F1.1", "iteration": 1, "angle": "dup", "severity": "P1", "code": "runtime/cli/core/quality-scorer.ts:140 / runtime/cli/extractors/quality-scorer.ts:105", "clause": "typescript/style-guide/overview-strict-and-naming.md §5; shared/code-organization/imports-and-exports.md §1", "summary": "Two quality-scorer.ts modules export same-named scoreMemoryQuality with divergent logic; the legacy core export is referenced only by tests"},
+    {"id": "F1.2", "iteration": 1, "angle": "dead", "severity": "P2", "code": "runtime/cli/core/memory-indexer.ts:9-26", "clause": "universal/code-quality-standards.md §7 rung 1; §3 P0#3", "summary": "Retired type-only stub; exported IndexingStatusValue/WorkflowIndexingStatus imported nowhere, not barreled"},
+    {"id": "F1.3", "iteration": 1, "angle": "dup", "severity": "P2", "code": "runtime/cli/extractors/session-activity-signal.ts:5", "clause": "shared/code-organization/imports-and-exports.md §3", "summary": "Redundant re-export shim duplicating extractors/index.ts:14; README.md:74 documents the shim as a module though real definition lives in lib/"},
+    {"id": "F2.1", "iteration": 2, "angle": "dup", "severity": "P1", "code": "runtime/cli/graph/backfill-graph-metadata.ts:240 / runtime/cli/graph/migrate-generated-json.ts:149; runtime/cli/continuity/migrate-trigger-phrase-residual.ts:181", "clause": "shared/code-organization/imports-and-exports.md §1; universal/code-quality-standards.md §7 rung 4", "summary": "resolveRepoRoot() reimplemented in four cli modules; graph/ pair is byte-identical; no canonical shared root resolver"},
+    {"id": "F2.2", "iteration": 2, "angle": "coverage", "severity": "P1", "code": "runtime/cli/utils/fact-coercion.ts:26,104", "clause": "universal/code-quality-standards.md §4 P1#2", "summary": "Live public coercion util consumed by 5 extractors, barreled at utils/index.ts:62-69, no focused happy-path/edge test reference"},
+    {"id": "F3.1", "iteration": 3, "angle": "dead", "severity": "P2", "code": "runtime/cli/spec/progressive-validate.sh:172", "clause": "shell/quality-standards/overview-and-priority-blockers.md §2", "summary": "log_suggest() defined but never invoked (repo-wide zero references); dormant helper"},
+    {"id": "F3.2", "iteration": 3, "angle": "shell", "severity": "P2", "code": "runtime/cli/rules/check-files.sh:20-51 + siblings", "clause": "shell/quality-standards/overview-and-priority-blockers.md §3 Exit Codes Documented", "summary": "Inconsistent standalone-entry across rules family; unguarded rules document '# Exit codes: 0 - Success' while direct run is a silent no-op"},
+    {"id": "F4.1", "iteration": 4, "angle": "dup", "severity": "P1", "code": "runtime/hooks/cursor/spec-gate-classify.mjs:26-43; runtime/hooks/devin/spec-gate-classify.mjs:29,42", "clause": "shared/code-organization/imports-and-exports.md §1; universal/code-quality-standards.md §7 rung 4", "summary": "cursor+devin classify adapters reimplement readStdin/parseJsonFailOpen that claude/codex classify import from hook-adapter-shared.mjs"},
+    {"id": "F4.2", "iteration": 4, "angle": "parity", "severity": "P2", "code": "runtime/hooks/cursor/spec-gate-classify.mjs:6-19,75-76", "clause": "shared/code-organization/imports-and-exports.md §1", "summary": "cursor classify documented dormant (beforeSubmitPrompt never fires) with divergent permission/agent_message output vs siblings' hookSpecificOutput/additionalContext"},
+    {"id": "F5.1", "iteration": 5, "angle": "dead", "severity": "P2", "code": "shared/embeddings/providers/ollama.ts:425; shared/parsing/secret-scrubber.ts:246", "clause": "universal/code-quality-standards.md §5 P2", "summary": "Vestigial __ollamaProviderTestables and __secretScrubberTestables exported test-only helpers with no in-repo test consumer (family pattern consumed)"},
+    {"id": "F5.2", "iteration": 5, "angle": "coverage", "severity": "P2", "code": "shared/ranking/matrix-math.ts:18,38,63,85,104", "clause": "universal/code-quality-standards.md §4 P1#2; directory-and-test-conventions.md", "summary": "No co-located shared/ranking/*.test.ts; matrix helpers covered only transitively via learned-combiner"}
+  ],
+  "ruledOutDirections": [
+    "core/quality-scorer.ts snake_case dimension keys are contract/domain-mapped, not a naming violation (iter 1)",
+    "spec-folder/continuity/utils @spec-kit/runtime/api and @spec-kit/shared/* imports are package-alias boundary-compliant, not a boundary break (iter 2)",
+    "run_check (defined, never locally called) is the loader-contract entry point, not dead code (iter 3)",
+    "rc=20/21 Node subprocess codes in check-graph-metadata-child-drift.sh are documented internal contract, not a shell exit-code deviation (iter 3)",
+    "catch (_) blocks in spec-gate-core.mjs are documented fail-open paths, not swallowed errors (iter 4)",
+    "providers/ollama.ts + adapters/ollama.ts coexistence is a documented two-layer design, not duplication (iter 5)",
+    "shared/ipc/socket-server.ts is live (imported by the MCP server), not retired residue (iter 5)"
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 11,
+    "convergenceScore": 0,
+    "sourceFindings": 11,
+    "reconstructionGaps": 0,
+    "coverageBySources": {"code": 11, "standardClauses": 14}
+  },
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "divergence": {
+    "completed": [],
+    "failures": [],
+    "overrides": [],
+    "saturatedDirections": ["blanket snake_case scan (core/extractors)", "any/empty-catch/process.exit baseline (core/extractors)", "boundary-import grep (spec-folder/continuity/graph/templates/utils)", "strict-mode/source-quote/exit-code census (rules+spec)", "spec-gate-core fail-open catch census (hooks/lib)", "providers-vs-adapters duplication probe (shared/embeddings)"],
+    "remainingFrontier": "single-executor lineage; no divergent pivots recorded"
+  }
+}

@@ -111,16 +111,16 @@
     ],
     "causal_summary": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-06T09:25:33.989Z",
+    "last_save_at": "2026-09-06T10:03:27.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9657d3345d9a6b60afd4f9361fc0dc56b90acfeaf4251a4ed696cc0b1a993e11",
+    "source_fingerprint": "sha256:50c171c88cb03e34df0a2bfe37bd44376456dc9285d55701e7784a1c8d4e6239",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70f0e3afabe097c140a78e1fb92a731c1de175c088fb906016c8745b416d8915"
+      "spec.md": "67261fedb2dbda3019a7365c5e87ad502458545504e1cb1dd00086febef38ba8"
     },
     "last_active_at": null
   }

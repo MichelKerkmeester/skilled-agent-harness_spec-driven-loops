@@ -1,0 +1,100 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "F1 feature-catalog/governance, lifecycle, context-preservation claim-by-claim",
+    "F2 feature-catalog/retrieval, memory-quality-and-indexing, ux-hooks, tooling-and-scripts (not-yet-cited)",
+    "F3 manual-testing-playbook/doctor-commands, feature-flag-reference, governance",
+    "F4 manual-testing-playbook/memory-quality-and-indexing, tooling-and-scripts, retrieval",
+    "F5 references/structure, validation, workflows, config, plus SKILL.md vs commands/speckit"
+  ],
+  "keyFindings": [
+    {
+      "id": "F1-01",
+      "title": "runtime/ENV-REFERENCE.md does not document SPECKIT_COMPILED_ROUTING",
+      "severity": "P2",
+      "doc": "feature-catalog/governance/feature-flag-governance.md:72",
+      "actual": "runtime/ENV-REFERENCE.md has 0 occurrences of SPECKIT_COMPILED_ROUTING (grep -c -> 0); the flag is documented only in .env.example:133-134 and in the resolver/advisor sources",
+      "fix": "drop runtime/ENV-REFERENCE.md from the governance doc source list, or add SPECKIT_COMPILED_ROUTING/_DEBUG to ENV-REFERENCE.md so it is truly canonical"
+    },
+    {
+      "id": "F2-01",
+      "title": "Post-save review runs at Step 11.75 (post-index), not 10.5; indexing retired",
+      "severity": "P1",
+      "doc": "feature-catalog/memory-quality-and-indexing/post-save-quality-review.md:19,27,64-65",
+      "actual": "workflow.ts:1712-1723 runs Step 11 semantic indexing but logs 'Skipping retired legacy memory indexing' and sets memoryId=null (:449); the post-save review actually runs at Step 11.75 (workflow.ts:1741, invoked :1744-1753). indexMemoryFile() exists nowhere in live code.",
+      "fix": "re-frame the review as running at Step 11.75 after the retired index step; drop 'before indexing begins' / 'proceeds to indexing' / indexMemoryFile() language"
+    },
+    {
+      "id": "F2-02",
+      "title": "Phantom workflow-e2e.vitest.ts test file",
+      "severity": "P2",
+      "doc": "feature-catalog/memory-quality-and-indexing/post-save-quality-review.md:98",
+      "actual": "runtime/cli/tests/workflow-e2e.vitest.ts does not exist; real suite is workflow-*.vitest.ts",
+      "fix": "point at the actual workflow test file(s) or drop the row"
+    },
+    {
+      "id": "F2-03",
+      "title": "Phantom post-save-review companion entries",
+      "severity": "P2",
+      "doc": "feature-catalog/memory-quality-and-indexing/post-save-quality-review.md:80-81",
+      "actual": "Neither 05-pre-storage-quality-gate.md nor 01-verify-fix-verify-memory-quality-loop.md exists anywhere in the skill tree",
+      "fix": "drop both phantom companion-entry references or rename to real companion docs"
+    },
+    {
+      "id": "F2-04",
+      "title": "Phantom runtime/handlers/memory-save.ts save-path handler",
+      "severity": "P2",
+      "doc": "feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md:46",
+      "actual": "runtime/handlers/memory-save.ts does not exist; runtime/handlers/ holds only README.md, save/, spec-doc-discovery.ts. The validator runs via validator-registry.json (ts:spec-doc-structure) + validate.sh.",
+      "fix": "replace the handler row with the real exposure (validator-registry / validate.sh integration), or drop the memory-save.ts row"
+    },
+    {
+      "id": "F3-01",
+      "title": "compiled-route-status.cjs emits eight causeCode values, not the documented four",
+      "severity": "P2",
+      "doc": "feature-catalog/governance/feature-flag-governance.md:58; manual-testing-playbook/governance/feature-flag-governance.md:46",
+      "actual": "compiled-route-status.cjs assigns at least eight causeCode values: compiled-serving (:267), flag-off (:235), legacy-authority (:231), missing-manifest (:214,222), engine-throw (:252), stale-manifest (:242), identity-mismatch (:262), compile-error (:183). Header comment (:19-28) already lists five.",
+      "fix": "replace 'fourth code'/'documented four' with the full causeCode contract, or point operators at compiled-route-status.cjs:18-28 as authoritative"
+    },
+    {
+      "id": "F4-01",
+      "title": "Playbook commands reference five non-existent test files",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md:82,85,87",
+      "actual": "tests/claude-code-capture.vitest.ts, tests/opencode-cli-capture.vitest.ts, tests/copilot-cli-capture.vitest.ts, tests/memory-render-fixture.vitest.ts, tests/workflow-e2e.vitest.ts are absent repo-wide; vitest fails when --run names a missing file",
+      "fix": "replace the five phantom test-file names with the real suite files that exercise those lanes, so the npm test -- --run / npx vitest run commands execute"
+    },
+    {
+      "id": "F4-02",
+      "title": "Expected signal 'Indexing succeeds' / 'indexes successfully' contradicts the retired index step",
+      "severity": "P2",
+      "doc": "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md:22,25,27,130,142",
+      "actual": "workflow.ts:1712-1723 logs 'Skipping retired legacy memory indexing' and sets memoryId=null (:449); only the lexical trigger-index freshness check remains (workflow.ts:1725-1740)",
+      "fix": "reword the signal/pass-condition to the trigger-index freshness check (or the canonical-spec-doc save landing) rather than 'indexing succeeds'"
+    },
+    {
+      "id": "F5-01",
+      "title": "agent-io-contract.md cites a non-existent cross-root double-slash evidence path",
+      "severity": "P2",
+      "doc": "references/workflows/agent-io-contract.md:186",
+      "actual": "runtime//lib/deep-loop/post-dispatch-validate.ts has a double-slash typo and no runtime/lib/deep-loop/ exists under system-spec-kit; the real module is .opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts (and evidence-contract.ts)",
+      "fix": "change the cited path to .opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts and fix the runtime//lib double slash"
+    },
+    {
+      "id": "F5-02",
+      "title": "spec-folder-write-recipe.md cites dist/spec-folder/backfill-graph-metadata.js; the file lives under dist/graph/",
+      "severity": "P2",
+      "doc": "references/workflows/spec-folder-write-recipe.md:83",
+      "actual": "runtime/cli/dist/spec-folder/ has no backfill-graph-metadata.js; it is at runtime/cli/dist/graph/backfill-graph-metadata.js (source runtime/cli/graph/backfill-graph-metadata.ts)",
+      "fix": "change dist/spec-folder/ to dist/graph/ in the command"
+    },
+    {
+      "id": "F5-03",
+      "title": "core-workflow-infrastructure.md runs two phantom vitest files and asserts a retired indexer",
+      "severity": "P1",
+      "doc": "manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md:22,23,36,41",
+      "actual": "tests/memory-indexer-weighting.vitest.ts and tests/workflow-e2e.vitest.ts are absent repo-wide (vitest fails when named); post-save-review/quality-scorer-calibration/generate-context-cli-authority exist. 'indexing/scoring regressions' describes a retired indexer (workflow.ts:1712-1723)",
+      "fix": "drop the two phantom test files from the vitest command and reword the indexing signal to the live post-save-review / trigger-index freshness checks"
+    }
+  ]
+}

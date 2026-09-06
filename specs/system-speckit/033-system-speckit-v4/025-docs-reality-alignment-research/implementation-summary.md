@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:163c732ee769754ffe6a226abd561d633d7b21c4bcfa4ea4c8185ce4b7c5174f"
+      fingerprint: "sha256:6e663f99c6522874df59f83c1a05edeaf81a946eeb885c544d5c98f2128ed7f8"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A ten-iteration DeepSeek V4 Flash lane read the spec-kit playbook, catalog and references beside the runtime and reported seventeen mismatches; fourteen reproduced. A second, two-iteration Gemini 3.8 Flash pass over the documents the first lane never opened reported nineteen more; eighteen reproduced, including a playbook script that throws a ReferenceError. All confirmed rows were fixed in phase 027.
+A ten-iteration DeepSeek V4 Flash lane read the spec-kit playbook, catalog and references beside the runtime and reported seventeen mismatches; fourteen reproduced. A second, two-iteration Gemini 3.8 Flash pass over the documents the first lane never opened reported nineteen more; eighteen reproduced, including a playbook script that throws a ReferenceError. A third, five-iteration DeepSeek pass over the families still unopened reported eleven more, all reproduced, and a same-class sweep found twenty test files cited in nine documents that no longer exist. All confirmed rows were fixed in phase 027.
 
 ### The research lane
 
@@ -59,7 +59,8 @@ One cli-pi lineage ran the deep-research loop through the fan-out runner on Open
 |------|--------|---------|
 | research/lineages/deepseek-v4-flash-docs-reality/** | Created | Ten iteration files, state ledger, strategy, dashboard and the synthesized research.md |
 | research/lineages/gemini-3-8-flash-docs-reality/** | Created | Two Gemini 3.8 Flash iterations over the documents the first lane never opened, run in a worktree |
-| research/confirmed-findings.md | Created | The reproduced subset with verdicts for both passes, consumed by phase 027 |
+| research/lineages/deepseek-v4-flash-docs-reality-r2/** | Created | Five DeepSeek V4 Flash iterations over the document families the first two passes never opened |
+| research/confirmed-findings.md | Created | The reproduced subset with verdicts for all three passes, consumed by phase 027 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,7 +91,7 @@ The lane launched detached through fanout-run.cjs with stop policy max-iteration
 |-------|--------|
 | Iteration count | 10 files under iterations/, 10 iteration events in deep-research-state.jsonl |
 | Angle coverage | All seven angles appear in the iteration focus lines |
-| Reproduction | 14 of 17 first-pass rows reproduced; 1 dropped, 2 merged. Second pass: 18 of 19 reproduced, 1 dropped because `.opencode/specs` is a symlink |
+| Reproduction | 14 of 17 first-pass rows reproduced; 1 dropped, 2 merged. Second pass: 18 of 19 reproduced, 1 dropped because `.opencode/specs` is a symlink. Third pass: 11 of 11 reproduced, plus a same-class sweep that found 20 phantom test citations |
 | Strict validation | `validate.sh <child> --strict` printed RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

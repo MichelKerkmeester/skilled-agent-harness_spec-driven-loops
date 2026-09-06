@@ -53,3 +53,19 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited cod
 | F2.6 | P1 | `shared/package.json:18` | `test` is an echo while six script tests exist | Fixed: `node --test` over the script tests; one had rotted against a renamed asset and a renamed step |
 | F2.7 | P2 | `shared/utils/retry.ts:74-75` | SQLite retry patterns | Removed |
 | F2.8 | P2 | four script headers | `use strict` before the header, a bare filename title, a docstring header | Fixed |
+
+## Third pass: DeepSeek V4 Flash max, five iterations over runtime/cli TypeScript, rule scripts, hook adapters and shared
+
+| ID | Sev | Code | Actual | Decision |
+|----|-----|------|--------|----------|
+| F1.1 | P1 | `runtime/cli/core/quality-scorer.ts:140` and `extractors/quality-scorer.ts:105` | Two unrelated scorers export the same name | Fixed: the render-quality scorer is `scoreRenderQuality`; its three tests follow |
+| F2.1 | P1 | `graph/backfill-graph-metadata.ts:240`, `graph/migrate-generated-json.ts:149`, `continuity/backfill-frontmatter.ts:83` | Private root walk-ups | Fixed: all three delegate to the hooks resolver through a new `@spec-kit/runtime` package export with a declaration file |
+| F4.1 | P1 | `hooks/cursor/spec-gate-classify.mjs:26-43`, `hooks/devin/spec-gate-classify.mjs:29,42` | Reimplement stdin read and fail-open parse | Fixed: import the shared helpers |
+| F2.2 | P1 | `runtime/cli/utils/fact-coercion.ts` | No test | Fixed: happy path and nullish edge |
+| F1.2 | P2 | `runtime/cli/core/memory-indexer.ts` | Type-only stub, no importer | Removed with its README rows |
+| F1.3 | P2 | `runtime/cli/extractors/session-activity-signal.ts` | Re-export shim, no importer | Removed with its README row |
+| F3.1 | P2 | `runtime/cli/spec/progressive-validate.sh:172` | `log_suggest` never called | Removed |
+| F5.1 | P2 | `shared/embeddings/providers/ollama.ts:425`, `shared/parsing/secret-scrubber.ts:246` | Test hooks with no consumer | Removed |
+| F5.2 | P2 | `shared/ranking/matrix-math.ts` | No direct test | Fixed: script test with a well-posed and a singular system |
+| F3.2 | P2 | 14 rule scripts without a direct-run guard | Loader-only rules documented as if directly runnable | No change: their `run_check` takes the loader's folder and level arguments, so a direct-run guard fails under `set -u`; the rules are the loader's contract, not a CLI |
+| F4.2 | P2 | `hooks/cursor/spec-gate-classify.mjs:6-19` | Dormant hook with a cursor-shaped output | No change: documented as dormant until cursor-agent delivers the event |

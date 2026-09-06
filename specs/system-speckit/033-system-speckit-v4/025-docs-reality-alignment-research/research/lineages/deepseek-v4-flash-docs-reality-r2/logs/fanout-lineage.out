@@ -1,0 +1,17 @@
+The r2 lineage is complete. All phases ran inline in this session with every write confined to the lineage directory; no docs were edited (git status confirms read-only audit).
+
+**Execution summary**
+- **phase_init**: `deep-research-config.json`, `deep-research-state.jsonl` (config record), `deep-research-strategy.md`, `deep-research-dashboard.md`, `findings-registry.json`.
+- **phase_main_loop** (5/5 iterations, each with `iterations/iteration-NNN.md` + `deltas/iter-NNN.jsonl` + a state record + reducer refresh):
+  - **F1** feature-catalog/governance, lifecycle, context-preservation → 1 finding
+  - **F2** feature-catalog/retrieval, memory-quality-and-indexing, ux-hooks, tooling-and-scripts → 4 findings
+  - **F3** manual-testing-playbook/doctor-commands, feature-flag-reference, governance → 1 finding
+  - **F4** manual-testing-playbook/memory-quality-and-indexing, tooling-and-scripts, retrieval → 2 findings
+  - **F5** references/structure, validation, workflows, config + SKILL.md → 3 findings
+- **phase_synthesis**: `research.md` with `stopReason: maxIterationsReached` (5/5, 11 findings; 4×P1, 7×P2), and the `synthesis_complete` state record carries `stopReason=maxIterationsReached`.
+
+**Result: 11 new, evidence-grounded doc-vs-code mismatches** (no re-report of the two prior passes' already-fixed list), dominated by the retired memory-index step still described as live and phantom test/build paths: post-save review Step 11.75 vs 10.5 (F2-01), five absent capture/test files (F4-01, F5-03), phantom `memory-save.ts`/`workflow-e2e`/companion entries (F2-02/03/04), `causeCode` "four" vs eight (F3-01), `dist/graph/` vs `dist/spec-folder/` (F5-02), cross-root evidence path (F5-01), ENV-REFERENCE non-documentation of the flag (F1-01), and retired-index expected-signal framing (F4-02).
+
+**Artifacts written (21 files, all inside the lineage dir):** the config/state/strategy/dashboard/findings-registry, `iterations/iteration-001..005.md`, `deltas/iter-001..005.jsonl`, and `research.md`. All state JSON validated.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v4-flash-docs-reality-r2
