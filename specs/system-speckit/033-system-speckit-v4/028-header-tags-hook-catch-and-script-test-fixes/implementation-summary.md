@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:34c5b0dee1c93414a4e844cdf0c4ed98ab78a705f7798e33355b90512138a97c"
+      fingerprint: "sha256:2f56d55ccd0c21158eeb4d3b4edcff355f2d0afb188eef0710426ae03a5e3573"
       session_id: "2026-09-06-v4-reality-research"
       parent_session_id: null
     completion_pct: 100
@@ -118,6 +118,7 @@ Substitutions verified by a tag census, the two tests run under the CLI vitest p
 |-------|--------|
 | Tag census | grep over runtime/cli: 0 RULE, 0 SPEC-KIT, 0 SCRIPT shell headers; 0 SCRIPT module headers |
 | Shared tests | `npm test` in shared: 11 of 11 script tests pass, including the config root, matrix, scrubber, trace and socket helper tests |
+| Root resolution | One resolver in `shared/workspace/repo-root.mjs`; hooks re-export it; every CommonJS entry point requires it; no fixed-depth walk-up remains outside tests |
 | CLI check gate | `npm run check` in runtime/cli: lint, import policy, api boundary, architecture boundary, allowlist expiry, source/dist alignment, AST import policy and handler cycles all pass |
 | Runtime suites | api-graph-refresh, generated-metadata-integrity, spec-doc-structure, resume-ladder: 56 of 56 |
 | CLI suites | coverage-graph, retrieval root, import policy, boundary enforcement, script tests: 144 of 144 |

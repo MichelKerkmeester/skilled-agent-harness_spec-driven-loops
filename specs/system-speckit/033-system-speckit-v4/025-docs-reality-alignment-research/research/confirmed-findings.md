@@ -79,5 +79,5 @@ Reproduced in the orchestrating session on 2026-09-06 by opening every cited doc
 | V-D11 | P1 | `manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md:51-54,192-193` | Stale counts; wrong expected command shape | Confirmed, fixed |
 | V-D12 | P2 | `references/workflows/quick-reference.md:415`, `references/cli/shared-smart-router.md:139`, `references/workflows/execution-methods.md:217` | Option D, duplicate slug, twelve steps | Confirmed, fixed |
 | V-D13 | P2 | `README.md:417-419` | Counts drifted after the deletions | Confirmed, recounted |
-| V-D14 | P2 | `session-capturing-pipeline-quality-coverage.md:120-124` | Recorded output of a retired workspace names two test files | Kept: it is a recorded block, not an instruction |
+| V-D14 | P2 | `session-capturing-pipeline-quality-coverage.md:120-124` | Recorded output of a retired workspace names two test files | Fixed: the block now carries a note that it predates the CLI nesting and that the check gate passes today |
 | V-D15 | P2 | `references/validation/validation-rules.md` | The harness remedy for symlinked dist directories was undocumented | Added: `NODE_OPTIONS` with both preserve-symlinks flags |
