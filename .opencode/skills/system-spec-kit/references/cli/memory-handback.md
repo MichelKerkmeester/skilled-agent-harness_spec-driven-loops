@@ -1,6 +1,6 @@
 ---
 title: Memory Handback Protocol for cli-* Skills
-description: Canonical 7-step Memory Handback procedure shared across the three cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+description: Canonical 7-step Memory Handback procedure shared across the six cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
 trigger_phrases:
   - "memory handback protocol"
   - "memory handback extraction"
@@ -13,13 +13,13 @@ version: 3.6.0.14
 
 # Memory Handback Protocol (cli-* family)
 
-When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-opencode`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all three sibling skills. All emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->` as the Step 2 extraction delimiter. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt-templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
+When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all six sibling skills. All emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->` as the Step 2 extraction delimiter. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt-templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
 
 ---
 
 ## 1. OVERVIEW
 
-Canonical 7-step Memory Handback procedure shared across the three cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+Canonical 7-step Memory Handback procedure shared across the six cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
 
 ---
 

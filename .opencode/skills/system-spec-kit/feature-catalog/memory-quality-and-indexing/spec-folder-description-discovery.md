@@ -16,9 +16,9 @@ version: 3.6.0.20
 
 ## 1. OVERVIEW
 
-Spec folder description discovery generates per-folder `description.json` metadata and uses it to short-circuit full-corpus vector search.
+Spec folder description discovery generates per-folder `description.json` metadata: an identity card read directly by the tools that need a packet's identity and folded into the trigger index by the trigger-index generator.
 
-Each project folder now has a short identity card describing what it contains. When you ask the system a question, it can check these identity cards first to figure out which folder holds the answer, skipping the need to search through everything. It is like reading the labels on filing cabinet drawers instead of opening every drawer to find what you need.
+Each project folder has a short identity card describing what it contains. The trigger-index lookup and the spec-folder tools read those cards instead of scanning every document, like reading the labels on filing cabinet drawers instead of opening every drawer.
 
 ---
 

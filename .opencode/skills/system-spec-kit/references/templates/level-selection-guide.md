@@ -164,13 +164,6 @@ Validates declared level matches actual content metrics:
 - Task count within expected range
 - AI protocol present for Level 3+
 
-### check-section-counts.sh
-Validates section counts for declared level:
-- H2 section minimums per file
-- H3 section minimums per file
-- Requirements count
-- Acceptance scenarios count
-
 ### check-ai-protocols.sh
 For Level 3+ specs, validates AI protocol components:
 - Pre-Task Checklist present
@@ -188,7 +181,6 @@ Validates level consistency across all spec files:
 ```bash
 # Run all complexity validation rules
 bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-complexity.sh specs/XXX/
-bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-section-counts.sh specs/XXX/
 bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-ai-protocols.sh specs/XXX/
 bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh specs/XXX/
 

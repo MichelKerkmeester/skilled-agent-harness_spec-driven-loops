@@ -148,17 +148,17 @@ Command 5, extended validation coverage:
 
 ```text
 SpecKit Extended Validation Test Suite v1.0
-  Filter: rule matching "SECTION_COUNTS"
+  Filter: rule matching "FILE_EXISTS"
 
-Individual Rule: SECTION_COUNTS (check-section-counts.sh):
+Individual Rule: FILE_EXISTS (check-files.sh):
 ─────────────────────────────────────────────────────────────────
-✓ L1 section counts (warn) [139ms]
-✓ L2 section counts (warn) [141ms]
-✓ L3 section counts (warn) [143ms]
+✓ L1: All files present [139ms]
+✓ L2: All files present (includes checklist) [141ms]
+✓ L3: All files present (includes decision-record) [143ms]
 
 By Category:
 ─────────────────────────────────────────────────────────────────
-  ● Individual Rule: SECTION_COUNTS (check-section-counts.sh): 3/3 passed (423ms)
+  ● Individual Rule: FILE_EXISTS (check-files.sh): 3/3 passed (423ms)
 
 Totals:
 ─────────────────────────────────────────────────────────────────

@@ -231,8 +231,6 @@ The `generate-context.js` script orchestrates a 12-step workflow via `workflow.t
 | **9** | Write Canonical Surfaces | Apply atomic packet updates with rollback on failure |
 | **9.5** | State Embedding | Embed `_memory.continuity` into the routed packet docs |
 | **10** | Success Confirmation | Log summary of saved content |
-| **11** | Semantic Indexing | Re-index the updated packet docs in the vector database |
-| **12** | Retry Processing | Process any pending embeddings from retry queue |
 
 ### Parallel Extraction (Steps 4-7)
 

@@ -24,7 +24,7 @@ This category documents the consolidated `/doctor <target>` command surface that
 
 ## 2. HOW IT WORKS
 
-The shipped surface now includes five subsystem routes under `/doctor <target>` (memory, causal-graph, deep-loop, code_graph, skill-advisor, skill-budget, code-graph), a standalone `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, and run-log behavior, a standalone `/doctor:mcp install|debug` infra surface, and a version-migration flow that moves the spec-kit MCP through point releases.
+The shipped surface now includes nine subsystem routes under `/doctor <target>` (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors), a standalone `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, and run-log behavior, a standalone `/doctor:mcp install|debug` infra surface, and a version-migration flow that moves the spec-kit MCP through point releases.
 
 The route manifest declares every target's location and mutation class so Gate 3 can be answered per-route before execution. Routes marked `read-only` may inspect and report without a spec-folder write path; `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied; `mutates` routes follow the same spec-folder discipline as any other file or database mutation. A CI assertion verifies the manifest against the router source.
 

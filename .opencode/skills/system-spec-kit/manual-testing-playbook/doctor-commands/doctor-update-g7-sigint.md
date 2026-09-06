@@ -72,7 +72,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-If exit code is not 130, inspect the YAML Phase 6 SIGINT contract before checking data integrity. If checksums differ, fail with `cancel-restore-mismatch` and inspect snapshot restore ordering for the memory and vector databases. If settle is much longer than expected, compare observed behavior with ADR-001's per-file transaction finding.
+If exit code is not 130, inspect the YAML Phase 6 SIGINT contract before checking data integrity. If checksums differ, fail with `cancel-restore-mismatch` and inspect snapshot restore ordering for the restored artifacts. If settle is much longer than expected, compare observed behavior with ADR-001's per-file transaction finding.
 
 ---
 

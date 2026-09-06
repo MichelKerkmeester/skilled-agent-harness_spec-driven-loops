@@ -68,7 +68,7 @@ USAGE: ./validate.sh <folder-path> [OPTIONS]
 
 OPTIONS:
     --help, -h     Show help     --version, -v  Show version
-    --json         JSON output   --strict       Warnings as errors
+    --json         JSON output   --strict       Run strict-only rules
     --verbose      Detailed      --quiet, -q    Results only
     --recursive    Validate parent + all [0-9][0-9][0-9]-*/ child phase folders
     --no-recursive Disable auto-recursive validation when phase children exist

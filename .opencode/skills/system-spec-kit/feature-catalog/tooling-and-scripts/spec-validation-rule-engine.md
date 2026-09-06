@@ -76,7 +76,7 @@ The implementation extended the strict path beyond the original shell-rule inven
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-frontmatter.sh` | Validation rule | Rule script discovered and executed by the orchestrator for frontmatter validation |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level matching checks |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-level.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level declaration checks |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh` | Validation rule | Rule script discovered and executed by the orchestrator for link validation |
+| `.opencode/skills/system-spec-kit/runtime/cli/check-links.sh` | Standalone checker | Markdown link integrity check run on demand; not registered with the orchestrator |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-normalizer-lint.sh` | Validation rule | Rule script discovered and executed by the orchestrator for duplicate scope-normalizer detection |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` | Validation rule | Rule script discovered and executed by the orchestrator for placeholder detection |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-spec-doc-integrity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for spec document integrity checks |

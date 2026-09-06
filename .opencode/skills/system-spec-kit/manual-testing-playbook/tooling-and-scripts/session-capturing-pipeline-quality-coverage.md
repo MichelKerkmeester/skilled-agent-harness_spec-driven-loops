@@ -193,7 +193,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
   RESULT: FAILED
   ```
-- The remaining M-007 matrix commands were not run because this task allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md`, while the documented matrix includes write-producing commands such as `npm run build`, `npm run test:legacy` (`npm run build && ...`), MCP `npm run build` (`tsc --build && node runtime/cli/finalize-dist.mjs`), and manual `generate-context.js` save/index scenarios that create or update files outside the allowed path.
+- The remaining M-007 matrix commands were not run because this task allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md`, while the documented matrix includes write-producing commands such as `npm run build`, `npm run test:legacy` (`npm run build && ...`), MCP `npm run build` (`tsc --build && node runtime/scripts/finalize-dist.mjs`), and manual `generate-context.js` save/index scenarios that create or update files outside the allowed path.
 
 ### Pass / Fail
 

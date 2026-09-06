@@ -259,7 +259,7 @@ specs/022-big-feature/             # Parent spec folder
     └── ...
 ```
 
-Use `create.sh --phase` to create a parent with its first child in one step. Run `validate.sh --recursive` to validate the parent and all children together. The validator's phase-parent branch skips Level-N expectations on the lean parent: `check-files.sh`, `check-level-match.sh`, `check-anchors.sh`, `check-section-counts.sh` and `check-template-headers.sh`. Tolerant migration policy: legacy phase parents that retain heavy docs continue to validate without churn.
+Use `create.sh --phase` to create a parent with its first child in one step. Run `validate.sh --recursive` to validate the parent and all children together. The validator's phase-parent branch skips Level-N expectations on the lean parent: `check-files.sh`, `check-level-match.sh`, `check-template-source.sh` and the native `ANCHORS_VALID` rule. Tolerant migration policy: legacy phase parents that retain heavy docs continue to validate without churn.
 
 ### Packet-Local Changelogs
 
@@ -410,11 +410,11 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   └── manifest/               # Rendered by Level contract resolver + inline renderer
 ├── runtime/cli/                    # CLI tools (TypeScript source + Bash)
 │   ├── spec/                   # Spec folder management scripts
-│   ├── memory/                 # Continuity scripts
+│   ├── continuity/             # Continuity scripts
 │   ├── templates/              # Template composition (manifest renderer)
-│   ├── core/                   # Core library (17 modules)
-│   ├── extractors/             # Session data extractors (12 extractors)
-│   ├── utils/                  # Utility modules (20 utilities)
+│   ├── core/                   # Core library (29 modules)
+│   ├── extractors/             # Session data extractors (13 extractors)
+│   ├── utils/                  # Utility modules (19 utilities)
 │   └── dist/                   # Compiled JavaScript output
 ├── runtime/                 # Spec Kit engine (TypeScript), consumed as a library
 │   ├── api/                    # Public barrel imported by the scripts workspace
@@ -429,9 +429,8 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── contracts/              # Typed trace/envelope contracts
 │   ├── embeddings/             # Provider implementations
 │   └── ...                     # Chunker, scoring, parsing, utilities
-├── references/                 # Reference documentation (27 files)
+├── references/                 # Reference documentation (41 files)
 ├── assets/                     # Decision matrices, YAML configs
-├── constitutional/             # Always-surface rules (never decay)
 ├── feature-catalog/            # Feature documentation catalog
 └── manual-testing-playbook/    # Manual validation scenarios
 ```

@@ -1,6 +1,6 @@
 ---
 title: Shared Smart-Router Helpers for cli-* Skills
-description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the six cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
 trigger_phrases:
   - "shared smart router helpers"
   - "intent signals dictionary"
@@ -14,7 +14,7 @@ version: 3.6.0.11
 
 # Shared Smart-Router Helpers (cli-* family)
 
-The three cli-* sibling skills (`cli-claude-code`, `cli-opencode`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all three files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
+The six cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`) share an identical smart-router structure. The helper bodies below are byte-identical across all six files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
 
 > Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md).
 
@@ -22,7 +22,7 @@ The three cli-* sibling skills (`cli-claude-code`, `cli-opencode`, `cli-opencode
 
 ## 1. OVERVIEW
 
-Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the six cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
 
 ---
 

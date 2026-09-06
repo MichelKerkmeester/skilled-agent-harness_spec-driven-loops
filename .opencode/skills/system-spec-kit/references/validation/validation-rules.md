@@ -38,10 +38,10 @@ This document provides comprehensive documentation for every validation rule enf
 | Severity | Exit Code | Strict Mode | Description                       |
 | -------- | --------- | ----------- | --------------------------------- |
 | ERROR    | 2         | 2           | Validation failed, must fix       |
-| WARNING  | 0         | 2           | Passed with issues, should fix    |
+| WARNING  | 0         | 0           | Passed with issues, should fix    |
 | INFO     | 0         | 0           | Informational, no action required |
 
-CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` = system error. In non-strict mode, warnings are reported without changing the success exit code; in strict mode, warnings exit as validation errors.
+CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` = system error. `--strict` selects the rules that only run under strict; a warning stays advice in both modes and never changes the exit code. A rule that should block reports an error itself.
 
 ---
 
@@ -119,12 +119,12 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 **Clean-tree scope:** packet-scoped paths only, not the whole repository.  
 **Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
 
-> **Completion-blocking note:** the rule runs only when `SPECKIT_COMPLETION_FRESHNESS` is enabled, and the decision to run it is made once, at the rule's own entry point, so every caller gets the same answer. When it does run under `--strict`, any warning becomes exit 2, so a stale-freshness `warn` already FAILS the completion gate even with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` unset. The ENFORCE flag is therefore not a warn-vs-block switch under `--strict`: it only reclassifies the inner result label `warn`→`error`. The `warn`/`error` distinction is observable in non-strict callers and in the JSON result, not in the `--strict` exit code.
+> **Completion-blocking note:** the rule runs only when `SPECKIT_COMPLETION_FRESHNESS` is enabled, and the decision to run it is made once, at the rule's own entry point, so every caller gets the same answer. A stale result reports a `warn`, which does not block: the orchestrator passes whenever no rule reports an error. `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` escalates that `warn` to an `error`, and only then does `--strict` exit 2. The ENFORCE flag is the warn-versus-block switch.
 
 | Flag | Default | Effect |
 | --- | --- | --- |
-| `SPECKIT_COMPLETION_FRESHNESS` | `false` | Enables strict-only completion freshness validation. When on, a stale result blocks `--strict` completion regardless of ENFORCE (see note above). |
-| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | Reclassifies the stale-freshness result label from `warn` to `error`. Does not change the `--strict` exit code (both already exit 2); affects only the inner status label and non-strict consumers. |
+| `SPECKIT_COMPLETION_FRESHNESS` | `false` | Enables strict-only completion freshness validation. When on, a stale result reports a warning, which does not block. |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | Escalates a stale-freshness `warn` to an `error`, which makes `--strict` exit 2. |
 
 ### How to Fix `CONTINUITY_FRESHNESS`
 

@@ -48,7 +48,7 @@ The shipped behavior currently works as follows:
 | `.opencode/skills/system-spec-kit/runtime/cli/lib/template-utils.sh` | Shell helper | Exposes `resolve_level_contract` and shared template helpers |
 | `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Scaffolder | Creates Level and phase-parent packets from the resolver output |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | Validator | Verifies required files from the Level contract |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-sections.sh` | Validator | Verifies Level-gated sections after rendering |
+| `.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Validator | Native `ANCHORS_VALID` and `SPEC_DOC_SUFFICIENCY` rules verify rendered anchors and sections |
 
 ### Validation And Tests
 

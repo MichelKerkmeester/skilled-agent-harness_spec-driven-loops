@@ -33,7 +33,7 @@ This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtim
 |----------|---------|---------|
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | Auto-detected | Directory override consulted by `computeDatabasePaths()`. `SPEC_KIT_DB_DIR` is checked first and wins; either is resolved against `process.cwd()` and must land inside the project, home, or temporary directory |
 | `MEMORY_DB_PATH` | Unset | Explicit file path whose parent directory becomes the resolved directory, used only when neither directory override is set |
-| `MEMORY_BASE_PATH` | Current working directory | Workspace root used as `DEFAULT_BASE_PATH` for path validation |
+| `MEMORY_BASE_PATH` | Current working directory | Exported as `DEFAULT_BASE_PATH`; nothing in `runtime/` reads it outside a parity test, so setting it has no effect |
 | `SPECKIT_SPECS_DIR` | Unset | Fallback specs root used when a spec folder is not directly under `process.cwd()`. `SPEC_KIT_SPECS_DIR` is checked first and wins; the candidate is used only if it exists |
 
 Point a directory override at a writable location outside read-only repo paths (for example under your home directory or `/tmp`).

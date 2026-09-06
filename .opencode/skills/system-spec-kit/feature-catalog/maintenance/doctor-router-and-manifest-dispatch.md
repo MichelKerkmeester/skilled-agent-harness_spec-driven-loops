@@ -16,7 +16,7 @@ version: 3.6.0.12
 
 ## 1. OVERVIEW
 
-`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of seven subsystem YAML workflows (memory, causal-graph, code-graph, deep-loop, code_graph, skill-advisor, skill-budget) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
+`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
 
 The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
