@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/049-sk-create-frontmatter"
     last_updated_at: "2026-09-05T00:00:00Z"
     last_updated_by: "phase-9-contract-drift-remediation"
-    recent_action: "Closed phase 009 contract drift remediation"
+    recent_action: "Closed phase 010 newcomer reachability"
     next_safe_action: "Commit the packet"
     blockers: []
     key_files: []
@@ -23,7 +23,7 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "Realistic newcomer prompts reach the hub only at the confidence floor, which is scorer dilution and belongs to the advisor"
+      - "Four of ten newcomer prompts still stop at the hub or at nothing after phase 010, which is scorer dilution and belongs to the advisor"
       - "The declared trigger trigger_phrases scores zero in every advisor lane while its sibling aliases score, which belongs to the advisor scorer"
     answered_questions:
       - "The boundary between what the mode owns and what stays shared, settled in phase 001"
@@ -143,6 +143,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Complete |
 | 8 | 008-utilization-review/ | Execute all eleven playbook scenarios, measure whether a newcomer's prompt reaches the mode, and fix the defects that are provable and inside it | Complete |
 | 9 | 009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/ | A review of the shipped mode found the contract overstating its enforcement, one declared trigger the advisor scores at zero, and the hub description within 115 characters of the silent discovery drop. Correct each where the packet may edit, and reconcile the packet documents | Complete |
+| 10 | 010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/ | Newcomer prompts reached the hub only or nothing at all. Add plain-language phrases to both routing stages, hold each to out-of-domain replays, and carry the compiled-routing refresh | Complete |
 
 ### Phase Transition Rules
 
@@ -163,6 +164,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 006-verification-and-closeout | 007-human-voice-playbook | The fleet is green, so a second playbook is authored against a settled tree | Every gate in the phase 006 sweep passes |
 | 007-human-voice-playbook | 008-utilization-review | The voice playbook package validates and the benchmark loader finds its scenarios, so both playbooks exist before either is executed | `validate-playbook-package.cjs` reports PASS at nine scenarios, and the scenario loader reports `shape=sk-doc scenarios=9` |
 | 008-utilization-review | 009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract | Phase 008 is closed with every criterion met, so the review that opens phase 009 reads a settled mode | `validate.sh --strict` passes on 008, and the advisor replay in its section 7 is the baseline phase 009 re-measures |
+| 009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract | 010-fix-newcomer-reachability-for-sk-create-frontmatter-routing | Phase 009 left the declared triggers scoreable and the compiled routing green, so phase 010 changes vocabulary only | The ten newcomer prompts phase 009 recorded are the baseline phase 010 re-measures |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -176,8 +178,9 @@ the boundary falls between what the mode owns and what stays shared.
 Phase 008 opened two more by measuring the finished mode, then closed one. The `--help` defect in
 the shared-tier engine was fixed in its follow-up pass. Realistic newcomer prompts still mostly
 reach the hub at the confidence floor with no target packet, and phase 009 re-measured that: it is
-scorer dilution rather than missing vocabulary, so it stays open and is recorded against the
-advisor in the phase 009 implementation summary. Phase 009 also found one declared trigger,
+scorer dilution rather than missing vocabulary. Phase 010 then added ten plain-language phrases to
+both routing stages and moved six of ten newcomer prompts to the mode. The remaining four stay open
+and are recorded against the advisor in the phase 010 implementation summary. Phase 009 also found one declared trigger,
 `trigger_phrases`, that the advisor scores at zero in every lane while its sibling aliases score.
 That is recorded against the scorer for the same reason.
 <!-- /ANCHOR:questions -->

@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing",
+  "description": "Phase 10: add plain-language phrases to both routing stages so a newcomer describing a frontmatter problem reaches the mode, held to out-of-domain rep",
+  "keywords": [
+    "phase",
+    "plain-language",
+    "phrases",
+    "routing",
+    "stages",
+    "newcomer",
+    "describing",
+    "frontmatter",
+    "problem",
+    "reaches",
+    "mode",
+    "held",
+    "out-of-domain",
+    "replays",
+    "compiled-routing",
+    "refresh"
+  ],
+  "lastUpdated": "2026-09-06T06:39:02.034Z",
+  "specId": "010",
+  "folderSlug": "fix-newcomer-reachability-for-sk-create-frontmatter-routing",
+  "parentChain": [
+    "sk-doc",
+    "049-sk-create-frontmatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

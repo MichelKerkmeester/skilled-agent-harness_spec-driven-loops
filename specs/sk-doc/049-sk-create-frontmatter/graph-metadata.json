@@ -12,7 +12,8 @@
     "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
     "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook",
     "sk-doc/049-sk-create-frontmatter/008-utilization-review",
-    "sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract"
+    "sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
+    "sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing"
   ],
   "manual": {
     "depends_on": [],
@@ -50,7 +51,8 @@
       "spec.md",
       "goal.md",
       "008-utilization-review/goal.md",
-      "009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md"
+      "009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md",
+      "010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md"
     ],
     "entities": [
       {
@@ -140,17 +142,17 @@
     ],
     "causal_summary": "Six modes emit frontmatter",
     "created_at": "2026-09-01T08:42:55Z",
-    "last_save_at": "2026-09-05T13:49:49.787Z",
+    "last_save_at": "2026-09-06T06:39:02.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:967ac9406423887058776c766264f3b453adfad1ef56c78ae7b8d17e4ac13aa1",
+    "source_fingerprint": "sha256:9d961ac9fb83af1e128c0f6871dfdf084045596281a69024b79878de60224314",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "249e52ebb749ac7043703dd6507ad4e78920b5fdaa7a6a9839c3b27edd59b001"
+      "spec.md": "662783d51819ec6273101aa2c707ae414ee560d9d67958d236079f29efaf36c4"
     },
     "last_active_child_id": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
     "last_active_at": null
