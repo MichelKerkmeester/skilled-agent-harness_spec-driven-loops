@@ -21,17 +21,17 @@ development_philosophy:
 skill_reference:
   skill: sk-doc
   mode: sk-create-chart
-  skill_md: .opencode/skills/sk-doc/sk-create-chart/SKILL.md
+  skill_md: .opencode/skills/sk-design/sk-create-chart/SKILL.md
   references:
-    catalog: .opencode/skills/sk-doc/sk-create-chart/references/catalog.md
-    template_contract: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md
-    colour_systems: .opencode/skills/sk-doc/sk-create-chart/references/color-system.md
+    catalog: .opencode/skills/sk-design/sk-create-chart/references/catalog.md
+    template_contract: .opencode/skills/sk-design/sk-create-chart/references/template-contract.md
+    colour_systems: .opencode/skills/sk-design/sk-create-chart/references/color-system.md
   assets:
-    forms: .opencode/skills/sk-doc/sk-create-chart/assets/templates/
-    palettes: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json
-    worked_deliveries: .opencode/skills/sk-doc/sk-create-chart/assets/examples/
+    forms: .opencode/skills/sk-design/sk-create-chart/assets/templates/
+    palettes: .opencode/skills/sk-design/sk-create-chart/assets/color/palettes.json
+    worked_deliveries: .opencode/skills/sk-design/sk-create-chart/assets/examples/
   scripts:
-    corpus_check: .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs
+    corpus_check: .opencode/skills/sk-design/sk-create-chart/scripts/check-corpus.cjs
 
 confidence_framework:
   thresholds:
@@ -121,7 +121,7 @@ field_handling:
     validation: "must be one of: neutral, ordered, categorical"
     default: neutral
   defaults:
-    forms_dir: .opencode/skills/sk-doc/sk-create-chart/assets/templates/
+    forms_dir: .opencode/skills/sk-design/sk-create-chart/assets/templates/
     one_system_per_delivery: true
 
 documentation_level:
@@ -223,7 +223,7 @@ workflow:
     purpose: Prove the file still holds the contract
     steps:
       step_corpus_check:
-        action: "Run `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs`"
+        action: "Run `node .opencode/skills/sk-design/sk-create-chart/scripts/check-corpus.cjs`"
         verify:
           - "The run prints RESULT: PASSED"
           - "Every check reports a nonzero assertion count"

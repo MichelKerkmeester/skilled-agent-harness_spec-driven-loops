@@ -9,12 +9,12 @@ Run this automatic self-check before setup. This is not a user question.
 SELF-CHECK: Are the create-chart packet resources available?
 
 Indicators:
-- `.opencode/skills/sk-doc/sk-create-chart/SKILL.md` is readable
-- `.opencode/skills/sk-doc/sk-create-chart/references/catalog.md` is readable
-- `.opencode/skills/sk-doc/sk-create-chart/references/template-contract.md` is readable
-- `.opencode/skills/sk-doc/sk-create-chart/references/color-system.md` is readable
-- `.opencode/skills/sk-doc/sk-create-chart/assets/templates/` holds the chart forms
-- `.opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs` exists
+- `.opencode/skills/sk-design/sk-create-chart/SKILL.md` is readable
+- `.opencode/skills/sk-design/sk-create-chart/references/catalog.md` is readable
+- `.opencode/skills/sk-design/sk-create-chart/references/template-contract.md` is readable
+- `.opencode/skills/sk-design/sk-create-chart/references/color-system.md` is readable
+- `.opencode/skills/sk-design/sk-create-chart/assets/templates/` holds the chart forms
+- `.opencode/skills/sk-design/sk-create-chart/scripts/check-corpus.cjs` exists
 
 If all indicators are present:
 - create_chart_verified = true
@@ -35,10 +35,10 @@ nothing to copy, and a chart written freehand is the failure the packet exists t
 prevent.
 
 Required resources:
-.opencode/skills/sk-doc/sk-create-chart/references/catalog.md
-.opencode/skills/sk-doc/sk-create-chart/references/template-contract.md
-.opencode/skills/sk-doc/sk-create-chart/references/color-system.md
-.opencode/skills/sk-doc/sk-create-chart/assets/templates/
+.opencode/skills/sk-design/sk-create-chart/references/catalog.md
+.opencode/skills/sk-design/sk-create-chart/references/template-contract.md
+.opencode/skills/sk-design/sk-create-chart/references/color-system.md
+.opencode/skills/sk-design/sk-create-chart/assets/templates/
 
 STATUS=FAIL ERROR="create-chart resources unavailable"
 ```

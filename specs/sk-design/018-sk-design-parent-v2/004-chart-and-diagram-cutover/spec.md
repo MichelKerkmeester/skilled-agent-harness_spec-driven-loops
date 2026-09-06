@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Phase 3: phase-3-PROVIDE-DESCRIPTIVE-SLUG [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Move chart and diagram from sk-doc to sk-design"
+description: "Two packets leave a documentation hub for a design hub, and both hubs change in one commit because a router signal naming a packet that is not on disk fails whichever hub is wrong. The step that decides whether the restructure was worth doing."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -32,7 +32,7 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
+| **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-09-06 |
 | **Branch** | `scaffold/003-phase-3-provide-descriptive-slug` |
@@ -68,10 +68,29 @@ This is **Phase 3** of the Reinstate sk-design as a parent hub and absorb chart,
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+`sk-create-chart` and `sk-create-diagram` live in a documentation hub whose other thirteen modes
+produce prose. They produce visual artefacts judged by design criteria. That mismatch is the whole
+argument for this packet: without these two, the design hub is the two-mode shape that was
+deliberately deleted in August.
+
+### The measured surface
+
+Both hubs must change together. `sk-doc` mentions the two packets across eight routing surfaces,
+`ROUTER.md` most heavily at 139 hits. Sixteen files outside either hub carry a live path, including
+the markdown agent in four runtime mirrors, six command assets, two command entry documents, and a
+runtime hook that routes post-edit quality checks.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+A request for a chart or a diagram reaches `sk-design`. `sk-doc` no longer claims either, and no
+commit in between leaves a router signal pointing at a packet that is not on disk.
+
+### Non-Goals
+
+- Renaming either packet. `sk-create-chart` keeps its name inside `sk-design`; a prefix rename would
+  double the rewrite across four mirrors, the scorer shim, the bridges and the canaries.
+- Fixing the inherited long-phrase weakness, where task-shaped chart phrasings reach nobody.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -79,20 +98,31 @@ This is **Phase 3** of the Reinstate sk-design as a parent hub and absorb chart,
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
+### Why one commit
+
+A router signal whose packet is absent fails the owning hub. Editing `sk-doc` and `sk-design` in
+separate commits leaves the shared branch broken in between, and other sessions write here.
+
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Both packets moved to `.opencode/skills/sk-design/`.
+- `sk-doc`: registry rows, router signals and vocabulary, tie-break order, ROUTER.md intents and
+  resource maps, graph vocabulary, description keywords and prose, SKILL.md mode table and its
+  count, command metadata, leaf manifest.
+- `sk-design`: the mirror of all of the above, gaining what `sk-doc` loses.
+- The sixteen live path references.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Historical records under `specs/`.
+- The two retrieval fixtures shared with another session's in-flight work.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/sk-create-{chart,diagram}/` | Move | To `sk-design/` |
+| `.opencode/skills/sk-doc/*` routing surfaces | Modify | Both packets removed |
+| `.opencode/skills/sk-design/*` routing surfaces | Modify | Both packets declared |
+| 16 live files outside both hubs | Modify | Path rewritten |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,20 +130,14 @@ This is **Phase 3** of the Reinstate sk-design as a parent hub and absorb chart,
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement |
-|----|-------------|
-| REQ-002 | [Requirement description] |
-
-> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
-> which is the document that decides whether this packet may close.
+| REQ-001 | The chart and diagram phrases that reached `sk-doc` at baseline reach `sk-design` after the cutover, above the 0.8 bar. |
+| REQ-002 | `sk-doc` no longer claims either, and its own control phrases are unchanged. |
+| REQ-003 | Both hubs pass the fleet metadata gate in the same commit. |
+| REQ-004 | The chart corpus checker still prints `RESULT: PASSED` from the skill's new location. |
+| REQ-005 | Both packets move as renames. |
+| REQ-006 | The advisor is rebuilt and its generation observed to move before any routing claim is made. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -121,8 +145,10 @@ This is **Phase 3** of the Reinstate sk-design as a parent hub and absorb chart,
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: `create a chart`, `chart template`, `sk-create-chart` and `make a diagram` name `sk-design`.
+- **SC-002**: `write a readme`, `build a feature catalog` and `create a repo rule file` still name `sk-doc`.
+- **SC-003**: Fleet gate clean with both hubs class H.
+- **SC-004**: The chart corpus checker green from the new path.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -132,8 +158,10 @@ This is **Phase 3** of the Reinstate sk-design as a parent hub and absorb chart,
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | One hub edited without the other | High: a signal naming an absent packet fails a hub on the shared branch | One commit, both sides, verified before staging |
+| Risk | The chart corpus checker breaks on the new path | High: it is the proof that a night of chart work still stands | Run it from the new location before committing |
+| Risk | A runtime hook keeps a dead path | Medium: post-edit quality routing would silently stop matching | The hook is in the sixteen and is rewritten with them |
+| Dependency | `003-md-generator-as-mode` | The hub these packets join | Complete, commit `fa35e09653` |
 <!-- /ANCHOR:risks -->
 
 ---

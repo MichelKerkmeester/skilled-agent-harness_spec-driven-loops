@@ -25,7 +25,7 @@ Do not author the chart from this document. The catalog that turns a question in
 | Presentation source of truth | `.opencode/commands/create/assets/create-chart-presentation.txt` |
 | Auto workflow | `.opencode/commands/create/assets/create-chart-auto.yaml` |
 | Confirm workflow | `.opencode/commands/create/assets/create-chart-confirm.yaml` |
-| Mode contract | `.opencode/skills/sk-doc/sk-create-chart/SKILL.md` |
+| Mode contract | `.opencode/skills/sk-design/sk-create-chart/SKILL.md` |
 
 ---
 

@@ -48,3 +48,30 @@ chased.
 
 Measured at daemon generation 618, rebuilt explicitly after the move, because a replay against a
 stale generation proves nothing.
+
+## The inherited weakness turned out to be a one-file fix
+
+The baseline recorded four phrases that reached nobody: `flowchart`, `make a chart of orders by
+month`, `redraw this drawio diagram` and `ascii flowchart of the approval loop`. This packet
+declared them inherited and out of scope, on the reasoning that `sk-doc` already carried the
+vocabulary and it still did not work.
+
+That reasoning was half right. The vocabulary existed, but in the wrong file.
+
+Adding phrases to `description.json` keywords does nothing to the score. It was tried twice, once
+for the md generator and once for chart, and neither moved a single number. The advisor reads a
+hub's `graph-metadata.json` `intent_signals`, exactly as the routing rules state, and
+`description.json` is documentation rather than routing input.
+
+Adding eleven signals there moved all four dead phrases above the bar:
+
+| Phrase | Baseline | After |
+|--------|----------|-------|
+| `flowchart` | nothing | `sk-design=0.82` |
+| `make a chart of orders by month` | nothing | `sk-design=0.8277` |
+| `redraw this drawio diagram` | nothing | `sk-design=0.82` |
+| `ascii flowchart of the approval loop` | nothing | `sk-design=0.821` |
+
+So the corpus-wide long-phrase weakness is probably not a scorer threshold problem at all. It is
+vocabulary sitting in a file the scorer does not read. That is worth checking across the fleet
+before anyone writes a packet to tune thresholds.

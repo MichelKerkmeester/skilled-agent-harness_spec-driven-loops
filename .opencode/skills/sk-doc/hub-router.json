@@ -15,8 +15,6 @@
       "sk-create-benchmark",
       "sk-create-changelog",
       "sk-create-diff",
-      "sk-create-diagram",
-      "sk-create-chart",
       "sk-create-repo-rule",
       "sk-create-with-human-voice",
       "sk-create-frontmatter",
@@ -135,24 +133,6 @@
       ],
       "resources": [
         "sk-create-diff/SKILL.md"
-      ]
-    },
-    "sk-create-diagram": {
-      "weight": 3,
-      "classes": [
-        "create-diagram-aliases"
-      ],
-      "resources": [
-        "sk-create-diagram/SKILL.md"
-      ]
-    },
-    "sk-create-chart": {
-      "weight": 3,
-      "classes": [
-        "create-chart-aliases"
-      ],
-      "resources": [
-        "sk-create-chart/SKILL.md"
       ]
     },
     "sk-create-quality-control": {
@@ -364,82 +344,6 @@
         "doc diff",
         "before and after diff",
         "before and after document"
-      ]
-    },
-    "create-diagram-aliases": {
-      "keywords": [
-        "create diagram",
-        "diagram",
-        "architecture diagram",
-        "sequence diagram",
-        "ER diagram",
-        "entity relationship diagram",
-        "data model diagram",
-        "state machine diagram",
-        "swimlane diagram",
-        "swimlane",
-        "venn diagram",
-        "org chart",
-        "quadrant diagram",
-        "gantt chart",
-        "radar chart",
-        "high-level diagram",
-        "medallion diagram",
-        "data flow diagram",
-        "draw.io",
-        "drawio",
-        "mermaid diagram",
-        "redraw diagram",
-        "self-contained HTML diagram",
-        "editorial diagram",
-        "create flowchart",
-        "flowchart",
-        "ASCII flowchart",
-        "workflow diagram",
-        "text diagram",
-        "text characters",
-        "decision tree",
-        "decision branch",
-        "parallel execution diagram",
-        "approval loop diagram",
-        "export diagram"
-      ]
-    },
-    "create-chart-aliases": {
-      "keywords": [
-        "create a chart",
-        "make a chart",
-        "chart this data",
-        "chart the data",
-        "plot the data",
-        "plot this data",
-        "standalone html chart",
-        "chart catalog",
-        "which chart type",
-        "chart template",
-        "chart color system",
-        "chart colour system",
-        "data visualization",
-        "data visualisation",
-        "data viz",
-        "bar chart of",
-        "line chart of",
-        "scatter plot of",
-        "treemap",
-        "waterfall chart",
-        "heat matrix",
-        "heatmap",
-        "heat map",
-        "calendar heatmap",
-        "box plot",
-        "candlestick chart",
-        "stacked area chart",
-        "stacked bar chart",
-        "grouped bar chart",
-        "donut chart",
-        "waffle chart",
-        "histogram",
-        "parallel coordinates"
       ]
     },
     "create-quality-control-aliases": {

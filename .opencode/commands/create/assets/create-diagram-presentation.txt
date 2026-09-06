@@ -10,11 +10,11 @@ Run this automatic self-check before setup. This is not a user question.
 SELF-CHECK: Are create-diagram packet resources available?
 
 Indicators:
-- `.opencode/skills/sk-doc/sk-create-diagram/SKILL.md` is readable
-- `.opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md` is readable
-- `.opencode/skills/sk-doc/sk-create-diagram/references/types/type-*.md` pattern references are available
-- `.opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py` and `scripts/mermaid_extract.py` exist
-- `.opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh` exists for `ascii-markdown`
+- `.opencode/skills/sk-design/sk-create-diagram/SKILL.md` is readable
+- `.opencode/skills/sk-design/sk-create-diagram/references/foundations/style-guide.md` is readable
+- `.opencode/skills/sk-design/sk-create-diagram/references/types/type-*.md` pattern references are available
+- `.opencode/skills/sk-design/sk-create-diagram/scripts/drawio_extract.py` and `scripts/mermaid_extract.py` exist
+- `.opencode/skills/sk-design/sk-create-diagram/scripts/validate-flowchart.sh` exists for `ascii-markdown`
 
 If all indicators are present:
 - create_diagram_verified = true
@@ -37,9 +37,9 @@ This command requires the create-diagram packet for:
 - ASCII/markdown flowchart patterns and validation
 
 Required references:
-.opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md
-.opencode/skills/sk-doc/sk-create-diagram/references/types/type-<name>.md
-.opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/pattern-selection.md
+.opencode/skills/sk-design/sk-create-diagram/references/foundations/style-guide.md
+.opencode/skills/sk-design/sk-create-diagram/references/types/type-<name>.md
+.opencode/skills/sk-design/sk-create-diagram/references/ascii-format/pattern-selection.md
 
 STATUS=FAIL ERROR="create-diagram resources unavailable"
 ```

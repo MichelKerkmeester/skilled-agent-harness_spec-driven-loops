@@ -179,7 +179,7 @@ field_handling:
 
   defaults:
     output_format: "html-svg: single self-contained HTML file; ascii-markdown: markdown file with a fenced text flowchart"
-    skill_contract: .opencode/skills/sk-doc/sk-create-diagram/SKILL.md
+    skill_contract: .opencode/skills/sk-design/sk-create-diagram/SKILL.md
 
 input_contract:
   required:
@@ -207,38 +207,38 @@ documentation_level:
 # CREATE-DIAGRAM RESOURCES
 # -----------------------------------------------------------------
 diagram_resources:
-  skill_contract: .opencode/skills/sk-doc/sk-create-diagram/SKILL.md
+  skill_contract: .opencode/skills/sk-design/sk-create-diagram/SKILL.md
 
 diagram_scripts:
-  drawio_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py
-  mermaid_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py
-  validate_flowchart: .opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh
+  drawio_extract: .opencode/skills/sk-design/sk-create-diagram/scripts/drawio_extract.py
+  mermaid_extract: .opencode/skills/sk-design/sk-create-diagram/scripts/mermaid_extract.py
+  validate_flowchart: .opencode/skills/sk-design/sk-create-diagram/scripts/validate-flowchart.sh
 
 diagram_references:
-  style_guide: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md
-  onboarding: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/onboarding.md
-  output_spec: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/output-spec.md
-  import_drawio: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-drawio.md
-  import_mermaid: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-mermaid.md
-  export: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/export.md
-  type_reference_pattern: .opencode/skills/sk-doc/sk-create-diagram/references/types/type-<name>.md
-  ascii_route_map: .opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/README.md
-  ascii_pattern_selection: .opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/pattern-selection.md
-  ascii_notation: .opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/notation-and-validator.md
+  style_guide: .opencode/skills/sk-design/sk-create-diagram/references/foundations/style-guide.md
+  onboarding: .opencode/skills/sk-design/sk-create-diagram/references/foundations/onboarding.md
+  output_spec: .opencode/skills/sk-design/sk-create-diagram/references/foundations/output-spec.md
+  import_drawio: .opencode/skills/sk-design/sk-create-diagram/references/import-export/import-drawio.md
+  import_mermaid: .opencode/skills/sk-design/sk-create-diagram/references/import-export/import-mermaid.md
+  export: .opencode/skills/sk-design/sk-create-diagram/references/import-export/export.md
+  type_reference_pattern: .opencode/skills/sk-design/sk-create-diagram/references/types/type-<name>.md
+  ascii_route_map: .opencode/skills/sk-design/sk-create-diagram/references/ascii-format/README.md
+  ascii_pattern_selection: .opencode/skills/sk-design/sk-create-diagram/references/ascii-format/pattern-selection.md
+  ascii_notation: .opencode/skills/sk-design/sk-create-diagram/references/ascii-format/notation-and-validator.md
 
 ascii_patterns:
-  linear: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/simple-workflow.md
-  decision: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
-  parallel: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/parallel-execution.md
-  approval: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md
-  swimlane: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md
-  journey: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/user-onboarding.md
+  linear: .opencode/skills/sk-design/sk-create-diagram/assets/ascii-patterns/simple-workflow.md
+  decision: .opencode/skills/sk-design/sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
+  parallel: .opencode/skills/sk-design/sk-create-diagram/assets/ascii-patterns/parallel-execution.md
+  approval: .opencode/skills/sk-design/sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md
+  swimlane: .opencode/skills/sk-design/sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md
+  journey: .opencode/skills/sk-design/sk-create-diagram/assets/ascii-patterns/user-onboarding.md
 
 diagram_templates:
-  minimal_light: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template.html
-  minimal_dark: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-dark.html
-  full_editorial: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-full.html
-  terminal: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-terminal.html
+  minimal_light: .opencode/skills/sk-design/sk-create-diagram/assets/templates/template.html
+  minimal_dark: .opencode/skills/sk-design/sk-create-diagram/assets/templates/template-dark.html
+  full_editorial: .opencode/skills/sk-design/sk-create-diagram/assets/templates/template-full.html
+  terminal: .opencode/skills/sk-design/sk-create-diagram/assets/templates/template-terminal.html
 
 # -----------------------------------------------------------------
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -482,7 +482,7 @@ quality_standards:
     stage_3: "Technical (accessible SVG, connector rules, 4px grid)"
     stage_4: "Typography"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
+  core_standards_reference: ".opencode/skills/sk-design/sk-create-diagram/SKILL.md"
 
 # -----------------------------------------------------------------
 # COMPLETION REPORT TEMPLATE

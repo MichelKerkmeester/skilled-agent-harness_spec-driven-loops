@@ -84,6 +84,124 @@
       "advisorRouting": {
         "routingClass": "metadata"
       }
+    },
+    {
+      "workflowMode": "sk-create-diagram",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-create-diagram",
+      "packetSkillName": "sk-create-diagram",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:diagram",
+      "aliases": [
+        "create diagram",
+        "diagram",
+        "architecture diagram",
+        "sequence diagram",
+        "ER diagram",
+        "state machine diagram",
+        "data model diagram",
+        "swimlane",
+        "venn diagram",
+        "org chart",
+        "quadrant diagram",
+        "gantt chart",
+        "draw.io",
+        "drawio",
+        "mermaid diagram",
+        "redraw diagram",
+        "export diagram",
+        "create flowchart",
+        "flowchart",
+        "ASCII flowchart",
+        "workflow diagram",
+        "text diagram",
+        "text characters",
+        "decision tree",
+        "decision branch",
+        "parallel execution diagram",
+        "approval loop diagram"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "sk-create-chart",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-create-chart",
+      "packetSkillName": "sk-create-chart",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:chart",
+      "aliases": [
+        "create a chart",
+        "make a chart",
+        "chart this data",
+        "chart the data",
+        "plot the data",
+        "plot this data",
+        "standalone html chart",
+        "chart catalog",
+        "which chart type",
+        "chart template",
+        "chart color system",
+        "chart colour system",
+        "data visualization",
+        "data visualisation",
+        "data viz",
+        "bar chart of",
+        "line chart of",
+        "scatter plot of",
+        "treemap",
+        "waterfall chart",
+        "heat matrix",
+        "heatmap",
+        "heat map",
+        "calendar heatmap",
+        "box plot",
+        "candlestick chart",
+        "stacked area chart",
+        "stacked bar chart",
+        "grouped bar chart",
+        "donut chart",
+        "waffle chart",
+        "histogram",
+        "parallel coordinates"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     }
   ]
 }
