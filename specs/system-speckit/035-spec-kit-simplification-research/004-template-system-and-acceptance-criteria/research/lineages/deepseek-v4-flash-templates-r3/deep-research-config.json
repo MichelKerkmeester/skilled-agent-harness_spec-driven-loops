@@ -1,0 +1,86 @@
+{
+  "topic": "ROUND THREE of this lane: five bounded iterations on angles the first two rounds covered thinly or not at all. Round one (GLM 5.3 Flash) and round two (DeepSeek V4 Flash) each ran ten iterations; their syntheses are lineages/glm-5-3-flash-templates/research.md and lineages/deepseek-v4-flash-templates/research.md; the census that judged every row of both rounds is research/confirmed-findings.md; every confirmed row was remediated in 010-template-contract-alignment and 016-template-seams-and-sentinel-repair. Read the census once in iteration 1, the earlier syntheses only if an angle sends there. || Role: Skeptical auditor — every claim unverified until cited. Read checked-in source only (dist/ is stale and untracked); code overrides self-reported success and overrides every document. Never write a script, harness, re-implementation or census program; read files and compare lines by hand, sample at most 8 items where a set is larger. Do not re-report a row the census marks fixed, kept or recorded unless new evidence shows its stated reason wrong; never reuse an earlier count — if a set cannot be recounted within the call budget, say so instead of guessing. || Action, one angle per iteration, in this order: (1) Scaffold versus validate for the three packet types (phase, review, research): create.sh's document-writing block vs check-files.sh and check-template-source.sh; a type whose scaffold would fail its own rule untouched is a finding. (2) Upgrade paths: upgrade-level.sh per-level blocks vs fresh scaffold at the target level (Level 2 and Level 3 rows of spec-kit-docs.json); a document or section a fresh scaffold has and the upgrade does not add is a finding. (3) Placeholders that survive a scaffold: check-placeholders.sh pattern block vs bracketed tokens shipped in at most 8 templates; a token shape the pattern would not detect is a finding. (4) Human-voice reference vs templates that cite it: hvr-rules.md vs every template carrying an HVR_REFERENCE comment (at most 8); a rule a template's own boilerplate breaks is a finding. (5) Overlap with sk-doc templates: sk-doc template directories carrying spec-kit document templates (spec.md / acceptance-criteria in names, at most 8) vs the system-spec-kit template of the same document; differing required sections or anchors, or an exact copy, is a finding. || Format: one row per finding: path:line on claim side and actual side; claimed vs actual in one sentence each; severity (P0 broken, P1 wrong/unused, P2 cosmetic); recommendation (remove/merge/fix/document); at most 12 rows per iteration; a short list of what the angle verified as correct; close each pass with open questions. || Target: a cited defect-and-simplification ledger organized by angle. Non-goals: no edits, no redesign, no prose-style review, no repository-wide census, no validate.sh, no node tooling, no git writes.",
+  "maxIterations": 5,
+  "convergenceThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/lineages/deepseek-v4-flash-templates-r3",
+  "createdAt": "2026-09-07T14:31:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "detachedFanout": {
+    "inline": true,
+    "note": "This detached lineage process is the executor for EVERY iteration; no nested CLI/agent/subprocess dispatch. step_resolve_artifact_root satisfied by config.fanout_lineage_artifact_dir override: artifact_dir bound directly to the override value; resolveArtifactRoot node command not run."
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "executable": "pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-templates-r3-1788784306229-pqwref",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "note": "Detached fan-out: the reducer function (registry/dashboard/strategy machine-owned sections) is performed inline by the lineage executor after each iteration, deriving strictly from the iteration delta records. No reduce-state.cjs invocation; every write stays inside the lineage directory.",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "statePaths": {
+    "stateLog": "deep-research-state.jsonl",
+    "iterationPattern": "iterations/iteration-NNN.md",
+    "deltaPattern": "deltas/iter-NNN.jsonl",
+    "report": "research.md",
+    "resourceMap": "resource-map.md",
+    "note": "Lineage-confined: all state lives at artifactDir root (flat), not under the packet research/ dir, because the lineage write surface is the lineage directory itself. State record written directly by the inline executor (append gateway semantics modeled by the seeded ledgers; gateway binary not invoked per executor instruction)."
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "deep-research-state.jsonl:NA;lineage-internal",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only (append gateway semantics; written directly by this executor)",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable (synthesis-owned)",
+    "resource-map.md": "mutable (synthesis-owned)"
+  }
+}

@@ -187,7 +187,7 @@ _ensure_dest_within_dir() {
 _normalize_template_level() {
     local level_or_dir="$1"
     case "$level_or_dir" in
-        1|2|3|"3+"|phase) printf '%s\n' "$level_or_dir" ;;
+        1|2|3|"3+"|phase|review|research) printf '%s\n' "$level_or_dir" ;;
         phase-parent) printf '%s\n' "phase" ;;
         */level-1) printf '%s\n' "1" ;;
         */level-2) printf '%s\n' "2" ;;
@@ -206,6 +206,8 @@ _manifest_template_path() {
 
     if [[ "$render_level" == "phase" ]] && [[ "$template_name" == "spec.md" ]]; then
         manifest_name="phase-parent.spec.md.tmpl"
+    elif [[ "$render_level" == "review" ]] && [[ "$template_name" == "spec.md" ]]; then
+        manifest_name="review.spec.md.tmpl"
     elif [[ "$template_name" == *.tmpl ]]; then
         manifest_name="$(basename "$template_name")"
     else

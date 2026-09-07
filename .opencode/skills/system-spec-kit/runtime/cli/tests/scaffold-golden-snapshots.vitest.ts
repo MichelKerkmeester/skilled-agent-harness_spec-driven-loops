@@ -128,6 +128,13 @@ describe('manifest template golden snapshots', () => {
         { cwd: SKILL_ROOT, encoding: 'utf8' },
       );
       expect(goalResult.status, goalResult.stderr).toBe(0);
+      // create.sh, not the renderer, strips the template's provenance token from
+      // titles and substitutes every hard placeholder it knows the value of.
+      for (const scaffolded of ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'goal.md']) {
+        const body = fs.readFileSync(path.join(goalPath, scaffolded), 'utf8');
+        expect(body, scaffolded).not.toMatch(/\[template:/u);
+        expect(body, scaffolded).not.toMatch(/\[Feature Name\]/u);
+      }
       const goal = fs.readFileSync(path.join(goalPath, 'goal.md'), 'utf8');
       expect(goal).toContain('SPECKIT_TEMPLATE_SOURCE');
       expect(goal).toContain('<!-- ANCHOR:directive -->');

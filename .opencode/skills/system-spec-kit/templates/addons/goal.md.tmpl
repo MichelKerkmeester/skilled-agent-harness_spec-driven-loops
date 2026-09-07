@@ -1,7 +1,7 @@
 <!-- IF level:1,2,3,3+,phase -->
 ---
 title: "Goal: [NAME]"
-description: "The durable directive this packet executes against, and the criteria that decide when it is done."
+description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
   - "durable directive"
@@ -32,7 +32,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > Everything above the log is DURABLE: it is what an operator sets as the session
-> objective, and it must stay true for the life of the packet. Keep it short —
+> objective, and it must stay true for the life of the packet. Keep it short:
 > the runtime goal surfaces cap what they will hold, and a truncated objective
 > loses its tail, which is where the completion criteria live.
 
@@ -74,7 +74,7 @@ phase and binds as if written here.
 |-------|---------------|
 | [NNN-phase-slug] | `[NNN-phase-slug]/goal.md` |
 
-**Precedence.** Decisions above outrank child detail; child detail outranks any
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
 
 **Stop.** Only the criteria below decide done. An evaluator sees the objective

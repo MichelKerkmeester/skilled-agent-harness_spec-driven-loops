@@ -52,7 +52,8 @@
       "runtime/cli/spec/create.sh",
       "runtime/cli/templates/inline-gate-renderer.ts",
       "runtime/lib/templates/level-contract-resolver.ts",
-      "research/lineages/deepseek-v4-flash-templates/research.md"
+      "research/lineages/deepseek-v4-flash-templates/research.md",
+      "research/lineages/deepseek-v4-flash-templates-r3/research.md"
     ],
     "entities": [
       {
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "The root README mentions a resource map as if it were part of every packet, the timeline and roadmap addons are barely mentioned, and three surfaces (tasks checklist, checklist.md, acceptance-criteria.md) claim to gate completion",
     "created_at": "2026-09-06T14:29:32Z",
-    "last_save_at": "2026-09-07T06:57:33.962Z",
+    "last_save_at": "2026-09-07T13:14:50.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c77723301a8958eb8b60e315e899bdb77b44a9a0b1d1be6615f9769a94f174a",
+    "source_fingerprint": "sha256:eee451fdaed0579821d64934165d0992ddc48985a5f7976b981073503ff235b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea9c5cb4e6fd3b8f2d6b04786c8d6374abfd23e21341533e1855c0d452a751b7",
+      "spec.md": "8fe9b46029f294e2e84ae07684fcc4c9751ce4502f83581693a88b3634f86d47",
       "plan.md": "6b84a5bd93bd4722875f424aa5a15d0c0fcd3433ac284e812b836730f23485f2",
-      "tasks.md": "e99adb3156e18c508bb734bad8fe080af8d4f4b8534b2fce38acd7b6c7be1f5f",
+      "tasks.md": "ac9401efa6c8fed4e9ad39a39e6728e656a4475d88458ce1db9fce90c8361191",
       "implementation-summary.md": "1ce944045663dbf61074608a6412d62c720e0b4810d2c4d962a49bccf34cf3e9"
     },
     "last_active_at": null

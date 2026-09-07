@@ -9,9 +9,11 @@ set -euo pipefail
 # Rule: FILE_EXISTS
 # Severity: error
 # Description: Validates required files exist for documentation level
-#   Level 1: spec.md, plan.md, tasks.md
-#   Level 3: Level 2 + decision-record.md
+#   The required set comes from the level contract (templates/spec-kit-docs.json):
+#   Level 1: spec.md, plan.md, tasks.md; Level 2 and above add acceptance-criteria.md
+#   through the closure rule; decision-record.md is a lazy add-on at every level.
 #   Lifecycle-required documents: Required after implementation starts (detected by completed items)
+#   Presence only. LEVEL_MATCH is the sibling that compares the declared level with the inferred one.
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION

@@ -92,7 +92,7 @@ while [[ $i -le $# ]]; do
                 exit 1
             fi
             if [[ ! "$next_arg" =~ ^(1|2|3|3\+|phase-parent)$ ]]; then
-                echo 'Error: --level must be 1, 2, 3, or 3+' >&2
+                echo 'Error: --level must be 1, 2, 3, 3+ or phase-parent; review and research packets are written by the deep loops, not scaffolded' >&2
                 exit 1
             fi
             if [[ "$next_arg" == "phase-parent" ]]; then
@@ -651,7 +651,9 @@ finalize_scaffold_templates() {
             s/\| \*\*Level\*\* \| \[1\/2\/3\/3\+\] \|/| **Level** | $ENV{DOC_LEVEL} |/g;
             s/\[YYYY-MM-DD\]/$ENV{TODAY}/g;
             s/last_updated_at: "[^"]+"/last_updated_at: "$ENV{NOW_ISO}"/g;
-            s{\[YOUR_VALUE_HERE: [^\]]+\]}{$ENV{FEATURE_NAME}}g;
+            s{\[YOUR_VALUE_HERE: packet-id\]}{$ENV{RAW_PACKET_POINTER}}g;
+            s/\[Feature Name\]/$ENV{FEATURE_NAME}/g;
+            s/ \[template:[^\]]+\]//g;
             s/session_id: "template-session"/"session_id: \"scaffold-$ENV{RAW_PACKET_POINTER}\""/eg;
         ' "$md_file"
         ensure_template_source_near_top "$md_file"
@@ -1424,16 +1426,25 @@ EOF
     # that parent's real specFolder/description/keywords/parentChain with this append
     # request's own child-phase text. Only genuine new-parent creation writes here.
     _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
-    if [[ "$APPEND_TO_EXISTING_PARENT" != true && -f "$_DESC_SCRIPT" ]]; then
+    if [[ "$APPEND_TO_EXISTING_PARENT" != true ]]; then
+      # The presence rule counts a phase parent's description.json as required,
+      # so a scaffold that cannot write it fails here, loudly, instead of passing
+      # and failing validation the moment it exists.
+      if [[ ! -f "$_DESC_SCRIPT" ]]; then
+        echo "Error: phase parent needs the compiled description generator ($_DESC_SCRIPT); run npm run build under runtime, then rerun. The folder $FEATURE_DIR is partially scaffolded." >&2
+        exit 1
+      fi
       if node "$_DESC_SCRIPT" "$FEATURE_DIR" "$(dirname "$FEATURE_DIR")" \
         --description "$FEATURE_DESCRIPTION" --level "phase"; then
         CREATED_FILES+=("description.json")
       else
-        echo "  Warning: description.json generation skipped" >&2
+        echo "Error: description.json generation failed for the phase parent $FEATURE_DIR" >&2
+        exit 1
       fi
     fi
 
     # ── Create child phase folders ──
+    _child_paths=()
     CHILD_DOC_LEVEL="$(child_doc_level)"
     CHILD_LEVEL_CONTRACT="$(resolve_level_contract "$CHILD_DOC_LEVEL")"
     CHILDREN_INFO=()   # For JSON output
@@ -1447,6 +1458,7 @@ EOF
         mkdir -p "$_child_path" "$_child_path/scratch"
         touch "$_child_path/scratch/.gitkeep"
         create_graph_metadata_file "$_child_path" "Phase ${_i}: ${_child_folder#*-}" "planned"
+        _child_paths+=("$_child_path")
 
         # Copy Level 1 templates to child folder
         if ! child_level_contract_docs="$(scaffold_contract_docs "$CHILD_LEVEL_CONTRACT")"; then
@@ -1706,6 +1718,13 @@ _TSX_LOADER="${SCRIPT_DIR}/../../../node_modules/tsx/dist/loader.mjs"
 if [[ -f "$_BACKFILL_TS" && -f "$_TSX_LOADER" ]]; then
   node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$FEATURE_DIR" >/dev/null 2>&1 \
     || echo "  Warning: graph metadata derivation skipped" >&2
+  # A phase child's stub was written before its documents; derive it from them
+  # for the same reason the parent's is derived.
+  for _derived_child in "${_child_paths[@]-}"; do
+    [[ -n "$_derived_child" ]] || continue
+    node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$_derived_child" >/dev/null 2>&1 \
+      || echo "  Warning: graph metadata derivation skipped for ${_derived_child##*/}" >&2
+  done
 fi
 
 if [[ "$DOC_LEVEL" == "phase" ]]; then

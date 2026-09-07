@@ -9,6 +9,9 @@ set -euo pipefail
 # Rule: PLACEHOLDER_FILLED
 # Severity: error
 # Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:]
+#   Two hard classes only. Bracketed authoring hints such as [Decision Title] are soft by design and belong to
+#   spec/check-placeholders.sh, the standalone report, as do the [template:...] provenance tokens 1,240 closed
+#   documents still carry in their titles; flagging those here would fail hundreds of packets that were never wrong.
 # Parity: mirrors the runtime orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
 # (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
 # The post-edit hook runs the broader bracket scan at spec/check-placeholders.sh

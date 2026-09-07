@@ -285,6 +285,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     fs.mkdirSync(parsed.outDir, { recursive: true });
     for (const filePath of parsed.filePaths) {
       const rendered = renderInlineGates(fs.readFileSync(filePath, 'utf8'), parsed.level);
+      // Output is flat by contract: a caller that wants a document at a packet
+      // path such as research/research.md moves it after rendering.
       // String.split() always returns at least one element, so pop() cannot be undefined
       const outputName = filePath.endsWith('.tmpl')
         ? filePath.split('/').pop()!.replace(/\.tmpl$/u, '')

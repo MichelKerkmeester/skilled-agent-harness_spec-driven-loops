@@ -136,3 +136,26 @@ Every machine-level claim of child 010 held: the goal flag scaffolds at every cr
 ### The seven runtime suites
 
 The same defect class reached the runtime test project, which CI never ran: three suites built the retired checklist document, one expected pre-nesting paths, one expected an old rule message, one expected children ids outside the packet's identity to survive a merge, one hit the council writers' new authorized-roots guard, and the stdio check scanned the CLI package that now nests under the runtime. All seven are repaired at their own faults in this child.
+
+
+---
+
+## 7. ROUND THREE (DeepSeek V4 Flash max through DevPass, five bounded iterations on the twice-remediated tree)
+
+Source: `lineages/deepseek-v4-flash-templates-r3/research.md`, stop reason `maxIterationsReached`, 19 findings: 12 P1, 7 P2, five bounded angles. The GLM 5.3 Flash attempt that ran before the operator switched executors is kept under `lineages/glm-5-3-flash-templates-r3-partial/` as supplementary evidence. Censused in the main checkout on 2026-09-07 before child `018-scaffold-placeholder-and-upgrade-truth` was opened.
+
+| Rows | Claim | Census | Disposition |
+|------|-------|--------|-------------|
+| f-iter001-001/002/003 | create.sh cannot scaffold the review and research levels the manifest declares; no review-report template; the bash resolver lacks the review case | Confirmed | Recorded for the first two: the deep loops write those packets and the manifest rows are validator contracts; the scaffolder's level error now says so. Fixed for the third: the bash resolver mirrors the JS review case and accepts the two levels |
+| f-iter001-004/005 | The renderer writes flat so path-typed documents cannot land at their path; the JS resolver keys its map by `research/research.md` but looks up by file name | Confirmed | Fixed: both resolvers resolve by file name; the renderer's flat-output contract is stated in its comment, and callers place the file |
+| f-iter002-001/004 | An upgrade never creates `implementation-summary.md` | Confirmed | Fixed: every upgrade creates it when absent, through the same template mapping |
+| f-iter002-002 | 2→3 creates the lazy decision record; two headers state the old ladder | Confirmed | Fixed: the case creates nothing; the upgrade header and the files-rule header say the contract |
+| f-iter002-003 | Scaffold coaching markers are not injected on upgrade | Confirmed | Recorded: nothing reads the two markers, so their absence changes no verdict |
+| f-iter003-001 | The rule detects only two token classes | Confirmed for the rule; the lane cited the standalone script's argument block | Recorded: the two hard classes are by design, bracketed hints are soft, and the header now says which script reports them and why provenance is not a rule class |
+| f-iter003-002 | The blanket fill turns every slot into the feature name | Confirmed on the phase parent, whose twenty slots include open questions and the predecessor | Fixed: only feature-name, packet-id and date are filled; the phase-parent template shows the rest as hints |
+| f-iter003-003/004 | `[Feature Name]` is neither substituted nor detected; provenance tokens survive into 1,240 titles | Confirmed at that count | Fixed on scaffold: both are substituted or stripped and the goldens assert it. Recorded for the rule: a provenance class was tried and failed the extended suite's fixture, and would fail the 1,240 closed documents; the standalone script reports that backlog |
+| f-iter004-001/002/003 | Em dash, Oxford commas and a semicolon in the goal and decision-record templates | Confirmed | Fixed |
+| f-iter004-004/005 | The reference's template table names paths that do not exist; anchors and enumerations conflict with the rules | Confirmed | Fixed: real paths and a scope note |
+| f-iter005-001 | sk-doc's spec-named files are validator fixtures | Confirmed | Recorded: the fixture's own first sentence says what it is |
+| GLM partial f-001 | A phase parent passes without its required description when the generator is missing | Confirmed at `create.sh:1428` | Fixed: the scaffold exits 1 naming the generator |
+| GLM partial f-002/003 | The phase-parent template shares the core spec's provenance slug; children carry a stub written before their documents | Confirmed | Fixed: own slug; each child is derived after its documents |
