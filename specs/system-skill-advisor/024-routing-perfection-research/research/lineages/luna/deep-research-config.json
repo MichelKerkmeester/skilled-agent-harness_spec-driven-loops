@@ -1,0 +1,47 @@
+{
+  "topic": "Perfect skill routing across the fleet: why a phrase a hub's router advertises fails to reach that hub, and what would fix it.",
+  "specFolder": "specs/system-skill-advisor/024-routing-perfection-research",
+  "artifactDir": "specs/system-skill-advisor/024-routing-perfection-research/research/lineages/luna",
+  "artifactDirAbsolute": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/024-routing-perfection-research/research/lineages/luna",
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/024-routing-perfection-research/research/lineages/luna",
+  "loopType": "research",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 5,
+  "minIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1788757934344-y5f8cr",
+    "lineageId": "luna",
+    "lineageMode": "detached",
+    "generation": 1,
+    "parent": null
+  },
+  "status": "complete",
+  "createdAt": "2026-09-07T05:19:27.000Z",
+  "updatedAt": "2026-09-07T05:52:18.000Z",
+  "completedAt": "2026-09-07T05:52:18.000Z",
+  "totalIterations": 5,
+  "stopReason": "maxIterationsReached",
+  "synthesisPath": "specs/system-skill-advisor/024-routing-perfection-research/research/lineages/luna/research.md",
+  "convergenceTelemetry": {
+    "threshold": 0.05,
+    "newInfoRatios": [0.32, 0.27, 0.24, 0.18, 0.21],
+    "rollingNoveltyAverage": 0.244,
+    "converged": false,
+    "earlySynthesis": false
+  },
+  "scopeBoundary": "Only specs/system-skill-advisor/024-routing-perfection-research/research/lineages/luna may be written."
+}

@@ -1,0 +1,99 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "What scorer mechanic makes short router phrases fail?",
+    "How should cross-hub collisions be arbitrated without generic-token capture?",
+    "What invariant proves stage-1 reach for stage-2 router vocabulary?",
+    "What does the compiled-route split change, and what remains independent of compilation?",
+    "What build gate catches wrong-hub routing and measures no-reach without making short common phrases hard failures?"
+  ],
+  "keyFindings": [
+    {
+      "id": "luna-001-f1",
+      "statement": "Short no-reach is produced by stage-1 projection coverage together with stop-word filtering and the minimum lexical-overlap denominator; exact author phrases use a separate path.",
+      "iteration": 1,
+      "sources": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/text.ts:29-34,64-100",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts:315-334",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts:711-767,1116-1223"
+      ]
+    },
+    {
+      "id": "luna-002-f1",
+      "statement": "Stage-2-specific phrases collide with generic explicit token boosts because the advisor has no general cross-hub phrase-ownership input.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/skills/sk-design/ROUTER.md:63-68",
+        ".opencode/skills/sk-doc/ROUTER.md:148-150",
+        ".opencode/skills/system-deep-loop/ROUTER.md:71-75",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts:18-21,62-65",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts:542-620"
+      ]
+    },
+    {
+      "id": "luna-003-f1",
+      "statement": "A safe reach invariant checks multi-word stage-2 phrases for owner-local stage-1 authorization, then uses dynamic reach to distinguish wrong-hub from no-reach; single-word local vocabulary is telemetry.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:7-18,37-51,80-118",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts:711-767,1116-1223"
+      ]
+    },
+    {
+      "id": "luna-004-f1",
+      "statement": "Compiled routing is a fail-closed, within-hub mode-selection layer; it does not replace stage-1 hub discovery or cross-hub phrase ownership.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:4-15,92-108",
+        ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:4-16,97-120",
+        ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:21-36"
+      ]
+    },
+    {
+      "id": "luna-005-f1",
+      "statement": "The measurement gate must be exhaustive over multi-word phrases, fail closed on probe errors and wrong-hub results, and report no-reach as telemetry.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:37-51,54-65,68-118",
+        "specs/sk-design/018-sk-design-parent-v2/011-router-vocabulary-repair/scratch/fleet-reach-scan.md:57-65"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Lower the confidence bar",
+      "reason": "The worker prompt fixes 0.8 as the confidence bar; lowering it would weaken the abstention contract instead of repairing reach."
+    },
+    {
+      "direction": "Add router phrases without a stage-1 contract",
+      "reason": "Stage-2 INTENT_SIGNALS are not the advisor's stage-1 vocabulary, so declarations alone cannot guarantee reach."
+    }
+  ],
+  "synthesis": {
+    "status": "complete",
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredQuestions": 5,
+    "recommendationCount": 9,
+    "primaryCause": "stage-2 router vocabulary is not an advisor-visible stage-1 ownership signal, amplified by short-query normalization and generic token arbitration",
+    "unresolved": [
+      "Where generated stage-1 authorization is stored",
+      "Exact checker hardening/CI sequencing",
+      "Whether to build a separate sk-design compiled rollout",
+      "Fresh daemon ranks after IPC is available"
+    ]
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 5,
+    "convergenceScore": 0.244,
+    "coverageBySources": {
+      "scorer": 1,
+      "hub-contracts": 1,
+      "compiled-routing": 1,
+      "measurement-gate": 1
+    }
+  }
+}

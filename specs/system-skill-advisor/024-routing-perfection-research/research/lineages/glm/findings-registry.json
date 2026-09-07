@@ -1,0 +1,20 @@
+{
+  "packet": "024-routing-perfection-research",
+  "lineage": "glm",
+  "sessionId": "fanout-glm-1788757934344-y5f8cr",
+  "updatedAt": "2026-09-07T05:29:18Z",
+  "metrics": {
+    "iterationsCompleted": 0,
+    "keyFindings": 0,
+    "openQuestions": 5,
+    "resolvedQuestions": 0
+  },
+  "questions": [
+    { "id": "Q1", "text": "What does the scoring function do with phrase length; deliberate gate or normalization artifact; principled fix without lowering the global bar?", "status": "open" },
+    { "id": "Q2", "text": "Does a principled cross-hub arbitration exist for review verbs and single common words; what would it cost and break?", "status": "open" },
+    { "id": "Q3", "text": "What invariant should hold between stage-one intent_signals and stage-two router INTENT_SIGNALS?", "status": "open" },
+    { "id": "Q4", "text": "Is compiled routing orthogonal to angles 1-3; what does joining cost and buy?", "status": "open" },
+    { "id": "Q5", "text": "What should the routing gate assert, never fail on, and how does it avoid sampling-only baselines?", "status": "open" }
+  ],
+  "findings": []
+}
