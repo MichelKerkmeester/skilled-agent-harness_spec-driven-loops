@@ -78,10 +78,14 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
       }
     }
 
-    const tokenHits = tokens.filter((token) => {
-      const haystack = `${skill.id} ${skill.name} ${skill.description} ${skill.domains.join(' ')}`.toLowerCase();
-      return haystack.includes(token);
-    }).slice(0, 5);
+    // Evidence is harvested from the SAME candidate set the score was computed
+    // over. Harvesting from a subset of it let a skill match on an intent signal or
+    // a keyword, score well enough to clear the confidence floor, and still carry no
+    // evidence at all — which takes the no-evidence uncertainty default and is then
+    // dropped by the surfacing gate. The candidate was confident and invisible at
+    // the same time, and nothing in the output said why.
+    const haystack = candidates.join(' ').toLowerCase();
+    const tokenHits = tokens.filter((token) => haystack.includes(token)).slice(0, 5);
     evidence.push(...tokenHits.map((token) => `token:${token}`));
 
     if (score <= 0.05) continue;
