@@ -1,14 +1,40 @@
-# Files this goal touched, asserted to be tracked.
+# Files this goal touched, asserted to be tracked. The companion checker fails if
+# any line below is not in `git ls-files`.
 #
-# 41 entries were pruned on 2026-09-07. None had drifted or moved: each was deleted
-# by a later, deliberate commit, so the manifest was asserting the repository still
-# tracked files the repository had decided to remove. Pruning keeps this file a true
-# statement about the tree instead of a record of a plan the tree outgrew.
+# Reconciled on 2026-09-07 against the current tree. 26 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 15 were deleted outright by a later, deliberate commit and are pruned:
 #
-#    38 3bce9ac2339 refactor(sk-doc): rename all 11 mode packets and 12 keys to the sk- prefix
-#     3 cc77a1e550a refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
-# Review scope for the create-diff deep review: skill tree, command surface, hub routing.
-# One repo-relative path per line; consumed by deep-review scope discovery.
+#    12  3bce9ac2339 refactor(sk-doc): rename all 11 mode packets and 12 keys to the sk- prefix
+#     3  cc77a1e550a refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/snapshot-lifecycle/baseline-snapshot-and-compare.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/snapshot-lifecycle/snapshot-state-management.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/snapshot-lifecycle/explicit-pair-comparison.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/comparison-engine/deterministic-diffing.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/comparison-engine/self-contained-report.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/comparison-engine/multi-format-extraction.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/safety-and-capabilities/capability-tier-reporting.md
+.opencode/skills/sk-doc/sk-create-diff/feature-catalog/safety-and-capabilities/report-safety-validation.md
+.opencode/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md
+.opencode/skills/sk-doc/sk-create-diff/references/accessibility-contract.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/snapshot/missing-baseline-fallback.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/snapshot/baseline-capture-then-compare.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/snapshot/snapshot-status-and-cleanup.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/safety/source-never-mutated.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/safety/capability-and-unsupported-handling.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/safety/hostile-content-escaped.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/safety/self-contained-zero-js-report.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/comparison/markdown-before-after-review.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/comparison/html-visible-text-comparison.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/comparison/docx-text-comparison.md
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook/comparison/pdf-text-comparison.md
+.opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py
+.opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py
+.opencode/skills/sk-doc/sk-create-diff/scripts/test_create_diff.py
+.opencode/skills/sk-doc/sk-create-diff/assets/fixtures/onboarding-after.md
+.opencode/skills/sk-doc/sk-create-diff/assets/fixtures/onboarding-before.md
 .opencode/commands/create/diff.md
 .claude/commands/create/diff.md
 .opencode/commands/create/README.txt

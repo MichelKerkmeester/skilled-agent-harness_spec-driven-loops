@@ -144,8 +144,8 @@ Six angles, one per iteration, in order.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | The frozen corpus at `scratch/shadcn/` | An angle cannot cite what it claims | Re-extract with the `gh api` commands recorded in section 3 |
+| Risk | An angle drifts toward wrapping Recharts, which the corpus checker forbids outright | Med | Section 3 names it a constraint rather than a trade-off, and angle 6 sorts every finding into enforceable or judgement |
 <!-- /ANCHOR:risks -->
 
 ---

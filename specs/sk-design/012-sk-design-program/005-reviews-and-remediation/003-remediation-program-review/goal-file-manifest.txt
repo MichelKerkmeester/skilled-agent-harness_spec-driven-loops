@@ -1,19 +1,79 @@
-# Files this goal touched, asserted to be tracked.
+# Files this goal touched, asserted to be tracked. The companion checker fails if
+# any line below is not in `git ls-files`.
 #
-# 117 entries were pruned on 2026-09-07. None had drifted or moved: each was deleted
-# by a later, deliberate commit, so the manifest was asserting the repository still
-# tracked files the repository had decided to remove. Pruning keeps this file a true
-# statement about the tree instead of a record of a plan the tree outgrew.
+# Reconciled on 2026-09-07 against the current tree. 58 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 58 were deleted outright by a later, deliberate commit and are pruned:
 #
-#    59 fe1467f4e3f chore(skills): promote sk-design-md-generator to top-level skill
-#    30 3d6ba85774e refactor(sk-design): merge 012-018 into one multi-phased 012 program parent
-#     9 828e0180798 refactor(sk-design): remove styles/docs stray; rename dunder test/fixture folders to kebab
-#     6 4edf5824369 refactor(sk-design): deprecate judgment hub + interface, graduate md-generator to standalo
-#     4 b217d74b819 refactor(sk-design): retire the audit and foundations commands
-#     3 c1981d2b913 refactor(sk-design): merge the motion mode into interface
-#     3 0aea9940555 refactor(sk-design): rename all three mode packets and keys to the sk- prefix
-#     2 8b54f7522d1 refactor(sk-design): fold foundations and audit into interface subworkflows
+#    30  3d6ba85774e refactor(sk-design): merge 012-018 into one multi-phased 012 program parent
+#     9  828e0180798 refactor(sk-design): remove styles/docs stray; rename dunder test/fixture folders to keba
+#     6  4edf5824369 refactor(sk-design): deprecate judgment hub + interface, graduate md-generator to standal
+#     4  b217d74b819 refactor(sk-design): retire the audit and foundations commands
+#     3  c1981d2b913 refactor(sk-design): merge the motion mode into interface
+#     3  fe1467f4e3f chore(skills): promote sk-design-md-generator to top-level skill
+#     2  8b54f7522d1 refactor(sk-design): fold foundations and audit into interface subworkflows
+#     1  0aea9940555 refactor(sk-design): rename all three mode packets and keys to the sk- prefix
 #
-#  1 further entr(y|ies) dropped as gitignored runtime state, which a manifest of
+#  1 further entr(ies) dropped as gitignored runtime state, which a manifest of
 #  tracked files can never be satisfied by.
 .opencode/skills/sk-design/command-metadata.json
+.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/study-prepare.ts
+.opencode/skills/sk-design/sk-design-md-generator/backend/tests/corpus-baseline-v3.test.ts
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/canonical.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/generation-manifest.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/operator.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/retrieval.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/schema.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/stage-telemetry.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/database/vectors.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/cards.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/corpus-use-proof.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/eligibility.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/hydrate.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/manifest.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/ordering.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/persistent-adapter.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/rank-fts.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/engine/style-library.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/lib/paths.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/library/manifests/retrieval-manifest.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/scripts/extract-refero.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/adapter.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/fixtures.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/fixtures.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/index.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/indexer.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/judgments.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/manifest.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/operator.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/oracle.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/retrieval.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/schema.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/database/telemetry.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/check-stable.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/eligibility-first.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/fallback.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/fixtures.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/hydrate-guard.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/index.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/invalidation.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/proof.test.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/differential-oracle.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/degraded-disable-fts.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/exact-reuse.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/exclusions.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/facet-filter.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/fts-text.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/hybrid.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/index.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/paged.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/scales.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/structured-only.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/vector-only.canonical.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/query-set.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/relevance-judgments.mjs
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/relevance-judgments.seed.json
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/replay-fixtures.mjs

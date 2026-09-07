@@ -73,6 +73,13 @@ Measured across all 439 declared phrases, before at advisor generation 698 and a
 
 **The gate watched failing.** Pointed at an absent advisor the check reported `probe-error=77`, `RESULT: FAILED`, exit 1, where it had previously reported `declared=77 wrong-hub=0 no-reach=0`, `RESULT: PASSED`, exit 0. A sampled run under CI exits 2; by-hand sampling still works.
 
+**The repaired gate does not pass, and that is the honest state.** Because `outranked`
+now fails the run, `ci-router-vocabulary-reach.cjs` exits 1 and prints `RESULT: FAILED`
+against the tree as landed: 18 phrases still resolve to a hub other than the one
+declaring them. Reach is fixed; ownership is not. Nothing is blocked by this, because
+the check is not wired into any workflow, but a reader should not infer from "173 to 20"
+that the gate is green. It is red by design until the arbitration in ADR-001 is decided.
+
 **No collateral.** All six hubs pass `parent-skill-check`. Root metadata 13/13, derived freshness 13/13, leaf-manifest freshness 13/13. The generator is idempotent: a second `--check` after the write reports zero missing.
 
 ---

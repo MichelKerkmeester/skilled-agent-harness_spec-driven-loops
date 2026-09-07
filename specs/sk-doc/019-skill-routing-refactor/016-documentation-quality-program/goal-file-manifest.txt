@@ -1,33 +1,35 @@
-# Files this goal touched, asserted to be tracked.
+# Files this goal touched, asserted to be tracked. The companion checker fails if
+# any line below is not in `git ls-files`.
 #
-# 253 entries were pruned on 2026-09-07. None had drifted or moved: each was deleted
-# by a later, deliberate commit, so the manifest was asserting the repository still
-# tracked files the repository had decided to remove. Pruning keeps this file a true
-# statement about the tree instead of a record of a plan the tree outgrew.
+# Reconciled on 2026-09-07 against the current tree. 107 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 146 were deleted outright by a later, deliberate commit and are pruned:
 #
-#    74 606e55cb8a9 feat(spec-root)!: flip specs/ to canonical, .opencode/specs to symlink
-#    33 3bce9ac2339 refactor(sk-doc): rename all 11 mode packets and 12 keys to the sk- prefix
-#    17 9597bf683f5 fix(system-deep-loop): follow the sk-design packet rename in alignment adapters
-#    14 fe1467f4e3f chore(skills): promote sk-design-md-generator to top-level skill
-#    14 0aea9940555 refactor(sk-design): rename all three mode packets and keys to the sk- prefix
-#    13 9efb3fc5612 refactor(sk-prompt): rename both mode packets and keys to the sk- prefix
-#    13 8b54f7522d1 refactor(sk-design): fold foundations and audit into interface subworkflows
-#     9 23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
-#     8 aef7852400a refactor(spec-kit): move the engine package to runtime and drop its MCP identity
-#     8 57c3ed338ca refactor(hooks): consolidate spec-kit runtime/ hooks + per-concern READMEs + ghost cleanup
-#     7 b4c24846964 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memory
-#     7 828e0180798 refactor(sk-design): remove styles/docs stray; rename dunder test/fixture folders to kebab
-#     6 fef098b6b29 refactor(runtime): strip code-graph from shared launcher, lifecycle scripts and docs
-#     6 c1981d2b913 refactor(sk-design): merge the motion mode into interface
-#     6 8849444aa61 refactor(deep-loop): remove deep-alignment mode and conformance-benchmark
-#     5 988ec506029 feat(routing): standardize parent hubs on root router documents
-#     3 8371855fbbc refactor(deep-loop-runtime): delete migration/parity scaffolding modules (2/2)
-#     3 4edf5824369 refactor(sk-design): deprecate judgment hub + interface, graduate md-generator to standalo
-#     2 947467ecc7e refactor(deep-loop): remove three orphaned runtime modules and their dead coverage
-#     2 89473590bc4 refactor(spec-kit): drop the drift-marker hooks and the engine modules behind the retired 
-#     1 f6a92516df2 docs(spec-kit): prune the catalog and playbook to the surviving engine and sweep the packa
-#     1 f3a42a2af3c refactor(deep-loop-runtime): delete migration/parity scaffolding modules (1/2)
-#     1 99661d468fc fix(hooks): relocate hook contract docs and drop dangling references
+#    28  3bce9ac2339 refactor(sk-doc): rename all 11 mode packets and 12 keys to the sk- prefix
+#    12  9597bf683f5 fix(system-deep-loop): follow the sk-design packet rename in alignment adapters
+#    12  8b54f7522d1 refactor(sk-design): fold foundations and audit into interface subworkflows
+#    10  606e55cb8a9 feat(spec-root)!: flip specs/ to canonical, .opencode/specs to symlink
+#     9  0aea9940555 refactor(sk-design): rename all three mode packets and keys to the sk- prefix
+#     8  57c3ed338ca refactor(hooks): consolidate spec-kit runtime/ hooks + per-concern READMEs + ghost cleanu
+#     8  fe1467f4e3f chore(skills): promote sk-design-md-generator to top-level skill
+#     8  9efb3fc5612 refactor(sk-prompt): rename both mode packets and keys to the sk- prefix
+#     7  23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
+#     6  c1981d2b913 refactor(sk-design): merge the motion mode into interface
+#     6  fef098b6b29 refactor(runtime): strip code-graph from shared launcher, lifecycle scripts and docs
+#     6  8849444aa61 refactor(deep-loop): remove deep-alignment mode and conformance-benchmark
+#     5  988ec506029 feat(routing): standardize parent hubs on root router documents
+#     4  aef7852400a refactor(spec-kit): move the engine package to runtime and drop its MCP identity
+#     4  b4c24846964 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memor
+#     3  4edf5824369 refactor(sk-design): deprecate judgment hub + interface, graduate md-generator to standal
+#     3  8371855fbbc refactor(deep-loop-runtime): delete migration/parity scaffolding modules (2/2)
+#     2  947467ecc7e refactor(deep-loop): remove three orphaned runtime modules and their dead coverage
+#     1  828e0180798 refactor(sk-design): remove styles/docs stray; rename dunder test/fixture folders to keba
+#     1  f3a42a2af3c refactor(deep-loop-runtime): delete migration/parity scaffolding modules (1/2)
+#     1  f6a92516df2 docs(spec-kit): prune the catalog and playbook to the surviving engine and sweep the pack
+#     1  89473590bc4 refactor(spec-kit): drop the drift-marker hooks and the engine modules behind the retired
+#     1  99661d468fc fix(hooks): relocate hook contract docs and drop dangling references
 .opencode/commands/doctor/scripts/parent-skill-check.cjs
 .opencode/commands/scripts/README.md
 .opencode/install-guides/README.md
@@ -40,14 +42,47 @@
 .opencode/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md
 .opencode/skills/mcp-tooling/mcp-figma/scripts/README.md
 .opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md
+.opencode/skills/sk-code/sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md
+.opencode/skills/sk-code/sk-code-webflow/assets/integrations/README.md
+.opencode/skills/sk-code/sk-code-webflow/references/animation/animate-and-timelines.md
+.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md
+.opencode/skills/sk-code/sk-code-webflow/references/animation/scroll-and-gestures.md
 .opencode/skills/sk-code/mode-registry.json
 .opencode/skills/sk-code/shared/assets/patterns/README.md
 .opencode/skills/sk-design/benchmark/README.md
+.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md
+.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md
+.opencode/skills/sk-doc/sk-create-changelog/references/worked-examples.md
+.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md
+.opencode/skills/sk-design/sk-design-md-generator/references/design-md-format.md
+.opencode/skills/sk-design/sk-design-md-generator/references/examples/editorial-exemplar.md
+.opencode/skills/sk-design/sk-design-md-generator/references/guided-run.md
+.opencode/skills/sk-design/sk-design-md-generator/references/quality-checklist.md
+.opencode/skills/sk-design/sk-design-md-generator/references/writing-style-guide.md
+.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md
+.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md
+.opencode/skills/sk-design/sk-design-md-generator/styles/README.md
+specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs/README.md
+.opencode/skills/sk-design/sk-design-md-generator/styles/library/README.md
+.opencode/skills/sk-design/sk-design-md-generator/styles/library/bundles/README.md
+.opencode/skills/sk-design/sk-design-md-generator/styles/library/manifests/README.md
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/README.md
+.opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/README.md
+.opencode/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md
+.opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
+.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md
 .opencode/skills/sk-doc/shared/README.md
 .opencode/skills/sk-doc/shared/assets/template-rules.json
 .opencode/skills/sk-doc/shared/scripts/README.md
 .opencode/skills/sk-doc/shared/scripts/validate_document.py
 .opencode/skills/sk-git/README.md
+.opencode/skills/sk-prompt/references/depth-framework.md
+.opencode/skills/sk-prompt/references/patterns-evaluation.md
+.opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md
+.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/README.md
+.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/README.md
 .opencode/skills/system-deep-loop/deep-ai-council/README.md
 .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md
 .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md
@@ -115,10 +150,84 @@
 .opencode/skills/system-skill-advisor/references/decisions/deferred-decisions.md
 .opencode/skills/system-skill-advisor/scripts/README.md
 .opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md
+.opencode/skills/system-spec-kit/runtime/api/README.md
+.pi/extensions/deep-pi/benchmarks/README.md
+.opencode/skills/system-spec-kit/runtime/cli/evals/README.md
+.opencode/skills/system-spec-kit/runtime/tests/_support/README.md
+.opencode/skills/system-spec-kit/runtime/tests/local-llm-features/README.md
+.opencode/skills/system-spec-kit/runtime/tests/local-llm-features/performance/baselines/README.md
 .opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md
 .opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md
 .opencode/skills/system-spec-kit/runtime/hooks/claude/README.md
 .opencode/skills/system-spec-kit/runtime/hooks/codex/README.md
+.opencode/scripts/git-hooks/README.md
+.opencode/skills/system-spec-kit/runtime/cli/loaders/README.md
+.opencode/skills/system-spec-kit/runtime/cli/metrics/README.md
+.opencode/skills/system-spec-kit/runtime/cli/sweep/README.md
 .opencode/skills/system-spec-kit/shared/ipc/README.md
 .opencode/skills/system-spec-kit/templates/changelog/README.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/implementation-summary.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/plan.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/spec.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/tasks.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/context-index.md
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/description.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/graph-metadata.json
+specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/spec.md
 AGENTS.md

@@ -1,16 +1,17 @@
-# Files this goal touched, asserted to be tracked.
+# Files this goal touched, asserted to be tracked. The companion checker fails if
+# any line below is not in `git ls-files`.
 #
-# 39 entries were pruned on 2026-09-07. None had drifted or moved: each was deleted
-# by a later, deliberate commit, so the manifest was asserting the repository still
-# tracked files the repository had decided to remove. Pruning keeps this file a true
-# statement about the tree instead of a record of a plan the tree outgrew.
+# Reconciled on 2026-09-07 against the current tree. 2 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 37 were deleted outright by a later, deliberate commit and are pruned:
 #
-#    34 23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
-#     3 aef7852400a refactor(spec-kit): move the engine package to runtime and drop its MCP identity
-#     2 e4854e05265 feat(system-spec-kit): reorganize templates and rework the document contract
-# Deep-review scope manifest — WORKSTREAM A: constitutional-memory LAYER deprecation
-# Audit the EXECUTED deprecation for completeness: missed references, stray surfacing paths,
-# dead enum/tier literals, broken fetch/cache/injection removals. Intent docs + 61-touchpoint audit included.
+#    33  23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
+#     2  aef7852400a refactor(spec-kit): move the engine package to runtime and drop its MCP identity
+#     2  e4854e05265 feat(system-spec-kit): reorganize templates and rework the document contract
+.opencode/skills/system-skill-advisor/mcp-server/tools/types.ts
+.opencode/skills/system-spec-kit/runtime/api/index.ts
 .opencode/skills/system-spec-kit/SKILL.md
 specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design/spec.md
 specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics/spec.md
