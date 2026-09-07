@@ -38,6 +38,12 @@ const PALETTE_DARK_END = '/* CHART_PALETTE_DARK:END */';
 const DARK_QUERY = /@media[^{]*prefers-color-scheme\s*:\s*dark/i;
 const DATA_BEGIN = '/* CHART_DATA:BEGIN */';
 const DATA_END = '/* CHART_DATA:END */';
+const SERIES_BEGIN = '/* CHART_SERIES:BEGIN */';
+const SERIES_END = '/* CHART_SERIES:END */';
+const READOUT_BEGIN = '/* READOUT:BEGIN */';
+const READOUT_END = '/* READOUT:END */';
+const CURVE_BEGIN = '/* CURVE:BEGIN */';
+const CURVE_END = '/* CURVE:END */';
 const CATALOG_BEGIN = '<!-- CHART_CATALOG:BEGIN -->';
 const CATALOG_END = '<!-- CHART_CATALOG:END -->';
 
@@ -1220,7 +1226,8 @@ const LOCALE_FORMATTERS = [
 
 function checkNumberFormat(file, src) {
   const { scripts, markup } = regionsOf(stripHtmlComments(src));
-  const code = scripts.map(stripJsComments).join('\n');
+  const joined = scripts.join('\n');
+  const code = stripJsComments(joined);
   tally('number-format', LOCALE_FORMATTERS.length + 1);
 
   for (const [re, what] of LOCALE_FORMATTERS) {
@@ -1232,9 +1239,69 @@ function checkNumberFormat(file, src) {
   // A hover card prints a figure that is nowhere else in the picture, so it is the one place a
   // raw value would reach a reader with no formatter between them.
   if (!/\bdata-chart-tooltip\b/.test(markup)) return;
-  if (/function\s+fmt\s*\(/.test(code)) return;
-  record('number-format', 'error', file,
-    'the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them');
+  tally('number-format', 5);
+  if (!/function\s+fmt\s*\(/.test(code)) {
+    record('number-format', 'error', file,
+      'the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them');
+  }
+
+  const begins = occurrences(joined, READOUT_BEGIN);
+  const ends = occurrences(joined, READOUT_END);
+  if (begins !== 1 || ends !== 1) {
+    record('number-format', 'error', file,
+      'the file carries a hover card and defines no READOUT block. Tooltip label, value and key alias belong beside CHART_DATA');
+    return;
+  }
+  const start = joined.indexOf(READOUT_BEGIN);
+  const end = joined.indexOf(READOUT_END, start) + READOUT_END.length;
+  if (start < joined.indexOf(DATA_END)) {
+    record('number-format', 'error', file,
+      'the READOUT block sits above CHART_DATA. A local readout belongs beside the data it formats');
+  }
+  const block = joined.slice(start, end);
+  const fields = [
+    [/\blabel\s*:\s*function\s*\(/, 'label formatter'],
+    [/\bvalue\s*:\s*function\s*\(/, 'value formatter'],
+    [/\bkey\s*:\s*[\'\"][^\'\"]+[\'\"]/, 'key alias'],
+  ];
+  for (const [re, what] of fields) {
+    if (re.test(block)) continue;
+    record('number-format', 'error', file,
+      `the READOUT block has no ${what}. A tooltip form declares its label formatter, value formatter and key alias beside CHART_DATA`);
+  }
+  const codeOutside = stripJsComments(joined.slice(0, start) + joined.slice(end));
+  if (!/\bREADOUT\s*\.\s*label\s*\(/.test(codeOutside)) {
+    record('number-format', 'error', file,
+      'tooltip readout code never calls READOUT.label(). The card must read its local label formatter');
+  }
+  if (!/\bREADOUT\s*\.\s*value\s*\(/.test(codeOutside)) {
+    record('number-format', 'error', file,
+      'tooltip readout code never calls READOUT.value(). The card must read its local value formatter');
+  }
+  const keyAccessPattern = /\b([A-Za-z_$][\w$]*)\s*\[\s*READOUT\s*\.\s*key\s*\]/g;
+  const keyAccesses = [...codeOutside.matchAll(keyAccessPattern)];
+  const keyObjectPattern = /\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*\{\s*\[\s*READOUT\s*\.\s*key\s*\]\s*:/;
+  const statements = codeOutside.split(';');
+  const keyedObjectNames = new Set();
+  let decorativeAlias = false;
+  for (let i = 0; i < statements.length; i += 1) {
+    const built = keyObjectPattern.exec(statements[i]);
+    if (!built) continue;
+    const aliasName = built[1];
+    keyedObjectNames.add(aliasName);
+    const readBack = new RegExp(`\\b${aliasName}\\s*\\[\\s*READOUT\\s*\\.\\s*key\\s*\\]`);
+    if (readBack.test(statements[i]) || (statements[i + 1] && readBack.test(statements[i + 1]))) {
+      decorativeAlias = true;
+      break;
+    }
+  }
+  if (decorativeAlias) {
+    record('number-format', 'error', file,
+      'tooltip readout code builds an object keyed by READOUT.key and immediately reads that alias back. The card must read READOUT.key from the registered datum');
+  } else if (!keyAccesses.some((match) => !keyedObjectNames.has(match[1]))) {
+    record('number-format', 'error', file,
+      'tooltip readout code does not apply READOUT.key to a datum. The card must read its declared key from the registered datum');
+  }
 }
 
 // Rule: an empty data block says so, in the picture. An empty frame and a chart whose values
@@ -1432,6 +1499,124 @@ const INDEXED_CLASS = /^\.([a-z]+)-(\d+)$/;
 const SERIES_TOKEN_VALUE = /var\(\s*--chart-series-(\d+)\s*\)/;
 const COLOUR_PROPS = ['fill', 'stroke', 'stop-color', 'color', 'background', 'background-color'];
 const DECLARED_CAPACITY = /\bconst\s+CAPACITY\s*=\s*(\d+)\s*;/;
+const KEYED_SERIES_FORMS = new Set([
+  'bar-line-composed', 'grouped-bars', 'parallel-axes', 'population-pyramid', 'stacked-area', 'stacked-bars',
+]);
+
+function keyedSeriesDeclaration(file, joined) {
+  const begins = occurrences(joined, SERIES_BEGIN);
+  const ends = occurrences(joined, SERIES_END);
+  if (begins !== 1 || ends !== 1) {
+    record('series-mapping', 'error', file,
+      'this multi-series form has no single CHART_SERIES sentinel pair beside CHART_DATA. Every named series declares its key and palette token once');
+    return null;
+  }
+  const start = joined.indexOf(SERIES_BEGIN);
+  const end = joined.indexOf(SERIES_END, start) + SERIES_END.length;
+  if (start < joined.indexOf(DATA_END)) {
+    record('series-mapping', 'error', file,
+      'the CHART_SERIES block sits above CHART_DATA. A keyed series declaration belongs beside the data it describes');
+  }
+  const block = joined.slice(start, end);
+  const list = /\bconst\s+SERIES\s*=\s*\[([\s\S]*?)\]\s*;/.exec(block);
+  if (!list) {
+    record('series-mapping', 'error', file,
+      'the CHART_SERIES block declares no const SERIES list. Every named series declares a key, one palette token and its paint classes');
+    return null;
+  }
+
+  const entries = [];
+  for (const match of list[1].matchAll(/\{([\s\S]*?)\}/g)) {
+    const entry = match[1];
+    const keyMatch = /\bkey\s*:\s*(['"])(.*?)\1/.exec(entry);
+    if (!keyMatch) {
+      record('series-mapping', 'error', file,
+        'a CHART_SERIES entry has no key. Every named series is addressed by one stable key');
+      continue;
+    }
+    const key = keyMatch[2];
+    const tokenFields = [...entry.matchAll(/\btoken\s*:\s*(['"])(.*?)\1/g)].map((m) => m[2]);
+    if (tokenFields.length === 0) {
+      record('series-mapping', 'error', file,
+        `series key "${key}" has no palette token. Each key resolves to exactly one --chart-series-N token`);
+    } else if (tokenFields.length !== 1) {
+      record('series-mapping', 'error', file,
+        `series key "${key}" resolves to ${tokenFields.length} palette tokens. Each key resolves to exactly one --chart-series-N token`);
+    }
+    const token = tokenFields[0] || null;
+    if (token && !/^--chart-series-\d+$/.test(token)) {
+      record('series-mapping', 'error', file,
+        `series key "${key}" resolves to "${token}", not a --chart-series-N token. A keyed series owns one palette token`);
+    }
+    const classField = /\bclasses\s*:\s*\[([\s\S]*?)\]/.exec(entry);
+    const classes = classField ? [...classField[1].matchAll(/['"]([^'"]+)['"]/g)].map((m) => m[1]) : [];
+    if (!classes.length) {
+      record('series-mapping', 'error', file,
+        `series key "${key}" declares no paint class. The checker cannot prove which marks its token owns`);
+    }
+    if (entries.some((item) => item.key === key)) {
+      record('series-mapping', 'error', file,
+        `series key "${key}" is declared more than once. One key has one declaration beside CHART_DATA`);
+    }
+    entries.push({ key, token, classes });
+  }
+  if (!entries.length) {
+    record('series-mapping', 'error', file,
+      'the CHART_SERIES list has no entries. Every multi-series drawing declares its named streams');
+  }
+  return { start, end, entries };
+}
+
+function checkKeyedSeriesMapping(file, joined, css) {
+  const declaration = keyedSeriesDeclaration(file, joined);
+  if (!declaration) return;
+  const paintedClasses = new Map();
+  for (const rule of styleRules(css)) {
+    if (rule.selector.startsWith('@')) continue;
+    let token = null;
+    for (const prop of COLOUR_PROPS) {
+      const decl = new RegExp(`(?:^|[;{\\s])${prop}\\s*:\\s*([^;}]+)`, 'i').exec(rule.body);
+      if (!decl) continue;
+      const found = SERIES_TOKEN_VALUE.exec(decl[1]);
+      if (found) { token = `--chart-series-${found[1]}`; break; }
+    }
+    if (!token) continue;
+    for (const match of rule.selector.matchAll(/\.([A-Za-z][A-Za-z0-9_-]*)/g)) {
+      const className = match[1];
+      const previous = paintedClasses.get(className);
+      if (previous && previous !== token) {
+        record('series-mapping', 'error', file,
+          `paint class ".${className}" resolves to both ${previous} and ${token}. A keyed series class owns one palette token`);
+      }
+      paintedClasses.set(className, token);
+    }
+  }
+
+  const owners = new Map();
+  for (const entry of declaration.entries) {
+    for (const className of entry.classes) {
+      const previous = owners.get(className);
+      if (previous && previous.key !== entry.key) {
+        record('series-mapping', 'error', file,
+          `paint class ".${className}" belongs to series keys "${previous.key}" and "${entry.key}". A paint class has one keyed owner`);
+      }
+      owners.set(className, entry);
+      const painted = paintedClasses.get(className);
+      if (!painted) {
+        record('series-mapping', 'error', file,
+          `series key "${entry.key}" class ".${className}" has no palette paint. Each declared paint class resolves through its key token`);
+      } else if (entry.token && painted !== entry.token) {
+        record('series-mapping', 'error', file,
+          `series key "${entry.key}" declares ${entry.token} but class ".${className}" paints ${painted}. A keyed series owns the token its paint uses`);
+      }
+    }
+  }
+  for (const [className, painted] of paintedClasses) {
+    if (owners.has(className)) continue;
+    record('series-mapping', 'error', file,
+      `paint class ".${className}" paints ${painted} but no CHART_SERIES key owns it. Every series paint is named beside CHART_DATA`);
+  }
+}
 
 function checkSeriesMapping(file, src, palette, declaredSystem) {
   const { styles, scripts } = regionsOf(stripHtmlComments(src));
@@ -1487,6 +1672,60 @@ function checkSeriesMapping(file, src, palette, declaredSystem) {
         `the drawing code declares CAPACITY ${declared[1]} and the stylesheet defines ${indices.length} ".${prefix}-*" steps. The constant is what stops a mark past the ceiling reaching a class with no fill, so a constant that outruns the classes reopens exactly the hole it was added to close`);
     }
   }
+
+  const form = path.basename(file, '.html');
+  if (KEYED_SERIES_FORMS.has(form)) {
+    tally('series-mapping', 4);
+    checkKeyedSeriesMapping(file, scripts.join('\n'), css);
+  }
+}
+
+const CURVE_FORMS = new Set([
+  'bar-line-composed', 'daily-line', 'stacked-area', 'orders-after-the-price-change',
+]);
+const CURVE_VALUES = new Set(['linear', 'step', 'monotone']);
+
+function checkCurveContract(file, src) {
+  const form = path.basename(file, '.html');
+  if (!CURVE_FORMS.has(form)) return;
+  const { scripts } = regionsOf(stripHtmlComments(src));
+  const joined = scripts.join('\n');
+  tally('curve-contract', 4);
+
+  const begins = occurrences(joined, CURVE_BEGIN);
+  const ends = occurrences(joined, CURVE_END);
+  if (begins !== 1 || ends !== 1) {
+    record('curve-contract', 'error', file,
+      'this time-path form has no single CURVE sentinel pair beside CHART_DATA. A path declares its interpolation intent and rationale locally');
+    return;
+  }
+  const start = joined.indexOf(CURVE_BEGIN);
+  const end = joined.indexOf(CURVE_END, start) + CURVE_END.length;
+  if (start < joined.indexOf(DATA_END)) {
+    record('curve-contract', 'error', file,
+      'the CURVE block sits above CHART_DATA. A path declaration belongs beside the data it interprets');
+  }
+  const block = joined.slice(start, end);
+  const declaration = /\bconst\s+CURVE\s*=\s*(['"])(.*?)\1\s*;/.exec(block);
+  if (!declaration) {
+    record('curve-contract', 'error', file,
+      'the CURVE block declares no curve. The allowed default is linear, but a time path still states its intent');
+  } else if (!CURVE_VALUES.has(declaration[2])) {
+    record('curve-contract', 'error', file,
+      `CURVE "${declaration[2]}" is outside {linear, step, monotone}. Natural interpolation is not a declared intent`);
+  }
+  const rationale = block.split('\n').some((line) => {
+    const comment = /\/\/\s*(.+)$/.exec(line);
+    return comment && comment[1].trim().length > 0;
+  });
+  if (!rationale) {
+    record('curve-contract', 'error', file,
+      'the CURVE block has no one-line rationale. The path says which curve it uses and why that curve is honest for the data');
+  }
+  const codeOutside = stripJsComments(joined.slice(0, start) + joined.slice(end));
+  if (/\bCURVE\b/.test(codeOutside)) return;
+  record('curve-contract', 'error', file,
+    'the path code never reads CURVE. Declaring an interpolation intent without handing it to the path leaves the contract decorative');
 }
 
 /* ------------------------------------------------------------------- catalog */
@@ -2047,6 +2286,7 @@ function main() {
     checkTypeScale(name, src, palette);
     checkGradientSweep(name, src, systemId);
     checkSeriesMapping(name, src, palette, systemId);
+    checkCurveContract(name, src);
     // The empty-data notice is an obligation of every file that draws a reading, which is every
     // chart form and every delivery. It used to be asked of the forms alone, on the stated ground
     // that a delivery carries the notice of the form it was built from. That ground was checked

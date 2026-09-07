@@ -186,6 +186,15 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'alpha', label: 'Alpha', token: '--chart-series-1', classes: ['line-1', 'dot-1'] },
+  { key: 'beta', label: 'Beta', token: '--chart-series-2', classes: ['line-2', 'dot-2'] },
+  { key: 'gamma', label: 'Gamma', token: '--chart-series-3', classes: ['line-3', 'dot-3'] },
+  { key: 'delta', label: 'Delta', token: '--chart-series-4', classes: ['line-4', 'dot-4'] }
+];
+/* CHART_SERIES:END */
+
 // Everything below draws. Each axis carries its own scale, which is the whole point and
 // also the trap: nothing here says which end of an axis is the good end.
 const SVG = 'http://www.w3.org/2000/svg';
@@ -295,10 +304,11 @@ AXES.forEach(function (axis, j) {
 const legend = document.getElementById('legend-parallel-axes');
 const entries = [];
 DATA.forEach(function (d, s) {
+  const series = SERIES[s];
   const points = d.values.map(function (v, j) { return ax(j) + ',' + ay(j, v); });
-  node('path', { d: 'M' + points.join(' L'), 'data-series': s + 1 }, 'line-' + (s + 1));
+  node('path', { d: 'M' + points.join(' L'), 'data-series': s + 1 }, series.classes[0]);
   d.values.forEach(function (v, j) {
-    tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4, 'data-series': s + 1 }, 'dot-' + (s + 1)),
+    tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4, 'data-series': s + 1 }, series.classes[1]),
       d.label + ', ' + AXES[j].name + ': ' + fmt(v) + ' ' + AXES[j].unit);
   });
 
@@ -313,13 +323,13 @@ DATA.forEach(function (d, s) {
   swatch.setAttribute('y', endY - 4);
   swatch.setAttribute('width', 8);
   swatch.setAttribute('height', 8);
-  swatch.setAttribute('class', 'key-swatch dot-' + (s + 1));
+  swatch.setAttribute('class', 'key-swatch ' + series.classes[1]);
   entry.appendChild(swatch);
   const label = document.createElementNS(SVG, 'text');
   label.setAttribute('x', RIGHT + 20);
   label.setAttribute('y', endY + 4);
   label.setAttribute('class', 'key');
-  label.textContent = d.label;
+  label.textContent = series.label;
   entry.appendChild(label);
   legend.appendChild(entry);
   entries.push(entry);

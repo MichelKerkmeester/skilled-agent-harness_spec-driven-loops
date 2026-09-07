@@ -167,6 +167,14 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
 // Everything below renders. The block above is the only part to edit.
 const SVG = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('chart');
@@ -259,9 +267,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -339,7 +352,7 @@ node('line', { x1: LEFT, y1: BASE, x2: RIGHT, y2: BASE }, 'axis');
 
 DATA.forEach(function (d) {
   markable(node('circle', { cx: px(d.x), cy: py(d.y), r: 5.5 }, d.lead ? 'dot-lead' : 'dot'),
-    d.label, [[X_NAME, fmt(d.x)], [Y_NAME, fmt(d.y)]]);
+    d, [[X_NAME, fmt(d.x)], [Y_NAME, fmt(d.y)]]);
 });
 
 const outlier = DATA.filter(function (d) { return d.lead; })[0];

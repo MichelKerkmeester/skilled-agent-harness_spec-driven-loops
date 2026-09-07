@@ -189,6 +189,14 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'day'
+};
+/* READOUT:END */
+
 // Everything below draws. A range is two numbers and it stays two numbers. The moment a
 // midpoint line appears, the reader starts reading an average nobody measured.
 const SVG = 'http://www.w3.org/2000/svg';
@@ -278,9 +286,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -375,9 +388,10 @@ DATA.forEach(function (d, i) {
   // the bar prints neither number: the card is the only reading of a day short of the table.
   // The one reading it must never produce is a single figure between the two, since that
   // average is what this form exists to refuse. A day left undrawn registers nothing.
+  const datum = { day: 'Day ' + d.day };
   markable(node('rect', {
     x: cx - barWidth / 2, y: y(d.high), width: barWidth, height: y(d.low) - y(d.high), rx: barWidth / 2
-  }, d === widest ? 'range-wide' : 'range'), 'Day ' + d.day,
+  }, d === widest ? 'range-wide' : 'range'), datum,
     [['Low', fmt(d.low)], ['High', fmt(d.high)]]);
 });
 

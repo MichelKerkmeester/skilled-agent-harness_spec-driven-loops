@@ -196,6 +196,14 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'name'
+};
+/* READOUT:END */
+
 // Everything below draws. A pair is two readings and the line between them is only the
 // distance across; the moment a dot appears at its middle, the reader starts reading a
 // value nobody measured.
@@ -294,9 +302,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -402,7 +415,7 @@ DATA.forEach(function (d, i) {
   node('line', { x1: x(d.before), y1: cy, x2: x(d.after), y2: cy }, 'link', g);
   node('circle', { cx: x(d.before), cy: cy, r: DOT_R }, 'dot', g);
   node('circle', { cx: x(d.after), cy: cy, r: DOT_R }, 'dot', g);
-  markable(g, d.name, [['Before', fmt(d.before)], ['After', fmt(d.after)], ['Change', changeText(d)]]);
+  markable(g, d, [['Before', fmt(d.before)], ['After', fmt(d.after)], ['Change', changeText(d)]]);
 });
 
 // A row with no pair is a gap with no mark in it, which a reader can take for a skipped

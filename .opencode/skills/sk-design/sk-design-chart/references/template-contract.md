@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the seventeen rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the twenty-three rules the corpus check enforces on every one."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.8.0.0
+version: 1.9.0.0
 ---
 
 # Chart Template Contract
@@ -75,6 +75,18 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
     /* CHART_DATA:BEGIN */
     the numbers, and nothing else
     /* CHART_DATA:END */
+
+    /* CHART_SERIES:BEGIN */
+    one object per named series: key, label, token and paint classes
+    /* CHART_SERIES:END */
+
+    /* READOUT:BEGIN */
+    label formatter, value formatter and datum-field key for a card-bearing form
+    /* READOUT:END */
+
+    /* CURVE:BEGIN */
+    const CURVE = 'linear' | 'step' | 'monotone', with one-line rationale
+    /* CURVE:END */
 
     the drawing code
   </script>
@@ -164,6 +176,52 @@ Everything else the drawing code derives is geometry or presentation, not data: 
 ceiling, a tick ladder, a bar height, a formatted label. Those are how the numbers are
 drawn, and they are not what this clause is about.
 
+### A named series owns one token
+
+When a form carries more than one named stream, the streams sit in one `CHART_SERIES` block
+beside `CHART_DATA`. Each object has a stable `key`, the label a reader sees, exactly one
+`--chart-series-N` token and the CSS classes that paint that stream. The declaration is the one
+source for the name-to-paint relationship; the index is still the position used by the data array,
+but it is not allowed to become a second mapping kept somewhere else in the file.
+
+The keyed forms are `bar-line-composed`, `grouped-bars`, `parallel-axes`, `population-pyramid`,
+`stacked-area` and `stacked-bars`. `series-mapping` checks both sides: an entry with no token or
+more than one token fails, and a class whose paint does not match its key fails. Ordered colour
+steps, sign classes and other categorical ladders keep their existing indexed contract; they are
+not named series merely because they use more than one colour.
+
+### A card carries its readout knobs
+
+Every form with `data-chart-tooltip` carries one `READOUT` block beside its data. The block owns
+three local decisions: `label` formats the card's labels, `value` formats its values and `key`
+names the property of the datum passed to card registration that supplies the card's label. The
+registration path reads the label as `READOUT.label(datum[READOUT.key])`. When a displayed label is
+computed or the registration has no existing row object, the caller passes a small record with a
+literal property matching `key`. The value formatter may preserve a value already rendered by the
+form's fixed-comma `fmt`, which keeps derived strings such as a signed change readable while still
+giving the card one local knob.
+
+`number-format` asserts the block and its use. A tooltip without `READOUT`, a block without all
+three fields, a card path that does not read `READOUT.label`, `READOUT.value` and
+`READOUT.key` from the registered datum, or a path that builds an object with `[READOUT.key]` only
+to read that same property back is an error. The same contract travels to the four tooltip-bearing
+deliveries under `assets/examples/`.
+
+### A time path states its curve
+
+Any form that draws a path over time declares one `CURVE` block beside its data. The value is one
+of `linear`, `step` or `monotone`, and a one-line rationale sits beside it. `linear` is the
+default for measured trends because it connects the observations without adding a shape they did
+not record. `step` is for discrete states. `monotone` is for a series whose meaning has been
+reviewed and whose smooth path must not overshoot its observations. `natural` is not a contract
+value: it adds curvature without saying what the data means.
+
+The path builder reads `CURVE` when it assembles its `d` attribute, so changing the declaration
+changes the construction rather than only the prose around it. `curve-contract` checks the
+sentinel, the allowed set, the rationale and the read by the path. The current time-path forms
+are `bar-line-composed`, `daily-line`, `stacked-area` and the `orders-after-the-price-change`
+delivery; each ships `linear` because each is a measured trend with finite gaps left visible.
+
 ### When a form cannot honour the data it was given
 
 A form is honest inside a documented shape, and two different things set that shape. The catalog
@@ -191,7 +249,7 @@ chart, not a developer console.
 
 ### An empty data block says so, on every form and every delivery
 
-All twenty-one forms and all six deliveries carry the same guard, marked `CHART_EMPTY_NOTICE`,
+All twenty-six forms and all six deliveries carry the same guard, marked `CHART_EMPTY_NOTICE`,
 above their drawing code. When the data block holds nothing readable, the file prints one line in
 the middle of the frame and draws nothing else.
 
@@ -276,7 +334,7 @@ than a shared value.
 
 ---
 
-## 7. THE TWENTY RULES
+## 7. THE TWENTY-THREE RULES
 
 Every rule below is enforced, and three are enforced in part. The check name is what appears in the
 corpus check output, so a failure points at the rule it broke.
@@ -311,6 +369,9 @@ Section 9 carries the full account of what a run does not observe.
 | 18 | Every number a card can show appears in the form's data table | `card-readout` | A hover that reveals a reading no other route reaches, which hides data from every reader not holding a pointer |
 | 19 | Every form on disk has a row in the per-form pointer contract, and every row has a form | `pointer-contract-coverage` | A form shipping with no decision recorded about what a pointer does on it, or a row describing a form nobody ships |
 | 20 | A pointer aimed into a drawing reaches a mark, and reaches the nearest one | `pointer-reach` | A mark too small to aim at, and a card that answers with a neighbour's reading instead of the one under the pointer |
+| 21 | A named multi-series stream declares one key, one palette token and the classes that paint it, and the key and paint agree | `series-mapping` | A series whose name, token and mark class drift apart while an indexed legend continues to look plausible |
+| 22 | A tooltip-bearing form declares local label, value and datum-field key knobs beside its data, and the card reads them from the registered datum | `number-format` | A card that formats or selects its label outside the form's declared readout contract |
+| 23 | A time path declares `linear`, `step` or `monotone`, gives its rationale and hands the choice to the path builder | `curve-contract` | A path whose interpolation is hidden, out of set or natural by accident |
 
 Rule 4 used to say exactly one block, and it said so for a good reason: one block per file is one
 place a colour can drift, and a diff shows it. A theme is the one thing that argument does not
@@ -370,6 +431,13 @@ so the picture agrees with itself and disagrees with the data. What survives the
 arithmetic rather than appearance, which is why the rule is stated as one: the number in the class
 name and the number in the token it resolves to are the same number.
 
+Rules 21 through 23 close the three seams that remain after that indexed check. A keyed series
+declaration makes the semantic name and the paint answer the same question. A local readout block
+makes a card's label, value and datum field inspectable where the data is edited. A curve declaration
+makes interpolation a stated reading of the data rather than an implementation detail. Each is
+checked against the file that carries it, and each fails on the first drift rather than relying on
+a reviewer to notice a second copy.
+
 ---
 
 ## 8. AUTHORING A NEW TEMPLATE
@@ -404,7 +472,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 ## 10. WHAT A FILE MAY DO WITH A POINTER
 
-This contract binds every rendered chart artifact this skill ships, the 21 forms under
+This contract binds every rendered chart artifact this skill ships, the 26 forms under
 `assets/templates/` and the deliveries under `assets/examples/` alike. A delivery inherits its
 parent template's contract, and it does not get to answer the pointer differently just because it is
 a rendered example rather than a template.
@@ -420,11 +488,15 @@ the two built from `unit-grid` and `bar-rows` declare why they do not. A deliver
 parent is a defect in the delivery, the same way a drifted palette block is, and the fix is to bring
 the delivery forward, never to excuse it.
 
-A chart answers a pointer. Thirteen forms do today, counting all three registers rather than the hover card alone. Of the eight that do not, seven are forms whose marks already print their own value, where a card would repeat what the reader is looking at. The eighth, `daily-range`, prints neither of the two values it encodes and is the reason this packet exists. See the per-form table below for the decided contract of all 21 forms.
+A chart answers a pointer. Eighteen forms carry the hover-card register today. The other forms either
+print their values in the drawing or carry a native title on a mark, so a card would repeat the
+reading. See the per-form table below for the decided contract of all 26 forms.
 
-Three of the rules below are now checked and the rest are still a register, which is a rule written down before anything asserts it. The split is marked here so nobody reads a green run as agreement with the whole section.
+The pointer rows remain a register for behaviour a static check cannot see, while the state,
+number-format and card/table boundaries are asserted. The split is marked here so nobody reads a
+green run as agreement with the whole section.
 
-`interaction-hygiene` requires the hygiene line in any file whose markup declares one of the three registers, and separately fails an unconditional `outline: none` on a focus and any `user-select: none`, which are the two ways the line could be widened into taking something away from a reader. `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. `number-format` fails any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define a formatter of its own.
+`interaction-hygiene` requires the hygiene line in any file whose markup declares one of the three registers, and separately fails an unconditional `outline: none` on a focus and any `user-select: none`, which are the two ways the line could be widened into taking something away from a reader. `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. `number-format` fails any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define its `READOUT` block and read its key from the registered datum.
 
 Everything else here is unasserted. What a handler may do, where a card flips, whether a figure inside a card is also in the table, and whether a selection latches are all read by a person.
 
@@ -502,7 +574,11 @@ and a reader without a pointer should not have to add a column by hand.
 against the table. It is the only rule that cannot be satisfied by reading the source, because a
 card exists only while a pointer is on a mark.
 
-### The readout the six newly-tooltip forms owe
+### The local readout every tooltip form owes
+
+The table below records the six forms whose card shape was made explicit when the tooltip contract
+landed. The same local block is required on every tooltip-bearing form, including the other
+templates and the four tooltip-bearing deliveries.
 
 | Form | Card name | Rows | `TIP_ROWS` |
 | --- | --- | --- | --- |

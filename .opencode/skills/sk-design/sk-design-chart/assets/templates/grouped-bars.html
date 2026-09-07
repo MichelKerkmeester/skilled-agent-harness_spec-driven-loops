@@ -199,8 +199,6 @@ path.past, path.current {
 </div>
 <script>
 /* CHART_DATA:BEGIN */
-const SERIES = ['Last year', 'This year'];
-const RANK = ['past', 'current'];
 const DATA = [
   { label: 'Referral', values: [1187, 1642] },
   { label: 'Organic', values: [2246, 2613] },
@@ -209,6 +207,21 @@ const DATA = [
   { label: 'Partners', values: [384, 726] }
 ];
 /* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'last-year', label: 'Last year', token: '--chart-series-3', classes: ['past'] },
+  { key: 'this-year', label: 'This year', token: '--chart-series-1', classes: ['current'] }
+];
+/* CHART_SERIES:END */
 
 // Everything below draws. Two series is the ceiling for this form: a third pair per
 // category and the reader stops comparing and starts hunting.
@@ -299,9 +312,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -402,7 +420,8 @@ for (let t = 0; t <= TICKS; t += 1) {
 const legend = document.getElementById('legend-grouped-bars');
 const entries = [];
 let cursor = 0;
-SERIES.forEach(function (name, s) {
+SERIES.forEach(function (series, s) {
+  const name = series.label;
   const entry = document.createElementNS(SVG, 'g');
   entry.setAttribute('data-series', s + 1);
   entry.setAttribute('tabindex', '0');
@@ -413,7 +432,7 @@ SERIES.forEach(function (name, s) {
   swatch.setAttribute('y', 6);
   swatch.setAttribute('width', 8);
   swatch.setAttribute('height', 8);
-  swatch.setAttribute('class', RANK[s]);
+  swatch.setAttribute('class', series.classes[0]);
   entry.appendChild(swatch);
   const label = document.createElementNS(SVG, 'text');
   label.setAttribute('x', cursor + 12);
@@ -439,13 +458,14 @@ let drawn = 0;
 DATA.forEach(function (d, i) {
   const cx = LEFT + slot * i + slot / 2;
   d.values.forEach(function (v, s) {
+    const series = SERIES[s];
     const x = cx + (s === 0 ? -barWidth - 3 : 3);
     // The stylesheet grows each column from the axis and staggers it by this index.
     markable(node('path', {
       d: topRounded(x, y(v), barWidth, BASE - y(v), MARK_R),
       style: '--mark-index:' + drawn,
       'data-series': s + 1
-    }, RANK[s]), SERIES[s], [['Value', fmt(v)]]);
+    }, series.classes[0]), series, [['Value', fmt(v)]]);
     drawn += 1;
   });
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = d.label;

@@ -136,6 +136,12 @@ Every name in the left column already routes to this packet, so a request carryi
 
 One of those rows is a substitution rather than a match, and the difference is worth saying plainly. **This corpus draws no arc-based pie or donut.** It does now draw a binned histogram, which is why `histogram` has moved out of this table and into the index above. Each of the two rows names what arrives instead and why it answers the question the reader asked. The other five rows are the same chart wearing a name the index happens not to use.
 
+The same refusal holds for radar. Phase 13's final synthesis keeps `parallel-axes` as the
+multi-dimensional answer and keeps both radar and arc-based pie out: mixed units do not become
+honest by being normalised onto a polygon, and a reader can count the marks in `unit-grid` or
+`unit-ring` instead of estimating an angle. That is a kept decision, not an unfinished gap.
+[SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:123-132]
+
 A name that reaches neither this table nor a row in the index is still a gap to report. Sending a reader to a chart that answers a different question costs more than telling them the corpus has no form for it.
 
 ---
@@ -157,7 +163,8 @@ renders.
 | Form | Why it is absent |
 | --- | --- |
 | sankey | The contract excludes forms that need a layout engine, and a flow diagram is one. A hand-drawn approximation of a sankey is less honest than saying the corpus does not draw one, because the thing a reader trusts in a flow diagram is that the ribbon widths were solved rather than eyeballed. If flow is ever genuinely wanted, the exclusion in the contract is what to revisit, not this row |
-| radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered. The name itself routes to `sk-design-diagram`, which does have a radar file; this row is what to reach for once the request is here and is about values rather than structure, and `SKILL.md` carries the routing half |
+| radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered. The name itself routes to `sk-design-diagram`, which does have a radar file; this row is what to reach for once the request is here and is about values rather than structure, and `SKILL.md` carries the routing half. This phase keeps the omission after the shadcn comparison. [SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:123-132] |
+| pie | The corpus draws no arc-based pie. A part-to-whole question is routed to `unit-grid` or `unit-ring`, where a reader counts filled marks or whole-number ticks instead of estimating slice angles. Phase 13 keeps that substitution after comparing the shadcn inventory. [SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:123-132] |
 
 ---
 

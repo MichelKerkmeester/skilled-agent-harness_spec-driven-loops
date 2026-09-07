@@ -218,7 +218,6 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
 </div>
 <script>
 /* CHART_DATA:BEGIN */
-const SERIES = ['Orders', 'Conversion rate'];
 const UNITS = ['orders', 'percent'];
 const DATA = [
   { label: '6 Jul', count: 1120, rate: 4.3 },
@@ -231,6 +230,26 @@ const DATA = [
   { label: '24 Aug', count: 2010, rate: 2.8 }
 ];
 /* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'orders', label: 'Orders', token: '--chart-series-1', classes: ['bars', 'axis-count'] },
+  { key: 'conversion-rate', label: 'Conversion rate', token: '--chart-series-2', classes: ['rate-line', 'rate-dot', 'axis-rate', 'key-rule'] }
+];
+/* CHART_SERIES:END */
+
+/* CURVE:BEGIN */
+const CURVE = 'linear';
+// Linear connects weekly measured rates without smoothing or inventing a value in a missing week.
+/* CURVE:END */
 
 // Everything below draws. Two measures is the ceiling for this form. A third would need a
 // third ladder, and a reader cannot hold three scales at once: past two, the honest answer is
@@ -282,6 +301,30 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+function curvePath(points) {
+  if (!points.length) return '';
+  const coordinates = points.map(function (point) { return point.split(',').map(Number); });
+  if (CURVE === 'step') {
+    let path = 'M' + points[0];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      path += ' H' + coordinates[i][0] + ' V' + coordinates[i][1];
+    }
+    return path;
+  }
+  if (CURVE === 'monotone') {
+    let path = 'M' + coordinates[0][0] + ',' + coordinates[0][1];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      const previous = coordinates[i - 1];
+      const current = coordinates[i];
+      const dx = (current[0] - previous[0]) / 3;
+      path += ' C' + (previous[0] + dx) + ',' + previous[1] + ' ' + (current[0] - dx) + ',' + current[1]
+        + ' ' + current[0] + ',' + current[1];
+    }
+    return path;
+  }
+  return 'M' + points.join(' L');
+}
+
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
 // not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
 // and returns an em dash for a reading nobody took, so the card can never disagree with the
@@ -322,9 +365,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -498,7 +546,7 @@ DATA.forEach(function (d, i) {
   markable(node('path', {
     d: topRounded(cx(i) - barWidth / 2, top, barWidth, BASE - top, MARK_R),
     'data-series': 1
-  }, 'bars'), d.label, [
+  }, 'bars'), d, [
     ['Count (left scale)', fmt(d.count)],
     ['Rate (right scale)', fmt(d.rate, 1)]
   ]);
@@ -521,7 +569,7 @@ const omitted = DATA.length - segments.reduce(function (n, s) { return n + s.len
 
 segments.forEach(function (points) {
   node('path', {
-    d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : ''),
+    d: curvePath(points) + (points.length === 1 ? ' L' + points[0] : ''),
     'data-series': 2
   }, 'rate-line');
 });
@@ -532,7 +580,7 @@ segments.forEach(function (points) {
 // from becoming a mark with nothing to say.
 DATA.forEach(function (d, i) {
   if (!Number.isFinite(d.rate)) return;
-  markable(node('circle', { cx: cx(i), cy: yRate(d.rate), r: 3, 'data-series': 2 }, 'rate-dot'), d.label, [
+  markable(node('circle', { cx: cx(i), cy: yRate(d.rate), r: 3, 'data-series': 2 }, 'rate-dot'), d, [
     ['Count (left scale)', fmt(d.count)],
     ['Rate (right scale)', fmt(d.rate, 1)]
   ]);
@@ -566,7 +614,8 @@ DATA.forEach(function (d, i) {
 const legend = document.getElementById('legend-bar-line-composed');
 const entries = [];
 let cursor = 0;
-SERIES.forEach(function (name, s) {
+SERIES.forEach(function (series, s) {
+  const name = series.label;
   const entry = document.createElementNS(SVG, 'g');
   entry.setAttribute('data-series', s + 1);
   entry.setAttribute('tabindex', '0');
