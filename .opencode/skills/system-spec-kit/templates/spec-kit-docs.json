@@ -9,11 +9,10 @@
     "decision-record.md.tmpl": "v2.2",
     "phase-parent.spec.md.tmpl": "v2.2",
     "review.spec.md.tmpl": "v2.2",
-    "resource-map.md.tmpl": "v2.2",
-    "context-index.md.tmpl": "v2.2",
-    "handover.md.tmpl": "v2.2",
-    "debug-delegation.md.tmpl": "v2.2",
-    "research.md.tmpl": "v2.2",
+    "resource-map.md.tmpl": "v1.1",
+    "handover.md.tmpl": "v1.0",
+    "debug-delegation.md.tmpl": "v1.0",
+    "research.md.tmpl": "v1.0",
     "before-after.md.tmpl": "v2.2",
     "timeline.md.tmpl": "v2.2",
     "roadmap.md.tmpl": "v2.2",
@@ -99,13 +98,7 @@
       "template": "resource-map.md.tmpl",
       "owner": "author",
       "creationTrigger": "explicit-option",
-      "absenceBehavior": "warn"
-    },
-    "context-index.md": {
-      "template": "context-index.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "warn"
+      "absenceBehavior": "silent-skip"
     },
     "handover.md": {
       "template": "handover.md.tmpl",
@@ -153,7 +146,7 @@
       "template": "acceptance-criteria.md.tmpl",
       "owner": "author",
       "creationTrigger": "scaffold",
-      "absenceBehavior": "warn"
+      "absenceBehavior": "hard-error"
     },
     "goal.md": {
       "template": "goal.md.tmpl",
@@ -187,7 +180,8 @@
         "timeline.md",
         "roadmap.md",
         "decision-record.md",
-        "goal.md"
+        "goal.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -569,7 +563,8 @@
         "timeline.md",
         "roadmap.md",
         "decision-record.md",
-        "goal.md"
+        "goal.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -1063,7 +1058,8 @@
         "timeline.md",
         "roadmap.md",
         "decision-record.md",
-        "goal.md"
+        "goal.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -1617,7 +1613,8 @@
         "timeline.md",
         "roadmap.md",
         "decision-record.md",
-        "goal.md"
+        "goal.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2175,7 +2172,8 @@
         "timeline.md",
         "roadmap.md",
         "decision-record.md",
-        "goal.md"
+        "goal.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2315,7 +2313,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2432,7 +2431,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "resource-map.md"
       ],
       "sectionGates": {
         "spec.md": {

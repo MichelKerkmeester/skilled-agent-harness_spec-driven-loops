@@ -145,13 +145,13 @@ Documentation depth scales with task complexity.
 | Level  | LOC Guidance   | Required Files                                                          | When to Use                                                              |
 | ------ | -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **1**  | < 100          | spec.md, plan.md, tasks.md, implementation-summary.md                   | Small features, bug fixes, single-file changes                           |
-| **2**  | 100 - 499      | Level 1 + acceptance-criteria.md (optional, warns if absent)            | Features needing QA verification, multi-file changes                     |
-| **3**  | 500+           | Level 2 + decision-record.md (optional, created on request)             | Architecture changes, complex refactors                                  |
-| **3+** | Complexity 80+ | Level 3 + approval workflow, compliance checkpoints, stakeholder matrix | High-complexity work needing review tracking and workstream coordination |
+| **2**  | 100 - 499      | Level 1 + acceptance-criteria.md (scaffolded; its absence fails validation for packets created after 2026-08-30) | Features needing QA verification, multi-file changes                     |
+| **3**  | 500+           | Level 2 file set plus architecture sections; decision-record.md is a lazy add-on at every level | Architecture changes, complex refactors                                  |
+| **3+** | Complexity 80+ | Level 3 file set plus governance sections inside spec.md (approval workflow, compliance checkpoints, stakeholder matrix) | High-complexity work needing review tracking and workstream coordination |
 
 The LOC ranges are guidance, not hard rules. Risk, complexity and the number of affected files can push a task to a higher level. When in doubt, choose the higher level.
 
-Only `spec.md`, `plan.md` and `tasks.md` are hard requirements at every level. `implementation-summary.md` is required too, but created **after** implementation completes rather than at spec folder creation time. `acceptance-criteria.md` and `decision-record.md` are optional add-ons: a missing `acceptance-criteria.md` warns, a missing `decision-record.md` is skipped silently. The machine contract is `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`.
+Only `spec.md`, `plan.md` and `tasks.md` are hard requirements at every level. `implementation-summary.md` is required too, but created **after** implementation completes rather than at spec folder creation time. `acceptance-criteria.md` is scaffolded at Level 2 and above and its absence fails validation for packets created after 2026-08-30; older packets stay advisory. Every other add-on is lazy at every level: present only when asked for, skipped silently otherwise. The machine contract is the `levels` section of `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`; the `documents` section beside it is a descriptive index, and nothing enforces its `absenceBehavior` column.
 
 &nbsp;
 #### Spec Folder Structure
@@ -163,24 +163,25 @@ specs/<track>/<###-feature-name>/
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
 ├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
-├── decision-record.md           # Architecture decisions (Level 3+)
+├── decision-record.md           # Architecture decisions (lazy add-on, any level)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
-├── resource-map.md              # Optional path ledger of resources the packet touched
+├── resource-map.md              # Path ledger of resources the packet touched (lazy add-on, any level)
 ├── graph-metadata.json          # Packet-level graph metadata (auto-refreshed on save)
 └── scratch/                     # Temporary workspace files
 ```
 
-`resource-map.md` is optional at any level. Render it from `.opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl` when a packet wants a lean, central listing of the files, scripts and external resources it interacts with. Deep-research and deep-review loops emit it automatically next to `review-report.md`.
+`resource-map.md` is a lazy add-on at any level. Render it by hand with the inline gate renderer (`bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <N> --out-dir <packet> .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl`) when a packet wants a lean, central listing of the files, scripts and external resources it interacts with. Deep-research and deep-review loops write a different file of the same name: an evidence ledger extracted from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root.
 
 &nbsp;
 #### Available Templates
 
-Seventeen templates ship under `.opencode/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
+Sixteen templates ship under `.opencode/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
 
 | Trigger | Templates | Where |
 | ------- | --------- | ----- |
-| `scaffold` - written when the packet is created | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `acceptance-criteria.md` | `core/`, `addons/` |
-| `explicit-option` - written when you ask for it | `decision-record.md`, `resource-map.md`, `context-index.md`, `before-after.md`, `timeline.md`, `roadmap.md`, `goal.md` | `addons/`, `packet-types/` |
+| `scaffold` - written when the packet is created | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` (after implementation starts), `acceptance-criteria.md` (Level 2 and above) | `core/`, `addons/` |
+| `--with-lazy-addons` on `create.sh` | `before-after.md`, `timeline.md`, `roadmap.md`, `decision-record.md` | `addons/` |
+| `--with-goal` on `create.sh`, or the inline gate renderer by hand | `goal.md`, `resource-map.md` | `addons/` |
 | Command or agent owned | `handover.md` (memory save), `debug-delegation.md` (`@debug`), `research.md` (`/deep:research`) | `addons/` |
 | Packet type, not a level | `phase-parent.spec.md`, `review.spec.md` | `packet-types/` |
 
@@ -195,7 +196,7 @@ Checklist items in `tasks.md` carry a priority so reviewers know what blocks shi
 - **P1** - Required. Must complete or get explicit user approval to defer.
 - **P2** - Optional. Nice to have. Can defer without approval, except under `--strict`, where an incomplete P2 blocks.
 
-`check-completion.sh` reads these items from the verification section of `tasks.md` and requires every one to carry a P0, P1 or P2 tag. That section is Level 2+, so a Level 1 packet without it exits the check unenforced. `acceptance-criteria.md` is the other gate and does not use priorities. It answers whether the packet may close rather than whether the work is done: each row is `Met`, `Unmet`, `Waived` or `Superseded`, and a `Waived` or `Superseded` row must name an ADR that exists in `decision-record.md`. The two are linked, because the `AC_COVERAGE` rule requires each criterion's evidence to trace back into `tasks.md`.
+`check-completion.sh` reads these items from the verification section of `tasks.md` and requires every one to carry a P0, P1 or P2 tag. That section is Level 2+, so a Level 1 packet without it exits the check unenforced. `acceptance-criteria.md` is the other gate and does not use priorities. It answers whether the packet may close rather than whether the work is done: each row is `Met`, `Unmet`, `Waived` or `Superseded`, and a `Waived` or `Superseded` row must name an ADR that exists in `decision-record.md`. The two gates run in different places. `validate.sh` runs `AC_CLOSURE`, which fails on an unmet criterion, and `AC_COVERAGE`, an advisory scan that reports how many criteria carry a `file:line` citation in their own Verification cell and only fails when `SPECKIT_AC_COVERAGE_ENFORCE=true`. The tasks checklist is enforced by `check-completion.sh` and the completion Stop hook, not by the validator.
 
 &nbsp;
 #### Phase Decomposition

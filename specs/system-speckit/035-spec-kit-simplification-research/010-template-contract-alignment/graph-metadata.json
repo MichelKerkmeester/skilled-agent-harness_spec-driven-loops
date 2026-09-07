@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/010-template-contract-alignment",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/010-template-contract-alignment",
+  "parent_id": "system-speckit/035-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template contract alignment",
+      "with goal flag",
+      "lazy addons documented",
+      "acceptance criteria closure gate",
+      "template alignment plan",
+      "contract single authority",
+      "goal flag smoke test",
+      "version parity test",
+      "template alignment tasks",
+      "contract census tasks",
+      "goal flag tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "template",
+      "contract",
+      "alignment",
+      "goal",
+      "flag",
+      "lazy",
+      "addons",
+      "documented",
+      "acceptance",
+      "criteria",
+      "closure",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "templates/spec-kit-docs.json",
+      "templates/addons/goal.md.tmpl",
+      "runtime/lib/validation/spec-doc-structure.ts",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/spec/check-template-staleness.sh",
+      "rules/check-ac-coverage.sh",
+      "rules/check-template-source.sh",
+      "runtime/cli/tests/template-version-parity.vitest.ts",
+      "runtime/cli/tests/level-contract-resolver.vitest.ts",
+      "runtime/README.md",
+      "runtime/lib/hooks/README.md",
+      "runtime/ENV-REFERENCE.md",
+      "runtime/cli/rules/check-ac-coverage.sh",
+      "templates/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-staleness.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-template-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": "rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-source.sh",
+        "kind": "script",
+        "path": "rules/check-template-source.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-version-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/template-version-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/level-contract-resolver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The template system's documents described a different system from the one that runs: a cumulative per-level ladder where the real add-on list is flat, a closure document that \"warns\" where the rule fails, a hard block on decision records that no rule enforces, seven documents \"written when you ask\" of which only four had a flag, a `checklist.md` retired months ago, and a manifest taxonomy nothing reads",
+    "created_at": "2026-09-07T02:03:48Z",
+    "last_save_at": "2026-09-07T02:11:05.472Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e4cb935d82b773660bd5877c0e22a92d388766e49cee80b3f5b19bbca0c6f601",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "44800f81b4120a43e79fbe4ececf209627731abf6ba17563480230030d77ec45",
+      "plan.md": "fc827dff406bdbecd88da4641915d0f6681efde256899d74efca781b022ff8e2",
+      "tasks.md": "659fe49a55bc511081db2c71e95c5614c7dae7a0ed44482970ea7ad4f048c44f",
+      "implementation-summary.md": "2a6437066dfb7f93c13038c158b3e7b2598e826bac4eea750bd6946d96c8f392"
+    },
+    "last_active_at": null
+  }
+}

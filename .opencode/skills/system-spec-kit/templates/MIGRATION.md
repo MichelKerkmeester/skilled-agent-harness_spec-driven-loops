@@ -11,7 +11,7 @@ contextType: reference
 ---
 
 # SpecKit Template Migration Guide
-<!-- Lives at templates/manifest/ (not references/) because it co-locates with the manifest assets it documents. -->
+<!-- Lives beside spec-kit-docs.json under templates/ (not references/) because it co-locates with the manifest it documents. -->
 
 Private maintainer notes for template marker and frontmatter compatibility.
 
@@ -33,7 +33,7 @@ Writers always emit the current manifest-backed marker version from `spec-kit-do
 When a legacy packet does not have manifest-aware metadata, derive its document list from files on disk:
 
 - Always include existing core docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
-- Include add-on docs when present: `decision-record.md`, `resource-map.md`, and `context-index.md`.
+- Include add-on docs when present: `decision-record.md` and `resource-map.md`.
 - Include command-owned docs only when present: `handover.md`, `debug-delegation.md`, and `research/research.md`.
 - For phase parents, prefer the lean trio: `spec.md`, `description.json`, and `graph-metadata.json`.
 

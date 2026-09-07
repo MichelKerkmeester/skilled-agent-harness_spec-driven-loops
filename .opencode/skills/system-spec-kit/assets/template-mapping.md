@@ -50,7 +50,7 @@ Spec folders are scaffolded through the Level contract resolver. The resolver se
 ```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
-Level 2 (Verification): Level 1 + acceptance-criteria.md (checklist.md optional)
+Level 2 (Verification): Level 1 + acceptance-criteria.md
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
                               ↓
@@ -68,7 +68,6 @@ Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder t
 **Phase Parent** rows above apply when the target folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9][a-z0-9-]*$` AND ≥1 such child has `spec.md` OR `description.json`). At a phase parent:
 - **Required:** `spec.md` (lean, rendered from `templates/packet-types/phase-parent.spec.md.tmpl`), `description.json`, `graph-metadata.json`
 - **Prohibited at parent (live in children only):** `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
-- **Optional:** `templates/packet-types/context-index.md.tmpl` (migration bridge, only if reorganized)
 
 Phase children continue to follow the normal Level 1–3+ rows above for their assigned level. Tolerant policy: legacy phase parents that retain heavy docs continue to validate without churn.
 
@@ -153,13 +152,13 @@ specs/044-modal-component/
 ├── tasks.md                     (REQUIRED - from Level 1)
 ├── implementation-summary.md    (REQUIRED - from Level 1)
 ├── acceptance-criteria.md       (REQUIRED - gates packet closure)
-└── checklist.md                 (OPTIONAL - adds QA validation)
+└── acceptance-criteria.md       (the closure gate, scaffolded at this level)
 ```
 
 **Additional expectations:**
-- **checklist.md**: Pre-implementation checks, implementation validation, testing checklist, deployment verification
+- **acceptance-criteria.md**: one row per criterion, each Met, Waived or Superseded before the packet may close; the verification checklist lives in tasks.md
 
-**Enforcement:** Hard block if `checklist.md` missing
+**Enforcement:** `AC_CLOSURE` fails when `acceptance-criteria.md` is absent from a packet created after 2026-08-30
 
 ---
 
@@ -171,7 +170,7 @@ specs/045-user-dashboard/
 ├── plan.md                      (REQUIRED - from Level 2)
 ├── tasks.md                     (REQUIRED - from Level 2)
 ├── implementation-summary.md    (REQUIRED - from Level 2)
-├── checklist.md                 (REQUIRED - from Level 2)
+├── acceptance-criteria.md       (from Level 2)
 ├── decision-record.md           (REQUIRED - architecture decisions)
 ├── research/research.md         (OPTIONAL - comprehensive research)
 └── resource-map.md              (OPTIONAL - lean path catalog)
@@ -192,7 +191,7 @@ specs/046-enterprise-migration/
 ├── plan.md                      (REQUIRED - from Level 3, +AI execution framework, +workstream coordination)
 ├── tasks.md                     (REQUIRED - from Level 3, +3-tier format, +AI protocol, +workstreams)
 ├── implementation-summary.md    (REQUIRED - from Level 3)
-├── checklist.md                 (REQUIRED - from Level 3, +extended items 100-150, +sign-offs, +compliance)
+├── acceptance-criteria.md       (from Level 2; governance sections render inside spec.md)
 ├── decision-record.md           (REQUIRED - from Level 3, +decision authority, +review requirements)
 └── research/research.md         (OPTIONAL - comprehensive research)
 ```
@@ -387,14 +386,14 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 - [plan.md](../templates/core/plan.md.tmpl) - Implementation plan with verification
 - [tasks.md](../templates/core/tasks.md.tmpl) - Task breakdown template
 - [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../templates/addons/checklist.md.tmpl) - Validation checklist template
+- [acceptance-criteria.md](../templates/addons/acceptance-criteria.md.tmpl) - The closure-gate template
 
 **Level 3 Templates (Full Documentation):**
 - [spec template](../templates/core/spec.md.tmpl) - Comprehensive requirements template
 - [plan.md](../templates/core/plan.md.tmpl) - Full implementation plan template
 - [tasks.md](../templates/core/tasks.md.tmpl) - Detailed task breakdown template
 - [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../templates/addons/checklist.md.tmpl) - Full validation checklist template
+- [acceptance-criteria.md](../templates/addons/acceptance-criteria.md.tmpl) - The closure-gate template
 - [decision-record.md](../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
 
 **Level 3+ Templates (Extended):**
@@ -402,7 +401,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 - [plan.md](../templates/core/plan.md.tmpl) - Implementation plan with AI execution framework and workstream coordination
 - [tasks.md](../templates/core/tasks.md.tmpl) - Task breakdown with 3-tier format and AI execution protocol
 - [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../templates/addons/checklist.md.tmpl) - Extended checklist (100-150 items) with sign-offs and compliance
+- [acceptance-criteria.md](../templates/addons/acceptance-criteria.md.tmpl) - The closure-gate template; sign-offs and compliance render inside spec.md
 - [decision-record.md](../templates/addons/decision-record.md.tmpl) - Decision records with authority and review requirements
 
 **Optional Templates:**

@@ -38,11 +38,11 @@ Current templates (user-facing only):
 | Level | Templates |
 |-------|-----------|
 | **Level 1** | spec.md, plan.md, tasks.md, implementation-summary.md |
-| **Level 2** | + acceptance-criteria.md |
-| **Level 3** | + decision-record.md |
-| **Utility** | handover.md, debug-delegation.md, resource-map.md |
+| **Level 2, 3, 3+** | + acceptance-criteria.md; the higher levels add sections inside these files, not files |
+| **Lazy add-ons, every level** | decision-record.md, before-after.md, timeline.md, roadmap.md, goal.md, resource-map.md |
+| **Command or workflow owned** | handover.md, debug-delegation.md, research/research.md |
 
-> **Optional/Lazy:** `research/research.md` is a `lazyAddonDocs` entry for Levels 3 and 3+ in `spec-kit-docs.json` — it is added on demand, not required.
+> **Flat, not cumulative:** the `lazyAddonDocs` list in `spec-kit-docs.json` is identical at Levels 1, 2, 3 and 3+. A level changes which sections a core template renders, never which add-ons exist.
 
 ---
 

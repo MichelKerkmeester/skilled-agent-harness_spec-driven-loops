@@ -52,7 +52,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `FILE_EXISTS`        | ERROR    | All levels    | Required files present for documentation level |
 | `PLACEHOLDER_FILLED` | ERROR    | Core files    | No unfilled template placeholders              |
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
-| `AC_COVERAGE`        | INFO     | checklist.md  | Advisory acceptance-criteria traceability scan (on by default) |
+| `AC_COVERAGE`        | INFO     | acceptance-criteria.md | Advisory traceability scan over each criterion's Verification cell (on by default; `SPECKIT_AC_COVERAGE_ENFORCE=true` makes an under-floor result fail) |
 | `AC_CLOSURE`         | ERROR    | acceptance-criteria.md | Closure gate for Levels 2/3/3+: unmet criteria block a completion claim, waivers must cite a real ADR |
 | `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |

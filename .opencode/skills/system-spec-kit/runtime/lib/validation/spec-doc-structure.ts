@@ -221,8 +221,6 @@ function collectDocuments(folder: string, level: string): DocumentRecord[] {
     ...contract.requiredAddonDocs,
     ...contract.lifecycleRequiredDocs.afterImplementationStarts,
     ...contract.lazyAddonDocs,
-    'resource-map.md',
-    'context-index.md',
   ]);
   if (fs.existsSync(path.join(folder, 'acceptance-criteria.md'))) {
     contractDocs.add('acceptance-criteria.md');

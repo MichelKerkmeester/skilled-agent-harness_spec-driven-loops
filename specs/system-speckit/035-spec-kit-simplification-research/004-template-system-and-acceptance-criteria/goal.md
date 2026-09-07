@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria"
-    last_updated_at: "2026-09-06T16:40:00Z"
+    last_updated_at: "2026-09-07T02:20:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed every criterion after remediation"
+    next_safe_action: "None; the lane is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,10 +72,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-templates/
-- [ ] research.md carries a document-by-document table: owner, creation trigger, absence behavior, what create.sh and the renderer actually do, what the README and SKILL.md claim
-- [ ] Every P0 and P1 finding reproduces in-session
-- [ ] A stated answer on resource-map, timeline, roadmap and goal status, and on which completion surface the validator really reads
+- [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-templates/
+- [x] research.md carries a document-by-document table: owner, creation trigger, absence behavior, what create.sh and the renderer actually do, what the README and SKILL.md claim
+- [x] Every P0 and P1 finding reproduces in-session
+- [x] A stated answer on resource-map, timeline, roadmap and goal status, and on which completion surface the validator really reads
 <!-- /ANCHOR:completion -->
 
 ---
@@ -92,10 +92,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-templates/research.md`, stop reason maxIterationsReached, 01:29 to 03:49 |
+| Census | Done | `research/confirmed-findings.md`: all 15 P1 rows confirmed, 20 P2 rows fixed, documented or recorded |
+| Remediation | Done | `../010-template-contract-alignment` closed every row |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Three assets outside the synthesis still described the retired checklist | Found by the residue sweep; corrected in 010. |
+| The operator's questions answered | resource-map, timeline and roadmap are lazy add-ons at every level; acceptance-criteria.md is scaffolded at Level 2 and above and enforced by AC_CLOSURE; core is spec, plan, tasks and the implementation summary. |
 <!-- /ANCHOR:log -->

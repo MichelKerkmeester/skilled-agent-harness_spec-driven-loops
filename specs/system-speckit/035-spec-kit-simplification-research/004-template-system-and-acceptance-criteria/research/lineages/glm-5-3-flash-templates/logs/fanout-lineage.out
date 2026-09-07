@@ -1,0 +1,23 @@
+All checks pass. The `observability-events.jsonl`/`orchestration-status.log` updates at the packet research/ root are the orchestrating runner's own files (my writes never left the lineage directory), and the only untracked additions from this session are inside my authorized lineage path.
+
+---
+
+## Lineage complete: `glm-5-3-flash-templates`
+
+**Execution:** 10/10 iterations run inline by this process (no nested dispatch), each writing `iterations/iteration-NNN.md` + `deltas/iter-NNN.jsonl`, recording its state through the append gateway (11 gateway appends, all exit 0, projection refreshed), with the reducer function (strategy/registry/dashboard) performed inline from the deltas. Terminal synthesis record appended with **stopReason `maxIterationsReached`** after a documented gateway refusal of the legacy `synthesis_complete` event (pinned old-runtime by design).
+
+**Runner contract verified (PASS):** research.md non-empty on disk · iteration files exactly 1–10, none empty · state records exactly `type:iteration` 1–10 · synthesis event with max-iterations stopReason.
+
+**Deliverable — the decision-ready findings ledger** (`research.md`, 35 findings: **0 P0 / 15 P1 / 20 P2**; fix 18 · document 15 · merge 1 · remove 1), highlights:
+
+- **The manifest's `documents[]` (owner/creationTrigger/absenceBehavior) is consumed by nobody** — enforcement actually lives in `levels.N` arrays + a hardcoded 4-doc flag list + an acceptance-criteria substring grep + a `.tmpl` naming convention (P1).
+- **The README's most-read tables are wrong three ways**: nonexistent ask-surfaces for goal/resource-map/context-index, misdescribed L2/L3/L3+ rows, and a loop-emission claim wrong on both path and provenance (P1 ×3).
+- **"Warns when absent" is stale** — post-cutoff AC absence is a hard ERROR; "AC_COVERAGE traces into tasks.md" describes the dead legacy path; the real evidence home is the AC file's own Verification column (P1 ×2).
+- **Completion gates are split-brain**: validate.sh gates AC only; the tasks.md checklist is enforced by check-completion.sh + the completion exposer, which the validator never runs; checklist.md is a deliberately-retired, test-pinned phantom still alive in 5 prose surfaces (P1 ×2, P2 ×4).
+- **goal.md is the most contract-defined, least-creatable document** — 75 live files, no creator anywhere; the nested-goal binding binds only when a template-shaped parent goal.md exists (P1 + P2 ×2).
+- **Version drift is real**: 5 of 17 declared-v2.2 templates self-declare v1.0/v1.1, and the one version-comparing tool reads a manifest path that doesn't exist (P1 ×2); 6 untested templates are exactly the drifted ones; template-guide's "hard block" on decision-record.md was never wired (P1 + P2s).
+- **Drop/merge decisions** catalogued: checklist.md references, context-index.md, unwired `documents[]` (drop); the two completion stacks, the goal naming, three doc-inclusion authorities (merge).
+
+All 14 questions (Q1–Q8 + CQ1–CQ6) answered; 20 ruled-out directions; one self-corrected amendment chain (f-iter002-004 → f-iter008-001). Scope honored: every write inside `…/research/lineages/glm-5-3-flash-templates`, no repo tooling run, no packet-level writes.
+
+FANOUT_LINEAGE_COMPLETE:glm-5-3-flash-templates

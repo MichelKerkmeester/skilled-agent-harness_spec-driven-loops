@@ -151,7 +151,7 @@ runtime/
 | `core/config.ts` | Resolves runtime paths and input limits, and loads the validated cognitive config. |
 | `ENV-REFERENCE.md` | Environment variable reference for the package. |
 
-Canonical spec-document discovery includes `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`. `graph-metadata.json` is discovered through the graph-metadata path gate, including metadata backfilled under `<packet>/iterations/`; `research/iterations/` and `review/iterations/` markdown remain working artifacts rather than canonical spec docs.
+Canonical spec-document discovery includes `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`. `graph-metadata.json` is discovered through the graph-metadata path gate, including metadata backfilled under `<packet>/iterations/`; `research/iterations/` and `review/iterations/` markdown remain working artifacts rather than canonical spec docs.
 
 ---
 

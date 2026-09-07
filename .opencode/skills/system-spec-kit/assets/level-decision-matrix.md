@@ -42,7 +42,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 | Level               | LOC Guidance     | Required Files                                                      | Adds To Previous                   | Use When                             |
 | ------------------- | ---------------- | ------------------------------------------------------------------- | ---------------------------------- | ------------------------------------ |
 | **1: Baseline**     | <100             | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`    | (foundation)                       | All features - minimum documentation |
-| **2: Verification** | 100-499          | Level 1 + `acceptance-criteria.md`; `checklist.md` optional         | Closure criteria + QA checklist    | Needs systematic validation          |
+| **2: Verification** | 100-499          | Level 1 + `acceptance-criteria.md`; verification checklist inside `tasks.md` | Closure criteria + QA checklist    | Needs systematic validation          |
 | **3: Full**         | ≥500             | Level 2 + `decision-record.md`                                      | ADR + optional research            | Complex/architectural changes        |
 | **3+: Extended**    | Complexity 80+   | Level 3 + approval workflow + compliance + stakeholders             | Review tracking + coordination     | High-complexity, multi-workstream    |
 
@@ -50,7 +50,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 ```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
-Level 2 (Verification): Level 1 + acceptance-criteria.md (checklist.md optional)
+Level 2 (Verification): Level 1 + acceptance-criteria.md, with the verification checklist inside tasks.md
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md + optional resource-map.md (any level)
                               ↓
@@ -142,7 +142,7 @@ Templates are selected by `templates/spec-kit-docs.json` and rendered through `c
 
 ## 7. CHECKLIST QUALITY REQUIREMENTS
 
-Level 2+ documentation requires `checklist.md` with specific quality standards:
+Level 2+ documentation requires the verification checklist section of `tasks.md`, with specific quality standards:
 
 ### Priority Organization (P0/P1/P2)
 
@@ -208,7 +208,7 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 | **FILE_EXISTS**         | ✓       | ✓       | ✓       | error    | Required files must exist for the level        |
 | **PLACEHOLDER_FILLED**  | ✓       | ✓       | ✓       | warning  | Template placeholders must be replaced         |
 | **ANCHORS_VALID**       | ✓       | ✓       | ✓       | warning  | Generated continuity artifacts must have balanced anchor pairs   |
-| **CHECKLIST_HAS_ITEMS** | —       | ✓       | ✓       | warning  | checklist.md must contain actionable items     |
+| **AC_CLOSURE** | —       | ✓       | ✓       | error    | every acceptance criterion is Met, Waived or Superseded |
 | **DECISION_RECORDED**   | —       | —       | ✓       | warning  | decision-record.md must document key decisions |
 
 ### Rule Details
@@ -232,7 +232,7 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 - Details: Each `<!-- ANCHOR: id -->` must have matching `<!-- /ANCHOR: id -->`. Unbalanced anchors break semantic indexing of canonical spec docs.
 
 **CHECKLIST_HAS_ITEMS**
-- Purpose: Ensures checklist.md contains actual checklist items, not just template structure
+- Purpose: Ensures acceptance-criteria.md decides closure with every row resolved, not left Unmet
 - Applies to: Level 2+ only
 - Severity: warning (default)
 - Details: Looks for `- [ ]` or `- [x]` patterns indicating actionable items
@@ -259,7 +259,7 @@ If scope grows during implementation, escalate by adding the required files:
 
 | From Level | To Level                   | Action                                          | Files to Add                                                    |
 | ---------- | -------------------------- | ----------------------------------------------- | --------------------------------------------------------------- |
-| 1 → 2      | Add verification           | `checklist.md`                                  |                                                                 |
+| 1 → 2      | Add verification           | `acceptance-criteria.md` and the tasks.md checklist |                                                                 |
 | 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research/research.md`) |                                                                 |
 | 3 → 3+     | Add governance             | AI execution protocol + extended checklist      | Sign-off section in spec.md + multi-agent coordination patterns |
 
@@ -267,7 +267,7 @@ If scope grows during implementation, escalate by adding the required files:
 ```markdown
 ## Change Log
 - [YYYY-MM-DD]: Created as Level 1 (simple bug fix) - spec.md, plan.md, tasks.md
-- [YYYY-MM-DD]: Escalated to Level 2 (discovered validation needs) - added checklist.md
+- [YYYY-MM-DD]: Escalated to Level 2 (discovered validation needs) - added acceptance-criteria.md
 - [YYYY-MM-DD]: Escalated to Level 3 (architectural decision required) - added decision-record.md
 ```
 
@@ -288,7 +288,7 @@ Single typo? ──YES──→ Exempt (no spec needed)
 Start with Level 1 (Baseline)
 Required: spec.md + plan.md + tasks.md + implementation-summary.md
     ↓
-Needs QA validation? ──YES──→ Level 2 (add checklist.md)
+Needs QA validation? ──YES──→ Level 2 (add acceptance-criteria.md)
 (risk, multi-file, testing)
     │
     NO (stay Level 1)

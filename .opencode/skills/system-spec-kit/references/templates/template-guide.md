@@ -24,9 +24,9 @@ Guide to template selection, copying, adaptation, and quality standards.
 ```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                                ↓
-Level 2 (Verification): Level 1 + acceptance-criteria.md (checklist.md optional)
+Level 2 (Verification): Level 1 + acceptance-criteria.md
                                ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
+Level 3 (Full):         Level 2 file set + architecture sections; every add-on stays lazy
                                ↓
 Level 3+ (Extended):    Level 3 + governance/AI protocol content
 ```
@@ -169,7 +169,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 - Add security checks if relevant
 - Include rollback verification
 
-**Enforcement:** Hard block if `acceptance-criteria.md` missing
+**Enforcement:** `AC_CLOSURE` fails when `acceptance-criteria.md` is absent from a packet created after 2026-08-30; older packets stay advisory
 
 ---
 
@@ -222,7 +222,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 - Document trade-offs honestly
 - Note what was sacrificed for chosen path
 
-**Enforcement:** Hard block if `decision-record.md` missing
+**Enforcement:** none. `decision-record.md` is a lazy add-on at every level; the level-match rule only warns when one appears in a Level 1 packet
 
 ---
 
@@ -1165,7 +1165,7 @@ Templates are stored as `*.md.tmpl` files and rendered by Level:
 |-------|--------|----------|
 | Level 1 | `templates/spec-kit-docs.json` | spec.md, plan.md, tasks.md, implementation-summary.md |
 | Level 2 | `templates/spec-kit-docs.json` | Level 1 + acceptance-criteria.md |
-| Level 3 | `templates/spec-kit-docs.json` | Level 2 + decision-record.md and lazy research |
+| Level 3 | `templates/spec-kit-docs.json` | Level 2 file set; decision-record.md and research/research.md stay lazy add-ons |
 | Level 3+ | `templates/spec-kit-docs.json` | Level 3 + governance sections |
 | Phase Parent | `templates/packet-types/phase-parent.spec.md.tmpl` | lean parent spec.md |
 

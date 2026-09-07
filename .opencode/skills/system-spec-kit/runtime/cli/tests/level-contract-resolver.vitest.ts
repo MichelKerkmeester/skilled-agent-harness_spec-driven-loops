@@ -23,6 +23,7 @@ describe('resolveLevelContract', () => {
       'roadmap.md',
       'decision-record.md',
       'goal.md',
+      'resource-map.md',
     ]);
     expect(contract.frontmatterMarkerLevel).toBe(1);
   });
@@ -47,6 +48,7 @@ describe('resolveLevelContract', () => {
         'roadmap.md',
         'decision-record.md',
         'goal.md',
+        'resource-map.md',
       ]);
     }
   });
@@ -64,6 +66,7 @@ describe('resolveLevelContract', () => {
       'roadmap.md',
       'decision-record.md',
       'goal.md',
+      'resource-map.md',
     ]);
     expect(contract.sectionGates.get('phase-list')).toEqual(['phase']);
   });
@@ -75,6 +78,7 @@ describe('resolveLevelContract', () => {
       'timeline.md',
       'roadmap.md',
       'decision-record.md',
+      'resource-map.md',
     ]);
     expect(resolveLevelContract('review').lifecycleRequiredDocs).toEqual({ afterImplementationStarts: [] });
   });

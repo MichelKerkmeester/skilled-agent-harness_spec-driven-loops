@@ -83,7 +83,31 @@ document tells the next agent the same thing.
 
 ---
 
-## 6. WORKED EXAMPLE
+## 6. CREATING THE FILE
+
+No command writes `goal.md` on its own. Two paths exist:
+
+1. `create.sh ... --with-goal` scaffolds it with the other packet documents,
+   at any level and on phase parents.
+2. For an existing packet, render it by hand:
+
+```bash
+bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+  --level <1|2|3|3+|phase> --out-dir <packet> \
+  .opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl
+```
+
+The `goal.md` in a packet and the session objective an operator sets with the
+goal command are two different things that share a word. The document is the
+source: it lives in the packet, carries the durable slice and the log, and is
+what this playbook describes. The session objective is a string the runtime
+holds for the current session and judges completion against. Nothing copies
+one into the other; the resync rule in Section 5 is the bridge, and the
+operator's hands carry it.
+
+---
+
+## 7. WORKED EXAMPLE
 
 From a real four-phase packet whose durable slice measures 1,986 characters against a 3,000 budget:
 
@@ -106,7 +130,7 @@ difference is what the pointer buys.
 
 ---
 
-## 7. RELATED
+## 8. RELATED
 
 | Document | Role |
 |---|---|

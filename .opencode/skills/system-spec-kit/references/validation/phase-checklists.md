@@ -182,7 +182,7 @@ When debugging becomes prolonged or repetitive:
 
 ### Templates
 
-- [checklist.md](../../templates/addons/acceptance-criteria.md.tmpl) - Checklist template for spec folders (Level 2+)
+- [acceptance-criteria.md](../../templates/addons/acceptance-criteria.md.tmpl) - The closure-gate template for spec folders (Level 2+)
 
 ### Skills
 

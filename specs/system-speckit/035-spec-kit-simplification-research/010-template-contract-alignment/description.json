@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/010-template-contract-alignment",
+  "description": "The template system's documents described a different system from the one that runs: a cumulative per-level ladder where the real add-on list is flat,",
+  "keywords": [
+    "template",
+    "system",
+    "documents",
+    "described",
+    "different",
+    "one",
+    "runs",
+    "cumulative",
+    "per-level",
+    "ladder",
+    "real",
+    "add-on",
+    "list",
+    "flat"
+  ],
+  "lastUpdated": "2026-09-07T02:11:05.324Z",
+  "specId": "010",
+  "folderSlug": "template-contract-alignment",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -282,7 +282,6 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 |----------|-------|
 | Spec-kit templates | `.opencode/skills/system-spec-kit/templates/` (Level 1 / 2 / 3 / 3+) |
 | Phase-parent template | `templates/packet-types/phase-parent.spec.md.tmpl` (lean trio template) |
-| Migration-bridge template | `templates/packet-types/context-index.md.tmpl` (optional; for reorganized phase parents) |
 | Recommend-level helper | `.opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` |
 | Create helper | `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` |
 | Description generator | `.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js` |

@@ -62,7 +62,7 @@ Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/speckit:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
-- `resource-map.md` is a peer cross-cutting template under `.opencode/skills/system-spec-kit/templates/`; it remains optional at any level and gives reviewers a lean file ledger alongside `implementation-summary.md`.
+- `resource-map.md` is a lazy add-on in every level contract; render it with the inline gate renderer when a packet wants a lean file ledger alongside `implementation-summary.md`. The deep loops write their own evidence ledger of the same name into their artifact directory, not the packet root.
 
 ### Utility Template Triggers
 

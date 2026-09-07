@@ -201,13 +201,13 @@ Templates are selected from `templates/spec-kit-docs.json`:
 | Level | Source | Rendered Content |
 |-------|--------|---------------------|
 | Level 1 | `templates/spec-kit-docs.json` | Baseline templates (spec, plan, tasks, implementation-summary) |
-| Level 2 | `templates/spec-kit-docs.json` | Level 1 + checklist |
-| Level 3 | `templates/spec-kit-docs.json` | Level 2 + decision-record, lazy research |
+| Level 2 | `templates/spec-kit-docs.json` | Level 1 + acceptance-criteria.md |
+| Level 3 | `templates/spec-kit-docs.json` | Level 2 file set with architecture sections; add-ons stay lazy |
 | Level 3+ | `templates/spec-kit-docs.json` | Level 3 file set with governance sections |
 
 **Example paths:**
 - `templates/core/spec.md.tmpl` - Level-gated spec template
-- `templates/addons/acceptance-criteria.md.tmpl` - Level-gated checklist template
+- `templates/addons/acceptance-criteria.md.tmpl` - The closure-gate document scaffolded at Level 2 and above
 - `templates/addons/decision-record.md.tmpl` - Level-gated ADR template
 - `templates/core/spec.md.tmpl` - Level 3+ spec sections are rendered by gate
 

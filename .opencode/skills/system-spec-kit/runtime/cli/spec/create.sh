@@ -51,6 +51,7 @@ child_doc_level() {
     esac
 }
 WITH_LAZY_ADDONS=false  # Opt in to the level-agnostic add-on documents
+WITH_GOAL=false         # Opt in to the durable-directive document
 SKIP_BRANCH=true   # Default: stay on the current branch (opt in with --branch). The owner's workflow commits directly to main; auto-branching is unwanted friction.
 TRACK=""           # Optional track segment: places the folder under .opencode/specs/<track>/ with per-track numbering
 SHARDED=false  # Enable sharded spec sections for Level 3
@@ -152,6 +153,9 @@ while [[ $i -le $# ]]; do
             ;;
         --with-lazy-addons)
             WITH_LAZY_ADDONS=true
+            ;;
+        --with-goal)
+            WITH_GOAL=true
             ;;
         --subfolder)
             SUBFOLDER_MODE=true
@@ -281,6 +285,8 @@ while [[ $i -le $# ]]; do
             echo "                      Creates spec-sections/ with modular documentation"
             echo "  --with-lazy-addons  Add before-after.md, timeline.md, roadmap.md, and decision-record.md"
             echo "                      (off by default; all are valid at every level)"
+            echo "  --with-goal         Add goal.md, the durable directive an operator sets as the session objective"
+            echo "                      (off by default; valid at every level and on phase parents)"
             echo "  --subfolder <path>  Create versioned sub-folder in existing spec folder"
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
@@ -401,6 +407,30 @@ process.stdout.write(`${requested.join('\n')}\n`);
 NODE
 }
 
+contract_lists_optional_addon() {
+    local contract_json="$1"
+    local doc_name="$2"
+    node - "$contract_json" "$doc_name" <<'NODE'
+const contract = JSON.parse(process.argv[2]);
+const docs = contract.optionalAddonDocs || [];
+process.exit(docs.includes(process.argv[3]) ? 0 : 1);
+NODE
+}
+
+requested_lazy_addon_doc() {
+    local contract_json="$1"
+    local doc_name="$2"
+    node - "$contract_json" "$doc_name" <<'NODE'
+const contract = JSON.parse(process.argv[2]);
+const lazyDocs = contract.lazyAddonDocs || [];
+if (!lazyDocs.includes(process.argv[3])) {
+  console.error(`Internal template contract omitted lazy document: ${process.argv[3]}`);
+  process.exit(3);
+}
+process.stdout.write(`${process.argv[3]}\n`);
+NODE
+}
+
 scaffold_lifecycle_required_docs() {
     local contract_json="$1"
     node - "$contract_json" <<'NODE'
@@ -426,13 +456,16 @@ scaffold_contract_docs() {
     printf '%s\n' "$required_docs"
     scaffold_lifecycle_required_docs "$contract_json"
     # The closure gate needs this document at every level whose contract lists
-    # it. Without it the scaffolder would emit packets that fail validation the
-    # moment they are created.
-    if printf '%s' "$contract_json" | grep -q '"acceptance-criteria\.md"'; then
+    # it as an optional add-on. Without it the scaffolder would emit packets that
+    # fail validation the moment they are created.
+    if contract_lists_optional_addon "$contract_json" "acceptance-criteria.md"; then
         printf '%s\n' "acceptance-criteria.md"
     fi
     if $WITH_LAZY_ADDONS; then
         requested_lazy_addon_docs "$contract_json"
+    fi
+    if $WITH_GOAL; then
+        requested_lazy_addon_doc "$contract_json" "goal.md"
     fi
 }
 
@@ -1826,6 +1859,9 @@ else
         echo "    5. Lazy add-ons: before-after.md, timeline.md, roadmap.md, decision-record.md"
     else
         echo "    5. Add on-demand docs with --with-lazy-addons when needed"
+    fi
+    if ! $WITH_GOAL; then
+        echo "    6. Add goal.md with --with-goal when an operator will set this packet as a session objective"
     fi
     echo ""
     echo "───────────────────────────────────────────────────────────────────"

@@ -1,0 +1,960 @@
+{
+  "sessionId": "fanout-glm-5-3-flash-templates-1788737392077-m8w16s",
+  "loopType": "research",
+  "updatedAt": "2026-09-07T01:53:58Z",
+  "note": "Lineage-confined reducer projection. Findings/ruledOut derive from deltas/iter-NNN.jsonl finding and ruled_out records; questionRegistry mirrors strategy Sections 3/6. Rebuilt by the inline lineage reducer after each iteration.",
+  "totalFindings": 35,
+  "bySeverity": {
+    "P1": 15,
+    "P2": 20
+  },
+  "byRecommendation": {
+    "fix": 18,
+    "document": 15,
+    "remove": 1,
+    "merge": 1
+  },
+  "findings": [
+    {
+      "type": "finding",
+      "id": "f-iter001-001",
+      "severity": "P1",
+      "iteration": 1,
+      "label": "Manifest documents[] semantics (owner/creationTrigger/absenceBehavior) are implementation-dead",
+      "file": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "lines": "61-164",
+      "claim": "Each of 17 documents declares template/owner/creationTrigger/absenceBehavior (acceptance-criteria.md: scaffold+warn at :152-156; resource-map.md: explicit-option+warn at :98-102; research/research.md: workflow+deep-research+silent-skip at :122-126)",
+      "groundTruth": "No runtime consumer: doc-to-file resolution uses the .tmpl naming convention plus a core-addons-packet-types folder scan (template-utils.sh:209-224), never documents[]; the scaffolder reads LEVELS arrays + flag + AC-grep (create.sh:421-437; template-utils.sh:300); the validator reads the same arrays (orchestrator.ts:473,507; spec-doc-structure.ts:217-223); hard-error/warn/silent-skip exist in runtime only as a comment (doctor.sh:6); sole definition is prose (EXTENSION-GUIDE.md:28-34)",
+      "recommendation": "fix (wire creationTrigger/absenceBehavior into create.sh+validator) or document (mark the section descriptive-only)",
+      "sources": [
+        "templates/spec-kit-docs.json:61-164",
+        "runtime/cli/lib/template-utils.sh:201-226,295-313",
+        "runtime/cli/spec/create.sh:421-437",
+        "runtime/lib/validation/orchestrator.ts:473,507",
+        "runtime/lib/validation/spec-doc-structure.ts:217-223",
+        "templates/EXTENSION-GUIDE.md:28-34",
+        "runtime/cli/doctor.sh:6"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter001-002",
+      "severity": "P2",
+      "iteration": 1,
+      "label": "lazyAddonDocs mixes flag-scaffolded and lifecycle-owned docs in one field",
+      "file": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "lines": "182-190",
+      "claim": "Level-1 contract lists 8 lazyAddonDocs (handover, debug-delegation, research/research.md, before-after, timeline, roadmap, decision-record, goal)",
+      "groundTruth": "--with-lazy-addons scaffolds exactly 4 (requested hardcoded at create.sh:393; help:282-283); the other 4 are command/agent/workflow-owned (manifest:110-126) or without any scaffold path (goal.md: 0 mentions in create.sh while the L1 contract defines sectionGates.goal.md at :521); the subset check (create.sh:394-398) validates only the 4; EXTENSION-GUIDE.md:39 reconciles the halves in prose only",
+      "recommendation": "document (only the flag-4 are scaffold-written) or fix (split flagLazyAddonDocs vs lifecycleAddonDocs)",
+      "sources": [
+        "templates/spec-kit-docs.json:182-190,110-126,158-162,521",
+        "runtime/cli/spec/create.sh:282-283,393-398",
+        "templates/EXTENSION-GUIDE.md:39"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter001-003",
+      "severity": "P2",
+      "iteration": 1,
+      "label": "requiredAddonDocs is [] in all 7 contracts while the de-facto required addon (acceptance-criteria.md) travels via optionalAddonDocs + a substring grep",
+      "file": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "lines": "180,560,1054,1608,2170,2311,2428",
+      "claim": "CONTRACT.md:41 calls acceptance-criteria.md the closure-gating document for Levels 2, 3 and 3+",
+      "groundTruth": "requiredAddonDocs=[] in all 7 level contracts; acceptance-criteria.md sits in optionalAddonDocs at L2/3/3+ (562,1056,1610) with sectionGates (998,1552,2121); the scaffolder decides via a substring grep of the whole level contract (create.sh:431-433, comment 428-430) which hits at L2/3/3+ and misses at L1; the validator still unions the perpetually-empty requiredAddonDocs (orchestrator.ts:473; template-utils.sh:300); any future stray mention of the doc name inside a level contract silently flips the scaffold decision",
+      "recommendation": "fix (move acceptance-criteria.md into requiredAddonDocs at L2/3/3+ and retire the grep) or document the grep as the intended mechanism",
+      "sources": [
+        "templates/spec-kit-docs.json:180,560,1054,1608,2170,2311,2428,562,1056,1610,998,1552,2121",
+        "runtime/cli/spec/create.sh:428-433",
+        "runtime/lib/validation/orchestrator.ts:473",
+        "runtime/cli/lib/template-utils.sh:300",
+        "templates/CONTRACT.md:41"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-001",
+      "severity": "P1",
+      "iteration": 2,
+      "label": "README trigger table promises ask-surfaces that do not exist for goal/resource-map/context-index",
+      "file": "README.md",
+      "lines": "182-184,154",
+      "claim": "explicit-option = written when you ask for it (decision-record, resource-map, context-index, before-after, timeline, roadmap, goal); machine contract is spec-kit-docs.json",
+      "groundTruth": "Only before-after/timeline/roadmap/decision-record have an ask-surface: --with-lazy-addons with the 4-doc list hardcoded (create.sh:393, help :282-283); goal/resource-map/context-index have 0 hits in create.sh; the pointed-to machine contract's documents[] is implementation-dead (f-iter001-001)",
+      "recommendation": "fix (align table to acting truth) or document (if ask-surfaces exist outside the audited surface)",
+      "sources": [
+        "README.md:182-184,154",
+        "runtime/cli/spec/create.sh:282-283,393,421-437",
+        "templates/spec-kit-docs.json:61-164"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-002",
+      "severity": "P1",
+      "iteration": 2,
+      "label": "README level table misdescribes L2/L3/L3+ rows",
+      "file": "README.md",
+      "lines": "149-151,165",
+      "claim": "L3 = Level 2 + decision-record.md (optional, created on request); L3+ = + approval workflow, compliance checkpoints, stakeholder matrix; L2 = acceptance-criteria.md (optional, warns if absent)",
+      "groundTruth": "decision-record.md is in lazyAddonDocs at EVERY level (manifest:189,565,1059,1613; create.sh:283 all are valid at every level); L3+ artifacts are sectionGates (compliance-verify :1310-1312,1873-1875) and inline-gated anchors in core/spec.md.tmpl (:329 approval-workflow, :369 stakeholder-matrix), not files; acceptance-criteria.md is scaffolded BY DEFAULT at L2/3/3+ (create.sh:431-433) and the promised warn has no mechanism",
+      "recommendation": "fix the three rows to the acting truth",
+      "sources": [
+        "README.md:149-151,165",
+        "templates/spec-kit-docs.json:182-191,565,1059,1613,562,1056,1607-1611,1310-1312,1873-1875",
+        "runtime/cli/spec/create.sh:283,431-433",
+        "templates/core/spec.md.tmpl:329,369"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-003",
+      "severity": "P1",
+      "iteration": 2,
+      "label": "README loop-emission claim wrong on path and provenance; conflates two same-named artifacts",
+      "file": "README.md",
+      "lines": "168,173",
+      "claim": "Deep-research and deep-review loops emit resource-map.md automatically next to review-report.md; render it from templates/addons/resource-map.md.tmpl when wanted",
+      "groundTruth": "Loops emit at {artifact_dir}/resource-map.md (deep-research-confirm.yaml:187; deep-review-auto.yaml:161) = the research/lineage dir, not the packet root beside review/review-report.md; content is emitResourceMap extraction from loop deltas (reduce-state.cjs:14,1536-1538,1660 via shared/synthesis/resource-map.cjs), NOT a render of the addon template",
+      "recommendation": "fix (real path + provenance) and document the addon-template vs loop-emission artifact distinction",
+      "sources": [
+        "README.md:168,173",
+        ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:14,1536-1538,1660",
+        ".opencode/commands/deep/assets/deep-research-confirm.yaml:187",
+        ".opencode/commands/deep/assets/deep-review-auto.yaml:161"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-004",
+      "severity": "P1",
+      "iteration": 2,
+      "label": "resource-map.md exists in three systems vocabularies and zero enforcement paths",
+      "file": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "lines": "98-102",
+      "claim": "resource-map.md: owner author, creationTrigger explicit-option, absenceBehavior warn; SKILL:65 optional at any level; README:168 optional path ledger",
+      "groundTruth": "resource-map.md appears in NONE of the 7 level contracts (not in any addon array); validator addon scan = optionalAddonDocs∪lazyAddonDocs minus FREEFORM {review/review-report.md, research/research.md} (orchestrator.ts:507-510; spec-doc-structure.ts:200) so it is never structure-checked; no scaffold/flag path writes it; the warn has no producer; yet discovery indexes it as canonical (spec-doc-discovery.ts:139-145; runtime/README.md:154)",
+      "recommendation": "fix (add to lazyAddonDocs where produced, or give the addon template an ask-surface) else document as extension-authored-only",
+      "sources": [
+        "templates/spec-kit-docs.json:98-102,180-191,560-570,1054-1064,1608-1618,2170-2180,2311-2320,2428-2436",
+        "SKILL.md:65",
+        "README.md:168",
+        "runtime/lib/validation/orchestrator.ts:507-510",
+        "runtime/lib/validation/spec-doc-structure.ts:200",
+        "runtime/handlers/spec-doc-discovery.ts:139-145",
+        "runtime/README.md:154"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-005",
+      "severity": "P2",
+      "iteration": 2,
+      "label": "SKILL template/ToC gates omit 4 template-backed docs",
+      "file": ".opencode/skills/system-spec-kit/SKILL.md",
+      "lines": "61,494",
+      "claim": "MUST-use-templates list and ToC list cover 9-10 named docs",
+      "groundTruth": "before-after.md, timeline.md, roadmap.md, goal.md are versioned gate-bearing templates (manifest versions :17-21; documents[] :128-144,158-162; L1 sectionGates.goal.md :521) with the same inline-gate render path, but an agent hand-authoring them is under no template or ToC obligation by SKILL:61/494",
+      "recommendation": "document the principle (any doc with a versioned .tmpl is template-gated) instead of enumerating",
+      "sources": [
+        "SKILL.md:61,494",
+        "templates/spec-kit-docs.json:4-22,128-144,158-162,521"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-001",
+      "severity": "P1",
+      "iteration": 3,
+      "label": "--with-lazy-addons is documented nowhere outside create.sh",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "lines": "153,282-283,1828",
+      "claim": "--with-lazy-addons is the only scaffolder switch controlling addon emission (4 of 10 addon templates)",
+      "groundTruth": "Mention census: only create.sh:153,282-283,1828 + scaffold-golden-snapshots.vitest.ts:104; ZERO mentions in README.md, SKILL.md, all references/, templates/README.md, EXTENSION-GUIDE.md; the same prose publishes per-level document ladders that never say how to opt in to before-after/timeline/roadmap/decision-record",
+      "recommendation": "document (add flag + 4-doc list to README trigger table and one references page)",
+      "sources": [
+        "runtime/cli/spec/create.sh:153,282-283,1828",
+        "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:104",
+        "references/templates/template-style-guide.md:39-45",
+        "README.md:182-184"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-002",
+      "severity": "P1",
+      "iteration": 3,
+      "label": "Prose ladder model vs manifest flat model of the addon set are incompatible",
+      "file": ".opencode/skills/system-spec-kit/references/templates/template-style-guide.md",
+      "lines": "39-45",
+      "claim": "Level 2 = +acceptance-criteria; Level 3 = +decision-record; 3+ = governance sections; Utility docs float; research/research.md lazy at L3/3+",
+      "groundTruth": "lazyAddonDocs arrays are byte-identical at L1/2/3/3+ (8 docs; spec-kit-docs.json:182-191,565-570,1059-1064,1613-1618); real differences: AC optional at 2/3/3+ only, packet-type contracts drop debug-delegation+research/research.md (phase, :2170-2177) and additionally goal.md (review/research, :2311-2316/:2428-2433); resource-map.md in ZERO contracts; decision-record is level-agnostic per create.sh:283",
+      "recommendation": "fix (reconcile prose to the flat model: one table - 8 lazy docs all levels, AC optional 2+, packet-type deltas, resource-map extra-contract)",
+      "sources": [
+        "references/templates/template-style-guide.md:39-45",
+        "references/templates/template-guide.md:1166-1170",
+        "references/templates/level-selection-guide.md:203-206",
+        "templates/spec-kit-docs.json:182-191,565-570,1059-1064,1613-1618,2170-2177,2311-2316,2428-2433",
+        "runtime/cli/spec/create.sh:283"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-003",
+      "severity": "P2",
+      "iteration": 3,
+      "label": "Lazy-research scoped to L3/3+ in three prose lines vs all-implementation-levels reality",
+      "file": ".opencode/skills/system-spec-kit/references/templates/template-style-guide.md",
+      "lines": "45",
+      "claim": "research/research.md is a lazyAddonDocs entry for Levels 3 and 3+ (also level-selection-guide:205, template-guide:1168)",
+      "groundTruth": "research/research.md is in lazyAddonDocs at ALL FOUR implementation levels (identical arrays :182-191,565-570,1059-1064,1613-1618)",
+      "recommendation": "fix the three lines to all implementation levels",
+      "sources": [
+        "references/templates/template-style-guide.md:45",
+        "references/templates/level-selection-guide.md:205",
+        "references/templates/template-guide.md:1168",
+        "templates/spec-kit-docs.json:182-191,565-570,1059-1064,1613-1618"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-004",
+      "severity": "P2",
+      "iteration": 3,
+      "label": "Explicit-option ask-surface exists but is documented once, for one doc, and never named by the rows that promise it",
+      "file": "README.md",
+      "lines": "184",
+      "claim": "explicit-option = written when you ask for it (README:184); folder-structure:142 created on request",
+      "groundTruth": "The ask-surface is a manual render: inline-gate-renderer.sh --level N --out-dir <folder> templates/addons/<doc>.md.tmpl - documented exactly once (template-guide.md:195-200, resource-map.md) and characterized at level-specifications.md:742 (Manual (optional)); goal.md has no worked render example anywhere in references; the README/folder-structure rows never name the mechanism",
+      "recommendation": "document (name the renderer command in the explicit-option rows; add goal.md render example or a shared snippet)",
+      "sources": [
+        "README.md:184",
+        "references/structure/folder-structure.md:142",
+        "references/templates/template-guide.md:195-200",
+        "references/templates/level-specifications.md:742"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-005",
+      "severity": "P2",
+      "iteration": 3,
+      "label": "Level-selection-guide Level 2 row names a checklist doc that exists in no contract or manifest",
+      "file": ".opencode/skills/system-spec-kit/references/templates/level-selection-guide.md",
+      "lines": "204",
+      "claim": "Level 2 = Level 1 + checklist",
+      "groundTruth": "rg checklist over spec-kit-docs.json = 0 hits; no level contract lists checklist.md; checklist.md IS in canonical discovery (runtime/README.md:154) but not in the manifest - third completion-surface candidate for angle 5",
+      "recommendation": "document (name the actual artifact: Level 1 + acceptance-criteria.md; reconcile checklist.md discovery-only status in angle 5)",
+      "sources": [
+        "references/templates/level-selection-guide.md:204",
+        "templates/spec-kit-docs.json",
+        "runtime/README.md:154"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-001",
+      "severity": "P1",
+      "iteration": 4,
+      "label": "README:198 attributes AC_COVERAGE evidence to tasks.md - the dead legacy path",
+      "file": "README.md",
+      "lines": "198",
+      "claim": "the AC_COVERAGE rule requires each criterion's evidence to trace back into tasks.md",
+      "groundTruth": "Canonical path (any packet with acceptance-criteria.md, mandatory post-cutoff at L2+): evidence read from acceptance-criteria.md's own Verification column by the same analyzer that produces the denominator (check-ac-coverage.sh:292-298,195-247); tasks.md traceability rows are the pre-rollout fallback (:95-104,163-164)",
+      "recommendation": "fix (evidence lives in the AC file's Verification cell as file:line; tasks.md is pre-rollout fallback)",
+      "sources": [
+        "README.md:198",
+        "runtime/cli/rules/check-ac-coverage.sh:95-104,163-164,195-247,292-298"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-002",
+      "severity": "P1",
+      "iteration": 4,
+      "label": "README + folder-structure say missing acceptance-criteria.md warns - the shipped gate is a hard error",
+      "file": "README.md",
+      "lines": "149-151,154,165",
+      "claim": "a missing acceptance-criteria.md warns (README:154,149-151,165); folder-structure:125,141 validation warns when it is absent",
+      "groundTruth": "AC_CLOSURE is severity error (validator-registry.json); post-cutoff (2026-08-30) L2+ absence = RULE_STATUS fail with remediation scaffold-from-template (check-ac-closure.sh:247-257); optional only pre-cutoff (grandfathered advisory); no warn path exists anywhere for the AC document",
+      "recommendation": "fix both files to: required at L2+ for packets created after 2026-08-30; missing = validation error",
+      "sources": [
+        "README.md:149-151,154,165",
+        "references/structure/folder-structure.md:125,141",
+        "runtime/cli/rules/check-ac-closure.sh:247-257",
+        "runtime/cli/lib/validator-registry.json",
+        "templates/spec-kit-docs.json:152-156"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-003",
+      "severity": "P2",
+      "iteration": 4,
+      "label": "AC_COVERAGE is advisory end-to-end (floor 0.9, pass status under floor) while README says requires",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+      "lines": "368-377",
+      "claim": "README:198 requires-each-criterion framing; registry severity info + SPECKIT_AC_COVERAGE_ENFORCE flag + Default-on advisory (non-blocking) description",
+      "groundTruth": "No fail branch in the script; under-floor returns pass + advisory message; escalation exists only via the ENFORCE registry flag, undocumented in audited prose",
+      "recommendation": "document (advisory default, 0.9 floor, ENFORCE escalation) in the README gate paragraph",
+      "sources": [
+        "runtime/cli/rules/check-ac-coverage.sh:13-24,368-377",
+        "runtime/cli/lib/validator-registry.json",
+        "README.md:198"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-004",
+      "severity": "P2",
+      "iteration": 4,
+      "label": "Packet 004's AC is self-referential to this lineage; Met rows repo-wide rarely cite file:line (advisory-malformed)",
+      "file": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/acceptance-criteria.md",
+      "lines": "53-58",
+      "claim": "AC-001: ten iteration files and ten state events exist under research/lineages/glm-5-3-flash-templates; AC-003: focus-line coverage of these iteration files",
+      "groundTruth": "The audited surface and the audit are entangled - packet 004's closure evidence will be read from this lineage's artifacts; 035 family rows all Unmet (authored, source-naming, in-progress); repo-wide 144 AC files, Met rows common but path-without-:line citations score as malformed-advisory not covered (analyzer :195-247)",
+      "recommendation": "document (Met rows should cite file:line per the analyzer; record that packet 004's closure reads this lineage)",
+      "sources": [
+        "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/acceptance-criteria.md:53-58",
+        "specs/mcp-tooling/019-official-obsidian-cli/acceptance-criteria.md",
+        "specs/agents/008-orchestrate-external-cli-delegation/acceptance-criteria.md",
+        "runtime/cli/rules/check-ac-coverage.sh:195-247"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-001",
+      "severity": "P2",
+      "iteration": 5,
+      "label": "runtime/README:154 names checklist.md in canonical discovery - the code set omits it",
+      "file": ".opencode/skills/system-spec-kit/runtime/README.md",
+      "lines": "154",
+      "claim": "Canonical spec-document discovery includes spec.md, plan.md, tasks.md, checklist.md, ...",
+      "groundTruth": "SPEC_DOCUMENT_FILENAMES (spec-doc-paths.ts:17-29) has 11 entries, checklist.md absent; nothing else in runtime discovers it",
+      "recommendation": "fix (drop checklist.md from the README list, or re-add the filename to the code set if intended)",
+      "sources": [
+        "runtime/README.md:154",
+        "runtime/lib/config/spec-doc-paths.ts:17-29"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-002",
+      "severity": "P1",
+      "iteration": 5,
+      "label": "Hooks docs + sentinel comments document a checklist.md input that check-completion.sh does not have",
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/hooks/README.md",
+      "lines": "12",
+      "claim": "The sentinel reads a spec folder's checklist.md via check-completion.sh --json (also sentinel comments :7 and :217 referencing a checklist.md-not-found branch)",
+      "groundTruth": "check-completion.sh hardcodes checklist_file=$FOLDER_PATH/tasks.md (:441), requires the ANCHOR:protocol section (:443), zero checklist.md logic (0 rg hits); the real input is tasks.md's merged verification section, named nowhere in the hooks docs; the Level-1 implementation-summary.md fallback IS real (:227-229)",
+      "recommendation": "fix (hooks README + sentinel comments to tasks.md/ANCHOR:protocol reality; keep the Level-1 fallback documented)",
+      "sources": [
+        "runtime/lib/hooks/README.md:12",
+        "runtime/lib/hooks/completion-evidence-sentinel.cjs:7,160-188,217,227-229",
+        "runtime/cli/spec/check-completion.sh:69,124-144,441-452"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-003",
+      "severity": "P1",
+      "iteration": 5,
+      "label": "Completion-gate topology is split-brain: validator gates AC only, completion tool gates tasks checklist only, and the two share zero enforcement code",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      "lines": "(registry)",
+      "claim": "README:198 presents AC_COVERAGE and check-completion as linked gates; registry has 39 rules, none for completion/checklist",
+      "groundTruth": "acceptance-criteria.md: gated inside validate.sh --strict (AC_CLOSURE error, AC_COVERAGE info) + used for level inference by completion-state.cjs:45; tasks.md P0/P1/P2 checklist: enforced only by check-completion.sh (the Completion Verification Rule, :48), consumed by the completion exposer (plugin system_speckit_completion -> completion-state.cjs:241) and the Stop-hook sentinel (:160-188) - validate.sh never runs it; a packet can pass --strict with an incomplete P0 checklist, and pass the exposer with unmet AC rows; checklist.md is dead, alive only in stale prose",
+      "recommendation": "document the split explicitly (validator=AC closure; completion tool+Stop hook=tasks checklist) or merge by registering check-completion as a registry rule",
+      "sources": [
+        "runtime/cli/lib/validator-registry.json",
+        "runtime/cli/spec/check-completion.sh:48,69,441-452",
+        "runtime/cli/lib/completion-state.cjs:45,241",
+        ".opencode/plugins/system-speckit-completion.js:7,58",
+        "runtime/lib/hooks/completion-evidence-sentinel.cjs:160-188",
+        "README.md:198"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-004",
+      "severity": "P2",
+      "iteration": 5,
+      "label": "SPECKIT_AC_COVERAGE_ENFORCE is reserved-by-design, unconsumed, and missing from ENV-REFERENCE",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      "lines": "(AC_COVERAGE entry)",
+      "claim": "Registry lists SPECKIT_AC_COVERAGE_ENFORCE among live flags",
+      "groundTruth": "0 consumption sites in runtime code; references/validation/validation-rules.md documents it as a reserved promotion switch (current rule remains INFO/advisory); ENV-REFERENCE.md:166-167 lists only SPECKIT_AC_COVERAGE and _FLOOR",
+      "recommendation": "document (add the reserved flag to ENV-REFERENCE with the validation-rules.md wording)",
+      "sources": [
+        "runtime/cli/lib/validator-registry.json",
+        "references/validation/validation-rules.md",
+        "runtime/ENV-REFERENCE.md:166-167"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-001",
+      "severity": "P1",
+      "iteration": 6,
+      "label": "goal.md is the most contract-defined, least-creatable document - nothing creates it",
+      "file": "README.md",
+      "lines": "184",
+      "claim": "goal.md is explicit-option - written when you ask for it; fully gated in the contract (L1 gate :521, phase gate profile, lazyAddonDocs at 5/7 levels); 75 goal.md files exist under specs/",
+      "groundTruth": "No creator: create.sh/upgrade-level/scaffold-debug-delegation 0 hits; rules 0 hits; the opencode-goal plugin persists objective STRINGS under skills/.state/goal/ and never writes goal.md (0 refs); the only path is the manual renderer, documented once for resource-map.md only (template-guide.md:195-200). CQ1 CLOSED.",
+      "recommendation": "document (name the manual render as THE creation path, with a goal.md-specific example) or fix (add a small creator: --with-goal or a helper)",
+      "sources": [
+        "README.md:184",
+        "templates/spec-kit-docs.json:158-162,521,2170-2177",
+        "runtime/cli/spec/create.sh",
+        ".opencode/plugins/opencode-goal.js:27-29,3060",
+        "references/templates/template-guide.md:195-200"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-002",
+      "severity": "P2",
+      "iteration": 6,
+      "label": "Nested-goal binding is a convention, not a gate - honored only when a template-shaped parent goal.md exists",
+      "file": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+      "lines": "67-85",
+      "claim": "Phase parents bind children via ANCHOR:binding (each phase goal.md binds as if written here); playbook set-string instructs reading each phase's goal.md",
+      "groundTruth": "Binding reality: 15 of 75 goal.md files carry ANCHOR:binding; 019 parent honors end-to-end; 033 parent (which BUILT the goal system) has NO parent goal.md; 018/013 goals are freeform without anchors; presence is optional (lazyAddonDocs) so a parent without one is unconstrained; a PRESENT goal.md gets anchor-checked via the validator presentAddons scan (orchestrator.ts:507-510); the operator objective string is explicitly unchecked (playbook:20)",
+      "recommendation": "document (binding binds only when a template-shaped parent goal.md exists; legacy freeform goals sit outside the anchor system) or fix with an advisory rule",
+      "sources": [
+        "templates/addons/goal.md.tmpl:67-85",
+        "references/workflows/goal-set-string-playbook.md:20,27-31",
+        "specs/mcp-tooling/019-official-obsidian-cli/goal.md:60,75,109",
+        "ls specs/system-speckit/033-system-speckit-v4/",
+        "specs/sk-design/018-sk-design-parent-v2/goal.md",
+        "specs/mcp-tooling/013-mcp-obsidian/goal.md",
+        "runtime/lib/validation/orchestrator.ts:507-510"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-003",
+      "severity": "P2",
+      "iteration": 6,
+      "label": "Two artifacts share the name goal: the plugin-persisted session objective and the goal.md packet document; no code connects them",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "lines": "1-6,27-29",
+      "claim": "The live goal machinery persists session goals and injects passive steering; 8 speckit YAMLs offer it (goal_prompt_choice default-offer)",
+      "groundTruth": "opencode_goal({action:set,objective}) stores an objective string under skills/.state/goal/; goal.md (manifest addon, durable directive/binding/criteria) is a DIFFERENT artifact the plugin never reads or writes (0 refs); the playbook set-string shape is the manual bridge (operator pastes goal.md text into the objective); the README/EXTENSION-GUIDE never disambiguate - root cause behind f-iter006-001 and f-iter002-001",
+      "recommendation": "document (one paragraph: goal = session objective via opencode_goal; goal.md = packet document via manual render; former hand-derived from latter)",
+      "sources": [
+        ".opencode/plugins/opencode-goal.js:1-6,27-29,3060",
+        ".opencode/commands/speckit/assets/speckit-plan-auto.yaml:98-99,123-137",
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:81",
+        "templates/addons/goal.md.tmpl:81-82",
+        "references/workflows/goal-set-string-playbook.md:27-31"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-001",
+      "severity": "P1",
+      "iteration": 7,
+      "label": "Five of 17 manifest-declared v2.2 templates self-declare v1.0/v1.1 in their own inline markers",
+      "file": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "lines": "4-22",
+      "claim": "manifest versions{} declares all 17 templates v2.2; EXTENSION-GUIDE:49 says writers emit the current manifest version",
+      "groundTruth": "research.md.tmpl:16 research|v1.0; resource-map.md.tmpl:17 resource-map|v1.1; handover.md.tmpl:17 handover|v1.0; debug-delegation.md.tmpl:18 debug-delegation|v1.0; context-index.md.tmpl:15 context-index|v1.0 - rendered files inherit the lower version, contradicting the manifest the same skill ships; which side is wrong is undeterminable from the repo",
+      "recommendation": "fix (reconcile the five pairs; let golden snapshots pin the choice)",
+      "sources": [
+        "templates/spec-kit-docs.json:4-22",
+        "templates/addons/research.md.tmpl:16",
+        "templates/addons/resource-map.md.tmpl:17",
+        "templates/addons/handover.md.tmpl:17",
+        "templates/addons/debug-delegation.md.tmpl:18",
+        "templates/addons/context-index.md.tmpl:15",
+        "templates/EXTENSION-GUIDE.md:48-56"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-002",
+      "severity": "P1",
+      "iteration": 7,
+      "label": "check-template-staleness.sh reads a manifest path that does not exist",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+      "lines": "61-71,114-118",
+      "claim": "Header: compares each spec folder's marker version against the current template version",
+      "groundTruth": "Default manifest path $TEMPLATE_DIR/manifest/spec-kit-docs.json (templates/manifest/) does not exist in this layout (real: templates/spec-kit-docs.json); get_current_template_version falls back to unknown which matches nothing; not in the validator registry so the breakage is silent until run manually",
+      "recommendation": "fix (point manifest resolution at the real path or through the resolver; add a self-test)",
+      "sources": [
+        "runtime/cli/spec/check-template-staleness.sh:5-6,60-71,114-118,140-169",
+        "runtime/cli/lib/validator-registry.json"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-003",
+      "severity": "P2",
+      "iteration": 7,
+      "label": "templateVersions is exposed by the resolver with zero consumers",
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts",
+      "lines": "34,65,264,288",
+      "claim": "versions{} resolves into the level contract",
+      "groundTruth": "0 rg hits for templateVersions outside the resolver; the only version-compare tool (staleness checker) re-reads the JSON itself via the dead path; the field's consumer surface is prose policy + a broken script",
+      "recommendation": "document the intended consumer or remove the field from the resolver contract until one exists",
+      "sources": [
+        "runtime/lib/templates/level-contract-resolver.ts:34,65,264,288",
+        "runtime/cli/spec/check-template-staleness.sh:61-71",
+        "templates/EXTENSION-GUIDE.md:48-56",
+        "templates/MIGRATION.md:24,46"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-004",
+      "severity": "P2",
+      "iteration": 7,
+      "label": "Version field unit (per .tmpl) does not match marker unit (per rendered document); remediation example names a nonexistent template",
+      "file": ".opencode/skills/system-spec-kit/templates/core/spec.md.tmpl",
+      "lines": "36-43",
+      "claim": "spec.md.tmpl renders different final markers per level (spec-core | v2.2 at :36; composed variants :39,:43); corpus mixes spec-core and spec names",
+      "groundTruth": "check-template-source.sh:78-93 enforces presence only; its remediation example (spec + plan + tasks + checklist + decision-record | v2.2, :90) names a checklist template absent from the manifest (echoes f-iter003-005); marker names are render-composition names while versions{} keys on .tmpl basenames",
+      "recommendation": "document (marker names = render-composition names; versions = template basenames; presence-not-equality is the contract); update the stale remediation example",
+      "sources": [
+        "templates/core/spec.md.tmpl:36-43",
+        "runtime/cli/rules/check-template-source.sh:78-93",
+        "specs/mcp-tooling/019-official-obsidian-cli/spec.md",
+        "templates/spec-kit-docs.json:4-22"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-005",
+      "severity": "P2",
+      "iteration": 7,
+      "label": "32 v1.0 corpus markers (14 live packets) grandfathered by policy; no tool expresses the grandfathering",
+      "file": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/spec.md",
+      "lines": "(marker)",
+      "claim": "MIGRATION.md:24,46 + EXTENSION-GUIDE:50: legacy markers supported indefinitely, no sunset",
+      "groundTruth": "Corpus census: 4340xv2.2 + 32xv1.0 markers on spec.md (14 live, 18 archived); the (broken) staleness checker would classify all v1.0 as stale; no rule or doc reconciles the legacy promise with the tool",
+      "recommendation": "document (one line in MIGRATION.md or checker help: below-current = stale for information; legacy support has no sunset)",
+      "sources": [
+        "rg census over specs/",
+        "templates/MIGRATION.md:24,46",
+        "templates/EXTENSION-GUIDE.md:50",
+        "runtime/cli/spec/check-template-staleness.sh:158-169"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-001",
+      "severity": "P2",
+      "iteration": 8,
+      "label": "Document-inclusion authority split across three lists (corrects f-iter002-004 mechanism attribution)",
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+      "lines": "216-226",
+      "claim": "collectDocuments unions contract arrays PLUS hardcoded resource-map.md (:224) and context-index.md (:225), minus FREEFORM",
+      "groundTruth": "Three authorities: (a) contract arrays (omit resource-map/context-index), (b) spec-doc-structure hardcoded extras, (c) orchestrator validationDocsForLevel following (a) only; CORRECTION to iteration 2: resource-map.md IS structure-checked when present via (b), but inclusion is invisible to the contract and unrepresentable in EXTENSION-GUIDE's workflow; this audit itself tripped on the split",
+      "recommendation": "fix (make the contract the single authority: add resource-map/context-index to lazyAddonDocs where produced, delete the hardcoded set, keep FREEFORM as the only exception list)",
+      "sources": [
+        "runtime/lib/validation/spec-doc-structure.ts:200,216-226",
+        "runtime/lib/validation/orchestrator.ts:500-514",
+        "templates/spec-kit-docs.json:180-191,565-570,98-108",
+        "templates/EXTENSION-GUIDE.md:31-40"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-002",
+      "severity": "P2",
+      "iteration": 8,
+      "label": "checklist.md retirement is deliberate and test-pinned while four prose surfaces still treat it as live",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+      "lines": "136-147",
+      "claim": "carries verification in the merged tasks document and nowhere else; the standalone verification document is retired: it must appear in no bucket at all",
+      "groundTruth": "Assertions over all four buckets pin the retirement; find specs -name checklist.md = 0; yet runtime/README.md:154 (discovery), hooks README:12, sentinel comments :7/:217, level-selection-guide.md:204 still present it as live - prose contradicting a test-enforced decision",
+      "recommendation": "remove (the four prose references; note the retirement in MIGRATION.md)",
+      "sources": [
+        "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:136-147",
+        "runtime/README.md:154",
+        "runtime/lib/hooks/README.md:12",
+        "runtime/lib/hooks/completion-evidence-sentinel.cjs:7,217",
+        "references/templates/level-selection-guide.md:204"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-003",
+      "severity": "P2",
+      "iteration": 8,
+      "label": "Six of ten addon/packet-type templates have no golden render/anchor test - exactly the six that drifted",
+      "file": ".opencode/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+      "lines": "76-84",
+      "claim": "expectedAnchors covers only the flag-4 {before-after, timeline, roadmap, decision-record}",
+      "groundTruth": "handover, debug-delegation, research/research.md, goal, resource-map templates + context-index have 0 render tests (0 hits in the file); those are the five v1.0/v1.1 self-marker templates (f-iter007-001) plus the disputed-contract pair; untested surfaces drifted, tested ones did not",
+      "recommendation": "fix (extend expectedAnchors or a data-driven sweep to all templates; add a version-marker-vs-manifest assertion)",
+      "sources": [
+        "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:45-62,76-84",
+        "templates/addons/research.md.tmpl:16",
+        "templates/addons/resource-map.md.tmpl:17",
+        "templates/addons/handover.md.tmpl:17",
+        "templates/addons/debug-delegation.md.tmpl:18",
+        "templates/packet-types/context-index.md.tmpl:15",
+        "templates/addons/goal.md.tmpl:31"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-004",
+      "severity": "P2",
+      "iteration": 8,
+      "label": "Goal surfaces: session-goal side well-built and test-pinned; goal-document side contract-rich but creatorless; no bridge",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "lines": "1-6,27-29",
+      "claim": "Two goal artifacts with distinct validated capabilities; neither should be dropped; the gap is the bridge",
+      "groundTruth": "Session-goal: two pinned test files (speckit-goal-offer-contract.test.cjs:71-81; opencode-goal-tool-path.test.cjs:40) + 8 YAML offers; goal.md document: full gate profile + 75 files + no creator (f-iter006-001) + convention-only binding (f-iter006-002); only the operator's hands connect them (f-iter006-003)",
+      "recommendation": "merge (one goal section covering session objective + goal.md + derivation; optional bridge: opencode_goal fromPacketGoal action drafting the objective from goal.md)",
+      "sources": [
+        ".opencode/plugins/opencode-goal.js:1-6,27-29",
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:71-81",
+        ".opencode/plugins/tests/opencode-goal-tool-path.test.cjs:40",
+        "templates/addons/goal.md.tmpl:41-62",
+        "references/workflows/goal-set-string-playbook.md:27-31"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-001",
+      "severity": "P1",
+      "iteration": 9,
+      "label": "template-guide claims a hard block on missing decision-record.md - no such gate is wired anywhere",
+      "file": ".opencode/skills/system-spec-kit/references/templates/template-guide.md",
+      "lines": "178,225",
+      "claim": "Enforcement: Hard block if decision-record.md missing (Level 3 guidance)",
+      "groundTruth": "decision-record.md is in lazyAddonDocs at every level (:189,565,1059,1613); FILE_EXISTS requires only spec/plan/tasks (+ lifecycle summary via helper docs); no registry rule blocks on it; the only level signal is an ADVISORY WARNING in the inverse direction (present at L1 -> consider upgrading, check-level-match.sh:222-223)",
+      "recommendation": "fix (decision-record.md is a level-agnostic lazy addon: scaffold with --with-lazy-addons or render manually; absence never blocks - cross-link the flag documentation)",
+      "sources": [
+        "references/templates/template-guide.md:178,225",
+        "templates/spec-kit-docs.json:189,565,1059,1613",
+        "runtime/cli/lib/validator-registry.json",
+        "runtime/cli/rules/check-level-match.sh:222-223",
+        "runtime/cli/utils/template-structure.js docs 3 output"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-002",
+      "severity": "P2",
+      "iteration": 9,
+      "label": "MIGRATION.md self-describes living in templates/manifest/ - a directory that does not exist",
+      "file": ".opencode/skills/system-spec-kit/templates/MIGRATION.md",
+      "lines": "14",
+      "claim": "HTML comment: Lives at templates/manifest/ (not references/) because it co-locates with the manifest assets it documents",
+      "groundTruth": "The file lives at templates/ root; templates/manifest/ does not exist (the same phantom path the staleness checker reads, f-iter007-002); residue of an unexecuted or reverted relocation",
+      "recommendation": "fix (correct the comment to templates/ - or actually move the file and fix the checker in one change, resolving both findings)",
+      "sources": [
+        "templates/MIGRATION.md:14",
+        "ls templates/",
+        "runtime/cli/spec/check-template-staleness.sh:61-71"
+      ]
+    }
+  ],
+  "ruledOut": [
+    {
+      "type": "ruled_out",
+      "id": "ro-iter001-001",
+      "iteration": 1,
+      "direction": "documents[x].template wires the renderer/copy",
+      "reason": "Ruled out: _manifest_template_path (template-utils.sh:201-226) uses the ${name}.tmpl convention (209-213) + role-folder priority scan core-addons-packet-types-root (215-224); documents[] is never consulted",
+      "sources": [
+        "runtime/cli/lib/template-utils.sh:201-226"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter001-002",
+      "iteration": 1,
+      "direction": "acceptance-criteria.md is a required addon at L2+ per CONTRACT.md:41",
+      "reason": "Ruled out at the contract level: requiredAddonDocs=[] at L2/3/3+ (spec-kit-docs.json:560,1054,1608); the requirement is manufactured by the scaffolder grep (create.sh:431-433) and, pending angle 4, by check-ac-closure.sh",
+      "sources": [
+        "templates/spec-kit-docs.json:560,1054,1608",
+        "templates/CONTRACT.md:41",
+        "runtime/cli/spec/create.sh:428-433"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter002-001",
+      "iteration": 2,
+      "direction": "resource-map.md is validated as a present addon when it exists",
+      "reason": "orchestrator.ts:507-510 scans optionalAddonDocs∪lazyAddonDocs only; resource-map.md is in neither array in any of the 7 contracts",
+      "sources": [
+        "runtime/lib/validation/orchestrator.ts:507-510",
+        "templates/spec-kit-docs.json:165-2467"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter002-002",
+      "iteration": 2,
+      "direction": "deep loops render templates/addons/resource-map.md.tmpl",
+      "reason": "reduce-state.cjs:14 uses shared/synthesis/resource-map.cjs over lineage deltas; the addon template is only a manual render source (README:173, SKILL:65)",
+      "sources": [
+        ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:14,1660"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter003-001",
+      "iteration": 3,
+      "direction": "prose documents --with-lazy-addons somewhere outside create.sh",
+      "reason": "Mention census found only create.sh:153,282-283,1828 + the golden test",
+      "sources": [
+        "runtime/cli/spec/create.sh:153,282-283,1828"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter003-002",
+      "iteration": 3,
+      "direction": "any level contract adds addons cumulatively (ladder model)",
+      "reason": "lazyAddonDocs arrays byte-identical across L1/2/3/3+; only per-level addon differences are AC-optional at 2/3/3+ and packet-type drops",
+      "sources": [
+        "templates/spec-kit-docs.json:182-191,565-570,1059-1064,1613-1618,2170-2177,2311-2316,2428-2433"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter004-001",
+      "iteration": 4,
+      "direction": "check-completion.sh is a validator-registry rule",
+      "reason": "Registry does not mention it; it is the separate Completion Verification Rule at runtime/cli/spec/check-completion.sh:48",
+      "sources": [
+        "runtime/cli/lib/validator-registry.json",
+        "runtime/cli/spec/check-completion.sh:48"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter004-002",
+      "iteration": 4,
+      "direction": "AC_COVERAGE can fail a packet",
+      "reason": "No fail branch in the script; under-floor returns pass + advisory; escalation only via the ENFORCE registry flag",
+      "sources": [
+        "runtime/cli/rules/check-ac-coverage.sh:368-377",
+        "runtime/cli/lib/validator-registry.json"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter005-001",
+      "iteration": 5,
+      "direction": "checklist.md is discovered or enforced anywhere in code",
+      "reason": "SPEC_DOCUMENT_FILENAMES omits it (spec-doc-paths.ts:17-29); check-completion.sh never mentions it (0 hits); registry has no checklist rule",
+      "sources": [
+        "runtime/lib/config/spec-doc-paths.ts:17-29",
+        "runtime/cli/spec/check-completion.sh:441-452",
+        "runtime/cli/lib/validator-registry.json"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter005-002",
+      "iteration": 5,
+      "direction": "validate.sh --strict enforces the tasks.md P0/P1/P2 checklist",
+      "reason": "check-completion.sh is not a registry rule; validate.sh delegates to the registry only (validate.sh:8-10)",
+      "sources": [
+        "runtime/cli/spec/validate.sh:8-10",
+        "runtime/cli/lib/validator-registry.json"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter006-001",
+      "iteration": 6,
+      "direction": "a command or flag creates goal.md",
+      "reason": "create.sh/upgrade-level/scaffold-debug-delegation 0 hits; rules 0 hits; the opencode-goal plugin writes only session state",
+      "sources": [
+        "runtime/cli/spec/create.sh",
+        ".opencode/plugins/opencode-goal.js:27-29,3060"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter006-002",
+      "iteration": 6,
+      "direction": "the goal offer in speckit YAMLs produces goal.md",
+      "reason": "goal_prompt_choice/goal_objective route to opencode_goal({action:set,objective}) - a session-goal string, never a file",
+      "sources": [
+        ".opencode/commands/speckit/assets/speckit-plan-auto.yaml:123-137"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter007-001",
+      "iteration": 7,
+      "direction": "the validator compares marker versions to the manifest",
+      "reason": "check-template-source.sh:56-66 and orchestrator.ts:664-672 are presence-only",
+      "sources": [
+        "runtime/cli/rules/check-template-source.sh:56-66",
+        "runtime/lib/validation/orchestrator.ts:664-672"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter007-002",
+      "iteration": 7,
+      "direction": "templateVersions has a live consumer",
+      "reason": "0 rg hits outside the resolver; the staleness checker re-reads the JSON itself via the dead path",
+      "sources": [
+        "runtime/lib/templates/level-contract-resolver.ts:264,288",
+        "runtime/cli/spec/check-template-staleness.sh:61-71"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter008-001",
+      "iteration": 8,
+      "direction": "AMENDS ro-iter002-001: resource-map.md is never structure-checked",
+      "reason": "Narrower truth: it IS structure-checked when present via the hardcoded set (spec-doc-structure.ts:224); what is ruled out is contract-mediated inclusion",
+      "sources": [
+        "runtime/lib/validation/spec-doc-structure.ts:216-226"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter008-002",
+      "iteration": 8,
+      "direction": "checklist.md retirement is accidental drift",
+      "reason": "Golden test comment + assertions pin it as deliberate (snapshots:136-147); corpus 0 files",
+      "sources": [
+        "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:136-147"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter009-001",
+      "iteration": 9,
+      "direction": "a hard block on missing decision-record.md exists somewhere not yet searched",
+      "reason": "Ruled out for the surfaces in scope: FILE_EXISTS (helper docs), the registry (39 rules), check-level-match (warn-only, inverse), AC rules (AC-only scope), create.sh (lazy docs only)",
+      "sources": [
+        "runtime/cli/lib/validator-registry.json",
+        "runtime/cli/rules/check-level-match.sh:222-223",
+        "runtime/cli/utils/template-structure.js docs 3 output"
+      ]
+    },
+    {
+      "type": "ruled_out",
+      "id": "ro-iter009-002",
+      "iteration": 9,
+      "direction": "phase-definitions thresholds contradict the phase contract",
+      "reason": "The contract carries no threshold data; the two-scoring-systems note (:62) pre-empts the conflation",
+      "sources": [
+        "references/structure/phase-definitions.md:59-62"
+      ]
+    }
+  ],
+  "questionRegistry": [
+    {
+      "id": "Q1",
+      "text": "Manifest owner/creationTrigger/absenceBehavior vs what create.sh writes per level and flag",
+      "status": "answered",
+      "answeredInIteration": 1,
+      "answer": "documents[] (61-164) is unwired; the acting truth is levels.N arrays + naming convention + the AC substring grep + the 4-doc flag. Of 17 creationTrigger values, the 12 scaffold/command/agent/workflow ones match behavior; goal.md (explicit-option) has NO implementing surface in create.sh (CQ1); resource-map/context-index explicit-option likewise lack any creating command found so far (CQ2)."
+    },
+    {
+      "id": "Q2",
+      "text": "README.md/SKILL.md core-vs-addon labels for the six doc surfaces vs manifest and create.sh",
+      "status": "answered",
+      "answeredInIteration": 2,
+      "answer": "NO - five concrete prose-vs-enforcement mismatches: nonexistent ask-surfaces for 3 of 7 explicit-option docs (README:184 vs create.sh:393); level-table misdescriptions of L2/L3/L3+ (README:149-151 vs manifest:189,565,1059,1613 + create.sh:431-433); loop-emission path+provenance wrong (README:173 vs reduce-state.cjs:1660); resource-map.md claimed-optional-but-never-contracted-or-validated (SKILL:65 + manifest:98-102 vs all 7 contracts + orchestrator.ts:507-510); SKILL gates omit 4 template-backed docs (SKILL:61,494 vs manifest:4-22)."
+    },
+    {
+      "id": "Q3",
+      "text": "--with-lazy-addons vs manifest addon set; any doc stating timeline/roadmap lazy while resource-map/goal stay explicit-option",
+      "status": "answered",
+      "answeredInIteration": 3,
+      "answer": "(1) --with-lazy-addons scaffolds exactly 4 docs (create.sh:393), a strict subset of the 8-doc lazyAddonDocs arrays (identical at L1/2/3/3+; phase 6; review/research 5; resource-map in none) - the flag matches its help but matches NO prose description anywhere (0 mentions); (2) NO doc states the timeline/roadmap-lazy vs resource-map/goal-explicit split - lazy prose attaches only to research/research.md (wrongly scoped to L3/3+), README calls all seven explicit-option, EXTENSION-GUIDE:39 mixes both classes in one field definition."
+    },
+    {
+      "id": "Q4",
+      "text": "Which rules read acceptance-criteria.md, what each enforces, Met-rows-vs-scaffold state of Level 2/3 packets under specs/",
+      "status": "answered",
+      "answeredInIteration": 4,
+      "answer": "AC_CLOSURE (error): post-cutoff L2+ presence gate + Met/Waived/Superseded tally + ADR-backed waiver check + completion-claim blocking; header-name parser; malformed rows never skipped. AC_COVERAGE (info, advisory floor 0.9): evidence coverage on the AC file's own Verification column once implementation starts; tasks.md only pre-rollout; ENFORCE flag to escalate. Level 2/3 packets under specs/: 035 family (post-cutoff L2) authored, all Unmet with source-naming cells; 144 AC files repo-wide, Met rows common but rarely file:line-cited (advisory-malformed, not covered)."
+    },
+    {
+      "id": "Q5",
+      "text": "checklist.md vs acceptance-criteria.md vs tasks.md verification checklist as completion gates; which the validator and completion exposer read",
+      "status": "answered",
+      "answeredInIteration": 5,
+      "answer": "NOT three live surfaces - TWO live + one dead. acceptance-criteria.md: validator-gated (AC_CLOSURE error, AC_COVERAGE info) + completion-exposer level inference. tasks.md verification checklist: read ONLY by check-completion.sh (UNTAGGED blocks, P0/P1 need evidence), consumed by the completion exposer and the Stop-hook sentinel - outside the validator. checklist.md: dead - absent from SPEC_DOCUMENT_FILENAMES, the manifest, and check-completion.sh; alive only in stale prose. The validator reads neither the tasks checklist nor checklist.md; the exposer reads tasks.md (via check-completion.sh) and acceptance-criteria.md (via file presence)."
+    },
+    {
+      "id": "Q6",
+      "text": "goal addon render path through inline-gate-renderer.ts; any command offering it; phase parents honoring the nested-goal binding",
+      "status": "answered",
+      "answeredInIteration": 6,
+      "answer": "(1) Render path: YES - goal.md.tmpl is gated (IF level:1,2,3,3+,phase wrapper; phase-only binding anchor) and rendered by inline-gate-renderer.ts (RenderLevel includes phase), but only via the manual renderer because no scaffold/command feeds it; (2) offering: NO command offers goal.md - the goal OFFER in 8 speckit YAMLs sets a plugin-persisted objective STRING (opencode_goal), a different artifact; CQ1 CLOSED (f-iter006-001); (3) nested binding: PARTIALLY honored - enforced only when a template-shaped parent goal.md exists (019 yes; 033 no; 018/013 freeform; 15/75 carry the anchor), conditional-presence by contract, operator objective unchecked by design (f-iter006-002, f-iter006-003)."
+    },
+    {
+      "id": "Q7",
+      "text": "Template version fields vs SPECKIT_TEMPLATE_SOURCE headers: drift between manifest and shipped files",
+      "status": "answered",
+      "answeredInIteration": 7,
+      "answer": "YES - drift in four forms: (1) manifest-internal: 5/17 declared-v2.2 templates self-declare v1.0/v1.1 (f-iter007-001 P1); (2) tool-side: the one version-comparing tool reads a nonexistent manifest path (f-iter007-002 P1); (3) architecture: per-.tmpl versions vs per-rendered-document composition-named markers, presence-only enforcement (f-iter007-003/004 P2); (4) corpus: 32 v1.0 markers (14 live) grandfathered by policy with no tool expressing it (f-iter007-005 P2)."
+    },
+    {
+      "id": "Q8",
+      "text": "Which templates or surfaces could merge or drop without losing a validated capability",
+      "status": "answered",
+      "answeredInIteration": 8,
+      "answer": "Decidable per the consolidation ledger (iteration-008.md): drops losing nothing validated = checklist.md prose references (retirement test-pinned), context-index.md (no producer/prose body/contract row), documents[] semantics if unwired (zero consumers). Merges with payoff = the two completion stacks under one documented boundary, the goal naming under one section, the three doc-inclusion authorities into the contract. Everything else is fix/documentation on surfaces whose validated capability must be kept."
+    },
+    {
+      "id": "CQ1",
+      "text": "What surface creates goal.md (the promised explicit-option mechanism)? 0 hits in create.sh; goal-set-string-playbook.md:27-93 assumes it exists; candidates: /speckit:plan or EXTENSION-GUIDE flow (adjudicate in angles 3/6)",
+      "status": "answered",
+      "answeredInIteration": 6,
+      "origin": "iteration-1",
+      "answer": "CLOSED via f-iter006-001: goal.md's creation surface is the manual inline-gate-renderer render (documented once, for resource-map.md only); no command, flag, or rule creates it; the opencode-goal plugin is a different artifact."
+    },
+    {
+      "id": "CQ2",
+      "text": "Who produces the promised absenceBehavior=warn for acceptance-criteria.md/resource-map.md/context-index.md - discovery lists (runtime/README.md:154; spec-doc-discovery.ts:143) or generated-metadata-integrity checks? (adjudicate in angles 4/5)",
+      "status": "answered",
+      "answeredInIteration": 5,
+      "origin": "iteration-1",
+      "answer": "CLOSED: no warn producer exists for resource-map.md or context-index.md either (FILE_EXISTS covers only contract-required docs; the addon scan structure-checks only PRESENT addons per orchestrator.ts:507-510; nothing in the completion stack warns on absent optional docs). The manifest's absenceBehavior=warn is producerless for ALL THREE claimed documents. Findings f-iter001-001 + f-iter004-002 + this adjudication."
+    },
+    {
+      "id": "CQ3",
+      "text": "Do references/templates/template-guide.md or references/structure/folder-structure.md give a contract-grade account of resource-map.md extra-contract status and the lazy/explicit split? (angle 3)",
+      "status": "answered",
+      "answeredInIteration": 3,
+      "origin": "iteration-2",
+      "answer": "Partially - level-specifications.md:742 (Any level, Manual (optional)) + template-guide.md:195-200 (the render command) are the closest to contract-grade; no prose states resource-map.md is outside ALL 7 level contracts; fix should land in BOTH contract (lazyAddonDocs where produced) and prose."
+    },
+    {
+      "id": "CQ4",
+      "text": "Does folder-structure.md repeat the README trigger-table claims (explicit-option ask-surfaces)? If yes the README fix must be mirrored there. (angle 3)",
+      "status": "answered",
+      "answeredInIteration": 3,
+      "origin": "iteration-2",
+      "answer": "YES - folder-structure.md:141-142 repeats the README-pattern claims verbatim (validation warns when absent / created on request, skipped silently); README fixes must mirror in folder-structure §3."
+    },
+    {
+      "id": "CQ5",
+      "text": "checklist.md is discovery-canonical (runtime/README.md:154) but manifest-absent (0 hits) - is it a live completion surface anywhere? (angle 5)",
+      "status": "answered",
+      "answeredInIteration": 10,
+      "origin": "iteration-3",
+      "answer": "CLOSED: checklist.md has no live completion surface anywhere - absent from SPEC_DOCUMENT_FILENAMES (spec-doc-paths.ts:17-29), the manifest (0 hits), and check-completion.sh (tasks.md hardcoded :441); its retirement is deliberate and test-pinned (scaffold-golden-snapshots.vitest.ts:136-147); only stale prose references remain (f-iter005-001, f-iter005-002, f-iter003-005, f-iter008-002). Evidence: angle 5 + angle 8."
+    },
+    {
+      "id": "CQ6",
+      "text": "Where is SPECKIT_AC_COVERAGE_ENFORCE actually consumed (orchestrator severity escalation?) and is it documented anywhere? (angle 5)",
+      "status": "answered",
+      "answeredInIteration": 5,
+      "origin": "iteration-4",
+      "answer": "SPECKIT_AC_COVERAGE_ENFORCE is reserved-by-design (validation-rules.md), unconsumed in code, absent from ENV-REFERENCE - finding f-iter005-004."
+    }
+  ]
+}

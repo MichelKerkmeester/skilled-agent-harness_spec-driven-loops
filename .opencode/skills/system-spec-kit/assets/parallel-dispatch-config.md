@@ -102,9 +102,9 @@ spec_creation_parallel:
       - name: plan_agent
         files: [plan.md]
         focus: "Technical approach and phases"
-      - name: checklist_agent
-        files: [checklist.md]
-        focus: "Verification items"
+      - name: acceptance_agent
+        files: [acceptance-criteria.md]
+        focus: "Closure criteria and their evidence"
       - name: requirements_agent
         files: [spec.md sections 4-6]
         focus: "Requirements detail"
@@ -124,7 +124,7 @@ spec_creation_parallel:
 |------------|-------|-------|-------|
 | W-SPEC | Primary | spec.md | Sequential in tiers |
 | W-PLAN | Plan Agent | plan.md | Independent |
-| W-CHECK | Checklist Agent | checklist.md | Independent |
+| W-CHECK | Acceptance Agent | acceptance-criteria.md | Independent |
 | W-TASKS | Tasks Integrator | tasks.md | After SYNC |
 
 ### Sync Points

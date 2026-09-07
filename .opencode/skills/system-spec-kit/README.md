@@ -408,7 +408,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 ├── templates/                  # Template source + Level contract
 │   ├── core/                   # Scaffolded at every level
 │   ├── addons/                 # Level-gated and workflow-owned documents
-│   ├── packet-types/           # Phase parent, review and context-index shapes
+│   ├── packet-types/           # Phase parent and review packet shapes
 │   └── spec-kit-docs.json      # Level contract resolved by create.sh
 ├── runtime/cli/                    # CLI tools (TypeScript source + Bash)
 │   ├── spec/                   # Spec folder management scripts

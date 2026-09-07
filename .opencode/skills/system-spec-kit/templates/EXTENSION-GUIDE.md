@@ -27,6 +27,11 @@ Use this guide when extending the manifest taxonomy, template version map, or le
    - `owner`: `author`, `command`, `agent`, or `workflow`.
    - `creationTrigger`: the workflow that creates it.
    - `absenceBehavior`: `hard-error`, `warn`, or `silent-skip`.
+   This section is a descriptive index for readers. Nothing reads it at
+   runtime: the scaffolder and the validator both work from the `levels`
+   rows below, and a template is found by its `.tmpl` name in the role
+   folders. Keep the index truthful, but know that changing it changes no
+   behavior.
 3. Add the template filename to `spec-kit-docs.json.versions`.
 4. Add the document name to the appropriate level row:
    - `requiredCoreDocs` for files every packet at that level must have before implementation starts.
@@ -36,7 +41,12 @@ Use this guide when extending the manifest taxonomy, template version map, or le
      `acceptance-criteria.md`. Presence for these is owned by whichever rule
      understands the rollout, because the file-presence rule has no notion of
      when a packet was created.
-   - `lazyAddonDocs` for command-owned or explicit-option files.
+   - `lazyAddonDocs` for files a packet gets only on request. The list is
+     the same at every level and mixes two ownership models: documents an
+     author asks for (`--with-lazy-addons` scaffolds four of them,
+     `--with-goal` one, the inline gate renderer any of them) and documents a
+     command or workflow writes (`handover.md`, `debug-delegation.md`,
+     `research/research.md`).
    - `lifecycleRequiredDocs.<transition>` for files required after a documented lifecycle transition.
 5. Add per-document anchors under `levels.<level>.sectionGates.<doc-name>`.
 6. Run the Level contract and golden snapshot tests.

@@ -5,6 +5,10 @@
 # Compares SPECKIT_TEMPLATE_SOURCE version in each spec folder
 # against the current template version. Reports stale folders.
 #
+# Documents rendered from the utility templates carry their own version
+# (v1.0 or v1.1) and stay valid; the validator checks marker presence only,
+# so a legacy marker is grandfathered, never a failure.
+#
 # Usage:
 #   check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
 #
@@ -58,7 +62,7 @@ EOF
 # ───────────────────────────────────────────────────────────────
 
 get_current_template_version() {
-    local manifest_path="$TEMPLATE_DIR/manifest/spec-kit-docs.json"
+    local manifest_path="$TEMPLATE_DIR/spec-kit-docs.json"
     if [[ ! -f "$manifest_path" ]]; then
         echo "unknown"
         return

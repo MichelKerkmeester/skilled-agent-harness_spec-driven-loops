@@ -14,6 +14,14 @@ _ac_lower() {
 # value as "off" meant a typo silently disabled the check, which is the failure
 # an enable-flag should never have: a mistake should leave the gate running, not
 # quietly remove it.
+# The enforce switch promotes an under-floor result from advisory to a failing
+# rule; it defaults off so the floor stays a target, not a gate.
+_ac_enforce() {
+    local value
+    value="$(_ac_lower "${SPECKIT_AC_COVERAGE_ENFORCE:-false}")"
+    [[ "$value" == "true" || "$value" == "1" || "$value" == "yes" || "$value" == "on" ]]
+}
+
 _ac_enabled() {
     local value
     value="$(_ac_lower "${SPECKIT_AC_COVERAGE:-true}")"
@@ -370,9 +378,23 @@ run_check() {
         return 0
     fi
 
+    if _ac_enforce; then
+        RULE_STATUS="fail"
+        RULE_MESSAGE="AC_COVERAGE (enforced): ${covered}/${total} ACs have evidence; floor ${required}/${total}. Cite file:line in the Verification cell of each criterion."
+        RULE_REMEDIATION="In acceptance-criteria.md, give each criterion's Verification cell a file:line citation."
+        return 0
+    fi
+
     if [[ -f "$ac_file" ]]; then
         RULE_MESSAGE="AC_COVERAGE advisory (under floor): ${covered}/${total} ACs have evidence; floor ${required}/${total}. Cite file:line in the Verification cell, or retire the criterion through a decision record."
         RULE_REMEDIATION="In acceptance-criteria.md, give each criterion's Verification cell a file:line citation. A criterion whose Status is Waived or Superseded needs no citation; its decision record carries it."
+        return 0
+    fi
+
+    if _ac_enforce; then
+        RULE_STATUS="fail"
+        RULE_MESSAGE="AC_COVERAGE (enforced): ${covered}/${total} ACs have evidence; floor ${required}/${total}"
+        RULE_REMEDIATION="Add file:line evidence to traceability rows, or mark Manual-infeasible with a rationale when automation is not feasible."
         return 0
     fi
 

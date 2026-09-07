@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:239ae0a03c60a4079b7bd46d866240e0deff1e5e51d2f8ae579ddcd464c3ffb3"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 10
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-template-system-and-acceptance-criteria |
-| **Completed** | not yet; lane in progress |
+| **Completed** | 2026-09-07 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,11 +46,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The lane is open: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` are authored, and the charter is being improved before launch. Nothing under `research/` exists yet.
+The lane ran ten iterations of GLM 5.3 Flash max through DevPass on cli-pi under the fan-out runner and synthesized 35 findings, fifteen of them P1. Every row held against the manifest, the scaffolder and the rules; the operator's four questions were answered from the code; and `../010-template-contract-alignment` closed every row, making the level contract the single authority and giving `goal.md` a creator.
 
-### Planning surface
+### Research surface
 
-You can read the lane's directive in `goal.md` and its angles in `spec.md`; the research artifacts land under `research/lineages/` once the lane runs.
+You can read the synthesis at `research/lineages/glm-5-3-flash-templates/research.md`, the per-angle narratives under `iterations/`, and the census verdict and the operator's answers in `research/confirmed-findings.md`.
 
 ### Files Changed
 
@@ -58,6 +58,8 @@ You can read the lane's directive in `goal.md` and its angles in `spec.md`; the 
 |------|--------|---------|
 | spec.md, plan.md, tasks.md, acceptance-criteria.md | Created | Planning documents for the lane |
 | goal.md | Created | The lane's durable directive, bound by the parent goal |
+| research/lineages/glm-5-3-flash-templates/ | Created | Ten iterations, deltas, state log, synthesis |
+| research/confirmed-findings.md | Created | Census of every row, the operator's answers and the remediation pointer |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +67,7 @@ You can read the lane's directive in `goal.md` and its angles in `spec.md`; the 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Scaffolded through `create.sh --phase`, planning documents authored in-session, goal rendered from the goal addon through the inline gate renderer.
+Scaffolded through `create.sh --phase`, planning documents authored in-session, goal rendered from the goal addon. The charter was improved through sk-prompt and launched with `fanout-run.cjs --loop-type research --stop-policy max-iterations` in worktree 046; the lane ran its ten iterations in two hours and twenty minutes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -86,7 +88,8 @@ Scaffolded through `create.sh --phase`, planning documents authored in-session, 
 | Check | Result |
 |-------|--------|
 | Strict validation of this child | `validate.sh <child> --strict` printed RESULT: PASSED at open |
-| Lane run | pending |
+| Lane run | 10 of 10 iterations, stop reason maxIterationsReached, newInfoRatio 1.0 to 0.0 |
+| Census | 15 of 15 P1 rows confirmed; 20 P2 rows fixed, documented or recorded |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,7 +97,7 @@ Scaffolded through `create.sh --phase`, planning documents authored in-session, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not run yet** The lane has not started; every research criterion is still open.
+1. **The lane missed three assets** The level-decision matrix, the template mapping and the parallel-dispatch config still described the retired checklist; the residue sweep in 010 found them.
 <!-- /ANCHOR:limitations -->
 
 ---

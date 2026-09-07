@@ -86,8 +86,8 @@ run_check() {
         RULE_REMEDIATION="Add template source header to files created from templates. Format:
 <!-- SPECKIT_TEMPLATE_SOURCE: [template-names] | v2.2 -->
 
-Example for Level 3+:
-<!-- SPECKIT_TEMPLATE_SOURCE: spec + plan + tasks + checklist + decision-record | v2.2 -->
+Example for a spec.md rendered at Level 3+:
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.2 -->
 
 This header proves files were created from official templates, not from scratch or memory."
     else

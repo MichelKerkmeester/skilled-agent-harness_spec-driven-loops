@@ -36,7 +36,6 @@ templates/
 ├── handover.md.tmpl
 ├── debug-delegation.md.tmpl
 ├── resource-map.md.tmpl
-├── context-index.md.tmpl     # Phase-parent migration bridge
 └── research.md.tmpl          # Optional research notes
 ```
 
@@ -827,7 +826,7 @@ See [phase-definitions.md](../structure/phase-definitions.md) for complete phase
 
 **Level 2 (verification):**
 - All Level 1 templates + quality gates, NFRs
-- [checklist.md.tmpl](../../templates/addons/acceptance-criteria.md.tmpl) - Verification checklist
+- [acceptance-criteria.md.tmpl](../../templates/addons/acceptance-criteria.md.tmpl) - The closure gate
 
 **Level 3 (architecture):**
 - All Level 2 templates + architecture decisions

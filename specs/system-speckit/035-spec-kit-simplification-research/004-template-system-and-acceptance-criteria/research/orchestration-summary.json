@@ -1,0 +1,22 @@
+{
+  "run_id": "1788737392077-m8w16s",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+  "base_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

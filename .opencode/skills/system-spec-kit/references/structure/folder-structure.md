@@ -46,7 +46,6 @@ templates/
 ├── packet-types/                   # Non-level packet shapes
 │   ├── phase-parent.spec.md.tmpl
 │   ├── review.spec.md.tmpl
-│   └── context-index.md.tmpl
 │
 ├── spec-kit-docs.json              # Level contract resolved by create.sh
 ├── examples/               # Rendered examples by Level
@@ -122,7 +121,7 @@ specs/NNN-name/
 ```
 
 **Optional:**
-- `acceptance-criteria.md` - the closure gate; validation warns when it is absent
+- `acceptance-criteria.md` - the closure gate; scaffolded at this level, and its absence fails validation for packets created after 2026-08-30
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 
@@ -138,7 +137,7 @@ specs/NNN-name/
 ```
 
 **Optional:**
-- `acceptance-criteria.md` - the closure gate; validation warns when it is absent
+- `acceptance-criteria.md` - the closure gate; scaffolded at this level, and its absence fails validation for packets created after 2026-08-30
 - `decision-record.md` - architecture decisions; created on request, skipped silently when absent
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes

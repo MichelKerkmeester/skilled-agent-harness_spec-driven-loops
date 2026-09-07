@@ -12,7 +12,8 @@
     "system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation",
     "system-speckit/035-spec-kit-simplification-research/007-cli-package-residue-removal",
     "system-speckit/035-spec-kit-simplification-research/008-env-example-dead-flags",
-    "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal"
+    "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal",
+    "system-speckit/035-spec-kit-simplification-research/010-template-contract-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -57,9 +58,11 @@
       "007-cli-package-residue-removal/goal.md",
       "008-env-example-dead-flags/goal.md",
       "009-shared-package-dead-half-removal/goal.md",
+      "010-template-contract-alignment/goal.md",
       "001-ripgrep-search-system/research/confirmed-findings.md",
       "002-cli-runtime-utilization/research/confirmed-findings.md",
       "003-shared-package-utilization/research/confirmed-findings.md",
+      "004-template-system-and-acceptance-criteria/research/confirmed-findings.md",
       "resource-map/extract-from-evidence.cjs"
     ],
     "entities": [
@@ -162,17 +165,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-06T23:37:49.336Z",
+    "last_save_at": "2026-09-07T02:09:55.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7ff442a7cf7eadd038afdb662e12b59bbb08b80051eff22a274f65192c5043df",
+    "source_fingerprint": "sha256:503e6f494ce9a662ad6745bb956a28a12080a906212cfddab641c50f5c873048",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "56187f4cc96fa999099b21d9f65a1af32e62defddf03349ebb3d02a0bfb5ab2e"
+      "spec.md": "53bae1201c209e9af0294256827b92625a58c9f631657a7e463fec7abc68d9ea"
     },
     "last_active_child_id": "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
     "last_active_at": "2026-09-06T20:50:09.690Z"

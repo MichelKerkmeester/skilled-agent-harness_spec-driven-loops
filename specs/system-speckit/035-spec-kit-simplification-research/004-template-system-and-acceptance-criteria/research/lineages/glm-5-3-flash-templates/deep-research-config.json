@@ -1,0 +1,93 @@
+{
+  "topic": "Context: Ground truth under .opencode/skills/system-spec-kit/: templates/{core/,addons/,packet-types/,spec-kit-docs.json,EXTENSION-GUIDE.md,README.md}; runtime/cli/spec/create.sh(--with-lazy-addons,--phase); runtime/cli/templates/inline-gate-renderer.ts; runtime/lib/templates/level-contract-resolver.ts; runtime/cli/rules/{check-ac-closure,check-ac-coverage,check-files}.sh; native ANCHORS_VALID/SPEC_DOC_SUFFICIENCY checks in runtime/lib/validation/; references/structure/{folder-structure,phase-definitions}.md; references/templates/*.md; references/workflows/goal-set-string-playbook.md; SKILL.md; root README.md. These may disagree with each other on scope, composition, and enforcement. || Role: Documentation-implementation auditor: treat the manifest, create.sh, and the validator rules as ground truth, and README.md, SKILL.md, and references/ prose as claims to test against them, never the reverse. || Action: rotate one angle per pass, evidence only from the cited files: (1) manifest owner/creationTrigger/absenceBehavior per document vs what create.sh writes per level and flag; (2) README.md/SKILL.md labeling resource-map.md, timeline.md, roadmap.md, goal.md, before-after.md, decision-record.md as core or addon, vs the manifest and create.sh; (3) --with-lazy-addons vs the manifest addon set, and whether any doc states timeline/roadmap are lazy while resource-map/goal stay explicit-option; (4) acceptance-criteria.md: which rules read it (AC_CLOSURE, AC_COVERAGE), what each enforces, and whether Level 2/3 packets under specs/ carry Met rows with evidence or leave it a scaffold; (5) checklist.md vs acceptance-criteria.md vs the tasks.md verification checklist as three completion-gate surfaces; which one the validator and completion exposer reads; (6) the goal addon: its render path through inline-gate-renderer.ts, whether any command offers it, and whether phase parents in specs/ honor the nested-goal binding; (7) template version fields vs SPECKIT_TEMPLATE_SOURCE headers for drift between manifest and shipped files; (8) which templates or surfaces could merge or drop without losing a validated capability. || Format: one finding per entry: path:line, the claim, what the manifest/script/rule does, severity (P0 broken, P1 wrong-or-unused, P2 cosmetic), one-line recommendation: remove, merge, fix, or document. Cite every claim as [SOURCE: path:line]. || Target: a decision-ready findings ledger for spec-kit maintainers on whether to fix, merge, or document each surface. Non-goals: no file edits, no new templates, no prose-style review. Verify every angle above with cited evidence before concluding.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/lineages/glm-5-3-flash-templates",
+  "createdAt": "2026-09-06T23:52:18Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "detachedFanout": {
+    "inline": true,
+    "note": "This detached lineage process is the executor for EVERY iteration; no nested CLI/agent/subprocess dispatch. step_resolve_artifact_root satisfied by config.fanout_lineage_artifact_dir override: artifact_dir bound directly, resolveArtifactRoot node command not run."
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "executable": "pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-5-3-flash-templates-1788737392077-m8w16s",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "note": "Detached fan-out: reducer function (registry/dashboard/strategy machine-owned sections) is performed inline by the lineage executor after each iteration, deriving strictly from the iteration delta records.",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "statePaths": {
+    "stateLog": "deep-research-state.jsonl",
+    "iterationPattern": "iterations/iteration-NNN.md",
+    "deltaPattern": "deltas/iter-NNN.jsonl",
+    "report": "research.md",
+    "resourceMap": "resource-map.md",
+    "note": "Lineage-confined: all state lives at artifactDir root (flat), not under the packet research/ dir, because the lineage write surface is the lineage directory itself."
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "deep-research-state.jsonl:NA;lineage-internal",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only (via append gateway)",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable (synthesis-owned)",
+    "resource-map.md": "mutable (synthesis-owned)"
+  }
+}

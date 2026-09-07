@@ -74,7 +74,7 @@ Allowed dependency direction:
 
 ```text
 runtime/cli/spec/create.sh → templates/spec-kit-docs.json
-runtime/cli/templates/inline-gate-renderer.* → templates/manifest/*.md.tmpl
+runtime/cli/templates/inline-gate-renderer.* → templates/{core,addons,packet-types}/*.md.tmpl
 runtime/cli/spec/validate.sh → the level contract at templates/spec-kit-docs.json
 docs → examples and maintainer guides
 ```
@@ -112,8 +112,7 @@ templates/
 │   └── roadmap.md.tmpl
 ├── packet-types/
 │   ├── phase-parent.spec.md.tmpl
-│   ├── review.spec.md.tmpl
-│   └── context-index.md.tmpl
+│   └── review.spec.md.tmpl
 ├── examples/
 │   ├── level-1/
 │   ├── level-2/

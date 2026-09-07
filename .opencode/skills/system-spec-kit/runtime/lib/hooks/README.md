@@ -9,7 +9,7 @@ description: "Runtime-neutral completion-evidence policy shared by the Claude St
 
 ## 1. OVERVIEW
 
-`lib/hooks/` holds the runtime-agnostic policy core behind the completion-evidence sentinel. When a turn ends with a completion claim (matching words like "completed", "fixed", "shipped"), the core checks recorded artifacts only. It reads a spec folder's `checklist.md` via `check-completion.sh --json` (or a Level 1 folder's `implementation-summary.md` via a file stat) and returns a transport-free decision. It never runs a test, a build or `validate.sh`, and it never writes stdout or stderr itself. Each runtime adapter (the Claude Stop hook, the Codex Stop adapter, the OpenCode `session.idle` plugin) surfaces the decision in its own protocol.
+`lib/hooks/` holds the runtime-agnostic policy core behind the completion-evidence sentinel. When a turn ends with a completion claim (matching words like "completed", "fixed", "shipped"), the core checks recorded artifacts only. It reads the verification checklist in a spec folder's `tasks.md` via `check-completion.sh --json` (or a Level 1 folder's `implementation-summary.md` via a file stat) and returns a transport-free decision. It never runs a test, a build or `validate.sh`, and it never writes stdout or stderr itself. Each runtime adapter (the Claude Stop hook, the Codex Stop adapter, the OpenCode `session.idle` plugin) surfaces the decision in its own protocol.
 
 Current state:
 
