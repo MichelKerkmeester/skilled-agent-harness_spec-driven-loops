@@ -114,6 +114,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | 10 | 010-template-contract-alignment/ | the level contract as single authority, a goal.md creator, repaired checker and rule, and every template document corrected, from lane 004 | complete |
 | 11 | 011-command-surface-contract-realignment/ | the /speckit:* assets brought to the level contract, the help printer listing every rule, and the perimeter residue stated or removed, from lane 005 | complete |
+| 12 | 012-pre-existing-test-repair/ | the two suites the program recorded as failing before it began, repaired at their own faults on the operator's instruction | complete |
 
 ### Phase Transition Rules
 

@@ -14,7 +14,8 @@
     "system-speckit/035-spec-kit-simplification-research/008-env-example-dead-flags",
     "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal",
     "system-speckit/035-spec-kit-simplification-research/010-template-contract-alignment",
-    "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment"
+    "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
+    "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair"
   ],
   "manual": {
     "depends_on": [],
@@ -61,6 +62,7 @@
       "009-shared-package-dead-half-removal/goal.md",
       "010-template-contract-alignment/goal.md",
       "011-command-surface-contract-realignment/goal.md",
+      "012-pre-existing-test-repair/goal.md",
       "001-ripgrep-search-system/research/confirmed-findings.md",
       "002-cli-runtime-utilization/research/confirmed-findings.md",
       "003-shared-package-utilization/research/confirmed-findings.md",
@@ -167,17 +169,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-07T03:40:17.501Z",
+    "last_save_at": "2026-09-07T04:03:54.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8492bcebe6b1c93bd34fd63b84d209fc54c0c268eb42abadd5f5f93c126057a4",
+    "source_fingerprint": "sha256:1ac67f8d6b90a1a0cb14d326c3b3f2958610a492f550eb479f3a109c4a5586cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0a2d1cfc29993cc20050f52e13b6fd029400a3f60825be0e66714964fe61010"
+      "spec.md": "055cc948d897960a05203cd2a0b2600ca0ff0be5875534085a68a2ec1f07e308"
     },
     "last_active_child_id": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
     "last_active_at": "2026-09-07T02:22:53.073Z"

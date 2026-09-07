@@ -15,10 +15,12 @@ const manifestCheck = path.resolve(
   repoRoot,
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh',
 );
-const manifestPath = path.resolve(
-  repoRoot,
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt',
-);
+// Entries the checker must find in `git ls-files`: this test and the script
+// it exercises, so the tracked case never depends on another packet's manifest.
+const trackedEntries = [
+  path.relative(repoRoot, fileURLToPath(import.meta.url)),
+  path.relative(repoRoot, fs.realpathSync(manifestCheck)),
+];
 const sourcePacket = path.resolve(
   repoRoot,
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research',
@@ -62,6 +64,9 @@ afterEach(() => {
 
 describe('recursive child manifest boundary', () => {
   it('checks manifest membership against git and fails closed without git', () => {
+    const trackedWorkspace = makeWorkspace();
+    const manifestPath = path.join(trackedWorkspace, 'tracked-manifest.txt');
+    fs.writeFileSync(manifestPath, `${trackedEntries.join('\n')}\n`, 'utf8');
     const tracked = spawnSync('bash', [manifestCheck, manifestPath, repoRoot], {
       cwd: repoRoot,
       encoding: 'utf8',

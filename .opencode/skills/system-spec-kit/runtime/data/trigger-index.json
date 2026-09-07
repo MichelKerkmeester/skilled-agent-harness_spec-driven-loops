@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9d189fd107b1d0f33190bb8cc637f0e1c38327416a49a78e4d7938ab42910c10",
+  "manifestHash": "4baf2dbd19314a2e780841a3a972d40fc0b99cad6c51093472f5ded79e1235a1",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13682,6 +13682,12 @@
     "specs/system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment/plan.md",
     "specs/system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment/spec.md",
     "specs/system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/tasks.md",
     "specs/system-speckit/035-spec-kit-simplification-research/goal.md",
     "specs/system-speckit/035-spec-kit-simplification-research/spec.md"
   ],
@@ -13909,7 +13915,7 @@
       2974
     ],
     "001 quiet spec kit": [
-      13673
+      13679
     ],
     "001 reinstate design parent": [
       4506
@@ -23231,7 +23237,8 @@
       13643,
       13654,
       13660,
-      13666
+      13666,
+      13672
     ],
     "acceptance criteria closure gate": [
       13322,
@@ -33481,6 +33488,9 @@
     "child env allowlist consumption plan": [
       5159
     ],
+    "child manifest test isolation": [
+      13676
+    ],
     "child path existence": [
       13377,
       13380,
@@ -36096,6 +36106,9 @@
     "cli process memory leak deep research": [
       10012
     ],
+    "cli project green": [
+      13674
+    ],
     "cli prompt quality card": [
       1129
     ],
@@ -36946,7 +36959,8 @@
       13643,
       13654,
       13660,
-      13666
+      13666,
+      13672
     ],
     "closure gate blocks evidence": [
       13262
@@ -41452,7 +41466,8 @@
       13655,
       13661,
       13667,
-      13672
+      13673,
+      13678
     ],
     "completion criteria copied": [
       13389,
@@ -42660,6 +42675,9 @@
     ],
     "continuity freshness skip codes skip codes": [
       13509
+    ],
+    "continuity freshness test fixture": [
+      13676
     ],
     "continuity freshness validator": [
       1669,
@@ -57065,7 +57083,8 @@
       13655,
       13661,
       13667,
-      13672
+      13673,
+      13678
     ],
     "durable fan in failure plan": [
       7476
@@ -63842,6 +63861,15 @@
     "freshness fix tasks": [
       10416
     ],
+    "freshness fixture fixed": [
+      13674
+    ],
+    "freshness fixture plan": [
+      13675
+    ],
+    "freshness fixture tasks": [
+      13677
+    ],
     "freshness gate regression": [
       5378
     ],
@@ -64468,6 +64496,9 @@
       4818,
       4819,
       4821
+    ],
+    "full project green": [
+      13672
     ],
     "full projection safe native tiers": [
       803
@@ -65881,7 +65912,8 @@
       13655,
       13661,
       13667,
-      13672
+      13673,
+      13678
     ],
     "goal capability probes": [
       2541
@@ -76092,6 +76124,9 @@
     "manifest impl plan": [
       9152
     ],
+    "manifest isolation plan": [
+      13675
+    ],
     "manifest json app compatibility": [
       605
     ],
@@ -76127,6 +76162,9 @@
     ],
     "manifest spec kit runtime": [
       13504
+    ],
+    "manifest suite tasks": [
+      13677
     ],
     "manifest template self check": [
       12101
@@ -88625,7 +88663,8 @@
       13655,
       13661,
       13667,
-      13672
+      13673,
+      13678
     ],
     "packet handoff alignment": [
       4989
@@ -92629,7 +92668,7 @@
       10467,
       11612,
       13596,
-      13673
+      13679
     ],
     "phase parent 049": [
       8977
@@ -95699,6 +95738,9 @@
     ],
     "pre existing test failures triage": [
       8090
+    ],
+    "pre existing test repair": [
+      13676
     ],
     "pre migration dry run": [
       5544
@@ -101678,6 +101720,9 @@
     "repository root resolution": [
       1779
     ],
+    "reproduce then repair": [
+      13675
+    ],
     "reproduce write escape": [
       13403
     ],
@@ -103363,6 +103408,9 @@
     ],
     "retired checklist command workflows": [
       13670
+    ],
+    "retired checklist fixture": [
+      13676
     ],
     "retired compiled routing paths catalog": [
       6074
@@ -124508,6 +124556,18 @@
       8971,
       10784
     ],
+    "test repair criteria": [
+      13672
+    ],
+    "test repair plan": [
+      13675
+    ],
+    "test repair summary": [
+      13674
+    ],
+    "test repair tasks": [
+      13677
+    ],
     "test runtime bound": [
       13429
     ],
@@ -128074,7 +128134,8 @@
       13648,
       13659,
       13665,
-      13671
+      13671,
+      13677
     ],
     "verification confidence scoring": [
       1453
@@ -129596,6 +129657,9 @@
     ],
     "what shipped template contract": [
       13662
+    ],
+    "what shipped test repair": [
+      13674
     ],
     "when does a folder need code md": [
       554
