@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/037-ci-dependency-hardening",
+  "description": "The operator received a \"runs failed\" email on every push for days",
+  "keywords": [
+    "operator",
+    "received",
+    "runs",
+    "failed",
+    "email",
+    "every",
+    "push",
+    "days"
+  ],
+  "lastUpdated": "2026-09-07T19:48:10.380Z",
+  "specId": "037",
+  "folderSlug": "ci-dependency-hardening",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
