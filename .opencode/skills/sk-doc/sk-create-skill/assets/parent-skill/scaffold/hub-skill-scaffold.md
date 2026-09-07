@@ -23,11 +23,18 @@ Do not put packet-specific workflow logic in this hub.
 
 `mode-registry.json` defines the available workflow packets. `hub-router.json` supplies the routing policy and intent signals used to select a `workflowMode`. The hub's second-stage control document lives at the root as `ROUTER.md`; a fresh scaffold declares `router_state: stage1-only` with empty maps, so all routing stays in stage one until an author promotes it to `active` with a concrete leaf map.
 
-> **Compiled routing (default-on fleet-wide, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
-> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for the seven proven hubs (`sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`), and `SPECKIT_COMPILED_ROUTING=0` is the fleet-wide kill-switch. A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so this directive stays inert (legacy sentinel) until `{{HUB_NAME}}` completes its own compiled-routing activation and is added to the default-on cohort.
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so the
+directive above stays inert (it returns the legacy sentinel) until `{{HUB_NAME}}` completes its
+own compiled-routing activation and joins the serving closure. That closure currently holds five hubs:
+`sk-code`, `sk-doc`, `mcp-tooling`, `system-deep-loop` and `cli-external-orchestration`. This paragraph sits outside the
+blockquote on purpose: the quoted directive is held in lockstep with every serving hub, and a
+template-only sentence inside it would read as drift to the parity check.
 
 ```python
 from pathlib import Path
