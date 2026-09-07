@@ -52,12 +52,12 @@ never re-decides the mode.
 > registration in the engine's hub table and the guard's hub list. Until then, do not quote a
 > compiled decision for this hub, because there is not one.
 
-| Mode | Owns | Reach it by asking about |
-|------|------|--------------------------|
-| `sk-design-fundamentals` | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
-| `sk-design-md-generator` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, style reference, from a url |
-| `sk-design-chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
-| `sk-design-diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
+| Mode | Command | Owns | Reach it by asking about |
+|------|---------|------|--------------------------|
+| `sk-design-fundamentals` | routes via aliases | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
+| `sk-design-md-generator` | `/design:extract` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, style reference, from a url |
+| `sk-design-chart` | `/design:chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
+| `sk-design-diagram` | `/design:diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
 
 Four modes. Fundamentals and the generator are complements rather than alternatives: one decides values, the other reads values back
 off something that already exists. A request that names an existing surface belongs to the
