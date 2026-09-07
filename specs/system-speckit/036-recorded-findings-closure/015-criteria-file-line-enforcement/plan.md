@@ -43,9 +43,9 @@ Three changes land in order, because each depends on the last being correct befo
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `validate.sh --strict` with the enforce switch on passes for children 006-022, with the gate observed to have activated
-- [ ] Docs updated (spec/plan/tasks, ENV-REFERENCE.md)
+- [x] All acceptance criteria met
+- [x] `validate.sh --strict` with the enforce switch on passes for children 006-022, with the gate observed to have activated
+- [x] Docs updated (spec/plan/tasks, ENV-REFERENCE.md)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -163,9 +163,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] No backup needed. Every file this phase touches is tracked in git
-- [ ] No feature flag needed beyond the existing `SPECKIT_AC_COVERAGE_ENFORCE` switch, which already exists and defaults off
-- [ ] No monitoring alert needed. `validate.sh --strict` is the existing verification surface
+- [x] No backup needed. Every file this phase touches is tracked in git
+- [x] No feature flag needed beyond the existing `SPECKIT_AC_COVERAGE_ENFORCE` switch, which already exists and defaults off
+- [x] No monitoring alert needed. `validate.sh --strict` is the existing verification surface
 
 ### Rollback Procedure
 1. Revert `check-ac-coverage.sh`'s commit.

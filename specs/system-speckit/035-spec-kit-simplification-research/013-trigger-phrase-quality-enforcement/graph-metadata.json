@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The convention said to declare phrases of two or more tokens and never to index bare numbers or generic words, and nothing enforced the first two rules anywhere: the committed index carried 352 single-token keys across 826 documents, 42 of them only numbers, and sweep-produced fragments such as `ation` passed the judge, the validator, the generator and the doctor",
     "created_at": "2026-09-07T06:03:20.451Z",
-    "last_save_at": "2026-09-07T06:03:20.688Z",
+    "last_save_at": "2026-09-07T18:07:28.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a729461fb08cac77cc2230298732815cff0235873f0d11dcf439b8c3858667b1",
+    "source_fingerprint": "sha256:28c622138e501f4876a2a657169d215342643f1c4150f78322b204d098fe6b91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b49d1aa55d7d44059f3b8bd449d855b4ed15ffb6506559774ef673d178da6f98",

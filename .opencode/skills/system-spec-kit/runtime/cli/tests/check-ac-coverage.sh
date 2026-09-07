@@ -145,6 +145,51 @@ expect_source "a stray pre-merge copy is not a source" "none" "$d"
 d="$TMP/unmerged"; mkpacket "$d"; printf '# Tasks\n' > "$d/tasks.md"
 expect_source "tasks.md without the protocol anchor is not a source" "none" "$d"
 
+# ── enforcement cutoff and lifecycle fallback ────────────────────────
+expect_status() {
+    local name="$1" want="$2" dir="$3"
+    local got
+    got="$( set +e
+        RULE_STATUS=""; RULE_MESSAGE=""; RULE_DETAILS=(); RULE_NAME=""; RULE_REMEDIATION=""
+        source "$RULE_DIR/check-ac-coverage.sh"
+        run_check "$dir" 2 >/dev/null 2>&1
+        printf '%s' "$RULE_STATUS" )"
+    if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-54s %s\n' "$name" "$got"
+    else FAIL=$((FAIL+1)); printf '  FAIL  %-54s want=%s got=%s\n' "$name" "$want" "$got"; fi
+}
+mkdated() {
+    mkpacket "$1"
+    printf '# Spec\n\n| Field | Value |\n|-------|-------|\n| **Level** | 2 |\n| **Created** | %s |\n' "$2" > "$1/spec.md"
+}
+UNDER="$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | checked by hand | Met | - |
+| AC-003 | REQ-003 | Given x, When y, Then z | checked by hand | Met | - |"
+d="$TMP/after-cutoff"; mkdated "$d" "2026-09-01"; ac "$d" "$UNDER"
+SPECKIT_AC_COVERAGE_ENFORCE=true expect_status "enforce fails a post-cutoff packet under the floor" "fail" "$d"
+d="$TMP/before-cutoff"; mkdated "$d" "2026-08-30"; ac "$d" "$UNDER"
+SPECKIT_AC_COVERAGE_ENFORCE=true expect_status "enforce stays advisory on or before the cutoff" "pass" "$d"
+d="$TMP/undated"; mkpacket "$d"; ac "$d" "$UNDER"
+SPECKIT_AC_COVERAGE_ENFORCE=true expect_status "enforce stays advisory with no creation date" "pass" "$d"
+d="$TMP/moved-cutoff"; mkdated "$d" "2026-09-01"; ac "$d" "$UNDER"
+SPECKIT_AC_COVERAGE_ENFORCE=true SPECKIT_AC_COVERAGE_CUTOFF=2026-09-15 expect_status "a later cutoff grandfathers the packet" "pass" "$d"
+SPECKIT_AC_COVERAGE_ENFORCE=true SPECKIT_AC_COVERAGE_CUTOFF=soon expect_status "a malformed cutoff falls back to the default" "fail" "$d"
+d="$TMP/no-enforce"; mkdated "$d" "2026-09-01"; ac "$d" "$UNDER"
+expect_status "without the switch a post-cutoff packet is advisory" "pass" "$d"
+d="$TMP/criteria-status"; mkdir -p "$d"
+printf '# Spec\n\n| Field | Value |\n|-------|-------|\n| **Level** | 2 |\n' > "$d/spec.md"
+printf '# Implementation Summary\n\nNo status table here.\n' > "$d/implementation-summary.md"
+printf '%s\n' "**Status:** Complete" "" "$AC_HEAD" '| AC-001 | REQ-001 | Given x, When y, Then z | `a.sh:1` | Met | - |' > "$d/acceptance-criteria.md"
+expect "a Complete criteria document activates the gate alone" "1/1" "$d"
+d="$TMP/criteria-draft"; mkdir -p "$d"
+printf '# Spec\n\n| Field | Value |\n|-------|-------|\n| **Level** | 2 |\n' > "$d/spec.md"
+printf '%s\n' "**Status:** Draft" "" "$AC_HEAD" '| AC-001 | REQ-001 | Given x, When y, Then z | `a.sh:1` | Met | - |' > "$d/acceptance-criteria.md"
+expect "a Draft criteria document with no summary stays inactive" "inactive" "$d"
+d="$TMP/manual"; mkpacket "$d"; ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | Manual-infeasible: the behaviour is a live operator observation of the CI dashboard | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | Manual-infeasible | Met | - |"
+expect "a Manual-infeasible row with a rationale counts, a bare one does not" "1/2" "$d"
+
 echo
 printf '  %d passed, %d failed\n' "$PASS" "$FAIL"
 [[ "$FAIL" -eq 0 ]]

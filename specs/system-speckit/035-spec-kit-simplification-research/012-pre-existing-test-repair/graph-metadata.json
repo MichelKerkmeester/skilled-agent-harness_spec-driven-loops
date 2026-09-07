@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Two suites failed before this program and stayed red through it",
     "created_at": "2026-09-07T04:03:53.305Z",
-    "last_save_at": "2026-09-07T04:03:53.592Z",
+    "last_save_at": "2026-09-07T18:07:28.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3cc7675180298169b76323846f1db3a59417573f6c022ce295b0b84c010b1a53",
+    "source_fingerprint": "sha256:c0bfd1465ef1c24f18e962b16ab90bc5bacad91eb5b2b8320b23bd5045660788",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13ccfeba75879b706e3d4aa38e0e255b51996567a9fbf36979f8469ac2b02511",

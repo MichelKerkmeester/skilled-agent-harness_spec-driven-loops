@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The doctor retrieval target declared nine staleness signals and computed six: no activity produced a fresh manifest, ran the recipe without `--no-config`, or scanned anchors, and the lookup pass policy named a frozen prompt set no activity read",
     "created_at": "2026-09-07T13:14:47.205Z",
-    "last_save_at": "2026-09-07T13:22:04.087Z",
+    "last_save_at": "2026-09-07T18:07:30.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95b22d5afca2b61e3b827a9b5886fb6120fca1eaa95e8c3601fa24713e8ca4c8",
+    "source_fingerprint": "sha256:d8590d9f0baec3b342aec937e4fa057124ba5a520beafeca6ac552f7d2eded26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "14af646e99f63bffbb6c6caf40fa71d2e5869829434195cd9dcde140e12569cf",

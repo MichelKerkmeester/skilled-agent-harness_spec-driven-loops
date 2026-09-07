@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Child 009 removed the shared package's dead half and left its edges uneven",
     "created_at": "2026-09-07T06:32:01.673Z",
-    "last_save_at": "2026-09-07T06:32:01.924Z",
+    "last_save_at": "2026-09-07T18:07:28.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20bf2b3d85f848d3c575a7c41c8b5d3bf42de74047b08c57e0d43171efdf88bc",
+    "source_fingerprint": "sha256:ab92a41a0d353dd915116f3f04e1496da4942dada8cd9772bdf6b10360a25d37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "966f106288d85be13bcdabc80715aca7781f4b42c9153c1495d7ccebb07b3c0e",

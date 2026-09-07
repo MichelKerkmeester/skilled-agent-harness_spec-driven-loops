@@ -54,9 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the committed README, When the generator runs in check mode, Then it exits 0 and the shared suite includes the check | `shared/scripts/env-reader-table.mjs --check` printed the match; `shared/readme-env-readers.test.ts` runs under `npm test`, which exits 0 | Met | - |
-| AC-002 | REQ-002 | Given the skill, its neighbours and the bin scripts, When searched for the two names, Then only their own definitions and tests appeared before removal | searches over the skill, sk-doc, deep-loop, the advisor and bin returned the definition and the test only | Met | - |
-| AC-003 | REQ-003 | Given the lanes and the program, When they run, Then all pass | the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0; the shared suite exits 0 | Met | - |
+| AC-001 | REQ-001 | Given the committed README, When the generator runs in check mode, Then it exits 0 and the shared suite includes the check | `implementation-summary.md:66` records the check: `shared/scripts/env-reader-table.mjs --check` printed the match; `shared/readme-env-readers.test.ts` runs under `npm test`, which exits 0 | Met | - |
+| AC-002 | REQ-002 | Given the skill, its neighbours and the bin scripts, When searched for the two names, Then only their own definitions and tests appeared before removal | `implementation-summary.md:56` records the check: searches over the skill, sk-doc, deep-loop, the advisor and bin returned the definition and the test only | Met | - |
+| AC-003 | REQ-003 | Given the lanes and the program, When they run, Then all pass | `implementation-summary.md:112` records the check: the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0; the shared suite exits 0 | Met | - |
 | AC-004 | REQ-004 | Given the two workflows, When read, Then the parity job has no build step and the mirror job installs first | `.github/workflows/command-tree-parity.yml:23` and `spec-kit-check.yml:91`; both parse | Met | - |
 
 ### Status values
