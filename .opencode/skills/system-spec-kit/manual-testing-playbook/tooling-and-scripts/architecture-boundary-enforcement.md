@@ -101,6 +101,8 @@ Inspect `runtime/cli/evals/check-architecture-boundaries.ts` import parsing, wra
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/architecture-boundary-enforcement.md](../../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md)
 
+Provenance: runtime/cli/tests/architecture-boundary-enforcement.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

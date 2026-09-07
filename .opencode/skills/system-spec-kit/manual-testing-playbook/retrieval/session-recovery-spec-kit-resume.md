@@ -71,6 +71,8 @@ Verify `/speckit:resume` command routing against `.opencode/commands/speckit/res
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/session-recovery-spec-kit-resume.md](../../feature-catalog/retrieval/session-recovery-spec-kit-resume.md)
 
+Provenance: manual only - /speckit:resume specs/<target-spec> :auto
+
 ---
 
 ## 5. SOURCE METADATA

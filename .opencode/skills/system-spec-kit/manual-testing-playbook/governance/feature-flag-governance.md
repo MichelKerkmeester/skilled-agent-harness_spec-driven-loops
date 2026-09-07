@@ -72,6 +72,8 @@ Verify the enumeration covers every surviving flag read site rather than one mod
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature catalog: [governance/feature-flag-governance.md](../../feature-catalog/governance/feature-flag-governance.md)
 
+Provenance: manual only - node .opencode/bin/compiled-route-status.cjs --all
+
 ---
 
 ## 5. SOURCE METADATA

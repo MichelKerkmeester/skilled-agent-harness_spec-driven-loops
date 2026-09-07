@@ -212,6 +212,8 @@ Inspect the M-007 snippet, the session-capturing catalog entry, and the related 
 - Feature catalog: [tooling-and-scripts/session-capturing-pipeline-quality.md](../../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)
 - Canonical memory/spec scenario: [M-007](../../manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md)
 
+Provenance: manual only - npm run check
+
 ---
 
 ## 5. SOURCE METADATA

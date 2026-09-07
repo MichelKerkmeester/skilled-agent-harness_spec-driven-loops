@@ -59,6 +59,8 @@ any family missing files or has extras; collect counts and identify discrepancy.
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/source-dist-alignment-enforcement.md](../../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md)
 
+Provenance: manual only - run the scenario prompt: Validate Runtime Family Count Census against the documented validation surface and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

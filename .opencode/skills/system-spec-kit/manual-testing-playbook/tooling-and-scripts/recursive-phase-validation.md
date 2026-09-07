@@ -75,6 +75,8 @@ Verify parent folder contains child folders matching `[0-9][0-9][0-9]-*/` patter
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive specs/<phase-parent>
+
 ---
 
 ## 5. SOURCE METADATA

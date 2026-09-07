@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines"
-    last_updated_at: "2026-09-07T00:00:00Z"
+    last_updated_at: "2026-09-07T19:40:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed every criterion"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-07-036-recorded-findings-closure-003"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -68,11 +68,11 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `grep -rL "Provenance:" manual-testing-playbook --include="*.md"` returns zero files
-- [ ] `playbook-provenance-paths.vitest.ts` exists and exits 0 against all 85 files
-- [ ] Every suite-backed provenance line's path is confirmed to exist, none fabricated
-- [ ] `playbook-operator-contract.yml`'s validator step still exits 0 against the changed tree
-- [ ] `manual-testing-playbook.md` Section 8 names the provenance-line convention
+- [x] `grep -rL "Provenance:" manual-testing-playbook --include="*.md"` returns zero files
+- [x] `playbook-provenance-paths.vitest.ts` exists and exits 0 against all 85 files
+- [x] Every suite-backed provenance line's path is confirmed to exist, none fabricated
+- [x] `playbook-operator-contract.yml`'s validator step still exits 0 against the changed tree
+- [x] `manual-testing-playbook.md` Section 8 names the provenance-line convention
 <!-- /ANCHOR:completion -->
 
 ---
@@ -89,9 +89,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| 85 provenance lines written, convention documented, walking suite added | Done | `implementation-summary.md` Files Changed |
+| Gates | Done | provenance suite 3 tests pass; strict playbook validator PASS with 0 violations |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Sixty-nine scenarios have no automated suite | Their line names the first command or the prompt that exercises them by hand; no suite was invented |
+| The doctor-commands index README fails the sk-doc document validator | It failed at HEAD before this change and is an index, not a scenario; left as found and recorded here |
 <!-- /ANCHOR:log -->

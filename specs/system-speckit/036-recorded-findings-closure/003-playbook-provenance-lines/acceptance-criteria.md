@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines"
-    last_updated_at: "2026-09-07T15:05:41Z"
+    last_updated_at: "2026-09-07T19:40:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-07-036-recorded-findings-closure-003"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|----------------------|---------------|--------|--------|
-| AC-001 | REQ-001 | Given all 85 files under `manual-testing-playbook/`, When each is read, Then every one carries a `Provenance:` line naming a suite path or "manual only" plus a command | `grep -rL "Provenance:" .opencode/skills/system-spec-kit/manual-testing-playbook --include="*.md"` returns zero files | Unmet | - |
-| AC-002 | REQ-002 | Given the new `playbook-provenance-paths.vitest.ts`, When run against the full tree, Then it fails if any cited suite path does not resolve on disk | `npx vitest run playbook-provenance-paths` from `runtime/cli/` | Unmet | - |
-| AC-003 | REQ-003 | Given every suite-backed provenance line, When cross-checked against the runtime tree, Then each cited path is a real, existing file, not a name that resembles one | The same `playbook-provenance-paths.vitest.ts` run, plus a manual spot-check of 5 files across different categories | Unmet | - |
-| AC-004 | REQ-004 | Given `.github/workflows/playbook-operator-contract.yml`, When run against the changed tree, Then the `validate-playbook-package.cjs` step still exits 0 | `node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` run locally against the changed tree | Unmet | - |
-| AC-005 | REQ-005 | Given `manual-testing-playbook.md` Section 8, When read after this phase, Then it names the provenance-line convention alongside the two coverage mechanisms it already documents | Manual read of Section 8 against the two-form template in plan.md | Unmet | - |
-| AC-006 | REQ-006 | Given the fixed provenance-line template, When applied across all 85 files, Then every line matches one of exactly two forms with no third variant | `grep -rhoE "Provenance: (manual only - .+\|[^ ]+\.(vitest\.ts\|test\.mjs\|test\.ts\|test\.cjs))" .opencode/skills/system-spec-kit/manual-testing-playbook --include="*.md" \| wc -l` equals 85 | Unmet | - |
+| AC-001 | REQ-001 | Given all 85 files under `manual-testing-playbook/`, When each is read, Then every one carries a `Provenance:` line naming a suite path or "manual only" plus a command | `grep -rL "Provenance:"` over the package returns zero files; 85 lines, 16 suite-backed and 69 manual only | Met | - |
+| AC-002 | REQ-002 | Given the new `playbook-provenance-paths.vitest.ts`, When run against the full tree, Then it fails if any cited suite path does not resolve on disk | `runtime/cli/tests/playbook-provenance-paths.vitest.ts` passes, 3 tests; its third case fails on any cited path that does not resolve from the repository, skill or runtime root | Met | - |
+| AC-003 | REQ-003 | Given every suite-backed provenance line, When cross-checked against the runtime tree, Then each cited path is a real, existing file, not a name that resembles one | the same suite resolved all 16 cited suites; spot check: architecture-boundary-enforcement, cli-trusted-gate-refusal and three plugins-and-hooks entries cite files that exist | Met | - |
+| AC-004 | REQ-004 | Given `.github/workflows/playbook-operator-contract.yml`, When run against the changed tree, Then the `validate-playbook-package.cjs` step still exits 0 | `validate-playbook-package.cjs --strict` prints PASS for system-spec-kit with 83 scenarios, 10 categories and 0 violations | Met | - |
+| AC-005 | REQ-005 | Given `manual-testing-playbook.md` Section 8, When read after this phase, Then it names the provenance-line convention alongside the two coverage mechanisms it already documents | section 8 of `manual-testing-playbook.md` names the two forms and the walking suite | Met | - |
+| AC-006 | REQ-006 | Given the fixed provenance-line template, When applied across all 85 files, Then every line matches one of exactly two forms with no third variant | the form grep matches all 85 lines; the writing script rejected zero | Met |test\.mjs\|test\.ts\|test\.cjs))" .opencode/skills/system-spec-kit/manual-testing-playbook --include="*.md" \| wc -l` equals 85 | Unmet | - |
 
 ### Status values
 
@@ -84,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This packet is at the planning stage: spec, plan and tasks are authored and every
 criterion above is traced to a real requirement, but none has been executed yet.

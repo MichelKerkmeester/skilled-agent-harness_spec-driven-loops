@@ -69,6 +69,8 @@ Verify spec folder path exists and contains spec.md; check script has execute pe
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>
+
 ---
 
 ## 5. SOURCE METADATA

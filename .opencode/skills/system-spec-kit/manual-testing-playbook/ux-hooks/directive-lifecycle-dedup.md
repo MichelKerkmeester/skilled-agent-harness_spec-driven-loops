@@ -156,6 +156,8 @@ A complete run stores:
 - OpenCode adapter: `.opencode/plugins/system-skill-advisor.js`
 - Persistence wrapper: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
 
+Provenance: manual only - follow the TEST EXECUTION sequence by hand
+
 ---
 
 ## 5. SOURCE METADATA

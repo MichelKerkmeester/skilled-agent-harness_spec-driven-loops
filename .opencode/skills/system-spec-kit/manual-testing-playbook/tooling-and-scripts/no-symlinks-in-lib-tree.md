@@ -81,6 +81,8 @@ Identify symlink -> determine if intentional -> replace with canonical import pa
 - Feature catalog: [tooling-and-scripts/architecture-boundary-enforcement.md](../../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md)
 - Policy: [ARCHITECTURE.md](../../ARCHITECTURE.md) -- "No Symlinks in lib/ Tree" subsection
 
+Provenance: manual only - find runtime/lib -type l
+
 ---
 
 ## 5. SOURCE METADATA

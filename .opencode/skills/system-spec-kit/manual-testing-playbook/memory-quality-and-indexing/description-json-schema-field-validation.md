@@ -73,6 +73,8 @@ Verify create.sh generates description.json → Check 9-field schema validation,
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
 
+Provenance: manual only - run the scenario prompt: Validate description.json schema field validation and repair behavior.
+
 ---
 
 ## 5. SOURCE METADATA

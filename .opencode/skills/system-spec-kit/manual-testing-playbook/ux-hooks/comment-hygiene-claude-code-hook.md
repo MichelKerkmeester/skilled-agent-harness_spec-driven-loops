@@ -76,6 +76,8 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 | `.claude/settings.json` | Hook wiring config — PostToolUse `Write\|Edit` entry |
 | `.opencode/specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md` | CHK-030/031/032/033 — regression checklist for this scenario |
 
+Provenance: manual only - python3 -c "import json; d=json.load(open('.claude/settings.json')); print('PostToolUse' in d['hooks'])"
+
 ---
 
 ## 5. SOURCE METADATA

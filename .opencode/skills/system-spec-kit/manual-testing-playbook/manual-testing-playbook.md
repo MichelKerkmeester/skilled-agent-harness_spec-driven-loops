@@ -322,3 +322,7 @@ Automated coverage is tracked in two places:
 - The scenario runner at `runtime/cli/tests/manual-playbook-runner.ts`, which walks this package, parses each scenario's `Playbook ID` and command sequence, and reports scenarios it cannot execute deterministically as `SKIP` with a named blocker.
 
 The runner derives its scenario census from the walked tree. A scenario file added or removed without updating Section 7 will show up as an orphan in the link audit, not as a silent gap.
+
+Every file in this package also carries one `Provenance:` line at the end of its SOURCE FILES section, in one of two forms: `Provenance: <path to the automated suite that proves the scenario>` or `Provenance: manual only - <the command or prompt that exercises it by hand>`. The suite `runtime/cli/tests/playbook-provenance-paths.vitest.ts` walks the package and fails when a file lacks the line, uses a third form, or cites a suite path that does not exist.
+
+Provenance: manual only - the scenario runner at runtime/cli/tests/manual-playbook-runner.ts walks every scenario

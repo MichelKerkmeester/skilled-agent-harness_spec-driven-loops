@@ -135,6 +135,8 @@ An untrusted mutation reaching IPC means `assertTrustedForMutation` lost a tool 
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression coverage |
 | `.opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts` | `skill_graph_propagate_enhances` schema with `dryRun` default true |
 
+Provenance: .opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

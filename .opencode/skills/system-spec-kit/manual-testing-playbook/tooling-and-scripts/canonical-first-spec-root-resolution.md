@@ -189,6 +189,8 @@ Inspect `runtime/cli/core/spec-root-canonical-resolver.ts` first for precedence 
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts:185-205` | No-alias guarded write with no plain `specs/` root materialized |
 | `.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md:138-147` | Deployment and alias-retirement gates; not evidence of production execution |
 
+Provenance: runtime/cli/tests/spec-root-canonical-resolver.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

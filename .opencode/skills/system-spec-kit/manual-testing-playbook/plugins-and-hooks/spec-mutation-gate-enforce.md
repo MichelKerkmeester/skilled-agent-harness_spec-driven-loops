@@ -213,6 +213,8 @@ Capture, for every step in the Commands sequence above:
 - Deny-predicate documentation: `.opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md`
 - Live telemetry: `.opencode/skills/.state/spec-gate/spec-gate-warnings.log` (real, project-local, gitignored state)
 
+Provenance: .opencode/plugins/tests/system-spec-gate.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA

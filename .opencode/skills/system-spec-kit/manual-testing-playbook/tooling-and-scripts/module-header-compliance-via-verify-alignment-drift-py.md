@@ -88,6 +88,8 @@ Check for new .ts files without MODULE: header → Add 3-line header block → R
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/code-standards-alignment.md](../../feature-catalog/tooling-and-scripts/code-standards-alignment.md)
 
+Provenance: manual only - python3 ../sk-code/assets/scripts/verify_alignment_drift.py --root .
+
 ---
 
 ## 5. SOURCE METADATA

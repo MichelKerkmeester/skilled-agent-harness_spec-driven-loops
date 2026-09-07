@@ -111,6 +111,8 @@ If the stale run does not exit 3, confirm a compiled `orchestrator.js` is presen
 | `.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Watched TypeScript source for the compiled orchestrator entry |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh` | Automated equivalent of this manual scenario (stale-then-fresh assertion pair) |
 
+Provenance: manual only - python3 os.utime
+
 ---
 
 ## 5. SOURCE METADATA

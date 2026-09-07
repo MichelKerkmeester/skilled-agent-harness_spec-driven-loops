@@ -304,6 +304,8 @@ Check computeReviewScorePenalty in post-save-review.ts and advisory logging in w
 - Save pipeline: `runtime/cli/core/workflow.ts`
 - CLI surface: `runtime/cli/continuity/generate-context.ts`
 
+Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>
+
 ---
 
 ## 5. SOURCE METADATA

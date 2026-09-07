@@ -71,6 +71,8 @@ Inspect `runtime/cli/spec/validate.sh`, `.speckit.yaml` rule ordering, `runtime/
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/spec-validation-rule-engine.md](../../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md)
 
+Provenance: runtime/cli/tests/continuity-freshness.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

@@ -75,6 +75,8 @@ Inspect `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`,
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/completion-verification-workflow.md](../../feature-catalog/tooling-and-scripts/completion-verification-workflow.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/062-template-compliant-level1
+
 ---
 
 ## 5. SOURCE METADATA

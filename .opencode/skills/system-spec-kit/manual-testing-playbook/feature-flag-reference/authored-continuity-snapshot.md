@@ -86,6 +86,8 @@ Inspect `lib/continuity/authored-continuity-snapshot.ts`, PreCompact hook wiring
 | `runtime/hooks/claude/compact-inject.ts` | PreCompact integration point |
 | `runtime/tests/thin-continuity-record.vitest.ts` | Snapshot and disabled-mode regression coverage |
 
+Provenance: runtime/tests/thin-continuity-record.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

@@ -228,6 +228,8 @@ Verify file size thresholds; inspect per-parent merge caps; check overflow promo
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md](../../feature-catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md)
 
+Provenance: manual only - run the scenario prompt: Validate Tree thinning for spec folder consolidation (PI-B1) against the documented validation surface and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

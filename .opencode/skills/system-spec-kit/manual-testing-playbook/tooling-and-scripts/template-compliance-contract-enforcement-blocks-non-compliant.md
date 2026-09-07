@@ -189,6 +189,8 @@ Inspect `references/validation/template-compliance-contract.md`, `.opencode/agen
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/template-compliance-contract-enforcement.md](../../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md)
 
+Provenance: manual only - run the scenario prompt: Validate Template Compliance Contract Enforcement against references/validation/template-compliance-contract.md and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

@@ -66,6 +66,8 @@ Test transcript, recursive validation output, and direct rule output
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/phase-system-knowledge-node.md](../../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
+
 ---
 
 ## 5. SOURCE METADATA

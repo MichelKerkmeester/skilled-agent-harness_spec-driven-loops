@@ -87,6 +87,8 @@ If lazy-init is not offered, inspect Phase 0 discovery in `.opencode/commands/do
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
 
+Provenance: manual only - find .opencode/specs -path '*/research/iterations/*.md' -o -path '*/review/iterations/*.md' | head
+
 ---
 
 ## 5. SOURCE METADATA

@@ -76,6 +76,8 @@ Operators run the exact prompt and command sequence for `119-C` and confirm the 
 | `.opencode/scripts/git-hooks/pre-commit` | Symlink target — integrates hygiene gate with doc-model-ref check |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` | Shared checker called by the pre-commit gate |
 
+Provenance: manual only - git log
+
 ---
 
 ## 5. SOURCE METADATA

@@ -205,6 +205,8 @@ Capture, for every step in the Commands sequence above:
 - Hook wiring: `.claude/settings.json` (`SessionStart` and `PostToolUse` blocks)
 - Guard audit log (runtime artifact, not source): `.opencode/logs/dist-freshness-guard.log`
 
+Provenance: .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA
