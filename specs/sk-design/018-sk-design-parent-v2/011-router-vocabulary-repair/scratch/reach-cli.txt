@@ -1,0 +1,18 @@
+FAIL cli-external-orchestration   declared= 51 wrong-hub=  4 no-reach= 10
+       wrong-hub  full plugin and memory stack               system-spec-kit=0.8200
+       wrong-hub  codex diff review                          sk-code=0.9461, sk-design=0.8200
+       wrong-hub  pi print mode                              sk-design=0.8200
+       wrong-hub  pi multi-provider                          sk-git=0.8200
+       no-reach   full plugin runtime
+       no-reach   ablation suite
+       no-reach   anthropic cli
+       no-reach   extended thinking
+       no-reach   deeply-reasoned opinion
+       no-reach   autonomous swe agent
+       no-reach   devin headless
+       no-reach   pi headless
+       no-reach   pi thinking
+       no-reach   pi passthrough
+
+checked=1 hub(s), wrong-hub=4, no-reach=10
+RESULT: FAILED

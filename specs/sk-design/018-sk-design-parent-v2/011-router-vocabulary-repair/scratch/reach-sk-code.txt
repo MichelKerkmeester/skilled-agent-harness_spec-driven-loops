@@ -1,0 +1,31 @@
+FAIL sk-code                      declared= 41 wrong-hub=  2 no-reach= 25
+       wrong-hub  motion principles                          sk-design=0.8200
+       wrong-hub  plugin data layer                          mcp-tooling=0.8200
+       no-reach   stack trace
+       no-reach   console error
+       no-reach   alignment drift
+       no-reach   completion claim
+       no-reach   production release
+       no-reach   core web vitals
+       no-reach   web vitals
+       no-reach   largest contentful
+       no-reach   interaction to next paint
+       no-reach   cumulative layout shift
+       no-reach   frame budget
+       no-reach   motion language
+       no-reach   motion demo
+       no-reach   animation principles
+       no-reach   reduced motion
+       no-reach   form upload
+       no-reach   field validation
+       no-reach   focus trap
+       no-reach   adaptive stream
+       no-reach   video player
+       no-reach   config schema
+       no-reach   vanilla js
+       no-reach   db class naming
+       no-reach   pi remote
+       no-reach   editability guardrails
+
+checked=1 hub(s), wrong-hub=2, no-reach=25
+RESULT: FAILED

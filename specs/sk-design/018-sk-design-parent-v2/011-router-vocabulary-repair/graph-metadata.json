@@ -51,6 +51,7 @@
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-doc/graph-metadata.json",
       ".opencode/skills/sk-doc/description.json",
+      "scratch/fleet-reach-scan.md",
       "scratch/compiled-routing-gap.md"
     ],
     "entities": [
@@ -100,6 +101,12 @@
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "fleet-reach-scan.md",
+        "kind": "doc",
+        "path": "scratch/fleet-reach-scan.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design router declares 55 keywords its own scoring vocabulary never sees",
     "created_at": "2026-09-06T20:37:14Z",
-    "last_save_at": "2026-09-07T04:07:20.565Z",
+    "last_save_at": "2026-09-07T04:56:58.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe5beacf8103a2ff023c3f392d0cfe537724bd8b44194e627116e75de3561243",
+    "source_fingerprint": "sha256:5615face701b3eaa33e3d0ca7eb209562921c4b109320e793ccb33a3101bf816",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a9f9e17fe8494b3c8bb11a14beb82891a525adfb43eac76288480c7ac0d0e72",

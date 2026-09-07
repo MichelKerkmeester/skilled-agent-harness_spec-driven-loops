@@ -39,8 +39,16 @@ function declaredPhrases(hub) {
   const block = /INTENT_SIGNALS\s*=\s*\{([\s\S]*?)\n\}/.exec(text);
   if (!block) return [];
   const found = [...block[1].matchAll(/"([^"]{3,60})"/g)].map((m) => m[1]);
-  // a single token fails on length, not on vocabulary; reporting it buries the rest
-  return [...new Set(found.filter((k) => k.includes(' ') && !/^(weight|keywords)$/i.test(k)))];
+  return [...new Set(found.filter((k) => (
+    // a single token fails on length, not on vocabulary; reporting it buries the rest
+    k.includes(' ')
+    // a quote-delimited match is not always a phrase. Where a router formats its
+    // block across lines, the text between two quoted keywords is punctuation and
+    // structure, and probing it wastes a call and prints a row nobody can act on.
+    && /^[a-z0-9]/i.test(k)
+    && !/[{}[\]]/.test(k)
+    && !/^(weight|keywords)$/i.test(k)
+  )))];
 }
 
 function reaches(phrase, hub) {
