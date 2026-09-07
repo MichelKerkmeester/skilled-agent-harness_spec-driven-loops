@@ -27,6 +27,13 @@ contextType: "implementation"
 
 **Consequence**: The 18 residual cross-hub disputes stay open. They are recorded and attributed rather than left as an unexplained gap.
 
+**Addendum, 2026-09-07, after measurement.** The rationale above guessed that the
+vocabulary fix might make most of the lexical change unnecessary. It did not:
+`outranked` held at 18 across the change, so nothing moved into the explicit lane
+that was not already there. The deferral still stands, but it now rests on blast
+radius alone rather than on an expected reduction. A later reader should not
+re-derive this: the hypothesis was tested and was wrong.
+
 ---
 
 <!-- /ANCHOR:adr-001 -->
