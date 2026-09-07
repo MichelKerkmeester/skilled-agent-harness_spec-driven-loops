@@ -78,6 +78,42 @@ Probed at advisor generation 714-716. `Winner` is the hub the advisor actually r
 
 ---
 
+<!-- /ANCHOR:table -->
+
+---
+
+<!-- ANCHOR:hints -->
+## 2b. THREE OF THESE ARE ONE HARDCODED TOKEN, NOT A DISPUTE
+
+`CATEGORY_HINTS` in the lexical lane grants a flat **+0.38** whenever a bare token appears
+in the prompt. `sk-code` holds 21 such tokens, among them `browser` and `layout`. Three
+contested rows are decided entirely by that boost:
+
+| phrase | hint that fires | declared by | won by |
+|---|---|---|---|
+| `browser debug` | `browser` | mcp-tooling | sk-code, 0.7591 to 0.6869 |
+| `browser agent` | `browser` | mcp-tooling | sk-code |
+| `review this layout` | `layout` | sk-design | sk-code |
+
+In each case the winner declares nothing matching the phrase and the loser declares it
+outright. The margin on `browser debug` is 0.072 against a boost of 0.38, so without the
+hint mcp-tooling wins comfortably rather than narrowly.
+
+That reframes the decision. It is not "which hub owns browser work", it is "should a bare
+`browser` token hand sk-code every prompt containing the word, including one another hub
+declares verbatim". The same question applies to `layout`, and to the other 19 tokens
+nobody has audited.
+
+The remaining seven contested rows carry **no** hint and are won by something else, most
+likely the `review` synonym expansion to `audit`, `findings` and `regression`. They are a
+separate mechanism and a separate fix.
+
+Narrowing a hint is a scorer-data change with fleet-wide reach, so it is not made here. It
+is now a one-line change waiting on an ownership answer rather than an open investigation.
+<!-- /ANCHOR:hints -->
+
+---
+
 <!-- ANCHOR:disposition -->
 ## 3. WHAT THIS MEANS FOR THE SEQUENCE
 
