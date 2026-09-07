@@ -64,7 +64,7 @@ const DOC_TEMPLATE_NAMES = {
   'goal.md': 'goal.md.tmpl',
   'handover.md': 'handover.md.tmpl',
   'debug-delegation.md': 'debug-delegation.md.tmpl',
-  'research/research.md': 'research.md.tmpl',
+  'research.md': 'research.md.tmpl',
   'before-after.md': 'before-after.md.tmpl',
   'timeline.md': 'timeline.md.tmpl',
   'roadmap.md': 'roadmap.md.tmpl',
@@ -394,7 +394,10 @@ function resolveTemplatePath(level, basename, templatesRoot = getTemplatesRoot()
     ...contract.lazyAddonDocs,
     ...contract.lifecycleRequiredDocs.afterImplementationStarts,
   ];
-  if (!contractDocs.includes(basename)) {
+  // Contract names may carry a packet path (research/research.md); templates
+  // live flat, so both the membership test and the map key use the file name.
+  const docName = basename.split('/').pop();
+  if (!contractDocs.some((doc) => doc.split('/').pop() === docName)) {
     return null;
   }
   let manifestTemplateName;
@@ -403,7 +406,7 @@ function resolveTemplatePath(level, basename, templatesRoot = getTemplatesRoot()
   } else if (normalizedLevel === 'review' && basename === 'spec.md') {
     manifestTemplateName = 'review.spec.md.tmpl';
   } else {
-    manifestTemplateName = DOC_TEMPLATE_NAMES[basename];
+    manifestTemplateName = DOC_TEMPLATE_NAMES[docName];
   }
 
   if (!manifestTemplateName) {

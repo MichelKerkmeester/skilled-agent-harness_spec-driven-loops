@@ -7,7 +7,9 @@
 #
 # UPGRADE PATHS (upward only):
 #   L1 → L2:  Add acceptance-criteria.md, NFR/Edge/Complexity sections to spec.md, plan.md sections
-#   L2 → L3:  Add decision-record.md, promote L2: sections to numbered, add Risk Matrix/User Stories
+#   L2 → L3:  Promote L2: sections to numbered, add Risk Matrix/User Stories (decision-record.md stays a lazy add-on)
+#   Every upgrade also scaffolds implementation-summary.md when the packet predates it, since the
+#   presence rule requires it once implementation starts.
 #   L3 → L3+: Add governance sections to spec.md, plan.md
 #   Skip-levels (e.g., L1→L3) chain through intermediate upgrades automatically.
 #
@@ -61,6 +63,7 @@ template_for_doc() {
         tasks.md) printf '%s' "${TEMPLATES_DIR}/core/tasks.md.tmpl" ;;
         decision-record.md) printf '%s' "${TEMPLATES_DIR}/addons/decision-record.md.tmpl" ;;
         acceptance-criteria.md) printf '%s' "${TEMPLATES_DIR}/addons/acceptance-criteria.md.tmpl" ;;
+        implementation-summary.md) printf '%s' "${TEMPLATES_DIR}/core/implementation-summary.md.tmpl" ;;
         *) return 1 ;;
     esac
 }
@@ -757,6 +760,26 @@ create_new_files() {
     local from_level="$1"
     local to_level="$2"
 
+    # Every fresh scaffold writes implementation-summary.md at every level; a
+    # packet that predates it gains it here, or the presence rule fails the
+    # moment implementation starts.
+    if [[ ! -f "$SPEC_FOLDER/implementation-summary.md" ]]; then
+        local is_src=""
+        is_src="$(mktemp)"
+        if render_doc_at_level implementation-summary.md "$to_level" > "$is_src" 2>/dev/null && [[ -s "$is_src" ]]; then
+            if [[ "$DRY_RUN" == "true" ]]; then
+                info "DRY RUN: Would create implementation-summary.md from template"
+            else
+                verbose "Creating implementation-summary.md from template"
+                cp "$is_src" "$SPEC_FOLDER/implementation-summary.md"
+                CREATED_FILES+=("implementation-summary.md")
+            fi
+        else
+            warn "Could not render implementation-summary.md from the Level contract templates"
+        fi
+        rm -f "$is_src"
+    fi
+
     case "${from_level}-${to_level}" in
         1-2)
             # Verification and testing sections live in the unified tasks
@@ -786,30 +809,10 @@ create_new_files() {
             ;;
 
         2-3)
-            # L2→L3: Create decision-record.md from template
-            local dr_src=""
-            dr_src="$(mktemp)"
-            render_doc_at_level decision-record.md 3 > "$dr_src" 2>/dev/null || : 
-            local dr_dest="$SPEC_FOLDER/decision-record.md"
-
-            if [[ -f "$dr_dest" ]]; then
-                info "decision-record.md already exists — skipping creation"
-                return 0
-            fi
-
-            if [[ ! -s "$dr_src" ]]; then
-                warn "Could not render decision-record.md from the Level contract templates"
-                return 2
-            fi
-
-            if [[ "$DRY_RUN" == "true" ]]; then
-                info "DRY RUN: Would create decision-record.md from template"
-                return 0
-            fi
-
-            verbose "Creating decision-record.md from template"
-            cp "$dr_src" "$dr_dest"
-            CREATED_FILES+=("decision-record.md")
+            # decision-record.md is a lazy add-on at every level, so Level 3 adds
+            # no required document; an upgrade that created it left upgraded and
+            # fresh packets with different file sets.
+            verbose "No new files needed for L2 → L3; decision-record.md stays a lazy add-on rendered on demand"
             ;;
 
         "3-3+")
