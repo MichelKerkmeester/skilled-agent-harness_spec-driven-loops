@@ -1,0 +1,51 @@
+{
+  "sessionId": "fanout-deepseek-v4-flash-shared-package-r3-1788784301209-5vxrnb",
+  "lineage": "deepseek-v4-flash-shared-package-r3",
+  "loopType": "research",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "maxIterations": 5,
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package-r3",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "inline": true,
+    "nestedDispatchUsed": false
+  },
+  "charter": {
+    "roles": ["skeptical auditor, every claim cited"],
+    "anglesExecuted": ["cross-skill consumers", "type duplication", "exports without consumers/tests", "build chain", "generated README reader table"],
+    "nonGoalsHonored": [
+      "no edits outside the lineage",
+      "no validate.sh / node tooling / git writes",
+      "no scripts, harnesses or census programs written",
+      "no count reuse from earlier rounds",
+      "no re-report of censused rows without new evidence (R3-I5-01 and R3-I1-03/R3-I4-02 are new-evidence exceptions, stated as such)"
+    ],
+    "earlyConvergence": false
+  },
+  "outcomes": {
+    "p0": 0,
+    "p1": 7,
+    "p2": 15,
+    "findingsTotal": 22,
+    "questionsAnswered": 5,
+    "openQuestionsCarried": 9,
+    "synthesis": "research.md",
+    "findingsRegistry": "findings-registry.json",
+    "convergenceReport": "convergence-report.json",
+    "dashboard": "deep-research-dashboard.md",
+    "stateLog": "deep-research-state.jsonl",
+    "deltas": "deltas/iter-001.jsonl..iter-005.jsonl",
+    "iterations": "iterations/iteration-001.md..iteration-005.md"
+  },
+  "headlineFindings": [
+    "The README reader table has no generator - census R3-01's 'computed from the files' disposition is false; the table is hand-maintained and currently misattributes consumers (R3-I5-01/02)",
+    "Two new dead exports: budget-allocator has an explicit barrel entry with no external consumer (R3-I3-01); stringifyFrontmatter has zero importers (R3-I3-02)",
+    "The CI build story inverts the code: command-tree-parity builds shared for an import of a tracked source file while the real dist consumers (shared/dist classifier, advisor mcp-server/dist) are built by nothing in that workflow; the mirrors job provisions nothing at all (R3-I4-01/02)",
+    "Type duplication is clean except one name collision: local ParsedFrontmatter (different shape, same name) coexists with the shared export in orchestrator.ts's module graph (R3-I2-02)"
+  ],
+  "writeSurfaceCompliance": "All writes confined to the lineage directory (specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package-r3); repo untouched; no generate-context.js, no validate.sh, no git write/checkout/commit executed; no nested CLI/agent/subprocess dispatch in any iteration.",
+  "completedAt": "2026-09-07T15:10:00Z"
+}

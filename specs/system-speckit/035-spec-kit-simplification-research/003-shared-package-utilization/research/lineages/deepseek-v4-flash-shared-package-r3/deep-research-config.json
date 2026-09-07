@@ -1,0 +1,68 @@
+{
+  "topic": "ROUND THREE of the @spec-kit/shared dependency-and-utilization audit: five bounded iterations on angles rounds one (GLM 5.3 Flash) and two (DeepSeek V4 Flash) covered thinly or not at all: (1) cross-skill consumers and what each takes; (2) type duplication in runtime consumers; (3) exports without consumers and without tests; (4) the build chain and how consumers resolve compiled output; (5) the generated README reader table. Roles: skeptical auditor, every claim verified against checked-in source; no reuse of earlier counts.",
+  "maxIterations": 5,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
+  "createdAt": "2026-09-07T14:35:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-shared-package-r3-1788784301209-5vxrnb",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "fanout": {
+    "detached": true,
+    "inlineExecutor": true,
+    "artifactDirOverride": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package-r3",
+    "note": "Nested CLI/agent dispatch is forbidden for this lineage; this process runs every iteration inline. No repo tooling is executed: state records, deltas and the state log are written directly inside the lineage dir."
+  }
+}

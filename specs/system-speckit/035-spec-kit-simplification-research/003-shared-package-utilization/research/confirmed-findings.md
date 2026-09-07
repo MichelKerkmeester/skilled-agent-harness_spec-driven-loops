@@ -87,3 +87,25 @@ Child 009 landed: no dangling importer in any of the five consumer trees, the re
 ### Re-verified decisions
 
 The `predicates/boolean-expr` keep holds on its four citations; the two-spelling override keep holds; the advisor isolation doctrine holds with its justification corrected; round one's "adapter is a shim" was wrong and is corrected by R5-01, which changes nothing about the 009 removal.
+
+
+---
+
+## 7. ROUND THREE (DeepSeek V4 Flash max through DevPass, five bounded iterations on the twice-remediated tree)
+
+Source: `lineages/deepseek-v4-flash-shared-package-r3/research.md`, stop reason `maxIterationsReached`, 22 findings: 7 P1, 15 P2, five bounded angles. The GLM 5.3 Flash attempt that ran before the operator switched executors is kept under `lineages/glm-5-3-flash-shared-package-r3-partial/` as supplementary evidence. Censused in the main checkout on 2026-09-07 before child `021-shared-readme-generator-and-dead-exports` was opened.
+
+| Rows | Claim | Census | Disposition |
+|------|-------|--------|-------------|
+| R3-I5-01 | No generator exists for the README table child 015 called generated | Confirmed: the table came from a scan that was never committed | Fixed: a generator with print, write and check modes, and a test that runs the check under `npm test` |
+| R3-I5-02/03/04/05 | Row attributions name consumers that do not import; a reader is missing; the grouped union misattributes; a Gate 3 row overstates | Confirmed | Fixed: the table is one row per variable from the scan; the text-helpers row names the providers |
+| R3-I3-01 | The budget-allocator export entry has no external consumer | Confirmed for production code | Recorded: the runtime's test imports it through the package, which is a consumer of the public surface |
+| R3-I3-02/03 | `stringifyFrontmatter` and `escapeRegex` have no importer | Confirmed | Fixed: removed with their test lines; the two local regex escapes stay local |
+| R3-I3-04/05/06/07/08 | Helper modules are tested only from the runtime | Confirmed | Fixed for retry and chunking with shared-side tests; recorded for the rest in the README's build note |
+| R3-I4-02 | The mirror job requires the package with no install step | Confirmed, and never exercised because the job had never run on a push | Fixed: an install step before the checks |
+| R3-I4-01 | The parity workflow builds the package for a checker that imports source | Confirmed | Fixed: the build step is gone and the comment says why |
+| R3-I1-03, R3-I4-03/04 | Two neighbours declare the package as a file dependency and nothing builds it for them; typecheck and runtime resolve different surfaces | Confirmed | Documented in the README's build note |
+| R3-I2-01 | A comment describes a re-export a round-two fix removed | Confirmed | Fixed |
+| R3-I2-02 | The validator's `ParsedFrontmatter` collides with the package's | Confirmed | Fixed: renamed for what it is |
+| R3-I1-01/02 | Import-extension inconsistency in the advisor | Confirmed | Recorded: the advisor is another lane's surface |
+| GLM partials | Two GLM iterations on cross-skill consumers and type duplication before the switch | Read | Their rows overlap iterations 1 and 2 and are covered above |

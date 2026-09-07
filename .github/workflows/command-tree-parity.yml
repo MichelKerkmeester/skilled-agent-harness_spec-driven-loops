@@ -19,14 +19,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install the spec-kit workspace and build its shared package
+      - name: Install the spec-kit workspace
         # The checkers require @spec-kit/shared, a workspace package that only
-        # resolves after an install links it, and its .js subpaths point at the
-        # compiled dist, so a bare checkout cannot find the module.
+        # resolves after an install links it, so a bare checkout cannot
+        # find the module; the checker imports a checked-in source module, so no
+        # build is needed.
         run: |
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
       - name: Compare command trees
         run: |
           set -euo pipefail

@@ -92,7 +92,9 @@ interface AnchorOccurrence {
   body: string;
 }
 
-interface ParsedFrontmatter {
+// Named for what it is: the validator's own extraction, distinct from the
+// shared package's ParsedFrontmatter that the orchestrator also imports.
+interface FrontmatterExtraction {
   rawBlock: string | null;
   error: string | null;
   memoryError: string | null;
@@ -268,7 +270,7 @@ function countLeadingSpaces(value: string): number {
   return count;
 }
 
-function extractFrontmatter(content: string): ParsedFrontmatter {
+function extractFrontmatter(content: string): FrontmatterExtraction {
   const normalized = content.replace(/\r\n/g, '\n');
   const frontmatterPattern = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\n([\s\S]*?)\n---(?:\n|$)/;
   const frontmatterOpeningPattern = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\n/;

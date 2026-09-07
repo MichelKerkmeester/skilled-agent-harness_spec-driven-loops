@@ -74,6 +74,7 @@ here are invisible to whatever judges completion.
 
 - [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-shared-package/
 - [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-shared-package/ and every P1 row is censused in confirmed-findings.md
+- [x] Round three: 5 iteration files and a synthesis exist under research/lineages/deepseek-v4-flash-shared-package-r3/ and every row is censused in confirmed-findings.md
 - [x] research.md carries a per-module consumer census
 - [x] Every P0 and P1 finding reproduces in-session
 - [x] A ranked remove, merge or move list with evidence
@@ -98,6 +99,8 @@ and findings belong here.
 | Remediation | Done | `../009-shared-package-dead-half-removal` closed every row |
 | Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-shared-package/research.md`, 07:54 to 08:10 |
 | Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../015-shared-package-post-remediation-cleanup` |
+| Round three ran 5/5 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-shared-package-r3/research.md`, 14:31 to 15:07 |
+| Round three census and remediation | Done | `research/confirmed-findings.md` §7; `../021-shared-readme-generator-and-dead-exports` |
 
 ### Deviations and findings
 

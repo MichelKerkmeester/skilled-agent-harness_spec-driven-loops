@@ -1,0 +1,31 @@
+{
+  "lineage": "deepseek-v4-flash-shared-package-r3",
+  "sessionId": "fanout-deepseek-v4-flash-shared-package-r3-1788784301209-5vxrnb",
+  "loopType": "research",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "maxIterations": 5,
+  "convergenceThresholdConfigured": 3,
+  "convergencePolicy": "max-iterations (convergence signals treated as telemetry only; no early synthesis; broadened angles instead)",
+  "newInfoRatioTrend": [0.9, 0.8, 0.85, 0.9, 0.85],
+  "rollingAverageLast3": 0.87,
+  "questionCoverage": {
+    "total": 5,
+    "answered": 5,
+    "ratio": 1.0
+  },
+  "findings": {
+    "total": 22,
+    "p1": 7,
+    "p2": 15,
+    "p0": 0
+  },
+  "synthesis": "research.md",
+  "censusRelations": {
+    "R3-I1-03": "complementary to census L6 (resolution environment): new evidence - no consumer-tree build step for untracked shared/dist",
+    "R3-I5-01": "overturns census R3-01 'computed' disposition: no generator exists in the tree",
+    "R3-I2-01": "residue of census R7-02 fix: re-export removed, comments survived",
+    "others": "no censused row re-reported; L1/L3/L5/R2-01/R5-01/R6-01/R7-01 dispositions re-confirmed without new contrary evidence"
+  },
+  "generatedAt": "2026-09-07T15:10:00Z"
+}
