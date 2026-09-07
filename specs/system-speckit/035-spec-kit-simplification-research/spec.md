@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "scaffold/001-quiet-spec-kit"
     last_updated_at: "2026-09-07T04:05:00Z"
     last_updated_by: "template-author"
-    recent_action: "Opened round three of the five lanes"
-    next_safe_action: "Census the round-three syntheses"
+    recent_action: "Closed round three with children 018 to 022"
+    next_safe_action: "None; the program is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -120,6 +120,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 15 | 015-shared-package-post-remediation-cleanup/ | the dangling entry, the ownerless cluster, type and scoring module gone, the reader table generated, and the missing tests added, from lane 003 round two | complete |
 | 16 | 016-template-seams-and-sentinel-repair/ | the sentinel gates on the tasks checklist, one continuity set, the sharded flag gone, guides and READMEs matching the manifest, and the runtime test project green in CI, from lane 004 round two | complete |
 | 17 | 017-completion-gate-and-catalog-alignment/ | the completion checker reads acceptance closure and the sentinel advises on it, hand-written stamps become a visible class, the links scan is a plain tool, and the catalog and references match the contract, from lane 005 round two | complete |
+| 18 | 018-scaffold-placeholder-and-upgrade-truth/ | specific placeholder fills and provenance stripping, the rule's third class, upgrades that match a fresh scaffold, a loud phase-parent failure, resolvers that agree, and templates that obey the human-voice rules, from lane 004 round three | complete |
+| 19 | 019-ci-push-gates-and-runtime-doc-truth/ | the spec-kit check and changed-packet gates on direct pushes, a trigger table, four harnesses in the validation lane, the skip switch documented, and the save command's route categories, from lane 002 round three | complete |
+| 20 | 020-rule-headers-registry-coverage-and-playbook-paths/ | a test that proves every registry rule runs and caught a rule id drift, sibling splits named in headers, the expired canonical-save window removed, playbook commands that run, and a true routing claim, from lane 005 round three | complete |
+| 21 | 021-shared-readme-generator-and-dead-exports/ | a generator, check and test behind the README's table, two dead exports removed, a type collision renamed, and CI steps that match their comments, from lane 003 round three | complete |
+| 22 | 022-doctor-signal-truth-and-conventions-precision/ | a doctor asset that declares only the signals it computes and computes the ones it declares, a recipe with the convention's flags, conventions with the judge's seven classes and thresholds, and guidance that points at the judge, from lane 001 round three | complete |
 
 ### Phase Transition Rules
 

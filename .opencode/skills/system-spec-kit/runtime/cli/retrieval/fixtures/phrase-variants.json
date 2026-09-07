@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b6953bc6b72532be791adb67232eb8e21472906a080bfef7e5bd679ee0e9e0e7",
+  "manifestHash": "d93b4750e934a642c7692c122e823bccf65ff67fa31fb6954caae8c8b467dd2a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9342,6 +9342,9 @@
     "adoption tasks": [
       "adoption tasks"
     ],
+    "adr": [
+      "adr"
+    ],
     "adr 001": [
       "ADR-001"
     ],
@@ -16549,6 +16552,9 @@
     "canonical save advisory lock": [
       "canonical save advisory lock"
     ],
+    "canonical save allowlist removed": [
+      "canonical save allowlist removed"
+    ],
     "canonical save hardening": [
       "canonical save hardening"
     ],
@@ -17281,6 +17287,9 @@
     "census reconciliation tasks": [
       "census reconciliation tasks"
     ],
+    "census then fix": [
+      "census then fix"
+    ],
     "certificate gated auto route build": [
       "certificate gated auto route build"
     ],
@@ -17343,6 +17352,9 @@
     ],
     "changed packet validation": [
       "changed packet validation"
+    ],
+    "changed packet validation on push": [
+      "changed packet validation on push"
     ],
     "changed packet validation workflow": [
       "changed-packet validation workflow"
@@ -18805,6 +18817,21 @@
     ],
     "ci lanes wired": [
       "ci lanes wired"
+    ],
+    "ci push triggers": [
+      "ci push triggers"
+    ],
+    "ci push triggers criteria": [
+      "ci push triggers criteria"
+    ],
+    "ci push triggers plan": [
+      "ci push triggers plan"
+    ],
+    "ci push triggers summary": [
+      "ci push triggers summary"
+    ],
+    "ci push triggers tasks": [
+      "ci push triggers tasks"
     ],
     "ci resolution plan": [
       "ci resolution plan"
@@ -27339,6 +27366,9 @@
     ],
     "conventional commits worktree": [
       "conventional commits worktree"
+    ],
+    "conventions seven classes": [
+      "conventions seven classes"
     ],
     "convergence check": [
       "convergence check"
@@ -39915,6 +39945,15 @@
     "doctor removal tasks": [
       "doctor removal tasks"
     ],
+    "doctor retrieval signals": [
+      "doctor retrieval signals"
+    ],
+    "doctor retrieval signals plan": [
+      "doctor retrieval signals plan"
+    ],
+    "doctor retrieval signals tasks": [
+      "doctor retrieval signals tasks"
+    ],
     "doctor route degraded adapters": [
       "doctor route degraded adapters"
     ],
@@ -39968,6 +40007,12 @@
     ],
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
+    ],
+    "doctor signal criteria": [
+      "doctor signal criteria"
+    ],
+    "doctor signals summary": [
+      "doctor signals summary"
     ],
     "doctor skill advisor": [
       "/doctor:skill-advisor"
@@ -42412,6 +42457,9 @@
     "env knob docs tasks": [
       "env knob docs tasks"
     ],
+    "env reader table script": [
+      "env reader table script"
+    ],
     "env reference date refresh 022": [
       "ENV_REFERENCE date refresh 022"
     ],
@@ -44519,6 +44567,9 @@
     ],
     "fanout parity packet complete": [
       "fanout parity packet complete"
+    ],
+    "fanout playbook paths": [
+      "fanout playbook paths"
     ],
     "fanout pool cjs": [
       "fanout-pool.cjs"
@@ -62664,6 +62715,9 @@
     "mirror drift policy": [
       "mirror drift policy"
     ],
+    "mirror job install step": [
+      "mirror job install step"
+    ],
     "mirror parity tasks": [
       "mirror parity tasks"
     ],
@@ -72285,6 +72339,9 @@
     "phase parent content rule documented": [
       "phase parent content rule documented"
     ],
+    "phase parent description error": [
+      "phase parent description error"
+    ],
     "phase parent detection consistency": [
       "phase-parent detection consistency"
     ],
@@ -72464,6 +72521,9 @@
     ],
     "phrase intent booster migration": [
       "phrase intent booster migration"
+    ],
+    "phrase judge seven classes": [
+      "phrase judge seven classes"
     ],
     "phrase quality criteria": [
       "phrase quality criteria"
@@ -79171,6 +79231,21 @@
     "registry compiler unresolved identity": [
       "registry compiler unresolved identity"
     ],
+    "registry coverage test": [
+      "registry coverage test"
+    ],
+    "registry coverage test criteria": [
+      "registry coverage test criteria"
+    ],
+    "registry coverage test plan": [
+      "registry coverage test plan"
+    ],
+    "registry coverage test summary": [
+      "registry coverage test summary"
+    ],
+    "registry coverage test tasks": [
+      "registry coverage test tasks"
+    ],
     "registry derived embedder fallback": [
       "registry-derived embedder fallback"
     ],
@@ -82223,6 +82298,9 @@
     "retrieval re embed": [
       "retrieval re-embed"
     ],
+    "retrieval recipe flags": [
+      "retrieval recipe flags"
+    ],
     "retrieval regression gate": [
       "retrieval regression gate"
     ],
@@ -83477,11 +83555,23 @@
     "round state jsonl cjs": [
       "round-state-jsonl.cjs"
     ],
+    "round three criteria": [
+      "round three criteria"
+    ],
+    "round three plan": [
+      "round three plan"
+    ],
+    "round three tasks": [
+      "round three tasks"
+    ],
     "route algebra implementation approach": [
       "route algebra implementation approach"
     ],
     "route algebra task list": [
       "route algebra task list"
+    ],
+    "route categories save command": [
+      "route categories save command"
     ],
     "route council request": [
       "route council request"
@@ -83939,6 +84029,9 @@
     "routing coverage research tasks": [
       "routing coverage research tasks"
     ],
+    "routing decisions": [
+      "routing decisions"
+    ],
     "routing delta": [
       "routing delta"
     ],
@@ -84148,6 +84241,9 @@
     ],
     "rule file readability": [
       "rule file readability"
+    ],
+    "rule header split": [
+      "rule header split"
     ],
     "rule inventory": [
       "rule inventory"
@@ -85412,6 +85508,21 @@
     "scaffold parity": [
       "scaffold parity"
     ],
+    "scaffold placeholder truth": [
+      "scaffold placeholder truth"
+    ],
+    "scaffold placeholder truth criteria": [
+      "scaffold placeholder truth criteria"
+    ],
+    "scaffold placeholder truth plan": [
+      "scaffold placeholder truth plan"
+    ],
+    "scaffold placeholder truth summary": [
+      "scaffold placeholder truth summary"
+    ],
+    "scaffold placeholder truth tasks": [
+      "scaffold placeholder truth tasks"
+    ],
     "scaffold plan": [
       "scaffold plan"
     ],
@@ -85732,6 +85843,9 @@
     ],
     "scope amendment": [
       "scope amendment"
+    ],
+    "scope boundary": [
+      "scope boundary"
     ],
     "scope boundary hierarchy": [
       "scope boundary hierarchy"
@@ -87963,6 +88077,21 @@
     ],
     "shared procedure card tasks": [
       "shared procedure card tasks"
+    ],
+    "shared readme generator": [
+      "shared readme generator"
+    ],
+    "shared readme generator criteria": [
+      "shared readme generator criteria"
+    ],
+    "shared readme generator plan": [
+      "shared readme generator plan"
+    ],
+    "shared readme generator summary": [
+      "shared readme generator summary"
+    ],
+    "shared readme generator tasks": [
+      "shared readme generator tasks"
     ],
     "shared readme rewrite": [
       "shared readme rewrite"
@@ -90562,6 +90691,9 @@
     "sk design over emission fixed": [
       "sk-design over-emission fixed"
     ],
+    "sk design parent hub": [
+      "sk-design parent hub"
+    ],
     "sk design parent hub benchmark": [
       "sk-design parent hub benchmark"
     ],
@@ -90688,6 +90820,9 @@
     "sk design routing accuracy": [
       "sk-design routing accuracy"
     ],
+    "sk design routing benchmark": [
+      "sk-design routing benchmark"
+    ],
     "sk design routing parity with sk code sk doc": [
       "sk-design routing parity with sk-code sk-doc"
     ],
@@ -90765,6 +90900,9 @@
     ],
     "sk design skill before after": [
       "sk-design skill before after"
+    ],
+    "sk design skill benchmark artifacts": [
+      "sk-design skill-benchmark artifacts"
     ],
     "sk design skill decisions": [
       "sk-design skill decisions"
@@ -90861,6 +90999,9 @@
     ],
     "sk design v1 0 0 0": [
       "sk-design v1.0.0.0"
+    ],
+    "sk design v2 0 0 0": [
+      "sk-design v2.0.0.0"
     ],
     "sk design verification": [
       "sk-design verification"
@@ -95502,6 +95643,9 @@
     "spec kit catalog reconciliation": [
       "spec-kit catalog reconciliation"
     ],
+    "spec kit check on push": [
+      "spec-kit check on push"
+    ],
     "spec kit check workflow": [
       "spec kit check workflow"
     ],
@@ -97059,6 +97203,12 @@
     "staleness model": [
       "staleness model"
     ],
+    "staleness signal truth": [
+      "staleness signal truth"
+    ],
+    "staleness signals declared": [
+      "staleness signals declared"
+    ],
     "stalled council blocker ranking graph vs baseline": [
       "stalled-council blocker ranking graph vs baseline"
     ],
@@ -97983,6 +98133,9 @@
     ],
     "strict warn promotion": [
       "strict warn promotion"
+    ],
+    "stringify frontmatter removed": [
+      "stringify frontmatter removed"
     ],
     "strip processing tag": [
       "strip processing tag"
@@ -100769,6 +100922,9 @@
     "template placeholder validation fixes": [
       "template placeholder validation fixes"
     ],
+    "template provenance token stripped": [
+      "template provenance token stripped"
+    ],
     "template reduction analysis": [
       "template reduction analysis"
     ],
@@ -103308,6 +103464,9 @@
     "updatephaseparentpointer bypasses zod": [
       "updatePhaseParentPointer bypasses zod"
     ],
+    "upgrade creates implementation summary": [
+      "upgrade creates implementation summary"
+    ],
     "upgrade level fragments": [
       "upgrade-level fragments"
     ],
@@ -105720,6 +105879,12 @@
     ],
     "what shipped retrieval drift": [
       "what shipped retrieval drift"
+    ],
+    "what shipped round three": [
+      "what shipped round three"
+    ],
+    "what shipped round three retrieval": [
+      "what shipped round three retrieval"
     ],
     "what shipped sentinel repair": [
       "what shipped sentinel repair"
