@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,11 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given `validator-registry.json`, When it is loaded, Then it lists a `LINKS_VALID` row that `validate.sh` sources for every folder | `python3 -c "import json; print('LINKS_VALID' in [r['rule_id'] for r in json.load(open('lib/validator-registry.json'))])"` prints `True` | Unmet | - |
-| AC-002 | REQ-002 | Given `rename-pattern.md`, When `check-links.sh` scans the skill, Then none of its four memory-name citations report broken | `bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh .opencode/skills/system-spec-kit` exits 0 | Unmet | - |
-| AC-003 | REQ-003 | Given a fresh Level 2 scaffold, When `validate.sh --strict --json` runs, Then `LINKS_VALID` appears in the report entries | `.opencode/skills/system-spec-kit/runtime/cli/tests/validate-runs-every-registry-rule.vitest.ts` | Unmet | - |
-| AC-004 | REQ-004 | Given `specs/system-speckit/`'s own packets, When `validate.sh --strict` runs against a sample including this closure program's siblings, Then none newly fails | manual `validate.sh --strict` run across the sample, output read | Unmet | - |
-| AC-005 | REQ-005 | Given `.opencode/skills/mcp-tooling/mcp-obsidian`'s own broken `[[Website Relaunch]]` links, When `LINKS_VALID` runs against any folder, Then it never reports them | `bash rules/check-links.sh` with no argument still shows the finding, confirming the registry rule's fixed target never reaches it | Unmet | - |
+| AC-001 | REQ-001 | Given `validator-registry.json`, When it is loaded, Then it lists a `LINKS_VALID` row that `validate.sh` sources for every folder | `python3 -c "import json; print('LINKS_VALID' in [r['rule_id'] for r in json.load(open('lib/validator-registry.json'))])"` prints `True` | Met | - |
+| AC-002 | REQ-002 | Given `rename-pattern.md`, When `check-links.sh` scans the skill, Then none of its four memory-name citations report broken | `bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh .opencode/skills/system-spec-kit` exits 0 | Met | - |
+| AC-003 | REQ-003 | Given a fresh Level 2 scaffold, When `validate.sh --strict --json` runs, Then `LINKS_VALID` appears in the report entries | `.opencode/skills/system-spec-kit/runtime/cli/tests/validate-runs-every-registry-rule.vitest.ts` | Met | - |
+| AC-004 | REQ-004 | Given `specs/system-speckit/`'s own packets, When `validate.sh --strict` runs against a sample including this closure program's siblings, Then none newly fails | manual `validate.sh --strict` run across the sample, output read | Met | - |
+| AC-005 | REQ-005 | Given `.opencode/skills/mcp-tooling/mcp-obsidian`'s own broken `[[Website Relaunch]]` links, When `LINKS_VALID` runs against any folder, Then it never reports them | `bash rules/check-links.sh` with no argument still shows the finding, confirming the registry rule's fixed target never reaches it | Met | - |
 
 ### Status values
 

@@ -39,7 +39,7 @@
       "coverage"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/cli/rules/check-links.sh",
+      "runtime/cli/lib/validator-registry.json",
+      "references/workflows/rename-pattern.md",
+      "runtime/cli/rules/README.md",
+      "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
       "rules/check-links.sh",
       "lib/validator-registry.json",
-      "references/workflows/rename-pattern.md",
       "tests/validate-runs-every-registry-rule.vitest.ts",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
       "rules/check-placeholders.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/references/workflows/rename-pattern.md",
-      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md",
-      ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
-      "tests/test-validation-extended.sh",
-      "rules/README.md",
-      "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md"
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md"
     ],
     "entities": [
       {
@@ -102,19 +102,31 @@
       {
         "name": "check-links.sh",
         "kind": "script",
-        "path": "rules/check-links.sh",
+        "path": "runtime/cli/rules/check-links.sh",
         "source": "derived"
       },
       {
         "name": "validator-registry.json",
         "kind": "config",
-        "path": "lib/validator-registry.json",
+        "path": "runtime/cli/lib/validator-registry.json",
         "source": "derived"
       },
       {
         "name": "rename-pattern.md",
         "kind": "doc",
         "path": "references/workflows/rename-pattern.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/rules/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-validation-rule-engine.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
         "source": "derived"
       },
       {
@@ -133,24 +145,6 @@
         "name": "check-placeholders.sh",
         "kind": "script",
         "path": "rules/check-placeholders.sh",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-validation-rule-engine.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation-extended.sh",
-        "kind": "script",
-        "path": "tests/test-validation-extended.sh",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`rules/check-links.sh`'s own header states it plainly: \"A standalone scan run on demand: it has no validator-registry row, so validate.sh never sources it\" (`check-links.sh:5-6`)",
     "created_at": "2026-09-07T15:05:48Z",
-    "last_save_at": "2026-09-07T15:41:29.641Z",
+    "last_save_at": "2026-09-07T16:59:43.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8b7fe44643d6a908c64b0452902775698c78459521781ebaf83d241ff8b934a",
+    "source_fingerprint": "sha256:fadb832781d4041c2ad817486da4a2b08ccf7072cfc5e2edd682f04202fa5928",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "81438765869c05a6aed07115c47ef6a072217228b532796ee61d7ada58b90bd1",
-      "plan.md": "a575b6bf89515c5d70d8f313b38b0dfac110f1476ed12ce9ade7efc4b77c8149",
-      "tasks.md": "6467a2e9ea68d78731e5f26cee1aa2c5c1769fb334546ba817fd678e06392f69",
-      "implementation-summary.md": "ba47db976ecbe8d69ad651e39379a4e9d84ebc635075d06ae8f8be4f217b8fae"
+      "spec.md": "78f1a57e6f1ab1e3eb613c4c332077ffa4c9766653861de6d69c3645e6f4f710",
+      "plan.md": "e2a002f380b20325ba050364430a3f65817c6e0afe5e1b2f09696714b7503cfb",
+      "tasks.md": "5a659c629aaf69b720e223cca2a007527eebbed14c747969dd729496a04353af",
+      "implementation-summary.md": "a866c3cc7f55db022da5450f83f0f95bcf4a59f9dd5dd482fa1796145b970993"
     },
     "last_active_at": null
   }
