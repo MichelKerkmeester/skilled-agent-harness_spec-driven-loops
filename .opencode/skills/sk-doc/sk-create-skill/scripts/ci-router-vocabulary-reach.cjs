@@ -23,7 +23,10 @@ const { execFileSync } = require('child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const SKILLS = path.join(REPO_ROOT, '.opencode', 'skills');
-const ADVISOR = path.join(REPO_ROOT, '.opencode', 'bin', 'skill-advisor.cjs');
+// Overridable so the fail-closed path can be exercised against an advisor that is
+// not there. A gate nobody can watch fail is a gate nobody knows the shape of.
+const ADVISOR = process.env.ROUTER_REACH_ADVISOR
+  || path.join(REPO_ROOT, '.opencode', 'bin', 'skill-advisor.cjs');
 
 function hubs() {
   return fs.readdirSync(SKILLS, { withFileTypes: true })
@@ -51,18 +54,37 @@ function declaredPhrases(hub) {
   )))];
 }
 
+// A probe that could not run is not a phrase that reached nobody. Collapsing the
+// two lets a missing binary, a non-zero exit, a timeout or a cold daemon print a
+// clean pass over an advisor that never answered, so every failure to ask is
+// returned as its own result and fails the run.
 function reaches(phrase, hub) {
   let raw;
   try {
     raw = execFileSync('node', [ADVISOR, 'advisor_recommend', '--json',
       JSON.stringify({ prompt: phrase }), '--format', 'json'],
-    { encoding: 'utf8', timeout: 60000, stdio: ['ignore', 'pipe', 'ignore'] });
-  } catch { return null; }
+    { encoding: 'utf8', timeout: 60000, stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (err) {
+    const detail = err.stderr ? String(err.stderr).trim().split('\n')[0] : '';
+    return { error: `probe failed: ${err.code || err.message}${detail ? ` (${detail})` : ''}` };
+  }
   let data;
-  try { data = JSON.parse(raw).data; } catch { return null; }
+  try { data = JSON.parse(raw).data; } catch {
+    return { error: 'probe returned unparseable JSON' };
+  }
+  if (!data) return { error: 'probe returned no data envelope' };
   const bar = data.effectiveThresholds ? data.effectiveThresholds.confidenceThreshold : 0.8;
   const above = (data.recommendations || []).filter((r) => r.confidence >= bar);
-  return { hit: above.some((r) => r.skillId === hub), top: above.slice(0, 2) };
+  const generation = data.trustState ? data.trustState.generation : null;
+  // Presence above the bar is not routing. A hub sitting second behind a higher
+  // scorer never answers the request, so the declaring hub has to rank first for
+  // the phrase to count as reaching it.
+  return {
+    hit: above.length > 0 && above[0].skillId === hub,
+    present: above.some((r) => r.skillId === hub),
+    top: above.slice(0, 2),
+    generation,
+  };
 }
 
 function main() {
@@ -71,24 +93,43 @@ function main() {
   const limit = args.includes('--limit') ? Number(args[args.indexOf('--limit') + 1]) : Infinity;
   const asJson = args.includes('--json');
 
+  // A truncated inventory proves only what it sampled, which is how phrases stay
+  // broken across green runs. Sampling stays available by hand and is refused
+  // wherever the result is read as a gate.
+  if (limit !== Infinity && process.env.CI) {
+    process.stderr.write('--limit is refused under CI: a sampled run cannot gate a build\n');
+    process.exit(2);
+  }
+
   const report = [];
+  let generation = null;
   for (const hub of hubs()) {
     if (only && hub !== only) continue;
     const phrases = declaredPhrases(hub).slice(0, limit);
     const unreachable = [];
     for (const phrase of phrases) {
       const r = reaches(phrase, hub);
-      if (r && !r.hit) {
-        // two different failures wearing the same symptom. A phrase that reaches
-        // another hub is a routing defect: something else owns a word this hub
-        // advertises. A phrase that reaches nobody is usually too short to clear
-        // the bar at all, which no amount of vocabulary fixes.
+      if (r.generation != null) generation = r.generation;
+      if (r.error) {
+        unreachable.push({ phrase, kind: 'probe-error', reaches: [r.error] });
+        continue;
+      }
+      if (!r.hit) {
+        // Three failures wearing one symptom. Another hub ranked first while this
+        // one never surfaced is a routing defect. This hub surfaced but lost the
+        // top slot is the same defect wearing a passing score. Nothing above the
+        // bar at all is usually length, which vocabulary does not fix.
         unreachable.push({
           phrase,
-          kind: r.top.length ? 'wrong-hub' : 'no-reach',
+          kind: r.top.length ? (r.present ? 'outranked' : 'wrong-hub') : 'no-reach',
           reaches: r.top.map((t) => `${t.skillId}=${t.confidence.toFixed(4)}`),
         });
       }
+    }
+    // A hub whose router parsed to nothing is a broken extractor reading as a
+    // clean hub, so an empty inventory is a failure rather than a quiet zero.
+    if (phrases.length === 0) {
+      unreachable.push({ phrase: '(inventory)', kind: 'probe-error', reaches: ['router declared no multi-word phrases'] });
     }
     report.push({ hub, declared: phrases.length, unreachable });
   }
@@ -97,25 +138,40 @@ function main() {
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
   } else {
     for (const r of report) {
+      const errs = r.unreachable.filter((u) => u.kind === 'probe-error');
       const wrong = r.unreachable.filter((u) => u.kind === 'wrong-hub');
+      const lost = r.unreachable.filter((u) => u.kind === 'outranked');
       const none = r.unreachable.filter((u) => u.kind === 'no-reach');
-      process.stdout.write(`${wrong.length ? 'FAIL' : 'OK  '} ${r.hub.padEnd(28)} declared=${String(r.declared).padStart(3)} wrong-hub=${String(wrong.length).padStart(3)} no-reach=${String(none.length).padStart(3)}\n`);
+      const bad = errs.length + wrong.length + lost.length;
+      process.stdout.write(`${bad ? 'FAIL' : 'OK  '} ${r.hub.padEnd(28)} declared=${String(r.declared).padStart(3)} wrong-hub=${String(wrong.length).padStart(3)} outranked=${String(lost.length).padStart(3)} no-reach=${String(none.length).padStart(3)} probe-error=${String(errs.length).padStart(3)}\n`);
+      for (const u of errs) {
+        process.stdout.write(`       probe-error ${u.phrase.padEnd(41)} ${u.reaches.join(', ')}\n`);
+      }
       for (const u of wrong) {
         process.stdout.write(`       wrong-hub  ${u.phrase.padEnd(42)} ${u.reaches.join(', ')}\n`);
+      }
+      for (const u of lost) {
+        process.stdout.write(`       outranked  ${u.phrase.padEnd(42)} ${u.reaches.join(', ')}\n`);
       }
       for (const u of none) {
         process.stdout.write(`       no-reach   ${u.phrase}\n`);
       }
     }
-    const wrong = report.reduce((n, r) => n + r.unreachable.filter((u) => u.kind === 'wrong-hub').length, 0);
-    const none = report.reduce((n, r) => n + r.unreachable.filter((u) => u.kind === 'no-reach').length, 0);
-    process.stdout.write(`\nchecked=${report.length} hub(s), wrong-hub=${wrong}, no-reach=${none}\n`);
-    // only a wrong-hub result fails the gate. A phrase that reaches nobody is
-    // reported for a human to judge: it is usually a length limit, and failing
-    // a build on it would make the check unrunnable.
-    process.stdout.write(wrong ? 'RESULT: FAILED\n' : 'RESULT: PASSED\n');
+    const tally = (kind) => report.reduce((n, r) => n + r.unreachable.filter((u) => u.kind === kind).length, 0);
+    const errs = tally('probe-error');
+    const wrong = tally('wrong-hub');
+    const lost = tally('outranked');
+    const none = tally('no-reach');
+    process.stdout.write(`\nchecked=${report.length} hub(s), wrong-hub=${wrong}, outranked=${lost}, no-reach=${none}, probe-error=${errs}\n`);
+    process.stdout.write(`advisor generation: ${generation == null ? 'unknown' : generation}\n`);
+    // A phrase that reaches nobody is reported rather than failed: it is usually a
+    // length limit, and failing on it would make the check unrunnable. Everything
+    // else is a real defect, and a probe that never ran is the worst of them,
+    // because it is the one that would otherwise print a pass.
+    process.stdout.write(errs + wrong + lost ? 'RESULT: FAILED\n' : 'RESULT: PASSED\n');
   }
-  process.exit(report.some((r) => r.unreachable.some((u) => u.kind === 'wrong-hub')) ? 1 : 0);
+  const failed = report.some((r) => r.unreachable.some((u) => u.kind !== 'no-reach'));
+  process.exit(failed ? 1 : 0);
 }
 
 main();
