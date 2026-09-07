@@ -45,7 +45,7 @@ Operating modes:
 - Default mode returns the save plan without mutating.
 - Explicit apply/full-auto mode executes the metadata/description/graph-metadata refresh through the writer.
 
-Route category (chosen during processing): `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, or `drop`.
+Route category (chosen during processing): `narrative_progress`, `task_update`, `decision_log`, `research_findings`, `metadata_only`, or `drop`. The runtime also accepts the aliases `what_built`, `how_delivered`, `decisions`, `research` and `metadata` and folds them into those six.
 
 ---
 

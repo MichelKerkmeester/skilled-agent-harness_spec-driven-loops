@@ -38,6 +38,19 @@ isolation-check.yml
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report; does not gate. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
+
+### Push versus pull-request coverage
+
+The repository's documented flow pushes release lines directly, so a gate that runs only on pull requests never sees those commits. The table says which trigger each workflow answers to and why.
+
+| Workflow | Push | Pull request | Why |
+|---|---|---|---|
+| `advisory-checks.yml`, `command-tree-parity.yml`, `naming-standard-guard.yml`, `playbook-operator-contract.yml` | yes | yes | Cheap guards over the whole tree |
+| `routing-registry-drift.yml`, `runtime-no-spec-import.yml` | yes, path-filtered | yes, path-filtered | Expensive; run only when their inputs change |
+| `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Six suites; path-filtered to the skill so unrelated pushes stay cheap |
+| `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
+| `agent-mirror-sync.yml`, `comment-hygiene.yml`, `markdown-link-integrity.yml`, `prompt-card-sync.yml`, `rule-canary-sync.yml`, `skill-doc-frontmatter.yml` | no | yes | Review-time checks on a diff; the pre-commit hooks cover the same ground on direct pushes |
+| `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate |
 | `spec-root-resolution-matrix.yml` | Exercises spec-root resolution across its configured matrix. |
 
 ---

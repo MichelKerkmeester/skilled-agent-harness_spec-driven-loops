@@ -1,6 +1,11 @@
 name: Spec-Kit Check
 
 on:
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/system-spec-kit/**'
+      - '.github/workflows/spec-kit-check.yml'
   pull_request:
     branches: [main]
     paths:
@@ -83,6 +88,11 @@ jobs:
       # agent-mirror workflow covers agents only; these cover commands, prompts,
       # the agent roster and the command catalog, so prompt and command drift
       # stops being invisible to CI.
+      # The sync scripts require @spec-kit/shared through the workspace link,
+      # which only an install creates on a clean runner.
+      - name: Install the workspace
+        run: npm --prefix .opencode/skills/system-spec-kit ci
+
       - name: Mirror parity checks
         run: |
           set -euo pipefail

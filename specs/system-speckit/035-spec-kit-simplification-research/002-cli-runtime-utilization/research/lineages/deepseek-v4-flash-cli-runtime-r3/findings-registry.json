@@ -1,0 +1,20 @@
+{
+  "lineage": "fanout-deepseek-v4-flash-cli-runtime-r3-1788784296528-mlu6l0",
+  "generation": 1,
+  "stopReason": "maxIterationsReached",
+  "totalFindings": 12,
+  "findings": [
+    {"id": "f-iter001-001", "iteration": 1, "angle": "command-assets-vs-scripts", "severity": "P2", "label": "save.md:47-48 route-category enum diverges from ROUTE_CATEGORY_ALIASES (4 of 8 names absent)", "sources": [".opencode/commands/speckit/save.md:47-48", ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:156-169"], "recommendation": "document", "trust": "confirmed"},
+    {"id": "f-iter001-002", "iteration": 1, "angle": "command-assets-vs-scripts", "severity": "P2", "label": "workflow.ts:1740 comment says wire-in while the code runs the review", "sources": [".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts:1740"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter001-003", "iteration": 1, "angle": "command-assets-vs-scripts", "severity": "P2", "label": "no validate.md command asset exists; validation is script-level", "sources": [".opencode/commands/speckit/README.txt:100-170"], "recommendation": "document", "trust": "confirmed"},
+    {"id": "f-iter002-001", "iteration": 2, "angle": "env-reads", "severity": "P2", "label": "SPECKIT_SKIP_VALIDATION read in validate.sh:19-20 but absent from ENV-REFERENCE.md", "sources": [".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:19-20"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter002-002", "iteration": 2, "angle": "env-reads", "severity": "P2", "label": "ENV-REFERENCE.md:225 points at a nonexistent .env.example", "sources": [".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:225"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter003-001", "iteration": 3, "angle": "test-coverage-by-script", "severity": "P2", "label": "four standalone bash tests in cli/tests named by no vitest, no test:validation, no CI step read (conditional on test:legacy)", "sources": [".opencode/skills/system-spec-kit/runtime/cli/tests/check-graph-metadata-shape-last-active-child.sh"], "recommendation": "merge", "trust": "confirmed"},
+    {"id": "f-iter003-002", "iteration": 3, "angle": "test-coverage-by-script", "severity": "P2", "label": "check-links.sh lives outside the validator registry, kept alive by the post-edit router", "sources": [".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"], "recommendation": "document", "trust": "confirmed"},
+    {"id": "f-iter004-001", "iteration": 4, "angle": "hook-adapters-vs-core", "severity": "P1", "label": "pi/completion-evidence.ts:12 imports hook-flags at wrong relative depth (2 ups vs 5 needed); unguarded", "sources": [".opencode/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts:12"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter004-002", "iteration": 4, "angle": "hook-adapters-vs-core", "severity": "P2", "label": "pi/completion-evidence.ts:20 fallback import is dead and wrong", "sources": [".opencode/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts:20"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter005-001", "iteration": 5, "angle": "ci-push-vs-pr", "severity": "P1", "label": "spec-kit-check.yml:3-8 has no push trigger; all lanes PR-to-main + paths only", "sources": [".github/workflows/spec-kit-check.yml:3-8"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter005-002", "iteration": 5, "angle": "ci-push-vs-pr", "severity": "P2", "label": "changed-packet-validation.yml:3-5 PR-only; packet changes unvalidated on direct push", "sources": [".github/workflows/changed-packet-validation.yml:3-5"], "recommendation": "fix", "trust": "confirmed"},
+    {"id": "f-iter005-003", "iteration": 5, "angle": "ci-push-vs-pr", "severity": "P2", "label": "8 of 15 workflows never run on push; rationale undocumented", "sources": [".github/workflows/README.md"], "recommendation": "document", "trust": "confirmed"}
+  ]
+}

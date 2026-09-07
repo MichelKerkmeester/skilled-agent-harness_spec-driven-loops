@@ -1,6 +1,8 @@
 name: Changed Packet Validation
 
 on:
+  push:
+    branches: [main, 'skilled/**']
   pull_request:
     branches: [main]
 
@@ -40,8 +42,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE="${{ github.event.pull_request.base.sha }}"
-          HEAD="${{ github.event.pull_request.head.sha }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+            HEAD="${{ github.event.pull_request.head.sha }}"
+          else
+            # A direct push compares against the previous tip; a branch's first
+            # push has an all-zero before-sha, so fall back to the parent commit.
+            BASE="${{ github.event.before }}"
+            HEAD="${{ github.sha }}"
+            case "$BASE" in 0000000000000000000000000000000000000000|"") BASE="$(git rev-parse "$HEAD~1")" ;; esac
+          fi
 
           # A packet is in scope when one of ITS OWN documents changed — the
           # files the validator actually grades — not when anything anywhere
