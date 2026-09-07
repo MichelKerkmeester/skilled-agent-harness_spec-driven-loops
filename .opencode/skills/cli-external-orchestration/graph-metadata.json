@@ -82,8 +82,6 @@
     "cli-pi",
     "full plugin runtime",
     "full plugin and memory stack",
-    "spec kit runtime",
-    "spec kit memory",
     "ablation suite",
     "worker farm opencode",
     "anthropic cli",
