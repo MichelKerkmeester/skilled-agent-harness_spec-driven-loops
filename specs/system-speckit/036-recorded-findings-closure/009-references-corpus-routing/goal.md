@@ -64,11 +64,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] All 17 files named by finding F3-14 have a recorded route-or-remove disposition
-- [ ] Every file dispositioned "route" is named in SKILL.md's RESOURCE_MAP or references/workflows/quick-reference.md
-- [ ] Every file dispositioned "remove" is deleted along with its leaf-manifest.json and leaf-manifest.config.json rows
-- [ ] generate-leaf-manifest.cjs --check exits 0 against .opencode/skills/system-spec-kit
-- [ ] The routing-registry-drift workflow's ci-leaf-manifest-freshness.cjs and ci-skill-root-metadata.cjs both pass
+- [x] All 17 files named by finding F3-14 have a recorded route-or-remove disposition (nineteen were found and dispositioned)
+- [x] Every file dispositioned "route" is named in SKILL.md's RESOURCE_MAP or references/workflows/quick-reference.md
+- [x] Every file dispositioned "remove" is deleted along with its leaf-manifest.json and leaf-manifest.config.json rows
+- [x] generate-leaf-manifest.cjs --check exits 0 against .opencode/skills/system-spec-kit
+- [x] The routing-registry-drift workflow's ci-leaf-manifest-freshness.cjs and ci-skill-root-metadata.cjs both pass
 <!-- /ANCHOR:completion -->
 
 ---
@@ -85,9 +85,41 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | spec.md, plan.md, tasks.md, acceptance-criteria.md and this goal.md authored from the F3-14/F3-15 census and the current SKILL.md/corpus tree |
+| Every browse-only leaf routed: seven existing intents extended and four new intents added, so all 45 manifest leaves sit under at least one intent; nothing removed | Done | disposition table below; `implementation-summary.md` Verification |
+| Gates | Done | leaf routing check 45 of 45; `generate-leaf-manifest.cjs --check` OK; `ci-skill-root-metadata.cjs` 13 of 13; `ci-leaf-manifest-freshness.cjs` 13 fresh; router-contract, leaf-resource and journey tests 3 pass; SKILL.md sk-doc VALID |
+
+### Disposition
+
+Every file was read and every one has live citations inside the skill, several from other skills too, so none is removed. Each is routed under the intent whose work it serves.
+
+| Directory | File | Disposition | Intent |
+|-----------|------|-------------|--------|
+| workflows | `agent-io-contract.md` | route (cited by `CLAUDE.md` §9) | DISPATCH (new) |
+| workflows | `auto-mode-contract.md` | route (cited by eleven command surfaces) | AUTO_MODE (new) |
+| workflows | `execution-methods.md` | route | IMPLEMENT |
+| workflows | `goal-set-string-playbook.md` | route | HOOKS, which already carries the goal keywords |
+| templates | `level-selection-guide.md` | route | PLAN |
+| templates | `level-specifications.md` | route | PLAN |
+| templates | `template-style-guide.md` | route | TEMPLATE_AUTHORING (new) |
+| structure | `folder-structure.md` | route (cited by `CLAUDE.md` §6) | PLAN |
+| structure | `folder-routing.md` | route | MEMORY, save-time routing |
+| structure | `grep-convention.md` | route | RESEARCH |
+| structure | `phase-system.md` | route | PHASE |
+| validation | `decision-format.md` | route | COMPLETE |
+| validation | `five-checks.md` | route | COMPLETE |
+| validation | `path-scoped-rules.md` | route (was reachable only from quick-reference) | IMPLEMENT |
+| cli | `daemon-cli-reference.md` | route | CLI_TRANSPORT (new) |
+| cli | `memory-handback.md` | route (cited by the cli-* skills) | CLI_TRANSPORT (new) |
+| cli | `shared-smart-router.md` | route (cited by the cli-* skills) | CLI_TRANSPORT (new) |
+| retrieval | `retrieval-conventions.md` | route (cited across the repository) | RESEARCH |
+| assets | `parallel-dispatch-config.md` | route | DISPATCH (new) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Nineteen files, not seventeen | Recomputing the manifest against the map and quick-reference found eighteen browse-only leaves plus one reachable only from quick-reference; all nineteen are routed so the claim in `SKILL.md` can say every leaf, not a subset |
+| Nothing removed | Every file carries citations inside the skill; the two the brief named as repo-root-reachable are cited by `CLAUDE.md` and are routed, as required |
+| Four new intents rather than overloading existing ones | Dispatch headers, the `:auto` contract, the cli-* transport docs and template authoring have no existing intent whose keywords would ever select them |
+| `SKILL.md` §"Typed leaf projection" reworded | It said the map routes a subset; it now says every manifest leaf sits under an intent, and a new leaf without one is a gap |
 <!-- /ANCHOR:log -->

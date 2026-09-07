@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/009-references-corpus-routing
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the 17 files named by finding F3-14, When each file's body is read and dispositioned, Then every one is either reachable through SKILL.md's RESOURCE_MAP or quick-reference.md, or removed with its manifest rows | The disposition table in goal.md's log, cross-checked against SKILL.md's RESOURCE_MAP and the remaining file listing | Unmet | - |
-| AC-002 | REQ-002 | Given a change to the corpus or the manifest, When generate-leaf-manifest.cjs --check runs against .opencode/skills/system-spec-kit, Then it exits 0 with no diff | `node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .opencode/skills/system-spec-kit` | Unmet | - |
-| AC-003 | REQ-003 | Given the landed change, When the routing-registry-drift workflow's leaf-manifest-freshness and skill-root-metadata gates run, Then both pass for system-spec-kit | `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` and `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Unmet | - |
-| AC-004 | REQ-004 | Given agent-io-contract.md and folder-structure.md, When their disposition is recorded, Then both are routed, not removed | goal.md's log shows both files marked "route", and CLAUDE.md's citations of both still resolve | Unmet | - |
+| AC-001 | REQ-001 | Given the 17 files named by finding F3-14, When each file's body is read and dispositioned, Then every one is either reachable through SKILL.md's RESOURCE_MAP or quick-reference.md, or removed with its manifest rows | The disposition table in goal.md's log, cross-checked against SKILL.md's RESOURCE_MAP and the remaining file listing | Met | - |
+| AC-002 | REQ-002 | Given a change to the corpus or the manifest, When generate-leaf-manifest.cjs --check runs against .opencode/skills/system-spec-kit, Then it exits 0 with no diff | `node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .opencode/skills/system-spec-kit` | Met | - |
+| AC-003 | REQ-003 | Given the landed change, When the routing-registry-drift workflow's leaf-manifest-freshness and skill-root-metadata gates run, Then both pass for system-spec-kit | `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` and `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Met | - |
+| AC-004 | REQ-004 | Given agent-io-contract.md and folder-structure.md, When their disposition is recorded, Then both are routed, not removed | goal.md's log shows both files marked "route", and CLAUDE.md's citations of both still resolve | Met | - |
 
 ### Status values
 

@@ -92,7 +92,7 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
 - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
-**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below routes a subset of those leaf paths by intent; the manifest is the inventory of every reference and asset, and a leaf no intent names is reachable by browsing or through `references/workflows/quick-reference.md`, never through the router. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent, so each reference and asset is reachable through the router as well as by browsing; the manifest stays the inventory, and a leaf added to the corpus without an intent is a routing gap to close, not a browse-only tier. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
 
 ### Template and Script Sources of Truth
 
@@ -162,6 +162,10 @@ INTENT_SIGNALS = {
     "SCORING_CALIBRATION": {"weight": 3, "keywords": ["calibration", "scoring", "normalization", "decay", "interference"]},
     "ROLLOUT_FLAGS": {"weight": 3, "keywords": ["feature flag", "rollout", "toggle", "enable", "disable"]},
     "GOVERNANCE": {"weight": 3, "keywords": ["governance", "tenant", "retention", "audit"]},
+    "DISPATCH": {"weight": 3, "keywords": ["dispatch", "parallel agents", "agent header", "result envelope", "sub-agent", "fan-out"]},
+    "AUTO_MODE": {"weight": 3, "keywords": [":auto", "auto mode", "autopilot", "unattended", "setup resolution"]},
+    "CLI_TRANSPORT": {"weight": 3, "keywords": ["daemon cli", "cli shim", "memory handback", "smart router", "cli-*", "warm-only"]},
+    "TEMPLATE_AUTHORING": {"weight": 3, "keywords": ["template style", "author a template", "template convention", "tmpl", "template anchors"]},
 }
 
 RESOURCE_MAP = {
@@ -171,17 +175,24 @@ RESOURCE_MAP = {
         "references/validation/template-compliance-contract.md",
         "assets/level-decision-matrix.md",
         "assets/complexity-decision-matrix.md",
+        "references/templates/level-selection-guide.md",
+        "references/templates/level-specifications.md",
+        "references/structure/folder-structure.md",
     ],
     "RESEARCH": [
         "references/workflows/quick-reference.md",
         "references/workflows/worked-examples.md",
         "references/memory/epistemic-vectors.md",
+        "references/retrieval/retrieval-conventions.md",
+        "references/structure/grep-convention.md",
     ],
     "IMPLEMENT": [
         "references/validation/validation-rules.md",
         "references/validation/template-compliance-contract.md",
         "references/templates/template-guide.md",
         "assets/template-mapping.md",
+        "references/workflows/execution-methods.md",
+        "references/validation/path-scoped-rules.md",
     ],
     "DEBUG": [
         "references/debugging/troubleshooting.md",
@@ -194,11 +205,14 @@ RESOURCE_MAP = {
         "references/workflows/intake-contract.md",
         "references/workflows/spec-folder-write-recipe.md",
         "references/workflows/spec-folder-authoring-checklist.md",
+        "references/validation/decision-format.md",
+        "references/validation/five-checks.md",
     ],
     "MEMORY": [
         "references/memory/memory-system.md",
         "references/memory/save-workflow.md",
         "references/memory/trigger-config.md",
+        "references/structure/folder-routing.md",
     ],
     "HANDOVER": [
         "references/workflows/quick-reference.md",
@@ -207,6 +221,7 @@ RESOURCE_MAP = {
         "references/structure/phase-definitions.md",
         "references/structure/sub-folder-versioning.md",
         "references/validation/phase-checklists.md",
+        "references/structure/phase-system.md",
     ],
     "RETRIEVAL_TUNING": [
         "references/memory/embedder-pluggability.md",
@@ -219,6 +234,7 @@ RESOURCE_MAP = {
     ],
     "HOOKS": [
         "references/config/hook-system.md",
+        "references/workflows/goal-set-string-playbook.md",
     ],
     "LAUNCHER": [
         "references/config/launcher-lease.md",
@@ -236,6 +252,22 @@ RESOURCE_MAP = {
     ],
     "ROLLOUT_FLAGS": [
         "references/config/environment-variables.md",
+    ],
+    "DISPATCH": [
+        "references/workflows/agent-io-contract.md",
+        "assets/parallel-dispatch-config.md",
+    ],
+    "AUTO_MODE": [
+        "references/workflows/auto-mode-contract.md",
+    ],
+    "CLI_TRANSPORT": [
+        "references/cli/daemon-cli-reference.md",
+        "references/cli/memory-handback.md",
+        "references/cli/shared-smart-router.md",
+    ],
+    "TEMPLATE_AUTHORING": [
+        "references/templates/template-style-guide.md",
+        "references/templates/template-guide.md",
     ],
     "GOVERNANCE": [
         "references/config/environment-variables.md",
