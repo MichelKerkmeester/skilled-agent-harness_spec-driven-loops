@@ -162,14 +162,14 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-07T10:14:38.292Z",
+    "last_save_at": "2026-09-07T12:31:59.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5375268589b87ec2183e5664e93044a7fee0dc8f3e13876806386b956cc60bcd",
+    "source_fingerprint": "sha256:25c796e74271e238a530d6a0fc278caae6795e582bcc7aef48a98e81e678af3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "552cb9781531e9d3bf6941c65bbc9d85cf369eab56ac6ed49e8040d13a9cc8f4"
