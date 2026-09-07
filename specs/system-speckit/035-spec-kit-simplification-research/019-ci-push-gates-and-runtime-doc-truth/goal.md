@@ -103,4 +103,5 @@ and findings belong here.
 | Two rows did not reproduce | The pi adapters' import base is documented; the example file is at the root |
 | The mirror job had never run on a push | So its missing install was invisible until the push trigger existed; lane 003's round found the same job |
 | The first push run failed twice more | The mirror scripts require the shared package's compiled output, and the runner ships no ripgrep; the workflow builds the package and installs ripgrep now |
+| The second push run failed the runtime project on Linux | Four suites hard-coded the macOS temp root, one imports a plugin SDK the runner lacked, and one spawned the live advisor; all three are portable now. The mirror job also reports codex prompt drift from the other session's design-command rename, which is theirs to regenerate |
 <!-- /ANCHOR:log -->

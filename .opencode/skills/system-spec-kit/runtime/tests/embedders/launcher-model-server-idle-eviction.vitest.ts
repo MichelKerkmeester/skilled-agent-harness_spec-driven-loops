@@ -1,9 +1,15 @@
+import { tmpdir } from 'node:os';
 import { EventEmitter } from 'node:events';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
+import { realpathSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+// A short, real temp root. Unix socket paths are capped near 104 bytes, so the
+// platform tmpdir (deep under /var/folders on macOS) is too long; /tmp resolves to
+// /private/tmp on macOS and to itself on Linux, which is what the socket checks need.
+const TMP_ROOT = realpathSync(process.platform === 'win32' ? tmpdir() : '/tmp');
 
 const require = createRequire(import.meta.url);
 const mss = require('../../../../../bin/lib/model-server-supervision.cjs') as {
@@ -125,7 +131,7 @@ describe('hf model server idle eviction', () => {
   });
 
   function tempDir(prefix: string): string {
-    const dir = mkdtempSync(join('/private/tmp', prefix));
+    const dir = mkdtempSync(join(TMP_ROOT, prefix));
     tempDirs.push(dir);
     return dir;
   }

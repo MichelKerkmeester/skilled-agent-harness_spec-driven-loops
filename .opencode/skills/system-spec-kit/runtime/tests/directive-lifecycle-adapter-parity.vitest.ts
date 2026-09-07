@@ -130,11 +130,15 @@ describe('registered adapter payload and envelope parity', () => {
       const mirror = join(repoRoot, `.${runtime}`, 'hooks', 'user-prompt-submit.js');
       expect(lstatSync(mirror).isSymbolicLink()).toBe(true);
       expect(realpathSync(mirror)).toBe(join(packageRoot, 'dist', 'hooks', runtime, 'user-prompt-submit.js'));
+      // The discovery path under test is the mirror symlink and the envelope
+      // pass-through, not the live advisor: without the stub the hook spawns the
+      // real advisor and fails open to {} on any machine that lacks it.
       const direct = spawnSync(process.execPath, [mirror], {
         cwd: repoRoot,
         input: JSON.stringify(runtimeCase(runtime).payload),
         encoding: 'utf8',
         timeout: 5_000,
+        env: { ...process.env, SPECKIT_USER_PROMPT_TARGET: targetStub(), DIRECTIVE_TEST_CONTEXT: 'discovery context' },
       });
       expect(direct.status, direct.stderr).toBe(0);
       if (runtime === 'claude') expect(direct.stdout).toContain('hookSpecificOutput');

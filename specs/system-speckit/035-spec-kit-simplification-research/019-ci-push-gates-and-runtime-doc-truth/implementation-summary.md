@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".github/workflows/spec-kit-check.yml"
     session_dedup:
-      fingerprint: "sha256:b9ec3431cf0e7a525b4764dcb054b2db37d7fc5dfb2441ac7e9d27d7b7eeba49"
+      fingerprint: "sha256:c73784700cba868645f4aa0cb6d91b5ed14f39760d68d7ff97a0053081551726"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 100
@@ -103,6 +103,7 @@ Every row was re-read in the main checkout first; two rows fell to a README sent
 |-------|--------|
 | YAML parse of both workflows | ok |
 | First push run of the spec-kit check (`e43388b921`) | Two failures the pull-request-only history had hidden: the mirror job required the shared package's compiled output, and the runner has no ripgrep, so the recipe and residue-sweep suites exited 2. The mirror step now builds the package and a step installs ripgrep before the CLI project |
+| Second push run of the spec-kit check (`82d2b58c36`) | The CLI project passed; the runtime project failed on Linux for three environmental reasons: four embedder suites hard-coded the macOS `/private/tmp` root, the plugin-purity suite imports the OpenCode plugin SDK that only `.opencode/package.json` declares, and the adapter-parity discovery case spawned the live advisor. The suites use a short real temp root, the workflow installs the plugin SDK, and the discovery case stubs the advisor target the way its sibling cases do; 104 files and 1,260 tests pass locally after the change |
 | The four harnesses run by hand | exit 0 each |
 | Full runtime project | 104 files, 1,260 tests pass |
 | Full CLI project | 139 files, 1,358 tests pass |

@@ -54,7 +54,8 @@
       "runtime/cli/package.json",
       "runtime/cli/tests/README.md",
       ".opencode/commands/speckit/save.md",
-      "runtime/cli/core/workflow.ts"
+      "runtime/cli/core/workflow.ts",
+      ".opencode/package.json"
     ],
     "entities": [
       {
@@ -204,7 +205,7 @@
     ],
     "causal_summary": "The spec-kit check workflow, which the round-one census presented as closing the CI-invisibility gap, had no push trigger, so on the repository's documented direct-push flow none of its six lanes ran; the changed-packet gate had the same shape",
     "created_at": "2026-09-07T13:14:44.762Z",
-    "last_save_at": "2026-09-07T13:33:31.308Z",
+    "last_save_at": "2026-09-07T13:51:58.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1dbf5c0f1eace3625846eaa83694fa1c1dd52d06ee4fd14c7eaa86992cdb5ed7",
+    "source_fingerprint": "sha256:79de00d351aa11a5db59a3c8abbf358cf3c3bfec2288fa75e8f547799f2c5caa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5e28f05320bd2852d42aba9e475041ed7569a4748ab0accb3b093c12e1c0df99",
       "plan.md": "0934a1aa1b46bda43c3ec516df36d362d59653c69c6cb89bc46787abd0a73fb5",
       "tasks.md": "238d83523a998f24b63fdd3703f1449cb6eaa6b4953d323de40449ecd805defa",
-      "implementation-summary.md": "40c46d5ae7dc0370a361508b1d11a539fecdb75e412bc362ab7144e464ec3f6b"
+      "implementation-summary.md": "7d5609b238adb4f43cbae7b01849d2af0dfe75076a312f4998c3aae8207ac57f"
     },
     "last_active_child_id": null,
     "last_active_at": null
