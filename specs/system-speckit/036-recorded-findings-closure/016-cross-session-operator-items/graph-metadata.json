@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/016-cross-session-operator-items",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/016-cross-session-operator-items",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross session operator items",
+      "coordinate not overwrite",
+      "spec kit check mirror job",
+      "worktree 046 removal"
+    ],
+    "key_topics": [
+      "cross",
+      "session",
+      "operator",
+      "items",
+      "coordinate",
+      "overwrite",
+      "spec",
+      "kit",
+      "check",
+      "mirror",
+      "job",
+      "worktree"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/system-speckit/035-spec-kit-simplification-research/spec.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/routing-registry-drift.yml",
+      ".codex/prompts/create-chart.md",
+      ".codex/prompts/create-diagram.md",
+      ".opencode/commands/design/chart.md",
+      ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "create-chart.md",
+        "kind": "doc",
+        "path": ".codex/prompts/create-chart.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-diagram.md",
+        "kind": "doc",
+        "path": ".codex/prompts/create-diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "chart.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/chart.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-file-manifest.txt",
+        "kind": "file",
+        "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Coordinate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over, because another session or another packet owns them",
+    "created_at": "2026-09-07T15:05:57Z",
+    "last_save_at": "2026-09-07T15:46:08.236Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b57f46ea7717c694456213397cba76ec6d6a5efb0785081193c3b3fd7151f257",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86fc587b94ecdba7e00866bcff277537f6c16e985277e1987d53a8d710b327bc",
+      "plan.md": "d44048feebdf6e52bf4fce0c80766a4eae06d50f60b4bd396e91b9ed4ca014d4",
+      "tasks.md": "3102bd805543ed760951e5924382efbaef7be8e95221c2ddbf05f398d0b58b20",
+      "implementation-summary.md": "c7da1dc5f758199b517cd0ffe82b565917f8e2bd84c2dea98b6f7fa9faaa10b4"
+    },
+    "last_active_at": null
+  }
+}

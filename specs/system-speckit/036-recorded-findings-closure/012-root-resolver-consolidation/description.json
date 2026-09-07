@@ -1,0 +1,18 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation",
+  "description": "Finding R6-03",
+  "keywords": [
+    "finding",
+    "r6-03"
+  ],
+  "lastUpdated": "2026-09-07T15:40:50.574Z",
+  "specId": "012",
+  "folderSlug": "root-resolver-consolidation",
+  "parentChain": [
+    "system-speckit",
+    "036-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

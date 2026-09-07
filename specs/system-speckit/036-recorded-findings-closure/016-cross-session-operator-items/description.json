@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/036-recorded-findings-closure/016-cross-session-operator-items",
+  "description": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over,",
+  "keywords": [
+    "simplification-research",
+    "program",
+    "own",
+    "report",
+    "named",
+    "five",
+    "items",
+    "live",
+    "surfaces",
+    "children",
+    "never",
+    "write",
+    "authority"
+  ],
+  "lastUpdated": "2026-09-07T15:45:01.020Z",
+  "specId": "016",
+  "folderSlug": "cross-session-operator-items",
+  "parentChain": [
+    "system-speckit",
+    "036-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

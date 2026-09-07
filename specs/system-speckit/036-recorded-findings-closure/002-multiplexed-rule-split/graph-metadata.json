@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multiplexed validator rule split",
+      "canonical save script split",
+      "registry script path mapping",
+      "orchestrator env round trip",
+      "canonical save script extraction",
+      "validator registry one to one",
+      "orchestrator special case removal",
+      "registry coverage regression plan",
+      "canonical save split tasks",
+      "registry row verification checklist",
+      "orchestrator special case removal task",
+      "shared helper extraction steps"
+    ],
+    "key_topics": [
+      "multiplexed",
+      "validator",
+      "rule",
+      "split",
+      "canonical",
+      "save",
+      "script",
+      "registry",
+      "path",
+      "mapping",
+      "orchestrator",
+      "env"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save.sh",
+      "cli/lib/validator-registry.json",
+      "lib/validation/orchestrator.ts",
+      "cli/tests/validate-runs-every-registry-rule.vitest.ts",
+      "cli/tests/canonical-save-validation.vitest.ts",
+      "rules/check-canonical-save.sh",
+      "cli/rules/README.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-helper.cjs",
+      ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md",
+      "cli/rules/check-canonical-save-helper.cjs",
+      "cli/rules/check-canonical-save.sh",
+      "cli/tests/validate-help-lists-every-rule.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-canonical-save.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate-runs-every-registry-rule.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/validate-runs-every-registry-rule.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-save-validation.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/canonical-save-validation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "cli/rules/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-canonical-save-helper.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-help-lists-every-rule.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/validate-help-lists-every-rule.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`validator-registry.json` names 39 rule rows, and its `scriptpath` field reads as a one-to-one pointer from a rule id to the script that implements it",
+    "created_at": "2026-09-07T15:05:41Z",
+    "last_save_at": "2026-09-07T15:44:56.334Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9533d2380d836c59b41498dfe7b9983fa39881d98fa21ac17c0ad3be1ce8d7e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ce77884e300deee1389fb6d5271c7733f52365fb8b3f4cc4afbeeb0ce57dff2d",
+      "plan.md": "0d24e709b6405cdc53b45a7b16390352a0b91faba9076370239203b0e67fb441",
+      "tasks.md": "db8532643868220729dc664054eba56033e2c1ab5ae7fd54bd4e7dab339b748c",
+      "implementation-summary.md": "acabdc0dfb0bd5426ab50603f470060aa884f3d63dc30d69d5daf248559360e9"
+    },
+    "last_active_at": null
+  }
+}

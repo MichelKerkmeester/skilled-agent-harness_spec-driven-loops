@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/009-references-corpus-routing",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/009-references-corpus-routing",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "references corpus routing",
+      "browse only reference files",
+      "leaf manifest byte stable",
+      "resource map subset routing",
+      "references corpus routing plan",
+      "browse only file disposition",
+      "leaf manifest regeneration",
+      "resource map intent addition",
+      "references corpus routing tasks",
+      "browse only disposition sweep",
+      "leaf manifest check task",
+      "resource map intent task"
+    ],
+    "key_topics": [
+      "references",
+      "corpus",
+      "routing",
+      "browse",
+      "only",
+      "reference",
+      "files",
+      "leaf",
+      "manifest",
+      "byte",
+      "stable",
+      "resource"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "references/workflows/quick-reference.md",
+      "assets/parallel-dispatch-config.md",
+      "references/retrieval/retrieval-conventions.md",
+      "references/structure/grep-convention.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
+      ".opencode/skills/system-spec-kit/leaf-manifest.json",
+      ".opencode/skills/system-spec-kit/leaf-manifest.config.json",
+      ".github/workflows/routing-registry-drift.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel-dispatch-config.md",
+        "kind": "doc",
+        "path": "assets/parallel-dispatch-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep-convention.md",
+        "kind": "doc",
+        "path": "references/structure/grep-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Finding F3-14 (`specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering-r3/research.md:77`) found that 17 of the 45 files under `.opencode/skills/system-spec-kit/references/` and `assets/` are named by no `RESOURCEMAP` intent in `SKILL.md` and no prose link, so they are reachable only by directory browsing: `workflows/agent-io-contract.md`, `workflows/auto-mode-contract.md`, `workflows/execution-methods.md`, `workflows/goal-set-string-playbook.md`, `templates/level-selection-guide.md`,",
+    "created_at": "2026-09-07T15:05:50Z",
+    "last_save_at": "2026-09-07T15:40:56.745Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:060fe94745bb8e06d96747e063c9e9f437836dac74e5dca4c58d1624e15ed737",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e15f5ac4269d2d16ebc14d00ed8e49968b39f9326fbc78178ab5f790e18e8290",
+      "plan.md": "c46a902ae8cedcbd3cb9dde9c5725b1fbc7e3c99647820578b387467ad449f21",
+      "tasks.md": "fec2750914de034cae7b885b6bffae581641f65b6a9a37349bafec4ce4f0aa6d",
+      "implementation-summary.md": "e2256582a6364bb19092929a1632cc294a00b4e86c754bfd03e9a49538caad51"
+    },
+    "last_active_at": null
+  }
+}

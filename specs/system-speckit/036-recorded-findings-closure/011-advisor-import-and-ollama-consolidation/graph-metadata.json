@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor import specifier consistency",
+      "ollama adapter provider merge",
+      "advisor isolation doctrine preserved",
+      "golden prompt suite green",
+      "advisor import consolidation plan",
+      "ollama adapter merge plan",
+      "dual path dispatch preserved",
+      "extension convention lint pin",
+      "advisor import consolidation tasks",
+      "ollama adapter merge tasks",
+      "specifier extension fix task",
+      "golden prompt suite rerun"
+    ],
+    "key_topics": [
+      "advisor",
+      "import",
+      "specifier",
+      "consistency",
+      "ollama",
+      "adapter",
+      "provider",
+      "merge",
+      "isolation",
+      "doctrine",
+      "preserved",
+      "golden"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
+      "shared/embeddings/adapters/ollama.ts",
+      "shared/embeddings/providers/ollama.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/utils/skill-markdown.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/semantic-shadow-cosine.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/refresh-roundtrip.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/semantic-shadow-ablation.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures/seed-skill-embeddings.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-markdown.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/utils/skill-markdown.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doc-frontmatter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow-cosine.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/semantic-shadow-cosine.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-roundtrip.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/refresh-roundtrip.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow-ablation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/semantic-shadow-ablation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "seed-skill-embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures/seed-skill-embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-weight-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Finding R5-01 (`specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/research.md:25`) found two parallel live implementations of the same Ollama embedding backend, both reached from the same daemon flow: `shared/embeddings/adapters/ollama.ts` (366 lines) and `shared/embeddings/providers/ollama.ts` (424 lines), together ~790 lines with two separate contracts and two config surfaces",
+    "created_at": "2026-09-07T15:05:52Z",
+    "last_save_at": "2026-09-07T15:40:57.248Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8b3d23ed2cf67ef9dd11a17041b0913ccefe3fb310f53ae5f21568978281d41",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "256dd80ac78b6edcda97b57d5ad75b17de0a5b334788f1e30ffcd225b2097b88",
+      "plan.md": "682a54dea5b9b13925f4a57000d9280d94ce617e22c35f0b269edae22a7aa6d5",
+      "tasks.md": "9ca35c0a2f8f74a09dcfa2a34d00bb87fe3663c8083afc5320a50404d9c22fc7",
+      "implementation-summary.md": "ebf6a7d26fd8e5612fa0362d241ea1f4b7a3cebfdc6de3e3c57e94f7e94a76db"
+    },
+    "last_active_at": null
+  }
+}

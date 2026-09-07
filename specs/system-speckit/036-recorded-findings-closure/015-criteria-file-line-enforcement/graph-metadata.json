@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "acceptance criteria file line enforcement",
+      "coverage floor cutoff rollout",
+      "lifecycle activation gap",
+      "citation retrofit coverage floor"
+    ],
+    "key_topics": [
+      "acceptance",
+      "criteria",
+      "file",
+      "line",
+      "enforcement",
+      "coverage",
+      "floor",
+      "cutoff",
+      "rollout",
+      "lifecycle",
+      "activation",
+      "gap"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/ENV-REFERENCE.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+      "specs/system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md",
+      ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default (`runtime/ENV-REFERENCE.md:166-168`)",
+    "created_at": "2026-09-07T15:05:56Z",
+    "last_save_at": "2026-09-07T15:46:00.803Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a944abeb0cebf8ed1ec848d100feb5eef1b56c7856ab9852af5eed68359c9826",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0a3d539a9809e93a58af03d6caf8b95b0a910f901c529728261245e9b45e5691",
+      "plan.md": "4b15d63295bb9cbb4b4674a424441af4f2832103b82711fa1611e24d951346c5",
+      "tasks.md": "ec36745ddaaaa6bc63286b5dd2c1afcca818a0bfb17f4f3ceb3868503aa5f058",
+      "implementation-summary.md": "c618fe61dacd6ad74904871a5704d1dc58ec852cd6535e527914de6015318233"
+    },
+    "last_active_at": null
+  }
+}

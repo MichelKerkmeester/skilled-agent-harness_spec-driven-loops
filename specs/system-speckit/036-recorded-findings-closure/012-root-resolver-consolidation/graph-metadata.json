@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root resolver consolidation",
+      "divergent skill root predicate",
+      "resolver parity test",
+      "boundary justified duplication",
+      "root resolver consolidation plan",
+      "eval script resolver merge",
+      "shared predicate caller audit",
+      "parity test fixture trees",
+      "root resolver consolidation tasks",
+      "eval script merge task",
+      "shared predicate audit task",
+      "parity test verification task"
+    ],
+    "key_topics": [
+      "root",
+      "resolver",
+      "consolidation",
+      "divergent",
+      "skill",
+      "predicate",
+      "parity",
+      "test",
+      "boundary",
+      "justified",
+      "duplication",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "shared/README.md",
+      "shared/workspace/repo-root.mjs",
+      "runtime/cli/common.sh",
+      "shared/config.ts",
+      "shared/embeddings/factory.ts",
+      "shared/embeddings/profile.ts",
+      "runtime/hooks/lib/workspace/repo-root.mjs",
+      "runtime/cli/package.json",
+      ".opencode/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
+      ".opencode/skills/system-spec-kit/runtime/cli/evals/check-architecture-boundaries.ts",
+      ".opencode/skills/system-spec-kit/shared/config.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/shared/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-root.mjs",
+        "kind": "file",
+        "path": "shared/workspace/repo-root.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "common.sh",
+        "kind": "script",
+        "path": "runtime/cli/common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/cli/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-dist-alignment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-architecture-boundaries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/evals/check-architecture-boundaries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Finding R6-03 (`specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/findings-registry.json:36`) counted 8 root-resolution implementations: `shared/config.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/profile.ts`, `shared/workspace/repo-root.mjs`, `check-source-dist-alignment.ts:98`, `check-architecture-boundaries.ts:92`, `retrofit-convention.mjs:1057`, and `generate-trigger-index.mjs:81`",
+    "created_at": "2026-09-07T15:05:53Z",
+    "last_save_at": "2026-09-07T15:40:57.479Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d98e34b5d9299d20e5743098d27b90e42ebb1b31e845a194dba274b6e9cdc71b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6217e1497e40588c0caa557e94a7cd22960133083f7dbc584eef9f06b0496c08",
+      "plan.md": "8a135e9a3c1a2d900bcf7dd083fb84bdb54ebcb19b603ed215b281416fecc63d",
+      "tasks.md": "3ed93bdd4185f50d479b858beca97480ae8569db3bc2a39416157f934ec92122",
+      "implementation-summary.md": "f9505a3e9b9e7f08fbc51513af1164fba7e2343545563d4ae4550672e76131bd"
+    },
+    "last_active_at": null
+  }
+}

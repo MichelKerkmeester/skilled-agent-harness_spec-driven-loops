@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports",
+  "description": "The five runtime hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/` each re-implement the same Gate-3 classify and enforce",
+  "keywords": [
+    "five",
+    "runtime",
+    "hook",
+    "adapters",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "hooks",
+    "re-implement",
+    "same",
+    "gate-3",
+    "classify",
+    "enforce"
+  ],
+  "lastUpdated": "2026-09-07T15:43:48.875Z",
+  "specId": "001",
+  "folderSlug": "hook-adapter-thin-transports",
+  "parentChain": [
+    "system-speckit",
+    "036-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
