@@ -39,7 +39,7 @@
       "behavior"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,6 +49,9 @@
       "implementation-summary.md",
       "templates/spec-kit-docs.json",
       "runtime/cli/spec/create.sh",
+      "templates/core/plan.md.tmpl",
+      "templates/EXTENSION-GUIDE.md",
+      "runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
       "templates/README.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
@@ -105,15 +108,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "templates/README.md",
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/plan.md.tmpl",
         "source": "derived"
       },
       {
         "name": "EXTENSION-GUIDE.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+        "path": "templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": "runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
         "source": "derived"
       },
       {
@@ -187,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`templates/spec-kit-docs.json` carries a `creationTrigger` and an `absenceBehavior` field on every one of its 16 `documents[]` entries (32 key occurrences, `spec-kit-docs.json:26-117`), and `EXTENSION-GUIDE.md:33-36` already states in its own maintainer instructions that \"nothing reads it at runtime: the scaffolder and the validator both work from the `levels` rows below.",
     "created_at": "2026-09-07T15:05:51Z",
-    "last_save_at": "2026-09-07T15:40:56.975Z",
+    "last_save_at": "2026-09-07T17:30:41.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ce38c91346b838721cc87cc8204cf84cfc3d2de71a0ec655e47dfc638f2b099",
+    "source_fingerprint": "sha256:56c537582fe310d0632f49fa002a53959e668a16b0ffd63db5cb04f559479aea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2d7d788c06556b53c3196528f99bc25ece8de4484f18fff2e8c49e543358ebd",
-      "plan.md": "53c5de8e33d9ab6a32d3d32b48d282cb27f7aaee3b934b859d743eca8d5950c1",
-      "tasks.md": "3c53fb8898aba974a861a6649b26786c57df363eb3957cd5a43ddb296e3fcd14",
-      "implementation-summary.md": "a4a9cc7ac7051d191e4cc952aa9ba9eb62cd0e1da7120a13beeeddb01d215dee"
+      "spec.md": "e1f555df9e4394043c29235c595ec2e6b566b354fc1f3e13347e5f1d551da7fb",
+      "plan.md": "ae1dc3c4ab46d11101eac6c320b8a80ef8dc7be57cc304a283f8ea0e5c5f2f85",
+      "tasks.md": "76d3959659e740972bf38de72c82cbd9e431936d3db7d34db8b2b7b705002e77",
+      "implementation-summary.md": "5f241b1e569b73a28e61dc75dcdf0d1c6c5f8dc061698f7768c84dd42ae5b656"
     },
     "last_active_at": null
   }

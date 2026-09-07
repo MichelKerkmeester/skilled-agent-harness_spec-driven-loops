@@ -27,10 +27,6 @@ Use this guide when extending the manifest taxonomy, template version map, or le
 2. Add an entry in `spec-kit-docs.json.documents` with:
    - `template`: the template filename.
    - `owner`: `author`, `command`, `agent`, or `workflow`.
-   - `creationTrigger`: how the document comes to exist, as a label: `scaffold`,
-     `explicit-option`, `phase-scaffold`, or the command or workflow that writes it.
-   - `absenceBehavior`: `hard-error` or `silent-skip`; no rule produces a warning
-     for an absent document.
    This section is a descriptive index for readers. Nothing reads it at
    runtime: the scaffolder and the validator both work from the `levels`
    rows below, and a template is found by its `.tmpl` name in the role
