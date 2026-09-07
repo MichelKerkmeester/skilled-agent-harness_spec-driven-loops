@@ -60,6 +60,7 @@ The embedding stack talks to Ollama, the local HF model server under `.opencode/
 - **No barrel**: there is no root export. Import the module you use, so a dead module has no importer to hide behind.
 - **Neutrality**: `shared/` imports nothing from `runtime/` or `runtime/cli/`; the CLI's `npm run check` rejects a reverse import.
 - **Stability**: a breaking change here needs coordination with every consumer in the table above.
+- **Root resolution**: three implementations survive, one per runtime boundary, and a parity test in the CLI feeds them the same trees. `workspace/repo-root.mjs` finds the repository root by sentinel and ships as source because build and CI scripts run it before any build exists. `workspace/package-root.ts` finds the skill package root by its marker directories (`shared`, `runtime`, `runtime/cli`) and is the compiled walk every TypeScript caller uses: `config.ts`, `embeddings/factory.ts` and the CLI's architecture and dist-alignment checks call it rather than walking themselves. `runtime/cli/lib/shell-common.sh` and `runtime/cli/common.sh` resolve the repository root for bash, where no Node module can be imported.
 
 ---
 

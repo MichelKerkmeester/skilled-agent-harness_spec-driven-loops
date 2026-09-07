@@ -33,6 +33,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
+import { resolvePackageRoot } from '@spec-kit/shared/workspace/package-root.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -63,7 +64,6 @@ interface DistTarget {
 // 3. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const REQUIRED_ROOT_DIRS = ['runtime', 'shared'] as const;
 // Time-bounded allowlist for known stragglers surfaced by the
 // broadened scan. Each entry MUST include a follow-on owner and remediation
 // date. The harness orphan is being deleted in this packet;
@@ -94,26 +94,6 @@ const ALLOWLIST_EXCEPTIONS: AllowlistException[] = [
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
 // ───────────────────────────────────────────────────────────────────
-
-function resolvePackageRoot(startDir: string): string {
-  let cursor = path.resolve(startDir);
-
-  while (true) {
-    const hasRequiredDirs = REQUIRED_ROOT_DIRS.every((dirName) => {
-      return fs.existsSync(path.join(cursor, dirName));
-    });
-
-    if (hasRequiredDirs) {
-      return cursor;
-    }
-
-    const parent = path.dirname(cursor);
-    if (parent === cursor) {
-      throw new Error(`Unable to resolve package root from: ${startDir}`);
-    }
-    cursor = parent;
-  }
-}
 
 function toPosix(filePath: string): string {
   return filePath.replace(/\\/g, '/');

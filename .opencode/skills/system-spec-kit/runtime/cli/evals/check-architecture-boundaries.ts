@@ -22,6 +22,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import ts from 'typescript';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
+import { PACKAGE_ROOT_MARKERS, resolvePackageRoot } from '@spec-kit/shared/workspace/package-root.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -50,7 +51,6 @@ interface WrapperSignals {
 // ───────────────────────────────────────────────────────────────────
 // 4. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
-const REQUIRED_ROOT_DIRS = ['shared', 'runtime', 'runtime/cli'] as const;
 
 // Absolute prohibition — shared/ must remain neutral (no allowlist)
 const SHARED_PROHIBITED_PACKAGE_PREFIXES = ['@spec-kit/runtime', '@spec-kit/cli'];
@@ -89,23 +89,9 @@ function findSourceFiles(dir: string): string[] {
   return files;
 }
 
-function resolvePackageRoot(startDir: string): string {
-  let cursor = path.resolve(startDir);
-  while (true) {
-    const hasRequiredDirs = REQUIRED_ROOT_DIRS.every((dirName) => fs.existsSync(path.join(cursor, dirName)));
-    if (hasRequiredDirs) return cursor;
-
-    const parent = path.dirname(cursor);
-    if (parent === cursor) {
-      throw new Error(`Unable to resolve package root from: ${startDir}`);
-    }
-    cursor = parent;
-  }
-}
-
 function resolveCheckRoot(packageRoot: string): string {
   const resolvedRoot = path.resolve(packageRoot);
-  const missingDirs = REQUIRED_ROOT_DIRS.filter((dirName) => !fs.existsSync(path.join(resolvedRoot, dirName)));
+  const missingDirs = PACKAGE_ROOT_MARKERS.filter((dirName) => !fs.existsSync(path.join(resolvedRoot, dirName)));
   if (missingDirs.length > 0) {
     throw new Error(`Invalid package root "${resolvedRoot}" — missing directories: ${missingDirs.join(', ')}`);
   }
