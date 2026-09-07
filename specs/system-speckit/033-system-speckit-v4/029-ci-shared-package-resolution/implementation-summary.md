@@ -20,7 +20,7 @@ _memory:
       - ".github/workflows/command-tree-parity.yml"
       - ".gitignore"
     session_dedup:
-      fingerprint: "sha256:953273ec617d5050c1243a8eee08df5429e76029f5e909516634df33edb74a01"
+      fingerprint: "sha256:e8c9e4698e4c372fbaff40a281eccd0141f4c960e348df47ef573d8d3d924403"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 100
@@ -96,7 +96,7 @@ The failing steps were read from the run logs, the first failing run after the l
 | Parity checker `--quiet` | Exit 0 after the mirror sync linked 4 and removed 4 of 169 |
 | Playbook validator `--strict` | PASS, 83 scenarios, 0 violations |
 | Parent-skill check and skill-root metadata check | OK; 13 of 13 |
-| Workflow runs for the push | First push: Command Tree Parity and the Gate-2 job green; the playbook and lean drift jobs still failed because sk-doc resolves the package through its own `file:` dependency, which the second push installs too |
+| Workflow runs for the push | Second push `e773415510`: Advisory Checks, Command Tree Parity, Naming Standard Guard, Playbook Operator Contract and the drift guard's Gate-2 job green on both branches; the drift guard's lean job still fails, on six sk-design hub invariants, not on resolution |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -105,4 +105,5 @@ The failing steps were read from the run logs, the first failing run after the l
 ## Limitations and Follow-ups
 
 1. **The install step costs about a minute per workflow** Three fast gates now pay for a workspace install their checkers require.
+2. **One failure remains and is not environmental** `parent-skill-check` on the sk-design hub reports six invariant failures (packet name frontmatter, router outcomes, mode-table commands, missing `changelog/`, missing benchmark baseline, manifest contract version) from that hub's own restructuring commits of 2026-09-06 and 2026-09-07; every other hub passes. It belongs to the session working on sk-design.
 <!-- /ANCHOR:limitations -->
