@@ -28,7 +28,7 @@ _memory:
       - "tasks.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:memory-search-runtime-bugs-2026-04-26"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "005-memory-search-runtime-bugs-2026-04-26"
       parent_session_id: null
     completion_pct: 25

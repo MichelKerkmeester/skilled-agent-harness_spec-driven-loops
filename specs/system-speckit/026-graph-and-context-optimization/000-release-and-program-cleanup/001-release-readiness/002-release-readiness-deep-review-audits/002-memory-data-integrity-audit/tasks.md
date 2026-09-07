@@ -22,7 +22,7 @@ _memory:
       - "tasks.md"
       - "review-report.md"
     session_dedup:
-      fingerprint: "sha256:045-002-memory-data-integrity-audit-tasks"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-002-memory-data-integrity-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

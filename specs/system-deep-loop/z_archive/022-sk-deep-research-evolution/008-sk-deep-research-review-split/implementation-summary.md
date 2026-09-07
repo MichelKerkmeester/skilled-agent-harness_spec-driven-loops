@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/sk-deep-review/graph-metadata.json"
       - ".opencode/skills/sk-deep-research/graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:036-sk-deep-research-review-split"
+      fingerprint: "sha256:f4b2a528c599f41aef61d1f38dd7cc8ea6a46e1b13ea251e932828d298a3807c"
       session_id: "036-sk-deep-research-review-split"
       parent_session_id: null
     completion_pct: 100

@@ -21,7 +21,7 @@ _memory:
       - "research.md"
       - "scratch/system-probes.txt"
     session_dedup:
-      fingerprint: "sha256:041-llama-cpp-metal-investigation-adr-20260514"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-codex-gpt5.5-xhigh-fast-041"
       parent_session_id: null
     completion_pct: 100

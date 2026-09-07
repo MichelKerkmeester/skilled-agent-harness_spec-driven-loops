@@ -6,7 +6,7 @@
     "stale claims review",
     "evergreen rule self-check"
   ],
-  "level": 2,
+  "level": "2",
   "status": "complete",
   "importance": "important",
   "contextType": "review",
@@ -31,7 +31,7 @@
     "refresh",
     "work"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.522Z",
+  "lastUpdated": "2026-09-07T16:08:46.242Z",
   "specId": "008",
   "folderSlug": "documentation-truth-audit",
   "parentChain": [

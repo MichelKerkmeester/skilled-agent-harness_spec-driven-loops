@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The documentation surface needs a release-readiness truth audit after recent refresh work",
     "created_at": "2026-05-18T08:15:52.981Z",
-    "last_save_at": "2026-08-30T15:39:27.659Z",
+    "last_save_at": "2026-09-07T16:09:52.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b0d72b4b2b608c64dbe8808427c6d03d0949c96a2cf1326789183508b1cdbc4",
+    "source_fingerprint": "sha256:c8735211f43c476b217eb70edae0d0fbb7accd564871f5df444f8ccc1093688e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6583a55211f77105e97b44c51de5975a30f2fbfa255bdf412e6f5436acd597e5",
-      "plan.md": "a1ba0c60efd500fab2c113317a4d66b1f931445fb460eea0c690301705e65aa0",
-      "tasks.md": "8464d99147367e6b07985321a008137275d40a2176c7c1f30aad9adabf90e4f8",
-      "implementation-summary.md": "7f655b567c0e6a69522567b8e0f7a82af718fe982199bd33732bd72db7aa304c"
+      "spec.md": "d385482932dbdf5c64f75b90e6bdfd1b919d1a6fbd3b515cf1c62d1f09525013",
+      "plan.md": "95967ad1253dbaee43b56d1a440e7520e9391adca5c0bf7e4dd1b1d9c46bdfa0",
+      "tasks.md": "4996843508c6a4e9e8102b6d254a69092ac744c4a3d64f91e2fdc1622c169219",
+      "implementation-summary.md": "6d5e67a7f2b40285718867eb5d6281ec9a80034495dee6a47154fec25de673ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

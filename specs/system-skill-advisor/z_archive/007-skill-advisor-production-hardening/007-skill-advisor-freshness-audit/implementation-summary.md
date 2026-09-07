@@ -24,7 +24,7 @@ _memory:
       - "description.json"
       - "graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:045-003-skill-advisor-freshness-audit-summary"
+      fingerprint: "sha256:b803c108e7cf3ebf74237505d8e66a9148cabf731f3c370506094fa9fddaf086"
       session_id: "045-003-skill-advisor-freshness-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

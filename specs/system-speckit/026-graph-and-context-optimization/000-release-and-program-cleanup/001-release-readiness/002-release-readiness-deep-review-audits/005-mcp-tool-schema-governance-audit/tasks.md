@@ -22,7 +22,7 @@ _memory:
       - "tasks.md"
       - "review-report.md"
     session_dedup:
-      fingerprint: "sha256:045-006-mcp-tool-schema-governance-audit"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-006-mcp-tool-schema-governance-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

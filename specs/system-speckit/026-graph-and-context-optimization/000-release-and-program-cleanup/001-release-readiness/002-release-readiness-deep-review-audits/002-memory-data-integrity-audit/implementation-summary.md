@@ -26,7 +26,7 @@ _memory:
       - "description.json"
       - "graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:045-002-memory-data-integrity-audit-summary"
+      fingerprint: "sha256:79edf4b274a88ba9eadfb8b5897868ff326008090ab635bb7ffc8f7b34a8bf90"
       session_id: "045-002-memory-data-integrity-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

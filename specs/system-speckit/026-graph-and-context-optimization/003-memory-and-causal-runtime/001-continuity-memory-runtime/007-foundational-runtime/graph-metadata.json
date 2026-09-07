@@ -48,21 +48,18 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      "handlers/save/post-insert.ts",
-      "scripts/validation/continuity-freshness.ts",
       "hooks/shared-provenance.ts",
       "hooks/claude/shared.ts",
-      "lib/governance/scope-governance.ts",
-      "scripts/tests/gate-3-classifier.vitest.ts",
       "lib/utils/exhaustiveness.ts",
-      "scripts/validation/evidence-marker-audit.ts",
       "shared/gate-3-classifier.ts",
-      "lib/context/caller-context.ts",
-      "handlers/session-resume.ts",
-      "scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/memory/backfill-research-metadata.ts",
-      "scripts/spec/validate.sh"
+      "shared/predicates/boolean-expr.ts",
+      ".opencode/skills/system-spec-kit/README.md",
+      "hooks/claude/session-stop.ts",
+      "hooks/claude/hook-state.ts",
+      "lib/graph/graph-metadata-parser.ts",
+      "tests/hook-state.vitest.ts",
+      "tests/hook-session-stop.vitest.ts",
+      "tests/hook-session-stop-replay.vitest.ts"
     ],
     "entities": [
       {
@@ -96,18 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "post-insert.ts",
-        "kind": "code",
-        "path": "handlers/save/post-insert.ts",
-        "source": "derived"
-      },
-      {
-        "name": "continuity-freshness.ts",
-        "kind": "code",
-        "path": "scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
         "name": "shared-provenance.ts",
         "kind": "code",
         "path": "hooks/shared-provenance.ts",
@@ -120,27 +105,9 @@
         "source": "derived"
       },
       {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": "lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/gate-3-classifier.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "exhaustiveness.ts",
         "kind": "code",
         "path": "lib/utils/exhaustiveness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-marker-audit.ts",
-        "kind": "code",
-        "path": "scripts/validation/evidence-marker-audit.ts",
         "source": "derived"
       },
       {
@@ -150,33 +117,51 @@
         "source": "derived"
       },
       {
-        "name": "caller-context.ts",
+        "name": "boolean-expr.ts",
         "kind": "code",
-        "path": "lib/context/caller-context.ts",
+        "path": "shared/predicates/boolean-expr.ts",
         "source": "derived"
       },
       {
-        "name": "session-resume.ts",
-        "kind": "code",
-        "path": "handlers/session-resume.ts",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
-        "name": "workflow.ts",
+        "name": "session-stop.ts",
         "kind": "code",
-        "path": "scripts/core/workflow.ts",
+        "path": "hooks/claude/session-stop.ts",
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "hooks/claude/hook-state.ts",
         "source": "derived"
       },
       {
-        "name": "backfill-research-metadata.ts",
+        "name": "graph-metadata-parser.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/backfill-research-metadata.ts",
+        "path": "lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-stop.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-stop.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-stop-replay.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-stop-replay.vitest.ts",
         "source": "derived"
       },
       {
@@ -208,11 +193,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implement Approval",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 017 (27 `fix(016)` commits landing P0-A/B/C/D, S1-S7 structural refactors, M3-M13 medium refactors, 21 quick wins, 34 test migrations) completed the remediation scoped from the 50-iteration Phase 016 research",
     "created_at": "2026-04-18T14:40:19.024Z",
-    "last_save_at": "2026-08-30T15:39:29.478Z",
+    "last_save_at": "2026-09-07T16:06:31.776Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +219,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9e163dc97d5d4bd3d32d1009c0c3a5c870d2473c48afead9f2efc4b451969f6e",
+    "source_fingerprint": "sha256:8b89c86a005546fb49b85a9e1f6ec2063cd61c52c533bfd6fc1fe3d2c38d7a2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bfb2208404d10799cc8fdd056068067ba705e7e7380aacd74c4c85976ad5e12",
       "plan.md": "745476362721a25610c0838445040dcdf5f188fff484f5d3efb0818b9491e9b7",
       "tasks.md": "44e897a521fbec7a599611699a3fb29c1cf20c7c0d008101feb278469cc15bdb",
-      "implementation-summary.md": "c375590e5770ea11fca89d4e96db1b4a546ab3213925cf54f094c4a559f7fb91",
+      "implementation-summary.md": "5bff85ab993a4c47ad81b842ac89da5db16497cc294962f3f2d2f8db69264fd9",
       "research/research.md": "a8b397d957f0bcad4baf125a55fe1bd77eb9c6ed897806f82a0bd316c22f9157"
     },
     "last_active_child_id": null,

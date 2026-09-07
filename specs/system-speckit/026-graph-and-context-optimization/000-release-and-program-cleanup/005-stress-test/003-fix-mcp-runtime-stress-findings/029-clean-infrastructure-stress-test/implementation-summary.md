@@ -20,7 +20,7 @@ _memory:
       - "findings-rubric-v1-0-4.json"
       - "measurements/v1-0-4-summary.json"
     session_dedup:
-      fingerprint: "sha256:029-v1-0-4-implementation-summary"
+      fingerprint: "sha256:8a819dee001b27aa09981ff77bbc8b250d494e44f2f67862bf71d87b7563ac31"
       session_id: "phase-k-v1-0-4"
       parent_session_id: null
     completion_pct: 95

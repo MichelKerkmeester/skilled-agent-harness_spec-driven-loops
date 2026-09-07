@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/005-fail-open-fallback",
   "description": "The 008/002-skill-graph-daemon-native-advisor-tools deep review surfaced three release-blocker correctness/security/traceability gaps and 15 P2",
   "keywords": [
@@ -13,7 +14,7 @@
     "traceability",
     "gaps"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.121Z",
+  "lastUpdated": "2026-09-07T16:05:55.205Z",
   "specId": "005",
   "folderSlug": "fail-open-fallback",
   "parentChain": [

@@ -39,7 +39,7 @@
       "integrity"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "27 closed packets' `implementation-summary.md` carry a human-mnemonic value in the slot `memory.continuity.sessiondedup.fingerprint` reserves for a real sha256 digest, for example `sha256:phase-017-remediation-complete-25-commits` (`specs/system-speckit/026-graph-and-context-optimization/.../022-local-llm-legacy-remediation/implementation-summary.md`, one of 27 confirmed by direct grep against the exact `^[a-f0-9]{64}$` shape)",
     "created_at": "2026-09-07T15:05:44Z",
-    "last_save_at": "2026-09-07T15:45:00.605Z",
+    "last_save_at": "2026-09-07T16:12:19.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce51e2cb1bcf670dd117fcec1dbea0dfb0dffcda8aa685311e37a66eb4fe8e92",
+    "source_fingerprint": "sha256:8c9a02bd12e4fa3a3f440df58e873c12fd60d3bf4f958067edd313a36f8e373b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "69382381745986e33c99d93abc4746e28e7073b15597b64ea9950d6b48884a4d",
+      "spec.md": "62bc4ceb593584d2f5aa8f5b100362e0e17b6e576a364e73b438dad0ab830bc7",
       "plan.md": "59d568604587b32d58971a5401ab071eb2b9ed33b8148657b9ccdad896e442e6",
-      "tasks.md": "e1e2871f37db10b5264d2ccdd4f770132bb805798932458ad060c15879654c84",
-      "implementation-summary.md": "55cf403ce50cf416b066f5a8262939be4ac9f332f7474d95b3f7de4457a5e172"
+      "tasks.md": "cb3a2b27ca37c7a8331f3a5e39887f5d0af38203a7653afd684275b912a9fad8",
+      "implementation-summary.md": "0ab7b1ebbed99d14ba3044eb5c3e4ccab0f163b5e3cce5b3a1a7bfda0a1d2c50"
     },
     "last_active_at": null
   }

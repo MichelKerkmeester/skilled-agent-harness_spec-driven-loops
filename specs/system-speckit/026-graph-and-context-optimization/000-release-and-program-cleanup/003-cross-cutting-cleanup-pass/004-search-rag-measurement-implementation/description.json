@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
   "description": "Phase C identified five promising search/RAG optimization workstreams but deferred them until Phase D measurement infrastructure existed",
   "keywords": [
@@ -17,7 +18,7 @@
     "infrastructure",
     "existed"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.601Z",
+  "lastUpdated": "2026-09-07T16:08:46.513Z",
   "specId": "004",
   "folderSlug": "search-rag-measurement-implementation",
   "parentChain": [
@@ -27,6 +28,5 @@
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

@@ -37,7 +37,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:045-sk-doc-changelog-template"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-sk-doc-changelog-template"
       parent_session_id: null
     completion_pct: 10

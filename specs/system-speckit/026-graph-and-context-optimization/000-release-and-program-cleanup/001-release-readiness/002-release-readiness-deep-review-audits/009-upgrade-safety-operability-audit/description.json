@@ -7,7 +7,7 @@
     "install guide review",
     "doctor mcp install review"
   ],
-  "level": 2,
+  "level": "2",
   "status": "complete",
   "importance": "important",
   "contextType": "review",
@@ -38,7 +38,7 @@
     "hook",
     "surfaces"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.523Z",
+  "lastUpdated": "2026-09-07T16:08:46.253Z",
   "specId": "009",
   "folderSlug": "upgrade-safety-operability-audit",
   "parentChain": [

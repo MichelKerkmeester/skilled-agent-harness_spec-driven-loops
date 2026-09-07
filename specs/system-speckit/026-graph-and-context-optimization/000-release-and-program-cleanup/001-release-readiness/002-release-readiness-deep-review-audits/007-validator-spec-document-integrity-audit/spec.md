@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
       - ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js"
     session_dedup:
-      fingerprint: "sha256:045008validatorspecdocintegrity00000000000000000000000000"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-008-validator-spec-document-integrity-audit"
       parent_session_id: null
     completion_pct: 100

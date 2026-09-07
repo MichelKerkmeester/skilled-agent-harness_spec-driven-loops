@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "corpus-plan.md"
     session_dedup:
-      fingerprint: "sha256:030-full-matrix-corpus-plan"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "030-full-matrix-design"
       parent_session_id: null
     completion_pct: 100

@@ -25,7 +25,7 @@ _memory:
       - "implementation-summary.md"
       - "measurements/"
     session_dedup:
-      fingerprint: "sha256:004-search-rag-measurement-implementation-20260429"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "004-search-rag-measurement-implementation-20260429"
       parent_session_id: "005-review-remediation"
     completion_pct: 100

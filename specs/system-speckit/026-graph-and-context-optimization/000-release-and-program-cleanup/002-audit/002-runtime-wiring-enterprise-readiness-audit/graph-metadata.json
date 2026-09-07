@@ -46,8 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/search/search-decision-envelope.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-decision-envelope.ts",
-        "kind": "code",
-        "path": "lib/search/search-decision-envelope.ts",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Finding Disposition",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is fixture-only, and W4 is underfed by an unknown empty QueryPlan",
     "created_at": "2026-04-29T04:45:00Z",
-    "last_save_at": "2026-08-30T15:39:27.720Z",
+    "last_save_at": "2026-09-07T16:09:55.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a9e082c67187b2136734a339b823275ef0d8d50dd6d30f6721df0f925cd4623",
+    "source_fingerprint": "sha256:4b77b8ebf19930d0a2de828e93274808c827a2c6f59bcd7e260d9342d3f28d65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc45cfdf152d17770d146761ce3573f73daabbbbc3999dbaebbc551124b2fe8a",
-      "plan.md": "51711a254c7b5d6077bbed3b12641e7610582b3af896b212e8dc673ec556f918",
-      "tasks.md": "6a6ff49b1a74e2adb5cc4a3ed58a42e5c4c4fb04ffb8eb4358b3cd5612129432",
-      "implementation-summary.md": "1d5108bfa30c23373974dafe544ae8dd04b177a27446b6fa2b7628517ab8558a"
+      "spec.md": "d831ebe58cab3c610157e582eca260a4a0d3bea0d27c2e440b748803d1e6ea71",
+      "plan.md": "ecef0d5cf96b68bd4057cfba4ff281fc0f3b4c1df1a68bf82444193504188848",
+      "tasks.md": "4aae2d1cae30237a516eb9fc10ba9802bf472c90bed31b99fdf9248eae243946",
+      "implementation-summary.md": "5f1998861986f9b2296e4dbb9e828a4ee4074b8f8ce8ec97ed75dfa6f4947159"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,7 +28,7 @@ _memory:
       - "findings-rubric-v1-0-3.json"
       - "measurements/v1-0-3-summary.json"
     session_dedup:
-      fingerprint: "sha256:021-v1-0-3-w3-w13-stress"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-h-v1-0-3"
       parent_session_id: null
     completion_pct: 10

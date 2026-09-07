@@ -40,7 +40,7 @@ _memory:
     
     # Session continuity across sessions
     session_dedup:
-      fingerprint: "sha256:..."
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "018-impl-design-2026-04-11"
       parent_session_id: null
     

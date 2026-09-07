@@ -23,7 +23,7 @@ _memory:
       - "plan.md"
       - "decision-record.md"
     session_dedup:
-      fingerprint: "sha256:014-planner-first-closeout-2026-04-15"
+      fingerprint: "sha256:ad5046231b116721cc0d242fc489dc104c14e48692789067bbb91006f550e65c"
       session_id: "014-planner-first-closeout-2026-04-15"
       parent_session_id: "014-planner-first-seed"
     completion_pct: 100

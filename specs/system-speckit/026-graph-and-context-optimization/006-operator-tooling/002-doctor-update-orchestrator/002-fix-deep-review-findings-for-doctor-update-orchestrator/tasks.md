@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:003-tasks-2026-05-11"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "main-003-2026-05-11"
       parent_session_id: null
     completion_pct: 15

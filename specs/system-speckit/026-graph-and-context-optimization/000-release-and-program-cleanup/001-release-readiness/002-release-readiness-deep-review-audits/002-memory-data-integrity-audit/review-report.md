@@ -26,7 +26,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"
     session_dedup:
-      fingerprint: "sha256:045-002-memory-data-integrity-audit-report"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-002-memory-data-integrity-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

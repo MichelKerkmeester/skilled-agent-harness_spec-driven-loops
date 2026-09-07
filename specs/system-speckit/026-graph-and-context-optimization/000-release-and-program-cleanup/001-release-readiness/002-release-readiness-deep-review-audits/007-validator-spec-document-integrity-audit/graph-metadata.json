@@ -39,10 +39,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "review-report.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js"
+      "review-report.md"
     ],
     "entities": [
       {
@@ -73,24 +70,6 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-spec-doc-integrity.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
         "source": "derived"
       },
       {
@@ -188,11 +167,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output",
     "created_at": "2026-04-29T19:47:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.652Z",
+    "last_save_at": "2026-09-07T16:09:51.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76c77df2725ba68272f42b8e63c5a9754ba16fb375406e42843101052bc57aa8",
+    "source_fingerprint": "sha256:03dda3ba2a90066d5081a0925c8dc6db18bd00eea07a3ec5cf776b03b57cd747",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6efa315df6523a47be456da253c0b9c27a3f939ef7e1700e7f5440e0aea12744",
-      "plan.md": "e3431248647676d28c51fc3cd536b816b115d568a7ff926e61d5e3c44299acaf",
-      "tasks.md": "7ddbcfaed88c6fca0e554cfc2e35be5bf1f82963b7d24abe30b21ae95da24e30",
-      "implementation-summary.md": "c3caf2f706b0a2b8192595c68dd51b897bc505170333df60765657388789f5d9"
+      "spec.md": "f07bc6e09fb66e379432211f4cbd4d4f1cda2e96a157e20b3cdcb972aa316169",
+      "plan.md": "68136478918fab9744b11206d4f88a4b0c751cffee66f3e3c387150bc122b00b",
+      "tasks.md": "19b10728a3f709f5c41e89eb6e2c568e5eb5c094a6f750a1067a6fd481e255d2",
+      "implementation-summary.md": "50214c30b7377b502e8dd0869490d26aaff14a8295c3cb6ea5a8ab947f895abf"
     },
     "last_active_child_id": null,
     "last_active_at": null

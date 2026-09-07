@@ -394,8 +394,10 @@ export function extractAnchorIds(content: string): string[] {
 // (runtime/lib/validation/spec-doc-structure.ts) hashes past, so a value
 // stamped here reads back identical through CONTINUITY_FRESHNESS's own
 // recomputation. Duplicated rather than imported: that module lives outside
-// this package's runtime-API boundary.
-const SESSION_DEDUP_FINGERPRINT_LINE_RE = /^(\s{6}fingerprint:\s*)(?:["'])?sha256:[a-f0-9]{64}(?:["'])?(\s*(?:#.*)?)$/m;
+// this package's runtime-API boundary. The value part accepts any sha256:
+// label, not only a hex digest, so a hand-written stamp can be replaced by
+// a real one instead of being left untouched forever.
+const SESSION_DEDUP_FINGERPRINT_LINE_RE = /^(\s{6}fingerprint:\s*)(?:["'])?sha256:[^"'\s#]+(?:["'])?(\s*(?:#.*)?)$/m;
 
 /**
  * Stamp implementation-summary.md's `_memory.continuity.session_dedup.fingerprint`

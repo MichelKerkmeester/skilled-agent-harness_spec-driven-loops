@@ -27,7 +27,7 @@ _memory:
       - "measurements/v1-0-3-audit-log-sample.jsonl"
       - "measurements/v1-0-3-shadow-sink-sample.jsonl"
     session_dedup:
-      fingerprint: "sha256:021-v1-0-3-summary"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-h-v1-0-3"
       parent_session_id: null
     completion_pct: 95

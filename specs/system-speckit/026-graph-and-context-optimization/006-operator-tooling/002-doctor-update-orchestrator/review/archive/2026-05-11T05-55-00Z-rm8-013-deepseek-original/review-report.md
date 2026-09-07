@@ -22,7 +22,7 @@ _memory:
       - "deep-review-findings-registry.json"
       - "deep-review-state.jsonl"
     session_dedup:
-      fingerprint: "sha256:2026-05-11-rm8-013-deepseek"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-11T05-55-00Z-rm8-013-deepseek"
       parent_session_id: null
     completion_pct: 100

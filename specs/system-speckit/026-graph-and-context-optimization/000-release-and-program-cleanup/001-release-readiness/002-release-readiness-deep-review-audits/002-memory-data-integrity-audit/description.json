@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/002-memory-data-integrity-audit",
   "description": "The release-readiness program needs a data-integrity audit for the memory subsystem",
   "keywords": [
@@ -10,7 +11,7 @@
     "memory",
     "subsystem"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.507Z",
+  "lastUpdated": "2026-09-07T16:08:46.240Z",
   "specId": "002",
   "folderSlug": "memory-data-integrity-audit",
   "parentChain": [
@@ -21,6 +22,5 @@
     "002-release-readiness-deep-review-audits"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

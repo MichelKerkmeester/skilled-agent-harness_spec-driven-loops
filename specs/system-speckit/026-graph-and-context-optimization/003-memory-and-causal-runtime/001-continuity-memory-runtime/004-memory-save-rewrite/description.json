@@ -12,6 +12,7 @@
     "planner mode hybrid reserved",
     "post-save follow-up apis"
   ],
+  "level": "3+",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-memory-save-rewrite",
@@ -46,7 +47,7 @@
     "family",
     "supposedly"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.282Z",
+  "lastUpdated": "2026-09-07T16:08:47.685Z",
   "specId": "004",
   "folderSlug": "memory-save-rewrite",
   "parentChain": [
@@ -56,6 +57,5 @@
     "001-continuity-memory-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3+"
+  "memoryNameHistory": []
 }

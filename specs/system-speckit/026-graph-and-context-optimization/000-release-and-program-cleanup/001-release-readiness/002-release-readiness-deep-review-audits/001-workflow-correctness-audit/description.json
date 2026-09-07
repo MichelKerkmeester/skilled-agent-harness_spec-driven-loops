@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/001-workflow-correctness-audit",
   "description": "The release-readiness program needs a workflow-correctness audit for the canonical command surfaces before they are treated as safe operator paths",
   "keywords": [
@@ -15,7 +16,7 @@
     "operator",
     "paths"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.503Z",
+  "lastUpdated": "2026-09-07T16:08:46.247Z",
   "specId": "001",
   "folderSlug": "workflow-correctness-audit",
   "parentChain": [
@@ -26,6 +27,5 @@
     "002-release-readiness-deep-review-audits"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

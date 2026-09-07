@@ -34,7 +34,7 @@ _memory:
       - "research/014-research-snapshot/research.md"
       - "review/015-deep-review-snapshot/review-report.md"
     session_dedup:
-      fingerprint: "sha256:014-planner-first-default-2026-04-15"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "014-planner-first-default-2026-04-15"
       parent_session_id: "014-planner-first-default-closeout"
     completion_pct: 100

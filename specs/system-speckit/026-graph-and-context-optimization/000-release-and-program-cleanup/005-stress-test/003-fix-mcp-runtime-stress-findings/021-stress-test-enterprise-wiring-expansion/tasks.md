@@ -19,7 +19,7 @@ _memory:
     key_files:
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:021-v1-0-3-tasks"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-h-v1-0-3"
       parent_session_id: null
     completion_pct: 15

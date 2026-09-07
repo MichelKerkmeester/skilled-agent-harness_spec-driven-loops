@@ -20,7 +20,7 @@ _memory:
       - "plan.md"
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:022-cli-skills-baseline-overlay-contract"
+      fingerprint: "sha256:f831fa3d4564b027b6667c76cfd7ade7abe42f2d283a5c41ab40c4f0215e9121"
       session_id: "022-cli-skills-baseline-overlay-contract"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 100

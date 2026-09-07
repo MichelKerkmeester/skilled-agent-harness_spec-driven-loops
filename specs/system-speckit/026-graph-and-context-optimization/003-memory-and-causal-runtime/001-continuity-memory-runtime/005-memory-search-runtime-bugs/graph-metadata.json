@@ -46,8 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/search.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output rendering, and causal-graph subcommands",
     "created_at": "2026-04-26T14:33:00Z",
-    "last_save_at": "2026-08-30T15:39:29.450Z",
+    "last_save_at": "2026-09-07T16:10:20.206Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20049cb1dec07b8c04d69139286a01d4b3a8eded55a605eaa48bdfa2011784be",
+    "source_fingerprint": "sha256:aa34e2ef1007d338aed650eabbf957e5a69dc90987962ea4b5fc93978fb5bb7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47b1e5508363251e344141b1a254344feafcefec4abced3ce3c4b017662c4447",
+      "spec.md": "54decefc3a036936e3c1b41613e6229ea0b625b71bffb35fa6151b4037263514",
       "plan.md": "b68decefc6061d526697c080428f63b705737606bf1783e7b27ec488789a2951",
       "tasks.md": "686c8cd387b73c6694d3ba9be338f76206bb9df8b530174938b95e59355e66df",
       "implementation-summary.md": "f3eedc7252ff0145d1f54d3d631266ddf0c0cfe35c0ea55dcde1a90df725794b"

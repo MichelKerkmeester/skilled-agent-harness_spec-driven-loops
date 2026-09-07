@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The release-readiness program needs a data-integrity audit for the memory subsystem",
     "created_at": "2026-04-29T21:10:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.630Z",
+    "last_save_at": "2026-09-07T16:09:47.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19bca77019328f48845655ff072aeddfbaa47621ec265744f2e026cdf5ec2f2d",
+    "source_fingerprint": "sha256:f40f87721bfe39995e7a38e073b1def17f63183300d94af1d73c9525d5156c01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0025e7b8ee4d921a5edb496ed8fe97bda14f5146b3e9e05bf348400a2a43c4af",
-      "plan.md": "a2f8a5b0f4d70b383957e096567bd44fdab80786362f036dbb53a837349b03e4",
-      "tasks.md": "37fe7f03063c685e614a0b0631b6944a19fe737951f6b80850e336745106bf14",
-      "implementation-summary.md": "b76dac08be20fc6382c9b947d89943eee7afc8d5650e2b13dfab3c9fb6dfcc65"
+      "spec.md": "8be524c9aa57207bd7cda84b9e6736351b1f94bc30561dbb43332a61041bb007",
+      "plan.md": "fd3ce87aa58ef701aa10f063c1e4ff166436fd567a924cf4853023372988bde3",
+      "tasks.md": "607819c7e1ee550efd8405eb0233e12065bcbd7e30cafc9a148a4afb839867cd",
+      "implementation-summary.md": "0bab645752fa36ecde089fd7c8466b4c877c2d512ac2954b6446ebb9864ed1fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -17,7 +17,7 @@ _memory:
     key_files:
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:007-search-rag-tasks-20260429"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "004-search-rag-measurement-implementation-20260429"
       parent_session_id: "005-review-remediation"
     completion_pct: 100
