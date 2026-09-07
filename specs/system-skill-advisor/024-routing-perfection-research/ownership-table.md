@@ -1,6 +1,6 @@
 ---
 title: "Ownership decisions for the 20 residual routing failures"
-description: "Per-phrase disposition for the 18 outranked and 2 no-reach phrases left after the vocabulary fix. Six of them turn out not to be ownership questions at all, which is the finding that matters."
+description: "Per-phrase disposition for the 18 outranked and 2 no-reach phrases left after the vocabulary fix. Nine were applied and verified; eight turn out not to be ownership questions at all, which is the finding that matters."
 trigger_phrases:
   - "routing ownership table"
   - "outranked phrases"
@@ -16,7 +16,7 @@ contextType: "implementation"
 ## 1. THE FINDING THAT CHANGES THE PLAN
 
 The plan assumed these 20 are ownership questions, fixable by editing which hub declares
-what, with no scorer change. **Six of them are not.**
+what, with no scorer change. **Eight of them are not.**
 
 `sk-design` already declares `design review`, `review this screen`, `review this deck`,
 `review this layout` and `design review of this slide deck` as exact entries in its
@@ -61,10 +61,10 @@ Probed at advisor generation 714-716. `Winner` is the hub the advisor actually r
 | 6 | `iterative review` | system-deep-loop | sk-code 0.9284 vs 0.9256 | **Escalate to scorer.** A 0.003 margin, and iteration is deep-loop's defining property. |
 | 7 | `review the docs` | sk-doc | sk-code 0.939 | **sk-doc yields is wrong; escalate.** Same shape as 1-5. |
 | 8 | `review request` | system-deep-loop | sk-code 0.944 | **Operator call.** "Request a review" is deep-loop's command surface; "review this request" is sk-code's. Genuinely ambiguous. |
-| 9 | `review bar` | sk-doc | sk-code 0.928 | **Rephrase or drop.** Ambiguous between a chart form and a UI bar. Low value either way. |
+| 9 | `review bar` | sk-doc | sk-code 0.928 | **Rephrased.** It lives in sk-doc's `DOC_QUALITY` block and means a quality bar for documentation, but reads as a UI bar. Now `documentation review bar`, which sk-doc wins at 0.9421 over sk-code 0.9323. |
 | 10 | `pass review` | sk-doc | sk-code 0.933 | **sk-doc yields.** A review passing is a code-review outcome, not a documentation one. |
 | 11 | `browser debug` | mcp-tooling | sk-code 0.913 | **Operator call.** Chrome DevTools MCP versus debugging code in a browser. Both defensible. |
-| 12 | `browser agent` | mcp-tooling | sk-code 0.870 | **mcp-tooling keeps; sk-code yields.** A browser agent is an MCP surface, not application code. |
+| 12 | `browser agent` | mcp-tooling | sk-code 0.870 | **Escalate to scorer.** Intended as "sk-code yields", but sk-code declares nothing matching, in ROUTER.md or `intent_signals`. Same shape as rows 1-7: there is nothing to yield. |
 | 13 | `design tokens` | mcp-tooling **and** sk-design | sk-design 0.920 | **mcp-tooling yields.** The only phrase in the fleet declared twice. sk-design owns tokens; mcp-tooling's claim is incidental. |
 | 14 | `spec kit runtime` | cli-external-orchestration | system-spec-kit 0.95 (exact tie) | **cli-external yields.** The runtime is system-spec-kit's by name. |
 | 15 | `spec kit memory` | cli-external-orchestration | system-spec-kit 0.95 | **cli-external yields.** Same. |
@@ -80,14 +80,26 @@ Probed at advisor generation 714-716. `Winner` is the hub the advisor actually r
 <!-- ANCHOR:disposition -->
 ## 3. WHAT THIS MEANS FOR THE SEQUENCE
 
-**Resolvable now by vocabulary, needing no scorer change: 9.** Rows 10, 12, 13, 14, 15,
-16, 18, 19, 20, plus row 17 which needs nothing at all.
+**Applied 2026-09-07, advisor generations 721-723: 9 rows.** 9, 10, 13, 14, 15, 16, 18, 19, 20.
+Each verified after rebuild: the yielding hub no longer contests, and the intended winner
+now takes the phrase alone or clearly. Row 17 needed nothing and is closed.
 
-**Not resolvable by vocabulary: 7.** Rows 1-7 escalate to the scorer work, and rows 8 and
-11 need an operator ruling before anything is edited.
+Rows 9 and 19 are the informative ones, because both were fixed by rewording rather than
+by reassigning. `dom inspect` reached nobody as two words; as `inspect the dom` it routes
+to mcp-tooling at 0.8906. `review bar` lost to sk-code; as `documentation review bar` it
+wins at 0.9421. The original research argued short phrases fail on length rather than
+vocabulary, and these confirm it directly: same hub, same intent, one more word, resolved.
+
+That suggests a cheaper first move than arbitration for some of the escalated rows too.
+Before changing the scorer, it is worth asking whether a contested phrase is simply
+underspecified.
+
+**Not resolvable by vocabulary: 8.** Rows 1-7 plus row 12, which was written as a yield
+and turned out not to be one. Rows 8 and 11 still need an operator ruling.
 
 So the plan's step 2 target, "every hub prints a literal `RESULT: PASSED`", is **not
-reachable through steps 1 and 2 alone.** Vocabulary editing closes at most 10 of the 20.
+reachable through steps 1 and 2 alone.** Vocabulary editing closed 10 of the 20, counting
+row 17 which needed nothing, and cannot reach the other 10.
 Either the scorer work moves ahead of the gate-wiring step, or the gate lands with a dated
 allowlist covering rows 1-8 and 11 and the residue is tracked rather than closed.
 

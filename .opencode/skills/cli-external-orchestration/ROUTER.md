@@ -87,7 +87,7 @@ a canonical typed pair.
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "OPENCODE":    {"weight": 4, "keywords": ["opencode", "opencode cli", "opencode run", "delegate to opencode", "cli-opencode", "parallel detached session", "full plugin runtime", "full plugin and memory stack", "spec kit runtime", "spec kit memory", "ablation suite", "worker farm opencode"]},
+    "OPENCODE":    {"weight": 4, "keywords": ["opencode", "opencode cli", "opencode run", "delegate to opencode", "cli-opencode", "parallel detached session", "full plugin runtime", "full plugin and memory stack", "ablation suite", "worker farm opencode"]},
     "CLAUDE_CODE": {"weight": 4, "keywords": ["claude code", "claude cli", "cli-claude-code", "anthropic cli", "anthropic cli second opinion", "delegate to claude", "extended thinking", "deep reasoning handoff", "deeply-reasoned opinion", "structured claude code output", "claude code review"]},
     "CODEX":       {"weight": 4, "keywords": ["codex", "codex cli", "codex exec", "cli-codex", "openai cli second opinion", "delegate to codex", "openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]},
     "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch"]},

@@ -62,7 +62,7 @@
   "intent_signals": [
     "chrome devtools",
     "browser debug",
-    "dom inspect",
+    "inspect the dom",
     "lighthouse",
     "clickup",
     "cupt",
@@ -154,7 +154,6 @@
     "browser agent",
     "aside daemon",
     "click through",
-    "design tokens",
     "design file",
     "reference styles",
     "web products",
