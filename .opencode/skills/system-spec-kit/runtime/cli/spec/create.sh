@@ -91,8 +91,8 @@ while [[ $i -le $# ]]; do
                 echo 'Error: --level requires a value (1, 2, or 3)' >&2
                 exit 1
             fi
-            if [[ ! "$next_arg" =~ ^(1|2|3|3\+|phase-parent)$ ]]; then
-                echo 'Error: --level must be 1, 2, 3, 3+ or phase-parent; review and research packets are written by the deep loops, not scaffolded' >&2
+            if [[ ! "$next_arg" =~ ^(1|2|3|3\+|phase-parent|review|research)$ ]]; then
+                echo 'Error: --level must be 1, 2, 3, 3+, phase-parent, review or research' >&2
                 exit 1
             fi
             if [[ "$next_arg" == "phase-parent" ]]; then
@@ -633,9 +633,12 @@ finalize_scaffold_templates() {
     today="$(date -u +"%Y-%m-%d")"
     now_iso="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
+    # Contract documents may sit one directory down (research/research.md,
+    # review/review-report.md); they carry the same placeholders as root docs.
     local md_file
-    for md_file in "$folder_path"/*.md; do
+    for md_file in "$folder_path"/*.md "$folder_path"/*/*.md; do
         [[ -f "$md_file" ]] || continue
+        [[ "$md_file" == "$folder_path/scratch/"* ]] && continue
         PACKET_POINTER="scaffold/$safe_packet_pointer" RAW_PACKET_POINTER="$packet_pointer" FEATURE_NAME="$escaped_feature_name" TODAY="$today" NOW_ISO="$now_iso" DOC_LEVEL="$doc_level" perl -0pi -e '
             s{\[NAME\]}{$ENV{FEATURE_NAME}}g;
             s{\[YOUR_VALUE_HERE: feature-name\]}{$ENV{FEATURE_NAME}}g;

@@ -27,6 +27,8 @@ templates/
 ├── spec-kit-docs.json        # Private source of truth for Level contracts
 ├── *.md.tmpl                 # Whole-document markdown templates with gates
 ├── phase-parent.spec.md.tmpl # Lean phase-parent spec template
+├── research.spec.md.tmpl     # Research-record spec template for the research packet type
+├── review-report.md.tmpl     # Nine-section review report for a hand-authored review packet
 └── review.spec.md.tmpl       # Review-record spec template for the review packet type
 ```
 
@@ -41,6 +43,8 @@ templates/
 | `addons/acceptance-criteria.md.tmpl` | Provides the closure-gating acceptance criteria document for Levels 2, 3 and 3+. |
 | `phase-parent.spec.md.tmpl` | Provides the lean parent spec for phase workflows. |
 | `review.spec.md.tmpl` | Provides the review-record spec for the review packet type. |
+| `review-report.md.tmpl` | Provides the nine-section report a hand-authored review packet starts from; the deep-review loop writes its own. |
+| `research.spec.md.tmpl` | Provides the research-record spec for the research packet type. |
 
 ---
 

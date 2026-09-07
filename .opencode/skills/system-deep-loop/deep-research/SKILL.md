@@ -337,7 +337,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 6. **Respect exhausted approaches** -- Never retry approaches in the "Exhausted" list
 7. **Cite sources** -- Every finding must cite `[SOURCE: url]` or `[SOURCE: file:line]`
 8. **Use generate-context.js for memory saves** -- Never manually create memory files
-9. **Treat research/research.md as workflow-owned** -- Iteration findings feed synthesis; the workflow owns the canonical `research/research.md`
+9. **Treat research/research.md as workflow-owned** -- Iteration findings feed synthesis; the workflow owns the canonical `research/research.md`. The loop writes the file itself rather than scaffolding it through `create.sh --level research`, because its body is the synthesis of every iteration and only exists once the loop has run; `create.sh --level research` serves a research packet authored by hand
 10. **Document ruled-out directions per iteration** -- Every iteration must include what was tried and failed
 11. **Report newInfoRatio + 1-sentence novelty justification** -- Every JSONL iteration record must include both
 12. **Quality guards must pass before convergence** -- Source diversity, focus alignment, and no single-weak-source checks must pass before STOP can trigger

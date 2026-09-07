@@ -12,7 +12,7 @@ import fs from 'node:fs';
 // 2. TYPES
 // ───────────────────────────────────────────────────────────────────
 
-export type RenderLevel = '1' | '2' | '3' | '3+' | 'phase';
+export type RenderLevel = '1' | '2' | '3' | '3+' | 'phase' | 'review' | 'research';
 
 interface GateFrame {
   parentActive: boolean;
@@ -29,7 +29,7 @@ interface ParserState {
 // 3. EXPRESSION PARSER
 // ───────────────────────────────────────────────────────────────────
 
-const VALID_LEVELS = new Set<RenderLevel>(['1', '2', '3', '3+', 'phase']);
+const VALID_LEVELS = new Set<RenderLevel>(['1', '2', '3', '3+', 'phase', 'review', 'research']);
 const GATE_OPEN = /^\s*<!--\s*IF\s+(.+?)\s*-->\s*$/u;
 const GATE_CLOSE = /^\s*<!--\s*\/IF\s*-->\s*$/u;
 const GATE_EMPTY = /^\s*<!--\s*IF\s+(.+?)\s*-->\s*<!--\s*\/IF\s*-->\s*$/u;
@@ -273,7 +273,7 @@ async function readStdin(): Promise<string> {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const parsed = parseCliArgs(process.argv.slice(2));
   if (!parsed) {
-    console.error('Usage: inline-gate-renderer.ts --level <1|2|3|3+|phase> [--out-dir DIR file...] [template-file]');
+    console.error('Usage: inline-gate-renderer.ts --level <1|2|3|3+|phase|review|research> [--out-dir DIR file...] [template-file]');
     process.exit(2);
   }
 

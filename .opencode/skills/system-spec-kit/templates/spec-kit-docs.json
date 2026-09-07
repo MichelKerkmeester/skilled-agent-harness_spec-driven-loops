@@ -17,7 +17,9 @@
     "timeline.md.tmpl": "v2.2",
     "roadmap.md.tmpl": "v2.2",
     "acceptance-criteria.md.tmpl": "v2.2",
-    "goal.md.tmpl": "v2.2"
+    "goal.md.tmpl": "v2.2",
+    "review-report.md.tmpl": "v1.0",
+    "research.spec.md.tmpl": "v2.2"
   },
   "documents": {
     "spec.md": {
@@ -54,6 +56,18 @@
       "template": "phase-parent.spec.md.tmpl",
       "owner": "author",
       "creationTrigger": "phase-scaffold",
+      "absenceBehavior": "hard-error"
+    },
+    "review.spec.md": {
+      "template": "review.spec.md.tmpl",
+      "owner": "author",
+      "creationTrigger": "scaffold",
+      "absenceBehavior": "hard-error"
+    },
+    "research.spec.md": {
+      "template": "research.spec.md.tmpl",
+      "owner": "author",
+      "creationTrigger": "scaffold",
       "absenceBehavior": "hard-error"
     },
     "resource-map.md": {
@@ -99,7 +113,7 @@
       "absenceBehavior": "silent-skip"
     },
     "review/review-report.md": {
-      "template": null,
+      "template": "review-report.md.tmpl",
       "owner": "workflow",
       "creationTrigger": "deep-review",
       "absenceBehavior": "hard-error"

@@ -1,0 +1,89 @@
+---
+title: "Review Report: [NAME] [template:review/review-report.md]"
+description: "[One paragraph: the verdict, the active finding counts, and the scope that was reviewed.]"
+trigger_phrases:
+  - "review report"
+  - "review findings"
+  - "remediation workstreams"
+  - "review verdict"
+importance_tier: "normal"
+contextType: "review"
+---
+# Review Report: [NAME]
+
+<!-- SPECKIT_TEMPLATE_SOURCE: review-report | v1.0 -->
+<!--
+The deep-review loop writes this file itself at synthesis time and owns its
+content. This template exists for a review packet scaffolded by hand, so the
+report starts with the same nine sections the loop emits. Section 8, the
+Resource Map Coverage Gate, is added only when the packet carried a
+resource-map.md when the review began.
+-->
+
+---
+
+## 1. Executive Summary
+
+| Field | Value |
+|-------|-------|
+| **Verdict** | [PASS/CONDITIONAL/FAIL] |
+| **Active findings** | P0 [n] · P1 [n] · P2 [n] |
+| **Has advisories** | [true/false] |
+| **Scope** | [What was reviewed] |
+| **Convergence** | [Why the review stopped] |
+
+---
+
+## 2. Planning Trigger
+
+[Why this result routes to remediation planning, or to a changelog entry when the verdict is PASS.]
+
+---
+
+## 3. Active Finding Registry
+
+| ID | Severity | Dimension | Title | Evidence | Status |
+|----|----------|-----------|-------|----------|--------|
+| [F-001] | [P0/P1/P2] | [dimension] | [title] | [path:line] | [active] |
+
+---
+
+## 4. Remediation Workstreams
+
+| Lane | Findings | Order | Note |
+|------|----------|-------|------|
+| [lane] | [F-001] | 1 | [dependency or area] |
+
+---
+
+## 5. Spec Seed
+
+- [Minimal spec update implied by a finding, with its ID]
+
+---
+
+## 6. Plan Seed
+
+- [Initial remediation task, with the finding ID and target file]
+
+---
+
+## 7. Traceability Status
+
+| Protocol | Class | Result | Evidence |
+|----------|-------|--------|----------|
+| [spec_code] | [core/overlay] | [pass/partial/fail] | [pointer] |
+
+---
+
+## 9. Deferred Items
+
+- [Advisory finding, blocked protocol or follow-up check]
+
+---
+
+## 10. Audit Appendix
+
+| Iteration | Dimension | New info ratio | Note |
+|-----------|-----------|----------------|------|
+| [001] | [dimension] | [0.0] | [note] |

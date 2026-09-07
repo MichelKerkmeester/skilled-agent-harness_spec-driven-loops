@@ -546,7 +546,9 @@ function renderInlineGates(template: string, level: SpecKitLevel): string {
 function templateNameForDoc(level: SpecKitLevel, docName: string): string {
   if (level === 'phase' && docName === 'spec.md') return 'phase-parent.spec.md.tmpl';
   if (level === 'review' && docName === 'spec.md') return 'review.spec.md.tmpl';
+  if (level === 'research' && docName === 'spec.md') return 'research.spec.md.tmpl';
   if (docName === 'research/research.md') return 'research.md.tmpl';
+  if (docName === 'review/review-report.md') return 'review-report.md.tmpl';
   return `${docName}.tmpl`;
 }
 
@@ -616,7 +618,9 @@ const PLACEHOLDER_MARKER_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLAR
 
 function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
   const findings: string[] = [];
-  for (const docName of validationDocsForLevel(folder, level)) {
+  // A workflow loop owns the freeform docs and rewrites them whole at
+  // synthesis, so a scaffolded skeleton's markers are not an author's debt.
+  for (const docName of validationDocsForLevel(folder, level).filter((docName) => !FREEFORM_WORKFLOW_DOCS.has(docName))) {
     const content = readIfExists(path.join(folder, docName));
     if (!content) continue;
     const lines = content.split(/\r?\n/u);

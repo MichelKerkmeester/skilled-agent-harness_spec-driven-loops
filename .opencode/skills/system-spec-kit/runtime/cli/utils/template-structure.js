@@ -65,6 +65,7 @@ const DOC_TEMPLATE_NAMES = {
   'handover.md': 'handover.md.tmpl',
   'debug-delegation.md': 'debug-delegation.md.tmpl',
   'research.md': 'research.md.tmpl',
+  'review-report.md': 'review-report.md.tmpl',
   'before-after.md': 'before-after.md.tmpl',
   'timeline.md': 'timeline.md.tmpl',
   'roadmap.md': 'roadmap.md.tmpl',
@@ -405,6 +406,8 @@ function resolveTemplatePath(level, basename, templatesRoot = getTemplatesRoot()
     manifestTemplateName = 'phase-parent.spec.md.tmpl';
   } else if (normalizedLevel === 'review' && basename === 'spec.md') {
     manifestTemplateName = 'review.spec.md.tmpl';
+  } else if (normalizedLevel === 'research' && basename === 'spec.md') {
+    manifestTemplateName = 'research.spec.md.tmpl';
   } else {
     manifestTemplateName = DOC_TEMPLATE_NAMES[docName];
   }
