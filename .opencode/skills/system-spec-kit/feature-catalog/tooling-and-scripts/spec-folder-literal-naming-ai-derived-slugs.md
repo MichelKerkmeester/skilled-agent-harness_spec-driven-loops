@@ -40,10 +40,8 @@ Together these surfaces close the loop with the create.sh fallback. The fallback
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in auto mode |
-| `.opencode/commands/speckit/assets/speckit-plan-confirm.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in confirm mode |
-| `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in auto mode |
-| `.opencode/commands/speckit/assets/speckit-complete-confirm.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in confirm mode |
+| `.opencode/commands/speckit/assets/speckit-plan.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in every execution mode |
+| `.opencode/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in every execution mode |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Skill | ALWAYS rule 20 (REMEDIATION PACKET NAMING) defining source/target slug structure for AI-derived remediation packets |
 
 ### Validation And Tests

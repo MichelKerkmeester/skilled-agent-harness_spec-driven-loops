@@ -72,11 +72,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `ls .opencode/commands/speckit/assets/speckit-{plan,implement,complete}*.yaml` lists three files, not six
-- [ ] `save_context` is defined once and referenced by all three merged assets
-- [ ] Every `validate.sh [SPEC_FOLDER] --strict` call site carries a one-line cadence comment
-- [ ] `validate-command-tree-parity.sh` and `sync-runtime-mirrors.cjs --check` both exit 0
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this child
+- [x] `ls .opencode/commands/speckit/assets/speckit-{plan,implement,complete}*.yaml` lists three files, not six
+- [x] `save_context` is defined once and referenced by all three merged assets
+- [x] Every `validate.sh [SPEC_FOLDER] --strict` call site carries a one-line cadence comment
+- [x] `validate-command-tree-parity.sh` and `sync-runtime-mirrors.cjs --check` both exit 0
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,6 +93,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Six assets merged into three with `execution_mode`, `checkpoints` and `mode_overrides.confirm`; shared save-context tail extracted; every validate.sh site commented | Done | `implementation-summary.md` Verification |
+| Consumers re-pointed: five tests, three routers, README, SKILL.md, two catalog entries, two playbooks | Done | grep for the six old names outside specs, changelogs and benchmark reports returns nothing |
+| Gates | Done | PyYAML parses all four assets; workflow test 144 pass with the four pre-existing phase-flag failures unchanged; plugin test 4/4; intake payload test 7/7; autopilot contract 4/4; BooleanExpr suite passes; parity and mirror checks PASS 169 mirrors |
 
 ### Deviations and findings
 

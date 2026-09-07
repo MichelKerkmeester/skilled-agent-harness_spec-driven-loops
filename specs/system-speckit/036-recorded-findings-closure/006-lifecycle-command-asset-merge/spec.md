@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-07 |
 | **Branch** | `scaffold/006-lifecycle-command-asset-merge` |
 | **Parent Spec** | ../spec.md |

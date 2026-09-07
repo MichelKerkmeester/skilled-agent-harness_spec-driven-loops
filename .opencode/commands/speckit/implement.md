@@ -21,8 +21,8 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Purpose | Asset |
 |---------|-------|
 | Presentation source of truth | `.opencode/commands/speckit/assets/speckit-implement-presentation.txt` |
-| Auto workflow | `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` |
-| Confirm workflow | `.opencode/commands/speckit/assets/speckit-implement-confirm.yaml` |
+| Workflow (all execution modes) | `.opencode/commands/speckit/assets/speckit-implement.yaml` |
+| Shared save-context tail | `.opencode/commands/speckit/assets/speckit-save-context-tail.yaml` |
 
 ---
 
@@ -55,9 +55,9 @@ values without an interactive prompt.
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` |
-| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` with branch-preserved failure semantics |
-| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit-implement-confirm.yaml` |
+| `:auto` | `.opencode/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
+| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` autopilot and branch-preserved failure semantics |
+| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
 
 ### UNATTENDED TERMINATION
 

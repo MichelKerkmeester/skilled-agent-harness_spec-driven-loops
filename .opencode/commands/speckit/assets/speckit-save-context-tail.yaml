@@ -1,0 +1,32 @@
+# ═══════════════════════════════════════════════════════════════════════
+# SMART SPECKIT: SHARED SAVE-CONTEXT TAIL
+# ═══════════════════════════════════════════════════════════════════════
+# The plan, implement and complete workflows each end with a save_context
+# step. Its command-specific purpose, activities and outputs stay in the
+# command's own asset; the writer contract below is the same for all three
+# and lives here once, under one placeholder convention: {spec_path} is the
+# packet the step saves into.
+
+save_context_core:
+  tool_invocation:
+    command: Read(".opencode/skills/system-spec-kit/SKILL.md")
+    note: "Read SKILL.md to activate context saving"
+  post_save_write:
+    pre_index_instruction:
+      command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_path}"
+      note: "First compose structured JSON, then run generate-context.js. Nothing else runs after it."
+    writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+    critical_note: "generate-context.js is the whole write. There is no indexing handoff, no daemon to wait for and no launcher file to check. Regenerate the packet's description.json and graph-metadata.json after it, then validate."
+    after: "Immediately after the canonical spec document is refreshed on disk"
+  anchor_requirements:
+    enforcement: MANDATORY
+    minimum_anchors: 2
+    pattern: "[context-type]-[keywords]-[spec-number]"
+    format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+    case: UPPERCASE
+    required_sections:
+      - { context_type: "general", section: "Session summary with key outcomes", example_id: "GENERAL-SESSION-SUMMARY-{spec#}" }
+      - { context_type: "decision", section: "Key decisions made during session", example_id: "DECISION-{topic}-{spec#}" }
+    optional_sections:
+      - { context_type: "research", example_id: "RESEARCH-{topic}-{spec#}" }
+      - { context_type: "files", example_id: "FILES-{spec#}" }

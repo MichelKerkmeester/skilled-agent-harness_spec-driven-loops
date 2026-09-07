@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────
-# SMART SPECKIT: PLAN WORKFLOW (AUTONOMOUS MODE)
+# SMART SPECKIT: PLAN WORKFLOW (ONE ASSET, THREE EXECUTION MODES)
 # ─────────────────────────────────────────────────────────────────
 # YAML PREDICATE GRAMMAR CONTRACT (S7 / M11):
 # - `when:` fields that gate branch logic use the typed BooleanExpr form
@@ -13,6 +13,29 @@
 # - Operators permitted: ==, !=, in, not_in. Boolean literals must match
 #   the uppercase TRUE/FALSE contract (regression: T-TEST-NEW-19).
 # ─────────────────────────────────────────────────────────────────
+execution_mode:
+  source: "$ARGUMENTS"
+  values: [auto, confirm, autopilot]
+  default: confirm
+  rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, unattended task metadata is required as the command router states."
+checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_planning, step_6_save_context, step_7_handover_check]
+mode_overrides:
+  confirm:
+    role: "Expert Developer using Smart SpecKit for interactive planning"
+    purpose: "Spec-driven planning with step-by-step user approval"
+    action: "Run SpecKit from spec to planning with user checkpoints"
+    workflow_execution: "interactive"
+    approvals: "step_by_step"
+    validation: "checkpoint_based"
+    approach: "Thorough analysis with user validation at each step"
+    mandate: "Define requirements, validate with user, plan incrementally"
+    goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
+    interactive_integration: "Confidence checks surfaced at user checkpoints"
+    step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark step complete after approval -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without user approval. NEVER implement without /speckit:implement."
+    user_response_handling: "{ accept: \"Run /speckit:save\", decline: \"Proceed to termination\", default: \"Wait for user response\" }"
+    principle: "Execute planning workflow with user approval at each checkpoint"
+    checkpoint_behavior: "[Complete step activities, Present results summary, Present options for approval, Wait for user response, Process feedback, Proceed or modify as directed]"
+
 role: Expert Developer using Smart SpecKit for autonomous planning
 purpose: Spec-driven planning with autonomous execution through step 7
 action: Run SpecKit from spec to planning with continuous self-validation
@@ -233,6 +256,7 @@ available_templates:
     resource_map: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 
 template_compliance:
+  # cadence: declared once; each step's own gate below states why it re-runs this command
   strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
   prompt_contract:
     rule: "When a workflow step writes spec docs, embed the matching inline scaffold below in the authoring prompt and preserve the required ANCHOR/H2 order from the canonical template."
@@ -511,6 +535,11 @@ workflow:
           format: '"I need clarity (confidence: [NN%]). Please clarify: A) [interpretation] B) [interpretation] C) [interpretation]"'
           wait_for: "User response"
     validation: understanding_confirmed
+    checkpoint:
+      applies_to: confirm
+      question: "Step 1 Complete: Request analyzed. How would you like to proceed?"
+      use: present_options_to_user
+      options: checkpoint_options.standard
 
   step_2_pre_work_review:
     purpose: Review skills folder and project standards
@@ -518,6 +547,11 @@ workflow:
     required_documents: [AGENTS.md, "Skills folder (if available)"]
     verification: MUST_REVIEW
     validation: principles_established
+    checkpoint:
+      applies_to: confirm
+      question: "Step 2 Complete: Skills folder reviewed. How would you like to proceed?"
+      use: present_options_to_user
+      options: checkpoint_options.standard
 
   step_3_specification:
     purpose: Create comprehensive feature specification
@@ -551,15 +585,29 @@ workflow:
           wait_for: "User response before finalizing spec.md"
       citation_requirement: "[SOURCE: file.md:lines] for code | [CITATION: URL] for external | [CITATION: NONE] for general knowledge"
     post_write_validation:
+      # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair spec.md template drift before proceeding"
     validation: spec_complete
+    checkpoint:
+      applies_to: confirm
+      question: "Step 3 Complete: Specification created. Review spec.md?"
+      use: present_options_to_user
+      options:
+        - { label: "Approve Spec", description: "Specification looks good, proceed" }
+        - { label: "Review Spec", description: "Show spec.md content for review" }
+        - { label: "Modify Spec", description: "Request changes to specification" }
 
   step_4_clarification:
     purpose: Resolve ambiguities and clarify requirements
     activities: ["Extract [NEEDS CLARIFICATION] markers (max 3)", Research codebase for patterns, Resolve ambiguities, Update spec.md with clarifications, Document assumptions]
     outputs: [resolved_ambiguities, clarified_requirements, updated_spec]
     validation: requirements_clear
+    checkpoint:
+      applies_to: confirm
+      question: "Step 4 Complete: Requirements clarified. How would you like to proceed?"
+      use: present_options_to_user
+      options: checkpoint_options.standard
 
   step_5_planning:
     purpose: Create technical plan with implementation approach
@@ -678,44 +726,37 @@ workflow:
           wait_for: "User decision"
       escalation: { trigger: "2 failed attempts OR 10 minutes elapsed", action: "Present options with current findings" }
     post_write_validation:
+      # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair plan.md template drift before proceeding"
     validation: approach_defined
+    checkpoint:
+      applies_to: confirm
+      question: "Step 5 Complete: Technical plan created. Review plan.md?"
+      use: present_options_to_user
+      options:
+        - { label: "Approve Plan", description: "Plan looks good, proceed to save context" }
+        - { label: "Review Plan", description: "Show plan.md for detailed review" }
+        - { label: "Modify Plan", description: "Request changes to technical plan" }
 
   step_6_save_context:
     purpose: Save conversation context for planning documentation
     activities: [Invoke system-spec-kit skill, Preserve requirements/clarifications, Preserve technical approach decisions, Preserve architecture discussions, Refresh the routed canonical spec document with the continuity writer]
-    tool_invocation:
-      command: Read(".opencode/skills/system-spec-kit/SKILL.md")
-      note: 'Read SKILL.md to activate context saving'
     outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"]
     validation: context_saved_successfully
-    post_save_write:
-      pre_index_instruction:
-        command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_path}"
-        note: "First compose structured JSON, then run generate-context.js. Nothing else runs after it."
-      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
-      critical_note: "generate-context.js is the whole write. There is no indexing handoff, no daemon to wait for and no launcher file to check. Regenerate the trigger index with node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs when the packet's trigger_phrases changed."
-      # Narrative timing moved from `when:` to `after:` (separates predicate-`when:` from prose-`after:`).
-      after: "Immediately after the canonical spec document is refreshed on disk"
-    anchor_requirements:
-      enforcement: MANDATORY
-      minimum_anchors: 2
-      pattern: "[context-type]-[keywords]-[spec-number]"
-      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
-      case: UPPERCASE
-      required_sections:
-        - { context_type: "general", section: "Session summary with key outcomes", example_id: "GENERAL-SESSION-SUMMARY-{spec#}" }
-        - { context_type: "decision", section: "Key decisions made during session", example_id: "DECISION-{topic}-{spec#}" }
-      optional_sections:
-        - { context_type: "research", example_id: "RESEARCH-{topic}-{spec#}" }
-        - { context_type: "files", example_id: "FILES-{spec#}" }
-      benefit: "93% token savings on anchor-based retrieval"
-      reference: "See the system-spec-kit save workflow for full anchor documentation"
     importance_tier:
       assign: normal
       promotion_note: "Edit the document's importance_tier frontmatter and rerun the continuity writer to promote to 'important' or 'critical' if warranted"
       tier_reference: "critical > important > normal > temporary > deprecated"
+    checkpoint:
+      applies_to: confirm
+      question: "Step 6 Complete: Context saved. Planning workflow finished!"
+      use: present_options_to_user
+      options:
+      - { label: "Done", description: "Complete the planning workflow" }
+      - { label: "View Summary", description: "Show planning summary" }
+    shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"
+    shared_tail_note: "The writer, post-save rule and anchor requirements live once in the shared tail; {spec_path} is this workflow's packet."
 
   step_7_handover_check:
     purpose: Final workflow closeout after planning
@@ -726,6 +767,13 @@ workflow:
     user_response_handling: { default: "Proceed to termination" }
     outputs: ["workflow closeout emitted"]
     validation: workflow_finish_confirmed
+    checkpoint:
+      applies_to: confirm
+      question: "Step 7: Would you like to refresh continuity before ending the planning workflow?"
+      use: present_options_to_user
+      options:
+        - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
+        - { label: "Skip", description: "Complete planning without another continuity refresh" }
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION

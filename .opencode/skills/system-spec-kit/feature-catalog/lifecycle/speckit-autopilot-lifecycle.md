@@ -51,7 +51,7 @@ When planning in autopilot mode, executable `tasks.md` rows must include `agent`
 | `.opencode/commands/speckit/complete.md` | Command router | Parses autopilot aliases, defines result contract and routes to the complete workflow asset |
 | `.opencode/commands/speckit/plan.md` | Command router | Requires unattended task metadata for autopilot planning |
 | `.opencode/commands/speckit/implement.md` | Command router | Defines branch-preserved failure semantics and terminal reason codes for implementation |
-| `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` | Workflow asset | Defines the unattended autopilot sequence, result schema, reason codes and task metadata contract |
+| `.opencode/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Defines the unattended autopilot sequence, result schema, reason codes and task metadata contract |
 
 ### Validation And Tests
 

@@ -38,7 +38,7 @@ Filename versioning is collision-driven, not timestamp-driven. The first invocat
 
 ### Async & Safety
 
-The two workflow YAMLs that drive the offer flow are `speckit-implement-auto.yaml` and `speckit-complete-auto.yaml`. Each contains a `debug_delegation` or `debug_escalation` block whose action is to prompt the operator with `y / continue manually / skip` and never to call the Task tool with `subagent_type: "debug"`. Together with the bash-only scaffold script, this preserves the user-invoked-only contract for @debug while still giving repeat-failure flows a clean handoff path.
+The two workflow YAMLs that drive the offer flow are `speckit-implement.yaml` and `speckit-complete.yaml`. Each contains a `debug_delegation` or `debug_escalation` block whose action is to prompt the operator with `y / continue manually / skip` and never to call the Task tool with `subagent_type: "debug"`. Together with the bash-only scaffold script, this preserves the user-invoked-only contract for @debug while still giving repeat-failure flows a clean handoff path.
 
 ---
 
@@ -49,8 +49,8 @@ The two workflow YAMLs that drive the offer flow are `speckit-implement-auto.yam
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/runtime/cli/spec/scaffold-debug-delegation.sh` | Script | Generates the five-section debug-delegation markdown from failure-trail flags and JSON attempt rows, with collision-driven file versioning |
-| `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` | Workflow asset | Carries the debug_delegation block that prompts the operator with y / continue manually / skip after the failure threshold |
-| `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` | Workflow asset | Carries the debug_escalation block that prompts the operator without autonomous @debug dispatch |
+| `.opencode/commands/speckit/assets/speckit-implement.yaml` | Workflow asset | Carries the debug_delegation block that prompts the operator with y / continue manually / skip after the failure threshold |
+| `.opencode/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Carries the debug_escalation block that prompts the operator without autonomous @debug dispatch |
 | `.opencode/agents/debug.md` | Agent | Defines the Debug Context Handoff schema that the scaffold script writes against |
 
 ### Validation And Tests

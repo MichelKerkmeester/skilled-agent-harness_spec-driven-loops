@@ -51,8 +51,8 @@ function exists(filePath) {
 function testPhaseCommandContracts() {
   const planDoc = path.join(COMMAND_ROOT, 'plan.md');
   const completeDoc = path.join(COMMAND_ROOT, 'complete.md');
-  const planAutoYaml = path.join(ASSETS_ROOT, 'speckit-plan-auto.yaml');
-  const completeAutoYaml = path.join(ASSETS_ROOT, 'speckit-complete-auto.yaml');
+  const planAutoYaml = path.join(ASSETS_ROOT, 'speckit-plan.yaml');
+  const completeAutoYaml = path.join(ASSETS_ROOT, 'speckit-complete.yaml');
 
   assertTrue(exists(planDoc), '/speckit:plan doc exists');
   assertTrue(exists(completeDoc), '/speckit:complete doc exists');
@@ -94,8 +94,8 @@ function testPhaseFolderContracts() {
 
     // Presentation docs own argument surfaces; phase-child behavior prose
     // lives in the workflow YAML assets, so check the command's full surface.
-    const assetTexts = ['auto', 'confirm']
-      .map((mode) => path.join(ASSETS_ROOT, `speckit_${doc.name}_${mode}.yaml`))
+    const assetTexts = [`speckit-${doc.name}.yaml`, `speckit-${doc.name}-auto.yaml`, `speckit-${doc.name}-confirm.yaml`]
+      .map((assetName) => path.join(ASSETS_ROOT, assetName))
       .filter((assetPath) => exists(assetPath))
       .map((assetPath) => readFile(assetPath));
     const combinedText = [text, ...assetTexts].join('\n');
@@ -109,12 +109,9 @@ function testPhaseFolderContracts() {
 
 function testAssetPhaseFolderNotes() {
   const yamlAssets = [
-    'speckit-plan-auto.yaml',
-    'speckit-plan-confirm.yaml',
-    'speckit-implement-auto.yaml',
-    'speckit-implement-confirm.yaml',
-    'speckit-complete-auto.yaml',
-    'speckit-complete-confirm.yaml',
+    'speckit-plan.yaml',
+    'speckit-implement.yaml',
+    'speckit-complete.yaml',
     'speckit-resume-auto.yaml',
     'speckit-resume-confirm.yaml',
   ];
@@ -139,12 +136,9 @@ function testAssetPhaseFolderNotes() {
 
 function testTemplateCompliancePromptContracts() {
   const planImplementCompleteAssets = [
-    'speckit-plan-auto.yaml',
-    'speckit-plan-confirm.yaml',
-    'speckit-implement-auto.yaml',
-    'speckit-implement-confirm.yaml',
-    'speckit-complete-auto.yaml',
-    'speckit-complete-confirm.yaml',
+    'speckit-plan.yaml',
+    'speckit-implement.yaml',
+    'speckit-complete.yaml',
   ];
 
   for (const yaml of planImplementCompleteAssets) {
@@ -197,12 +191,9 @@ function testTemplateCompliancePromptContracts() {
 
 function testPhaseYamlStructuralContracts() {
   const yamlAssets = [
-    'speckit-plan-auto.yaml',
-    'speckit-plan-confirm.yaml',
-    'speckit-implement-auto.yaml',
-    'speckit-implement-confirm.yaml',
-    'speckit-complete-auto.yaml',
-    'speckit-complete-confirm.yaml',
+    'speckit-plan.yaml',
+    'speckit-implement.yaml',
+    'speckit-complete.yaml',
   ];
 
   for (const yaml of yamlAssets) {
@@ -237,10 +228,7 @@ function testPhaseYamlStructuralContracts() {
 }
 
 function testImplementScopeContracts() {
-  const implementAssets = [
-    'speckit-implement-auto.yaml',
-    'speckit-implement-confirm.yaml',
-  ];
+  const implementAssets = ['speckit-implement.yaml'];
 
   for (const yaml of implementAssets) {
     const filePath = path.join(ASSETS_ROOT, yaml);
@@ -268,10 +256,7 @@ function testImplementScopeContracts() {
 }
 
 function testCompleteYamlContracts() {
-  const completeAssets = [
-    'speckit-complete-auto.yaml',
-    'speckit-complete-confirm.yaml',
-  ];
+  const completeAssets = ['speckit-complete.yaml'];
 
   for (const yaml of completeAssets) {
     const filePath = path.join(ASSETS_ROOT, yaml);
@@ -292,31 +277,58 @@ function testCompleteYamlContracts() {
   }
 }
 
-function testPhaseAssetsMutualConsistency() {
-  // All auto/confirm pairs should have matching step counts
-  const pairs = [
-    ['speckit-plan-auto.yaml', 'speckit-plan-confirm.yaml'],
-    ['speckit-implement-auto.yaml', 'speckit-implement-confirm.yaml'],
-    ['speckit-complete-auto.yaml', 'speckit-complete-confirm.yaml'],
-  ];
+function testExecutionModeContracts() {
+  // Each lifecycle command ships one asset that carries every execution mode;
+  // the checkpoint list must name real steps and each named step must carry
+  // a confirm-only block or flag, so a mode cannot silently lose a gate.
+  const mergedAssets = ['speckit-plan.yaml', 'speckit-implement.yaml', 'speckit-complete.yaml'];
 
-  for (const [autoYaml, confirmYaml] of pairs) {
-    const autoPath = path.join(ASSETS_ROOT, autoYaml);
-    const confirmPath = path.join(ASSETS_ROOT, confirmYaml);
-    if (!exists(autoPath) || !exists(confirmPath)) continue;
-
-    const autoText = readFile(autoPath);
-    const confirmText = readFile(confirmPath);
-
-    // Both should reference the same phase-folder contract
-    const autoHasPhase = autoText.includes('phase-folder') || autoText.includes('phase child');
-    const confirmHasPhase = confirmText.includes('phase-folder') || confirmText.includes('phase child');
+  for (const yaml of mergedAssets) {
+    const filePath = path.join(ASSETS_ROOT, yaml);
+    assertTrue(exists(filePath), `${yaml} exists as the single lifecycle asset`);
+    const text = readFile(filePath);
 
     assertTrue(
-      autoHasPhase === confirmHasPhase,
-      `T242-MC1: ${autoYaml} and ${confirmYaml} agree on phase-folder contract`
+      /^execution_mode:\n\s+source: "\$ARGUMENTS"\n\s+values: \[auto, confirm, autopilot\]\n\s+default: confirm/m.test(text),
+      `T-EM1: ${yaml} declares execution_mode with auto, confirm and autopilot`
+    );
+
+    const checkpointsMatch = text.match(/^checkpoints: \[([^\]]*)\]/m);
+    assertTrue(checkpointsMatch !== null, `T-EM2: ${yaml} lists its checkpoint steps`);
+    const checkpoints = checkpointsMatch ? checkpointsMatch[1].split(',').map((s) => s.trim()).filter(Boolean) : [];
+    assertTrue(checkpoints.length > 0, `T-EM2: ${yaml} has at least one checkpoint step`);
+
+    const stepNames = new Set([...text.matchAll(/^  (step_\d+[a-z0-9_]*):/gm)].map((m) => m[1]));
+    for (const step of checkpoints) {
+      assertTrue(stepNames.has(step), `T-EM3: ${yaml} checkpoint ${step} names a real step`);
+      const stepStart = text.indexOf(`\n  ${step}:`);
+      const afterHeader = text.indexOf('\n', stepStart + 1);
+      const rest = text.slice(afterHeader);
+      const nextStep = rest.search(/\n  [a-z_0-9]+:/);
+      const body = nextStep === -1 ? rest : rest.slice(0, nextStep);
+      assertTrue(
+        body.includes('applies_to: confirm') || body.includes('checkpoint_confirm:'),
+        `T-EM4: ${yaml} checkpoint ${step} carries a confirm-only block or flag`
+      );
+    }
+
+    assertTrue(
+      text.includes('mode_overrides:') && text.includes('\n  confirm:\n'),
+      `T-EM5: ${yaml} carries confirm wording overrides`
+    );
+    assertTrue(
+      text.includes('shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"'),
+      `T-EM6: ${yaml} routes save_context through the shared tail`
     );
   }
+
+  const tailPath = path.join(ASSETS_ROOT, 'speckit-save-context-tail.yaml');
+  assertTrue(exists(tailPath), 'shared save-context tail exists');
+  const tail = readFile(tailPath);
+  assertTrue(
+    tail.includes('save_context_core:') && tail.includes('tool_invocation:') && tail.includes('post_save_write:') && tail.includes('anchor_requirements:'),
+    'T-EM7: shared save-context tail carries the writer, post-save rule and anchor requirements'
+  );
 }
 
 function main() {
@@ -327,7 +339,7 @@ function main() {
   testPhaseYamlStructuralContracts();
   testImplementScopeContracts();
   testCompleteYamlContracts();
-  testPhaseAssetsMutualConsistency();
+  testExecutionModeContracts();
 
   console.log(`\nResult: passed=${passed} failed=${failed}`);
   process.exit(failed > 0 ? 1 : 0);
