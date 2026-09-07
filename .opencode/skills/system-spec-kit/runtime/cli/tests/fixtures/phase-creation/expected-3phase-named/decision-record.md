@@ -1,6 +1,6 @@
 <!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
 ---
-title: "Decision Record: [NAME] [template:level-3/decision-record.md]"
+title: "Decision Record: [NAME]"
 description: "not \"A decision was required regarding the selection of an appropriate approach.\" -->"
 trigger_phrases:
   - "decision"

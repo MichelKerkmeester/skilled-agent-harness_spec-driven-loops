@@ -1,6 +1,6 @@
 <!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
 ---
-title: "Feature Specification: [NAME] [template:level-3/spec.md]"
+title: "Feature Specification: [NAME]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"
@@ -208,7 +208,7 @@ LEVEL 3 SPEC (~165 lines)
 -->
 
 ---
-title: "phase parent section [template:addendum/phase/phase-parent-section.md]"
+title: "phase parent section"
 description: "Template document for addendum/phase/phase-parent-section.md."
 trigger_phrases:
   - "phase"
