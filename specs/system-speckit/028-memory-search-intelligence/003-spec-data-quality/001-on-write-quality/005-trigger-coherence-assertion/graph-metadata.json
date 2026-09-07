@@ -37,11 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,30 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-folder-extractor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-description-shape.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-graph-metadata-shape.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -187,11 +159,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
     "created_at": "2026-06-27T17:15:33.865Z",
-    "last_save_at": "2026-08-30T15:39:35.552Z",
+    "last_save_at": "2026-09-07T16:18:17.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51ad39dfa29bda01882294e877574a885cbdc5d4f2d2bb73b3a730b69ed13380",
+    "source_fingerprint": "sha256:285f80636546390277b874ece3df6411853e88329d08809bbaab2a043a48f3a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e8a5dfc705e87ac9c8f2708824879613af0d0b95a92dd16395e61880d047fae5",
-      "plan.md": "e9c54248629c833c263f3db98d36c8689b9e0c01925c8dc0b3fe19cfae1493bb",
-      "tasks.md": "f86a7268f6f9abfb95b7ef48c9dbb25bf645667fc9b8722a5b251ae5ae44622e",
-      "implementation-summary.md": "c2155f7aeef573250699a910890220b0de82ef0399f0c8d00d63dda2e0b5fefa"
+      "spec.md": "0db77df4babf577269ee542526c995ff25770a975973134572bd8332364c5c92",
+      "plan.md": "ede4f3b0652ffc9018bdad3d3dc5c6609aeb0da64bb590e957e7cf7e8ebdf5c6",
+      "tasks.md": "2a1350f7f1666cec90de68cfbf40bf710fe5cfe1098ee70e474a717ded303f84",
+      "implementation-summary.md": "cc24106341bb7cc1503cd61dfd97984565eb2e8b0bf2fb65dd029818e0b44204"
     },
     "last_active_child_id": null,
     "last_active_at": null

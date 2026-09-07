@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Packet 046 deep research iteration-001 identified four concurrency defects in the skill-advisor daemon and freshness layer",
     "created_at": "2026-05-01T04:10:18Z",
-    "last_save_at": "2026-08-30T15:39:28.067Z",
+    "last_save_at": "2026-09-07T16:17:30.937Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2354f1f52a23f04a3f0d13629c06a02e4e96bff9806d47113344322ccbb91c71",
+    "source_fingerprint": "sha256:c64146a14f3cea6ffefcf283dc25f5502c63c11f8483ae842f43c7f50ea2b9c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5f047ec55cfa2381c1b9eaa0929887016260b829923121e2731fd2801f36c4b",
-      "plan.md": "14e964dd3438bf5092693872663dcc9d41e7925e725a6903803275c266e1112f",
-      "tasks.md": "0b3270e64746648ecc3a1e42e5829d0329637cfe1cfecd3b9e2c367d9ca93de6",
-      "implementation-summary.md": "0da5a032930662580ed7eab56a3cfe9ab274d8ac51bfdf436ebedda30f641a3c"
+      "spec.md": "053460f028c47261fc6ffe14a3e1e82cc3f1e43074e392e5ccfa6cfd82de7e19",
+      "plan.md": "59a61e70bae30464beabc132486f074ae103364a2b9de3028e43db240ba8f8a6",
+      "tasks.md": "b643c9e087b1731ab94cd2a3b52b04769d0aa5dd6da2badb2196347182936543",
+      "implementation-summary.md": "1e25a84ff8d0de829771856601157533100e730e025fe424709a1481c2b34587"
     },
     "last_active_child_id": null,
     "last_active_at": null

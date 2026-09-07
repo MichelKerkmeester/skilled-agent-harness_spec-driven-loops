@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 6: verify-rollout [template:level-1/tasks.md]"
+title: "Tasks: Phase 6: verify-rollout"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "phase six verify rollout"

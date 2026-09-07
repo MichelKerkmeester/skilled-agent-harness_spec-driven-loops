@@ -38,8 +38,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/validation/generated-metadata-integrity.ts",
-      "scripts/tests/phase-parent-pointer.vitest.ts"
+      "lib/validation/generated-metadata-integrity.ts"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "generated-metadata-integrity.ts",
         "kind": "code",
         "path": "lib/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "phase-parent-pointer.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/phase-parent-pointer.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
     "created_at": "2026-06-27T17:15:42.806Z",
-    "last_save_at": "2026-08-30T15:39:35.880Z",
+    "last_save_at": "2026-09-07T16:18:32.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:238ae36a26a630ac9658f2fb606357c5899327895ecfa000a36aa37e64ca21dc",
+    "source_fingerprint": "sha256:35d217edb874608099fe9f1da93cf936aa0a14b07589b92aeb5e03408ad05ff0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ace75abe4827cf4955e8151d0d7a6b7184052d7a4e8a2437c0d5c958ac0bb9c",
-      "plan.md": "b12a3a7e540e78f34aee5420d6a5a4abd268c2e2dae3e9827a921fe728cb26a2",
-      "tasks.md": "cbfe481730846c779380b5736d1c3d0f1f7b4aba8ac906eb4517e1cd3b652203",
-      "implementation-summary.md": "c0f277ae8e7718a914e37da3d5bce0389fea5d37836c6532cb4583f2797d4de6"
+      "spec.md": "a549ed47ad2e7cb69cfe162a22a81594574d6a66a6dcaa54b21be45a90ed6de0",
+      "plan.md": "d0d7d9f47b56540a75e1fd235c0452fead369970f754c5797835c75c25fc0b4f",
+      "tasks.md": "d9305f7fec12db41cb80db7a2fcacc4cb6105636aee868879d121933a30cc9bd",
+      "implementation-summary.md": "dd05b3b832290cfc4674c016c19112861e2614c0392fb5977b4bbfffd0acbb43"
     },
     "last_active_child_id": null,
     "last_active_at": null

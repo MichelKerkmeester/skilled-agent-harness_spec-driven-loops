@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will add a default-off floor override, a prod-mode completeRecall@3 sweep driver and a signal-or-noise report against the C2 baseline. No code change has landed."
 trigger_phrases:
   - "retrieval floor experiment"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 053 doc-alignment and README fill-in [template:level_3/tasks.md]"
+title: "Tasks: Phase 053 doc-alignment and README fill-in"
 description: "Task breakdown for the 5 work-blocks plus packet scaffolding, verification, and completion gates."
 trigger_phrases:
   - "phase 053 tasks"

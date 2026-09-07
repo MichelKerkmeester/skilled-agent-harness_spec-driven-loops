@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: C4 metadata fusion alpha-blend [template:level_2/spec.md]"
+title: "Feature Specification: C4 metadata fusion alpha-blend"
 description: "The fusion stage scores a row from text similarity plus a bounded validation multiplier but never blends a separate metadata-signal vector into the score, so a curated-metadata signal cannot move a retrieval result. C4 proposes a linear alpha-blend of text and metadata scores whose alpha is un-calibrated on this corpus and whose value is subsumed by the cheaper C1 prefix."
 trigger_phrases:
   - "metadata fusion alpha"

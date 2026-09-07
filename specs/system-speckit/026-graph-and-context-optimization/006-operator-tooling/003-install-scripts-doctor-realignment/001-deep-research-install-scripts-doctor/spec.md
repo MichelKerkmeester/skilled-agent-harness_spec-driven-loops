@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: deep-research-install-scripts-doctor [template:level_1/spec.md]"
+title: "Feature Specification: Phase 1: deep-research-install-scripts-doctor"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

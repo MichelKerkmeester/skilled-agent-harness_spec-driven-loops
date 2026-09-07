@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The passive goal feature now has a root /goal command backed by mk_goal and mk_goal_status plugin tools."
 trigger_phrases:
   - "goal command implementation"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/plugins/tests/mk-goal-state.test.cjs"
       - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0b8f11b664ed5c350036ae787c81c544572a7e445fe3805fe46dd2c80618f921"
+      fingerprint: "sha256:16aa0ff0571bad027f9c654d3d5fc3ad5b474e9bcf7b118d7b57d72c8f67cfca"
       session_id: "goal-m1-goal-command-20260629"
       parent_session_id: null
     completion_pct: 100

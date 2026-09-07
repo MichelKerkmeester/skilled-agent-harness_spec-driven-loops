@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built When",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped",
     "created_at": "2026-05-19T07:48:17Z",
-    "last_save_at": "2026-08-30T15:39:29.352Z",
+    "last_save_at": "2026-09-07T16:17:41.564Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65efa871bebe5835afa0180515964413efc2c15e180d079ddad67092de2a0591",
+    "source_fingerprint": "sha256:6d69a27ada3c7cf603c12346e87cac168d677a759fd5108907b56a86280884e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8471b4b8ddfa6d54cb65c9c80d51292f0e70f1e7ecfaa66a72bbd22e8f864805",
-      "plan.md": "b99cf8476a4847baa0fb091d75795a45759c9e0a6de47f8b43b4c1db770e5a2f",
-      "tasks.md": "2a4dd2d275d00261eefd453c4b62feab814803fc461db8f6b4d207222ebaf939",
-      "implementation-summary.md": "7e572cad214dc89d0286ba1b016dcaa4f70fe843da214083275ad620864fc4be"
+      "spec.md": "51313159cc7c0096d9adb6fe835309fa0a468bd8f9b9ffa1a45ec7d9c3733fc9",
+      "plan.md": "1e4796ceac907c5b923fafaa1c84b26c10f92f6096ffebc53b3b1cec3bf04f66",
+      "tasks.md": "80fa3ded89fb6adab28ad960a4f5ae86341fad8031507b9a82b5461bd5d2c816",
+      "implementation-summary.md": "419e00b7d1ef29cde19fbcbe0ca601e64880b5f58f6ea95f97578053540193b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

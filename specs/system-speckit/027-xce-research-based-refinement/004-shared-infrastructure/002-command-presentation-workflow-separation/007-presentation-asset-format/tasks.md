@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Presentation Asset Format — .md to .txt [template:examples/level_1/tasks.md]"
+title: "Tasks: Presentation Asset Format — .md to .txt"
 description: "Task ledger for renaming command presentation assets to .txt and updating references."
 trigger_phrases:
   - "presentation asset format tasks"

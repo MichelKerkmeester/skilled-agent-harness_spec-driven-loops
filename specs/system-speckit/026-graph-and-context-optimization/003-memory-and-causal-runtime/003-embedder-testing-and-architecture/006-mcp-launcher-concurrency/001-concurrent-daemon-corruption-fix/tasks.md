@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: concurrent-daemon-corruption-fix [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: concurrent-daemon-corruption-fix"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

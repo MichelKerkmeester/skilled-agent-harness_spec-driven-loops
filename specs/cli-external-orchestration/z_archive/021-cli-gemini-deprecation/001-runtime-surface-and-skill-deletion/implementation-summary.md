@@ -20,7 +20,7 @@ _memory:
       - ".opencode/commands/**"
       - ".opencode/skills/**"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e382bae9de930eb57464762b9ec991e1ab29be501d66b7589329cd8f6e623997"
       session_id: "gemini-deprecation-2026-06-05"
       parent_session_id: null
     completion_pct: 100

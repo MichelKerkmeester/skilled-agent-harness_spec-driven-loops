@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Version-Suffix Flag-Name Cleanup [template:level_2/tasks.md]"
+title: "Tasks: Version-Suffix Flag-Name Cleanup"
 description: "Task breakdown for the hard clean rename that drops the _V1 suffix from twelve live SPECKIT flags across the live reader code, every live consumer, every test and the live reference docs, leaving every archived and historical record untouched."
 importance_tier: "supporting"
 contextType: "general"

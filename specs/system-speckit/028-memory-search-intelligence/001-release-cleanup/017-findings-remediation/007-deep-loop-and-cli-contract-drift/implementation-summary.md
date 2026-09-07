@@ -17,7 +17,7 @@ _memory:
     key_files:
       - "approved-findings.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:27ea7bbebed8fd3099b02b094d635eb7f188482fc04a17eda06a92a83e086eac"
       session_id: "2026-07-27-028-017-007"
       parent_session_id: null
     completion_pct: 100

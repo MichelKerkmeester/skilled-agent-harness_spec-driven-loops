@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Query-Time Existence Filter Benchmark & Hardening [template:level_2/spec.md]"
+title: "Feature Specification: Query-Time Existence Filter Benchmark & Hardening"
 description: "SPECKIT_QUERY_TIME_EXISTENCE_FILTER (memory-search.ts:372-441, default OFF) ships cheap in principle but package 011's own REQ-008 latency-benchmark acceptance criterion was left unexecuted (checklist.md CHK-064, still unchecked). This phase runs that benchmark for real, soak-tests the filter under concurrent multi-session daemon load, proves the transient-miss-then-restored edge case end-to-end through the public handlers, and adds an aggregated exclusion-count telemetry surface -- closing the evidence bar for a future default-on decision without deciding it here."
 trigger_phrases:
   - "query-time existence filter benchmark"

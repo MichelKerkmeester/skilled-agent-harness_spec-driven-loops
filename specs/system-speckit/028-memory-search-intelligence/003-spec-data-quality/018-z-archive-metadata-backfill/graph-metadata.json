@@ -45,8 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       ".opencode/specs/descriptions.json",
       ".opencode/specs/system-speckit/z_archive/description.json",
       ".opencode/specs/system-deep-loop/z_archive/description.json",
@@ -78,18 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-description.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/026-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
     "created_at": "2026-07-06T06:03:39Z",
-    "last_save_at": "2026-08-30T15:39:36.053Z",
+    "last_save_at": "2026-09-07T16:18:34.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfb8d744fc4d5a8fd3153b90cac4fab63892ff7cf9971cf4c6b8cc9851a38d4b",
+    "source_fingerprint": "sha256:2456530fc04e82488403b502b0702cc1ba110d7c13089eee4678df34119e9808",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3346c578f80ddd21301c1a741d0a16f9cd69cb24533c9f8f8a7ffd1cb4c53942",
-      "plan.md": "1ff606a17d7e97f7026cf4dea46be871ecc9031d46f8330875d448592ab2561d",
-      "tasks.md": "896bd72271001b48a7d8a0b04b211c85c8f9a3677281580766b4b1bc5385e341",
-      "implementation-summary.md": "21f9c5d42baf8efc5465efce43e89aafd0223619621674e8780ca0a168f1e2e8"
+      "spec.md": "b91e5899f2e4cf428a583a2d9a3a6a6b5205f9e49755cfc72e474ad46f365685",
+      "plan.md": "931da5259cef8f85695c4ea60fae45c9d861232abe197d3a879f33138982fb15",
+      "tasks.md": "7e343e9ec673bd00440d9d8a6ababbee5c11baa830a6193c522947aed33dfebd",
+      "implementation-summary.md": "dcd2df863017628452db0e7ffb100bef2c47fccbf9ffe8960b118780b5f04434"
     },
     "last_active_child_id": null,
     "last_active_at": null

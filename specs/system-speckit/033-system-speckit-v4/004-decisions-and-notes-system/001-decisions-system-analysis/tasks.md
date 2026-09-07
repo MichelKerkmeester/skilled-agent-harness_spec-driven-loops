@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: analysis [template:level-1/tasks.md]"
+title: "Tasks: Phase 1: analysis"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "phase one analysis tasks"

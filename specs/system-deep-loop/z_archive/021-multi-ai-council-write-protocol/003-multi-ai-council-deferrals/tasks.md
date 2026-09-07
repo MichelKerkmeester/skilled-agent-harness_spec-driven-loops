@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals) [template:level_3/tasks.md]"
+title: "Tasks: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

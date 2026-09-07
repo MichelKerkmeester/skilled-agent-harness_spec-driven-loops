@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "skill_graph_propagate_enhances MVP shipped 2026-05-15. New module lib/cross-skill-edges/ + MCP tool + 3 fixture tests. Composite detection (family + asset-shape + sibling-transitivity) with report/propose/apply modes."
 trigger_phrases:
   - "026 summary"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts"
       - ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:25648c404c73f1e03c250ff94cddca38773a59ef93f4da84019af1ffe9287214"
       session_id: "026-cross-skill-impl"
       parent_session_id: null
     completion_pct: 100

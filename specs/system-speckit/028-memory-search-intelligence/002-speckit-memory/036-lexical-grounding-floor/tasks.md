@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Lexical-Grounding Floor and Single-Hit Corroboration [template:level_2/tasks.md]"
+title: "Tasks: Lexical-Grounding Floor and Single-Hit Corroboration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "lexical grounding floor"

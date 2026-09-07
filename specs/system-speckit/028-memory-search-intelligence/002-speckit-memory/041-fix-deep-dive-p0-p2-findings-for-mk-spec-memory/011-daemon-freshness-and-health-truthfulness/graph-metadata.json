@@ -44,13 +44,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-      ".opencode/bin/spec-memory.cjs",
-      "scripts/lib/dist-freshness.cjs",
-      "scripts/tests/test-dist-freshness.sh",
-      ".opencode/bin/skill-advisor.cjs",
-      "scripts/spec/validate.sh",
-      "scripts/validation/continuity-freshness.ts"
+      ".opencode/bin/skill-advisor.cjs"
     ],
     "entities": [
       {
@@ -78,39 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-memory.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "test-dist-freshness.sh",
-        "kind": "script",
-        "path": "scripts/tests/test-dist-freshness.sh",
-        "source": "derived"
-      },
-      {
         "name": "skill-advisor.cjs",
         "kind": "file",
         "path": ".opencode/bin/skill-advisor.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "continuity-freshness.ts",
-        "kind": "code",
-        "path": "scripts/validation/continuity-freshness.ts",
         "source": "derived"
       },
       {
@@ -196,11 +160,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Suppress Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding-ID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipts",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build` (exit 0) cannot clear blocked the CLI shim (live-reproduced twice, deep-dive Chain C), the stale condition was misclassified as retryable exit 75 while hooks fail open, and the daemon's context-server had been crash-looping with SIGBUS earlier that morning (launcher log 05:52-06:07)",
     "created_at": "2026-07-03T09:44:25Z",
-    "last_save_at": "2026-08-30T15:39:35.450Z",
+    "last_save_at": "2026-09-07T16:18:15.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d4c53d2291d7ddba65ed9e9c312918a3686ed5a91d90635ccb7737385fb1c90",
+    "source_fingerprint": "sha256:3c9cc0bd48d116f0ee4054ea5976876143dc20016a2b92c7d6bf015217a51cbb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "05c0354ec1132de95a99b6be734985915313632fc779a5ef1f35ff5a6d6ccd7b",
-      "plan.md": "bf1263c140e3dc90e6b6f1c1098a36fd6fbc9a62e16db97c411fce2e38864cea",
-      "tasks.md": "cd8acc12c600806207c53722d8d7492550e31a546d74ba8abc2a40b61bf7eddd",
-      "implementation-summary.md": "f0ac96f92388b80cdc62e333950c305f95f870e35046bd69163bcf510ebe8ad0"
+      "spec.md": "2537e09b778af87d2c0176a7c635da05cb0ad0f14ee5eea55e125254f840fcc9",
+      "plan.md": "0c083e7002ec5aa54eab2a94c442efb31e1ff0214538891fd6d69df8ee4d7774",
+      "tasks.md": "def8e70202504c8bff873a535fba90e30fa61f4dc4a1ac66d13d1c0a820db52c",
+      "implementation-summary.md": "4c33e2ba3e0b17654908ce8add41a3b14810538bbe01e2e4eaa06388493dda5b"
     },
     "last_active_child_id": null,
     "last_active_at": null

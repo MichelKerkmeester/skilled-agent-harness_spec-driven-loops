@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: deferred-followups [template:level_3/implementation-summary.md]"
+title: "Implementation Summary: deferred-followups"
 description: "Final delivery summary for the ten Gate 7 deferred followups."
 trigger_phrases:
   - "deferred followups complete"
@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d904abd224a6f7bd12e86015bb60846ab99bc238483562b8a51d5b01532178aa"
       session_id: "scaffold-scaffold/004-fix-template-deferred-followups"
       parent_session_id: null
     completion_pct: 100

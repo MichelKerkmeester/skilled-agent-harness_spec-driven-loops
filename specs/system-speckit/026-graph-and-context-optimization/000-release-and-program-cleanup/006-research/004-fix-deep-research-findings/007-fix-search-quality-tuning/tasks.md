@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 008 Search Quality Tuning [template:level_2/tasks.md]"
+title: "Tasks: 008 Search Quality Tuning"
 description: "Task list for closing F-011-C1-01..05. Five surgical fixes plus targeted tests + validate + commit + push."
 trigger_phrases:
   - "F-011-C1 tasks"

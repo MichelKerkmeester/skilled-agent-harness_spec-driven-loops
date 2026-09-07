@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Ensure rerank sidecar from launchers [template:level_1/tasks.md]"
+title: "Tasks: Ensure rerank sidecar from launchers"
 description: "Task breakdown for the self-electing-primary launcher integration."
 trigger_phrases:
   - "003 tasks ensure sidecar"

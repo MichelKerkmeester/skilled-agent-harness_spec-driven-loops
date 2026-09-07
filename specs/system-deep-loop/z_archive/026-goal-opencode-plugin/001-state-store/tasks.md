@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: state-store [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: state-store"
 description: "Completed tasks for per-session goal state, atomic writes, queued mutation, and state verification."
 trigger_phrases:
   - "goal state store tasks"

@@ -40,15 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/errors/recovery-hints.ts",
-      "scripts/tests/workflow-invariance.vitest.ts",
-      "tests/skill-graph-corruption-recovery.vitest.ts",
-      "tests/shared-daemon-runner-helpers.vitest.ts",
-      "tests/stage1-expansion.vitest.ts",
-      "tests/runtime-routing.vitest.ts",
-      "tests/launcher-lease.vitest.ts",
-      "lib/search/search-flags.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,54 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "recovery-hints.ts",
-        "kind": "code",
-        "path": "lib/errors/recovery-hints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow-invariance.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workflow-invariance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-corruption-recovery.vitest.ts",
-        "kind": "test",
-        "path": "tests/skill-graph-corruption-recovery.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared-daemon-runner-helpers.vitest.ts",
-        "kind": "test",
-        "path": "tests/shared-daemon-runner-helpers.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-expansion.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage1-expansion.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-routing.vitest.ts",
-        "kind": "test",
-        "path": "tests/runtime-routing.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-lease.vitest.ts",
-        "kind": "test",
-        "path": "tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -194,11 +138,59 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Cluster",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Dispatch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Happy Path",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 016 deep-research dispatch (iters 1-9) flagged the vitest suite as red",
     "created_at": "2026-05-22T07:42:13.848Z",
-    "last_save_at": "2026-08-30T15:39:30.888Z",
+    "last_save_at": "2026-09-07T16:17:48.436Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c093f4eafc558d4a572cd180c3d4be1a032790630762c439cf40d398f580ef96",
+    "source_fingerprint": "sha256:c472b7b0648a1354006d52163f25ec3206a7a1205d75970ca9754e779f56a293",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "825e06d5d5578c9084d624d6bc6cd4c49cc5620be0f113dc7c315178b9144b02",
-      "plan.md": "9ad0a7ff80aa79b83d245a70cd94c359c57c89f7af190e8627707d43418ddc2e",
-      "tasks.md": "e51e386961ab5af0e68853aa0a0ec023f6a5efc2b6bd4eb8ccabec77f4141bfd",
-      "implementation-summary.md": "0766afe59dd7cee29b439e991e305b6174b8de917ae4562d3e7c794971b32d14"
+      "spec.md": "2cf81149edcea45960ef3f0c02fe9f2115d8fab5cefdf6fbc0a4505bbd45d9d0",
+      "plan.md": "9ebc8b76b91b389c0014153866c5d4e0aa4b814d36c1a2a915ddfb0854cf0e00",
+      "tasks.md": "6e7affc3d7a857169f759e7316ad3a6b25d939bd2110d62e86c13d41d6c286f3",
+      "implementation-summary.md": "d9630d08855a778f0dc3a5c0bde87758723b05c9e69dff153fc11a3f269e9bc8"
     },
     "last_active_child_id": null,
     "last_active_at": null

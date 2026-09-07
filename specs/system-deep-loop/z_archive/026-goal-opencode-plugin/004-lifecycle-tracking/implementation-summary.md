@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Lifecycle tracking is now active inside mk-goal: session events restore goals, message updates refresh evidence and usage, and token budgets stop active goals."
 trigger_phrases:
   - "goal lifecycle implementation"
@@ -18,7 +18,7 @@ _memory:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
-      fingerprint: "sha256:cc8153b70836648cc213172ea49a27803e6e2990e627d217ad42625f6e541748"
+      fingerprint: "sha256:449d3d285ad7cc302cb49f51f4f7ccb042e6350cfcfed4b8358d00cdabb55940"
       session_id: "goal-m2-lifecycle-20260628"
       parent_session_id: null
     completion_pct: 100

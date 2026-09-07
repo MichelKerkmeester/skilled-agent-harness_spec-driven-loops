@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: C4 Metadata Fusion Alpha-Blend [template:level_2/plan.md]"
+title: "Implementation Plan: C4 Metadata Fusion Alpha-Blend"
 description: "Add a flag-gated metadata-signal lane to the fusion stage that linearly blends text and metadata scores, calibrate alpha against this corpus, and gate the build behind a measured C1 prefix floor movement."
 trigger_phrases:
   - "metadata fusion alpha"

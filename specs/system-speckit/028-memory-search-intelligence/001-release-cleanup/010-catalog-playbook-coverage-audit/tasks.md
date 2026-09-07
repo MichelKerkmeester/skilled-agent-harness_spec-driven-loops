@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 028 Catalog and Playbook Coverage Audit [template:level_2/tasks.md]"
+title: "Tasks: 028 Catalog and Playbook Coverage Audit"
 description: "The audit task list for the 20-iteration read-only coverage audit, all tasks done. Covers setup, the weighted iterations across two models, the verification pass and the synthesis into research.md. No catalog or playbook modified."
 trigger_phrases:
   - "catalog playbook coverage audit tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: factory-shard-fallback-for-hf-voyage-openai [template:level_1/plan.md]"
+title: "Implementation Plan: factory-shard-fallback-for-hf-voyage-openai"
 description: "Investigate whether factory.ts contains hf-local, voyage, or openai active-embedder database resolvers that need ADR-012 shard fallback. The implementation path is documentation-only because the analogous resolver functions do not exist."
 trigger_phrases:
   - "factory shard fallback plan"

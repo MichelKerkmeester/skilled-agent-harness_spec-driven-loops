@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 8: runtime-mirror-and-mcp-config [template:level-1/tasks.md]"
+title: "Tasks: Phase 8: runtime-mirror-and-mcp-config"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Off-Corpus Eval Fixture and False-Confirm Gate [template:level_2/plan.md]"
+title: "Implementation Plan: Off-Corpus Eval Fixture and False-Confirm Gate"
 description: "Add an off_corpus query class with absent terms and zero relevance rows to the eval ground-truth, build a scripts/evals driver that calls the existing dormant falseGoodOnHardNegatives metric over that class, then gate the measured rate behind a default-off SPECKIT_FALSE_CONFIRM_MAX_RATE threshold with a grandfather report mode, reusing the existing confusion metric verbatim with no verdict change."
 trigger_phrases:
   - "off corpus eval fixture"

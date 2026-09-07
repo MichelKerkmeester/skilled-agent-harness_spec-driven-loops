@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: NOT STARTED. This phase is a planning artifact capturing the client-side reconnect investigation; no implementation has shipped yet."
 trigger_phrases:
   - "client reconnect status"

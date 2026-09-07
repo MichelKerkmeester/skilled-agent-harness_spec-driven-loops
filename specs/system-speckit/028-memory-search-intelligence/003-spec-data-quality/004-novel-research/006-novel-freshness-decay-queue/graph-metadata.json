@@ -181,7 +181,7 @@
     ],
     "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read",
     "created_at": "2026-06-27T17:15:39.015Z",
-    "last_save_at": "2026-08-30T15:39:35.712Z",
+    "last_save_at": "2026-09-07T16:18:26.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,13 +190,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c29d3b154fcfec08bedd17526cfcf83c46a437923c8cdde63c2e748dc859336",
+    "source_fingerprint": "sha256:b65f90b3fca014842f2302f82414365ab6f81293ac847c5b0cb468227e12e526",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93727e31b9121b51d707b910694a8e499dd284eb57058d4183fb0a65f75c5b7f",
-      "plan.md": "51ec1a914e09f1ec550a20afbfea5c20352b3eb15dd1456a0fd4b4208075d05c",
-      "tasks.md": "4005021fef53f09eb62d4260d29453bd2ce7a9b16151db89bfc93ca502f8c356",
-      "implementation-summary.md": "898eeb30ffad84ec736997dfe8c4aa6b78252b287aada373c6884745d83a786c"
+      "spec.md": "4f79bc1eb6bc871beef8c154c1f0ff4d02488a5abd0a8ece1ab873ec2addbef2",
+      "plan.md": "19e8bd1dd0d3ecb1639d4839e318757c9f773b5c5883ffc75591db649e8c6514",
+      "tasks.md": "150bec4f01895d426b3a35b48088a8d9bedea7c2dd6549bd510bd88a72f4dfa7",
+      "implementation-summary.md": "15d43b1acef9e7807d439fc0500916cd5211671ffdf39dbd117f089372f8e26b"
     },
     "last_active_child_id": null,
     "last_active_at": null

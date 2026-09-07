@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Drop the Grok 4.5 and 4.6 model families from the cli-devin skill and its executor roster; Grok is a Cursor-hosted model and its presence in devin's roster caused a misroute [template:level-2/spec.md]"
+title: "Feature Specification: Drop the Grok 4.5 and 4.6 model families from the cli-devin skill and its executor roster; Grok is a Cursor-hosted model and its presence in devin's roster caused a misroute"
 description: "Grok models are Cursor-hosted and must not appear in cli-devin's allowlist. Remove the 7 bare devin Grok ids from SKILL.md, README.md, cli-reference.md, providers-and-models.md, executor-config.ts, fanout-run.cjs, and fanout-run.vitest.ts while preserving all cursor-grok-* entries."
 trigger_phrases:
   - "grok devin roster"

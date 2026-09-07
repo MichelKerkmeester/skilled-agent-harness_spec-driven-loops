@@ -47,8 +47,7 @@
       "implementation-summary.md",
       "research/research.md",
       "research/deep-research-config.json",
-      "research/deep-research-state.jsonl",
-      ".opencode/commands/memory/search.md"
+      "research/deep-research-state.jsonl"
     ],
     "entities": [
       {
@@ -91,12 +90,6 @@
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search ignored its parseable render template and answered in free prose",
     "created_at": "2026-06-12T06:12:49.512Z",
-    "last_save_at": "2026-08-30T15:39:34.103Z",
+    "last_save_at": "2026-09-07T16:18:00.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:956d2c2abb95ed6c89836448bcc89060b8a27868a43b3311eaa2b2910d021bc1",
+    "source_fingerprint": "sha256:6c3f2c205bf55febafa568659eb553f3ffbc787162bb4d8b53d447bbedd0c53e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e9b16c21719e36e2bf3736e2d4e8d6d8ca1d4e98d0c4319326c03bb23df7e75",
-      "plan.md": "afa259e628f25bf91e86e1eb6fedce37c5f56e446359890576d6076774a930b7",
-      "tasks.md": "84be356012d06dd97feeb8120ad9a21d696eed9de571000fec7b6e0be6fe484e",
-      "implementation-summary.md": "8f8a5133ae431c571e15c2c8252f7d2b77720539e8b13339732f1858e40b6d4e",
-      "research/research.md": "402ea87cbf214d5b01de0f6e607f12ee5e5d749dc19de84861e490d08656ff11"
+      "spec.md": "1952a82ab2e1a6693849f0fd9fcca9679aab7d10bf9d77b8b93ae567820a2edb",
+      "plan.md": "929599e7530b113327ab9f253653c76d6de006d1560b615ccff53e5c380c274d",
+      "tasks.md": "28cef37467f779d49966fb2b15070eeab457d1f270fb233c739b6a8a406420c5",
+      "implementation-summary.md": "797219245fdbda8f6374058942da81c0c3c3b954c14d9192420d5c23ba1ba716",
+      "research/research.md": "9f1ebd97bdad6f0366234ae9b998b40c0fb29edc5955588e5ed86d218f86ba6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

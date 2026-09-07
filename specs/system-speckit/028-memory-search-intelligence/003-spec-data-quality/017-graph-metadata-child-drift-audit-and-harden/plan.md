@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Audit and harden graph-metadata.json child-drift, where a phase parent's children_ids silently lags the phase-child folders present on disk [template:level_3/plan.md]"
+title: "Implementation Plan: Audit and harden graph-metadata.json child-drift, where a phase parent's children_ids silently lags the phase-child folders present on disk"
 description: "Bash and TypeScript validators that audit every phase parent's children_ids against its on-disk phase children, backfill the drifted set (including sk-design and 003-spec-data-quality), and add a drift check to the validation pipeline so the gap cannot silently accumulate again."
 trigger_phrases:
   - "graph-metadata drift plan"

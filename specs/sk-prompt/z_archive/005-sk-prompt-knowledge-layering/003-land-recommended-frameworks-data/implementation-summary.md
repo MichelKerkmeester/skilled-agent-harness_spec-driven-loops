@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/sk-prompt/assets/model-profiles.json"
       - ".opencode/skills/sk-prompt/references/model-profiles.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:da737efff3082c23c5085700ff428029fe6f44eca4eab6726298a38b46262504"
       session_id: "complete-003-land-recommended-frameworks-data"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A10 Per-Surface Gates [template:level_2/tasks.md]"
+title: "Tasks: A10 Per-Surface Gates"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "per-surface gates tasks"

@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/061-template-optional-absent",
+  "description": "Validation fixtures used minimal headers and did not exercise live template comparison",
+  "keywords": [
+    "validation",
+    "fixtures",
+    "minimal",
+    "headers",
+    "exercise",
+    "live",
+    "template",
+    "comparison"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.695Z",
+  "specId": "061",
+  "folderSlug": "template-optional-absent",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

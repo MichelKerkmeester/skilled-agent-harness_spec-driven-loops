@@ -219,7 +219,7 @@
     ],
     "causal_summary": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence or for machine logic reading",
     "created_at": "2026-06-27T17:15:46.346Z",
-    "last_save_at": "2026-09-03T22:23:49.143Z",
+    "last_save_at": "2026-09-07T16:18:15.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,13 +231,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c05c3c055d1c83844b4f0317fa16238f66b289db2f30affae1a99ed8f31c9ff8",
+    "source_fingerprint": "sha256:d857f2f6ab9e2ce5b7599113739a40b2ada927e6f1b9bb3d150ececad30b67a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "374d85f4615cc415f98ce89a60168a6e2b1655c4f3b80e933871ff27814ebbaa",
+      "spec.md": "032e4045e235f94e6a5900f879a5fd1c3e2f4d44c2cf71f6e2e48e0bb75267dd",
       "plan.md": "7f2d9e2cbb48618e5c2936197c5210404af7e9dcda2cf0a0fb0415f642bafbfe",
       "tasks.md": "36ea0da01538a435f5c6ddf57630f2c66e3ce10331621a8f0b237e2dd4cfa60f",
-      "decision-record.md": "be7b18c79ac15fd90aaef34a5b0951d0ec045a4bd5f9360aa7b4d5c47b182add",
+      "decision-record.md": "44d7a4c4afd60e1a480456a070512d6fed494e5801da75d67852b65577f96ad3",
       "implementation-summary.md": "7f22652a94a5f56f6c7f36c1a69fc9e8c35d45841e6e35a200e46c2792d94165",
       "research/research.md": "93e3a69758ddc20272ee9cc57fe3a3a3357b1751cc0dbd55e2eef689969e1bf6",
       "handover.md": "d4eb29c7f8a11a90b3fc014fa3d31c1674203ccf829384a34440fbea9522b44d"

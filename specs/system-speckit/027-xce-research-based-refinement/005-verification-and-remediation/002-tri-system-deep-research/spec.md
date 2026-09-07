@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Tri-System Deep Research Program [template:examples/level_1/spec.md]"
+title: "Feature Specification: Tri-System Deep Research Program"
 description: "Fifty-angle deep-research investigation of system-spec-kit, system-skill-advisor, and system-code-graph grounded in the 027 epic, executed as fifty gpt-5.5 read-only research iterations."
 trigger_phrases:
   - "tri-system deep research"

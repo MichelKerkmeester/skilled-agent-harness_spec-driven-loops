@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The `sk-improve-agent` triad is the system's self-improvement engine: it scaffolds candidates, scores them across 5 integration-aware dimensions, runs benchmarks, and gates promotion through 5 legal-stop conditions (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate)",
     "created_at": "2026-05-02T08:57:14.987Z",
-    "last_save_at": "2026-08-30T15:39:22.599Z",
+    "last_save_at": "2026-09-07T16:17:14.585Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b8094acaacdad6fd12559b89950622702e31e0984116e5949bf11bf0bd977448",
+    "source_fingerprint": "sha256:40218b2c830f93dee72be088879aeab854faf8dc94e03f7d57089aedc7fdcfe7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3be4df201c8823b583e0ee424f2d73869e1517f731ae17129f7f2f1241cb7d7b",
+      "spec.md": "2f8238688b62bfcbd7e7e534ffd698564f051704e8c4e5685ca87c0e8c1eb267",
       "plan.md": "58060575f5dd721255e71fc85d77bfd25a064b52b07bc1a656e2b3cb66044e0e",
       "tasks.md": "f29cc449d922d6644bce63137d9cbf03a3dbb496617951326f4b56d426145d55",
       "decision-record.md": "bc5a4cb0d8d146adbbacdcf728e779a15ba4c119129989c5399f984217e7a175",

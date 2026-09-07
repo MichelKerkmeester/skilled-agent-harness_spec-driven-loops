@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Novel typed-relation KG auto-extracted [template:level_2/plan.md]"
+title: "Implementation Plan: Novel typed-relation KG auto-extracted"
 description: "Wire an LLM typed-relation extractor onto the shipped rule-based extractor so high-value docs gain semantic typed edges. Close the unwired registerLlmBackfillFn seam, persist LLM-derived edges against the six canonical RELATION_TYPES with a distinct provenance marker and expose a read-only navigation surface."
 trigger_phrases:
   - "typed relation kg"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: CocoIndex install hygiene pipx repair [template:level_1/tasks.md]"
+title: "Tasks: CocoIndex install hygiene pipx repair"
 description: "Open tasks for CocoIndex pipx repair after diagnosis."
 trigger_phrases:
   - "cocoindex pipx repair"

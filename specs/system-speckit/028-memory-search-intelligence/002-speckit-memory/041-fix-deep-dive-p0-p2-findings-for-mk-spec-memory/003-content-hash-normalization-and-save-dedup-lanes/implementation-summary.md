@@ -21,7 +21,7 @@ _memory:
       - "mcp_server/handlers/memory-save.ts"
       - "mcp_server/handlers/save/pe-orchestration.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:93c9b94f9e38fde735405e0792af1b4717c4463c3ad75a03d4ec1fdcf83b1c14"
       session_id: "2026-07-03-016-003-implementation"
       parent_session_id: null
     completion_pct: 100

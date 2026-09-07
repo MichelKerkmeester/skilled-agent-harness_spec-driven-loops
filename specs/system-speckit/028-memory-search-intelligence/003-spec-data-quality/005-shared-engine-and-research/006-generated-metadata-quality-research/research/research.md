@@ -1,5 +1,5 @@
 ---
-title: "Research: 031 Generated JSON Quality and Safety Study [template:research]"
+title: "Research: 031 Generated JSON Quality and Safety Study"
 description: "A 10-angle deep-research study on improving the quality and safety of the spec-kit generated JSON metadata, description.json and graph-metadata.json, and the generators that produce them. Finds that two safety classes dominate, broad-walk over-reach and non-idempotent writes, both of which produce unscoped cross-session commit churn, and that a single shared identity resolver plus a first-class generated-metadata validator are the convergent fixes that four and three angles reached independently. Confirms the z_future backfill crash fix already shipped this session and scopes the residual to the split exclusion policy. Produces 14 ranked proposals across four themes with a recommended build order."
 trigger_phrases:
   - "generated json quality research"

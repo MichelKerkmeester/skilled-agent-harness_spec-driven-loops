@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 002 Deep-Loop Workflow State-Machine Remediation [template:level_2/tasks.md]"
+title: "Tasks: 002 Deep-Loop Workflow State-Machine Remediation"
 description: "Task list for closing F-010-B5-01..04 and F-019-D4-01. Five surgical fixes plus test extension plus validate + stress + commit + push."
 trigger_phrases:
   - "F-010-B5 tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: advisor-integration [template:level-1/spec.md]"
+title: "Feature Specification: Phase 5: advisor-integration"
 description: "Advisor cleanup after the constitutional tier is retired. Keep the three hardcoded render.ts capsules (hygiene/governor/proof), fix the timeout-fallback render so it still carries them, and correct the stale cold-start/constitutional claim in the injection-contract doc. No new decisions surface is referenced (that approach was dropped)."
 trigger_phrases:
   - "advisor integration"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: 044 Template contract divergence [template:level_2/spec.md]"
+title: "Feature Specification: 044 Template contract divergence"
 description: "memory_save rejected canonical V2.2 spec docs that strict validation accepted because it applied the generated-memory wrapper contract to hand-authored spec documents."
 trigger_phrases:
   - "044 template contract divergence"

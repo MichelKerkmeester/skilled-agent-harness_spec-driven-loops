@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A4 Schema Warn to Error [template:level_2/spec.md]"
+title: "Feature Specification: A4 Schema Warn to Error"
 description: "DESCRIPTION_SHAPE and GRAPH_METADATA_SHAPE validate with hand-rolled JSON checks at warn severity while the real zod schemas sit dormant and a never-triggered legacy_grandfathered bypass weakens strict mode. This phase promotes both rules to error against the real schemas and deletes the dead bypass."
 trigger_phrases:
   - "schema warn to error"

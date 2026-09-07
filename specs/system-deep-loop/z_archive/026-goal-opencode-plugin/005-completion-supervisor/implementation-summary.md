@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The goal supervisor now runs on idle, records strict verifier results, completes only on met, and exposes redacted verifier evidence through status."
 trigger_phrases:
   - "goal supervisor implementation"
@@ -18,7 +18,7 @@ _memory:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/tests/mk-goal-supervisor.test.cjs"
     session_dedup:
-      fingerprint: "sha256:c95d5705ead5885e38f83e2a5834dd27c30dbccc13c839a4c6b94d7262c89427"
+      fingerprint: "sha256:ef99d57cf3a69cff0e0e030ef345c5a65bba3cf4e0ff4c67cea94168a8d6f0ff"
       session_id: "goal-m2-supervisor-20260628"
       parent_session_id: null
     completion_pct: 100

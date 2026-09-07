@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status In Progress: all 3 layers implemented and targeted-verification passing. Numeric latency benchmark satisfied via sibling packet 020-query-time-filter-benchmark. Remaining completion gates: lint baseline, broad core-suite failures."
 trigger_phrases:
   - "automatic drift self-healing"

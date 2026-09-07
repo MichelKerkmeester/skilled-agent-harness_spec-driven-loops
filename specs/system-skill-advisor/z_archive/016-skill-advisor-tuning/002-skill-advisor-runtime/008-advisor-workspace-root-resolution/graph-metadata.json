@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The skill advisor wrote its generation state to <cwd>/.opencode/skills/.advisor-state whenever it ran with a subdirectory as the working directory, creating stray nested .opencode trees across the repo. Resolve the workspace root deterministically from the module location instead of process.cwd().",
     "created_at": "2026-06-21T15:40:00Z",
-    "last_save_at": "2026-08-30T15:39:27.434Z",
+    "last_save_at": "2026-09-07T16:17:30.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76ed9f690df56b1e368676a260e1e33455729471f8fb3293f86e08cdf634275e",
+    "source_fingerprint": "sha256:0672969f9f65d286c5bb7aa481cf522a441e077f517d7b5cd56bc0999b2f8d03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0919482d76dcd70d6560bb0322e91dfa06c24734d6ecab8a55f1868e7bb4a654",
-      "plan.md": "78750fc0dce1f10051de89fa91b09d889839b8c9a132bb641f779c7272a2fce1",
-      "tasks.md": "604d76d9ed2c14b4e0c710a961a3c71543696874bbb300b5ab698b8f203b1479",
-      "implementation-summary.md": "b7d70695f68125f206da4718f64d2639ee0a12d971d604b300c9f0ac368196ed"
+      "spec.md": "fed53ed8a41c6ff7497e923d4d49f9e2a4c7603e21372f016431ffeac0500eaa",
+      "plan.md": "d7333b6debd04722e58370773295fa6a548bbb172383ad6192f258db28358da3",
+      "tasks.md": "94fbd1653156632e80c0d42f0ce51fe34b206aa7475b7a44ac0e55eb1dc671d6",
+      "implementation-summary.md": "8b7d0c36303afc17c903f8e9ac4e95f43c6383d9869d271b840659e9d72ade4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

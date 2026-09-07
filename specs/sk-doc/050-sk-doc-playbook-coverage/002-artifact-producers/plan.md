@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: artifact-producers [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 2: artifact-producers"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

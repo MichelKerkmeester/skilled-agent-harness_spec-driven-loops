@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: 044 Template contract divergence [template:level_2/plan.md]"
+title: "Implementation Plan: 044 Template contract divergence"
 description: "Trace the strict validator and memory_save contracts, then align memory_save so canonical spec docs use the spec-doc health contract instead of generated-memory wrapper sections."
 trigger_phrases:
   - "044 implementation plan"

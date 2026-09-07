@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Retrieval Floor Experiment [template:level_2/spec.md]"
+title: "Feature Specification: Retrieval Floor Experiment"
 description: "The prod retrieval path guarantees a never-cut-below-3 minimum then narrows the returned set through a cliff-conditional confidence truncation and a token budget, with no measurement of whether results 4-10 are signal or noise on this corpus. The whole frozen Tier-C truncation-law constraint rests on an untested assumption about that tail."
 trigger_phrases:
   - "retrieval floor experiment"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: findings-triage-and-verification [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 1: findings-triage-and-verification"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

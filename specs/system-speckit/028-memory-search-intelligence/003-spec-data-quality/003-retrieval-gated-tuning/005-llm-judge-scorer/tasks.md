@@ -1,5 +1,5 @@
 ---
-title: "Tasks: C5 LLM-as-judge quality scorer [template:level_2/tasks.md]"
+title: "Tasks: C5 LLM-as-judge quality scorer"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "llm judge quality scorer"

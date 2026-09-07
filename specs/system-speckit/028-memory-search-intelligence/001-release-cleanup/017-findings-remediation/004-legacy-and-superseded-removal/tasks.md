@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: legacy-and-superseded-removal [template:level-1/tasks.md]"
+title: "Tasks: Phase 4: legacy-and-superseded-removal"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Planned status for the report-only contradiction detector. Nothing is implemented yet and this packet is a scaffold blocked on two upstream deps."
 trigger_phrases:
   - "contradiction detection"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:4469b83d14a10792548215b23008f27df44520f83a6e19346e4b874ac7b2603b"
       session_id: "template-session"
       parent_session_id: null
     completion_pct: 0

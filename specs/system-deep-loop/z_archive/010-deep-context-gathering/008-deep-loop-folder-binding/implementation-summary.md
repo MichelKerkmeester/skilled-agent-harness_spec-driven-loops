@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The /deep:* setup contract now binds a spec folder named inline in the scope and fails closed on standalone-while-identifiable, so a context run pointed at a folder lands inside it."
 trigger_phrases:
   - "deep loop folder binding summary"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md"
       - ".opencode/commands/deep/start-context-loop.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:84ee0bd61b8a0e2daff1b8d4338c24ee4915bd21c5a3f4c3c161d710904a4c98"
       session_id: "ctx-fix-008-deep-loop-folder-binding"
       parent_session_id: null
     completion_pct: 100

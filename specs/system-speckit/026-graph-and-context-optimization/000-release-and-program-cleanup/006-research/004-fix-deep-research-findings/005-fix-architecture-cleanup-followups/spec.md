@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 006 Architecture Cleanup Remediation [template:level_2/spec.md]"
+title: "Feature Specification: 006 Architecture Cleanup Remediation"
 description: "Closes 15 P2 findings F-016-D1-01..08, F-017-D2-01..03, and F-018-D3-01..04 from packet 046. Tightens module boundaries by extracting neutral utilities, breaks dependency cycles by extracting shared types, removes a dead exported symbol, and centralizes vocabulary tuples so schemas/types/guards cannot drift. Addresses the largest sub-phase by deferring an oversized MCP-tool-contract source-of-truth refactor to a follow-on packet."
 trigger_phrases:
   - "F-016-D1"

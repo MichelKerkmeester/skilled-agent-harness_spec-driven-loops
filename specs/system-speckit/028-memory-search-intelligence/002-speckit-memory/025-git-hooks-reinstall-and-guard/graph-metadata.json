@@ -50,8 +50,7 @@
       ".opencode/scripts/git-hooks/post-rewrite",
       ".opencode/bin/worktree-guard.sh",
       ".claude/settings.json",
-      ".opencode/bin/check-git-hooks.sh",
-      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
+      ".opencode/bin/check-git-hooks.sh"
     ],
     "entities": [
       {
@@ -112,12 +111,6 @@
         "name": "check-git-hooks.sh",
         "kind": "script",
         "path": ".opencode/bin/check-git-hooks.sh",
-        "source": "derived"
-      },
-      {
-        "name": "memory-drift-marker.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "scratch-repo",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Direct inspection of this checkout's `.git/hooks/` confirms the gap",
     "created_at": "2026-07-09T20:25:27.010Z",
-    "last_save_at": "2026-08-30T15:39:35.130Z",
+    "last_save_at": "2026-09-07T16:18:10.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73233633ba2ede260e369a9af404b9531305529eb3d5d61212a149b941174279",
+    "source_fingerprint": "sha256:bedce7cbb82d4dc2e336cc465840665da7a9fb8c9b543d977d021d9b5ba91cca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4eacb0cc275f4f9c5cf1033039af0615e609054b4f3a8c45ca5e0afbe731ae89",
+      "spec.md": "bfdb103d591560f3c88ac86870e28e7ee2340f6800f89b40511c0ba3e2434667",
       "plan.md": "1284e397bb9d4548a38dca3629e2c28bf9d0907c512119b4a3072e49d1268584",
       "tasks.md": "ffcdae1b4a4a8da51bae75b7c687b15d92742c9bef40b6007b6542134f2340de",
-      "implementation-summary.md": "37c045127bbf0504bb3a7451c405ecc8b0eaeb011d7722cefc3b58d3a5c3a11a"
+      "implementation-summary.md": "2e2a51ac049bc2894b3c0d652e9323b10c5bfc27e93cd5719024e1c1ecb65fb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

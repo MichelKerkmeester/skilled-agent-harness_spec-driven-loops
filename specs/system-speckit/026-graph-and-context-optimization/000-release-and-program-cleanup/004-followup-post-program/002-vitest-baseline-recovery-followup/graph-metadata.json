@@ -58,11 +58,7 @@
       "scratch/current-failure-inventory.json",
       "scratch/classification-inventory.json",
       "scratch/vitest-postfix.json",
-      "scratch/vitest-post-unit-h.json",
-      "scripts/tests/yaml-intake-event-payloads.vitest.ts",
-      "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-      "scripts/tests/workspace-identity.vitest.ts",
-      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
+      "scratch/vitest-post-unit-h.json"
     ],
     "entities": [
       {
@@ -144,30 +140,6 @@
         "source": "derived"
       },
       {
-        "name": "yaml-intake-event-payloads.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/yaml-intake-event-payloads.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment-orphans.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workspace-identity.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workspace-identity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,11 +180,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/002-vitest-baseline-recovery-followup` annotations",
     "created_at": "2026-05-09T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:28.171Z",
+    "last_save_at": "2026-09-07T16:17:33.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +218,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:4a3affca714a0b6019e2243bd75b58abcbf1e60da0456e09117b4b480810facd",
+    "source_fingerprint": "sha256:2dd8b9a9567b81dd517d26bf90fdfb4b249aabce120657d60ad636f8daba61ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1412082e4869bb194302f84b4e8275e29bf06d264a03534b01535d13e8a1de73",
-      "plan.md": "c6ba455e469a4773a95b4cae944a8c43dac0c802da4dba501bf04002223e576a",
+      "plan.md": "e8dbfcb91a4371b2a979916853ef855e597da98546f263670ced1ab071500c4f",
       "tasks.md": "cbc9dd187a46f72a4843b3e92d0cb2b22b51f686ed921981f0369fd26d39ac8a",
-      "implementation-summary.md": "f6eea2bdc71c88b1e04c199f19acc9f1cb47f26a587f93805a9d0c7c3d2468eb",
+      "implementation-summary.md": "644d16cf980aec3f96fd4819cf89bb0f1511eb4e59391486735cd677f8e1d82f",
       "resource-map.md": "0301c9cd02e03dd49c1f6ef1992c1b548e8add10b31abdd0ecd5b9a7b9440054"
     },
     "last_active_child_id": null,

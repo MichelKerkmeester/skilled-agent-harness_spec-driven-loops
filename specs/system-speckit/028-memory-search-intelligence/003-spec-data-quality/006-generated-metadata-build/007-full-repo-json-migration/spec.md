@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Full-Repo Generated-JSON Migration [template:level_2/spec.md]"
+title: "Feature Specification: Full-Repo Generated-JSON Migration"
 description: "The hardened J1 to J4 generators land their idempotent content-hashed writes, enum-clean derived status, prefixed paths and preserved parent links behind default-OFF flags, so the existing repo still carries the legacy format the new contract rejects. This Stage 3 migration regenerates every description.json and graph-metadata.json across the whole repo including z_archive onto the new format, while z_future stays excluded as non-indexed staging in line with the hardened phase 034 writer rule, driven by the scoped per-folder generator looped over every eligible folder rather than the old over-reaching tree-walk, and gated on a byte-stable second run, zero validator violations and a validate-clean tree."
 trigger_phrases:
   - "full repo json migration"

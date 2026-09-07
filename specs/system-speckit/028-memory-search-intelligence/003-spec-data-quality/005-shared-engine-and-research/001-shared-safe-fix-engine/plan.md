@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Shared Safe-Fix Engine [template:level_2/plan.md]"
+title: "Implementation Plan: Shared Safe-Fix Engine"
 description: "A pure runDetectors engine plus one frozen detector registry the keystone consumers share, three write-time front doors plus B3 and the Tier-C detectors. Report mode never writes. Apply mode runs only safe-class fixes behind content_hash idempotency and atomic writes."
 trigger_phrases:
   - "shared safe-fix engine"

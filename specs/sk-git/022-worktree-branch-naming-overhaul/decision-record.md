@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Worktree/Branch Naming Overhaul [template:level-3/decision-record.md]"
+title: "Decision Record: Worktree/Branch Naming Overhaul"
 description: "Level 3 decision record for the naming overhaul: two flat numbered namespaces, per-namespace counters, sourceable validators, backup/wrapper gate handling, and a dry-run migration helper."
 trigger_phrases:
   - "decision"

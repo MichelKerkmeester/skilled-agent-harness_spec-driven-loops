@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will constrain importance_tier status and content_type to closed zod enums behind a flag seam in both JSON metadata schemas and close the three leaky producer paths. No code change has landed."
 trigger_phrases:
   - "enum constrain schemas"

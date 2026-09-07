@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: deep-loop-fanout-reliability [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: deep-loop-fanout-reliability"
 description: "Sequence the fan-out worker fixes (A1 throw-on-failure, A2 async spawn, A4 service_tier, A5 sandbox note) in one region, thread the A3 iteration cap into the prompt, correct the A6 SKILL.md inventory, and strip A7 perishable comment labels, with regression tests in fanout-run.vitest.ts."
 trigger_phrases:
   - "fanout reliability plan"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: C4 Metadata Fusion Alpha-Blend [template:level_2/tasks.md]"
+title: "Tasks: C4 Metadata Fusion Alpha-Blend"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "metadata fusion alpha"

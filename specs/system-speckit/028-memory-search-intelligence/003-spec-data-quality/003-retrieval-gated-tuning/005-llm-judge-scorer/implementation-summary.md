@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will feed a real LLM-as-judge semantic quality score into the already-shipped qualityScore multiplier behind a default-off flag and prove its marginal value over the form-only scorer first. No code change has landed."
 trigger_phrases:
   - "llm judge quality scorer"

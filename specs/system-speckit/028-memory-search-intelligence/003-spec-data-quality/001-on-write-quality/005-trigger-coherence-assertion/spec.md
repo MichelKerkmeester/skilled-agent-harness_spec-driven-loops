@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Cross-Surface trigger_phrases Coherence Assertion [template:level_2/spec.md]"
+title: "Feature Specification: Cross-Surface trigger_phrases Coherence Assertion"
 description: "trigger_phrases live in three places (spec.md frontmatter, description.json, graph-metadata.derived) with no assertion that they agree. The derived set is capped at 12 so any byte-equality check would false-fire and any silent divergence ships unnoticed."
 trigger_phrases:
   - "trigger phrases coherence"

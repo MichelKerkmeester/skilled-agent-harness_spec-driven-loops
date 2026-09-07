@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 053 doc-alignment and README fill-in [template:level_3/implementation-summary.md]"
+title: "Implementation Summary: Phase 053 doc-alignment and README fill-in"
 description: "Five doc-quality work-blocks landed in one orchestrated pass: multi-ai-council reference alignment, manifest maintainer doc alignment, two missing folder READMEs, and the operator_runbook to manual_testing_playbook merge."
 trigger_phrases:
   - "phase 053 implementation summary"

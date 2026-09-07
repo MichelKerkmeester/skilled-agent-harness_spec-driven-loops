@@ -1,5 +1,5 @@
 ---
-title: "Spec: OFF baseline audit + WEIGHT_RERANKER penalty removal [template:level_1/spec.md]"
+title: "Spec: OFF baseline audit + WEIGHT_RERANKER penalty removal"
 description: "Phase 1 of the rerank decision arc. Quantify the OFF baseline (no reranker) on the existing 50-probe fixture and decide whether reranking is actually load-bearing. If positional fallback hit-rate and ranking are acceptable, remove the boolean WEIGHT_RERANKER=0.20 confidence penalty so requestQuality stops reporting 'weak' on clean retrievals. May close the entire decision arc."
 trigger_phrases:
   - "011/001 off baseline audit"

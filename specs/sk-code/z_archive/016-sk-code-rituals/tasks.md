@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code engineering rituals: mutation-check, verification ladder with named blind spots, and decision-economy plus fail-closed-by-construction doctrine [template:level_2/tasks.md]"
+title: "Tasks: sk-code engineering rituals: mutation-check, verification ladder with named blind spots, and decision-economy plus fail-closed-by-construction doctrine"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

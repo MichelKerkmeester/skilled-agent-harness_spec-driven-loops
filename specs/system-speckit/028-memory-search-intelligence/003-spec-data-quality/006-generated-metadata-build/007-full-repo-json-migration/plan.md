@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Full-Repo Generated-JSON Migration [template:level_2/plan.md]"
+title: "Implementation Plan: Full-Repo Generated-JSON Migration"
 description: "Build a Stage 3 migration driver that enumerates every spec folder in the repo including z_archive and z_future and regenerates each description.json and graph-metadata.json through the scoped per-folder generator with the J1 to J4 flags ON, never the legacy whole-tree walk, gated on a byte-stable second run, a zero-violation phase 036 validator pass and a validate-clean tree, landed as scoped commits batched by track."
 trigger_phrases:
   - "full repo json migration"

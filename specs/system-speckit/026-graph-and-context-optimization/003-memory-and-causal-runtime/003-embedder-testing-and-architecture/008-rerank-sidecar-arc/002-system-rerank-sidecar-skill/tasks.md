@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-rerank-sidecar skill [template:level_1/tasks.md]"
+title: "Tasks: system-rerank-sidecar skill"
 description: "Task breakdown for the dedicated Qwen reranker HTTP sidecar skill."
 trigger_phrases:
   - "002 tasks sidecar skill"

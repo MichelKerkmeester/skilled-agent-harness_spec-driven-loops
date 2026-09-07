@@ -44,7 +44,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/route-validate.py",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts"
     ],
     "entities": [
@@ -76,12 +75,6 @@
         "name": "route-validate.py",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/route-validate.py",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
     "created_at": "2026-06-27T17:15:35.223Z",
-    "last_save_at": "2026-08-30T15:39:35.584Z",
+    "last_save_at": "2026-09-07T16:18:19.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e3b7de7b157348026fca25da9b2cfb3b9191fa9f1b55af0bb7975b76670e1a5",
+    "source_fingerprint": "sha256:a7d5b0f73d3efb1372fd228e2981c6d569e2b8a0e9546d3d481b73abaad4a2d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "63f40d7c036ade1851cf8577118edcc8ec9b1bfb492c890f4a0c3f5bac036411",
-      "plan.md": "e771c76493c33a702bfb4cf3d8252d88e7673f5a0dc75892b5066dc5aeb225af",
-      "tasks.md": "ad03458b16ff8e06bb693a74e8983a6865783b415c6516a439d6d68a9c4242c1",
-      "implementation-summary.md": "746af1105fc018ab9c90150de51723dbe3614bd9c2f532451aa9be698e915f8b"
+      "spec.md": "eaf070f171dc2a6ca16ae0da5c92a730099c04efb522bc869c011f576e3eb6c0",
+      "plan.md": "701006cfa487b49373e5b41a6aba9ebd69f998d293993b325fd2ffa4d43f858a",
+      "tasks.md": "7e006367cd68b263935198df35cf970d51fc06cd20f97d3302171968c5e36c6b",
+      "implementation-summary.md": "1d670fa40c889b87abf7b2a2ea10ce21a96448379ada3e50421ebb9b9a58664c"
     },
     "last_active_child_id": null,
     "last_active_at": null

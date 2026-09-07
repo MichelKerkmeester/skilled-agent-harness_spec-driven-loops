@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 122 deep review confirmed (post Opus-4.8 arbitration) 3 unique P1 correctness/security defects in the shipped model-benchmark mode — the dispatcher drops the requested working directory for 4 of 5 executors, the D3 path guard misclassifies sibling-prefix paths, acceptance criteria run un-gated shell commands, and the D4 grader accepts unbounded model scores — plus 11 P2 advisories",
     "created_at": "2026-05-28T18:39:19Z",
-    "last_save_at": "2026-08-30T15:39:23.642Z",
+    "last_save_at": "2026-09-07T16:17:16.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b921e861f8733e33a187c4d82150e4d37dd5cb83f52430a123e3fac46871cfc",
+    "source_fingerprint": "sha256:4a052981f641962bf2a91d0ad2e84f384a85869a78b69b3cb02c5da1058f87d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7861f3379a5642ef83bfc8656d930b6dd51971786233140deb0b560351cbe83",
-      "plan.md": "57bb86a214eab266e4aa9a61ae11f8580350cf54dea64ebb9172bd466dc45fae",
-      "tasks.md": "8cf9749d8420b9a25cb1c3e643a5277e84a1e549c725db78528a3d98db2c0b20",
-      "implementation-summary.md": "e5fc1b0b084cdeaa5d69c7bb8904de18db7d60e30dcf7924673f457ffdfc95d1"
+      "plan.md": "b41c78c24cc94589badb3e4fd0f0cb86ac6943a92c784334379d1f7c2004bcc0",
+      "tasks.md": "4e4fba79bb0cd660d171688a9888701134c7c3f390129fc19a6edd5f54c53141",
+      "implementation-summary.md": "6ab1da435920d44b697d0bb77f60232900842543078085371f12c75e909b106f"
     },
     "last_active_child_id": null,
     "last_active_at": null

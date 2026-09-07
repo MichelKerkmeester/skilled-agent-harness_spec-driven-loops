@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Phase 3: content-hash-normalization-and-save-dedup-lanes [template:level_3/decision-record.md]"
+title: "Decision Record: Phase 3: content-hash-normalization-and-save-dedup-lanes"
 description: "Architecture decisions for killing snapshot churn: normalize content-hash input behind a dual-compare migration, open the PE-gate UPDATE/REINFORCE lanes at the call site, and reorder the full-auto canonical save fingerprint validation with a real canonical-writer dispatch."
 trigger_phrases:
   - "content hash normalization decision"

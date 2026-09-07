@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: authoring-surfaces [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 1: authoring-surfaces"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: C1 deterministic header-path plus curated-signal chunk prefix [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: C1 deterministic header-path plus curated-signal chunk prefix"
 description: "Planned scaffold for the C1 chunk-prefix phase. Nothing is implemented yet and no completion is claimed."
 trigger_phrases:
   - "chunk prefix implementation summary"

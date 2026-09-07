@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Added z_future to the backfill walk exclusion set so a default run unconditionally skips the staging area, corrected the header comment, and rebuilt the dist. collectSpecFolders now returns zero z_future folders where it previously crashed, z_archive parity is preserved at 858 folders by default and zero under --active-only, and a default dry-run exits clean. A z_future-exclusion test is recorded as a follow-up."
 trigger_phrases:
   - "z future always ignored"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js"
       - ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:df25e9bde6ac2838127e3dfe6c4fe0ac9da7ab63b7d029cb82ec0439b703eff1"
       session_id: "claude-opus-session"
       parent_session_id: null
     completion_pct: 100

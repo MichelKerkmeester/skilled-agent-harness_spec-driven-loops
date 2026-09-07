@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: filename-underscore-alignment [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 5: filename-underscore-alignment"
 description: "Rename sk-prompt-models dash-named docs/assets to underscores with git mv, repair live references in one controlled pass (path-qualified for the context-budget name collision), then verify with the drift guard and strict validate."
 trigger_phrases:
   - "filename underscore alignment plan"

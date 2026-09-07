@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 004 Validation And Memory Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 004 Validation And Memory Remediation"
 description: "Apply 13 surgical product-code/shell-rule edits and add tests + fixtures for findings F-005-A5-01..06, F-008-B3-01..02, F-009-B4-01..05."
 trigger_phrases:
   - "F-005-A5 plan"

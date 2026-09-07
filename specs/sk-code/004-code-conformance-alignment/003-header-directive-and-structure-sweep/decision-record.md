@@ -1,6 +1,6 @@
 <!-- IF level:3 -->
 ---
-title: "Decision Record: [NAME] [template:level-3/decision-record.md]"
+title: "Decision Record: [NAME]"
 description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
 trigger_phrases:
   - "decision"
@@ -145,7 +145,7 @@ HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 
 <!-- IF level:3+ -->
 ---
-title: "Decision Record: [NAME] [template:level_3+/decision-record.md]"
+title: "Decision Record: [NAME]"
 description: "not \"A decision was required regarding the selection of an appropriate approach.\" -->"
 trigger_phrases:
   - "decision"

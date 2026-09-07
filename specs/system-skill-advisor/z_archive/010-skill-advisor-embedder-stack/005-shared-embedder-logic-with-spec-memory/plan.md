@@ -1,5 +1,5 @@
 ---
-title: "Plan: shared embedder logic with spec-memory [template:level_2/plan.md]"
+title: "Plan: shared embedder logic with spec-memory"
 description: "Plan to remove skill-advisor/spec-memory embedder factory drift, plus the 2026-07-08 Round 2 post-ship hardening pass."
 trigger_phrases:
   - "shared embedder logic skill-advisor"

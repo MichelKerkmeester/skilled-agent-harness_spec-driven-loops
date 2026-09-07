@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts"
       - ".opencode/skills/system-skill-advisor/references/daemon-lease-contract.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7f00094d0f84b8854e777d7d7f271700b70c796486ef0614d6fd649833a273f7"
       session_id: "006-concurrent-daemon-corruption-fix"
       parent_session_id: null
     completion_pct: 85

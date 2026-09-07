@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Public Doc Internal Spec Reference Removal [template:level_2/tasks.md]"
+title: "Tasks: Public Doc Internal Spec Reference Removal"
 description: "Task list for removing internal spec packet path leaks from public-facing documentation and assets."
 trigger_phrases:
   - "public docs"

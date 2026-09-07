@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The house convention for descriptive markdown and asset filenames is underscores (`documentname.md`), matching peer skills such as `mcp-open-design` (`odclireference.md`) and `sk-design-interface` (`designprinciples.md`)",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:08.798Z",
+    "last_save_at": "2026-09-07T16:16:55.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:debcf190561fda505923028abc261aeaef2c5f2cba5afc4fa1c8bc33f5fe0989",
+    "source_fingerprint": "sha256:19af2b11f124ae849c822916fbcaaee1a708ee2d524d810dadfc64f65bce22e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9212b4efaf0160ea992db0d03a84f3d0b47e7250e6a5be2fbaaa2dc905be70f2",
-      "plan.md": "d7e15feb5c54494d4a45512fb745a0d7c5263bd4f9df33e4d92b3f09ed5397a4",
-      "tasks.md": "787fde8050ddf1b30dbcfbfe59a207ff4d7ae1d75874d8638e82bf97e0944d62",
-      "implementation-summary.md": "1eefcc9ebb2b556484d0d6742822e1d23570ffced5adfdcd0e466ec68e90004d"
+      "spec.md": "3cf1a4937a5d2cf78270564b02224e52ee4bc8db0ec9d0ea153f1e901aa752bf",
+      "plan.md": "34311cfdb4784206c75b5d315c1533152e78b7d6073b371109dbece3e7aeeb25",
+      "tasks.md": "e0563fa950ee604c365b92cd0045c39a6cd29429d8878542689bad53c7fae9fb",
+      "implementation-summary.md": "ce0d320715fd64b52a92eb572f541ef674bf045df4d3a21b6e66995d22522cb0"
     },
     "last_active_child_id": null,
     "last_active_at": null

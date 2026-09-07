@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "AI-derived spec folder and phase slugs must now include a specific subject token; four high-impact surfaces were updated and one new SKILL.md rule landed."
 trigger_phrases:
   - "implementation"
@@ -26,7 +26,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/SKILL.md"
       - ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:20936e4b1030cf036ca7fe8dadc3cbd5d54d5dea6c297b322d133f6fa6401f9f"
       session_id: "implement-012-literal-spec-folder-names"
       parent_session_id: null
     completion_pct: 100

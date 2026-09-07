@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A8 Surface Provenance Fields [template:level_2/spec.md]"
+title: "Feature Specification: A8 Surface Provenance Fields"
 description: "The memory side already computes source_kind and provenance but the two metadata JSONs never expose them, and causal_summary is not freshness-bound to the source_docs it summarizes. This phase surfaces those fields as first-class JSON fields and binds causal_summary freshness to source_docs."
 trigger_phrases:
   - "surface provenance fields"

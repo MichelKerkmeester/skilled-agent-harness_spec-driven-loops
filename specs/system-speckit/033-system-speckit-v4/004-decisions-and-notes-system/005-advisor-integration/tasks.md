@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: advisor-integration [template:level-1/tasks.md]"
+title: "Tasks: Phase 5: advisor-integration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "phase five advisor tasks"

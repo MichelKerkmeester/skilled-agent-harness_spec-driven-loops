@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern [template:level_2/spec.md]"
+title: "Feature Specification: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern"
 description: "FORMAT.md and benchmarks_format.md lived in two separate sk-doc locations and were mirrored to sibling MCP skills via symlinks. This packet consolidates the trio into one benchmark_creation.md reference, adds a source_template.md scaffold, drops the FORMAT.md symlinks from sibling skills, and updates all cross-link references. sk-doc becomes the single source of truth with a clean *_creation.md-pattern entry point."
 trigger_phrases:
   - "benchmark creation reference"

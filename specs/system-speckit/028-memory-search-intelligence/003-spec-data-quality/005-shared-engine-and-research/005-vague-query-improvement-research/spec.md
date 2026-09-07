@@ -1,5 +1,5 @@
 ---
-title: "Spec: 005 Post-Benchmark Improvement Research [template:level_2/spec.md]"
+title: "Spec: 005 Post-Benchmark Improvement Research"
 description: "A 10-angle deep-research study, seeded by the 029 model benchmark, on how to improve the 005 spec-data-quality program further. Covers the score-calibration false-relevance the benchmark exposed, re-prioritization of the un-built levers, and the adherence and logic-reading jobs the benchmark never touched. Read-only, the synthesized and adversarially-verified proposals live in research/research.md, no calibration or lever code is modified."
 trigger_phrases:
   - "005 improvement research"

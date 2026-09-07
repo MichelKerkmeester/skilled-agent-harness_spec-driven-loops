@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Each of these takes a request and emits a new component that something else will load",
     "created_at": "2026-09-01T11:47:59Z",
-    "last_save_at": "2026-09-01T11:49:40.109Z",
+    "last_save_at": "2026-09-07T16:17:04.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87a24405eae10d2ccecfbde77180147a2ed1148b19f7e0cc497df81ba1600b35",
+    "source_fingerprint": "sha256:3dfd73f80046c716b94b3792529b34fd758352d3d599a4808801757fec092c43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80af10fa45564566a3269cb7256c68af49b38eae6fcc2159a668987c8401cbe6",
-      "plan.md": "fbb3d945ac7ec051cee666ff3733939d60c1a2d7aa9ed6adfa4a097ee3a09dc1",
-      "tasks.md": "d5097d142160f85bb9a1ee63e96431f2d929d9c64dd111edc8875a6e712cdc88",
-      "implementation-summary.md": "bb2a7f5f535f15dace88fd27f504887f3fbcb01364dcb076c351389e29453c5b"
+      "plan.md": "76d066a5f089c51538b6db7de6c063b65782699b776ddb4579fc2a4616f76d54",
+      "tasks.md": "659e026fb2fc1a33fd257f4752498a394b1e4e552e3e5f5cfb79164287fc8f4c",
+      "implementation-summary.md": "eb93b1f4c37175eb637f6b103d2f1c1b8510218852f6a5a59afdad8df3ddc10b"
     },
     "last_active_child_id": null,
     "last_active_at": null

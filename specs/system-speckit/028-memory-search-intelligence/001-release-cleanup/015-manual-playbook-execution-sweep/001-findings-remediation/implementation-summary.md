@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Manual Playbook Sweep Findings Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Manual Playbook Sweep Findings Remediation"
 description: "Verification and outcome record for the manual-testing-playbook FAIL findings remediation: the 485-scenario sweep, the fix-dispatch batches, the blocked/queued findings, and the T-0381 convergence-graph fix."
 trigger_phrases:
   - "playbook sweep findings remediation summary"

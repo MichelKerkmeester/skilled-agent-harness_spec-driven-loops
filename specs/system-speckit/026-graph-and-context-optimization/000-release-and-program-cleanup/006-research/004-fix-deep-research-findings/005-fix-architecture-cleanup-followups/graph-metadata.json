@@ -48,11 +48,7 @@
       "lib/context/shared-payload.ts",
       "lib/utils/skill-label-sanitizer.ts",
       "lib/resume/resume-ladder.ts",
-      "lib/discovery/spec-document-finder.ts",
-      "hooks/memory-surface.ts",
-      "lib/graph/community-types.ts",
-      "lib/session/session-snapshot.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "lib/discovery/spec-document-finder.ts"
     ],
     "entities": [
       {
@@ -101,30 +97,6 @@
         "name": "spec-document-finder.ts",
         "kind": "code",
         "path": "lib/discovery/spec-document-finder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "community-types.ts",
-        "kind": "code",
-        "path": "lib/graph/community-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-snapshot.ts",
-        "kind": "code",
-        "path": "lib/session/session-snapshot.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -198,11 +170,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependency Graph Cycles",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Fifteen architectural findings across the advisor, memory, freshness, and graph subsystems leak boundary violations, value-level dependency cycles, dead exports, and schema duplication identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.783Z",
+    "last_save_at": "2026-09-07T16:17:35.778Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83ae2f758e6ca13e933928b8263f35092cb40999a6d3af927bc9fa6a5929b655",
+    "source_fingerprint": "sha256:b759b1e71b4224107fe9b4efe6a8944789f3eaec7dab528fc7b39f7119154fca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1227b782e1fa70f0d753d8b69dacc27435f522ea274be97ca58c1965d904bbf",
-      "plan.md": "4ff3fa24f7e60f41f21dd027995b88417a77d26233e124f1c8813e4426e5ead6",
-      "tasks.md": "8c3c114ac01854a683373ae23c7a822440ae7f7478b1ce9fb17087671c742fcc",
-      "implementation-summary.md": "e6ee68655945170319fd3a15ba5fa53b5c5348d536597c9b83e870f0481c2b09"
+      "spec.md": "f5a6ef818d44be40d4cbf38bb95cb08c2cca0d2312251eb66ed11b02ca96caf5",
+      "plan.md": "de880480713f19d252d5800f59dbf904f8543e549651b68db5ec9c54562d0cb0",
+      "tasks.md": "65566b84410e9022c13f92921e2a31e45035ef154d98777af5280b56e5a5cc6f",
+      "implementation-summary.md": "09a8e68f8c4bc87106da569b4a8ec15d250ad0d3e7b4891f1c01e67a39327a90"
     },
     "last_active_child_id": null,
     "last_active_at": null

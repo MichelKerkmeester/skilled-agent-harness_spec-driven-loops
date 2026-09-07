@@ -37,8 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/search.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -182,7 +175,7 @@
     ],
     "causal_summary": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
     "created_at": "2026-06-24T06:24:03.473Z",
-    "last_save_at": "2026-09-03T22:23:51.314Z",
+    "last_save_at": "2026-09-07T16:18:35.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b9f885234ac8d73883d73833b5b7b6dec8cf4751403d796a82b6f7e78cd3456",
+    "source_fingerprint": "sha256:b70862545de586681b87cb8e341a437afc24191b123fe63be266f8a737cc4319",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0369d095ea49e3639b595f2cdabd06fa64f6ccf81e5e93bdb2f9586e9c496acf",
-      "plan.md": "af21dd539298af6e8a1f54012f3486016fa2d1287b2b49510dbb598aa6a0b511",
-      "tasks.md": "1577f3965569183827dabf97df78aba1cbb940424a92560b82d7f277c51973d0",
-      "implementation-summary.md": "7a638c1753df23040d3f71e06c5e90f51597e11bc01f3e222c03f96c52cc3466"
+      "spec.md": "948cd08764ef11003feac66809e86d364e156856d4bf1eafd3b4e4cb23f4a3d0",
+      "plan.md": "fe70046e7724d33a2c7d50acdc5e487aaa2cb98274460b71757d90504aeddac9",
+      "tasks.md": "b3535f37db022d33acf88855c79bc6128083171e51723125f3ccfdf25768963d",
+      "implementation-summary.md": "19fa86ac6d85ec28db2d4a5cb70add0953e3f2568dff45b0b7bf6f92a26bf548"
     },
     "last_active_child_id": null,
     "last_active_at": null

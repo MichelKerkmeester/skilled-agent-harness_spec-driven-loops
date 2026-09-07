@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Scoped Backfill Boundary and Exclusion Unification [template:level_2/plan.md]"
+title: "Implementation Plan: Scoped Backfill Boundary and Exclusion Unification"
 description: "Add an explicit scoped backfill boundary that refreshes one packet by default with broad mode behind a default-off --all flag, make collection match the writer rules and isolate per-folder failures, and introduce one authoritative z_* exclusion helper with a descriptions.json guard that closes the description-scanner gap, every behavioral fix shipping behind a default-off flag or a grandfather report mode and the by-design z_archive memory inclusion preserved through a separate generatedMetadata policy."
 trigger_phrases:
   - "scoped backfill boundary"

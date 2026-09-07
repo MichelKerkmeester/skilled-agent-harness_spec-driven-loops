@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sun_path socket-dir + stale-lease reclaim followups [template:level_1/tasks.md]"
+title: "Tasks: sun_path socket-dir + stale-lease reclaim followups"
 description: "Task breakdown. T001-T003 shipped in commit 9ae9a6f4e, T004-T010 are this packet, T011-T012 are the follow-on capture."
 trigger_phrases:
   - "011 tasks"

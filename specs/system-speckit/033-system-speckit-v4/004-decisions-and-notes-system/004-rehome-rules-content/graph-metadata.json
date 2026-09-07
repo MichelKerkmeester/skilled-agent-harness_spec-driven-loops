@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
     "created_at": "2026-08-26T05:34:13Z",
-    "last_save_at": "2026-09-06T07:09:16.083Z",
+    "last_save_at": "2026-09-07T16:19:08.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8d31a6b540eac57578e32da607d67af83578f6b4a087f31fa3a1cdeced91aad4",
+    "source_fingerprint": "sha256:0b614ffb1f79757ffbcf6b76a8bf17421c9b67b79e7910467050c485b980664e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9cefb3c53a2de03900ee89b4dd7597dd0887ab78f6d92b5a58975517620b79c3",
-      "plan.md": "fcbb554aa3abd03ee04ee31c385d8a6ecbed9211a55e80f9d3d5696ae0219dd4",
-      "tasks.md": "a788fc234a034393579be1ced657a166e1fb3305fa0dc81878285d5d8514f994",
-      "implementation-summary.md": "41327621eecd319f33295d8aa7db953aca5eaaef41201f9bdba27e3a4e274b6a",
+      "spec.md": "1b97d50b216bce7160e27ffa20a3da3a49099debff5363cbbc7a324462426c45",
+      "plan.md": "95a303c01f0b99199247c87049f360900053b04c5595bca5690d3f949bfbb99d",
+      "tasks.md": "f8224b2ca1ec44df928e077602bdc092b4fc5a5e94ad2bbdc6cf49ddc20437cd",
+      "implementation-summary.md": "f0a0c61ab4ecb6965b8d08f160dd7e7e92e4108a92f539b80e72fe080c8d04ba",
       "research/research.md": "65d60affc61c68b5c0fa65864e378abc1572d0a9bee5b181c487e105b590c0a9"
     },
     "last_active_child_id": null,

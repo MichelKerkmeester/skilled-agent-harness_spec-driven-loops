@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: DONE (interim, superseded by phase 004). Promoted the inconclusive bakeoff-006 TIE finding as a placeholder; kept default-unverified + RCAF; registry cited run 006. Phase 004 run 007 later promoted COSTAR (empirical)."
 trigger_phrases:
   - "kimi promote status"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
       - ".opencode/skills/sk-prompt-models/references/models/_index.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:94f7dc59a51918a2446401110cdda2b0ef35ee0030719a0645acad81c8bf86d4"
       session_id: "scaffold-scaffold/003-promote-results"
       parent_session_id: null
     completion_pct: 100

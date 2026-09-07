@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 8: validate-sweep-changelog-reindex [template:level_1/tasks.md]"
+title: "Tasks: Phase 8: validate-sweep-changelog-reindex"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "130 phase 8 tasks"

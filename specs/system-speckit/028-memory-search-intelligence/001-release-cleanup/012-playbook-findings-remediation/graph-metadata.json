@@ -45,20 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/storage/lineage-state.ts",
-      "lib/scoring/composite-scoring.ts",
-      "handlers/memory-search.ts",
-      "lib/search/graph-lifecycle.ts",
-      "lib/search/pipeline/stage1-candidate-gen.ts",
-      "formatters/search-results.ts",
-      "schemas/tool-input-schemas.ts",
-      "lib/search/folder-relevance.ts",
-      "lib/search/channel-enforcement.ts",
-      "core/db-state.ts",
       "core/config.ts",
-      "lib/providers/retry-manager.ts",
-      "lib/search/vector-index-store.ts",
-      "lib/utils/scope-normalization.ts",
       "lib/extraction/entity-extractor.ts"
     ],
     "entities": [
@@ -87,87 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "lib/storage/lineage-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "composite-scoring.ts",
-        "kind": "code",
-        "path": "lib/scoring/composite-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-lifecycle.ts",
-        "kind": "code",
-        "path": "lib/search/graph-lifecycle.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-candidate-gen.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage1-candidate-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-relevance.ts",
-        "kind": "code",
-        "path": "lib/search/folder-relevance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "channel-enforcement.ts",
-        "kind": "code",
-        "path": "lib/search/channel-enforcement.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-state.ts",
-        "kind": "code",
-        "path": "core/db-state.ts",
-        "source": "derived"
-      },
-      {
         "name": "config.ts",
         "kind": "code",
         "path": "core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": "lib/providers/retry-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scope-normalization.ts",
-        "kind": "code",
-        "path": "lib/utils/scope-normalization.ts",
         "source": "derived"
       },
       {
@@ -205,11 +114,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings across the four subsystems",
     "created_at": "2026-06-25T18:18:49.997Z",
-    "last_save_at": "2026-08-30T15:39:34.563Z",
+    "last_save_at": "2026-09-07T16:18:03.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16d0d31989555a2b954a07996cf8387cc0bebe92808851094b3a42f67af4c3a7",
+    "source_fingerprint": "sha256:ece4e41a096d7601f5a19f7708a6f9628289c55bec8c30628589b43a2b2eb048",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b274c8cb6abc0467a6cd846b8162a930f8ecc99da9399cf6e9101aa6ded82a8c",
-      "plan.md": "219f425a3b959e403d5ab4c2f2aa9d3ce9206c20e31ecbec5a2637d279baa85e",
-      "tasks.md": "3d7e83fca08ea3a94c28afb3667b845084b098aa18f8415258429f1aa59b0e70",
-      "implementation-summary.md": "23e47248f9205bae2cf2593e79469a6870dbc4d3088f17165eac7a5d480abc42"
+      "spec.md": "f4642bcb84fd10adff88c6882c365bfd3195bec7e6a93db04183f83bf1a56e97",
+      "plan.md": "6ec832135bf58dd724a43c22e66ad82c3e5ee17bbd1effc221f5dc246bacec82",
+      "tasks.md": "ec5c34d65d745232aaa394b268303097b454cfae05632dba2c3ee3e25fcf6ed8",
+      "implementation-summary.md": "9101a00822af1791e46dedc2cf1f8ee0db7d7d9e8108c11fa2ebcbdeb3a2f52f"
     },
     "last_active_child_id": null,
     "last_active_at": null

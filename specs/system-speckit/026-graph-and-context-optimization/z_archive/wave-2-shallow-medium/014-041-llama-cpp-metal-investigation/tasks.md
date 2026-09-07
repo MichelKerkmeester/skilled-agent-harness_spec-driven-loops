@@ -1,5 +1,5 @@
 ---
-title: "Tasks: llama-cpp Metal Investigation [template:level_1/tasks.md]"
+title: "Tasks: llama-cpp Metal Investigation"
 description: "Task ledger for a research-only packet investigating node-llama-cpp Metal backend failures."
 trigger_phrases:
   - "tasks"

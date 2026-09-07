@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.821Z",
+    "last_save_at": "2026-09-07T16:17:37.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31da2da8550f18dbc009a125c84fefd9ec5fe6020bcf1be343905809f7de4a2c",
+    "source_fingerprint": "sha256:9e53804ffe5c8da6cfcb749c76b9c6d4f06d435de29c4a128cc0e7ff80d18549",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db928981909338e9c7a49b2a0c942f676e7d190c776c30acf7e3e8652e18d2ad",
-      "plan.md": "86e7830ec7202f828ccd75738bbb156049508de71594f4a0a31c3204ed48e9e8",
-      "tasks.md": "9fd69560b9d9f7d312cd70ce17dbbb401588269ca114615107e4100817662fac",
-      "implementation-summary.md": "79e70eaffb60f17417130c1d884c27352fd5441068a2f6f02f64650c093df6b8"
+      "spec.md": "e5958ee1e62ceaccdc0f0646ef232257794d679ecda71506b142a831f3966f1b",
+      "plan.md": "afdb68f50ac46c91a32d99baf2a41d5e0421711ae7a96f28798cf937478e9c41",
+      "tasks.md": "e6356d03d7d647adfe43b22e5493f02a149c940d8a3f7e1a7461857734cddbc9",
+      "implementation-summary.md": "729e6f7ec7534f694c5aff61385f4354e0f65f01b1e992eb05977774427788b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

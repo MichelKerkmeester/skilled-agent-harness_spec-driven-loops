@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Full spec-kit advisor import decoupling [template:level_3/decision-record.md]"
+title: "Decision Record: Full spec-kit advisor import decoupling"
 description: "Architectural decisions for isolating system-spec-kit from system-skill-advisor source imports."
 trigger_phrases:
   - "019 decision record"

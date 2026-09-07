@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like remediation or phase-N [template:level_2/tasks.md]"
+title: "Tasks: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like remediation or phase-N"
 description: "Task Format: T### [P?] Description (file path). 21 concrete tasks across 7 implementation phases."
 trigger_phrases:
   - "literal naming tasks"

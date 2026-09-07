@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: domain-tuned reranker fine-tune [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: domain-tuned reranker fine-tune"
 description: "SCAFFOLD ONLY — execution deferred until packets 008+009 produce HOLD verdicts. This document is intentionally a stub; it will be filled when the packet executes."
 trigger_phrases:
   - "010 fine-tune summary"

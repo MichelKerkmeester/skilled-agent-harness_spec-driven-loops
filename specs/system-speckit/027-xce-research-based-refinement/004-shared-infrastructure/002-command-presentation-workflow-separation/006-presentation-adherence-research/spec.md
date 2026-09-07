@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Presentation Adherence Research [template:examples/level_1/spec.md]"
+title: "Feature Specification: Presentation Adherence Research"
 description: "Ten-angle research program into presentation-contract adherence of dispatched models running the upgraded command families, executed with MiMo v2.5 Pro and DeepSeek v4 Pro at high reasoning."
 trigger_phrases:
   - "presentation adherence research"

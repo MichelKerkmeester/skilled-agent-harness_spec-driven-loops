@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: lifecycle-tracking [template:level_1/spec.md]"
+title: "Feature Specification: Phase 4: lifecycle-tracking"
 description: "Goal lifecycle events now restore active goals, track assistant activity, account usage once per message, mark prompt blocks, and stop active goals at the token budget."
 trigger_phrases:
   - "goal lifecycle"

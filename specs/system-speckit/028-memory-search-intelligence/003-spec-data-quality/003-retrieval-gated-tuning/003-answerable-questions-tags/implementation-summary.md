@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. C3 scaffolds the answerable_questions and semantic_intent retrieval tags but is not yet built."
 trigger_phrases:
   - "answerable questions tags"

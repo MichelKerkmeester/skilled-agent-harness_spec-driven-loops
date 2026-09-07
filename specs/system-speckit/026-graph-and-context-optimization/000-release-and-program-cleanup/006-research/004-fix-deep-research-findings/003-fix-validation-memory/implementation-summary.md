@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 004 Validation And Memory Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 004 Validation And Memory Remediation"
 description: "Thirteen surgical edits across the advisor, memory parser, causal-links processor, checkpoint storage, search-results formatter, and three shell rules close findings F-005-A5-01..06, F-008-B3-01..02, and F-009-B4-01..05. Adds zod schemas where generic JSON parses bypassed validation; reuses the markdown anchor parser inside shell rules; gates insert-counter on real return shape."
 trigger_phrases:
   - "F-005-A5"

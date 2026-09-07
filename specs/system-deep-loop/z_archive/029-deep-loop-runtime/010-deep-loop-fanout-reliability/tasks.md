@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: deep-loop-fanout-reliability [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: deep-loop-fanout-reliability"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "fanout reliability tasks"

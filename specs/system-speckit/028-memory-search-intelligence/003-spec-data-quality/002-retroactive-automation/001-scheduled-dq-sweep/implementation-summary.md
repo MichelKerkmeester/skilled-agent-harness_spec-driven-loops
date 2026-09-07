@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. The scheduled DQ sweep is scaffolded with spec, plan, tasks, and checklist. No code is built yet."
 trigger_phrases:
   - "scheduled dq sweep"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:98b78fa9c07b228d75003b42f7a99b7b627d953c48d6cc5f5d5dfa797e59f3e8"
       session_id: "template-session"
       parent_session_id: null
     completion_pct: 0

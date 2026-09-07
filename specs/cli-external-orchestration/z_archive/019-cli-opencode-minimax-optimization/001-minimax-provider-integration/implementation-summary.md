@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/SKILL.md"
       - ".opencode/skills/sk-prompt-models/graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b0bce9e07a4bedf7ba0032e9186c20939c80fbbfb08d13525020e8fb1953fcca"
       session_id: "scaffold-scaffold/001-minimax-provider-integration"
       parent_session_id: null
     completion_pct: 100

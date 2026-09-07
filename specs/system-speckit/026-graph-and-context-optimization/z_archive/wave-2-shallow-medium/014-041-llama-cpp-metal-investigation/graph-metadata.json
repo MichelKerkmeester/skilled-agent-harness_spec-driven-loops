@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Every observed llama-cpp embedding call emits Metal-related stderr before falling back to CPU behavior",
     "created_at": "2026-05-14T15:18:02Z",
-    "last_save_at": "2026-09-07T16:10:28.854Z",
+    "last_save_at": "2026-09-07T16:18:00.689Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,15 +211,15 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:25ebcdb6e9f810df9699c6744011165c4aa3f10ad0295fd82d126dda8d58c494",
+    "source_fingerprint": "sha256:31bf94e48e2f956d7c0908002569da2b948540d5820cab6dd250a294076e36ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dcfd9c0406af155431d707506114d4eb696b895327c8367aa129981b04cb1b23",
-      "plan.md": "a5cf65b31b1ae2a4ddc8df611d46a2fa7ee112fa1cb7c40c9a525839c5931768",
-      "tasks.md": "6b2a99761e0d518a6a567cdb5a346affc9a7b33b24904f7b870d3cecaaaddbf4",
-      "decision-record.md": "d349336a8cbcb36ec794d5042de7cbefafe32ad037ef1778d988c6c1628cf76c",
-      "implementation-summary.md": "b75d6beef9fe692140e5a9b05ab8673fb6a9373bba84bc0a20ba7c9d8b4cb7f0",
-      "research.md": "3dbbb6aeae361c13ea6db29fdaca922bcf1d95dd0efea4434aafb7e159603897"
+      "spec.md": "31b7b1d3047688eaf0b20b0e321f0adf13bcdff55143c8e9df638edaa09aa50f",
+      "plan.md": "a5f2ee8667a41d3a8f14484d4d2bae3ec3c1db2a5f81d776169aa84e48b27552",
+      "tasks.md": "647a7686e2d06fd388e0b0ab8e49460607c44aa3ca5835a79152116eaeff294a",
+      "decision-record.md": "ca21c085e6d861ce8f17178cc79455b7703dc4fca7a4ab2fc008ce11fd887283",
+      "implementation-summary.md": "aca97122795ec8bcd9c581f02d93b093d5b0ae2934c4e7bd2edb3490f62f213e",
+      "research.md": "73a4da77c865ad0bd3f7ddf81d3a57dc25fc2270c07e9922f119403902757347"
     },
     "last_active_child_id": null,
     "last_active_at": null

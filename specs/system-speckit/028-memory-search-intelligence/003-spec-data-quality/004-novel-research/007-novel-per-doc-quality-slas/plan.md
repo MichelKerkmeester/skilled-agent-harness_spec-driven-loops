@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Per-Doc Quality SLAs [template:level_2/plan.md]"
+title: "Implementation Plan: Per-Doc Quality SLAs"
 description: "Adds a per-doc quality SLA over the already-computed quality score that files a report-only ticket into an existing maintenance queue. PLANNED scaffold, not yet built."
 trigger_phrases:
   - "per doc quality sla plan"

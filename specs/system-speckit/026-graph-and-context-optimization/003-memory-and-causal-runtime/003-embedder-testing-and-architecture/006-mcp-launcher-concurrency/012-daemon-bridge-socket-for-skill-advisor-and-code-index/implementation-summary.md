@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Daemon bridge socket for skill-advisor and code-index [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Daemon bridge socket for skill-advisor and code-index"
 description: "Closes packet 010's daemon-side gap. Both skill-advisor and code-index daemons now bind IPC bridge sockets after stdio connect, and secondary launcher subprocesses (including the OpenCode plugin) attach via those sockets instead of exiting with LEASE_HELD_BY garbage."
 trigger_phrases:
   - "012 implementation summary"

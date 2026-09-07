@@ -1,5 +1,5 @@
 ---
-title: "Tasks: retrieval + fixture audit [template:level_1/tasks.md]"
+title: "Tasks: retrieval + fixture audit"
 description: "T001-T018 covering probe classification, candidate coverage, parity, rerank effect, branch decision."
 trigger_phrases:
   - "011/004 tasks"

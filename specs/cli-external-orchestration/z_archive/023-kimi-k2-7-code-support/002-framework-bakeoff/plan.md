@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: framework-bakeoff [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: framework-bakeoff"
 description: "Clone the canonical framework-bakeoff profile, retarget it to kimi-k2.7-code and real fixtures, then run the model-benchmark lane with an LLM judge to produce a verdict."
 trigger_phrases:
   - "kimi bakeoff plan"

@@ -42,9 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
-      ".opencode/scripts/install-git-hooks.sh",
-      "scripts/spec-folder/generate-description.ts"
+      ".opencode/scripts/install-git-hooks.sh"
     ],
     "entities": [
       {
@@ -72,21 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-drift-marker.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
-        "source": "derived"
-      },
-      {
         "name": "install-git-hooks.sh",
         "kind": "script",
         "path": ".opencode/scripts/install-git-hooks.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-description.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/generate-description.ts",
         "source": "derived"
       },
       {
@@ -190,11 +176,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
     "created_at": "2026-07-09T06:52:38.317Z",
-    "last_save_at": "2026-08-30T15:39:34.981Z",
+    "last_save_at": "2026-09-07T16:18:09.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f37735c1b16da7e1a7d57065188dbd9f481ddd145426892d4a80b98609b30cc9",
+    "source_fingerprint": "sha256:70ca37b7c82255ca9e577f50ac5c9629b280806e88cb35b0947bf2c0ea367741",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee4e0c66a411b17221b0424be45b45133c99712081ba1c9c2ab81b1b00952ccf",
-      "plan.md": "1d406ad2d09566fb294aca415992224635b457420dc0ebb6773d1cc62bc32691",
-      "tasks.md": "dd25b4aa19879d550fec96d91c45cd2414480f7e9c450accfc371b966ffc5347",
-      "implementation-summary.md": "6247923d8a577c1b63d9f8b4843261b1eae43901cb7c2b8a594bd0776e9c87e0"
+      "spec.md": "d96933a57bfc9e5a072077a9d91ad8020b35068bff3084cd96f05293040c5442",
+      "plan.md": "5c64745513f54183ee2e2841834e24d042cd722c3ccae583291335ea5a658b64",
+      "tasks.md": "3ff76a218c368fb77f5c0097a53913adfce4deb5a4003a23105e2c78e72ebf91",
+      "implementation-summary.md": "f04bdd07921d41aedcb73a592ef7ef1ba4f99a0528d7631683708ee5ad72acfa"
     },
     "last_active_child_id": null,
     "last_active_at": null

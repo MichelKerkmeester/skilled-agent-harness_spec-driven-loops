@@ -1,5 +1,5 @@
 ---
-title: "Tasks: MiMo + MiniMax as selectable deep-skills executors [template:level_2/tasks.md]"
+title: "Tasks: MiMo + MiniMax as selectable deep-skills executors"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "deep skills executor integration tasks"

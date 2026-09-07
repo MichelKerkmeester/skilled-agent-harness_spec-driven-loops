@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/055-template-missing-header",
+  "description": "This fixture intentionally removes a required H2 section",
+  "keywords": [
+    "fixture",
+    "intentionally",
+    "removes",
+    "required",
+    "section"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.719Z",
+  "specId": "055",
+  "folderSlug": "template-missing-header",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

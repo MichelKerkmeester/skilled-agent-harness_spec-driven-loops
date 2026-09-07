@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill Advisor Refinement [template:level_3/plan.md]"
+title: "Implementation Plan: Skill Advisor Refinement"
 description: "Implement nine targeted skill advisor improvements with measurable routing quality and latency gates."
 trigger_phrases:
   - "skill advisor plan"

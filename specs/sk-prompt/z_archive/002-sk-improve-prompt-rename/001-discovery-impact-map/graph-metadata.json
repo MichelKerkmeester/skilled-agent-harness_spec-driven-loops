@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-08-30T15:39:19.012Z",
+    "last_save_at": "2026-09-07T16:17:09.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:482fae78e4f2605c691fe4a58b344021b550fc22eb619f60ecbe1a06a023f397",
+    "source_fingerprint": "sha256:79f789217043b1a0aa09faea11435f4bfb3798bf18d54a02858809c1999e6bb3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae3c7b605d572450fc4b597a60ec6e5ca6a459e983c6c4e54f2e25cda81071cc",
-      "plan.md": "f48554c93419d20bcebc5e329274b014cd0a1835011cd6f795252106659e77e2",
+      "plan.md": "a858f86dad28dbf09b05ae511c70b5a628a48bcf056c93e08cf82482d7f79ac4",
       "tasks.md": "4d46738637838167f786ec2383ffbff5f8a1c8767e6eb24dffd89022e595e7c0",
-      "implementation-summary.md": "f9ef90d47d5e502459cf38c92f92a71122a052b2bc1ddd8dbc70471598a8ddd2"
+      "implementation-summary.md": "05ee3cb5be750806c5e9a8f25c58392f94a27c165786599cfa02049f143e44b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

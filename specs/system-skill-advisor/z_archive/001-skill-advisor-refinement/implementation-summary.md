@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Skill Advisor Refinement [template:level_3/implementation-summary.md]"
+title: "Implementation Summary: Skill Advisor Refinement"
 description: "Completed refinement of skill advisor safety defaults, ranking discipline, runtime performance, and verification harnesses."
 trigger_phrases:
   - "skill advisor implementation summary"

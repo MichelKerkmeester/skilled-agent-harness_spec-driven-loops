@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Novel GO Automatic Example and Test Generation From Specs [template:level_2/tasks.md]"
+title: "Tasks: Novel GO Automatic Example and Test Generation From Specs"
 description: "Task breakdown for the additive human-approved example and test-stub generator, default-off, never a rewrite of requirement prose."
 trigger_phrases:
   - "example generation tasks"

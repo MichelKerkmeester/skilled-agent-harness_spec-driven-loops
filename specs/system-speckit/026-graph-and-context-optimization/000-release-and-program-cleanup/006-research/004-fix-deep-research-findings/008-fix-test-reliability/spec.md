@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 009 Test Reliability Remediation [template:level_2/spec.md]"
+title: "Feature Specification: 009 Test Reliability Remediation"
 description: "Resolve six findings F-015-C5-01..06 from packet 046 iteration-015 across the stress-test and unit-test surface. Removes machine-coupled paths, gates absolute latency assertions behind benchmark mode, replaces real-timer sleeps with deterministic fake timers, and snapshots/restores process env mutations so tests stay isolated and host-portable."
 trigger_phrases:
   - "F-015-C5"

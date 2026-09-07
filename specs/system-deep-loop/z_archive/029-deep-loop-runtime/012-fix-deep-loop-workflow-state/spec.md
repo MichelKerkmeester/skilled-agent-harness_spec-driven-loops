@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 002 Deep-Loop Workflow State-Machine Remediation [template:level_2/spec.md]"
+title: "Feature Specification: 002 Deep-Loop Workflow State-Machine Remediation"
 description: "Resolve five findings F-010-B5-01..04 and F-019-D4-01 across deep_start-research-loop_auto.yaml, deep_start-review-loop_auto.yaml, and generate-context.ts. Closes lock-leak on terminal paths, malformed fallback iteration records in both deep-loop YAMLs, missing --no-resource-map flag plumbing, and stale phase-parent metadata after child saves."
 trigger_phrases:
   - "F-010-B5"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: spec-memory MPS rerank promotion candidate [template:level_1/tasks.md]"
+title: "Tasks: spec-memory MPS rerank promotion candidate"
 description: "Task breakdown for packet 007 — MPS load smoke + A/B + decision."
 trigger_phrases:
   - "007 mps tasks"

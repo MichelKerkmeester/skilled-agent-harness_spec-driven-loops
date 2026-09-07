@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 003 Advisor Quality [template:level_2/spec.md]"
+title: "Feature Specification: 003 Advisor Quality"
 description: "Resolve eight findings (F-006-B1-01..03, F-012-C2-01..04, F-013-C3-01) from packet 046 across the Codex hook fallback brief, the OpenCode bridge disabled-mode visibility, the dead bridge renderer, the graph-causal lane conflict signal, the SQLite projection trigger/keyword duplication, the fusion task-intent confidence floor, the ambiguity computation surface, and the regression fixture's review-plus-edit expectation. Aligns advisor surfaces around the shared renderAdvisorBrief, preserves negative graph contributions, distinguishes derived triggers from derived keywords, guards the task-intent floor against token-stuffing, computes ambiguity from ranking score across tied clusters, and disambiguates review-plus-write prompts toward sk-code."
 trigger_phrases:
   - "F-006-B1"

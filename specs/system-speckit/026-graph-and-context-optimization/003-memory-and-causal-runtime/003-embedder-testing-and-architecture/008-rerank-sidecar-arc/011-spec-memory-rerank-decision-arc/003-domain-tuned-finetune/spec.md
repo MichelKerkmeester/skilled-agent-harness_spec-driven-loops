@@ -1,5 +1,5 @@
 ---
-title: "Spec: domain-tuned reranker fine-tune for spec-memory (with template-stripping) [template:level_1/spec.md]"
+title: "Spec: domain-tuned reranker fine-tune for spec-memory (with template-stripping)"
 description: "Phase 3 of the rerank decision arc — path of last resort. Fine-tunes a small cross-encoder (ms-marco-MiniLM-L-6-v2 or bge-reranker-base) on synthetic spec-memory triples. KEY refinement over the superseded 010 packet: template-stripping in the triple-generation pipeline so the model learns content relevance instead of template/anchor scaffolding. Gated on both Phase 1 (OFF_DEFICIENT) and Phase 2 (HOLD)."
 trigger_phrases:
   - "011/003 domain tuned finetune"

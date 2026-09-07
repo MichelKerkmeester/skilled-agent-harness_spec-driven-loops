@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Tiny Reminder Toggle [template:level-2/implementation-summary.md]"
+title: "Implementation Summary: Tiny Reminder Toggle"
 description: "A tiny fixture feature that toggles one reminder flag and records verification details."
 trigger_phrases:
   - "tiny reminder toggle"

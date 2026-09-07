@@ -1,5 +1,5 @@
 ---
-title: "Research: 028 Feature Catalog and Testing Playbook Coverage Audit [template:research]"
+title: "Research: 028 Feature Catalog and Testing Playbook Coverage Audit"
 description: "A 20-iteration deep-research audit checking whether the features packet 028 shipped were ever added to the three system skills feature catalogs and testing playbooks. Finds roughly fifty real coverage gaps concentrated in the two skills the 028 release-cleanup never touched, plus an edits-only artifact in the synced skill, and clears one large false-positive cluster."
 trigger_phrases:
   - "catalog playbook coverage audit"

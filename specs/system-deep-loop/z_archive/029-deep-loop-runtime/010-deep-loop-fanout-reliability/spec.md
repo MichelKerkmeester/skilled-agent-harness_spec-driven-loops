@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: deep-loop-fanout-reliability [template:level_1/spec.md]"
+title: "Feature Specification: Phase 1: deep-loop-fanout-reliability"
 description: "Fan-out CLI lineages mis-reported failed and timed-out runs as successes, ran serially despite a concurrency cap, ignored per-lineage iteration caps, and emitted an out-of-enum service_tier. This phase fixes the fan-out worker, prompt, and codex dispatch so failures fail, lineages run concurrently, and emitted values stay valid."
 trigger_phrases:
   - "fanout reliability"

@@ -7,7 +7,7 @@
     "deep command folder binding",
     "context loop misroutes to standalone"
   ],
-  "level": 2,
+  "level": "2",
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/008-deep-loop-folder-binding",
   "status": "complete",
@@ -34,7 +34,7 @@
     "pre-bound",
     "marker"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.132Z",
+  "lastUpdated": "2026-09-07T16:17:18.033Z",
   "specId": "008",
   "folderSlug": "deep-loop-folder-binding",
   "parentChain": [

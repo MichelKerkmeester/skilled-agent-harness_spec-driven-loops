@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: C2 Prod-Mode Recall Gate [template:level_2/spec.md]"
+title: "Feature Specification: C2 Prod-Mode Recall Gate"
 description: "The dual-mode run-eval-v2.mjs harness reports an eval-versus-prod fidelity delta but performs no baseline comparison and ships only single-target goldens that saturate. There is no prod-window recall gate over the completeRecall@3/@5/@8 columns the harness already emits plus an order-sensitive companion, so every downstream Tier-C retrieval candidate stays an unprovable hypothesis."
 trigger_phrases:
   - "prod mode recall gate"

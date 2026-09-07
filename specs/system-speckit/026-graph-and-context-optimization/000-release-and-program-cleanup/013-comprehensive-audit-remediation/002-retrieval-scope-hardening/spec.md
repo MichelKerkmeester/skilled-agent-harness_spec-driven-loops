@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: retrieval-scope-hardening [template:level_1/spec.md]"
+title: "Feature Specification: Phase 2: retrieval-scope-hardening"
 description: "Retrieval and causal-graph surfaces leaked rows across governance boundaries and trusted forged session ids. This phase fail-closes the community fallback, causal-graph traversal/link, search session trust, and no-session continuity anchoring."
 trigger_phrases:
   - "retrieval scope"

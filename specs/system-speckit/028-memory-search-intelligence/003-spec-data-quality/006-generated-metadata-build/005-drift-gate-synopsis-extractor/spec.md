@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Drift Gate and Shared Synopsis Extractor [template:level_2/spec.md]"
+title: "Feature Specification: Drift Gate and Shared Synopsis Extractor"
 description: "The spec-kit generated metadata has no persisted proof that a stored causal_summary or description still matches the current docs, and the two fields are produced by two different extractors so they legitimately diverge from the same source. This phase adds a generated-metadata drift gate that re-derives one folder and compares the generated fields ignoring volatile timestamps, plus one shared synopsis extractor used by both fields with field-specific length limits, both shipped behind a default-OFF flag and a grandfather report mode."
 trigger_phrases:
   - "generated metadata drift gate"

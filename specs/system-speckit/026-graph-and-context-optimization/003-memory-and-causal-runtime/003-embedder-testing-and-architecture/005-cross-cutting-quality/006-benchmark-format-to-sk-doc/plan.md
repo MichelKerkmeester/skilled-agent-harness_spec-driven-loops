@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern [template:level_2/plan.md]"
+title: "Implementation Plan: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern"
 description: "Author benchmark_creation.md and source_template.md, delete the legacy FORMAT.md + benchmarks_format.md trio and sibling symlinks, update all cross-link references."
 trigger_phrases:
   - "benchmark consolidation plan"

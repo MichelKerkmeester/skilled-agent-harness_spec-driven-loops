@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: 005 Post-Benchmark Improvement Research [template:level_2/plan.md]"
+title: "Implementation Plan: 005 Post-Benchmark Improvement Research"
 description: "The approach for a 10-angle read-only improvement study seeded by the 029 model benchmark, with orchestrator-written state and a cross-model verification pass. Research-only, no calibration or scorer or command or lever code modified. Status complete."
 trigger_phrases:
   - "005 improvement research plan"

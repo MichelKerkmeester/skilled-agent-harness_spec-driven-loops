@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 006 Architecture Cleanup Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 006 Architecture Cleanup Remediation"
 description: "Fifteen surgical refactors close architectural findings F-016-D1-01..08, F-017-D2-01..03, and F-018-D3-01..04 from packet 046. Extracts neutral utilities to fix import direction, breaks value-level cycles via shared type modules, removes a dead export, and centralizes vocabulary tuples so schemas/types/guards cannot drift. F-018-D3-04 partial: two critical advisor contracts deduplicated; the broader 60+-tool surface is deferred to a follow-on packet."
 trigger_phrases:
   - "F-016-D1"

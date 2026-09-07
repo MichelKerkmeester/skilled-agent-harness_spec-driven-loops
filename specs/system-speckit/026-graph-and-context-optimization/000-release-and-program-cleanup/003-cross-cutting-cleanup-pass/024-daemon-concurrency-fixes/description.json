@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes",
   "description": "Packet 046 deep research iteration-001 identified four concurrency defects in the skill-advisor daemon and freshness layer",
   "keywords": [
@@ -15,7 +16,7 @@
     "freshness",
     "layer"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.702Z",
+  "lastUpdated": "2026-09-07T16:17:30.782Z",
   "specId": "024",
   "folderSlug": "daemon-concurrency-fixes",
   "parentChain": [
@@ -25,6 +26,5 @@
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

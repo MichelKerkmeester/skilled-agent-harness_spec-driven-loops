@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: runtime-mirrors [template:level_1/tasks.md]"
+title: "Tasks: Phase 4: runtime-mirrors"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

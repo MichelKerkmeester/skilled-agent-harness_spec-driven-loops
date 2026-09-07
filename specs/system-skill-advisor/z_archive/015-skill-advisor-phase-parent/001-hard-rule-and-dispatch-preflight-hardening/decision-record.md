@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: D+B over A/C/E, and the six operator open questions [template:level_3/decision-record.md]"
+title: "Decision Record: D+B over A/C/E, and the six operator open questions"
 description: "Records why the recommended hardening design ships the two enforceable options (D stall-detector defaults, B dispatch preflight linter) with A as substrate, defers C, and rejects E as standalone; plus the confirmed-vs-inferred evidence ledger and the six questions only the operator can answer."
 trigger_phrases:
   - "hardening design decision record"

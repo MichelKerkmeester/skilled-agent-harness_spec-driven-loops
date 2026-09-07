@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The JavaScript style guide states that all JavaScript files MUST begin with a boxed header identifying the module, 78 characters wide, immediately followed by `'use strict';` for `.js` and `.cjs` files — and that `.mjs` and plugin ESM files do not take the directive",
     "created_at": "2026-07-30T19:25:14.846Z",
-    "last_save_at": "2026-08-30T15:39:11.154Z",
+    "last_save_at": "2026-09-07T16:17:02.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:723644ac621f3cc9e30794515840479f9bd9a10c2a020dda3472b228e65d2767",
+    "source_fingerprint": "sha256:8bcd3a6af3fb4a8dce1d1c8698599f26f2d97970ef1fd3592babdda8854ad0ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f817ba5dce99f43d51d6323dc644cd4d14eafb76b480e49228ca627e59ca17f1",
       "plan.md": "1c43b721b77524cb6932d59130652124a1e75e8401d6d0a4664678a7436f68e5",
       "tasks.md": "f0749db09539435ea84d50ce68322d2e22ff46aeb32026d006c3bc1581aa6254",
-      "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
+      "decision-record.md": "777469e9c17d37b0923b5d12093f1b4852ae49f2ea72c7e2290511d9cc44abf6"
     },
     "last_active_child_id": null,
     "last_active_at": null

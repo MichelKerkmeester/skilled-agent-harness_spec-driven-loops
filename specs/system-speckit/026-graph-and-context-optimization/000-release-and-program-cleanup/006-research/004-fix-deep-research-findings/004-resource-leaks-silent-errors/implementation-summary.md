@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 005 Resource Leaks And Silent Errors Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 005 Resource Leaks And Silent Errors Remediation"
 description: "Closed 5 findings F-003-A3-01..03 and F-004-A4-01, F-004-A4-04 with 5 surgical edits across watcher.ts, file-watcher.ts, projection.ts, and types.ts. Plugged three resource leaks and surfaced two silent error paths with operator-visible diagnostics. Watcher API preserved for sub-phase 006's pending refactor."
 trigger_phrases:
   - "F-003-A3 closed"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:0e7261fa4b134b22f3a7c80709acdda137238287b4b99e08e472cebc3b25e8fd"
       session_id: "049-005-resource-leaks-silent-errors"
       parent_session_id: null
     completion_pct: 95

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deferred-followups [template:level_3/spec.md]"
+title: "Feature Specification: deferred-followups"
 description: "Implements the ten Gate 7 deferred followups from 003-manifest-template-implementation-plan."
 trigger_phrases:
   - "deferred followups"

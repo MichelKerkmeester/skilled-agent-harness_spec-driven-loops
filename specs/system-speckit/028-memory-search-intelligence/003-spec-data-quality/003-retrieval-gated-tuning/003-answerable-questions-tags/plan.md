@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: C3 answerable_questions and semantic_intent tags [template:level_2/plan.md]"
+title: "Implementation Plan: C3 answerable_questions and semantic_intent tags"
 description: "Auto-generate answerable_questions and semantic_intent on write, admit them through the memory-parser allow-list, and add a flag-gated fusion consumer modeled on the validation multiplier. The write-time half ships on cost while the consumer stays default-off behind the C2 prod-recall gate."
 trigger_phrases:
   - "answerable questions tags"

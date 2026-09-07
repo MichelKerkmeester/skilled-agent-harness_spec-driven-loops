@@ -1,5 +1,5 @@
 ---
-title: "Tasks: domain-tuned reranker fine-tune [template:level_1/tasks.md]"
+title: "Tasks: domain-tuned reranker fine-tune"
 description: "Task breakdown for the multi-day fine-tune effort."
 trigger_phrases:
   - "010 fine-tune tasks"

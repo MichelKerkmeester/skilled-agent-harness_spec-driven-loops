@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern [template:level_2/tasks.md]"
+title: "Tasks: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern"
 description: "Task list: 17 tasks across 5 phases (Author, Delete, Cross-links, Refresh docs, Verify)."
 trigger_phrases:
   - "006 tasks"

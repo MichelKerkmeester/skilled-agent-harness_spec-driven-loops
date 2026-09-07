@@ -194,7 +194,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-13T15:40:34Z",
-    "last_save_at": "2026-08-30T15:39:29.834Z",
+    "last_save_at": "2026-09-07T16:17:43.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04065235a19afd5c3dbe32d4399326506c9343adc1486565f1f88208a9da0974",
+    "source_fingerprint": "sha256:4e0c83dc2dd1c0044edd23264baa21340dc8e3e4c0377f3cc19844ecc2073731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5fc1782f71dbf60d22167dd9e9b046295af68e436d627fb05f24acb2e41d5197",
-      "plan.md": "c30aefbe6f4e156640bdbd8fa5e724bbaeb801f53e3d75489cae84df6e981276",
-      "tasks.md": "befd5ce6514e6c9fe96a35dc11eff7fabb2203991029084e8453e4fcfd52087e",
-      "implementation-summary.md": "3149c47bf9e0f4734d17d674f836f54a3be0e234b78626fa86fdad245c18311e"
+      "spec.md": "8c2307e414475b30d7d2641a38af8e58b3ecd73ece1212dfd29e618affeb0358",
+      "plan.md": "ff6036dc5e7117ea9c34d1bbcdb25f3b9660daa7bbe6579999e9f0b7662e8e78",
+      "tasks.md": "e1d1dfeecbcd71ab371fbf79f85024926e6f2d7f9d9a3fce97375cb7dc365649",
+      "implementation-summary.md": "695642ed137193975e774106fde4480c7d2f877c83a3bb4a2769d2eb7d26b222"
     },
     "last_active_child_id": null,
     "last_active_at": null

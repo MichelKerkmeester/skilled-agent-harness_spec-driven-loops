@@ -117,7 +117,7 @@ Audit-trail summary only. Each child's plan carries the exact list.
 | 2 | 002-multiplexed-rule-split/ | one script or one proven message per registry row | complete |
 | 3 | 003-playbook-provenance-lines/ | a real provenance line on every playbook entry | complete |
 | 4 | 004-fingerprint-stamp-regeneration/ | real digests for the 27 hand-written attestations | complete |
-| 5 | 005-provenance-title-sweep/ | provenance tokens stripped from 1,240 titles and the rule class restored | planned |
+| 5 | 005-provenance-title-sweep/ | provenance tokens stripped from 1,240 titles and the rule class restored | complete |
 | 6 | 006-lifecycle-command-asset-merge/ | one asset per lifecycle command with a mode branch and a shared tail | planned |
 | 7 | 007-links-scan-registry-rule/ | the wikilink scan as a registry rule with a test | planned |
 | 8 | 008-review-research-scaffold-paths/ | review and research packets creatable through the scaffolder | planned |

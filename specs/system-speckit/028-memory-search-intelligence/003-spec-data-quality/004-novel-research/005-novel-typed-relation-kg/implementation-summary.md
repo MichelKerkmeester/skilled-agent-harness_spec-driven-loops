@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Planned state for the typed-relation KG build. This phase is scaffolded and not yet implemented, no code has shipped."
 trigger_phrases:
   - "typed relation kg"

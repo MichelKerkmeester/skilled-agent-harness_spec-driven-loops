@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: misplacement-and-layout [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 5: misplacement-and-layout"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

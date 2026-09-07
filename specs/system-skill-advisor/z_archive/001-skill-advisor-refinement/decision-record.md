@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Skill Advisor Refinement [template:level_3/decision-record.md]"
+title: "Decision Record: Skill Advisor Refinement"
 description: "Architecture and policy decisions for routing quality and performance refinements in skill advisor workflow."
 trigger_phrases:
   - "skill advisor adr"

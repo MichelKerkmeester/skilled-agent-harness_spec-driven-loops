@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Ran a 144-cell read-only benchmark of how MiMo, Kimi, DeepSeek and gpt-5.5 drive /memory:search on vague queries. The citation-policy surface is fully model-robust at a cite-correct rate of 1.0, DeepSeek is the best driver, Kimi over-explores, gpt-5.5 at medium drops envelope fields, and an off-corpus false-relevance on kubernetes is a calibration property shared by every model."
 trigger_phrases:
   - "vague query model benchmark"
@@ -22,7 +22,7 @@ _memory:
       - "benchmark-results.md"
       - "scripts/run-benchmark.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:cb2bca62fbe7cf09c31f3ec1936d5a9cba2e52edfce99d67d6793484f9a6cba7"
       session_id: "claude-opus-session"
       parent_session_id: null
     completion_pct: 100

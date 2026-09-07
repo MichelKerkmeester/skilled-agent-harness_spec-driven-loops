@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`mkcodeindex` was running 3 concurrent launcher processes at the time of audit (PIDs 60648 1d 15h, 52517 1d 17h, 12919 8h elapsed)",
     "created_at": "2026-05-18T05:41:20Z",
-    "last_save_at": "2026-08-30T15:39:30.918Z",
+    "last_save_at": "2026-09-07T16:17:49.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:262d120e6b039c1a77e8bc223fdcb7a824585f461f172eaefc91e941eb7549b5",
+    "source_fingerprint": "sha256:5bd5f1c3599b5d407ed0ebc7bceda681bbf00ccd55b54aa8b0cc57c288bc4109",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "491d50d9499c472064fc3771dd97533751c7609e07cbf20565535b5e6eafdee1",
-      "plan.md": "8f29bd6dce92daaa52df1be3cb57ce5983de4f53647fe07c7e6c76bd5e8807d2",
-      "tasks.md": "d1355fc90a8ec03b8d156f3c9c057a65165baf6f98a4a69eb7a10b848c9539bd",
-      "implementation-summary.md": "94614b0ea9d5da4cf34be1186c4a33e7f79ddee9c7d2f2d57a00f31dd365199c"
+      "plan.md": "e3e53e163122c7956cfc3ff096fa55a69c5a3580e042d9a66c47dd4d98644c6a",
+      "tasks.md": "61ea02c1abb7af3b58dd6e339fec82f8c9d701ff2b23f3291849245861022875",
+      "implementation-summary.md": "e2a39b1419e8e35ff87da732a894475bbb6714a20c6c9fe7d746d3445502210e"
     },
     "last_active_child_id": null,
     "last_active_at": null

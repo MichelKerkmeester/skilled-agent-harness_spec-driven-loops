@@ -1,5 +1,5 @@
 ---
-title: "Tasks: C1 deterministic header-path plus curated-signal chunk prefix [template:level_2/tasks.md]"
+title: "Tasks: C1 deterministic header-path plus curated-signal chunk prefix"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "chunk prefix tasks"

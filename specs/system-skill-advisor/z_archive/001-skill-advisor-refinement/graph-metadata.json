@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The current advisor mixes command bridges and real skills in a single ranking path, applies confidence-only behavior when `--threshold` is explicitly passed, and performs repeated expensive discovery/parsing work per process",
     "created_at": "2026-04-12T09:02:50.201Z",
-    "last_save_at": "2026-08-30T15:39:26.192Z",
+    "last_save_at": "2026-09-07T16:17:26.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fca2144cc99e40288974403a4056046f902e257af0d7226273fc94f72269c6e8",
+    "source_fingerprint": "sha256:d285ef952e56484e3f71e2409862773d3c18676337b18ca878f27c16da33c67c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff95a098b17062a9c2bd8eaa819160e1512c18e02e6f89d1c7131fd96fc4f1c8",
-      "plan.md": "7485aa50128275baf6eef5d5a2d31f73ebe1c0e9f2a4b68a86215192c0c7c153",
-      "tasks.md": "3a93597ccc1162ec57e7ca8ddd41edc79d331eb72b2000992be63ddf0e182775",
-      "decision-record.md": "34a8f1653dfe93a34409bbdf48c0e362e9cfc811fe63eb027ee2b49c5f76c31b",
-      "implementation-summary.md": "b5093b90557c815cefde5b817d0aa2a231896a50e6c3c02c8f1fedb1b4dbd686"
+      "spec.md": "60e3b3d8173cf4f8ce9a2ec42d93cec4ce4ed201848e76a4d2a1b0d4f389062b",
+      "plan.md": "98bdba70f36fde7e38b2ac576bb0f5bfb123a285d39ed8c91dfbdeb0b0a6973d",
+      "tasks.md": "a56f9e434d87ad72ed4e4e3781f38b08a468c19b64950ad0994dccd5f21f2116",
+      "decision-record.md": "a00f4c8a28382e005ad7201bd387123b21f18b4dfb923ad57f93ff17e11ec121",
+      "implementation-summary.md": "cc893034d2ff0ab845c25c666d9d12f2e893c327eb792410c40b3f4a2bb94360"
     },
     "last_active_child_id": null,
     "last_active_at": null

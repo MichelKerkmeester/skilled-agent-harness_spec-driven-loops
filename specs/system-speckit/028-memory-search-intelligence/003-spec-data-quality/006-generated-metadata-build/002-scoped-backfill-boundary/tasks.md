@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Scoped Backfill Boundary and Exclusion Unification [template:level_2/tasks.md]"
+title: "Tasks: Scoped Backfill Boundary and Exclusion Unification"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "scoped backfill boundary"

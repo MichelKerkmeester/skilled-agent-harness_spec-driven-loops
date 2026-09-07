@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:35.264Z",
+    "last_save_at": "2026-09-07T16:18:13.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f688e818bd3d57062cffcb303d68b894433fcefdb550b1c0cc62cc56d42f5673",
+    "source_fingerprint": "sha256:8b3c7f8e4cb31c65c222ab86b334055334e38444bae7ef52d60a6c5ec6e02d8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a4d21d03622e50511a7be0e56f3b587a589ad984347916b9b618270e0a242e1b",
-      "plan.md": "a2c386a76e4b019582eacead88e102c6732dc8987082f43f320242980c41bd8a",
-      "tasks.md": "5eddc3d4e1fe2ce907e7cf324a32cd1a032f922a02b67d9a38f925d4499cfc36",
-      "implementation-summary.md": "ff4f06fe31d275ee6e5b63d7f0010cfed243d41ec3221ce75cdbd76638cb893c"
+      "spec.md": "f4cd47979ecaa96c49b650e036a9171ea5fbc98c1d00c6c85787cbb7d7aa5d46",
+      "plan.md": "51dfac7a01d6f36e9c1ad717c4749caeb29c6bb3318b508ed40e72ea1fab054c",
+      "tasks.md": "7f6c8cac2daca45ee0cb8b6323c148d963f3d53ead2f1b7f463d4a5f599ee9fb",
+      "implementation-summary.md": "42d5ebc7a237cea869a69ae137a454f6bf90e5b14a265a6b36ed0bf9ac82ce44"
     },
     "last_active_child_id": null,
     "last_active_at": null

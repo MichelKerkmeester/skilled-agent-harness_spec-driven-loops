@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: DONE (interim, superseded by phase 004). Bakeoff 006 ran 30/30 real Kimi dispatches; verdict TIE - correctness saturated; RCAF retained as interim default. Phase 004 run 007 promoted COSTAR (empirical)."
 trigger_phrases:
   - "kimi bakeoff status"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/synthesis.md"
       - ".opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff/improvement/model-benchmark-state.jsonl"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a9a8acae4fed05e3907aa116e58bcfc204011eb07cf5f0542e25ad0f20c526fd"
       session_id: "scaffold-scaffold/002-framework-bakeoff"
       parent_session_id: null
     completion_pct: 100

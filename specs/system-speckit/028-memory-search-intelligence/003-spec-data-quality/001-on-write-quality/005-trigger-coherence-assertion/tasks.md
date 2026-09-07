@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A5 Trigger Coherence Assertion [template:level_2/tasks.md]"
+title: "Tasks: A5 Trigger Coherence Assertion"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "trigger phrases coherence"

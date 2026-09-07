@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A6 HVR Style Auto-Fix Linter [template:level_2/tasks.md]"
+title: "Tasks: A6 HVR Style Auto-Fix Linter"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "hvr style"

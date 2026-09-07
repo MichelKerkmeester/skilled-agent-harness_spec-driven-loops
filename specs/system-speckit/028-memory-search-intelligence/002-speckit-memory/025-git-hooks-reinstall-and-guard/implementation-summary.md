@@ -21,7 +21,7 @@ _memory:
       - ".claude/settings.json"
       - ".opencode/scripts/install-git-hooks.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:37c045127bbf0504bb3a7451c405ecc8b0eaeb011d7722cefc3b58d3a5c3a11a"
       session_id: "spec-028-018-git-hooks-reinstall-and-guard"
       parent_session_id: null
     completion_pct: 100

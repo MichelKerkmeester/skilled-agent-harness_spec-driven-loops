@@ -8,10 +8,9 @@ set -euo pipefail
 
 # Rule: PLACEHOLDER_FILLED
 # Severity: error
-# Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:]
-#   Two hard classes only. Bracketed authoring hints such as [Decision Title] are soft by design and belong to
-#   spec/check-placeholders.sh, the standalone report, as do the [template:...] provenance tokens 1,240 closed
-#   documents still carry in their titles; flagging those here would fail hundreds of packets that were never wrong.
+# Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:],
+#   and a [template:...] provenance token left in a title line. Bracketed authoring hints such as [Decision Title]
+#   are soft by design and belong to spec/check-placeholders.sh, the standalone report.
 # Parity: mirrors the runtime orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
 # (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
 # The post-edit hook runs the broader bracket scan at spec/check-placeholders.sh
@@ -85,6 +84,17 @@ run_check() {
         done < <(echo "$filtered" | grep -E '\[NEEDS[_ ]CLARIFICATION:' 2>/dev/null | \
                  grep -v '`\[NEEDS[_ ]CLARIFICATION:' | \
                  grep -v '\[NEEDS[_ ]CLARIFICATION:[^]]*\]`' || true)
+
+        # Pattern 3: a template's [template:...] provenance token left in a title.
+        # Scoped to title lines because that is the only place a scaffold ever
+        # carried it; the scaffolder strips it, so a survivor is a hand-copied
+        # template or a document older than that fix.
+        while IFS= read -r match; do
+            if [[ -n "$match" ]]; then
+                local linenum="${match%%:*}"
+                found_placeholders+=("$file:$linenum")
+            fi
+        done < <(echo "$filtered" | grep -E '^[0-9]+:[[:space:]]*title:.*\[template:' 2>/dev/null || true)
     done
     
     # Deduplicate (bash 3.2 compatible)

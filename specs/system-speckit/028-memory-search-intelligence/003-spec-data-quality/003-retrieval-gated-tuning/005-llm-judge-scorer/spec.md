@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: C5 LLM-as-judge quality scorer [template:level_2/spec.md]"
+title: "Feature Specification: C5 LLM-as-judge quality scorer"
 description: "The qualityScore fusion multiplier ships and applies a plus-or-minus-10-percent band, but it is fed a form-only score that often falls back to a flat 0.5 default. A real semantic LLM-judge score is a better input to that same shipped band not a new lane, and its marginal value over the form-only scorer must be proven first."
 trigger_phrases:
   - "llm judge quality scorer"

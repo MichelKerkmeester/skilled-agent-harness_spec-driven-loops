@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: C1 deterministic header-path plus curated-signal chunk prefix [template:level_2/plan.md]"
+title: "Implementation Plan: C1 deterministic header-path plus curated-signal chunk prefix"
 description: "Re-inject the frontmatter triggers and title and header path as a deterministic embed-time chunk prefix behind a coverage guard and a dual-cache-key fix. The prefix is default-off and promotes only after the C2 prod-mode recall gate clears."
 trigger_phrases:
   - "chunk prefix plan"

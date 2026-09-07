@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Realigned the four contract-parity MCP tools, threaded governed-ingest metadata through the scan and async paths, corrected the stale-graph guidance, and added a parity guard test so the public schema can never silently drift from runtime validation again."
 trigger_phrases:
   - "mcp contract parity summary"
@@ -28,7 +28,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/tool-contract-parity.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6256b0c8214ee92e8727678c8897a00950269b17ee3e103f03185d083d1cb8c2"
       session_id: "impl-004-mcp-contract-parity"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: z_future Always Ignored In Backfill [template:level_2/tasks.md]"
+title: "Tasks: z_future Always Ignored In Backfill"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "z future always ignored"

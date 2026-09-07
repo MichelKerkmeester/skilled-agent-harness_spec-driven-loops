@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Fail-closed scope, FK, and session-trust hardening for the retrieval and causal-graph handlers in the Spec Kit Memory MCP server."
 trigger_phrases:
   - "retrieval scope summary"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b13bda790e84b0d5a91e2ace95a784ed896a23bbb49bcc82504a74b20f61d45e"
       session_id: "scaffold-scaffold/002-retrieval-scope-hardening"
       parent_session_id: null
     completion_pct: 100

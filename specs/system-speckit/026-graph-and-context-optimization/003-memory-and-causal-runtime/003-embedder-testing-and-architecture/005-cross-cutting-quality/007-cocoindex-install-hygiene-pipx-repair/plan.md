@@ -1,5 +1,5 @@
 ---
-title: "Plan: CocoIndex install hygiene pipx repair [template:level_1/plan.md]"
+title: "Plan: CocoIndex install hygiene pipx repair"
 description: "Plan for applying the CocoIndex pipx editable repair after the completed diagnosis packet."
 trigger_phrases:
   - "cocoindex pipx repair"

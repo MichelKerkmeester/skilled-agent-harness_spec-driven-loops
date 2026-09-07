@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: B3 Retrieval-Learning Feedback Edge [template:level_2/spec.md]"
+title: "Feature Specification: B3 Retrieval-Learning Feedback Edge"
 description: "learned-feedback.ts records only the positive selection edge and no impression telemetry exists, so a doc that is never retrieved cannot be distinguished between a real recall gap and a below-floor truncation casualty. This phase captures an impression signal at the result-assembly seam and queues edge-tagged refinement actions report-only behind a default-off flag."
 trigger_phrases:
   - "retrieval feedback edge"

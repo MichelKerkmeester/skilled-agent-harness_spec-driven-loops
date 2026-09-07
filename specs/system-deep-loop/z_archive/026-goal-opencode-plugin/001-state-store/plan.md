@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: state-store [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: state-store"
 description: "Implement the passive goal plugin storage layer in mk-goal.js using per-session files, atomic writes, and queued mutations."
 trigger_phrases:
   - "goal state store plan"

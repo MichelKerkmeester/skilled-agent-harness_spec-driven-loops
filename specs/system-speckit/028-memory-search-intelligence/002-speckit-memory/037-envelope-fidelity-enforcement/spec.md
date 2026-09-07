@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Envelope-Fidelity Enforcement [template:level_2/spec.md]"
+title: "Feature Specification: Envelope-Fidelity Enforcement"
 description: "The memory-search tool always ships requestQuality and citationPolicy on a non-empty result but the command render contract lets a weaker model drop them, so the verdict is model-dependently absent in the rendered block. This phase makes the two verdict fields conditionally-mandatory render slots, adds a deterministic post-render envelope-fidelity check that replays the tool verdict against the rendered prose, and emits a pre-rendered verdict fragment so the model transcribes nothing. Every behavioral change ships behind a default-OFF flag or a grandfather report mode because existing renders carry the looser contract."
 trigger_phrases:
   - "envelope fidelity enforcement"

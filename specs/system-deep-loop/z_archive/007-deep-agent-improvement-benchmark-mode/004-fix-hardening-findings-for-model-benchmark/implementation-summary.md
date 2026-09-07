@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/deep-agent-improvement/scripts/tests/remediation.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a11632849ea49f444861e26f294c3b0eefb2d0212bd17b296787e511ed0a1899"
       session_id: "remediation-20260528"
       parent_session_id: null
     completion_pct: 100

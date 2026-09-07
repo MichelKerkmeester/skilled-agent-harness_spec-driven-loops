@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Tri-System Deep Research Program [template:examples/level_1/plan.md]"
+title: "Implementation Plan: Tri-System Deep Research Program"
 description: "Plan for executing fifty read-only research iterations over the three system skills with orchestrator-written state."
 trigger_phrases:
   - "tri-system deep research plan"

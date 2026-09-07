@@ -1,5 +1,5 @@
 ---
-title: "Tasks: spec-memory vitest stabilization [template:level_1/tasks.md]"
+title: "Tasks: spec-memory vitest stabilization"
 description: "Task breakdown for the 5-cluster vitest stabilization work."
 trigger_phrases:
   - "008 vitest tasks"

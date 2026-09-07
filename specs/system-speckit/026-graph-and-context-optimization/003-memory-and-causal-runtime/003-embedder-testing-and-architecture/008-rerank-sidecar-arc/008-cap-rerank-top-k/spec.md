@@ -1,5 +1,5 @@
 ---
-title: "Spec: cap spec-memory rerank top-k to test MPS-Qwen at smaller batch [template:level_1/spec.md]"
+title: "Spec: cap spec-memory rerank top-k to test MPS-Qwen at smaller batch"
 description: "Packet 007 showed Qwen3-Reranker-0.6B on MPS OOMs when spec-memory sends its default 50-document batch to /rerank. The attention buffer at that batch shape exceeds Apple Silicon GPU memory. Cap the local-provider maxDocuments to 10 via env override and re-bench. If the smaller batch fits, gates may flip."
 trigger_phrases:
   - "008 cap top-k rerank"

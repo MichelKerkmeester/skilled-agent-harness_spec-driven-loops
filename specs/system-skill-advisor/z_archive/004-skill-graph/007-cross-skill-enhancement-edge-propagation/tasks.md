@@ -1,5 +1,5 @@
 ---
-title: "Tasks: skill_graph_propagate_enhances MVP [template:level_2/tasks.md]"
+title: "Tasks: skill_graph_propagate_enhances MVP"
 description: "Granular T### tasks for SWE-1.6 implementation. 24 tasks across 5 phases. Phases 2-3 can run in any order after phase 1; phase 5 is the terminal gate."
 trigger_phrases:
   - "026 tasks"

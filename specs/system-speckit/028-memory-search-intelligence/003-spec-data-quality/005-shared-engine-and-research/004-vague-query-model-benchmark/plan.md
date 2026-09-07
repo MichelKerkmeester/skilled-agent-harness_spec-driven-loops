@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Vague-Query Model Benchmark [template:level_2/plan.md]"
+title: "Implementation Plan: Vague-Query Model Benchmark"
 description: "A custom benchmark harness in the phase folder: a JSON config defining the model by query by sample matrix, a concurrent dispatch driver over opencode run --command, and an event-stream parser that aggregates per-cell metrics to mean plus variance. Reuses the proven pilot dispatch shape and rejects the correctness-gated deep model-benchmark scorer as the wrong fit for a behavior comparison."
 trigger_phrases:
   - "vague query model benchmark"

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals) [template:level_3/decision-record.md]"
+title: "Decision Record: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals)"
 description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
 trigger_phrases:
   - "decision"

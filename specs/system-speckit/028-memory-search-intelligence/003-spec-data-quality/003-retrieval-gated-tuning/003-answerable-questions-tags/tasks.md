@@ -1,5 +1,5 @@
 ---
-title: "Tasks: C3 answerable_questions and semantic_intent tags [template:level_2/tasks.md]"
+title: "Tasks: C3 answerable_questions and semantic_intent tags"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "answerable questions tags"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Flag Vocabulary Consolidation [template:level_2/spec.md]"
+title: "Feature Specification: Flag Vocabulary Consolidation"
 description: "Hand-rolled boolean env-flag parsing across capability-flags.ts and consuming modules accepts inconsistent vocabulary between flags. SPECKIT_MEMORY_GRAPH_UNIFIED=off is silently ignored (stays on) and SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE=on silently stays off, with no error either way. A shared parseFlagTristate() helper replaces the hand-rolled comparisons so every migrated flag accepts the same vocabulary."
 trigger_phrases:
   - "flag vocabulary consolidation"

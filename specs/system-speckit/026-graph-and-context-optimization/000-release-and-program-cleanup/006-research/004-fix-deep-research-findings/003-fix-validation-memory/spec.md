@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 004 Validation And Memory Remediation [template:level_2/spec.md]"
+title: "Feature Specification: 004 Validation And Memory Remediation"
 description: "Closes 13 findings F-005-A5-01..06, F-008-B3-01..02, and F-009-B4-01..05 from packet 046. Tightens advisor schema validation, memory-parser causal-link extraction, causal-links insert accounting, description.json parsing, checkpoint snapshot restore, and four spec-validation shell rules. Adds typed schemas where generic JSON parses bypassed validation, and reuses the markdown anchor parser in shell rules so reference-link, evidence, and template-header checks share one truth."
 trigger_phrases:
   - "F-005-A5"

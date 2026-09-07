@@ -40,10 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,24 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-backfill.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,11 +168,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
     "created_at": "2026-06-27T17:15:41.172Z",
-    "last_save_at": "2026-08-30T15:39:35.803Z",
+    "last_save_at": "2026-09-07T16:18:30.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:105694e2cdb09d8a8632c66e3c0c1217b8eceb7a0abbe58e61ddc07573867160",
+    "source_fingerprint": "sha256:41cba70b2433c4ce273e5ac74423196afd018ba6a529579eb6cc5f55c1cd3459",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dc57040d4204fd9ec4bf5b0e5520c26c9394f0e852d3bf1854d5a720c5fd41e2",
-      "plan.md": "bea9d140df52c45ae40342fed01906774b0210ac66f5a021cab240c8015ed38d",
-      "tasks.md": "7a67fff82d91a09c6db563aeb0c875967a14ab3d8ced7481dfdc06a7ce97f5bf",
-      "implementation-summary.md": "3d061a0a889fb7881506344c5e795e542714865ad803180d48b26c02df58e591"
+      "spec.md": "7d41c77644b21f1d65a882f67f24f7c49db2cfdc6ad5e001d51c1b33d51ecb2c",
+      "plan.md": "3a1c43c5c22ce04da1eb4d4b6bf6bd3117f46c2eb40cb587cb31899e240448dd",
+      "tasks.md": "4a0dcb7bc14cafea3e6efda368d6b6f84ebb68aa1845d8f89ef779469a10839c",
+      "implementation-summary.md": "57f93e72739f0bd31bc6a35ff812a2a4b8419d0918faa8d6610fcf46b07f838f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: completion-supervisor [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 5: completion-supervisor"
 description: "Add a conservative idle-time verifier path that normalizes supervisor verdicts, applies compare-safe state transitions, and exposes redacted verifier status."
 trigger_phrases:
   - "goal supervisor plan"

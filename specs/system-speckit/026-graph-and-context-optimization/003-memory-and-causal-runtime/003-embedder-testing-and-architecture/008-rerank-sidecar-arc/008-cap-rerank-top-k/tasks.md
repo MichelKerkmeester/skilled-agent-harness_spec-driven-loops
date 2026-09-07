@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cap spec-memory rerank top-k [template:level_1/tasks.md]"
+title: "Tasks: cap spec-memory rerank top-k"
 description: "Tasks for env override + bench + verdict."
 trigger_phrases:
   - "008 cap top-k tasks"

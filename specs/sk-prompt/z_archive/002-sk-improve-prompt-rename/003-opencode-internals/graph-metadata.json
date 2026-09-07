@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After the skill folder is renamed, active `.opencode/` consumers still load, score, document, or test the old skill ID",
     "created_at": "2026-05-06T10:22:40Z",
-    "last_save_at": "2026-08-30T15:39:19.026Z",
+    "last_save_at": "2026-09-07T16:17:10.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:689963c2db09fdfaae847d793de7e8a55809fc1ee941f9459fc3ee6454f72b71",
+    "source_fingerprint": "sha256:473cab6e218b4a5701a54ee05bf85e0910395942fcd47cd7c8f5b7c557b1bbcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50b9e491062a63679455c8b19932b3bb5cde942c2ee735efb5dabc73eb361aa2",
-      "plan.md": "372b471a330d70533b9c89edb151cd22d6ca154a52a9cbc3122a206329473e11",
+      "plan.md": "67a1f4881e20a5a500dc1dd43fd48f635bd5ffe984c2ca7da32136f4a78420a2",
       "tasks.md": "4413ab91fb9bcbef5e9c8fb65349ad45a8884e65d7e82a73a21c0e653b7b1886",
       "implementation-summary.md": "e5b4086a3db3d5f9e62234d5f3b7cd372947f1c71d3669410b30c82c96aa62d2"
     },

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: active-decisions-design [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 2: active-decisions-design"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "phase two active decisions design"

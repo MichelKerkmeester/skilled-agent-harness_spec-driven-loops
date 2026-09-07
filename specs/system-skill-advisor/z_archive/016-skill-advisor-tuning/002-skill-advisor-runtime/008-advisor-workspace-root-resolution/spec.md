@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Resolve the skill-advisor workspace root by walk-up to stop nested .opencode/.advisor-state [template:level_2/spec.md]"
+title: "Feature Specification: Resolve the skill-advisor workspace root by walk-up to stop nested .opencode/.advisor-state"
 description: "The skill advisor wrote its generation state to <cwd>/.opencode/skills/.advisor-state whenever it ran with a subdirectory as the working directory, creating stray nested .opencode trees across the repo. Resolve the workspace root deterministically from the module location instead of process.cwd()."
 trigger_phrases:
   - "advisor workspace root"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: skill references assets alignment [template:level_3/plan.md]"
+title: "Implementation Plan: skill references assets alignment"
 description: "Three-phase audit plan for SKILL.md, references, and Markdown assets."
 trigger_phrases:
   - "skill references assets alignment plan"

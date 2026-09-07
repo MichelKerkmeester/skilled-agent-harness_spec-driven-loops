@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: rehome-rules-content [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 4: rehome-rules-content"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "phase four rehome rules content"

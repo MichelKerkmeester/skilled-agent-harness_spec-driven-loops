@@ -1,5 +1,5 @@
 ---
-title: "Level 2 Templates [template:level_2/README.md]"
+title: "Level 2 Templates"
 description: "Verification-focused templates for medium complexity changes."
 trigger_phrases:
   - "level 2"

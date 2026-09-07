@@ -41,8 +41,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "dist/handlers/memory-search.js",
-      "lib/search/search-flags.ts",
       "evidence/bge-v2-m3-bench-2026-05-21.json"
     ],
     "entities": [
@@ -68,18 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.js",
-        "kind": "code",
-        "path": "dist/handlers/memory-search.js",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -189,11 +175,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 008 tried two off-the-shelf rerankers on spec-memory:",
     "created_at": "2026-05-23T11:55:15.630Z",
-    "last_save_at": "2026-08-30T15:39:31.148Z",
+    "last_save_at": "2026-09-07T16:17:56.329Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a783938fb229f941a622606def46ef4330d258d3d7d324955312e87cb0e14c1",
+    "source_fingerprint": "sha256:9b373bceae2a75dbfafca92d103728ba0c5f9ab1a5bb8a977894e81cb7b804b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b1f2c2ad9571fa11c9c1aa75aea141f50f26cbee533ca6ab5b1552c908ab68d",
-      "plan.md": "a75d5ca22ed04e233315aa56960a5c8b2c8e1d50e61f669ec7ba0fe6afd769e6",
-      "tasks.md": "fb7511ec11b34dee57b8209ae0bf7fc6271eb6d621fce30aaf51af4ad9257150",
-      "implementation-summary.md": "907ad5fc526eae8cde5ab670b99fbed34ee849c8ffb4e13be2cf169bff5d0750"
+      "spec.md": "4b2acd4d7fc7487cbb76ad3f835d79e253cfbeb91ec63a02e5c98ab45ca04f38",
+      "plan.md": "70e6f58cdb2f45e2c24cb1c803d833a31c492758b476a68c657322f57e957731",
+      "tasks.md": "f70c1286a7e874e4fd037428be108ffc68c42589077a614bac46c15b1cea88d6",
+      "implementation-summary.md": "65bfc15257cee46c177365a10c8ff40e3a1436dfaab62d7f8bb8c7040fcb5f00"
     },
     "last_active_child_id": null,
     "last_active_at": null

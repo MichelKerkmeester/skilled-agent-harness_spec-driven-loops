@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Skill Advisor Refinement [template:level_3/spec.md]"
+title: "Feature Specification: Skill Advisor Refinement"
 description: "Refine skill advisor routing quality and runtime performance in .opencode/skills/scripts/skill_advisor.py and adjacent script-level support files."
 trigger_phrases:
   - "skill advisor"

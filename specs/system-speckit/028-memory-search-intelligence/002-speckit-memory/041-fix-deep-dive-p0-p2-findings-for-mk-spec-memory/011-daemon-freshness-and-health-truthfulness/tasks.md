@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 11: daemon-freshness-and-health-truthfulness [template:level_1/tasks.md]"
+title: "Tasks: Phase 11: daemon-freshness-and-health-truthfulness"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "dist freshness deadlock"

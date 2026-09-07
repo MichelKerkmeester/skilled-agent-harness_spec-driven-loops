@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 008 Search Quality Tuning [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 008 Search Quality Tuning"
 description: "Five surgical search-quality fixes close findings F-011-C1-01..05. NDCG@K and MRR added to the search-quality harness, the rerank gate's hard floor lowered for weak-margin/disagreement triggers, the cross-encoder candidate cap enforced before provider calls, CocoIndex adaptive overfetch graduated behind a flag, and the learned Stage 2 combiner promoted via a clamped blend weight."
 trigger_phrases:
   - "F-011-C1"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ccd30f385eb49fa29476eb11fd6dd14a96566bd3ad7c77bfa8080f031c541552"
       session_id: "049-008-search-quality"
       parent_session_id: null
     completion_pct: 100

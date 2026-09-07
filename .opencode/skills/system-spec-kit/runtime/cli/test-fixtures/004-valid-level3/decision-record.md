@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Tiny Catalog Sync [template:level-3/decision-record.md]"
+title: "Decision Record: Tiny Catalog Sync"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
 trigger_phrases:
   - "tiny catalog sync"

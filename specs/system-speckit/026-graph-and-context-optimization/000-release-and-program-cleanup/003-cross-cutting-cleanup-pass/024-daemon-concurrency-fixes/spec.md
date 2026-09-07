@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: Iteration-001 Daemon Concurrency Fixes [template:level_2/spec.md]"
+title: "Feature Specification: Iteration-001 Daemon Concurrency Fixes"
 description: "Skill-advisor daemon races and ordering bugs found by packet 046 deep research iteration-001 leave concurrent reindex flushes, post-shutdown 'live' state, lock-token theft, and out-of-order cache invalidation. This packet hardens those four code paths."
 trigger_phrases:
   - "daemon concurrency"

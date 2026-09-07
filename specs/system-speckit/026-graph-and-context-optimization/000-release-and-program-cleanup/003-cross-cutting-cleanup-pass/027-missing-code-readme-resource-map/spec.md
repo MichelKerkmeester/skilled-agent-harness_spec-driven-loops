@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Missing Code READMEs Resource Map [template:level_2/spec.md]"
+title: "Feature Specification: Missing Code READMEs Resource Map"
 description: "Implement the exact 65-folder missing code README manifest with validated target README files."
 trigger_phrases:
   - "missing code readmes resource map"

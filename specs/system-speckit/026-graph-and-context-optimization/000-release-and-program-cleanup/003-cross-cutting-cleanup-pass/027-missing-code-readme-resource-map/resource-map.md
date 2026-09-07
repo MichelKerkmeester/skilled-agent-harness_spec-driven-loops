@@ -1,5 +1,5 @@
 ---
-title: "Resource Map: Missing Code READMEs Resource Map [template:resource-map.md]"
+title: "Resource Map: Missing Code READMEs Resource Map"
 description: "Exact Task #36 manifest and implementation evidence for 65 target README files."
 trigger_phrases:
   - "65 target readme manifest"

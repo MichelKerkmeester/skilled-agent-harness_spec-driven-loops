@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A9 Read-Time Content-Hash Integrity Verification [template:level_2/spec.md]"
+title: "Feature Specification: A9 Read-Time Content-Hash Integrity Verification"
 description: "Stored content_hash is a write-time cache and idempotency key that is never re-checked on read, so silent DB or migration corruption surfaces as bad recall instead of a detectable fault. This phase recomputes the hash on read to catch that drift inside the existing trust boundary."
 trigger_phrases:
   - "content hash integrity"

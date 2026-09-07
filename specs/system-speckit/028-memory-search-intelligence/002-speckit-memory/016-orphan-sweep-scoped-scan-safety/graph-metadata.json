@@ -42,12 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "handlers/memory-index.ts",
-      "lib/config/spec-doc-paths.ts",
-      "tests/orphan-sweep-time-budget-and-refresh.vitest.ts",
-      "tests/memory-index-scoped-scan-gating.vitest.ts",
-      "lib/storage/maintenance-marker.ts",
-      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
+      "lib/config/spec-doc-paths.ts"
     ],
     "entities": [
       {
@@ -75,39 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
         "name": "spec-doc-paths.ts",
         "kind": "code",
         "path": "lib/config/spec-doc-paths.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orphan-sweep-time-budget-and-refresh.vitest.ts",
-        "kind": "test",
-        "path": "tests/orphan-sweep-time-budget-and-refresh.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index-scoped-scan-gating.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-index-scoped-scan-gating.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "maintenance-marker.ts",
-        "kind": "code",
-        "path": "lib/storage/maintenance-marker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-drift-marker.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
         "source": "derived"
       },
       {
@@ -185,7 +150,7 @@
     ],
     "causal_summary": "F2 (headline finding, confirmed by reproduction) -- scoped scan (drift-marker consumption) bypasses every",
     "created_at": "2026-07-09T15:13:29.637Z",
-    "last_save_at": "2026-08-30T15:39:35.022Z",
+    "last_save_at": "2026-09-07T16:18:10.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +159,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ce3c678284fa28942f63d058d828cc091b0a0cda1784677cbc2cd40249dcf19",
+    "source_fingerprint": "sha256:170b36a1bc84f92d7a6121f1b171ed75cc2890ad4a25683b9e562523185ab7d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c764326c886996ea28c5f95f65f17351de3cdab37cf9d07d58ff7bd35511696",
+      "spec.md": "c4335f350e4cc913d933df984cae4808818f81cb042bbb2168ef8f68728b54e6",
       "plan.md": "eafd780db9d79843046aa61ca2ed639c55134a8da4964ed03e9601bf7e17ac3e",
       "tasks.md": "25999670ce05cfd8bda2417aa7edbf980fd8d34fc9f668cd56e469950fef2f64",
-      "implementation-summary.md": "d34763ecd7f3687de0901b8b6f180bc4926fe73fb8049a6ab002725d793815fe"
+      "implementation-summary.md": "4b5e48231d8be0a590c6fe1b49af8a7f67e38e7b5109f70c807304aed20b91ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

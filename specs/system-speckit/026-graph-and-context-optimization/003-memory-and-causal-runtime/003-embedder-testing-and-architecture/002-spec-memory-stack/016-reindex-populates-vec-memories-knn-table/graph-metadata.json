@@ -46,10 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      "lib/embedders/reindex.ts",
-      "shared/embeddings/factory.ts",
-      "lib/search/vector-index-store.ts",
-      "database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite"
+      "shared/embeddings/factory.ts"
     ],
     "entities": [
       {
@@ -80,24 +77,6 @@
         "name": "factory.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": "lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
-        "kind": "file",
-        "path": "database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "graceful",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memorysearch` was returning RRF score distributions with Z near 1.2, below the evidence-gap threshold of 1.5, which forced the response policy into `broadenorask` and `donotciteresults`",
     "created_at": "2026-05-19T18:51:11Z",
-    "last_save_at": "2026-08-30T15:39:30.327Z",
+    "last_save_at": "2026-09-07T16:17:46.287Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acb50aab472cae151f1b528d17a2c8a9dcc61a5fde6ea8e30d031e5caf22c51a",
+    "source_fingerprint": "sha256:3d4097a61e2e8ba37ed5ca7ac17bafb52fc3d1d22183b9587b0e16d2526832a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a53ea2085941c9e16f013dfb3861998b4c1f5a1932eb23183c60312e2b6ba89f",
-      "plan.md": "5b61ca1185fa54f8a79476337cfb280853d69f4c9a3e64e133e85617dbaef045",
-      "tasks.md": "b6437b392c6e3dbfbca5ece223a2118911af633907e695f9afa6623523ac083c",
-      "implementation-summary.md": "02be4e8788b177204719312688ce1e9c1f1a7bc8b96abc72bab2f09e20468f2f"
+      "spec.md": "6935951998f12cf36d14467ada819603f967943724289d2ecd55fb6be22ef4ff",
+      "plan.md": "dc04aee53f17257c7dfbc98f872f64ab5af891291797bac489a808144cd20d1a",
+      "tasks.md": "ed3463248321683916cefeccaf03bc86448cb8804df52f6a64773332623b24c4",
+      "implementation-summary.md": "a62e1732f9a546365fd06b84a00895c912df6452b3fa1456c66ba57af008ae01"
     },
     "last_active_child_id": null,
     "last_active_at": null

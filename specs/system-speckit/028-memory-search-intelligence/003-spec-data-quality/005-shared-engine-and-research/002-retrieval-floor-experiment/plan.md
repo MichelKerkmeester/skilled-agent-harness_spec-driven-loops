@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Retrieval Floor Experiment [template:level_2/plan.md]"
+title: "Implementation Plan: Retrieval Floor Experiment"
 description: "Run a measurement-only floor sweep on the C2 prod-mode harness through a default-off env override, read only the prod-lens completeRecall@3 column per setting and report a signal-or-noise verdict against the stored C2 baseline. The on-disk default stays 3."
 trigger_phrases:
   - "retrieval floor experiment"

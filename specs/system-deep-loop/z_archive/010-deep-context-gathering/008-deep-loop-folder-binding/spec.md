@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family [template:level_2/spec.md]"
+title: "Feature Specification: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family"
 description: "The /deep:* setup contract never binds a spec folder named inline in the positional scope, and deep-context lets the standalone fallback win even when a folder is identifiable — so a context run pointed at a folder misroutes to a standalone dir."
 trigger_phrases:
   - "deep loop folder binding"

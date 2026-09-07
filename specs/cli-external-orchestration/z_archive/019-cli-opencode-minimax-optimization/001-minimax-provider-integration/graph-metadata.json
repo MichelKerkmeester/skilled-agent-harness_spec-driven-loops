@@ -194,7 +194,7 @@
     ],
     "causal_summary": "cli-opencode supports only `opencode-go` and `deepseek` providers, and the shared small-model registry has no MiniMax entry",
     "created_at": "2026-05-28T08:38:26Z",
-    "last_save_at": "2026-08-30T15:39:08.555Z",
+    "last_save_at": "2026-09-07T16:16:50.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c8951b15fd2688da4d90a0894d19b14019e75219e4fab3ffd360797e7d3dfaa",
+    "source_fingerprint": "sha256:b6d3a0348b5ef287fdc0f0835bcaa47cc8634613034601ad5bf95db6323cb2ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e5aa6f33d1df5584fb939f5a606234d8e2dbb2d515cbb17811e47209aac9cc3",
       "plan.md": "66294a4f2d2ed3631353812a2082e801ec7d01a89c34ba89640832fb245b4150",
-      "tasks.md": "0a69f4a3f28c65c73cb4dccbf3a7f45cbc299f833455d3debcc5c7a4a7ac8320",
-      "implementation-summary.md": "b0bce9e07a4bedf7ba0032e9186c20939c80fbbfb08d13525020e8fb1953fcca"
+      "tasks.md": "d2613f6739f9a64dcc21bd1ae374bfb195fe9068b2e9ca41da47d45d5739056c",
+      "implementation-summary.md": "a6744f00e25f0fe98f8ea2ed6fd75e06b34c10671ba49f738838b891501e504f"
     },
     "last_active_child_id": null,
     "last_active_at": null

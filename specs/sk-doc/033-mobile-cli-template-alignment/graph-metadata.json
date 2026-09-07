@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `sk-code-mobile-cli` packet no longer conforms to the templates and contracts that `sk-doc` owns",
     "created_at": "2026-08-28T05:55:28.397Z",
-    "last_save_at": "2026-08-30T15:39:18.124Z",
+    "last_save_at": "2026-09-07T16:17:04.533Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b596ef433e284c8d57dcceccc5273cb5381a8cec4f51248aa8683cbbd82805a4",
+    "source_fingerprint": "sha256:9ba9fadc8f1df4deb26dd51ce560d2abd7f4ed0dc00e4bfeca21cba61d777468",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d9bd97f3edc34101cee22713f0bf60d353e715e8e8e992cdef3d835bca39dfa",
-      "plan.md": "a2765d545d02c6ad3a9501c0ab8cd1d8f3af0d02f3e50be2aad41573463aeb04",
+      "spec.md": "5643b34035189dc5e9a4cc94ff28e68402e9353b3b17d3f5fc738771e881651d",
+      "plan.md": "19e05341891a77c08c63a2fdd138885a69f51ea0cfc440a7c44f054bae27f5e1",
       "tasks.md": "4820e837caf55ec139a596ba26a91bedb3ce51c92f99914e7889a6bcd3b27c58",
-      "implementation-summary.md": "781228c356ce27a6ad5b901c83795a3d4409696031628c7ea5537c75144538f2"
+      "implementation-summary.md": "56ad1b84229c9bdd9cde0f99c8af61e2b172c27e02c419c224622a0af49b4ff0"
     },
     "last_active_child_id": null,
     "last_active_at": null

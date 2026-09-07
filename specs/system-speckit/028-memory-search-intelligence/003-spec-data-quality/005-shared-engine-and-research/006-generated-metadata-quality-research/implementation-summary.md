@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: 031 Generated JSON Quality and Safety Research [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 031 Generated JSON Quality and Safety Research"
 description: "Status COMPLETE for a research-only deliverable. The 10-angle study diagnosed two dominant safety classes, broad-walk over-reach and non-idempotent writes, converged on a shared spec-folder identity resolver and a first-class generated-metadata validator as the root-cause fixes, skeptically cross-checked the load-bearing claims, and produced 14 ranked proposals with a build order. Findings live in research/research.md. No generator or parser or schema or validator code was modified."
 trigger_phrases:
   - "generated json quality research summary"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "research/research.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9ffe78ae6edd48a2c5f6048d78c93df42ac6a0c5b414fa670f980c34607173d5"
       session_id: "2026-06-22-summary-031-generated-metadata-quality-research"
       parent_session_id: null
     completion_pct: 100

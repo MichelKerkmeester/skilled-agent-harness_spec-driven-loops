@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A8 Surface Provenance Fields [template:level_2/plan.md]"
+title: "Implementation Plan: A8 Surface Provenance Fields"
 description: "Surface the already-computed provenance governance fields as first-class JSON fields and freshness-bind causal_summary to source_docs at the existing write seam with no re-index."
 trigger_phrases:
   - "surface provenance fields plan"

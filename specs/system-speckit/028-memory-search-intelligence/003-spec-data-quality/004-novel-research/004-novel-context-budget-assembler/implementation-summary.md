@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Scaffold record for the novel context-budget-fitting assembler. Status PLANNED, the feature is not built yet."
 trigger_phrases:
   - "context budget assembler"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/context-budget-assembler.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9ce982f9195134db83e88267d8d493134282059e2ba6869589197df876acd862"
       session_id: "template-session"
       parent_session_id: null
     completion_pct: 0

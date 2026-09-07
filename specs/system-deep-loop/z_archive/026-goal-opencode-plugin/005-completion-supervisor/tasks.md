@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: completion-supervisor [template:level_1/tasks.md]"
+title: "Tasks: Phase 5: completion-supervisor"
 description: "Supervisor verifier tasks for idle verification, verdict normalization, completion source tracking, and redacted status output."
 trigger_phrases:
   - "goal supervisor tasks"

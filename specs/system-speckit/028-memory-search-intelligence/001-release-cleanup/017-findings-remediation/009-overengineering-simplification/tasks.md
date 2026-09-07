@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 9: overengineering-simplification [template:level-1/tasks.md]"
+title: "Tasks: Phase 9: overengineering-simplification"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

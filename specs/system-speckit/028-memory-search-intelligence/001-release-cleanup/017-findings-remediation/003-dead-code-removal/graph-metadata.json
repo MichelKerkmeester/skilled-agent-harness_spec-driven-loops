@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Scripts, npm entries, dependencies, CLI subcommands and config references exist with no reachable caller or with targets that no longer exist",
     "created_at": "2026-07-27T08:41:09Z",
-    "last_save_at": "2026-08-30T15:39:34.718Z",
+    "last_save_at": "2026-09-07T16:18:06.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d21305ea4be1202fa925cb461acd65502756f91f4b7c9e79db6a16b4e4a42760",
+    "source_fingerprint": "sha256:1bba79626257e7f8642f436b07a7c9aac6ac97bb2f8bcddf8df1801520efe649",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f788594d04173258ecf3e22c97f75a113bae14b316c2e6ae17103e429b8cbff9",
-      "plan.md": "a7442e21b6abe2b310a59619775bba9f2aaa05c33233c9f61b1c54d50908cf51",
-      "tasks.md": "86a2fc179a74e77b42607365d3939246040eeb1a26f8300c2a3e57b5a76a732a",
-      "implementation-summary.md": "c03cfdee5f78964ea59aee0e0ba7bb86c1b0f0cc530e7bbdcfab2f67bd1910ee"
+      "plan.md": "06df7a11f78ff91a7f31c169375008ed06726da617c89e52a974e44986f087ca",
+      "tasks.md": "1671048bf9448456110306f9f59572df840f42bd7f8730b008516ffb98fc58db",
+      "implementation-summary.md": "235d90b3bf78dbcd190f8cc8e26ee3d0cea1ff4965d1d3cda471187585ff877e"
     },
     "last_active_child_id": null,
     "last_active_at": null

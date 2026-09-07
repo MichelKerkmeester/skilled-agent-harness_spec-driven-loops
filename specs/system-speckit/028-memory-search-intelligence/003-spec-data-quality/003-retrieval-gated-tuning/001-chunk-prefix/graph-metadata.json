@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
     "created_at": "2026-06-27T17:15:36.300Z",
-    "last_save_at": "2026-08-30T15:39:35.625Z",
+    "last_save_at": "2026-09-07T16:18:21.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaf11c803641bebf8868950094665cb47b152b566bad7a4a41e8688f31cb0330",
+    "source_fingerprint": "sha256:60f30e1d23bf33b2af28e6749ac11cb74dbdc21fafc3321dbbda7e6e01131d82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa07eac68a125b8954845d21493ddb0b9e9b1b79b24412c04e62edb932739eea",
-      "plan.md": "ef92f6b07434d145ca8c914eb49b4133d6a8e1095b385d0dcddfa2a92e38caea",
-      "tasks.md": "b9203fc50c35f941006e1a0f5ec45bdf42be4b2abe014ad2acf1b54cd4abd128",
-      "implementation-summary.md": "b85138595e70bfe86164a99cbb65e7e83e6deae4dd49bb1c633cb5572299c31d"
+      "spec.md": "09fb0f8794e2fb2ef795f5b85a0208ebc936c55a32859758a00fd622de72f5dc",
+      "plan.md": "6066921ffd2f5bc8b4852ed679da0763968a787d18192924ccbbd3aa47b74ab5",
+      "tasks.md": "af1da3433b6ebdead1ba95fecb6643bd6ae1c3c7433f334ecec0bdc7abb1d38c",
+      "implementation-summary.md": "6a9dbdab57cb884114502bb303fe60a4744f8222d8c46a6df2b8a076509a284b"
     },
     "last_active_child_id": null,
     "last_active_at": null

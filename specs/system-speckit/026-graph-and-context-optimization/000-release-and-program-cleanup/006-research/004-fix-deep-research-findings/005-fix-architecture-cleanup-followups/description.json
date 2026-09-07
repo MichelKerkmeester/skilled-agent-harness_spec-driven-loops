@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-fix-architecture-cleanup-followups",
   "description": "Fifteen architectural findings across the advisor, memory, freshness, and graph subsystems leak boundary violations, value-level dependency cycles,",
   "keywords": [
@@ -18,7 +19,7 @@
     "dependency",
     "cycles"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.700Z",
+  "lastUpdated": "2026-09-07T16:14:49.630Z",
   "specId": "005",
   "folderSlug": "fix-architecture-cleanup-followups",
   "parentChain": [
@@ -31,6 +32,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "01-05-26_09-29__049-sub-phase-006-fix-architecture-cleanup-followups.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. The Stage 3 full-repo generated-JSON migration driver and its vitest are built and green, and the live full-repo run is done. The scoped per-folder driver regenerated description.json and graph-metadata.json across the whole tree, z_archive included and z_future excluded by operator decision, and the integrity validator read 2049 folders at 0 violations with a byte-stable second run. One contract boundary held: the hardened writer rules refuse graph-metadata under z_future, so the driver enumerates z_future for coverage but records it skipped on the writer rule rather than rewriting it."
 trigger_phrases:
   - "full repo json migration"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b6536712e2f8c377f2172e39433d8a446b8f8d8581fcf20e9e7087ac36ca5924"
       session_id: "phase-039-full-repo-json-migration"
       parent_session_id: null
     completion_pct: 100

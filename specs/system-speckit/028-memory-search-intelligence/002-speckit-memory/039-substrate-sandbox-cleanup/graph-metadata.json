@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at the REPOSITORY ROOT, and nothing cleans it, so every harness run leaves that folder at the repo root",
     "created_at": "2026-06-23T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:35.272Z",
+    "last_save_at": "2026-09-07T16:18:14.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df26e7df7be619aa16fe6bda970f22a65770160ac525a04420db45879d86bdf5",
+    "source_fingerprint": "sha256:9d137610bbe63be548c0002ff7e6ab504590c3c9a947376c2ce3554749525d40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "815b4f6928efe2a60912eae6c851eee89a2997d2c280337cd891850b832860e3",
-      "plan.md": "77ecb7d7031eeb22c4e2de9f87c8313fe3721ca11e0eb82cb8c852b147425f0f",
-      "tasks.md": "809e15fca885562ebd7f38f8bf426a7d93d524d505ad637c4caad7ccf346a800",
-      "implementation-summary.md": "b836fe3ab3e07a59ec576e209f5d4e261e8f5761901313fd766834e6354681a8"
+      "spec.md": "8df0f319ccb5e8e2a1273e7259e6698b6f299b554b436f0641cfd3ff909faf01",
+      "plan.md": "32ff6e2062dc0990ba610edc7772b4ebebb3fa9b86338a57d7900ba609449a11",
+      "tasks.md": "c9261e769c606890ee41238264fa8c099952aedf841140f39895c6e4ea8fe501",
+      "implementation-summary.md": "96b407a858ccf24e73fea7a6d896be5251d68fba36088cbffb50bb5c6d441dda"
     },
     "last_active_child_id": null,
     "last_active_at": null

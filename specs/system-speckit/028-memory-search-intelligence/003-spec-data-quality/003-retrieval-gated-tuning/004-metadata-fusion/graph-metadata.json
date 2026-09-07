@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`)",
     "created_at": "2026-06-27T17:15:37.106Z",
-    "last_save_at": "2026-08-30T15:39:35.645Z",
+    "last_save_at": "2026-09-07T16:18:23.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d483c1164b8e86d518aa65cc883a63250401d50b4dc68559a7c3426539de4d74",
+    "source_fingerprint": "sha256:353b69f97bfd7942d5c7c9abb3b20192004f3ae67b4f72c6303f4ae029da8e00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37942b3689c23b353472f8e1c49d112288b07e828ad04dbd0277ea8e54a47dff",
-      "plan.md": "689bf90db2049a1a7e47cb9742c17463dd6de64d81ee2ad141bd6c6d1c1dabec",
-      "tasks.md": "579926026eb47a67ec4e5f8714055f38a38b3d5ff78b7e6937f070371a5e7a69",
-      "implementation-summary.md": "f1c4e33ae42203baae30181e2497d4ad2c57086cc703bd6d3a0fd9a3dbcc9f7d"
+      "spec.md": "3448793adc5654dc975fdda67bcf21790c9c2e82b3212410a79e5ff4b552d11b",
+      "plan.md": "a6705b5f8b3520606bc41552429414aff02ec696b80c44d0815d7dba9aeccb20",
+      "tasks.md": "3b6019e3a2108e62bb796a0eced2cbcd3af0fd516c3c8aea6708f50cd68e7e93",
+      "implementation-summary.md": "595898d944740f524526b8e951bed8cce010ec245857a947c53adf83659bfb76"
     },
     "last_active_child_id": null,
     "last_active_at": null

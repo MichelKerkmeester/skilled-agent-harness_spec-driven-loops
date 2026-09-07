@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The original 005 research decided which data-quality levers were worth building",
     "created_at": "2026-06-27T17:15:40.627Z",
-    "last_save_at": "2026-08-30T15:39:35.783Z",
+    "last_save_at": "2026-09-07T16:18:29.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6bb938ca947802b8dc855c6c931da4f1de0b3044273d14b48675bbc9c439471b",
+    "source_fingerprint": "sha256:13053d1aa959c05f5603667f376b6c3eb9c227a7fc253e3715318ed8eac35b21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97220c595d3504d5c154975973d17b796b0ceb9565bb7102d9936b1d12ea49dd",
-      "plan.md": "c3fc0f3718274de4043c39b901504c95b9354f0765cc4f9364bed317a52899b1",
-      "tasks.md": "cc5ad5d703808770a8e119130394fe642965557b0df488241e36ffb13d153af3",
-      "implementation-summary.md": "39dc0f6b9050a356e28a4461d83f9bd7d5584a1b32c8eb849130fdb03bff55a4",
-      "research/research.md": "7c7a50c2e1b68ed95c4c75b073c575e3fc49845265f7a9b2101311c4d9321b4c"
+      "spec.md": "9d762274b42869e009e392954b9ea9361caf4f2d528991f1a281e3955b874844",
+      "plan.md": "167ebca9e31ab294e37d3097e3f794cf2b3dd50d8c85c7956c417e6554d82f54",
+      "tasks.md": "2c3214afe7dc6c04fe42700f116c20b8ab330e0a1ab2020ea72b50a1ea10c7b5",
+      "implementation-summary.md": "702e9f3bd6e5f8989ef62ec38484e49e6920a1b2b621953a552103c142b53bec",
+      "research/research.md": "0f6b5cf9ae8cadb008493b25ce02cb8eccd93de35352b8f4d301727bb3a215e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

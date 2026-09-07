@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Presentation Asset Format — .md to .txt [template:examples/level_1/spec.md]"
+title: "Feature Specification: Presentation Asset Format — .md to .txt"
 description: "Rename the 24 command presentation assets from .md to .txt so the command loader stops registering them as slash commands, and update every router and generator reference."
 trigger_phrases:
   - "presentation asset format"

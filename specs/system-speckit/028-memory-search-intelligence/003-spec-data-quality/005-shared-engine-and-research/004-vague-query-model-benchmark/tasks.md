@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Vague-Query Model Benchmark [template:level_2/tasks.md]"
+title: "Tasks: Vague-Query Model Benchmark"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "vague query model benchmark"

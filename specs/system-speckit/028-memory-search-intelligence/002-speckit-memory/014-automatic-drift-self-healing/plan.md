@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Automatic Drift Self-Healing [template:level_2/plan.md]"
+title: "Implementation Plan: Automatic Drift Self-Healing"
 description: "Three layers -- query-time existence filtering as the safety net, a git-hook-triggered scoped scan as the event-driven fast path, and a full-sweep backstop -- wired onto the scan/reconcile/sweep machinery that already exists in incremental-index.ts, without adding a filesystem watcher, a new timer, or a new daemon responsibility."
 trigger_phrases:
   - "automatic drift self-healing plan"

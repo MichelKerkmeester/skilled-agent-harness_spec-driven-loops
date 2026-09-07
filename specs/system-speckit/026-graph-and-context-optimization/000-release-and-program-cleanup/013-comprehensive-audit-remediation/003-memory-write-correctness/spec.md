@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: memory-write-correctness [template:level_1/spec.md]"
+title: "Feature Specification: Phase 3: memory-write-correctness"
 description: "memory_update leaves the entity-density cache stale for up to 60s after a title/trigger-phrase rewrite, and the atomic-save crash-window orphan recovery lacks a regression test for its uuid-suffixed pending shape."
 trigger_phrases:
   - "entity density cache invalidation"

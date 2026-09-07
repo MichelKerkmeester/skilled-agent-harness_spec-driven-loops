@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deferred-followups [template:level_3/tasks.md]"
+title: "Tasks: deferred-followups"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

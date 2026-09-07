@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: 044 Template contract divergence fix [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 044 Template contract divergence fix"
 description: "memory_save now accepts canonical spec docs that pass spec-doc health instead of rejecting them for missing generated-memory wrapper sections."
 trigger_phrases:
   - "044 implementation summary"

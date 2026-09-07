@@ -1,5 +1,5 @@
 {
-  "level": 3,
+  "level": "3",
   "specFolder": "sk-doc/033-mobile-cli-template-alignment",
   "description": "The `sk-code-mobile-cli` packet no longer conforms to the templates and contracts that `sk-doc` owns",
   "keywords": [
@@ -12,7 +12,7 @@
     "sk-doc",
     "owns"
   ],
-  "lastUpdated": "2026-08-28T05:57:57.579Z",
+  "lastUpdated": "2026-09-07T16:17:04.370Z",
   "specId": "033",
   "folderSlug": "mobile-cli-template-alignment",
   "parentChain": [

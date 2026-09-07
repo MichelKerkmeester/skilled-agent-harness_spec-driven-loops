@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the pool counted every completed worker as fulfilled and the process exited 0)",
     "created_at": "2026-06-04T20:45:40Z",
-    "last_save_at": "2026-08-30T15:39:26.076Z",
+    "last_save_at": "2026-09-07T16:17:26.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef5b6013fd018163b989d4eea139ddd5b3f9727e14ade01908715433a0a6d831",
+    "source_fingerprint": "sha256:e626d9a113d742e5dce43ee20c743ec7da71e8c698a392d49c8be58558efdd42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a7b557dba1097a0594943cfc52708b9d009763e7986c5f1c3ad0a62c2ae1a4f5",
-      "plan.md": "df07bd136ad18f13839893e0ad6971a9f72e2ba9d73366fb48b58c3bc9960902",
-      "tasks.md": "b6167107adcb6d0404bd87ba9185c7099d6185f03f1ba6afaffa1f6698bcfefd",
-      "implementation-summary.md": "6039be730e1c85d5cb0b02fe54cb5a630deb0ceb77247e7ea495fdca4da61ab7"
+      "spec.md": "ca32a4b3b5268662bfca61411ba484d8fa79454155c37dc60b4da688490d5bf1",
+      "plan.md": "a2676f86e5818c82e515880d9917587ffbe566d6a80b5e28a6f62856cad1db6a",
+      "tasks.md": "cc257f224e135e63b0858615fd23a9598ff982e44d10e60daef9d5a0934a13df",
+      "implementation-summary.md": "cdc0793f324c58c76537dd8933b18dae241324b8a3526974476dc64af28bd3bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

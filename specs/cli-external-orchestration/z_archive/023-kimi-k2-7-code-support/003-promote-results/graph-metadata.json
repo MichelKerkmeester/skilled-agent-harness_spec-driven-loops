@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`",
     "created_at": "2026-06-15T09:21:02Z",
-    "last_save_at": "2026-08-30T15:39:08.778Z",
+    "last_save_at": "2026-09-07T16:16:54.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98bdd090fe7c0fc826b97ef634d3b98a7e84df71ada26d682306d6f6b447a896",
+    "source_fingerprint": "sha256:5c432f0665497d06a55136eda72b68140511e4982bed9781b2d2a4919f72a73b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f0c3a8d99473a46ac997c4ff5def1c4407b0946d0b8f1c4d0af0ec7bdea7299",
-      "plan.md": "87d60620c494863d0a6a3c1b2f245d30e38d2ae55b134f1695523abc9ee22004",
-      "tasks.md": "738615ef9ffb4a9dd1a6ba59f7fa8d7ad05f5029386823c9699336d88a828255",
-      "implementation-summary.md": "c1e01adf1893278f370f7b2f2f42e4cf645da1a0f0301d5632059a5f9c98a14a"
+      "spec.md": "45d6bfb664ba575ae75b05e5139f26cfc725b47449dfbbd557ea842367f0cb4e",
+      "plan.md": "0a7fe2202b52ad8504a4e6c5fe5f0a5584edf0504bc214bd466c3ec3479b3c2d",
+      "tasks.md": "737898035a75b6e074723c71ae2c29f79b9c5c5b3cb168d83f9acb9f23187336",
+      "implementation-summary.md": "d1b49f11b71dc66ab048ed3d23e810cd340a42befdd0b237d9415ee5ec7ec6f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

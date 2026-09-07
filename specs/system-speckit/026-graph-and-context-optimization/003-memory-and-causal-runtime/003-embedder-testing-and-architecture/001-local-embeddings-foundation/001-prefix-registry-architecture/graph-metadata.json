@@ -46,8 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "shared/embeddings.ts",
-      "shared/index.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "scratch/test-prefix-registry.mjs",
@@ -84,18 +82,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "shared/index.ts",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`HfLocalProvider` (TS, transformers.js-backed) and `cocoindexcode/shared.py` both hardcode prefix conventions for ONE model family (Nomic)",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-09-03T22:22:37.585Z",
+    "last_save_at": "2026-09-07T16:17:42.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cddf1a43f20a656e070736767e18002f3c62ce541411625ac77c1c2f632f5de",
+    "source_fingerprint": "sha256:bd47da26928509debaa5eeb63d7f45db3e6812437c4d6bf022cc961b1044968f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57f2ba9e12c73f72025912b45f269fdbac83059645ab550fc16b29a54ff9f8c2",
-      "plan.md": "28e14ab63e72309dbff60793bb9956c782a13c60fd2a80ba5e3cf75906658634",
-      "tasks.md": "2fe7600100c93658653c5eacf42fbaca6e3b238235705ea52312da3673864933",
+      "plan.md": "0e5e783f0d242711fdd42e1e62893876bb778e45a7cd5171e2b164bfa63ef7db",
+      "tasks.md": "4ca4888ad4149cbebe4b812b5f461573331fa51e92701dc2b793be4422ce6517",
       "decision-record.md": "1be2efb324d5a1e4767fd6ff9bccf59bfb8cf94d81b696c1adf76a75cb4be93a",
-      "implementation-summary.md": "c06d533ae46b4da40e607ecc0157e4d859f4ceb9620b4f4e56c413fb0ee9564f"
+      "implementation-summary.md": "4fd112e98042fe4f6b248232e83ff42643d67f9d4a8cf9491a1917bb40c26937"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "5-line patch to handlers/memory-index.ts ORs isConstitutional into the useWarnOnly branch. Constitutional policy markdown now passes the strict sufficiency gate via warn-only mode, the same path spec docs use today."
 trigger_phrases:
   - "constitutional exemption shipped"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:210590166f4dac18dad3b216eefa9d2f36626d8dc267a6581d66f0485500d17e"
       session_id: "016-002-018-constitutional-exemption"
       parent_session_id: null
     completion_pct: 100

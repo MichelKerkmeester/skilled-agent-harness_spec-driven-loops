@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Orchestrator vs shell placeholder-detection parity [template:level_2/plan.md]"
+title: "Implementation Plan: Orchestrator vs shell placeholder-detection parity"
 description: "Aligns the canonical Node orchestrator and the legacy shell placeholder rule onto one detection contract: catch YOUR_VALUE_HERE plus NEEDS_CLARIFICATION (underscore + space), exclude fenced/backtick-escaped markers, never flag mustache in spec docs. Rebuilds the mcp_server dist."
 trigger_phrases:
   - "placeholder parity plan"

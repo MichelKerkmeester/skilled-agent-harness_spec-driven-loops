@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: model-installation-and-compat [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: model-installation-and-compat"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Plan: domain-tuned reranker fine-tune [template:level_1/plan.md]"
+title: "Plan: domain-tuned reranker fine-tune"
 description: "Five-phase plan: data generation, fine-tune, eval, publish/flip, closeout. Multi-day effort."
 trigger_phrases:
   - "010 fine-tune plan"

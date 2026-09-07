@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A4 Schema Warn to Error [template:level_2/plan.md]"
+title: "Implementation Plan: A4 Schema Warn to Error"
 description: "Wire both structural shape rules to the real exported zod schemas, flip their registry severity from warn to error, and delete the dead legacy_grandfathered strict-mode bypass after the legacy corpus re-measures to zero."
 trigger_phrases:
   - "schema warn to error"

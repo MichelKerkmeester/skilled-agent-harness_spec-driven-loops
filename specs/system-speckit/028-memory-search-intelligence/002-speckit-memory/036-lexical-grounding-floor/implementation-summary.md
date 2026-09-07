@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Gated good and cite_results on a lexical-grounding floor and added single-hit corroboration to assessRequestQuality, both behind the default-OFF SPECKIT_LEXICAL_GROUNDING_V1 flag, with a verdict-level vitest over the off-corpus anchor and the aligned good queries. The 025 off-corpus driver falseConfirmRate drops from 0.833 to 0 with the flag ON and the flag-OFF path is byte-for-byte the shipped verdict."
 trigger_phrases:
   - "lexical grounding floor"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1c82babac572694e1732f356a8f2ddfd8eba30b6ec71270b64279dcb88168cff"
       session_id: "phase-026-lexical-grounding-floor"
       parent_session_id: null
     completion_pct: 100

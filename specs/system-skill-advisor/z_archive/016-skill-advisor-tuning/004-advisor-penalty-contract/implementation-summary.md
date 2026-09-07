@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Advisor Self-Recommendation Penalty Contract [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Advisor Self-Recommendation Penalty Contract"
 description: "Summary of documenting the implicit advisor self-recommendation penalty with a durable WHY comment and locking it with a regression test that fires the penalty in the production-default state and was confirmed to break when the penalty is zeroed, with the penalty value unchanged at -0.25 and the advisor build typecheck clean."
 importance_tier: "important"
 contextType: "general"
@@ -15,7 +15,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts"
       - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-self-recommendation-penalty-contract.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:54b2bd0ed5a802425eb725d8aee2c83e69b80667b8dcb850a4381c7560ddf61e"
       session_id: "phase-010-004-advisor-penalty-contract"
       parent_session_id: "phase-010-004-advisor-penalty-contract"
     completion_pct: 100

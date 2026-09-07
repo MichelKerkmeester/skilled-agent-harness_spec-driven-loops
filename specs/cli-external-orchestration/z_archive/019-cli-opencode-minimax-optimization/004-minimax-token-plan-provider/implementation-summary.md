@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: MiniMax Token Plan default provider [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: MiniMax Token Plan default provider"
 description: "Switched the default MiniMax dispatch path to the Token Plan provider minimax-coding-plan (MiniMax-M3-highspeed default, MiniMax-M2.7-highspeed fallback) and retained the pay-per-token Direct API provider minimax as a selectable alternative."
 trigger_phrases:
   - "minimax token plan summary"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
       - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8cedfde144aa98c4a6f08fd47cf9ff7b9f4590e9b6ab2a0d1e2bf30827628947"
       session_id: "scaffold-scaffold/004-minimax-token-plan-provider"
       parent_session_id: null
     completion_pct: 100

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
     "created_at": "2026-06-27T17:15:37.376Z",
-    "last_save_at": "2026-08-30T15:39:35.651Z",
+    "last_save_at": "2026-09-07T16:18:23.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85d6289f2519636affd887da6a18d506d09ca2855c3db27fd038b1aa17910caa",
+    "source_fingerprint": "sha256:2d36265bbd459492aa286560ae1773a7e10cb3fc309b2f863cb9161f3bc3b810",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "626e543f93d94b01334a0bb91887ab9415de708aaa300152aef1f5ebf9b99b83",
-      "plan.md": "a8ddb7be731c4213b1cc8913838258aa56883297b71d4ed877a3a06525637fbf",
-      "tasks.md": "bf737a3ff37f90a1de5aa56820158175019c61239a0d0ea636b10eb774c49997",
-      "implementation-summary.md": "007022805ab83876a6faf7edd937a4c61499c19b195974e116829774b18b469d"
+      "spec.md": "965696a71326579afcfbbaceecb6d855cc29735c40e34f4e5e4c2aa94d047a2a",
+      "plan.md": "1df37624fcb80d1bb512dce2f231bfcfcf51930c299dd6b246f6702943018366",
+      "tasks.md": "b863f356e2306fd789c25bf8c71fae8a2fcda047a84b36c0ca65cc181d0e9bc8",
+      "implementation-summary.md": "ebd140b74bd18053d02cf902cfd1b2d7d2eb33cf9448ab44114c34dc9e1a98b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

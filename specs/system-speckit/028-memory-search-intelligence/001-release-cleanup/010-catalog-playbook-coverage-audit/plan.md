@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: 028 Catalog and Playbook Coverage Audit [template:level_2/plan.md]"
+title: "Implementation Plan: 028 Catalog and Playbook Coverage Audit"
 description: "The approach for a 20-iteration read-only coverage audit run across two models, weighted to the two un-synced skills, with orchestrator-written state and a verification pass. Research-only, no catalog or playbook modified. Status complete."
 trigger_phrases:
   - "catalog playbook coverage audit plan"

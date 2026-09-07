@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Hard-rule enforcement + dispatch-reliability hardening (design) [template:level_2/plan.md]"
+title: "Implementation Plan: Hard-rule enforcement + dispatch-reliability hardening (design)"
 description: "Design for wiring an existing/cheap machine check into the dispatch execution path: a hard_rules frontmatter contract + PreToolUse dispatch linter (thread 1), and flipping the shipped-but-off fan-out stall detectors to sane defaults with truthful abnormal-exit classification (thread 2)."
 trigger_phrases:
   - "dispatch preflight linter design"

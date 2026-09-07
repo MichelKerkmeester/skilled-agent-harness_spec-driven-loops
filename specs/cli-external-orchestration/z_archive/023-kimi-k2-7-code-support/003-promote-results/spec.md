@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: promote-results [template:level_1/spec.md]"
+title: "Feature Specification: Phase 3: promote-results"
 description: "Folded the inconclusive bakeoff-006 finding (a TIE) into the registry and the kimi-k2.7-code reference doc as a placeholder, keeping default-unverified, then re-ran the card-sync guard. Superseded by phase 004 (run 007: COSTAR promoted, empirical)."
 trigger_phrases:
   - "kimi promote bakeoff results"

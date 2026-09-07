@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: advisor-adjacent-116-realignment [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: advisor-adjacent-116-realignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Daemon bridge socket for skill-advisor and code-index [template:level_1/tasks.md]"
+title: "Tasks: Daemon bridge socket for skill-advisor and code-index"
 description: "Task breakdown. T001-T013 shipped in this packet."
 trigger_phrases:
   - "012 tasks"

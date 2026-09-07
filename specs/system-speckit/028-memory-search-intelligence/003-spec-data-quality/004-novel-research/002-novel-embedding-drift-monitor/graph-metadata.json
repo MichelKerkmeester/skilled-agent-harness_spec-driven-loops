@@ -44,9 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
-      "shared/embeddings.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
         "source": "derived"
       },
       {
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The re-index path has no mixed-vector guard and never specified one",
     "created_at": "2026-06-27T17:15:37.922Z",
-    "last_save_at": "2026-08-30T15:39:35.677Z",
+    "last_save_at": "2026-09-07T16:18:24.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a419541d9a4b24fd64a5b440650e8e62e481c293ee379a65cf40ea04dd807c18",
+    "source_fingerprint": "sha256:803601c6fc7a1b60cc18f479cd7d909720e960446001a3c57e9455e622ba0d2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37b1d5675978b5de6e57318e7334687b2c96909c3e3663311489aacaba7ea8a1",
+      "spec.md": "8f034cc02a3db6ff4112800ba85554dbc60e0424abd8e284d6b66d1c45c9fef4",
       "plan.md": "7cb419593ae5c63ce0ad91fcef57f35318378275fa8a5d0540e07f319c9d15b6",
-      "tasks.md": "7d6e6f048ec1d4e0a71188b1b4dbdb99f3dc9c2ecd0e1791bd3de387fb96bb75",
-      "implementation-summary.md": "5f98793f7847f238b3c4d5360459bddce5faa0bb2d5b71fdc3de76fc19088bdc"
+      "tasks.md": "f0c2eb91e698d58d89bf8556e0577ae059a76066e8958177caf9952b1e932b27",
+      "implementation-summary.md": "8f3edc49f8f27d5cda50640a68f1450fa6f1848b6ed073b770b7d768bf1a3a3f"
     },
     "last_active_child_id": null,
     "last_active_at": null

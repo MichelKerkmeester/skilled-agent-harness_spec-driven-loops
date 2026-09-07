@@ -1,5 +1,5 @@
 ---
-title: "Plan: cap spec-memory rerank top-k [template:level_1/plan.md]"
+title: "Plan: cap spec-memory rerank top-k"
 description: "Four-phase plan: env override + rebuild + A/B + decision."
 trigger_phrases:
   - "008 cap top-k plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: deprecation-mechanics [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 3: deprecation-mechanics"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "phase three deprecation mechanics"

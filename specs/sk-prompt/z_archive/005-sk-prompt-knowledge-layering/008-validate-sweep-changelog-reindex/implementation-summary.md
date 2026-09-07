@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/references/models/"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c5875fc20ee7198410112fb377eb32426f873433d539583b8ee5cb52463037f1"
       session_id: "008-validate-sweep-changelog-reindex-complete"
       parent_session_id: null
     completion_pct: 100

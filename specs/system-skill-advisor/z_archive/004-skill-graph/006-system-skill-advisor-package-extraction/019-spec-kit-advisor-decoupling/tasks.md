@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Full spec-kit advisor import decoupling [template:level_3/tasks.md]"
+title: "Tasks: Full spec-kit advisor import decoupling"
 description: "Task ledger for packet 019 import isolation, regression classification, validation repair, and commit readiness."
 trigger_phrases:
   - "019 tasks"

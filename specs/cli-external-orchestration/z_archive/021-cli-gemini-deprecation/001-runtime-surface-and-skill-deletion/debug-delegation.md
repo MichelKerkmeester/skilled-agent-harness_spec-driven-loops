@@ -1,5 +1,5 @@
 ---
-title: "Debug Delegation Report [template:debug-delegation.md]"
+title: "Debug Delegation Report"
 description: "Fresh-perspective debug findings for project .gemini deprecation scope and active SpecKit packet state."
 trigger_phrases:
   - "debug"

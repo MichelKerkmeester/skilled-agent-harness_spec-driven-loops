@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Advisor Self-Recommendation Penalty Contract [template:level_2/spec.md]"
+title: "Feature Specification: Advisor Self-Recommendation Penalty Contract"
 description: "The advisor's explicit self-recommendation guard has a CUT verdict adopted as redundant (the guard code still exists in `fusion.ts` and is scheduled for deletion in the gated code window) because an implicit routing penalty already demotes the advisor from recommending itself on a read-only audit-the-recommendation-quality prompt. That implicit penalty had no flag, no benchmark and no documented contract, so a future refactor could silently remove the sole remaining defense and let the advisor rank itself first on audit prompts again. This phase documents the penalty with a durable WHY comment at its definition and locks its behavior with a regression test that fires it in the production-default state and breaks loudly if the penalty is removed, zeroed or sign-flipped. The penalty value and the routing behavior are unchanged; only documentation and a test are added."
 trigger_phrases:
   - "advisor self-recommendation penalty"

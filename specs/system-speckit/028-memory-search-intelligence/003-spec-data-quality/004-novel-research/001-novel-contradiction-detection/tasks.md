@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Novel Cross-Doc Contradiction and Staleness Detection [template:level_2/tasks.md]"
+title: "Tasks: Novel Cross-Doc Contradiction and Staleness Detection"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "contradiction detection"

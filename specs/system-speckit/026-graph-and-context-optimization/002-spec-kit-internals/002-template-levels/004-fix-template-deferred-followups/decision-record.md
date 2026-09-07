@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: deferred-followups [template:level_3/decision-record.md]"
+title: "Decision Record: deferred-followups"
 description: "Policy decisions for the ten Gate 7 deferred followups."
 trigger_phrases:
   - "deferred followups decisions"

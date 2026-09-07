@@ -44,9 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/search/entity-density.ts",
-      "lib/storage/transaction-manager.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "entity-density.ts",
-        "kind": "code",
-        "path": "lib/search/entity-density.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transaction-manager.ts",
-        "kind": "code",
-        "path": "lib/storage/transaction-manager.ts",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared post-mutation hook (`runPostMutationHooks`) clears trigger, tool, constitutional, graph-signal, degree, and co-activation caches but never invalidates the entity-density cache, so after a `memoryupdate` renames a high-degree memory or rewrites its trigger phrases, graph-channel routing keeps matching stale tokens until the 60s TTL lapses",
     "created_at": "2026-06-04T20:45:42Z",
-    "last_save_at": "2026-08-30T15:39:29.002Z",
+    "last_save_at": "2026-09-07T16:17:38.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb9cb71363fce6486e21332c3bd24e983fee2827f300c77534ffce3a032dc986",
+    "source_fingerprint": "sha256:77067ee9e2203c6214a4b60f18a3a2c78fb39bf810368ff3fe1a8225a1ce98db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2efe6d295f202fbdab6a4f4330054f7ffe4138ea157cf1d1008f9bf22060e2dc",
-      "plan.md": "43b5b7a514134d490c4b20b23d8c3165f7574ac5e7641747fd5bd8e947541a4d",
-      "tasks.md": "e83a933f810cd244fdfa279b577f4f39588fe2f756578e87b81d4cdf074f20d2",
-      "implementation-summary.md": "73dc3587a1541f27975e7ab39d7b787220ef3c74f384bfd1e174ff5fc081b2a8"
+      "spec.md": "f6ed831be39116108ca5ad19a0a728abdfa3156129b52c8aaecda43f18218315",
+      "plan.md": "8077151b857af96c9ad9cb0c67dace14c4a1d60bdd671bef0e74c1e0dc296557",
+      "tasks.md": "b75d64aded6968e95df1817d0e9102f967560ad70f82a36779170d1210d11ea1",
+      "implementation-summary.md": "515fc8a82b479fc02b49840b9854fcd6c49aa6a0de2cbac75bf1d6e78a642ed0"
     },
     "last_active_child_id": null,
     "last_active_at": null

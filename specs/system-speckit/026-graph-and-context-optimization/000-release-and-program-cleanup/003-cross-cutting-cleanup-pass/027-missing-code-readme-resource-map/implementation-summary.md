@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Missing Code READMEs Resource Map [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Missing Code READMEs Resource Map"
 description: "Corrected Phase 052 to the exact 65-folder manifest and created validated code READMEs."
 trigger_phrases:
   - "missing code readmes resource map"

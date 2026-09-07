@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Backfill description.json and graph-metadata.json for the nine z_archive root directories across .opencode/specs so each archive becomes a discoverable, cold-tier container node in the memory graph [template:level_2/plan.md]"
+title: "Implementation Plan: Backfill description.json and graph-metadata.json for the nine z_archive root directories across .opencode/specs so each archive becomes a discoverable, cold-tier container node in the memory graph"
 description: "Node.js/TypeScript backfill against nine known z_archive root paths: verify container-folder support in the existing generators, resolve parent_id per root, generate description.json plus graph-metadata.json with a one-level-deep children_ids, and tag each with the archived tier."
 trigger_phrases:
   - "z_archive container backfill plan"

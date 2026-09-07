@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: goal-command [template:level_1/tasks.md]"
+title: "Tasks: Phase 3: goal-command"
 description: "Completed tasks for the root /goal command, mk_goal mutation tool, mk_goal_status read tool, and status verification."
 trigger_phrases:
   - "goal command tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Added an off_corpus eval fixture (ids 98-103, kubernetes pinned as the anchor) with absent terms and zero relevance rows, a scripts/evals driver that scores the class through the production verdict path and reads the dormant falseGoodOnHardNegatives metric, plus a default-off SPECKIT_FALSE_CONFIRM_MAX_RATE gate with a grandfather report mode. The live driver measures a 0.833 false-confirm rate on nomic. The vitest is 16/16 green and the broad eval/scoring suite is 212/212."
 trigger_phrases:
   - "off corpus eval fixture"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/false-confirm-eval.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e55ba796934eeb9fa29c17e769e8fe686fd7b052ca8df27100c37dd7370733df"
       session_id: "phase-025-off-corpus-eval-fixture-gate"
       parent_session_id: null
     completion_pct: 100

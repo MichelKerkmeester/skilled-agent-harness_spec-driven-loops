@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: C3 answerable_questions and semantic_intent tags [template:level_2/spec.md]"
+title: "Feature Specification: C3 answerable_questions and semantic_intent tags"
 description: "Auto-generated answerable_questions and semantic_intent tags persist on the JSON surface but the embed and fusion path never consumes them, so they are a dead field. The auto-generation is the novel cheap half and the parser allow-list plus fusion consumer is the retrieval-class C2-gated half."
 trigger_phrases:
   - "answerable questions tags"

@@ -1,5 +1,5 @@
 ---
-title: "Plan: spec-memory MPS rerank promotion candidate [template:level_1/plan.md]"
+title: "Plan: spec-memory MPS rerank promotion candidate"
 description: "Five-phase plan for the MPS A/B: load smoke, harness setup, two-arm run, decision-rule application, arc parent closeout."
 trigger_phrases:
   - "007 mps plan"

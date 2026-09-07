@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Envelope-Fidelity Enforcement [template:level_2/tasks.md]"
+title: "Tasks: Envelope-Fidelity Enforcement"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "envelope fidelity enforcement"

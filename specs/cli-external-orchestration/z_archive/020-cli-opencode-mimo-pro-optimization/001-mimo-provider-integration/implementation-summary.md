@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration"
 description: "Wired the xiaomi-token-plan-ams provider and model mimo-v2.5-pro into cli-opencode, the shared small-model registry, and the sk-prompt-models sentinel as an explicitly-selectable MiMo path, mirroring the MiniMax Token Plan wiring; context_length and best framework left as honest placeholders pending phases 003 + 004."
 trigger_phrases:
   - "mimo provider integration summary"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/cli-opencode/references/cli_reference.md"
       - ".opencode/skills/sk-prompt-models/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e98cd06448ee99d9e78da726f55b1134aee590da482c8901fd5c7cb502e8804e"
       session_id: "scaffold-126-001"
       parent_session_id: null
     completion_pct: 100

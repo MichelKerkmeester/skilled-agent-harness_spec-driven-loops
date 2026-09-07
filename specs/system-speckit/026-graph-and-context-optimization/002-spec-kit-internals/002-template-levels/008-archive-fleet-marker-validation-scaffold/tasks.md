@@ -1,5 +1,5 @@
 ---
-title: "Tasks: z-archive-marker-validation-sweep [template:level_3/tasks.md]"
+title: "Tasks: z-archive-marker-validation-sweep"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

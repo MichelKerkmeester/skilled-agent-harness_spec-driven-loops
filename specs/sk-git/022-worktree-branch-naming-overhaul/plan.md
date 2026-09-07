@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Worktree/Branch Naming Overhaul [template:level-3/plan.md]"
+title: "Implementation Plan: Worktree/Branch Naming Overhaul"
 description: "Level 3 implementation plan: two flat numbered namespaces, per-namespace allocator + validators, pre-push gate update, dry-run migration helper, self-test rewrite, and full docs rewrite."
 trigger_phrases:
   - "implementation"

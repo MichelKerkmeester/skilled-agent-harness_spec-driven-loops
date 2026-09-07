@@ -190,7 +190,7 @@
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Issues After Update",
     "created_at": "2026-04-12T09:02:53.569Z",
-    "last_save_at": "2026-08-30T15:39:37.854Z",
+    "last_save_at": "2026-09-07T16:19:14.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99f18104b6b9371d3fb1fa9d15b0b955b7bda6c93ed3438743586d0712124ed5",
+    "source_fingerprint": "sha256:309c0c13762128e6401d851681185883c41dce4e4fb7545e14f0c28aa99802ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd3f6475b7d7267321c629fbe38a4b2999d1a61235ae20b0c15dd696983322a2",
       "plan.md": "215b7eb393768175aa10020e345d5bb70eb44b7038bb2675366177207e6fe57c",
-      "tasks.md": "c7792c86f0d4b519076312937e047b47e0a97e0044e93a34675d6929ea62991b",
+      "tasks.md": "139220f508c12b4c5ecc4320a39d307250f702d1ec4e9d21505c514b272a3426",
       "implementation-summary.md": "8d064a4c645f4e6cc818ee381eca2b9ddaa9c6eccb1b0d8223513e4506507ca1"
     },
     "last_active_child_id": null,

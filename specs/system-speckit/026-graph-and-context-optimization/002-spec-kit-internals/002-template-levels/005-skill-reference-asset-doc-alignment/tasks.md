@@ -1,5 +1,5 @@
 ---
-title: "Tasks: skill references assets alignment [template:level_3/tasks.md]"
+title: "Tasks: skill references assets alignment"
 description: "Completed task list for auditing SKILL.md, references, and Markdown assets."
 trigger_phrases:
   - "skill references assets alignment tasks"

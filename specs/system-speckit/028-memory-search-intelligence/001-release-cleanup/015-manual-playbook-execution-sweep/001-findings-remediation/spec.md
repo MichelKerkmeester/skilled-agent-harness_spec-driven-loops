@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Manual Playbook Sweep Findings Remediation [template:level_2/spec.md]"
+title: "Feature Specification: Manual Playbook Sweep Findings Remediation"
 description: "Fix planning for confirmed FAIL findings surfaced by the 031 manual testing playbook sweep, updated dynamically as the sweep discovers new failures."
 trigger_phrases:
   - "playbook sweep findings remediation"

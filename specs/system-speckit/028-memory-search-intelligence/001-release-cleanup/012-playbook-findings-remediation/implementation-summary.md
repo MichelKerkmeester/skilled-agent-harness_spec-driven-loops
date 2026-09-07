@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:23e47248f9205bae2cf2593e79469a6870dbc4d3088f17165eac7a5d480abc42"
       session_id: "2026-06-25-summary-012-playbook-findings-remediation"
       parent_session_id: null
     completion_pct: 100

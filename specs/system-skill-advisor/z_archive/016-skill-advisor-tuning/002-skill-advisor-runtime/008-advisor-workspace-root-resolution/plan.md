@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Advisor workspace-root resolution by walk-up [template:level_2/plan.md]"
+title: "Implementation Plan: Advisor workspace-root resolution by walk-up"
 description: "Plan to replace cwd-based workspace-root resolution in the skill advisor with a deterministic walk-up, route the two write-path call sites through it, rebuild dist and clean stray nested .advisor-state directories."
 trigger_phrases:
   - "advisor root plan"

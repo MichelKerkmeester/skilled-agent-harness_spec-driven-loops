@@ -27,7 +27,7 @@ _memory:
       - ".opencode/skills/sk-code/leaf-manifest.json"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:781228c356ce27a6ad5b901c83795a3d4409696031628c7ea5537c75144538f2"
       session_id: "scaffold-001-mobile-cli-template"
       parent_session_id: null
     completion_pct: 100

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 001 design names the mode-selector approach + three seams at the ADR level, but the build packet needs sharper implementation detail: exact interface contracts for each seam, how to generalize `dispatch-minimax.cjs` into a model-agnostic `dispatch-model.cjs`, how to port the 120/003 eval-rig scorer cleanly, and how to wire `mode` into `loop.cjs` without regressing the agent-improvement path",
     "created_at": "2026-05-28T14:32:16Z",
-    "last_save_at": "2026-08-30T15:39:23.623Z",
+    "last_save_at": "2026-09-07T16:17:15.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:147b60aa89255c1787ff9e125a2eabba28cc836220642d7af789ef5d8d56505d",
+    "source_fingerprint": "sha256:0568856e98aa1a28c17adc627c8e57f88993a56214f78ba907307a2e8f517084",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f96d2e503f1998e205eabe7f074eebaa9f442a69264d07dc50622ac38b64bd49",
-      "plan.md": "bbe08687b159ffb05f33ac02de0b9af62e95e75361511afe348072c77a532efd",
-      "tasks.md": "4d9f52d205f4ff2341ba770cceed56c1553c3da84be718a0d89bb5d755baa2b8",
-      "implementation-summary.md": "19b4c0f7f1400aafdd47dec594550d0672f7a17af8bf6801af61c2e55c2089d2",
+      "plan.md": "d38885633cfc892e794f22d19c1f8d5530420945a2054217d133b1dcf9a95105",
+      "tasks.md": "9a2e7897cc239467f6fd1f0ed13359d7ca20a76229e63c8099534629989fad37",
+      "implementation-summary.md": "4cecd97758f46625e2d7503f27c98ccba4597ea1064ab567323aca7285dad092",
       "research/research.md": "b759495a83415e889f08fd9918fa02a93c0c17b36e4ea2f4556ca50b79a51c1b"
     },
     "last_active_child_id": null,

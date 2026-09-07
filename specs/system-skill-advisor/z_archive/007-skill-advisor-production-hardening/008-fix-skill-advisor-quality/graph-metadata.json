@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Eight advisor-quality findings sit across the skill-advisor surface",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-08-30T15:39:26.858Z",
+    "last_save_at": "2026-09-07T16:17:28.402Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e4ab7449402d435c10e9e27590b77c46480b25464742a5b91cc230c1ac42f97",
+    "source_fingerprint": "sha256:15caafb7f009c5215748652a452cc51cd91bba8286ab11f90a0554c3b1c1484f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "200efd11f47b51a530a3ed94c68ec0ebf64e8c0f3ff419bcc9e7e8799539bc82",
-      "plan.md": "23a98c07a615c15c6e84f8cea305db1fcb5211dec90eafa999525ba68fc1ac0b",
-      "tasks.md": "ff3b4d80199d9a47a2b2f0f9de7da06d75216304e82d2b91ae10eea5e074d5f2",
-      "implementation-summary.md": "fca57b3625f076a09fcb61a56bccec5e087e803615a9eeb4c4c2b152973e96f8"
+      "spec.md": "8bbea41f97b8ec7036f75a90cb5e904acb5db5faad57a1ab7e136319ec618aa7",
+      "plan.md": "0e632ba1b8a67fbf4144ad923f3d246a4a94625f58ea223983c3db43c3733b20",
+      "tasks.md": "eca5f068e1e5fcd66fca26c03202723d10ec3b7eb16ef19105a278f4729701b5",
+      "implementation-summary.md": "e0bb357e9cd97a1b3a02ec5f9f7139f928f8e87fade3f43f7992a67a8cd44d20"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Completed latency benchmark, concurrency soak, public-handler transient-miss test, and process-lifetime aggregate exclusion telemetry for the query-time existence filter."
 trigger_phrases:
   - "query-time existence filter benchmark"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-transient-miss-e2e.vitest.ts"
       - "results/query-time-filter-latency.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5531ee2ecb7b98286b7d08605f554d8dd7318a2f7f333599b37c6447933a6967"
       session_id: "spec-028-020-query-time-filter-benchmark"
       parent_session_id: null
     completion_pct: 100

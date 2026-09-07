@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A9 Read-Time Content-Hash Integrity Verification [template:level_2/plan.md]"
+title: "Implementation Plan: A9 Read-Time Content-Hash Integrity Verification"
 description: "Extend the existing verify_integrity summary with a read-time content-hash recompute that re-hashes each row body via hashContentBody and reports mismatches, gated behind a default-off flag so silent storage drift becomes a detectable fault."
 trigger_phrases:
   - "content hash integrity"

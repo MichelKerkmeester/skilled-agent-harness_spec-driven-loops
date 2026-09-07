@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-devin skill — Devin CLI peer executor [template:level_2/tasks.md]"
+title: "Tasks: cli-devin skill — Devin CLI peer executor"
 description: "Task Format: T### [P?] Description (file path). 18 tasks across 5 phases."
 trigger_phrases:
   - "cli-devin tasks"

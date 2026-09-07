@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Benchmark runs, fixtures and changelog files remain on disk after their successors shipped",
     "created_at": "2026-07-27T08:41:10Z",
-    "last_save_at": "2026-08-30T15:39:34.729Z",
+    "last_save_at": "2026-09-07T16:18:06.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32f06942c82fbe08a769d730f5ef420f6dfab0b856c358dd8caa48525d651074",
+    "source_fingerprint": "sha256:4d5eff559bce211e6400e08c4c90c57d93a1c3c0378f4e28c9531a4e6e6d8429",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be9a3e8c4037b52fc8f0c5463a98dffd5efb51fdd1497d831743d74cd96c14cd",
-      "plan.md": "92568ed205c57fc789821923573ef0fed5d48ddee05359f1be8c25aea2f75933",
-      "tasks.md": "31a9deb32fd77f319bbd7e99d0ee70c2366c979bb5a9dff825308846b0788629",
-      "implementation-summary.md": "6cc557615b6b4cf74c736427f7d0149f916cf431bce81f6f1da5f1222d0effd5"
+      "plan.md": "3e598d7892d01aa1cb1c8104c114f10e4714600e7ac4b4a6e02fab2e83490023",
+      "tasks.md": "93c75a509e8dc0b99f87552dcf09927f50899afd7c76dbbc9bcd0a06ef287384",
+      "implementation-summary.md": "625c5fbfae942f46fc92c9d209d0bf0354ff283a4a58e95909974bac264f0c3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

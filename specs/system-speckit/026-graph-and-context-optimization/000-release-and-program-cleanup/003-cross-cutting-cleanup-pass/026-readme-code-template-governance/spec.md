@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: README code template governance [template:level_2/spec.md]"
+title: "Feature Specification: README code template governance"
 description: "Track README code template updates, diagram styling correction evidence, code-folder README batch evidence, and verification evidence for the release cleanup phase."
 trigger_phrases:
   - "readme code template"

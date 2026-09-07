@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-code/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a0f06e2ef64de524e230d0e8b9c9e544634dcc06a2e292046e10478b1f79a70a"
       session_id: "scaffold-scaffold/007-sk-code-rituals"
       parent_session_id: null
     completion_pct: 100

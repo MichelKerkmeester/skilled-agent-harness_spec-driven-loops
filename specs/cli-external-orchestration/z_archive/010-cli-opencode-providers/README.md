@@ -1,5 +1,5 @@
 ---
-title: "Level 1 Templates [template:level_1/README.md]"
+title: "Level 1 Templates"
 description: "Baseline documentation templates for low-risk, small-scope changes."
 trigger_phrases:
   - "level 1"

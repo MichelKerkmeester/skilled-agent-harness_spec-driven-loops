@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Governance and Rollout Layer [template:level_2/spec.md]"
+title: "Feature Specification: Governance and Rollout Layer"
 description: "The data-quality program has eighteen build phases with five inviolable ordering edges but no canonical sequencer, no shared four-beat migration discipline, no codified safety model and no consolidated NO-GO list. This phase authors the governance layer that orders the build, gates each rule flip, encodes the two structural invariants and freezes the eighteen-item NO-GO list with its ten anti-patterns."
 trigger_phrases:
   - "governance rollout"

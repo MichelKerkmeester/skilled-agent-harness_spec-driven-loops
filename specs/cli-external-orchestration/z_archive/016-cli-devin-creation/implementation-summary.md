@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "cli-devin skill shipped 2026-05-15. Fifth cli-* family member; mirrors the contract; documents Devin's unique local-to-cloud handoff. 12 new files + 4 sibling graph-metadata edge additions."
 trigger_phrases:
   - "cli-devin shipped"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/cli-devin/README.md"
       - ".opencode/skills/cli-devin/references/cloud_handoff.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:dece36d819a3797cbec8c235ef608659c4447edea9bd31dfd72e350995be7f71"
       session_id: "104-cli-devin-ship"
       parent_session_id: "104-cli-devin-init"
     completion_pct: 100

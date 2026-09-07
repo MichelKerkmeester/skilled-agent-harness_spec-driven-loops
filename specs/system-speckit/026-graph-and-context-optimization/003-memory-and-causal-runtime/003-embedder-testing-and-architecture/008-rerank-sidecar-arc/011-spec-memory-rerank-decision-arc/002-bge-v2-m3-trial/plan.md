@@ -1,5 +1,5 @@
 ---
-title: "Plan: bge-reranker-v2-m3 trial [template:level_1/plan.md]"
+title: "Plan: bge-reranker-v2-m3 trial"
 description: "Phase-2 execution: allowlist + revision pin → pre-fetch → benchmark → verdict."
 trigger_phrases:
   - "011/002 plan"

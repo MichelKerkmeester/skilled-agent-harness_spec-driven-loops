@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family [template:level_2/tasks.md]"
+title: "Tasks: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

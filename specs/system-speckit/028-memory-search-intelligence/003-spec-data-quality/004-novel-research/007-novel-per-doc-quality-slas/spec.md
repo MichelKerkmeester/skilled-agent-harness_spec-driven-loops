@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Per-Doc Quality SLAs [template:level_2/spec.md]"
+title: "Feature Specification: Per-Doc Quality SLAs"
 description: "No per-doc quality threshold exists today, so a doc whose computed quality score drifts below an acceptable bar is never flagged for attention. This phase adds a named SLA threshold over the already-computed quality score that files a report-only ticket into the freshness or B3 refinement queue while reusing the description.json governance block. It builds only after one of those queues exists."
 trigger_phrases:
   - "per doc quality sla"

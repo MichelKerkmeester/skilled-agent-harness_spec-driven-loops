@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Spec-Kit Data Quality by Default [template:level_3/spec.md]"
+title: "Feature Specification: Spec-Kit Data Quality by Default"
 description: "Spec-kit docs and the two metadata JSONs are not optimized for retrieval, AI adherence or logic reading. This packet researches how to raise that data quality by default across the whole spec corpus."
 trigger_phrases:
   - "spec data quality"

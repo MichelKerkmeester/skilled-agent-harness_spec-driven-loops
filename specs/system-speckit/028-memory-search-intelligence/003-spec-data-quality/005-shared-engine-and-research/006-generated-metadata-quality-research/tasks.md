@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 031 Generated JSON Quality and Safety Research [template:level_2/tasks.md]"
+title: "Tasks: 031 Generated JSON Quality and Safety Research"
 description: "The research task list for the 10-angle read-only generated-JSON quality study, all tasks done. Covers setup, the ten gpt-5.5-fast xhigh angle seats, the skeptical cross-model verification pass and the synthesis into research.md. No generator or parser or schema or validator code modified."
 trigger_phrases:
   - "generated json quality research tasks"

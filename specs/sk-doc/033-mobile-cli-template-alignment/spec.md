@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code-mobile-cli Template Alignment [template:level-3/spec.md]"
+title: "Feature Specification: sk-code-mobile-cli Template Alignment"
 description: "The sk-code-mobile-cli packet drifted from the sk-create-skill asset and reference templates, its manual-testing playbook fails the enforced operator-scenario contract with 84 violations, and its references carry a design-reference tree and a DQI baseline that no longer describe anything reachable."
 trigger_phrases:
   - "mobile cli template alignment"

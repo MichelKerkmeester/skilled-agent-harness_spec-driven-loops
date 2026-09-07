@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: opt-in-only closure [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: opt-in-only closure"
 description: "Code patch, supersede sweep, arc closure, and verification evidence for the 011/005 opt-in-only rerank verdict."
 trigger_phrases:
   - "011/005 summary"

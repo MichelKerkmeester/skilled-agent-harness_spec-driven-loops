@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 007 Topology And Build/Dist Boundary Remediation [template:level_2/spec.md]"
+title: "Feature Specification: 007 Topology And Build/Dist Boundary Remediation"
 description: "Closes 6 P2 findings F-019-D4-02..03 and F-020-D5-01..04 from packet 046. Tightens phase-path topology grammar in the implement workflow YAML, adds a manifest-size health helper for phase parents, fixes the kebab/snake cache-signature mismatch in the OpenCode plugin, expands the source/dist alignment checker to cover all runtime-critical dist subtrees, deletes the orphan harness.js dist artifact left after its source moved, and adds a smoke test plus decision-record header for the source-of-truth MJS plugin bridge."
 trigger_phrases:
   - "F-019-D4-02"

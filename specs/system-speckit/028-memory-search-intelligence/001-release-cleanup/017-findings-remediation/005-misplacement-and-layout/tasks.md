@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: misplacement-and-layout [template:level-1/tasks.md]"
+title: "Tasks: Phase 5: misplacement-and-layout"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

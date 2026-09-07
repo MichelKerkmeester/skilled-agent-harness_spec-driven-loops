@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Shipped an explicit scoped backfill boundary that refreshes one packet by default with broad mode behind --all, made collection match the writer rules and isolate per-folder failures, and introduced one authoritative z_* exclusion helper applied to the description scanner, the by-design z_archive memory inclusion preserved through a separate policy. Vitest green (11 passed) and the existing graph-metadata-backfill test still passes."
 trigger_phrases:
   - "scoped backfill boundary"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:956c848fe10cf39fb3f7313efe8a397c46bc3840c4efa959778f07b37329dea0"
       session_id: "phase-034-scoped-backfill-boundary"
       parent_session_id: null
     completion_pct: 100

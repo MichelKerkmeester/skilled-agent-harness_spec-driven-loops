@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Skill Advisor Refinement [template:level_3/tasks.md]"
+title: "Tasks: Skill Advisor Refinement"
 description: "Task Format with explicit owner, action, status, dependencies, and measurable outputs."
 trigger_phrases:
   - "skill advisor tasks"

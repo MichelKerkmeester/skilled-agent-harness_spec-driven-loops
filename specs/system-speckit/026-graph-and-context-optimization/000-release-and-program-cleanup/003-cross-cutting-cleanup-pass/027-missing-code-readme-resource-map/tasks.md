@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Missing Code READMEs Resource Map [template:level_2/tasks.md]"
+title: "Tasks: Missing Code READMEs Resource Map"
 description: "Task list for correcting and implementing Phase 052 exact 65-folder README manifest."
 trigger_phrases:
   - "readme resource map tasks"

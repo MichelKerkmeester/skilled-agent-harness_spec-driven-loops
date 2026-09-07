@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The canonical Node validator and the legacy shell rule now apply one placeholder-detection contract, so the orchestrator path and its fallback agree on every spec doc."
 trigger_phrases:
   - "placeholder parity implementation"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/orchestrator.js"
       - ".opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9f7652717e213cbf848a328a0662245955abb7bf306728b8fa9cf6a23b93ef1a"
       session_id: "packet-system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity"
       parent_session_id: null
     completion_pct: 100

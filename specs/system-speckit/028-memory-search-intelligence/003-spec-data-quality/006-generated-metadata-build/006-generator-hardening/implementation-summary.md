@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Persisted a graph-metadata source_fingerprint over a volatile-ignoring source-doc projection, unified the phase-child contract behind one shared listPhaseChildren helper, and moved access and freshness telemetry into an index-layer store, all behind the default-off SPECKIT_GENERATOR_HARDENING flag and the existing grandfather report mode. 15/15 vitest passing, validate strict exit 0, typecheck clean."
 trigger_phrases:
   - "graph metadata source fingerprint"
@@ -27,7 +27,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6dd09e02e3e87f2592442891b44ddb3b8d362e6d787cb11d962a52a9720d3135"
       session_id: "markdown-session"
       parent_session_id: null
     completion_pct: 100

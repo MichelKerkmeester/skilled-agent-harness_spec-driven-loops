@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 010 CLI Orchestrator Skill Doc Drift [template:level_2/spec.md]"
+title: "Feature Specification: 010 CLI Orchestrator Skill Doc Drift"
 description: "Resolve six findings F-007-B2-01..06 from packet 046 iteration-007 across the cli-opencode, cli-codex, cli-claude-code, and cli-gemini skills. Reconciles SKILL.md dispatch contracts, model/effort pins, and approval-gated write templates so the CLI orchestrator skills speak with one voice."
 trigger_phrases:
   - "F-007-B2"

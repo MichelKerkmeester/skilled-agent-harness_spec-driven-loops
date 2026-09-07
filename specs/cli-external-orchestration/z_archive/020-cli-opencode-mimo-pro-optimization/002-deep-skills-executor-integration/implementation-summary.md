@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: MiMo + MiniMax as selectable deep-skills executors [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: MiMo + MiniMax as selectable deep-skills executors"
 description: "Removed the hard-coded --agent general from the cli-opencode dispatch paths of the deep skills (four deep YAMLs + the deep-improvement benchmark dispatcher) so MiMo-V2.5-Pro and MiniMax token-plan models dispatch cleanly through the existing cli-opencode executor kind, and documented the model examples across the deep command setup surfaces."
 trigger_phrases:
   - "deep skills executor integration summary"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
       - ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c00bcb57173eddaca500c6271e489e79adc092e0686d463d3cc9bda146f5dc16"
       session_id: "scaffold-scaffold/002-deep-skills-executor-integration"
       parent_session_id: null
     completion_pct: 100

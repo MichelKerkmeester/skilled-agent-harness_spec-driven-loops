@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Orphan Sweep Time Budget & Scoped-Scan Discovery-Gate Parity [template:level_2/spec.md]"
+title: "Feature Specification: Orphan Sweep Time Budget & Scoped-Scan Discovery-Gate Parity"
 description: "F2 (headline finding, confirmed by reproduction) -- the scoped-scan (git-hook drift-marker) path builds specDocFiles from raw fs.existsSync checks instead of the full-tree walker's discovery gates, letting the drift-healer index non-spec files as spec documents (real .png files reproduced this). F1 (defense-in-depth) -- the orphan-sweep loop's pure SCAN cost was empirically tested and found safe (a synthetic 200,000-row SCAN completed in ~4-5s, well under the marker's 180s TTL), but the per-row DELETE-cascade cost was not exercised by that test and remains a real, unverified risk under an all-orphan backlog."
 trigger_phrases:
   - "orphan sweep time budget"

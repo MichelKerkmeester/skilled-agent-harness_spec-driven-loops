@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Reindex the renamed system-deep-loop 036 router-replay-surface-slice-sync and 037 scenario-loader-code-surface-sync folders and repoint their stale copied metadata identifiers and inbound references [template:level_1/spec.md]"
+title: "Feature Specification: Reindex the renamed system-deep-loop 036 router-replay-surface-slice-sync and 037 scenario-loader-code-surface-sync folders and repoint their stale copied metadata identifiers and inbound references"
 description: "The renamed 036 and 037 deep-loop folders carry description.json and graph-metadata.json copied from their old locations, so their identifiers still point at the pre-rename paths, and two inbound references in 124-sk-code-parent still cite the old slugs."
 trigger_phrases:
   - "deep-loop 036 037 reindex"

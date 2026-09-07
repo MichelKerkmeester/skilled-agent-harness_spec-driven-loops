@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A5 Trigger Coherence Assertion [template:level_2/plan.md]"
+title: "Implementation Plan: A5 Trigger Coherence Assertion"
 description: "Add a warn-tier cross-surface rule that reads trigger_phrases from spec.md frontmatter, description.json, and graph-metadata.derived, then asserts the indexed and derived sets are each a subset of the curated frontmatter set after extractor-matching normalization."
 trigger_phrases:
   - "trigger phrases coherence"

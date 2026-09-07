@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Cocoindex dedup from shared rerank sidecar [template:level_1/tasks.md]"
+title: "Tasks: Cocoindex dedup from shared rerank sidecar"
 description: "Task breakdown for arc 008 phase 006 — cocoindex HTTP adapter + benchmark + PROMOTE/HOLD decision."
 trigger_phrases:
   - "006 tasks cocoindex dedup"

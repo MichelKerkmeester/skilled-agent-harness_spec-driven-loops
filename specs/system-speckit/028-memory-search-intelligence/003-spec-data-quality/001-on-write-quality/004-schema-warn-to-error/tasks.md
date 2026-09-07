@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A4 Schema Warn to Error [template:level_2/tasks.md]"
+title: "Tasks: A4 Schema Warn to Error"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "schema warn to error"

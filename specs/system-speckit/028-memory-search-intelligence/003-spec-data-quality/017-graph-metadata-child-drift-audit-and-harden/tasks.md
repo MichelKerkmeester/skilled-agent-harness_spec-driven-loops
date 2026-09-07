@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Audit and harden graph-metadata.json child-drift, where a phase parent's children_ids silently lags the phase-child folders present on disk [template:level_3/tasks.md]"
+title: "Tasks: Audit and harden graph-metadata.json child-drift, where a phase parent's children_ids silently lags the phase-child folders present on disk"
 description: "Eleven tasks across Setup, Implementation and Verification: export the on-disk child set, audit and backfill every drifted parent, add the drift check plus a RED/GREEN test, then re-verify repo-wide."
 trigger_phrases:
   - "graph-metadata drift tasks"

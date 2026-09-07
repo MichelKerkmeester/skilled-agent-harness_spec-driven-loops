@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/tests/graph-aware-stop.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-aware-stop.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/graph-aware-stop.vitest.ts",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-26T06:48:34Z",
-    "last_save_at": "2026-08-30T15:39:32.183Z",
+    "last_save_at": "2026-09-07T16:17:58.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04f21821a0ba96b6af5ad8e1a8bf0e1a36bc900f64c8f83c465dce06562b8e22",
+    "source_fingerprint": "sha256:c83a5a7788182a6eee4be68b34dbe572f99b295ba7fe43525dbf8074da951ac8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f9985b4705dc217cb6399fc5c3bd251f3ef68735d654417fa6f3978c4bc236a",
-      "plan.md": "c06ec345464c62b8b9b44a51391ee58a363042e6f57d8956696d1c77f14ae77d",
-      "tasks.md": "735914556fa55f403b86630d19fcb3052271ca780f0b78a999ebb382d49d8753",
-      "implementation-summary.md": "44f78084991c52f823f21e0ac83a9469651a55b8777674ca29af28960e7d937f"
+      "spec.md": "f2f43485e63dda8ba0713cd9f2c0e3fdae23b6d106bf3f849a7c3a57eddbbe99",
+      "plan.md": "f945a992195ebbd2abde360c8c1a2df12b278ba59f2dd34277cf4db6f8fffcaa",
+      "tasks.md": "a06e782c2008de7078c241a491753ae937577809235be1c0e621019bf5c17580",
+      "implementation-summary.md": "5a3436ae2864a5bba8338ac0082bd2e578cba23896269769a5bf8991c6d5e684"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Orchestrator vs shell placeholder-detection parity [template:level_2/spec.md]"
+title: "Feature Specification: Orchestrator vs shell placeholder-detection parity"
 description: "The canonical Node validator and the legacy shell rule disagree on spec-doc placeholder detection: the orchestrator misses the space-variant marker and does not exclude fenced/backtick-escaped content, while the shell rule flags mustache that the orchestrator does not. This packet aligns both to a single principled rule set."
 trigger_phrases:
   - "orchestrator placeholder parity"

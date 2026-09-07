@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: completion-supervisor [template:level_1/spec.md]"
+title: "Feature Specification: Phase 5: completion-supervisor"
 description: "The goal supervisor now evaluates redacted evidence on session idle, maps strict verifier verdicts to durable state, and only marks goals complete on a met verdict."
 trigger_phrases:
   - "goal supervisor"

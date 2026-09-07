@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: llama-cpp Metal Investigation [template:level_3/decision-record.md]"
+title: "Decision Record: llama-cpp Metal Investigation"
 description: "ADR for choosing the next path after local node-llama-cpp Metal backend initialization failures."
 trigger_phrases:
   - "decision"

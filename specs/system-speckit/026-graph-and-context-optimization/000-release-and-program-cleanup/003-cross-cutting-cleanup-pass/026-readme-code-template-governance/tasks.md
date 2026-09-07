@@ -1,5 +1,5 @@
 ---
-title: "Tasks: README code template governance [template:level_2/tasks.md]"
+title: "Tasks: README code template governance"
 description: "Task tracking for README code template phase documentation, diagram styling correction evidence, code-folder README batch evidence, explicit target manifest, final remediation evidence, final P1 cleanup evidence, and verification evidence."
 trigger_phrases:
   - "readme code template tasks"

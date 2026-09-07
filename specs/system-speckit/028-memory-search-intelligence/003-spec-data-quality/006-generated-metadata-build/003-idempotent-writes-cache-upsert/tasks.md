@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Idempotent Writes and Global-Cache Upsert [template:level_2/tasks.md]"
+title: "Tasks: Idempotent Writes and Global-Cache Upsert"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "idempotent description writes"

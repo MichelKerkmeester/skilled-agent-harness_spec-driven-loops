@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor/research/research.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e8ac163aa7963a77ac608756f7472410fc0b8f5106adc0fe28df96c545acdc18"
       session_id: "70859d71-f191-429c-96cd-6b73bb9745d8"
       parent_session_id: null
     completion_pct: 100

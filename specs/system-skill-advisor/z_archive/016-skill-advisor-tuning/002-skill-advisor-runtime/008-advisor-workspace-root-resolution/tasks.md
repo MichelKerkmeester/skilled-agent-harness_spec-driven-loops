@@ -1,5 +1,5 @@
 ---
-title: "Task Breakdown: Advisor workspace-root resolution by walk-up [template:level_2/tasks.md]"
+title: "Task Breakdown: Advisor workspace-root resolution by walk-up"
 description: "Tasks to clean stray nested .advisor-state, rewrite resolveWorkspaceRoot to walk up, swap the two write-path call sites and verify via typecheck, rebuild and a subdir-cwd logic check."
 trigger_phrases:
   - "advisor root tasks"

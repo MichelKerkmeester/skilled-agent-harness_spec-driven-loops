@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Novel Freshness Decay Auto-Refresh Queue [template:level_2/tasks.md]"
+title: "Tasks: Novel Freshness Decay Auto-Refresh Queue"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "freshness decay queue"

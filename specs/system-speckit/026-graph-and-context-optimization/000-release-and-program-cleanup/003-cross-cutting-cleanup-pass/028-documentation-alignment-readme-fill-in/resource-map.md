@@ -1,5 +1,5 @@
 ---
-title: "Resource Map: Phase 053 doc-alignment and README fill-in [template:resource-map.md]"
+title: "Resource Map: Phase 053 doc-alignment and README fill-in"
 description: "Detailed path catalog for the 5 work-blocks of phase 053: multi-ai-council ref alignment, manifest-doc ref alignment, two folder READMEs, and operator_runbook -> manual_testing_playbook merge."
 trigger_phrases:
   - "resource map"

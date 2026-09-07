@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/orphan-sweep-time-budget-and-refresh.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-index-scoped-scan-gating.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d34763ecd7f3687de0901b8b6f180bc4926fe73fb8049a6ab002725d793815fe"
       session_id: "spec-028-012-orphan-sweep-scoped-scan-safety"
       parent_session_id: null
     completion_pct: 100

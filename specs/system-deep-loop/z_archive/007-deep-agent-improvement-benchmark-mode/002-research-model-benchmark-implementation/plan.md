@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode [template:level_1/plan.md]"
+title: "Implementation Plan: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

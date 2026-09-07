@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 028 Playbook Findings Remediation [template:level_2/tasks.md]"
+title: "Tasks: 028 Playbook Findings Remediation"
 description: "The task list for the playbook findings remediation. Eight clusters A through H fixed and verified per cluster across seven fix commits, plus a follow-up test commit and a phase re-parenting commit, all landed on the 028 review-branch mainline (authored in worktree wt/0008-findings-remediation). A whole-suite run across all clusters together, before the 028 branch merges to main, remains open."
 trigger_phrases:
   - "playbook findings remediation tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: retrieval + fixture audit [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: retrieval + fixture audit"
 description: "Filled by cli-codex execution: probe classification, candidate coverage, handler parity, rerank effect, branch decision."
 trigger_phrases:
   - "011/004 summary"

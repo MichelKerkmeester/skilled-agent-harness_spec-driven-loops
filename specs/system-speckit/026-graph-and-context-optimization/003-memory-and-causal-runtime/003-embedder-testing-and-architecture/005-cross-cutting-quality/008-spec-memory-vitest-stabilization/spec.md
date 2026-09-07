@@ -1,5 +1,5 @@
 ---
-title: "Spec: spec-memory vitest suite stabilization [template:level_1/spec.md]"
+title: "Spec: spec-memory vitest suite stabilization"
 description: "Scaffold-only spec. The 016 deep-research surfaced 168 pre-existing vitest failures across 33 test files in mk-spec-memory's mcp_server. Causes split across 5 clusters: missing mock exports, MCP connection flakes, lease timeouts, assertion drift, flag/config mismatches. This packet documents the failure inventory and a remediation plan; execution is deferred until operator opts in."
 trigger_phrases:
   - "008 vitest stabilization"

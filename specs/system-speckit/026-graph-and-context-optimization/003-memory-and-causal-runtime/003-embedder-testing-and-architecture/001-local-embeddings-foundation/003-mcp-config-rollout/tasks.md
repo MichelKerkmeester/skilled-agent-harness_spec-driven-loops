@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: mcp-config-rollout [template:level_1/tasks.md]"
+title: "Tasks: Phase 3: mcp-config-rollout"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

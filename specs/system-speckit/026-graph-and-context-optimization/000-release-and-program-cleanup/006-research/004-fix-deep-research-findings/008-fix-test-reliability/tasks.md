@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 009 Test Reliability Remediation [template:level_2/tasks.md]"
+title: "Tasks: 009 Test Reliability Remediation"
 description: "Task list for closing F-015-C5-01..06. Six surgical test edits + one shared helper + isolation tests + validate + commit + push."
 trigger_phrases:
   - "F-015-C5 tasks"

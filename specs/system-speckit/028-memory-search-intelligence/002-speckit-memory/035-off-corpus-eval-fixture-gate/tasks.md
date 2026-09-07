@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Off-Corpus Eval Fixture and False-Confirm Gate [template:level_2/tasks.md]"
+title: "Tasks: Off-Corpus Eval Fixture and False-Confirm Gate"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "off corpus eval fixture"

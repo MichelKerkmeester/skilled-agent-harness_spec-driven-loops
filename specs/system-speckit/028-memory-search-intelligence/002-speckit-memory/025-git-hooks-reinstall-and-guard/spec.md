@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Git Hooks Reinstall and Presence Guard [template:level_1/spec.md]"
+title: "Feature Specification: Git Hooks Reinstall and Presence Guard"
 description: "This checkout's .git/hooks/ only has pre-commit and post-commit symlinked (installed May); post-merge and post-rewrite -- added by the self-healing work this session -- are not installed, so merges and rebases write zero drift-marker signal, and nothing auto-installs hooks for a fresh clone or new worktree."
 trigger_phrases:
   - "git hooks reinstall"

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then layers a cliff-conditional confidence truncation that returns 3 to 20 at roughly 2x the median gap and a token budget that is the real prod-limiting stage, all applied at the prod seam `if (!evaluationMode)` in `hybrid-search.ts` (the minimum guarantee surfaces at `hybrid-search.ts:2065` as `minResultsGuaranteed: DEFAULTMINRESULTS`)",
     "created_at": "2026-06-27T17:15:39.822Z",
-    "last_save_at": "2026-08-30T15:39:35.752Z",
+    "last_save_at": "2026-09-07T16:18:27.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab22d8d107429648e2ea518582a7782d30bceaea3396e52b4d1ba1306a008903",
+    "source_fingerprint": "sha256:1db5cf5b6c8885cd071e36b7474eacadc27a6c5446319091f0ce3e654ae64708",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd9a58c321346da0e4193608b58cbc5358cbfd976d51d794cdd40832d7dd082b",
-      "plan.md": "c6c6986f762fdd8b66457d7a128eb78adf23132c9e5ccd10c65bb9b27a65e23a",
-      "tasks.md": "d4e2fbd159202205bde5bcf5b8571f902004d84d6a0780d0748ad000edf1f6d2",
-      "implementation-summary.md": "aa4cb53d2f82cafaa9af1ed268c25e3cc5f4a6508b8a5ea78035b3ffc56d5d1b"
+      "spec.md": "389791d723305760184fc6e9bceade6f8c7ffdeedf20f267c3966c679a7ea8ef",
+      "plan.md": "f8616f3afe64bd3c94a19603af41b3e6b48bb917cc6a637e793f3c95918a3623",
+      "tasks.md": "e4508b679ab48547905f9d65365647fbee23129f5da1d0dea78d15fb67822642",
+      "implementation-summary.md": "ed0b44f37b4313c1161fa7ac4647e19b2067e9dd43f1dc433b1ac56a1f5338ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 9: overengineering-simplification [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 9: overengineering-simplification"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

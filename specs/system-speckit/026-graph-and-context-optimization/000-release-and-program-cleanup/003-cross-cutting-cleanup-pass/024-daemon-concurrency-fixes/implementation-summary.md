@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: Iteration-001 Daemon Concurrency Fixes [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Iteration-001 Daemon Concurrency Fixes"
 description: "Four daemon-layer races fixed: serialized watcher drain, ordered shutdown, token-checked generation lock, and monotonic cache invalidation. Stress suite still green at 56/56 / 163/163."
 trigger_phrases:
   - "implementation summary"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8ea924bef50021cb305c3eaa64277aa4e90f15e85b57b142928a67c659132544"
       session_id: "iter-001-daemon-fixes"
       parent_session_id: null
     completion_pct: 100

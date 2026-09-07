@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Envelope-Fidelity Enforcement [template:level_2/plan.md]"
+title: "Implementation Plan: Envelope-Fidelity Enforcement"
 description: "Make requestQuality and citationPolicy conditionally-mandatory render slots in the command contract, add a deterministic post-render envelope-fidelity check that replays the tool verdict against the rendered block with a fail mode and a grandfather report mode, and emit a pre-rendered verdict fragment from the handler, every behavioral change behind a default-OFF flag, with a vitest proving the check."
 trigger_phrases:
   - "envelope fidelity enforcement"

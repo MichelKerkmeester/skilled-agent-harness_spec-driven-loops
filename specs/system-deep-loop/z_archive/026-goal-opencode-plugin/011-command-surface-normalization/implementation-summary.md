@@ -19,7 +19,7 @@ _memory:
       - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:161cc6191170579d804aa33b19b09fa5d4f84c3266169d2e0d05fe486f877406"
+      fingerprint: "sha256:f261274aadc6afc6b67168ea7951493bab7933df03db3e2b821d55060bc6ba71"
       session_id: "phase-011-command-surface-20260701"
       parent_session_id: null
     completion_pct: 100

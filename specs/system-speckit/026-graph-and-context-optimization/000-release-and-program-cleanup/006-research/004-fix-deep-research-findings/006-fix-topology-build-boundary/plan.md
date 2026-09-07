@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 007 Topology And Build/Dist Boundary Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 007 Topology And Build/Dist Boundary Remediation"
 description: "Apply 6 surgical edits and add 3 new test files for findings F-019-D4-02..03 and F-020-D5-01..04."
 trigger_phrases:
   - "F-019-D4 plan"

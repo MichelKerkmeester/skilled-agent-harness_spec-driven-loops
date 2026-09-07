@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: skill-folder-rename [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: skill-folder-rename"
 description: "Plan for renaming the prompt skill folder, updating skill-local references and advisor graph keys, rebuilding advisor state, and validating the phase folder."
 trigger_phrases:
   - "implementation"

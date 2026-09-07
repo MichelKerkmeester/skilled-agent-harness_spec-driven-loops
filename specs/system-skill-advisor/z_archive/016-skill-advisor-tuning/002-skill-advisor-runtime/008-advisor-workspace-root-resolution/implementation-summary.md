@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Advisor workspace-root resolution by walk-up [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Advisor workspace-root resolution by walk-up"
 description: "Replaced cwd-based workspace-root resolution in the skill advisor with a deterministic module-relative walk-up, routed the two write-path call sites through it, rebuilt dist and cleaned 9 stray nested .advisor-state directories."
 trigger_phrases:
   - "advisor root summary"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:72b75134c5afa7b6dc2b3404cc7c7d4cc3d95b2fd15371dd66ecb8f548c908ba"
       session_id: "session-advisor-root-fix"
       parent_session_id: null
     completion_pct: 100

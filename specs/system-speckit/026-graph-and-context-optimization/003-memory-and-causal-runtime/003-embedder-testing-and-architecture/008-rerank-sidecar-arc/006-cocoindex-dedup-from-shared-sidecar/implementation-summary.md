@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Cocoindex dedup from shared rerank sidecar [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Cocoindex dedup from shared rerank sidecar"
 description: "PRE-IMPLEMENTATION stub for arc 008 phase 006 — cocoindex HTTP adapter + A/B benchmark + PROMOTE/HOLD decision."
 trigger_phrases:
   - "006 implementation summary"

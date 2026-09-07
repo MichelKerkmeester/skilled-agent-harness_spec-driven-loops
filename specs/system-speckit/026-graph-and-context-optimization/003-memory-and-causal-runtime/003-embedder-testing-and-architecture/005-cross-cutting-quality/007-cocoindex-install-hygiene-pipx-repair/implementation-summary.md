@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: CocoIndex install hygiene pipx repair [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: CocoIndex install hygiene pipx repair"
 description: "PRE-IMPLEMENTATION scaffold for CocoIndex install hygiene pipx repair."
 trigger_phrases:
   - "cocoindex pipx repair"

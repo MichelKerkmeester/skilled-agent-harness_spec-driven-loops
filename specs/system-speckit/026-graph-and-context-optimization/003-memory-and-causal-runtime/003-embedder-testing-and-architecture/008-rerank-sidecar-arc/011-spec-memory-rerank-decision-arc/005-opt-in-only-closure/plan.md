@@ -1,5 +1,5 @@
 ---
-title: "Plan: opt-in-only closure [template:level_1/plan.md]"
+title: "Plan: opt-in-only closure"
 description: "3-phase plan: code patch → supersede sweep → arc closure narrative."
 trigger_phrases:
   - "011/005 plan"

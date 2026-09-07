@@ -37,12 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/validation/generated-metadata-integrity.ts",
-      "scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,24 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "code",
-        "path": "scripts/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -188,11 +165,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them",
     "created_at": "2026-06-27T17:15:42.257Z",
-    "last_save_at": "2026-08-30T15:39:35.860Z",
+    "last_save_at": "2026-09-07T16:18:31.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:645fb9dbe5a129e84a890df60564341b2955c9ba7f3c5c3a5a72e7996fd0322e",
+    "source_fingerprint": "sha256:788469cfcd7664d59f0faadac93222c2f51ff2673365f79743824c43071d4d0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c74436c4624bec141d23c99569bd63d809a82ffa5f5ecd61f520608cde13c31e",
-      "plan.md": "f13a904499334d20a7becac73df12cb74ac790d201ad92155280c9d1a1c151df",
-      "tasks.md": "67d64e8ea7269a0fb699a8d7d1a8590dbe3713437ed800866896d0936705e510",
-      "implementation-summary.md": "5863b28396a2566c78e0f2fb7b67d2463910aa92b3b5fefc7dd7b6368a745a20"
+      "spec.md": "7d10ac76d3b2a675943c5ceb772c849d0aabce3e1c5296b63f38344544ae45e1",
+      "plan.md": "0b37da2f4e2b2146f9026df992888d24508bc167e01e9da7ae90094f22d1feb3",
+      "tasks.md": "205957a00b308183d3664d81315fd07fc85af55ec339c8e66f36b04a641c5988",
+      "implementation-summary.md": "066e5a663e55015da0e70b42c1cabe4ccdd99cbd43b056fb994db14c29c409cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

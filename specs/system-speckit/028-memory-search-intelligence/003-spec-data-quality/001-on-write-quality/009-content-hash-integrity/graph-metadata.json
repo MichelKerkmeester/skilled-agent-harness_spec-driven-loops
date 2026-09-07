@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The `contenthash` column on `memoryindex` is written once at save time and used only as an embedding-cache key and an idempotency receipt key",
     "created_at": "2026-06-27T17:15:34.952Z",
-    "last_save_at": "2026-08-30T15:39:35.577Z",
+    "last_save_at": "2026-09-07T16:18:19.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24b51907e75cd88d48184eeada3862c6bc837ba023354d2d4613273790e1a080",
+    "source_fingerprint": "sha256:33aca47e3c6199c460b8202756ef007bc3d0ef80f9731a0d4ed93b1748030e63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68e9525feb09a2783415052c4b0d1a0b5cde9a6f6e03254f99736659bada66ba",
-      "plan.md": "e626a3c7cee8878389664b56d4ed4f46aa8fea82c58fcceaa9b94970db756788",
-      "tasks.md": "b12f11b183dc0802aaa336c83ad5eab428be0a07dd5e4feb715dde121a741368",
-      "implementation-summary.md": "65b742661c3fd2dfbcefb608b4e4149c84f127d2b2785a59b8795a8391c12751"
+      "spec.md": "49b127a3f0f377c425ee70aac77f291ec4f0154eacf7edf4824f3b99fad37e62",
+      "plan.md": "5721964ad07026af8f71c62f167c5892a568ca9af457d3b1114caaece56e54b3",
+      "tasks.md": "30020f82f97deec669e964e706a1d18c20405c116d5be9eff5a07820080a8862",
+      "implementation-summary.md": "a2cebf25e6cabb927be2bf4db7a2a5958f5ba9f0d76bbe2727c7f72520ae9862"
     },
     "last_active_child_id": null,
     "last_active_at": null

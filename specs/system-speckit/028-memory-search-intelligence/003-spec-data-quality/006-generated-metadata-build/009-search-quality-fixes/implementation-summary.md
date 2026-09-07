@@ -22,7 +22,7 @@ _memory:
       - "mcp_server/lib/search/search-flags.ts"
       - "029-vague-query-model-benchmark/scripts/extract-metrics.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1eeeb28ff699d9612a7cce0dc5ff88e161603d1ee55d74669115d3f0568a956b"
       session_id: "2026-06-23-041-search-quality-fixes"
       parent_session_id: null
     completion_pct: 100

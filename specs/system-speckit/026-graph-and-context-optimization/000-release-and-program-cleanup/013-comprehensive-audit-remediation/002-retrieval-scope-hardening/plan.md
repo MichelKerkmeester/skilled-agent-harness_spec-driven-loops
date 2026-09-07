@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: retrieval-scope-hardening [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: retrieval-scope-hardening"
 description: "Apply minimal fail-closed scope, FK, and session-trust checks to four retrieval/causal handlers in the Spec Kit Memory MCP server, preserving unscoped single-user behavior."
 trigger_phrases:
   - "retrieval scope plan"

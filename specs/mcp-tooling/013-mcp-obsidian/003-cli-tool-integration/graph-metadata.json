@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/doctor.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "For Level",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it, or look up its commands",
     "created_at": "2026-08-02T05:50:27Z",
-    "last_save_at": "2026-08-30T15:39:10.064Z",
+    "last_save_at": "2026-09-07T16:16:56.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:546f344e6a2893564db2cf366842819508275a8a45b6bfee703e064b72c69188",
+    "source_fingerprint": "sha256:e291414372a83c4bcbe06b1c5267c2fd72f9069345b87f782441dde04790a2d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0506d0cbee7bf2d5072b907a813d07a868895d571dd9d2afaeb8c72b01266ea8",
       "plan.md": "f7f34da799d607bc78ec1a8efef1a03d7a6fdb7baf8f3efeb6737367a2e7c211",
       "tasks.md": "e0cae1527824bcb002136ad192179dc3369689aafedaa96458fb625e6a15cde5",
-      "implementation-summary.md": "937a287bd26462d6a6a514d44acc8c95bb7c92c5282c77fc1b4cd232e7c9b2d1"
+      "implementation-summary.md": "8b5707aa88646132f372dde8a5809ca8804147703bde635b6749b6abf857d52d"
     },
     "last_active_child_id": null,
     "last_active_at": null

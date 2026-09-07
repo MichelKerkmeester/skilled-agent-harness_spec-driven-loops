@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
     "created_at": "2026-06-27T17:15:39.283Z",
-    "last_save_at": "2026-08-30T15:39:35.722Z",
+    "last_save_at": "2026-09-07T16:18:26.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6970bb9855d34825c15fd6df47a34f24641eb0468c2ffbd29bc3c8372206c6a",
+    "source_fingerprint": "sha256:14edb634b806c0ea6e4b7033e2e254f8ab97120cafd3ed457405a568584229e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4dcf4924e7ec7b80993c2eb8cf2053d959eefc8787371362a114a41f3c968b5b",
-      "plan.md": "1f173eb359ce9bd0d5325eb84156c38a55f40099c2d995debcb0b1459037ed9e",
-      "tasks.md": "990a1c591f648a8059dba5eaa47d3efd18e0a9abc939fce16e54ae7e16721a4b",
-      "implementation-summary.md": "99154106484a0d648869963b4cf6338d3d39c18f7f00e4d6150f2f269e09d741"
+      "spec.md": "d5379936d9d980497e7131ea8bf2ed13db0035af69fa758180f2c95d7fdf54d4",
+      "plan.md": "00143e4b67d1616422ddf9c50c1a787b0aedc5eb8f850709e4a0fb712e996af2",
+      "tasks.md": "a0cd83ae48ad1d75064771011f240ca2fa7ef44d2edd01e026d0e13378401fd0",
+      "implementation-summary.md": "be3bedf28da2e1caf138c5c3fe51889027024c5ba49013dbfd2aeab3ee391f03"
     },
     "last_active_child_id": null,
     "last_active_at": null

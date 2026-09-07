@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b3b1059a1ef9ab25fdbb19e8d915723a8aa6f387d0adc6d42c909bc8e7ad468e"
       session_id: "template-session"
       parent_session_id: null
     completion_pct: 100

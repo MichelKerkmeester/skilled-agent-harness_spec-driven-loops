@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: promote-results [template:level_1/tasks.md]"
+title: "Tasks: Phase 3: promote-results"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "kimi promote tasks"

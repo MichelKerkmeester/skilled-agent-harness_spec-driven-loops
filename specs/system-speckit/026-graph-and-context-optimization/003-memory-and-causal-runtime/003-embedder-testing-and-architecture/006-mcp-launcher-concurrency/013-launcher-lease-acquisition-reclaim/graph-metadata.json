@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 011 asked for a dead-PID liveness probe, but that read-path probe already exists in `lease.ts:226-247`",
     "created_at": "2026-05-23T11:55:15.590Z",
-    "last_save_at": "2026-08-30T15:39:30.999Z",
+    "last_save_at": "2026-09-07T16:17:51.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04ca9efdb7fbefbe08f097fd7d290e4f0ea2d5759228cbf8b90047020f3b6b96",
+    "source_fingerprint": "sha256:e8ba4aa190205cba47725d85c3e59c2e536d3f46e33aec0b52756e1e36fd05af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45b2252c67fd90d906eb479bdecf8071d422c87467f0c4e4ea1076711dd0072c",
-      "plan.md": "25edfb2e2ceed0409c1411a0c3c92ce07fdbe8427e388db0249ed8e0911290ad",
-      "tasks.md": "310b4318f9e9896cff9e6c501f8a549fd4ec8320acca1dd32799445a3fe17ae6",
-      "implementation-summary.md": "41d0c2b8e53ab4c942b391c1dbcb8e4d477292d0f3ed8e2b16a44226d8d9014a"
+      "spec.md": "f786bec980122939c05152acfb58465822f3ecbc057906a6e4b41ec78a097d8a",
+      "plan.md": "c883406471fa9b53fa47cc9d234ccf28a4fd4dddf0fd8fbebdf69a27f3b12ab3",
+      "tasks.md": "698c71f7296454d3fadb0cbbf20774c9e553c3302134ba6c7c1f6229b59593b3",
+      "implementation-summary.md": "3cad6401b246cd5f84b82493d76e8e7ea75855b366948cb6d46fdb212279897f"
     },
     "last_active_child_id": null,
     "last_active_at": null

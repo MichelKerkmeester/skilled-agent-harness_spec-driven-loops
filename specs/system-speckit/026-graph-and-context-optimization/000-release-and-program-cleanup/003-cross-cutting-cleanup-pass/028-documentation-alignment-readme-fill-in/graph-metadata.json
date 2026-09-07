@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Five doc-quality drift items have accumulated under `.opencode/skills/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files with inconsistent frontmatter (only 1 of 6 conforms to `skillreferencetemplate.md`); (2) two manifest maintainer docs (`templates/manifest/EXTENSIONGUIDE.md`, `MIGRATION.md`) lack reference frontmatter entirely; (3) `shared/predicates/` (560 LOC, 1 source + tests) has no folder README despite all 9 sibling directories under `shared/` having one; (4) `mcpserver/codegraph/lib/utils/` (64 LOC) has no folder README; (5) `mcpserver/skilladvisor/`",
     "created_at": "2026-05-07T10:45:30Z",
-    "last_save_at": "2026-08-30T15:39:28.109Z",
+    "last_save_at": "2026-09-07T16:17:32.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +214,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:fe1195845261d3a6b8a6e73656676f137866330db222bf0b136038b36bc16eef",
+    "source_fingerprint": "sha256:a196571a30d9d7da47ab7c7450e0d6f809a9e92b7fcc76f50b2578300ca2ac1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "262b83b56e0c0b1fc6743cfb7650c7bb4f7b4f8159d4b00fb4a9419b7fdca1d4",
-      "plan.md": "4c8169642fbe2f9dd44ca9cb9f798d5ee3346690d13665fd5e2b7ccdff230290",
-      "tasks.md": "ca423244234a6eae20a587e0a316756bb5e61314516744c5542bdee0aebf24a4",
-      "decision-record.md": "ef076100bd7cf71279f3da91ec4f4ba7e70f7dc443fd7b08df83a75c095f4f67",
-      "implementation-summary.md": "3eabb77f6f5d6493253b2f287bd099755d46ed9e420b60b29b18f4a5a7495ea8",
-      "resource-map.md": "cf63d2328b3ec8104d755337a735377fcd1096664d372cf9f2f5d5c0ae550aa6"
+      "spec.md": "527960e7cc19febca25d48d85289baeeb46b71ddf4a606d00e7b7cc23c009d46",
+      "plan.md": "b98d12eebf890f392ac812d5817b607b30a7359babf4890784bc6c669695d2be",
+      "tasks.md": "1046374545c014f111942e7a4e8570813bca048d6247679eafcb15b9b9b12d08",
+      "decision-record.md": "c1a99dd8c2e12d487e8ebe540b5209d7f3345e23f2cdfe18f2c707cf21a0fb74",
+      "implementation-summary.md": "bbb5a3db12f989606b736c4ed619495fbb073ff8af3f3eddb58ceef48fbbefa0",
+      "resource-map.md": "b9fe8db0389cd0a1b4bacbfb73601fb98ba64a5cc65674e9a4cee8e56d2612a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

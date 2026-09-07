@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: README code template governance [template:level_2/plan.md]"
+title: "Implementation Plan: README code template governance"
 description: "Document completed README template edits, diagram styling correction, code-folder README batch evidence, explicit target manifest, final remediation evidence, and verification evidence without modifying implementation files."
 trigger_phrases:
   - "readme code template plan"

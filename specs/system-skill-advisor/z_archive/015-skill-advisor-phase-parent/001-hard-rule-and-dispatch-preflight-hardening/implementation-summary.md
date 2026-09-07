@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: hardening core shipped (Wave D + A′ + B2) [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: hardening core shipped (Wave D + A′ + B2)"
 description: "The hardening design was implemented on-branch 2026-07-05 (Q2=300000ms): Wave D stall-detector defaults + exit-truth (deep-loop-runtime) and A′+B2 hard_rules dispatch linter (cli-opencode). Both acceptance tests met; B1 + burn-in are follow-up."
 trigger_phrases:
   - "hardening plan implementation summary"

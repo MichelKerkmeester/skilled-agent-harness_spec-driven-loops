@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Self-Healing Model Consolidation [template:level_2/spec.md]"
+title: "Feature Specification: Self-Healing Model Consolidation"
 description: "Of the self-healing system's three discovery layers, only Layer 1 (query-time existence filtering) is a pure discoverer that enqueues into the shared suspect queue for a later confirmed look. Layer 3's own orphan sweep and Layer 2's marker-triggered scoped delete each independently decide-and-delete on first detection, bypassing the confirm-and-tombstone step Layer 3 already owns for Layer 1's suspects."
 trigger_phrases:
   - "self-healing model consolidation"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: land-recommended-frameworks-data [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 3: land-recommended-frameworks-data"
 description: "Add the additive recommended_frameworks object to all 8 active models in model-profiles.json; rebuild model-profiles.md with accurate counts and schema documentation."
 trigger_phrases:
   - "recommended_frameworks plan"

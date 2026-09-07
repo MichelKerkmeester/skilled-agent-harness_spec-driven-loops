@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will populate description.json trigger_phrases from curated frontmatter plus a derived extractive set, derive a real description over the title copy, and raise the derive cap to 12. No code change has landed."
 trigger_phrases:
   - "trigger propagation description"

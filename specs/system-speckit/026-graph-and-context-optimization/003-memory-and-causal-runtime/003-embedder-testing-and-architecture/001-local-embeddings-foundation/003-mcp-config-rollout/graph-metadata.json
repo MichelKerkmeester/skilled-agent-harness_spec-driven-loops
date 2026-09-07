@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 5 MCP runtime configs all had `EMBEDDINGSPROVIDER=auto` but no `HFEMBEDDINGSMODEL`, AND `VOYAGEAPIKEY` was exported from three places (`~/.zshrc:21`, project `.env:15`, macOS launchd)",
     "created_at": "2026-05-12T16:27:48Z",
-    "last_save_at": "2026-08-30T15:39:29.637Z",
+    "last_save_at": "2026-09-07T16:17:43.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2be7fa04807563a73790003293bdbc0e6d87c040ade6f8da3452f5faffc0f554",
+    "source_fingerprint": "sha256:05d72c8d8dc7d5f30788b178f919fdc391a1e8403a4f54b19e841e3626bd9adb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "828c2c7432f3408440e085db29f413e1dc397f41a9ddafc24ecd4a49d0d6bccf",
-      "plan.md": "cf7116da7c44bd9841bc015cd9a78efedcfeab764ea3b760282267187c790336",
-      "tasks.md": "6eac7748a8bc361d7f213707471d3ca4baa0c23feec1430fabcf0275c946b7b4",
-      "implementation-summary.md": "76b8316077303dcc51ae98f31441806e8fe6de3b6bba1b25d4ef9c832967ad8e"
+      "plan.md": "9828fb5996960c3ef7138d889769be9b54796612d162b738c0d1eddfb9e243e7",
+      "tasks.md": "6f5dbc6b11be1710edf6c670a8124238dfd5ba5c2e9558ffd5b2e6fc3bbfa5fb",
+      "implementation-summary.md": "f9591f0498117b40a6df3f940269ac68a584e0aed521aef83faee49cd811bb25"
     },
     "last_active_child_id": null,
     "last_active_at": null

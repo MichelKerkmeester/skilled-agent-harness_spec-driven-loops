@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarksformat.md`) and mirrored to sibling MCP skills via relative symlinks",
     "created_at": "2026-05-19T07:48:10Z",
-    "last_save_at": "2026-08-30T15:39:30.872Z",
+    "last_save_at": "2026-09-07T16:17:47.721Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cb591ab7685ea601e658b5f83176d232e6b68554aac6ef31986c9b425442c96",
+    "source_fingerprint": "sha256:51bf2613ed6e8ebb42102325a3cae401376833608f7d38e2cd1539cab4c493da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d62b554a48323dfa29285a077e09e3e05460281dbdb9f2d400916c7cabf0007f",
-      "plan.md": "d88147a3fe6c804f930c04c654c7c95fca93393a900e3a289a4dccc849787830",
-      "tasks.md": "b3f7463e613b4a478c51f681097072b25154789114023a547949276beecdb151",
-      "implementation-summary.md": "b79e1f71b80392fcee8624fa095f9044537ad09e557e37ce797fff900144637d"
+      "spec.md": "9b26c1d91e6b77b56701810858438bf1cf7b061d132abf613addf0a87d91ef0c",
+      "plan.md": "3021ca4d4645e71bede66b36c5c7887df15a6cb583f7a177cf2a46f360f2e523",
+      "tasks.md": "3ab852044de9be928f615b474413cf32c0f5231b7701727280f56c62e376c5b8",
+      "implementation-summary.md": "b1626526deeea470a55de41875c3df0788286c569908ec2b16ac7c8121f48085"
     },
     "last_active_child_id": null,
     "last_active_at": null

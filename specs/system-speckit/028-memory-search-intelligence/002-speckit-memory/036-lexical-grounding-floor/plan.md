@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Lexical-Grounding Floor and Single-Hit Corroboration [template:level_2/plan.md]"
+title: "Implementation Plan: Lexical-Grounding Floor and Single-Hit Corroboration"
 description: "Gate good and cite_results on a lexical-grounding floor and require single-hit corroboration in assessRequestQuality, reusing the lexical signal already on the result rows and the citation policy already derived from the label, both behind a single default-OFF flag, with a verdict-level vitest over the off-corpus anchor and the aligned good queries."
 trigger_phrases:
   - "lexical grounding floor"

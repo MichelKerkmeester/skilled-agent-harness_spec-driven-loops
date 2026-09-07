@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: 028 Daemon Skills Playbook Validation [template:level_2/plan.md]"
+title: "Implementation Plan: 028 Daemon Skills Playbook Validation"
 description: "The harness, dispatch shape, isolation recipe, and scoring method for the daemon-skills playbook validation. Stress suites run directly via vitest. Playbook scenarios run through cli models on disposable clones with per-clone daemon isolation. Status complete and salvaged."
 trigger_phrases:
   - "daemon skills playbook validation plan"

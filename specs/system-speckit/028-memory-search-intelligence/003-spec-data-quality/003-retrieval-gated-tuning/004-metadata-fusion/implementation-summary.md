@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will add a flag-gated metadata-fusion lane with an on-corpus alpha-calibrated linear blend, gated behind a measured C1 prefix floor movement. No code change has landed."
 trigger_phrases:
   - "metadata fusion alpha"

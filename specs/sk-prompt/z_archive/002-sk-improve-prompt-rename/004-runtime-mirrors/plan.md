@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: runtime-mirrors [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 4: runtime-mirrors"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

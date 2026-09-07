@@ -1,5 +1,5 @@
 ---
-title: "Spec: 028 Catalog and Playbook Coverage Audit [template:level_2/spec.md]"
+title: "Spec: 028 Catalog and Playbook Coverage Audit"
 description: "Research-only audit of whether packet 028 shipped features into the three system skills without adding them to those skills feature catalogs or testing playbooks. The 20-iteration findings live in research/research.md. No catalog or playbook was modified."
 trigger_phrases:
   - "catalog playbook coverage audit"

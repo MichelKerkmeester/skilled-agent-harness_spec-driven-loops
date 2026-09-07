@@ -20,7 +20,7 @@ _memory:
       - "spec.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:bc7c8d5742d232d8881cbb22ef7c4c1ec90cbb558eabc20f4787cf20d8b5ef32"
       session_id: "claude-2026-05-06-082-006"
       parent_session_id: null
     completion_pct: 100

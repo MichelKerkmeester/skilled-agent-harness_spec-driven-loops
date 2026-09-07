@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration [template:level_1/plan.md]"
+title: "Implementation Plan: Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

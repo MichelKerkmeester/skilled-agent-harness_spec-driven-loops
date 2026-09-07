@@ -37,8 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/lib/validator-registry.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -184,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited",
     "created_at": "2026-06-27T17:15:34.135Z",
-    "last_save_at": "2026-08-30T15:39:35.559Z",
+    "last_save_at": "2026-09-07T16:18:18.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87ab8904b338b86d3cee4efe849f19c1b4d617e7f0721770b9a6c0c5c2d8ba05",
+    "source_fingerprint": "sha256:8b5e6b023d3cec2ba168a46180ecfd9c2dbcb05ecdec1c864a36d6c6942179a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a370e1bb45a34bfbff07720ed79674a3883d0cbf94cc772120a91532cf107adc",
-      "plan.md": "baba7212bd50a2281fc99a8852b22b10f5934b39c6ea3ba8d89f1791766a7d75",
-      "tasks.md": "1ad6169284e859e7ed4f6f1841bc38d80d260615f962f827e1ed7aa790614fd6",
-      "implementation-summary.md": "a510ae7fb90e72705fdd39993e88fb730064304c25a391f007a19afd0354d725"
+      "spec.md": "02b6861213398c1a1223b3c7a7c5952231d1969ae1322e551b3342fabaadeab1",
+      "plan.md": "33cbb296979c400f60fbfad23b8d89fdd945cf397a34a6f53f7f6189fcaf6ecf",
+      "tasks.md": "c0b67f27e1b86c3e19f943db0992d5e72b63460b5973f6af78ce92acc9034c43",
+      "implementation-summary.md": "ab405753be3b0cec7c00acaeeab4e01551bf8851c0e0fea099461584f7c1c551"
     },
     "last_active_child_id": null,
     "last_active_at": null

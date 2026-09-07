@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: rehome-rules-content [template:level-1/tasks.md]"
+title: "Tasks: Phase 4: rehome-rules-content"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "phase four rehome tasks"

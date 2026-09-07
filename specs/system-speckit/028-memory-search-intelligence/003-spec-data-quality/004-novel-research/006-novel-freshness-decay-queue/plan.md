@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Novel Freshness Decay Auto-Refresh Queue [template:level_2/plan.md]"
+title: "Implementation Plan: Novel Freshness Decay Auto-Refresh Queue"
 description: "A report-only detector reads the shipped FSRS retrievability number and queues a doc decayed below the COLD to DORMANT edge as a maintenance candidate. It registers with fixClass none and emits a finding, never a body refresh."
 trigger_phrases:
   - "freshness decay queue"

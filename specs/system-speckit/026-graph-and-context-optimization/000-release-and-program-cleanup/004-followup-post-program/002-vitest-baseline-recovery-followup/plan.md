@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Vitest baseline recovery followup [template:level_1/plan.md]"
+title: "Implementation Plan: Vitest baseline recovery followup"
 description: "Completed plan for re-baselining and closing the current vitest failures after predecessor annotations failed to persist."
 trigger_phrases:
   - "vitest recovery followup plan"

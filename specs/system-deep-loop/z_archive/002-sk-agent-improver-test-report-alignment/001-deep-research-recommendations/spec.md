@@ -1,6 +1,6 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 ---
-title: "Feature Specification: Apply 059 Stress-Test Methodology to sk-improve-agent Triad [template:level_3/spec.md]"
+title: "Feature Specification: Apply 059 Stress-Test Methodology to sk-improve-agent Triad"
 description: "Research-only packet that applies the testing methodology from packet 059 (@code stress-test campaign) to the sk-improve-agent system. Produces gap analysis, sketched stress-test scenarios, and prioritized diff recommendations to inform a follow-on implementation packet (061)."
 trigger_phrases:
   - "060 sk-improve-agent test report alignment"

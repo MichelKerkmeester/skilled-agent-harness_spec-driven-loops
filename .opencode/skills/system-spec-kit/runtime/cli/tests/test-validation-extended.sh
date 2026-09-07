@@ -881,6 +881,7 @@ fi
 if begin_category "Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)"; then
     run_isolated_rule_test "No placeholders" "check-placeholders.sh" "002-valid-level1" "pass" 1
     run_isolated_rule_test "[YOUR_VALUE_HERE:] detected" "check-placeholders.sh" "005-unfilled-placeholders" "fail" 1
+    run_isolated_rule_test "Template provenance token in a title detected" "check-placeholders.sh" "073-template-provenance-title" "fail" 1
     run_isolated_rule_test "Multiple placeholders" "check-placeholders.sh" "036-multiple-placeholders" "fail" 1
     run_isolated_rule_test "Case variations ignored by canonical shell markers" "check-placeholders.sh" "037-placeholder-case-variations" "pass" 1
     run_isolated_rule_test "In code block (ignored)" "check-placeholders.sh" "038-placeholder-in-codeblock" "pass" 1

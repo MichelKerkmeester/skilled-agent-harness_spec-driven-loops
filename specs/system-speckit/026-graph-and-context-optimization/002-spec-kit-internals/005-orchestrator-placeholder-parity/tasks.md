@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Orchestrator vs shell placeholder-detection parity [template:level_2/tasks.md]"
+title: "Tasks: Orchestrator vs shell placeholder-detection parity"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "placeholder parity tasks"

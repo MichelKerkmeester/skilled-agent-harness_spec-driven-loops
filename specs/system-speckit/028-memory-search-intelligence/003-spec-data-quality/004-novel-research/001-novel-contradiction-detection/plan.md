@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Novel Cross-Doc Contradiction and Staleness Detection [template:level_2/plan.md]"
+title: "Implementation Plan: Novel Cross-Doc Contradiction and Staleness Detection"
 description: "A new report-only detector class on the B1 sweep pairs only docs that share a catalog entity or a causal edge and scores each pair for contradiction or staleness with an LLM entailment check. It emits a finding, never a vector row and never a body mutation."
 trigger_phrases:
   - "contradiction detection"

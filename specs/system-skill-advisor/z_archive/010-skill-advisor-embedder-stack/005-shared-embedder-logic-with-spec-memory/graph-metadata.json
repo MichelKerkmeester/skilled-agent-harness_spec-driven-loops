@@ -43,7 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/embedders/schema.ts",
       "shared/embeddings/factory.ts",
       ".opencode/bin/hf-model-server.cjs",
       ".opencode/skills/system-spec-kit/shared/embeddings/adapter.ts",
@@ -81,12 +80,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "schema.ts",
-        "kind": "code",
-        "path": "lib/embedders/schema.ts",
         "source": "derived"
       },
       {
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "spec-memory",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
     "created_at": "2026-05-21T18:08:46.935Z",
-    "last_save_at": "2026-08-30T15:39:27.124Z",
+    "last_save_at": "2026-09-07T16:17:28.894Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +214,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4d6ef670a121d6be01bf727057b4261b7761112104d4641add8741e1bc08770",
+    "source_fingerprint": "sha256:52dfa3a629f750ad48c7dc99533970b041e08124971ecd1b31065129305d3c25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09af5422c509a9cdf055d5a9e4c045682f051b0f2bfb1cb58c8aae21a9a53f2d",
-      "plan.md": "e97ea1e7acfc2a047c7ce4feb2e55ded6cced855dc775d7246f66e0a26dc35e0",
-      "tasks.md": "044de30442179187b770bdaa7ec6eae7ecac090f8292ab7353323e2769fe46f8",
+      "spec.md": "7762baddad8f867042a0ccb8cbf5cb5d79b5168ca6f8920301f22d8342297871",
+      "plan.md": "fc4c14f0391544f9289056d1239d0dd3a6159879d475d1c90bf3c47a776ce00b",
+      "tasks.md": "f5016fccad51ff141cfa5b38bac10cdd739d3164e9bbd15da5a146ab2253aacc",
       "implementation-summary.md": "39ddb8558c0f7e432a2e7085cd2daa50384e73e09d39020cc6ad123596ab1f5f"
     },
     "last_active_child_id": null,

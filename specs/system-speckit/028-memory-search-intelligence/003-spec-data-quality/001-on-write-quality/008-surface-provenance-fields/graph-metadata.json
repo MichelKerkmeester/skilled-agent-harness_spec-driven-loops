@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
     "created_at": "2026-06-27T17:15:34.677Z",
-    "last_save_at": "2026-08-30T15:39:35.571Z",
+    "last_save_at": "2026-09-07T16:18:18.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1e29d81fbbbf6259453e6935b04c24da4e3942a2234ccf63c3699f2155e1ea8",
+    "source_fingerprint": "sha256:0b997801ef0b04d7e9b52328be505a5d7db97d6996ae452f44ebfecf6cc8b16e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdd711625e2a0f0c5335f47642295c1fdbb5ec2761b83b1512ab4036a635928f",
-      "plan.md": "d82665d1eab7ed327ec9607e98da660f1c6b282c789479dc3b09621847427be4",
-      "tasks.md": "079654d3291910ecd4b2771dfabf7333fbe3f3e350f0c66c71ee07d1efaa00e1",
-      "implementation-summary.md": "ae43ca8deb0a8a159a7d17c31fc5f090951a67165c46222ee9a2121257c0c333"
+      "spec.md": "c9eb277865ebabd8c3fe8926fc3a4071caae900a4647a93354a829961f4133b3",
+      "plan.md": "9b573a2e8267092cd7795693529c71c6dc8fbd006da2fac462a8e4abaae887d4",
+      "tasks.md": "8ae3871f97b1a57e8b2cb888b518bdd6bf5874cf6677ac0b01072371523ce9d2",
+      "implementation-summary.md": "16eacec0173913562629f3414098d0d8d839990e4fe7da39386f9803a2464fd5"
     },
     "last_active_child_id": null,
     "last_active_at": null

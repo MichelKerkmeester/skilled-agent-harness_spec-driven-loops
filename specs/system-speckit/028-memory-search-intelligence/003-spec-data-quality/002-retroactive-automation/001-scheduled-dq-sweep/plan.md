@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: B1 Scheduled DQ Sweep [template:level_2/plan.md]"
+title: "Implementation Plan: B1 Scheduled DQ Sweep"
 description: "A thin fan-out entrypoint over the A1 detectors plus validate.sh --json runs the whole corpus on a timer and on demand. CI reports only. A guarded operator-local apply path applies safe-class fixes via the shipped backfill contract."
 trigger_phrases:
   - "scheduled dq sweep"

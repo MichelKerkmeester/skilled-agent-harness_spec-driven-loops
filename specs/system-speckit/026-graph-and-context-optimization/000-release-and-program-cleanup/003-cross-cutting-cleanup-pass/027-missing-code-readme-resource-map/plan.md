@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Missing Code READMEs Resource Map [template:level_2/plan.md]"
+title: "Implementation Plan: Missing Code READMEs Resource Map"
 description: "Plan, implement and verify the exact 65-folder missing README manifest."
 trigger_phrases:
   - "missing code readmes resource map"

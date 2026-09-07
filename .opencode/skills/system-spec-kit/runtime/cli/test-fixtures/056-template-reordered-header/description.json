@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/056-template-reordered-header",
+  "description": "This fixture intentionally reorders required H2 sections",
+  "keywords": [
+    "fixture",
+    "intentionally",
+    "reorders",
+    "required",
+    "sections"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.730Z",
+  "specId": "056",
+  "folderSlug": "template-reordered-header",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

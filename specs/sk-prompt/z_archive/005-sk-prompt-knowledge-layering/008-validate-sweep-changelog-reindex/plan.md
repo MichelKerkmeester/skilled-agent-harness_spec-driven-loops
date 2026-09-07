@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 8: validate-sweep-changelog-reindex [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 8: validate-sweep-changelog-reindex"
 description: "Final completion sweep for spec 130: validate all phases recursively, confirm duplication guard GREEN, verify data<->prose round-trip for 8 model profiles, write changelogs, reindex skill advisor."
 trigger_phrases:
   - "130 phase 8 plan"

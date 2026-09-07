@@ -1,5 +1,5 @@
 ---
-title: "Level 3 Templates [template:level_3/README.md]"
+title: "Level 3 Templates"
 description: "Architecture-oriented templates for large or high-risk implementation work."
 trigger_phrases:
   - "level 3"

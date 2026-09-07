@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: A10 Per-Surface Gates [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: A10 Per-Surface Gates"
 description: "Planned scaffold for the per-surface write-time gates phase. Not yet implemented."
 trigger_phrases:
   - "per-surface gates implementation"

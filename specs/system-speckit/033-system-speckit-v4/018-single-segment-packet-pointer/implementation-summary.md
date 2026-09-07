@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "single segment packet pointer"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts"
       - ".opencode/skills/system-spec-kit/mcp-server/tests/spec-doc-structure.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ae76b9d5db2d435e26172b82101b8c50b472b887b548e964952bded384b7137b"
       session_id: "scaffold-050-single-segment-packet-pointer"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Public Doc Internal Spec Reference Removal [template:level_2/plan.md]"
+title: "Implementation Plan: Public Doc Internal Spec Reference Removal"
 description: "Scrub public-facing documentation surfaces for hardcoded internal spec packet paths while preserving generic user-selected Spec Kit placeholders."
 trigger_phrases:
   - "public docs"

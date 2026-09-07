@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: z-archive-marker-validation-sweep [template:level_3/spec.md]"
+title: "Feature Specification: z-archive-marker-validation-sweep"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

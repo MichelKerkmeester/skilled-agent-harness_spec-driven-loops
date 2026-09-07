@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Novel Cross-Doc Contradiction and Staleness Detection [template:level_2/spec.md]"
+title: "Feature Specification: Novel Cross-Doc Contradiction and Staleness Detection"
 description: "Nothing on the corpus checks whether two docs that describe the same entity actually agree. A claim and its later correction can both sit live in the index with no detector that pairs them and scores the conflict, so the logic-consistency reader is unserved."
 trigger_phrases:
   - "contradiction detection"

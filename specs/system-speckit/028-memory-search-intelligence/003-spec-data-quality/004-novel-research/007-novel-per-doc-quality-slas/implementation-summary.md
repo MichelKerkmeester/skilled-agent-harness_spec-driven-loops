@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Per-doc quality SLA. PLANNED scaffold, nothing built yet, no completion claimed."
 trigger_phrases:
   - "per doc quality sla status"

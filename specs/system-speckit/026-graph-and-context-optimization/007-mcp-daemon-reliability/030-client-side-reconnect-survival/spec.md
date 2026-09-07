@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 30: Client-Side MCP Reconnect Survival [template:level_1/spec.md]"
+title: "Feature Specification: Phase 30: Client-Side MCP Reconnect Survival"
 description: "Claude Code's client-side MCP transport to a still-alive local stdio daemon drops mid-session and only a manual /mcp restores it; stdio servers get no client-side auto-reconnect. v3.5.0.4 hardened daemon lifecycle but explicitly deferred client survival."
 trigger_phrases:
   - "mcp client reconnect"

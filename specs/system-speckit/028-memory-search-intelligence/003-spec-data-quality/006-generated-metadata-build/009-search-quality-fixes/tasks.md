@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Search-Quality Fixes [template:level_2/tasks.md]"
+title: "Tasks: Search-Quality Fixes"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "search quality fixes tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Promote Qwen3-Reranker-0.6B as the spec-memory default [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Promote Qwen3-Reranker-0.6B as the spec-memory default"
 description: "Phase 005 executed the HOLD path from phase 004's benchmark verdict. Qwen remains opt-in; docs and arc metadata were updated without source-code or runtime-config changes."
 trigger_phrases:
   - "005 implementation summary"

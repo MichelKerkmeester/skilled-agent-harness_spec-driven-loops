@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Packet 028 shipped a large body of work into three daemon-backed system skills (system-spec-kit, system-skill-advisor and system-code-graph)",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-08-30T15:39:34.554Z",
+    "last_save_at": "2026-09-07T16:18:03.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a77aedc45242b5d2a2c1dbe818bb9985aa28847db315c41018b789c9987e553",
+    "source_fingerprint": "sha256:7ab43393133d5ff3a93cc12f59d3ce6db2c0f6b757fc26c69cb4564b4b10662d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55680f525fe76c5dff66de44b8e77e20f9d5bcfd0998815b09b8765baf05714e",
-      "plan.md": "8c74a3eb0c5d921e2425e8d5b85829a669dbabfa99f7629cb1637bda69b9cb62",
-      "tasks.md": "cdb56aa2a4f7da65fa97845bd491c75faec25b1d7ca44b69b90927a49a9c28ea",
-      "implementation-summary.md": "af5b4ceb3fb3a7e85acb0ae507f6a8dba8752dfc32e14069ce9dee36ad0e3d44"
+      "spec.md": "b6ab58731c044494aa93474e5c10c1ae4cc56f5bf401ebacce91475c10e90a5b",
+      "plan.md": "968bed984de5522513f8b983a0dd2a28e8e8c95c20e373c246a814b543b0bc6b",
+      "tasks.md": "0a85c521523cf85d66982cb9f82936466484fb673bf41aa62b7b29d534d74552",
+      "implementation-summary.md": "cbf226c0eda7cec6833942168393839347bd3e46e22205169229c9dcd8933f52"
     },
     "last_active_child_id": null,
     "last_active_at": null

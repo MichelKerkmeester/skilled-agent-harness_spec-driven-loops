@@ -1,5 +1,5 @@
 ---
-title: "Tasks: domain-tuned reranker fine-tune [template:level_1/tasks.md]"
+title: "Tasks: domain-tuned reranker fine-tune"
 description: "T001-T030 covering scripts skeleton, template-strip, triple gen, training, eval, publish."
 trigger_phrases:
   - "011/003 tasks"

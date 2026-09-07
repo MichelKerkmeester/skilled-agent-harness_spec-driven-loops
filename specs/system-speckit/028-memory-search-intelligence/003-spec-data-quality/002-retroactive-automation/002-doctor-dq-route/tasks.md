@@ -1,5 +1,5 @@
 ---
-title: "Tasks: B2 Guarded data-quality Route on /doctor [template:level_2/tasks.md]"
+title: "Tasks: B2 Guarded data-quality Route on /doctor"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "doctor dq route tasks"

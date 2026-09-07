@@ -191,7 +191,7 @@
     ],
     "causal_summary": "If Phases 1 and 2 both fail to land an acceptable rerank path, the remaining hypothesis is that no off-the-shelf cross-encoder is well-aligned to the spec-memory corpus",
     "created_at": "2026-05-23T11:55:15.632Z",
-    "last_save_at": "2026-08-30T15:39:31.156Z",
+    "last_save_at": "2026-09-07T16:17:56.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9603d6639e6bbce57a34a8de82128c29b081e80eb34af2210856a657643a2f57",
+    "source_fingerprint": "sha256:b7a9bd1f3487dad3c358cb7c1ba95a9f077abaee7f797949197c4db262c08e31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "beb85115df2ef45566a9fe1fbff285a99f52bffbc90bd0934ce078b59efbe2cc",
-      "plan.md": "acc532419ccf346452f060b2563e046ab1abbb415c74c9a401fe0ca6edb8bfc5",
-      "tasks.md": "12d5f3e952238b52c840469e85c08cdad693a34093ef5582f472d7ae85703542",
-      "implementation-summary.md": "8e21e9dc27459f6b4797fcc0a58565017e9f34fe73f04f5b80a78c8a05b5d4d4"
+      "spec.md": "52c5489914da846f0abdf1355884adeb106d1e98e55732ec25dc29fdfec488af",
+      "plan.md": "560053a23d81844a2d97924db9e1c4ae1943930ea3d63d99a795f2eb12ba7c6f",
+      "tasks.md": "452e683a34efee0b2aee6c44ec0e28b834497547fe2a8e0f82a881852c9c4a1f",
+      "implementation-summary.md": "9d66585dcbedce495cb87991b35bad0bedd26987eda9bdd39e7859865dcb51a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

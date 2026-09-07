@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration [template:level_2/tasks.md]"
+title: "Tasks: Xiaomi Token Plan (Europe) provider + MiMo-V2.5-Pro integration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "mimo provider integration tasks"

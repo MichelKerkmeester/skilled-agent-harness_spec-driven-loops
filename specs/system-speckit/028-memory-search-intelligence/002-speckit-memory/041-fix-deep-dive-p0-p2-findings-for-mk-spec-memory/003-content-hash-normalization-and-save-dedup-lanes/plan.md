@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: content-hash-normalization-and-save-dedup-lanes [template:level_3/plan.md]"
+title: "Implementation Plan: Phase 3: content-hash-normalization-and-save-dedup-lanes"
 description: "Normalize content-hash input with a dual-compare migration, unify the continuity-fingerprint builders, open the PE-gate UPDATE/REINFORCE lanes, fix the P0 full-auto canonical save self-reject, and gate the remaining save dedup lanes; verified by baseline-before-delta vitest runs and un-skipped memory-save parity tests."
 trigger_phrases:
   - "content hash normalization plan"

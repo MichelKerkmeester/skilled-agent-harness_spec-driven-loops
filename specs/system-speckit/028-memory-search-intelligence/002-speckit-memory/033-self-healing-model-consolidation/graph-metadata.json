@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The self-healing system ships in three layers (`011-automatic-drift-self-healing/spec.md` section 3), and its own",
     "created_at": "2026-07-09T20:28:41.704Z",
-    "last_save_at": "2026-08-30T15:39:35.224Z",
+    "last_save_at": "2026-09-07T16:18:12.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb8c5adb7f58d7c1037487f84b883156d01645e88b03fe7aafb047d20e11d2c7",
+    "source_fingerprint": "sha256:8ac0629d944e59bf4fdec56514e2be330bfc2d24a55f422308a0f674058220bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "940108ae653b74b02ac49abbae78f71da2b9f27c8b162884a0dfdfa0ec4db2d1",
+      "spec.md": "b6df44c71239075d435f340e5514d39ba4177f0a9970143880c926e4e668ac27",
       "plan.md": "dd63640a0fd51edc845610efd6ffb5e23fa9c26cd81435bd1d8876e5129524ac",
       "tasks.md": "6d59dfaf2428e50140988c23e941a89b59c3b66144dc026f1985cde7c610c6ba",
-      "implementation-summary.md": "b3b1059a1ef9ab25fdbb19e8d915723a8aa6f387d0adc6d42c909bc8e7ad468e"
+      "implementation-summary.md": "4f11736c1680d05e9ed5fa9e9cd24e8f5cff00a42b768b26b00f2e3e1bd53d98"
     },
     "last_active_child_id": null,
     "last_active_at": null

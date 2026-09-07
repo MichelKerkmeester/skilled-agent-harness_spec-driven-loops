@@ -21,7 +21,7 @@ _memory:
       - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
       - ".opencode/specs/system-deep-loop/026-goal-opencode-plugin/013-design-fidelity-and-polish/tasks.md"
     session_dedup:
-      fingerprint: "sha256:3f38a2d16b7d30c3fd190cfe30d3cbf63f61ec23217c3c92fbdf688e4e87ed4b"
+      fingerprint: "sha256:e7e8ff7949e7e66182752e9e200b2f0f91614c7b103eb2e1c1c02746d05d480a"
       session_id: "goal-phase-013-20260701"
       parent_session_id: null
     completion_pct: 100

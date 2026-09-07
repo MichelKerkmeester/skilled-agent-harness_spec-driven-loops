@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The repo-wide audit and the permanent child-drift check shipped and are verified in the default validate.sh --strict path. The backfill is deferred because every genuine drift the audit found is owned by a concurrent session, another phase, or another project."
 trigger_phrases:
   - "graph-metadata drift summary"

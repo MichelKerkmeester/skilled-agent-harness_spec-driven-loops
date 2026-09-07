@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: advisor-integration [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 5: advisor-integration"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "phase five advisor integration"

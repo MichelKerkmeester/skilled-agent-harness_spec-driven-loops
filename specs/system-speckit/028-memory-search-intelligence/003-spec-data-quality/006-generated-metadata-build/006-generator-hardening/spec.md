@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Generator Hardening [template:level_2/spec.md]"
+title: "Feature Specification: Generator Hardening"
 description: "The graph-metadata generator carries no proof that its derived fields were re-derived from current source docs and the phase-child contract is split across two helpers that can disagree, while access and freshness telemetry mutate the generated JSON on reads and resumes so a no-op read dirties an unchanged file. This phase persists a graph-metadata source fingerprint, unifies the phase-child contract behind one helper, and moves access and freshness telemetry out of generated JSON, all behind a default-off flag and a grandfather report mode so existing files that carry prose statuses and prefixed paths do not mass-fail."
 trigger_phrases:
   - "graph metadata source fingerprint"

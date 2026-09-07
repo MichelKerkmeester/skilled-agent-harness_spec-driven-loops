@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Full-Repo Generated-JSON Migration [template:level_2/tasks.md]"
+title: "Tasks: Full-Repo Generated-JSON Migration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "full repo json migration"

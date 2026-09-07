@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 7: deep-loop-and-cli-contract-drift [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 7: deep-loop-and-cli-contract-drift"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: README code template governance [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: README code template governance"
 description: "Completed README template work is recorded with final Task #5 revision evidence, HVR punctuation cleanup, Task #9 diagram styling correction evidence, Task #25 code-folder README batch evidence, Task #28 final manifest/remediation evidence, and Task #31 final P1 cleanup evidence."
 trigger_phrases:
   - "readme code template implementation"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/sk-doc/assets/documentation/readme_template.md"
       - ".opencode/skills/sk-doc/assets/documentation/readme_code_template.md"
     session_dedup:
-      fingerprint: "sha256:0510000000000000000000000000000000000000000000000000000000000005"
+      fingerprint: "sha256:7aca3b2545e74c19b8d18bd0d773e6a9fbb21b62c191c140010832c0839ea19c"
       session_id: "task-10-readme-code-template-diagram-evidence"
       parent_session_id: null
     completion_pct: 100

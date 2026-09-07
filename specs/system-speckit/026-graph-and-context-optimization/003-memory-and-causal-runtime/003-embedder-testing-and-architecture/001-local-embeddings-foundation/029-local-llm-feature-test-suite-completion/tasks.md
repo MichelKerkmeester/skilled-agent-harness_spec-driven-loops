@@ -1,5 +1,5 @@
 ---
-title: "Tasks: local-LLM feature test suite completion [template:level_1/tasks.md]"
+title: "Tasks: local-LLM feature test suite completion"
 description: "Open tasks for completing the missing local-LLM feature suite."
 trigger_phrases:
   - "local-llm feature test suite completion"
