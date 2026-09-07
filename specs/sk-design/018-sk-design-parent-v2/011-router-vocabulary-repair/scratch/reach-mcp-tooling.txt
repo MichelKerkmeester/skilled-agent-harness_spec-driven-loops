@@ -1,0 +1,17 @@
+FAIL mcp-tooling                  declared= 76 wrong-hub=  2 no-reach= 11
+       wrong-hub  create note                                system-spec-kit=0.8200, sk-code=0.8200
+       wrong-hub  browser agent                              sk-code=0.8639
+       no-reach   dom inspect
+       no-reach   screenshot capture
+       no-reach   network requests
+       no-reach   project tracker
+       no-reach   note crud
+       no-reach   design file
+       no-reach   reference styles
+       no-reach   web products
+       no-reach   mobile design patterns
+       no-reach   mobile ux research
+       no-reach   phone apps
+
+checked=1 hub(s), wrong-hub=2, no-reach=11
+RESULT: FAILED

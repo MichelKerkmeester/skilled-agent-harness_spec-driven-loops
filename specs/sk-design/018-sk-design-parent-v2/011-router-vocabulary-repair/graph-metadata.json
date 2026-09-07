@@ -50,7 +50,8 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-doc/graph-metadata.json",
-      ".opencode/skills/sk-doc/description.json"
+      ".opencode/skills/sk-doc/description.json",
+      "scratch/compiled-routing-gap.md"
     ],
     "entities": [
       {
@@ -99,6 +100,12 @@
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-gap.md",
+        "kind": "doc",
+        "path": "scratch/compiled-routing-gap.md",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design router declares 55 keywords its own scoring vocabulary never sees",
     "created_at": "2026-09-06T20:37:14Z",
-    "last_save_at": "2026-09-06T21:50:14.141Z",
+    "last_save_at": "2026-09-07T04:07:20.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8465b1e76eb2e2268c36cdef4a4b42ff1aea9b0092c55b53d6e207f38ef7884c",
+    "source_fingerprint": "sha256:fe5beacf8103a2ff023c3f392d0cfe537724bd8b44194e627116e75de3561243",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a9f9e17fe8494b3c8bb11a14beb82891a525adfb43eac76288480c7ac0d0e72",

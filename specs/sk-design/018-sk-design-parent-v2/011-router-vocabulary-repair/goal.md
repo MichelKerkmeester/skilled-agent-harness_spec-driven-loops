@@ -99,6 +99,13 @@ Done. 17 phrases added to sk-design, 2 removed from sk-doc; 9 of 11 fixed at gen
   `heat map` and `parallel coordinates`. The first pass removed only two because it filtered the
   signal list by keyword instead of reading it, and a filter for `chart` and `heatmap` matches none of
   `treemap`, `histogram` or `heat matrix`. All six now reach the design hub.
+- **The fleet scan found more, in hubs this packet does not own.** `system-deep-loop` has three
+  wrong-hub phrases: `iterative review` and `review convergence` reach `sk-design`, `audit the diff`
+  reaches `sk-code`. `mcp-tooling` has two: `create note` and `browser agent`. Recorded for their
+  owners rather than fixed here.
+- **`sk-design` is not in the compiled-routing closure.** Five hubs resolve through a compiled router
+  contract first; this one returns a legacy sentinel. Written up in
+  `scratch/compiled-routing-gap.md` with what joining would take.
 - **The check fails on wrong-hub, reports no-reach.** A phrase reaching another hub is a defect. A
   phrase reaching nobody is almost always too short to clear the bar, and a gate that fails on ten
   unfixable rows stops being run.

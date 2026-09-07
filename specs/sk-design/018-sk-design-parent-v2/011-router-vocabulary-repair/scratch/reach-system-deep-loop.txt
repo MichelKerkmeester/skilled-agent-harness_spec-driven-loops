@@ -1,0 +1,15 @@
+FAIL system-deep-loop             declared= 25 wrong-hub=  3 no-reach=  8
+       wrong-hub  iterative review                           sk-design=0.8200
+       wrong-hub  review convergence                         sk-design=0.8200
+       wrong-hub  audit the diff                             sk-code=0.8200
+       no-reach   iterative investigation
+       no-reach   research summary
+       no-reach   investigate why
+       no-reach   seat diversity
+       no-reach   improve agent
+       no-reach   score agent
+       no-reach   agent candidate
+       no-reach   promote or roll back the agent
+
+checked=1 hub(s), wrong-hub=3, no-reach=8
+RESULT: FAILED
