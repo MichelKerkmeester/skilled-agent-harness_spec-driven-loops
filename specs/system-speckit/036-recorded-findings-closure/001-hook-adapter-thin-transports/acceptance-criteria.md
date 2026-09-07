@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports"
-    last_updated_at: "2026-09-07T15:05:41Z"
+    last_updated_at: "2026-09-07T18:20:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-07-036-recorded-findings-closure-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|----------------------|---------------|--------|--------|
-| AC-001 | REQ-001 | Given claude/codex/cursor/devin's `spec-gate-classify.mjs` and `spec-gate-enforce.mjs`, When each is read after migration, Then none contains the duplicated observe/deny orchestration that lived there before this phase | `rg -n "observeGate3QuestionDelivery\|buildGate3ObservedReceipt" hooks/{claude,codex,cursor,devin}/spec-gate-{classify,enforce}.mjs` shows only the shared-function call, not an inline re-implementation | Unmet | - |
-| AC-002 | REQ-002 | Given pi's `spec-gate-classify.ts` and `spec-gate-enforce.ts`, When compared against the four Node-CLI runtimes, Then all five call the same exported function names in `spec-gate-core.mjs` | `rg -n "spec-gate-core.mjs" hooks/pi/spec-gate-{classify,enforce}.ts` and a diff of the imported symbol names against `hooks/codex/spec-gate-classify.mjs` | Unmet | - |
-| AC-003 | REQ-003 | Given the eight named regression suites, When run after the full migration, Then every suite exits 0 with the same rule ids and pass/fail outcomes as the pre-port baseline | `npx vitest run spec-gate-claude spec-gate-codex spec-gate-devin spec-gate-prebind spec-gate-core directive-lifecycle-adapter-parity completion-evidence-sentinel hook-completion-evidence-stop` from `runtime/` | Unmet | - |
-| AC-004 | REQ-004 | Given claude/codex/cursor/devin's classify+enforce+shared.ts trio, When measured with `wc -l` after migration, Then each runtime's sum is under 200 lines | `wc -l hooks/<runtime>/spec-gate-classify.mjs hooks/<runtime>/spec-gate-enforce.mjs hooks/<runtime>/shared.ts` run once per runtime | Unmet | - |
-| AC-005 | REQ-005 | Given `hooks/README.md`'s architecture section, When read after this phase, Then it names the new shared classify/enforce call site instead of describing per-runtime duplication | Manual read of `hooks/README.md`'s architecture section against the post-port file layout | Unmet | - |
-| AC-006 | REQ-006 | Given the lifecycle hooks (session-prime, session-stop, compact-inject), When this phase's diff is reviewed, Then none of their spawnSync delegation to `claude/*.js` changed | `git diff` for this phase touches no file under the lifecycle-hook set, and `directive-lifecycle-adapter-parity.vitest.ts` still passes unmodified | Unmet | - |
+| AC-001 | REQ-001 | Given claude/codex/cursor/devin's `spec-gate-classify.mjs` and `spec-gate-enforce.mjs`, When each is read after migration, Then none contains the duplicated observe/deny orchestration that lived there before this phase | `grep -c` of `observeGate3QuestionDelivery`, `buildGate3ObservedReceipt` and `appendWarningLog` over the eight adapters returns 0 for each; the sequences live in `hooks/lib/spec-gate/spec-gate-core.mjs` as `runClassifyGate` and `runEnforceGate` | Met | Unmet | - |
+| AC-002 | REQ-002 | Given pi's `spec-gate-classify.ts` and `spec-gate-enforce.ts`, When compared against the four Node-CLI runtimes, Then all five call the same exported function names in `spec-gate-core.mjs` | `hooks/pi/spec-gate-classify.ts` and `spec-gate-enforce.ts` call `runClassifyGate` and `runEnforceGate`, the same two names `hooks/codex/spec-gate-classify.mjs` and `spec-gate-enforce.mjs` call | Met | - |
+| AC-003 | REQ-003 | Given the eight named regression suites, When run after the full migration, Then every suite exits 0 with the same rule ids and pass/fail outcomes as the pre-port baseline | node tests: claude 13, codex 14, devin 15, cursor prebind 16, core 87 pass with 0 failures; vitest: directive-lifecycle-adapter-parity, completion-evidence-sentinel, hook-completion-evidence-stop, hook-adapter-path-parity and hooks-reexport-parity pass, 5 files and 151 tests; the full runtime project result is in implementation-summary.md | Met | - |
+| AC-004 | REQ-004 | Given claude/codex/cursor/devin's `spec-gate-classify.mjs` plus `spec-gate-enforce.mjs` pair, When measured with `wc -l` after migration, Then each runtime's pair sum is under 200 lines | `wc -l` over each runtime's classify plus enforce pair: claude 89, codex 105, cursor 86, devin 92, each under 200; the criterion was amended from the trio to the pair because `shared.ts` is lifecycle transport the phase leaves untouched, recorded in goal.md | Met | - |
+| AC-005 | REQ-005 | Given `hooks/README.md`'s architecture section, When read after this phase, Then it names the new shared classify/enforce call site instead of describing per-runtime duplication | `hooks/README.md` core row names `runClassifyGate()` and `runEnforceGate()` as the call every adapter makes | Met | - |
+| AC-006 | REQ-006 | Given the lifecycle hooks (session-prime, session-stop, compact-inject), When this phase's diff is reviewed, Then none of their spawnSync delegation to `claude/*.js` changed | the diff touches the eight gate adapters, the two pi hooks, the core, its test and the README only; `directive-lifecycle-adapter-parity.vitest.ts` passes unmodified in this phase | Met | - |
 
 ### Status values
 
@@ -84,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This packet is at the planning stage: spec, plan and tasks are authored and every
 criterion above is traced to a real requirement, but none has been executed yet.

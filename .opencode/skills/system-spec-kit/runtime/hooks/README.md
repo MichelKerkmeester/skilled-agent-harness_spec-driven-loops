@@ -80,7 +80,7 @@ runtime/hooks/
 | `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`; Cursor uses `{permission, user_message, agent_message}`. |
 | `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
 | `opencode/` | Browsability-only symlink to `.opencode/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
-| `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()` so the core never changes for a new runtime. |
+| `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, and the two orchestration calls every adapter makes, `runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once. An adapter keeps only its payload parsing and its envelope. |
 | `lib/hook-adapter-shared.mjs` | Shared helper for the four `spec-gate-enforce` adapters. |
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
 | `shared-provenance.ts` | Sanitizes recovered compact payloads, stripping adversarial system/developer/assistant/user prefixes, and wraps them with explicit provenance markers so downstream hooks can tell cached context from a first-class turn. Consumed by `claude/shared.ts` and `claude/hook-state.ts`. |

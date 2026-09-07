@@ -632,17 +632,19 @@ test('Gate-3 classify adapters observe only after stdout emission completes', ()
   ];
   for (const rel of stdoutAdapters) {
     const source = readFileSync(join(hooksRoot, rel), 'utf8');
+    // The adapter receives the deferred observer from runClassifyGate and must
+    // invoke it only inside the stdout write callback.
     assert.match(
       source,
-      /process\.stdout\.write\([\s\S]*?\), \(\) => \{[\s\S]*?observeGate3QuestionDelivery/,
+      /process\.stdout\.write\([\s\S]*?\), \(\) => \{[\s\S]*?observe\(\)/,
     );
     const writeIndex = source.indexOf('process.stdout.write');
-    const observeIndex = source.indexOf('observeGate3QuestionDelivery');
+    const observeIndex = source.indexOf('observe()');
     assert.ok(writeIndex !== -1 && observeIndex > writeIndex);
   }
   const piSource = readFileSync(join(hooksRoot, 'pi/spec-gate-classify.ts'), 'utf8');
   const outputIndex = piSource.indexOf('const output = {');
-  const observeIndex = piSource.indexOf('observeGate3QuestionDelivery');
+  const observeIndex = piSource.indexOf('observe()');
   assert.ok(outputIndex !== -1 && observeIndex > outputIndex);
 });
 
@@ -2169,4 +2171,27 @@ test('WS4 child matrix: bash is a complete allow no-op for a child session too',
   } finally {
     cleanup(root);
   }
+});
+
+test('runClassifyGate returns no question and a no-op observer for a non-mutating prompt', () => {
+  const { root } = makeWorkspace();
+  const out = core.runClassifyGate({ prompt: 'what does this file do', sessionID: 'orchestration-1', projectDir: root, env: {}, runtimeLabel: 'Test' });
+  assert.equal(out.question, null);
+  assert.equal(typeof out.observe, 'function');
+  assert.doesNotThrow(() => out.observe());
+});
+
+test('runClassifyGate surfaces the Gate-3 question with an observer for a mutating prompt', () => {
+  const { root } = makeWorkspace();
+  const out = core.runClassifyGate({ prompt: 'edit the config file and save it', sessionID: 'orchestration-2', projectDir: root, env: {}, runtimeLabel: 'Test' });
+  assert.equal(typeof out.question, 'string');
+  assert.ok(out.question.length > 0);
+  assert.doesNotThrow(() => out.observe());
+});
+
+test('runEnforceGate returns the verdict shape and never throws on a bare request', () => {
+  const { root } = makeWorkspace();
+  const result = core.runEnforceGate({ tool: 'bash', filePath: null, sessionID: 'orchestration-3', projectDir: root, env: {}, runtimeKey: 'test' });
+  assert.ok(['allow', 'advise', 'deny'].includes(result.decision));
+  assert.doesNotThrow(() => core.runEnforceGate({}));
 });

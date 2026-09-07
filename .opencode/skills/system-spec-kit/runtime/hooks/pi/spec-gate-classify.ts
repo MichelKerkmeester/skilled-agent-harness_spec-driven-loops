@@ -29,30 +29,19 @@ export default function specGateClassify(pi: ExtensionAPI): void {
         sessionId: ctx.sessionManager.getSessionId(),
         sessionFile,
       });
-      const result = guard.classifyIntent({
+      const { question, observe } = guard.runClassifyGate({
         prompt,
         sessionID,
         projectDir: ctx.cwd,
         env: process.env,
+        runtimeLabel: "Pi",
       });
-
-      if (result.question) {
-        const lifecycleEpoch = guard.currentGate3LifecycleEpoch(sessionID);
-        const observeArgs = {
-          question: result.question,
-          sessionID,
-          lifecycleEpoch,
-          gateState: guard.readGateState(guard.resolveGuardPaths(ctx.cwd).stateDir, sessionID),
-          env: process.env,
-          emitted: true,
-          runtime: "Pi",
-          receipt: guard.buildGate3ObservedReceipt(lifecycleEpoch),
-        };
+      if (question) {
         const output = {
           action: "transform" as const,
-          text: `${event.text}\n\n${result.question}`,
+          text: `${event.text}\n\n${question}`,
         };
-        guard.observeGate3QuestionDelivery(observeArgs);
+        observe();
         return output;
       }
       return { action: "continue" };
