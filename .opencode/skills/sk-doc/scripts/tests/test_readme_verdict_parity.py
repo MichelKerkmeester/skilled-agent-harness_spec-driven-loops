@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Prove the opt-in branch leaves the existing README verdicts unchanged."""
+"""Prove the opt-in branch leaves the existing README verdicts unchanged.
+
+Run with --write to rebuild the baseline from every tracked README after a
+deliberate validator or tree change; the next plain run then measures drift
+from that point.
+"""
 
 from __future__ import annotations
 
@@ -36,7 +41,38 @@ def current_verdict(path: str) -> dict:
     }
 
 
+def tracked_readmes() -> list[str]:
+    """Every tracked README.md, the set the baseline describes; vendored trees are never tracked."""
+    proc = subprocess.run(
+        ["git", "ls-files", "--", "README.md", "*/README.md"],
+        cwd=REPO,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return sorted(line for line in proc.stdout.splitlines() if line and "/node_modules/" not in line)
+
+
+def write_baseline() -> int:
+    """Rebuild the baseline from the current tree; the parity run then measures drift from here."""
+    previous = json.loads(BASELINE.read_text(encoding="utf-8"))
+    files = tracked_readmes()
+    results = [current_verdict(path) for path in files]
+    payload = {
+        "count": len(results),
+        "mode": previous.get("mode", "readme"),
+        "results": results,
+        "schema": previous.get("schema"),
+        "source": previous.get("source"),
+    }
+    BASELINE.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(f"PARITY baseline rewritten: {len(results)} tracked README files")
+    return 0
+
+
 def main() -> int:
+    if "--write" in sys.argv[1:]:
+        return write_baseline()
     baseline = json.loads(BASELINE.read_text(encoding="utf-8"))
     mismatches = []
     for expected in baseline["results"]:

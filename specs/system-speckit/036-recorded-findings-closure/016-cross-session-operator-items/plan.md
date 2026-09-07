@@ -43,9 +43,9 @@ This phase coordinates rather than overwrites. Every one of its five items sits 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `spec-kit-check.yml`'s `mirrors` job and `routing-registry-drift.yml`'s `routing-drift` job both pass on a push
-- [ ] Docs updated (spec/plan/tasks. The program report corrected if REQ-007's write-authority question resolves yes)
+- [x] All acceptance criteria met
+- [x] `spec-kit-check.yml`'s `mirrors` job and `routing-registry-drift.yml`'s `routing-drift` job both pass on a push
+- [x] Docs updated (spec/plan/tasks. The program report corrected if REQ-007's write-authority question resolves yes)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -166,9 +166,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] No backup needed for the four regeneration/verification items. Every one is either reproducible or read-only
-- [ ] No feature flag needed. Every action here is a one-time regeneration or a `git worktree remove`
-- [ ] No monitoring alert needed. The owning CI jobs are the existing surface that would catch a regression
+- [x] No backup needed for the four regeneration/verification items. Every one is either reproducible or read-only
+- [x] No feature flag needed. Every action here is a one-time regeneration or a `git worktree remove`
+- [x] No monitoring alert needed. The owning CI jobs are the existing surface that would catch a regression
 
 ### Rollback Procedure
 1. `git revert` the codex-prompt-mirror regeneration commit, if it needs reverting.

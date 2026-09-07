@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Child 009 removed the shared package's dead half and left its edges uneven",
     "created_at": "2026-09-07T06:32:01.673Z",
-    "last_save_at": "2026-09-07T18:07:28.790Z",
+    "last_save_at": "2026-09-07T18:24:04.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab92a41a0d353dd915116f3f04e1496da4942dada8cd9772bdf6b10360a25d37",
+    "source_fingerprint": "sha256:fa6b06463a29e6d2a42fe8c6bafc234db247b853d9a905a420c2931dd3a50ecc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "966f106288d85be13bcdabc80715aca7781f4b42c9153c1495d7ccebb07b3c0e",
       "plan.md": "63732a642faee5a58796deb5a508d78c10a364c5be64e93fdb40698eb8ade37d",
       "tasks.md": "92c789e82cfeb59ccac6cd94dc6502e15388f4b69f24e23b5e999503f950bccd",
-      "implementation-summary.md": "9ec9e8f4711884d93d2d690b3b75c15305b106a0d154ce332d95b490ae4c481b"
+      "implementation-summary.md": "721b95a7974e6326ee2c138873f068003af7380f74c3f868a686b1cd36b8d214"
     },
     "last_active_child_id": null,
     "last_active_at": null

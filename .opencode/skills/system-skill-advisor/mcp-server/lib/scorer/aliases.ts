@@ -9,7 +9,7 @@ export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Ob
     '/create:manual-testing-playbook',
     'create:manual-testing-playbook',
   ],
-  'memory:save': ['command-memory-save', '/memory:save', 'memory:save'],
+  'memory:save': ['command-memory-save', '/speckit:save', 'memory:save'],
   'deep-model-benchmark': [
     'command-spec-kit-deep-model-benchmark',
     '/deep:model-benchmark',
