@@ -20,7 +20,7 @@ _memory:
       - ".github/workflows/command-tree-parity.yml"
       - ".gitignore"
     session_dedup:
-      fingerprint: "sha256:cb98490a3889c18f9bf56bdbc322aeba6dc78ac81575b35861f4286b796c3473"
+      fingerprint: "sha256:953273ec617d5050c1243a8eee08df5429e76029f5e909516634df33edb74a01"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 100
@@ -56,7 +56,7 @@ Every push since 2026-09-06 mailed four failures. Three workflows ran checkers t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.github/workflows/command-tree-parity.yml`, `playbook-operator-contract.yml`, `routing-registry-drift.yml` | Modified | Install the workspace and build `shared` before the checkers run |
+| `.github/workflows/command-tree-parity.yml`, `playbook-operator-contract.yml`, `routing-registry-drift.yml` | Modified | Install the workspace and build `shared` before the checkers run; the two workflows whose checkers live under sk-doc install sk-doc as well |
 | `.gitignore` | Modified | Negation for the ambient declaration, with the reason |
 | `.opencode/skills/system-spec-kit/shared/js-yaml.d.ts` | Added | The declaration the shared build needs |
 | `manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Modified | Runbook link two levels up, not four |
@@ -96,7 +96,7 @@ The failing steps were read from the run logs, the first failing run after the l
 | Parity checker `--quiet` | Exit 0 after the mirror sync linked 4 and removed 4 of 169 |
 | Playbook validator `--strict` | PASS, 83 scenarios, 0 violations |
 | Parent-skill check and skill-root metadata check | OK; 13 of 13 |
-| Workflow runs for the push | RESULT_PLACEHOLDER_CI |
+| Workflow runs for the push | First push: Command Tree Parity and the Gate-2 job green; the playbook and lean drift jobs still failed because sk-doc resolves the package through its own `file:` dependency, which the second push installs too |
 <!-- /ANCHOR:verification -->
 
 ---

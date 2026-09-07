@@ -84,6 +84,9 @@ jobs:
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          # sk-doc's checkers import the same package through their own file: dependency,
+          # which only exists once sk-doc is installed as well.
+          npm --prefix .opencode/skills/sk-doc ci
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
