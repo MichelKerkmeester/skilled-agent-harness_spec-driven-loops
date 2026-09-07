@@ -50,7 +50,7 @@ The synthesis also named `lib/trigger-extractor.js` as a dead-but-registered shi
 | 7 | Three template mechanisms | With `renderers/` gone, `templates/inline-gate-renderer.sh` renders gates and `lib/template-utils.sh` copies level templates; different jobs. | Resolved by removal row 12; the remaining two stay. |
 | 8 | Three repo-root resolvers | One is shell (`common.sh`), one is ESM (`shared/workspace/repo-root.mjs`, consolidated in the earlier program); a shell script cannot import the ESM one. | Recorded decision: no change. |
 | 9 | Three phase-parent detectors with a documented regex that disagrees with the enforced one | The engine and the save path each keep a copy and the shell mirror is a third; the documented `^[0-9]{3}-[a-z0-9-]+$` differed from the enforced `^[0-9]{3}-[a-z0-9][a-z0-9-]*$`, and three code sites used the looser form. | Corrected and fixed: every document, comment and code site now carries the enforced regex; the save-path copy stays because it also recognises derived children and hardened membership, which the command contract now states. |
-| 10 | `resource-map/extract-from-evidence.cjs` is unwired from the deep commands | The command contracts name the artifact and no step names the tool. | Confirmed. Wiring waits for lane 004, whose charter covers the resource-map addon; recorded in the parent goal log so it is not lost. |
+| 10 | `resource-map/extract-from-evidence.cjs` is unwired from the deep commands | The command contracts name the artifact and no step names the tool. | Superseded in round two: the deep-research and deep-review workflows invoke `reduce-state.cjs --emit-resource-map`, which reaches the extractor through `system-deep-loop/shared/synthesis/resource-map.cjs`; the wiring exists and nothing waited on lane 004. |
 | 11 | One production importer of `js-yaml` | Three production importers: `validation/continuity-freshness.ts`, `lib/validate-memory-quality.ts`, `rules/check-grep-convention-helper.mjs`. | Dropped. |
 
 ---
@@ -78,5 +78,47 @@ Found during reproduction, not in the synthesis: `tests/test-export-contracts.js
 
 ## 4. OPEN QUESTIONS CARRIED
 
-1. Whether `resource-map/extract-from-evidence.cjs` should be named by the deep-research and deep-review contracts, decided with lane 004.
+1. Answered in round two: the extractor is reached through the reducer's `--emit-resource-map` path, so the contracts name the artifact and the reducer names the tool.
 2. Whether the spec-kit test that reads a manifest inside `specs/system-deep-loop/036-*` should depend on a packet at all; it belongs to that packet's owner.
+
+---
+
+## 6. ROUND TWO (DeepSeek V4 Flash max through DevPass, 10 iterations on the remediated tree)
+
+Source: `lineages/deepseek-v4-flash-cli-runtime/research.md`, stop reason `maxIterationsReached`, 21 findings: 15 P1, 6 P2. Censused in the main checkout on 2026-09-07 before child `014-cli-decommission-orphan-removal` was opened. The lane's zero-importer claims were re-checked with relative imports included, which the lane had not swept; two of its removal rows failed that check and stay.
+
+### Verdict held
+
+Children 007 and 008 landed at the file and reference level: none of the 31 removed paths has a live reference, the 13 environment variables are gone from every surface 008 named, and the six paths the CI workflow lists exist. The lane's own re-verification of round one's dropped rows and kept decisions held.
+
+### Removal rows
+
+| # | Target | Census | Disposition |
+|---|--------|--------|-------------|
+| 1 | `rules/check-doc-pointers.sh` | No registry row, no caller, no document names it | Removed |
+| 2 | `utils/phase-classifier.ts` | A re-export shim; the legacy test loads the canonical `lib/` module | Removed |
+| 3 | `utils/workspace-identity.ts` | `utils/tool-sanitizer.ts` imports it relatively, which the lane's sweep missed | Kept; the lane's claim was wrong |
+| 4 | `core/alignment-validator.ts` | `core/workflow.ts` imports it relatively; it is not a twin of the spec-folder validator but the workflow's own | Kept; the lane's claim was wrong |
+| 5 | `observability/live-session-wrapper.ts` | Only its own README rows named it | Removed with the rows |
+| 6 | `utils/validation-utils.ts` | Two legacy test blocks were its only consumers | Removed with both blocks |
+| 7 | `graph/migrate-generated-json.ts` | A documented maintenance command in two READMEs with a test | Kept: a CLI entrypoint has no importers by design |
+| 8 | `lib/cli-capture-shared.ts` | Only a README row named it | Removed with the row |
+| 9 | `lib/validator-registry.ts` | No importer; the engine reads the JSON directly | Removed with its README row; the lane 005 census that cited it as live was corrected |
+| 10 | `cli/check-links.sh` | The post-edit router calls `rules/check-links.sh` directly | Removed; the catalog and hooks README point at the rule |
+| 11 | `pi/sync-*-pi.cjs` | The doctor's runtime-mirrors asset names both as its pi targets | Kept: wired through the doctor, which the lane did not read |
+| 12 | `optimizer/` | Its manifest is read by the deep-loop configs and a deep-loop test | Kept, as child 011 recorded |
+| 13 | `codex/generate-command-routers.cjs` | The sk-create-command contract documents it as the router drift check | Kept: a documented manual tool |
+| 14 | `tests/test-naming-migration.js` | Runs under no lane; its only subject was row 4 | Removed: the naming migration it verified is finished |
+
+### Fix rows
+
+| # | Leftover | Disposition |
+|---|----------|-------------|
+| 1 | `environment-variables.md` still taught `SPECKIT_ROLLOUT_PERCENT` | Row removed; the other 26 variables in that document all have readers |
+| 2 | Two documents kept the looser phase-child regex | Both now carry the enforced form |
+| 3 | Three test fixtures advertised `SPECKIT_ADAPTIVE_FUSION` | Sentence removed |
+| 4 | `ARCHITECTURE.md` tree tag said the CLI indexes and runs evals | Tag rewritten |
+| 5 | The CI workflow ran the vitest project only | The legacy module lanes and the bash validation suites now run in CI; they had rotted unseen: the legacy lane still tested the embeddings module child 009 removed, the validation-system test addressed the pre-nesting `scripts/` layout, the frozen compliant fixture carried a stale derived fingerprint, and the extended suite expected the fixture to be silent where the base suite documents its folder-token warning. All four were repaired. The runtime root project stays outside CI with seven failing files, recorded for the next child |
+| 6 | pi mirror drift | Dropped: the doctor asset wires both scripts |
+| 7 | `frontmatter.mjs` named the pre-nesting `scripts/lib` path | Corrected |
+| 8 | The confirmed-findings row on resource-map wiring | Superseded: the reducer's `--emit-resource-map` path reaches the extractor |

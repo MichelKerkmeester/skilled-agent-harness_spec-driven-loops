@@ -56,6 +56,7 @@ contextType: "implementation"
 - [x] T007 Run strict validation on this child and the parent
 - [x] T008 Hand the confirmed table to the remediation child and record the pointer in implementation-summary.md
 - [x] T009 Regenerate description and graph metadata, stamp completion, close the parent map row and goal log
+- [x] T010 Round two: launch a second ten-iteration lineage on DevPass DeepSeek V4 Flash max against the remediated tree, census every row with relative imports included, and hand the confirmed table to child 014 (research/confirmed-findings.md)
 <!-- /ANCHOR:phase-3 -->
 
 ---

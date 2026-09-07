@@ -116,7 +116,6 @@ The fixture is verified by running the strict validator and the fixture-consumin
 ## Known Limitations
 
 <!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 

@@ -49,7 +49,7 @@ The dispatch table rows, in priority order (`resolveDispatch` returns the first 
 | 2 | `flowchart` | `.md` file whose name contains "flowchart" or lives under `sk-design-diagram/ascii-patterns/` | `validate-flowchart.sh` | `exit1` |
 | 3 | `frontmatter-versions` | Versioned skill doc under `.opencode/skills/` (`SKILL.md`, `README.md` adjacent to a `SKILL.md`, or any file under `references`/`assets`/`feature-catalog`/`manual-testing-playbook`) | `check-frontmatter-versions.sh --skill <name>` | `exit1` (deduped per skill per session) |
 | 4 | `placeholders` | Spec doc (`spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`decision-record.md`) under `specs/` | `check-placeholders.sh <dir>` | `exit1` |
-| 5 | `wikilinks` | `.md` under `.opencode/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `check-links.sh <skill dir>` | `exit1` |
+| 5 | `wikilinks` | `.md` under `.opencode/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `rules/check-links.sh <skill dir>` | `exit1` |
 
 A separate entrypoint, `runDistStalenessCheck`, preserves the legacy dist-staleness coverage that runs alongside comment hygiene. It is kept out of the shared dispatch table because it is unconditional per edited file rather than path-matched, and because OpenCode already has independent dist-freshness coverage via `system-dist-freshness-guard.js`: folding it into the table would double-run it there. It prints `STALE DIST WARNING: <package> -- run: <rebuild command>` when a watched package's compiled output is older than its newest source.
 

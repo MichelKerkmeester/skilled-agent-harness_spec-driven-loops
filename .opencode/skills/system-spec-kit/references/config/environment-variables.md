@@ -175,7 +175,6 @@ The live half of the package. `lib/validation/orchestrator.ts` runs the rule set
 | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | ON | Content-gates `description.json` and global-cache writes so a stamp-only delta is skipped |
 | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | ON | Excludes `z_*` staging and archive folders from the spec-folder discovery scanner |
 | `SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD` | `0.45` | Per-token similarity threshold for folder-discovery name matching |
-| `SPECKIT_ROLLOUT_PERCENT` | `100` | Global rollout percentage (0-100) read by `getRolloutPercent()` |
 
 ### Gate-3 policy
 

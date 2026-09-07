@@ -1,0 +1,54 @@
+{
+  "sessionId": "fanout-deepseek-v4-flash-shared-package-1788760496905-1nuwxt",
+  "lineage": "deepseek-v4-flash-shared-package",
+  "loopType": "research",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "inline": true,
+    "nestedDispatchUsed": false
+  },
+  "charter": {
+    "roles": [
+      "verify each 009 remediation landed completely and coherently in the current tree - a fix that left one consumer, one document line, one fixture or one asset behind is a finding",
+      "find what round one missed, preferring angles it covered in one pass or not at all",
+      "re-examine round one's kept rows and recorded decisions only with new evidence"
+    ],
+    "nonGoalsHonored": [
+      "no edits outside the lineage",
+      "no validate.sh / node tooling / git writes",
+      "stale dist directories treated as environment, not evidence",
+      "no reuse of round-one counts",
+      "no re-report of confirmed-findings-fixed rows unless the fix is incomplete"
+    ],
+    "earlyConvergence": false
+  },
+  "outcomes": {
+    "p0": 0,
+    "p1": 7,
+    "p2": 42,
+    "findingsTotal": 49,
+    "questionsAnswered": 9,
+    "openQuestionsCarried": 0,
+    "synthesis": "research.md",
+    "findingsRegistry": "findings-registry.json",
+    "convergenceReport": "convergence-report.json",
+    "dashboard": "deep-research-dashboard.md",
+    "stateLog": "deep-research-state.jsonl",
+    "deltas": "deltas/iter-001.jsonl..iter-010.jsonl",
+    "iterations": "iterations/iteration-001.md..iteration-010.md"
+  },
+  "headlineFindings": [
+    "Four 009 rows did not land completely: main:dist/index.js after index.ts deletion (R1-01); the SPECKIT_ROLLOUT_PERCENT doc row (R1-02); the profile DB-helper cluster orphaned by the paths.ts deletion (R2-03); the unwired review-research-paths export entry (R6-01) - plus the L2 derivation-merge left factory/profile deriving the same directory with different base semantics (R2-01) and a fixture row that breaks the sk-doc parity test (R2-02)",
+    "The live half holds the new duplication: two parallel live Ollama implementations (adapters/ollama.ts vs providers/ollama.ts) both reached from skill-graph-db (R5-01); eight root-resolution implementations with three divergent in-package predicates (R6-02/R6-03)",
+    "One kept row is now orphaned with fresh evidence: folder-scoring.ts has 0 production consumers and the CLI that justified it is absent (R7-01); round one's 'adapter = shim' census row is overturned (R5-01 correction)",
+    "Recorded decisions stand: boolean-expr citations intact, 2-spelling pair consistent, advisor isolation comment-enforced (not CI), L4 environment - with the memory-DB residue reduced to the factory SQLite block + the naming layer"
+  ],
+  "writeSurfaceCompliance": "All writes confined to the lineage directory (specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package); repo untouched; no generate-context.js, no validate.sh, no git write/checkout/commit executed; one read-only node -e JSON print of package.json scripts (no write)",
+  "completedAt": "2026-09-07T09:00:00Z"
+}

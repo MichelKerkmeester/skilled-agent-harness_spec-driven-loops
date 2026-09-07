@@ -74,7 +74,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 
 ```text
 system-spec-kit/
-├── runtime/cli/                # CLI generation, validation, indexing, evals
+├── runtime/cli/                # CLI generation, validation, retrieval index, sync
 ├── runtime/             # Spec-kit engine, consumed as a library
 │   ├── api/                # Public barrel for the scripts workspace
 │   ├── handlers/           # Spec-document discovery and the save-path folder mutex

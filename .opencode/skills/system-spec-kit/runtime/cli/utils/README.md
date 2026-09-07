@@ -41,7 +41,6 @@ runtime/cli/utils/
 +-- logger.ts                  # Structured logging helpers
 +-- message-utils.ts           # User-facing message formatting
 +-- path-utils.ts              # Path containment and sanitization
-+-- phase-classifier.ts        # Workflow phase classification
 +-- prompt-utils.ts            # Prompt construction helpers
 +-- slug-utils.ts              # Stable and unique slug helpers
 +-- source-capabilities.ts     # Source capability metadata
@@ -50,7 +49,6 @@ runtime/cli/utils/
 +-- template-structure.js      # Source-only template structure helper
 +-- tool-detection.ts          # Tool-call detection and phase signals
 +-- tool-sanitizer.ts          # Tool payload sanitization
-+-- validation-utils.ts        # Path-scoped validation helpers
 +-- workspace-identity.ts      # Workspace identity detection
 `-- README.md
 ```

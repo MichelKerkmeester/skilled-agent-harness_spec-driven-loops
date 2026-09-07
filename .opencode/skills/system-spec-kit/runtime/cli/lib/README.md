@@ -58,7 +58,6 @@ Dependency direction: callers ───▶ lib source ───▶ shared packag
 runtime/cli/lib/
 +-- anchor-generator.ts                    # Stable markdown anchor generation
 +-- ascii-boxes.ts                         # Box drawing helpers for terminal output
-+-- cli-capture-shared.ts                  # CLI capture payload helpers
 +-- content-filter.ts                      # Content pre-processing helper
 +-- decision-tree-generator.ts             # Decision tree structures
 +-- esm-entry.ts                           # Main-module detection and dirname helpers for ESM
@@ -78,7 +77,6 @@ runtime/cli/lib/
 +-- truncate-on-word-boundary.ts           # Code-point-safe, whitespace-aligned string truncation
 +-- unicode-normalization.ts               # Re-exports of shared Unicode normalization helpers
 +-- validate-memory-quality.ts             # Generated memory quality checks
-+-- validator-registry.ts                  # Typed loader over validator-registry.json rule ids
 +-- validator-registry.json                # Canonical validator rule id, alias and severity registry
 +-- frontmatter-grandfather-allowlist.json # Cutoff date and path allowlist for legacy frontmatter
 +-- dist-freshness.cjs                     # Standalone (not compiled) source-vs-dist staleness checker, 7 watched packages
@@ -115,7 +113,7 @@ Disallowed direction:
 | `trigger-extractor.ts` | Extracts trigger phrases from document text. |
 | `trigger-phrase-sanitizer.ts` | Sanitizes manual and extracted trigger phrases against a narrow, shape-based blocklist/allowlist. |
 | `validate-memory-quality.ts` | Checks generated memory content before save or index. |
-| `validator-registry.ts` / `validator-registry.json` | Typed loader plus the canonical registry of validator rule ids, aliases, script paths and severities. |
+| `validator-registry.json` | The canonical registry of validator rule ids, aliases, script paths and severities. |
 | `memory-telemetry.ts` | Named memory-save metric constants (`METRIC_M1`.."M9") and `emitMemoryMetric()`. |
 | `dist-freshness.cjs` | Compares each watched package's source mtimes (hash-cached) against its built dist entrypoint. `checkPackageFreshness()`/`checkAllFreshness()`/`checkFileFreshness()` are called directly by the 3 CLI shims and the `system-dist-freshness-guard` plugin; `validate.sh` and `check-dist-staleness.sh` shell out to its CLI (`check` / `check-file` / `check-all`, exit `69` on stale). |
 | `completion-state.cjs` | Merges a spec folder's inferred level, checklist P0/P1/P2 completion and placeholder-completeness percentage into one never-throwing payload via `computeCompletionState()`. |

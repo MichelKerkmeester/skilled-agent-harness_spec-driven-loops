@@ -109,7 +109,6 @@ Status: Implemented and strongly verified for the shared runtime contract. The a
 | `runtime/cli/extractors/git-context-extractor.ts` | Git-context enrichment |
 | `runtime/cli/core/workflow.ts` | Alignment warnings/blocks, insufficiency blocking, template-contract blocking, contamination-source threading, enrichment insertion, quality abort, and tool-count recovery |
 | `runtime/cli/core/tree-thinning.ts` | Tree-thinning safeguards used by session capturing before downstream rendering and scoring |
-| `runtime/cli/utils/validation-utils.ts` | Render validation helpers that ignore literal template syntax inside code spans |
 | `runtime/cli/continuity/validate-memory-quality.ts` | V1-V11 post-render quality gate for rendered spec-doc record output, including exported `HARD_BLOCK_RULES` |
 | `runtime/cli/utils/slug-utils.ts` | Memory title and filename normalization after captured operator/debug text |
 | `runtime/cli/extractors/quality-scorer.ts` | V2 quality-score calibration and insufficiency flags |
