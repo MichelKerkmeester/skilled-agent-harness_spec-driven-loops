@@ -104,6 +104,36 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   fi
 fi
 
+# --- Command prompt-mirror gate (blocking) ---
+# .opencode/commands/ is mirrored into .codex/prompts/ by sync-prompts.cjs. A commit
+# that stages a command without its regenerated mirror ships a mirror that is stale
+# against its own source, and the working tree hides it: the regenerated files sit
+# there unstaged, so any working-tree parity check passes while the commit fails in
+# CI on every push that carries it. Two checks, because they catch different halves:
+# the tree must be in sync (mirror was regenerated at all), and the mirror must carry
+# nothing unstaged (what was regenerated is what gets committed).
+# Bypass: SPECKIT_SKIP_PROMPT_MIRROR=1 git commit ...
+if [[ "${SPECKIT_SKIP_PROMPT_MIRROR:-0}" != "1" ]]; then
+  PROMPT_SYNC="${REPO_ROOT}/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs"
+  if [[ -f "$PROMPT_SYNC" ]] && command -v node >/dev/null 2>&1 \
+     && git diff --cached --name-only --diff-filter=ACMDR | grep -Eq '^\.opencode/commands/'; then
+    UNSTAGED_MIRROR="$( { git diff --name-only -- .codex/prompts; git ls-files --others --exclude-standard -- .codex/prompts; } 2>/dev/null )"
+    if [[ -n "$UNSTAGED_MIRROR" ]]; then
+      echo "" >&2
+      echo "BLOCKED [gate:prompt-mirror]: a command is staged but its regenerated mirror is not:" >&2
+      printf '  %s\n' $UNSTAGED_MIRROR >&2
+      echo "Fix: git add .codex/prompts and re-commit. Leaving these out ships a stale mirror." >&2
+      exit 1
+    fi
+    if ! node "$PROMPT_SYNC" --check >/dev/null 2>&1; then
+      echo "" >&2
+      echo "BLOCKED [gate:prompt-mirror]: .codex/prompts is out of sync with .opencode/commands." >&2
+      echo "Fix: node $PROMPT_SYNC   then git add .codex/prompts and re-commit." >&2
+      exit 1
+    fi
+  fi
+fi
+
 # --- Prompt-knowledge card-sync gate (blocking) ---
 # When a prompt-knowledge surface is staged, run the drift guard so table
 # inlining or Tier-3 escalation-rule drift cannot silently regress across
