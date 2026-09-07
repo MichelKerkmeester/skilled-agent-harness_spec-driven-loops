@@ -31,7 +31,7 @@
       "worktree"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -39,11 +39,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".codex/prompts/design-chart.md",
       "specs/system-speckit/035-spec-kit-simplification-research/spec.md",
       ".github/workflows/spec-kit-check.yml",
       ".github/workflows/routing-registry-drift.yml",
-      ".codex/prompts/create-chart.md",
-      ".codex/prompts/create-diagram.md",
+      ".codex/prompts/design-diagram.md",
       ".opencode/commands/design/chart.md",
       ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt",
@@ -87,6 +87,12 @@
         "source": "derived"
       },
       {
+        "name": "design-chart.md",
+        "kind": "doc",
+        "path": ".codex/prompts/design-chart.md",
+        "source": "derived"
+      },
+      {
         "name": "spec-kit-check.yml",
         "kind": "config",
         "path": ".github/workflows/spec-kit-check.yml",
@@ -99,15 +105,9 @@
         "source": "derived"
       },
       {
-        "name": "create-chart.md",
+        "name": "design-diagram.md",
         "kind": "doc",
-        "path": ".codex/prompts/create-chart.md",
-        "source": "derived"
-      },
-      {
-        "name": "create-diagram.md",
-        "kind": "doc",
-        "path": ".codex/prompts/create-diagram.md",
+        "path": ".codex/prompts/design-diagram.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over, because another session or another packet owns them",
     "created_at": "2026-09-07T15:05:57Z",
-    "last_save_at": "2026-09-07T17:49:14.773Z",
+    "last_save_at": "2026-09-07T18:38:28.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67723a5e54b62ed9cb6d1696dd086cdae951ebb68ca974399fc80295225e2072",
+    "source_fingerprint": "sha256:c3ece90815e5d12d830a23316ee0f2c912aa4f38f55ebb4671c9e729c86e73f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86fc587b94ecdba7e00866bcff277537f6c16e985277e1987d53a8d710b327bc",
-      "plan.md": "d44048feebdf6e52bf4fce0c80766a4eae06d50f60b4bd396e91b9ed4ca014d4",
-      "tasks.md": "fda0c263b6fd401b29504a0f30698301711dfba5a34e5737e135cf6be599aa8c",
-      "implementation-summary.md": "c7da1dc5f758199b517cd0ffe82b565917f8e2bd84c2dea98b6f7fa9faaa10b4"
+      "spec.md": "6cc69404382384588a1156379744b3c061fd44ec71caf46bb2c7b1318f74d8b9",
+      "plan.md": "203f566286fcb3f6a54702c01d366c28d36cc17331697d86c96e2da86dc7eae4",
+      "tasks.md": "69664089c2a13ea8b56dd76170ecb3a4da3496331e44c124c58f637e0d965d7c",
+      "implementation-summary.md": "101ab33282bd42291595905bb1cc7560fb71315486e5647597d82939629aea27"
     },
     "last_active_at": null
   }

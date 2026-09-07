@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/shared/package.json"
       - ".opencode/skills/system-spec-kit/shared/README.md"
     session_dedup:
-      fingerprint: "sha256:765fcde273d8fa131598d20c899a40ca2eabcbdf5977aec3ade29e646ba526c5"
+      fingerprint: "sha256:3b85aaacb8a6c1ff8bdae75a628d878457634fd7a137e8a2bdf4982d0a7c8f22"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 100
@@ -104,7 +104,7 @@ Every row was re-checked in the main checkout first: consumer counts by search a
 | tree-thinning and index-scope suites | 28 and 7 passed |
 | Residue search for the removed names | Only changelogs |
 | sk-doc validator on the README | Exit 0 |
-| sk-doc parity test | No longer names either removed README; 36 mismatches remain under other skills' READMEs |
+| sk-doc parity test | No longer names either removed README. The 36 mismatches this row once recorded under other skills' READMEs grew to 113 as READMEs were removed, moved or excluded as fixtures; the closure program's child 016 regenerated the baseline on 2026-09-07 and the test reports zero |
 | `validate.sh <this child> --strict` | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

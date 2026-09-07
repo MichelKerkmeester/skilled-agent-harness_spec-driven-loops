@@ -101,6 +101,7 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:manual-testing-playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
+  '/speckit:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
   '/deep:research': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/deep:review': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/deep:model-benchmark': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
