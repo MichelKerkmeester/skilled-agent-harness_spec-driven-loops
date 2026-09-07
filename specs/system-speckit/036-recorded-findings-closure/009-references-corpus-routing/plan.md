@@ -43,9 +43,9 @@ Each of the 17 files named by finding F3-14 gets its body read and a disposition
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -168,9 +168,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) - not applicable, git history is the backup
-- [ ] Feature flag configured - not applicable
-- [ ] Monitoring alerts set - not applicable
+- [x] Backup created (if data changes) - not applicable, git history is the backup
+- [x] Feature flag configured - not applicable
+- [x] Monitoring alerts set - not applicable
 
 ### Rollback Procedure
 1. Stop before any further file deletion once a problem is found.

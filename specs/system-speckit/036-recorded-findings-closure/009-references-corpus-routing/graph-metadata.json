@@ -39,7 +39,7 @@
       "resource"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "references/workflows/quick-reference.md",
       "assets/parallel-dispatch-config.md",
       "references/retrieval/retrieval-conventions.md",
       "references/structure/grep-convention.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
       ".opencode/skills/system-spec-kit/leaf-manifest.json",
       ".opencode/skills/system-spec-kit/leaf-manifest.config.json",
@@ -95,6 +95,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "quick-reference.md",
         "kind": "doc",
         "path": "references/workflows/quick-reference.md",
@@ -116,12 +122,6 @@
         "name": "grep-convention.md",
         "kind": "doc",
         "path": "references/structure/grep-convention.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Finding F3-14 (`specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering-r3/research.md:77`) found that 17 of the 45 files under `.opencode/skills/system-spec-kit/references/` and `assets/` are named by no `RESOURCEMAP` intent in `SKILL.md` and no prose link, so they are reachable only by directory browsing: `workflows/agent-io-contract.md`, `workflows/auto-mode-contract.md`, `workflows/execution-methods.md`, `workflows/goal-set-string-playbook.md`, `templates/level-selection-guide.md`,",
     "created_at": "2026-09-07T15:05:50Z",
-    "last_save_at": "2026-09-07T15:40:56.745Z",
+    "last_save_at": "2026-09-07T17:20:38.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:060fe94745bb8e06d96747e063c9e9f437836dac74e5dca4c58d1624e15ed737",
+    "source_fingerprint": "sha256:d733002359223406e226190d98ccee11276720a6e1b92f74d4a5d2db22e02bbf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e15f5ac4269d2d16ebc14d00ed8e49968b39f9326fbc78178ab5f790e18e8290",
-      "plan.md": "c46a902ae8cedcbd3cb9dde9c5725b1fbc7e3c99647820578b387467ad449f21",
-      "tasks.md": "fec2750914de034cae7b885b6bffae581641f65b6a9a37349bafec4ce4f0aa6d",
-      "implementation-summary.md": "e2256582a6364bb19092929a1632cc294a00b4e86c754bfd03e9a49538caad51"
+      "spec.md": "8a46e781034923d2e00e119908fe91c5b6501600f0568818ea9d9edfac6750e9",
+      "plan.md": "d9bb09d732d695bf09e8b63cb40dabaede2e9c34ce4fa9b6fcfe4edeef88cda2",
+      "tasks.md": "324167711333c79438ed62e109cff4a17255fa2c474715197387604eca2f964c",
+      "implementation-summary.md": "6549e4d14cae8e872c800f51399982557adf9ef7b9f89e3918a5d8abb3fef748"
     },
     "last_active_at": null
   }
