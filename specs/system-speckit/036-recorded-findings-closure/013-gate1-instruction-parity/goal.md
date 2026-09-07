@@ -68,11 +68,11 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` exist with no bracketed placeholder remaining
-- [ ] The Pi investigation's answer and source are recorded in `.pi/SYNC.md`
-- [ ] The Gate 1 pointer generator exists with a working `--check` mode
-- [ ] `.codex/AGENTS.md`'s nodeterm-marked region is confirmed byte-identical after the generator runs
-- [ ] The doctor's `gate1_instruction_parity` signal exists in `doctor-speckit-retrieval.yaml` and reports per-runtime reach
+- [x] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` exist with no bracketed placeholder remaining
+- [x] The Pi investigation's answer and source are recorded in `.pi/SYNC.md`
+- [x] The Gate 1 pointer generator exists with a working `--check` mode
+- [x] `.codex/AGENTS.md`'s nodeterm-marked region is confirmed byte-identical after the generator runs
+- [x] The doctor's `gate1_instruction_parity` signal exists in `doctor-speckit-retrieval.yaml` and reports per-runtime reach
 <!-- /ANCHOR:completion -->
 
 ---
@@ -89,9 +89,18 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Pi investigation: Pi loads root `AGENTS.md` from the working directory; recorded with its source in `.pi/SYNC.md` §6 | Done | `@earendil-works/pi-coding-agent` 0.85.1 README §"Pi loads AGENTS.md" and `dist/core/resource-loader.js` `loadContextFileFromDir` |
+| `sync-gate1-pointers.cjs` writes a marker-delimited block into `.codex/AGENTS.md` and `.cursor/rules/skill-routing.md` from the root `AGENTS.md` line; `--check` reports drift | Done | 4 vitest cases: drift before write, clean after, hand-edit drift, root-line follow, exit 2 with no source |
+| nodeterm region byte-identical | Done | `sed -n 1,122p .codex/AGENTS.md` before and after the write compare equal; the block sits at lines 123 to 132 |
+| Doctor `gate1_instruction_parity` signal, phase 0 activity and `gate1_reach` output; three SYNC docs and two READMEs updated | Done | `doctor-speckit-retrieval.yaml` parses; sk-doc VALID on the five docs |
+| Gates | Done | generator `--check` PASS on the repository; `sync-runtime-mirrors.cjs --check` PASS 169 mirrors |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| T008 needed no change | Pi inherits the root file; the task's condition was not met, so the session-start hooks are untouched |
+| `.codex/AGENTS.md` is the global Codex instruction file | `~/.codex/AGENTS.md` symlinks to it, so the block is worded for any repository that carries the skill and sits after the nodeterm-owned blocks |
+| The two instruction files fail the sk-doc validator at HEAD | It classifies both as READMEs and wants an overview section; the verdict is identical before and after this change |
+| No CI step added | The doctor's phase 0 and the vitest case exercise `--check`; wiring it into the mirrors job is child 014's pattern and can join there |
 <!-- /ANCHOR:log -->

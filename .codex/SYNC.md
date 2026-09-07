@@ -30,7 +30,7 @@ Canonical for agents is `.opencode/agents/` (note: *not* `.claude/agents/`, whic
 | `hooks/*` (16 symlinks) | per-file symlinks | scattered `.opencode/**` | Yes — mirror generator |
 | `hooks.json` | **hand-authored** | — | n/a locally; installed outbound to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
-| `AGENTS.md` | **hand-authored** global voice/tone doc | — | `~/.codex/AGENTS.md` symlinks *to it* |
+| `AGENTS.md` | **hand-authored** global voice/tone doc, plus one generated Gate 1 pointer block outside the nodeterm markers | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` (`--check` reports drift) | `~/.codex/AGENTS.md` symlinks *to it* |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook` | No |
 
 There is no `.codex/commands/` — prompts serve that role. There is no `.codex/skills/`.

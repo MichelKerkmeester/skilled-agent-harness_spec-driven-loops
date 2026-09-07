@@ -23,6 +23,7 @@ trigger_phrases:
 |---|---|
 | `command-scope.cjs` | Authored exceptions for runtime-exclusive commands and runtime-native commands. |
 | `sync-runtime-mirrors.cjs` | Derives expected mirror links, checks drift and writes missing or stale links when invoked without `--check`. |
+| `sync-gate1-pointers.cjs` | Writes the Gate 1 lookup pointer block into `.codex/AGENTS.md` and `.cursor/rules/skill-routing.md` from the root `AGENTS.md` line; `--check` reports drift without writing. |
 
 ---
 

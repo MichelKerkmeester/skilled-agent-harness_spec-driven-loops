@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the doctor's retrieval workflow, When phase 0 discovery runs against the repository, Then it reports per-runtime reach for the Gate 1 lookup instruction across all five CLI runtimes | `/doctor speckit-retrieval` phase 0 output naming the `gate1_instruction_parity` signal, or `.opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml` showing the new signal and activity | Unmet | - |
-| AC-002 | REQ-002 | Given `.codex/AGENTS.md` after the generator runs, When the nodeterm-marked region is diffed against its pre-change state, Then it is byte-identical and a Gate 1 pointer exists outside it | A diff of `.codex/AGENTS.md` lines 1-122 (or the then-current marker range) before and after, plus `grep -n "trigger index" .codex/AGENTS.md` outside that range | Unmet | - |
-| AC-003 | REQ-003 | Given the Pi investigation, When its finding is checked against `.pi/SYNC.md`, Then the file states whether Pi reads root AGENTS.md automatically and names the source of that answer | `.pi/SYNC.md`, the section this phase adds documenting the investigation's finding and source | Unmet | - |
-| AC-004 | REQ-004 | Given the Gate 1 pointer generator, When it is run with `--check` against a repository with no drift, Then it exits 0, and When run against a repository where a pointer was hand-edited out of sync, Then it reports drift | `node <generator script path> --check` exit code and output, on both a clean and a deliberately drifted state | Unmet | - |
-| AC-005 | REQ-005 | Given `.cursor/rules/skill-routing.md` after the change, When it is read, Then it carries the Gate 1 pointer that both Cursor and Devin consult | `grep -n "trigger index" .cursor/rules/skill-routing.md` returns a match | Unmet | - |
-| AC-006 | REQ-006 | Given `runtime/cli/retrieval/README.md`, When line 87 is read after this phase closes, Then it accurately describes which runtimes carry a Gate 1 pointer instead of claiming none do | `.opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md:87` (or its corrected line number) | Unmet | - |
+| AC-001 | REQ-001 | Given the doctor's retrieval workflow, When phase 0 discovery runs against the repository, Then it reports per-runtime reach for the Gate 1 lookup instruction across all five CLI runtimes | `/doctor speckit-retrieval` phase 0 output naming the `gate1_instruction_parity` signal, or `.opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml` showing the new signal and activity | Met | - |
+| AC-002 | REQ-002 | Given `.codex/AGENTS.md` after the generator runs, When the nodeterm-marked region is diffed against its pre-change state, Then it is byte-identical and a Gate 1 pointer exists outside it | A diff of `.codex/AGENTS.md` lines 1-122 (or the then-current marker range) before and after, plus `grep -n "trigger index" .codex/AGENTS.md` outside that range | Met | - |
+| AC-003 | REQ-003 | Given the Pi investigation, When its finding is checked against `.pi/SYNC.md`, Then the file states whether Pi reads root AGENTS.md automatically and names the source of that answer | `.pi/SYNC.md`, the section this phase adds documenting the investigation's finding and source | Met | - |
+| AC-004 | REQ-004 | Given the Gate 1 pointer generator, When it is run with `--check` against a repository with no drift, Then it exits 0, and When run against a repository where a pointer was hand-edited out of sync, Then it reports drift | `node <generator script path> --check` exit code and output, on both a clean and a deliberately drifted state | Met | - |
+| AC-005 | REQ-005 | Given `.cursor/rules/skill-routing.md` after the change, When it is read, Then it carries the Gate 1 pointer that both Cursor and Devin consult | `grep -n "trigger index" .cursor/rules/skill-routing.md` returns a match | Met | - |
+| AC-006 | REQ-006 | Given `runtime/cli/retrieval/README.md`, When line 87 is read after this phase closes, Then it accurately describes which runtimes carry a Gate 1 pointer instead of claiming none do | `.opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md:87` (or its corrected line number) | Met | - |
 
 ### Status values
 
