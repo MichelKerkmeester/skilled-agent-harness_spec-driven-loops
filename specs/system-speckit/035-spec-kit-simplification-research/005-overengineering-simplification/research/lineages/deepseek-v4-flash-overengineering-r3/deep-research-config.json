@@ -1,0 +1,64 @@
+{
+  "topic": "ROUND THREE of the overengineering lane: five bounded iterations on angles the first two rounds covered thinly or not at all. Round one (GLM 5.3 Flash) and round two (DeepSeek V4 Flash) each ran ten iterations; their syntheses are research/lineages/glm-5-3-flash-overengineering/research.md and research/lineages/deepseek-v4-flash-overengineering/research.md; the census that judged every row of both rounds is research/confirmed-findings.md; every confirmed row was remediated in 011, 012 and 017. Context: the whole system-spec-kit skill as a size-and-value question.",
+  "role": "Skeptical auditor — every claim unverified until cited. Judge each element against three outcomes only: better output, better AI adherence in practice, lower maintenance. No re-reporting of a census row marked fixed/kept/recorded unless new evidence shows its stated reason wrong. No reused earlier counts; recount within call budget or say so.",
+  "outputFormat": "One row per finding: path:line on the claim side and on the actual side; claimed vs actual in one sentence each; severity (P0 broken, P1 wrong/unused, P2 cosmetic); recommendation (remove/merge/fix/document); at most 12 rows per iteration; plus a short list of what the angle verified as correct; plus open questions.",
+  "maxIterations": 5,
+  "convergenceThreshold": 3,
+  "_thresholdNotes": "Operator supplied convergenceThreshold=3 (stopPolicy=max-iterations). Novelty scale is 0..1, so a threshold of 3 means novelty-nominated STOP is structurally unreachable; convergence math is telemetry only and the loop runs to the iteration cap per the dispatch instruction. stuckThreshold=3 is the template default.",
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "_progressiveSynthesisNote": "Fan-out lineage: synthesis is performed once after the 5-iteration cap; research.md is compiled in phase_synthesis only.",
+  "resourceMap": {
+    "emit": false,
+    "present": false,
+    "_note": "Fan-out lineage does not emit a resource-map.md (operator flag resource_map.emit=false)."
+  },
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
+  "createdAt": "2026-09-07T08:35:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "executionContract": "in-process-inline"
+  },
+  "fanout_lineage_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering-r3",
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering-r3",
+  "artifactDirBinding": "bound directly via config.fanout_lineage_artifact_dir override (step_resolve_artifact_root satisfied by the dispatching runner; resolveArtifactRoot not executed, per lineage dispatch instructions)",
+  "roundThree": {
+    "parentLineages": ["glm-5-3-flash-overengineering", "deepseek-v4-flash-overengineering"],
+    "angles": [
+      "Rule value, first half: validator-registry.json rows 1-12, header comments only, defect class + sibling/template overlap + test-name coverage by rule id",
+      "Rule value, second half: registry rows 13-39, grouped by family (graph-metadata, canonical-save, acceptance)",
+      "Command surface overlap: step lists of .opencode/commands/speckit/ assets, one workflow-ownership table",
+      "Reachability of the references corpus: SKILL.md routing + references/README routing vs full file listing",
+      "Coupling from neighbouring skills: system-deep-loop and sk-doc paths into system-spec-kit/runtime, documented surface vs internal reach"
+    ]
+  },
+  "evidenceSurface": [
+    ".opencode/skills/system-spec-kit/** (checked-in source; dist/ directories are untracked and stale, never read as evidence)",
+    ".opencode/commands/speckit/**",
+    ".opencode/skills/system-deep-loop/**",
+    ".opencode/skills/sk-doc/**",
+    "research/confirmed-findings.md (read once, iteration 1)"
+  ],
+  "writeSurface": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering-r3",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

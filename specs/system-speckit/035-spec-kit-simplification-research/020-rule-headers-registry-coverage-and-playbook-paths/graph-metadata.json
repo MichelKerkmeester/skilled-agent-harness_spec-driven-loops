@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
-  "spec_folder": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths",
   "parent_id": "system-speckit/035-spec-kit-simplification-research",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "overengineering simplification",
-      "overengineering simplification research lane",
-      "glm research lane spec kit",
-      "overengineering simplification findings",
-      "research lane execution plan",
-      "overengineering simplification lane plan",
-      "reproduction before remediation",
-      "research lane tasks",
-      "lane launch and monitoring",
-      "overengineering simplification lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "registry coverage test",
+      "rule header split",
+      "canonical save allowlist removed",
+      "fanout playbook paths",
+      "registry coverage test plan",
+      "remediation plan",
+      "round three plan",
+      "census then fix",
+      "registry coverage test tasks",
+      "remediation tasks",
+      "round three tasks",
+      "verification checklist"
     ],
     "key_topics": [
-      "overengineering",
-      "simplification",
-      "research",
-      "lane",
-      "glm",
-      "spec",
-      "kit",
-      "findings",
-      "execution",
-      "plan",
-      "reproduction",
-      "remediation"
+      "registry",
+      "coverage",
+      "test",
+      "rule",
+      "header",
+      "split",
+      "canonical",
+      "save",
+      "allowlist",
+      "removed",
+      "fanout",
+      "playbook"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,10 +47,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "research/lineages/glm-5-3-flash-overengineering/research.md",
-      "research/confirmed-findings.md",
-      "research/lineages/deepseek-v4-flash-overengineering/research.md",
-      "research/lineages/deepseek-v4-flash-overengineering-r3/research.md"
+      "runtime/cli/tests/validate-runs-every-registry-rule.vitest.ts",
+      "runtime/cli/rules/check-ai-protocols.sh",
+      "runtime/cli/rules/check-spec-doc-integrity.sh",
+      ".opencode/skills/system-deep-loop/runtime/references/integration-points.md",
+      "runtime/cli/rules/check-canonical-save-helper.cjs"
     ],
     "entities": [
       {
@@ -90,9 +91,33 @@
         "source": "derived"
       },
       {
-        "name": "confirmed-findings.md",
+        "name": "validate-runs-every-registry-rule.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/validate-runs-every-registry-rule.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-ai-protocols.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-ai-protocols.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-spec-doc-integrity.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-spec-doc-integrity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "integration-points.md",
         "kind": "doc",
-        "path": "research/confirmed-findings.md",
+        "path": ".opencode/skills/system-deep-loop/runtime/references/integration-points.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-canonical-save-helper.cjs",
+        "kind": "file",
+        "path": "runtime/cli/rules/check-canonical-save-helper.cjs",
         "source": "derived"
       },
       {
@@ -126,7 +151,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Thirty",
+        "name": "Problem Statement Six",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -144,13 +169,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview One",
+        "name": "Overview Every",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Command",
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Charter",
+        "name": "Data Flow Census",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure: the skill has grown by accretion, and the cost in reads, steps and maintenance has never been weighed against what each piece protects",
-    "created_at": "2026-09-06T14:29:33Z",
-    "last_save_at": "2026-09-07T13:14:50.906Z",
+    "causal_summary": "Six registry rule ids were named by no test, and one of them, the protocol rule, reported a singular id the registry does not carry, so validation output never matched the registry row",
+    "created_at": "2026-09-07T13:14:45.624Z",
+    "last_save_at": "2026-09-07T13:22:02.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +212,15 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5da68cd3bc258f7cb091b42ee25e3fa4c8c5634ca4422608306243e06393799",
+    "source_fingerprint": "sha256:0edd5afd4bc6d7ccb50dd11448b37ac94856dee2edd21ef38dd275dec28bd22e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "086fd0d5b8e67a7a70f6e3b85cdd77c70d2973b2ef204cfa292c6f81d3afa698",
-      "plan.md": "7ca0f3a1d4156673b15ecc305a3901093ed0780b5ab109520680a66d675c024c",
-      "tasks.md": "5969b1e0415cf46ae61e58ef17ffb4ed82178cdd5d00797f00b28ccfa8ea72c1",
-      "implementation-summary.md": "40e4f89d9856376847600837262e92f43c42b7b034715a95576bc39a6713ab38"
+      "spec.md": "c259a5bc3de9081b96184ac5a0382aaab95ee10b012851dd6b65053b697d8e6d",
+      "plan.md": "800b8212ff261627063017e04d3b8fdb02dea1f5a80a2865f7cd5abf3ef5809e",
+      "tasks.md": "c78f2887ee80e01ae11e45b0f5aec951845e93e33a03d3e0bb17143e57b6be87",
+      "implementation-summary.md": "ac5df3f7a4830096397ed17cabf8cc738832905e45d6f386e06e9e9848965409"
     },
+    "last_active_child_id": null,
     "last_active_at": null
   }
 }

@@ -14,6 +14,7 @@ unset _level_match_rule_dir
 # Severity: error
 # Description: Validates that the declared level is consistent across all
 #   Spec folder files, and required files exist for the declared level.
+#   FILE_EXISTS is the sibling that tests presence alone; this rule owns the declared-versus-inferred comparison.
 
 # ───────────────────────────────────────────────────────────────
 # 1. HELPER FUNCTIONS

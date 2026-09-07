@@ -9,6 +9,7 @@ set -euo pipefail
 # Rule: GREP_CONVENTION
 # Severity: error
 # Description: Checks markdown documents against the greppable-corpus
+#   convention. Anchor grammar is checked here for the corpus contract; ANCHORS_VALID in the orchestrator checks pairing and order.
 # convention: frontmatter variant, trigger phrase quality, anchor grammar and
 # naming. Classification lives in the node helper because bash cannot parse
 # YAML honestly.

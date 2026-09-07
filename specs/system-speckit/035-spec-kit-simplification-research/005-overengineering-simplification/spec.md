@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification"
     last_updated_at: "2026-09-07T03:45:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Round two censused and handed to child 017"
+    recent_action: "Round three censused and handed to child 020"
     next_safe_action: "None; the lane is closed"
     blockers: []
     key_files: []
@@ -44,7 +44,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 5 |
 | **Predecessor** | 004-template-system-and-acceptance-criteria |
-| **Successor** | 011-command-surface-contract-realignment, then 017-completion-gate-and-catalog-alignment for round two |
+| **Successor** | 011-command-surface-contract-realignment, then 017-completion-gate-and-catalog-alignment for round two, then 020-rule-headers-registry-coverage-and-playbook-paths for round three |
 | **Handoff Criteria** | Ten iterations complete, findings reproduced, confirmed table handed to remediation |
 <!-- /ANCHOR:metadata -->
 

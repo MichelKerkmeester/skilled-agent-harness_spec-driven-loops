@@ -2,6 +2,11 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: CHECK-SPEC-DOC-INTEGRITY
 # ───────────────────────────────────────────────────────────────
+# Rule: SPEC_DOC_INTEGRITY
+# Severity: error
+# Description: Checks that spec-doc references, metadata pointers and handover
+#   targets resolve to real paths. Sourced by validate.sh; the repository root
+#   comes from git when available and the working directory otherwise.
 
 set -euo pipefail
 

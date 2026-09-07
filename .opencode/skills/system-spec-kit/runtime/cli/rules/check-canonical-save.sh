@@ -4,8 +4,8 @@
 # ───────────────────────────────────────────────────────────────
 #
 # Grandfathering windows for the canonical-save hardening rollout:
-# - Temporary rollout allowlist expires at 2026-05-01T00:00:00Z
-# - save_lineage enforcement becomes hard for graph writes on/after 2026-05-01T00:00:00Z
+# - The rollout allowlist that grandfathered four packet roots expired on 2026-05-01 and is gone;
+#   save_lineage enforcement is hard for graph writes on/after the cutoff (SPECKIT_CANONICAL_SAVE_CUTOFF)
 
 set -euo pipefail
 
