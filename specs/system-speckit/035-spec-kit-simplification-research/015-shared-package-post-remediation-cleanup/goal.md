@@ -1,5 +1,5 @@
 ---
-title: "Goal: Shared package utilization"
+title: "Goal: Shared package post-remediation cleanup"
 description: "The durable directive this packet executes against, and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization"
-    last_updated_at: "2026-09-07T00:20:00Z"
+    packet_pointer: "system-speckit/035-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup"
+    last_updated_at: "2026-09-07T07:05:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Closed every criterion after remediation"
-    next_safe_action: "None; the lane is closed"
+    recent_action: "Closed every criterion"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: Shared package utilization
+# Goal: Shared package post-remediation cleanup
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Establish what every module of @spec-kit/shared is for, who consumes it, what is residue of the retired memory database, and what should be removed, merged or moved to its sole consumer.
+**Objective:** Close every confirmed finding from the shared-package lane's second round so that the package's manifest, modules, README and tests describe and exercise what exists after the decommission, and the live-half duplication the lane found is a recorded decision with its reason, with nothing deferred.
 
 ### Decisions
 
@@ -48,9 +48,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Research is read-only; remediation lands in a sibling child created after synthesis |
-| D2 | A module counts as live only with an importer outside the package |
-| D3 | Boundary findings cite the importing line and the exported symbol |
+| D1 | A README table that describes readers is generated from the files that read, never typed |
+| D2 | The two live Ollama implementations and the eight root resolvers stay: the first is the advisor's stack, the second marks module-system boundaries; both are recorded with their reasons |
+| D3 | The factory's database candidate scan stays because it reads the advisor's active embedder; only the ownerless profile cluster goes |
+| D4 | The sk-doc baseline loses the rows for READMEs this program removed and nothing else |
 
 ### Operator copy
 
@@ -72,11 +73,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-shared-package/
-- [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-shared-package/ and every P1 row is censused in confirmed-findings.md
-- [x] research.md carries a per-module consumer census
-- [x] Every P0 and P1 finding reproduces in-session
-- [x] A ranked remove, merge or move list with evidence
+- [x] Every row of the shared-package lane's round-two section names a fix, a kept reason or a recorded decision
+- [x] The shared package builds from clean, its lane passes with two new tests, and the CLI and runtime build with the removals
+- [x] The README's reader table is generated from the code
+- [x] validate.sh --strict prints RESULT: PASSED for this child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,16 +93,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
-| Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-shared-package/research.md`, stop reason maxIterationsReached; the first launch was paused by the operator before any iteration and relaunched clean at 22:17 |
-| Census | Done | `research/confirmed-findings.md`: 6 of 10 P1 rows confirmed, 3 corrected, 1 dropped |
-| Remediation | Done | `../009-shared-package-dead-half-removal` closed every row |
-| Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-shared-package/research.md`, 07:54 to 08:10 |
-| Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../015-shared-package-post-remediation-cleanup` |
+| Seven P1 and forty-two P2 rows censused | Done | `../003-shared-package-utilization/research/confirmed-findings.md` §6 |
+| Manifest, module, test, README and baseline changes | Done | `implementation-summary.md` Files Changed |
+| Gates | Done | shared build and lane, CLI rebuild and check, runtime build, dist freshness, two suites, residue search, sk-doc validator, strict validation |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Worktree artifacts | The stale-dist, unprovisioned-root, broken-resolution and missing-directory claims held only in worktree 046; recorded as environment facts. |
-| Predicate module kept | Zero code importers, but four command contracts cite it as their predicate grammar. |
+| The parity test was already failing on 36 other rows | The lane blamed one row; the two rows this program owns are gone, and the rest are sk-doc's validator and fixture drift under other skills, reported to the operator. |
+| The lane's "adapter is a shim" was wrong in round one | Round two corrected it: both Ollama implementations are live; the decision to leave them is recorded. |
 <!-- /ANCHOR:log -->

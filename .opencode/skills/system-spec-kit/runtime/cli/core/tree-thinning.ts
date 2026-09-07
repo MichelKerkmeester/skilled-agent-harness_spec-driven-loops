@@ -78,7 +78,6 @@ export interface ThinningResult {
 // Canonical shared implementation — imported and re-exported for backward compatibility
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
 /** Re-export for backward compatibility. Prefer direct import from @spec-kit/shared/utils/token-estimate. */
-export { estimateTokenCount };
 
 /**
  * Determine whether a file path is a memory file.

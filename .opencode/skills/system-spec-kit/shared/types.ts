@@ -30,14 +30,6 @@ export interface EmbeddingProfile {
   dtype?: string | null;
 }
 
-/**
- * Extended embedding profile with database path resolution.
- * Used by handlers that need to resolve DB paths from profile info.
- */
-export interface EmbeddingProfileExtended extends EmbeddingProfile {
-  getDatabasePath: (basePath: string) => string | null;
-}
-
 /** Interface for all embedding providers (HfLocal, OpenAI, Voyage) */
 export interface IEmbeddingProvider {
   generateEmbedding(text: string): Promise<Float32Array | null>;

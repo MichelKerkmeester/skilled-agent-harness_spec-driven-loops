@@ -164,10 +164,9 @@ function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}): Inde
   };
 }
 
-// z_archive intentionally NOT excluded: archived spec content stays in the
-// memory index and is deprioritized by ARCHIVE_MULTIPLIERS (0.1) in
-// shared/scoring/folder-scoring.ts. Excluding it here would override the
-// decay design and remove archived content from search entirely.
+// z_archive intentionally NOT excluded: archived spec content stays
+// discoverable, and the lookup that ranks it never needs this list to hide
+// it. Excluding it here would remove archived content from search entirely.
 // ───────────────────────────────────────────────────────────────────
 // 3. EXCLUSION LISTS
 // ───────────────────────────────────────────────────────────────────

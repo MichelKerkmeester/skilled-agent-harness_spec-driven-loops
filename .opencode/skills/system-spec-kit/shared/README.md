@@ -34,7 +34,7 @@ Nothing here opens a database or talks to a network on import. Modules take thei
 | Gate 3 | `gate-3-classifier.ts` | the prompt hooks of every runtime, the pi plugin, the spec-root registry |
 | Compaction | `compact-merger.ts`, `budget-allocator.ts` | the PreCompact hook adapters |
 | Paths and workspace | `workspace/repo-root.mjs`, `config.ts`, `utils/path-containment.ts`, `utils/path-security.ts`, `review-research-paths.cjs` | build scripts, CI, the deep-loop artifact root, the telemetry store |
-| Text helpers | `chunking.ts`, `trigger-extractor.ts`, `unicode-normalization.ts`, `context-types.ts`, `utils/jsonc-strip.ts`, `utils/token-estimate.ts`, `utils/retry.ts`, `scoring/folder-scoring.ts` | the save pipeline, the hooks, the embedding providers |
+| Text helpers | `chunking.ts`, `trigger-extractor.ts`, `unicode-normalization.ts`, `context-types.ts`, `utils/jsonc-strip.ts`, `utils/token-estimate.ts`, `utils/retry.ts` | the save pipeline, the hooks, the embedding providers |
 | Predicate grammar | `predicates/boolean-expr.ts` | the typed `when:` form the speckit and deep command contracts cite as their grammar |
 | Embedding providers | `embeddings/` (factory, profile, registry, auto-select, adapters, providers) | the skill advisor and the HF model server launcher |
 | Ranking | `algorithms/rrf-fusion.ts` | the skill advisor's fusion scorer |
@@ -85,7 +85,7 @@ ls .opencode/skills/system-spec-kit/shared/
 # budget-allocator.ts, chunking.ts, compact-merger.ts, config.ts, context-types.ts,
 # gate-3-classifier.ts, review-research-paths.cjs, trigger-extractor.ts, types.ts,
 # unicode-normalization.ts, algorithms/, embeddings/, frontmatter/, ipc/, parsing/,
-# predicates/, scoring/, utils/, workspace/, dist/
+# predicates/, utils/, workspace/, dist/
 ```
 
 ---
@@ -123,8 +123,6 @@ shared/
 │   └── spec-doc-health.ts             # Spec document health checks
 ├── predicates/
 │   └── boolean-expr.ts         # Typed predicate grammar the command contracts cite
-├── scoring/
-│   └── folder-scoring.ts       # Composite folder ranking logic
 ├── utils/
 │   ├── jsonc-strip.ts          # JSONC comment stripping
 │   ├── path-containment.ts     # Path containment checks
@@ -146,7 +144,7 @@ shared/
 | `frontmatter/parse-frontmatter.ts` | The one frontmatter parser; more than twenty importers |
 | `gate-3-classifier.ts` | Decides whether a prompt will write, for every runtime's prompt hook |
 | `compact-merger.ts`, `budget-allocator.ts` | Merge and budget the payload the PreCompact hooks carry |
-| `config.ts` | Resolves the telemetry store directory and honours the database-directory override the skill advisor also uses |
+| `config.ts` | Resolves the telemetry store directory and honours the same database-directory override the provider factory reads, though the two resolve their default directory differently: the telemetry store is skill-root-relative, the factory's candidates are working-directory-relative |
 | `embeddings/factory.ts` | Selects and constructs the embedding provider the skill advisor runs |
 | `algorithms/rrf-fusion.ts` | Rank fusion for the advisor's five-lane scorer |
 | `workspace/repo-root.mjs` | Repository root resolution for scripts that run before a build |
@@ -185,12 +183,12 @@ Every variable this package reads, grouped by the code that reads it. Provider c
 | Group | Variables | Read by |
 | --- | --- | --- |
 | Provider selection | `EMBEDDINGS_PROVIDER`, `EMBEDDING_DIM` | `embeddings/factory.ts`, `embeddings/profile.ts` |
-| Ollama | `OLLAMA_EMBEDDINGS_MODEL`, `OLLAMA_BASE_URL`, `OLLAMA_REQUEST_TIMEOUT_MS` | `embeddings/providers/ollama.ts`, `embeddings/profile.ts` |
-| Local HF model server | `HF_EMBEDDINGS_MODEL`, `HF_EMBEDDINGS_DTYPE`, `HF_EMBED_AUTH_TOKEN`, `HF_EMBED_SERVER_READY_TIMEOUT_MS`, `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS`, `SPECKIT_HF_READY_LATCH_TTL_MS` | `embeddings/providers/hf-local.ts` |
-| OpenAI | `OPENAI_API_KEY`, `OPENAI_EMBEDDINGS_MODEL`, `OPENAI_BASE_URL` | `embeddings/providers/openai.ts`, `embeddings/factory.ts` |
-| Voyage | `VOYAGE_API_KEY`, `VOYAGE_EMBEDDINGS_MODEL`, `VOYAGE_BASE_URL` | `embeddings/providers/voyage.ts`, `embeddings/profile.ts`, `embeddings/auto-select.ts` |
+| Ollama | `OLLAMA_EMBEDDINGS_MODEL`, `OLLAMA_BASE_URL`, `OLLAMA_REQUEST_TIMEOUT_MS` | `embeddings/adapters/ollama.ts`, `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/ollama.ts` |
+| Local HF model server | `HF_EMBEDDINGS_MODEL`, `HF_EMBEDDINGS_DTYPE`, `HF_EMBED_AUTH_TOKEN`, `HF_EMBED_SERVER_READY_TIMEOUT_MS`, `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS`, `SPECKIT_HF_READY_LATCH_TTL_MS` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/hf-local.ts` |
+| OpenAI | `OPENAI_API_KEY`, `OPENAI_EMBEDDINGS_MODEL`, `OPENAI_BASE_URL` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/openai.ts` |
+| Voyage | `VOYAGE_API_KEY`, `VOYAGE_EMBEDDINGS_MODEL`, `VOYAGE_BASE_URL` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/voyage.ts` |
 | Cascade probes | `SPECKIT_CASCADE_PROBE_TIMEOUT_MS`, `SPECKIT_CASCADE_LOCK_STALE_MS`, `SPECKIT_CASCADE_SLEEP_MS` | `embeddings/auto-select.ts` |
-| Database directory | `SPEC_KIT_DB_DIR` or `SPECKIT_DB_DIR`, `MEMORY_DB_PATH` | `config.ts`, `embeddings/factory.ts`, `embeddings/profile.ts` |
+| Database directory | `SPEC_KIT_DB_DIR` or `SPECKIT_DB_DIR`, `MEMORY_DB_PATH` | `config.ts`, `embeddings/factory.ts`, `embeddings/providers/hf-local.ts` |
 | IPC | `SPECKIT_IPC_SOCKET_DIR`, `SPECKIT_MAX_SECONDARY_CLIENTS` | `ipc/socket-server.ts` |
 | Rank fusion | `SPECKIT_RRF`, `SPECKIT_RRF_K`, `SPECKIT_SCORE_NORMALIZATION`, `SPECKIT_CALIBRATED_OVERLAP_BONUS`, `SPECKIT_RETRIEVAL_PROFILE_WEIGHTS` | `algorithms/rrf-fusion.ts` |
 

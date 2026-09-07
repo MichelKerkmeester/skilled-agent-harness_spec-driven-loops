@@ -44,3 +44,46 @@ The utility module and the context types were miscounted because the lane search
 
 1. Whether the skill advisor should keep its half-isolation from this package, or import everything it uses; the advisor's maintainers decide.
 2. Whether the `SPEC_KIT_DB_DIR` and `SPECKIT_DB_DIR` pair should collapse to one spelling once no operator config carries the other.
+
+---
+
+## 6. ROUND TWO (DeepSeek V4 Flash max through DevPass, 10 iterations on the remediated tree)
+
+Source: `lineages/deepseek-v4-flash-shared-package/research.md`, stop reason `maxIterationsReached`, 49 rows: 7 P1, 42 P2 including verified-positive and recorded rows. Censused in the main checkout on 2026-09-07 before child `015-shared-package-post-remediation-cleanup` was opened.
+
+### Verdict held
+
+Child 009 landed: no dangling importer in any of the five consumer trees, the removed tests and the CLI shim gone, the ML dependency relocated to the skill root, the CI lane wired. The round-two P1 rows are what the removal left behind and what the live half still duplicates.
+
+### P1 rows
+
+| ID | Claim | Census | Disposition |
+|----|-------|--------|-------------|
+| R1-01 | `main` still points at the deleted `dist/index.js` | Confirmed: neither `index.ts` nor `dist/index.js` exists | Fixed: field removed |
+| R1-02 | The environment reference still teaches `SPECKIT_ROLLOUT_PERCENT` | Confirmed | Fixed in child 014 |
+| R2-01 | Three database-directory derivations with two base semantics | Confirmed; after the profile cluster goes, two remain: the telemetry store in `config.ts` and the factory's candidate scan, which reads the advisor's active embedder from its sqlite | Recorded decision: both are live and serve different readers; the README now states how they differ instead of implying one resolution |
+| R2-02 | A baseline row for the removed `shared/ranking/README.md` breaks the sk-doc parity test | Confirmed, with a second row for the removed `shared/mcp-server/database/README.md` | Fixed: both rows removed. The test still reports 36 other mismatches from sk-doc's own validator and fixture drift, none under this package; recorded for that skill's owner |
+| R2-03 | A five-function database cluster in `profile.ts` has no consumer since `paths.ts` went | Confirmed: `findUp`, `resolveDefaultActiveProfileDbDir` and `resolveActiveProfileDbPath` had zero consumers | Fixed: removed; `createProfileSlug` and `parseProfileSlug` stay |
+| R5-01 | Two parallel live Ollama implementations behind one package | Confirmed: `adapters/ollama.ts` is re-exported by the skill advisor's embedder registry and `providers/ollama.ts` is built by the factory; both reach the daemon | Recorded decision not to merge: 790 lines of the advisor's live embedding stack with two contracts; a merge is that skill's refactor, and no capability is lost by leaving both |
+| R7-01 | `scoring/folder-scoring.ts` has no production consumer | Confirmed: two runtime tests and one comment | Fixed: module, its README and both tests removed; the comment rewritten |
+
+### P2 rows
+
+| ID | Claim | Disposition |
+|----|-------|-------------|
+| R3-01 | README §5 reader columns omit files for three groups | Fixed: every row is now computed from the files that read the variables |
+| R4-01 | The socket file name is declared in three places and asserted nowhere | Fixed: the server exports the constant and its test holds the two bin scripts to it |
+| R6-01 | The `./review-research-paths.cjs` export entry has no consumer | Kept: the CLI's review-research-paths test reaches the module through it |
+| R6-02, R6-03 | Eight root-resolution implementations with divergent predicates | Recorded decision: the hooks cannot import the workspace package, the compiled CLI cannot import the ESM module synchronously, and the generator stays dependency-free; the copies are the boundaries, not accidents |
+| R1-03 | A test comment names the removed `quality-extractors.test.ts` | Fixed |
+| R2-04 | `EmbeddingProfileExtended` has no consumer | Fixed: removed |
+| R4-03 | The isolation doctrine is comment-enforced, not CI-enforced | Recorded; the decision stands as round one made it |
+| R5-02, R5-04, R9-01 | Unreachable adapter branches, two backend taxonomies, a two-symbol type boundary | Recorded with R5-01: the advisor stack's shape |
+| R7-02 | `tree-thinning.ts` re-exports `estimateTokenCount` for one test | Fixed: the test imports the shared module and the re-export is gone |
+| R8-01 | `jsonc-strip.ts` and `context-types.ts` have no tests | Fixed: one script-style test each, in the package's own lane |
+| R8-03 | The test glob names a `scoring/` directory with no tests | Fixed: the glob is gone with the directory; `utils/` now carries a test |
+| R4-04, R7-03, R8-02, R10-01 to R10-03 | Verified-positive rows | Hold |
+
+### Re-verified decisions
+
+The `predicates/boolean-expr` keep holds on its four citations; the two-spelling override keep holds; the advisor isolation doctrine holds with its justification corrected; round one's "adapter is a shim" was wrong and is corrected by R5-01, which changes nothing about the 009 removal.

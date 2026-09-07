@@ -1,31 +1,32 @@
 ---
-title: "Acceptance Criteria: Shared package utilization research"
+title: "Acceptance Criteria: Shared package post-remediation cleanup"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
   - "closure gate"
-  - "shared package utilization lane closure"
+  - "shared cleanup criteria"
+  - "reader table criterion"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization"
-    last_updated_at: "2026-09-06T16:40:00Z"
+    packet_pointer: "system-speckit/035-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup"
+    last_updated_at: "2026-09-07T07:05:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet the open criteria as the lane runs"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Shared package utilization research
+# Acceptance Criteria: Shared package post-remediation cleanup
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -38,10 +39,10 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** 003-shared-package-utilization
+**Packet:** 035-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup
 **Level:** 2
 **Status:** Complete
-**Date:** 2026-09-06
+**Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,11 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | count of files under `research/lineages/glm-5-3-flash-shared-package/iterations` and of iteration events in the JSONL ledger | Met | - |
-| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites path:line on the claim side and the evidence side | reproduction notes in research/confirmed-findings.md | Met | - |
-| AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Met | - |
-| AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Met | - |
-| AC-005 | REQ-001 | Given the second lineage launched after remediation, When it exits, Then ten iteration files and ten state events exist and every P1 row is censused | listing of `research/lineages/deepseek-v4-flash-shared-package/iterations` and its state log; confirmed-findings.md §6 | Met | - |
+| AC-001 | REQ-001 | Given the shared package, When it builds from clean and its lane runs, Then the build exits zero and the lane counts the two new tests | `tsc --build --force` exit 0; `npm test` 12 pass, 0 fail, with "jsonc strip ok" and "context types ok" in the output | Met | - |
+| AC-002 | REQ-002 | Given the removals, When the CLI rebuilds and the runtime builds, Then both exit zero and dist freshness reports fresh | rebuild exit 0; `npm run check` exit 0; runtime build exit 0; "All watched dist outputs are fresh" | Met | - |
+| AC-003 | REQ-003 | Given the README, When each group's variables are searched across the package, Then the cell names exactly the reading files | the cells were generated from that search; the sk-doc validator exit 0 | Met | - |
+| AC-004 | REQ-004 | Given the skill, the bin scripts and the advisor, When the removed names are searched, Then only changelogs match | the search returned no line outside changelogs | Met | - |
 
 ### Status values
 
@@ -84,5 +84,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Ten iteration files, ten state events and a 53-finding synthesis exist under the lineage; the ten P1 rows were censused against the real tree, six confirmed, three corrected and one dropped as a worktree artifact, and the ledger was handed to `../009-shared-package-dead-half-removal`, which closed every row.
+Every criterion is met by observed output. Consciously left out: the two live Ollama implementations and the root resolvers, each a recorded decision in the lane's confirmed-findings document, and the 36 sk-doc parity mismatches that sit under other skills' READMEs.
 <!-- /ANCHOR:closure -->

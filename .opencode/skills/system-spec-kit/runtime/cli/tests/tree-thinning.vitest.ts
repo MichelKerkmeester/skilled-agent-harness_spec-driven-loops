@@ -5,11 +5,8 @@
 // (requires vitest configured in this package, or run from runtime/
 //  After adjusting import path)
 import { describe, it, expect } from 'vitest';
-import {
-  applyTreeThinning,
-  estimateTokenCount,
-  deriveParentPath,
-} from '../core/tree-thinning';
+import { applyTreeThinning, deriveParentPath } from '../core/tree-thinning';
+import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
 import type { FileEntry, ThinFileInput, ThinningConfig } from '../core/tree-thinning';
 
 /* ───────────────────────────────────────────────────────────────

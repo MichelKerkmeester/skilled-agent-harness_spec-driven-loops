@@ -41,8 +41,7 @@ afterEach(() => {
 describe('index-scope helper', () => {
   it('exports the expected memory and code-graph exclusion patterns', () => {
     // (commit b062b12b4) removed z_archive from EXCLUDED_FOR_MEMORY
-    // z_archive content stays indexed and is deprioritized via ARCHIVE_MULTIPLIERS
-    // in shared/scoring/folder-scoring.ts (0.1 multiplier).
+    // z_archive content stays discoverable; nothing in this list hides it.
     expect(EXCLUDED_FOR_MEMORY.length).toBeGreaterThanOrEqual(2);
     expect(EXCLUDED_FOR_CODE_GRAPH.length).toBeGreaterThanOrEqual(7);
   });
