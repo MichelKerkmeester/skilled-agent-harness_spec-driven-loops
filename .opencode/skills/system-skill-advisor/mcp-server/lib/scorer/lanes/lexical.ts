@@ -30,7 +30,13 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'mcp-tooling': ['chrome devtools', 'har', 'console errors', 'staging'],
   'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
-  'sk-code': ['css', 'html', 'javascript', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
+  // 'browser' and 'layout' were removed as bare tokens: a single word here grants
+  // +0.38 to every prompt containing it, which handed sk-code phrases that other hubs
+  // declare verbatim — browser debug, browser agent, review this layout. A hint is for
+  // a phrase that belongs to this hub, not a word that merely appears in its domain.
+  // 'obsidian plugin' is the same mechanism used as intended: sk-code declares that
+  // exact phrase and was losing it to a bare-token overlap by 0.004.
+  'sk-code': ['css', 'html', 'javascript', 'frontend', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline', 'obsidian plugin'],
 };
 
 const BM25_SHADOW_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'shadow', 'experimental']);

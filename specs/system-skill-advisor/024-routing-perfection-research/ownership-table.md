@@ -73,7 +73,7 @@ Probed at advisor generation 714-716. `Winner` is the hub the advisor actually r
 | 18 | `decision branch` | sk-design | sk-git 0.945 | **sk-design yields.** "Branch" reads as version control first. Rephrase sk-design's intent if it needs one. |
 | 19 | `dom inspect` | mcp-tooling | nothing above bar | **Rephrase.** Two words, and it returned an empty response on first probe and a valid one on retry, so it is also intermittently a probe failure. |
 | 20 | `show the full` | sk-doc | nothing above bar | **Drop the fragment.** It is a prefix of "show the full sk-doc toolkit", not a phrase. Declare the complete form instead. |
-| 21 | `obsidian plugin` | sk-code | mcp-tooling 0.9187 vs 0.9164 | **Operator call, and new.** It surfaced at generation 734, not in the original twenty. sk-code declares it exactly plus three narrower variants; mcp-tooling declares only `obsidian`, `obsidian vault` and `obsidian mcp` and wins on bare-token overlap. Both hubs genuinely own an Obsidian surface (`sk-code-obsidian` builds a plugin, `mcp-obsidian` drives the vault). |
+| 21 | `obsidian plugin` | sk-code | mcp-tooling 0.9187 vs 0.9164 | **Ruled: sk-code. Applied.** Added as an exact-phrase hint; sk-code now takes it at 0.95 against mcp-tooling 0.9186. Was: Operator call, and new. It surfaced at generation 734, not in the original twenty. sk-code declares it exactly plus three narrower variants; mcp-tooling declares only `obsidian`, `obsidian vault` and `obsidian mcp` and wins on bare-token overlap. Both hubs genuinely own an Obsidian surface (`sk-code-obsidian` builds a plugin, `mcp-obsidian` drives the vault). |
 <!-- /ANCHOR:table -->
 
 ---
@@ -83,21 +83,28 @@ Probed at advisor generation 714-716. `Winner` is the hub the advisor actually r
 ---
 
 <!-- ANCHOR:hints -->
-## 2b. THREE OF THESE ARE ONE HARDCODED TOKEN, NOT A DISPUTE
+## 2b. TWO OF THESE ARE ONE HARDCODED TOKEN, NOT A DISPUTE
 
 `CATEGORY_HINTS` in the lexical lane grants a flat **+0.38** whenever a bare token appears
-in the prompt. `sk-code` holds 21 such tokens, among them `browser` and `layout`. Three
-contested rows are decided entirely by that boost:
+in the prompt. `sk-code` holds 21 such tokens, among them `browser`. Two contested rows
+were decided by that boost, and a third looked the same and was not:
 
-| phrase | hint that fires | declared by | won by |
-|---|---|---|---|
-| `browser debug` | `browser` | mcp-tooling | sk-code, 0.7591 to 0.6869 |
-| `browser agent` | `browser` | mcp-tooling | sk-code |
-| `review this layout` | `layout` | sk-design | sk-code |
+| phrase | hint that fires | declared by | won by | after removing the token |
+|---|---|---|---|---|
+| `browser debug` | `browser` | mcp-tooling | sk-code, 0.7591 to 0.6869 | **mcp-tooling wins** |
+| `browser agent` | `browser` | mcp-tooling | sk-code | sk-code still edges it, 0.8268 to 0.82 |
+| `review this layout` | `layout` | sk-design | sk-code | **unchanged**, 0.9438 to 0.9219 |
 
-In each case the winner declares nothing matching the phrase and the loser declares it
-outright. The margin on `browser debug` is 0.072 against a boost of 0.38, so without the
-hint mcp-tooling wins comfortably rather than narrowly.
+The first version of this section listed all three as hint-decided. The test that settles
+it is removing the tokens and re-probing. `browser debug` flipped to its declaring hub,
+which confirms the hint was the whole cause. `review this layout` did not move at all, so
+`layout` was never what decided it; it belongs with the seven saturation rows below.
+`browser agent` kept sk-code by 0.0068 after the hint went, so the hint was most of the
+cause but not all of it.
+
+Recording the retraction rather than editing the claim away, because the difference
+between "looked like a hint" and "was a hint" is exactly one probe, and the first version
+skipped it.
 
 That reframes the decision. It is not "which hub owns browser work", it is "should a bare
 `browser` token hand sk-code every prompt containing the word, including one another hub
@@ -143,8 +150,18 @@ hand model rather than an instrumented per-lane trace. What would settle it defi
 logging the pre-clamp overlap value for both hubs on one contested phrase; if both exceed
 1.0 before the clamp, the diagnosis is confirmed.
 
-Narrowing a hint is a scorer-data change with fleet-wide reach, so it is not made here. It
-is now a one-line change waiting on an ownership answer rather than an open investigation.
+**Ruled and applied 2026-09-07.** The operator approved narrowing the tokens. `browser` and
+`layout` were removed from `sk-code`'s hint list and `obsidian plugin` was added to it as an
+exact-phrase hint, which is the mechanism used as intended: a hint is for a phrase that
+belongs to a hub, not a word that appears in its domain. Regression corpus unchanged at 151
+passing.
+
+**One thing that would have hidden the result.** `advisor_rebuild` reindexes the projection
+and does not reload scorer code. After a rebuild the four target phrases probed identically
+to three decimals, and only a restart of the daemon process, found by the socket it listens
+on, made the built change live. A scorer edit that is measured through a rebuild alone is
+being measured against the old code, and the numbers will agree with the baseline for the
+wrong reason.
 <!-- /ANCHOR:hints -->
 
 ---
