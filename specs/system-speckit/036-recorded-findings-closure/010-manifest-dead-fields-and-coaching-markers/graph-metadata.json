@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`templates/spec-kit-docs.json` carries a `creationTrigger` and an `absenceBehavior` field on every one of its 16 `documents[]` entries (32 key occurrences, `spec-kit-docs.json:26-117`), and `EXTENSION-GUIDE.md:33-36` already states in its own maintainer instructions that \"nothing reads it at runtime: the scaffolder and the validator both work from the `levels` rows below.",
     "created_at": "2026-09-07T15:05:51Z",
-    "last_save_at": "2026-09-07T17:30:41.683Z",
+    "last_save_at": "2026-09-07T17:32:13.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56c537582fe310d0632f49fa002a53959e668a16b0ffd63db5cb04f559479aea",
+    "source_fingerprint": "sha256:1cb787960c33b986064145e9379516090e525dd317ba734641f26683fc26ef8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1f555df9e4394043c29235c595ec2e6b566b354fc1f3e13347e5f1d551da7fb",
