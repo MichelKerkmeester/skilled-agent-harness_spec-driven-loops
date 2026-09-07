@@ -48,9 +48,6 @@
       "implementation-summary.md",
       "runtime/hooks/lib/workspace/repo-root.mjs",
       "shared/workspace/repo-root.mjs",
-      "shared/embeddings.ts",
-      "runtime/cli/kpi/quality-kpi.sh",
-      "runtime/cli/evals/run-phase2-closure-metrics.mjs",
       "runtime/hooks/cursor/completion-evidence-response.mjs",
       "runtime/cli/lib/frontmatter-migration.ts",
       "runtime/cli/tests/quality-audit-script.vitest.ts",
@@ -91,24 +88,6 @@
         "name": "repo-root.mjs",
         "kind": "file",
         "path": "runtime/hooks/lib/workspace/repo-root.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "quality-kpi.sh",
-        "kind": "script",
-        "path": "runtime/cli/kpi/quality-kpi.sh",
-        "source": "derived"
-      },
-      {
-        "name": "run-phase2-closure-metrics.mjs",
-        "kind": "file",
-        "path": "runtime/cli/evals/run-phase2-closure-metrics.mjs",
         "source": "derived"
       },
       {
@@ -200,11 +179,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Confirmed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows every failure, one barrel nobody imports, one comment kept alive by a hygiene marker, and two public CLI scripts with no test at all",
     "created_at": "2026-09-06T08:18:05Z",
-    "last_save_at": "2026-09-06T13:55:32.032Z",
+    "last_save_at": "2026-09-07T05:42:08.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +211,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f00175e3b740229798e52d80e7c16d5cbe69eacf7aed2e62ae6ed4011a91dd4",
+    "source_fingerprint": "sha256:d3e4ee0357aa222d6f8ca0a382bf0b6b9f2966213864b4c68c678ccd30b0966a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aee66c37a105f4170cee156fa7fe05a6b4290b05d6ece7cc8735ca7e4d391166",
+      "spec.md": "43fcd3c98e50759b1162eae86d3fff4dcbff43623cb23e8466d82246a3968c2a",
       "plan.md": "1d8d14b37bf28e4551bc84030c14adeaa5123acacfb66cde472e70cc699d3885",
       "tasks.md": "f6c2f8aad5d94a8d96616c53e2ec2931c1a87428c57d1edd07272a8965e2deaf",
       "implementation-summary.md": "60d2503a75d65524c9ff17ecb97c96c98e1928761cde242b73bdb36127512b3b"

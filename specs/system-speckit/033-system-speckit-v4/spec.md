@@ -135,6 +135,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 26 | 026-runtime-code-standards-research/ | ten-iteration research lane: shared and runtime code against the sk-code standards | complete |
 | 27 | 027-doc-path-strict-mode-and-retired-capability-fixes/ | forty-three confirmed doc mismatches and twenty phantom test citations fixed, three waves | complete |
 | 28 | 028-header-tags-hook-catch-and-script-test-fixes/ | thirty-four confirmed code-standards deviations fixed, three waves; store path and classifier bugs included | complete |
+| 29 | 029-ci-shared-package-resolution/ | the four workflows red since the shared-parser adoption fixed: install step, tracked declaration, one link, regenerated mirrors | complete |
 
 ### Phase Transition Rules
 

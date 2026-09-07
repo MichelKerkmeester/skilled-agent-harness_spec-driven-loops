@@ -79,6 +79,8 @@ dist/
 .opencode/skills/system-spec-kit/shared/**/*.js
 .opencode/skills/system-spec-kit/shared/**/*.js.map
 .opencode/skills/system-spec-kit/shared/**/*.d.ts
+# The hand-written ambient declaration for js-yaml is source, not emitted output; the shared build fails without it on a clean checkout.
+!.opencode/skills/system-spec-kit/shared/js-yaml.d.ts
 .opencode/skills/system-spec-kit/shared/**/*.d.ts.map
 .opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.d.ts.map
 .opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.js.map
