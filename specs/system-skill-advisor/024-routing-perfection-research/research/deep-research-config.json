@@ -1,0 +1,68 @@
+{
+  "researchTopic": "Perfect skill routing across the fleet: why a phrase a hub's router advertises fails to reach that hub, and what would fix it",
+  "specFolder": "specs/system-skill-advisor/024-routing-perfection-research",
+  "maxIterations": 10,
+  "minIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "lineage": {
+    "sessionId": "rsr-2026-09-07T05-20-00Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "status": "running",
+  "createdAt": "2026-09-07T05:20:00.000Z",
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "promptFile": "specs/system-skill-advisor/024-routing-perfection-research/research/dispatch-prompt.md",
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-pi",
+          "model": "glm-5.3-flash",
+          "label": "glm",
+          "count": 1,
+          "iterations": 5,
+          "reasoningEffort": "max",
+          "timeoutSeconds": 900,
+          "liveTools": {
+            "webSearch": "inherit"
+          }
+        },
+        {
+          "kind": "cli-codex",
+          "model": "gpt-5.6-luna",
+          "label": "luna",
+          "count": 1,
+          "iterations": 5,
+          "reasoningEffort": "max",
+          "serviceTier": "fast",
+          "timeoutSeconds": 900,
+          "liveTools": {
+            "webSearch": "inherit"
+          }
+        }
+      ],
+      "assignment_model": "flat_pool",
+      "concurrency": 2,
+      "maxRetries": 5,
+      "lagCeilingMs": 300000,
+      "progressHeartbeatSeconds": 60
+    }
+  }
+}

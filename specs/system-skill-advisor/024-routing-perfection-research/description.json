@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/024-routing-perfection-research",
+  "description": "A hub's `ROUTER.md` advertises the phrases that reach it, and for 173 of 439 such phrases across six hubs that claim was false",
+  "keywords": [
+    "hub",
+    "router",
+    "advertises",
+    "phrases",
+    "reach",
+    "across",
+    "six",
+    "hubs",
+    "claim",
+    "false"
+  ],
+  "lastUpdated": "2026-09-07T12:44:23.300Z",
+  "specId": "024",
+  "folderSlug": "routing-perfection-research",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

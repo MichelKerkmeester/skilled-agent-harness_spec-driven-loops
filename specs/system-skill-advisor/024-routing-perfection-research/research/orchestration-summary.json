@@ -1,0 +1,47 @@
+{
+  "run_id": "1788757934344-y5f8cr",
+  "loop_type": "research",
+  "spec_folder": "specs/system-skill-advisor/024-routing-perfection-research",
+  "base_artifact_dir": "specs/system-skill-advisor/024-routing-perfection-research/research",
+  "total_cli_lineages": 2,
+  "stopped": true,
+  "stopped_signal": "SIGTERM",
+  "stopped_at_iso": "2026-09-07T05:54:07.556Z",
+  "status": "partial",
+  "total": 2,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 1,
+    "pending": 0,
+    "failed": 1
+  },
+  "results": [
+    {
+      "label": "glm",
+      "status": "running",
+      "started_at_iso": "2026-09-07T05:12:14.346Z"
+    },
+    {
+      "label": "luna",
+      "status": "rejected",
+      "started_at_iso": "2026-09-07T05:12:14.356Z",
+      "completed_at_iso": "2026-09-07T05:37:51.704Z",
+      "duration_ms": 1537348,
+      "error": {
+        "name": "Error",
+        "message": "lineage luna violated write containment: reverted 34 out-of-scope path(s): specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/observability-events.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/convergence-report.json, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deep-research-audit-ledger/frames/0000000000000001.frame, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deep-research-config.json, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deep-research-dashboard.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deep-research-effect-ledger/frames/0000000000000001.frame, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deep-research-state.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deep-research-strategy.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-001.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-002.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-003.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-004.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-005.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-006.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-007.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-008.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-009.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/deltas/iter-010.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/findings-registry.json, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/invocation-metadata.json, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-001.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-002.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-003.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-004.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-005.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-006.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-007.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-008.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-009.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/iterations/iteration-010.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/research.md, specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search/synthesis-record.json; recoverable patch: specs/system-skill-advisor/024-routing-perfection-research/research/lineages/luna/containment-reverted/1-2026-09-07T05-37-51.112Z.patch",
+        "failure_class": "exit",
+        "retry_verdict": "fatal",
+        "retryable": false,
+        "exit_code": 1,
+        "timed_out": false,
+        "salvage": {
+          "salvaged": 0,
+          "failed": 0
+        }
+      }
+    }
+  ]
+}
