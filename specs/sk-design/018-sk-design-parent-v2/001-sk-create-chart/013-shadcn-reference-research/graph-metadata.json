@@ -39,13 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      "research/lineages/luna/research.md",
+      "scratch/shadcn/chart.tsx"
     ],
     "entities": [
       {
@@ -76,6 +79,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "chart.tsx",
+        "kind": "code",
+        "path": "scratch/shadcn/chart.tsx",
         "source": "derived"
       },
       {
@@ -127,7 +142,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Freeze",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,13 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Our 26 chart forms were authored without reference to how the most-used open chart library in the same design tradition solves the same problems",
     "created_at": "2026-09-07T12:45:39Z",
-    "last_save_at": "2026-09-07T13:23:21.256Z",
+    "last_save_at": "2026-09-07T20:02:05.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +206,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:9013de6406fcbcdd4a8912f2df6be58907331cb96402faaef43d81a51a86e7c4",
+    "source_fingerprint": "sha256:8a55106cea82658ebba016bff5c59d8c085ee1d28b91b36023bffb2b7491aca7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f192d31d399abacf87fab85f2fed07d95e2419271d966797b867126d531fcc2b",
-      "plan.md": "f4c05cf1c7d5ccaccf24ccf136aac1f4927f20c2f31e621935e3039c53773b29",
-      "tasks.md": "a50dc59c070a17d7b4cc832fb465654bbf5f292eb526dc085c269a7e7c400174",
-      "implementation-summary.md": "4d97005ed852461508ff6f607b4c083d2569ea07a4c2e0cc102f51f34440e76e"
+      "spec.md": "587ccc1286c90c26a735a5206a2da602429ef9c67da9ab2e8055d7b406d8ef65",
+      "plan.md": "75c91f2329e83d23d4eac3ef1f5de91d3ab42ecc028174e546beccd406854689",
+      "tasks.md": "a6bb640be0583b198c5de5365188e8a48e299a9c3b1f5ef5e07e585786e9d262",
+      "implementation-summary.md": "917ec46341157227de661bf803bebe905c1e660907fad706ff74d303980e7ab4",
+      "research/research.md": "12dfc31416087301855ecb3a7ee155398879856c265fde7855f11fbfa98d41c9"
     },
     "last_active_at": null
   }

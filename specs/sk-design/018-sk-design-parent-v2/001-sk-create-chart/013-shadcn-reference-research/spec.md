@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: shadcn-reference-research [template:level-3/spec.md]"
+title: "Feature Specification: Phase 13: shadcn-reference-research"
 description: "Six research angles against a frozen local copy of shadcn's 70 charts, asking what transfers to a standalone-HTML corpus that bans React, Recharts and Tailwind outright. Decisions transfer, code never."
 trigger_phrases:
   - "feature specification"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 1: shadcn-reference-research
+# Feature Specification: Phase 13: shadcn-reference-research
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -33,13 +33,13 @@ shadcn ships 70 charts built on React, Recharts v3 and Tailwind. Our corpus is 2
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-07 |
 | **Branch** | `scaffold/013-shadcn-reference-research` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 13 of 13 |
 | **Predecessor** | 012-chart-hover-and-pointer-states |
-| **Successor** | None |
+| **Successor** | 014-shadcn-adoptions |
 | **Handoff Criteria** | Six angles answered with cited evidence, each finding sorted into enforceable or judgement |
 <!-- /ANCHOR:metadata -->
 
@@ -116,13 +116,16 @@ Six angles, one per iteration, in order.
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Six angles are answered in order, one iteration each, against the frozen corpus at `scratch/shadcn/` and the shipped corpus under `.opencode/skills/sk-design/sk-design-chart/`, with every claim cited to a file and line |
+| REQ-002 | Every finding is sorted into implementable today, needs a corpus change, or per-template judgement, and every shadcn decision carries a verdict: adopt the idea, keep ours, or eliminate with a reason |
+| REQ-003 | No angle wraps, vendors or ports Recharts, and no template or checker rule changes in this phase |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-004 | Colour is compared by measurement, not adjectives: adjacent hue gap, contrast on both grounds and simulated colour-vision deficiency separation for both palettes |
+| REQ-005 | Findings that need a browser to prove are reported as unknown rather than inferred from source |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -133,8 +136,8 @@ Six angles, one per iteration, in order.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: `research/research.md` holds one section per angle, six in total, each closing with ranked decisions tagged implementable today or needs a corpus change.
+- **SC-002**: A successor phase exists that takes the implementable decisions as its scope, so the research is consumed rather than filed.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -155,25 +158,25 @@ Six angles, one per iteration, in order.
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: Each angle is one bounded iteration under the twelve-call cap the research loop enforces.
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: The frozen corpus stays under `scratch/`, gitignored; upstream source is read and never vendored into the skill.
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: Every claim cites a file and line so a reader can re-verify it against the frozen copy.
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: an angle whose evidence is absent reports the absence, as angle 3 did for the browser walk.
+- Maximum length: the 70-file corpus is classified by form, never enumerated file by file.
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- External service failure: none; the corpus is local and frozen.
+- Network timeout: not applicable; nothing is fetched.
 
 ---
 
@@ -181,12 +184,12 @@ Six angles, one per iteration, in order.
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | 12/25 | Files: 71 read, 1 written; Systems: 1 |
+| Risk | 5/25 | Auth: N, API: N, Breaking: N |
+| Research | 18/20 | Six angles, measured colour comparison |
+| Multi-Agent | 5/15 | One lineage |
+| Coordination | 6/15 | Depends on siblings 007 and 008 |
+| **Total** | **46/100** | **Level 3** |
 
 ---
 
@@ -194,23 +197,24 @@ Six angles, one per iteration, in order.
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | An angle counts shadcn's 70 files as 70 forms and concludes the corpus is 44 short | M | M | Section 3 names the miscount; angle 1 classifies by reader question |
+| R-002 | Runtime claims are made without a browser | M | H | Angle 3 and 6 report browser-dependent behaviour as unknown |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: Know what to adopt (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** chart-corpus maintainer, **I want** each shadcn decision judged against ours with evidence, **so that** the next phase implements ideas and not preferences.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: Know what stays (Priority: P1)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** chart author, **I want** the deliberate omissions (radar, pie, natural curves) recorded with their reasons, **so that** a future request for them meets a documented answer.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
@@ -218,8 +222,12 @@ Six angles, one per iteration, in order.
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+Carried into `014-shadcn-adoptions` as operator decisions, since each needs a policy before a checker assertion means anything:
+
+- Which candidate forms does the product demand, rather than shadcn's variant inventory suggest?
+- Which colour-vision-deficiency model and threshold should become policy, if any?
+- Do focus order, Enter/Space handlers, pointer reach and card values pass at runtime once a browser is available?
+- Is semantic metadata worth its maintenance cost for domain, curve, null and tick checks and for arbitrary retargeting?
 <!-- /ANCHOR:questions -->
 
 ---
@@ -235,17 +243,3 @@ Six angles, one per iteration, in order.
 
 
 
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

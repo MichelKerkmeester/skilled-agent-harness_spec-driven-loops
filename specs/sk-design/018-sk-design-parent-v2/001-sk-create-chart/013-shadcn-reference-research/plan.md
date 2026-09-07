@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 1: shadcn-reference-research [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 13: shadcn-reference-research"
+description: "Six research angles run as one deep-research lineage against a frozen local shadcn corpus, producing cited findings and a sorted decision list; no template or checker changes."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown findings over TSX and HTML sources |
+| **Framework** | The deep-research loop, one iteration per angle |
+| **Storage** | `research/` under this packet |
+| **Testing** | Citation check of every claim; `check-corpus.cjs` baseline read, not changed |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Freeze shadcn's 70 charts and its chart machinery under `scratch/shadcn/`, then run six bounded angles in order, each reading the frozen copy and the shipped corpus and closing with ranked decisions tagged implementable today or needs a corpus change. The lineage record is the deliverable; the successor phase consumes it.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Research lineage: state, strategy, per-iteration findings and a final synthesis.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Frozen corpus**: `scratch/shadcn/chart.tsx` and 70 registry charts, read never vendored
+- **Lineage record**: `research/lineages/luna/`, six iterations plus the synthesis in `research.md`
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each iteration reads both corpora, writes its findings with citations, and the synthesis ranks every decision.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +73,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `assets/templates/*.html` | the shipped corpus | unchanged | read only, by contract |
+| `scripts/check-corpus.cjs` | the binding contract | unchanged | baseline `RESULT: PASSED`, 35 files, 26 forms |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +99,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Citation | every claim in `research.md` | file and line present, checked by reading |
+| Integration | none; nothing under the chart skill changes | not applicable |
+| Manual | reading each angle against its cited lines | the frozen corpus |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +111,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| The frozen shadcn corpus under `scratch/shadcn/` | External source, local copy | Green | An angle cannot cite what it claims |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +119,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: none; the phase writes only research records
+- **Procedure**: delete the lineage directory; nothing else moved
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,9 +152,9 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
+| Setup | Low | one extraction |
+| Core Implementation | Med | six bounded iterations |
+| Verification | Low | citation reading |
 | **Total** | | **[e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
@@ -164,15 +164,15 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created (if data changes)
+- [x] Feature flag configured
+- [x] Monitoring alerts set
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Nothing to disable; the corpus was not changed
+2. Remove the lineage directory if its findings must be withdrawn
+3. `check-corpus.cjs` still prints RESULT: PASSED
+4. Not user-facing
 
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
