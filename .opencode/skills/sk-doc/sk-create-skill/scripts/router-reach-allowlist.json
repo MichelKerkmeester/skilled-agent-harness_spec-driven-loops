@@ -69,22 +69,10 @@
       "reason": "Awaiting an operator ruling: 'request a review' is deep-loop's command surface, 'review this request' is sk-code's. Both defensible."
     },
     {
-      "phrase": "browser debug",
-      "declaredBy": "mcp-tooling",
-      "wonBy": "sk-code",
-      "reason": "Awaiting an operator ruling: Chrome DevTools MCP versus debugging code in a browser. Both defensible."
-    },
-    {
       "phrase": "create agent",
       "declaredBy": "sk-doc",
       "wonBy": "create:agent",
       "reason": "Not a defect. A command surface winning a phrase that names that command is correct routing."
-    },
-    {
-      "phrase": "obsidian plugin",
-      "declaredBy": "sk-code",
-      "wonBy": "mcp-tooling",
-      "reason": "sk-code declares this exactly plus three narrower variants; mcp-tooling declares only obsidian, obsidian vault and obsidian mcp and wins on bare-token overlap by a deterministic 0.004134. Both hubs own a real Obsidian surface: sk-code-obsidian builds a plugin, mcp-obsidian drives the vault. Building a plugin reads as code work, so sk-code is the likely correct owner, but the fix is not a vocabulary edit because sk-code already declares the phrase and mcp-tooling's obsidian vocabulary is legitimate. Awaiting a ruling."
     }
   ]
 }
