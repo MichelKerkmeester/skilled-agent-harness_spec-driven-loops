@@ -103,11 +103,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] All five research children are Complete with ten iterations each and a confirmed-findings.md
-- [ ] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
-- [ ] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
-- [ ] The trigger index regenerates identically with zero malformed documents
-- [ ] The parent goal.md was resent in chat after every change to its durable slice
+- [x] All five research children are Complete with ten iterations each and a confirmed-findings.md
+- [x] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
+- [x] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
+- [x] The trigger index regenerates identically with zero malformed documents
+- [x] The parent goal.md was resent in chat after every change to its durable slice
 <!-- /ANCHOR:completion -->
 
 ---
@@ -147,4 +147,5 @@ and findings belong here.
 | Child 011 appended to the binding | Durable slice changed; parent resent in chat. |
 | Lane 005 measured its worktree twice | The empty adapter directory and the fingerprint collision were worktree 046 artifacts; both re-measured in the main checkout and recorded in the lane's confirmed findings. |
 | The command surface outranked the lane's P1 rows | The eight /speckit:* assets still scaffolded the retired checklist; found by the census, fixed in 011. |
+| Program closed | Lanes 001 to 005 Complete with 10 iterations and a confirmed-findings.md each; children 006 to 011 Complete; `validate.sh --strict --recursive` printed RESULT: PASSED twelve times; the trigger index regenerated twice to the same hash with zero malformed documents; the durable slice was resent after the 011 binding change. |
 <!-- /ANCHOR:log -->
