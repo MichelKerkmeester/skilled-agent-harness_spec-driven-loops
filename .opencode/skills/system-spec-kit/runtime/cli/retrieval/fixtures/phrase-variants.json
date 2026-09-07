@@ -1,5 +1,5 @@
 {
-  "manifestHash": "52871008b82d1355ca498ba6c01acd34962541e7136ca168c217959327b2c390",
+  "manifestHash": "0f6043c4f6f71b5c589f50ab2347094564ab2784bb9413ff2caabcc347bf98da",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8796,6 +8796,9 @@
     "acceptance criteria decisions": [
       "acceptance criteria decisions"
     ],
+    "acceptance criteria enforcement": [
+      "acceptance criteria enforcement"
+    ],
     "acceptance criteria goal": [
       "acceptance criteria goal"
     ],
@@ -8804,6 +8807,9 @@
     ],
     "acceptance criteria required level two": [
       "acceptance-criteria required level two"
+    ],
+    "acceptance criteria step": [
+      "acceptance criteria step"
     ],
     "acceptance criteria summary": [
       "acceptance criteria summary"
@@ -9077,9 +9083,6 @@
     ],
     "adaptive deep loop allocation tasks": [
       "adaptive deep-loop allocation tasks"
-    ],
-    "adaptive fusion": [
-      "adaptive fusion"
     ],
     "add": [
       "add"
@@ -14193,6 +14196,12 @@
     "batch cache before offline use": [
       "batch cache before offline use"
     ],
+    "batch config removal": [
+      "batch config removal"
+    ],
+    "batch constants removed": [
+      "batch constants removed"
+    ],
     "batch extract structure": [
       "batch extract structure"
     ],
@@ -15689,6 +15698,9 @@
     ],
     "broad trigger design": [
       "broad trigger design"
+    ],
+    "broaden not fork": [
+      "broaden not fork"
     ],
     "broader default excludes": [
       "broader default excludes"
@@ -18707,9 +18719,6 @@
     "chunk information into groups": [
       "chunk information into groups"
     ],
-    "chunk markdown": [
-      "chunk markdown"
-    ],
     "chunk overlap env override": [
       "chunk overlap env override"
     ],
@@ -20766,6 +20775,12 @@
     "cli output wrapper seam": [
       "CLI output wrapper seam"
     ],
+    "cli package removal list reproduction": [
+      "cli package removal list reproduction"
+    ],
+    "cli package residue removal": [
+      "cli package residue removal"
+    ],
     "cli parent decision gate": [
       "cli parent decision gate"
     ],
@@ -21063,6 +21078,18 @@
     "cli referrer sweep tasks": [
       "cli referrer sweep tasks"
     ],
+    "cli residue removal criteria": [
+      "cli residue removal criteria"
+    ],
+    "cli residue removal plan": [
+      "cli residue removal plan"
+    ],
+    "cli residue removal summary": [
+      "cli residue removal summary"
+    ],
+    "cli residue removal tasks": [
+      "cli residue removal tasks"
+    ],
     "cli roster": [
       "cli roster"
     ],
@@ -21077,6 +21104,9 @@
     ],
     "cli router implementation tasks": [
       "cli router implementation tasks"
+    ],
+    "cli runtime confirmed findings": [
+      "cli runtime confirmed findings"
     ],
     "cli runtime dispatch": [
       "cli runtime dispatch"
@@ -24841,6 +24871,9 @@
     "command surface benchmark methodology": [
       "command surface benchmark methodology"
     ],
+    "command surface contract realignment": [
+      "command surface contract realignment"
+    ],
     "command surface fan out synthesis": [
       "command surface fan-out synthesis"
     ],
@@ -24853,8 +24886,23 @@
     "command surface kebab verification": [
       "command surface kebab verification"
     ],
+    "command surface realignment criteria": [
+      "command surface realignment criteria"
+    ],
+    "command surface realignment plan": [
+      "command surface realignment plan"
+    ],
+    "command surface realignment summary": [
+      "command surface realignment summary"
+    ],
+    "command surface realignment tasks": [
+      "command surface realignment tasks"
+    ],
     "command surface remediation phases": [
       "command surface remediation phases"
+    ],
+    "command surface retired checklist": [
+      "command surface retired checklist"
     ],
     "command surface router awareness remediation": [
       "command surface router awareness remediation"
@@ -26646,9 +26694,6 @@
     "containment violation": [
       "containment_violation"
     ],
-    "contamination check": [
-      "contamination check"
-    ],
     "contamination lint cjs": [
       "contamination-lint.cjs"
     ],
@@ -26810,9 +26855,6 @@
     ],
     "context density": [
       "context density"
-    ],
-    "context envelope": [
-      "context envelope"
     ],
     "context filename verification": [
       "context filename verification"
@@ -27076,6 +27118,9 @@
     "contract and threat baseline": [
       "contract and threat baseline"
     ],
+    "contract census tasks": [
+      "contract census tasks"
+    ],
     "contract compatibility tasks": [
       "contract compatibility tasks"
     ],
@@ -27150,6 +27195,9 @@
     ],
     "contract set corpus shape": [
       "contract set corpus shape"
+    ],
+    "contract single authority": [
+      "contract single authority"
     ],
     "contract versus enforcement drift": [
       "contract versus enforcement drift"
@@ -28069,6 +28117,15 @@
     ],
     "coverage gate": [
       "coverage gate"
+    ],
+    "coverage graph cluster dead": [
+      "coverage graph cluster dead"
+    ],
+    "coverage graph cluster removal": [
+      "coverage graph cluster removal"
+    ],
+    "coverage graph copy removed": [
+      "coverage graph copy removed"
     ],
     "coverage graph coverage graph fuzzy merge": [
       "coverage graph coverage-graph fuzzy merge"
@@ -31154,6 +31211,9 @@
     "database open close tests": [
       "database open close tests"
     ],
+    "database path theater": [
+      "database path theater"
+    ],
     "database ports": [
       "database ports"
     ],
@@ -31421,6 +31481,15 @@
     "dead field deletes tasks": [
       "dead field deletes tasks"
     ],
+    "dead file census tasks": [
+      "dead file census tasks"
+    ],
+    "dead flag removal plan": [
+      "dead flag removal plan"
+    ],
+    "dead half census tasks": [
+      "dead half census tasks"
+    ],
     "dead man switch ioc scan": [
       "dead-man switch IOC scan"
     ],
@@ -31633,6 +31702,9 @@
     ],
     "decisions system design": [
       "decisions system design"
+    ],
+    "deck review ordering": [
+      "deck review ordering"
     ],
     "declaration module header alignment": [
       "declaration module header alignment"
@@ -35837,9 +35909,6 @@
     "degraded fanout result implementation": [
       "degraded fanout result implementation"
     ],
-    "degraded mode contract": [
-      "degraded mode contract"
-    ],
     "degraded readiness envelope parity": [
       "degraded readiness envelope parity"
     ],
@@ -36199,6 +36268,9 @@
     ],
     "deprecated rows ranking": [
       "deprecated rows ranking"
+    ],
+    "deprecated spec kit feature flags": [
+      "deprecated spec kit feature flags"
     ],
     "deprecated tier bm25 recall": [
       "deprecated tier bm25 recall"
@@ -40323,6 +40395,9 @@
     "drift gate inert nine in ten": [
       "drift gate inert nine in ten"
     ],
+    "drift guard scripts path fixed": [
+      "drift guard scripts path fixed"
+    ],
     "drift guards delivered summary": [
       "drift guards delivered summary"
     ],
@@ -41524,6 +41599,9 @@
     "embedding provider selection": [
       "embedding provider selection"
     ],
+    "embedding provider stack": [
+      "embedding provider stack"
+    ],
     "embedding provider use after free gate": [
       "embedding provider use-after-free gate"
     ],
@@ -41719,6 +41797,15 @@
     "embeddings factory": [
       "embeddings factory"
     ],
+    "embeddings monolith gone": [
+      "embeddings monolith gone"
+    ],
+    "embeddings monolith removal": [
+      "embeddings monolith removal"
+    ],
+    "embeddings monolith removed": [
+      "embeddings monolith removed"
+    ],
     "embeddings p1 p2 findings": [
       "embeddings p1 p2 findings"
     ],
@@ -41730,9 +41817,6 @@
     ],
     "embeddings provider auto cascade ollama": [
       "embeddings provider auto cascade ollama"
-    ],
-    "embeddings trigger extractor shared": [
-      "embeddings trigger extractor shared"
     ],
     "embeddings ts 774 dead code removal": [
       "embeddings.ts:774 dead code removal"
@@ -42196,11 +42280,20 @@
     "env allowlist plan": [
       "env allowlist plan"
     ],
+    "env census tasks": [
+      "env census tasks"
+    ],
     "env config behavior plan": [
       "env config behavior plan"
     ],
     "env config implementation summary": [
       "env config implementation summary"
+    ],
+    "env dead flags summary": [
+      "env dead flags summary"
+    ],
+    "env dead flags tasks": [
+      "env dead flags tasks"
     ],
     "env documentation audit": [
       "env documentation audit"
@@ -42213,6 +42306,9 @@
     ],
     "env documentation audit tasks": [
       "env documentation audit tasks"
+    ],
+    "env example dead flags": [
+      "env example dead flags"
     ],
     "env flag no version number": [
       "env flag no version number"
@@ -42235,6 +42331,9 @@
     "env reference md missing flags": [
       "ENV_REFERENCE.md missing flags"
     ],
+    "env reference pruning": [
+      "env reference pruning"
+    ],
     "env reference remediation plan": [
       "ENV_REFERENCE remediation plan"
     ],
@@ -42252,6 +42351,9 @@
     ],
     "env snapshot restore vitest": [
       "env snapshot restore vitest"
+    ],
+    "env template census plan": [
+      "env template census plan"
     ],
     "envelope double emission": [
       "envelope double emission"
@@ -42273,6 +42375,9 @@
     ],
     "envelope single serialization": [
       "envelope single serialization"
+    ],
+    "environment variable census": [
+      "environment variable census"
     ],
     "eperm launcher lease": [
       "EPERM launcher lease"
@@ -47313,9 +47418,6 @@
     "frontmatter probe verification": [
       "frontmatter probe verification"
     ],
-    "frontmatter quality flags": [
-      "frontmatter quality flags"
-    ],
     "frontmatter reference forms": [
       "frontmatter reference forms"
     ],
@@ -48913,6 +49015,15 @@
     "goal file addon": [
       "goal file addon"
     ],
+    "goal flag criterion": [
+      "goal flag criterion"
+    ],
+    "goal flag smoke test": [
+      "goal flag smoke test"
+    ],
+    "goal flag tasks": [
+      "goal flag tasks"
+    ],
     "goal hook capability matrix": [
       "goal hook capability matrix"
     ],
@@ -49878,6 +49989,9 @@
     "grep convention research": [
       "grep convention research"
     ],
+    "grep convention retrofit": [
+      "grep convention retrofit"
+    ],
     "grep first retrieval": [
       "grep-first retrieval"
     ],
@@ -50350,6 +50464,9 @@
     "headless brat workflow": [
       "headless BRAT workflow"
     ],
+    "headless colour scheme": [
+      "headless colour scheme"
+    ],
     "headless notesmd cli scenarios": [
       "headless notesmd-cli scenarios"
     ],
@@ -50559,6 +50676,18 @@
     ],
     "held out routing corpus approach": [
       "held-out routing corpus approach"
+    ],
+    "help printer criterion": [
+      "help printer criterion"
+    ],
+    "help printer fixed": [
+      "help printer fixed"
+    ],
+    "help printer tasks": [
+      "help printer tasks"
+    ],
+    "help printer test": [
+      "help printer test"
     ],
     "hermetic code graph db cleanup": [
       "hermetic code graph db cleanup"
@@ -52743,9 +52872,6 @@
     ],
     "indeterminate mutation": [
       "indeterminate mutation"
-    ],
-    "index drift remediation": [
-      "index drift remediation"
     ],
     "index fingerprint": [
       "index fingerprint"
@@ -55289,6 +55415,12 @@
     "lazy addons": [
       "lazy addons"
     ],
+    "lazy addons documented": [
+      "lazy addons documented"
+    ],
+    "lazy addons flag": [
+      "lazy addons flag"
+    ],
     "lazy init process exit daemon": [
       "lazy init process exit daemon"
     ],
@@ -55419,6 +55551,9 @@
     "leaf sentinels": [
       "leaf sentinels"
     ],
+    "leaf surface boundary": [
+      "leaf surface boundary"
+    ],
     "leaf telemetry": [
       "leaf telemetry"
     ],
@@ -55463,9 +55598,6 @@
     ],
     "lean trio shipped": [
       "lean trio shipped"
-    ],
-    "learned combiner": [
-      "learned combiner"
     ],
     "learned feedback expiry cap": [
       "learned feedback expiry cap"
@@ -58377,9 +58509,6 @@
     "markdown agent sync tasks": [
       "markdown agent sync tasks"
     ],
-    "markdown chunker": [
-      "markdown chunker"
-    ],
     "markdown delivery standards": [
       "markdown delivery standards"
     ],
@@ -60956,6 +61085,9 @@
     "memory handback protocol": [
       "memory handback protocol"
     ],
+    "memory harness": [
+      "memory harness"
+    ],
     "memory health autorepair cleanfiles": [
       "memory_health autoRepair cleanFiles"
     ],
@@ -61436,9 +61568,6 @@
     "memory quality plan": [
       "memory quality plan"
     ],
-    "memory quality rates": [
-      "memory quality rates"
-    ],
     "memory quality remediation": [
       "memory quality remediation"
     ],
@@ -61859,6 +61988,9 @@
     ],
     "memory sufficiency": [
       "memory sufficiency"
+    ],
+    "memory sufficiency gate": [
+      "memory sufficiency gate"
     ],
     "memory surface census": [
       "memory surface census"
@@ -62849,9 +62981,6 @@
     ],
     "mmr only stage 3": [
       "mmr only stage 3"
-    ],
-    "mmr reranker": [
-      "MMR reranker"
     ],
     "mobbin": [
       "mobbin"
@@ -66958,6 +67087,9 @@
     "offline cli smoke": [
       "offline CLI smoke"
     ],
+    "offline correction overlay": [
+      "offline correction overlay"
+    ],
     "offline correction overlay build approach": [
       "offline correction overlay build approach"
     ],
@@ -67976,8 +68108,8 @@
     "operator view": [
       "operator view"
     ],
-    "ops runbook": [
-      "ops runbook"
+    "ops helpers": [
+      "ops helpers"
     ],
     "opt in 5 dimension scorer": [
       "opt-in 5-dimension scorer"
@@ -68011,6 +68143,9 @@
     ],
     "optimize plugin references research": [
       "optimize plugin references research"
+    ],
+    "optimizer adoption decision": [
+      "optimizer adoption decision"
     ],
     "optimizer invariant group": [
       "optimizer invariant group"
@@ -68539,6 +68674,9 @@
     ],
     "overengineering audit": [
       "overengineering audit"
+    ],
+    "overengineering confirmed findings": [
+      "overengineering confirmed findings"
     ],
     "overengineering removal waves": [
       "overengineering removal waves"
@@ -70326,6 +70464,9 @@
     "per surface component tokens": [
       "per-surface component tokens"
     ],
+    "per surface differences": [
+      "per-surface differences"
+    ],
     "per surface gates": [
       "per-surface gates"
     ],
@@ -71820,6 +71961,9 @@
     "phase child naming": [
       "phase child naming"
     ],
+    "phase child regex unification": [
+      "phase child regex unification"
+    ],
     "phase child scaffolded level two": [
       "phase child scaffolded level two"
     ],
@@ -73310,9 +73454,6 @@
     "placeholder pattern detection": [
       "placeholder pattern detection"
     ],
-    "placeholder rate": [
-      "placeholder rate"
-    ],
     "placeholder rule gap": [
       "placeholder rule gap"
     ],
@@ -74060,9 +74201,6 @@
     ],
     "polyform noncommercial licence": [
       "polyform noncommercial licence"
-    ],
-    "populate template": [
-      "populate template"
     ],
     "port 8765 model revision canonical": [
       "port 8765 model revision canonical"
@@ -75155,6 +75293,9 @@
     ],
     "process reaper classification plan": [
       "process reaper classification plan"
+    ],
+    "process sweep": [
+      "process sweep"
     ],
     "process sweep apply path": [
       "process sweep apply path"
@@ -76339,9 +76480,6 @@
     "quality control transformation rename": [
       "quality control transformation rename"
     ],
-    "quality extractors": [
-      "quality extractors"
-    ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
     ],
@@ -76365,9 +76503,6 @@
     ],
     "quality guards": [
       "quality guards"
-    ],
-    "quality kpi": [
-      "quality kpi"
     ],
     "quality level tiers": [
       "quality level tiers"
@@ -76398,9 +76533,6 @@
     ],
     "quality review before indexing": [
       "quality review before indexing"
-    ],
-    "quality score parsing": [
-      "quality score parsing"
     ],
     "quality scorer": [
       "quality scorer"
@@ -76732,6 +76864,9 @@
     "rank council blockers after max rounds": [
       "rank council blockers after max rounds"
     ],
+    "rank fusion primitives": [
+      "rank fusion primitives"
+    ],
     "rank memories": [
       "rank memories"
     ],
@@ -76767,9 +76902,6 @@
     ],
     "ranking filter bypass changelog": [
       "ranking filter bypass changelog"
-    ],
-    "ranking matrix math": [
-      "ranking matrix math"
     ],
     "rankingsignals array of strings": [
       "rankingSignals array of strings"
@@ -77491,6 +77623,9 @@
     "real scorer fenced rollback plan": [
       "real scorer fenced rollback plan"
     ],
+    "real tree census": [
+      "real tree census"
+    ],
     "real user request baseline": [
       "real user request baseline"
     ],
@@ -78072,6 +78207,9 @@
     ],
     "reference asset template alignment": [
       "reference asset template alignment"
+    ],
+    "reference census before deletion": [
+      "reference census before deletion"
     ],
     "reference checker completeness": [
       "reference checker completeness"
@@ -80755,6 +80893,9 @@
     "research known context capture": [
       "research known context capture"
     ],
+    "research lane closed": [
+      "research lane closed"
+    ],
     "research lane execution plan": [
       "research lane execution plan"
     ],
@@ -81055,6 +81196,9 @@
     "residual roadmap synthesis": [
       "residual roadmap synthesis"
     ],
+    "residue census criterion": [
+      "residue census criterion"
+    ],
     "residue cleanup tasks": [
       "residue cleanup tasks"
     ],
@@ -81253,6 +81397,9 @@
     ],
     "resource map optimization": [
       "resource map optimization"
+    ],
+    "resource map optional addon": [
+      "resource map optional addon"
     ],
     "resource map plan": [
       "resource map plan"
@@ -81656,6 +81803,9 @@
     "retired capability still documented": [
       "retired capability still documented"
     ],
+    "retired checklist command workflows": [
+      "retired checklist command workflows"
+    ],
     "retired compiled routing paths catalog": [
       "retired compiled routing paths catalog"
     ],
@@ -81913,9 +82063,6 @@
     ],
     "retrieval substrate tasks": [
       "retrieval substrate tasks"
-    ],
-    "retrieval trace": [
-      "retrieval trace"
     ],
     "retrieval work branch decision arc 011": [
       "RETRIEVAL_WORK branch decision arc 011"
@@ -85508,6 +85655,9 @@
     "scorer projection": [
       "scorer projection"
     ],
+    "scorer replay corpus": [
+      "scorer replay corpus"
+    ],
     "scorer rewrite plan": [
       "scorer rewrite plan"
     ],
@@ -85643,6 +85793,9 @@
     ],
     "screenshot coverage checklist obsidian": [
       "screenshot coverage checklist obsidian"
+    ],
+    "screenshot decisions": [
+      "screenshot decisions"
     ],
     "screenshot diff regression storybook": [
       "screenshot diff regression storybook"
@@ -86342,9 +86495,6 @@
     ],
     "self healing model consolidation changelog": [
       "self-healing-model-consolidation changelog"
-    ],
-    "self healing scripts": [
-      "self-healing scripts"
     ],
     "self loop edge rejection": [
       "self-loop edge rejection"
@@ -87186,6 +87336,9 @@
     "shadow planner task list": [
       "shadow planner task list"
     ],
+    "shadow promotion gate": [
+      "shadow promotion gate"
+    ],
     "shadow promotion zero delta": [
       "shadow promotion zero-delta"
     ],
@@ -87230,6 +87383,9 @@
     ],
     "shared adr body": [
       "shared ADR body"
+    ],
+    "shared algorithms": [
+      "shared algorithms"
     ],
     "shared artifact writer tasks": [
       "shared artifact writer tasks"
@@ -87311,6 +87467,9 @@
     ],
     "shared daemon suite runner summary": [
       "shared daemon suite runner summary"
+    ],
+    "shared dead half census": [
+      "shared dead half census"
     ],
     "shared deep improvement packet no collapse": [
       "shared deep-improvement packet no-collapse"
@@ -87462,6 +87621,12 @@
     "shared output wrapper seam": [
       "shared output wrapper seam"
     ],
+    "shared package confirmed findings": [
+      "shared package confirmed findings"
+    ],
+    "shared package dead half removal": [
+      "shared package dead half removal"
+    ],
     "shared package dependency edge": [
       "shared package dependency edge"
     ],
@@ -87505,6 +87670,9 @@
     "shared procedure card tasks": [
       "shared procedure card tasks"
     ],
+    "shared readme rewrite": [
+      "shared readme rewrite"
+    ],
     "shared receipt evidence digest": [
       "shared receipt evidence digest"
     ],
@@ -87531,6 +87699,18 @@
     ],
     "shared refs reorg tasks": [
       "shared refs reorg tasks"
+    ],
+    "shared removal criteria": [
+      "shared removal criteria"
+    ],
+    "shared removal plan": [
+      "shared removal plan"
+    ],
+    "shared removal summary": [
+      "shared removal summary"
+    ],
+    "shared removal tasks": [
+      "shared removal tasks"
     ],
     "shared rerank deduplication": [
       "shared rerank deduplication"
@@ -94794,6 +94974,9 @@
     "spec doc health bypass tasks": [
       "spec doc health bypass tasks"
     ],
+    "spec doc health checks": [
+      "spec doc health checks"
+    ],
     "spec doc health save plan": [
       "spec doc health save plan"
     ],
@@ -95019,6 +95202,18 @@
     "spec kit catalog reconciliation": [
       "spec-kit catalog reconciliation"
     ],
+    "spec kit check workflow": [
+      "spec kit check workflow"
+    ],
+    "spec kit check workflow plan": [
+      "spec kit check workflow plan"
+    ],
+    "spec kit check workflow shipped": [
+      "spec kit check workflow shipped"
+    ],
+    "spec kit check workflow tasks": [
+      "spec kit check workflow tasks"
+    ],
     "spec kit code graph decoupling": [
       "spec kit code graph decoupling"
     ],
@@ -95200,6 +95395,9 @@
     ],
     "spec kit shared file dependency edge": [
       "@spec-kit/shared file dependency edge"
+    ],
+    "spec kit shared package": [
+      "spec kit shared package"
     ],
     "spec kit skill advisor bridge": [
       "spec kit skill advisor bridge"
@@ -95526,9 +95724,6 @@
     ],
     "spec template optimizations plan": [
       "spec template optimizations plan"
-    ],
-    "spec template rendering": [
-      "spec template rendering"
     ],
     "spec tree regroup plan": [
       "spec tree regroup plan"
@@ -96022,9 +96217,6 @@
     "split command refactor": [
       "split command refactor"
     ],
-    "split into blocks": [
-      "split into blocks"
-    ],
     "split oversized sk code references": [
       "split oversized sk-code references"
     ],
@@ -96179,9 +96371,6 @@
     "stage 0 tasks": [
       "stage 0 tasks"
     ],
-    "stage 2 ranking": [
-      "stage 2 ranking"
-    ],
     "stage 3 generated json migration": [
       "stage 3 generated json migration"
     ],
@@ -96208,6 +96397,9 @@
     ],
     "stage b writer compile path": [
       "stage b writer compile path"
+    ],
+    "stage by object id": [
+      "stage by object id"
     ],
     "stage frontmatter injection for routing holdout negative": [
       "stage frontmatter injection for routing holdout negative"
@@ -96392,6 +96584,9 @@
     "stale embedder references audit": [
       "stale embedder references audit"
     ],
+    "stale env template": [
+      "stale env template"
+    ],
     "stale exclusion audit implementation status": [
       "stale exclusion audit implementation status"
     ],
@@ -96551,6 +96746,9 @@
     ],
     "stale writer rejection evidence": [
       "stale writer rejection evidence"
+    ],
+    "staleness checker repaired": [
+      "staleness checker repaired"
     ],
     "staleness detection": [
       "staleness detection"
@@ -97556,9 +97754,6 @@
     "structural validation rules": [
       "structural validation rules"
     ],
-    "structure aware chunker": [
-      "structure aware chunker"
-    ],
     "structured council recovery context": [
       "structured council recovery context"
     ],
@@ -98285,6 +98480,9 @@
     "surface comparison outcome": [
       "surface comparison outcome"
     ],
+    "surface decisions": [
+      "surface decisions"
+    ],
     "surface design plan reading order": [
       "surface design plan reading order"
     ],
@@ -98506,6 +98704,9 @@
     ],
     "symbol bm25 add idempotency": [
       "symbol bm25 add idempotency"
+    ],
+    "symbolic template names": [
+      "symbolic template names"
     ],
     "symlink attack temp file fix": [
       "symlink attack temp file fix"
@@ -99926,8 +100127,17 @@
       "telemetry and process verification harness",
       "telemetry-and-process-verification-harness"
     ],
-    "telemetry drift drill": [
-      "telemetry drift drill"
+    "telemetry directory criterion": [
+      "telemetry directory criterion"
+    ],
+    "telemetry directory export": [
+      "telemetry directory export"
+    ],
+    "telemetry directory export shipped": [
+      "telemetry directory export shipped"
+    ],
+    "telemetry directory tasks": [
+      "telemetry directory tasks"
     ],
     "telemetry first runtime wiring": [
       "telemetry first runtime wiring"
@@ -99937,6 +100147,9 @@
     ],
     "telemetry measurement run": [
       "telemetry measurement run"
+    ],
+    "telemetry store directory": [
+      "telemetry store directory"
     ],
     "telemetryexportpath harness option": [
       "telemetryExportPath harness option"
@@ -99964,6 +100177,9 @@
     ],
     "template alignment 031 036": [
       "template alignment 031-036"
+    ],
+    "template alignment criteria": [
+      "template alignment criteria"
     ],
     "template alignment plan": [
       "template alignment plan"
@@ -99994,6 +100210,9 @@
     ],
     "template cleanup": [
       "template cleanup"
+    ],
+    "template cleanup tasks": [
+      "template cleanup tasks"
     ],
     "template compatibility policy": [
       "template compatibility policy"
@@ -100066,6 +100285,9 @@
     ],
     "template context optimization tasks": [
       "template context optimization tasks"
+    ],
+    "template contract alignment": [
+      "template contract alignment"
     ],
     "template contract divergence plan": [
       "template contract divergence plan"
@@ -100259,9 +100481,6 @@
     "template reduction verification": [
       "template reduction verification"
     ],
-    "template renderer": [
-      "template renderer"
-    ],
     "template rendering": [
       "template rendering"
     ],
@@ -100318,6 +100537,9 @@
     ],
     "template system and acceptance criteria research lane": [
       "template system and acceptance criteria research lane"
+    ],
+    "template system confirmed findings": [
+      "template system confirmed findings"
     ],
     "template system explained": [
       "template system explained"
@@ -100781,6 +101003,9 @@
     "three p1 deep review findings": [
       "three P1 deep-review findings"
     ],
+    "three package rebuild": [
+      "three package rebuild"
+    ],
     "three phase write split memory": [
       "three-phase write split memory"
     ],
@@ -100993,9 +101218,6 @@
     ],
     "token budget truncation floor": [
       "token budget truncation floor"
-    ],
-    "token chunking": [
-      "token chunking"
     ],
     "token efficient navigation": [
       "token efficient navigation"
@@ -103231,6 +103453,9 @@
     "validate folder": [
       "validate folder"
     ],
+    "validate help lists every rule": [
+      "validate help lists every rule"
+    ],
     "validate memory quality dominance threshold": [
       "validate-memory-quality dominance threshold"
     ],
@@ -103488,6 +103713,9 @@
     ],
     "validator first template dedup": [
       "validator-first template dedup"
+    ],
+    "validator help printer hidden rules": [
+      "validator help printer hidden rules"
     ],
     "validator hygiene": [
       "validator hygiene"
@@ -104041,6 +104269,9 @@
     "version mismatch recovery": [
       "version mismatch recovery"
     ],
+    "version parity test": [
+      "version parity test"
+    ],
     "version skew reconcile cli": [
       "version skew reconcile cli"
     ],
@@ -104247,6 +104478,9 @@
     ],
     "voc allocation shadow evidence": [
       "voc allocation shadow evidence"
+    ],
+    "vocabulary assignment overlay": [
+      "vocabulary assignment overlay"
     ],
     "vocabulary class ownership": [
       "vocabulary class ownership"
@@ -105124,8 +105358,23 @@
     "what shipped": [
       "what shipped"
     ],
+    "what shipped cli package cleanup": [
+      "what shipped cli package cleanup"
+    ],
+    "what shipped command surface": [
+      "what shipped command surface"
+    ],
+    "what shipped env template cleanup": [
+      "what shipped env template cleanup"
+    ],
     "what shipped retrieval drift": [
       "what shipped retrieval drift"
+    ],
+    "what shipped shared package": [
+      "what shipped shared package"
+    ],
+    "what shipped template contract": [
+      "what shipped template contract"
     ],
     "when does a folder need code md": [
       "when does a folder need code.md"
@@ -105475,6 +105724,12 @@
     "wiring tasks": [
       "wiring tasks"
     ],
+    "with goal flag": [
+      "with goal flag"
+    ],
+    "with goal flag shipped": [
+      "with goal flag shipped"
+    ],
     "within entry duplicate signal": [
       "within-entry duplicate signal"
     ],
@@ -105517,8 +105772,17 @@
     "worker farm": [
       "worker farm"
     ],
+    "workflow asset rewrite tasks": [
+      "workflow asset rewrite tasks"
+    ],
     "workflow asset routing": [
       "workflow asset routing"
+    ],
+    "workflow assets acceptance criteria": [
+      "workflow assets acceptance criteria"
+    ],
+    "workflow assets literal replacement": [
+      "workflow assets literal replacement"
     ],
     "workflow config loader": [
       "workflow config loader"

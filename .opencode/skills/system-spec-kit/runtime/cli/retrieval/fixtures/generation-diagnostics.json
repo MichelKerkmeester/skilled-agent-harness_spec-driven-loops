@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6938,
+    "missing-frontmatter": 6939,
     "non-yaml-frontmatter": 1,
-    "ok": 13557,
-    "valid-empty-list": 7943
+    "ok": 13612,
+    "valid-empty-list": 7942
   },
-  "documentsScanned": 28501,
+  "documentsScanned": 28556,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "52871008b82d1355ca498ba6c01acd34962541e7136ca168c217959327b2c390",
+  "manifestHash": "0f6043c4f6f71b5c589f50ab2347094564ab2784bb9413ff2caabcc347bf98da",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -12500,6 +12500,36 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-design/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/manual-testing-playbook/resource-loading/assets-only.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28999,12 +29029,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/flowchart-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/ind-changelog.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29018,12 +29042,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/ind-feature-catalog.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/ind-flowchart.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -29095,12 +29113,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-doc/manual-testing-playbook/resource-loading/assets-only.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/sk-doc/manual-testing-playbook/resource-loading/mixed-references-assets.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29126,12 +29138,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-doc/manual-testing-playbook/token-cost-baseline/minimal-load.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -49865,13 +49871,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/ceremony-deltas.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay/implementation-summary.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -99060,6 +99059,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/009-router-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/010-readme-human-voice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/011-router-vocabulary-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/012-template-screenshots/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/scratch",
       "reason": "excluded directory"
     },
@@ -101416,7 +101431,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages",
       "reason": "excluded directory"
     },
     {
@@ -101424,7 +101447,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages",
       "reason": "excluded directory"
     },
     {
