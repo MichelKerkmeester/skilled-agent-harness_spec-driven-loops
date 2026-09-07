@@ -104,9 +104,26 @@ That reframes the decision. It is not "which hub owns browser work", it is "shou
 declares verbatim". The same question applies to `layout`, and to the other 19 tokens
 nobody has audited.
 
-The remaining seven contested rows carry **no** hint and are won by something else, most
-likely the `review` synonym expansion to `audit`, `findings` and `regression`. They are a
-separate mechanism and a separate fix.
+The remaining seven carry no hint. A control settles what drives them: hold the artifact
+noun and change only the verb.
+
+| prompt | result |
+|---|---|
+| `critique this screen` | **sk-design 0.8373** — correct |
+| `review this screen` | sk-code — wrong |
+
+Same noun, same intent, opposite outcome. **The verb decides and the artifact does not**,
+which is exactly the failure the original research named and exactly what artifact-noun
+arbitration was proposed to fix. That proposal was cut from the plan on the reasoning that
+`sk-code` legitimately owns review because it owns `sk-code-review`. The control shows the
+reasoning does not hold: `sk-code` takes `review this screen` while having no claim on a
+screen, and loses the same screen the moment the verb changes.
+
+What this does **not** establish is the mechanism. It is not `CATEGORY_HINTS`, since none of
+the seven contains a hint token. It is probably not the `review` synonym expansion either,
+because that expands to `audit`, `findings` and `regression`, and `sk-design` carries two of
+those three against `sk-code`'s one. Something else in the scoring rewards the verb, and
+naming it is the first task of whoever takes the arbitration work.
 
 Narrowing a hint is a scorer-data change with fleet-wide reach, so it is not made here. It
 is now a one-line change waiting on an ownership answer rather than an open investigation.
