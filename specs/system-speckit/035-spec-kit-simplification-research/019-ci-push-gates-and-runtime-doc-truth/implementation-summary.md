@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".github/workflows/spec-kit-check.yml"
     session_dedup:
-      fingerprint: "sha256:35133cd65dd83b32964b8c0168ad7785cf5e172828e953216471a4d4e9dc7eea"
+      fingerprint: "sha256:b9ec3431cf0e7a525b4764dcb054b2db37d7fc5dfb2441ac7e9d27d7b7eeba49"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
     completion_pct: 100
@@ -102,6 +102,7 @@ Every row was re-read in the main checkout first; two rows fell to a README sent
 | Check | Result |
 |-------|--------|
 | YAML parse of both workflows | ok |
+| First push run of the spec-kit check (`e43388b921`) | Two failures the pull-request-only history had hidden: the mirror job required the shared package's compiled output, and the runner has no ripgrep, so the recipe and residue-sweep suites exited 2. The mirror step now builds the package and a step installs ripgrep before the CLI project |
 | The four harnesses run by hand | exit 0 each |
 | Full runtime project | 104 files, 1,260 tests pass |
 | Full CLI project | 139 files, 1,358 tests pass |
@@ -115,7 +116,7 @@ Every row was re-read in the main checkout first; two rows fell to a README sent
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The push triggers are verified by the next push, not by this commit** the workflow files parse, and the first push after this commit is where their runs appear.
+1. **The push triggers were verified by the first push after this commit** it failed on two gaps that a pull-request-only gate had never exercised, both closed in the follow-up commit.
 2. **The review-time gates stay pull-request only** The README table says which and why.
 <!-- /ANCHOR:limitations -->
 

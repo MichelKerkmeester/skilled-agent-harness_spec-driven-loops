@@ -51,6 +51,11 @@ jobs:
       - name: Shared package tests
         run: npm --prefix .opencode/skills/system-spec-kit/shared test
 
+      # The ripgrep recipe and residue-sweep suites spawn rg; the runner image
+      # does not ship it, and without it every recipe exits 2.
+      - name: Install ripgrep
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
+
       - name: CLI vitest project
         run: |
           set -euo pipefail
@@ -90,8 +95,11 @@ jobs:
       # stops being invisible to CI.
       # The sync scripts require @spec-kit/shared through the workspace link,
       # which only an install creates on a clean runner.
-      - name: Install the workspace
-        run: npm --prefix .opencode/skills/system-spec-kit ci
+      - name: Install the workspace and build its shared package
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
 
       - name: Mirror parity checks
         run: |
