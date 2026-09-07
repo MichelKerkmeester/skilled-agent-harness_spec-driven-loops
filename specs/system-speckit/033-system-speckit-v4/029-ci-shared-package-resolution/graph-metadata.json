@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Since 2026-09-06 every push to `main` or `skilled/v4.0.0.0` failed four workflows and mailed the operator each time",
     "created_at": "2026-09-07T05:42:08.045Z",
-    "last_save_at": "2026-09-07T05:42:08.296Z",
+    "last_save_at": "2026-09-07T05:47:44.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7dde2ff356885461da6be9dd0dca7b2d06664bc9f03018082205f9e400d0327",
+    "source_fingerprint": "sha256:8f36b69b4c9d9f44ddde21cca2840eb99fd7e29be2377eff32028878e116f714",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72fc44e15bd5c789c831661ab35241d3bacc1d165552001c6ca164286ef6feda",
+      "spec.md": "d5c2194c42c9efdb283408075c357b2b36aa29ae2b82667238f8d081b32f3567",
       "plan.md": "940652c10de6d36b21ed6ce42639fc42ac5f0f907c1d0dfdc171a254bf57a48b",
       "tasks.md": "09feeccd9ed3ff80660361b07db514036be7737b00869e15827c546a74294e3a",
-      "implementation-summary.md": "e3dd4aec9645a5d5e9aebf08bd33f87b772faa3782fddc9579f40c6d88d92e76"
+      "implementation-summary.md": "f9ca75070c729e9a13e1e75eb7df45503aa0d7bd72eba3f82cbb628e007465b6"
     },
     "last_active_child_id": null,
     "last_active_at": null
