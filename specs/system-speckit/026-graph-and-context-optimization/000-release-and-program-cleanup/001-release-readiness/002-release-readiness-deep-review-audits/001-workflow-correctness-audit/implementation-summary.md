@@ -28,7 +28,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:045-001-workflow-correctness-audit-summary"
+      fingerprint: "sha256:62ac6bdd61cf09aa31f7aca4ab8c74522dfd54174cadbfd4f756d5a31c023a9f"
       session_id: "045-001-workflow-correctness-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

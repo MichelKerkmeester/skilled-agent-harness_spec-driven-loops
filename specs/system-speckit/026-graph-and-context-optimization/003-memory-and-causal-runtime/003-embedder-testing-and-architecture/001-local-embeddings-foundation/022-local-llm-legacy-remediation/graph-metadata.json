@@ -53,12 +53,7 @@
       ".opencode/skills/system-spec-kit/shared/README.md",
       ".opencode/skills/system-spec-kit/README.md",
       "shared/embeddings/profile.ts",
-      ".opencode/skills/system-spec-kit/package.json",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js"
+      ".opencode/skills/system-spec-kit/package.json"
     ],
     "entities": [
       {
@@ -122,36 +117,6 @@
         "source": "derived"
       },
       {
-        "name": "test-embeddings-behavioral.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
-        "source": "derived"
-      },
-      {
-        "name": "test-embeddings-factory.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
-        "source": "derived"
-      },
-      {
-        "name": "memory-pipeline-regressions.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manual-playbook-fixture.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-utils.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,11 +169,41 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "EMBEDDINGS_PROVIDER",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PER-BATCH DISPATCH CONTRACTS",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-08-30T15:39:29.828Z",
+    "last_save_at": "2026-09-07T16:06:33.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
@@ -217,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7254e25233bcbe6625225b202c338b4ec509b28596b83eda635551dd0464f455",
+    "source_fingerprint": "sha256:1a37552a2146a36a098772e6ef02ae3b93fa90255c00c9db752fe6ae21df5ec9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e83b1aa17cb23afc8e5e49cb467c893101bc02121580fb6d2e62a10aa9fcaa7a",
       "plan.md": "e6c45eabea83e3b667afd99e2e085a739106a581d4420cfe3273c35ba6e4211f",
       "tasks.md": "23835ca54ed92470af67eed68ff478871de028af569ea223fb1f859bc776a0bd",
-      "implementation-summary.md": "b4185425b73f6b6b159ec04a9fcfd3f6c679cc5b715782b0f86b614c1fe64d0b"
+      "implementation-summary.md": "7c11e2ad56ef85f07cbe1bdda73c6223d74cce661726a8f4d6cc662680ec9438"
     },
     "last_active_child_id": null,
     "last_active_at": null

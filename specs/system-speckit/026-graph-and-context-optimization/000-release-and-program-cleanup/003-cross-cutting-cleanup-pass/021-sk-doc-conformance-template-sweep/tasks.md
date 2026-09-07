@@ -17,7 +17,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-template-sweep"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "021-sk-doc-conformance-template-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 8

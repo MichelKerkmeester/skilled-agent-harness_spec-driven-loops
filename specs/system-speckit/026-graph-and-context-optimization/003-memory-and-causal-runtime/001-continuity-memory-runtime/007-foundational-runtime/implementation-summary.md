@@ -25,7 +25,7 @@ _memory:
       - "checklist.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:phase-017-remediation-complete-25-commits"
+      fingerprint: "sha256:31377428c96400427ac5246c7bf67c2e615a4713f49294856c7113817cccae68"
       session_id: "017-implementation-2026-04-17"
       parent_session_id: "016-foundational-runtime/001-initial-research"
     open_questions: []

@@ -51,8 +51,7 @@
       "measurements/v1-0-4-envelopes.jsonl",
       "measurements/v1-0-4-audit-log-sample.jsonl",
       "measurements/v1-0-4-shadow-sink-sample.jsonl",
-      "measurements/v1-0-4-summary.json",
-      "templates/stress-test/findings-rubric.template.json"
+      "measurements/v1-0-4-summary.json"
     ],
     "entities": [
       {
@@ -113,12 +112,6 @@
         "name": "v1-0-4-summary.json",
         "kind": "config",
         "path": "measurements/v1-0-4-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "findings-rubric.template.json",
-        "kind": "config",
-        "path": "templates/stress-test/findings-rubric.template.json",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The v1.0.3 stress test (Phase H, packet 021) produced a CONDITIONAL verdict with three caveats:",
     "created_at": "2026-04-29T12:25:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.623Z",
+    "last_save_at": "2026-09-07T16:10:11.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa237889afd43d8c9952c64969a033ccce62537c64768096bef1264341ac297e",
+    "source_fingerprint": "sha256:f43b463629e4122c4bb7acd5699cdca5c9a761a60625df964335e0b2ea3ce089",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c61d6294e3df64fd7cedfcc7c3c3fc99b2b4502d95993fa4af400304ab05f3c4",
-      "plan.md": "34a3dd7c5cdc5e9c0b9dcee2fdb523513b844967fc916fa755f4a828e176e285",
-      "tasks.md": "46676e6873eea249d3cc1b8d2ec2e1c6010c6c1bd84d1cb99880bc11063b863e",
-      "implementation-summary.md": "d2e9db7f9441b2154ecb8ccf81dcbc8d50536ea404cf90a31538a4b35fa83eca"
+      "plan.md": "0f881a9e8d0fadf7680b635b5b250fbbf7ca59ffd14182853aac73505be187c4",
+      "tasks.md": "d61bbc3ae0561f8d68a429f24fe2245b5f3ba6e4926c1e793cf64ba8db28ad2e",
+      "implementation-summary.md": "c8cbc00cf53c9632796241d61faa9eb2140bac635d784b792944b82b608edcc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

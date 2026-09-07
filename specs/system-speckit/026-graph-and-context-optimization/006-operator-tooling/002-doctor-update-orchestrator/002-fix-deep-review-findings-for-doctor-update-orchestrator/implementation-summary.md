@@ -20,7 +20,7 @@ _memory:
       - "scratch/batch-c-summary.md"
       - "scratch/batch-d-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000003"
+      fingerprint: "sha256:edc84c66cd69db04622da1a03c09db889fcaf378aa1b9b7dcd4414b5597786d4"
       session_id: "main-003-2026-05-11"
       parent_session_id: null
     completion_pct: 100

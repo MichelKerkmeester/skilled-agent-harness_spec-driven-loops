@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:002-search-query-rag-optimization-summary-20260428"
+      fingerprint: "sha256:b99f8845d5123d6a8f5df7c79351a1227687fe2a1b36becd9dd08a540ce9958a"
       session_id: "002-search-query-rag-optimization-20260428"
       parent_session_id: "019-search-query-rag-optimization-research"
     completion_pct: 100

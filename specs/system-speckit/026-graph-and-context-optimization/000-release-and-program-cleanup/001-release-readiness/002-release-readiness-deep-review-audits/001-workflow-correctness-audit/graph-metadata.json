@@ -183,7 +183,7 @@
     ],
     "causal_summary": "The release-readiness program needs a workflow-correctness audit for the canonical command surfaces before they are treated as safe operator paths",
     "created_at": "2026-04-29T20:25:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.623Z",
+    "last_save_at": "2026-09-07T16:09:46.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4bbf498370f89bd59865bba0f52a004c90e4e1bc44273e7dfcd83701dc81d38",
+    "source_fingerprint": "sha256:7625a110bdd3d8818b74b5d6b594c92c403e0e58f7ca3d85221d3120ec941881",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1c501740083a784e40fe10a2b3aabc12377950daef0fe7ad5e931f8966ae363",
-      "plan.md": "888361632103ee88e69f4a219c0eb46c53f4f3fb72633f707166e42e879cf509",
-      "tasks.md": "f343242cf909e3e8980c7007545b8fcc981fd0be3c9c3c7770d0835aa44503a6",
-      "implementation-summary.md": "8d3115c151a3824d736f82871c9a19c536e9caa17ed86d7b67616b9d90a744eb"
+      "spec.md": "78752968942ac6c9703dc3a34b0063fd417f694a467c955a6ee095a949042098",
+      "plan.md": "407a062857aee996aee3d0b95faf3683e68a9279081cb9d014180e1107475b8c",
+      "tasks.md": "14c56f2e4af74306f31118e6622caba0502c058385c43eb1a8fb19423cffb92d",
+      "implementation-summary.md": "f7cf3fe3ac1b17821a87d65d67caf713dde5f529c2651702212a178eb2877ec3"
     },
     "last_active_child_id": null,
     "last_active_at": null

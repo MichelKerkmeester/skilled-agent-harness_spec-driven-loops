@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/z_archive/005-sk-doc-changelog-template",
   "description": "The canonical changelog and release-notes template previously lived at the create-command asset path",
   "keywords": [
@@ -12,7 +13,7 @@
     "asset",
     "path"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.046Z",
+  "lastUpdated": "2026-09-07T16:08:52.702Z",
   "specId": "005",
   "folderSlug": "sk-doc-changelog-template",
   "parentChain": [

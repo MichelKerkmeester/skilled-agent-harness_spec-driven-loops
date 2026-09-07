@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "research/research-report.md"
     session_dedup:
-      fingerprint: "sha256:019-tasks-20260428"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "dr-20260428T204226Z-019-search-query-rag-optimization"
       parent_session_id: null
     completion_pct: 100

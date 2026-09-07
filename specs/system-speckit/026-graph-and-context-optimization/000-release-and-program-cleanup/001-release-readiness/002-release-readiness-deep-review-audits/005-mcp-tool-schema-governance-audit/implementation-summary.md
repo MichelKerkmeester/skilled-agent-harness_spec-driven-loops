@@ -25,7 +25,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:045-006-mcp-tool-schema-governance-audit"
+      fingerprint: "sha256:e87f7cc4a319292e35e30703de2641f661fc7cb2d997108ac5774c8b14fd8af9"
       session_id: "045-006-mcp-tool-schema-governance-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

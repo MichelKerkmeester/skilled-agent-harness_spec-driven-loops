@@ -39,7 +39,7 @@ _memory:
       - ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/decision-record.md"
       - ".opencode/commands/prompt.md"
     session_dedup:
-      fingerprint: "sha256:043-cli-skill-improved-prompting"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "043-cli-skill-improved-prompting"
       parent_session_id: null
     completion_pct: 100

@@ -21,7 +21,7 @@ _memory:
       - "checklist.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:002-search-query-rag-optimization-tasks-20260428"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "002-search-query-rag-optimization-20260428"
       parent_session_id: "019-search-query-rag-optimization-research"
     completion_pct: 100

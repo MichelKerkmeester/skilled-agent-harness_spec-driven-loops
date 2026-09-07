@@ -22,7 +22,7 @@ _memory:
       - "scratch/probe-gpulayers-zero-auto.txt"
       - "scratch/probe-gpulayers-zero-cpu.txt"
     session_dedup:
-      fingerprint: "sha256:264f1497580860d4381e24d976a63c1dd8965bc48eb729864cd484e9aa0eecc0"
+      fingerprint: "sha256:0ab1b99cb3026ef246f50c4451b004daca1c1e4ac0dace29998d3b6e78811640"
       session_id: "cli-codex-gpt5.5-xhigh-fast-041"
       parent_session_id: null
     completion_pct: 100

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Today's 022-028 batch shipped runtime + skill-contract changes faster than packet continuity and adjacent READMEs caught up",
     "created_at": "2026-04-29T11:05:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.848Z",
+    "last_save_at": "2026-09-07T16:10:00.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79c64a74f62825f85c373fdca7301e1146c87ee9d1f16c4e01fb63f6475b70c5",
+    "source_fingerprint": "sha256:c21ab33204652e9a3bb7ef0037b673ab5dd54736caded85295f489072b7bde03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "322ba19be111729b6919e041dfe005fb1420727311526ad450d106fd8c9a90b4",
-      "plan.md": "37a941441e293fb7fdbd8580a1c4a00cb6b0197a7e2ba32ace0f65c05ffae588",
-      "tasks.md": "be698cd59dde81748941a7d6a3610fd330f4ddda23ffc376d6add73e99de1323",
-      "implementation-summary.md": "9de728f3c1c46bfe190d596868d9f2ce6d62e024c2e3069c9dbeb09039101e57"
+      "plan.md": "5ce6bd4a72cc8fd9e5beb2727b7302e15005937b47f6965825beb8f6524fc7a4",
+      "tasks.md": "4922ff363957e0d0d2062a55158e1f57d34633ed0c7feb96558ea51e14c6dff3",
+      "implementation-summary.md": "35124691058a0bf5f8d999563fcd51fdb9fed9583013f5dd0affbdf119e5f823"
     },
     "last_active_child_id": null,
     "last_active_at": null

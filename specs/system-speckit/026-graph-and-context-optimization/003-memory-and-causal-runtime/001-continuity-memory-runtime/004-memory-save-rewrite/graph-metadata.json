@@ -47,8 +47,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "api/indexing.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -79,12 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "indexing.ts",
-        "kind": "code",
-        "path": "api/indexing.ts",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Writer Core",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-08-30T15:39:29.439Z",
+    "last_save_at": "2026-09-07T16:10:18.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d38563a4ead28588fa2f0f1ccd2ea275fca7cceccb2cd98af23b1174af558a9b",
+    "source_fingerprint": "sha256:136adb922c7ebf4b590986cf54f9a0499c35383812c02255f7b28c9fb7a87509",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71d2241c421a1ef5f070408e6215e810e114c4c4b36770d243a5e68352e588d7",
-      "plan.md": "15e0d048e1e38d3a65db98ddadce53f261277ab61a86e30dad17da8ae2f4153c",
-      "tasks.md": "c9302e1e963618620bc62a351dc0b1e80edc6ae95314ad052f81d6bdb734f522",
-      "decision-record.md": "12c07531f7af17ae104c96439de8f177c8d5a64df932d689c1b8ce082f9b1688",
-      "implementation-summary.md": "42b158b7efaf74fd5b4758bcbd2148332ed4dda5828d3f02e3bdf0560754506c"
+      "spec.md": "4329df78dd284d574d58bcebd7a2765cbd1d4c74ab787011f16857abe58091a0",
+      "plan.md": "9fb3c953cd50d62a3678f58352e356231f87a89618220602698fe92af6cb08b2",
+      "tasks.md": "33f5f2cd9e15d4455ccc6d0acda03f2f8b203cc6586031edb5938bbaae8b4542",
+      "decision-record.md": "ddc1aa7e8adb1ef2ad0eb766d9f8af042599309f0cb75e76aa59ca9535f56085",
+      "implementation-summary.md": "03690dfa1eb8b62ba9df3be8cb4b46fc8eaf0bf44f6bfd77600f8e6ff58b6e07"
     },
     "last_active_child_id": null,
     "last_active_at": null

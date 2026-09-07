@@ -46,9 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/query/query-plan.ts",
-      "tests/query-plan-emission.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,18 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "query-plan.ts",
-        "kind": "code",
-        "path": "lib/query/query-plan.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-plan-emission.vitest.ts",
-        "kind": "test",
-        "path": "tests/query-plan-emission.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Harness The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase C found no surviving P0 regression and no current-runtime regression, but it did find that search optimization lacks shared outcome evidence",
     "created_at": "2026-04-28T21:02:24Z",
-    "last_save_at": "2026-08-30T15:39:27.808Z",
+    "last_save_at": "2026-09-07T16:09:57.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa9d0ddef03915ecfb841ee03ce4f9e72c587b1a9ded473a93a6caa07ba4d3c5",
+    "source_fingerprint": "sha256:8f991fb65002c7ec9175a86c90c2cd16caaf035516fa53e9cf28a5adc4087bd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "528d5cf578a1ab8dd38147307ef49b8a76503a957887f2ccf31be9d73ac0c540",
-      "plan.md": "97d5a2ad56fd39e548d0888d4a2010ff5f992d1f74fedc9add9f66cab4328573",
-      "tasks.md": "6eae7b02b2f7e26a768a73a7e73b6ef4f2774efb0c53df57769a2d23d8a59353",
-      "implementation-summary.md": "056f07785cfb89d697ee402c631cc2c8339ffe74c300680ddfac53a729c6837e"
+      "spec.md": "50879c6828d6c91cbf1e15dab4ea6ec273f1f8bcf9e695d8938346c29aed9404",
+      "plan.md": "6f78c4c6ef1bf5fa69ced2a9c21b0b1c204d1e91d6a8f82c42278f3cbb685b2c",
+      "tasks.md": "f938e4a4468b76d4d43af3c1a2893fa670b5377df7a08b5caa9fddf0e52f9dc8",
+      "implementation-summary.md": "aa208ad9dcfda4c01975179fd4aa7c64a5ebaf4a3a0219b0c648a01208741a09"
     },
     "last_active_child_id": null,
     "last_active_at": null

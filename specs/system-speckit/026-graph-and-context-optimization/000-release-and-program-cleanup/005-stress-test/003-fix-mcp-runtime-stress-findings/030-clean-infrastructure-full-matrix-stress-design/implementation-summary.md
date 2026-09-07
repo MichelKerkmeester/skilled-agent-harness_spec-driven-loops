@@ -25,7 +25,7 @@ _memory:
       - "description.json"
       - "graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:030-full-matrix-implementation-summary"
+      fingerprint: "sha256:cf193c706f4a1657965a3ffe8313a08b31f668783d8968feb92db64f4c9b4f6b"
       session_id: "030-full-matrix-design"
       parent_session_id: null
     completion_pct: 100

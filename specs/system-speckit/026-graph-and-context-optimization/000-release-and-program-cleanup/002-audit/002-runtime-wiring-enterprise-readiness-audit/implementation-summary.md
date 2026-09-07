@@ -25,7 +25,7 @@ _memory:
       - "mcp_server/lib/search/search-decision-envelope.ts"
       - "mcp_server/lib/search/decision-audit.ts"
     session_dedup:
-      fingerprint: "sha256:002-runtime-wiring-enterprise-readiness-audit-summary-20260429-complete"
+      fingerprint: "sha256:6c6268dbcee66f0d5c62210f04e31e856017f24fd5025bd4808944e6bac70d00"
       session_id: "002-runtime-wiring-enterprise-readiness-audit-20260429"
       parent_session_id: "005-review-remediation"
     completion_pct: 100

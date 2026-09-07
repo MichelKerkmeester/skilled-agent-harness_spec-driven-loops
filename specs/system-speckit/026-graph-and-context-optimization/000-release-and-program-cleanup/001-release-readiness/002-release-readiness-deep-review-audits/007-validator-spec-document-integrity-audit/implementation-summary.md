@@ -23,7 +23,7 @@ _memory:
       - "checklist.md"
       - "graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:045008validatorspecdocintegrityimplsummary000000000000"
+      fingerprint: "sha256:8173de594860929815024475c13fb74a8285e0cd627407d2c8d219d867fc24be"
       session_id: "045-008-validator-spec-document-integrity-audit"
       parent_session_id: null
     completion_pct: 100

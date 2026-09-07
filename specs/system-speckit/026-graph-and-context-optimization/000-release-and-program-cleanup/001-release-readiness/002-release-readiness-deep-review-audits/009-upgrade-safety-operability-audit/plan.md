@@ -21,7 +21,7 @@ _memory:
     key_files:
       - "review-report.md"
     session_dedup:
-      fingerprint: "sha256:045010upgradesafetyoperabilityplan0000000000000000000000"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-010-upgrade-safety-operability-audit"
       parent_session_id: null
     completion_pct: 100

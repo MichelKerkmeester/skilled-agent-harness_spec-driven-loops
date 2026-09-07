@@ -19,7 +19,7 @@ _memory:
       - "review/001-post-program-doc-and-state-cleanup-pt-01/review-report.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:001-post-program-doc-and-state-cleanup-tasks-20260428"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "001-post-program-doc-and-state-cleanup-20260428"
       parent_session_id: "026-post-program-deep-review"
     completion_pct: 40

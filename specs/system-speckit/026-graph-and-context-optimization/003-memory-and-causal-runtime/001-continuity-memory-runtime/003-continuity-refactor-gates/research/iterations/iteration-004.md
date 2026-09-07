@@ -64,7 +64,7 @@ _memory:
     difficulty: 5.2
     last_review: 2026-04-11T13:50:00Z
     review_count: 1
-  fingerprint: sha256:abc123...
+  fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
   provenance:
     tenant_id: default
     session_id: 018-impl-design
@@ -146,7 +146,7 @@ _memory:
     access_count: 0
   
   # Content deduplication
-  fingerprint: sha256:...
+  fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
   content_hash: sha256:...
   
   # Provenance (governance)

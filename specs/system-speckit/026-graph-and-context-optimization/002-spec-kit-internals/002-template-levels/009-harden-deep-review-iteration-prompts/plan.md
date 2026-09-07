@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl"
     session_dedup:
-      fingerprint: "sha256:rm8-009-plan-author-2026-05-11"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "main-rm8-009-2026-05-11"
       parent_session_id: null
     completion_pct: 25

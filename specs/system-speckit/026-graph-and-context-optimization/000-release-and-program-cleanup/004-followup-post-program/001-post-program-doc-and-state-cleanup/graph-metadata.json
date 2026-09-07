@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-08-30T15:39:28.161Z",
+    "last_save_at": "2026-09-07T16:10:07.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02031bc0790025c023748dd307745344dad47f3041f2a4b1551161f7291d3d20",
+    "source_fingerprint": "sha256:349cb5f05c99b851fe0a1ddb018e46e23ad3e6d2a2ea68e335a5134b76e9848c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce64cff2ce54279b2c661ba8ead2a5063c8da7b54855247c70812c87136d43cc",
-      "plan.md": "b39703cf12ef99f96da9b23eed1ee8e128ad5eeced7c879fcae3beee08b43dbf",
-      "tasks.md": "6b847762fb61c475a06bbf3337af2556a1026ef353eb50ea48d1620029e5f0ed",
-      "implementation-summary.md": "271a2ccd45c0e995a88401fbb92321145bc2541c727daa42da8c81e7bb0a90d2"
+      "spec.md": "24772ce62a95e6d6906b5ed74c4a3441a2851dda4e5441be98560b9d856ad64b",
+      "plan.md": "776d2ff5c444b9a1981446ae657dad628c8932a950b791434c7f1c28b4133dd4",
+      "tasks.md": "38baa620a8ec32f55a7d7aecf7a72c4f62a46b9bbe6fdf55dfd39a0ff53f9a59",
+      "implementation-summary.md": "c918308353cdcb2bfe3188af8dfda33eaf89ff24c7d4c14422f70f5ad6755f5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

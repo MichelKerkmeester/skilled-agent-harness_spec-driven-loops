@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:007-vitest-broad-suite-honesty-tasks"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "007-vitest-broad-suite-honesty"
       parent_session_id: null
     completion_pct: 100

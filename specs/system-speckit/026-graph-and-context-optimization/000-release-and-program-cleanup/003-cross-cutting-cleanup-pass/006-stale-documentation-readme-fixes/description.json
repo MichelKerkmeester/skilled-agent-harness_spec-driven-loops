@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/006-stale-documentation-readme-fixes",
   "description": "Today's 022-028 batch shipped runtime + skill-contract changes faster than packet continuity and adjacent READMEs caught up",
   "keywords": [
@@ -15,7 +16,7 @@
     "readmes",
     "caught"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.603Z",
+  "lastUpdated": "2026-09-07T16:08:46.481Z",
   "specId": "006",
   "folderSlug": "stale-documentation-readme-fixes",
   "parentChain": [
@@ -25,6 +26,5 @@
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

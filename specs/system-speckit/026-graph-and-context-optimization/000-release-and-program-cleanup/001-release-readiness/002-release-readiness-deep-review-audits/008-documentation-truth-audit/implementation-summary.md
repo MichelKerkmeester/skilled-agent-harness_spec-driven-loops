@@ -22,7 +22,7 @@ _memory:
       - "checklist.md"
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:045009documentationtruthsummary000000000000000000000000000"
+      fingerprint: "sha256:053a81ef27aa8a100929f18a1d9a22359c48a6b11412ebbadc47dd55d3229487"
       session_id: "045-009-documentation-truth-audit"
       parent_session_id: null
     completion_pct: 100

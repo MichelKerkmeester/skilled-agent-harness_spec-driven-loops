@@ -22,7 +22,7 @@ _memory:
       - "tasks.md"
       - "measurements/phase-k-v1-0-4-stress.test.ts"
     session_dedup:
-      fingerprint: "sha256:029-v1-0-4-plan"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-k-v1-0-4"
       parent_session_id: null
     completion_pct: 20

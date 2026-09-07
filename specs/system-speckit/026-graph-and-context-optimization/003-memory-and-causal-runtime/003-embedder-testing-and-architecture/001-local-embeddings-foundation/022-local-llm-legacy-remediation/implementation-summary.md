@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/"
     session_dedup:
-      fingerprint: "sha256:022backfill-2026-05-14"
+      fingerprint: "sha256:6c941ada4f4b61c40136ab98d84cdabc39b64e91575861b694b5d2524ab2a829"
       session_id: "022-impl-summary-backfill-2026-05-14"
       parent_session_id: null
     completion_pct: 100

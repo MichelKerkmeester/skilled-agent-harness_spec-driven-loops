@@ -22,7 +22,7 @@ _memory:
       - "deep-review-findings-registry.json"
       - "review_archive/2026-05-11T05-55-00Z-rm8-013-deepseek-original/review-report.md"
     session_dedup:
-      fingerprint: "sha256:2026-05-11-rm8-013-rereview-pass"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-11T09-15-00Z-rm8-013-deepseek-rereview"
       parent_session_id: "2026-05-11T05-55-00Z-rm8-013-deepseek"
     completion_pct: 100

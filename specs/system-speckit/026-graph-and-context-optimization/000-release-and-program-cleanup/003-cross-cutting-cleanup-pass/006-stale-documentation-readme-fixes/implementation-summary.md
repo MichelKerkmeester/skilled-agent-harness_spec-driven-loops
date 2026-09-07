@@ -20,7 +20,7 @@ _memory:
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-documentation-readme-fixes/spec.md"
       - "/tmp/audit-readme-staleness-report.md"
     session_dedup:
-      fingerprint: "sha256:006-stale-documentation-readme-fixes-summary"
+      fingerprint: "sha256:ad181fdbcce29721a0162fce0f196027db826484034f72bdcb8d90dde3496cfd"
       session_id: "006-stale-documentation-readme-fixes"
       parent_session_id: null
     completion_pct: 100

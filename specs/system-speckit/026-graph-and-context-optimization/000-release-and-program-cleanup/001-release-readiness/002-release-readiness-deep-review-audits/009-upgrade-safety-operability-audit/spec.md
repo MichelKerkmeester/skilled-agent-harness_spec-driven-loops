@@ -24,7 +24,7 @@ _memory:
       - ".opencode/commands/doctor/scripts/mcp-doctor.sh"
       - ".opencode/skills/system-spec-kit/mcp_server/package.json"
     session_dedup:
-      fingerprint: "sha256:045010upgradesafetyoperability0000000000000000000000000000"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-010-upgrade-safety-operability-audit"
       parent_session_id: null
     completion_pct: 100

@@ -39,8 +39,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "review-report.md",
-      "tools/index.ts"
+      "review-report.md"
     ],
     "entities": [
       {
@@ -71,12 +70,6 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
         "source": "derived"
       },
       {
@@ -190,7 +183,7 @@
     ],
     "causal_summary": "The release-readiness program needs a truth check for the MCP tool schema contract",
     "created_at": "2026-04-29T21:20:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.645Z",
+    "last_save_at": "2026-09-07T16:09:49.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5267160c7cb7554cb0cda1ea2a585aee4453b6c820c29a6995d702512e99d22",
+    "source_fingerprint": "sha256:ef00271981dc84f50171cf138a406a2375514856d508818ae953e4c0eab8362c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f51afce87db3ba977b71a493387a1a48ee91edd1e874edf6f59e2b1b5e5f526a",
-      "plan.md": "c3dae9b7df01a12631bd89db847c214d6655d85c6f1eaea4938524810a0273b9",
-      "tasks.md": "b50c722955468021f0ba0ec1eab9bcb89166ff88bbb8d5f61bd7507f2c9bda77",
-      "implementation-summary.md": "30bac2eaded6c5128e13c417815519e4bdfa1d05a8af0eb7f07258f9833cc7d7"
+      "spec.md": "4a8e5b67f7ea5e972dc42196b0f1a2123c3511a633dc432933461a0b44064bb6",
+      "plan.md": "8885c56c7a0bfe816311847d678ac9a60aeb8ffb652d587d427b05d69cbd7946",
+      "tasks.md": "0b71b7f87c9d90b8f05b5f9bf0f7f85d94e42f9a969d1ccca28d34b81809c6c5",
+      "implementation-summary.md": "75b3451addbb0f19dcace7264c5d58db91f23602aabf09e028d0683886b571c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

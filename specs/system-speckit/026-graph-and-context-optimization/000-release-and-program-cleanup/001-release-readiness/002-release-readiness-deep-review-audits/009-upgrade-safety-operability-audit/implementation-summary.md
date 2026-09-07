@@ -23,7 +23,7 @@ _memory:
       - "checklist.md"
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:045010upgradesafetyoperabilitysummary0000000000000000"
+      fingerprint: "sha256:82fd27d56fadebd1a89186dd6cb6cd7464f34101e26c773d9457b9823eb908a5"
       session_id: "045-010-upgrade-safety-operability-audit"
       parent_session_id: null
     completion_pct: 100

@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts"
       - "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/decision-record"
     session_dedup:
-      fingerprint: "sha256:001-fix-skill-advisor-fail-open-fallback-2026-04-28"
+      fingerprint: "sha256:f9eb2b56e6f8a2322014fe929449714e040bc4538cda9f43f764d6024027e71f"
       session_id: "001-fix-skill-advisor-fail-open-fallback-remediation"
       parent_session_id: "002-skill-graph-daemon-native-advisor-tools-review"
     completion_pct: 100
