@@ -1,0 +1,210 @@
+{
+  "version": "1.0",
+  "sessionId": "fanout-glm-5-3-flash-overengineering-1788746122749-wk19z4",
+  "note": "reducer-generated: keyFindings = finding_observed events replayed from deltas/iter-*.jsonl; counts as of run 5",
+  "findingCount": 20,
+  "bySeverity": {
+    "P1": 4,
+    "P2": 16
+  },
+  "keyFindings": [
+    {
+      "id": "F1-rule-registry-39x31",
+      "severity": "P1",
+      "location": ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:1-410 + .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:119-174,152-163,950-970",
+      "statement": "39 rule rows maintained across 31 physical targets (28 check-*.sh + 3 .ts) with 5:1 CANONICAL_SAVE multiplex via SPECKIT_CANONICAL_SAVE_RULE env indirection; severity vocabulary known to 3 places",
+      "cost": "3 coordinated edits per vocabulary change; 4 surplus report rows; silent wrong-rule attribution if wrapper misses the env var",
+      "recommendation": "merge",
+      "iteration": 1
+    },
+    {
+      "id": "F2-registry-display-drift",
+      "severity": "P2",
+      "location": ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh:52",
+      "statement": "category loop lists authored_template+operational_runtime only; structural category (6 rows, incl. both .ts-scripted rules) invisible in that enumeration",
+      "cost": "display-only today; demonstrates the duplication cost",
+      "recommendation": "merge",
+      "iteration": 1
+    },
+    {
+      "id": "F3-strict-only-trio",
+      "severity": "P2",
+      "location": "validator-registry.json (strict_only:true x3) + orchestrator.ts:420",
+      "statement": "CONTINUITY_FRESHNESS, GENERATED_METADATA_INTEGRITY, GENERATED_METADATA_DRIFT run only under --strict; freshness contract invisible in default validations",
+      "cost": "adherence depends on the flag at every call site",
+      "recommendation": "keep (verify call-site parity in angle 4)",
+      "iteration": 1
+    },
+    {
+      "id": "F4-skip-variant-dead",
+      "severity": "P2",
+      "location": "orchestrator.ts:106-111,419,226",
+      "statement": "severity 'skip' declared and threaded, exercised by 0/39 rows",
+      "cost": "one unmapped-to-corpus branch in report mapping",
+      "recommendation": "keep (documented off-switch; cut or exercise next revision)",
+      "iteration": 1
+    },
+    {
+      "id": "F5-three-implementation-paths",
+      "severity": "P2",
+      "location": "orchestrator.ts:152-163,950-970",
+      "statement": "status vocabulary duplicated across TS-native, bash-wrapper, and .ts-scripted rows",
+      "cost": "two conventions for one gate; F2's drift already cashed",
+      "recommendation": "merge",
+      "iteration": 1
+    },
+    {
+      "id": "F6-info-only-rows",
+      "severity": "P2",
+      "location": "validator-registry.json (LEVEL_DECLARED, AC_COVERAGE = info)",
+      "statement": "two default-on, cannot-fail report rows whose value is visibility only",
+      "cost": "2 report rows + read cost, every validation",
+      "recommendation": "keep (telemetry-dependent; demote to --verbose if unread)",
+      "iteration": 1
+    },
+    {
+      "id": "F7-conditioned-22of39",
+      "severity": "P2",
+      "location": "validator-registry.json (22 guarded description rows)",
+      "statement": "56% of the registry is conditioned on flow-specific surfaces (save/merge/phase/strict) \u2014 no-op on plain packet validation by its own descriptions",
+      "cost": "22 authored+tested+documented behaviors execute only transiently; narrowing conversations pay for all 39 rows",
+      "recommendation": "keep (census the specs/ corpus before cutting)",
+      "iteration": 2
+    },
+    {
+      "id": "F8-10rows-2impls",
+      "severity": "P2",
+      "location": "validator-registry.json (two 5:1 groups)",
+      "statement": "CANONICAL_SAVE_* x5 -> one script; spec-doc-structure group x5 -> one module; 26% of rows are bookkeeping for 2 implementations",
+      "cost": "5x descriptions/report rows; SPECKIT_CANONICAL_SAVE_RULE set->run->unset indirection fails silently",
+      "recommendation": "merge (one rule id + subcodes, or derived subrules)",
+      "iteration": 2
+    },
+    {
+      "id": "F9-vocabulary-triple-tracked",
+      "severity": "P2",
+      "location": "validator-registry.json; orchestrator.ts:109-111,293-300,439; validate.sh:46-64",
+      "statement": "severity/status vocabulary known to 3 places; help printer's 2-of-3 category loop already drifted",
+      "cost": "3 coordinated edits per vocabulary adjustment",
+      "recommendation": "merge (help enumeration consumes report summary)",
+      "iteration": 2
+    },
+    {
+      "id": "F10-freshness-three-surface-contract",
+      "severity": "P2",
+      "location": "runtime/cli/validation/continuity-freshness.ts; registry CONTINUITY_FRESHNESS row; root-doc freshness paragraphs",
+      "statement": "freshness semantics distributed across 3 contract surfaces with a warn-vs-enforce duality doubling the truth table",
+      "cost": "3-edit consensus per semantic change",
+      "recommendation": "keep (validated, flag-mandated)",
+      "iteration": 2
+    },
+    {
+      "id": "F11-adapter-ceremony-3582LOC",
+      "severity": "P1",
+      "location": "runtime/hooks/claude/ (4,249 LOC, 13 files, + own degradation protocol) vs runtime/hooks/pi/ (667 LOC, 10 files)",
+      "statement": "out-of-process adapters cost 3,582 LOC of primary/fallback/marker/doctor ceremony that the in-process pattern does not; ceremony whose reader is more machinery",
+      "cost": "3 extra behavioral paths per hook + per-host registration schema + 171-line README",
+      "recommendation": "merge (port registrations to the host-native extension mechanism; policy core in lib untouched)",
+      "iteration": 3
+    },
+    {
+      "id": "F12-five-schemas-one-contract",
+      "severity": "P2",
+      "location": "runtime/hooks/{claude,codex,cursor,devin,pi}/",
+      "statement": "5 registration schemas and 5 verification narratives for one behavioral contract; 4x duplicated dispatch glue",
+      "cost": "every settings edit must preserve fallback wrapping or the degradation signal goes dark",
+      "recommendation": "keep (flag for run-9 usage census)",
+      "iteration": 3
+    },
+    {
+      "id": "F13-opencode-empty-adapter",
+      "severity": "P2",
+      "location": "runtime/hooks/opencode/ (0/0)",
+      "statement": "the six-runtime premise ships 5/6; the primary target runtime has no adapter here while the design's own answer to host-integration fragility is more relative symlinks",
+      "cost": "a permanent matrix note on an empty dir",
+      "recommendation": "merge (into the native-adapter mechanism)",
+      "iteration": 3
+    },
+    {
+      "id": "F14-severity-vocab-5-sites",
+      "severity": "P1",
+      "location": "validator-registry.json; orchestrator.ts:106-111,293-300,984-988; validate.sh:46-64; feature-catalog.md:514; validation-rules.md:36-48",
+      "statement": "one severity/strict semantic owned by 5+ in-tree sites in 3 formats; display copy already drifted (2-of-3 category loop)",
+      "cost": "5+ coordinated edits per semantics change",
+      "recommendation": "merge (registry = sole authority; printer consumes report; prose = pointers)",
+      "iteration": 4
+    },
+    {
+      "id": "F15-leaf-manifest-covenant",
+      "severity": "P2",
+      "location": "SKILL.md:95 (4 artifacts + regeneration covenant)",
+      "statement": "routing covenant taxes every references/assets edit with 2 artifact regenerations + 1 check",
+      "cost": "paid by documentation changes \u2014 the largest affected surface",
+      "recommendation": "keep (flag: does --check ever miss on real edits? run-9 census)",
+      "iteration": 4
+    },
+    {
+      "id": "F16-validation-rules-fifth-site",
+      "severity": "P2",
+      "location": "references/validation/validation-rules.md:36-48 vs README.md:645",
+      "statement": "729-line reference self-declares non-authority yet restates Severity Levels, becoming the 5th ownership site",
+      "cost": "prose that cannot update independently",
+      "recommendation": "merge (fold :36-48 into a registry pointer; keep the per-rule deep dives)",
+      "iteration": 4
+    },
+    {
+      "id": "F17-novelty-0.05-8-sites",
+      "severity": "P2",
+      "location": "deep-research SKILL.md + 7+ references/assets/playbook sites",
+      "statement": "one numeric default (0.05) deliberately written in 8+ places as the stop contract",
+      "cost": "8+ edits per retune",
+      "recommendation": "keep (load-bearing, documented, validated)",
+      "iteration": 4
+    },
+    {
+      "id": "F18-phantom-dashboards",
+      "severity": "P1",
+      "location": ".opencode/commands/speckit/complete.md:92,2 vs assets/speckit-complete-auto.yaml + speckit-complete-confirm.yaml (0 'dashboard' hits); phase-decomposition/planning-gate/closeout = 0 mechanism hits in templates+runtime/cli/lib",
+      "statement": "completion command promises 6 report dashboards; its own workflows promise none; 3 of 6 names have no producing mechanism (other planning-gate hits are generated retrieval echoes)",
+      "cost": "1 hunt per completion conversation; 6-name list synced against nothing",
+      "recommendation": "merge (list what the workflow assembles, or add the sections; delete phantom names)",
+      "iteration": 5
+    },
+    {
+      "id": "F19-covenant-3-classes-3-step-ritual",
+      "severity": "P2",
+      "location": "folder-structure.md:169; save.md:23,25,61,90; complete-auto.yaml:1171-1176; root governance doc",
+      "statement": "retired-memory covenant stated in 3 doc classes (6+ statements) with a 3-step violation_recovery ritual for a case the covenant+runtime rejection already prevent",
+      "cost": "covenant consistency across 3 audiences; 3 documented commands of ceremonial recovery",
+      "recommendation": "keep (single-writer invariant is validated; check run-8 for whether the ritual ever fired)",
+      "iteration": 5
+    },
+    {
+      "id": "F20-level-contract-naming-0-resolutions",
+      "severity": "P2",
+      "location": "complete-confirm.yaml:244-247; complete-auto.yaml:272; resource-map/README.md:64",
+      "statement": "level_contract_optional_*.md convention: 6+ occurrences, 0 file resolutions (find returns nothing); the one README that resolves it points to the real .tmpl path",
+      "cost": "1 decoding step per reader; 0 grep resolutions for automated consumers",
+      "recommendation": "keep semantics, merge naming to the real templates/addons/*.md.tmpl paths",
+      "iteration": 5
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Read all 39 rule scripts in one pass",
+      "reason": "budget discipline; duplication pass owns rule bodies",
+      "iteration": 1
+    },
+    {
+      "approach": "Corpus-level firing evidence inside runs 1-5",
+      "reason": "deferred to runs 8-9",
+      "iteration": 3
+    },
+    {
+      "approach": "Dead steps in the command surface post memory-decommission",
+      "reason": "hypothesis corrected: covenant enforced end-to-end; residue is F18/F20, not dead memory steps",
+      "evidence": "iterations/iteration-005.md",
+      "iteration": 5
+    }
+  ]
+}

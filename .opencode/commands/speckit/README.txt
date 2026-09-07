@@ -346,7 +346,7 @@ Yes. `/speckit:resume` loads the best available continuation context for the spe
 
 **Q: How does `:with-phases` relate to the parent spec folder?**
 
-The `:with-phases` flag on `/speckit:plan` or `/speckit:complete` creates a parent spec folder and one or more child phase folders under it (e.g., `specs/015-feature/001-phase/`, `specs/015-feature/002-phase/`). Each phase is a self-contained spec folder with its own plan.md, tasks.md, and checklist.md. The parent folder holds the top-level spec.md and coordinates the phases. Use `:with-phases` for work that is too large for a single spec folder or that has clearly sequential milestones.
+The `:with-phases` flag on `/speckit:plan` or `/speckit:complete` creates a parent spec folder and one or more child phase folders under it (e.g., `specs/015-feature/001-phase/`, `specs/015-feature/002-phase/`). Each phase is a self-contained spec folder with its own spec.md, plan.md and tasks.md. The parent folder holds the top-level spec.md and coordinates the phases. Use `:with-phases` for work that is too large for a single spec folder or that has clearly sequential milestones.
 
 **Q: What is the difference between `/speckit:search` and `/speckit:resume`?**
 

@@ -122,16 +122,16 @@ documentation_levels:
     use_case: "Simple changes, bug fixes"
   level_2_verification:
     name: "Level 2 (Verification)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md]
+    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
     loc_guidance: "100-499"
     use_case: "Medium features, refactoring"
   level_3_full:
     name: "Level 3 (Full)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md, decision-record.md]
+    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
     loc_guidance: ">=500"
     use_case: "Complex features, architecture changes"
   level_selection:
-    note: "LOC thresholds are SOFT GUIDANCE - choose level based on complexity and risk"
+    note: "recommend-level.sh scores LOC, file count and risk and decides the level; when its answer and judgment differ, go higher. decision-record.md and the other add-ons are lazy at every level, scaffolded on request"
     default: "Level 1 for simple tasks, escalate based on analysis"
 
 # ─────────────────────────────────────────────────────────────────
@@ -139,9 +139,9 @@ documentation_levels:
 # ─────────────────────────────────────────────────────────────────
 prerequisites:
   level_1_required: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md", "[SPEC_FOLDER]/tasks.md"]
-  level_2_required: ["[SPEC_FOLDER]/checklist.md", "[SPEC_FOLDER]/acceptance-criteria.md"]
-  level_3_required: ["[SPEC_FOLDER]/decision-record.md"]
-  optional_artifacts: ["[SPEC_FOLDER]/research/research.md"]
+  level_2_required: ["[SPEC_FOLDER]/acceptance-criteria.md"]
+  level_3_required: []
+  optional_artifacts: ["[SPEC_FOLDER]/research/research.md", "[SPEC_FOLDER]/decision-record.md"]
   verification: MUST EXIST BEFORE PROCEEDING
   note: This workflow assumes planning completed via /speckit:plan
 
@@ -151,24 +151,21 @@ prerequisites:
 available_templates:
   default_level: level_2
   level_1:
-    tasks: level_contract_tasks.md
-    implementation_summary: level_contract_implementation-summary.md
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_2:
-    tasks: level_contract_tasks.md
-    checklist: level_contract_checklist.md
-    implementation_summary: level_contract_implementation-summary.md
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_3:
-    tasks: level_contract_tasks.md
-    checklist: level_contract_checklist.md
-    implementation_summary: level_contract_implementation-summary.md
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_3_plus:
-    tasks: level_contract_tasks.md
-    checklist: level_contract_checklist.md
-    implementation_summary: level_contract_implementation-summary.md
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   shared:
-    handover: level_contract_optional_handover.md
-    debug_delegation: level_contract_optional_debug-delegation.md
-    resource_map: level_contract_optional_resource-map.md
+    handover: .opencode/skills/system-spec-kit/templates/addons/handover.md.tmpl
+    debug_delegation: .opencode/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
+    resource_map: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 
 template_compliance:
   strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
@@ -399,9 +396,9 @@ workflow:
     - Mark parallel-executable tasks with [P], define phases, generate estimates
     - Create/validate tasks.md
     outputs: [tasks.md]
-    template: level_contract_tasks.md
+    template: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
     template_prompt_contract:
-      canonical_template: level_contract_tasks.md
+      canonical_template: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
       inline_scaffold_key: tasks_md
       writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
     post_write_validation:
@@ -424,22 +421,22 @@ workflow:
       question: "Step 3 Complete: Consistency verified. How would you like to proceed?"
       options: checkpoint_options.standard
 
-  step_4_quality_checklist:
-    purpose: Validate checklists AND USE THEM FOR VERIFICATION (Level 2+)
+  step_4_acceptance_criteria:
+    purpose: Verify acceptance-criteria.md and the tasks.md checklist AND USE THEM FOR VERIFICATION (Level 2+)
     activities:
     - Skip for Level 1, MANDATORY for Level 2+
-    - Load and parse checklist.md items with priorities (P0/P1/P2)
+    - Load acceptance-criteria.md rows and the tasks.md Verification Checklist items with priorities (P0/P1/P2)
     - "FOR EACH ITEM: verify condition, mark [x] with evidence, document blockers/deferrals"
     - Ensure ALL P0 complete (HARD BLOCKER), ALL P1 complete or approved deferral
-    - Update checklist.md with verification marks
+    - Set each row to Met, Waived or Superseded with observed evidence and mark the checklist items [x]
     verification_protocol: { p0: "BLOCKER", p1: "Required or user-approved deferral", p2: "Optional, can defer with reason" }
-    outputs: { checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
-    validation: checklist_verified_and_marked
+    outputs: { acceptance_status: closeable_or_not, checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
+    validation: acceptance_verified_and_marked
     checkpoint:
       question: "Step 4 Complete: Checklists verified. Ready to implement?"
       options:
         - { label: "Start Implementation", description: "Begin development phase" }
-        - { label: "Review Verification", description: "Show checklist verification details" }
+        - { label: "Review Verification", description: "Show acceptance-criteria and checklist verification details" }
         - { label: "Address Blockers", description: "Fix P0/P1 blockers first" }
 
   step_5_implementation_check:
@@ -557,20 +554,20 @@ workflow:
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections: [files_modified_created, verification_steps_taken, deviations_from_plan, skill_updates, recommended_next_steps, browser_testing_results]
-      canonical_template: level_contract_implementation-summary.md
+      canonical_template: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
       inline_scaffold_key: implementation_summary_md
       writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
     nested_changelog:
       generator:
         command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
-      evidence_sources: [implementation-summary.md, tasks.md, checklist.md, decision-record.md, spec.md]
+      evidence_sources: [implementation-summary.md, tasks.md, acceptance-criteria.md, decision-record.md, spec.md]
       output_rules:
         root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
         phase: "[PARENT_SPEC_FOLDER]/changelog/changelog-<packet>-<phase-folder>.md"
     verification_summary:
-      checklist_verification:
+      acceptance_verification:
         required: true
-        must_include: [Total items verified, P0 status (all complete), P1 status (complete or deferred), Deferred P2 with reasons, Link to checklist.md]
+        must_include: [Criteria total, Met count, Waived or superseded rows with their ADR, tasks.md P0/P1 status, Link to acceptance-criteria.md]
     post_write_validation:
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair implementation-summary.md template drift before marking completion"

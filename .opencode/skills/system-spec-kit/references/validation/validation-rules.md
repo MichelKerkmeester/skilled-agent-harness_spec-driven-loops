@@ -110,7 +110,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 ### Non-Breaking Completion Freshness Rollout
 
-`CONTINUITY_FRESHNESS` is strict-only and inert by default. It runs only when `SPECKIT_COMPLETION_FRESHNESS=true`, so unset validation output stays unchanged. When enabled, it binds a completion claim to the stored `session_dedup.fingerprint`: the validator recomputes the content fingerprint, compares it to the stored value, and checks that packet-scoped working-tree paths are clean. The zero fingerprint placeholder is treated as never recorded and does not produce stale warnings.
+`CONTINUITY_FRESHNESS` is strict-only and inert by default. It runs only when `SPECKIT_COMPLETION_FRESHNESS=true`, so unset validation output stays unchanged. When enabled, it binds a completion claim to the stored `session_dedup.fingerprint`: the validator recomputes the fingerprint, which is the SHA-256 of `implementation-summary.md`'s own text after line endings are normalized, trailing whitespace is stripped and the fingerprint line itself is zeroed, compares it to the stored value, and checks that packet-scoped working-tree paths are clean. The zero fingerprint placeholder is treated as never recorded and does not produce stale warnings.
 
 **Rule ID:** `CONTINUITY_FRESHNESS`  
 **Severity (inner label):** `warn` by default; `error` when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  

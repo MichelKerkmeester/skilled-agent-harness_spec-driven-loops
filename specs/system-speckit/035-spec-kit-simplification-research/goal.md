@@ -85,6 +85,7 @@ phase and binds as if written here.
 | 008-env-example-dead-flags | `008-env-example-dead-flags/goal.md` |
 | 009-shared-package-dead-half-removal | `009-shared-package-dead-half-removal/goal.md` |
 | 010-template-contract-alignment | `010-template-contract-alignment/goal.md` |
+| 011-command-surface-contract-realignment | `011-command-surface-contract-realignment/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -143,4 +144,7 @@ and findings belong here.
 | Lane 003 audited its worktree | Four claims described worktree 046's provisioning, not the repository; recorded as environment facts, and later lanes are read with that in mind. |
 | Child 008 appended to the binding | Opened on the operator's observation rather than a lane synthesis; durable slice changed, parent resent in chat. |
 | D6 amended: private-index commits | A pathspec commit takes the working tree and would carry the other session's hunks; the durable slice was resent in chat as the objective, log excluded, to fit the 4,000-character cap. |
+| Child 011 appended to the binding | Durable slice changed; parent resent in chat. |
+| Lane 005 measured its worktree twice | The empty adapter directory and the fingerprint collision were worktree 046 artifacts; both re-measured in the main checkout and recorded in the lane's confirmed findings. |
+| The command surface outranked the lane's P1 rows | The eight /speckit:* assets still scaffolded the retired checklist; found by the census, fixed in 011. |
 <!-- /ANCHOR:log -->

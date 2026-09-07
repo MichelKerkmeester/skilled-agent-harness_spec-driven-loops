@@ -88,4 +88,4 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit-i
 
 ## 6. WORKFLOW SUMMARY
 
-The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies checklist evidence, writes completion artifacts, refreshes context, and closes the implementation pass.
+The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies acceptance-criteria rows and the tasks checklist, writes completion artifacts, refreshes context, and closes the implementation pass.

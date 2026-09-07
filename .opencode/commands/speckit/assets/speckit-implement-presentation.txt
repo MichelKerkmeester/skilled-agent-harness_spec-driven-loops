@@ -71,7 +71,7 @@ SPECKIT IMPLEMENT DASHBOARD
 Spec: [spec_path]
 Mode: [AUTONOMOUS|INTERACTIVE]
 Step: [current] / 9 - [step name]
-Prerequisites: spec.md [status] | plan.md [status] | tasks.md [status] | checklist.md [status]
+Prerequisites: spec.md [status] | plan.md [status] | tasks.md [status] | acceptance-criteria.md [status]
 Task progress: [done]/[total] complete
 Quality gate: [not-run|pass|blocked]
 Current blocker: [none|details]

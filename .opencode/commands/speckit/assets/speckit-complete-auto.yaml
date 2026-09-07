@@ -225,16 +225,16 @@ documentation_levels:
     use_case: "Simple changes, bug fixes"
   level_2_verification:
     name: "Level 2 (Verification)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md]
+    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
     loc_guidance: "100-499 LOC"
     use_case: "Medium features, refactoring"
   level_3_full:
     name: "Level 3 (Full)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md, decision-record.md]
+    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
     loc_guidance: ">=500 LOC"
     use_case: "Complex features, architecture changes"
   level_selection:
-    note: "LOC thresholds are SOFT GUIDANCE - choose level based on complexity and risk"
+    note: "recommend-level.sh scores LOC, file count and risk and decides the level; when its answer and judgment differ, go higher. decision-record.md and the other add-ons are lazy at every level, scaffolded on request"
     default: "Level 1 for simple tasks, escalate based on analysis"
 
 # ─────────────────────────────────────────────────────────────────
@@ -243,35 +243,32 @@ documentation_levels:
 available_templates:
   default_level: level_2
   level_1:
-    spec: level_contract_spec.md
-    plan: level_contract_plan.md
-    tasks: level_contract_tasks.md
-    implementation_summary: level_contract_implementation-summary.md
+    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_2:
-    spec: level_contract_spec.md
-    plan: level_contract_plan.md
-    tasks: level_contract_tasks.md
-    checklist: level_contract_checklist.md
-    implementation_summary: level_contract_implementation-summary.md
+    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_3:
-    spec: level_contract_spec.md
-    plan: level_contract_plan.md
-    tasks: level_contract_tasks.md
-    checklist: level_contract_checklist.md
-    decision_record: level_contract_decision-record.md
-    implementation_summary: level_contract_implementation-summary.md
+    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    decision_record: .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_3_plus:
-    spec: level_contract_spec.md
-    plan: level_contract_plan.md
-    tasks: level_contract_tasks.md
-    checklist: level_contract_checklist.md
-    decision_record: level_contract_decision-record.md
-    implementation_summary: level_contract_implementation-summary.md
+    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    decision_record: .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   shared:
-    research: level_contract_optional_research.md
-    handover: level_contract_optional_handover.md
-    debug_delegation: level_contract_optional_debug-delegation.md
-    resource_map: level_contract_optional_resource-map.md
+    research: .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
+    handover: .opencode/skills/system-spec-kit/templates/addons/handover.md.tmpl
+    debug_delegation: .opencode/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
+    resource_map: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 
 template_compliance:
   strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
@@ -287,17 +284,12 @@ template_compliance:
       <!-- ANCHOR:success-criteria --> ## 5. SUCCESS CRITERIA
       <!-- ANCHOR:risks --> ## 6. RISKS & DEPENDENCIES
       <!-- ANCHOR:questions --> ## 7. OPEN QUESTIONS
-    checklist_md: |
-      # Verification Checklist: [NAME]
-      <!-- ANCHOR:protocol --> ## Verification Protocol
-      <!-- ANCHOR:pre-impl --> ## Pre-Implementation
-      <!-- ANCHOR:code-quality --> ## Code Quality
-      <!-- ANCHOR:testing --> ## Testing
-      <!-- ANCHOR:security --> ## Security
-      <!-- ANCHOR:docs --> ## Documentation
-      <!-- ANCHOR:file-org --> ## File Organization
-      <!-- ANCHOR:summary --> ## Verification Summary
-      Checklist item format: - [ ] CHK-001 [P0] Description
+    acceptance_criteria_md: |
+      # Acceptance Criteria: [NAME]
+      <!-- ANCHOR:metadata --> ## 1. METADATA
+      <!-- ANCHOR:criteria --> ## 2. CRITERIA
+      <!-- ANCHOR:closure --> ## 3. CLOSURE STATEMENT
+      Row format: | AC-001 | REQ-001 | Given [context], When [action], Then [outcome] | [evidence] | Unmet | - |
     plan_md: |
       # Implementation Plan: [NAME]
       <!-- ANCHOR:summary --> ## 1. SUMMARY
@@ -512,8 +504,8 @@ workflow_enforcement:
     step_10_development:
       enforcement: "MUST mark tasks [x] in tasks.md as completed"
       verification: "Count [x] vs [ ] - all must be [x]"
-    step_11_checklist_verify:
-      enforcement: "MUST verify all P0/P1 checklist items (Level 2+)"
+    step_11_acceptance_verify:
+      enforcement: "MUST verify every acceptance-criteria row and every P0/P1 item of the tasks.md verification checklist (Level 2+)"
       verification: "All P0 items [x], P1 either [x] or deferred with approval"
     step_12_completion:
       enforcement: "MUST create implementation-summary.md"
@@ -596,7 +588,7 @@ workflow:
       - spec_path: "{spec_folder}"
       - start_state: "empty-folder | partial-folder | repair-mode | placeholder-upgrade | populated-folder"
     on_trigger:
-      # Typed predicate (T-YML-CMP-01 / M11 BooleanExpr); legacy string literal preserved for backwards compatibility.
+      # Typed predicate (BooleanExpr); legacy string literal preserved for backwards compatibility.
       when:
         field: folder_state
         op: "!="
@@ -619,7 +611,7 @@ workflow:
       emit_event_after_bind: intake_completed
       payload_after_bind: '{"event":"intake_completed","folderState":"{folder_state}","startState":"{start_state}","specPath":"{spec_path}","selectedLevel":"{selected_level}","repairMode":"{repair_mode}","timestamp":"{ISO_8601_NOW}"}'
     on_skip:
-      # Typed predicate (T-YML-CMP-01 / M11 BooleanExpr); legacy string literal preserved for backwards compatibility.
+      # Typed predicate (BooleanExpr); legacy string literal preserved for backwards compatibility.
       when:
         field: folder_state
         op: "=="
@@ -701,7 +693,7 @@ workflow:
     - Run create.sh script (runtime/cli/spec/create.sh) with calculated number
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
-      - "Level 2 (Verification): 100-499 LOC - core trio; checklist.md optional"
+      - "Level 2 (Verification): 100-499 LOC - core trio plus acceptance-criteria.md"
       - "Level 3 (Full): >=500 LOC - core trio; decision-record.md on demand"
     - Load spec.md and use as EXACT structure
     - Parse user description and extract key concepts
@@ -711,7 +703,7 @@ workflow:
     - Generate Functional Requirements (testable)
     - Define Success Criteria (measurable, technology-agnostic)
     - Identify Key Entities if data involved
-    - For Level 2+, include mandatory checklist.md
+    - For Level 2+, include acceptance-criteria.md with one row per requirement
     - For Level 3, include decision-record.md with Traceability, Risk Matrix, Rollback Plan
     confidence_checkpoint:
       evaluate_at: "After drafting spec.md content"
@@ -723,9 +715,9 @@ workflow:
     outputs:
     - spec.md: acceptance_criteria
     - location: "[SPEC_FOLDER]/spec.md"
-    template: level_contract_spec.md
+    template: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
     template_prompt_contract:
-      canonical_template: level_contract_spec.md
+      canonical_template: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
       inline_scaffold_key: spec_md
       writing_rule: "Embed template_compliance.inline_scaffolds.spec_md in the prompt before writing spec.md and preserve the required anchors/headers in order."
     post_write_validation:
@@ -747,36 +739,36 @@ workflow:
     outputs: [resolved_ambiguities, clarified_requirements, updated_spec]
     validation: requirements_clear
 
-  step_5_quality_checklist:
-    purpose: Generate validation checklist AND USE FOR ACTIVE VERIFICATION (Level 2+ requirement)
+  step_5_acceptance_criteria:
+    purpose: Author acceptance-criteria.md AND USE IT FOR ACTIVE VERIFICATION (Level 2+ requirement)
     level_requirement: "Level 2+ (Verification and Full)"
     activities:
     - Check documentation level - skip for Level 1, MANDATORY for Level 2+
-    - Load checklist.md template
-    - Generate domain-specific validation items with priorities (P0/P1/P2)
-    - Create checklist file at FEATURE_DIR/checklist.md
-    - "FOR EACH ITEM: Verify condition → Mark [x] with evidence → If not met: document blocker/deferral"
-    - Ensure ALL P0 items are complete (HARD BLOCKER)
-    - Ensure ALL P1 items complete or user-approved deferral
-    - Document P2 deferrals with reasons
+    - Load the acceptance-criteria template
+    - Write one row per requirement in Given / When / Then form, status Unmet, with the command, file:line or artifact that will prove it
+    - Create acceptance-criteria.md in the spec folder when create.sh did not scaffold it
+    - "FOR EACH ROW: verify the outcome → set Met with observed evidence → otherwise leave Unmet, or Waived/Superseded with an ADR that exists in decision-record.md"
+    - Keep the tasks.md verification checklist current: every P0 item [x] with evidence, every P1 item [x] or a documented deferral, P2 deferrals with reasons
     verification_protocol:
       p0_handling: "BLOCKER - Cannot proceed without completion"
       p1_handling: "Required - Complete or get user approval to defer"
       p2_handling: "Optional - Can defer with documented reason"
+      unmet_row: "BLOCKER - AC_CLOSURE fails a packet created after 2026-08-30 while any row is Unmet"
+      waiver: "Waived or Superseded rows name an ADR-NNN that exists in decision-record.md; an unbacked waiver counts as Unmet"
     outputs:
-    - quality_checklist: generated
-    - location: "[SPEC_FOLDER]/checklist.md"
-    - checklist_status: pass_or_fail
+    - acceptance_criteria: authored
+    - location: "[SPEC_FOLDER]/acceptance-criteria.md"
+    - closure_status: closeable_or_not
     - p0_status: "all_complete or blocked"
-    template: level_contract_checklist.md
+    template: .opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
     template_prompt_contract:
-      canonical_template: level_contract_checklist.md
-      inline_scaffold_key: checklist_md
-      writing_rule: "Embed template_compliance.inline_scaffolds.checklist_md in the prompt before writing checklist.md and preserve CHK-NNN [P0/P1/P2] format."
+      canonical_template: .opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+      inline_scaffold_key: acceptance_criteria_md
+      writing_rule: "Embed template_compliance.inline_scaffolds.acceptance_criteria_md in the prompt before writing acceptance-criteria.md and preserve the AC-NNN row format."
     post_write_validation:
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
-      on_fail: "STOP and repair checklist.md template drift before proceeding"
-    validation: checklist_verified_and_marked
+      on_fail: "STOP and repair acceptance-criteria.md template drift before proceeding"
+    validation: acceptance_verified_and_marked
 
   step_6_planning:
     purpose: Create technical plan with implementation approach
@@ -850,17 +842,17 @@ workflow:
     - plan.md: technical_approach
     - research/research.md: resolved_unknowns
     level_1_baseline: [spec.md, plan.md, tasks.md]
-    level_2_verification: [checklist.md]
-    level_3_full: [decision-record.md]
+    level_2_verification: [acceptance-criteria.md]
+    level_3_full: ["decision-record.md on request"]
     decision_records:
-      # Narrative trigger label (T-YML-CMP-01 / S7): moved from `when:` because this is a
+      # Narrative trigger label, moved from `when:` because this is a
       # content-generation trigger tag, not a mechanical BooleanExpr predicate.
       trigger_reason: significant_technical_decision_needs_documentation
-      template: level_contract_decision-record.md
+      template: .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
       inline_scaffold_key: decision_record_md
-    template: level_contract_plan.md
+    template: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
     template_prompt_contract:
-      canonical_template: level_contract_plan.md
+      canonical_template: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
       inline_scaffold_key: plan_md
       writing_rule: "Embed template_compliance.inline_scaffolds.plan_md in the prompt before writing plan.md and keep custom sections after the required template structure."
     confidence_checkpoint:
@@ -909,9 +901,9 @@ workflow:
     - Validate task format and coverage
     outputs:
     - tasks.md: implementation_breakdown
-    template: level_contract_tasks.md
+    template: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
     template_prompt_contract:
-      canonical_template: level_contract_tasks.md
+      canonical_template: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
       inline_scaffold_key: tasks_md
       writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
     post_write_validation:
@@ -958,7 +950,7 @@ workflow:
     activities:
     - Run check-prerequisites.sh --json --require-tasks
     - Verify plan.md and tasks.md exist
-    - Check all checklists status
+    - Check acceptance-criteria.md rows and the tasks.md verification checklist
     - Verify no blockers exist
     - Verify environment is ready
     - Verify dependencies loaded
@@ -1052,13 +1044,14 @@ workflow:
     - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"
     validation: checkpoint_saved
 
-  step_11_checklist_verify:
-    purpose: Verify all P0/P1 checklist items are complete before claiming completion
+  step_11_acceptance_verify:
+    purpose: Verify every acceptance-criteria row and every P0/P1 checklist item before claiming completion
     blocking: true
     level_requirement: "Level 2+"
     activities:
-    - Load checklist.md from spec folder
-    - Verify ALL P0 items are marked [x] with evidence
+    - Load acceptance-criteria.md and the Verification Checklist section of tasks.md
+    - Set every row to Met with observed evidence, or to Waived/Superseded naming an ADR that exists in decision-record.md
+    - Verify ALL P0 checklist items are marked [x] with evidence
     - Verify ALL P1 items are either marked [x] or have documented user approval to defer
     - P2 items may be deferred without approval
     - Document verification results with evidence format
@@ -1066,12 +1059,12 @@ workflow:
     evidence_log_pattern: "[E:filename]"
     p0_enforcement:
       blocking: true
-      on_incomplete: "P0 ITEMS INCOMPLETE - Cannot proceed. WORKFLOW HALTED."
+      on_incomplete: "UNMET CRITERIA OR P0 ITEMS INCOMPLETE - Cannot proceed. WORKFLOW HALTED."
     p1_enforcement:
       blocking: soft
       allow_deferral: true
       on_incomplete: "P1 items incomplete. A) Complete remaining B) Document deferral and proceed"
-    outputs: [checklist_verification_report, evidence_documentation]
+    outputs: [acceptance_verification_report, evidence_documentation]
     validation: all_p0_complete
 
   step_11_5_postflight:
@@ -1096,11 +1089,11 @@ workflow:
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections: [files_modified_created, verification_steps_taken, deviations_from_plan, skill_updates, recommended_next_steps, browser_testing_results]
-      canonical_template: level_contract_implementation-summary.md
+      canonical_template: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
       inline_scaffold_key: implementation_summary_md
       writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
     nested_changelog:
-      # Narrative preconditions (T-YML-CMP-01 / S7): moved from `when:` because these are
+      # Narrative preconditions, moved from `when:` because these are
       # human-readable folder-shape criteria, not mechanical BooleanExpr predicates.
       applies_when:
       - "Spec folder is a spec root under specs/ or .opencode/specs/"
@@ -1110,14 +1103,14 @@ workflow:
         templates:
         - .opencode/skills/system-spec-kit/templates/changelog/root.md
         - .opencode/skills/system-spec-kit/templates/changelog/phase.md
-      evidence_sources: [implementation-summary.md, tasks.md, checklist.md, decision-record.md, spec.md]
+      evidence_sources: [implementation-summary.md, tasks.md, acceptance-criteria.md, decision-record.md, spec.md]
       output_rules:
         root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
         phase: "[PARENT_SPEC_FOLDER]/changelog/changelog-<packet>-<phase-folder>.md"
     verification_summary:
-      checklist_verification:
+      acceptance_verification:
         required: true
-        must_include: [total_items_count, p0_status, p1_status, deferred_p2_items, checklist_link]
+        must_include: [criteria_total, met_count, waived_or_superseded_with_adr, tasks_checklist_p0_p1_status, acceptance_criteria_link]
     post_write_validation:
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair implementation-summary.md template drift before marking completion"
@@ -1184,7 +1177,7 @@ workflow:
       writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
       invocation: 'node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
       critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
-      # Narrative timing moved from `when:` to `after:` (T-YML-CMP-01 — separates predicate-`when:` from prose-`after:`).
+      # Narrative timing moved from `when:` to `after:` (separates predicate-`when:` from prose-`after:`).
       after: "Immediately after the canonical spec document is refreshed on disk"
 
     anchor_requirements:

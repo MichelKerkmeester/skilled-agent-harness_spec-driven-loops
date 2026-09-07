@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification"
-    last_updated_at: "2026-09-06T16:40:00Z"
+    last_updated_at: "2026-09-07T03:45:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet the open criteria as the lane runs"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the lane is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 
 **Packet:** 005-overengineering-simplification
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-06
 <!-- /ANCHOR:metadata -->
 
@@ -53,10 +53,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | count of files under `research/lineages/glm-5-3-flash-overengineering/iterations` and of iteration events in the JSONL ledger | Unmet | - |
-| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites path:line on the claim side and the evidence side | reproduction notes in research/confirmed-findings.md | Unmet | - |
-| AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Unmet | - |
-| AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Unmet | - |
+| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | count of files under `research/lineages/glm-5-3-flash-overengineering/iterations` and of iteration events in the JSONL ledger | Met | - |
+| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites path:line on the claim side and the evidence side | reproduction notes in research/confirmed-findings.md | Met | - |
+| AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Met | - |
+| AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written when the packet is closed, not before.
+Ten iteration files, ten state events and a 30-finding synthesis with eight plan moves exist under the lineage; every row was censused in the main checkout, one finding the lane missed was added, and the ledger was handed to `../011-command-surface-contract-realignment`, which closed every row that called for a change and recorded the reason for every row that did not.
 <!-- /ANCHOR:closure -->
