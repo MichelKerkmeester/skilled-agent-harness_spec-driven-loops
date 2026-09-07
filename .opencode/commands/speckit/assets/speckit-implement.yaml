@@ -1,6 +1,28 @@
 # ─────────────────────────────────────────────────────────────────
-# SMART SPECKIT: IMPLEMENT WORKFLOW (AUTONOMOUS MODE)
+# SMART SPECKIT: IMPLEMENT WORKFLOW (ONE ASSET, THREE EXECUTION MODES)
 # ─────────────────────────────────────────────────────────────────
+execution_mode:
+  source: "$ARGUMENTS"
+  values: [auto, confirm, autopilot]
+  default: confirm
+  rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, unattended task metadata is required as the command router states."
+checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_5_5_preflight, step_6_development, step_7_completion, step_7_5_postflight, step_8_save_context, step_9_session_handover_check, step_6_5_checkpoint_development]
+mode_overrides:
+  confirm:
+    role: "Expert Developer using Smart SpecKit for interactive implementation"
+    purpose: "Spec-driven implementation with step-by-step user approval"
+    action: "Execute from task breakdown to completion with user checkpoints"
+    approvals: "step_by_step"
+    validation: "checkpoint_based"
+    approach: "Systematic execution with user validation at checkpoints"
+    mandate: "Build incrementally, review with user, deliver confidently"
+    goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
+    interactive_integration: "Confidence checks surfaced at user checkpoints"
+    step_completion_rule: "Execute ALL activities \u2192 Verify ALL outputs \u2192 Present checkpoint for approval \u2192 Mark step complete after approval \u2192 THEN proceed. NEVER skip steps, NEVER proceed without user approval, NEVER jump to coding before Step 5."
+    approach: "incremental_implementation_with_reviews"
+    principle: "Execute with user approval at each checkpoint"
+    checkpoint_behavior: "[Complete activities, Present results summary, Present options for approval, Wait for response, Process feedback, Proceed or modify]"
+
 role: Expert Developer using Smart SpecKit for fully autonomous implementation
 purpose: Spec-driven implementation with complete autonomous execution
 action: Execute from task breakdown to completion with self-validation
@@ -204,6 +226,7 @@ available_templates:
     resource_map: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 
 template_compliance:
+  # cadence: declared once; each step's own gate below states why it re-runs this command
   strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
   prompt_contract:
     rule: "When this workflow writes tasks.md or implementation-summary.md, embed the matching inline scaffold below in the authoring prompt and preserve required ANCHOR/H2 order."
@@ -400,6 +423,13 @@ workflow:
       focus: comprehensive_plan_review
       outputs: [requirements_summary, technical_approach_understanding, identified_dependencies, potential_challenges]
     validation: planning_artifacts_understood
+    checkpoint:
+      applies_to: confirm
+      question: "Step 1 Complete: Plan and spec reviewed. How would you like to proceed?"
+      options:
+        - { label: "Proceed", description: "Plan is clear, proceed to task breakdown" }
+        - { label: "Review Plan", description: "Show plan.md for detailed review" }
+        - { label: "Review Spec", description: "Show spec.md for reference" }
 
   step_2_task_breakdown:
     purpose: Create or validate tasks.md (Level 1+ requirement)
@@ -416,15 +446,27 @@ workflow:
       inline_scaffold_key: tasks_md
       writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
     post_write_validation:
+      # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair tasks.md template drift before proceeding"
     validation: tasks_documented
+    checkpoint:
+      applies_to: confirm
+      question: "Step 2 Complete: Tasks defined. Review tasks.md?"
+      options:
+        - { label: "Approve Tasks", description: "Task breakdown looks good" }
+        - { label: "Review Tasks", description: "Show tasks.md for review" }
+        - { label: "Modify Tasks", description: "Request changes to task breakdown" }
 
   step_3_analysis:
     purpose: Verify consistency across all artifacts
     activities: [Build requirements inventory, Build task coverage mapping, Run consistency checks, Generate gap analysis]
     outputs: [consistency_report, coverage_verification]
     validation: consistency_verified
+    checkpoint:
+      applies_to: confirm
+      question: "Step 3 Complete: Consistency verified. How would you like to proceed?"
+      options: checkpoint_options.standard
 
   step_4_acceptance_criteria:
     purpose: Verify acceptance-criteria.md and the tasks.md checklist AND USE THEM FOR VERIFICATION (Level 2+)
@@ -437,12 +479,26 @@ workflow:
     verification_protocol: { p0: "BLOCKER", p1: "Required or user-approved deferral", p2: "Optional, can defer with reason" }
     outputs: { acceptance_status: closeable_or_not, checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
     validation: acceptance_verified_and_marked
+    checkpoint:
+      applies_to: confirm
+      question: "Step 4 Complete: Checklists verified. Ready to implement?"
+      options:
+        - { label: "Start Implementation", description: "Begin development phase" }
+        - { label: "Review Verification", description: "Show acceptance-criteria and checklist verification details" }
+        - { label: "Address Blockers", description: "Fix P0/P1 blockers first" }
 
   step_5_implementation_check:
     purpose: Verify all prerequisites for implementation
     activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers]
     checks: { prerequisites: verified, blockers: none, environment: ready }
     validation: prerequisites_verified
+    checkpoint:
+      applies_to: confirm
+      question: "Step 5 Complete: Environment ready. Proceed with development?"
+      options:
+        - { label: "Start Coding", description: "Begin implementation" }
+        - { label: "Check Environment", description: "Show environment status" }
+        - { label: "Hold", description: "Wait before proceeding" }
 
   step_5_5_preflight:
     purpose: Capture epistemic baseline for learning measurement
@@ -462,6 +518,13 @@ workflow:
       ### Focus Areas
       - [area 1] / [area 2]
     validation: preflight_captured
+    checkpoint:
+      applies_to: confirm
+      question: "Step 5.5: PREFLIGHT baseline captured. Proceed to development?"
+      options:
+        - { label: "Proceed", description: "Start development phase" }
+        - { label: "Adjust Baseline", description: "Modify PREFLIGHT values" }
+        - { label: "Skip", description: "Skip PREFLIGHT (not recommended)" }
 
   step_6_development:
     purpose: Execute implementation following task plan
@@ -519,6 +582,10 @@ workflow:
           low_below_40: "STOP — A) Research B) Simplify C) Skip"
       citation_requirement: "Reference task ID in commits, cite pattern sources, use [DEVIATION: reason]"
     validation: development_complete
+    checkpoint:
+      applies_to: confirm
+      question: "Step 6 Complete: Development finished. Review implementation?"
+      options: checkpoint_options.code_review
 
   step_6_5_checkpoint_development:
     purpose: Save context checkpoint after development phase
@@ -530,6 +597,7 @@ workflow:
       note: "Intermediate checkpoint - development phase complete"
     outputs: ["[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"]
     validation: checkpoint_saved
+    checkpoint_confirm: true
 
   step_7_completion:
     purpose: Generate implementation summary and packet-local nested changelog when applicable
@@ -557,6 +625,7 @@ workflow:
         required: true
         must_include: [Criteria total, Met count, Waived or superseded rows with their ADR, tasks.md P0/P1 status, Link to acceptance-criteria.md]
     post_write_validation:
+      # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair implementation-summary.md template drift before marking completion"
     validation: implementation_complete
@@ -564,6 +633,13 @@ workflow:
       enforcement: HARD_BLOCK
       before_marking_complete: "Verify implementation-summary.md exists with all required sections. If packet-local changelog applies, generate it before proceeding."
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
+    checkpoint:
+      applies_to: confirm
+      question: "Step 7 Complete: Implementation summary generated. Review?"
+      options:
+        - { label: "Approve Summary", description: "Summary is complete" }
+        - { label: "View Summary", description: "Show implementation-summary.md" }
+        - { label: "Add Details", description: "Add more to summary" }
 
   step_7_5_postflight:
     purpose: Capture learning delta and calculate improvement
@@ -586,42 +662,36 @@ workflow:
       ### Key Insights
       - [insight 1] / [insight 2]
     validation: postflight_captured
+    checkpoint:
+      applies_to: confirm
+      question: "Step 7.5: POSTFLIGHT captured. Learning Index calculated. Proceed to save context?"
+      options:
+        - { label: "Proceed", description: "Continue to save context" }
+        - { label: "Review Delta", description: "View learning delta details" }
+        - { label: "Adjust Values", description: "Modify POSTFLIGHT scores" }
 
   step_8_save_context:
     purpose: Save conversation context
     activities: [Invoke system-spec-kit skill, Preserve decisions/insights/changes, Refresh the routed canonical spec document with the continuity writer]
-    tool_invocation:
-      command: Read(".opencode/skills/system-spec-kit/SKILL.md")
-      note: "Activate context saving"
     outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"]
     validation: context_saved_successfully
-    memory_creation:
-      enforcement: HARD_BLOCK
-      method: "MUST use structured JSON input with generate-context.js"
-      command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]"
-      forbidden: ["Manual Write/Edit authoring of files under retired memory/ paths (the runtime rejects them)"]
-      violation_recovery: "DELETE the manually authored file, then re-run generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
     write_continuity:
       writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
       invocation: 'node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
       critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
       when: "Immediately after the canonical spec document is refreshed on disk"
-    anchor_requirements:
-      enforcement: MANDATORY
-      minimum_anchors: 2
-      pattern: "[context-type]-[keywords]-[spec-number]"
-      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
-      required_sections:
-        - { type: "general", section: "Session summary", id: "GENERAL-SESSION-SUMMARY-{spec#}" }
-        - { type: "decision", section: "Key decisions", id: "DECISION-{topic}-{spec#}" }
-      optional_sections:
-        - { type: "implementation", id: "IMPLEMENTATION-{feature}-{spec#}" }
-        - { type: "files", id: "FILES-{spec#}" }
-      benefit: "93% token savings on anchor-based retrieval"
     importance_tier:
       assign: important
       rationale: "Implementation sessions contain significant code decisions"
       tier_reference: "critical > important > normal > temporary > deprecated"
+    checkpoint:
+      applies_to: confirm
+      question: "Step 8 Complete: Implementation workflow finished!"
+      options:
+        - { label: "Done", description: "Complete the workflow" }
+        - { label: "View Final Summary", description: "Show complete implementation summary" }
+    shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"
+    shared_tail_note: "The writer, post-save rule and anchor requirements live once in the shared tail; {spec_path} is this workflow's packet."
 
   step_9_session_handover_check:
     purpose: Final workflow closeout after implementation
@@ -634,6 +704,12 @@ workflow:
         - { label: "Skip", action: "Proceed to termination" }
     behavior: { user_accepts: "Execute /speckit:save", user_declines: "Proceed to termination" }
     validation: workflow_finish_confirmed
+    checkpoint:
+      applies_to: confirm
+      question: "Would you like to refresh continuity before ending the implementation workflow?"
+      options:
+        - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
+        - { label: "Skip", description: "Complete workflow without another continuity refresh" }
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION

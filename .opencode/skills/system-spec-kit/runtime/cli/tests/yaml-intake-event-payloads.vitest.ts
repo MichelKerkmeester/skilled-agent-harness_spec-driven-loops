@@ -27,10 +27,8 @@ const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..', '..', '..', '..'
 const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'speckit', 'assets');
 
 const ASSETS_WITH_INTAKE_EVENTS = [
-  'speckit-plan-auto.yaml',
-  'speckit-plan-confirm.yaml',
-  'speckit-complete-auto.yaml',
-  'speckit-complete-confirm.yaml',
+  'speckit-plan.yaml',
+  'speckit-complete.yaml',
 ];
 
 describe('YAML intake-event payloads preserve folderState / startState boundary (T-TEST-NEW-13)', () => {

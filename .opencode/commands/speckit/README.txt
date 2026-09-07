@@ -119,12 +119,10 @@ speckit/
 ├── save.md           # /speckit:save - Continuity writer front door
 ├── search.md         # /speckit:search - Trigger-index lookup + ripgrep recipes
 └── assets/           # YAML workflow definitions, plus save/search presentation contracts
-    ├── speckit-complete-auto.yaml
-    ├── speckit-complete-confirm.yaml
-    ├── speckit-implement-auto.yaml
-    ├── speckit-implement-confirm.yaml
-    ├── speckit-plan-auto.yaml
-    ├── speckit-plan-confirm.yaml
+    ├── speckit-complete.yaml
+    ├── speckit-implement.yaml
+    ├── speckit-plan.yaml
+    ├── speckit-save-context-tail.yaml
     ├── speckit-resume-auto.yaml
     ├── speckit-resume-confirm.yaml
     ├── save-presentation.txt
@@ -212,8 +210,9 @@ The `complete` command supports two additional flags:
 | `:with-research` | Add research phase before planning |
 
 Each mode-pair command maps to a YAML workflow file in `assets/`:
-- Auto: `speckit_<command>_auto.yaml`
-- Confirm: `speckit_<command>_confirm.yaml`
+- Plan, implement, complete: one `speckit-<command>.yaml` carrying `execution_mode` (auto, confirm, autopilot), a `checkpoints` list and `mode_overrides.confirm`; confirm-only blocks are marked `applies_to: confirm`
+- Resume: `speckit-resume-auto.yaml` and `speckit-resume-confirm.yaml`
+- Shared tail: `speckit-save-context-tail.yaml` holds the save-context writer, post-save rule and anchor requirements once
 
 `save` and `search` carry no `:auto`/`:confirm` suffix. Each is a single-pass direct-dispatch router with its own presentation contract (`save-presentation.txt`, `search-presentation.txt`) and no owned workflow YAML.
 

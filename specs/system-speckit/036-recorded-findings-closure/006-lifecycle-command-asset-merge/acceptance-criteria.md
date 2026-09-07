@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,11 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given `/speckit:plan`, `/speckit:implement` and `/speckit:complete`, When their asset directory is listed, Then each resolves to one workflow asset with an execution-mode branch and a declared checkpoint list | `ls .opencode/commands/speckit/assets/speckit-{plan,implement,complete}*.yaml` lists three files | Unmet | - |
-| AC-002 | REQ-002 | Given the three merged assets, When `save_context` is searched, Then the step body is defined once and referenced by all three | `grep -rn 'save_context' .opencode/commands/speckit/assets/` | Unmet | - |
-| AC-003 | REQ-003 | Given the three merged assets, When every `validate.sh [SPEC_FOLDER] --strict` call site is read, Then each carries a one-line cadence comment | manual diff of every call site against the pre-merge files | Unmet | - |
-| AC-004 | REQ-004 | Given the merged assets, When the parity and mirror checks run, Then both pass | `bash .opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh` and `node .../runtime-mirrors/sync-runtime-mirrors.cjs --check` | Unmet | - |
-| AC-005 | REQ-005 | Given the three merged assets, When their step names are extracted, Then no command's step sequence duplicates another's verbatim beyond `complete`'s documented reuse | step-name extraction script output compared across the three files | Unmet | - |
+| AC-001 | REQ-001 | Given `/speckit:plan`, `/speckit:implement` and `/speckit:complete`, When their asset directory is listed, Then each resolves to one workflow asset with an execution-mode branch and a declared checkpoint list | `ls .opencode/commands/speckit/assets/speckit-{plan,implement,complete}*.yaml` lists three files | Met | - |
+| AC-002 | REQ-002 | Given the three merged assets, When `save_context` is searched, Then the step body is defined once and referenced by all three | `grep -rn 'save_context' .opencode/commands/speckit/assets/` | Met | - |
+| AC-003 | REQ-003 | Given the three merged assets, When every `validate.sh [SPEC_FOLDER] --strict` call site is read, Then each carries a one-line cadence comment | manual diff of every call site against the pre-merge files | Met | - |
+| AC-004 | REQ-004 | Given the merged assets, When the parity and mirror checks run, Then both pass | `bash .opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh` and `node .../runtime-mirrors/sync-runtime-mirrors.cjs --check` | Met | - |
+| AC-005 | REQ-005 | Given the three merged assets, When their step names are extracted, Then no command's step sequence duplicates another's verbatim beyond `complete`'s documented reuse | step-name extraction script output compared across the three files | Met | - |
 
 ### Status values
 

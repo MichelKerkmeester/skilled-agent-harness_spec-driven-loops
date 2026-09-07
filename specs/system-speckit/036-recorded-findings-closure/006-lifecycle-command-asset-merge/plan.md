@@ -38,14 +38,14 @@ Each command's auto and confirm assets already diff to identical step names and 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -166,9 +166,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) - not needed. Tracked in git history
-- [ ] Feature flag configured - none. The merge changes structure an agent reads at command time
-- [ ] Monitoring alerts set - the parity checker and the mirror check are the alerts
+- [x] Backup created (if data changes) - not needed. Tracked in git history
+- [x] Feature flag configured - none. The merge changes structure an agent reads at command time
+- [x] Monitoring alerts set - the parity checker and the mirror check are the alerts
 
 ### Rollback Procedure
 1. `git revert` the merge commit

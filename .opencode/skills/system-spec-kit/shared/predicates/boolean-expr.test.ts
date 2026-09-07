@@ -135,7 +135,7 @@ function assert(cond: boolean, label: string): void {
 
 {
   const assetPath = fileURLToPath(
-    new URL('../../../../commands/speckit/assets/speckit-complete-confirm.yaml', import.meta.url),
+    new URL('../../../../commands/speckit/assets/speckit-complete.yaml', import.meta.url),
   );
   const asset = readFileSync(assetPath, 'utf8');
   const block = asset.match(/write_continuity:[\s\S]*?(?=\n\s{4}[A-Za-z_][A-Za-z0-9_]*:)/)?.[0] ?? '';

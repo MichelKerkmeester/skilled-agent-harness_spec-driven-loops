@@ -39,7 +39,7 @@
       "validate"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/commands/speckit/assets/speckit-plan-auto.yaml",
-      ".opencode/commands/speckit/assets/speckit-implement-auto.yaml",
-      ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
+      ".opencode/commands/speckit/assets/speckit-save-context-tail.yaml",
+      ".opencode/commands/speckit/README.txt",
+      "runtime/cli/tests/test-phase-command-workflows.js",
+      "runtime/cli/tests/yaml-intake-event-payloads.vitest.ts",
+      "shared/predicates/boolean-expr.test.ts",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
       ".opencode/commands/speckit/plan.md",
       ".github/workflows/command-tree-parity.yml",
       ".opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh",
@@ -94,21 +97,39 @@
         "source": "derived"
       },
       {
-        "name": "speckit-plan-auto.yaml",
+        "name": "speckit-save-context-tail.yaml",
         "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit-plan-auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit-save-context-tail.yaml",
         "source": "derived"
       },
       {
-        "name": "speckit-implement-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit-implement-auto.yaml",
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/speckit/README.txt",
         "source": "derived"
       },
       {
-        "name": "speckit-complete-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "yaml-intake-event-payloads.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/yaml-intake-event-payloads.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.test.ts",
+        "kind": "test",
+        "path": "shared/predicates/boolean-expr.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -182,29 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Structural",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The three `/speckit:` lifecycle commands each ship as an auto/confirm pair, six YAML assets between 780 and 1,388 lines (verified 2026-09-07: `speckit-plan-auto.yaml` 780 lines, `speckit-plan-confirm.yaml` 849 lines)",
     "created_at": "2026-09-07T15:05:46Z",
-    "last_save_at": "2026-09-07T15:41:27.569Z",
+    "last_save_at": "2026-09-07T16:52:09.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea787ceba21b94dd1c43cf91fbf23c96b9c795e5bdeeb75c25422249b107a460",
+    "source_fingerprint": "sha256:25b0067555c32119814337a7b1572b6b8dd5da8d08351645475844a97970a897",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b8aa903df20449695e74c6ebd0e8240f9bf7db789ca464cb3a133d905c775b2",
-      "plan.md": "0421aeaa9fe383748a7a60568a4491128395e3ab0f56f7a2158ce0cda674af21",
-      "tasks.md": "e3171c3549b035abe7d79b544b1116b8d37def32f67f659069028b134254e809",
-      "implementation-summary.md": "de288d837cebeb532f0f11c0c3b03628edaee8b263ad38766b9a383f81ccfe8a"
+      "spec.md": "965db0223600102052a99ee2f20e418931cc3478788a9d5626bd1db32b08e335",
+      "plan.md": "1d5a239d9d81f7dad022e37d6d5eb322ec473633df4c901717fcc4530357be78",
+      "tasks.md": "75496c8ec015738c1f43d9b50c576c2156bfc140f3857a95efa9c8fae4a1e20a",
+      "implementation-summary.md": "ef22cde4570a62a26b0fae9415b29dc14ec7ab260b3ab6109b9110175515a1e4"
     },
     "last_active_at": null
   }
