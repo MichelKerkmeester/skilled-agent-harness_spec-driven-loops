@@ -89,6 +89,7 @@ Each prompt is a small stub that points at the canonical file rather than duplic
 
 ## 6. REQUIRED PARITY
 
+- **Gate 1 lookup instruction: inherited, not mirrored.** Pi loads `AGENTS.md` (or `CLAUDE.md`) from the working directory and its ancestors at startup, so the root `AGENTS.md` Gate 1 line reaches every Pi session in this repository without a `.pi` copy. Source: `@earendil-works/pi-coding-agent` 0.85.1, `README.md` §"Pi loads `AGENTS.md`" and `dist/core/resource-loader.js` `loadContextFileFromDir`, whose candidate list is `AGENTS.override.md`, `AGENTS.md`, `AGENTS.MD`, `CLAUDE.md`, `CLAUDE.MD`; `--no-context-files` is the only way to disable it. Recorded 2026-09-07; `/doctor speckit-retrieval` phase 0 reports it as `gate1_reach.pi`.
 - 13 agents and 35 prompts, matching the canonical trees exactly. The command count moves as commands are added or retired; the generators' `--check` is authoritative, not this number.
 - Every prompt stub's cited canonical path must exist. A stub pointing at a deleted file is the drift mode that actually occurred here (`interface-motion` outlived its command).
 

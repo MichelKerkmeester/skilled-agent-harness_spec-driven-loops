@@ -43,9 +43,9 @@ The Gate 1 lookup instruction lives once in root `AGENTS.md`. This phase does no
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Doctor parity check runs clean against the repository (or reports a documented, accepted gap)
-- [ ] Docs updated (spec/plan/tasks, retrieval README, `.pi/SYNC.md`, `.cursor/SYNC.md`)
+- [x] All acceptance criteria met
+- [x] Doctor parity check runs clean against the repository (or reports a documented, accepted gap)
+- [x] Docs updated (spec/plan/tasks, retrieval README, `.pi/SYNC.md`, `.cursor/SYNC.md`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -164,9 +164,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] No backup needed. Every changed file is tracked in git with no external data migration
-- [ ] No feature flag needed. The doctor check is advisory (a staleness signal), not a blocking gate
-- [ ] No monitoring alert needed. The check runs on demand through `/doctor speckit-retrieval`
+- [x] No backup needed. Every changed file is tracked in git with no external data migration
+- [x] No feature flag needed. The doctor check is advisory (a staleness signal), not a blocking gate
+- [x] No monitoring alert needed. The check runs on demand through `/doctor speckit-retrieval`
 
 ### Rollback Procedure
 1. Revert the generator script's commit and the two pointer-file edits.

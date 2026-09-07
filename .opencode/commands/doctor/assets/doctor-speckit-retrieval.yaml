@@ -138,6 +138,10 @@ staleness_signals:
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
     severity: high
+  gate1_instruction_parity:
+    detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, a generated pointer block in .codex/AGENTS.md or .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
+    severity: medium
+    note: "Claude reads the root AGENTS.md through the CLAUDE.md symlink and Pi loads it from the working directory, so those two inherit; Codex and the Cursor rule that Cursor and Devin share carry generated pointer blocks. Reach is per runtime: a pointer, a verified inheritance or a session-start injection each count as a path."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -155,6 +159,7 @@ workflow:
       - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase, with the exact flags that section lists (--no-config --hidden and the five exclusion globs); record exit status and path count"
       - "Run the same recipe once more without --no-config; a different path set is the ripgrep_ambient_config signal"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
+      - "Gate 1 reach, per runtime: Bash: grep -c lookup-trigger-index.mjs AGENTS.md (claude, via the CLAUDE.md symlink; pi, which loads AGENTS.md from the working directory per its resource loader); node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check (codex through .codex/AGENTS.md; cursor and devin through .cursor/rules/skill-routing.md). Any missing count or a non-zero exit is the gate1_instruction_parity signal"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
       - index_present: true|false
@@ -167,6 +172,7 @@ workflow:
       - candidate_phrase_count: N
       - ripgrep_exit: 0|1|2+
       - ripgrep_path_count: N
+      - gate1_reach: {claude: direct|none, codex: pointer|none, cursor: pointer|none, devin: pointer|none, pi: inherited|none}
     validation: discovery_complete
     fail_fast:
       - "Lookup exits 2 or higher → STATUS=FAIL with stderr attached"

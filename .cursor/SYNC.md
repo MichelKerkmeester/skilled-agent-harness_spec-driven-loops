@@ -32,7 +32,7 @@ Agents source from **`.claude/agents/`**, not `.opencode/agents/`, because Curso
 | `commands/*.md` (35) | symlink | `.opencode/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
 | `hooks/*` (15) | symlink | scattered `.opencode/**` | discovery mirror only |
 | `hooks.json` | **hand-authored** | — | — |
-| `rules/skill-routing.md` | **hand-authored** | — | also read by Devin |
+| `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |
 | `mcp.json` | symlink | `../.mcp.json` → `.claude/mcp.json` | double hop |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` |
 
@@ -111,7 +111,7 @@ Expect the 13 repo agents alongside Cursor's own built-ins. Note that dispatchin
 ## 8. KNOWN GAPS
 
 - **`hooks.json` is hand-authored and unmirrorable.** Its dialect has no counterpart in the other three runtimes.
-- **`rules/skill-routing.md` has no generator** and is not derived from the skill registry, so a new skill packet will not appear in it automatically.
+- **`rules/skill-routing.md`'s packet list has no generator** and is not derived from the skill registry, so a new skill packet will not appear in it automatically. Only its Gate 1 pointer block is generated, from the root `AGENTS.md` line, by `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs` (`--check` reports drift).
 - **`beforeSubmitPrompt` dormancy is unresolved upstream.** The static rules file mitigates but does not replace it.
 
 ---
