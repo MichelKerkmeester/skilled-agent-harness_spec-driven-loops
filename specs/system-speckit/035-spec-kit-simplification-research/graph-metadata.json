@@ -15,7 +15,8 @@
     "system-speckit/035-spec-kit-simplification-research/009-shared-package-dead-half-removal",
     "system-speckit/035-spec-kit-simplification-research/010-template-contract-alignment",
     "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
-    "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair"
+    "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair",
+    "system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement"
   ],
   "manual": {
     "depends_on": [],
@@ -63,11 +64,11 @@
       "010-template-contract-alignment/goal.md",
       "011-command-surface-contract-realignment/goal.md",
       "012-pre-existing-test-repair/goal.md",
+      "013-trigger-phrase-quality-enforcement/goal.md",
       "001-ripgrep-search-system/research/confirmed-findings.md",
       "002-cli-runtime-utilization/research/confirmed-findings.md",
       "003-shared-package-utilization/research/confirmed-findings.md",
-      "004-template-system-and-acceptance-criteria/research/confirmed-findings.md",
-      "resource-map/extract-from-evidence.cjs"
+      "004-template-system-and-acceptance-criteria/research/confirmed-findings.md"
     ],
     "entities": [
       {
@@ -86,12 +87,6 @@
         "name": "confirmed-findings.md",
         "kind": "doc",
         "path": "001-ripgrep-search-system/research/confirmed-findings.md",
-        "source": "derived"
-      },
-      {
-        "name": "extract-from-evidence.cjs",
-        "kind": "file",
-        "path": "resource-map/extract-from-evidence.cjs",
         "source": "derived"
       },
       {
@@ -169,17 +164,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-07T04:48:15.236Z",
+    "last_save_at": "2026-09-07T06:03:20.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:02db1024aa819fb153329fecc5d1434cbb2f7eee0aeda825744eb1c6a0720da4",
+    "source_fingerprint": "sha256:87a0dbb1021672d63699e36912062bd334213971990fbe8fe920d4e095e8e4f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c044bb7230755d83603580fd25310d8edc5c39caef8447d268c8c74d272c6ff6"
+      "spec.md": "93db3ac79cee4603ddcac45c0ede727c9b98bf898ff8564842ccca07cece8963"
     },
     "last_active_child_id": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
     "last_active_at": "2026-09-07T02:22:53.073Z"

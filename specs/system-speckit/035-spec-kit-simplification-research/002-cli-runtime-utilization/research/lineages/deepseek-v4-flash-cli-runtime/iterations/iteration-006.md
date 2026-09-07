@@ -1,0 +1,53 @@
+---
+title: "Iteration 6: one-pass corners, part 1 — an unwired twin, a superseded decision, and the observability residual resolved"
+trigger_phrases: []
+---
+# Iteration 6: One-pass corners, part 1 — an unwired twin, a superseded decision, and the observability residual resolved
+
+## Focus
+
+Job 2 (round-one misses) and job 3 (kept-row re-examination) converge on the corners round one passed in one sweep: observability/ (its consumer was round one's one named residual), core/ vs spec-folder/ alignment twins (round one's duplication list has 11 exhibits; this pair is not among them), and round one's merge row 10 (resource-map extractor "unwired, waits for lane 004").
+
+## Actions Taken
+
+1. Observability: 7 files inventoried (README, live-session-wrapper.ts, smart-router-analyze.ts, smart-router-measurement.ts, smart-router-telemetry.ts + committed smart-router-measurement-report.md + results.jsonl). Consumer census: the deep-research-auto.yaml "observability" hit is system-deep-loop's OWN observability-events.cjs — NOT this package. live-session-wrapper.ts: referenced ONLY by observability/README.md — zero importers, zero tests. smart-router-{measurement,telemetry,analyze}.ts: imported by runtime/tests/{smart-router-measurement,smart-router-telemetry,smart-router-analyze}.vitest.ts (tests only). The committed report/results: enumerated by retrieval/fixtures/{corpus-manifest.json:7954, generation-diagnostics.json:37503} and described in README; the results.jsonl summary record shows a single measurement run (197 prompts, accuracy 0.6599, generatedAt 2026-05-03).
+2. Alignment twins: core/alignment-validator.ts (227L; header: "Spec folder alignment checking and tree-thinning application for file change lists. Extracted from workflow.ts to reduce module size") vs spec-folder/alignment-validator.ts (712L; header: "Validates conversation-to-spec-folder alignment using topic and keyword matching"). Importers: spec-folder/ — spec-folder/folder-detector.ts:28 (type import) + tests/test-scripts-modules.js:979,2392 (LIVE). core/ — only tests/test-naming-migration.js (the grep over the whole .opencode + .github: exactly one hit). Lane membership of test-naming-migration.js: NOT in test:legacy (test-scripts-modules.js + test-extractors-loaders.js), NOT in test:validation, NOT in the vitest projects (it is a .js file; include patterns are **/*.vitest.ts) — so it never runs.
+3. Resource-map re-examination (job 3): checked the live invocation chain in BOTH deep commands. deep-research-auto.yaml step_emit_resource_map (~1965-1974): `node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map` (fanout variant at 1966, plain at 1972). deep-review-auto.yaml:2145: `node .../runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map`. Both reducer scripts import `emitResourceMap` from `../../shared/synthesis/resource-map.cjs` (runtime/scripts/reduce-state.cjs:13; deep-research/scripts/reduce-state.cjs:14), and shared/synthesis/resource-map.cjs:18 re-exports it from `system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` (shared/synthesis/README.md:20: "Carries no logic of its own"; :35: "single implementation"). The extractor therefore IS wired end to end in the current tree.
+4. Template mechanism sanity (ruling out a ghost): the earlier draft claim that docs name non-existent l.sh/l.ts was checked and RETRACTED — docs name templates/inline-gate-renderer.sh consistently (template-mapping.md:89,100,337; execution-methods.md:186; goal-set-string-playbook.md:95; quick-reference.md:92,143; template-guide.md:61), and the .sh (47L) is the documented wrapper over the .ts (299L): inline-gate-renderer.sh:6-10 declares "Wrapper" + LOADER=tsx + RENDERER=inline-gate-renderer.ts. No finding.
+
+## Findings
+
+1. **P1 — a same-name alignment-validator pair, and the core/ copy is dead**: `core/alignment-validator.ts` (227L) declares itself "Extracted from workflow.ts to reduce module size" but NO production file imports it — zero importers across `.opencode`/`.github` (the sole hit is tests/test-naming-migration.js), and that test runs under NO npm lane (not vitest include glob, not test:legacy, not test:validation), so the file and its test are dead together. The live validator of the same name is `spec-folder/alignment-validator.ts` (712L), imported by spec-folder/folder-detector.ts:28 and exercised by test-scripts-modules.js:979,2392. Round one read core/alignment-validator.ts in iteration 6 and its 11-exhibit duplication list does not include this pair. Declared purpose: spec-folder alignment + tree-thinning extracted from workflow.ts. Observed callers: none found (production). Severity P1 (dead production module + unwired test). Recommendation: **remove** core/alignment-validator.ts and tests/test-naming-migration.js (or re-home the tree-thinning logic into the live spec-folder validator — an owner decision, not this audit's).
+
+2. **P2 — round one's merge row 10 is superseded by new evidence: the resource-map extractor IS wired, so "waits for lane 004" has no remaining object**: the invocation chain exists in the current tree in BOTH commands — deep-research-auto.yaml:1966,1972 and deep-review-auto.yaml:2145 invoke reduce-state.cjs with `--emit-resource-map`; both reducers import `emitResourceMap` from shared/synthesis/resource-map.cjs (runtime:13, deep-research:14), which re-exports cli/resource-map/extract-from-evidence.cjs (line 18). Round one's stated reason ("the command YAML names the artifact; no step names the tool; wiring waits for lane 004") is wrong for this tree — the step names the tool (reduce-state.cjs) and the tool chain emits the map. Declared purpose of the row: a merge recommendation deferred to lane 004. Observed callers: the reducer path executes it on every deep-research/deep-review synthesis. Severity P2 (the record's decision is moot; nothing is broken — the only residue is that the command-level docs could name the extractor file itself). Recommendation: **document** — mark the row resolved in confirmed-findings; lane 004 needs only a doc mention, not wiring.
+
+3. **P1 — observability/live-session-wrapper.ts is dead**: 0 importers, 0 tests, 1 reference (its own README:29 "Read-tool observation wrapper"). The committed smart-router-measurement-report.md + results.jsonl are enumerated by retrieval fixtures (corpus-manifest.json:7954, generation-diagnostics.json:37503) and test-covered by runtime/tests/smart-router-*.vitest.ts, but nothing executes the measurement/telemetry/analyze pipeline in the current tree — it is recorded acceptance evidence (a 2026-05-03 run), not a live mechanism. This RESOLVES round one's explicit residual ("the observability results' ultimate consumer: caller-not-verified"): the consumer is the fixture corpus + tests; no live command consumes the outputs. Declared purpose: track Read calls against skill resources for a prompt session. Observed callers: none found. Severity P1 (dead module). Recommendation: **remove** live-session-wrapper.ts and its README row (leave the committed measurement outputs in place as acceptance evidence — that is round-one-consistent).
+
+## Questions Answered
+
+- (Q4, partial) observability/ — per-file verdict complete; round one's only named residual resolved by evidence.
+- (Q8 momentum, job 3) resource-map row re-examined with new evidence and re-listed (finding 2) — the first kept-row overturned.
+
+## Questions Remaining
+
+- retrieval/, graph/, spec-folder/ remainder, metrics/ verdict completion (iteration 7); codex/pi/mirrors invocation story + doctor-route parity with the new workflow (iteration 7); duplicated helpers across cli/ ../lib/ shared/ (iteration 9); the 007/008 "kept decisions" batch (iteration 8).
+
+## What Worked / What Failed
+
+- Worked: checking the OTHER direction for the resource-map row — instead of re-grepping the command YAML for the extractor name, tracing who imports shared/synthesis/resource-map.cjs and who runs the reducer with --emit-resource-map. The "unwired" claim died at the first hop.
+- Worked: verifying a suspected doc-ghost (l.sh/l.ts) before filing and RETRACTING it — the careful second grep found the docs name the real file everywhere; no ghost exists.
+- Failed: none; no approach exhausted.
+
+## Ruled Out
+
+- A ghost-doc finding for templates/l.sh / l.ts — retracted after verification; docs name inline-gate-renderer.sh consistently and the .sh is the wrapper over the .ts.
+- inline-gate-renderer .sh/.ts as a duplication — the .sh is a documented tsx wrapper, not a second implementation.
+- metrics/ and optimizer/ re-openers — metrics/fable-metrics.cjs is doctor-wired (doctor/scripts/fable-mode-check.cjs:11,14 + doctor-fable-mode.yaml:35-36; round one verified); optimizer/*.cjs has 5 cli vitest suites but zero production callers — the agent-definition callers round one cited were not found in the current tree (see iteration 7 for the full recensus).
+
+## Sources
+
+[SOURCE: .opencode/skills/system-spec-kit/runtime/cli/observability/ (ls, README.md:29,45-63, smart-router-measurement-results.jsonl summary record)] [SOURCE: .opencode/skills/system-spec-kit/runtime/tests/smart-router-measurement.vitest.ts:12, smart-router-telemetry.vitest.ts:14, smart-router-analyze.vitest.ts:14] [SOURCE: .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:7954, generation-diagnostics.json:37503] [SOURCE: .opencode/skills/system-spec-kit/runtime/cli/core/alignment-validator.ts:3-7 + importer census] [SOURCE: .opencode/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts:8, spec-folder/folder-detector.ts:28, tests/test-scripts-modules.js:979,2392] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:1955-1974, .opencode/commands/deep/assets/deep-review-auto.yaml:2145] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:13, system-deep-loop/deep-research/scripts/reduce-state.cjs:14, system-deep-loop/shared/synthesis/resource-map.cjs:18, system-deep-loop/shared/synthesis/README.md:20,35] [SOURCE: .opencode/skills/system-spec-kit/runtime/cli/templates/ (ls + inline-gate-renderer.sh:5-10), .opencode/skills/system-spec-kit/assets/template-mapping.md:89,100,337]
+
+## Next Iteration
+
+Iteration 7: the sync/mirror invocation story end to end post-007 — codex/, pi/, runtime-mirrors/ recensus (the "3 promised workflows" vs doctor route vs the new CI job); verify the optimizer agent-definition callers round one cited still exist in the current tree; and the retrieval/ + graph/ + spec-folder/ remaining verdicts.

@@ -308,6 +308,24 @@ describe('frontmatter creation', () => {
 // Anchor grammar
 // ───────────────────────────────────────────────────────────────────
 
+describe('phrase judge', () => {
+  it('rejects a single token, which can only ever match by exact equality', () => {
+    expect(judgeTriggerPhrase('retrieval')).toEqual(expect.objectContaining({ negativeClass: 'single-token' }));
+  });
+
+  it('rejects a phrase that is only numbers, the residue of a packet id or a date', () => {
+    expect(judgeTriggerPhrase('2026-05-14')).toEqual(expect.objectContaining({ negativeClass: 'numeric-only' }));
+    expect(judgeTriggerPhrase('007')).toEqual(expect.objectContaining({ negativeClass: 'numeric-only' }));
+  });
+
+  it('keeps the earlier classes ahead of the new ones and admits a two-token concept', () => {
+    expect(judgeTriggerPhrase('session')).toEqual(expect.objectContaining({ negativeClass: 'editor-fallback' }));
+    expect(judgeTriggerPhrase('memory')).toEqual(expect.objectContaining({ negativeClass: 'generic-workflow-word' }));
+    expect(judgeTriggerPhrase('the')).toEqual(expect.objectContaining({ negativeClass: 'stop-word-only' }));
+    expect(judgeTriggerPhrase('spec folder question')).toBeNull();
+  });
+});
+
 describe('anchor parser', () => {
   it('reads a marker only when it is the whole line', () => {
     expect(readAnchorMarker('<!-- ANCHOR:scope -->')).toEqual({ id: 'scope', kind: 'open' });
@@ -421,8 +439,13 @@ describe('trigger allowlist filter', () => {
   });
 
   it('admits distinctive domain phrases', () => {
-    for (const phrase of ['worktree', 'grep convention', 'normalizeTriggerText', 'anchor-unmatched', 'exit 2 on config error']) {
+    for (const phrase of ['grep convention', 'normalizeTriggerText helper', 'anchor-unmatched', 'exit 2 on config error']) {
       expect(judgeTriggerPhrase(phrase)).toBeNull();
+    }
+    // A bare symbol or a bare noun is distinctive but still one token, so it
+    // can only match by exact equality; the convention asks for a second token.
+    for (const phrase of ['worktree', 'normalizeTriggerText']) {
+      expect(judgeTriggerPhrase(phrase)).toEqual(expect.objectContaining({ negativeClass: 'single-token' }));
     }
   });
 

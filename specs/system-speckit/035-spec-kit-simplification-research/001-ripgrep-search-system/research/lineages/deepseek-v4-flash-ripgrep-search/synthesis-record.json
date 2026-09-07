@@ -1,0 +1,61 @@
+{
+  "sessionId": "fanout-deepseek-v4-flash-ripgrep-search-1788758095488-2h9wqe",
+  "lineage": "deepseek-v4-flash-ripgrep-search",
+  "loopType": "research",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "inline": true,
+    "nestedDispatchUsed": false
+  },
+  "charter": {
+    "role": "Skeptical retrieval auditor \u2014 every claim unverified until cited; code overrides self-reported success",
+    "target": "cited defect-and-simplification ledger",
+    "round": 2,
+    "jobs": [
+      "verify each 006 remediation landed completely and coherently",
+      "find what round one missed, preferring angles covered in one pass or not at all",
+      "re-examine round-one kept rows and decisions, re-listing one only with new evidence"
+    ],
+    "nonGoalsHonored": [
+      "no edits",
+      "no database/vector redesign",
+      "no prose-style review",
+      "no validate.sh",
+      "no node tooling",
+      "no git"
+    ],
+    "earlyConvergence": false
+  },
+  "outcomes": {
+    "p0": 0,
+    "p1": 8,
+    "p2": 12,
+    "verifiedPositive": 11,
+    "reverifiedDecisions": 5,
+    "questionsAnswered": 8,
+    "openQuestionsCarried": 7,
+    "synthesis": "research.md",
+    "findingsRegistry": "findings-registry.json",
+    "convergenceReport": "convergence-report.json",
+    "dashboard": "deep-research-dashboard.md",
+    "stateLog": "deep-research-state.jsonl",
+    "deltas": "deltas/iter-001.jsonl..iter-010.jsonl",
+    "iterations": "iterations/iteration-001.md..iteration-010.md"
+  },
+  "headlineFindings": [
+    "V1/V2: 006 left the presentation asset \u00a73 free-text contract on the old three-label matchClass vocabulary and non-existent field names \u2014 the one code-contradicting doc remaining",
+    "N1/N2: 352 single-token phrases (2,245 postings, 826 docs) and 175 \u00a78-warn-list owners in the committed index \u2014 the documented two-token rule is enforced nowhere",
+    "N3: junk path-fragment phrases from a repo-wide frontmatter sweep ('ation','009') are indexed and pass judge, validator, generator and doctor",
+    "N5: doctor corpus_pollution is severity-high but never screens a fresh pair (\u22645 stale-flagged packets only)",
+    "N7: 164 repo-rules trigger phrases are dead to Gate 1; conventions \u00a79 silent on repo-rules/",
+    "Verified: committed pair equal (4baf2dbd\u2026), retrofit relocation closed, doctor signal+activity+wiring present"
+  ],
+  "writeSurfaceCompliance": "All writes confined to the lineage directory; repo untouched; no generate-context.js, validate.sh, node, or git commands executed",
+  "completedAt": "2026-09-07T09:20:00Z"
+}

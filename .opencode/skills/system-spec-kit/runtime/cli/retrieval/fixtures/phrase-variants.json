@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4baf2dbd19314a2e780841a3a972d40fc0b99cad6c51093472f5ded79e1235a1",
+  "manifestHash": "8115095ebeb07c9bcd323d08dc4db8a098566edb141d22393e94e08aed33bd72",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16365,6 +16365,9 @@
     "candidate verification": [
       "candidate verification"
     ],
+    "cannot find module spec kit shared": [
+      "cannot find module spec-kit shared"
+    ],
     "cannot rebase unstaged changes": [
       "cannot rebase unstaged changes"
     ],
@@ -18779,6 +18782,18 @@
     "ci fleet gate hardening plan": [
       "ci fleet gate hardening plan"
     ],
+    "ci resolution plan": [
+      "ci resolution plan"
+    ],
+    "ci resolution summary": [
+      "ci resolution summary"
+    ],
+    "ci resolution tasks": [
+      "ci resolution tasks"
+    ],
+    "ci shared package resolution": [
+      "ci shared package resolution"
+    ],
     "ci skill root metadata gate": [
       "ci skill root metadata gate"
     ],
@@ -20885,6 +20900,9 @@
     ],
     "cli pi deepseek flash openrouter research run": [
       "cli-pi deepseek flash openrouter research run"
+    ],
+    "cli pi devpass deepseek route": [
+      "cli-pi devpass deepseek route"
     ],
     "cli pi devpass glm route": [
       "cli-pi devpass glm route"
@@ -38287,6 +38305,15 @@
     "devpass cli opencode catalog": [
       "devpass cli-opencode catalog"
     ],
+    "devpass deepseek route plan": [
+      "devpass deepseek route plan"
+    ],
+    "devpass deepseek shipped": [
+      "devpass deepseek shipped"
+    ],
+    "devpass deepseek tasks": [
+      "devpass deepseek tasks"
+    ],
     "devpass llmgateway roster": [
       "devpass llmgateway roster"
     ],
@@ -38334,6 +38361,15 @@
     ],
     "diagnostic counters tasks": [
       "diagnostic counters tasks"
+    ],
+    "diagnostics bucket plan": [
+      "diagnostics bucket plan"
+    ],
+    "diagnostics bucket shipped": [
+      "diagnostics bucket shipped"
+    ],
+    "diagnostics bucket tasks": [
+      "diagnostics bucket tasks"
     ],
     "diagnostics ring buffer": [
       "diagnostics ring buffer"
@@ -39818,6 +39854,9 @@
     ],
     "doctor playbook sed": [
       "doctor playbook sed"
+    ],
+    "doctor pollution signal": [
+      "doctor pollution signal"
     ],
     "doctor presentation markdown complete": [
       "doctor presentation markdown complete"
@@ -44295,6 +44334,9 @@
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
     ],
+    "fan out route deepseek": [
+      "fan-out route deepseek"
+    ],
     "fan out runner discarded stderr": [
       "fan-out runner discarded stderr"
     ],
@@ -48696,6 +48738,9 @@
     ],
     "github ruleset investigation": [
       "github ruleset investigation"
+    ],
+    "gitignore negation plan": [
+      "gitignore negation plan"
     ],
     "gitignore safety verification": [
       "gitignore safety verification"
@@ -54328,6 +54373,9 @@
     "js ledger locking parity": [
       "js ledger locking parity"
     ],
+    "js yaml declaration gitignored": [
+      "js-yaml declaration gitignored"
+    ],
     "jsdoc template pattern": [
       "jsdoc template pattern"
     ],
@@ -54426,6 +54474,12 @@
     ],
     "jsonl state log integrity review": [
       "JSONL state log integrity review"
+    ],
+    "judge extraction plan": [
+      "judge extraction plan"
+    ],
+    "judge module tasks": [
+      "judge module tasks"
     ],
     "judgment registry missing": [
       "judgment registry missing"
@@ -56863,6 +56917,9 @@
     ],
     "llmgateway both rosters": [
       "llmgateway both rosters"
+    ],
+    "llmgateway deepseek fanout": [
+      "llmgateway deepseek fanout"
     ],
     "llmgateway glm 5 3 flash fanout": [
       "llmgateway glm-5.3-flash fanout"
@@ -62550,6 +62607,9 @@
     "mirror parity test shipped": [
       "mirror parity test shipped"
     ],
+    "mirror regeneration": [
+      "mirror regeneration"
+    ],
     "mirror resolves": [
       "mirror resolves"
     ],
@@ -67603,6 +67663,9 @@
     "opencode go roster plan": [
       "opencode-go roster plan"
     ],
+    "opencode go usage limit fan out": [
+      "opencode-go usage limit fan-out"
+    ],
     "opencode goal": [
       "opencode-goal",
       "opencode_goal"
@@ -72324,6 +72387,21 @@
     "phrase intent booster migration": [
       "phrase intent booster migration"
     ],
+    "phrase quality criteria": [
+      "phrase quality criteria"
+    ],
+    "phrase quality diagnostics bucket": [
+      "phrase quality diagnostics bucket"
+    ],
+    "phrase quality plan": [
+      "phrase quality plan"
+    ],
+    "phrase quality summary": [
+      "phrase quality summary"
+    ],
+    "phrase quality tasks": [
+      "phrase quality tasks"
+    ],
     "pi 023 cline model dispatch": [
       "PI-023 cline model dispatch"
     ],
@@ -73013,6 +73091,9 @@
     "pi model provider mapping": [
       "pi model provider mapping"
     ],
+    "pi model provider mapping deepseek": [
+      "pi model provider mapping deepseek"
+    ],
     "pi model registry summary": [
       "pi model registry summary"
     ],
@@ -73096,6 +73177,9 @@
     ],
     "pi prompts agents extensions": [
       "pi prompts agents extensions"
+    ],
+    "pi provider map moved": [
+      "pi provider map moved"
     ],
     "pi provider map tasks": [
       "pi provider map tasks"
@@ -75006,6 +75090,9 @@
     "presentation extension tasks": [
       "presentation extension tasks"
     ],
+    "presentation labels corrected": [
+      "presentation labels corrected"
+    ],
     "presentation layer fixes changelog": [
       "presentation-layer-fixes changelog"
     ],
@@ -76161,6 +76248,9 @@
     ],
     "provider fallback cascade correctness": [
       "provider fallback cascade correctness"
+    ],
+    "provider map flip": [
+      "provider map flip"
     ],
     "provider privacy handover": [
       "provider privacy handover"
@@ -78888,6 +78978,9 @@
     ],
     "regenerate proof packet": [
       "regenerate proof packet"
+    ],
+    "regeneration identical criterion": [
+      "regeneration identical criterion"
     ],
     "region cropping sk vision crop": [
       "Region cropping (sk_vision_crop)"
@@ -84125,6 +84218,12 @@
     "run extraction phase": [
       "run extraction phase"
     ],
+    "run failed diagnosis": [
+      "run failed diagnosis"
+    ],
+    "run failed emails stopped": [
+      "run failed emails stopped"
+    ],
     "run generate context at close": [
       "run generate-context at close"
     ],
@@ -84526,6 +84625,9 @@
     ],
     "runtime mirror and mcp config": [
       "runtime mirror and mcp config"
+    ],
+    "runtime mirror drift design commands": [
+      "runtime mirror drift design commands"
     ],
     "runtime mirror hook parity": [
       "runtime mirror hook parity"
@@ -86186,6 +86288,9 @@
     ],
     "search output intelligence remediation": [
       "search output intelligence remediation"
+    ],
+    "search presentation labels fixed": [
+      "search presentation labels fixed"
     ],
     "search quality fixes": [
       "search quality fixes"
@@ -88407,6 +88512,9 @@
     ],
     "single to parent tasks": [
       "single to parent tasks"
+    ],
+    "single token phrase class": [
+      "single token phrase class"
     ],
     "single validation verdict": [
       "single validation verdict"
@@ -102024,6 +102132,9 @@
     "trigger phrase quality changelog": [
       "trigger phrase quality changelog"
     ],
+    "trigger phrase quality enforcement": [
+      "trigger phrase quality enforcement"
+    ],
     "trigger phrase quality plan": [
       "trigger phrase quality plan"
     ],
@@ -105406,6 +105517,9 @@
     "what shipped": [
       "what shipped"
     ],
+    "what shipped ci fix": [
+      "what shipped ci fix"
+    ],
     "what shipped cli package cleanup": [
       "what shipped cli package cleanup"
     ],
@@ -105414,6 +105528,9 @@
     ],
     "what shipped env template cleanup": [
       "what shipped env template cleanup"
+    ],
+    "what shipped phrase judge": [
+      "what shipped phrase judge"
     ],
     "what shipped retrieval drift": [
       "what shipped retrieval drift"
@@ -105841,6 +105958,12 @@
     "workflow correctness audit": [
       "workflow correctness audit"
     ],
+    "workflow fix tasks": [
+      "workflow fix tasks"
+    ],
+    "workflow install step": [
+      "workflow install step"
+    ],
     "workflow invariance": [
       "workflow invariance"
     ],
@@ -105852,6 +105975,9 @@
     ],
     "workflow router classification": [
       "workflow router classification"
+    ],
+    "workflow run failed emails": [
+      "workflow run failed emails"
     ],
     "workflow save completion seam": [
       "workflow save completion seam"
@@ -105921,6 +106047,9 @@
     ],
     "workflowmode runtimelooptype backendkind": [
       "workflowMode runtimeLoopType backendKind"
+    ],
+    "workflows green again": [
+      "workflows green again"
     ],
     "workspace audit trail": [
       "workspace audit trail"

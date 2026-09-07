@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6939,
+    "missing-frontmatter": 6941,
     "non-yaml-frontmatter": 1,
-    "ok": 13618,
+    "ok": 13637,
     "valid-empty-list": 7942
   },
-  "documentsScanned": 28562,
+  "documentsScanned": 28583,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,8 +16,27 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "4baf2dbd19314a2e780841a3a972d40fc0b99cad6c51093472f5ded79e1235a1",
+  "manifestHash": "8115095ebeb07c9bcd323d08dc4db8a098566edb141d22393e94e08aed33bd72",
   "parserVersion": "1.0.0",
+  "phraseQuality": {
+    "documents": {
+      "editor-fallback": 4,
+      "generic-workflow-word": 171,
+      "numeric-only": 121,
+      "prose-sentence": 18,
+      "single-token": 825,
+      "stop-word-only": 12
+    },
+    "phrases": {
+      "editor-fallback": 2,
+      "generic-workflow-word": 4,
+      "numeric-only": 42,
+      "ok": 35104,
+      "prose-sentence": 27,
+      "single-token": 314,
+      "stop-word-only": 3
+    }
+  },
   "rows": [
     {
       "category": "missing-frontmatter",
@@ -61163,6 +61182,18 @@
       "reason": "declared empty trigger list"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis-brief.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-1.md",
@@ -99936,6 +99967,14 @@
     },
     {
       "path": "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/scratch",
       "reason": "excluded directory"
     },
     {

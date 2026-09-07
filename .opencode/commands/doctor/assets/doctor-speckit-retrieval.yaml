@@ -136,8 +136,8 @@ staleness_signals:
     detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in indexed packets"
     severity: low
   corpus_pollution:
-    detection: "Indexed trigger_phrases that are generic workflow words or stopword-only phrases per retrieval-conventions.md section 8"
-    severity: high
+    detection: "The phraseQuality bucket of the committed generation-diagnostics.json counts single-token, numeric-only, generic-workflow-word, stop-word-only or editor-fallback phrases per retrieval-conventions.md section 8; any non-zero bucket is the signal, read from the committed artifact rather than sampled from stale packets"
+    severity: medium
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
     severity: high
@@ -152,7 +152,7 @@ workflow:
       - "Bash: test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
       - "Bash: stat -f '%m %z' .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
       - "Run upstream_assets.lookup_command with a known probe prompt; record exit status, indexHash, manifestHash and candidatePhraseCount"
-      - "Bash: compare the manifestHash field of .opencode/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash field of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json; unequal values are the committed_pair_mismatch signal"
+      - "Bash: compare the manifestHash field of .opencode/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash fields of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json, generation-diagnostics.json and phrase-variants.json; any unequal value is the committed_pair_mismatch signal, since one generator run writes all four"
       - "Optional, when the operator asks about latency: node .opencode/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs --json --out <packet scratch path>; exit 1 means the cold-start budget was exceeded. Never write the committed fixtures/latency-report.json from a diagnostic run"
       - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase; record exit status and path count"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
@@ -179,7 +179,7 @@ workflow:
       - "Cross-reference the index mtime with source mtimes: any indexed file newer than the index signals staleness"
       - "Sample up to 5 packets flagged as staleness candidates"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
-      - "Screen the sampled phrases against the retrieval-conventions.md section 8 warn list for corpus pollution"
+      - "Read the phraseQuality bucket of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero negative class with its phrase and owning-document counts as the corpus_pollution signal, whether or not any packet is stale"
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:
@@ -199,8 +199,8 @@ workflow:
   phase_2_recommendation:
     purpose: Translate staleness signals into recommended action
     rules:
-      - "If severity_max == high (schema mismatch, lookup error, ambient config, or corpus pollution) → recommend a full regeneration via /doctor:update, or a corpus fix first when the signal is pollution"
-      - "If severity_max == medium (index older than corpus OR manifest hash mismatch) → recommend an incremental regeneration via /doctor:update"
+      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:update"
+      - "If severity_max == medium (index older than corpus, manifest hash mismatch, or corpus pollution) → recommend an incremental regeneration via /doctor:update, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
       - "If severity_max == low (trigger phrase OR anchor drift) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."

@@ -56,3 +56,47 @@ No retrieval repo rule. Gate 5 loads a rule on the first write of a session, whi
 
 1. Whether a parity consumer will ever pin `promptSetHash`; until one lands the slot is documented and inert.
 2. Who owns whole-corpus regeneration between releases; the doctor now detects a split pair, the root document names the generator, and the program's own closeout regenerates the index.
+
+---
+
+## 6. ROUND TWO (DeepSeek V4 Flash max through DevPass, 10 iterations on the remediated tree)
+
+Source: `lineages/deepseek-v4-flash-ripgrep-search/research.md`, stop reason `maxIterationsReached`, 8 P1 and 12 P2 rows plus 11 verified-positive and 5 re-verified decisions. Censused in the main checkout on 2026-09-07 before child `013-trigger-phrase-quality-enforcement` was opened.
+
+### Verdict held
+
+Child 006 landed its own scope: the committed pair matches, the concept-lane contradiction is gone, the router recipe is byte-identical to conventions §2.1, the retrofit relocation left no residue, and the doctor's pair signal exists. Every one of the eleven verified-positive rows was re-read and holds.
+
+### P1 rows
+
+| ID | Claim | Census | Disposition |
+|----|-------|--------|-------------|
+| V1 | The search presentation's §3 still maps `matchClass` to three labels the code never emits | `search-presentation.txt:106` said `exact`, `containment`, `token-coverage`; `normalize.mjs` and `rg-lane.mjs` emit five | Confirmed. Fixed: the five labels verbatim, and the filled example re-rendered |
+| V2 | §3 documents two evidence-field names that do not exist and omits two that do | `rg-lane.mjs:69-72` emits `trigger_phrases`, `title-or-description`, `anchor-marker`, `body` | Confirmed. Fixed |
+| N1 | The committed index holds hundreds of single-token phrases the convention bans | 352 single-token keys, 2,245 postings, 826 owning documents; 42 numeric-only keys among them | Confirmed. Fixed at the enforcement seam: the judge gains `single-token` and `numeric-only` classes, the generator counts every class in a `phraseQuality` bucket, and the residue sweep is now a documented owner task rather than a silent condition |
+| N2 | 175 documents own a phrase from the convention's own warn list | 175, re-counted | Confirmed. The class already existed; it is now counted at generation time and read by the doctor |
+| N3 | Sweep-produced fragments such as `ation` and `tion` pass every check | All eleven named fragments present as index keys | Confirmed. Caught by the `single-token` class |
+| N4 | The shared judge has no class for single-token, numeric or fragment phrases | `judgeTriggerPhrase` had generic, fallback, stop-word, prose and folder-token classes only | Confirmed. Fixed; the judge moved to `lib/phrase-judge.mjs` so the generator can import it without the retrofit machinery |
+| N5 | The doctor's `corpus_pollution` screen can only see five stale samples | `doctor-speckit-retrieval.yaml` screened sampled phrases inside the staleness pass | Confirmed. Fixed: the doctor reads the `phraseQuality` bucket of the committed diagnostics, independent of staleness; severity moved to medium because the phrases never rank |
+| N7 | 164 repo-rules trigger phrases are unreachable by Gate 1 and §9 is silent about it | 9 files, 164 phrases; `CORPUS_ROOTS` has no repo-rules root | Confirmed as a documentation gap. Recorded decision: rule documents are loaded at Gate 5 through the trigger table, not retrieved at Gate 1, so they stay out of the index; §9 gains the row |
+
+### P2 rows
+
+| ID | Claim | Disposition |
+|----|-------|-------------|
+| V3 | The README diagram still draws the retrofit box and counts six scripts | Fixed: the box names `../ops/`, the count is five |
+| V4 | Three documents count the recipes differently | Fixed: the README says three of the four documented recipes, naming the one composed by hand |
+| V8 | `EXCLUSIONS` provenance is not derived | Recorded; the parity test guards the drift, which is the reason round one gave |
+| V9 | The `**/tests/fixtures/**` row is undocumented in §9 | Fixed: the exclusion table gains the row and its reason |
+| V10 | The doctor's pair check covers two of four generated artifacts | Fixed: the check compares all four `manifestHash` fields; `AGENTS.md` is the shared framework document and was not edited |
+| N6 | Diagnostics carry no phrase-quality counts | Fixed by the bucket |
+| N9, N10 | The lookup's three-character floor and eight-token cap are undocumented | Fixed: documented in §8 and the README |
+| N11 | Save-path freshness wording is advisory | Recorded; the gate lives in the runtime tests as round one found |
+| V13 | `phrase-variants.json` is published by default with no reader | Recorded decision: kept as the operator's trace of raw spellings, documented in the README and tested |
+| V17 | Gate 1 hashes the index on every lookup unless told not to | Recorded; round one's kept decision confirmed |
+
+### Re-verified decisions
+
+L5 and L1 hold. L9's new nuance, that `semantic-probes.json` already pins a prompt-set hash the manifest slot was reserved for, is recorded; the slot stays because landing the value leaves the manifest hash stable. F6.2's source was not located in the main checkout either; recorded as unverifiable. Two round-one findings were worktree artifacts, as round two itself reports.
+
+The corpus itself is not cleaned here: 826 documents across dozens of packets own single-token phrases, most of them authored by a repo-wide frontmatter sweep. That is a content decision for the packets' owners, now visible in every generator run and every doctor pass.

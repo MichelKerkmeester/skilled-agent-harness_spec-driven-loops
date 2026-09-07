@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9b62861ab610e884cae7d364f87ed07e7abd75c6fd3d9f6cdf99daa42ff8f625",
+  "corpusHash": "ab638a31884f94f157dc14e8e18d0ca7c7f712531d4e4733daabbdcd2ce3a3a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28562,
+  "includedPathCount": 28583,
   "includedPaths": [
     ".opencode/install-guides/README.md",
     ".opencode/install-guides/install-scripts/README.md",
@@ -18020,6 +18020,10 @@
     "specs/system-deep-loop/043-review-leaf-protocol/plan.md",
     "specs/system-deep-loop/043-review-leaf-protocol/spec.md",
     "specs/system-deep-loop/043-review-leaf-protocol/tasks.md",
+    "specs/system-deep-loop/044-cli-pi-devpass-deepseek-route/implementation-summary.md",
+    "specs/system-deep-loop/044-cli-pi-devpass-deepseek-route/plan.md",
+    "specs/system-deep-loop/044-cli-pi-devpass-deepseek-route/spec.md",
+    "specs/system-deep-loop/044-cli-pi-devpass-deepseek-route/tasks.md",
     "specs/system-skill-advisor/000-rust-backend-rewrite/001-research/plan.md",
     "specs/system-skill-advisor/000-rust-backend-rewrite/001-research/research/deep-research-strategy.md",
     "specs/system-skill-advisor/000-rust-backend-rewrite/001-research/spec.md",
@@ -18089,6 +18093,13 @@
     "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/tasks.md",
     "specs/system-skill-advisor/023-semantic-lane-enablement/goal.md",
     "specs/system-skill-advisor/023-semantic-lane-enablement/spec.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/acceptance-criteria.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/implementation-summary.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/plan.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/research/dispatch-prompt.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis-brief.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/spec.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/tasks.md",
     "specs/system-speckit/000-release/001-context-pack/spec.md",
     "specs/system-speckit/000-release/002-per-packet-extraction/spec.md",
     "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-1.md",
@@ -28497,6 +28508,10 @@
     "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/plan.md",
     "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/spec.md",
     "specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/029-ci-shared-package-resolution/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/029-ci-shared-package-resolution/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/029-ci-shared-package-resolution/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/029-ci-shared-package-resolution/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-goal-operator-resync-rule/implementation-summary.md",
@@ -28579,11 +28594,17 @@
     "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/plan.md",
     "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/spec.md",
     "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/tasks.md",
     "specs/system-speckit/035-spec-kit-simplification-research/goal.md",
     "specs/system-speckit/035-spec-kit-simplification-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4baf2dbd19314a2e780841a3a972d40fc0b99cad6c51093472f5ded79e1235a1",
+  "manifestHash": "8115095ebeb07c9bcd323d08dc4db8a098566edb141d22393e94e08aed33bd72",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30838,6 +30859,14 @@
     },
     {
       "path": "specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/scratch",
       "reason": "excluded directory"
     },
     {

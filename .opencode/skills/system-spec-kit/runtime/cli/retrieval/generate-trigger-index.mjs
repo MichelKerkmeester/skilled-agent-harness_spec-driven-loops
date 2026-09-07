@@ -41,6 +41,7 @@ import { TRIGGER_INDEX_SCHEMA_VERSION, assertTriggerIndexShape, publishJson, sha
 import { CORPUS_ROOTS, EXCLUSIONS, IGNORED_PATHS, walkCorpus } from './lib/corpus.mjs';
 import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontmatter.mjs';
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
+import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -232,6 +233,32 @@ export function buildIndex(options) {
     schemaVersion: INDEX_SCHEMA_VERSION,
   };
 
+  // Phrase quality, judged on the normalized key every lookup sees. The
+  // convention bans single-token, numeric-only, generic and stop-word phrases,
+  // and until this bucket existed nothing in the generation path said how many
+  // of them the committed index carried.
+  const phraseQualityPhrases = {};
+  /** @type {Map<string, Set<string>>} */
+  const phraseQualityOwners = new Map();
+  for (const [normalized, entry] of phrases) {
+    const verdict = judgeTriggerPhrase(normalized);
+    const bucket = verdict ? verdict.negativeClass : 'ok';
+    phraseQualityPhrases[bucket] = (phraseQualityPhrases[bucket] ?? 0) + 1;
+    if (!verdict) continue;
+    let owners = phraseQualityOwners.get(bucket);
+    if (!owners) { owners = new Set(); phraseQualityOwners.set(bucket, owners); }
+    for (const owner of entry.paths) owners.add(owner);
+  }
+  const phraseQuality = {
+    documents: Object.fromEntries(
+      Array.from(phraseQualityOwners, ([bucket, owners]) => [bucket, owners.size])
+        .sort(([a], [b]) => compareCodeUnits(a, b)),
+    ),
+    phrases: Object.fromEntries(
+      Object.entries(phraseQualityPhrases).sort(([a], [b]) => compareCodeUnits(a, b)),
+    ),
+  };
+
   const diagnostics = {
     counts: Object.fromEntries(
       Object.entries(counts).sort(([a], [b]) => compareCodeUnits(a, b)),
@@ -247,6 +274,7 @@ export function buildIndex(options) {
     malformedDocuments,
     manifestHash,
     parserVersion: PARSER_VERSION,
+    phraseQuality,
     rows: rows.sort((a, b) => compareCodeUnits(String(a.path), String(b.path))
       || Number(a.line) - Number(b.line)),
     skippedPaths: skipped,
@@ -278,6 +306,7 @@ export function buildIndex(options) {
       indexedPaths: pathTable.length,
       malformedDocuments,
       phraseDeclarations,
+      phraseQuality,
       uniquePhrases: phrases.size,
     },
     variants,
@@ -499,6 +528,13 @@ function formatReport(report) {
   ];
   for (const [category, count] of Object.entries(report.counts)) {
     lines.push(`    ${category.padEnd(24)} ${count}`);
+  }
+  if (report.stats.phraseQuality) {
+    lines.push('  phrase quality (unique phrases / owning documents):');
+    for (const [bucket, count] of Object.entries(report.stats.phraseQuality.phrases)) {
+      const owners = report.stats.phraseQuality.documents[bucket];
+      lines.push(`    ${bucket.padEnd(24)} ${count}${owners === undefined ? '' : ` / ${owners}`}`);
+    }
   }
   if (!report.published) {
     lines.push(`  refused: ${report.stats.malformedDocuments} document(s) carry an untrusted trigger declaration`);

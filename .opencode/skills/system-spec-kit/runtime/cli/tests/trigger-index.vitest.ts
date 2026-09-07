@@ -522,6 +522,19 @@ describe('generate', () => {
     expect(generate({ ...options, allowMalformed: true }).published).toBe(true);
   });
 
+  it('counts phrase quality over the committed keys, by class, with the documents that own them', () => {
+    const root = makeTempDir('speckit-trigger-quality-');
+    writeDoc(root, 'specs/track/good.md', frontmatter(['spec folder question', 'retrieval']));
+    writeDoc(root, 'specs/track/dated.md', frontmatter(['2026-05-14', 'retrieval', 'memory']));
+
+    const built = buildIndex({ repoRoot: root });
+    const quality = built.diagnostics.phraseQuality as { phrases: Record<string, number>; documents: Record<string, number> };
+
+    expect(quality.phrases).toEqual({ 'generic-workflow-word': 1, 'numeric-only': 1, ok: 1, 'single-token': 1 });
+    // 'retrieval' is owned by both documents; 'memory' and the date by one each.
+    expect(quality.documents).toEqual({ 'generic-workflow-word': 1, 'numeric-only': 1, 'single-token': 2 });
+  });
+
   it('counts every diagnostic category across one corpus', () => {
     const root = makeTempDir('speckit-trigger-categories-');
     writeDoc(root, 'specs/track/ok.md', frontmatter(['spec folder question']));

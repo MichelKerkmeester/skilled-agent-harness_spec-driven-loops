@@ -1,5 +1,5 @@
 {
-  "run_id": "1788707853865-9gs9so",
+  "run_id": "1788759071033-5hbquq",
   "loop_type": "research",
   "spec_folder": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
   "base_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research",
@@ -21,49 +21,49 @@
   },
   "timestamp_anomalies": [
     {
-      "label": "glm-5-3-flash-cli-runtime",
-      "state_log": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/glm-5-3-flash-cli-runtime/deep-research-state.jsonl",
+      "label": "deepseek-v4-flash-cli-runtime",
+      "state_log": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/deepseek-v4-flash-cli-runtime/deep-research-state.jsonl",
       "window": {
-        "start_at_iso": "2026-09-06T15:32:53.101Z",
-        "end_at_iso": "2026-09-06T17:48:37.812Z",
+        "start_at_iso": "2026-09-07T05:31:11.039Z",
+        "end_at_iso": "2026-09-07T05:54:56.193Z",
         "tolerance_ms": 120000
       },
       "counts": {
-        "anomalous": 8,
+        "anomalous": 14,
         "untimestamped": 1,
         "unparseable": 0,
-        "total": 16
+        "total": 15
       },
       "sample": [
         {
-          "index": 8,
+          "index": 1,
           "reason": "after_window",
-          "timestamp": "2026-09-06T18:05:00.000Z",
-          "deltaMs": 862188
+          "timestamp": "2026-09-07T07:31:30.000Z",
+          "deltaMs": 5673807
         },
         {
-          "index": 9,
+          "index": 2,
           "reason": "after_window",
-          "timestamp": "2026-09-06T18:32:00.000Z",
-          "deltaMs": 2482188
+          "timestamp": "2026-09-07T07:32:00.000Z",
+          "deltaMs": 5703807
         },
         {
-          "index": 10,
+          "index": 3,
           "reason": "after_window",
-          "timestamp": "2026-09-06T19:02:00.000Z",
-          "deltaMs": 4282188
+          "timestamp": "2026-09-07T07:47:00.000Z",
+          "deltaMs": 6603807
         },
         {
-          "index": 11,
+          "index": 4,
           "reason": "after_window",
-          "timestamp": "2026-09-06T19:31:00.000Z",
-          "deltaMs": 6022188
+          "timestamp": "2026-09-07T08:02:00.000Z",
+          "deltaMs": 7503807
         },
         {
-          "index": 12,
+          "index": 5,
           "reason": "after_window",
-          "timestamp": "2026-09-06T19:55:00.000Z",
-          "deltaMs": 7462188
+          "timestamp": "2026-09-07T08:20:00.000Z",
+          "deltaMs": 8583807
         }
       ]
     }

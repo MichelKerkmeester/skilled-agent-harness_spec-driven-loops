@@ -89,7 +89,7 @@ SPECKIT:SEARCH "trigger index generator"
 recipe    2.2 path-only
 roots     specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission
 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/spec.md:14  trigger_phrases  exact
-specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/tasks.md:34  body  containment
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/tasks.md:34  body  phrase-containment
 
 STATUS=OK RESULTS=2 LANE=ripgrep
 ```
@@ -102,8 +102,8 @@ Field mapping:
 | The recipe actually run | `recipe` — its section number and name from `retrieval-conventions.md` Section 2 |
 | The positional search roots | `roots` |
 | Parsed match path and one-based line | `<path>:<line>` |
-| Evidence field per the ranking tuple | `<field>` — `trigger_phrases`, `title`, `description`, `anchor`, or `body` |
-| Normalized match class per the ranking tuple | `<matchClass>` — `exact`, `containment`, or `token-coverage` |
+| Evidence field per the ranking tuple | `<field>` — `trigger_phrases`, `title-or-description`, `anchor-marker`, or `body`, verbatim as `rg-wrapper.mjs` emits them |
+| Normalized match class per the ranking tuple | `<matchClass>` — one of `exact`, `phrase-containment`, `query-containment`, `token-overlap`, `partial`, the same five labels the lookup emits |
 
 Rules:
 - Ripgrep produces matches, never a relevance ranking. Order rows with the Section 5 ranking tuple from `retrieval-conventions.md`: evidence field, then match class, then path and line. Never imply the tool ranked anything.
