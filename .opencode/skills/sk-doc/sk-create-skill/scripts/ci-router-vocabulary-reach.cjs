@@ -81,15 +81,42 @@ function declaredPhrases(hub) {
 // two lets a missing binary, a non-zero exit, a timeout or a cold daemon print a
 // clean pass over an advisor that never answered, so every failure to ask is
 // returned as its own result and fails the run.
+// The advisor exits 75 to say "temporary, ask again", and overlapping probes
+// provoke it: the same phrases that fail in a concurrent sweep answer correctly one
+// at a time. Reporting that as a defect would trade the old false green for a false
+// red, so a retryable exit is retried before it is believed. Anything else is a
+// real failure and is returned on the first try.
+const RETRYABLE_EXIT = 75;
+const PROBE_ATTEMPTS = 3;
+
+const sleep = (ms) => new Promise((r) => { setTimeout(r, ms); });
+
+async function probeOnce(phrase) {
+  const { stdout } = await execFileAsync('node', [ADVISOR, 'advisor_recommend', '--json',
+    JSON.stringify({ prompt: phrase }), '--format', 'json'],
+  { encoding: 'utf8', timeout: 60000 });
+  return stdout;
+}
+
 async function reaches(phrase, hub) {
   let raw;
-  try {
-    ({ stdout: raw } = await execFileAsync('node', [ADVISOR, 'advisor_recommend', '--json',
-      JSON.stringify({ prompt: phrase }), '--format', 'json'],
-    { encoding: 'utf8', timeout: 60000 }));
-  } catch (err) {
-    const detail = err.stderr ? String(err.stderr).trim().split('\n')[0] : '';
-    return { error: `probe failed: ${err.code || err.message}${detail ? ` (${detail})` : ''}` };
+  let lastErr;
+  for (let attempt = 1; attempt <= PROBE_ATTEMPTS; attempt += 1) {
+    try {
+      raw = await probeOnce(phrase);
+      lastErr = null;
+      break;
+    } catch (err) {
+      lastErr = err;
+      if (err.code !== RETRYABLE_EXIT) break;
+      // Back off enough for the contention that caused it to clear.
+      await sleep(250 * attempt);
+    }
+  }
+  if (lastErr) {
+    const detail = lastErr.stderr ? String(lastErr.stderr).trim().split('\n')[0] : '';
+    const retried = lastErr.code === RETRYABLE_EXIT ? ` after ${PROBE_ATTEMPTS} attempts` : '';
+    return { error: `probe failed: ${lastErr.code || lastErr.message}${retried}${detail ? ` (${detail})` : ''}` };
   }
   let data;
   try { data = JSON.parse(raw).data; } catch {
