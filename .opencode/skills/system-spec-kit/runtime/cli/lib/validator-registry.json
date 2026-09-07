@@ -326,7 +326,7 @@
   {
     "rule_id": "CANONICAL_SAVE_ROOT_SPEC_REQUIRED",
     "aliases": [],
-    "script_path": "rules/check-canonical-save.sh",
+    "script_path": "rules/check-canonical-save-root-spec.sh",
     "severity": "error",
     "category": "operational_runtime",
     "description": "Ensures canonical saves include a root spec reference."
@@ -334,7 +334,7 @@
   {
     "rule_id": "CANONICAL_SAVE_SOURCE_DOCS_REQUIRED",
     "aliases": [],
-    "script_path": "rules/check-canonical-save.sh",
+    "script_path": "rules/check-canonical-save-source-docs.sh",
     "severity": "error",
     "category": "operational_runtime",
     "description": "Ensures canonical saves include source document references."
@@ -342,7 +342,7 @@
   {
     "rule_id": "CANONICAL_SAVE_LINEAGE_REQUIRED",
     "aliases": [],
-    "script_path": "rules/check-canonical-save.sh",
+    "script_path": "rules/check-canonical-save-lineage.sh",
     "severity": "error",
     "category": "operational_runtime",
     "description": "Ensures canonical save lineage metadata is present."
@@ -350,7 +350,7 @@
   {
     "rule_id": "CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED",
     "aliases": [],
-    "script_path": "rules/check-canonical-save.sh",
+    "script_path": "rules/check-canonical-save-packet-identity.sh",
     "severity": "error",
     "category": "operational_runtime",
     "description": "Checks canonical save packet identity normalization."
@@ -358,7 +358,7 @@
   {
     "rule_id": "CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS",
     "aliases": [],
-    "script_path": "rules/check-canonical-save.sh",
+    "script_path": "rules/check-canonical-save-description-graph-freshness.sh",
     "severity": "error",
     "category": "operational_runtime",
     "description": "Checks generated description/graph freshness for canonical saves."

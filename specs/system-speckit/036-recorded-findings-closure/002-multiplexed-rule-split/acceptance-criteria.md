@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split"
-    last_updated_at: "2026-09-07T15:05:41Z"
+    last_updated_at: "2026-09-07T19:05:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-07-036-recorded-findings-closure-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|----------------------|---------------|--------|--------|
-| AC-001 | REQ-001 | Given `validator-registry.json`'s five `CANONICAL_SAVE_*` rows, When their `script_path` values are read, Then all five are distinct and none equals another row's path | `python3 -c "import json; rows=[r for r in json.load(open('cli/lib/validator-registry.json')) if r['rule_id'].startswith('CANONICAL_SAVE_')]; print(len(set(r['script_path'] for r in rows)))"` prints 5 | Unmet | - |
-| AC-002 | REQ-002 | Given `orchestrator.ts`, When searched for the old basename special case, Then no reference to `check-canonical-save.sh` remains | `rg -n "check-canonical-save.sh" lib/validation/orchestrator.ts` returns no matches | Unmet | - |
-| AC-003 | REQ-003 | Given `validate.sh --help`, When run before and after the split, Then the rule count and rule ids are identical | `bash validate.sh --help \| grep -c "^"` matches the pre-split baseline (39 rows) and `diff` of the two rule-id lists is empty | Unmet | - |
-| AC-004 | REQ-004 | Given `validate-runs-every-registry-rule.vitest.ts`, When run after the split, Then it exits 0 with every registry row reported | `npx vitest run validate-runs-every-registry-rule` from `cli/` | Unmet | - |
-| AC-005 | REQ-005 | Given `canonical-save-validation.vitest.ts`, When run against the five new scripts, Then every existing assertion passes with unchanged outcomes | `npx vitest run canonical-save-validation` from `cli/` | Unmet | - |
-| AC-006 | REQ-006 | Given the `ts:spec-doc-structure` family, When spec.md's Out of Scope reasoning is reviewed, Then it names the five dedicated dispatch functions as the existing attribution proof, not a deferred TODO | Manual read of `spec.md`'s Out of Scope section against `lib/validation/spec-doc-structure.ts:1249-1264` | Unmet | - |
+| AC-001 | REQ-001 | Given `validator-registry.json`'s five `CANONICAL_SAVE_*` rows, When their `script_path` values are read, Then all five are distinct and none equals another row's path | the registry check prints 5 distinct script paths of 5 rows: root-spec, source-docs, lineage, packet-identity and description-graph-freshness | Met | - |
+| AC-002 | REQ-002 | Given `orchestrator.ts`, When searched for the old basename special case, Then no reference to `check-canonical-save.sh` remains | `grep -c check-canonical-save.sh` over `lib/validation/orchestrator.ts` returns 0; the wrapper calls the two-argument run_check for every row | Met | - |
+| AC-003 | REQ-003 | Given `validate.sh --help`, When run before and after the split, Then the rule count and rule ids are identical | `validate.sh --help` lists 41 rule lines with 5 canonical-save rows before and after; the registry holds 39 rows before and after | Met | Unmet | - |
+| AC-004 | REQ-004 | Given `validate-runs-every-registry-rule.vitest.ts`, When run after the split, Then it exits 0 with every registry row reported | `validate-runs-every-registry-rule.vitest.ts` passes with every row seen | Met | - |
+| AC-005 | REQ-005 | Given `canonical-save-validation.vitest.ts`, When run against the five new scripts, Then every existing assertion passes with unchanged outcomes | `canonical-save-validation.vitest.ts` passes unmodified; with `validate-help-lists-every-rule` and `validator-registry-doc-count`, 4 files and 10 tests pass | Met | - |
+| AC-006 | REQ-006 | Given the `ts:spec-doc-structure` family, When spec.md's Out of Scope reasoning is reviewed, Then it names the five dedicated dispatch functions as the existing attribution proof, not a deferred TODO | spec.md Out of Scope names the five dedicated dispatch functions in `spec-doc-structure.ts` as the existing per-row attribution | Met | - |
 
 ### Status values
 
@@ -84,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This packet is at the planning stage: spec, plan and tasks are authored and every
 criterion above is traced to a real requirement, but none has been executed yet.

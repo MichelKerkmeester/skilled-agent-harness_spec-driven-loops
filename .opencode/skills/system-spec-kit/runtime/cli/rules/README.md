@@ -56,8 +56,9 @@ Dependency direction: validate.sh ───▶ registry ───▶ rules ─�
 rules/
 +-- check-files.sh              # Required file checks by level
 +-- check-template-source.sh    # Template source marker checks
-+-- check-canonical-save.sh     # Save-time contract checks
-+-- check-canonical-save-helper.cjs             # Node helper for canonical-save rules
++-- check-canonical-save-*.sh   # One save-time contract check per registry row
++-- check-canonical-save-*.cjs  # Each rule's decision, over the shared packet context
++-- check-canonical-save-shared.cjs             # Packet context the five canonical-save rules share
 +-- check-graph-metadata.sh     # Graph metadata checks
 +-- check-metadata-disk-consistency-helper.cjs  # Node helper for metadata/disk-path checks
 +-- check-grep-convention-helper.mjs            # Node helper for the grep-convention rule
@@ -69,7 +70,7 @@ rules/
 The rule list is the set of rows in `../lib/validator-registry.json`; every row names one
 `check-*.sh` file here, and `check-links.sh` is the one script with no row, a standalone scan run
 by hand. Three Node helpers back the `.sh` rules that need logic bash cannot express directly:
-`check-canonical-save-helper.cjs`, `check-metadata-disk-consistency-helper.cjs` and
+`check-canonical-save-shared.cjs` behind the five canonical-save modules, `check-metadata-disk-consistency-helper.cjs` and
 `check-grep-convention-helper.mjs`.
 
 ---
@@ -81,7 +82,11 @@ by hand. Three Node helpers back the `.sh` rules that need logic bash cannot exp
 | `check-files.sh` | Confirms required packet files for the declared level. |
 | `check-level-match.sh` | Compares declared level with required-file state. |
 | `check-template-source.sh` | Verifies template-source metadata markers. |
-| `check-canonical-save.sh` | Checks canonical save artifacts and lineage data. |
+| `check-canonical-save-root-spec.sh` | A live packet root must expose a canonical spec.md. |
+| `check-canonical-save-source-docs.sh` | A live packet root graph must carry derived.source_docs. |
+| `check-canonical-save-lineage.sh` | Graph writes on or after the cutoff must record save_lineage. |
+| `check-canonical-save-packet-identity.sh` | Continuity, description and graph must agree on the packet identity. |
+| `check-canonical-save-description-graph-freshness.sh` | Description and graph timestamps must stay within the slack window. |
 | `check-links.sh` | Scans a skill tree for broken wikilinks when run by hand; no registry row, so `validate.sh` never runs it. |
 
 ---

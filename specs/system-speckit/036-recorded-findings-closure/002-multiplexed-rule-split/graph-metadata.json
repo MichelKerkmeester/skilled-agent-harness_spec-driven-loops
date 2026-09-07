@@ -39,7 +39,7 @@
       "env"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save.sh",
+      "runtime/cli/rules/check-canonical-save-shared.cjs",
+      "runtime/cli/lib/validator-registry.json",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/rules/README.md",
       "cli/lib/validator-registry.json",
       "lib/validation/orchestrator.ts",
       "cli/tests/validate-runs-every-registry-rule.vitest.ts",
       "cli/tests/canonical-save-validation.vitest.ts",
-      "rules/check-canonical-save.sh",
       "cli/rules/README.md",
-      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-helper.cjs",
-      ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
-      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md",
-      "cli/rules/check-canonical-save-helper.cjs",
-      "cli/rules/check-canonical-save.sh",
-      "cli/tests/validate-help-lists-every-rule.vitest.ts"
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-shared.cjs",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-root-spec.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-source-docs.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-lineage.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-packet-identity.sh"
     ],
     "entities": [
       {
@@ -100,21 +100,27 @@
         "source": "derived"
       },
       {
-        "name": "check-canonical-save.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save.sh",
+        "name": "check-canonical-save-shared.cjs",
+        "kind": "file",
+        "path": "runtime/cli/rules/check-canonical-save-shared.cjs",
         "source": "derived"
       },
       {
         "name": "validator-registry.json",
         "kind": "config",
-        "path": "cli/lib/validator-registry.json",
+        "path": "runtime/cli/lib/validator-registry.json",
         "source": "derived"
       },
       {
         "name": "orchestrator.ts",
         "kind": "code",
-        "path": "lib/validation/orchestrator.ts",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/rules/README.md",
         "source": "derived"
       },
       {
@@ -130,21 +136,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "cli/rules/README.md",
+        "name": "check-canonical-save-root-spec.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-root-spec.sh",
         "source": "derived"
       },
       {
-        "name": "check-canonical-save-helper.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-helper.cjs",
+        "name": "check-canonical-save-source-docs.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-source-docs.sh",
         "source": "derived"
       },
       {
-        "name": "validate-help-lists-every-rule.vitest.ts",
-        "kind": "test",
-        "path": "cli/tests/validate-help-lists-every-rule.vitest.ts",
+        "name": "check-canonical-save-lineage.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-lineage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-canonical-save-packet-identity.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-packet-identity.sh",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Split",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`validator-registry.json` names 39 rule rows, and its `scriptpath` field reads as a one-to-one pointer from a rule id to the script that implements it",
     "created_at": "2026-09-07T15:05:41Z",
-    "last_save_at": "2026-09-07T15:44:56.334Z",
+    "last_save_at": "2026-09-07T16:01:40.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9533d2380d836c59b41498dfe7b9983fa39881d98fa21ac17c0ad3be1ce8d7e9",
+    "source_fingerprint": "sha256:66e1201b1c0289b4fcae285585a3bb755ba58294e00737b29337565a49e146b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce77884e300deee1389fb6d5271c7733f52365fb8b3f4cc4afbeeb0ce57dff2d",
+      "spec.md": "e10eb73d2c013e0e968feb3ab0318337faa494bdb2a65af13517c57ebd34f788",
       "plan.md": "0d24e709b6405cdc53b45a7b16390352a0b91faba9076370239203b0e67fb441",
-      "tasks.md": "db8532643868220729dc664054eba56033e2c1ab5ae7fd54bd4e7dab339b748c",
-      "implementation-summary.md": "acabdc0dfb0bd5426ab50603f470060aa884f3d63dc30d69d5daf248559360e9"
+      "tasks.md": "f7be3bb1c7439d9a7ecd05bad2b4d45b152ffa76e6c1377df84e4949238c0f4e",
+      "implementation-summary.md": "05a9652534e8bf4db04833c2900ff19514a0cc78ba53fb829c18b853e90d04b6"
     },
     "last_active_at": null
   }
