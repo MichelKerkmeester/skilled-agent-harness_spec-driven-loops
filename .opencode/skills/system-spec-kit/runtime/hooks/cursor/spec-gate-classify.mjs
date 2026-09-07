@@ -1,86 +1,33 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Cursor beforeSubmitPrompt Classify Hook
-// ───────────────────────────────────────────────────────────────────
-// STATUS: dormant, not wired -- beforeSubmitPrompt has no confirmed CLI attachment point yet.
-// The Cursor sibling of the Codex spec-gate-classify hook. Runs the shared spec-gate core against each
-// user turn: opens the session gate and surfaces the bounded Gate-3 question
-// as an agent_message when the turn triggers file-mutation intent.
-//
-// A live probe (3 separate cursor-agent -p
-// dispatches including a --continue turn) confirmed `beforeSubmitPrompt`
-// never fires under the installed cursor-agent CLI (2026.07.23-e383d2b) --
-// there is no confirmed CLI attachment point for this hook today. This file
-// exists so the mapping is ready and documented if a future cursor-agent
-// build starts delivering the event; register it in .cursor/hooks.json ONLY
-// after re-confirming live delivery against that build, using the same
-// temporary-probe-hook methodology this file's own delivery status was
-// established with. Advisory only -- no deny capability; the enforce hook
-// (wired to the confirmed-firing preToolUse) is the sole deny surface. FAILS
-// OPEN -- any missing payload or internal error approves silently.
-
-// ───────────────────────────────────────────────────────────────────
-// 1. IMPORTS
-// ───────────────────────────────────────────────────────────────────
-
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
-
-// ───────────────────────────────────────────────────────────────────
-// 2. HELPERS
-// ───────────────────────────────────────────────────────────────────
 
 function approve() {
   process.stdout.write(JSON.stringify({ permission: 'allow' }));
   process.exit(0);
 }
 
-// ───────────────────────────────────────────────────────────────────
-// 3. MAIN
-// ───────────────────────────────────────────────────────────────────
-
 async function main() {
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null) return approve(); // no/invalid payload -> fail open
-
   const prompt = typeof payload?.prompt === 'string' ? payload.prompt : '';
   const sessionID = payload?.session_id;
   const projectDir = payload?.workspace_roots?.[0] || process.cwd();
-
-  const result = guardCore.classifyIntent({ prompt, sessionID, projectDir, env: process.env });
-
-  if (result.question) {
-    const { stateDir } = guardCore.resolveGuardPaths(projectDir);
-    const lifecycleEpoch = guardCore.currentGate3LifecycleEpoch(sessionID);
-    const observeArgs = {
-      question: result.question,
-      sessionID,
-      lifecycleEpoch,
-      gateState: guardCore.readGateState(stateDir, sessionID),
-      env: process.env,
-      emitted: true,
-      runtime: 'Cursor',
-      receipt: guardCore.buildGate3ObservedReceipt(lifecycleEpoch),
-    };
+  const { question, observe } = guardCore.runClassifyGate({ prompt, sessionID, projectDir, env: process.env, runtimeLabel: 'Cursor' });
+  if (question) {
     process.stdout.write(JSON.stringify({
       permission: 'allow',
-      agent_message: result.question,
+      agent_message: question,
     }), () => {
-      guardCore.observeGate3QuestionDelivery(observeArgs);
+      observe();
       process.exit(0);
     });
     return;
   }
-
   return approve();
 }
 
-// ───────────────────────────────────────────────────────────────────
-// 4. ENTRYPOINT
-// ───────────────────────────────────────────────────────────────────
-
 main().catch((error) => {
-  // Fail-open by contract, but a swallowed failure hides a broken hook; report it.
   process.stderr.write(`spec-gate-classify: ${error instanceof Error ? error.message : String(error)}\n`);
   approve();
 });

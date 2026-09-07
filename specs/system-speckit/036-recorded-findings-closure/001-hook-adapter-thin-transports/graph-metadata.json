@@ -39,7 +39,7 @@
       "shared"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      "runtime/hooks/pi/spec-gate-classify.ts",
+      "runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+      "runtime/hooks/README.md",
       "hooks/lib/spec-gate/spec-gate-core.mjs",
       "hooks/README.md",
       "hooks/lib/hook-adapter-shared.mjs",
@@ -56,11 +60,7 @@
       ".opencode/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs",
       ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
       ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs"
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs"
     ],
     "entities": [
       {
@@ -102,13 +102,25 @@
       {
         "name": "spec-gate-core.mjs",
         "kind": "file",
-        "path": "hooks/lib/spec-gate/spec-gate-core.mjs",
+        "path": "runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.ts",
+        "kind": "code",
+        "path": "runtime/hooks/pi/spec-gate-classify.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "hooks/README.md",
+        "path": "runtime/hooks/README.md",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Shared",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five runtime hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/` each re-implement the same Gate-3 classify and enforce orchestration instead of sharing it",
     "created_at": "2026-09-07T15:05:40Z",
-    "last_save_at": "2026-09-07T15:44:54.133Z",
+    "last_save_at": "2026-09-07T15:55:51.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad8805add934d294da0880916c0b3c4247e0d92f8f0c24df20e7c1172ffa3048",
+    "source_fingerprint": "sha256:005581a5dad849162a6af78d9777fc5ebddcecbf4f0dc627c23c157713a0c7d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1198f087a47450dfd4fc8bcdde933f6528e6ea3ee8960deee4d2604b6f9e3914",
+      "spec.md": "a684e2021d3baaab37d8eb423638a347cad638433451274c581a3e8f130ae022",
       "plan.md": "ecdffab3359d65ee8de83537090b22e8588bafd4120dc9832b3935fef0dcb008",
-      "tasks.md": "bca06c59862028759cca2de7dfa708e6b6099cb84cfe2de25df597be4b0bfcf6",
-      "implementation-summary.md": "a59fa97fc9d46afbbb16a3a1f01bfb17a08adf3bbb2b234831ab5b119f75264b"
+      "tasks.md": "9108b87aed5cb7c5baf23fa05de2403974972d5f78b57278330a476880c3c948",
+      "implementation-summary.md": "28567ef5f78ff37cdd7071bf3a1e9f436741d00cd17206e7d163d2d62cbbbc4d"
     },
     "last_active_at": null
   }

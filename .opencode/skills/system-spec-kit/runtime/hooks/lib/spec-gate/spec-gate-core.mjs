@@ -1489,3 +1489,64 @@ export function evaluateMutation(request) {
     return { decision: 'allow', detail: null, wouldDeny: false };
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// ADAPTER ORCHESTRATION
+// ───────────────────────────────────────────────────────────────────
+// Every runtime adapter used to copy the same two sequences: classify, then
+// build the delivery-observation arguments; evaluate, then append the warning
+// log. The sequences are policy, not transport, so they live here once and an
+// adapter keeps only what its runtime shapes: payload parsing and the envelope.
+
+/**
+ * Classify one user turn and hand back the Gate 3 question with a deferred
+ * observer. The adapter writes its envelope first and calls `observe()` after,
+ * so delivery is recorded only once the runtime has the text.
+ *
+ * @param {{prompt: string, sessionID: string|undefined, projectDir: string, env?: NodeJS.ProcessEnv, runtimeLabel: string}} request
+ * @returns {{question: string|null, observe: () => void}}
+ */
+export function runClassifyGate(request = {}) {
+  const env = request.env ?? process.env;
+  const { prompt, sessionID, projectDir, runtimeLabel } = request;
+  const result = classifyIntent({ prompt, sessionID, projectDir, env });
+  if (!result || !result.question) return { question: null, observe: () => {} };
+  const { stateDir } = resolveGuardPaths(projectDir);
+  const lifecycleEpoch = currentGate3LifecycleEpoch(sessionID);
+  const observeArgs = {
+    question: result.question,
+    sessionID,
+    lifecycleEpoch,
+    gateState: readGateState(stateDir, sessionID),
+    env,
+    emitted: true,
+    runtime: runtimeLabel,
+    receipt: buildGate3ObservedReceipt(lifecycleEpoch),
+  };
+  return { question: result.question, observe: () => observeGate3QuestionDelivery(observeArgs) };
+}
+
+/**
+ * Evaluate one mutation and record the advisory or would-deny event in the
+ * warning log when the decision is anything but allow. Returns the core's
+ * verdict unchanged so the adapter maps it onto its runtime's envelope.
+ *
+ * @param {{tool: string, filePath: string|null|undefined, sessionID: string|undefined, projectDir: string, env?: NodeJS.ProcessEnv, runtimeKey: string}} request
+ * @returns {{decision: 'allow'|'advise'|'deny', detail?: string, wouldDeny?: boolean}}
+ */
+export function runEnforceGate(request = {}) {
+  const env = request.env ?? process.env;
+  const { tool, filePath, sessionID, projectDir, runtimeKey } = request;
+  const result = evaluateMutation({ tool, filePath, sessionID, projectDir, env });
+  if (result && result.decision !== 'allow') {
+    const { stateDir } = resolveGuardPaths(projectDir);
+    appendWarningLog(stateDir, formatSpecGateEvent({
+      runtime: runtimeKey,
+      sessionID,
+      tool,
+      filePath,
+      decision: result.wouldDeny ? 'would-deny' : 'advise',
+    }));
+  }
+  return result;
+}

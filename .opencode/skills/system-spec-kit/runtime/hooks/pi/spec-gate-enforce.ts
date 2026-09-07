@@ -29,7 +29,7 @@ export default function specGateEnforce(pi: ExtensionAPI): void {
         // fall back to the raw session id (resolveSessionKey handles it).
         sessionFile = undefined;
       }
-      const result = guard.evaluateMutation({
+      const result = guard.runEnforceGate({
         tool: event.toolName,
         filePath: projectFilePath(event.input),
         sessionID: guard.resolveSessionKey({
@@ -38,6 +38,7 @@ export default function specGateEnforce(pi: ExtensionAPI): void {
         }),
         projectDir: ctx.cwd,
         env: process.env,
+        runtimeKey: "pi",
       });
 
       if (result.decision === "deny") {

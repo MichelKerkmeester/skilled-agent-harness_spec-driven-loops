@@ -1,87 +1,35 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Devin UserPromptSubmit Spec Gate Classify
-// ───────────────────────────────────────────────────────────────────
-// STATUS: hooks fire live under `devin -p` with the documented top-level event
-// arrays and nested matcher groups in .devin/hooks.v1.json.
-//
-// UserPromptSubmit classify hook for Devin CLI -- the Devin sibling of the Codex
-// spec-gate-classify hook. Runs the shared spec-gate core against each user turn:
-// opens the session gate and surfaces the bounded Gate-3 question as
-// additionalContext when the turn triggers file-mutation intent, or parses an
-// answer to an already-open gate. Advisory only -- no deny capability.
-
-// ───────────────────────────────────────────────────────────────────
-// 1. IMPORTS
-// ───────────────────────────────────────────────────────────────────
-
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 
-// ───────────────────────────────────────────────────────────────────
-// 2. HELPERS
-// ───────────────────────────────────────────────────────────────────
-
 function approve() {
-  // No output + exit 0 -> Devin proceeds with the turn unchanged.
   process.exit(0);
 }
-
-// ───────────────────────────────────────────────────────────────────
-// 3. MAIN
-// ───────────────────────────────────────────────────────────────────
 
 async function main() {
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null) return approve(); // no/invalid payload -> fail open
-
   const prompt = typeof payload?.prompt === 'string' ? payload.prompt : '';
   const sessionID = typeof payload?.session_id === 'string' ? payload.session_id : '';
   if (sessionID.trim().length === 0) return approve();
-  // Match the enforce consumer's cwd resolution exactly: a whitespace-only
-  // root is treated as absent, so producer and consumer derive the same state
-  // directory for every payload shape.
-  const workspaceCwd = payload?.cwd;
-  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
-    ? workspaceCwd
-    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
-
-  const result = guardCore.classifyIntent({ prompt, sessionID, projectDir, env: process.env });
-
-  if (result.question) {
-    const { stateDir } = guardCore.resolveGuardPaths(projectDir);
-    const lifecycleEpoch = guardCore.currentGate3LifecycleEpoch(sessionID);
-    const observeArgs = {
-      question: result.question,
-      sessionID,
-      lifecycleEpoch,
-      gateState: guardCore.readGateState(stateDir, sessionID),
-      env: process.env,
-      emitted: true,
-      runtime: 'Devin',
-      receipt: guardCore.buildGate3ObservedReceipt(lifecycleEpoch),
-    };
+  const projectDir = (typeof payload?.cwd === 'string' && payload.cwd.trim()) ? payload.cwd : (process.env.DEVIN_PROJECT_DIR || process.cwd());
+  const { question, observe } = guardCore.runClassifyGate({ prompt, sessionID, projectDir, env: process.env, runtimeLabel: 'Devin' });
+  if (question) {
     process.stdout.write(JSON.stringify({
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
-        additionalContext: result.question,
+        additionalContext: question,
       },
     }), () => {
-      guardCore.observeGate3QuestionDelivery(observeArgs);
+      observe();
       process.exit(0);
     });
     return;
   }
-
   return approve();
 }
 
-// ───────────────────────────────────────────────────────────────────
-// 4. ENTRYPOINT
-// ───────────────────────────────────────────────────────────────────
-
 main().catch((error) => {
-  // Fail-open by contract, but a swallowed failure hides a broken hook; report it.
   process.stderr.write(`spec-gate-classify: ${error instanceof Error ? error.message : String(error)}\n`);
   approve();
 });
