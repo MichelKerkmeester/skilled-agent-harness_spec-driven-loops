@@ -520,6 +520,9 @@ Check resolveProjectPhase() in session-extractor.ts and projectPhase propagation
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/json-mode-hybrid-enrichment.md](../../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md)
 - Source spec: the JSON-mode hybrid-enrichment specification packet in this repository's spec tree
+
+Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<payload>' <spec-folder>
+
 ---
 
 ## 5. SOURCE METADATA

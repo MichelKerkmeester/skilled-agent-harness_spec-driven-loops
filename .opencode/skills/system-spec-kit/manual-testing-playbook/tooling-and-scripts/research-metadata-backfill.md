@@ -105,6 +105,8 @@ Inspect `runtime/cli/continuity/backfill-research-metadata.ts`, the workflow fol
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/research-metadata-backfill.md](../../feature-catalog/tooling-and-scripts/research-metadata-backfill.md)
 
+Provenance: manual only - node --trace-warnings ...
+
 ---
 
 ## 5. SOURCE METADATA

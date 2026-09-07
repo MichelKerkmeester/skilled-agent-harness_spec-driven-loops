@@ -193,6 +193,8 @@ Confirm OpenCode was restarted -> inspect `.opencode/plugins/opencode-goal.js` p
 - Source file: `.opencode/plugins/opencode-goal.js`
 - Command file: `.opencode/commands/goal-opencode.md`
 
+Provenance: .opencode/plugins/tests/opencode-goal-state.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA

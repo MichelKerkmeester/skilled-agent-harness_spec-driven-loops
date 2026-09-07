@@ -233,6 +233,8 @@ Capture, for every step in the Commands sequence above:
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
 
+Provenance: manual only - claude
+
 ---
 
 ## 5. SOURCE METADATA

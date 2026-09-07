@@ -90,6 +90,8 @@ Inspect `runtime/cli/validation/continuity-freshness.ts`, `runtime/cli/spec/vali
 | `runtime/tests/continuity-freshness.vitest.ts` | MCP-side freshness coverage |
 | `runtime/cli/tests/continuity-freshness.vitest.ts` | Script-side freshness coverage |
 
+Provenance: runtime/tests/continuity-freshness.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

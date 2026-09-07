@@ -68,6 +68,8 @@ Inspect `runtime/cli/core/memory-indexer.ts`, `post-save-review.ts`, `quality-sc
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/core-workflow-infrastructure.md](../../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md)
 
+Provenance: manual only - run the scenario prompt: Validate Core Workflow Infrastructure against cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

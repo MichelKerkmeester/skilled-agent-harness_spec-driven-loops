@@ -98,6 +98,8 @@ Patch whichever documentation or config surface drifted, then rerun the grep to 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/resource-map-template.md](../../feature-catalog/context-preservation/resource-map-template.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"
+
 ---
 
 ## 5. SOURCE METADATA

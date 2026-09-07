@@ -109,6 +109,8 @@ If the syntax check fails, inspect the function placement and the shell quoting 
 | `.opencode/scripts/orphan-mcp-sweeper.sh` | Orphan-only sweeper anchor |
 | `runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Regression or validation anchor |
 
+Provenance: runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

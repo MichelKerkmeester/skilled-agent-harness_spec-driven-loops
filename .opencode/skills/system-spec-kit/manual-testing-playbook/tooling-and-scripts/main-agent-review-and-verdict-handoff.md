@@ -67,6 +67,8 @@ collect missing evidence and rerun review.
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
+Provenance: manual only - follow the TEST EXECUTION sequence by hand
+
 ---
 
 ## 5. SOURCE METADATA

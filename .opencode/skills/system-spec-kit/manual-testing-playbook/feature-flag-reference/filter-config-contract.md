@@ -67,6 +67,8 @@ Inspect `runtime/cli/lib/content-filter.ts` loader and merge logic, verify the f
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/filter-config-contract.md](../../feature-catalog/feature-flag-reference/filter-config-contract.md)
 
+Provenance: manual only - run the scenario prompt: Validate Filter Config Contract against config/filters.jsonc and verify file-backed pipeline settings and fallback behavior.
+
 ---
 
 ## 5. SOURCE METADATA

@@ -175,17 +175,17 @@
     ],
     "causal_summary": "The spec-kit simplification program ran three research rounds over five lanes and remediated every confirmed finding in seventeen children, but it closed some rows as recorded decisions rather than fixes: duplicated hook adapter text, multiplexed rule scripts, playbook entries without provenance, 27 hand-written attestation stamps, 1,240 titles carrying template provenance, six lifecycle command assets that repeat each other, a links scan that is a tool rather than a rule, packet types the scaffolder cannot create, seventeen browse-only reference files, manifest fields nothing reads, the",
     "created_at": "2026-09-07T15:05:40Z",
-    "last_save_at": "2026-09-07T16:01:41.032Z",
+    "last_save_at": "2026-09-07T16:04:57.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4ff671cf4bd91a4485532fe78727a4cd6314c969eebe3f174a0d923ad1ea0d81",
+    "source_fingerprint": "sha256:1025f2075f3b741ddecd457c1c7746135d78eb9039f023c61ab8a786a5cc078c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "832fe170fb26916c094b773e4394c8066a5ccf86905c8a5c1865aab5c962540a"
+      "spec.md": "91028096baa372922e7c7d39d151d34c6365cb2364134bd04aed36b46bd542cb"
     },
     "last_active_at": null
   }

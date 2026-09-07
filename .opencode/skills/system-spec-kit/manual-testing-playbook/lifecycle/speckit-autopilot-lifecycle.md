@@ -74,6 +74,8 @@ Inspect the three Speckit command routers first. If they route correctly, inspec
 - Source: `.opencode/commands/speckit/assets/speckit-complete-auto.yaml`
 - Test: `.opencode/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts`
 
+Provenance: .opencode/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

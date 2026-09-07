@@ -96,6 +96,8 @@ Inspect `runtime/cli/spec/validate.sh`, `runtime/cli/validation/continuity-fresh
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../../feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)
 
+Provenance: runtime/cli/tests/normalizer-lint.vitest.ts
+
 ---
 
 ## 5. SOURCE METADATA

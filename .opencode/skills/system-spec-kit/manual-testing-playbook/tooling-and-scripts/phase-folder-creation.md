@@ -75,6 +75,8 @@ Check create.sh supports --phase flag; verify --phase-names parsing; inspect the
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify"
+
 ---
 
 ## 5. SOURCE METADATA

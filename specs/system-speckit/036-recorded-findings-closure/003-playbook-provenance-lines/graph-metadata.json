@@ -39,7 +39,7 @@
       "contract"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,13 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "runtime/cli/tests/playbook-provenance-paths.vitest.ts",
       ".github/workflows/playbook-operator-contract.yml",
       "runtime/cli/tests/manual-playbook-runner.ts",
       "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/confirmed-findings.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/tests/playbook-provenance-paths.vitest.ts",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
     ],
     "entities": [
@@ -91,6 +94,18 @@
         "source": "derived"
       },
       {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-provenance-paths.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/playbook-provenance-paths.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "playbook-operator-contract.yml",
         "kind": "config",
         "path": ".github/workflows/playbook-operator-contract.yml",
@@ -106,12 +121,6 @@
         "name": "confirmed-findings.md",
         "kind": "doc",
         "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/confirmed-findings.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -191,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The manual-testing-playbook under `.opencode/skills/system-spec-kit/manual-testing-playbook/` holds 85 markdown files (1 root index plus 84 per-feature scenario files, confirmed by direct count: `find .../manual-testing-playbook -name \".md\" | wc -l` returns 85)",
     "created_at": "2026-09-07T15:05:43Z",
-    "last_save_at": "2026-09-07T15:44:58.454Z",
+    "last_save_at": "2026-09-07T16:04:57.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42f30544f28254bf62943580a75f142cf5f750addedb1332d5a22b1ea28ff16b",
+    "source_fingerprint": "sha256:a4ea2ed846b037f51bae61020f93df1b710e173080fef46a94a48eaba6a28623",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0bed802f7d4bf78560c6a49a12d1189d49eb45ce0470cdca956c6f2fde6188f",
+      "spec.md": "06a28071751ad87fc53722cac0e07af0357c7cfc8654e80568e5081b47376e14",
       "plan.md": "b45d2922acb629aafaf24cdc16a53545549a720f7b64113d171b0517d4fa1f87",
-      "tasks.md": "615f86323d8971746686eb365f6215890486179aaf453c950deacb83bfcb8cce",
-      "implementation-summary.md": "0c6d9f8945757629484b1de2e2106b059a4b195e4fe18b0c5fc62359d872d9f2"
+      "tasks.md": "bfe905ae1b8dd307664240821933b45f3f67c3e9391f745a067ade2319d95a09",
+      "implementation-summary.md": "1322409b117c40c2a66e96f5bcc6226229cbc8fced0a98a0fdeec8eff0a218db"
     },
     "last_active_at": null
   }

@@ -67,6 +67,8 @@ Inspect `runtime/cli/core/config.ts` merge and validation flow, confirm the test
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/runtime-config-contract.md](../../feature-catalog/feature-flag-reference/runtime-config-contract.md)
 
+Provenance: manual only - run the scenario prompt: Validate Runtime Config Contract against config/config.jsonc and verify only active Section 1 keys bind runtime config.
+
 ---
 
 ## 5. SOURCE METADATA

@@ -74,6 +74,8 @@ Inspect `runtime/lib/validation/spec-doc-structure.ts` rule dispatch, validate.s
 - Feature catalog: [memory-quality-and-indexing/spec-doc-structure-validator.md](../../feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md)
 - Source files: `runtime/lib/validation/spec-doc-structure.ts`, `runtime/cli/spec/validate.sh`
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict <target-spec>
+
 ---
 
 ## 5. SOURCE METADATA

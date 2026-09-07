@@ -355,6 +355,8 @@ Capture, for every step in the Commands sequence above:
 - Checklist evaluator script: `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`
 - Claude hook wiring: `.claude/settings.json` (`hooks.Stop`)
 
+Provenance: .opencode/plugins/tests/system-completion-sentinel.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA

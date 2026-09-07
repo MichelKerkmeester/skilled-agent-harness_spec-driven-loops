@@ -241,6 +241,8 @@ Capture, for every step in the Commands sequence above:
 - Startup guard (git hooks symlink integrity): `.opencode/bin/check-git-hooks.sh`
 - Claude Code hook wiring: `.claude/settings.json` (`SessionEnd` hook)
 
+Provenance: .opencode/plugins/tests/session-cleanup.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA

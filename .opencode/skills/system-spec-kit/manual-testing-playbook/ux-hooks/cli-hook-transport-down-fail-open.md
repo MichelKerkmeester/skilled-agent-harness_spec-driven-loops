@@ -92,6 +92,8 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | OpenCode advisor bridge using the fallback |
 
+Provenance: manual only - run the scenario prompt: Validate hook transport-down fail-open: absent socket, exit 0, fast return, zero spawned launchers.
+
 ---
 
 ## 5. SOURCE METADATA

@@ -271,6 +271,8 @@ Verify generateFolderDescriptions covers the current spec inventory → Check JS
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
 
+Provenance: manual only - node --trace-warnings ...
+
 ---
 
 ## 5. SOURCE METADATA

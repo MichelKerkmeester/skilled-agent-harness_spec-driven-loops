@@ -224,6 +224,8 @@ Inspect `runtime/cli/spec/recommend-level.sh`, `runtime/cli/tests/test-upgrade-l
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/spec-lifecycle-automation.md](../../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help
+
 ---
 
 ## 5. SOURCE METADATA

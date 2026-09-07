@@ -85,6 +85,8 @@ If the command tries to remediate, inspect the diagnostic-mode guard in `.openco
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
 
+Provenance: manual only - /doctor deep-loop --scope=both
+
 ---
 
 ## 5. SOURCE METADATA

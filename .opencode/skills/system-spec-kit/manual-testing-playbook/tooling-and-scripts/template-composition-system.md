@@ -279,6 +279,8 @@ Inspect the Level contract resolver, inline gate renderer, scaffolder output, an
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/template-composition-system.md](../../feature-catalog/tooling-and-scripts/template-composition-system.md)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path "$TMPDIR/test-1" --name "test-1"
+
 ---
 
 ## 5. SOURCE METADATA

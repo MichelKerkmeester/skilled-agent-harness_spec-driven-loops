@@ -118,6 +118,8 @@ Run individual steps in isolation to identify failing step; verify script permis
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
+Provenance: manual only - /speckit:plan :with-phases
+
 ---
 
 ## 5. SOURCE METADATA

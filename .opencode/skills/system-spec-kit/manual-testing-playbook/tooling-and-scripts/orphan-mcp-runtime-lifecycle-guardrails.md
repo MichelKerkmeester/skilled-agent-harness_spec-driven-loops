@@ -92,6 +92,8 @@ If syntax or plist lint fails, inspect the exact script/template before rerunnin
 - Runbook: [../../runtime/cli/README.md](../../runtime/cli/README.md)
 - Spec packet: [../../../../specs/system-speckit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md](../../../../specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
+Provenance: manual only - bash -n .opencode/scripts/orphan-mcp-sweeper.sh
+
 ---
 
 ## 5. SOURCE METADATA

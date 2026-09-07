@@ -65,6 +65,8 @@ Identify orphaned dist file -> check if source was deleted/renamed -> either res
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/source-dist-alignment-enforcement.md](../../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md)
 
+Provenance: manual only - npx ts-node --transpile-only runtime/cli/evals/check-source-dist-alignment.ts
+
 ---
 
 ## 5. SOURCE METADATA

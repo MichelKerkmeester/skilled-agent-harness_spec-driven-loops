@@ -75,6 +75,8 @@ Operators run the exact prompt and command sequence for `119-A` and confirm the 
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` | Primary implementation anchor — the checker script under test |
 | `.opencode/specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md` | CHK-020/021/025/026 — regression checklist for this scenario |
 
+Provenance: manual only - /tmp/hygiene-sandbox/
+
 ---
 
 ## 5. SOURCE METADATA

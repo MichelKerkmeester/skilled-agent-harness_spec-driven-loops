@@ -156,6 +156,8 @@ Capture, for every step in the Commands sequence above:
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/session-capturing-pipeline-quality.md](../../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)
 
+Provenance: manual only - npm run check
+
 ---
 
 ## 5. SOURCE METADATA

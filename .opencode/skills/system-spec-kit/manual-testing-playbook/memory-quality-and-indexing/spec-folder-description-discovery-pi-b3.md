@@ -135,6 +135,8 @@ Verify create.sh generates description.json → Check stale detection mtime comp
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
 
+Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+
 ---
 
 ## 5. SOURCE METADATA

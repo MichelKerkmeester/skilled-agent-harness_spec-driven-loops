@@ -150,6 +150,8 @@ Inspect the review-marker detection in `.opencode/skills/system-spec-kit/runtime
 - Validator: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh`
 - Template: `.opencode/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl`
 
+Provenance: manual only - run the scenario prompt: Validate the review packet type marker-gated validation against bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

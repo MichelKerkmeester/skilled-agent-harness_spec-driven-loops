@@ -121,6 +121,8 @@ PASS when the total and the covered count come from the same table, a column bef
 - Closure rule the citation exemption rests on: `.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-closure.sh`
 - Validator: `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh`
 
+Provenance: manual only - run the scenario prompt: Validate the AC_COVERAGE single-source ratio against .opencode/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh and a live packet, and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

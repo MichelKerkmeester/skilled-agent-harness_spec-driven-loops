@@ -82,6 +82,8 @@ If deletion occurs without a prompt, inspect `doctor-update.yaml` Phase 9 and AD
 - Migration manifest: [specs/system-speckit/026-graph-and-context-optimization/.../scratch/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
 - Decision context: local doctor command ADRs
 
+Provenance: manual only - /doctor:update --cleanup-legacy
+
 ---
 
 ## 5. SOURCE METADATA

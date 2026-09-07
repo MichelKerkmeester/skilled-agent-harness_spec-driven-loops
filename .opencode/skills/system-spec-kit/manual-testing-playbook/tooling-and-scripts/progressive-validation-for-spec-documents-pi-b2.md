@@ -266,6 +266,8 @@ Verify validation level definitions; check exit code mapping; inspect auto-fix a
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
+Provenance: manual only - run the scenario prompt: Validate Progressive validation for spec documents (PI-B2) against the documented validation surface and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

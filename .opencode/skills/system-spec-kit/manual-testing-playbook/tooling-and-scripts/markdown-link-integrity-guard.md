@@ -126,6 +126,8 @@ Verify the guard script exists and runs with node; confirm the injected link tar
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/markdown-link-integrity-guard.md](../../feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md)
 
+Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
+
 ---
 
 ## 5. SOURCE METADATA

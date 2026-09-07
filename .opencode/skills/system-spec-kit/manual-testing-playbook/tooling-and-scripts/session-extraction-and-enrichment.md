@@ -68,6 +68,8 @@ Inspect `runtime/cli/extractors/file-extractor.ts`, `diagram-extractor.ts`, `ses
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/session-extraction-and-enrichment.md](../../feature-catalog/tooling-and-scripts/session-extraction-and-enrichment.md)
 
+Provenance: manual only - run the scenario prompt: Validate Session Extraction and Enrichment against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-extractors-loaders.js and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

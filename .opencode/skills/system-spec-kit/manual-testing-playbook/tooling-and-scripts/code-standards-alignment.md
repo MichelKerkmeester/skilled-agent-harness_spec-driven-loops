@@ -78,6 +78,8 @@ Inspect code standards definition; verify linter rules cover the standards; chec
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/code-standards-alignment.md](../../feature-catalog/tooling-and-scripts/code-standards-alignment.md)
 
+Provenance: manual only - run the scenario prompt: Validate Code standards alignment against the documented validation surface and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

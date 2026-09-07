@@ -159,6 +159,8 @@ If the branch or directory naming diverges, re-read the numbered-worktree rule i
 - sk-git convention: `.opencode/skills/sk-git/SKILL.md` (numbered-worktree rule: `wt/{NNNN}-{name}`, `.worktrees/{NNNN}-{name}`, 4-digit global max+1)
 - Worktree workflows: `.opencode/skills/sk-git/references/worktree-workflows.md` (`git worktree add -b wt/NNNN-name .worktrees/NNNN-name main`)
 
+Provenance: manual only - git worktree add -b wt/<NNNN>-<name> .worktrees/<NNNN>-<name> main
+
 ---
 
 ## 5. SOURCE METADATA

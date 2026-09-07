@@ -179,6 +179,8 @@ If the convergence call is empty, inspect the state log's inferred `sessionId` a
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
 
+Provenance: manual only - find <spec-folder> -path '*/research/iterations/*.md' | sort
+
 ---
 
 ## 5. SOURCE METADATA

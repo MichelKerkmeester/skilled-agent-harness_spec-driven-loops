@@ -67,6 +67,8 @@ Inspect template definitions in `templates/`; verify distributed-governance spec
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/](../../feature-catalog/tooling-and-scripts)
 
+Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --strict <spec-folder>
+
 ---
 
 ## 5. SOURCE METADATA

@@ -59,6 +59,8 @@ any mismatch or `research/research.md` hit; collect diff output and identify div
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/source-dist-alignment-enforcement.md](../../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md)
 
+Provenance: manual only - run the scenario prompt: Validate Runtime Lineage Naming Parity against the documented validation surface and report cited pass/fail evidence.
+
 ---
 
 ## 5. SOURCE METADATA

@@ -97,6 +97,8 @@ A restored run that still exits 69 means the restore was not byte-exact — conf
 | `.opencode/bin/skill-advisor.cjs` | `ensureFreshDist` guard, exit 69, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 | `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 
+Provenance: manual only - git diff
+
 ---
 
 ## 5. SOURCE METADATA

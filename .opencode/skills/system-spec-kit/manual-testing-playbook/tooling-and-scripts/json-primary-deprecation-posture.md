@@ -69,6 +69,9 @@ Check generate-context.ts argument parsing, loader routing, and structured-input
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md)
 - Source spec: the JSON-primary deprecation posture specification packet in this repository's spec tree
+
+Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>
+
 ---
 
 ## 5. SOURCE METADATA

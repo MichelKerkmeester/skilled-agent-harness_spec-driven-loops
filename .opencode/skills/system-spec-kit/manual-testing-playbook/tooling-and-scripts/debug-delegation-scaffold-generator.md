@@ -112,6 +112,8 @@ Capture, for every step in the Commands sequence above:
 - Workflow YAML: `.opencode/commands/speckit/assets/speckit-implement-auto.yaml` (debug_delegation block) and `.../speckit-complete-auto.yaml` (debug_escalation block)
 - Operator constraint: the debug agent is user-invoked only; the workflow must never dispatch it autonomously.
 
+Provenance: manual only - /tmp
+
 ---
 
 ## 5. SOURCE METADATA

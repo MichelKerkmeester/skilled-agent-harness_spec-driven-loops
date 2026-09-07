@@ -130,6 +130,8 @@ Inspect `runtime/cli/spec-folder/folder-detector.ts`, `alignment-validator.ts`, 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/spec-folder-detection-and-description.md](../../feature-catalog/tooling-and-scripts/spec-folder-detection-and-description.md)
 
+Provenance: manual only - npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"
+
 ---
 
 ## 5. SOURCE METADATA

@@ -162,6 +162,8 @@ Capture, for every step in the Commands sequence above:
 - Plugin entrypoint registry (confirms adapter role and kill-switch env): `.opencode/plugins/README.md` §3
 - Related-but-distinct sibling consumer (out of scope here, sharing infrastructure only): `.opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, `.opencode/plugins/system-completion-sentinel.js`, `.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`
 
+Provenance: .opencode/plugins/tests/system-speckit-completion.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA
