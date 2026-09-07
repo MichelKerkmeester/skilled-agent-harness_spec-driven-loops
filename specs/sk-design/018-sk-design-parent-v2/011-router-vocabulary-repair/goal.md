@@ -99,10 +99,22 @@ Done. 17 phrases added to sk-design, 2 removed from sk-doc; 9 of 11 fixed at gen
   `heat map` and `parallel coordinates`. The first pass removed only two because it filtered the
   signal list by keyword instead of reading it, and a filter for `chart` and `heatmap` matches none of
   `treemap`, `histogram` or `heat matrix`. All six now reach the design hub.
-- **The fleet scan found more, in hubs this packet does not own.** `system-deep-loop` has three
-  wrong-hub phrases: `iterative review` and `review convergence` reach `sk-design`, `audit the diff`
-  reaches `sk-code`. `mcp-tooling` has two: `create note` and `browser agent`. Recorded for their
-  owners rather than fixed here.
+- **The fleet scan is complete and the numbers are large.** All six hubs declare 439 multi-word
+  phrases between them. 19 reach a different hub and 136 reach nobody. `sk-doc` alone accounts for 7
+  and 72. Written up in `scratch/fleet-reach-scan.md`; recorded for their owners rather than fixed
+  here, since only one of the six is this packet's.
+- **A review verb beats its artifact, fleet-wide.** `sk-code` takes `review bar`, `pass review` and
+  `review the documentation` from `sk-doc`, and `audit the diff` from `system-deep-loop`, the same
+  pattern that took `design review of this slide deck` and `review this screen` from `sk-design`.
+  That is one question, not five: should a review of a non-code artifact outrank a code review?
+- **One collision is ours, and removing vocabulary did not fix it.** `pi print mode` reaches
+  `sk-design` at 0.82 on the print vocabulary added when fundamentals was broadened. Dropping the
+  shortest print signal changed nothing; the match survives on the others through stemming. The other
+  side is the real gap: `cli-external-orchestration` declares 51 phrases and carries 29 signals, none
+  of them this one, so a weak match wins by default.
+- **The checker had a defect, found by running it.** It reported `: [` and `: 4,` as phrases, because
+  the extractor matched quote-delimited text between keywords in a multi-line router block. Filtered
+  to candidates starting with a letter or digit and carrying no brace.
 - **`sk-design` is not in the compiled-routing closure.** Five hubs resolve through a compiled router
   contract first; this one returns a legacy sentinel. Written up in
   `scratch/compiled-routing-gap.md` with what joining would take.

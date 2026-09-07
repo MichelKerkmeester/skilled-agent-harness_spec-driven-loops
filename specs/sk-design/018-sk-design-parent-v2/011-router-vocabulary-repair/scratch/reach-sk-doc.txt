@@ -1,0 +1,83 @@
+FAIL sk-doc                       declared=169 wrong-hub=  7 no-reach= 72
+       wrong-hub  review the documentation                   sk-design=0.8200, system-deep-loop=0.8200
+       wrong-hub  review bar                                 sk-code=0.9285, sk-design=0.8200
+       wrong-hub  quality bar                                sk-code=0.8200
+       wrong-hub  pass review                                sk-code=0.9285, sk-design=0.8200
+       wrong-hub  nested packet                              system-spec-kit=0.8200
+       wrong-hub  model benchmark                            deep-model-benchmark=0.8461, system-deep-loop=0.8200
+       wrong-hub  skill benchmark                            system-deep-loop=0.8302
+       no-reach   validate a document
+       no-reach   validate this document
+       no-reach   validation rules
+       no-reach   score this document
+       no-reach   document audit
+       no-reach   check the docs
+       no-reach   meet our standards
+       no-reach   token efficiency
+       no-reach   reduce tokens
+       no-reach   fewer tokens
+       no-reach   compress the doc
+       no-reach   slim down
+       no-reach   model's budget
+       no-reach   machine-readable index
+       no-reach   skill.md scaffold
+       no-reach   skill.md and starter
+       no-reach   resource_map wiring
+       no-reach   reusable capability
+       no-reach   reusable helper
+       no-reach   starter reference docs
+       no-reach   new capability
+       no-reach   capability module
+       no-reach   package a capability
+       no-reach   parent skill
+       no-reach   mode packet
+       no-reach   mode packets
+       no-reach   nested workflow packet
+       no-reach   scaffold an agent
+       no-reach   agent file
+       no-reach   agent persona
+       no-reach   agent frontmatter
+       no-reach   agent template
+       no-reach   permission object
+       no-reach   authority boundary
+       no-reach   router presentation split
+       no-reach   thin router
+       no-reach   presentation contract
+       no-reach   agent and paired
+       no-reach   installation instructions
+       no-reach   setup instructions
+       no-reach   how to install
+       no-reach   setup steps
+       no-reach   getting it running
+       no-reach   getting our project running
+       no-reach   running from scratch
+       no-reach   reads like a machine wrote it
+       no-reach   de-ai the writing
+       no-reach   banned word check
+       no-reach   feature inventory
+       no-reach   catalog of features
+       no-reach   features overview
+       no-reach   front-page overview
+       no-reach   project overview
+       no-reach   getting started doc
+       no-reach   intro doc
+       no-reach   overview doc
+       no-reach   landing doc
+       no-reach   release notes
+       no-reach   version notes
+       no-reach   release summary
+       no-reach   what shipped
+       no-reach   since the last version
+       no-reach   benchmark suite
+       no-reach   behavior benchmark
+       no-reach   diff document
+       no-reach   trigger table
+       no-reach   revise a rule
+       no-reach   always-loaded rule
+       no-reach   rule that binds
+       no-reach   all templates
+       no-reach   show the full
+       no-reach   entire toolkit
+
+checked=1 hub(s), wrong-hub=7, no-reach=72
+RESULT: FAILED

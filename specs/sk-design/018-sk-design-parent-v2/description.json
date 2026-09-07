@@ -15,15 +15,33 @@
     "still",
     "reaches"
   ],
-  "lastUpdated": "2026-09-06T21:05:39.090Z",
+  "lastUpdated": "2026-09-07T04:09:16.405Z",
   "specId": "018",
   "folderSlug": "sk-design-parent-v2",
   "parentChain": [
     "sk-design"
   ],
-  "memorySequence": 2,
+  "memorySequence": 29,
   "memoryNameHistory": [
-    "06-09-26_15-50__phase-004-committed-as-e34e225517-both-hubs-class.md",
-    "06-09-26_16-29__phase-001-is-closed-and-the-packet-repair-it.md"
+    "06-09-26_22-09__waiting-on-you.md",
+    "06-09-26_22-10__waiting-on-you.md",
+    "06-09-26_22-10__waiting-on-you.md",
+    "06-09-26_22-10__waiting-on-you.md",
+    "06-09-26_22-51__waiting-on-you.md",
+    "06-09-26_22-51__waiting-on-you.md",
+    "06-09-26_22-51__waiting-on-you.md",
+    "06-09-26_22-51__waiting-on-you.md",
+    "06-09-26_22-51__waiting-on-you.md",
+    "06-09-26_22-51__waiting-on-you.md",
+    "06-09-26_22-52__waiting-on-you.md",
+    "06-09-26_22-52__waiting-on-you.md",
+    "07-09-26_05-08__waiting-on-you.md",
+    "07-09-26_05-08__waiting-on-you.md",
+    "07-09-26_05-08__waiting-on-you.md",
+    "07-09-26_05-08__waiting-on-you.md",
+    "07-09-26_05-08__waiting-on-you.md",
+    "07-09-26_05-09__waiting-on-you.md",
+    "07-09-26_05-09__waiting-on-you.md",
+    "07-09-26_05-09__waiting-on-you.md"
   ]
 }
