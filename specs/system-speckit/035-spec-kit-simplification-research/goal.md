@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Run five ten-iteration research lanes over system-spec-kit (retrieval, CLI runtime, shared package, templates and acceptance criteria, overengineering), reproduce every kept finding in-session, then remediate everything confirmed in sibling children, with no deferrals.
+**Objective:** Run five research lanes over system-spec-kit (retrieval, CLI runtime, shared package, templates and acceptance criteria, overengineering), ten iterations per lane per round across two rounds, reproduce every kept finding in-session, then remediate everything confirmed in sibling children, with no deferrals.
 
 ### Decisions
 
@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Executor for every lane: GLM 5.3 Flash max through DevPass on cli-pi (llmgateway/glm-5.3-flash), launched through the system-deep-loop fan-out runner, never a hand-rolled loop |
+| D1 | Two rounds per lane, each launched through the system-deep-loop fan-out runner, never a hand-rolled loop: round one, GLM 5.3 Flash max through DevPass on cli-pi (llmgateway/glm-5.3-flash); round two, DeepSeek V4 Flash max through opencode-go on cli-pi (deepseek-v4-flash-vision-exp) as a second ten-iteration lineage against the remediated tree |
 | D2 | Lanes run sequentially in worktree 046 so the containment guard cannot cross lanes; a lane silent for fifteen minutes is killed and resumed |
 | D3 | Every charter is improved through sk-prompt before launch |
 | D4 | Each research finding is a hypothesis until reproduced here; unreproducible findings are dropped with a note |
@@ -104,11 +104,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [x] All five research children are Complete with ten iterations each and a confirmed-findings.md
-- [x] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
-- [x] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
-- [x] The trigger index regenerates identically with zero malformed documents
-- [x] The parent goal.md was resent in chat after every change to its durable slice
+- [ ] All five research children are Complete with two ten-iteration lineages each and a confirmed-findings.md covering both rounds
+- [ ] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
+- [ ] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
+- [ ] The trigger index regenerates identically with zero malformed documents
+- [ ] The parent goal.md was resent in chat after every change to its durable slice
 <!-- /ANCHOR:completion -->
 
 ---
@@ -150,4 +150,6 @@ and findings belong here.
 | The command surface outranked the lane's P1 rows | The eight /speckit:* assets still scaffolded the retired checklist; found by the census, fixed in 011. |
 | Program closed | Lanes 001 to 005 Complete with 10 iterations and a confirmed-findings.md each; children 006 to 011 Complete; `validate.sh --strict --recursive` printed RESULT: PASSED twelve times; the trigger index regenerated twice to the same hash with zero malformed documents; the durable slice was resent after the 011 binding change. |
 | Child 012 appended to the binding | The operator asked for the two pre-existing failures to be fixed after the program closed; durable slice changed, parent resent in chat. |
+| Round two opened; D1 and the objective amended | The operator asked for ten more iterations per lane on DeepSeek V4 Flash max; the lanes run sequentially in worktree 046, fast-forwarded to the remediated tree, as a second lineage beside the GLM one; criteria reopened until the round closes. |
+| Round one researched a stale tree | The runner's fast-forward before each lane failed silently on untracked research copies, so lanes 002 to 005 read the tree at the program's start; the census in the main checkout absorbed the difference, and round two starts from the current head. |
 <!-- /ANCHOR:log -->

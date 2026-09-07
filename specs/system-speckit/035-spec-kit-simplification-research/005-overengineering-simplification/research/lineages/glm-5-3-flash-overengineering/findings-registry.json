@@ -1,12 +1,13 @@
 {
   "version": "1.0",
   "sessionId": "fanout-glm-5-3-flash-overengineering-1788746122749-wk19z4",
-  "note": "reducer-generated: keyFindings = finding_observed events replayed from deltas/iter-*.jsonl; counts as of run 5",
-  "findingCount": 20,
+  "note": "FINAL (run 10, reconciled): keyFindings = 30 evidence findings incl. the runs 6-8 backfill (F21,F22,F23,F24,F25,F27,F28,F29 \u2014 recorded in their .mds at execution, backfilled into their deltas by the reducer replay); planMoves = the 9 ranked moves (run 10)",
+  "findingCount": 30,
   "bySeverity": {
-    "P1": 4,
-    "P2": 16
+    "P1": 5,
+    "P2": 25
   },
+  "planMoveCount": 9,
   "keyFindings": [
     {
       "id": "F1-rule-registry-39x31",
@@ -187,6 +188,179 @@
       "cost": "1 decoding step per reader; 0 grep resolutions for automated consumers",
       "recommendation": "keep semantics, merge naming to the real templates/addons/*.md.tmpl paths",
       "iteration": 5
+    },
+    {
+      "id": "F21-freshness-2layer-restatement",
+      "severity": "P2",
+      "location": "root AGENTS.md (completion-verification item 4) vs references/validation/validation-rules.md:113,122,126-127",
+      "statement": "the freshness covenant is the only completion-verification semantic fully restated across governance and component (both: default-false, warn-not-block, ENFORCE-escalates)",
+      "cost": "2 coordinated edits per warn-vs-enforce change; the only 2x restatement found in an otherwise clean boundary",
+      "recommendation": "keep (2-layer split doing its job; contrast F14's 5 uncoordinated copies inside ONE layer)",
+      "iteration": 6
+    },
+    {
+      "id": "F22-governance-0x-duplication",
+      "severity": "P2",
+      "location": "CLAUDE.md -> symlink to AGENTS.md (ls -la: lrwxr-xr-x); repo-rules/ 9 files 1,615 LOC, 1 machinery mention (scope-discipline.md)",
+      "statement": "governance->runtime duplication measured at ~0: 1x506 lines + symlink; 1/9 rule files touch machinery; the A/B/C/D/E gates and completion covenant are pointered, not copied (complete-auto.yaml:431,457 = a scored VIEW)",
+      "cost": "~0 duplication; 3 greps to establish",
+      "recommendation": "keep (negative knowledge: no fold-into-a-repo-rule candidates; preserve the separation against the temptation that produced F14/F18)",
+      "iteration": 6
+    },
+    {
+      "id": "F23-optimizer-promotion-tail-0",
+      "severity": "P1",
+      "location": "runtime/cli/observability/ (2,465 LOC) + runtime/cli/optimizer/ (promote.cjs, replay-corpus.cjs, replay-runner.cjs, rubric.cjs, search.cjs) + audit/promotion-reports/ = 0 files",
+      "statement": "the optimizer/observability pipeline's output (3 advisory-only tunables) has zero recorded promotions; the last plausible in-boundary consumer (the performance baselines) traced to the .bench.ts benches, not the replay (run 9 correction)",
+      "cost": "2,465+ LOC + 5 scripts + 5-6 ledger/lock files per lineage, in exchange for 3 numbers never auto-applied (advisory-only) and never promoted-on-record",
+      "recommendation": "merge (R6: keep telemetry+manifest+drift-guard+benches; quarantine the 5 scripts until promotion #2; delete only after the out-of-boundary import census)",
+      "iteration": 7
+    },
+    {
+      "id": "F24-BM25-flag-readerless",
+      "severity": "P2",
+      "location": "runtime/tests/env-reference-drift.vitest.ts:295 ('no reader left in source'); golden-queries.json:27,189-191; absent from runtime/ENV-REFERENCE.md",
+      "statement": "a documented-nowhere, tested, exercised flag with no source reader \u2014 the skill's own drift test pronounces it dead",
+      "cost": "4+ fixture rows + 1 drift-test clause + a golden slot maintained for a ghost",
+      "recommendation": "remove (R7: the fixtures + the clause, or revive the flag)",
+      "iteration": 7
+    },
+    {
+      "id": "F25-retrieval-two-machineries",
+      "severity": "P2",
+      "location": "root governance clause (section 5: retrieval is lexical, fusion unsupported) vs shared/embeddings.ts (1,011) + shared/algorithms/rrf-fusion.ts (842) + 2 providers + 4 flags + ENV-REFERENCE.md",
+      "statement": "the word retrieval names two machineries; the governance clause documents only the prompt-time one \u2014 1,853+ LOC of embeddings+RRF fusion sit behind it (shared/ = fleet payload by design, corrected run 9)",
+      "cost": "1 orientation expenditure per reader (measured: 3 greps in run 7)",
+      "recommendation": "keep the clause; +1 pointer line (R8) to ENV-REFERENCE.md",
+      "iteration": 7
+    },
+    {
+      "id": "F27-freshness-duty-cycle-62pct",
+      "severity": "P2",
+      "location": "1,790 of 2,874 implementation-summary.md under specs/ carry sha256:0{4,}; covenant: validation-rules.md:113 + governance completion-verification item 4 + SPECKIT_COMPLETION_FRESHNESS(_ENFORCE) both default-false (validation-rules.md:126-127)",
+      "statement": "62.2% of the governed corpus has never recorded a continuity fingerprint \u2014 the freshness machinery guards a surface that is 62% no-op by its own rule's definition; 1,084 packets (37.8%) exercise it",
+      "cost": "the machinery delivers comparisons on 38% of governed packets; 1,790 produce its own no-data answer",
+      "recommendation": "keep (1,084 worked samples = validated where it matters); the 62% is the measured duty cycle \u2014 the number any future freshness plumbing costs against",
+      "iteration": 8
+    },
+    {
+      "id": "F28-home-track-0of5-executed",
+      "severity": "P2",
+      "location": "specs/system-speckit/035-*/001-005 (all Level 2, 20/3 unticked, zero fingerprints, 10-doc layouts); 005/acceptance-criteria.md:22-23,83",
+      "statement": "the covenant's home track: 5 packets, 0 executed \u2014 the authoring pass IS the recorded work; this research is the lane's first criterion work",
+      "cost": "50 authored docs, 0 executed \u2014 the authoring-vs-execution ratio in the covenant's home track",
+      "recommendation": "keep (recorded as the base-rate caveat: the 035 track measures authoring adherence; execution adherence lives in the 1,084 fingerprinted packets)",
+      "iteration": 7
+    },
+    {
+      "id": "F29-honesty-positive-control",
+      "severity": "P2",
+      "location": "acceptance-criteria.md:65-74 (Met/Waived/Superseded + unbacked-waiver-fails), :83-85 (Closeable:No, written-when-closed); implementation-summary.md placeholder census = 0; intake-contract.md:112 distinction honored",
+      "statement": "where the covenant mechanisms fire, honesty is mechanical: zero placeholder debt, a closure statement that cannot claim itself, waivers that fail without an ADR",
+      "cost": "the+ side \u2014 machinery makes the honest state the default",
+      "recommendation": "keep (the strongest+ evidence the design improves AI adherence in practice \u2014 the argument FOR the machinery F18/F24 flag as overbuilt at the edges)",
+      "iteration": 8
+    },
+    {
+      "id": "F30-fingerprint-vocabulary-3-layers",
+      "severity": "P2",
+      "location": "continuity-freshness.ts:60-62; root governance completion-verification item 4; 028/002 vs 028/004 (84-line diff, shared sha256:56e8ccee)",
+      "statement": "the freshness covenant's hashed input is stated in no layer; 2/6 sampled real fingerprints collide across 84-line-different packets",
+      "cost": "3 greps + 1 unresolved diff to answer the covenant's primitive; 1,084 eligible packets inherit the ambiguity",
+      "recommendation": "merge (1 clause in continuity-freshness.ts:60-62 naming the hashed input)",
+      "iteration": 9
+    },
+    {
+      "id": "F31-playbook-zero-citations",
+      "severity": "P2",
+      "location": "exhausted-approach-respect.md (138 lines, 0 test references); playbook = 85 md / 11,839 lines",
+      "statement": "parallel proof convention, 0/1 sampled scenarios cite the vitest suites they shadow",
+      "cost": "duplication/shadow/contradiction indistinguishable by readers",
+      "recommendation": "keep playbook; merge provenance (1 'shadows: <test>#<case>' line per scenario)",
+      "iteration": 9
+    }
+  ],
+  "planMoves": [
+    {
+      "id": "R1-vocabulary-one-authority",
+      "severity": "P1",
+      "statement": "plan-move 1: 6-file vocabulary consolidation (registry=sole authority; printer consumes report; 2 prose->pointers; +1 clause F30)",
+      "capability": "all 39 rules, narrowing, warn-vs-ENFORCE, freshness",
+      "risk": "LOW",
+      "gain": "maintenance 5+->1 edits; drift class dies mechanically",
+      "source": "F14+F1+F2+F9+F16+F30"
+    },
+    {
+      "id": "R2-collapse-5to1-multiplexes",
+      "severity": "P2",
+      "statement": "plan-move 2: 10 registry rows -> 2 (subcodes); SPECKIT_CANONICAL_SAVE_RULE round-trip dies",
+      "capability": "10 behaviors as subcodes; narrowing via existing 31-alias mechanism",
+      "risk": "MEDIUM (narrowing vocabulary; absorbed by aliases)",
+      "gain": "-8 report rows, -8 descriptions, silent-attribution mode dies",
+      "source": "F8+F1"
+    },
+    {
+      "id": "R3-playbook-provenance",
+      "severity": "P2",
+      "statement": "plan-move 3: 85x1 provenance lines (shadows: <test>#<case>)",
+      "capability": "unchanged (additive)",
+      "risk": "TRIVIAL",
+      "gain": "adherence: proofs traceable; duplication-vs-shadowing decidable",
+      "source": "F31"
+    },
+    {
+      "id": "R4-complete-dashboards-true",
+      "severity": "P1",
+      "statement": "plan-move 4: complete.md:92 lists what the workflow assembles (shrink the promise; do not build the 6 dashboards)",
+      "capability": "the report's ACTUAL shape documented",
+      "risk": "TRIVIAL",
+      "gain": "promise=product; no hunt for 3 mechanismless dashboards; 6-name list dies",
+      "source": "F18"
+    },
+    {
+      "id": "R5-naming-resolutions",
+      "severity": "P2",
+      "statement": "plan-move 5: level_contract_optional_* -> real .tmpl paths (4 files, 6+ occurrences); opencode/ hooks dir pointed or deleted",
+      "capability": "unchanged (pointers resolve mechanically)",
+      "risk": "TRIVIAL-LOW",
+      "gain": "greps and checkers hit something; decoding lore dies",
+      "source": "F20+F13"
+    },
+    {
+      "id": "R6-optimizer-tail-freeze",
+      "severity": "P1",
+      "statement": "plan-move 6: telemetry+manifest+drift-guard+benches kept; promote/replay/corpus/rubric/search quarantined until promotion #2; delete only after out-of-boundary import census",
+      "capability": "3 advisory tunables + the design + the evidenced consumers (benches, drift guard)",
+      "risk": "LOW if frozen, MEDIUM if deleted (UNKNOWN out-of-boundary imports)",
+      "gain": "-5 scripts' drift; the covenant gains a truthful mileage note",
+      "source": "F23"
+    },
+    {
+      "id": "R7-retire-BM25-flag",
+      "severity": "P2",
+      "statement": "plan-move 7: remove the readerless flag's 4+ fixture rows + 1 drift-test clause",
+      "capability": "none lost (drift test: no reader left in source)",
+      "risk": "TRIVIAL",
+      "gain": "-1 truth, -1 golden slot",
+      "source": "F24"
+    },
+    {
+      "id": "R8-orientation-pointer",
+      "severity": "P2",
+      "statement": "plan-move 8: +1 governance-clause line -> ENV-REFERENCE.md (the second retrieval machinery)",
+      "capability": "unchanged",
+      "risk": "TRIVIAL",
+      "gain": "the 3-grep orientation cost dies",
+      "source": "F25"
+    },
+    {
+      "id": "R9-keep-list",
+      "severity": "P2",
+      "statement": "the+ column: 1-file governance+symlink (0x duplication measured), 9 rule files/1 machinery mention (layering clean), honesty machinery (62% duty cycle, 0 faked, ADR-backed waivers), F15 covenant, F21 2-layer freshness, the env-reference drift guard",
+      "capability": "THE validated core",
+      "risk": "n/a (keep)",
+      "gain": "the measured non-bloat is the part of the corpus worth copying",
+      "source": "F21,F22,F15,F27,F28,F29"
     }
   ],
   "ruledOutDirections": [
@@ -197,14 +371,71 @@
     },
     {
       "approach": "Corpus-level firing evidence inside runs 1-5",
-      "reason": "deferred to runs 8-9",
+      "reason": "executed by runs 8-9",
       "iteration": 3
     },
     {
       "approach": "Dead steps in the command surface post memory-decommission",
-      "reason": "hypothesis corrected: covenant enforced end-to-end; residue is F18/F20, not dead memory steps",
+      "reason": "covenant enforced end-to-end; residue is F18/F20",
       "evidence": "iterations/iteration-005.md",
       "iteration": 5
+    },
+    {
+      "approach": "AGENTS.md/CLAUDE.md dual-maintenance",
+      "reason": "CLAUDE.md is a symlink (lrwxr-xr-x); 506 lines exist once",
+      "evidence": "iterations/iteration-006.md",
+      "iteration": 6
+    },
+    {
+      "approach": "Fold governance procedure into repo-rules",
+      "reason": "9 rule files, 1,615 LOC, 1 machinery mention \u2014 rules own behavior only",
+      "evidence": "iterations/iteration-006.md",
+      "iteration": 6
+    },
+    {
+      "approach": "goal.md as an unproduced convention artifact",
+      "reason": "templated: spec-kit-docs.json:21,158-159 -> goal.md.tmpl (v2.2)",
+      "evidence": "iterations/iteration-008.md",
+      "iteration": 8
+    },
+    {
+      "approach": "005 criteria = 3 Met / 6 Open (word-mention counts)",
+      "reason": "legend words polluted; clean datum = 5 AC rows + Closeable:No",
+      "evidence": "iterations/iteration-008.md",
+      "iteration": 8
+    },
+    {
+      "approach": "Replay/optimizer machinery wholly unused; shared/ embeddings+RRF orphaned",
+      "reason": "promotion-reports/ = 0 (tail unused-on-record) but baselines trace to .bench.ts; shared/ = fleet payload by design",
+      "evidence": "iterations/iteration-007.md,009",
+      "iteration": 9
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "OQ1",
+      "q": "What exactly does the freshness fingerprint hash? (2/6 sampled fingerprints collide across 84-line-different packets; named in no stating layer)",
+      "fix": "R1's +1 clause in continuity-freshness.ts:60-62"
+    },
+    {
+      "id": "OQ2",
+      "q": "Do the other 84 playbook scenarios cite their shadowed suites? (n=1 sampled: 0)",
+      "fix": "R3's provenance lines"
+    },
+    {
+      "id": "OQ3",
+      "q": "Do the cursor/codex/devin hook registrations exist in this checkout and are they exercised? (outside evidenceBoundary)",
+      "fix": "the F12 usage census"
+    },
+    {
+      "id": "OQ4",
+      "q": "Who consumes the optimizer's replay+promote out-of-boundary (the advisor)?",
+      "fix": "R6's import census (delete precondition)"
+    },
+    {
+      "id": "OQ5",
+      "q": "Does the F11 appetite (the 3,582-LOC ceremony port) exist after R1-R8?",
+      "fix": "phase-2 gate, by design"
     }
   ]
 }
