@@ -55,7 +55,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --json specs/
 
 ### check-completion.sh
 
-Verifies all checklist items are marked complete before claiming "done".
+Verifies the verification checklist in `tasks.md` and, when `acceptance-criteria.md` exists, that every criterion is Met or waived against a decision record, before claiming "done". The sentinel Stop hook reads its `--json` output on every completion claim.
 
 **Usage:**
 ```bash

@@ -24,7 +24,7 @@ Current state:
 
 | File | Purpose |
 |------|---------|
-| `completion-evidence-sentinel.cjs` | Runtime-neutral core: completion-claim detection, spec-folder resolution, checklist/implementation-summary evaluation, dedup state, advisory logging and a throttled stale-state sweep. Exports `detectCompletionClaim`, `evaluateCompletionEvidence`, `resolveSentinelPaths`, `appendAdvisoryLog`, `sweepStaleSentinelState` and related constants. |
+| `completion-evidence-sentinel.cjs` | Runtime-neutral core: completion-claim detection, spec-folder resolution, tasks-checklist and acceptance-closure evaluation through `check-completion.sh --json`, the implementation-summary stat, dedup state, advisory logging and a throttled stale-state sweep. Exports `detectCompletionClaim`, `evaluateCompletionEvidence`, `resolveSentinelPaths`, `appendAdvisoryLog`, `sweepStaleSentinelState` and related constants. |
 
 ---
 

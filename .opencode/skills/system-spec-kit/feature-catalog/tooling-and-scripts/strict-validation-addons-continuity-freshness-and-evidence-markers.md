@@ -28,7 +28,7 @@ The implementation added four related validation surfaces.
 
 1. Commit `32a180bba` added `runtime/cli/validation/continuity-freshness.ts`, which compares `_memory.continuity.last_updated_at` against `graph-metadata.json.derived.last_save_at` and warns when continuity lags by more than 10 minutes.
 2. Commit `7d85861a0` added `runtime/cli/validation/evidence-marker-audit.ts`, a bracket-depth parser that distinguishes real malformed `[EVIDENCE:...]` markers from false positives such as parentheses inside evidence text.
-3. Commit `e40dff0bb` added `runtime/cli/validation/evidence-marker-lint.ts` and wired it into `validate.sh --strict`, so malformed evidence markers now fail strict validation instead of relying on an ad hoc audit sweep.
+3. Commit `e40dff0bb` added the evidence-marker audit, now `runtime/cli/validation/evidence-marker-audit.ts`, and wired it into `validate.sh --strict`, so malformed evidence markers now fail strict validation instead of relying on an ad hoc audit sweep.
 4. Commit `ded5ece07` added `runtime/cli/rules/check-normalizer-lint.sh`, which prevents new local `normalizeScope*` and `getOptionalString` duplicates from being introduced outside `scope-governance.ts`.
 
 The validator therefore gained both freshness enforcement and structural linting. `validate.sh --strict` now layers in the continuity-freshness check, the evidence-marker lint, and the normalizer lint alongside the older rule inventory, while the standalone audit script remains the repair-oriented sweep for legacy malformed evidence blocks.

@@ -258,6 +258,19 @@ describe('continuity-freshness', () => {
     expect(result.code).toBe('zero_fingerprint');
   });
 
+  it('reports a hand-written label in the fingerprint slot as malformed_fingerprint, not as never recorded', () => {
+    const root = makeWorkspace();
+    const specFolder = createSpecFolderWithCompletionClaim(root, '929-continuity-malformed-fingerprint');
+    writeImplementationSummary(specFolder, '2026-04-17T12:00:00Z', 'sha256:phase-remediation-complete');
+    refreshGraphMetadataForSpecFolder(specFolder, { now: '2026-04-17T12:10:01Z' });
+
+    const result = validateContinuityFreshness(specFolder);
+
+    expect(result.status).toBe('warn');
+    expect(result.code).toBe('malformed_fingerprint');
+    expect(result.details[0]).toContain('phase-remediation-complete');
+  });
+
   it('gates the CLI on SPECKIT_COMPLETION_FRESHNESS while the exported function stays unguarded', () => {
     const root = makeWorkspace();
     const specFolder = createSpecFolder(root, '929-continuity-not-opted-in');

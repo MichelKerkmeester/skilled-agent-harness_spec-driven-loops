@@ -45,7 +45,7 @@ fi
 
 show_help() {
     cat << EOF
-$SCRIPT_NAME - Completion Verification Rule: Verify Checklist Completion
+$SCRIPT_NAME - Completion Verification Rule: verify the tasks.md checklist and acceptance closure
 
 USAGE:
   ./$SCRIPT_NAME <spec-folder-path> [OPTIONS]
@@ -57,8 +57,8 @@ OPTIONS:
   --help      Show this help
 
 EXIT CODES:
-  0 = All required items complete (P0 + P1, or all if --strict)
-  1 = Incomplete items found
+  0 = All required items complete (P0 + P1, or all if --strict) and every acceptance criterion closed
+  1 = Incomplete items, missing evidence, or an acceptance criterion that is Unmet or waived without a decision record
   2 = Error (file not found, invalid path, etc.)
 
 PRIORITY ENFORCEMENT:
@@ -267,6 +267,33 @@ record_missing_evidence_if_needed() {
     fi
 }
 
+# Acceptance closure. The criteria table closes a Level 2+ packet: every row
+# must be Met, or Waived/Superseded against a named decision record. The
+# document is optional, so an absent file records nothing and blocks nothing.
+AC_PRESENT=false
+AC_TOTAL=0
+AC_UNMET=0
+AC_UNBACKED_WAIVERS=0
+
+count_acceptance_rows() {
+    local ac_file="$FOLDER_PATH/acceptance-criteria.md"
+    [[ -f "$ac_file" ]] || return 0
+    AC_PRESENT=true
+    local line status waiver
+    while IFS= read -r line; do
+        [[ "$line" =~ ^\|[[:space:]]*AC-[0-9]+[[:space:]]*\| ]] || continue
+        status=$(printf '%s' "$line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $6); print $6}')
+        waiver=$(printf '%s' "$line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $7); print $7}')
+        AC_TOTAL=$((AC_TOTAL + 1))
+        case "$status" in
+            Met) ;;
+            Waived|Superseded)
+                [[ "$waiver" =~ ^ADR-[0-9]+ ]] || AC_UNBACKED_WAIVERS=$((AC_UNBACKED_WAIVERS + 1)) ;;
+            *) AC_UNMET=$((AC_UNMET + 1)) ;;
+        esac
+    done < "$ac_file"
+}
+
 calculate_status() {
     local p0_pass=true
     local p1_pass=true
@@ -296,6 +323,8 @@ calculate_status() {
         echo "PRIORITY_CONTEXT_MISSING"
     elif [[ $P0_MISSING_EVIDENCE -gt 0 || $P1_MISSING_EVIDENCE -gt 0 ]]; then
         echo "EVIDENCE_MISSING"
+    elif [[ $AC_UNMET -gt 0 || $AC_UNBACKED_WAIVERS -gt 0 ]]; then
+        echo "AC_UNMET"
     else
         echo "COMPLETE"
     fi
@@ -331,6 +360,12 @@ output_json() {
     "priorityContextMissing": $UNTAGGED_TOTAL,
     "p0MissingEvidence": $P0_MISSING_EVIDENCE,
     "p1MissingEvidence": $P1_MISSING_EVIDENCE
+  },
+  "acceptance": {
+    "present": $AC_PRESENT,
+    "total": $AC_TOTAL,
+    "unmet": $AC_UNMET,
+    "unbackedWaivers": $AC_UNBACKED_WAIVERS
   }
 }
 EOF
@@ -395,6 +430,14 @@ ${NC}\n"
         echo -e "    ${GREEN}✓${NC} Evidence present for all completed P0/P1 items"
     fi
 
+    if $AC_PRESENT; then
+        if [[ $AC_UNMET -gt 0 || $AC_UNBACKED_WAIVERS -gt 0 ]]; then
+            echo -e "    ${RED}✗${NC} Acceptance criteria: $AC_UNMET unmet, $AC_UNBACKED_WAIVERS waived without a decision record ${RED}(BLOCKING)${NC}"
+        else
+            echo -e "    ${GREEN}✓${NC} Acceptance criteria: all $AC_TOTAL row(s) closed"
+        fi
+    fi
+
     echo -e "\n${BLUE}───────────────────────────────────────────────────────────────
 ${NC}\n"
 
@@ -426,6 +469,10 @@ ${NC}\n"
             echo -e "  ${RED}${BOLD}RESULT: BLOCKED${NC}"
             echo -e "  Completed P0/P1 items are missing evidence markers. Add [EVIDENCE:] before claiming completion." >&2
             ;;
+        AC_UNMET)
+            echo -e "  ${RED}${BOLD}RESULT: BLOCKED${NC}"
+            echo -e "  Acceptance criteria are not closed. Mark every row Met, or Waived/Superseded against a decision record." >&2
+            ;;
     esac
 
     echo ""
@@ -452,6 +499,7 @@ main() {
     fi
 
     count_checklist_items "$checklist_file"
+    count_acceptance_rows
 
     local status
     status=$(calculate_status)

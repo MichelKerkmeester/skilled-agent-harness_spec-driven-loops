@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       "research/lineages/glm-5-3-flash-overengineering/research.md",
-      "research/confirmed-findings.md"
+      "research/confirmed-findings.md",
+      "research/lineages/deepseek-v4-flash-overengineering/research.md"
     ],
     "entities": [
       {
@@ -198,7 +199,7 @@
     ],
     "causal_summary": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure: the skill has grown by accretion, and the cost in reads, steps and maintenance has never been weighed against what each piece protects",
     "created_at": "2026-09-06T14:29:33Z",
-    "last_save_at": "2026-09-07T03:35:37.060Z",
+    "last_save_at": "2026-09-07T07:19:38.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:310e0f61d2f405d0371e9aaf6a0a532aeec4c461415e60c2a7e298a64a094263",
+    "source_fingerprint": "sha256:67cd4244bc0bd3311ee08976254aa03cae3d19075007b4b004db4073d6af6329",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e8003992bb52e279dfe20ee4984c2ace6fb1e6418d63a570b2bc4f2182237ed1",
+      "spec.md": "4246b08c9abd7446acaadcf828553b2c09baab13dcd5cc1e192379dfd466eadf",
       "plan.md": "7ca0f3a1d4156673b15ecc305a3901093ed0780b5ab109520680a66d675c024c",
-      "tasks.md": "ed3b10cf48086cce5c608777fe134241249db798fea24258e7ff03d5ccfc26f9",
+      "tasks.md": "e581efba565d6d7d19d3af70af64019c7b864ce9b03698f1c3126ac4022eeec8",
       "implementation-summary.md": "40e4f89d9856376847600837262e92f43c42b7b034715a95576bc39a6713ab38"
     },
     "last_active_at": null

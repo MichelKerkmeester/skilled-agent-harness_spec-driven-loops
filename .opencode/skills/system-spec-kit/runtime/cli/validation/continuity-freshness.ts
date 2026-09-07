@@ -39,6 +39,7 @@ export interface ContinuityFreshnessResult {
     | 'clock_drift'
     | 'no_completion_claim'
     | 'missing_fingerprint'
+    | 'malformed_fingerprint'
     | 'zero_fingerprint'
     | 'implementation_summary_missing'
     | 'not_opted_in'
@@ -342,7 +343,7 @@ function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnes
   const attestationCandidate = candidates.find((candidate) => candidate.basename === 'implementation-summary.md');
   const attestationFingerprint = attestationCandidate?.fingerprint ?? null;
 
-  if (!attestationFingerprint || !/^sha256:[a-f0-9]{64}$/.test(attestationFingerprint)) {
+  if (!attestationFingerprint) {
     return buildPass(
       'missing_fingerprint',
       'Continuity freshness skipped: completion claim has no stored session_dedup fingerprint',
@@ -353,6 +354,18 @@ function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnes
     return buildPass(
       'zero_fingerprint',
       'Continuity freshness skipped: completion claim has only the zero fingerprint placeholder',
+    );
+  }
+
+  // A value that is present but not a hex digest was written by hand, not by
+  // the continuity writer. It attests nothing, so it is reported as its own
+  // class instead of being folded into the never-recorded skips, which is how
+  // a corpus of labelled stamps stayed invisible to every adoption count.
+  if (!/^sha256:[a-f0-9]{64}$/.test(attestationFingerprint)) {
+    return buildWarn(
+      'malformed_fingerprint',
+      'Continuity freshness cannot verify: stored session_dedup fingerprint is not a sha256 hex digest',
+      [`implementation-summary.md: ${attestationFingerprint}`],
     );
   }
 

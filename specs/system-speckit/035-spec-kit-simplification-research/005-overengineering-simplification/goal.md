@@ -76,6 +76,7 @@ here are invisible to whatever judges completion.
 - [x] research.md carries a ranked simplification plan with capability, files, risk and expected gain per item
 - [x] Every P1 item reproduces in-session
 - [x] The plan names which items become remediation children
+- [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-overengineering/ and every P1 row is censused in confirmed-findings.md
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,6 +96,8 @@ and findings belong here.
 | Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-overengineering/research.md`, stop reason maxIterationsReached, 03:55 to 05:16 |
 | Census | Done | `research/confirmed-findings.md`: 5 P1 and 25 P2 rows censused in the main checkout; one missed finding added |
 | Remediation | Done | `../011-command-surface-contract-realignment` closed every row that called for a change |
+| Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-overengineering/research.md`, stop reason maxIterationsReached, 08:40 to 08:57 |
+| Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../017-completion-gate-and-catalog-alignment` |
 
 ### Deviations and findings
 

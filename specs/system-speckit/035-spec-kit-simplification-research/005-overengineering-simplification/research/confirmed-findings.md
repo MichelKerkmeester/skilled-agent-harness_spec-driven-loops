@@ -88,3 +88,38 @@ The synthesis numbers its findings F1 to F31 and states 30; no F26 appears in th
 | R7 retire the readerless flag | Done (F24). |
 | R8 orientation pointer for the two retrievals | Superseded: child 009 removed the machinery the pointer would have distinguished. |
 | Phase 2 adapter port | Recorded decision not to change (F11). |
+
+---
+
+## 6. ROUND TWO (DeepSeek V4 Flash max through DevPass, 10 iterations on the remediated tree)
+
+Source: `lineages/deepseek-v4-flash-overengineering/research.md`, stop reason `maxIterationsReached`, 15 findings: 2 P1, 13 P2. Censused in the main checkout on 2026-09-07 before child `017-completion-gate-and-catalog-alignment` was opened.
+
+### Verdict held
+
+Every asset-level claim of children 011 and 012 held: the eight workflow assets, the help printer and its test, the fingerprint definition across three layers, the presentation boundary, the optimizer's adoption statement, the resource-map link and the BM25 residue. The round's rows are the enforcement chain behind those assets and the documents beside them. No round-one kept row was re-listed; two of its figures were corrected.
+
+### P1 rows
+
+| ID | Claim | Census | Disposition |
+|----|-------|--------|-------------|
+| F2-01 | The completion-evidence sentinel gates on the retired `checklist.md` and knows nothing of acceptance closure | Confirmed for the gate: child 016 had already moved it to the `tasks.md` verification section during this round. The closure half was open: `check-completion.sh` read the checklist only | Fixed: `check-completion.sh` reads the acceptance-criteria table when the document exists, reports `AC_UNMET` for an `Unmet` row or a waiver that names no decision record, and the sentinel advises on that status |
+| F2-14 | 27 packets carry a human label in the `sha256:` slot and the freshness checker classifies them as never recorded | 27 in the main checkout, all in closed packets of the 045 and z_archive eras; `continuity-freshness.ts:345` folded them into `missing_fingerprint` | Fixed in the checker: a present, non-zero, malformed value is its own `malformed_fingerprint` warning. The 27 stamps stay as written: rewriting closed packets' attestations would alter historical documents and their generated fingerprints, and the new class is what makes them visible |
+
+### P2 rows
+
+| ID | Claim | Disposition |
+|----|-------|-------------|
+| F2-02 | Seven surfaces present `check-completion.sh` as the completion gate while it read only the checklist | Fixed: the execution-methods reference, the spec README rows and the catalog entry say what it reads now |
+| F2-03 | The lifecycle catalog entry says `upgrade-level.sh` detects and creates `checklist.md` | Fixed: the entry names the acceptance-criteria and decision-record documents the script reads |
+| F2-04 | The nested-changelog reader keeps a legacy branch | Kept, as the lineage recommended |
+| F2-05 | The quick reference, the template guide, the matrix and the mapping asset still call LOC soft guidance and say enforcement is manual | Fixed: each names the level recommender that scores LOC, file count and risk |
+| F2-06 | The decision matrix's examples say "L1 + checklist" | Fixed: the closure document |
+| F2-07 | The composition catalog entry says Level 2 adds `checklist.md`, lists the removed bridge document as lazy, and calls the validators' document set the scaffolder's | Fixed: the closure document, the bridge dropped, and the sentence now distinguishes the presence rules' required list from the marker rule's author-rendered list |
+| F2-08 | Two manifest fields have no consumer and the Level 2 required-add-on list is empty while the workflow lists four files | Recorded: child 010 declared the index descriptive (its D1) and kept the closure document optional in the presence rule because the rule cannot see the rollout cutoff (its D2); the workflow's four files are the scaffold set, not the presence rule's |
+| F2-09 | The manifest checker and its fixture live in another packet's tree | Kept, as child 012's limitation note disclosed |
+| F2-10 | The rules README claims a full rule list while one script has no registry row | Fixed: the README states the registry's rows are the rule list and names the standalone scan separately; the orphan pointer rule was already removed by child 014 |
+| F2-11 | The wikilink scan is gated by a flag nothing sets and defaults to a directory that does not exist | Fixed: the flag-gated rule path is removed with no caller, the default directory is the skills root, and the README calls it a standalone scan |
+| F2-12 | Ten catalog references point at removed or moved source | Fixed: two moved files re-pointed, eight removed files marked as gone with the memory server, and the two entries that describe removed modules carry a retirement note pointing at the catalog's boundary table |
+| F2-13 | Round one's playbook provenance figure came from the other skill's tree | Recorded: the in-boundary figure is 17 of 85 files; the decision not to fabricate provenance lines stands |
+| F2-15 | Round one's fingerprint adoption figure accepted any `sha256:` prefix | Recorded: 412 of 3,250 summaries carry a well-formed stamp; the new checker class makes the malformed ones countable |

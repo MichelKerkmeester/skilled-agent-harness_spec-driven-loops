@@ -294,7 +294,7 @@ Content that will be indexed...
 ## 8. STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
 
 ### Step 1: Determine Level
-Use LOC as soft guidance + complexity/risk factors
+Run `runtime/cli/spec/recommend-level.sh`, which scores LOC, file count and risk; go higher when it disagrees with your judgment
 
 ### Step 2: Find Next Number
 ```bash

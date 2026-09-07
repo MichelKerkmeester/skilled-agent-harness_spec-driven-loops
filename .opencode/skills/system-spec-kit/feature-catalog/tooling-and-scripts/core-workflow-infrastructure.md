@@ -18,6 +18,8 @@ version: 3.6.0.7
 
 Core Workflow Infrastructure is the shared execution layer that turns captured session data into governed memory files and searchable index rows.
 
+Retired in part: `memory-indexer.ts` and the vector index it wrote left with the memory MCP server, and the catalog's "What This Catalog No Longer Covers" table in `../feature-catalog.md` says where each retired surface went. The remaining modules below still run.
+
 Instead of being one runtime entry point, this group is a set of internal building blocks. Together they load and validate workflow configuration, derive titles and topics, score quality, decide whether indexing is allowed, patch frontmatter metadata, review saved output for silent regressions, and persist embeddings plus indexing metadata into the spec-doc record database.
 
 ---
@@ -55,7 +57,7 @@ Taken together, these files are the reusable infrastructure beneath the higher-l
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts` | Configuration core | Loads JSONC workflow settings, validates merged values, exports immutable config, and discovers active specs directories |
-| `.opencode/skills/system-spec-kit/runtime/cli/core/memory-indexer.ts` | Indexing core | Generates embeddings, extracts triggers, computes indexing metadata, writes memory rows, and updates embedding status metadata |
+| `.opencode/skills/system-spec-kit/runtime/cli/core/memory-indexer.ts` (removed with the memory server) | Indexing core, retired | Generates embeddings, extracts triggers, computes indexing metadata, writes memory rows, and updates embedding status metadata |
 | `.opencode/skills/system-spec-kit/runtime/cli/core/post-save-review.ts` | Review core | Compares saved memory files against the original payload and produces severity-graded post-save quality findings |
 | `.opencode/skills/system-spec-kit/runtime/cli/core/topic-extractor.ts` | Extraction helper | Derives semantic topics from summaries and decision text while filtering simulated and path-fragment noise |
 | `.opencode/skills/system-spec-kit/runtime/cli/core/quality-gates.ts` | Policy helper | Decides whether indexing may proceed and formats semantic-sufficiency abort reasons |
