@@ -130,14 +130,3 @@ function parseYamlMapping(yamlText: string): Record<string, unknown> {
 // ───────────────────────────────────────────────────────────────────
 // 3. SERIALIZATION
 // ───────────────────────────────────────────────────────────────────
-
-/**
- * Serialize frontmatter + body back into one markdown document with the
- * same leading-fence shape `parseFrontmatter` reads. Values are dumped
- * as block YAML with no line folding, so long scalar values stay on
- * their own line.
- */
-export function stringifyFrontmatter(frontmatter: Record<string, unknown>, body: string): string {
-  const dumped = dumpYaml(frontmatter, { lineWidth: 0 });
-  return `---\n${dumped}---\n${body}`;
-}

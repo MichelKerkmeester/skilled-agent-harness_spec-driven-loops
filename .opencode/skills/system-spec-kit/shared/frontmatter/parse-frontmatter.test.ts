@@ -2,7 +2,7 @@
 // colocated *.test.ts convention in shared/parsing. Run directly (tsx/node
 // type stripping); throws on the first failing assertion.
 
-import { parseFrontmatter, stringifyFrontmatter } from './parse-frontmatter.js';
+import { parseFrontmatter } from './parse-frontmatter.js';
 
 function assertEqual(actual: unknown, expected: unknown, label: string): void {
   const actualJson = JSON.stringify(actual);
@@ -78,22 +78,6 @@ function assertEqual(actual: unknown, expected: unknown, label: string): void {
   assertEqual(parsed.frontmatter, {}, 'malformed yaml: frontmatter falls back to empty');
   assertEqual(parsed.raw, '---\ntitle: [unclosed\n---', 'malformed yaml: raw still carries the block');
   assertEqual(parsed.body, 'body\n', 'malformed yaml: body unaffected');
-}
-
-// 9. Round-trip through stringifyFrontmatter.
-{
-  const markdown = stringifyFrontmatter(
-    { title: 'Fixture', completion_pct: 100, tags: ['a', 'b'] },
-    'body text\n',
-  );
-  assertEqual(
-    markdown,
-    '---\ntitle: Fixture\ncompletion_pct: 100\ntags:\n  - a\n  - b\n---\nbody text\n',
-    'stringify: block shape with body',
-  );
-  const parsed = parseFrontmatter(markdown);
-  assertEqual(parsed.frontmatter, { title: 'Fixture', completion_pct: 100, tags: ['a', 'b'] }, 'stringify: round-trips through parse');
-  assertEqual(parsed.body, 'body text\n', 'stringify: body survives the round-trip');
 }
 
 console.log('PASS: parse-frontmatter');
