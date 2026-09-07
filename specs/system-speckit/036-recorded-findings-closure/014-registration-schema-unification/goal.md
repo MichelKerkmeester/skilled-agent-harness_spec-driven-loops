@@ -68,11 +68,11 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` exist with no bracketed placeholder remaining
-- [ ] The canonical hook-set source exists and names every hook from all four current registration files
-- [ ] The generator's first run reproduces the four JSON files byte-for-byte against their pre-change content
-- [ ] `node <generator script> --check` exits 0 against the repository
-- [ ] `sync-runtime-mirrors.cjs --check` still exits 0 against the regenerated files
+- [x] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` exist with no bracketed placeholder remaining
+- [x] The canonical hook-set source exists and names every hook from all four current registration files
+- [x] The generator's first run reproduces the four JSON files byte-for-byte against their pre-change content
+- [x] `node <generator script> --check` exits 0 against the repository
+- [x] `sync-runtime-mirrors.cjs --check` still exits 0 against the regenerated files
 <!-- /ANCHOR:completion -->
 
 ---
@@ -89,9 +89,19 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| `hook-registry.json` derived from the four files: 28 hooks, 77 bindings, 15 Pi extensions named, 9 hooks recorded as having no Pi counterpart with the reason | Done | extraction script round-tripped all 77 commands through one wrapper grammar with zero misses |
+| `sync-hook-registrations.cjs` renders the four files in their own shapes and verifies the Pi symlinks; `--check` follows the mirror synchronizer's convention | Done | `--check` PASS against the repository; write mode left all four files identical to HEAD |
+| Test, README section, mirrors README rows and the CI mirrors step | Done | `hook-registration-sync.vitest.ts` 4 pass; `spec-kit-check.yml` mirrors job runs the check together with the Gate 1 pointer check |
+| Routed from 011: the advisor settings-parity regex now names `runtime/dist/hooks/claude/` | Done | `settings-driven-invocation-parity.vitest.ts` 41 pass |
+| Gates | Done | `sync-runtime-mirrors.cjs --check` PASS 169; hook adapter path parity, completion-evidence sentinel and stop, and the directive lifecycle bridge suites 139 pass |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| The Claude Stop hooks carry `async: true` | The first render dropped it and the settings file differed by four lines; the binding schema gained an `async` flag and the renderer emits it after `timeout` |
+| Codex groups the same event twice without a matcher | A group cannot be derived from event and matcher alone, so every binding records its group and slot in its runtime's file |
+| Fallback messages vary per hook, not only per runtime | Two hooks carry the codex-hooks drift message and one Devin binding an empty one; a binding overrides the runtime default when it differs |
+| Pi is verified, not generated | Its registration is a symlink per extension; the registry names the extension and the synchronizer checks it resolves, so the Pi pass is part of `--check` |
+| The Gate 1 pointer check joined the CI step | Child 013 left it out of CI; the mirrors job now runs both `--check` calls together |
 <!-- /ANCHOR:log -->

@@ -43,9 +43,9 @@ One canonical hook-set source (JSON or a small TS/CJS module, decided during imp
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Generator's `--check` mode exits 0 against the repository
-- [ ] Docs updated (spec/plan/tasks, hooks README, CI workflow)
+- [x] All acceptance criteria met
+- [x] Generator's `--check` mode exits 0 against the repository
+- [x] Docs updated (spec/plan/tasks, hooks README, CI workflow)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -166,9 +166,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] No backup needed. Every file this phase touches is tracked in git
-- [ ] No feature flag needed. The generator is a local/CI tool, not a runtime behavior switch
-- [ ] No monitoring alert needed. `--check` runs on demand and in the `mirrors` CI job
+- [x] No backup needed. Every file this phase touches is tracked in git
+- [x] No feature flag needed. The generator is a local/CI tool, not a runtime behavior switch
+- [x] No monitoring alert needed. `--check` runs on demand and in the `mirrors` CI job
 
 ### Rollback Procedure
 1. Revert the canonical-source and generator commits.

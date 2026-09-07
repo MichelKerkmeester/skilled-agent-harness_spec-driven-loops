@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/014-registration-schema-unification
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,14 +54,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the four registration files' hook content, When the canonical source is authored, Then every hook from all four files appears exactly once with its per-runtime event bindings and script path | The canonical source file, cross-checked against the T001 inventory line by line | Unmet | - |
-| AC-002 | REQ-002 | Given the generator, When it runs against the repository, Then it produces `.claude/settings.json`'s `hooks` key, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json` each in that runtime's own existing structural shape | Reading the generator's four template functions and their output | Unmet | - |
-| AC-003 | REQ-003 | Given the generator's first run against the current repository, When each of the four output files is diffed against its pre-change committed content, Then every diff is empty | `diff` output for each of the four files, before and after the first generator run | Unmet | - |
-| AC-004 | REQ-004 | Given a repository with no drift, When `--check` runs, Then it exits 0, and Given a repository with a hand-edited registration file out of sync with the canonical source, When `--check` runs, Then it reports the drift and exits non-zero | `node <generator script> --check` exit code and output, on both a clean and a deliberately drifted state | Unmet | - |
-| AC-005 | REQ-005 | Given the canonical source's Pi-applicable hooks, When the verification pass runs, Then it reports zero missing or mismatched symlinks under `.pi/extensions/` | The verification pass's own printed report | Unmet | - |
-| AC-006 | REQ-006 | Given the regenerated registration files, When `sync-runtime-mirrors.cjs --check` runs, Then it exits 0 exactly as it does against the current hand-authored files | `node runtime-mirrors/sync-runtime-mirrors.cjs --check` exit code, run against the regenerated files | Unmet | - |
-| AC-007 | REQ-007 | Given `.opencode/skills/system-spec-kit/runtime/hooks/README.md`, When it is read after this phase closes, Then it documents the canonical source and the generate-and-check workflow | The README's updated section, named and dated | Unmet | - |
-| AC-008 | REQ-008 | Given `.github/workflows/spec-kit-check.yml`'s `mirrors` job, When it is read after this phase closes, Then it includes the new generator's `--check` call alongside the existing four mirror checks | `.github/workflows/spec-kit-check.yml`, the `mirrors` job's step list | Unmet | - |
+| AC-001 | REQ-001 | Given the four registration files' hook content, When the canonical source is authored, Then every hook from all four files appears exactly once with its per-runtime event bindings and script path | The canonical source file, cross-checked against the T001 inventory line by line | Met | - |
+| AC-002 | REQ-002 | Given the generator, When it runs against the repository, Then it produces `.claude/settings.json`'s `hooks` key, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json` each in that runtime's own existing structural shape | Reading the generator's four template functions and their output | Met | - |
+| AC-003 | REQ-003 | Given the generator's first run against the current repository, When each of the four output files is diffed against its pre-change committed content, Then every diff is empty | `diff` output for each of the four files, before and after the first generator run | Met | - |
+| AC-004 | REQ-004 | Given a repository with no drift, When `--check` runs, Then it exits 0, and Given a repository with a hand-edited registration file out of sync with the canonical source, When `--check` runs, Then it reports the drift and exits non-zero | `node <generator script> --check` exit code and output, on both a clean and a deliberately drifted state | Met | - |
+| AC-005 | REQ-005 | Given the canonical source's Pi-applicable hooks, When the verification pass runs, Then it reports zero missing or mismatched symlinks under `.pi/extensions/` | The verification pass's own printed report | Met | - |
+| AC-006 | REQ-006 | Given the regenerated registration files, When `sync-runtime-mirrors.cjs --check` runs, Then it exits 0 exactly as it does against the current hand-authored files | `node runtime-mirrors/sync-runtime-mirrors.cjs --check` exit code, run against the regenerated files | Met | - |
+| AC-007 | REQ-007 | Given `.opencode/skills/system-spec-kit/runtime/hooks/README.md`, When it is read after this phase closes, Then it documents the canonical source and the generate-and-check workflow | The README's updated section, named and dated | Met | - |
+| AC-008 | REQ-008 | Given `.github/workflows/spec-kit-check.yml`'s `mirrors` job, When it is read after this phase closes, Then it includes the new generator's `--check` call alongside the existing four mirror checks | `.github/workflows/spec-kit-check.yml`, the `mirrors` job's step list | Met | - |
 
 ### Status values
 

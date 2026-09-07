@@ -1,0 +1,1266 @@
+{
+  "_note": "Canonical hook set: every hook once, with its per-runtime event bindings and script. Generated files: .claude/settings.json hooks key, .codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json via sync-hook-registrations.cjs; Pi registers by symlink under .pi/extensions and is verified, not generated.",
+  "runtimes": {
+    "claude": {
+      "file": ".claude/settings.json",
+      "shape": "claude-settings",
+      "projectDirEnv": "CLAUDE_PROJECT_DIR",
+      "defaultMessage": "mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter",
+      "eventOrder": [
+        "PreToolUse",
+        "UserPromptSubmit",
+        "SessionStart",
+        "Stop",
+        "SessionEnd",
+        "PostToolUse",
+        "PreCompact"
+      ]
+    },
+    "codex": {
+      "file": ".codex/hooks.json",
+      "shape": "codex",
+      "projectDirEnv": "CODEX_PROJECT_DIR",
+      "defaultMessage": "mk codex hook could not resolve; re-run the codex hooks installer with --check",
+      "eventOrder": [
+        "SessionStart",
+        "UserPromptSubmit",
+        "PreToolUse",
+        "PostToolUse",
+        "Stop",
+        "PreCompact"
+      ]
+    },
+    "cursor": {
+      "file": ".cursor/hooks.json",
+      "shape": "cursor",
+      "defaultMessage": "mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter",
+      "eventOrder": [
+        "sessionStart",
+        "sessionEnd",
+        "preToolUse",
+        "postToolUse",
+        "beforeSubmitPrompt",
+        "beforeMCPExecution",
+        "preCompact"
+      ]
+    },
+    "devin": {
+      "file": ".devin/hooks.v1.json",
+      "shape": "devin",
+      "projectDirEnv": "DEVIN_PROJECT_DIR",
+      "defaultMessage": "mk devin hook could not resolve; run npm run build in the spec-kit runtime package",
+      "eventOrder": [
+        "SessionStart",
+        "UserPromptSubmit",
+        "PreToolUse",
+        "PostToolUse",
+        "PermissionRequest",
+        "Stop",
+        "PostCompaction",
+        "SessionEnd"
+      ]
+    },
+    "pi": {
+      "extensionsDir": ".pi/extensions",
+      "shape": "symlinks"
+    }
+  },
+  "hooks": [
+    {
+      "id": "check-dist-staleness",
+      "concern": "Report compiled outputs older than their sources",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 5,
+            "matcher": "",
+            "runner": "python3",
+            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "args": "--all",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "SessionStart",
+            "group": 1,
+            "slot": 0,
+            "matcher": null,
+            "runner": "python3",
+            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "args": "--all",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 4,
+            "matcher": null,
+            "runner": "python3",
+            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "args": "--all",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 3,
+            "matcher": "",
+            "runner": "python3",
+            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "args": "--all",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-start-advisories.ts"
+      }
+    },
+    {
+      "id": "check-git-hooks",
+      "concern": "Verify the git hooks sk-git installs are present",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 2,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/bin/check-git-hooks.sh",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 2,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/bin/check-git-hooks.sh",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 3,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/bin/check-git-hooks.sh",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 2,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/bin/check-git-hooks.sh",
+            "timeout": 3,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-start-advisories.ts"
+      }
+    },
+    {
+      "id": "compact-inject",
+      "concern": "Inject recovery context before compaction",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreCompact",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreCompact",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js",
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-compact-context.ts"
+      }
+    },
+    {
+      "id": "completion-evidence-stop",
+      "concern": "Hold a completion claim to its evidence when the assistant stops",
+      "bindings": {
+        "claude": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 1,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+            "timeout": 10,
+            "fallback": "envelope",
+            "async": true
+          }
+        ],
+        "codex": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 1,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 1,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "completion-evidence.ts"
+      }
+    },
+    {
+      "id": "dispatch-audit",
+      "concern": "Record a finished CLI dispatch in the audit trail",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PostToolUse",
+            "group": 1,
+            "slot": 0,
+            "matcher": "Bash",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PostToolUse",
+            "group": 1,
+            "slot": 0,
+            "matcher": "exec",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PostToolUse",
+            "group": 1,
+            "slot": 0,
+            "matcher": "^exec$",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "dispatch-audit.ts"
+      }
+    },
+    {
+      "id": "dispatch-preflight-lint",
+      "concern": "Lint a CLI dispatch command against the hard dispatch rules before it runs",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": "Bash",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": "exec",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": "^exec$",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "dispatch-preflight-lint.ts"
+      }
+    },
+    {
+      "id": "fable-subagent-guard",
+      "concern": "Keep Fable sub-agent dispatch inside the approved routes",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 2,
+            "slot": 0,
+            "matcher": "Task|Agent",
+            "runner": "node",
+            "script": ".opencode/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "git-live-follow",
+      "concern": "Start following the live branch",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 4,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/bin/git-live-follow.sh",
+            "args": "--start",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 4,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/bin/git-live-follow.sh",
+            "args": "--start",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "git-preflight-advisory",
+      "concern": "Advise on a git command before it runs",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 2,
+            "matcher": "Bash",
+            "runner": "node",
+            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 1,
+            "matcher": "exec",
+            "runner": "node",
+            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 2,
+            "matcher": "Shell",
+            "runner": "node",
+            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 2,
+            "matcher": "^exec$",
+            "runner": "node",
+            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "timeout": 5,
+            "fallback": "envelope",
+            "message": ""
+          }
+        ]
+      },
+      "pi": {
+        "extension": "git-preflight-advisory.ts"
+      }
+    },
+    {
+      "id": "git-primary-reconcile",
+      "concern": "Reconcile clean local drift with the live branch in the background",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 3,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/bin/git-primary-reconcile.sh",
+            "timeout": 3,
+            "fallback": "background"
+          }
+        ],
+        "codex": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 3,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/bin/git-primary-reconcile.sh",
+            "timeout": 3,
+            "fallback": "background"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "goal-inject",
+      "concern": "Inject the active session goal at session start",
+      "bindings": {
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 6,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "goal-context.ts"
+      }
+    },
+    {
+      "id": "install-codex-hooks",
+      "concern": "Report drift between the Codex hook installer and the installed hooks",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 6,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/bin/install-codex-hooks.mjs",
+            "args": "--check",
+            "timeout": 5,
+            "fallback": "envelope",
+            "silence": true,
+            "message": "[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 5,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/bin/install-codex-hooks.mjs",
+            "args": "--check",
+            "timeout": 10,
+            "fallback": "envelope",
+            "message": "[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 4,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/bin/install-codex-hooks.mjs",
+            "args": "--check",
+            "timeout": 5,
+            "fallback": "echo",
+            "message": "[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-start-advisories.ts"
+      }
+    },
+    {
+      "id": "mcp-route-guard",
+      "concern": "Route a native MCP call through the registered transport policy",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 3,
+            "slot": 0,
+            "matcher": "mcp__claude_ai_.*",
+            "runner": "node",
+            "script": ".opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 2,
+            "slot": 0,
+            "matcher": "mcp__.*",
+            "runner": "node",
+            "script": ".opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "beforeMCPExecution",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 3,
+            "slot": 0,
+            "matcher": "^mcp__.*$",
+            "runner": "node",
+            "script": ".opencode/hooks/mcp-route-guard/devin/mcp-route-guard.cjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "mcp-route-guard.ts"
+      }
+    },
+    {
+      "id": "permission-request-policy",
+      "concern": "Answer a permission request from the spec gate and dispatch rules",
+      "bindings": {
+        "devin": [
+          {
+            "event": "PermissionRequest",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "Pi's tool_call event already carries the same decision; see .pi/extensions/README.md"
+      }
+    },
+    {
+      "id": "post-compaction",
+      "concern": "Recover context after compaction",
+      "bindings": {
+        "devin": [
+          {
+            "event": "PostCompaction",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-compact-context.ts"
+      }
+    },
+    {
+      "id": "post-edit-quality",
+      "concern": "Run the post-edit quality checks on a written or edited file",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PostToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": "Write|Edit",
+            "runner": "node",
+            "script": ".opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PostToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": "apply_patch|edit",
+            "runner": "node",
+            "script": ".opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PostToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": "^edit$",
+            "runner": "node",
+            "script": ".opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "post-edit-quality.ts"
+      }
+    },
+    {
+      "id": "post-tool-use",
+      "concern": "Post-tool spec-kit bookkeeping",
+      "bindings": {
+        "cursor": [
+          {
+            "event": "postToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "precompact",
+      "concern": "Inject recovery context before compaction",
+      "bindings": {
+        "cursor": [
+          {
+            "event": "preCompact",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "session-cleanup",
+      "concern": "Clean up session-scoped state at session end",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionEnd",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/scripts/session-cleanup.sh",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "Stop",
+            "group": 1,
+            "slot": 0,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/scripts/session-cleanup.sh",
+            "timeout": 10,
+            "fallback": "envelope",
+            "silence": true
+          }
+        ],
+        "cursor": [
+          {
+            "event": "sessionEnd",
+            "group": 0,
+            "slot": 1,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/scripts/session-cleanup.sh",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionEnd",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/scripts/session-cleanup.sh",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "session-end",
+      "concern": "Persist session context at session end",
+      "bindings": {
+        "cursor": [
+          {
+            "event": "sessionEnd",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
+      "id": "session-start",
+      "concern": "Prime the session with continuity and workspace context",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-start-context.ts"
+      }
+    },
+    {
+      "id": "session-stop",
+      "concern": "Persist session context when the assistant stops",
+      "bindings": {
+        "claude": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js",
+            "timeout": 10,
+            "fallback": "envelope",
+            "async": true
+          }
+        ],
+        "codex": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js",
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-stop-context.ts"
+      }
+    },
+    {
+      "id": "spec-gate-classify",
+      "concern": "Classify the prompt for Gate 3 before any tool runs",
+      "bindings": {
+        "claude": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 1,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 1,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "beforeSubmitPrompt",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 1,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "spec-gate-classify.ts"
+      }
+    },
+    {
+      "id": "spec-gate-enforce",
+      "concern": "Block a file mutation until Gate 3 has bound a spec folder",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 1,
+            "matcher": "Bash",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          },
+          {
+            "event": "PreToolUse",
+            "group": 4,
+            "slot": 0,
+            "matcher": "Write|Edit",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 1,
+            "slot": 0,
+            "matcher": "exec|apply_patch|edit",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 1,
+            "matcher": "^exec$",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+            "timeout": 5,
+            "fallback": "none"
+          },
+          {
+            "event": "PreToolUse",
+            "group": 1,
+            "slot": 0,
+            "matcher": "^edit$",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "spec-gate-enforce.ts"
+      }
+    },
+    {
+      "id": "spec-gate-prebind",
+      "concern": "Establish Gate 3 state at session start where the prompt event is not delivered",
+      "bindings": {
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 1,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "Pi delivers the prompt event, so the workaround is unnecessary; see .pi/extensions/README.md"
+      }
+    },
+    {
+      "id": "task-dispatch-guard",
+      "concern": "Guard sub-agent dispatch against out-of-policy task calls",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 1,
+            "slot": 0,
+            "matcher": "Task",
+            "runner": "node",
+            "script": ".opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 1,
+            "matcher": "Task",
+            "runner": "node",
+            "script": ".opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 2,
+            "slot": 0,
+            "matcher": "^run_subagent$",
+            "runner": "node",
+            "script": ".opencode/hooks/task-dispatch/devin/task-dispatch-guard.cjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "task-dispatch-guard.ts"
+      }
+    },
+    {
+      "id": "user-prompt-submit",
+      "concern": "Run the skill advisor on the submitted prompt",
+      "bindings": {
+        "claude": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "beforeSubmitPrompt",
+            "group": 0,
+            "slot": 1,
+            "matcher": null,
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "prompt-advisor.ts"
+      }
+    },
+    {
+      "id": "worktree-guard",
+      "concern": "Warn when the session opens in the wrong worktree",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 1,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/bin/worktree-guard.sh",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 1,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/bin/worktree-guard.sh",
+            "timeout": 3,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 2,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".opencode/bin/worktree-guard.sh",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 1,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".opencode/bin/worktree-guard.sh",
+            "timeout": 3,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-start-advisories.ts"
+      }
+    }
+  ]
+}

@@ -31,7 +31,7 @@
       "cli"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -39,12 +39,17 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/cli/runtime-mirrors/hook-registry.json",
+      "runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+      "runtime/cli/tests/hook-registration-sync.vitest.ts",
+      "runtime/hooks/README.md",
+      "runtime/cli/runtime-mirrors/README.md",
+      ".github/workflows/spec-kit-check.yml",
       ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
       ".claude/settings.json",
       ".codex/hooks.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
-      ".github/workflows/spec-kit-check.yml",
       ".opencode/skills/system-spec-kit/runtime/hooks/README.md",
       ".pi/extensions/README.md"
     ],
@@ -86,6 +91,36 @@
         "source": "derived"
       },
       {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-hook-registrations.cjs",
+        "kind": "file",
+        "path": "runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
         "name": "sync-runtime-mirrors.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
@@ -107,18 +142,6 @@
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-kit-check.yml",
-        "kind": "config",
-        "path": ".github/workflows/spec-kit-check.yml",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/runtime/hooks/README.md",
         "source": "derived"
       },
       {
@@ -174,29 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Generate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five CLI runtimes each register the same behavioral contract (which script runs on which lifecycle event) through five hand-authored files that disagree on structure, not just syntax",
     "created_at": "2026-09-07T15:05:55Z",
-    "last_save_at": "2026-09-07T17:49:14.535Z",
+    "last_save_at": "2026-09-07T18:01:33.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:941c60103a589bb66730871e94f8de41efb9fe9c0bdd8d0307a35ba738d4f83b",
+    "source_fingerprint": "sha256:68b61a99d6fab81e914731a8c62ed5c7d864fcd63703767d827eb2d7d477f8ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31bd76cb3ce7ac6885147038bd4aca8a7e7508bfa255a959b301678a0a4f2f3a",
-      "plan.md": "3587bd6d8299021b368e7a01ef65beddd1b0c38f19e7797a297fb91198127194",
-      "tasks.md": "b5859146ce015db8d16b979d85a81ecb49c7b9b3996b542de0d8e360fd1a302a",
-      "implementation-summary.md": "f60bfd115f00504e56ef95ec8ccaed668d39f309644bb62ec3b43011f71bec92"
+      "spec.md": "20fcc81e5bdcf9ca90b721a256775ed1da3e114fb0e02e11da2f9fbfc0ab954d",
+      "plan.md": "71fadc1de837d2c1d23707a424e6b1187f7c08cda6f55652560ea7ddde7e2c46",
+      "tasks.md": "54473b4698466a8765d7b15921b2a65e58e26459ad1c6a658edfa1d84eaef966",
+      "implementation-summary.md": "86e7c07776d272b32760ff3f31a4f35a0bbcda3db30d2cd63da2716ecb471d7d"
     },
     "last_active_at": null
   }

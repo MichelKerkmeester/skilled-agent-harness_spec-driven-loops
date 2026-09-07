@@ -145,7 +145,20 @@ Main flow:
 
 ---
 
-## 7. VALIDATION
+## 7. REGISTRATION
+
+Which event calls which script, on which runtime, is declared once in `../cli/runtime-mirrors/hook-registry.json`: every hook appears one time with its concern, its script and a binding per runtime (event, matcher, group and slot in that runtime's file, timeout, wrapper fallback). `../cli/runtime-mirrors/sync-hook-registrations.cjs` renders the four JSON registration files from it, each in its own shape: the `hooks` key of `.claude/settings.json` (every other key in that file is left as found), the whole of `.codex/hooks.json`, `.cursor/hooks.json` with its flat per-event arrays, and `.devin/hooks.v1.json` with its top-level event map and anchored matchers. Pi has no JSON registration; the registry names the `.pi/extensions/*.ts` symlink each hook binds through, and the synchronizer verifies each one resolves.
+
+```bash
+node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check   # drift report, writes nothing
+node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs           # regenerate the four files
+```
+
+To add, move or retime a hook, edit the registry and regenerate; a hand edit to one of the four files is drift the `--check` reports and CI's mirrors job runs. `hook-registration-sync.vitest.ts` proves the registry reproduces the committed files byte for byte.
+
+---
+
+## 8. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/runtime` unless noted. `npx vitest run hooks` only matches filenames containing the literal substring `hooks` (2 files); the glob set below is what actually exercises this tree's adapters and shared helpers.
 
@@ -160,7 +173,7 @@ Expected result: every listed Vitest file passes, and each `node --test` spec-ga
 
 ---
 
-## 8. RELATED
+## 9. RELATED
 
 - [`lib/README.md`](./lib/README.md)
 - [`lib/spec-gate/README.md`](./lib/spec-gate/README.md)
