@@ -104,5 +104,11 @@ Either the scorer work moves ahead of the gate-wiring step, or the gate lands wi
 allowlist covering rows 1-8 and 11 and the residue is tracked rather than closed.
 
 The second option is cheaper and honest, and it is what the plan's own step 3 already
-proposes. Recommend that, with this table as the allowlist's justification.
+proposes. That is what shipped: `router-reach-allowlist.json` carries the eleven, each
+with its reason, dated and with a review date.
+
+Final state at advisor generation 729: every hub `OK`, `RESULT: PASSED`, exit 0, with
+`allowed=11` and no probe errors. The allowlist pins the winning hub as well as the
+phrase, so a known dispute is forgiven and a new one is not, which was verified by
+asserting a false winner and watching the run fail.
 <!-- /ANCHOR:disposition -->

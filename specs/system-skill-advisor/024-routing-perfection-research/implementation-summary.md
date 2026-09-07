@@ -69,16 +69,29 @@ Measured across all 439 declared phrases, before at advisor generation 698 and a
 | no-reach | 136 | 2 |
 | **real failures** | **173** | **20** |
 
+A later pass of per-phrase ownership decisions took it further, to 11 at generation 727
+and then to a passing gate at 729 with those 11 recorded as known disputes:
+
+| | after vocabulary | after ownership | with allowlist |
+|---|---:|---:|---:|
+| wrong-hub | 0 | 0 | 0 |
+| outranked | 18 | 11 | 0 |
+| no-reach | 2 | 0 | 0 |
+| allowed | - | - | 11 |
+
 **Causality, not correlation.** Before any hub metadata was written, one phrase was added to one hub, the advisor rebuilt, probed, and reverted. `corner radius` moved from nothing to `sk-design` at 0.8286 on the `explicit_author` lane and back to nothing on revert, while `font size` — an untouched control on the same router line — stayed dead throughout, and `type scale`, always a member, held at 0.8828. One variable, the predicted effect, a control that did not move, and the effect vanishing on revert.
 
 **The gate watched failing.** Pointed at an absent advisor the check reported `probe-error=77`, `RESULT: FAILED`, exit 1, where it had previously reported `declared=77 wrong-hub=0 no-reach=0`, `RESULT: PASSED`, exit 0. A sampled run under CI exits 2; by-hand sampling still works.
 
-**The repaired gate does not pass, and that is the honest state.** Because `outranked`
-now fails the run, `ci-router-vocabulary-reach.cjs` exits 1 and prints `RESULT: FAILED`
-against the tree as landed: 18 phrases still resolve to a hub other than the one
-declaring them. Reach is fixed; ownership is not. Nothing is blocked by this, because
-the check is not wired into any workflow, but a reader should not infer from "173 to 20"
-that the gate is green. It is red by design until the arbitration in ADR-001 is decided.
+**The gate now passes, and what that means is bounded.** At advisor generation 729 the
+check reports `RESULT: PASSED`, exit 0, every hub `OK`: `wrong-hub=0, outranked=0,
+no-reach=0, allowed=11, probe-error=0`. Reach is closed. Ownership is not: the eleven
+`allowed` rows are known cross-hub disputes recorded in `router-reach-allowlist.json`,
+nine of which cannot be settled by vocabulary at all.
+
+The allowlist pins the winning hub alongside the phrase, so a phrase that starts losing
+to somebody new still fails. That was watched failing: asserting a different winner for
+one entry turned it straight back into `outranked=1`, `RESULT: FAILED`, exit 1.
 
 **No collateral.** All six hubs pass `parent-skill-check`. Root metadata 13/13, derived freshness 13/13, leaf-manifest freshness 13/13. The generator is idempotent: a second `--check` after the write reports zero missing.
 

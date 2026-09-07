@@ -1,0 +1,84 @@
+{
+  "$comment": [
+    "Known cross-hub ownership disputes the reach check may pass over.",
+    "",
+    "Each entry pins the phrase, the hub that declares it, and the hub that currently",
+    "wins it. Both sides are required on purpose: an allowlist that only names the",
+    "phrase would swallow the next regression on that phrase too, and the whole reason",
+    "this check exists is that a broad pass hid 155 broken phrases behind a green run.",
+    "If a different hub starts winning an allowed phrase, that is new and it fails.",
+    "",
+    "Every entry needs a reason and a review date. An entry nobody can justify on",
+    "re-read is an entry that should be a fix instead."
+  ],
+  "reviewed": "2026-09-07",
+  "reviewBy": "2026-12-07",
+  "entries": [
+    {
+      "phrase": "design review",
+      "declaredBy": "sk-design",
+      "wonBy": "sk-code",
+      "reason": "sk-design declares this exactly and still loses to a hub that declares nothing matching. Not resolvable by vocabulary; belongs to the lexical-lane work."
+    },
+    {
+      "phrase": "review this screen",
+      "declaredBy": "sk-design",
+      "wonBy": "sk-code",
+      "reason": "Same shape as 'design review': exact declaration, no matching declaration on the winner."
+    },
+    {
+      "phrase": "design review of this slide deck",
+      "declaredBy": "sk-design",
+      "wonBy": "sk-code",
+      "reason": "Same, and the winning hub has no slide-deck capability at all."
+    },
+    {
+      "phrase": "review this deck",
+      "declaredBy": "sk-design",
+      "wonBy": "sk-code",
+      "reason": "Same shape."
+    },
+    {
+      "phrase": "review this layout",
+      "declaredBy": "sk-design",
+      "wonBy": "sk-code",
+      "reason": "Same shape."
+    },
+    {
+      "phrase": "review the docs",
+      "declaredBy": "sk-doc",
+      "wonBy": "sk-code",
+      "reason": "Same shape."
+    },
+    {
+      "phrase": "iterative review",
+      "declaredBy": "system-deep-loop",
+      "wonBy": "sk-code",
+      "reason": "A 0.003 margin, and iteration is deep-loop's defining property. Same shape."
+    },
+    {
+      "phrase": "browser agent",
+      "declaredBy": "mcp-tooling",
+      "wonBy": "sk-code",
+      "reason": "The winner declares nothing matching, so there is nothing to yield."
+    },
+    {
+      "phrase": "review request",
+      "declaredBy": "system-deep-loop",
+      "wonBy": "sk-code",
+      "reason": "Awaiting an operator ruling: 'request a review' is deep-loop's command surface, 'review this request' is sk-code's. Both defensible."
+    },
+    {
+      "phrase": "browser debug",
+      "declaredBy": "mcp-tooling",
+      "wonBy": "sk-code",
+      "reason": "Awaiting an operator ruling: Chrome DevTools MCP versus debugging code in a browser. Both defensible."
+    },
+    {
+      "phrase": "create agent",
+      "declaredBy": "sk-doc",
+      "wonBy": "create:agent",
+      "reason": "Not a defect. A command surface winning a phrase that names that command is correct routing."
+    }
+  ]
+}
