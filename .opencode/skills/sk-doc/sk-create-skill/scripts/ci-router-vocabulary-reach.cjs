@@ -19,7 +19,30 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { execFile } = require('child_process');
+const { promisify } = require('util');
+
+const execFileAsync = promisify(execFile);
+
+// Probing is the whole cost of this check, and it is spent waiting rather than
+// working: an uncached prompt takes about six seconds inside the advisor whichever
+// entry point asks, so the process spawn is noise. Sequentially that is over forty
+// minutes for the fleet, which is long enough that the check gets sampled instead
+// of run, and a sampled inventory is how phrases stayed broken across green runs.
+// The daemon serves concurrent callers, so the wait overlaps.
+const DEFAULT_CONCURRENCY = 8;
+
+async function pool(items, limit, worker) {
+  const results = new Array(items.length);
+  let next = 0;
+  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    for (let i = next++; i < items.length; i = next++) {
+      results[i] = await worker(items[i], i);
+    }
+  });
+  await Promise.all(runners);
+  return results;
+}
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const SKILLS = path.join(REPO_ROOT, '.opencode', 'skills');
@@ -58,12 +81,12 @@ function declaredPhrases(hub) {
 // two lets a missing binary, a non-zero exit, a timeout or a cold daemon print a
 // clean pass over an advisor that never answered, so every failure to ask is
 // returned as its own result and fails the run.
-function reaches(phrase, hub) {
+async function reaches(phrase, hub) {
   let raw;
   try {
-    raw = execFileSync('node', [ADVISOR, 'advisor_recommend', '--json',
+    ({ stdout: raw } = await execFileAsync('node', [ADVISOR, 'advisor_recommend', '--json',
       JSON.stringify({ prompt: phrase }), '--format', 'json'],
-    { encoding: 'utf8', timeout: 60000, stdio: ['ignore', 'pipe', 'pipe'] });
+    { encoding: 'utf8', timeout: 60000 }));
   } catch (err) {
     const detail = err.stderr ? String(err.stderr).trim().split('\n')[0] : '';
     return { error: `probe failed: ${err.code || err.message}${detail ? ` (${detail})` : ''}` };
@@ -87,7 +110,7 @@ function reaches(phrase, hub) {
   };
 }
 
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   const only = args.includes('--hub') ? args[args.indexOf('--hub') + 1] : null;
   const limit = args.includes('--limit') ? Number(args[args.indexOf('--limit') + 1]) : Infinity;
@@ -101,14 +124,22 @@ function main() {
     process.exit(2);
   }
 
+  const concurrency = args.includes('--concurrency')
+    ? Math.max(1, Number(args[args.indexOf('--concurrency') + 1]) || DEFAULT_CONCURRENCY)
+    : DEFAULT_CONCURRENCY;
+
   const report = [];
   let generation = null;
   for (const hub of hubs()) {
     if (only && hub !== only) continue;
     const phrases = declaredPhrases(hub).slice(0, limit);
     const unreachable = [];
-    for (const phrase of phrases) {
-      const r = reaches(phrase, hub);
+    // Probes overlap, but the report is emitted in declaration order, so a run is
+    // diffable against the previous one.
+    const probed = await pool(phrases, concurrency, (phrase) => reaches(phrase, hub));
+    for (let i = 0; i < phrases.length; i += 1) {
+      const phrase = phrases[i];
+      const r = probed[i];
       if (r.generation != null) generation = r.generation;
       if (r.error) {
         unreachable.push({ phrase, kind: 'probe-error', reaches: [r.error] });
