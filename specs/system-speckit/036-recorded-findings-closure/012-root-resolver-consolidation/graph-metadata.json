@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,19 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "shared/workspace/package-root.ts",
+      "shared/config.ts",
+      "shared/embeddings/factory.ts",
+      "runtime/cli/evals/check-source-dist-alignment.ts",
+      "runtime/cli/tests/package-root-parity.vitest.ts",
       "shared/README.md",
       "shared/workspace/repo-root.mjs",
       "runtime/cli/common.sh",
-      "shared/config.ts",
-      "shared/embeddings/factory.ts",
       "shared/embeddings/profile.ts",
       "runtime/hooks/lib/workspace/repo-root.mjs",
       "runtime/cli/package.json",
       ".opencode/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
       ".opencode/skills/system-spec-kit/runtime/cli/evals/check-architecture-boundaries.ts",
-      ".opencode/skills/system-spec-kit/shared/config.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/shared/README.md"
+      ".opencode/skills/system-spec-kit/shared/config.ts"
     ],
     "entities": [
       {
@@ -99,6 +100,36 @@
         "source": "derived"
       },
       {
+        "name": "package-root.ts",
+        "kind": "code",
+        "path": "shared/workspace/package-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-dist-alignment.ts",
+        "kind": "code",
+        "path": "runtime/cli/evals/check-source-dist-alignment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package-root-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/package-root-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "shared/README.md",
@@ -117,18 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "shared/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
         "name": "profile.ts",
         "kind": "code",
         "path": "shared/embeddings/profile.ts",
@@ -138,12 +157,6 @@
         "name": "package.json",
         "kind": "config",
         "path": "runtime/cli/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
         "source": "derived"
       },
       {
@@ -193,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Merge",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Finding R6-03 (`specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/findings-registry.json:36`) counted 8 root-resolution implementations: `shared/config.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/profile.ts`, `shared/workspace/repo-root.mjs`, `check-source-dist-alignment.ts:98`, `check-architecture-boundaries.ts:92`, `retrofit-convention.mjs:1057`, and `generate-trigger-index.mjs:81`",
     "created_at": "2026-09-07T15:05:53Z",
-    "last_save_at": "2026-09-07T15:40:57.479Z",
+    "last_save_at": "2026-09-07T17:43:59.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d98e34b5d9299d20e5743098d27b90e42ebb1b31e845a194dba274b6e9cdc71b",
+    "source_fingerprint": "sha256:80eda660e5c5ea0f047aa35be99c591ac03ba58e919cd1871f57247e5e52a881",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6217e1497e40588c0caa557e94a7cd22960133083f7dbc584eef9f06b0496c08",
-      "plan.md": "8a135e9a3c1a2d900bcf7dd083fb84bdb54ebcb19b603ed215b281416fecc63d",
-      "tasks.md": "3ed93bdd4185f50d479b858beca97480ae8569db3bc2a39416157f934ec92122",
-      "implementation-summary.md": "f9505a3e9b9e7f08fbc51513af1164fba7e2343545563d4ae4550672e76131bd"
+      "spec.md": "6284b898460216c6b0c50202aabbbec6bb58929ebb9584ae26fe8c9945eb28a7",
+      "plan.md": "5a75bb8ca2ea4e0b22946d949c8f9f044ba2f0e0462a9cd357af2c04928e2a30",
+      "tasks.md": "6c89913d8268d08578cc257fab222a846bca137806760b57caf586a802bae1f6",
+      "implementation-summary.md": "0d3e8294340e28ce4de9ba53f7c804403ed72635892615479e61a46949a1166c"
     },
     "last_active_at": null
   }

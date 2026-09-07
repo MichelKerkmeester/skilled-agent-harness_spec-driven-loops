@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given check-source-dist-alignment.ts and check-architecture-boundaries.ts, When their resolvePackageRoot bodies are merged, Then one shared implementation serves both | `rg -n "function resolvePackageRoot"` returns one definition, not two | Unmet | - |
-| AC-002 | REQ-002 | Given the surviving resolvers, When the parity test runs, Then every resolver returns the same root for each fixture tree | The parity test file under runtime/cli/tests/, run via vitest | Unmet | - |
-| AC-003 | REQ-003 | Given the merge, When npm run check runs, Then it passes | `npm --prefix .opencode/skills/system-spec-kit/runtime/cli run check` | Unmet | - |
-| AC-004 | REQ-004 | Given the config.ts/factory.ts caller audit, When a disposition is chosen, Then either they are collapsed into one predicate or shared/README.md states the reason each survives | shared/README.md's Paths and workspace section, cross-checked against the caller audit in goal.md's log | Unmet | - |
-| AC-005 | REQ-005 | Given the final resolver set, When shared/README.md is read, Then it states the count and the boundary for each | Direct read of shared/README.md's Paths and workspace section | Unmet | - |
-| AC-006 | REQ-006 | Given the four 035 lanes that touched these files, When each is re-validated, Then all four still validate clean | `NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <lane-folder> --strict` for each of the four | Unmet | - |
+| AC-001 | REQ-001 | Given check-source-dist-alignment.ts and check-architecture-boundaries.ts, When their resolvePackageRoot bodies are merged, Then one shared implementation serves both | `rg -n "function resolvePackageRoot"` returns one definition, not two | Met | - |
+| AC-002 | REQ-002 | Given the surviving resolvers, When the parity test runs, Then every resolver returns the same root for each fixture tree | The parity test file under runtime/cli/tests/, run via vitest | Met | - |
+| AC-003 | REQ-003 | Given the merge, When npm run check runs, Then it passes | `npm --prefix .opencode/skills/system-spec-kit/runtime/cli run check` | Met | - |
+| AC-004 | REQ-004 | Given the config.ts/factory.ts caller audit, When a disposition is chosen, Then either they are collapsed into one predicate or shared/README.md states the reason each survives | shared/README.md's Paths and workspace section, cross-checked against the caller audit in goal.md's log | Met | - |
+| AC-005 | REQ-005 | Given the final resolver set, When shared/README.md is read, Then it states the count and the boundary for each | Direct read of shared/README.md's Paths and workspace section | Met | - |
+| AC-006 | REQ-006 | Given the four 035 lanes that touched these files, When each is re-validated, Then all four still validate clean | `NODE_PRESERVE_SYMLINKS=1 bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <lane-folder> --strict` for each of the four | Met | - |
 
 ### Status values
 

@@ -16,6 +16,7 @@ import {
   resolveOllamaBaseUrl,
   resolveOllamaCanonicalModel,
 } from './providers/ollama.js';
+import { findPackageRoot } from '../workspace/package-root.js';
 import { createProfileSlug, EmbeddingProfile, resolveActiveProfileDtype } from './profile.js';
 import { getCanonicalFallback } from './registry.js';
 import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
@@ -241,20 +242,9 @@ function buildProviderConfigFingerprint(provider: string): string {
 }
 
 function resolveSpecKitPackageRoot(): string | null {
-  let currentDir = path.dirname(fileURLToPath(import.meta.url));
-  while (currentDir !== path.dirname(currentDir)) {
-    // The package root is the directory that holds both workspaces. The database
-    // directory is what this root is used to derive, so its absence cannot be a
-    // reason to fail the lookup.
-    if (
-      existsSync(path.join(currentDir, 'runtime', 'cli'))
-      && existsSync(path.join(currentDir, 'shared'))
-    ) {
-      return currentDir;
-    }
-    currentDir = path.dirname(currentDir);
-  }
-  return null;
+  // The database directory is what this root is used to derive, so its absence
+  // cannot be a reason to fail the lookup; the markers are the workspaces only.
+  return findPackageRoot(path.dirname(fileURLToPath(import.meta.url)));
 }
 
 interface ActiveOllamaEmbedder {

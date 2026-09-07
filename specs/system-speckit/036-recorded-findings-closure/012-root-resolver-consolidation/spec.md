@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-07 |
 | **Branch** | `scaffold/012-root-resolver-consolidation` |
 | **Parent Spec** | ../spec.md |
