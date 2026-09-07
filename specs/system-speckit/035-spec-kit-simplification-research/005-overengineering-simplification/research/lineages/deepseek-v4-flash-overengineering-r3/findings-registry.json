@@ -1,0 +1,28 @@
+{
+  "sessionId": "fanout-deepseek-v4-flash-overengineering-r3-1788784311216-27elid",
+  "lineage": "deepseek-v4-flash-overengineering-r3",
+  "round": 3,
+  "stopReason": "maxIterationsReached",
+  "totalFindings": 19,
+  "findings": [
+    {"id": "F3-01", "severity": "P2", "angle": 1, "location": "runtime/cli/lib/validator-registry.json row 1 vs row 21", "summary": "FILE_EXISTS and LEVEL_MATCH name the same defect class; check-level-match.sh header has no description block", "recommendation": "merge or re-describe"},
+    {"id": "F3-02", "severity": "P2", "angle": 1, "location": "validator-registry.json row 10 vs row 19", "summary": "FRONTMATTER_MEMORY_BLOCK vs FRONTMATTER_VALID: same zone, split undocumented", "recommendation": "document"},
+    {"id": "F3-03", "severity": "P2", "angle": 1, "location": "runtime/cli/rules/check-files.sh:9-13", "summary": "Header level table omits Level 2 and acceptance-criteria.md", "recommendation": "fix"},
+    {"id": "F3-04", "severity": "P2", "angle": 2, "location": "runtime/cli/validation/generated-metadata-integrity.ts:3-6 vs 3 shell rule scripts", "summary": "Metadata family 8 rows over 2 files; strict bridge re-implements shell invariants", "recommendation": "merge"},
+    {"id": "F3-05", "severity": "P2", "angle": 2, "location": "runtime/cli/rules/check-spec-doc-integrity.sh:1-8", "summary": "Rule script header violates convention (no Rule/Severity/Description block, no id)", "recommendation": "fix"},
+    {"id": "F3-06", "severity": "P2", "angle": 2, "location": "runtime/cli/tests + runtime/tests (id-string grep)", "summary": "Six rule ids named by zero test files (TOC_POLICY, AI_PROTOCOLS, GRAPH_METADATA_CHILD_IDENTITY, DESCRIPTION_SHAPE, SPEC_DOC_INTEGRITY, IMPROVEMENT_ARTIFACTS)", "recommendation": "fix"},
+    {"id": "F3-07", "severity": "P2", "angle": 2, "location": "validator-registry.json row 9 vs row 20", "summary": "ANCHORS_VALID and GREP_CONVENTION both validate anchor grammar, split by execution layer only", "recommendation": "document or merge"},
+    {"id": "F3-08", "severity": "P2", "angle": 2, "location": "runtime/cli/rules/check-graph-metadata-child-identity.sh:3-8", "summary": "Error-severity children_ids checker has 0 naming tests; warn sibling has 1", "recommendation": "fix"},
+    {"id": "F3-09", "severity": "P2", "angle": 2, "location": "runtime/cli/rules/check-canonical-save.sh:5-7", "summary": "Grandfather windows expired 2026-05-01; body not verified (dead branch or stale comment)", "recommendation": "verify then merge"},
+    {"id": "F3-10", "severity": "P2", "angle": 3, "location": "commands/speckit/assets/speckit-complete-auto.yaml vs plan/implement", "summary": "Complete is the union of plan and implement plus 2 unique steps", "recommendation": "merge"},
+    {"id": "F3-11", "severity": "P2", "angle": 3, "location": "speckit-plan-auto.yaml:695, speckit-implement-auto.yaml:601, speckit-complete-auto.yaml:1155", "summary": "save_context (generate-context.js node) duplicated 6×, two placeholder conventions", "recommendation": "merge"},
+    {"id": "F3-12", "severity": "P2", "angle": 3, "location": "speckit-complete-auto.yaml (7× validate.sh --strict; plan 4, implement 3)", "summary": "14 identical full-gate runs across 3 workflows; cadence undocumented", "recommendation": "document or consolidate"},
+    {"id": "F3-13", "severity": "P2", "angle": 3, "location": "commands/speckit/assets/speckit-{plan,implement,complete}-{auto,confirm}.yaml", "summary": "Auto/confirm twins differ only in present_options_to_user insertion points", "recommendation": "merge"},
+    {"id": "F3-14", "severity": "P2", "angle": 4, "location": "system-spec-kit/SKILL.md:82-95 vs 17 corpus files", "summary": "17 of 45 reference/asset files named nowhere in SKILL.md; zero README nav; zero command-asset paths", "recommendation": "fix (link/intents) or remove"},
+    {"id": "F3-15", "severity": "P2", "angle": 4, "location": "system-spec-kit/SKILL.md:95 vs leaf-manifest.json (45) vs RESOURCE_MAP (26)", "summary": "Manifest/RESOURCE_MAP coherence claim fails: 19 leaves emitted by no intent", "recommendation": "fix"},
+    {"id": "F3-16", "severity": "P2", "angle": 5, "location": "deep-research feature-catalog resource-map-emission.md:39,59 vs runtime/cli/resource-map/extract-from-evidence.cjs", "summary": "Deep-loop resource-map emission couples to a lib module (no dist entry, no contract)", "recommendation": "document or move"},
+    {"id": "F3-17", "severity": "P2", "angle": 5, "location": "graph-convergence.md:43 vs runtime/handlers/coverage-graph/convergence.ts", "summary": "Deep-loop convergence verdict produced by a handler in system-spec-kit's runtime tree", "recommendation": "document or move"},
+    {"id": "F3-18", "severity": "P2", "angle": 5, "location": "feature-catalog ×5 + playbook:922-923 vs system-spec-kit/runtime/cli/tests/*.vitest.ts", "summary": "Deep-loop behavior verified by five test files inside system-spec-kit's tree", "recommendation": "document or move"},
+    {"id": "F3-19", "severity": "P1", "angle": 5, "location": "fanout-single-executor-parity-research.md:51, fanout-cli-lineages-research.md:54", "summary": "Both fanout playbook verification commands broken (../../ escape; tests/unit/ nonexistent; no fanout-run*.vitest.ts outside dist)", "recommendation": "fix"}
+  ]
+}

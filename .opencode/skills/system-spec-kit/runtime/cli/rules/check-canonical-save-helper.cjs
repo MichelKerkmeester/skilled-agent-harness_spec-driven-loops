@@ -12,22 +12,8 @@ const [folder, selectedRule] = process.argv.slice(2);
 
 const CANONICAL_SAVE_CUTOFF =
   process.env.SPECKIT_CANONICAL_SAVE_CUTOFF || '2026-05-01T00:00:00Z';
-const CANONICAL_SAVE_ALLOWLIST_UNTIL =
-  process.env.SPECKIT_CANONICAL_SAVE_ALLOWLIST_UNTIL || CANONICAL_SAVE_CUTOFF;
 const CANONICAL_SAVE_FRESHNESS_SLACK_MS = Number(
   process.env.SPECKIT_CANONICAL_SAVE_FRESHNESS_SLACK_MS || `${10 * 60 * 1000}`,
-);
-const DEFAULT_ALLOWLIST = [
-  'system-spec-kit/026-graph-and-context-optimization/007-release-alignment-revisits',
-  'system-spec-kit/026-graph-and-context-optimization/008-cleanup-and-audit',
-  'system-spec-kit/026-graph-and-context-optimization/009-playbook-and-remediation',
-  'system-spec-kit/026-graph-and-context-optimization/010-search-and-routing-tuning',
-];
-const allowlist = new Set(
-  (process.env.SPECKIT_CANONICAL_SAVE_ALLOWLIST || DEFAULT_ALLOWLIST.join(','))
-    .split(',')
-    .map((value) => value.trim())
-    .filter(Boolean),
 );
 
 function emit(status, message, details = [], remediation = '') {
@@ -128,8 +114,6 @@ const childPacketDirs = fs.existsSync(folder)
       .map((entry) => entry.name)
   : [];
 const isLivePacketRoot = childPacketDirs.length > 0 && hasMetadataSurface;
-const allowlisted = packetId !== null && allowlist.has(packetId);
-const allowlistActive = CANONICAL_SAVE_ALLOWLIST_UNTIL > new Date().toISOString();
 
 switch (selectedRule) {
   case 'CANONICAL_SAVE_ROOT_SPEC_REQUIRED': {
@@ -139,14 +123,6 @@ switch (selectedRule) {
     }
     if (fs.existsSync(specPath)) {
       emit('pass', 'Live packet root exposes a canonical spec.md surface');
-      break;
-    }
-    if (allowlisted && allowlistActive) {
-      emit(
-        'pass',
-        `Live packet root is grandfathered until ${CANONICAL_SAVE_ALLOWLIST_UNTIL}`,
-        [`Packet: ${packetId}`, `Child packets: ${childPacketDirs.join(', ')}`],
-      );
       break;
     }
     emit(
@@ -165,14 +141,6 @@ switch (selectedRule) {
     const sourceDocs = Array.isArray(graph?.derived?.source_docs) ? graph.derived.source_docs : [];
     if (sourceDocs.length > 0) {
       emit('pass', 'Live packet root graph metadata has non-empty derived.source_docs');
-      break;
-    }
-    if (allowlisted && allowlistActive) {
-      emit(
-        'pass',
-        `Empty derived.source_docs is grandfathered until ${CANONICAL_SAVE_ALLOWLIST_UNTIL}`,
-        [`Packet: ${packetId}`],
-      );
       break;
     }
     emit(

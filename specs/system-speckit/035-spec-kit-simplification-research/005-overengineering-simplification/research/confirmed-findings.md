@@ -123,3 +123,25 @@ Every asset-level claim of children 011 and 012 held: the eight workflow assets,
 | F2-12 | Ten catalog references point at removed or moved source | Fixed: two moved files re-pointed, eight removed files marked as gone with the memory server, and the two entries that describe removed modules carry a retirement note pointing at the catalog's boundary table |
 | F2-13 | Round one's playbook provenance figure came from the other skill's tree | Recorded: the in-boundary figure is 17 of 85 files; the decision not to fabricate provenance lines stands |
 | F2-15 | Round one's fingerprint adoption figure accepted any `sha256:` prefix | Recorded: 412 of 3,250 summaries carry a well-formed stamp; the new checker class makes the malformed ones countable |
+
+
+---
+
+## 7. ROUND THREE (DeepSeek V4 Flash max through DevPass, five bounded iterations on the twice-remediated tree)
+
+Source: `lineages/deepseek-v4-flash-overengineering-r3/research.md`, stop reason `maxIterationsReached`, 19 findings: 1 P1, 18 P2, five bounded angles. The GLM 5.3 Flash attempt that ran before the operator switched executors is kept under `lineages/glm-5-3-flash-overengineering-r3-partial/` as supplementary evidence. Censused in the main checkout on 2026-09-07 before child `020-rule-headers-registry-coverage-and-playbook-paths` was opened.
+
+| Rows | Claim | Census | Disposition |
+|------|-------|--------|-------------|
+| F3-19 | Four playbook commands resolve to a directory that does not exist | Confirmed | Fixed: they run the deep-loop runtime's own tests |
+| F3-06/08 | Six rule ids are named by no test | Confirmed, and one of them reported an id the registry does not carry | Fixed: one test scaffolds and validates a packet and asserts every registry id appears; the protocol rule reports the registry's id |
+| F3-01/02/07 | Sibling rules state their split nowhere | Confirmed | Fixed: the headers of the presence, level-match, two frontmatter, anchor and grep rules name the sibling and the division |
+| F3-03 | The files-rule header states the old ladder | Confirmed | Fixed in child 018 |
+| F3-04 | The three metadata shape rules and the strict bridge overlap | Confirmed as a layer split | Fixed: the two shell headers name the bridge; the bridge's own header already names its scope |
+| F3-05 | One rule script has no header block | Confirmed | Fixed |
+| F3-09 | The canonical-save grandfather window expired on 2026-05-01 | Confirmed: the allowlist and two branches could no longer execute | Fixed: removed, with the script header updated |
+| F3-10/12/13 | The lifecycle command assets repeat each other's steps and keep auto and confirm twins | Confirmed | Recorded: merging them is a command-surface redesign, not a remediation; the cadence of validate runs is a per-write choice each asset makes |
+| F3-11 | Two placeholder conventions across the lifecycle assets | Not reproduced | Recorded: neither token occurs in the six assets in the main checkout |
+| F3-14/15 | Seventeen reference files are browse-only and SKILL.md claims the map emits every leaf | Confirmed | Fixed for the claim: the map routes a subset and the manifest is the inventory. Recorded for the files: routing each needs its body read |
+| F3-16/17/18 | Three deep-loop surfaces live in the spec-kit runtime tree with no document calling them contracts | Confirmed | Fixed: named in the integration reference |
+| GLM partials | Two GLM iterations on rule value before the switch | Read | Their rows are the first-half and second-half rule reads, covered above |

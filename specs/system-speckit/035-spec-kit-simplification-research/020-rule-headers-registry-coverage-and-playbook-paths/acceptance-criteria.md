@@ -1,19 +1,20 @@
 ---
-title: "Acceptance Criteria: Overengineering simplification research"
+title: "Acceptance Criteria: Rule headers, registry coverage and playbook paths"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
   - "closure gate"
-  - "overengineering simplification lane closure"
+  - "registry coverage test criteria"
+  - "round three criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification"
-    last_updated_at: "2026-09-07T03:45:00Z"
+    packet_pointer: "system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths"
+    last_updated_at: "2026-09-07T15:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Marked every criterion met with the evidence observed"
-    next_safe_action: "None; the lane is closed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
@@ -25,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Overengineering simplification research
+# Acceptance Criteria: Rule headers, registry coverage and playbook paths
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -38,10 +39,10 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** 005-overengineering-simplification
+**Packet:** 035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths
 **Level:** 2
 **Status:** Complete
-**Date:** 2026-09-06
+**Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,12 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | count of files under `research/lineages/glm-5-3-flash-overengineering/iterations` and of iteration events in the JSONL ledger | Met | - |
-| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites path:line on the claim side and the evidence side | reproduction notes in research/confirmed-findings.md | Met | - |
-| AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Met | - |
-| AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Met | - |
-| AC-005 | REQ-001 | Given the second lineage launched after remediation, When it exits, Then ten iteration files and ten state events exist and every P1 row is censused | listing of `research/lineages/deepseek-v4-flash-overengineering/iterations` and its state log; confirmed-findings.md §6 | Met | - |
-| AC-006 | REQ-001 | Given the third lineage launched with five bounded angles, When it exits, Then five iteration files and a synthesis exist and every row is censused | listing of `research/lineages/deepseek-v4-flash-overengineering-r3/iterations` and its synthesis; confirmed-findings.md §7 | Met | - |
+| AC-001 | REQ-001 | Given a fresh Level 2 scaffold, When validate.sh runs with --strict --json, Then every registry rule id appears once | `runtime/cli/tests/validate-runs-every-registry-rule.vitest.ts:19` scaffolds and asserts; it failed on `AI_PROTOCOLS` until `runtime/cli/rules/check-ai-protocols.sh:131` reported the registry's id, then passed | Met | - |
+| AC-002 | REQ-002 | Given the helper, When read, Then no allowlist, expiry or grandfather branch remains | `runtime/cli/rules/check-canonical-save-helper.cjs` has zero occurrences of the word; `node --check` passes | Met | - |
+| AC-003 | REQ-003 | Given the four lanes and the program, When they run, Then all pass | the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0 | Met | - |
+| AC-004 | REQ-004 | Given the four playbook files and SKILL.md, When read, Then the commands name `system-deep-loop/runtime/tests` paths that exist and the routing sentence names a subset | `ls` on the three test paths; `SKILL.md:95` carries the corrected sentence | Met | - |
 
 ### Status values
 
@@ -85,5 +84,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Ten iteration files, ten state events and a 30-finding synthesis with eight plan moves exist under the lineage; every row was censused in the main checkout, one finding the lane missed was added, and the ledger was handed to `../011-command-surface-contract-realignment`, which closed every row that called for a change and recorded the reason for every row that did not.
+Every criterion is met by observed output. Consciously left out: the routing sentence now says so; routing each needs a read of its body, which the round did not do.
 <!-- /ANCHOR:closure -->

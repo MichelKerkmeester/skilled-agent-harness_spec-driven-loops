@@ -6,7 +6,7 @@
 # Sourced by validate.sh and compatible with strict mode.
 set -euo pipefail
 
-# Rule: AI_PROTOCOL
+# Rule: AI_PROTOCOLS
 # Severity: warn
 # Description: Validates that AI execution protocols are present for
 #   Level 3+ specs that require them.
@@ -128,7 +128,7 @@ run_check() {
     local folder="$1"
     local level="$2"
 
-    RULE_NAME="AI_PROTOCOL"
+    RULE_NAME="AI_PROTOCOLS"
     RULE_STATUS="pass"
     RULE_MESSAGE=""
     RULE_DETAILS=()

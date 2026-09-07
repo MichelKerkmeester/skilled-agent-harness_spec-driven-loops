@@ -9,6 +9,7 @@ set -euo pipefail
 # Rule: DESCRIPTION_SHAPE
 # Severity: warn
 # Description: Validates description.json identity, description, and level fields.
+#   Warn-level shell shape check; GENERATED_METADATA_INTEGRITY is the strict-only schema check in cli/validation.
 
 run_check() {
     local folder="$1"

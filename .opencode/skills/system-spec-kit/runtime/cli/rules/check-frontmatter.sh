@@ -9,6 +9,7 @@ set -euo pipefail
 # Rule: FRONTMATTER_VALID
 # Severity: error
 # Description: Validates YAML frontmatter structure and required semantic values
+#   Authored top-level fields only; the generated _memory continuity block is FRONTMATTER_MEMORY_BLOCK's, in the orchestrator.
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION

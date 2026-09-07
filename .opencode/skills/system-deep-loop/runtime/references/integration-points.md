@@ -163,6 +163,12 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 ### Note: cross-package test discovery
 
+Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and are stable contracts, not incidental reach:
+
+- `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, which the resource-map emission step calls as a script; its test is `runtime/scripts/tests/resource-map-extractor.vitest.ts` in the same tree.
+- `.opencode/skills/system-spec-kit/runtime/handlers/coverage-graph/convergence.ts`, which produces the graph-convergence verdict the research loop reads.
+- The deep-loop behaviour tests `deep-research-reducer`, `deep-research-contract-parity`, `graph-aware-stop` and `coverage-graph-cross-layer` under `.opencode/skills/system-spec-kit/runtime/cli/tests/`, which the spec-kit CI workflow runs.
+
 `.opencode/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
 
 ---

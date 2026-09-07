@@ -9,6 +9,7 @@ set -euo pipefail
 # Rule: GRAPH_METADATA_SHAPE
 # Severity: warn
 # Description: Validates graph-metadata.json shape and phase-parent child pointers.
+#   Warn-level shell shape check; GENERATED_METADATA_INTEGRITY is the strict-only schema check in cli/validation.
 
 run_check() {
     local folder="$1"

@@ -77,6 +77,7 @@ here are invisible to whatever judges completion.
 - [x] Every P1 item reproduces in-session
 - [x] The plan names which items become remediation children
 - [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-overengineering/ and every P1 row is censused in confirmed-findings.md
+- [x] Round three: 5 iteration files and a synthesis exist under research/lineages/deepseek-v4-flash-overengineering-r3/ and every row is censused in confirmed-findings.md
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,6 +99,8 @@ and findings belong here.
 | Remediation | Done | `../011-command-surface-contract-realignment` closed every row that called for a change |
 | Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-overengineering/research.md`, stop reason maxIterationsReached, 08:40 to 08:57 |
 | Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../017-completion-gate-and-catalog-alignment` |
+| Round three ran 5/5 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-overengineering-r3/research.md`, 14:31 to 15:07 |
+| Round three census and remediation | Done | `research/confirmed-findings.md` §7; `../020-rule-headers-registry-coverage-and-playbook-paths` |
 
 ### Deviations and findings
 
