@@ -1,30 +1,29 @@
 # Files this goal touched, asserted to be tracked. The companion checker fails if
 # any line below is not in `git ls-files`.
 #
-# 369 entries were pruned on 2026-09-07. None had drifted or moved: every one was
-# deleted by a later, deliberate refactor, so the manifest was asserting that the
-# repository still tracked files the repository had decided to remove. Pruning
-# them keeps this file a true statement about the tree rather than a record of a
-# plan the tree has since outgrown. What removed them, and how many each took:
+# Reconciled on 2026-09-07 against the current tree. 0 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 367 were deleted outright by a later, deliberate commit and are pruned:
 #
-#   142  8849444aa61  remove deep-alignment mode and conformance-benchmark
-#    66  f3a42a2af3c  delete migration/parity scaffolding modules (1/2)
-#    41  8371855fbbc  delete migration/parity scaffolding modules (2/2)
-#    40  90df8cfa671  remove rollback-gate ceremony
-#    28  20665c8d985  drop dead scaffolding tests and sever live CLI
-#    24  947467ecc7e  remove three orphaned runtime modules and their dead coverage
-#     7  772987d9ed5  remove seven per-mode legacy-compat converters
-#     5  4edf5824369  deprecate judgment hub + interface, graduate md-generator
-#     4  80dce88a7db  retire Open Design transport
-#     3  c1171781493  remove mode-contracts value layer, relocate the matcher
-#     3  154d3564f68  bring the manual-testing corpus to the operator-scenario contract
-#     2  2af61a2baba  scaffold over-engineering removal, phase 001 leaf removals
-#     1  988ec506029  standardize parent hubs on root router documents
-#     1  3bdba913488  retire DAB-017, the removed design-audit scenario
+#   142  8849444aa61 refactor(deep-loop): remove deep-alignment mode and conformance-benchmark
+#    66  f3a42a2af3c refactor(deep-loop-runtime): delete migration/parity scaffolding modules (1/2)
+#    41  8371855fbbc refactor(deep-loop-runtime): delete migration/parity scaffolding modules (2/2)
+#    40  90df8cfa671 refactor(system-deep-loop): remove rollback-gate ceremony
+#    28  20665c8d985 refactor(deep-loop-runtime): drop dead scaffolding tests and sever live CLI
+#    24  947467ecc7e refactor(deep-loop): remove three orphaned runtime modules and their dead coverage
+#     7  772987d9ed5 feat(deep-loop): execute phase 002 — remove seven per-mode legacy-compat converters (F1)
+#     5  4edf5824369 refactor(sk-design): deprecate judgment hub + interface, graduate md-generator to standal
+#     4  80dce88a7db feat(sk-design)!: retire Open Design transport
+#     3  154d3564f68 docs(playbooks): bring the manual-testing corpus to the operator-scenario contract
+#     3  c1171781493 feat(deep-loop): execute phase 003 — remove mode-contracts value layer (F2), relocate the
+#     2  2af61a2baba feat(deep-loop): scaffold over-engineering removal program + execute phase 001 leaf remov
+#     1  3bdba913488 fix(deep-alignment): retire DAB-017, the removed design-audit scenario
+#     1  988ec506029 feat(routing): standardize parent hubs on root router documents
 #
-# Two further entries were dropped because they are gitignored runtime state, not
-# source: the deep-loop graph sqlite and its observability jsonl. A manifest of
-# tracked files can never be satisfied by a file the repository is told to ignore.
+#  2 further entr(ies) dropped as gitignored runtime state, which a manifest of
+#  tracked files can never be satisfied by.
 .opencode/skills/system-deep-loop/README.md
 .opencode/skills/system-deep-loop/SKILL.md
 .opencode/skills/system-deep-loop/benchmark/README.md

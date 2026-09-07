@@ -1,21 +1,30 @@
-# Files this goal touched, asserted to be tracked.
+# Files this goal touched, asserted to be tracked. The companion checker fails if
+# any line below is not in `git ls-files`.
 #
-# 26 entries were pruned on 2026-09-07. None had drifted or moved: each was deleted
-# by a later, deliberate commit, so the manifest was asserting the repository still
-# tracked files the repository had decided to remove. Pruning keeps this file a true
-# statement about the tree instead of a record of a plan the tree outgrew.
+# Reconciled on 2026-09-07 against the current tree. 10 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 16 were deleted outright by a later, deliberate commit and are pruned:
 #
-#    11 23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
-#     6 b4c24846964 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memory
-#     4 aef7852400a refactor(spec-kit): move the engine package to runtime and drop its MCP identity
-#     2 fd33222d92b feat(spec-validation): stop grading prose against a moving target
-#     1 c1fb92b51f4 refactor(spec-validation): delete the second validator
-#     1 4570677ec72 refactor(system-speckit): retire the standalone verification checklist
-#     1 1cdc362aa62 refactor(system-speckit): delete nine advisory rules nothing reads
-# Deep-review scope — session remediation + template reduction + addon-doc expansion
+#    11  23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
+#     2  fd33222d92b feat(spec-validation): stop grading prose against a moving target
+#     1  1cdc362aa62 refactor(system-speckit): delete nine advisory rules nothing reads
+#     1  c1fb92b51f4 refactor(spec-validation): delete the second validator
+#     1  4570677ec72 refactor(system-speckit): retire the standalone verification checklist
 .opencode/skills/system-skill-advisor/mcp-server/lib/render.ts
 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py
 .opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md
+.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts
+.opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts
+.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts
+.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh
+.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh
+.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh
+.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh
+.opencode/skills/system-spec-kit/runtime/cli/utils/template-structure.js
 .opencode/skills/system-spec-kit/templates/addons/before-after.md.tmpl
 .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
 .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl

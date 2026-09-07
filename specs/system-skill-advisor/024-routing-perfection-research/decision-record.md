@@ -63,6 +63,9 @@ contextType: "implementation"
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: The confidence bar is not lowered
 
 **Status**: Accepted
@@ -76,4 +79,4 @@ contextType: "implementation"
 **Consequence**: The residue cannot be closed by tuning. It needs arbitration, which is the point of ADR-001.
 
 
-<!-- /ANCHOR:adr-003 -->
+<!-- /ANCHOR:adr-004 -->

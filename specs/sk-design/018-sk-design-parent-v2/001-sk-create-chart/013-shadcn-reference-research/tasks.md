@@ -245,9 +245,7 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| Operator | Sign-off | [ ] Approved | Research phase: the deliverable is findings, so the gate is whether each angle is answered with citations |
 <!-- /ANCHOR:sign-off -->
 
 
