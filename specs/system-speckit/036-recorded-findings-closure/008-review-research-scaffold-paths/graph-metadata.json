@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,19 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "templates/packet-types/review-report.md.tmpl",
+      "templates/packet-types/research.spec.md.tmpl",
       "templates/spec-kit-docs.json",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/lib/template-utils.sh",
+      "runtime/cli/utils/template-structure.js",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/templates/inline-gate-renderer.ts",
+      "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+      "runtime/cli/tests/review-record-validation.vitest.ts",
+      "templates/CONTRACT.md",
+      "templates/README.md",
       "templates/packet-types/review.spec.md.tmpl",
-      "utils/template-structure.js",
-      "lib/template-utils.sh",
-      "tests/scaffold-golden-snapshots.vitest.ts",
-      "spec/check-placeholders.sh",
-      ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".opencode/skills/system-spec-kit/runtime/cli/utils/template-structure.js",
-      ".opencode/skills/system-spec-kit/runtime/cli/lib/template-utils.sh",
-      ".opencode/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
-      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "runtime/cli/spec/validate.sh"
+      "utils/template-structure.js"
     ],
     "entities": [
       {
@@ -99,57 +100,81 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/review-report.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "research.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/research.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
         "name": "spec-kit-docs.json",
         "kind": "config",
         "path": "templates/spec-kit-docs.json",
         "source": "derived"
       },
       {
-        "name": "review.spec.md.tmpl",
-        "kind": "file",
-        "path": "templates/packet-types/review.spec.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "utils/template-structure.js",
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
         "source": "derived"
       },
       {
         "name": "template-utils.sh",
         "kind": "script",
-        "path": "lib/template-utils.sh",
+        "path": "runtime/cli/lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "runtime/cli/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.ts",
+        "kind": "code",
+        "path": "runtime/cli/templates/inline-gate-renderer.ts",
         "source": "derived"
       },
       {
         "name": "scaffold-golden-snapshots.vitest.ts",
         "kind": "test",
-        "path": "tests/scaffold-golden-snapshots.vitest.ts",
+        "path": "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "check-placeholders.sh",
-        "kind": "script",
-        "path": "spec/check-placeholders.sh",
+        "name": "review-record-validation.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/review-record-validation.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "CONTRACT.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "path": "templates/CONTRACT.md",
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "runtime/cli/spec/validate.sh",
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/review.spec.md.tmpl",
         "source": "derived"
       },
       {
@@ -181,35 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`templates/spec-kit-docs.json` declares both `review` and `research` as full level entries with `requiredCoreDocs` of `['spec.md', 'review/review-report.md']` and `['spec.md', 'research/research.md']` (verified by loading the manifest 2026-09-07)",
     "created_at": "2026-09-07T15:05:49Z",
-    "last_save_at": "2026-09-07T15:41:31.655Z",
+    "last_save_at": "2026-09-07T17:12:21.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a16bb6cc5c8c1381a2d6add065a9fbc3675c14b29f99540f4cabbeddab7048d",
+    "source_fingerprint": "sha256:3c8accb08cbaaf4c951bfac1b641911db5f301311825be79974a7ce58636aa8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80c1ba1a877b2f829ddf651af5c15a77223bfa6bdee543dccb30670880e4a459",
-      "plan.md": "30ceb7fb95e98aae109b0eae392490e06a0cf8c6e3a3eed34991ba7b3ed0262f",
-      "tasks.md": "29945c9ff833276bab6a0f3938bfb77631e8c15bf4d8fd4b94469f78f54ce759",
-      "implementation-summary.md": "cd615b18df281d52c58770ce0cd5a9dc252b4a09501622d284062ab50afdf187"
+      "spec.md": "61781b4fa25110bf559521baa0665b29940a9628f582f0efa91225edbba3112a",
+      "plan.md": "f3304a0ba8ed71cae6d444868216beaab9653375a61f019ff4ec17604158ddcd",
+      "tasks.md": "e0a4d73b5851d3bd4dc1806f85291abf8f99cb6b57fc84b74d99619f819d4170",
+      "implementation-summary.md": "ba07bfe5b4b9ba3f18d13b6c1a21af7d0f0dda0a1fed2747696a7621aec2a144"
     },
     "last_active_at": null
   }

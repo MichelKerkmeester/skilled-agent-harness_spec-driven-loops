@@ -150,9 +150,20 @@ copy_templates_batch() {
         return $renderer_exit
     fi
 
-    if [[ "$render_level" == "phase" && -f "$dest_dir/phase-parent.spec.md" ]]; then
-        mv "$dest_dir/phase-parent.spec.md" "$dest_dir/spec.md"
-    fi
+    # The renderer writes each template under its own basename, flat in the
+    # destination. A contract document may live under a different name
+    # (phase-parent.spec.md becomes spec.md) or a packet-relative path
+    # (research/research.md), so move every rendered file to the name the
+    # manifest declares.
+    local idx rendered_path declared_path
+    for idx in "${!doc_names[@]}"; do
+        rendered_path="$dest_dir/$(basename "${template_paths[$idx]%.tmpl}")"
+        declared_path="$dest_dir/${doc_names[$idx]}"
+        [[ "$rendered_path" == "$declared_path" ]] && continue
+        [[ -f "$rendered_path" ]] || continue
+        mkdir -p "$(dirname "$declared_path")"
+        mv "$rendered_path" "$declared_path"
+    done
 
     local doc_name
     for doc_name in "${doc_names[@]}"; do
@@ -208,6 +219,8 @@ _manifest_template_path() {
         manifest_name="phase-parent.spec.md.tmpl"
     elif [[ "$render_level" == "review" ]] && [[ "$template_name" == "spec.md" ]]; then
         manifest_name="review.spec.md.tmpl"
+    elif [[ "$render_level" == "research" ]] && [[ "$template_name" == "spec.md" ]]; then
+        manifest_name="research.spec.md.tmpl"
     elif [[ "$template_name" == *.tmpl ]]; then
         manifest_name="$(basename "$template_name")"
     else

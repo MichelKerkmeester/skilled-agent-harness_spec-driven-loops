@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { resolveLevelContract } from '../../lib/templates/level-contract-resolver';
 import { renderInlineGates, type RenderLevel } from '../templates/inline-gate-renderer';
 
@@ -174,5 +174,64 @@ describe('manifest template golden snapshots', () => {
     expect(renderedTasks).toContain('<!-- ANCHOR:protocol -->');
     expect(renderedTasks).toContain('<!-- ANCHOR:summary -->');
     expect(renderedTasks).not.toContain('<!-- IF level:');
+  });
+});
+
+describe('review and research packet scaffolds', () => {
+  // Metadata derivation only runs under a specs root, so the scaffolds land in
+  // a throwaway folder inside the repository's specs tree and are removed after.
+  const repoRoot = path.resolve(SKILL_ROOT, '..', '..', '..');
+  const root = path.join(repoRoot, 'specs', `zz-scaffold-golden-${process.pid}-${Date.now()}`);
+  const validateScript = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');
+  fs.mkdirSync(root, { recursive: true });
+  afterAll(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  const cases = [
+    { level: 'review', number: '999', nestedDoc: 'review/review-report.md' },
+    { level: 'research', number: '998', nestedDoc: 'research/research.md' },
+  ] as const;
+
+  for (const { level, number, nestedDoc } of cases) {
+    it(`scaffolds a ${level} packet with its nested document at the manifest path, validating strict untouched`, () => {
+      const target = path.join(root, `${number}-${level}-fixture`);
+      const created = spawnSync(
+        'bash',
+        [CREATE_SCRIPT, '--json', '--skip-branch', '--level', level, '--path', target, '--number', number, `${level} fixture`],
+        { cwd: SKILL_ROOT, encoding: 'utf8' },
+      );
+      expect(created.status, created.stderr).toBe(0);
+      expect(fs.existsSync(path.join(target, nestedDoc)), nestedDoc).toBe(true);
+      expect(fs.existsSync(path.join(target, path.basename(nestedDoc))), `${nestedDoc} must not land flat`).toBe(false);
+      const nested = fs.readFileSync(path.join(target, nestedDoc), 'utf8');
+      expect(nested).not.toMatch(/\[template:/u);
+      expect(nested).not.toMatch(/\[NAME\]/u);
+      expect(fs.readFileSync(path.join(target, 'spec.md'), 'utf8')).toContain(`<!-- SPECKIT_LEVEL: ${level} -->`);
+
+      const validated = spawnSync('bash', [validateScript, target, '--strict', '--no-recursive'], { cwd: SKILL_ROOT, encoding: 'utf8' });
+      expect(validated.stdout).toContain(`Level:  ${level}`);
+      expect(validated.stdout, validated.stdout).toContain('RESULT: PASSED');
+      expect(validated.status).toBe(0);
+    });
+  }
+
+  it('renders the review report and research spec templates from the manifest', () => {
+    const templates = [
+      { templateName: 'review-report.md.tmpl', level: 'review', snapshot: 'review-review-report.md', anchorFree: true },
+      { templateName: 'research.spec.md.tmpl', level: 'research', snapshot: 'research-spec.md', anchorFree: false },
+    ] as const;
+    for (const { templateName, level, snapshot, anchorFree } of templates) {
+      const rendered = renderTemplate(templateName, level);
+      const normalized = normalizeSnapshot(rendered);
+      expect(rendered, templateName).toMatch(/^---\n/u);
+      expect(normalized, templateName).toContain('SPECKIT_TEMPLATE_SOURCE');
+      expect(normalized, templateName).not.toMatch(/<!--\s*IF\s+/u);
+      if (!anchorFree) {
+        for (const anchor of ['metadata', 'problem', 'scope', 'questions']) {
+          expect(normalized, `${templateName}:${anchor}`).toContain(`<!-- ANCHOR:${anchor} -->`);
+        }
+        expect(normalized, templateName).toContain('<!-- SPECKIT_LEVEL: research -->');
+      }
+      expect(normalized, templateName).toMatchSnapshot(snapshot);
+    }
   });
 });

@@ -113,6 +113,8 @@ templates/
 │   └── roadmap.md.tmpl
 ├── packet-types/
 │   ├── phase-parent.spec.md.tmpl
+│   ├── research.spec.md.tmpl
+│   ├── review-report.md.tmpl
 │   └── review.spec.md.tmpl
 ├── examples/
 │   ├── level-1/
@@ -132,6 +134,8 @@ templates/
 | `spec-kit-docs.json`             | Defines Level contracts, document registry, template versions and section gates. |
 | `core/spec.md.tmpl`                   | Renders feature specification documents.                                         |
 | `packet-types/review.spec.md.tmpl`            | Renders review-record specifications for the `review` packet type.               |
+| `packet-types/review-report.md.tmpl`          | Renders the nine-section review report for a hand-authored `review` packet.      |
+| `packet-types/research.spec.md.tmpl`          | Renders research-record specifications for the `research` packet type.           |
 | `core/plan.md.tmpl`                   | Renders implementation plan documents.                                           |
 | `core/tasks.md.tmpl`                  | Renders task breakdown documents.                                                |
 | `core/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors.                               |

@@ -41,8 +41,11 @@ describe('review-record packet type', () => {
     expect(resolveTemplatePath('review', 'spec.md')).toMatch(
       /templates\/packet-types\/review\.spec\.md\.tmpl$/,
     );
-    // The review report is freeform: it has no backing template.
-    expect(resolveTemplatePath('review', 'review/review-report.md')).toBeNull();
+    // The report has a scaffold template, but the loop that writes it owns its
+    // shape: the orchestrator still treats the file as freeform.
+    expect(resolveTemplatePath('review', 'review/review-report.md')).toMatch(
+      /templates\/packet-types\/review-report\.md\.tmpl$/,
+    );
   });
 
   it('validates a lean review-record folder at exit 0', () => {

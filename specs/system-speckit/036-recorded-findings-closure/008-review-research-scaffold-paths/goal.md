@@ -72,11 +72,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `create.sh --level review` and `--level research` each scaffold a folder instead of erroring
-- [ ] `templates/packet-types/review-report.md.tmpl` exists and both resolvers find it
-- [ ] `research/research.md` lands at that nested path, not flat at the folder root
-- [ ] The scaffold goldens cover both levels validating strict untouched
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this child
+- [x] `create.sh --level review` and `--level research` each scaffold a folder instead of erroring
+- [x] `templates/packet-types/review-report.md.tmpl` exists and both resolvers find it
+- [x] `research/research.md` lands at that nested path, not flat at the folder root
+- [x] The scaffold goldens cover both levels validating strict untouched
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,6 +93,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| `create.sh --level review` and `--level research` scaffold; `review-report.md.tmpl` and `research.spec.md.tmpl` added; nested documents land at their manifest path and get their placeholders filled; renderer accepts both levels; goldens cover both scaffolds validating strict; both deep-loop SKILL.md files carry the note | Done | `implementation-summary.md` Verification |
+| Gates | Done | goldens 12 pass with two snapshots written; review-record, template-structure and registry-coverage suites pass; upgrade-level 14 pass; full projects, typecheck and validation suite in the summary |
 
 ### Deviations and findings
 

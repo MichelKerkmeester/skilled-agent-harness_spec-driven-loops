@@ -295,6 +295,8 @@ The review state packet always lives under the target spec's local `review/` fol
 
 Core artifacts: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `.deep-review-pause`, `resource-map.md`, `review-report.md`, and `iterations/iteration-NNN.md`.
 
+The loop writes `review/review-report.md` itself at synthesis rather than scaffolding it through `create.sh --level review`: the report is assembled from the findings registry and the JSONL state, so its content exists only once the loop has run, and a scaffolded skeleton would be overwritten whole. `create.sh --level review` exists for a review packet authored by hand, and its template carries the same nine sections the loop emits.
+
 ### Core Innovation: Fresh Context Per Iteration
 
 Each agent dispatch gets a fresh context window; state continuity comes from files, not memory, preventing accumulated findings from biasing later dimensions. Init writes config/strategy/JSONL; each loop reads state, checks convergence, dispatches one dimension, records findings, and reduces state; synthesis compiles the report and saves continuity.

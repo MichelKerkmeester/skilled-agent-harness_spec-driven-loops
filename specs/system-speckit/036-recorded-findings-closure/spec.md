@@ -120,7 +120,7 @@ Audit-trail summary only. Each child's plan carries the exact list.
 | 5 | 005-provenance-title-sweep/ | provenance tokens stripped from 1,240 titles and the rule class restored | complete |
 | 6 | 006-lifecycle-command-asset-merge/ | one asset per lifecycle command with a mode branch and a shared tail | complete |
 | 7 | 007-links-scan-registry-rule/ | the wikilink scan as a registry rule with a test | complete |
-| 8 | 008-review-research-scaffold-paths/ | review and research packets creatable through the scaffolder | planned |
+| 8 | 008-review-research-scaffold-paths/ | review and research packets creatable through the scaffolder | complete |
 | 9 | 009-references-corpus-routing/ | every reference routed or removed | planned |
 | 10 | 010-manifest-dead-fields-and-coaching-markers/ | unread manifest fields and scaffold markers gone or wired | planned |
 | 11 | 011-advisor-import-and-ollama-consolidation/ | one Ollama implementation and one import form in the advisor | planned |
