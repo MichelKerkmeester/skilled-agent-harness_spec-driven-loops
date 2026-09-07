@@ -1,0 +1,47 @@
+{
+  "run_id": "1788800822208-wyiujr",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research",
+  "base_artifact_dir": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "luna",
+      "state_log": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-07T17:07:02.212Z",
+        "end_at_iso": "2026-09-07T17:40:28.572Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 7,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "before_window",
+          "timestamp": "2026-09-07T15:35:00+02:00",
+          "deltaMs": 12602212
+        }
+      ]
+    }
+  ]
+}
