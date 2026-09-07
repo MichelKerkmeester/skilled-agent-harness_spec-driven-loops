@@ -1,0 +1,5 @@
+# The extracted upstream corpus is read here, never vendored. It is third-party
+# source under its own licence, it is reproducible from the commands recorded in
+# spec.md, and committing 70 React files into a standalone-HTML packet would put
+# the one thing this research may not copy inside the repository that bans it.
+shadcn/
