@@ -151,6 +151,22 @@ routes:
       - "compiled vs sqlite vs disk graph drift"
       - "reindex staleness check"
 
+  - target: router-reach
+    yaml: doctor-router-reach.yaml
+    setup_vars: [execution_mode, hub]
+    allowed_flags: ["--hub=<skill-id>", "--concurrency=<n>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only routing diagnostic; probes the live advisor for every declared phrase and reports, writes nothing)"
+    mcp_tools: []   # spawns the advisor CLI per phrase; no MCP calls
+    script_invocations:
+      - 'node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs'
+    trigger_phrases:
+      - "router reach check"
+      - "does a declared phrase reach its hub"
+      - "router vocabulary reach"
+      - "phrase reaches nobody"
+      - "routing residue allowlist"
+
   - target: fable-mode
     yaml: doctor-fable-mode.yaml
     setup_vars: [execution_mode, target_dir]
