@@ -119,11 +119,29 @@ arbitration was proposed to fix. That proposal was cut from the plan on the reas
 reasoning does not hold: `sk-code` takes `review this screen` while having no claim on a
 screen, and loses the same screen the moment the verb changes.
 
-What this does **not** establish is the mechanism. It is not `CATEGORY_HINTS`, since none of
-the seven contains a hint token. It is probably not the `review` synonym expansion either,
-because that expands to `audit`, `findings` and `regression`, and `sk-design` carries two of
-those three against `sk-code`'s one. Something else in the scoring rewards the verb, and
-naming it is the first task of whoever takes the arbitration work.
+The mechanism is the overlap score saturating. `scoreTokenOverlap` ends
+`Math.min(hits / Math.max(3, denominatorBasis), 1)`, and the lane feeds it a prompt whose
+tokens have been expanded with synonyms while the denominator deliberately stays at the
+original count, so recall rises without the divisor following. `review` expands to `audit`,
+`findings` and `regression`, which turns a three-token prompt into six possible hits over a
+divisor of three. Any hub matching three of the six reaches 1.0 and stops.
+
+Both hubs clear that bar on `review this screen`. `sk-design` matches more — it has `screen`
+and `this` on top of the shared `review`, `audit` and `findings` — and the cap throws the
+difference away. The lane returns the same number for the hub that matched five tokens and
+the hub that matched three, so it cannot separate them at all, and the outcome is settled by
+whatever else contributes.
+
+That is why the verb wins. Not because the verb is weighted, but because once the verb and
+its synonyms saturate the lane, the noun that would have distinguished the two hubs is no
+longer able to count. It also explains why the effect concentrates on short phrases: the
+divisor floor of three means a two or three word prompt saturates on very little.
+
+*Confidence boundary:* the formula and the saturation are read from
+`lib/scorer/text.ts:100` and `lanes/lexical.ts:57-59`, and the token accounting above is a
+hand model rather than an instrumented per-lane trace. What would settle it definitively is
+logging the pre-clamp overlap value for both hubs on one contested phrase; if both exceed
+1.0 before the clamp, the diagnosis is confirmed.
 
 Narrowing a hint is a scorer-data change with fleet-wide reach, so it is not made here. It
 is now a one-line change waiting on an ownership answer rather than an open investigation.
