@@ -72,11 +72,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `validator-registry.json` carries a `LINKS_VALID` row
-- [ ] `bash rules/check-links.sh .opencode/skills/system-spec-kit` exits 0
-- [ ] `validate-runs-every-registry-rule.vitest.ts` reports `LINKS_VALID` present
-- [ ] `validate.sh --strict` on a sample of `specs/system-speckit/` packets shows no new failure
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this child
+- [x] `validator-registry.json` carries a `LINKS_VALID` row
+- [x] `bash rules/check-links.sh .opencode/skills/system-spec-kit` exits 0
+- [x] `validate-runs-every-registry-rule.vitest.ts` reports `LINKS_VALID` present
+- [x] `validate.sh --strict` on a sample of `specs/system-speckit/` packets shows no new failure
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,6 +93,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| `check-links.sh` gained `run_check`; extraction rewritten as one perl pass (5.8s to 0.12s over 954 files, identical broken-link set); `LINKS_VALID` row added; four memory-note wikilinks rewritten as inline code | Done | `implementation-summary.md` Verification |
+| Gates | Done | skill scan exit 0; registry coverage, help listing, doc count, grep convention and workflow tests 23 pass; validation-system script passes; nine packets validate strict with `LINKS_VALID` passing; extended suite and typecheck in the summary |
 
 ### Deviations and findings
 

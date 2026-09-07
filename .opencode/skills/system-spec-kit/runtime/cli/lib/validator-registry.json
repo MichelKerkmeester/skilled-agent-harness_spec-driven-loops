@@ -406,5 +406,16 @@
     "severity": "warn",
     "category": "operational_runtime",
     "description": "When a packet contains improvement/, checks that every *-config.json inside parses as JSON and carries the top-level fields the generated improvement configs carry."
+  },
+  {
+    "rule_id": "LINKS_VALID",
+    "aliases": [
+      "WIKILINKS_VALID",
+      "CHECK_LINKS"
+    ],
+    "category": "operational_runtime",
+    "description": "Scans the system-spec-kit skill's own markdown for wikilinks whose target file does not exist. The target is always this skill, never the validated packet.",
+    "script_path": "rules/check-links.sh",
+    "severity": "warn"
   }
 ]

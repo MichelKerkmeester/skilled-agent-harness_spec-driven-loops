@@ -37,14 +37,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -163,9 +163,9 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) - not needed. Tracked in git history
-- [ ] Feature flag configured - none. The row is added directly to the registry
-- [ ] Monitoring alerts set - the registry-coverage test is the alert
+- [x] Backup created (if data changes) - not needed. Tracked in git history
+- [x] Feature flag configured - none. The row is added directly to the registry
+- [x] Monitoring alerts set - the registry-coverage test is the alert
 
 ### Rollback Procedure
 1. `git revert` the commit that added the registry row and the adapter

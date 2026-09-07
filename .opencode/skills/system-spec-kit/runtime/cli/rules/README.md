@@ -62,14 +62,14 @@ rules/
 +-- check-graph-metadata.sh     # Graph metadata checks
 +-- check-metadata-disk-consistency-helper.cjs  # Node helper for metadata/disk-path checks
 +-- check-grep-convention-helper.mjs            # Node helper for the grep-convention rule
-+-- check-links.sh              # Standalone wikilink scan, not a registry rule
++-- check-links.sh              # Wikilink scan over this skill; LINKS_VALID row, also runs by hand
 +-- check-*.sh                  # Additional focused rule modules
 `-- README.md
 ```
 
 The rule list is the set of rows in `../lib/validator-registry.json`; every row names one
-`check-*.sh` file here, and `check-links.sh` is the one script with no row, a standalone scan run
-by hand. Three Node helpers back the `.sh` rules that need logic bash cannot express directly:
+`check-*.sh` file here. `check-links.sh` doubles as a hand-run scan over any skill tree, while its
+`LINKS_VALID` row always scans this skill regardless of the packet being validated. Three Node helpers back the `.sh` rules that need logic bash cannot express directly:
 `check-canonical-save-shared.cjs` behind the five canonical-save modules, `check-metadata-disk-consistency-helper.cjs` and
 `check-grep-convention-helper.mjs`.
 
@@ -87,7 +87,7 @@ by hand. Three Node helpers back the `.sh` rules that need logic bash cannot exp
 | `check-canonical-save-lineage.sh` | Graph writes on or after the cutoff must record save_lineage. |
 | `check-canonical-save-packet-identity.sh` | Continuity, description and graph must agree on the packet identity. |
 | `check-canonical-save-description-graph-freshness.sh` | Description and graph timestamps must stay within the slack window. |
-| `check-links.sh` | Scans a skill tree for broken wikilinks when run by hand; no registry row, so `validate.sh` never runs it. |
+| `check-links.sh` | Scans this skill for broken wikilinks on every validate run through `LINKS_VALID`; by hand it scans any skill tree. |
 
 ---
 

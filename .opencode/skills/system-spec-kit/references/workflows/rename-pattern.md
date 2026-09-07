@@ -63,7 +63,7 @@ Every rename touches some subset of these categories. Map each before starting.
 3. Read the cli-X SKILL.md file before composing any cli-X dispatch (per AGENTS.md CLI dispatch rule).
 
 ### Phase B — Optional CLI verification
-Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to verify the rename plan against each surface group. Read the chosen executor's SKILL.md before composing the dispatch (per AGENTS.md CLI dispatch rule). Apply bundle gate per [[feedback_bundle_gate_smoke_run]]. Aggregate verified bundles.
+Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to verify the rename plan against each surface group. Read the chosen executor's SKILL.md before composing the dispatch (per AGENTS.md CLI dispatch rule). Apply bundle gate per the `feedback_bundle_gate_smoke_run` memory note. Aggregate verified bundles.
 
 ### Phase C — Execute renames (parallel-eligible across disjoint surface groups)
 1. `git mv` dir/file renames (preserves rename history; `git log --follow` traces back).
@@ -72,7 +72,7 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 4. Memory files: filename slugs are sticky (preserve `[[wikilinks]]`); only edit body content.
 
 ### Phase D — Reindex
-1. Regenerate compiled `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` via `python3 skill_graph_compiler.py --export-json --pretty` (per [[feedback_skill_graph_compiler_rebuild]]).
+1. Regenerate compiled `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` via `python3 skill_graph_compiler.py --export-json --pretty` (per the `feedback_skill_graph_compiler_rebuild` memory note).
 2. If the compiler hits a pre-existing blocker (wrong category, asymmetric sibling, etc.), fix it incidentally — document as out-of-scope-but-on-critical-path.
 3. Run `advisor_recommend` MCP smoke on a canonical prompt for the renamed thing; expect new name in top-3 confidence ≥ 0.7.
 
@@ -86,13 +86,13 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 
 ## 4. CASE-SENSITIVITY GOTCHA
 
-Per [[feedback_rename_grep_case_insensitive]]: the final-gate grep MUST use `rg -il` (case-insensitive). UPPERCASE / Title-Case / underscore variants are easy to miss. Always also check for the underscore variant of any hyphenated identifier (e.g., `sk_small_model` next to `sk-small-model`) — Python pseudocode in SKILL.md examples often uses underscores.
+Per the `feedback_rename_grep_case_insensitive` memory note: the final-gate grep MUST use `rg -il` (case-insensitive). UPPERCASE / Title-Case / underscore variants are easy to miss. Always also check for the underscore variant of any hyphenated identifier (e.g., `sk_small_model` next to `sk-small-model`) — Python pseudocode in SKILL.md examples often uses underscores.
 
 ---
 
 ## 5. BRANCH POLICY
 
-Per [[feedback_stay_on_main_no_feature_branches]] — stay on `main`. `create.sh` auto-branches; switch back to `main` and delete the auto-created branch (carry uncommitted changes; cherry-pick any orphan continuity commits first).
+Per the `feedback_stay_on_main_no_feature_branches` memory note — stay on `main`. `create.sh` auto-branches; switch back to `main` and delete the auto-created branch (carry uncommitted changes; cherry-pick any orphan continuity commits first).
 
 Rename refactors are reversible via `git revert` since `git mv` history is preserved. No need to feature-branch.
 
@@ -115,7 +115,7 @@ When the rename arc is a phase-parent with multiple children:
 | Renaming auto-memory file slugs | Breaks inbound `[[wikilinks]]` in MEMORY.md and other memory files | Preserve slug; edit body content only |
 | Rewriting historical narrative to use new name | Falsifies past-tense provenance | Insert `(renamed <new> YYYY-MM-DD)` tag |
 | Editing the renamed skill's own `changelog/v1+v2*.md` | Historical version state | Add NEW `vN+1.0.0.md` as forward-link |
-| Creating a feature branch | Out of policy ([[feedback_stay_on_main_no_feature_branches]]) | Stay on `main`; `git revert` is the rollback path |
+| Creating a feature branch | Out of policy (the `feedback_stay_on_main_no_feature_branches` memory note) | Stay on `main`; `git revert` is the rollback path |
 | Forgetting case variants | Misses `sk_small_model` (underscore), `Sk-Small-Model` (title), `SK-SMALL-MODEL` (banner) | Use `rg -il` and dedicated 2nd sed pass for underscore identifiers |
 
 ---
