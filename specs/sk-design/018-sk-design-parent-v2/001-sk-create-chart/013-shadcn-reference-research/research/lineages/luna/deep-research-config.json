@@ -1,0 +1,47 @@
+{
+  "topic": "Which of shadcn's chart decisions should our standalone-HTML corpus adopt, and which of ours are already better. Six angles, one per iteration, in order.",
+  "maxIterations": 6,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "continueUntilMaxIterations": true
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research",
+  "createdAt": "2026-09-07T15:00:00+02:00",
+  "status": "complete",
+  "executionMode": "fanout-lineage-inline",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1788800822208-wyiujr",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "luna"
+  },
+  "fanout": {
+    "artifactDir": "/Users/michelkerkmeester/worktrees/public/047-shadcn-chart-research/specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna",
+    "executorDispatchSatisfied": true,
+    "nestedDispatchForbidden": true,
+    "fetchForbidden": true
+  },
+  "writeSurface": "/Users/michelkerkmeester/worktrees/public/047-shadcn-chart-research/specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna",
+  "resourceMapPresent": false
+}
