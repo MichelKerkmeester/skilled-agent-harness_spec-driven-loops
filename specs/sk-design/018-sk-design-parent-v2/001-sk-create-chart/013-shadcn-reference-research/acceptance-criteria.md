@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** [PACKET-ID]
 **Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the frozen corpus and the shipped corpus, When the lineage finishes, Then six angle sections exist, each with cited claims | `research/lineages/luna/research.md:5`, `:20`, `:36`, `:53`, `:75`, `:90` are the six angle headings; `research/lineages/luna/iterations/` holds six files | Met | - |
+| AC-002 | REQ-002 | Given the findings, When the synthesis is read, Then each decision is tagged implementable today or needs a corpus change and each shadcn decision has a verdict | `research/lineages/luna/research.md:119` opens the Final Synthesis; `:127` ranks the recommendations with their tags; `:144` lists the eliminated alternatives with reasons | Met | - |
+| AC-003 | REQ-003 | Given the research ran, When the chart skill is diffed, Then no template or checker rule changed | `git log -- .opencode/skills/sk-design/sk-design-chart` shows no commit from this phase; `check-corpus.cjs` prints RESULT: PASSED, recorded at `research/lineages/luna/research.md:92` | Met | - |
+| AC-004 | REQ-004 | Given both palettes, When angle 4 reports, Then it reports measured hue gaps, contrast on both grounds and CVD separation | `research/lineages/luna/research.md:59` and `:61` tabulate shadcn light 16.0 degrees and 1.72:1 against standalone categorical 92.9 degrees and 3.37:1 | Met | - |
+| AC-005 | REQ-005 | Given no browser was available, When angles 3 and 6 report runtime behaviour, Then they mark it unknown | `research/lineages/luna/research.md:44` and `:142` state the browser inventory was empty and mark runtime behaviour unverified | Met | - |
 
 ### Status values
 
