@@ -153,6 +153,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 10 | 010-chart-review-remediation/ | Close the rendering defects and checker holes a fresh review found, and reconcile the documents that disagreed with the packet | Complete |
 | 11 | 011-chart-command-surface/ | Build `/create:chart` and land it on every runtime surface a command has to reach | Complete |
 
+| 13 | 013-shadcn-reference-research/ | [Phase 13 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -174,6 +175,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 008 | 009 | Both research lineages complete their five iterations each, and their findings are adjudicated into one recommendation set with a verdict per item | `research/research.md` ranks every recommendation with an evilcharts `file:line` behind it, and no file under the chart skill changed yet |
 | 009 | 010 | Every one of the seven child phases closes against its own goal document | `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` from the final state |
 | 010 | 011 | Every defect the review found carries a before and after measurement, and every checker hole left open carries the mutation that proves it | `check-corpus.cjs --render` prints `RESULT: PASSED`, and each new assertion was watched failing on a mutated copy with the rule unwired as the control |
+| 012-chart-hover-and-pointer-states | 013-shadcn-reference-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

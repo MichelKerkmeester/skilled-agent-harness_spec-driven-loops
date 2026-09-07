@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research",
+  "description": "Our 26 chart forms were authored without reference to how the most-used open chart library in the same design tradition solves the same problems",
+  "keywords": [
+    "chart",
+    "forms",
+    "authored",
+    "without",
+    "reference",
+    "most-used",
+    "open",
+    "library",
+    "same",
+    "design",
+    "tradition",
+    "solves",
+    "problems"
+  ],
+  "lastUpdated": "2026-09-07T12:47:28.929Z",
+  "specId": "013",
+  "folderSlug": "shadcn-reference-research",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
