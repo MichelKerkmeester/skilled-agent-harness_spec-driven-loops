@@ -41,10 +41,10 @@ Commands are organized into five groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `commands/create/` | 14 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
+| **create** | `commands/create/` | 12 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 6 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
-| **design** | `commands/design/` | 1 | Measured Style Reference DESIGN.md extraction |
+| **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **rewrite** | `commands/rewrite/` | 3 | Re-express an existing reply or topic in plain English, or as a diagram |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
@@ -80,13 +80,11 @@ command/
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
 ├── create/                   # Component creation commands — see create/README.txt for the
-│   │                         # full fourteen-command table and per-command invocations
+│   │                         # full twelve-command table and per-command invocations
 │   ├── agent.md              # Create new agent
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder
 │   ├── changelog.md          # Create changelog entry
-│   ├── chart.md              # Author a standalone HTML data chart
 │   ├── command.md            # Create or update OpenCode slash command set
-│   ├── diagram.md            # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   ├── diff.md               # Create a before/after document diff report
 │   ├── feature-catalog.md    # Create or update feature catalog package
 │   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
@@ -112,6 +110,8 @@ command/
 │   └── scripts/              # Diagnostic scripts
 ├── design/                    # Design extraction commands
 │   ├── extract.md             # Extract a measured Style Reference DESIGN.md
+│   ├── chart.md              # Author a standalone HTML data chart
+│   ├── diagram.md            # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   └── assets/                # Auto/confirm/presentation workflow assets
 ├── rewrite/                  # Plain-English and visual re-expression commands
 │   ├── explain-visually.md   # Explain the prior reply or a topic as the smallest useful diagram
@@ -143,9 +143,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Agent | `/create:agent <agent_name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Benchmark | `/create:benchmark <skill-or-mode> <spec-packet> --family=<family>` | Author or update family-keyed benchmark packages |
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a global or packet-local changelog entry from recent work |
-| Chart | `/design:chart <target-chart.html> <what the reader compares>` | Author a standalone HTML chart from a catalog of 21 forms |
 | Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
-| Diagram | `/design:diagram <target.html\|target.md> [description\|--import <src>]` | Create an HTML/SVG diagram, an ASCII/markdown flowchart, or a draw.io/Mermaid redraw |
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |
@@ -186,6 +184,8 @@ Extract a measured Style Reference from a live site using the `sk-design-md-gene
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | Extract | `/design:extract <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
+| Chart | `/design:chart <target-chart.html> <what the reader compares>` | Author a standalone HTML chart from a catalog of 21 forms |
+| Diagram | `/design:diagram <target.html\|target.md> [description\|--import <src>]` | Create an HTML/SVG diagram, an ASCII/markdown flowchart, or a draw.io/Mermaid redraw |
 
 ### Root Commands
 

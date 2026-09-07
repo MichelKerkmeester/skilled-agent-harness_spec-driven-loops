@@ -104,33 +104,67 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   fi
 fi
 
-# --- Command prompt-mirror gate (blocking) ---
-# .opencode/commands/ is mirrored into .codex/prompts/ by sync-prompts.cjs. A commit
-# that stages a command without its regenerated mirror ships a mirror that is stale
-# against its own source, and the working tree hides it: the regenerated files sit
-# there unstaged, so any working-tree parity check passes while the commit fails in
-# CI on every push that carries it. Two checks, because they catch different halves:
-# the tree must be in sync (mirror was regenerated at all), and the mirror must carry
-# nothing unstaged (what was regenerated is what gets committed).
-# Bypass: SPECKIT_SKIP_PROMPT_MIRROR=1 git commit ...
-if [[ "${SPECKIT_SKIP_PROMPT_MIRROR:-0}" != "1" ]]; then
-  PROMPT_SYNC="${REPO_ROOT}/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs"
-  if [[ -f "$PROMPT_SYNC" ]] && command -v node >/dev/null 2>&1 \
-     && git diff --cached --name-only --diff-filter=ACMDR | grep -Eq '^\.opencode/commands/'; then
-    UNSTAGED_MIRROR="$( { git diff --name-only -- .codex/prompts; git ls-files --others --exclude-standard -- .codex/prompts; } 2>/dev/null )"
-    if [[ -n "$UNSTAGED_MIRROR" ]]; then
+# --- Mirror parity gate (blocking): runs exactly what CI's mirror job runs ---
+# Six generated mirrors feed one CI job, and until now one of them had a local gate.
+# The other five failed CI the same way the prompt mirror did and were masked behind
+# it, because the job stops at its first failure. All six checks together cost under
+# a quarter of a second, so they run on every commit rather than behind a trigger
+# list that a seventh mirror would silently miss.
+# Two halves, because they fail independently. Every check must pass on the working
+# tree, which proves each mirror was regenerated. And no mirror output may carry an
+# unstaged change, which proves what was regenerated is what gets committed. The
+# second half is the one CI cannot see, and the one that shipped a stale mirror
+# fifteen pushes in a row while the working tree passed the same check locally.
+# Bypass: SPECKIT_SKIP_MIRROR_PARITY=1 git commit ...
+if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
+  # One command file fans out to three mirrors: the codex prompt, and the .claude and
+  # .cursor command copies those runtimes discover by convention. Missing a tree here
+  # lets its regenerated copy sit unstaged and pass, which is the failure this gate
+  # exists to stop, so every generated tree the six checks write is listed.
+  MIRROR_OUTPUTS=(
+    .codex/prompts .codex/agents .codex/hooks .codex/hooks.json
+    .claude/agents .claude/commands .claude/hooks .claude/settings.json
+    .cursor/agents .cursor/commands .cursor/hooks .cursor/hooks.json
+    .devin/agents .devin/hooks .devin/hooks.v1.json
+    .pi/agents .pi/extensions
+    .opencode/commands/README.txt
+  )
+  UNSTAGED_MIRROR="$( { git diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json'; git ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
+  if [[ -n "$UNSTAGED_MIRROR" ]]; then
+    echo "" >&2
+    echo "BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged:" >&2
+    printf '  %s\n' $UNSTAGED_MIRROR >&2
+    echo "Fix: git add those paths and re-commit. Leaving them out ships a stale mirror." >&2
+    exit 1
+  fi
+  # Script and flag are kept apart rather than split out of one string: zsh does
+  # not word-split an unquoted expansion, so "path --check" reaches node as a single
+  # nonexistent path there, and the failure looks like a missing module rather than
+  # a shell difference. Nothing here depends on which shell is reading it.
+  MIRROR_FAIL=0
+  MIRROR_CHECKS=(
+    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs|--check"
+    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs|--check"
+    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs|--check"
+    "$REPO_ROOT/.opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs|"
+    "$REPO_ROOT/.opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs|"
+    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs|--check"
+  )
+  for MIRROR_ENTRY in "${MIRROR_CHECKS[@]}"; do
+    MIRROR_SCRIPT="${MIRROR_ENTRY%%|*}"
+    MIRROR_FLAG="${MIRROR_ENTRY#*|}"
+    # The hook is installed globally; a checkout without the toolchain has nothing to check.
+    [[ -f "$MIRROR_SCRIPT" ]] || continue
+    if ! MIRROR_OUT="$(node "$MIRROR_SCRIPT" ${MIRROR_FLAG:+"$MIRROR_FLAG"} 2>&1)"; then
       echo "" >&2
-      echo "BLOCKED [gate:prompt-mirror]: a command is staged but its regenerated mirror is not:" >&2
-      printf '  %s\n' $UNSTAGED_MIRROR >&2
-      echo "Fix: git add .codex/prompts and re-commit. Leaving these out ships a stale mirror." >&2
-      exit 1
+      echo "BLOCKED [gate:mirror-parity]: $(basename "$MIRROR_SCRIPT") failed:" >&2
+      printf '%s\n' "$MIRROR_OUT" | tail -6 | sed 's/^/  /' >&2
+      MIRROR_FAIL=1
     fi
-    if ! node "$PROMPT_SYNC" --check >/dev/null 2>&1; then
-      echo "" >&2
-      echo "BLOCKED [gate:prompt-mirror]: .codex/prompts is out of sync with .opencode/commands." >&2
-      echo "Fix: node $PROMPT_SYNC   then git add .codex/prompts and re-commit." >&2
-      exit 1
-    fi
+  done
+  if [[ "$MIRROR_FAIL" -ne 0 ]]; then
+    echo "Fix: regenerate the mirror the message names, git add its output, and re-commit." >&2
+    exit 1
   fi
 fi
 
