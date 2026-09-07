@@ -1,0 +1,1 @@
+../../../.opencode/commands/design/chart.md
