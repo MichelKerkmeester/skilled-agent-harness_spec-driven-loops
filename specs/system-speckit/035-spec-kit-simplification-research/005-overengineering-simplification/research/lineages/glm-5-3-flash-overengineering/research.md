@@ -113,7 +113,7 @@ Primary (the 39-rule gate): `runtime/cli/lib/validator-registry.json` (410 L, 39
 
 ## 15. Findings register
 
-30 evidence findings (5 P1: F1, F11, F14, F18, F23; 25 P2) + 9 plan-moves (R1-R9) — full statements, costs, what-each-protects, severities, and labeled recommendations: `findings-registry.json` (regenerated from `deltas/iter-00{1..10}.jsonl`; every finding_observed event carries path:line, cost, protection, severity, recommendation). Sum: 39 finding-class records. P1→move mapping: F1→R1+R2, F11→phase-2, F14→R1, F18→R4, F23→R6.
+30 evidence findings (5 P1: F1, F11, F14, F18, F23; 25 P2) + 9 plan-moves (R1-R9) — full statements, costs, what-each-protects, severities, and labeled recommendations: `findings-registry.json` (replayed from `deltas/iter-00{1..10}.jsonl`; every finding_observed event carries path:line, cost, protection, severity, recommendation). Sum: 39 finding-class records. Reconciliation note: runs 6-8's findings were recorded in their iteration .mds at execution and backfilled into their deltas by the final reducer replay — the replay now yields exactly 30+9, matching this section. P1→move mapping: F1→R1+R2, F11→phase-2, F14→R1, F18→R4, F23→R6.
 
 ## 16. Convergence report & loop telemetry
 

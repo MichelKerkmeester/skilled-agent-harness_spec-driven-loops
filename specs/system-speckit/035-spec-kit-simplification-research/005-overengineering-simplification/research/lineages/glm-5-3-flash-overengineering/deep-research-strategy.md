@@ -55,6 +55,7 @@ KQ1..KQ8 above.
 ### answered-questions
 - KQ1 partial (run 1): the 39-rule registry inventoried — 32 error/5 warn/2 info, 5:1 CANONICAL_SAVE multiplex, 2-of-3 category display loop (see iterations/iteration-001.md).
 - KQ5 answered (run 5): covenant enforced end-to-end (generator emits metadata pair only; complete-auto.yaml:1175 forbidden-guard); residue = F18 phantom dashboards (complete.md:92 promises 6, workflows 0, 3 mechanismless) + F20 level_contract_optional_*.md naming (6+ occurrences, 0 resolutions).
+- KQ6-8 + census answered (runs 6-10): governance = 1 file + symlink, 0x duplication, nothing folds into the 1,615-LOC rules (1/9 machinery mentions); optimizer promotion tail = 0 recorded promotions (P1); adherence = 1,790/2,874 packets (62.2%) never recorded a fingerprint, 0 faking found in sample, honesty mechanical; the ranked plan = 8 moves + keep-list + F11 phase-2, overengineering concentrated in the perimeter (4/5 P1s), not the validated core.
 - KQ2 partial (run 2): 22/39 rows conditioned on flow-specific surfaces; 10 rows -> 2 implementations (two 5:1 multiplexes); severity vocabulary triple-tracked (registry JSON, orchestrator TS, validate.sh:46-64); skip variant 0/39; 31/39 rows carry ~75 legacy aliases (see iterations/iteration-002.md).
 
 ### what-worked
@@ -74,8 +75,9 @@ KQ1..KQ8 above.
 - (none yet)
 
 ### next-focus
-Iteration 6 (run 6): **Root governance vs. skill/repo-rule ownership (KQ6)** — root AGENTS.md vs CLAUDE.md: dual-maintenance check (are they the same procedure twice?); which spec-kit procedure blocks in the root docs (spec-folder mechanics, completion verification, freshness) restate what the skill's SKILL.md/validate.sh or a repo rule (repo-rules/*.md) owns. Fold-into-a-repo-rule candidates must name the owning rule file.
-- (completed runs 1-5: rule inventory; duplication census; hook-matrix cost; documentation decomposition; command-surface covenant audit)
+(none — loop COMPLETE at the mandated cap: 10/10 iterations; terminal synthesis = research.md, stopReason "maxIterationsReached"; 8/8 key questions answered; the ranked plan + keep-list + 5 bounded UNKNOWNs persisted to research.md §11/§13 and findings-registry.json)
+
+- (completed runs 1-10: rule inventory; duplication census; hook-matrix cost; documentation decomposition; command-surface covenant audit; governance ownership; single-consumer machinery; adherence duty-cycle; census corrections; the ranked plan)
 
 ## Active Risks
 

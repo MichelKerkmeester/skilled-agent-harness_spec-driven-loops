@@ -1,0 +1,22 @@
+{
+  "run_id": "1788746122749-wk19z4",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
+  "base_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}
