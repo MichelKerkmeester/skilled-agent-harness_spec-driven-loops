@@ -156,8 +156,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "its",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Concurrent work — retiring the code-graph skill, renaming skills, adding hubs (Figma, mcp-tooling, CLI-hub, sk-communication), and rewiring hooks — legitimately shifted advisor behavior but left ~32 tests red across six clusters: frozen output baselines, routing-corpus expectations, cross-language skill-list agreement, hook-settings shape, launcher env fixtures, and stress simulations",
     "created_at": "2026-08-15T15:40:30.895Z",
-    "last_save_at": "2026-08-30T15:39:26.173Z",
+    "last_save_at": "2026-09-07T19:42:25.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e371135d49695a6d185f535526575dad0c4bc4bcecac1e09fc0e4b637c9a094",
+    "source_fingerprint": "sha256:499a5c038fcbff6f4508715d8b2689a9f899a757fc1c37dad213ecbff3ea8b7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae5a839820055d859f191af108cd742efb48ecc4a46133b7a7ca833d136bb607",
+      "spec.md": "db61a610d989098bb2e1360a0f5b1e0281207f8ed4906c6bd2c09a44874fda07",
       "plan.md": "11a167f8068bd0fc2919088e20c6316dcb1c3b881bb3076fdf2a18b0b6528dd3",
-      "tasks.md": "df48f18896fc75503cd95db508dcd9d81bd4cf16f290b3911091402db2ecdd11",
-      "implementation-summary.md": "4eb8f4b0354f1bfac775ac2035f4d4b237a5b6bbbf3d7157f41c7f81fc1a63e2"
+      "tasks.md": "3fae6dba172c5dfb26fdd38a8aa4f1966651645310b1dd814c95b5602e078b39",
+      "implementation-summary.md": "7977e1b7542fc0005d997975b4196b65196bd9a9f4df5b3396711ba42c007944"
     },
     "last_active_child_id": null,
     "last_active_at": null

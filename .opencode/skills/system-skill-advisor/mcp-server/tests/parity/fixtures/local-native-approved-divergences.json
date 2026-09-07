@@ -12,24 +12,15 @@
       "approvedAt": "2026-07-06"
     },
     {
-      "id": "harder:0627b7a965f0",
-      "corpus": "harder",
-      "promptHash": "sha256:0627b7a965f0ce8fd1d8fc1f1a50d51567dab591010c9a67b7f84c53843becf6",
-      "gold": "system-spec-kit",
-      "localTop": "system-spec-kit",
-      "nativeTop": "memory:save",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=system-spec-kit, native=memory:save)",
-      "approvedAt": "2026-06-13"
-    },
-    {
       "id": "harder:4798f04a4216",
       "corpus": "harder",
-      "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
+      "prompt": "Stage a structured design deliberation with separate seats and converge on the least risky option.",
       "gold": "deep-ai-council",
-      "localTop": "none",
+      "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
+      "localTop": "sk-design",
       "nativeTop": "system-deep-loop",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
-      "approvedAt": "2026-06-15"
+      "reason": "reviewed 2026-09-07: a design-deliberation prompt whose gold is the retired deep-ai-council mode; local now fires sk-design on the design vocabulary the hub restructure added, native keeps the consolidated deep-loop hub",
+      "approvedAt": "2026-09-07"
     },
     {
       "id": "harder:b299699c3964",
@@ -183,16 +174,6 @@
       "approvedAt": "2026-06-15"
     },
     {
-      "id": "rr-iter2-044",
-      "corpus": "labeled",
-      "promptHash": "sha256:1c4f38b1953cdca9c0bff1c279a79b941e619dcfc90be55a43ac568996547cf8",
-      "gold": "system-deep-loop",
-      "localTop": "system-spec-kit",
-      "nativeTop": "system-deep-loop",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-spec-kit, native=system-deep-loop)",
-      "approvedAt": "2026-07-06"
-    },
-    {
       "id": "rr-iter2-046",
       "corpus": "labeled",
       "promptHash": "sha256:cf84a4ca158f68c875f8acae58c1357948c57e20e75044f42226abeeb9d4c5b2",
@@ -215,12 +196,13 @@
     {
       "id": "rr-iter3-061",
       "corpus": "labeled",
-      "promptHash": "sha256:813c84a24e9260c88c4f1b8f71af17c984b5eed9376b72983aef4d38c919c32c",
+      "prompt": "Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.",
       "gold": "sk-code",
-      "localTop": "none",
+      "promptHash": "sha256:813c84a24e9260c88c4f1b8f71af17c984b5eed9376b72983aef4d38c919c32c",
+      "localTop": "system-deep-loop",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
-      "approvedAt": "2026-06-13"
+      "reason": "reviewed 2026-09-07: local now fires system-deep-loop on 'research summary' where it used to abstain; native reads the packet-local helper as spec-kit work; gold is sk-code and neither side reaches it",
+      "approvedAt": "2026-09-07"
     },
     {
       "id": "rr-iter3-062",
@@ -742,17 +724,6 @@
       "approvedAt": "2026-08-15"
     },
     {
-      "id": "rr-iter3-151",
-      "corpus": "labeled",
-      "prompt": "Kick off another deep-review wave for the packet docs and keep the iteration history in the same folder.",
-      "gold": "system-deep-loop",
-      "promptHash": "sha256:0775864f3a2b1f244a249656d35b1d6e8cb20061a207e594c2eda43240f33664",
-      "localTop": "system-spec-kit",
-      "nativeTop": "system-deep-loop",
-      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
-      "approvedAt": "2026-08-15"
-    },
-    {
       "id": "rr-hub6-204",
       "corpus": "labeled",
       "prompt": "Run an agentic browser session with aside mcp through Code Mode and save the screenshots.",
@@ -781,9 +752,9 @@
       "gold": "system-spec-kit",
       "promptHash": "sha256:bd885aa14cb0efe12135a0005a7a8fbd4cb452edcf3d299227f832eb9c51d58c",
       "localTop": "none",
-      "nativeTop": "sk-prompt",
-      "reason": "local abstains after the same model-alias resolver removal; native still fires sk-prompt on the \"prompts\" + \"generate\" pairing, which is an OPEN native false positive against a system-spec-kit gold, recorded so it stays visible rather than because it is acceptable",
-      "approvedAt": "2026-09-01"
+      "nativeTop": "system-spec-kit",
+      "reason": "reviewed 2026-09-07: native moved from sk-prompt to system-spec-kit (the gold) once corpus-file and coverage vocabulary reached the spec-kit resource map; local still abstains after the model-alias resolver removal",
+      "approvedAt": "2026-09-07"
     },
     {
       "id": "harder:ce0726a9d0f5",
@@ -795,6 +766,28 @@
       "nativeTop": "sk-design",
       "reason": "native routes an iterate-until-saturation research prompt to sk-design while local abstains; an OPEN native routing miss against a deep-research gold, recorded to keep it visible, not to bless it",
       "approvedAt": "2026-09-01"
+    },
+    {
+      "id": "rr-iter2-020",
+      "corpus": "labeled",
+      "prompt": "Audit whether `memory_save` prompts are documented consistently across packet docs.",
+      "gold": "sk-code",
+      "promptHash": "sha256:39fd549fe242bc996fa82a066ec1496e2b5a5ddf9b1015e707022b47c74d9a72",
+      "localTop": "sk-code",
+      "nativeTop": "sk-doc",
+      "reason": "reviewed 2026-09-07: a documentation-consistency audit of packet docs; local follows the gold sk-code label, native reads 'documented across packet docs' as documentation work and routes sk-doc. Accepted as a divergence, mirrored in advisor-corpus-parity's accepted list",
+      "approvedAt": "2026-09-07"
+    },
+    {
+      "id": "rr-iter2-030",
+      "corpus": "labeled",
+      "prompt": "Resume the phase folder and rebuild context from implementation-summary continuity.",
+      "gold": "system-spec-kit",
+      "promptHash": "sha256:2993a157cc6bda8dd0047ea3e087ce51d537a35f37fccb66bc72875889171077",
+      "localTop": "memory:save",
+      "nativeTop": "system-spec-kit",
+      "reason": "reviewed 2026-09-07: native matches gold (system-spec-kit) after the retired /memory:save slash token in its command bridge was re-pointed to /speckit:save; the local Python scorer still carries the memory:save bridge and fires it on resume-and-rebuild-context phrasing",
+      "approvedAt": "2026-09-07"
     }
   ]
 }
