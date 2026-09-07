@@ -242,7 +242,7 @@ The index is only as good as the corpus it reads. `trigger_phrases` is an author
 
 - Distinctive user-searchable domain terms
 - Exact decisions
-- API and symbol names
+- API and symbol names, paired with a second token (`normalizeTriggerText helper`, not `normalizeTriggerText`), because a bare symbol is one token and one token only ever matches exactly
 - Failure symptoms
 - Packet-specific multi-word concepts
 
@@ -252,12 +252,17 @@ The index is only as good as the corpus it reads. `trigger_phrases` is an author
 - Stopword-only phrases
 - Whole prose sentences
 - Body-derived fallbacks
+- Single-token phrases, and phrases that are only numbers
 
 The last one is not hypothetical. The frontmatter editor inserts folder tokens and ultimately falls back to `session` and `context`, and the body extractor applies its own separate stop-word and n-gram policy. Neither should silently define index input. A phrase that arrived by fallback rather than by an author's choice is corpus pollution, and it costs precision on every query that touches it.
 
 Use one canonical spelling in emitted frontmatter. A reader may recognize the `triggerPhrases` alias for compatibility and report it, but canonical output stays `trigger_phrases`.
 
-Declare phrases of two or more tokens. A single-token phrase can only ever match by exact equality: `scorePhrase` in `lib/normalize.mjs` gives it no containment or token-overlap score, so against any longer prompt it surfaces as a zero-score `partial` candidate and never ranks.
+Declare phrases of two or more tokens. A single-token phrase can only ever match by exact equality: `scorePhrase` in `lib/normalize.mjs` gives it no containment or token-overlap score, so against any longer prompt it surfaces as a zero-score `partial` candidate and never ranks. A phrase that is only numbers names a packet id or a date, never a concept a prompt would carry.
+
+The judge in `lib/phrase-judge.mjs` is the one place these rules live: the retrofit pipeline and the `GREP_CONVENTION` validator report each rejected phrase as a warning, and the generator counts every class over the committed index in the `phraseQuality` bucket of `generation-diagnostics.json`, which `/doctor speckit-retrieval` reads as its pollution signal. A warning never deletes an author's phrase; it names what the index cannot use.
+
+The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output.
 
 ---
 
@@ -275,6 +280,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 | `.opencode/install-guides` | Yes | Yes (subset of `.opencode`) | Converged in the retrieval-coverage-alignment phase — it already carries `trigger_phrases` frontmatter and ripgrep already reached it; the trigger index missing it was a pure asymmetry |
 | Rest of `.opencode` (`commands`, `agents`, `bin`, `rules`, …) | No | Yes | Deliberate divergence. Every trigger-index root becomes part of a committed, size-tracked, fail-closed-on-malformed generated artifact that every Gate 1 lookup parses cold; the ripgrep lane carries no such artifact, so widening its reach costs nothing. The trigger index stays scoped to the `trigger_phrases`-governed corpus |
 | Repository-root `README.md` | No | No | Decided against for both lanes. It is public-facing project marketing content with no `trigger_phrases` convention, not spec or skill documentation |
+| `repo-rules` | No | No, unless passed as a root | Decided against. The nine rule documents carry the same frontmatter as spec docs, but they are loaded at Gate 5 through the trigger table in `REPO RULES.md`, not retrieved at Gate 1; indexing them would surface a rule as a context candidate. Their `trigger_phrases` still serve `sk-create-repo-rule`'s own collision check |
 | The five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`) | No | No | Decided against for both lanes. Most of their content is symlinks onto documents already indexed under `.opencode`; the handful of unique files (`SYNC.md`, `AGENTS.md`, `PLUGINS.md`) document CLI-specific sync mechanics rather than retrieval content, and walking the mirrors would mostly add duplicate-skip noise |
 
 ### Exclusion coverage
@@ -286,6 +292,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 | `.git` | Yes (never walked) | Yes (`--glob '!**/.git/**'`) | Shared |
 | `scratch` | Yes | Yes | Converged in the retrieval-coverage-alignment phase. Unconditional in both: this repository's convention treats every `scratch/` tree as temporary output cleaned before completion, and the sibling `sweep-memory-residue.mjs` tool already excluded it for the same reason |
 | `dist` | Yes | No | Deliberate divergence. The trigger index prunes compiled output so a stale copy of a source document cannot own a phrase; the ripgrep lane scans it, and a hit there is evidence like any other. |
+| `tests/fixtures` | Yes | No | The trigger index's flat spelling of the fixture rule below, kept because it matches a `tests/fixtures` tree under `specs/` too, which the scoped pattern deliberately leaves alone |
 | `research/lineages` (directly under a `research` parent) | Yes | No | Deliberate divergence. The trigger index excludes lineage transcripts to protect the curated phrase index from unauthored, transcript-derived noise (Section 8). Ripgrep is a raw evidence lane with no ranking to protect, and the corpus holds thousands of lineage documents a researcher may legitimately need to grep for a specific fact; converging would be a real coverage loss for a noise concern that does not apply to a scan |
 | `fixtures` / `__fixtures__` / `test-fixtures` / `*-fixtures` directories outside `specs/` | Yes | No | Deliberate divergence. The trigger index's exemption is scoped to outside `specs/` because hundreds of real specification documents live under packet directories named or containing `fixtures` (for example `002-contracts-and-fixtures`); replicating that exact scoping in ripgrep's flat, later-glob-wins engine risks a subtly wrong pattern that silently drops real spec content, which is a worse failure than the test-fixture noise it would remove |
 

@@ -1,0 +1,65 @@
+{
+  "topic": "ROUND TWO of the CLI-runtime-utilization audit lane on the tree AFTER remediation. Three jobs, in priority order: (1) verify every remediation row from 007-cli-package-residue-removal and 008-env-example-dead-flags landed completely and coherently in the current tree — a fix that left one consumer, one document line, one fixture or one asset behind is a finding; (2) find what round one (glm-5-3-flash-cli-runtime, 54 findings) missed, starting from its open questions: none recorded — derive them from the angles the synthesis covered in one pass, and prefer angles round one covered in one pass or not at all; (3) re-examine round one's kept rows and recorded decisions, re-listing one only with new evidence that its stated reason is wrong. Never reuse a round-one count: recount in this tree. Two of round one's findings were worktree artifacts — read the checked-in source; never run validate.sh, node tooling, or git. Write every artifact under this lineage directory only.",
+  "maxIterations": 10,
+  "minIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": false,
+  "specFolder": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "fanoutLineageArtifactDir": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/deepseek-v4-flash-cli-runtime",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-07T07:31:00.000Z",
+  "status": "initialized",
+  "executionMode": "detached-fanout",
+  "executor": {
+    "kind": "cli-pi",
+    "type": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-cli-runtime-1788759071033-5hbquq",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "artifactRootBinding": {
+    "overrideUsed": true,
+    "resolveArtifactRootCommandSkipped": true,
+    "artifactDir": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/deepseek-v4-flash-cli-runtime"
+  }
+}

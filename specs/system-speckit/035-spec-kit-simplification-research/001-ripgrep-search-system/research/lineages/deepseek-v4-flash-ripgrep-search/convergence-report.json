@@ -1,0 +1,53 @@
+{
+  "lineage": "deepseek-v4-flash-ripgrep-search",
+  "sessionId": "fanout-deepseek-v4-flash-ripgrep-search-1788758095488-2h9wqe",
+  "round": 2,
+  "parentLineage": "glm-5-3-flash-ripgrep-search",
+  "loopType": "research",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "convergenceThresholdUsedAsTelemetryOnly": true,
+  "newInfoRatioTrend": [
+    1.0,
+    0.9,
+    1.0,
+    0.85,
+    0.9,
+    0.55,
+    0.5,
+    0.45,
+    0.45,
+    0.4
+  ],
+  "p1Count": 8,
+  "p2Count": 12,
+  "p0Count": 0,
+  "verifiedPositiveCount": 11,
+  "reverifiedDecisionCount": 5,
+  "questionsAnswered": [
+    "q-verify-doc",
+    "q-verify-data",
+    "q-verify-move",
+    "q-corpus",
+    "q-enforcement",
+    "q-coverage",
+    "q-verify-round1",
+    "q-removal"
+  ],
+  "openQuestionsCarried": [
+    "repo-rules coverage: index-or-retire (N7); was repo-rules ever indexed before?",
+    "phrase-quality enforcement level: warn+diagnostics vs escalate generic-trigger to ERROR (N1-N4)",
+    "promptSetHash three-way state: manifest null / probes pinned / harness absent (REV-2)",
+    "F6.2 context.md source location in this tree (REV-3)",
+    "whole-corpus regeneration owner (round-one carry)",
+    "grep-convention migration formal acceptance (round-one carry)",
+    "fixture hash pins: exemption or auto-refresh (round-one carry)"
+  ],
+  "synthesis": "research.md",
+  "evidenceArtifacts": [
+    "generation-diagnostics.json + corpus-manifest.json + trigger-index.json (python census)",
+    "iterations/iteration-001.md..010.md"
+  ],
+  "completedAt": "2026-09-07T09:20:00Z"
+}

@@ -1,0 +1,69 @@
+{
+  "lineage": "deepseek-v4-flash-ripgrep-search",
+  "sessionId": "fanout-deepseek-v4-flash-ripgrep-search-1788758095488-2h9wqe",
+  "generatedAt": "2026-09-07T09:20:00Z",
+  "round": 2,
+  "parentLineage": "glm-5-3-flash-ripgrep-search",
+  "findings": [
+    {"id": "V1", "severity": "P1", "title": "presentation §3 free-text matchClass mapping still the old three-label vocabulary", "source": ".opencode/commands/speckit/assets/search-presentation.txt:106 (vs :60); code rg-lane.mjs:427; conventions :199", "recommendation": "replace line-106 mapping with the five labels verbatim; re-render the example row", "firstIteration": 1, "refinedIterations": [10]},
+    {"id": "V2", "severity": "P1", "title": "presentation §3 evidence-field mapping names fields the wrapper never emits", "source": "search-presentation.txt:105 vs rg-lane.mjs:69-72,391-394 (title-or-description, anchor-marker)", "recommendation": "same edit pass: document the emitted names", "firstIteration": 1, "refinedIterations": [10]},
+    {"id": "V3", "severity": "P2", "title": "retrieval README architecture diagram still draws retrofit box + 'All six scripts'", "source": "runtime/cli/retrieval/README.md:49,56 (correct at :74)", "recommendation": "delete box, five scripts, pointer to ops", "firstIteration": 1, "refinedIterations": []},
+    {"id": "V4", "severity": "P2", "title": "three different recipe counts: README 'three documented', conventions §10 'Section 2 recipes', wrapper 3 of 4", "source": "retrieval/README.md §1/§4; retrieval-conventions.md:308; rg-wrapper.mjs RECIPES", "recommendation": "align §10 wording to 'the three non-context recipes'", "firstIteration": 1, "refinedIterations": []},
+    {"id": "V8", "severity": "P2", "title": "EXCLUSIONS derivation shortlist item unexecuted; test guards drift; scoped rows untested", "source": "corpus.mjs:38-45,73,82; retrieval-coverage-parity.vitest.ts:222-229", "recommendation": "derive-or-document; keep the guard", "firstIteration": 2, "refinedIterations": []},
+    {"id": "V9", "severity": "P2", "title": "'**/tests/fixtures/**' EXCLUSIONS row redundant (FIXTURE_DIR_PATTERN covers it) and undocumented in §9", "source": "corpus.mjs:44,82,133; conventions §9 exclusion table", "recommendation": "drop the row or add a §9 sentence", "firstIteration": 2, "refinedIterations": []},
+    {"id": "V10", "severity": "P2", "title": "doctor committed-pair check covers 2 of 4 generated artifacts; AGENTS.md:477 names two", "source": "doctor-speckit-retrieval.yaml:60-63,101; generate-trigger-index.mjs:254-270; AGENTS.md:477", "recommendation": "extend to 3 JSON reads (index/manifest/diagnostics+variants); name all four", "firstIteration": 2, "refinedIterations": []},
+    {"id": "N1", "severity": "P1", "title": "352 single-token phrases (2,245 postings, 826 docs) in the committed index violate the documented two-token rule and can never rank", "source": "runtime/data/trigger-index.json census; retrieval-conventions.md:260; normalize.mjs:131-150", "recommendation": "judge negative class + diagnostics count (N4/N6 vehicle)", "firstIteration": 3, "refinedIterations": [4, 10]},
+    {"id": "N2", "severity": "P1", "title": "175 docs own a phrase from §8's own warn list; validator flags WARN only; generator has no quality gate", "source": "census vs grep-convention.mjs:149-155; conventions §8 :243-249", "recommendation": "escalate-or-count policy decision; N5/N6 make it observable", "firstIteration": 3, "refinedIterations": [4, 10]},
+    {"id": "N3", "severity": "P1", "title": "junk fragment/numeric phrases from a repo-wide frontmatter sweep are indexed and pass every existing check", "source": "index keys 'ation','tion','009'...; owner research.md:5-12 (trigger list) + '_memory: Backfilled (repo-wide frontmatter sweep)'", "recommendation": "judge gains numeric-only + path-fragment classes", "firstIteration": 3, "refinedIterations": [4]},
+    {"id": "N4", "severity": "P1", "title": "the shared judge has no class/category/severity for single-token, numeric-only or fragment phrases", "source": "grep-convention.mjs:742-781; CATEGORY_SEVERITY :88-100", "recommendation": "add single-token + numeric/path-fragment warns; retrofit and validator inherit", "firstIteration": 4, "refinedIterations": [10]},
+    {"id": "N5", "severity": "P1", "title": "doctor corpus_pollution is severity-high but screens only ≤5 packets already flagged stale — zero detection on a fresh pair", "source": "doctor-speckit-retrieval.yaml:138-139 vs :180-182", "recommendation": "full-index phrase census in one JSON read; report counts even when fresh", "firstIteration": 4, "refinedIterations": [10]},
+    {"id": "N6", "severity": "P2", "title": "generator diagnostics carry structure counts only, no phrase-quality counts", "source": "generate-trigger-index.mjs:179-186; phrase loop :130-138", "recommendation": "emit phraseQuality bucket via the shared judge", "firstIteration": 4, "refinedIterations": []},
+    {"id": "N7", "severity": "P1", "title": "164 repo-rules trigger phrases are unreachable by Gate 1; §9 root table silent on repo-rules/", "source": "repo-rules/*.md frontmatter (164 members); corpus.mjs:16; conventions §9 :264-281", "recommendation": "decision: index repo-rules OR retire frontmatter + document exclusion", "firstIteration": 5, "refinedIterations": [10]},
+    {"id": "N8", "severity": "P2", "title": "repo-rule template requires trigger phrases but collision verification is manual-only", "source": "sk-create-repo-rule/assets/repo-rule-template.md:4-8; SKILL.md:170", "recommendation": "fold into N7 decision (generator duplicate check, or drop frontmatter)", "firstIteration": 5, "refinedIterations": []},
+    {"id": "V13", "severity": "P2", "title": "phrase-variants.json still default-published, 2.87 MB, no runtime reader (carried F1.9)", "source": "generate-trigger-index.mjs:109,170-172,187-192; fixture size measured", "recommendation": "opt-in --variants + README row, or drop after archival", "firstIteration": 6, "refinedIterations": []},
+    {"id": "N9", "severity": "P2", "title": "3-char gate floor admits stopword-shape tokens ('the','and' substring flood); mirrored but unbounded", "source": "normalize.mjs:26,39,93-104; lookup-trigger-index.mjs:83-91", "recommendation": "document the effect in conventions §4/§7", "firstIteration": 7, "refinedIterations": []},
+    {"id": "N10", "severity": "P2", "title": "8-token cap drops last (often distinctive) tokens by first-seen order; discard order undocumented", "source": "normalize.mjs:96-104; answer.discardedTokens", "recommendation": "document in conventions §5 or lookup header", "firstIteration": 7, "refinedIterations": []},
+    {"id": "N11", "severity": "P2", "title": "save-path freshness is advisory wording in the command docs; the gate lives in runtime tests", "source": "commands/speckit/save.md + save-presentation.txt; tests/workflow-trigger-index-freshness.vitest.ts", "recommendation": "no change; note", "firstIteration": 8, "refinedIterations": []},
+    {"id": "V17", "severity": "P2", "title": "every Gate 1 lookup hashes 3.85 MB unless --no-index-hash (kept decision, re-measured)", "source": "lookup-trigger-index.mjs:75-79; trigger-index.json size; presentation §2 prints indexHash", "recommendation": "keep; option exists", "firstIteration": 7, "refinedIterations": []}
+  ],
+  "verifiedPositive": [
+    {"id": "V5", "what": "committed index+manifest pair equal (4baf2dbd…) — REQ-004 landed", "evidence": "python read of both files"},
+    {"id": "V6", "what": "doctor committed_pair_mismatch signal + phase_0 comparison activity both present — L1/L6 vehicle landed", "evidence": "doctor yaml:60-63,101"},
+    {"id": "V7", "what": "retrofit relocation closed every import/test/doc — zero old-path residue", "evidence": "grep sweep; ops README; lib README; two tests; grep-convention.md"},
+    {"id": "V11", "what": "generator constants ↔ committed artifact values agree (PARSER_VERSION, schemaVersion 2, normalization block)", "evidence": "read + python comparison"},
+    {"id": "V12", "what": "README §7 validation command names seven existing test files (REQ-007 shape verified; not executed)", "evidence": "tests/ directory listing"},
+    {"id": "V14", "what": "IGNORED_PATHS entry names a real existing walked file; diagnostics ignoredMalformedDocuments=1 matches", "evidence": "stat + read (array content of ignoredPathsUnmatched not printed — fidelity note in iter-006)"},
+    {"id": "V15", "what": "lookup exit-code map, --limit strict parse, --limit 0 header doc, bare -- literal mode", "evidence": "lookup-trigger-index.mjs:27,165-166,197-208,312-323"},
+    {"id": "V16", "what": "scope filter exactness (no false prefix) + trailing-slash normalization", "evidence": "lookup-trigger-index.mjs:99-105,140-145"},
+    {"id": "V18", "what": "no hook/plugin/settings executes the lookup; agent docs are the only references — L5 drop holds", "evidence": "rg census over .opencode/hooks + agents + plugins"},
+    {"id": "V19", "what": "doctor YAML wired via _routes.yaml + speckit.md + presentation — not an orphan assembly", "evidence": "rg"},
+    {"id": "V20", "what": "generator consulted by 15 documented surfaces; lookup by the expected caller set", "evidence": "rg census"}
+  ],
+  "reverifiedDecisions": [
+    {"id": "REV-1", "row": "L1 frozen-fixture pins", "verdict": "recorded decision, not incomplete fix — README §3 documents the frozen expectation"},
+    {"id": "REV-2", "row": "L9 promptSetHash slot", "verdict": "reason holds; nuance: semantic-probes.json already pins sha256(prompt-set.json) at fixture level while no harness reads it — carry 'land tiny check or delete both'"},
+    {"id": "REV-3", "row": "F6.2 context.md 3.8MB index", "verdict": "unverifiable in this tree — source file not located; parked as owner question (worktree-artifact candidate)"},
+    {"id": "REV-4", "row": "shortlist item 6 derive EXCLUSIONS", "verdict": "rationale discharged by parity test; re-scope to 'derive or document row provenance' (V9)"},
+    {"id": "REV-5", "row": "round-one rule-outs", "verdict": "all four hold; repo-rules RULE rule-out does not extend to repo-rules DOCUMENTS (N7 is new, not contradiction)"}
+  ],
+  "ruledOut": [
+    {"approach": "re-list L5 with misleading-table framing", "reason": "column titled Manual fallback; drop reason holds", "evidence": "hook-system.md:89-93"},
+    {"approach": "re-list L9 with remove-the-slot framing", "reason": "removal still changes every manifest hash for no reader; nuance only", "evidence": "showpin + test :414"},
+    {"approach": "generator fail-closed to phrase quality", "reason": "policy call with 826-doc blast radius; diagnostics+warning first", "evidence": "iter-004"},
+    {"approach": "digits in multi-token phrases are corruption", "reason": "documented normalization of dates/versions", "evidence": "normalize.mjs:98-104"},
+    {"approach": "re-claim determinism as executed evidence", "reason": "cannot execute; code-by-construction + unit test only", "evidence": "trigger-index.vitest.ts:386-395"}
+  ],
+  "sources": [
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/{generate-trigger-index,lookup-trigger-index,rg-wrapper,measure-cold-lookup,sweep-memory-residue}.mjs",
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/{corpus,normalize,frontmatter,grep-convention,rg-lane,artifact}.mjs",
+    ".opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md, lib/README.md, ops/README.md, fixtures/*",
+    ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json (python census)",
+    ".opencode/commands/speckit/{search.md,assets/search-presentation.txt}",
+    ".opencode/commands/doctor/{speckit.md,_routes.yaml,assets/doctor-speckit-retrieval.yaml,assets/doctor-speckit-presentation.txt}",
+    ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+    ".opencode/skills/system-spec-kit/references/config/hook-system.md",
+    ".opencode/skills/sk-doc/sk-create-repo-rule/{SKILL.md,assets/repo-rule-template.md}",
+    ".opencode/skills/system-spec-kit/runtime/cli/tests/{trigger-index,retrieval-coverage-parity,retrofit-convention-pipeline,workflow-trigger-index-freshness}.vitest.ts",
+    "AGENTS.md (Gate 1 :83, tools :330, quick-reference :463-477), CLAUDE.md symlink, REPO RULES.md, repo-rules/*.md frontmatter"
+  ]
+}

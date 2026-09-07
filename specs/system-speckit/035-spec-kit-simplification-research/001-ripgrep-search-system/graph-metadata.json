@@ -50,7 +50,8 @@
       "research/lineages/glm-5-3-flash-ripgrep-search/research.md",
       "research/confirmed-findings.md",
       ".opencode/commands/speckit/search.md",
-      "references/retrieval/retrieval-conventions.md"
+      "references/retrieval/retrieval-conventions.md",
+      "research/lineages/deepseek-v4-flash-ripgrep-search/research.md"
     ],
     "entities": [
       {
@@ -200,7 +201,7 @@
     ],
     "causal_summary": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited together",
     "created_at": "2026-09-06T14:29:30Z",
-    "last_save_at": "2026-09-06T15:30:20.379Z",
+    "last_save_at": "2026-09-07T06:03:20.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +212,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69ab83f1bd41008924101a9d301278428ea4996eefd4c1eac535514256c52ed6",
+    "source_fingerprint": "sha256:7967ce1675febb7e1afe4363b90601710d435e6e7cfae7529cea3968dfb43a24",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "637d80dbe0dbfbbece1c29a59839a5e0c24982eea4daaf024b96db89920cf9be",
+      "spec.md": "47d643507ee636d309c50ae567c667bd65f966bfeba484d6325633c63e3cd73f",
       "plan.md": "4fa92eb8d60cb5b53cfd6ca57a695bcebfa9bbd4ad60dc45641b5e35000f4923",
-      "tasks.md": "73d32d07ac93bcadf8b6a7c7498fb6a0608a5a3bc0af37d71f35250251c14f2d",
+      "tasks.md": "b684702ecdbdd251f4f252e641684056d12c4e1fbc36d287b6885745b105e74a",
       "implementation-summary.md": "df8a8d972a9427d6e89168af3e844bfe13dc18c664b02f4ddb76010947587672"
     },
     "last_active_at": null

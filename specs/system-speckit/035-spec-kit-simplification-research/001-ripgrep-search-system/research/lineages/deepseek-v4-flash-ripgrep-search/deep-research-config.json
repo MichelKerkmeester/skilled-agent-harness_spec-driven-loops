@@ -1,0 +1,76 @@
+{
+  "topic": "ROUND TWO skeptical retrieval audit of system-spec-kit's lexical retrieval system: verify every remediation from 006-retrieval-drift-remediation landed completely and coherently in the current tree, find what round one missed (preferring angles covered in one pass or not at all), and re-examine round-one kept rows only with new evidence. One cited defect-and-simplification ledger; no edits; no repository tooling (no validate.sh, no node, no git); checked-in source only.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system",
+  "createdAt": "2026-09-07T07:20:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-ripgrep-search-1788758095488-2h9wqe",
+    "parentSessionId": "fanout-glm-5-3-flash-ripgrep-search-1788705376825-f0ulmm",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "fanout": {
+    "detached": true,
+    "inlineExecutor": true,
+    "artifactDirOverride": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/deepseek-v4-flash-ripgrep-search",
+    "note": "Nested CLI/agent dispatch is forbidden for this lineage; this process runs every iteration inline. Gateway/append scripts write outside the lineage write surface, so state records are written directly into the lineage dir. Repository tooling (validate.sh, node, git) is never executed; evidence is read-only inspection plus python json census of the committed artifacts."
+  }
+}

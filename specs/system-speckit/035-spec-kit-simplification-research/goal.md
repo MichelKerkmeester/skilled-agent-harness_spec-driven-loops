@@ -87,6 +87,7 @@ phase and binds as if written here.
 | 010-template-contract-alignment | `010-template-contract-alignment/goal.md` |
 | 011-command-surface-contract-realignment | `011-command-surface-contract-realignment/goal.md` |
 | 012-pre-existing-test-repair | `012-pre-existing-test-repair/goal.md` |
+| 013-trigger-phrase-quality-enforcement | `013-trigger-phrase-quality-enforcement/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -153,4 +154,5 @@ and findings belong here.
 | Round two opened; D1 and the objective amended | The operator asked for ten more iterations per lane on DeepSeek V4 Flash max; the lanes run sequentially in worktree 046, fast-forwarded to the remediated tree, as a second lineage beside the GLM one; criteria reopened until the round closes. |
 | Round one researched a stale tree | The runner's fast-forward before each lane failed silently on untracked research copies, so lanes 002 to 005 read the tree at the program's start; the census in the main checkout absorbed the difference, and round two starts from the current head. |
 | D1 corrected to DevPass | opencode-go returned a monthly usage limit and Devin its daily quota; the operator chose DevPass on cli-pi, which needed the fan-out route flip in `specs/system-deep-loop/044-cli-pi-devpass-deepseek-route`. |
+| Child 013 appended to the binding | Lane 001 round two censused; durable slice changed, parent resent in chat. |
 <!-- /ANCHOR:log -->

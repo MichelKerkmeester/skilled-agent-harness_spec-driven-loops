@@ -1,0 +1,374 @@
+{
+  "sessionId": "fanout-deepseek-v4-flash-cli-runtime-1788759071033-5hbquq",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopPolicy": "max-iterations",
+    "stopReason": "maxIterationsReached",
+    "iterationsCompleted": 10,
+    "recordedAt": "2026-09-07T11:15:00.000Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-remediation-removal-census",
+      "inboxId": null,
+      "text": "Did every 007 removal land, including references (consumers, document lines, fixtures), with zero dangling references to a removed name in the checked-in tree?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-2-remediation-env-census",
+      "inboxId": null,
+      "text": "Did every 008 change land: the thirteen env-variable removals, the ENV-REFERENCE rows, the config.ts batch constants, the deleted skill-level template, and the drift-test path fix?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-3-remediation-fix-rows",
+      "inboxId": null,
+      "text": "Did every 007 fix row land: aligned self-descriptions, validation story, post_save_write rename, enforced phase-child regex at every site, sibling-lane rule headers, ops README, spec-kit-check workflow, deep-loop playbook repoint?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-4-round-one-misses",
+      "inboxId": null,
+      "text": "What did round one miss \u2014 which package corners carry no per-file caller verdict, and which subsystems did it cover in one pass?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-5-live-registry-completeness",
+      "inboxId": null,
+      "text": "Is lib/validator-registry.json now the only registry, and is it complete: every dispatched rule registered, every registered rule dispatched, every rules/check-*.sh reached, no dangling script paths?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-6-zero-callers-current-tree",
+      "inboxId": null,
+      "text": "Which entries in the current tree have zero callers across commands, bin, hooks, plugins, workflows, and sibling skills \u2014 none-found distinguished from caller-not-checked?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-7-sync-and-gate-invocation",
+      "inboxId": null,
+      "text": "Do codex/, pi/, runtime-mirrors/ sync scripts and the evals/ check gate keep the same invocation story after the remediation, and is the new spec-kit-check workflow internally coherent?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-8-kept-decisions-recheck",
+      "inboxId": null,
+      "text": "Do round one's documented kept decisions still hold on this tree: sweep-track-roots as documented tool, save-path phase-parent copy, the two placeholder checks, the two comment-hygiene lanes, js-yaml importer count, the retrieval acceptance trio, the four-sweeps non-abstraction, the resource-map extractor deferral?",
+      "origin": "charter",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-iter001-001",
+      "iteration": 1,
+      "severity": "P1",
+      "recommendation": "fix",
+      "label": "references/config/environment-variables.md:178 documents removed SPECKIT_ROLLOUT_PERCENT read by getRolloutPercent() which exists nowhere in code; the 008 remediation removed the row from runtime/ENV-REFERENCE.md but left this second env-variable document behind.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/references/config/environment-variables.md:178"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-002",
+      "iteration": 1,
+      "severity": "P2",
+      "recommendation": "fix",
+      "label": "Three test-fixture implementation-summaries (002/003/004:119) advertise SPECKIT_ADAPTIVE_FUSION, a variable with no reader removed from .env.example by 008.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/implementation-summary.md:119",
+        ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/implementation-summary.md:119",
+        ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/implementation-summary.md:119"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter001-003",
+      "iteration": 1,
+      "severity": "P2",
+      "recommendation": "fix",
+      "label": "ARCHITECTURE.md:77 tree tag still says runtime/cli = generation, validation, indexing, evals while the three aligned self-descriptions (package.json:4, README:17, ARCHITECTURE:23) no longer mention indexing; nothing indexes.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:77"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter002-001",
+      "iteration": 2,
+      "severity": "P1",
+      "recommendation": "fix",
+      "label": "Two documents still document the looser phase-parent regex ^[0-9]{3}-[a-z0-9-]+$ after 007 claimed every document carries the enforced ^[0-9]{3}-[a-z0-9][a-z0-9-]*$: references/validation/template-compliance-contract.md:236 and runtime/lib/spec/README.md:16 (the engine's own module README, describing the is_phase_parent rule that enforces the stricter form); neither file contains the enforced form at all.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/references/validation/template-compliance-contract.md:236",
+        ".opencode/skills/system-spec-kit/runtime/lib/spec/README.md:16"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-001",
+      "iteration": 3,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "rules/check-doc-pointers.sh is dead: not in lib/validator-registry.json (grep 0), zero occurrences of its name anywhere in .opencode/.github content, not referenced by any check, hook, plugin, workflow or doc row \u2014 the only rules/ check script in that state; round one's script-to-registry check direction missed it.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/rules/check-doc-pointers.sh:3-8",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter003-002",
+      "iteration": 3,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "cli/check-links.sh is a compatibility shim (line 6: preserve existing call paths) but the only real caller post-edit-quality/lib/post-edit-router.cjs:40 now execs rules/check-links.sh directly; the shim has zero executable callers and only doc citations (spec-validation-rule-engine.md:79 calls it a standalone checker).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/check-links.sh:6,11",
+        ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs:40",
+        ".opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md:79"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-001",
+      "iteration": 4,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "utils/workspace-identity.ts (218L, 5 exports) has zero importers production or test (python census); reachable only via the partial barrel whose sole production consumer imports two unrelated names; the only usage site is tests/workspace-identity.vitest.ts:13. Dead memory-pipeline survivor.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/utils/workspace-identity.ts:139-190",
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts:13",
+        ".opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts:19"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-002",
+      "iteration": 4,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "utils/validation-utils.ts (83L) validates RENDERED output (leaked {{...}} mustache, partial placeholders, open/close block balance, ANCHOR pairs) \u2014 the removed renderers/ module's validation, orphaned by 007; zero production importers, only tests/test-scripts-modules.js:177-186 exercises it.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/utils/validation-utils.ts:12-60",
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js:177-186",
+        ".opencode/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:12"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter004-003",
+      "iteration": 4,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "utils/phase-classifier.ts is a pure re-export shim of ../lib/phase-classifier.js with zero importers (production or test); all live consumers import lib/phase-classifier directly (extractors/conversation-extractor.ts, utils/tool-detection.ts).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/utils/phase-classifier.ts",
+        ".opencode/skills/system-spec-kit/runtime/cli/extractors/conversation-extractor.ts"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter005-001",
+      "iteration": 5,
+      "severity": "P2",
+      "recommendation": "fix",
+      "label": "spec-kit-check.yml runs only the cli vitest project (141 files) plus check/typecheck/shared; the cli legacy lanes (test:legacy), the validation lanes (test:validation system+shell suites over the 39-rule dispatch engine) and the root vitest project (runtime/tests 88 files) remain outside CI, while the 007 summary claims a workflow running 'the test suites'.",
+      "sources": [
+        ".github/workflows/spec-kit-check.yml",
+        ".opencode/skills/system-spec-kit/runtime/cli/package.json",
+        ".opencode/skills/system-spec-kit/vitest.config.ts"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-001",
+      "iteration": 6,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "core/alignment-validator.ts (227L, 'Extracted from workflow.ts') has zero production importers; its only importer tests/test-naming-migration.js runs under no npm lane (not vitest include glob, not test:legacy/test:validation). The live same-name validator is spec-folder/alignment-validator.ts (712L, folder-detector.ts:28). Round one's 11-exhibit duplication list missed the pair.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/core/alignment-validator.ts:3-7",
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/test-naming-migration.js",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts:8"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-002",
+      "iteration": 6,
+      "severity": "P2",
+      "recommendation": "document",
+      "label": "Round one's merge row 10 (resource-map extractor unwired, wiring waits for lane 004) is superseded: the current tree wires it end to end \u2014 deep-research-auto.yaml:1966,1972 and deep-review-auto.yaml:2145 invoke reduce-state.cjs --emit-resource-map; both reducers import emitResourceMap from shared/synthesis/resource-map.cjs (runtime:13, deep-research:14), which re-exports cli/resource-map/extract-from-evidence.cjs:18.",
+      "sources": [
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:1966,1972",
+        ".opencode/commands/deep/assets/deep-review-auto.yaml:2145",
+        ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:13",
+        ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs:18"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter006-003",
+      "iteration": 6,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "observability/live-session-wrapper.ts has zero importers, zero tests, one reference (its own README:29); the observability measurement pipeline's committed outputs are consumed only by retrieval fixtures (corpus-manifest.json:7954, generation-diagnostics.json:37503) and the three runtime/tests smart-router vitest suites \u2014 resolving round one's residual ('results' ultimate consumer: caller-not-verified') as acceptance evidence, not a live mechanism.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/observability/live-session-wrapper.ts",
+        ".opencode/skills/system-spec-kit/runtime/cli/observability/README.md:29",
+        ".opencode/skills/system-spec-kit/runtime/tests/smart-router-analyze.vitest.ts:14"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-001",
+      "iteration": 7,
+      "severity": "P1",
+      "recommendation": "fix",
+      "label": "pi/sync-agents-pi.cjs and pi/sync-prompts-pi.cjs have zero executable callers: not in commands/doctor/_routes.yaml runtime-mirrors (six invocations, no pi/), not in spec-kit-check.yml, only cli-pi skill doc references; .pi mirrors drift is CI- and doctor-invisible. Round one's 'codex/, pi/ (9 productive files + doctor wiring)' does not reproduce.",
+      "sources": [
+        ".opencode/commands/doctor/_routes.yaml:167-186",
+        ".opencode/skills/system-spec-kit/runtime/cli/pi/README.md",
+        ".opencode/skills/cli-external-orchestration/cli-pi/"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-002",
+      "iteration": 7,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "optimizer/ (promote, replay-corpus, replay-runner, rubric, search .cjs + manifest) has zero production exec callers in the current tree \u2014 no command, no agent definition (.opencode/agents + /modes: zero optimizer mentions; round one's '3 agent-definition callers' is absent), no workflow; only the five cli vitest suites consume it.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/optimizer/",
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/optimizer-promote.vitest.ts"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-003",
+      "iteration": 7,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "graph/migrate-generated-json.ts is a dead one-time migration: zero production importers (only tests/migrate-generated-json.vitest.ts:14); core/spec-root-registry.ts:105 is a ledger string; README + graph/README rows only \u2014 the same class as 007's removed migrate-deep-research-paths.ts.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/graph/migrate-generated-json.ts",
+        ".opencode/skills/system-spec-kit/runtime/cli/tests/migrate-generated-json.vitest.ts:14",
+        ".opencode/skills/system-spec-kit/runtime/cli/core/spec-root-registry.ts:105"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter007-004",
+      "iteration": 7,
+      "severity": "P2",
+      "recommendation": "remove",
+      "label": "codex/generate-command-routers.cjs has no exec caller \u2014 verified against commands/scripts/validate-command-references.cjs (grep 0; round one's 'filename-verified' premise does not hold); references are sk-doc command-contract.json + sk-create-command SKILL.md + codex/README + a fixture.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs",
+        ".opencode/commands/scripts/validate-command-references.cjs"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-001",
+      "iteration": 9,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "lib/cli-capture-shared.ts: zero references repo-wide (single README row); its own header says it was extracted from capture modules (claude-code/opencode-cli/copilot-cli) that 'can be updated to import from here in a follow-up pass' \u2014 the modules do not exist in the current tree, so the extraction has no subject.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/cli-capture-shared.ts:3-11",
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/README.md"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-002",
+      "iteration": 9,
+      "severity": "P1",
+      "recommendation": "remove",
+      "label": "lib/validator-registry.ts (53L: loadValidatorRegistry/normalizeRuleId/findValidatorRule + types) has zero importers repo-wide; the engine reads validator-registry.json directly (runtime/lib/validation/orchestrator.ts:76,230) and the doc-count test reads the JSON via fs; the TS loader is dead.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.ts:27,39,44",
+        ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:76"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter009-003",
+      "iteration": 9,
+      "severity": "P2",
+      "recommendation": "fix",
+      "label": "retrieval/lib/frontmatter.mjs:6-8 cites 'scripts/lib/frontmatter-migration.ts' in its design reason; the module exists at runtime/cli/lib/frontmatter-migration.ts \u2014 the scripts/ prefix is stale since the CLI moved.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/frontmatter.mjs:6-8"
+      ],
+      "trust": "confirmed"
+    },
+    {
+      "id": "f-iter010-001",
+      "iteration": 10,
+      "severity": "P1",
+      "recommendation": "fix",
+      "label": "Remediation-verification verdict: 007 removals and 008 template/ENV/config/drift changes complete; four document/fixture lines left behind \u2014 environment-variables.md:178 (removed SPECKIT_ROLLOUT_PERCENT + dead getRolloutPercent), three test-fixture SPECKIT_ADAPTIVE_FUSION lines, ARCHITECTURE.md:77 stale indexing tag, and two looser-regex documents (template-compliance-contract.md:236, runtime/lib/spec/README.md:16).",
+      "sources": [
+        ".opencode/skills/system-spec-kit/references/config/environment-variables.md:178",
+        ".opencode/skills/system-spec-kit/ARCHITECTURE.md:77",
+        ".opencode/skills/system-spec-kit/references/validation/template-compliance-contract.md:236"
+      ],
+      "trust": "confirmed"
+    }
+  ]
+}

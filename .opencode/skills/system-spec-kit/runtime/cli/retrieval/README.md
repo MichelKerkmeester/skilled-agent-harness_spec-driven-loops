@@ -18,8 +18,8 @@ trigger_phrases:
 Current state:
 
 - `generate-trigger-index.mjs` publishes the committed index at `../runtime/data/trigger-index.json` from the `trigger_phrases` frontmatter across `specs/`, `.opencode/skills/` and `.opencode/install-guides/`.
-- `lookup-trigger-index.mjs` is the read side: it scores a prompt against the committed index using the same normalization, tokenization and match-class ranking the retired substring trigger lane used, so its recorded results still diff against this lookup.
-- `rg-wrapper.mjs` runs the three documented ripgrep recipes (structured, path-only, count) behind one front door. Its glob set now excludes `scratch/` alongside `z_archive/`, `node_modules/` and `.git/` - see `references/retrieval/retrieval-conventions.md` Section 9 for the full root and exclusion coverage table shared with `lib/corpus.mjs`.
+- `lookup-trigger-index.mjs` is the read side: it scores a prompt against the committed index using the same normalization, tokenization and match-class ranking the retired substring trigger lane used, so its recorded results still diff against this lookup. It drops query tokens shorter than three characters and keeps the first eight distinct tokens, reporting both discards.
+- `rg-wrapper.mjs` runs three of the four documented ripgrep recipes (structured, path-only, count) behind one front door; the context-and-anchor recipe of Section 2.4 is composed by hand. Its glob set now excludes `scratch/` alongside `z_archive/`, `node_modules/` and `.git/` - see `references/retrieval/retrieval-conventions.md` Section 9 for the full root and exclusion coverage table shared with `lib/corpus.mjs`.
 - `sweep-memory-residue.mjs` answers one question with an exit code: does any live consumer of the retired memory MCP surface still exist outside its own subsystem tree.
 - All scripts are plain ESM `.mjs`, run directly with `node` (no build step), and read fixtures from `fixtures/` for tests and frozen baselines.
 
@@ -45,15 +45,15 @@ Current state:
 │ (3 recipes)      │      │ (subprocess)  │
 └──────────────────┘      └───────────────┘
 
-┌────────────────────────┐      ┌─────────────────────────┐
-│ retrofit-convention.mjs│ ───▶ │ lib/grep-convention.mjs │ (pure classification/diff logic)
-└────────────────────────┘      └─────────────────────────┘
+┌───────────────────────────┐      ┌─────────────────────────┐
+│ ../ops/retrofit-convention│ ───▶ │ lib/grep-convention.mjs │ (classification/diff logic; the phrase judge lives in lib/phrase-judge.mjs)
+└───────────────────────────┘      └─────────────────────────┘
 
 ┌───────────────────────────┐
 │ sweep-memory-residue.mjs  │ ──▶ ripgrep over the repo, allowlist-filtered
 └───────────────────────────┘
 
-All six scripts import shared primitives from lib/ (see lib/README.md).
+All five scripts here import shared primitives from lib/ (see lib/README.md).
 ```
 
 ---
@@ -65,7 +65,7 @@ retrieval/
 +-- generate-trigger-index.mjs    # Publishes the committed trigger index from corpus frontmatter
 +-- lookup-trigger-index.mjs      # Scores a prompt against the committed index
 +-- measure-cold-lookup.mjs       # Times cold-start lookup latency across fresh Node processes
-+-- rg-wrapper.mjs                # One front door for the three documented ripgrep recipes
++-- rg-wrapper.mjs                # One front door for three of the four documented ripgrep recipes
 +-- sweep-memory-residue.mjs      # Exit-code check for live consumers of the retired memory MCP surface
 +-- lib/                          # Shared, filesystem-free primitives (see lib/README.md)
 `-- fixtures/                     # Frozen manifests, baselines and grep-convention test documents
@@ -83,7 +83,7 @@ Five fixtures were captured once, when the lexical lanes were accepted, and have
 
 | File | Responsibility |
 |---|---|
-| `generate-trigger-index.mjs` | Walks the corpus, reads `trigger_phrases` frontmatter, and publishes one deterministic index plus a manifest and diagnostics. |
+| `generate-trigger-index.mjs` | Walks the corpus, reads `trigger_phrases` frontmatter, and publishes one deterministic index plus a manifest and diagnostics; the diagnostics carry a `phraseQuality` bucket that counts every phrase the convention rejects, by class, with the documents that own them. |
 | `lookup-trigger-index.mjs` | Loads the committed index and ranks candidates for one prompt, optionally scoped to a spec folder. |
 | `measure-cold-lookup.mjs` | Spawns one fresh Node process per sample to measure real cold-start lookup latency against a budget. Acceptance-only: nothing runs it on a schedule, and `/doctor speckit-retrieval` offers it as an optional check that writes its report to packet scratch, never to the committed fixture. |
 | `rg-wrapper.mjs` | Builds and runs the structured, path-only and count ripgrep recipes exactly as the convention document specifies, applying the caller-side rank tuple to structured results. |
