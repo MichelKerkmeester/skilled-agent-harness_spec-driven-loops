@@ -73,6 +73,7 @@ Probed at advisor generation 714-716. `Winner` is the hub the advisor actually r
 | 18 | `decision branch` | sk-design | sk-git 0.945 | **sk-design yields.** "Branch" reads as version control first. Rephrase sk-design's intent if it needs one. |
 | 19 | `dom inspect` | mcp-tooling | nothing above bar | **Rephrase.** Two words, and it returned an empty response on first probe and a valid one on retry, so it is also intermittently a probe failure. |
 | 20 | `show the full` | sk-doc | nothing above bar | **Drop the fragment.** It is a prefix of "show the full sk-doc toolkit", not a phrase. Declare the complete form instead. |
+| 21 | `obsidian plugin` | sk-code | mcp-tooling 0.9187 vs 0.9164 | **Operator call, and new.** It surfaced at generation 734, not in the original twenty. sk-code declares it exactly plus three narrower variants; mcp-tooling declares only `obsidian`, `obsidian vault` and `obsidian mcp` and wins on bare-token overlap. Both hubs genuinely own an Obsidian surface (`sk-code-obsidian` builds a plugin, `mcp-obsidian` drives the vault). |
 <!-- /ANCHOR:table -->
 
 ---
@@ -95,7 +96,14 @@ Before changing the scorer, it is worth asking whether a contested phrase is sim
 underspecified.
 
 **Not resolvable by vocabulary: 8.** Rows 1-7 plus row 12, which was written as a yield
-and turned out not to be one. Rows 8 and 11 still need an operator ruling.
+and turned out not to be one. Rows 8, 11 and 21 need an operator ruling.
+
+**A margin this thin is not a decision, it is noise.** Row 21 separates two hubs by
+0.0023 and it moved on its own between two scans, while another session was committing
+documentation elsewhere in the fleet. The advisor harvests doc frontmatter, so a
+vocabulary change anywhere can flip a phrase decided this narrowly. Any row whose margin
+is in the third decimal should be read as unowned rather than owned, whichever way it
+happens to fall on the day it is measured.
 
 So the plan's step 2 target, "every hub prints a literal `RESULT: PASSED`", is **not
 reachable through steps 1 and 2 alone.** Vocabulary editing closed 10 of the 20, counting
