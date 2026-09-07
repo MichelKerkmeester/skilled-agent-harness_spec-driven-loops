@@ -1,0 +1,113 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: ROUTER REACH WORKFLOW (INTERACTIVE READ-ONLY MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator running the router-reach diagnostic in interactive mode
+purpose: Read-only proof that every multi-word phrase a hub's ROUTER.md advertises actually reaches that hub, asked of the live advisor rather than inferred from a diff
+action: Run ci-router-vocabulary-reach.cjs -> present the per-hub reach report -> final status
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_only_diagnostic
+  compliance: MANDATORY
+  execution: interactive
+  approvals: none
+  tracking: diagnostic_report_and_exit_code
+  validation: script_exit_code
+  read_only: true
+
+# ─────────────────────────────────────────────────────────────────
+# REACH DIAGNOSTIC INVARIANT
+# ─────────────────────────────────────────────────────────────────
+router_reach_invariant: |
+  Routing runs in two stages. The advisor scores a hub's graph-metadata.json intent_signals
+  to choose a hub; that hub's ROUTER.md then chooses a mode inside it. A phrase the router
+  advertises that the advisor has never heard of is a capability the fleet has and cannot be
+  asked for, and no diff of the two vocabularies can tell that apart from the many
+  differences that are deliberate. Only the live advisor settles it.
+
+  The check probes every multi-word declared phrase and sorts each outcome:
+    - WRONG-HUB:    another hub ranked first and the declaring hub never surfaced.
+    - OUTRANKED:    the declaring hub surfaced but lost the top slot. Presence above the
+                    confidence bar is not routing, so this fails like a wrong hub.
+    - NO-REACH:     nothing cleared the bar. Usually length, which vocabulary cannot fix.
+                    Reported, never failed.
+    - ALLOWED:      a known ownership dispute listed in router-reach-allowlist.json, which
+                    pins the winning hub as well as the phrase. If the winner changes, the
+                    entry stops matching and the phrase fails again.
+    - PROBE-ERROR:  the advisor could not be asked. This FAILS. A probe that never ran once
+                    printed a clean pass over an advisor that was not there, and single
+                    words are skipped precisely so real cases are not buried.
+
+  Single-word declarations are skipped by design. Sampling is refused under CI, because a
+  truncated inventory proves only what it sampled and that is how phrases stayed broken
+  across green runs.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  contract: "local command design contract"
+  diagnostic_script: ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+  allowlist: ".opencode/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json"
+  stage_one_vocabulary: ".opencode/skills/*/graph-metadata.json"
+  stage_two_vocabulary: ".opencode/skills/*/ROUTER.md"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+  hub: "optional single hub id; omitted means the whole fleet"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  validation:
+    execution_mode_must_be: INTERACTIVE
+    hub_must_be: "a directory under .opencode/skills/ carrying both ROUTER.md and mode-registry.json, or unset"
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This workflow is read-only. It probes the advisor and prints the result. It must not edit a router, add or remove a signal, rebuild the advisor, or amend the allowlist to make a failing phrase pass."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_0_diagnose:
+    purpose: "Probe every declared phrase against the live advisor."
+    activities:
+      - "Execute upstream_assets.diagnostic_script via Bash, adding --hub when the operator named one."
+      - "Capture stdout and exit code. The run probes concurrently and takes minutes, not seconds."
+    outputs:
+      - reach_report
+      - advisor_generation
+      - exit_code
+
+  phase_1_report:
+    purpose: "Present the reach report and the final status."
+    activities:
+      - "Print the per-hub counts and every failing phrase with the hub that took it instead."
+      - "State the advisor generation the numbers were taken at, since a rebuild changes them."
+      - "Require the literal RESULT line. A run that printed no rule output has failed, not passed."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT FORMAT
+# ─────────────────────────────────────────────────────────────────
+output_format: |
+  RESULT: PASSED with exit 0 when every declared phrase reaches its hub or is an allowed
+  dispute. RESULT: FAILED with exit 1 on any wrong-hub, outranked or probe-error row.
+  Exit 2 means the run was refused rather than failed, which today means a sampled
+  inventory under CI.
+
+  A no-reach row does not fail. It is reported for a human to judge, because it is usually
+  a phrase too short to clear the bar at all and no amount of vocabulary changes that.

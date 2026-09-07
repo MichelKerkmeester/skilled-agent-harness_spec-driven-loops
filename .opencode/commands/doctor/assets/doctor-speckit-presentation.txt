@@ -37,6 +37,7 @@ Accepted answers:
 | `10` | target = `skill-graph-freshness` |
 | `11` | target = `fable-mode` |
 | `12` | target = `runtime-mirrors` |
+| `13` | target = `router-reach` |
 | `0` | Abort `/doctor`; display `Switch to /doctor:update for full sweep. Exiting /doctor.` |
 | `H` | Show the help block, then ask the startup prompt again |
 | `X`, empty, `cancel` | `STATUS=CANCEL` |
@@ -73,7 +74,7 @@ Press 1-11, 0, or X.
 
 ```text
 Unknown target: [target]
-Valid targets: speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
+Valid targets: speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors, router-reach
 Try: /doctor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -99,6 +100,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `parent-skill` | `doctor-parent-skill.yaml` | read-only | Audit parent skill structure, mode registry, and graph metadata |
 | `skill-graph-freshness` | `doctor-skill-graph-freshness.yaml` | read-only | Diagnose skill-graph representation drift across compiled, sqlite, and disk sources |
 | `fable-mode` | `doctor-fable-mode.yaml` | read-only | Audit behavioral metrics for fable-mode review quality |
+| `router-reach` | `doctor-router-reach.yaml` | read-only | Ask the live advisor whether every phrase a hub's router advertises actually reaches it |
 | `runtime-mirrors` | `doctor-runtime-mirrors.yaml` | read-only | Detect drift in the agent, command, prompt and hook mirrors the runtime dirs derive from .opencode |
 
 ## 3. Setup Prompts
