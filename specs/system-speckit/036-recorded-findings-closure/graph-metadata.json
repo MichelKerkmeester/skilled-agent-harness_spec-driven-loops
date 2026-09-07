@@ -149,40 +149,40 @@
         "source": "derived"
       },
       {
-        "name": "The Level",
+        "name": "Kit Check",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
+        "name": "Command Tree Parity",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "every",
-        "kind": "key_phrase",
+        "name": "Routing Registry Drift Guard",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "zero",
-        "kind": "key_phrase",
+        "name": "The Level",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit simplification program ran three research rounds over five lanes and remediated every confirmed finding in seventeen children, but it closed some rows as recorded decisions rather than fixes: duplicated hook adapter text, multiplexed rule scripts, playbook entries without provenance, 27 hand-written attestation stamps, 1,240 titles carrying template provenance, six lifecycle command assets that repeat each other, a links scan that is a tool rather than a rule, packet types the scaffolder cannot create, seventeen browse-only reference files, manifest fields nothing reads, the",
     "created_at": "2026-09-07T15:05:40Z",
-    "last_save_at": "2026-09-07T18:39:38.646Z",
+    "last_save_at": "2026-09-07T19:09:44.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7c27675f4b4be2fd81e9009047ff1ea5541a9dc56db77b2613299cf6d47fe35e",
+    "source_fingerprint": "sha256:b75b42d6ba2ea5e92eba35dc440ac7521cfc90da11edec4055747ccebff16191",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e13984b9b419efe59eefb9bee644ded7920a5023e30165e187e078d277baee8"
