@@ -59,7 +59,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Documentation levels** | four levels matched to task complexity, from the Level 1 baseline up to the Level 3+ governance set |
 | **Phase parents** | lean parent folders with the control-file trio and named child phase folders |
 | **Packet-local changelogs** | `changelog/` history written beside packet roots and direct child phases at closeout |
-| **Validation** | the 39-rule registry with four strict-only rules gated behind `--strict` |
+| **Validation** | the 39-rule registry with three strict-only rules gated behind `--strict` |
 
 ### Continuity and Retrieval
 

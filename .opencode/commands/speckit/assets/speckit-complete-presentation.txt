@@ -102,7 +102,7 @@ Spec: [spec_path]
 Mode: [AUTONOMOUS|INTERACTIVE]
 Step: [current] / 14 - [step name]
 Optional flows: research=[on|off] context=[on|off] phases=[on|off]
-Planning artifacts: spec.md [status] | plan.md [status] | tasks.md [status] | checklist.md [status]
+Planning artifacts: spec.md [status] | plan.md [status] | tasks.md [status] | acceptance-criteria.md [status]
 Implementation: tasks [done]/[total] | P0 [status] | P1 [status]
 Validation: [not-run|pass|fail]
 Context refresh: [pending|complete]
@@ -151,7 +151,7 @@ End workflow or refresh continuity first? [done|memory-save]
 
 ```text
 All 14 steps executed successfully.
-Artifacts: spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, nested changelog when applicable, graph-metadata.json refreshed, continuity refreshed in canonical spec docs
+Artifacts: spec.md, plan.md, tasks.md, acceptance-criteria.md when Level 2+, implementation-summary.md, nested changelog when applicable, graph-metadata.json refreshed, continuity refreshed in canonical spec docs
 STATUS=OK PATH=[spec-folder-path]
 ```
 

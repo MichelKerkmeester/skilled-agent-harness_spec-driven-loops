@@ -22,6 +22,7 @@ Current state:
 - Replay is deterministic: the same corpus entry plus the same config always produces the same result.
 - Search samples manifest-bounded candidates with a seeded RNG and records every candidate in an audit trail.
 - Promotion is advisory-only and never mutates production config. Production promotion stays blocked until replay fixtures and behavioral suites exist.
+- Adoption to date: `audit/promotion-reports/` holds no report and no config has been promoted from a replay run. The manifest is still read outside this directory: the deep-research and deep-review configs point at it for their optimizer-managed fields and the deep-loop anti-convergence test reads it, so the manifest stays a live contract while the replay scripts stay advisory.
 
 ---
 

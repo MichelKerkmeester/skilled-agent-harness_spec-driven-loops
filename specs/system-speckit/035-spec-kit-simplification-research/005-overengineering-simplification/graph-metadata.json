@@ -39,14 +39,16 @@
       "remediation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/lineages/glm-5-3-flash-overengineering/research.md",
+      "research/confirmed-findings.md"
     ],
     "entities": [
       {
@@ -86,13 +88,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -117,6 +119,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirty",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -186,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure: the skill has grown by accretion, and the cost in reads, steps and maintenance has never been weighed against what each piece protects",
     "created_at": "2026-09-06T14:29:33Z",
-    "last_save_at": "2026-09-06T14:35:31.206Z",
+    "last_save_at": "2026-09-07T03:35:37.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:693fc097dbc138e9a89a87f2825de24f8610872fc29ec7a03585453a02eeca15",
+    "source_fingerprint": "sha256:310e0f61d2f405d0371e9aaf6a0a532aeec4c461415e60c2a7e298a64a094263",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51bff1ff608a2520ce29f17688c98a3c4655a53bd21155be30505123b62f55ce",
+      "spec.md": "e8003992bb52e279dfe20ee4984c2ace6fb1e6418d63a570b2bc4f2182237ed1",
       "plan.md": "7ca0f3a1d4156673b15ecc305a3901093ed0780b5ab109520680a66d675c024c",
-      "tasks.md": "79b24645fb3f53425ab65c0a336c3c1a61b2f487447f82cf9a4f06bca9cf819a",
-      "implementation-summary.md": "9b7c7da443c8d254c7635d22321f49c44092e1ac45161021df396f639953ee00"
+      "tasks.md": "ed3b10cf48086cce5c608777fe134241249db798fea24258e7ff03d5ccfc26f9",
+      "implementation-summary.md": "40e4f89d9856376847600837262e92f43c42b7b034715a95576bc39a6713ab38"
     },
     "last_active_at": null
   }

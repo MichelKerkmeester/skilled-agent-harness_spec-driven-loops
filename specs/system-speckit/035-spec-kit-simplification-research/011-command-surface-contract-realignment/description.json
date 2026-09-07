@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
+  "description": "The level contract retired `checklist.md` and made `acceptance-criteria.md` the closure document, and child 010 brought the skill's own documents to",
+  "keywords": [
+    "level",
+    "contract",
+    "retired",
+    "checklist",
+    "acceptance-criteria",
+    "closure",
+    "document",
+    "child",
+    "brought",
+    "skill",
+    "own",
+    "documents"
+  ],
+  "lastUpdated": "2026-09-07T03:35:37.342Z",
+  "specId": "011",
+  "folderSlug": "command-surface-contract-realignment",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

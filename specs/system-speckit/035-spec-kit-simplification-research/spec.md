@@ -103,7 +103,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 2 | 002-cli-runtime-utilization/ | ten-iteration research lane: cli runtime utilization | complete |
 | 3 | 003-shared-package-utilization/ | ten-iteration research lane: shared package utilization | complete |
 | 4 | 004-template-system-and-acceptance-criteria/ | ten-iteration research lane: template system and acceptance criteria | complete |
-| 5 | 005-overengineering-simplification/ | ten-iteration research lane: overengineering simplification | in progress |
+| 5 | 005-overengineering-simplification/ | ten-iteration research lane: overengineering simplification | complete |
 | 6 | 006-retrieval-drift-remediation/ | remediation of every confirmed finding from lane 001 | complete |
 
 | 7 | 007-cli-package-residue-removal/ | removal of every confirmed dead file from lane 002 and a CI runner for the CLI gates | complete |
@@ -113,6 +113,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 9 | 009-shared-package-dead-half-removal/ | removal of the shared package's dead half and repair of its seams, from lane 003 | complete |
 
 | 10 | 010-template-contract-alignment/ | the level contract as single authority, a goal.md creator, repaired checker and rule, and every template document corrected, from lane 004 | complete |
+| 11 | 011-command-surface-contract-realignment/ | the /speckit:* assets brought to the level contract, the help printer listing every rule, and the perimeter residue stated or removed, from lane 005 | complete |
 
 ### Phase Transition Rules
 
@@ -130,6 +131,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 007-cli-package-residue-removal | 008-env-example-dead-flags | operator observation that the env template still carried memory-database flags | census over the real tree recorded in `008-env-example-dead-flags/implementation-summary.md` |
 | 003-shared-package-utilization | 009-shared-package-dead-half-removal | research.md synthesized and every P1 row censused in `research/confirmed-findings.md` | `validate.sh 003-shared-package-utilization --strict` prints RESULT: PASSED and the confirmed table names 009 |
 | 004-template-system-and-acceptance-criteria | 010-template-contract-alignment | research.md synthesized and every row censused in `research/confirmed-findings.md` | `validate.sh 004-template-system-and-acceptance-criteria --strict` prints RESULT: PASSED and the confirmed table names 010 |
+| 005-overengineering-simplification | 011-command-surface-contract-realignment | research.md synthesized and every finding and plan move censused in `research/confirmed-findings.md` | `validate.sh 005-overengineering-simplification --strict` prints RESULT: PASSED and the confirmed table names 011 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -107,7 +107,7 @@ memory_loading:
     order:
       - "Read {spec_folder_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_folder_path}/implementation-summary.md"
-      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, resource-map.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, resource-map.md"
       - "Only for a still-missing named gap, run the context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_folder_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. Recovery is lexical and file-local; a miss is a clean no-hit reported as such, never an inferred session state."
 
@@ -116,7 +116,7 @@ smart_memory_logic:
   essentials: ["current phase or task", "last confirmed action", "next safe action", "blockers or none", "relevant artifact or file"]
   sufficiency_rule: "Stop and present the resume brief once next safe action is known plus any two supporting essentials"
   gap_fill_order:
-    - "If current phase or task is missing, inspect tasks.md/checklist.md/handover.md"
+    - "If current phase or task is missing, inspect tasks.md/acceptance-criteria.md/handover.md"
     - "If next safe action is missing, read `_memory.continuity`, then run the packet-scoped ripgrep context recipe on next-steps/state anchors"
     - "If blockers are missing, target blockers/summary"
     - "If a concrete starting point is missing, use tasks.md or implementation-summary.md before loading more memory"
@@ -215,7 +215,7 @@ workflow:
 
   step_4_calculate_progress:
     purpose: Calculate task and checklist progress
-    activities: [Parse tasks.md for completion status, Parse checklist.md for verification status, Calculate percentages, Identify pending items]
+    activities: [Parse tasks.md for completion status, Parse acceptance-criteria.md rows and the tasks.md verification checklist, Calculate percentages, Identify pending items]
     outputs: { tasks_progress: percentage, checklist_progress: percentage, pending_items: list }
     validation: progress_calculated
 

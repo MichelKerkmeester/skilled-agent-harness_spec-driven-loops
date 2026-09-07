@@ -24,7 +24,6 @@
     { "id": "q022", "query": "memory_index", "class": "tokenization-edge", "gate_group": "allowed-divergence", "expected_top_5": [] },
     { "id": "q023", "query": "buildBm25DocumentText", "class": "tokenization-edge", "gate_group": "allowed-divergence", "expected_top_5": [] },
     { "id": "q024", "query": "cafe", "class": "tokenization-edge", "gate_group": "allowed-divergence", "expected_top_5": [] },
-    { "id": "q025", "query": "SPECKIT_BM25_ENGINE", "class": "tokenization-edge", "gate_group": "allowed-divergence", "expected_top_5": [] },
     { "id": "q026", "query": "ephemeral context retrieval", "class": "rrf-stressing", "gate_group": "rrf-stressing", "expected_top_5": [] },
     { "id": "q027", "query": "why did lazy startup reduce memory", "class": "rrf-stressing", "gate_group": "rrf-stressing", "expected_top_5": [] },
     { "id": "q028", "query": "constitutional pinned memory", "class": "rrf-stressing", "gate_group": "rrf-stressing", "expected_top_5": [] },
@@ -182,14 +181,6 @@
       "content": "memory_index stores title, trigger_phrases, content_text, file_path, and spec_folder.",
       "triggers": ["memory_index", "sqlite schema"],
       "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/vector-index-schema.ts",
-      "spec_folder": "specs/golden/columns"
-    },
-    {
-      "doc_id": "doc-speckit-engine",
-      "title": "SPECKIT_BM25_ENGINE flag",
-      "content": "SPECKIT_BM25_ENGINE selects auto sqlite packed-inmemory or legacy-inmemory lexical search.",
-      "triggers": ["SPECKIT_BM25_ENGINE", "lexical engine"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       "spec_folder": "specs/golden/columns"
     },
     {

@@ -49,7 +49,8 @@ const fs = require("fs");
 const parsed = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
 const rules = Array.isArray(parsed) ? parsed : (parsed.rules || []);
 const lines = ["RULES BY CATEGORY:"];
-for (const category of ["authored_template", "operational_runtime"]) {
+const categories = [...new Set(rules.map((item) => item.category))];
+for (const category of categories) {
   lines.push(`  ${category}:`);
   for (const rule of rules.filter((item) => item.category === category)) {
     const suffix = rule.strict_only ? " strict-only" : "";

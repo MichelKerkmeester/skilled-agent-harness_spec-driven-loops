@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
+  "parent_id": "system-speckit/035-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command surface contract realignment",
+      "retired checklist command workflows",
+      "validate help lists every rule",
+      "symbolic template names",
+      "command surface realignment plan",
+      "workflow assets literal replacement",
+      "help printer test",
+      "acceptance criteria step",
+      "command surface realignment tasks",
+      "workflow asset rewrite tasks",
+      "help printer tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "command",
+      "surface",
+      "contract",
+      "realignment",
+      "retired",
+      "checklist",
+      "workflows",
+      "validate",
+      "help",
+      "lists",
+      "every",
+      "rule"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/spec/validate.sh",
+      "runtime/cli/tests/validate-help-lists-every-rule.vitest.ts",
+      "references/validation/validation-rules.md",
+      "runtime/cli/optimizer/README.md",
+      "runtime/cli/resource-map/README.md",
+      "runtime/tests/fixtures/golden-queries.json",
+      "runtime/tests/env-reference-drift.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate-help-lists-every-rule.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/validate-help-lists-every-rule.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/optimizer/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "golden-queries.json",
+        "kind": "config",
+        "path": "runtime/tests/fixtures/golden-queries.json",
+        "source": "derived"
+      },
+      {
+        "name": "env-reference-drift.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/env-reference-drift.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The level contract retired `checklist.md` and made `acceptance-criteria.md` the closure document, and child 010 brought the skill's own documents to that contract",
+    "created_at": "2026-09-07T03:35:37.269Z",
+    "last_save_at": "2026-09-07T03:35:37.493Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3c57c180600506bf6cebfe43e884e851b5737e294c3837a760bf2c0b623f7a23",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "794ef9c04b632ecea0f3bda88200f1bb7449153001b7cbd1b99c4259c6f1ac97",
+      "plan.md": "98d509566b73b96337783b92a4417f674deb098881c4c4d95a8bdf5b39155995",
+      "tasks.md": "4f64c529b760badc973f21096de0c82042e5baa9879d3f0abf29e6509e876233",
+      "implementation-summary.md": "2ef5431469cfd90cd00d697d78933695731d877baeae3847502c089040a39ff9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -290,12 +290,6 @@ describe('ENV-REFERENCE.md drift guard', () => {
   // it reads `row?.defaultState` through an optional chain, so a missing row
   // yields `expect(undefined).toBe(true)` — a failure that looks like a
   // polarity bug rather than a removed flag.
-  //
-  // The BM25 auto-fallback assertion retired with its subject. Both anchors it
-  // read are gone: `SPECKIT_BM25_ENGINE` has no reader left in source, so the
-  // ENV_REFERENCE row went with the memory engine, and `lib/telemetry/README.md`
-  // was deleted outright. Nothing here is worth re-pointing, because a check
-  // that a removed doc omits a removed flag asserts nothing.
 
   it('keeps the internal ignore-list honest (every ignored token is still a runtime read and has no doc row)', () => {
     const runtimeTokens = collectRuntimeEnvTokens();
