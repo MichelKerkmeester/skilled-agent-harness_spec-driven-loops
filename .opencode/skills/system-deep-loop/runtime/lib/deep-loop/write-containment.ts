@@ -122,6 +122,22 @@ export interface ContainmentViolationEvent {
   revertedPatchPath?: string;
   /** Why the patch could not be saved. The revert still happened; the edit is gone. */
   revertedPatchError?: string;
+  /**
+   * Set only when a TRACKED path was rolled back to HEAD, which is the one
+   * containment outcome that destroys work rather than protecting it. Preserving an
+   * untracked file costs its author nothing; restoring a tracked one discards
+   * whatever they had written and not yet committed, and if that author is another
+   * session running concurrently, nobody is watching this log to find out. Reading
+   * a containment event as a successful guard action is how eighteen events of a
+   * concurrent run were lost without anyone noticing, so the destructive case says
+   * so in its own field rather than hiding among the benign ones.
+   */
+  dataLossPossible?: {
+    paths: string[];
+    /** Where the discarded content survives, when the patch was written. */
+    recoverFrom?: string;
+    note: string;
+  };
   timestamp: string;
 }
 
@@ -630,6 +646,9 @@ export function buildContainmentViolationEvent(input: {
   /** Outcome of the pre-revert patch capture; omitted when no revert was attempted. */
   patch?: { path: string | null; error?: string };
 }): ContainmentViolationEvent {
+  const destroyed = input.revertResult.reverted
+    .filter((a) => a.action === 'restored_from_head')
+    .map((a) => a.path);
   return {
     type: 'event',
     event: 'containment_violation',
@@ -641,6 +660,17 @@ export function buildContainmentViolationEvent(input: {
     reverted: input.revertResult.reverted,
     ...(input.patch?.path ? { revertedPatchPath: input.patch.path } : {}),
     ...(input.patch?.error ? { revertedPatchError: input.patch.error } : {}),
+    ...(destroyed.length > 0
+      ? {
+        dataLossPossible: {
+          paths: destroyed,
+          ...(input.patch?.path ? { recoverFrom: input.patch.path } : {}),
+          note: input.patch?.path
+            ? 'Tracked file(s) rolled back to HEAD. Uncommitted work by whoever wrote them is gone from the tree and survives only in the patch named here. If another session was writing, tell them.'
+            : 'Tracked file(s) rolled back to HEAD and NO patch was saved. Uncommitted work by whoever wrote them is unrecoverable. If another session was writing, tell them.',
+        },
+      }
+      : {}),
   };
 }
 
