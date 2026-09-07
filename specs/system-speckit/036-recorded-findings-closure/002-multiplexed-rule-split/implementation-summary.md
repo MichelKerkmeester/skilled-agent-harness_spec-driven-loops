@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split"
-    last_updated_at: "2026-09-07T15:05:41Z"
+    last_updated_at: "2026-09-07T19:05:00Z"
     last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    recent_action: "Closed the packet with every gate observed green"
+    next_safe_action: "Implement child 003"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6b116d58944ceaf0a047117112f217ccfa24cf1832687ab95bb46c8d5d7396a0"
       session_id: "scaffold-002-multiplexed-rule-split"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,15 +48,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not started. Planning is complete. No code has been written yet.
-
-### Phase 2: multiplexed-rule-split
-
-Not started. spec.md, plan.md and tasks.md describe the intended split of `check-canonical-save.sh`'s five-case switch into five standalone scripts. Implementation has not begun.
+Five registry rows shared one wrapper and one Node helper whose switch selected the rule from an environment variable the orchestrator set only for that basename. The switch is gone. A shared module builds the packet context every canonical-save rule reads, the description, the graph, the root spec and the child directories, and each rule is its own module of one decision with its own wrapper. The registry maps each row to its own script, the orchestrator calls the same two-argument run_check for every row, and the README lists the five wrappers.
 
 ### Files Changed
 
-Not started. No file listed in spec.md's Files to Change table has been modified yet.
+| File | Action | Purpose |
+|------|--------|---------|
+| `runtime/cli/rules/check-canonical-save-shared.cjs` | Created | Packet context and the bridge emitter, built once |
+| `runtime/cli/rules/check-canonical-save-{root-spec,source-docs,lineage,packet-identity,description-graph-freshness}.cjs` | Created | One decision each |
+| `runtime/cli/rules/check-canonical-save-{root-spec,source-docs,lineage,packet-identity,description-graph-freshness}.sh` | Created | One wrapper each with the standard header |
+| `runtime/cli/rules/check-canonical-save.sh`, `check-canonical-save-helper.cjs` | Deleted | The multiplex |
+| `runtime/cli/lib/validator-registry.json` | Modified | Five rows point at their own scripts |
+| `runtime/lib/validation/orchestrator.ts` | Modified | Basename special case removed |
+| `runtime/cli/rules/README.md` | Modified | Tree and table |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +68,7 @@ Not started. No file listed in spec.md's Files to Change table has been modified
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not started. No testing, verification or rollout has occurred.
+The helper's shared section became the context module and each switch case became a module by mechanical rewrite, with the message strings restored where the rewrite had reached them. The registry, the orchestrator and the README changed after the modules passed a syntax check; the runtime and CLI were rebuilt; the four suites and the validation lane ran. The commit was assembled in a private index.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -72,7 +76,11 @@ Not started. No testing, verification or rollout has occurred.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Not started. No implementation decisions have been made beyond the plan.md technical approach.
+| Decision | Why |
+|----------|-----|
+| One shared context module rather than five copies of the reading | The rules differ only in their decision; the packet reading is one thing |
+| Keep the wrapper protocol and messages byte-identical | The canonical-save suite asserts on them and needed no edit |
+| Leave the spec-doc-structure family alone | Its five rules already dispatch to five functions with their own messages |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -80,7 +88,14 @@ Not started. No implementation decisions have been made beyond the plan.md techn
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not started. No command has run yet. Verification will be `npx vitest run validate-runs-every-registry-rule canonical-save-validation` plus `validate.sh --strict` for this packet.
+| Check | Result |
+|-------|--------|
+| `node --check` on six modules, `bash -n` on five wrappers | exit 0 |
+| Runtime and CLI builds, `npm run check`, dist freshness | exit 0, every output fresh |
+| canonical-save-validation, registry coverage, help lists every rule, registry doc count | 4 files, 10 tests pass |
+| Validation lane | 98, 31 and 83 checks pass |
+| Registry rows | 5 distinct script paths of 5; 39 rows before and after; help lists 41 rule lines with 5 canonical-save rows |
+| `validate.sh <this child> --strict` | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -88,7 +103,7 @@ Not started. No command has run yet. Verification will be `npx vitest run valida
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** No implementation exists yet, so no limitation has surfaced.
+1. **Five wrappers share their shape** They are generated from one template and differ in their rule id and module name only; a wrapper convention change touches five files.
 <!-- /ANCHOR:limitations -->
 
 ---

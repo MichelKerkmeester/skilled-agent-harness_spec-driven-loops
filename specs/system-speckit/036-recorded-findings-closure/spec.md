@@ -114,7 +114,7 @@ Audit-trail summary only. Each child's plan carries the exact list.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-hook-adapter-thin-transports/ | one hook core with five thin runtime transports | complete |
-| 2 | 002-multiplexed-rule-split/ | one script or one proven message per registry row | planned |
+| 2 | 002-multiplexed-rule-split/ | one script or one proven message per registry row | complete |
 | 3 | 003-playbook-provenance-lines/ | a real provenance line on every playbook entry | planned |
 | 4 | 004-fingerprint-stamp-regeneration/ | real digests for the 27 hand-written attestations | planned |
 | 5 | 005-provenance-title-sweep/ | provenance tokens stripped from 1,240 titles and the rule class restored | planned |

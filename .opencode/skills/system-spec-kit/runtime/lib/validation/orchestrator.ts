@@ -143,13 +143,7 @@ if ! type run_check >/dev/null 2>&1; then
   exit 0
 fi
 
-if [[ "$(basename "$rule_script")" == "check-canonical-save.sh" ]]; then
-  SPECKIT_CANONICAL_SAVE_RULE="$rule_id"
-  run_check "$folder" "$level" "$rule_id"
-  unset SPECKIT_CANONICAL_SAVE_RULE
-else
-  run_check "$folder" "$level"
-fi
+run_check "$folder" "$level"
 
 printf 'rule\t%s\n' "${'${'}RULE_NAME:-$rule_id}"
 printf 'status\t%s\n' "${'${'}RULE_STATUS:-pass}"

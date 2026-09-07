@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split"
-    last_updated_at: "2026-09-07T00:00:00Z"
+    last_updated_at: "2026-09-07T19:05:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed every criterion"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-07-036-recorded-findings-closure-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -68,11 +68,11 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validator-registry.json`'s five `CANONICAL_SAVE_*` rows each name a distinct `script_path`
-- [ ] `orchestrator.ts` no longer references `check-canonical-save.sh` by basename
-- [ ] `validate.sh --help` lists the same 39 rule ids as before the split
-- [ ] `validate-runs-every-registry-rule.vitest.ts` and `canonical-save-validation.vitest.ts` both exit 0
-- [ ] `check-canonical-save.sh` and `check-canonical-save-helper.cjs` no longer exist in the tree
+- [x] `validator-registry.json`'s five `CANONICAL_SAVE_*` rows each name a distinct `script_path`
+- [x] `orchestrator.ts` no longer references `check-canonical-save.sh` by basename
+- [x] `validate.sh --help` lists the same 39 rule ids as before the split
+- [x] `validate-runs-every-registry-rule.vitest.ts` and `canonical-save-validation.vitest.ts` both exit 0
+- [x] `check-canonical-save.sh` and `check-canonical-save-helper.cjs` no longer exist in the tree
 <!-- /ANCHOR:completion -->
 
 ---
@@ -89,9 +89,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Shared context module, five rule modules and wrappers, registry re-pointed, orchestrator special case removed | Done | `implementation-summary.md` Files Changed |
+| Gates | Done | four suites 10 tests pass; validation lane 98, 31 and 83 checks pass; builds and check gate exit 0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| The first generated rule modules rewrote words inside their message strings | The context rewrite reached string literals; the messages were restored to the helper's wording before any test ran |
 <!-- /ANCHOR:log -->

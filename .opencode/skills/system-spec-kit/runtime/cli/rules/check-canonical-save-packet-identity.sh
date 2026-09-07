@@ -1,37 +1,37 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# COMPONENT: CHECK-CANONICAL-SAVE
+# COMPONENT: CHECK-CANONICAL-SAVE-PACKET_IDENTITY
 # ───────────────────────────────────────────────────────────────
-#
-# Grandfathering windows for the canonical-save hardening rollout:
-# - The rollout allowlist that grandfathered four packet roots expired on 2026-05-01 and is gone;
-#   save_lineage enforcement is hard for graph writes on/after the cutoff (SPECKIT_CANONICAL_SAVE_CUTOFF)
+# Rule: CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED
+# Severity: error
+# Description: Continuity, description and graph must agree on the packet identity. Sourced by validate.sh; the decision lives in the
+#   Node module beside this wrapper, which shares its packet reading with
+#   the other canonical-save rules through check-canonical-save-shared.cjs.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CANONICAL_SAVE_HELPER="${CANONICAL_SAVE_HELPER:-$SCRIPT_DIR/check-canonical-save-helper.cjs}"
+CANONICAL_SAVE_MODULE="$SCRIPT_DIR/check-canonical-save-packet-identity.cjs"
 
 run_check() {
     local folder="$1"
     local _level="$2"
-    local selected_rule="${3:-${SPECKIT_CANONICAL_SAVE_RULE:-CANONICAL_SAVE_ROOT_SPEC_REQUIRED}}"
     local output=""
-    [[ ! -f "$CANONICAL_SAVE_HELPER" ]] && {
-        RULE_NAME="$selected_rule"
-        RULE_STATUS="fail"
-        RULE_MESSAGE="Canonical-save helper missing"
-        RULE_DETAILS=("Expected helper: $CANONICAL_SAVE_HELPER")
-        return 0
-    }
 
-    output="$(node "$CANONICAL_SAVE_HELPER" "$folder" "$selected_rule")"
-
-    RULE_NAME="$selected_rule"
+    RULE_NAME="CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED"
     RULE_STATUS="pass"
     RULE_MESSAGE=""
     RULE_DETAILS=()
     RULE_REMEDIATION=""
+
+    if [[ ! -f "$CANONICAL_SAVE_MODULE" ]]; then
+        RULE_STATUS="fail"
+        RULE_MESSAGE="Canonical-save rule module missing"
+        RULE_DETAILS=("Expected module: $CANONICAL_SAVE_MODULE")
+        return 0
+    fi
+
+    output="$(node "$CANONICAL_SAVE_MODULE" "$folder")"
 
     while IFS=$'\t' read -r kind value; do
         [[ -z "$kind" ]] && continue
