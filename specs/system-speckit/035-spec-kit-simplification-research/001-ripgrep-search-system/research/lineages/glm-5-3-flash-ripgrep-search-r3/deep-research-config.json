@@ -1,0 +1,55 @@
+{
+  "topic": "ROUND THREE of this lane: five bounded iterations on angles the first two rounds (glm-5-3-flash-ripgrep-search, deepseek-v4-flash-ripgrep-search) covered thinly or not at all, on system-spec-kit's lexical retrieval after the memory-database decommission. Every confirmed row of rounds one and two was remediated in 006-retrieval-drift-remediation and 013-trigger-phrase-quality-enforcement; the census research/confirmed-findings.md judged every row of both rounds.",
+  "charter": {
+    "role": "Skeptical auditor - every claim unverified until cited",
+    "target": "a cited defect-and-simplification ledger organized by angle, not a narrative",
+    "nonGoals": ["no edits", "no redesign", "no prose-style review", "no repository-wide census"],
+    "hardLimits": "max 12 tool calls per iteration; no scripts/harnesses/census programs; read files and compare by hand; sample at most 8 items per set; never run validate.sh, node tooling, or git (compiled dist dirs untracked and stale); read the checked-in source; code overrides self-reported success; do not re-report a census row marked fixed/kept/recorded unless its stated reason is contradicted by new evidence; never reuse an earlier count",
+    "stopConditions": "exactly 5 iterations, one angle each, in the given order; no early convergence; convergenceThreshold=3 is telemetry only"
+  },
+  "maxIterations": 5,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxToolCallsPerIteration": 12,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system",
+  "createdAt": "2026-09-07T11:35:00Z",
+  "status": "initialized",
+  "executionMode": "inline",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "inline": true,
+    "nestedDispatchUsed": false,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-5-3-flash-ripgrep-search-r3-1788773746570-6hn9ct",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 3,
+    "continuedFromRun": null,
+    "laneRound": 3,
+    "priorRounds": [
+      "glm-5-3-flash-ripgrep-search",
+      "deepseek-v4-flash-ripgrep-search"
+    ]
+  },
+  "reducer": {
+    "enabled": false,
+    "note": "inline dispatched lineage: this process IS the executor for every iteration (no nested CLI/agent dispatch). Reducer-owned artifacts (findings-registry.json, deep-research-dashboard.md) are left to the fanout runner; the executor writes iteration markdown, deltas, state records, and the terminal synthesis into the lineage dir only, mirroring the prior rounds' record schemas."
+  },
+  "angleSchedule": [
+    { "iteration": 1, "angle": "Gate 1 parity across runtimes: instruction-side lookup commands vs lookup-trigger-index.mjs actual interface" },
+    { "iteration": 2, "angle": "the doctor retrieval target: declared checks vs the artifacts they actually read" },
+    { "iteration": 3, "angle": "the residue sweep and its allowlist: sweep patterns and sampled allowlisted paths" },
+    { "iteration": 4, "angle": "the two boundary tables: feature-catalog vs retrieval-conventions vs retrieval README limits" },
+    { "iteration": 5, "angle": "trigger-phrase authoring guidance versus the phrase judge" }
+  ]
+}

@@ -58,6 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Met | - |
 | AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Met | - |
 | AC-005 | REQ-001 | Given the second lineage launched after remediation, When it exits, Then ten iteration files and ten state events exist and every P1 row is censused | listing of `research/lineages/deepseek-v4-flash-ripgrep-search/iterations` and its state log; confirmed-findings.md §6 | Met | - |
+| AC-006 | REQ-001 | Given the third lineage launched with five bounded angles, When it exits, Then five iteration files and a synthesis exist and every row is censused | listing of `research/lineages/glm-5-3-flash-ripgrep-search-r3/iterations` and its synthesis; confirmed-findings.md §7 | Met | - |
 
 ### Status values
 

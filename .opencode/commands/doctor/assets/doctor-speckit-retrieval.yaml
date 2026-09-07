@@ -35,7 +35,7 @@ upstream_assets:
     acceptance: "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
     latency_report: ".opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
   pass_policy:
-    lookup_exit_class: "0 or 1 on the frozen prompt set; 2 or higher fails"  # the lookup contract, never a result count
+    lookup_exit_class: "0 or 1 on the probe prompt and on every prompt in fixtures/prompt-set.json; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
     index_regenerates_byte_identical: true  # two generator runs must hash the same
 speckit_retrieval_doctor_philosophy:
@@ -115,9 +115,6 @@ staleness_signals:
   index_older_than_corpus:
     detection: "Any indexed source file has an mtime newer than the trigger index mtime"
     severity: medium
-  manifest_hash_mismatch:
-    detection: "The index's recorded manifestHash does not match a fresh manifest over the same included paths"
-    severity: medium
   committed_pair_mismatch:
     detection: "The manifestHash inside runtime/data/trigger-index.json differs from the one in runtime/cli/retrieval/fixtures/corpus-manifest.json, so one generator run did not produce the committed pair"
     severity: medium
@@ -127,16 +124,16 @@ staleness_signals:
     severity: high
     note: "An exit of 1 is a clean no-hit and is never a staleness signal. Conflating the two is the failure this row exists to prevent."
   ripgrep_ambient_config:
-    detection: "A recipe run without --no-config returns a different result set than the same recipe with it, meaning RIPGREP_CONFIG_PATH is injecting arguments"
+    detection: "The section 2.2 recipe run once without --no-config returns a different path set than the same recipe with it, meaning RIPGREP_CONFIG_PATH is injecting arguments; phase 0 runs both"
     severity: high
   trigger_phrase_drift:
     detection: "Frontmatter trigger_phrases changed in a source file since the index was generated"
     severity: low
   anchor_marker_drift:
-    detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in indexed packets"
+    detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in the up-to-five sampled packets; phase 1 counts them per sample"
     severity: low
   corpus_pollution:
-    detection: "The phraseQuality bucket of the committed generation-diagnostics.json counts single-token, numeric-only, generic-workflow-word, stop-word-only or editor-fallback phrases per retrieval-conventions.md section 8; any non-zero bucket is the signal, read from the committed artifact rather than sampled from stale packets"
+    detection: "The phraseQuality bucket of the committed generation-diagnostics.json counts every negative class the phrase judge reports (single-token, numeric-only, generic-workflow-word, stop-word-only, prose-sentence, editor-fallback and folder-token-fallback) per retrieval-conventions.md section 8; any non-zero bucket is the signal, read from the committed artifact rather than sampled from stale packets"
     severity: medium
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
@@ -152,9 +149,11 @@ workflow:
       - "Bash: test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
       - "Bash: stat -f '%m %z' .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
       - "Run upstream_assets.lookup_command with a known probe prompt; record exit status, indexHash, manifestHash and candidatePhraseCount"
+      - "Run the lookup once per prompt in .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json; any exit of 2 or higher is the lookup_exit_error signal"
       - "Bash: compare the manifestHash field of .opencode/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash fields of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json, generation-diagnostics.json and phrase-variants.json; any unequal value is the committed_pair_mismatch signal, since one generator run writes all four"
       - "Optional, when the operator asks about latency: node .opencode/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs --json --out <packet scratch path>; exit 1 means the cold-start budget was exceeded. Never write the committed fixtures/latency-report.json from a diagnostic run"
-      - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase; record exit status and path count"
+      - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase, with the exact flags that section lists (--no-config --hidden and the five exclusion globs); record exit status and path count"
+      - "Run the same recipe once more without --no-config; a different path set is the ripgrep_ambient_config signal"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
@@ -172,20 +171,21 @@ workflow:
     fail_fast:
       - "Lookup exits 2 or higher → STATUS=FAIL with stderr attached"
       - "Index file missing → STATUS=MISSING, message='trigger index not generated'; the ripgrep lane still works and is reported separately"
+      - "A committed fixture named above is missing or unreadable → STATUS=MISSING naming the fixture; the four-way compare cannot run on three files"
 
   phase_1_analysis:
     purpose: Classify staleness signals + identify suspect packets
     activities:
-      - "Cross-reference the index mtime with source mtimes: any indexed file newer than the index signals staleness"
+      - "Cross-reference the index mtime with source mtimes: node -e reads the index's paths array from runtime/data/trigger-index.json and stats each path; any indexed file newer than the index is the index_older_than_corpus signal. The recipe roots hold lineages, dist and fixtures the index excludes, so a find over the roots would over-count"
       - "Sample up to 5 packets flagged as staleness candidates"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
+      - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
       - "Read the phraseQuality bucket of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero negative class with its phrase and owning-document counts as the corpus_pollution signal, whether or not any packet is stale"
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:
       - staleness_classes:
           index_older_than_corpus: N
-          manifest_hash_mismatch: M
           lookup_exit_error: K
           ripgrep_ambient_config: L
           trigger_phrase_drift: P

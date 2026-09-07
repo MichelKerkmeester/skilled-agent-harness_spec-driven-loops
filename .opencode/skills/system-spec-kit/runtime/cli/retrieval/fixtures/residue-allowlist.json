@@ -87,7 +87,7 @@
     },
     {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      "reason": "Lives in the engine tree; excluded with it."
+      "reason": "Names retired variables in their retirement rows; the engine tree that read them is gone."
     },
     {
       "pathPrefixOrGlob": ".opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md",

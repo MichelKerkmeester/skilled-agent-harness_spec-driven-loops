@@ -74,6 +74,7 @@ here are invisible to whatever judges completion.
 
 - [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-ripgrep-search/
 - [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-ripgrep-search/ and every P1 row is censused in confirmed-findings.md
+- [x] Round three: 5 iteration files and a synthesis exist under research/lineages/glm-5-3-flash-ripgrep-search-r3/ and every row is censused in confirmed-findings.md
 - [x] research.md ranks findings with path:line on both sides
 - [x] Every P0 and P1 finding reproduces in-session before remediation is planned
 - [x] A written verdict on whether a retrieval repo rule should exist, with the root-document lines it would absorb
@@ -98,6 +99,8 @@ and findings belong here.
 | Remediation | Done | `../006-retrieval-drift-remediation` closed every row |
 | Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-ripgrep-search/research.md`, 07:14 to 07:30 |
 | Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../013-trigger-phrase-quality-enforcement` |
+| Round three ran 5/5 on DevPass GLM, synthesis written | Done | `research/lineages/glm-5-3-flash-ripgrep-search-r3/research.md`, 11:35 to 15:07 |
+| Round three census and remediation | Done | `research/confirmed-findings.md` §7; `../022-doctor-signal-truth-and-conventions-precision` |
 
 ### Deviations and findings
 

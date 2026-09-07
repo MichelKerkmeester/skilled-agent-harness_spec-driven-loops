@@ -1,0 +1,18 @@
+{
+  "lineage": "glm-5-3-flash-ripgrep-search-r3",
+  "sessionId": "fanout-glm-5-3-flash-ripgrep-search-r3-1788773746570-6hn9ct",
+  "loopType": "research",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "maxIterations": 5,
+  "convergenceThresholdUsedAsTelemetryOnly": true,
+  "newInfoRatioTrend": [0.8, 0.9, 0.7, 0.7, 0.8],
+  "p1Count": 4,
+  "p2Count": 14,
+  "p0Count": 0,
+  "questionsAnswered": ["q-gate1-parity", "q-doctor-target", "q-allowlist", "q-boundary-tables", "q-guidance-vs-judge", "q-phrasequality-classes"],
+  "openQuestionsCarried": ["q-instruction-surfaces", "q-check-integrity", "q-residue-sweep", "q-cross-doc-consistency", "q-sk-doc-guidance"],
+  "synthesis": "research.md",
+  "evidenceArtifacts": [],
+  "completedAt": "2026-09-07T12:57:49Z"
+}
