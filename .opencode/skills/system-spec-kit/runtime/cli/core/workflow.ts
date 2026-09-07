@@ -1737,7 +1737,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     log(triggerIndexRegenerateHint);
   }
 
-  // Step 11.75: Post-save quality review — wire into production pipeline.
+  // Step 11.75: Post-save quality review, run here in the production pipeline.
   // Runs the post-save reviewer against the canonical spec-doc save artifacts.
   // Non-blocking: review failures are logged but do not abort the workflow.
   if (shouldRunExplicitSaveFollowUps) {

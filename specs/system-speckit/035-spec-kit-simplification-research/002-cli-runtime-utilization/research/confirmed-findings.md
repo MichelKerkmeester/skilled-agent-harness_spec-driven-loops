@@ -122,3 +122,24 @@ Children 007 and 008 landed at the file and reference level: none of the 31 remo
 | 6 | pi mirror drift | Dropped: the doctor asset wires both scripts |
 | 7 | `frontmatter.mjs` named the pre-nesting `scripts/lib` path | Corrected |
 | 8 | The confirmed-findings row on resource-map wiring | Superseded: the reducer's `--emit-resource-map` path reaches the extractor |
+
+
+---
+
+## 7. ROUND THREE (DeepSeek V4 Flash max through DevPass, five bounded iterations on the twice-remediated tree)
+
+Source: `lineages/deepseek-v4-flash-cli-runtime-r3/research.md`, stop reason `maxIterationsReached`, 12 findings: 2 P1, 10 P2, five bounded angles. The GLM 5.3 Flash attempt that ran before the operator switched executors is kept under `lineages/glm-5-3-flash-cli-runtime-r3-partial/` as supplementary evidence. Censused in the main checkout on 2026-09-07 before child `019-ci-push-gates-and-runtime-doc-truth` was opened.
+
+| Rows | Claim | Census | Disposition |
+|------|-------|--------|-------------|
+| 010 | The spec-kit check workflow has no push trigger | Confirmed | Fixed: push for main and the release lines with the same path filter |
+| 011/012 | The changed-packet gate is pull-request only; nothing says which gate answers to which trigger | Confirmed | Fixed: push with an event-aware base commit; a table in the workflows README |
+| 008/009 | The pi adapter imports by a path that does not resolve from its folder | Not reproduced | Recorded: the adapters' README states they are written for the `.pi/extensions/` symlink base, from which the fallback resolves |
+| 004 | `validate.sh` reads a skip switch no reference documents | Confirmed | Fixed: a row in the environment reference |
+| 005 | The reference points at an `.env.example` that does not exist | Not reproduced | Recorded: the file is at the repository root; the lane searched under `.opencode` |
+| 006 | Four rule harnesses in the tests folder run in no lane | Confirmed | Fixed: they run at the end of the validation lane and the tests README names them |
+| 007 | The links scan has no registry row | Confirmed | Recorded: child 017 made it a standalone tool |
+| 001 | The save command lists eight route categories; the runtime folds into six | Confirmed | Fixed: the six names and their aliases |
+| 002 | A comment announces wiring the code below already does | Confirmed | Fixed |
+| 003 | The charter named a validate command asset that does not exist | Charter premise | Recorded: validation is script-level; no asset claims otherwise |
+| GLM partial | The first GLM iteration covered the command-asset angle before the switch | Read | Its rows overlap 001 to 003 and are covered by them |

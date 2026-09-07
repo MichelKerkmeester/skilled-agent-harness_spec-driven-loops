@@ -19,7 +19,7 @@
     "test": "vitest run --config ../../vitest.config.ts --project cli && npm run test:legacy && npm run test:validation",
     "test:task-enrichment": "vitest run tests/task-enrichment.vitest.ts --config ../vitest.config.ts --root .",
     "test:legacy": "npm run build && node tests/test-scripts-modules.js && node tests/test-extractors-loaders.js",
-    "test:validation": "node tests/test-validation-system.cjs && bash tests/test-validation.sh && bash tests/test-validation-extended.sh",
+    "test:validation": "node tests/test-validation-system.cjs && bash tests/test-validation.sh && bash tests/test-validation-extended.sh && bash tests/check-ac-closure.sh && bash tests/check-ac-coverage.sh && bash tests/check-graph-metadata-child-drift.sh && bash tests/check-graph-metadata-shape-last-active-child.sh",
     "check:ast": "npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts",
     "check": "npm run lint && npx tsx evals/check-no-mcp-lib-imports.ts && bash check-api-boundary.sh && npx tsx evals/check-architecture-boundaries.ts && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts && npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts"
   },

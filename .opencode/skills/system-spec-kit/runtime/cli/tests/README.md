@@ -32,6 +32,7 @@ remain supporting fixtures or outputs.
 runtime/cli/tests/
 +-- test-*.js                 # Node smoke and integration tests
 +-- test-*.sh                 # Shell validation and phase workflow tests
++-- check-*.sh                # Rule harnesses the validation lane runs after the suites
 +-- test_dual_threshold.py    # Python threshold check
 +-- *.vitest.ts               # TypeScript regression suites
 +-- fixtures/                 # Test-local fixtures

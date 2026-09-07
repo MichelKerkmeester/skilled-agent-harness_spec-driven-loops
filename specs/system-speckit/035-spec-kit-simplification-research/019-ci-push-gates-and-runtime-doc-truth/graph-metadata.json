@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
-  "spec_folder": "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth",
   "parent_id": "system-speckit/035-spec-kit-simplification-research",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cli runtime utilization",
-      "cli runtime utilization research lane",
-      "glm research lane spec kit",
-      "cli runtime utilization findings",
-      "research lane execution plan",
-      "cli runtime utilization lane plan",
-      "reproduction before remediation",
-      "research lane tasks",
-      "lane launch and monitoring",
-      "cli runtime utilization lane tasks",
-      "acceptance criteria",
-      "closure gate"
+      "ci push triggers",
+      "spec-kit check on push",
+      "changed packet validation on push",
+      "route categories save command",
+      "ci push triggers plan",
+      "remediation plan",
+      "round three plan",
+      "census then fix",
+      "ci push triggers tasks",
+      "remediation tasks",
+      "round three tasks",
+      "verification checklist"
     ],
     "key_topics": [
-      "cli",
-      "runtime",
-      "utilization",
-      "research",
-      "lane",
-      "glm",
-      "spec",
-      "kit",
-      "findings",
-      "execution",
-      "plan",
-      "reproduction"
+      "push",
+      "triggers",
+      "spec-kit",
+      "check",
+      "changed",
+      "packet",
+      "validation",
+      "route",
+      "categories",
+      "save",
+      "command",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,10 +47,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "research/lineages/glm-5-3-flash-cli-runtime/research.md",
-      "research/confirmed-findings.md",
-      "research/lineages/deepseek-v4-flash-cli-runtime/research.md",
-      "research/lineages/deepseek-v4-flash-cli-runtime-r3/research.md"
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/changed-packet-validation.yml",
+      ".github/workflows/README.md",
+      "runtime/ENV-REFERENCE.md",
+      "runtime/cli/package.json",
+      "runtime/cli/tests/README.md",
+      ".opencode/commands/speckit/save.md",
+      "runtime/cli/core/workflow.ts"
     ],
     "entities": [
       {
@@ -90,9 +94,45 @@
         "source": "derived"
       },
       {
-        "name": "confirmed-findings.md",
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-validation.yml",
+        "kind": "config",
+        "path": ".github/workflows/changed-packet-validation.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": "research/confirmed-findings.md",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/cli/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -144,13 +184,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview One",
+        "name": "Overview Every",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Command",
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,47 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Charter",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
-    "created_at": "2026-09-06T14:29:31Z",
-    "last_save_at": "2026-09-07T13:14:48.715Z",
+    "causal_summary": "The spec-kit check workflow, which the round-one census presented as closing the CI-invisibility gap, had no push trigger, so on the repository's documented direct-push flow none of its six lanes ran; the changed-packet gate had the same shape",
+    "created_at": "2026-09-07T13:14:44.762Z",
+    "last_save_at": "2026-09-07T13:22:02.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +215,15 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4009618c8c6632033ea739d4d96ee445f89e906007deeba7d1bd7174cbeb754",
+    "source_fingerprint": "sha256:6593428833c4403113f7475659d42de2f4281c2c1a022736412936c9f6644127",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9307c091c04b8e56e71267460715f89a6ee92d88b2955e5992acf649b40c3ef",
-      "plan.md": "e5389d6baa25313cbfea14f858f2ad0a52c5b0be097dd77080c1dd4ad08bb42e",
-      "tasks.md": "e78cf594c4ac268cd26981cb8a449d8420798279f077532348196f9b17688e2e",
-      "implementation-summary.md": "56b6e4bd8392034b3372d8594d0124810d37b107cc81497ad572f446d20f91b4"
+      "spec.md": "5e28f05320bd2852d42aba9e475041ed7569a4748ab0accb3b093c12e1c0df99",
+      "plan.md": "0934a1aa1b46bda43c3ec516df36d362d59653c69c6cb89bc46787abd0a73fb5",
+      "tasks.md": "238d83523a998f24b63fdd3703f1449cb6eaa6b4953d323de40449ecd805defa",
+      "implementation-summary.md": "04afdef066ec338f761c547150929a9a1bbee942012fa96b48e829366b9b166f"
     },
+    "last_active_child_id": null,
     "last_active_at": null
   }
 }

@@ -1,0 +1,59 @@
+{
+  "topic": "ROUND THREE of this lane: five bounded iterations on angles the first two rounds covered thinly or not at all. Angle order: (1) command assets versus the scripts they invoke; (2) undocumented environment reads; (3) test coverage by script; (4) the five hook adapters against the core; (5) the CI workflow's push versus pull-request coverage. Read the census once in iteration 1 and the earlier syntheses only if an angle sends us there. Never rerun a count from an earlier round; never run validate.sh, node tooling or git; read the checked-in source.",
+  "maxIterations": 5,
+  "minIterations": 5,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": false,
+  "specFolder": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "fanoutLineageArtifactDir": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/deepseek-v4-flash-cli-runtime-r3",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-07T08:10:00.000Z",
+  "status": "initialized",
+  "executionMode": "detached-fanout",
+  "executor": {
+    "kind": "cli-pi",
+    "type": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-cli-runtime-r3-1788784296528-mlu6l0",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": []
+  },
+  "artifactRootBinding": {
+    "overrideUsed": true,
+    "resolveArtifactRootCommandSkipped": true,
+    "artifactDir": "/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research/specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/deepseek-v4-flash-cli-runtime-r3"
+  },
+  "sessionId": "fanout-deepseek-v4-flash-cli-runtime-r3-1788784296528-mlu6l0",
+  "generation": 1,
+  "lineageMode": "new"
+}

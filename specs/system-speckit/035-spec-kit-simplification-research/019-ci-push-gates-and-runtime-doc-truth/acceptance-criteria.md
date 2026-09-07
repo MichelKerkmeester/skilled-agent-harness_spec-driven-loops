@@ -1,31 +1,32 @@
 ---
-title: "Acceptance Criteria: CLI runtime utilization research"
+title: "Acceptance Criteria: CI push gates and runtime document truth"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
   - "closure gate"
-  - "cli runtime utilization lane closure"
+  - "ci push triggers criteria"
+  - "round three criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization"
-    last_updated_at: "2026-09-06T16:40:00Z"
+    packet_pointer: "system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth"
+    last_updated_at: "2026-09-07T15:20:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet the open criteria as the lane runs"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: CLI runtime utilization research
+# Acceptance Criteria: CI push gates and runtime document truth
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -38,10 +39,10 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** 002-cli-runtime-utilization
+**Packet:** 035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth
 **Level:** 2
 **Status:** Complete
-**Date:** 2026-09-06
+**Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,12 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the lane launched with stop policy max-iterations, When it exits, Then ten iteration files and ten state events exist | count of files under `research/lineages/glm-5-3-flash-cli-runtime/iterations` and of iteration events in the JSONL ledger | Met | - |
-| AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites path:line on the claim side and the evidence side | reproduction notes in research/confirmed-findings.md | Met | - |
-| AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Met | - |
-| AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Met | - |
-| AC-005 | REQ-001 | Given the second lineage launched after remediation, When it exits, Then ten iteration files and ten state events exist and every P1 row is censused | listing of `research/lineages/deepseek-v4-flash-cli-runtime/iterations` and its state log; confirmed-findings.md §6 | Met | - |
-| AC-006 | REQ-001 | Given the third lineage launched with five bounded angles, When it exits, Then five iteration files and a synthesis exist and every row is censused | listing of `research/lineages/deepseek-v4-flash-cli-runtime-r3/iterations` and its synthesis; confirmed-findings.md §7 | Met | - |
+| AC-001 | REQ-001 | Given the two workflow files, When their triggers are read, Then both name push for main and the release lines | `.github/workflows/spec-kit-check.yml:4` and `changed-packet-validation.yml:4` carry the push block; both parse | Met | - |
+| AC-002 | REQ-002 | Given the validation lane, When it runs, Then the four harnesses run after the suites | `runtime/cli/package.json:22` names them; the lane's log lists each with exit 0 | Met | - |
+| AC-003 | REQ-003 | Given the four lanes and the program, When they run, Then all pass | the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0 | Met | - |
+| AC-004 | REQ-004 | Given the reference and the save asset, When read, Then the skip switch has a row and the categories match the runtime | `runtime/ENV-REFERENCE.md` row for the switch; `.opencode/commands/speckit/save.md:48` lists the six names in `runtime/lib/validation/spec-doc-structure.ts:156` | Met | - |
 
 ### Status values
 
@@ -85,5 +84,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Ten iteration files, ten state events and a 54-finding synthesis exist under the lineage; every removal, merge and fix row was censused in the main checkout, with two dropped on evidence and three corrected, and the ledger was handed to `../007-cli-package-residue-removal`, which closed every row.
+Every criterion is met by observed output. Consciously left out: the workflow files parse, and the first push after this commit is where their runs appear.
 <!-- /ANCHOR:closure -->
