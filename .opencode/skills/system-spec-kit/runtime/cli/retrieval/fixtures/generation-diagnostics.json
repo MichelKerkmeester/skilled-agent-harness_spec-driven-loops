@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6939,
+    "missing-frontmatter": 6940,
     "non-yaml-frontmatter": 1,
-    "ok": 13698,
+    "ok": 13799,
     "valid-empty-list": 7942
   },
-  "documentsScanned": 28642,
+  "documentsScanned": 28744,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "dfecc907a2771f7b5d9d136f164f4af7f5432fc707e2169a77a094d071cb7fc3",
+  "manifestHash": "ad82d50b789168a3a476c033709b839b1d00f837d39e401aab7d1ffb9b6ace6f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 4,
       "numeric-only": 42,
-      "ok": 35222,
+      "ok": 35486,
       "prose-sentence": 27,
       "single-token": 315,
       "stop-word-only": 3
@@ -46545,6 +46545,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/dispatch-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -99046,6 +99052,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/scratch",
       "reason": "excluded directory"
     },
@@ -101491,6 +101501,70 @@
     },
     {
       "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/scratch",
       "reason": "excluded directory"
     },
     {

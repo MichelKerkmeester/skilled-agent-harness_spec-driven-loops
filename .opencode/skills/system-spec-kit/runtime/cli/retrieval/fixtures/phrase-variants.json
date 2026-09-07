@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dfecc907a2771f7b5d9d136f164f4af7f5432fc707e2169a77a094d071cb7fc3",
+  "manifestHash": "ad82d50b789168a3a476c033709b839b1d00f837d39e401aab7d1ffb9b6ace6f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8790,6 +8790,9 @@
     "acceptance closure tasks": [
       "acceptance closure tasks"
     ],
+    "acceptance coverage enforcement": [
+      "acceptance coverage enforcement"
+    ],
     "acceptance coverage gate": [
       "acceptance coverage gate"
     ],
@@ -8807,6 +8810,9 @@
     ],
     "acceptance criteria enforcement": [
       "acceptance criteria enforcement"
+    ],
+    "acceptance criteria file line enforcement": [
+      "acceptance criteria file line enforcement"
     ],
     "acceptance criteria goal": [
       "acceptance criteria goal"
@@ -9044,6 +9050,9 @@
     "adapter contract target shape": [
       "adapter contract target shape"
     ],
+    "adapter duplication removal": [
+      "adapter duplication removal"
+    ],
     "adapter fallback fix": [
       "adapter fallback fix"
     ],
@@ -9058,6 +9067,9 @@
     ],
     "adapter live delivery verification tasks": [
       "adapter live delivery verification tasks"
+    ],
+    "adapter migration validation evidence": [
+      "adapter migration validation evidence"
     ],
     "adapter parity": [
       "adapter parity"
@@ -9083,6 +9095,18 @@
     ],
     "adapter sk git": [
       "adapter sk-git"
+    ],
+    "adapter thin transport completion": [
+      "adapter thin transport completion"
+    ],
+    "adapter transport reduction": [
+      "adapter transport reduction"
+    ],
+    "adapter trio line count proof": [
+      "adapter trio line count proof"
+    ],
+    "adapter verification checklist": [
+      "adapter verification checklist"
     ],
     "adaptive deep loop allocation": [
       "adaptive deep-loop allocation"
@@ -9857,8 +9881,23 @@
     "advisor hooks tasks": [
       "advisor hooks tasks"
     ],
+    "advisor import acceptance criteria": [
+      "advisor import acceptance criteria"
+    ],
     "advisor import cleanup": [
       "advisor import cleanup"
+    ],
+    "advisor import consolidation plan": [
+      "advisor import consolidation plan"
+    ],
+    "advisor import consolidation tasks": [
+      "advisor import consolidation tasks"
+    ],
+    "advisor import ollama goal": [
+      "advisor import ollama goal"
+    ],
+    "advisor import specifier consistency": [
+      "advisor import specifier consistency"
     ],
     "advisor index handoff": [
       "advisor index handoff"
@@ -9901,6 +9940,12 @@
     ],
     "advisor ipc socket hardening": [
       "advisor ipc socket hardening"
+    ],
+    "advisor isolation doctrine preserved": [
+      "advisor isolation doctrine preserved"
+    ],
+    "advisor isolation waiver adr": [
+      "advisor isolation waiver adr"
     ],
     "advisor json automation research": [
       "advisor json automation research"
@@ -10349,6 +10394,9 @@
     ],
     "advisor suite triage": [
       "advisor suite triage"
+    ],
+    "advisor suite waiver": [
+      "advisor suite waiver"
     ],
     "advisor surface audit": [
       "advisor surface audit"
@@ -13686,6 +13734,9 @@
     "auto confirm command modes": [
       "auto confirm command modes"
     ],
+    "auto confirm twin merge": [
+      "auto confirm twin merge"
+    ],
     "auto detect spec fixture": [
       "auto detect spec fixture"
     ],
@@ -15423,6 +15474,9 @@
     "boundary gated directive delivery plan": [
       "boundary-gated directive delivery plan"
     ],
+    "boundary justified duplication": [
+      "boundary justified duplication"
+    ],
     "boundary receipt implementation": [
       "boundary receipt implementation"
     ],
@@ -15746,6 +15800,21 @@
     ],
     "brokenpipeerror validation research": [
       "BrokenPipeError validation research"
+    ],
+    "browse only closure gate": [
+      "browse only closure gate"
+    ],
+    "browse only disposition sweep": [
+      "browse only disposition sweep"
+    ],
+    "browse only file disposition": [
+      "browse only file disposition"
+    ],
+    "browse only file routing": [
+      "browse only file routing"
+    ],
+    "browse only reference files": [
+      "browse only reference files"
     ],
     "browser agent task": [
       "browser agent task"
@@ -16549,6 +16618,9 @@
     "canonical rendered examples": [
       "canonical rendered examples"
     ],
+    "canonical save acceptance criteria": [
+      "canonical save acceptance criteria"
+    ],
     "canonical save advisory lock": [
       "canonical save advisory lock"
     ],
@@ -16560,6 +16632,21 @@
     ],
     "canonical save metadata": [
       "canonical save metadata"
+    ],
+    "canonical save script extraction": [
+      "canonical save script extraction"
+    ],
+    "canonical save script split": [
+      "canonical save script split"
+    ],
+    "canonical save split goal": [
+      "canonical save split goal"
+    ],
+    "canonical save split summary": [
+      "canonical save split summary"
+    ],
+    "canonical save split tasks": [
+      "canonical save split tasks"
     ],
     "canonical seven compiled status": [
       "canonical seven compiled status"
@@ -18268,6 +18355,9 @@
     "check level match level set": [
       "check-level-match level set"
     ],
+    "check links registry coverage": [
+      "check links registry coverage"
+    ],
     "check markdown links": [
       "check-markdown-links"
     ],
@@ -18300,6 +18390,9 @@
     ],
     "check placeholders mustache removed": [
       "check-placeholders mustache removed"
+    ],
+    "check placeholders third class task": [
+      "check placeholders third class task"
     ],
     "check prerequisites": [
       "check prerequisites",
@@ -18907,6 +19000,9 @@
     ],
     "citation ledger refine verdict": [
       "citation ledger REFINE verdict"
+    ],
+    "citation retrofit coverage floor": [
+      "citation retrofit coverage floor"
     ],
     "citationpolicy do not cite results": [
       "citationPolicy do_not_cite_results"
@@ -21771,6 +21867,9 @@
     "closed gate replay": [
       "closed-gate replay"
     ],
+    "closed packet fingerprint rollback": [
+      "closed packet fingerprint rollback"
+    ],
     "closed route algebra implementation": [
       "closed route algebra implementation"
     ],
@@ -21884,6 +21983,9 @@
     ],
     "co located stories ts component": [
       "co-located stories.ts component"
+    ],
+    "coaching marker waiver adr": [
+      "coaching marker waiver adr"
     ],
     "coarse pointer narrow container": [
       "coarse pointer narrow container"
@@ -24127,6 +24229,9 @@
     "codex mcp startup interrupted": [
       "Codex MCP startup interrupted"
     ],
+    "codex nodeterm block boundary": [
+      "codex nodeterm block boundary"
+    ],
     "codex opencode brief rendering": [
       "codex opencode brief rendering"
     ],
@@ -25065,6 +25170,15 @@
     ],
     "command tree comparison repository check": [
       "command tree comparison repository check"
+    ],
+    "command tree parity ac": [
+      "command tree parity ac"
+    ],
+    "command tree parity testing strategy": [
+      "command tree parity testing strategy"
+    ],
+    "command tree parity verification": [
+      "command tree parity verification"
     ],
     "command txt rename plan": [
       "command txt rename plan"
@@ -27199,6 +27313,9 @@
     "continuity writer configuration": [
       "continuity writer configuration"
     ],
+    "continuity writer regex gate": [
+      "continuity writer regex gate"
+    ],
     "continuous change over time": [
       "continuous change over time"
     ],
@@ -27487,6 +27604,9 @@
     ],
     "cooperative heavy phases tasks": [
       "cooperative heavy phases tasks"
+    ],
+    "coordinate not overwrite": [
+      "coordinate not overwrite"
     ],
     "coordinated launcher wal durability remediation": [
       "coordinated launcher WAL durability remediation"
@@ -28202,6 +28322,9 @@
     "coverage closure join gate plan": [
       "coverage-closure join gate plan"
     ],
+    "coverage cutoff decision": [
+      "coverage cutoff decision"
+    ],
     "coverage dry run convergence threshold": [
       "coverage dry-run convergence threshold"
     ],
@@ -28213,6 +28336,9 @@
     ],
     "coverage floor": [
       "coverage floor"
+    ],
+    "coverage floor cutoff rollout": [
+      "coverage floor cutoff rollout"
     ],
     "coverage gate": [
       "coverage gate"
@@ -29130,6 +29256,9 @@
     "create sh": [
       "create.sh"
     ],
+    "create sh block deletion": [
+      "create sh block deletion"
+    ],
     "create sh canonical": [
       "create.sh canonical"
     ],
@@ -29144,6 +29273,9 @@
     ],
     "create sh fallback tasks": [
       "create.sh fallback tasks"
+    ],
+    "create sh level review research": [
+      "create sh level review research"
     ],
     "create sh parent corruption fix plan": [
       "create.sh parent corruption fix plan"
@@ -29385,6 +29517,12 @@
     ],
     "creation time naming gate": [
       "creation time naming gate"
+    ],
+    "creation trigger absence behavior": [
+      "creation trigger absence behavior"
+    ],
+    "creation trigger field cleanup": [
+      "creation trigger field cleanup"
     ],
     "creation workflow readme templates": [
       "creation workflow readme templates"
@@ -29748,6 +29886,9 @@
     ],
     "cross session kill scoping": [
       "cross session kill scoping"
+    ],
+    "cross session operator items": [
+      "cross session operator items"
     ],
     "cross skill doc polish": [
       "cross-skill doc polish"
@@ -39364,6 +39505,9 @@
     "divergent review pivot dogfood": [
       "divergent review pivot dogfood"
     ],
+    "divergent skill root predicate": [
+      "divergent skill root predicate"
+    ],
     "diverse packet selection": [
       "diverse packet selection"
     ],
@@ -40739,6 +40883,9 @@
     ],
     "dual margin ambiguity": [
       "dual-margin ambiguity"
+    ],
+    "dual path dispatch preserved": [
+      "dual path dispatch preserved"
     ],
     "dual path plan not pre selected": [
       "dual path plan not pre-selected"
@@ -42685,6 +42832,15 @@
     "eval production parity harness": [
       "eval production parity harness"
     ],
+    "eval script merge closure gate": [
+      "eval script merge closure gate"
+    ],
+    "eval script merge task": [
+      "eval script merge task"
+    ],
+    "eval script resolver merge": [
+      "eval script resolver merge"
+    ],
     "eval scripts": [
       "eval scripts"
     ],
@@ -43033,6 +43189,15 @@
     ],
     "execution methods reference": [
       "execution methods reference"
+    ],
+    "execution mode branch closure gate": [
+      "execution mode branch closure gate"
+    ],
+    "execution mode branch task": [
+      "execution mode branch task"
+    ],
+    "execution mode branch technical approach": [
+      "execution mode branch technical approach"
     ],
     "execution path yaml": [
       "execution path yaml"
@@ -43409,11 +43574,26 @@
     "extended thinking": [
       "extended thinking"
     ],
+    "extension convention lint pin": [
+      "extension convention lint pin"
+    ],
+    "extension guide ac traceability": [
+      "extension guide ac traceability"
+    ],
+    "extension guide edit task": [
+      "extension guide edit task"
+    ],
+    "extension guide field update": [
+      "extension guide field update"
+    ],
     "extension guide migration frontmatter": [
       "extension guide migration frontmatter"
     ],
     "extension guide rename": [
       "extension_guide rename"
+    ],
+    "extension guide truthful description": [
+      "extension guide truthful description"
     ],
     "extension integration suite": [
       "extension-integration-suite"
@@ -45895,8 +46075,23 @@
     "fingerprint marker mandatory": [
       "fingerprint marker mandatory"
     ],
+    "fingerprint regeneration acceptance criteria": [
+      "fingerprint regeneration acceptance criteria"
+    ],
+    "fingerprint regeneration goal directive": [
+      "fingerprint regeneration goal directive"
+    ],
+    "fingerprint regeneration implementation summary": [
+      "fingerprint regeneration implementation summary"
+    ],
+    "fingerprint regeneration task breakdown": [
+      "fingerprint regeneration task breakdown"
+    ],
     "fingerprint stamp completion claim": [
       "fingerprint stamp completion claim"
+    ],
+    "fingerprint stamp regeneration": [
+      "fingerprint stamp regeneration"
     ],
     "fingerprint stamp trigger writer": [
       "fingerprint stamp trigger writer"
@@ -45907,11 +46102,17 @@
     "fingerprint v2 scope": [
       "fingerprint v2 scope"
     ],
+    "fingerprint verification checklist": [
+      "fingerprint verification checklist"
+    ],
     "fingerprint without marker count": [
       "fingerprint without marker count"
     ],
     "fingerprint without marker count zero": [
       "fingerprint without marker count zero"
+    ],
+    "fingerprint writer widen plan": [
+      "fingerprint writer widen plan"
     ],
     "finish and integration workflows": [
       "finish and integration workflows"
@@ -46185,6 +46386,15 @@
     ],
     "fixture minted against a retired hub": [
       "fixture minted against a retired hub"
+    ],
+    "fixture parity criterion": [
+      "fixture parity criterion"
+    ],
+    "fixture parity task": [
+      "fixture parity task"
+    ],
+    "fixture parity testing strategy": [
+      "fixture parity testing strategy"
     ],
     "fixture runner output": [
       "fixture runner output"
@@ -47955,6 +48165,9 @@
     "gate": [
       "gate"
     ],
+    "gate 1 instruction parity": [
+      "gate 1 instruction parity"
+    ],
     "gate 1 rewire": [
       "gate 1 rewire"
     ],
@@ -48128,6 +48341,9 @@
     ],
     "gate restoration task breakdown": [
       "gate restoration task breakdown"
+    ],
+    "gate three shared core": [
+      "gate three shared core"
     ],
     "gate verdict confusion ece brier": [
       "gate verdict confusion ECE Brier"
@@ -48343,6 +48559,9 @@
     "generated file voice edit": [
       "generated file voice edit"
     ],
+    "generated hook registration check": [
+      "generated hook registration check"
+    ],
     "generated js declaration alignment": [
       "generated js declaration alignment"
     ],
@@ -48379,8 +48598,14 @@
     "generated metadata integrity failure": [
       "generated metadata integrity failure"
     ],
+    "generated metadata integrity regeneration": [
+      "generated metadata integrity regeneration"
+    ],
     "generated metadata re derived": [
       "generated metadata re-derived"
+    ],
+    "generated metadata reconciliation plan": [
+      "generated metadata reconciliation plan"
     ],
     "generated metadata status integrity": [
       "generated metadata status integrity"
@@ -49402,6 +49627,12 @@
     "golden prompt corpus": [
       "golden prompt corpus"
     ],
+    "golden prompt suite green": [
+      "golden prompt suite green"
+    ],
+    "golden prompt suite rerun": [
+      "golden prompt suite rerun"
+    ],
     "golden prompts": [
       "golden prompts"
     ],
@@ -49419,6 +49650,9 @@
     ],
     "golden snapshot verification": [
       "golden snapshot verification"
+    ],
+    "golden snapshot verification task": [
+      "golden snapshot verification task"
     ],
     "google embeddinggemma cocoindex": [
       "google embeddinggemma cocoindex"
@@ -51142,11 +51376,23 @@
     "hook": [
       "hook"
     ],
+    "hook adapter acceptance criteria": [
+      "hook adapter acceptance criteria"
+    ],
     "hook adapter contract": [
       "hook adapter contract"
     ],
+    "hook adapter goal directive": [
+      "hook adapter goal directive"
+    ],
+    "hook adapter implementation summary": [
+      "hook adapter implementation summary"
+    ],
     "hook adapter layer": [
       "hook-adapter-layer"
+    ],
+    "hook adapter port": [
+      "hook adapter port"
     ],
     "hook adapter shared boilerplate": [
       "hook adapter shared boilerplate"
@@ -51159,6 +51405,12 @@
     ],
     "hook adapter shared boilerplate tasks": [
       "hook adapter shared boilerplate tasks"
+    ],
+    "hook adapter task breakdown": [
+      "hook adapter task breakdown"
+    ],
+    "hook adapter thin transports": [
+      "hook adapter thin transports"
     ],
     "hook box header all runtimes": [
       "hook box header all runtimes"
@@ -51303,6 +51555,9 @@
     ],
     "hook path resolution": [
       "hook path resolution"
+    ],
+    "hook registration drift": [
+      "hook registration drift"
     ],
     "hook registration matrix": [
       "hook registration matrix"
@@ -52767,6 +53022,9 @@
     ],
     "import restriction": [
       "import restriction"
+    ],
+    "import specifier consistency": [
+      "import specifier consistency"
     ],
     "import type tsdoc audit": [
       "import type tsdoc audit"
@@ -55658,6 +55916,18 @@
     "leaf connectivity score": [
       "leaf connectivity score"
     ],
+    "leaf manifest ac traceability": [
+      "leaf manifest ac traceability"
+    ],
+    "leaf manifest byte stability": [
+      "leaf manifest byte stability"
+    ],
+    "leaf manifest byte stable": [
+      "leaf manifest byte stable"
+    ],
+    "leaf manifest check task": [
+      "leaf manifest check task"
+    ],
     "leaf manifest config aliases required": [
       "leaf-manifest config aliases required"
     ],
@@ -56373,11 +56643,26 @@
     "lifecycle abortable chunked sleep": [
       "lifecycle abortable chunked sleep"
     ],
+    "lifecycle activation gap": [
+      "lifecycle activation gap"
+    ],
     "lifecycle age": [
       "lifecycle age"
     ],
     "lifecycle classification": [
       "lifecycle classification"
+    ],
+    "lifecycle command asset merge": [
+      "lifecycle command asset merge"
+    ],
+    "lifecycle command merge acceptance criteria": [
+      "lifecycle command merge acceptance criteria"
+    ],
+    "lifecycle command merge plan": [
+      "lifecycle command merge plan"
+    ],
+    "lifecycle command merge tasks": [
+      "lifecycle command merge tasks"
     ],
     "lifecycle epoch high water architecture": [
       "lifecycle epoch high-water architecture"
@@ -56555,6 +56840,18 @@
     ],
     "link resolver task": [
       "link resolver task"
+    ],
+    "links scan registry rule": [
+      "links scan registry rule"
+    ],
+    "links scan registry rule acceptance criteria": [
+      "links scan registry rule acceptance criteria"
+    ],
+    "links scan registry rule plan": [
+      "links scan registry rule plan"
+    ],
+    "links scan registry rule tasks": [
+      "links scan registry rule tasks"
     ],
     "lint baseline 115 problems": [
       "lint baseline 115 problems"
@@ -58137,6 +58434,9 @@
     "malformed fingerprint class": [
       "malformed fingerprint class"
     ],
+    "malformed fingerprint closed packets": [
+      "malformed fingerprint closed packets"
+    ],
     "malformed fingerprint criterion": [
       "malformed fingerprint criterion"
     ],
@@ -58145,6 +58445,15 @@
     ],
     "malformed graph metadata": [
       "malformed graph metadata"
+    ],
+    "malformed stamp closure gate": [
+      "malformed stamp closure gate"
+    ],
+    "malformed stamp objective": [
+      "malformed stamp objective"
+    ],
+    "malformed stamp status": [
+      "malformed stamp status"
     ],
     "malformed vector shard quarantine": [
       "malformed vector shard quarantine"
@@ -58208,6 +58517,21 @@
     ],
     "manifest closure decisions": [
       "manifest closure decisions"
+    ],
+    "manifest dead field acceptance": [
+      "manifest dead field acceptance"
+    ],
+    "manifest dead field plan": [
+      "manifest dead field plan"
+    ],
+    "manifest dead field removal": [
+      "manifest dead field removal"
+    ],
+    "manifest dead field tasks": [
+      "manifest dead field tasks"
+    ],
+    "manifest dead fields goal": [
+      "manifest dead fields goal"
     ],
     "manifest doc placement": [
       "manifest doc placement"
@@ -58337,6 +58661,9 @@
     ],
     "manual fallback spec doc save": [
       "manual fallback spec doc save"
+    ],
+    "manual infeasible exemption": [
+      "manual infeasible exemption"
     ],
     "manual mcp reconnect": [
       "manual /mcp reconnect"
@@ -58600,6 +58927,9 @@
     ],
     "manual testing playbook scenario rename": [
       "manual-testing-playbook scenario rename"
+    ],
+    "manual testing playbook suite citation": [
+      "manual testing playbook suite citation"
     ],
     "manual testing playbook tasks": [
       "manual testing playbook tasks",
@@ -61724,6 +62054,18 @@
     "memory mutation review findings": [
       "memory mutation review findings"
     ],
+    "memory name allowlist criterion": [
+      "memory name allowlist criterion"
+    ],
+    "memory name allowlist strategy": [
+      "memory name allowlist strategy"
+    ],
+    "memory name allowlist task": [
+      "memory name allowlist task"
+    ],
+    "memory name link allowlist": [
+      "memory name link allowlist"
+    ],
     "memory namespace naming plan": [
       "memory namespace naming plan"
     ],
@@ -61909,6 +62251,9 @@
     ],
     "memory save audit": [
       "memory save audit"
+    ],
+    "memory save bridge stale": [
+      "memory save bridge stale"
     ],
     "memory save canonical spec doc bypass": [
       "memory_save canonical spec doc bypass"
@@ -64755,6 +65100,15 @@
     "multiple chrome devtools instances": [
       "multiple chrome devtools instances"
     ],
+    "multiplexed rule completion criteria": [
+      "multiplexed rule completion criteria"
+    ],
+    "multiplexed rule verification evidence": [
+      "multiplexed rule verification evidence"
+    ],
+    "multiplexed validator rule split": [
+      "multiplexed validator rule split"
+    ],
     "must carry may carry": [
       "MUST carry MAY carry"
     ],
@@ -65367,6 +65721,12 @@
     "no drift no debt": [
       "no drift no debt"
     ],
+    "no fabrication goal binding": [
+      "no fabrication goal binding"
+    ],
+    "no fabrication proof": [
+      "no fabrication proof"
+    ],
     "no go conditions": [
       "no-go conditions"
     ],
@@ -65736,6 +66096,9 @@
     ],
     "not on a feature branch": [
       "not on a feature branch"
+    ],
+    "not started continuation notes": [
+      "not started continuation notes"
     ],
     "not yet filed marker": [
       "not-yet-filed marker"
@@ -67369,6 +67732,15 @@
     "ollama adapter dim tagged schema": [
       "ollama adapter dim-tagged schema"
     ],
+    "ollama adapter merge plan": [
+      "ollama adapter merge plan"
+    ],
+    "ollama adapter merge tasks": [
+      "ollama adapter merge tasks"
+    ],
+    "ollama adapter provider merge": [
+      "ollama adapter provider merge"
+    ],
     "ollama adapter shim": [
       "ollama adapter shim"
     ],
@@ -67435,11 +67807,17 @@
     "ollama encode path wiring": [
       "ollama encode path wiring"
     ],
+    "ollama implementation merge": [
+      "ollama implementation merge"
+    ],
     "ollama jina bug fix circuit breaker": [
       "ollama jina bug fix circuit breaker"
     ],
     "ollama llama cpp opencode go adapters": [
       "Ollama llama.cpp OpenCode Go adapters"
+    ],
+    "ollama merge closure gate": [
+      "ollama merge closure gate"
     ],
     "ollama projection endpoint": [
       "Ollama projection endpoint"
@@ -67504,6 +67882,9 @@
     "onboarding flow": [
       "Onboarding flow"
     ],
+    "one behavioral contract five schemas": [
+      "one behavioral contract five schemas"
+    ],
     "one model one opinion": [
       "one model one opinion"
     ],
@@ -67521,6 +67902,9 @@
     ],
     "one shot projection command": [
       "one-shot projection command"
+    ],
+    "one to one script path proof": [
+      "one to one script path proof"
     ],
     "one validation verdict": [
       "one validation verdict"
@@ -68450,8 +68834,23 @@
     "orchestration status ledger": [
       "orchestration status ledger"
     ],
+    "orchestrator env round trip": [
+      "orchestrator env round trip"
+    ],
     "orchestrator placeholder parity": [
       "orchestrator placeholder parity"
+    ],
+    "orchestrator special case objective": [
+      "orchestrator special case objective"
+    ],
+    "orchestrator special case proof": [
+      "orchestrator special case proof"
+    ],
+    "orchestrator special case removal": [
+      "orchestrator special case removal"
+    ],
+    "orchestrator special case removal task": [
+      "orchestrator special case removal task"
     ],
     "orchestrator status completion consistency wiring": [
       "orchestrator status completion consistency wiring"
@@ -68854,6 +69253,9 @@
     ],
     "output surface parity": [
       "output surface parity"
+    ],
+    "outranked phrases": [
+      "outranked phrases"
     ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
@@ -69981,6 +70383,9 @@
     "parity regression closeout": [
       "parity regression closeout"
     ],
+    "parity test ac traceability": [
+      "parity test ac traceability"
+    ],
     "parity test coverage agreement": [
       "parity test coverage agreement"
     ],
@@ -69989,6 +70394,15 @@
     ],
     "parity test enforce agreement": [
       "parity test enforce agreement"
+    ],
+    "parity test fixture trees": [
+      "parity test fixture trees"
+    ],
+    "parity test resolver agreement": [
+      "parity test resolver agreement"
+    ],
+    "parity test verification task": [
+      "parity test verification task"
     ],
     "parity verification": [
       "parity verification"
@@ -70256,6 +70670,18 @@
     ],
     "path traversal prevention": [
       "path traversal prevention"
+    ],
+    "path typed document criterion": [
+      "path typed document criterion"
+    ],
+    "path typed document move": [
+      "path typed document move"
+    ],
+    "path typed document move task": [
+      "path typed document move task"
+    ],
+    "path typed document placement": [
+      "path typed document placement"
     ],
     "path utils mirror helper": [
       "path_utils mirror helper"
@@ -73703,8 +74129,17 @@
     "placeholder pattern detection": [
       "placeholder pattern detection"
     ],
+    "placeholder rule closure gate": [
+      "placeholder rule closure gate"
+    ],
     "placeholder rule gap": [
       "placeholder rule gap"
+    ],
+    "placeholder rule technical approach": [
+      "placeholder rule technical approach"
+    ],
+    "placeholder rule third class": [
+      "placeholder rule third class"
     ],
     "placeholder syntax types": [
       "placeholder syntax types"
@@ -73892,6 +74327,9 @@
     "playbook common pitfalls": [
       "playbook common pitfalls"
     ],
+    "playbook contract regression proof": [
+      "playbook contract regression proof"
+    ],
     "playbook contract violations to zero": [
       "playbook contract violations to zero"
     ],
@@ -74003,6 +74441,9 @@
     "playbook operator contract conversion": [
       "playbook operator contract conversion"
     ],
+    "playbook operator contract gate": [
+      "playbook operator contract gate"
+    ],
     "playbook outcome persistence": [
       "playbook outcome persistence"
     ],
@@ -74024,6 +74465,9 @@
     "playbook path closure plan": [
       "playbook path closure plan"
     ],
+    "playbook path existence evidence": [
+      "playbook path existence evidence"
+    ],
     "playbook persistence design": [
       "playbook persistence design"
     ],
@@ -74038,6 +74482,24 @@
     ],
     "playbook prompt voice": [
       "playbook prompt voice"
+    ],
+    "playbook provenance acceptance criteria": [
+      "playbook provenance acceptance criteria"
+    ],
+    "playbook provenance audit plan": [
+      "playbook provenance audit plan"
+    ],
+    "playbook provenance goal directive": [
+      "playbook provenance goal directive"
+    ],
+    "playbook provenance implementation summary": [
+      "playbook provenance implementation summary"
+    ],
+    "playbook provenance line": [
+      "playbook provenance line"
+    ],
+    "playbook provenance task breakdown": [
+      "playbook provenance task breakdown"
     ],
     "playbook provisioning": [
       "playbook provisioning"
@@ -74080,6 +74542,9 @@
     ],
     "playbook review protocol split": [
       "playbook review protocol split"
+    ],
+    "playbook rollback procedure": [
+      "playbook rollback procedure"
     ],
     "playbook root structure": [
       "playbook root structure"
@@ -74206,6 +74671,9 @@
     ],
     "playbook validator ownership decision": [
       "playbook validator ownership decision"
+    ],
+    "playbook verification checklist": [
+      "playbook verification checklist"
     ],
     "playbook versus runtime mismatch": [
       "playbook versus runtime mismatch"
@@ -74963,6 +75431,9 @@
     ],
     "pre confirmation margin analysis decision": [
       "pre-confirmation margin analysis decision"
+    ],
+    "pre existing advisor failures": [
+      "pre-existing advisor failures"
     ],
     "pre existing broken leaves": [
       "pre-existing broken leaves"
@@ -76333,6 +76804,12 @@
     "provenance chain lookup": [
       "provenance chain lookup"
     ],
+    "provenance existence test plan": [
+      "provenance existence test plan"
+    ],
+    "provenance existence test task": [
+      "provenance existence test task"
+    ],
     "provenance fingerprint": [
       "provenance fingerprint"
     ],
@@ -76347,6 +76824,30 @@
     ],
     "provenance injection tasks": [
       "provenance injection tasks"
+    ],
+    "provenance line closure gate": [
+      "provenance line closure gate"
+    ],
+    "provenance line completion criteria": [
+      "provenance line completion criteria"
+    ],
+    "provenance line coverage status": [
+      "provenance line coverage status"
+    ],
+    "provenance path existence check": [
+      "provenance path existence check"
+    ],
+    "provenance sweep acceptance criteria": [
+      "provenance sweep acceptance criteria"
+    ],
+    "provenance sweep plan": [
+      "provenance sweep plan"
+    ],
+    "provenance sweep tasks": [
+      "provenance sweep tasks"
+    ],
+    "provenance title sweep": [
+      "provenance title sweep"
     ],
     "provide descriptive slug": [
       "PROVIDE-DESCRIPTIVE-SLUG"
@@ -78244,6 +78745,12 @@
     "recorded failure must route tasks": [
       "recorded failure must route tasks"
     ],
+    "recorded findings closure": [
+      "recorded findings closure"
+    ],
+    "recorded findings goal": [
+      "recorded findings goal"
+    ],
     "recover from council interruption": [
       "recover from council interruption"
     ],
@@ -78594,6 +79101,21 @@
     ],
     "reference template audit": [
       "reference template audit"
+    ],
+    "references corpus acceptance criteria": [
+      "references corpus acceptance criteria"
+    ],
+    "references corpus routing": [
+      "references corpus routing"
+    ],
+    "references corpus routing goal": [
+      "references corpus routing goal"
+    ],
+    "references corpus routing plan": [
+      "references corpus routing plan"
+    ],
+    "references corpus routing tasks": [
+      "references corpus routing tasks"
     ],
     "references drift remediation shipped": [
       "references drift remediation shipped"
@@ -79216,6 +79738,9 @@
     "registration drift fix": [
       "registration drift fix"
     ],
+    "registration schema unification": [
+      "registration schema unification"
+    ],
     "registration tasks": [
       "registration tasks"
     ],
@@ -79231,6 +79756,12 @@
     "registry compiler unresolved identity": [
       "registry compiler unresolved identity"
     ],
+    "registry coverage ac": [
+      "registry coverage ac"
+    ],
+    "registry coverage regression plan": [
+      "registry coverage regression plan"
+    ],
     "registry coverage test": [
       "registry coverage test"
     ],
@@ -79245,6 +79776,12 @@
     ],
     "registry coverage test tasks": [
       "registry coverage test tasks"
+    ],
+    "registry coverage testing": [
+      "registry coverage testing"
+    ],
+    "registry coverage verification": [
+      "registry coverage verification"
     ],
     "registry derived embedder fallback": [
       "registry-derived embedder fallback"
@@ -79264,14 +79801,29 @@
     "registry is source of truth": [
       "registry is source of truth"
     ],
+    "registry one to one directive": [
+      "registry one to one directive"
+    ],
+    "registry one to one status": [
+      "registry one to one status"
+    ],
     "registry roster drift readme": [
       "registry roster drift readme"
     ],
     "registry router discriminator rationale": [
       "registry router discriminator rationale"
     ],
+    "registry row verification checklist": [
+      "registry row verification checklist"
+    ],
+    "registry script path mapping": [
+      "registry script path mapping"
+    ],
     "registry source authority": [
       "registry source authority"
+    ],
+    "registry split closure gate": [
+      "registry split closure gate"
     ],
     "registry synchronization decision": [
       "registry synchronization decision"
@@ -79302,6 +79854,9 @@
     ],
     "regression harness coverage": [
       "regression harness coverage"
+    ],
+    "regression suite parity proof": [
+      "regression suite parity proof"
     ],
     "regression tests": [
       "regression tests"
@@ -81493,6 +82048,9 @@
     "residual roadmap synthesis": [
       "residual roadmap synthesis"
     ],
+    "residual routing failures": [
+      "residual routing failures"
+    ],
     "residue census criterion": [
       "residue census criterion"
     ],
@@ -81593,6 +82151,9 @@
     "resolver p0 fix plan": [
       "resolver P0 fix plan"
     ],
+    "resolver parity test": [
+      "resolver parity test"
+    ],
     "resolver path update": [
       "resolver path update"
     ],
@@ -81650,6 +82211,9 @@
     "resource map": [
       "resource map"
     ],
+    "resource map completeness": [
+      "resource map completeness"
+    ],
     "resource map coverage gate": [
       "resource map coverage gate"
     ],
@@ -81680,6 +82244,12 @@
     "resource map implementation": [
       "resource map implementation"
     ],
+    "resource map intent addition": [
+      "resource map intent addition"
+    ],
+    "resource map intent task": [
+      "resource map intent task"
+    ],
     "resource map ledger": [
       "resource map ledger"
     ],
@@ -81707,6 +82277,9 @@
     "resource map scoring": [
       "resource map scoring"
     ],
+    "resource map subset routing": [
+      "resource map subset routing"
+    ],
     "resource map tasks": [
       "resource map tasks"
     ],
@@ -81721,6 +82294,9 @@
     ],
     "resource map template packet": [
       "resource map template packet"
+    ],
+    "resource map waiver adr": [
+      "resource map waiver adr"
     ],
     "resource maps cycle": [
       "resource maps cycle"
@@ -82883,6 +83459,18 @@
     "review report output": [
       "review report output"
     ],
+    "review report template": [
+      "review report template"
+    ],
+    "review report template closure gate": [
+      "review report template closure gate"
+    ],
+    "review report template task": [
+      "review report template task"
+    ],
+    "review report template technical approach": [
+      "review report template technical approach"
+    ],
     "review report v3 remediation": [
       "review-report-v3 remediation"
     ],
@@ -82894,6 +83482,18 @@
     ],
     "review research paths rollback": [
       "review-research-paths rollback"
+    ],
+    "review research scaffold acceptance criteria": [
+      "review research scaffold acceptance criteria"
+    ],
+    "review research scaffold paths": [
+      "review research scaffold paths"
+    ],
+    "review research scaffold plan": [
+      "review research scaffold plan"
+    ],
+    "review research scaffold tasks": [
+      "review research scaffold tasks"
     ],
     "review rollback followup": [
       "review rollback followup"
@@ -83458,6 +84058,21 @@
     ],
     "root resolution validation matrix": [
       "root resolution validation matrix"
+    ],
+    "root resolver acceptance criteria": [
+      "root resolver acceptance criteria"
+    ],
+    "root resolver consolidation": [
+      "root resolver consolidation"
+    ],
+    "root resolver consolidation goal": [
+      "root resolver consolidation goal"
+    ],
+    "root resolver consolidation plan": [
+      "root resolver consolidation plan"
+    ],
+    "root resolver consolidation tasks": [
+      "root resolver consolidation tasks"
     ],
     "root router adoption decision": [
       "root router adoption decision"
@@ -84104,6 +84719,9 @@
     "routing optimization phase 2": [
       "routing optimization phase 2"
     ],
+    "routing ownership table": [
+      "routing ownership table"
+    ],
     "routing parity remediation": [
       "routing parity remediation"
     ],
@@ -84388,6 +85006,15 @@
     ],
     "run capped pool": [
       "run capped pool"
+    ],
+    "run check adapter closure gate": [
+      "run check adapter closure gate"
+    ],
+    "run check adapter task": [
+      "run check adapter task"
+    ],
+    "run check adapter technical approach": [
+      "run check adapter technical approach"
     ],
     "run command surface benchmark": [
       "run command surface benchmark"
@@ -84764,6 +85391,9 @@
     "runtime initialized task checklist": [
       "runtime_initialized task checklist"
     ],
+    "runtime instruction file drift": [
+      "runtime instruction file drift"
+    ],
     "runtime integration phase": [
       "runtime integration phase"
     ],
@@ -84938,6 +85568,9 @@
     "runtime residue removal": [
       "runtime residue removal"
     ],
+    "runtime rollback procedure": [
+      "runtime rollback procedure"
+    ],
     "runtime scripts code drift": [
       "runtime scripts code drift"
     ],
@@ -84994,6 +85627,12 @@
     ],
     "runtime test suites": [
       "runtime test suites"
+    ],
+    "runtime trio goal binding": [
+      "runtime trio goal binding"
+    ],
+    "runtime trio line count": [
+      "runtime trio line count"
     ],
     "runtime upsert cli empty input no op success": [
       "runtime upsert cli empty input no-op success"
@@ -85361,6 +86000,18 @@
     "save completion reminder drift": [
       "save completion reminder drift"
     ],
+    "save context tail criterion": [
+      "save context tail criterion"
+    ],
+    "save context tail duplication": [
+      "save context tail duplication"
+    ],
+    "save context tail extraction": [
+      "save context tail extraction"
+    ],
+    "save context tail task": [
+      "save context tail task"
+    ],
     "save dedup lanes": [
       "save dedup lanes"
     ],
@@ -85490,17 +86141,41 @@
     "scaffold chart skill package": [
       "scaffold chart skill package"
     ],
+    "scaffold coaching marker cleanup": [
+      "scaffold coaching marker cleanup"
+    ],
+    "scaffold coaching marker removal": [
+      "scaffold coaching marker removal"
+    ],
     "scaffold content bucket triage": [
       "scaffold content bucket triage"
     ],
     "scaffold debug delegation sh": [
       "scaffold-debug-delegation.sh"
     ],
+    "scaffold golden ac": [
+      "scaffold golden ac"
+    ],
+    "scaffold golden testing strategy": [
+      "scaffold golden testing strategy"
+    ],
+    "scaffold golden verification": [
+      "scaffold golden verification"
+    ],
     "scaffold honors requested level": [
       "scaffold honors requested level"
     ],
     "scaffold loader fix": [
       "scaffold loader fix"
+    ],
+    "scaffold marker closure gate": [
+      "scaffold marker closure gate"
+    ],
+    "scaffold marker removal plan": [
+      "scaffold marker removal plan"
+    ],
+    "scaffold marker removal tasks": [
+      "scaffold marker removal tasks"
     ],
     "scaffold never touched complete match": [
       "scaffold never touched complete match"
@@ -85525,6 +86200,9 @@
     ],
     "scaffold plan": [
       "scaffold plan"
+    ],
+    "scaffold provenance backlog": [
+      "scaffold provenance backlog"
     ],
     "scaffold real default status": [
       "scaffold real default status"
@@ -85558,6 +86236,9 @@
     ],
     "scaffold to route journey test": [
       "scaffold to route journey test"
+    ],
+    "scaffold validation counts block": [
+      "scaffold validation counts block"
     ],
     "scaffold verification region": [
       "scaffold verification region"
@@ -87501,6 +88182,9 @@
     "settings local json schema mismatch": [
       "settings.local.json schema mismatch"
     ],
+    "settings parity regex": [
+      "settings parity regex"
+    ],
     "setup": [
       "setup"
     ],
@@ -87855,6 +88539,9 @@
     "shared context seam tasks": [
       "shared context seam tasks"
     ],
+    "shared core migration plan": [
+      "shared core migration plan"
+    ],
     "shared cross cutting dependency closures": [
       "shared cross-cutting dependency closures"
     ],
@@ -87953,6 +88640,9 @@
     ],
     "shared frontmatter parser tasks": [
       "shared frontmatter parser tasks"
+    ],
+    "shared helper extraction steps": [
+      "shared helper extraction steps"
     ],
     "shared hf embed server url socket": [
       "shared HF_EMBED_SERVER_URL socket"
@@ -88075,6 +88765,15 @@
     "shared placement decision": [
       "shared placement decision"
     ],
+    "shared predicate audit task": [
+      "shared predicate audit task"
+    ],
+    "shared predicate boundary review": [
+      "shared predicate boundary review"
+    ],
+    "shared predicate caller audit": [
+      "shared predicate caller audit"
+    ],
     "shared procedure card tasks": [
       "shared procedure card tasks"
     ],
@@ -88095,6 +88794,9 @@
     ],
     "shared readme rewrite": [
       "shared readme rewrite"
+    ],
+    "shared readme waiver adr": [
+      "shared readme waiver adr"
     ],
     "shared receipt evidence digest": [
       "shared receipt evidence digest"
@@ -95586,8 +96288,26 @@
     "spec gate archive": [
       "spec gate archive"
     ],
+    "spec gate closure gate": [
+      "spec gate closure gate"
+    ],
+    "spec gate core port": [
+      "spec gate core port"
+    ],
     "spec gate enforce": [
       "spec gate enforce"
+    ],
+    "spec gate migration tasks": [
+      "spec gate migration tasks"
+    ],
+    "spec gate orchestration extraction": [
+      "spec gate orchestration extraction"
+    ],
+    "spec gate port objective": [
+      "spec gate port objective"
+    ],
+    "spec gate port status": [
+      "spec gate port status"
     ],
     "spec gate question every turn": [
       "spec-gate question every turn"
@@ -95642,6 +96362,9 @@
     ],
     "spec kit catalog reconciliation": [
       "spec-kit catalog reconciliation"
+    ],
+    "spec kit check mirror job": [
+      "spec kit check mirror job"
     ],
     "spec kit check on push": [
       "spec-kit check on push"
@@ -95842,6 +96565,9 @@
     ],
     "spec kit shared package": [
       "spec kit shared package"
+    ],
+    "spec kit simplification follow up": [
+      "spec-kit simplification follow-up"
     ],
     "spec kit skill advisor bridge": [
       "spec kit skill advisor bridge"
@@ -96210,6 +96936,12 @@
     ],
     "specification": [
       "specification"
+    ],
+    "specifier extension fix task": [
+      "specifier extension fix task"
+    ],
+    "specifier fix ac traceability": [
+      "specifier fix ac traceability"
     ],
     "specifier normalisation tasks": [
       "specifier normalisation tasks"
@@ -98777,6 +99509,15 @@
     "suggested queries recovery": [
       "suggested queries recovery"
     ],
+    "suite backed classification tasks": [
+      "suite backed classification tasks"
+    ],
+    "suite backed manual only classification": [
+      "suite backed manual only classification"
+    ],
+    "suite path proof objective": [
+      "suite path proof objective"
+    ],
     "suite revalidation tasks": [
       "suite revalidation tasks"
     ],
@@ -99092,6 +99833,9 @@
     "swe 1 6 static infra scenarios": [
       "SWE-1.6 static infra scenarios"
     ],
+    "sweep ac traceability": [
+      "sweep ac traceability"
+    ],
     "sweep apply path": [
       "sweep apply path"
     ],
@@ -99127,6 +99871,9 @@
     ],
     "sweep stale mcp processes": [
       "sweep stale mcp processes"
+    ],
+    "sweep verification checklist": [
+      "sweep verification checklist"
     ],
     "sweep vitest suite": [
       "sweep vitest suite"
@@ -100859,6 +101606,9 @@
     "template impl tasks": [
       "template impl tasks"
     ],
+    "template level token cleanup": [
+      "template level token cleanup"
+    ],
     "template levels": [
       "template levels"
     ],
@@ -101642,6 +102392,9 @@
     "tion": [
       "tion"
     ],
+    "title strip script": [
+      "title strip script"
+    ],
     "titlecase config flip summary": [
       "titlecase config flip summary"
     ],
@@ -102405,6 +103158,9 @@
     "trigger index lookup path": [
       "trigger index lookup path"
     ],
+    "trigger index lookup pointer": [
+      "trigger index lookup pointer"
+    ],
     "trigger index plan": [
       "trigger index plan"
     ],
@@ -102719,6 +103475,18 @@
     ],
     "twenty row system re check": [
       "twenty row system re-check"
+    ],
+    "twenty seven packet goal binding": [
+      "twenty seven packet goal binding"
+    ],
+    "twenty seven packet regeneration": [
+      "twenty seven packet regeneration"
+    ],
+    "twenty seven packet strict proof": [
+      "twenty seven packet strict proof"
+    ],
+    "twenty seven packet task list": [
+      "twenty seven packet task list"
     ],
     "two anchor systems evidence": [
       "two anchor systems evidence"
@@ -103987,6 +104755,9 @@
     "validate sh backlog sweep": [
       "validate.sh backlog sweep"
     ],
+    "validate sh cadence comment": [
+      "validate sh cadence comment"
+    ],
     "validate sh obsidian flattened packet": [
       "validate.sh obsidian flattened packet"
     ],
@@ -104247,6 +105018,9 @@
     ],
     "validator registry forty five to thirty six": [
       "validator registry forty-five to thirty-six"
+    ],
+    "validator registry one to one": [
+      "validator registry one to one"
     ],
     "validator registry rule": [
       "validator registry rule"
@@ -106186,6 +106960,9 @@
     "widened drift baseline": [
       "widened drift baseline"
     ],
+    "wikilink registry row": [
+      "wikilink registry row"
+    ],
     "will change management": [
       "will change management"
     ],
@@ -106458,6 +107235,9 @@
     ],
     "worktree": [
       "worktree"
+    ],
+    "worktree 046 removal": [
+      "worktree 046 removal"
     ],
     "worktree automation plan": [
       "worktree automation plan"
@@ -106818,6 +107598,18 @@
     ],
     "writer freeze plan": [
       "writer freeze plan"
+    ],
+    "writer regex widen task": [
+      "writer regex widen task"
+    ],
+    "writer widen completion criteria": [
+      "writer widen completion criteria"
+    ],
+    "writer widen proof": [
+      "writer widen proof"
+    ],
+    "writer widen verification evidence": [
+      "writer widen verification evidence"
     ],
     "writevectorstoshard patch": [
       "writeVectorsToShard patch"
