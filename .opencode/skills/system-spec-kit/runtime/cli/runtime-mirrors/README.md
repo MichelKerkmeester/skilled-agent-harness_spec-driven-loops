@@ -24,6 +24,8 @@ trigger_phrases:
 | `command-scope.cjs` | Authored exceptions for runtime-exclusive commands and runtime-native commands. |
 | `sync-runtime-mirrors.cjs` | Derives expected mirror links, checks drift and writes missing or stale links when invoked without `--check`. |
 | `sync-gate1-pointers.cjs` | Writes the Gate 1 lookup pointer block into `.codex/AGENTS.md` and `.cursor/rules/skill-routing.md` from the root `AGENTS.md` line; `--check` reports drift without writing. |
+| `hook-registry.json` | The canonical hook set: every hook once, with its concern, script and per-runtime event bindings; Pi's symlink name per hook. |
+| `sync-hook-registrations.cjs` | Renders the four JSON hook registration files from the registry in each runtime's shape and verifies the Pi symlinks; `--check` reports drift without writing. |
 
 ---
 

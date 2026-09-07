@@ -120,3 +120,5 @@ jobs:
           node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
           node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
           node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs
+          node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check

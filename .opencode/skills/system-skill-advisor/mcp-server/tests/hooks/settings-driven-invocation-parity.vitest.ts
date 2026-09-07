@@ -195,7 +195,7 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
           expect(cmd).toContain('cd "${CLAUDE_PROJECT_DIR:-$PWD}"');
           // Bare `node` (relying on PATH) running the relative adapter path —
           // not a pinned absolute node binary.
-          expect(cmd).toMatch(/&& node \.opencode\/skills\/system-spec-kit\/mcp-server\/dist\/hooks\/claude\//);
+          expect(cmd).toMatch(/&& node \.opencode\/skills\/system-spec-kit\/runtime\/dist\/hooks\/claude\//);
           expect(cmd).not.toContain('git rev-parse');
           expect(cmd).not.toContain('|| pwd');
         });
