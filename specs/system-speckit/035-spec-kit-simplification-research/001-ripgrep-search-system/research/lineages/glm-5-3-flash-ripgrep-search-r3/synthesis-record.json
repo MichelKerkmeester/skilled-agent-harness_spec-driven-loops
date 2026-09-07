@@ -1,0 +1,44 @@
+{
+  "sessionId": "fanout-glm-5-3-flash-ripgrep-search-r3-1788773746570-6hn9ct",
+  "lineage": "glm-5-3-flash-ripgrep-search-r3",
+  "loopType": "research",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "maxIterations": 5,
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages/glm-5-3-flash-ripgrep-search-r3",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "inline": true,
+    "nestedDispatchUsed": false
+  },
+  "charter": {
+    "role": "Skeptical retrieval auditor — every claim unverified until cited; code overrides self-reported success",
+    "target": "round-three angle ledger: the five angles rounds one and two covered thinly or not at all, audited to path:line receipts",
+    "nonGoalsHonored": ["no edits", "no database/vector redesign", "no prose-style review", "no census re-reporting without new evidence"],
+    "earlyConvergence": false
+  },
+  "outcomes": {
+    "p0": 0,
+    "p1": 4,
+    "p2": 14,
+    "questionsAnswered": 6,
+    "openQuestionsCarried": 5,
+    "synthesis": "research.md",
+    "findingsRegistry": "findings-registry.json (planned; reducer-owned - not written by this inline lineage, documented deviation)",
+    "convergenceReport": "convergence-report.json",
+    "dashboard": "deep-research-dashboard.md (planned; reducer-owned - not written by this inline lineage)",
+    "stateLog": "deep-research-state.jsonl",
+    "deltas": "deltas/iter-001.jsonl..iter-005.jsonl",
+    "iterations": "iterations/iteration-001.md..iteration-005.md"
+  },
+  "headlineFindings": [
+    "R3-1 Gate 1 parity: the lookup instruction lives ONLY at AGENTS.md:83 = CLAUDE.md:83 (the symlink, census-3-verified); the other runtime instruction surfaces (.codex, .cursor, .pi, .devin) carry zero trigger-index mentions and .pi/.devin have no AGENTS.md at all - enforcement is entirely the model reading the root docs; plus the .codex context.sh absolute-path couplet",
+    "R3-2 The doctor's retrieval diagnostic: nine declared staleness signals, three with no implementing activity (fresh-manifest compare, the ambient-config flagless second run, the anchor scan) while the outputs slots pretend otherwise; the probe's own invocation is a fifth undocumented recipe shape omitting --hidden and the scratch glob; meanwhile the committed four-way manifestHash pair is internally consistent (b6953bc6...e9e0e7) and the phraseQuality pollution signal carries real counts (825/121/171/18/12/4)",
+    "R3-3 The memory-residue sweep: 8/8 sampled allowlist exemptions still apply (true residue recounted, 4/8/1/4 hits); the stale-justification pair inside the sweep's own audit surface (the retired mcp-server/ engine gone from the skill tree; barter/ nonexistent); and 013's 8 docs never mention the sweep its census clause credits it with while the 013-touched README still bills it a one-shot acceptance check",
+    "R3-4 The two boundary tables resolve everywhere (the bare 002 = 033/017/002-memory-consumer-rewire, a grandchild); the residuals are precision defects in the canonical documents: the unqualified share-no-mechanism claim (conventions:33) against the document's own section 5 + the README scoring-parity row, and the double-booked decay/access/dedup loss pair (conventions:64-65) the feature-catalog itself proves mergeable",
+    "R3-5.1 (P1) The judge's seventh class never reaches the generation diagnostics: generate-trigger-index.mjs:244 judges unique keys without folderTokens, so folder-token-fallback (judge:96-102) structurally submerges into single-token in the doctor's pollution signal while the validator (grep-convention.mjs:719) warns it as its own class - 013's One-judge-three-readers premise silently divides for exactly one class, against the module header's own so-every-enforcer-keeps-the-same-verdict clause (judge:3-7)",
+    "R3-5.2-5.5 The guidance residuals: the Warn-On bullets carry no numbers (the 10-token prose flip, the 37-word stop list, the 120-char oversize variant); Body-derived fallbacks (conventions:254) names a producer that produces neither of the judge's two editor-produced fallback shapes; the template tree (spec-kit-docs.json = 0 mentions; 16 exemplary .tmpl phrases) and sk-doc's prescription (examples.md:95,141) both author trigger_phrases with zero pointers to the only guidance, conventions section 8:241-261 - while 26/26 inspected phrases survive the judge and the 9-word vocabulary is verbatim"
+  ]
+}

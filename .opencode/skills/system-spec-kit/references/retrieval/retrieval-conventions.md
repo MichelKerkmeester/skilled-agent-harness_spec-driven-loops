@@ -30,7 +30,7 @@ Ripgrep is an evidence producer, never the relevance ranker. It returns matches,
 
 ### The Two Lanes
 
-Retrieval splits into a keyed lane and a free-text lane, and the two share no mechanism.
+Retrieval splits into a keyed lane and a free-text lane, and the two share no retrieval mechanism; they share the normalization and ranking helpers section 5 names.
 
 | Lane | Mechanism | Used for |
 |------|-----------|----------|
@@ -61,8 +61,7 @@ The retired memory surface carried stateful capabilities that a read-only scan c
 | Continuity frontmatter writing | A named packet-local writer keeping atomic same-directory update and lock semantics. Ripgrep cannot write. Owned by phase 002 |
 | Causal graph and drift analysis | Explicit Markdown links, typed evidence or a named unsupported capability. Grep cannot traverse or statefully update graph edges |
 | Resource maps | A static generated path catalog. It is not a dynamic graph |
-| Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup | Deliberate lexical-only loss. Callers must behave explicitly on a no-hit rather than degrading to a guess |
-| Decay, access tracking and session dedup | Deliberate loss with no owner. All three were properties of a stateful store that observed its own reads. Every lane here is stateless, so a caller must behave explicitly on a no-hit rather than degrading to a guess |
+| Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup | Deliberate lexical-only loss with no owner. Decay, access tracking and dedup were properties of a stateful store that observed its own reads, and every lane here is stateless; callers must behave explicitly on a no-hit rather than degrading to a guess |
 
 Nothing in this document may be read as a claim that the two index lanes plus grep cover the rows above.
 
@@ -248,11 +247,11 @@ The index is only as good as the corpus it reads. `trigger_phrases` is an author
 
 ### Warn On
 
-- Generic workflow words: `session`, `context`, `memory`, `summary`, `feature`, `update`, `file`, `document` and `section`
-- Stopword-only phrases
-- Whole prose sentences
-- Body-derived fallbacks
-- Single-token phrases, and phrases that are only numbers
+- Generic workflow words: `session`, `context`, `memory`, `summary`, `feature`, `update`, `file`, `document` and `section` (judge class `generic-workflow-word`)
+- Stopword-only phrases, against the judge's 37-word stop list (`stop-word-only`)
+- Whole prose sentences: sentence punctuation, or more than 10 tokens (`prose-sentence`); a phrase over 120 characters is the normalizer's `oversized` variant, a separate check
+- The frontmatter editor's two fallback shapes: the terminal `session` and `context` pair (`editor-fallback`) and a single token echoing the packet folder (`folder-token-fallback`)
+- Single-token phrases (`single-token`), and phrases that are only numbers (`numeric-only`)
 
 The last one is not hypothetical. The frontmatter editor inserts folder tokens and ultimately falls back to `session` and `context`, and the body extractor applies its own separate stop-word and n-gram policy. Neither should silently define index input. A phrase that arrived by fallback rather than by an author's choice is corpus pollution, and it costs precision on every query that touches it.
 

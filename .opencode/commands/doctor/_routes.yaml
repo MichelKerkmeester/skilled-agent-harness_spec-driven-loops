@@ -39,7 +39,7 @@ routes:
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
       - 'node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
-      - "rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'trigger index generator' specs .opencode  # conventions resolve"
+      - "rg --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'trigger index generator' specs .opencode  # the section 2.2 recipe, flags verbatim"
     trigger_phrases:
       - "trigger index drift"
       - "trigger index lookup fails"

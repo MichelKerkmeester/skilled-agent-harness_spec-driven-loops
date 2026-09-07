@@ -138,7 +138,7 @@ Related references:
 - Keep the root a table of links per category. Resist inlining prose or source tables there.
 - Put counts and baseline metrics in `## 1. OVERVIEW`, and pin the metrics to a commit SHA so staleness is visible.
 - Name the tool in the H1 whenever the feature maps to one.
-- Make `trigger_phrases` lead with the exact tool or feature name, then add alternates.
+- Make `trigger_phrases` lead with the exact tool or feature name, then add alternates. Each phrase needs two or more tokens: the spec-kit trigger index judges phrases against the negative classes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` section 8, and a bare tool name is its `single-token` class.
 - Apply the H3 sub-heading rule when a sub-behavior needs its own anchor, not on a paragraph count.
 - Say when a field or behavior is absent, not only when it fires.
 - Point `Related references` at adjacent features so readers navigate without returning to the root.

@@ -11,6 +11,8 @@ contextType: reference
 ---
 
 # SpecKit Template Extension Guide
+
+> Every document type's `trigger_phrases` are judged at index time by the retrieval convention's negative classes. Author them per `../references/retrieval/retrieval-conventions.md` section 8: two or more tokens each, never a bare folder token.
 <!-- Lives at templates/ (not references/) because it co-locates with the manifest assets it documents. -->
 
 Private maintainer guide for adding a new manifest-backed document type.
