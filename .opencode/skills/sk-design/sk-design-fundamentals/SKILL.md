@@ -1,5 +1,5 @@
 ---
-name: sk-design
+name: sk-design-fundamentals
 description: "Designs, builds and reviews any laid-out surface from fixed value scales: screen UI, slide decks, printed and document layouts. Adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen."
 allowed-tools: [Read, Write, Edit, Grep, Glob]
 version: 1.0.0.0

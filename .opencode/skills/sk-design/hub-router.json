@@ -11,8 +11,9 @@
       "sk-design-diagram"
     ],
     "outcomes": {
-      "single": "one dominant mode, load it",
-      "ambiguous": "scores within the delta, ask which decision is wanted",
+      "single": "one dominant design intent, load that mode",
+      "orderedBundle": "separate design intents route to an ordered mode list, the decision that must be made first leading",
+      "defer": "scores within the delta, ask which decision is wanted",
       "none": "no signal, fall to the default mode"
     }
   },
