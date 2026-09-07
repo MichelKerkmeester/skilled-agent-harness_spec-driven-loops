@@ -61,7 +61,7 @@ The implementation extended the strict path beyond the original shell-rule inven
 | `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Orchestrator | Parses flags and config, detects level, resolves rule order, sources rule scripts, aggregates results, and handles recursive phase validation |
 | `.opencode/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts` | Validation helper | Warns when `_memory.continuity.last_updated_at` lags `graph-metadata.json.derived.last_save_at` |
 | `.opencode/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Bracket-depth evidence-marker parser used for audit and repair sweeps |
-| `.opencode/skills/system-spec-kit/runtime/cli/validation/evidence-marker-lint.ts` | Validation helper | Strict lint wrapper that fails malformed evidence-marker cases |
+| `.opencode/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Strict audit that fails malformed evidence-marker cases |
 
 ### Rule Inventory
 

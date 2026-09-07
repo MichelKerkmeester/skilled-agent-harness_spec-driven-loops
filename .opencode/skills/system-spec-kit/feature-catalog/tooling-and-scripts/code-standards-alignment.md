@@ -47,16 +47,16 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
   - `sk-code/assets/opencode/checklists/typescript-checklist.md` (required file header format by language)
   - `sk-code/references/opencode/typescript/quality-standards.md` (file header and module boundary standards)
 - **File-level evidence (10 files, 1 header each at HEAD)**
-  - `runtime/handlers/memory-save.ts` → `1`
+  - `runtime/handlers/memory-save.ts` (removed with the memory server) → was `1`
   - `runtime/lib/search/folder-discovery.ts` → `1`
   - `runtime/lib/search/folder-discovery.ts` → `1`
   - `runtime/lib/search/rsf-fusion.ts` (deleted) → was `1`
-  - `runtime/lib/search/graph-search-fn.ts` → `1`
-  - `runtime/lib/scoring/composite-scoring.ts` → `1`
-  - `runtime/lib/parsing/trigger-matcher.ts` → `1`
-  - `runtime/lib/cognitive/co-activation.ts` → `1`
-  - `runtime/lib/search/query-classifier.ts` → `1`
-  - `runtime/lib/search/channel-representation.ts` → `1`
+  - `runtime/lib/search/graph-search-fn.ts` (removed with the memory server) → was `1`
+  - `runtime/lib/scoring/composite-scoring.ts` (removed with the memory server) → was `1`
+  - `runtime/lib/parsing/trigger-matcher.ts` (removed with the memory server) → was `1`
+  - `runtime/lib/cognitive/co-activation.ts` (removed with the memory server) → was `1`
+  - `runtime/lib/search/query-classifier.ts` (removed with the memory server) → was `1`
+  - `runtime/lib/search/channel-representation.ts` (removed with the memory server) → was `1`
 - **Verification method**
   - `rg "^//\\s*(MODULE|COMPONENT):" <file>` returns one marker per file in the list above.
 
@@ -65,10 +65,10 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 - **Rule mapping**
   - `sk-code/references/opencode/typescript/style-guide.md` (import order)
 - **File-level evidence**
-  - `runtime/handlers/memory-save.ts:6-21` has grouped import blocks:
+  - `runtime/handlers/memory-save.ts:6-21` (removed with the memory server) had grouped import blocks:
     - `Node built-ins` → `Shared packages` → `Internal modules`
   - `runtime/lib/search/folder-discovery.ts` separates runtime imports and `type` imports.
-  - `runtime/lib/search/graph-search-fn.ts:6-10` keeps runtime imports before `import type`.
+  - `runtime/lib/search/graph-search-fn.ts:6-10` (removed with the memory server) kept runtime imports before `import type`.
 
 ### 4) Constant naming (`specFolderLocks` → `SPEC_FOLDER_LOCKS`)
 

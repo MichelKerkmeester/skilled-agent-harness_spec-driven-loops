@@ -4,7 +4,7 @@ description: "Checklist completion verifier for spec folders that enforces P0/P1
 trigger_phrases:
   - completion verification workflow
   - check-completion.sh
-  - checklist completion gate
+  - tasks checklist completion gate
   - P0 P1 evidence markers
   - spec folder completion check
 version: 3.6.0.7
@@ -16,7 +16,7 @@ version: 3.6.0.7
 
 ## 1. OVERVIEW
 
-Completion Verification Workflow is the spec-kit completion gate that decides whether a spec folder is ready to be claimed as finished. It audits `checklist.md` inside a target spec folder, counts checkbox items by priority, and blocks completion when critical or required work is missing.
+Completion Verification Workflow is the spec-kit completion gate that decides whether a spec folder is ready to be claimed as finished. It audits the verification checklist inside a target spec folder's `tasks.md`, counts checkbox items by priority, reads the acceptance-criteria table when that document exists, and blocks completion when critical or required work is missing or a criterion is not closed.
 
 The workflow is stricter than a plain checkbox counter. It understands inherited priority context from Markdown headings, treats untagged checklist items as blocking, and requires evidence markers on completed P0 and P1 items before the workflow returns a passing status.
 
@@ -26,11 +26,11 @@ The workflow is stricter than a plain checkbox counter. It understands inherited
 
 ### Entry Point & Routing
 
-`check-completion.sh` takes a spec-folder path plus optional `--json`, `--strict`, and `--quiet` flags. It normalizes the folder path, verifies the directory exists, and then looks specifically for `checklist.md` at the folder root.
+`check-completion.sh` takes a spec-folder path plus optional `--json`, `--strict`, and `--quiet` flags. It normalizes the folder path, verifies the directory exists, and then looks for the verification section of `tasks.md`, scoped by its protocol anchor, at the folder root. The completion-evidence sentinel spawns it with `--json` on every completion claim.
 
 ### Edge Cases & Caveats
 
-If `checklist.md` is missing, the script exits `0` and prints a Level 1-style advisory instead of failing hard. That means the workflow treats missing checklists as acceptable for lightweight specs, while still enforcing checklist structure whenever the file exists.
+If `tasks.md` carries no verification section, the script exits `0` and prints a Level 1-style advisory instead of failing hard. That means the workflow treats a missing checklist as acceptable for lightweight specs, while still enforcing checklist structure whenever the section exists. An `acceptance-criteria.md` with an `Unmet` row, or a waiver naming no decision record, returns `AC_UNMET` once the checklist itself passes.
 
 ### Core Behavior
 

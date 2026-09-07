@@ -34,7 +34,7 @@ The shipped extractor behavior in this slice currently works as follows:
 6. `diagram-extractor.ts` scans observation narratives and coerced fact text for box-drawing and arrow characters, classifies detected diagrams with the flowchart generator, and returns a bounded ASCII payload plus pattern, complexity, timestamps, and related-file metadata for each detected diagram.
 7. The same module derives conversation phases from observations by extracting tool usage from facts, ignoring prose-only tool mentions, classifying the phase for each observation, and summarizing up to three representative activities per phase. Those phases feed an auto-generated conversation flowchart even when no explicit user-authored diagram exists.
 8. The extractor intentionally returns an empty `AUTO_DECISION_TREES` list to avoid duplicating decision-tree content that is already rendered through the per-decision template path. Null collected data also returns an empty diagram payload rather than a simulation fallback.
-9. `session-activity-signal.ts` is an extractor-surface re-export for the shared activity scorer. The underlying builder matches candidate spec-folder tokens against observation paths, git-changed files, and transcript mentions, then computes a capped confidence boost with stronger weights for write tools (`0.3`), lower weights for read-like and inspect-like tools (`0.2` and `0.1`), `0.25` for matching git-changed files, and `0.1` for transcript mentions.
+9. `session-activity-signal.ts` under `runtime/cli/lib/` is the shared activity scorer. The underlying builder matches candidate spec-folder tokens against observation paths, git-changed files, and transcript mentions, then computes a capped confidence boost with stronger weights for write tools (`0.3`), lower weights for read-like and inspect-like tools (`0.2` and `0.1`), `0.25` for matching git-changed files, and `0.1` for transcript mentions.
 10. `extractors/index.ts` acts as the barrel boundary for this subsystem. It re-exports the file and diagram extractors, the session-activity signal, and adjacent extractor/helper modules so higher layers can import one stable extractor surface instead of wiring individual modules directly.
 
 ---
@@ -47,7 +47,7 @@ The shipped extractor behavior in this slice currently works as follows:
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts` | Extractor | Normalizes file references, preserves richer description/action metadata, anchors observations, and deduplicates repeated observation noise |
 | `.opencode/skills/system-spec-kit/runtime/cli/extractors/diagram-extractor.ts` | Extractor | Detects ASCII diagrams, summarizes conversation phases, and generates auto conversation-flow data |
-| `.opencode/skills/system-spec-kit/runtime/cli/extractors/session-activity-signal.ts` | Extractor boundary | Re-exports the shared session-activity signal builder into the extractor surface |
+| `.opencode/skills/system-spec-kit/runtime/cli/lib/session-activity-signal.ts` | Shared scorer | Builds the session-activity signal the extractors and the spec-folder detector share |
 | `.opencode/skills/system-spec-kit/runtime/cli/extractors/index.ts` | Barrel export | Exposes the extractor-layer API surface, including file, diagram, session, implementation-guide, contamination, quality, and activity-signal modules |
 
 ---

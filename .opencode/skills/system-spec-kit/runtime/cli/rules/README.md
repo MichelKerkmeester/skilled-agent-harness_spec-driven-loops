@@ -61,13 +61,14 @@ rules/
 +-- check-graph-metadata.sh     # Graph metadata checks
 +-- check-metadata-disk-consistency-helper.cjs  # Node helper for metadata/disk-path checks
 +-- check-grep-convention-helper.mjs            # Node helper for the grep-convention rule
-+-- check-links.sh              # Optional cross-skill link scan
++-- check-links.sh              # Standalone wikilink scan, not a registry rule
 +-- check-*.sh                  # Additional focused rule modules
 `-- README.md
 ```
 
-The full rule list is the set of `check-*.sh` files in this directory plus three Node
-helpers each `.sh` rule shells out to for logic bash cannot express directly:
+The rule list is the set of rows in `../lib/validator-registry.json`; every row names one
+`check-*.sh` file here, and `check-links.sh` is the one script with no row, a standalone scan run
+by hand. Three Node helpers back the `.sh` rules that need logic bash cannot express directly:
 `check-canonical-save-helper.cjs`, `check-metadata-disk-consistency-helper.cjs` and
 `check-grep-convention-helper.mjs`.
 
@@ -81,7 +82,7 @@ helpers each `.sh` rule shells out to for logic bash cannot express directly:
 | `check-level-match.sh` | Compares declared level with required-file state. |
 | `check-template-source.sh` | Verifies template-source metadata markers. |
 | `check-canonical-save.sh` | Checks canonical save artifacts and lineage data. |
-| `check-links.sh` | Runs optional markdown link validation when enabled. |
+| `check-links.sh` | Scans a skill tree for broken wikilinks when run by hand; no registry row, so `validate.sh` never runs it. |
 
 ---
 

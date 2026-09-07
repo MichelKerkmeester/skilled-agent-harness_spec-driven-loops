@@ -103,6 +103,7 @@ const CHECKLIST_ADVISE_STATUSES = new Set([
   'PRIORITY_CONTEXT_MISSING',
   'P0_INCOMPLETE',
   'P1_INCOMPLETE',
+  'AC_UNMET',
 ]);
 
 // ───────────────────────────────────────────────────────────────────
@@ -207,6 +208,10 @@ function detailForChecklistStatus(status, specFolder, data) {
   if (status === 'P1_INCOMPLETE') {
     const p1 = priorities.p1 || {};
     return `claimed done but only ${p1.completed || 0}/${p1.total || 0} P1 checklist item(s) are complete in ${specFolder}`;
+  }
+  if (status === 'AC_UNMET') {
+    const acceptance = data.acceptance || {};
+    return `claimed done but ${acceptance.unmet || 0} acceptance criteria are unmet and ${acceptance.unbackedWaivers || 0} waived without a decision record in ${specFolder}`;
   }
   return `claimed done but ${specFolder} checklist status is ${status}`;
 }

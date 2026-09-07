@@ -33,8 +33,8 @@ standalone Claude Code Stop hook,
 When a turn ends with a completion claim (a word from `COMPLETION_CLAIM_PATTERN` -- `completed`,
 `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred`,
 `happened` -- matched only against the trailing 400 characters of the turn) AND a candidate spec
-folder can be resolved, the core checks recorded evidence only: `checklist.md` via
-`check-completion.sh --json` when present, otherwise a `stat` of `implementation-summary.md` for a
+folder can be resolved, the core checks recorded evidence only: the `tasks.md` verification section and the
+acceptance-criteria table via `check-completion.sh --json` when the section is present, otherwise a `stat` of `implementation-summary.md` for a
 Level 1 folder. It never runs a test, a build, or `validate.sh`, never writes stdout/stderr itself,
 never returns a block decision, and fails open on every internal error. A dedup store keyed on
 `sha256(specFolder)` fingerprints `specFolder + claimText` so an identical claim against the same
@@ -65,8 +65,8 @@ This scenario validates:
   hermetically testable via direct `node` invocation.
 - Real user-facing trigger: an agent in a live Claude Code or OpenCode session ends a turn with a
   completion claim (for example "...all done." or "...shipped.") that references a spec folder
-  which has NOT recorded qualifying evidence -- either a `checklist.md` with a completed P0/P1 item
-  lacking an evidence marker, or a Level 1 folder missing `implementation-summary.md`.
+  which has NOT recorded qualifying evidence -- either a `tasks.md` verification section with a completed P0/P1 item
+  lacking an evidence marker, an acceptance criterion left `Unmet`, or a Level 1 folder missing `implementation-summary.md`.
 - Expected signals:
   - First occurrence: core returns `{"decision":"advise","detail":"claimed done but ...","deduped":false}`.
   - Identical claim text against the identical packet, next check: `{"decision":"ok","detail":null,"deduped":true}`.

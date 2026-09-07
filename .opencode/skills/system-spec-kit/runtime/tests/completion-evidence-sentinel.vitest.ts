@@ -36,7 +36,7 @@ const sentinelCore = require('../lib/hooks/completion-evidence-sentinel.cjs') as
 const CLAIM_TEXT = 'The core is now complete and shipped.';
 const NON_CLAIM_TEXT = 'Let me look at a few more things before continuing.';
 
-function makeFixtureFolder(options: { checklist?: string | null; implementationSummary?: boolean }): string {
+function makeFixtureFolder(options: { checklist?: string | null; implementationSummary?: boolean; acceptance?: string }): string {
   const dir = mkdtempSync(join(tmpdir(), 'completion-sentinel-fixture-'));
   if (typeof options.checklist === 'string') {
     // The verification checklist is a section of tasks.md, scoped by the
@@ -59,11 +59,16 @@ function makeFixtureFolder(options: { checklist?: string | null; implementationS
   if (options.implementationSummary) {
     writeFileSync(join(dir, 'implementation-summary.md'), '# Summary\n\nDone.\n', 'utf8');
   }
+  if (typeof options.acceptance === 'string') {
+    writeFileSync(join(dir, 'acceptance-criteria.md'), options.acceptance, 'utf8');
+  }
   return dir;
 }
 
 const CHECKLIST_P0_NO_EVIDENCE = '# Checklist\n\n## P0 - Blockers\n- [x] Ship the core module [P0]\n';
 const CHECKLIST_P0_WITH_EVIDENCE = '# Checklist\n\n## P0 - Blockers\n- [x] Ship the core module [P0] [EVIDENCE: tests/foo.test.js:12]\n';
+const ACCEPTANCE_UNMET = '| AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |\n|---|---|---|---|---|---|\n| AC-001 | REQ-001 | given / when / then | - | Unmet | - |\n';
+const ACCEPTANCE_CLOSED = '| AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |\n|---|---|---|---|---|---|\n| AC-001 | REQ-001 | given / when / then | tests/foo.test.js:12 | Met | - |\n';
 
 describe('completion-evidence-sentinel core', () => {
   const tempDirs: string[] = [];
@@ -154,6 +159,31 @@ describe('completion-evidence-sentinel core', () => {
     });
 
     expect(result).toEqual({ decision: 'ok', detail: null, deduped: false });
+  });
+
+  it('a closed checklist with an Unmet acceptance criterion advises AC_UNMET', () => {
+    projectDir = newProjectDir();
+    const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_WITH_EVIDENCE, acceptance: ACCEPTANCE_UNMET }));
+    const result = sentinelCore.evaluateCompletionEvidence({
+      specFolder: fixture,
+      claimText: CLAIM_TEXT,
+      projectDir,
+      env: process.env,
+    });
+    expect(result.decision).toBe('advise');
+    expect(result.detail).toContain('1 acceptance criteria are unmet');
+  });
+
+  it('a closed checklist with every acceptance criterion Met resolves ok', () => {
+    projectDir = newProjectDir();
+    const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_WITH_EVIDENCE, acceptance: ACCEPTANCE_CLOSED }));
+    const result = sentinelCore.evaluateCompletionEvidence({
+      specFolder: fixture,
+      claimText: CLAIM_TEXT,
+      projectDir,
+      env: process.env,
+    });
+    expect(result.decision).toBe('ok');
   });
 
   it('REQ-003: a Level 1 folder with no checklist.md and no implementation-summary.md advises', () => {

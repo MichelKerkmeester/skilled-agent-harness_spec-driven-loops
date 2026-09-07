@@ -1,0 +1,82 @@
+{
+  "topic": "Context: system-spec-kit is a spec-authoring skill plus its command surface and the root governance layer that constrains it. Ground every claim only in: .opencode/skills/system-spec-kit/** (SKILL.md, ARCHITECTURE.md, README.md, templates, references, feature-catalog, manual-testing-playbook, runtime/cli, runtime/lib, runtime/hooks, shared), .opencode/commands/speckit/**, root AGENTS.md, CLAUDE.md, REPO RULES.md, repo-rules/*.md, and the restraint ladder in .opencode/skills/sk-code/shared/references/universal/code-quality-standards.md. Nothing outside these paths is evidence.",
+  "role": "Act as a systems auditor stress-testing system-spec-kit for overengineering, not a style reviewer. Judge every element against three outcomes only: better output, better AI adherence in practice (agents actually following the rule, not merely its existence), and lower maintenance. A rule, doc, gate, or abstraction earns its keep only by visibly improving one of the three on real packets; absence of harm is not justification.",
+  "outputFormat": "Each finding: path:line; what exists; its cost (reads, steps, maintenance); what it protects; severity P1 (clear waste) or P2 (candidate); recommendation labeled remove | merge | fold into a repo rule | keep. Findings count only with file:line + concrete cost + labeled recommendation.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "_thresholdNotes": "Operator supplied convergenceThreshold=3 (stopPolicy=max-iterations). Novelty scale is 0..1, so a threshold of 3 means novelty-nominated STOP is structurally unreachable; convergence math is recorded as telemetry only and the loop runs to the iteration cap, per the dispatch instruction. stuckThreshold=3 is the template default.",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "_progressiveSynthesisNote": "Fan-out lineage: synthesis is performed once at the end of the 10-iteration cap; research.md is compiled in phase_synthesis only.",
+  "resourceMap": {
+    "emit": false,
+    "present": false,
+    "_note": "No resource-map.md in the target spec folder at init (checked 2026-09-07T08:33Z); fan-out lineage does not emit one (operator flag resource_map.emit=false)."
+  },
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
+  "createdAt": "2026-09-07T08:35:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "fanout_lineage_artifact_dir": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering",
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering",
+  "artifactDirBinding": "bound directly via config.fanout_lineage_artifact_dir override (step_resolve_artifact_root satisfied by the dispatching runner; resolveArtifactRoot not executed, per lineage dispatch instructions)",
+  "executorContract": "in-process-inline: THIS lineage process is the executor for EVERY iteration; no nested CLI/agent/subprocess dispatch (loop-protocol.md containment: the lineage is the executor); no node tooling/validate.sh/git per dispatch (read-only evidence operations only)",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900
+  },
+  "invocationFingerprint": "inv:7da47b06d557eadf48ad0db7a26857b818de4680ef8ea06ceee6e0a12abb23b1",
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-overengineering-1788762836148-1dgwlq",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "roundTwo": {
+    "parentLineage": "glm-5-3-flash-overengineering",
+    "parentSynthesis": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/glm-5-3-flash-overengineering/research.md",
+    "confirmedFindings": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/confirmed-findings.md",
+    "remediationA": "specs/system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
+    "remediationB": "specs/system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair",
+    "jobs": [
+      "(1) verify each remediation landed completely and coherently in the current tree; (2) find what round one missed, preferring angles covered in one pass or not at all; (3) re-examine round one kept rows only with new evidence"
+    ]
+  },
+  "evidenceBoundary": [
+    ".opencode/skills/system-spec-kit/**",
+    ".opencode/commands/speckit/**",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "REPO RULES.md",
+    "repo-rules/*.md",
+    ".opencode/skills/sk-code/shared/references/universal/code-quality-standards.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/** (adherence-angle evidence only, per the round-two mandate)"
+  ],
+  "writeSurface": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages/deepseek-v4-flash-overengineering",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

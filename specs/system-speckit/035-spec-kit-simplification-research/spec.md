@@ -119,6 +119,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 14 | 014-cli-decommission-orphan-removal/ | six orphans and a dead test removed, four leftover lines corrected, and the legacy and validation lanes repaired and wired into CI, from lane 002 round two | complete |
 | 15 | 015-shared-package-post-remediation-cleanup/ | the dangling entry, the ownerless cluster, type and scoring module gone, the reader table generated, and the missing tests added, from lane 003 round two | complete |
 | 16 | 016-template-seams-and-sentinel-repair/ | the sentinel gates on the tasks checklist, one continuity set, the sharded flag gone, guides and READMEs matching the manifest, and the runtime test project green in CI, from lane 004 round two | complete |
+| 17 | 017-completion-gate-and-catalog-alignment/ | the completion checker reads acceptance closure and the sentinel advises on it, hand-written stamps become a visible class, the links scan is a plain tool, and the catalog and references match the contract, from lane 005 round two | complete |
 
 ### Phase Transition Rules
 

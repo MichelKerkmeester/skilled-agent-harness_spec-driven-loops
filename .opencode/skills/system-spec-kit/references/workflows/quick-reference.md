@@ -51,7 +51,7 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 | Complex/architectural | 3 | L2 + decision-record.md | research/research.md, resource-map.md |
 | Enterprise/governance heavy | 3+ | L3 file set rendered at Level 3+ | research/research.md, resource-map.md |
 
-**LOC as soft guidance:**
+**LOC as one input to `runtime/cli/spec/recommend-level.sh`, which scores it with file count and risk:**
 - <100 LOC suggests Level 1
 - 100-499 LOC suggests Level 2
 - >=500 LOC suggests Level 3
@@ -578,8 +578,8 @@ specs/###-parent/
 ### Enforcement
 
 - **Verify required templates exist** before claiming completion
-- **LOC thresholds are soft guidance** - use judgment
-- **Enforcement is manual** - verify before claiming done
+- **LOC is one scored input** - run `recommend-level.sh` and go higher when your judgment disagrees
+- **Enforcement is `validate.sh --strict` plus `check-completion.sh`** - run both before claiming done
 
 ### Applies to ALL
 

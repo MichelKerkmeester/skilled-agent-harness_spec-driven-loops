@@ -101,7 +101,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --pat
 
 **When to use:**
 - **All features start here** - this is the minimum documentation
-- <100 LOC (soft guidance)
+- <100 LOC, as one input to `recommend-level.sh`
 - Localized to one component or trivial changes
 - Clear requirements
 - Low to moderate complexity
@@ -148,7 +148,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 
 **When to use:**
 - Features needing systematic QA validation
-- 100-499 LOC (soft guidance)
+- 100-499 LOC, as one input to `recommend-level.sh`
 - Multiple files/components
 - Moderate complexity
 - High risk areas (security, config cascades)
@@ -202,7 +202,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 
 **When to use:**
 - Complex features, architecture changes, major decisions
-- >=500 LOC (soft guidance)
+- >=500 LOC, as one input to `recommend-level.sh`
 - Multiple systems involved
 - Significant architectural impact
 - Major technical decisions need documentation

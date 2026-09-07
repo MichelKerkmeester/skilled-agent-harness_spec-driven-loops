@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment",
+  "description": "Child 011 aligned the command assets to the acceptance-criteria closure but the mechanical backstop never learned it: `check-completion.sh` read the",
+  "keywords": [
+    "child",
+    "aligned",
+    "command",
+    "assets",
+    "acceptance-criteria",
+    "closure",
+    "mechanical",
+    "backstop",
+    "never",
+    "learned",
+    "check-completion",
+    "read"
+  ],
+  "lastUpdated": "2026-09-07T07:19:38.435Z",
+  "specId": "017",
+  "folderSlug": "completion-gate-and-catalog-alignment",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

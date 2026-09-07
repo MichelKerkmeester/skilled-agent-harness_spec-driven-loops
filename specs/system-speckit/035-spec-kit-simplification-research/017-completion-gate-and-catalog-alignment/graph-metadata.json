@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment",
+  "parent_id": "system-speckit/035-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion gate acceptance closure",
+      "AC_UNMET status",
+      "malformed fingerprint class",
+      "catalog stale references fixed",
+      "completion gate plan",
+      "acceptance closure in checker",
+      "freshness malformed class plan",
+      "catalog re-pointing",
+      "completion gate tasks",
+      "acceptance closure tasks",
+      "catalog alignment tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "completion",
+      "gate",
+      "acceptance",
+      "closure",
+      "status",
+      "malformed",
+      "fingerprint",
+      "class",
+      "catalog",
+      "stale",
+      "references",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/spec/check-completion.sh",
+      "runtime/lib/hooks/completion-evidence-sentinel.cjs",
+      "runtime/cli/validation/continuity-freshness.ts",
+      "runtime/cli/rules/check-links.sh",
+      "rules/README.md",
+      "runtime/tests/completion-evidence-sentinel.vitest.ts",
+      "runtime/cli/tests/continuity-freshness.vitest.ts",
+      "runtime/cli/spec/README.md",
+      "runtime/lib/hooks/README.md",
+      "manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
+      "references/workflows/execution-methods.md",
+      "references/workflows/quick-reference.md",
+      "references/templates/template-guide.md",
+      "references/validation/validation-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-completion.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-completion.sh",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": "runtime/lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "runtime/cli/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-links.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-links.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "rules/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/completion-evidence-sentinel.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/continuity-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
+        "source": "derived"
+      },
+      {
+        "name": "execution-methods.md",
+        "kind": "doc",
+        "path": "references/workflows/execution-methods.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 011 aligned the command assets to the acceptance-criteria closure but the mechanical backstop never learned it: `check-completion.sh` read the checklist only, so the sentinel could pass a packet whose criteria were all `Unmet`",
+    "created_at": "2026-09-07T07:19:38.329Z",
+    "last_save_at": "2026-09-07T07:19:38.643Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ddff3d49bfbaf20b491539ea45dd32e22fcea429d7aff8f53730eef33a43bc32",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "65cbac2e6a9e6f7277e98663a7c5fe371b179ff162ee9ff462ad73141e6648fe",
+      "plan.md": "2ba9ffa67b00ce3ff1f0e22429276225de427dd7db21b93776edd90db3e3fbfd",
+      "tasks.md": "ac28d1b1652ea43ab18c1971affc825c0b49c24c4e6d29f35e8182f5dfdad860",
+      "implementation-summary.md": "c2da55d3b01b8d4f1fae564e612be2f4466d75057905c0961fdec7efc0f44b6c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

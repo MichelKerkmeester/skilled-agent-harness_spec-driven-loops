@@ -61,7 +61,7 @@ runtime/cli/spec/
 +-- check-placeholders.sh        # Detect unresolved template placeholders
 +-- validate.sh                  # Run structural validation rules
 +-- progressive-validate.sh      # Staged validation helper
-+-- check-completion.sh          # Verify completion checklist state
++-- check-completion.sh          # Verify the tasks checklist and acceptance closure
 +-- scaffold-debug-delegation.sh # Generate debug-delegation handoff scaffolds
 +-- calculate-completeness.sh    # Report checklist completion metrics
 +-- recommend-level.sh           # Recommend documentation level from task signals
@@ -98,7 +98,7 @@ Disallowed direction:
 | `create.sh` | Creates new Level 1 or phase folders from templates. |
 | `upgrade-level.sh` | Adds missing files and sections for higher documentation levels. |
 | `validate.sh` | Runs the modular validation gate used before completion claims. `resolve_orchestrator()` checks the compiled runtime dist freshness (via `../lib/dist-freshness.cjs`) before trusting it and fails closed with exit `3` when stale: no silent auto-rebuild. |
-| `check-completion.sh` | Confirms checklist evidence before a task is called complete. |
+| `check-completion.sh` | Confirms the `tasks.md` checklist evidence and, when present, acceptance-criteria closure before a task is called complete; the completion sentinel reads its JSON. |
 | `scaffold-debug-delegation.sh` | Generates `debug-delegation.md` handoff scaffolds from failure-trail input. |
 | `progressive-validate.sh` | Runs a staged validation pass for detect, fix, suggest and report flows. |
 | `test-validation.sh` | Legacy wrapper forwarding to `runtime/cli/tests/test-validation.sh`. |

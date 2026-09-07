@@ -34,7 +34,7 @@ Session capturing pipeline quality is the current reality-alignment feature for 
 The shipped session-capture pipeline enforces the following behavior:
 
 1. `session-extractor.ts` uses crypto-backed session IDs and prefers live observations over synthetic enrichment when deriving project-state snapshots.
-2. `file-writer.ts` uses random temp-file suffixes and rolls back partial batch writes.
+2. `file-writer.ts` (removed with the memory server) used random temp-file suffixes and rolled back partial batch writes.
 3. `workflow.ts` keeps alignment enforcement, insufficiency blocking, low-quality abort behavior, and an explicit write/index disposition contract in place for every save.
 4. `spec-folder-extractor.ts` and `git-context-extractor.ts` provide relevance-aware spec-folder and git context enrichment.
 5. `quality-scorer.ts` penalizes generic file descriptions, generic summaries, and repetitive observation titles more aggressively without changing boolean `qualityValidation`.
@@ -113,7 +113,7 @@ Status: Implemented and strongly verified for the shared runtime contract. The a
 | `runtime/cli/utils/slug-utils.ts` | Memory title and filename normalization after captured operator/debug text |
 | `runtime/cli/extractors/quality-scorer.ts` | V2 quality-score calibration and insufficiency flags |
 | `runtime/cli/extractors/session-extractor.ts` | Session identity and project-state snapshot behavior |
-| `runtime/cli/core/file-writer.ts` | Atomic writes and rollback |
+| `runtime/cli/core/file-writer.ts` (removed with the memory server) | Atomic writes and rollback, retired |
 
 ### FEATURE BREAKDOWN
 

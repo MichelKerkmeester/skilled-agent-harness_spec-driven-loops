@@ -19,7 +19,8 @@
     "system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement",
     "system-speckit/035-spec-kit-simplification-research/014-cli-decommission-orphan-removal",
     "system-speckit/035-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
-    "system-speckit/035-spec-kit-simplification-research/016-template-seams-and-sentinel-repair"
+    "system-speckit/035-spec-kit-simplification-research/016-template-seams-and-sentinel-repair",
+    "system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -71,7 +72,7 @@
       "014-cli-decommission-orphan-removal/goal.md",
       "015-shared-package-post-remediation-cleanup/goal.md",
       "016-template-seams-and-sentinel-repair/goal.md",
-      "001-ripgrep-search-system/research/confirmed-findings.md"
+      "017-completion-gate-and-catalog-alignment/goal.md"
     ],
     "entities": [
       {
@@ -84,12 +85,6 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "confirmed-findings.md",
-        "kind": "doc",
-        "path": "001-ripgrep-search-system/research/confirmed-findings.md",
         "source": "derived"
       },
       {
@@ -167,17 +162,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-07T06:57:34.530Z",
+    "last_save_at": "2026-09-07T07:19:39.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d786c046d8139017b6191873c046603c1eb5142706c019b4ac77ae4d645290e7",
+    "source_fingerprint": "sha256:de21d6f856fb8c69f0e9860b8520be617872c650f19e318c0280d116b7f58c86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91e76d094771ece24fac5dcbd0bbb9026177f651758575adc6503d028f2101a1"
+      "spec.md": "b85149d8ba8d43d58591b4ac00158096f29d9dae185ecc824e5bcb04eeadfcc4"
     },
     "last_active_child_id": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
     "last_active_at": "2026-09-07T02:22:53.073Z"

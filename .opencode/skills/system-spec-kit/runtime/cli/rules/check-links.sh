@@ -2,8 +2,8 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: CHECK-LINKS
 # ───────────────────────────────────────────────────────────────
-# Validates wikilinks across skill markdown files.
-# Compatible with validate.sh (sourced run_check) and standalone execution.
+# Validates wikilinks across skill markdown files. A standalone scan run on
+# demand: it has no validator-registry row, so validate.sh never sources it.
 #
 # Exit Codes (standalone mode):
 #   0 - All wikilinks resolve
@@ -20,7 +20,7 @@ if [[ ! -t 1 ]]; then
     RED='' GREEN='' BOLD='' NC=''
 fi
 
-DEFAULT_SKILL_DIR=".opencode/skill"
+DEFAULT_SKILL_DIR=".opencode/skills"
 
 scan_wikilinks() {
     local skill_dir="$1"
@@ -73,51 +73,6 @@ scan_wikilinks() {
     done < <(find "$skill_dir" \( -type d -name "node_modules" -o -type d -name "assets" \) -prune -o -name "*.md" -type f -print)
 
     return "$has_errors"
-}
-
-run_check() {
-    local _folder="$1"
-    local _level="$2"
-
-    RULE_NAME="LINKS_VALID"
-    RULE_STATUS="pass"
-    RULE_MESSAGE=""
-    RULE_DETAILS=()
-    RULE_REMEDIATION=""
-
-    local skill_dir="${SPECKIT_LINKS_SKILL_DIR:-$DEFAULT_SKILL_DIR}"
-    if [[ "${SPECKIT_VALIDATE_LINKS:-false}" != "true" ]]; then
-        RULE_STATUS="pass"
-        RULE_MESSAGE="Wikilink validation skipped (set SPECKIT_VALIDATE_LINKS=true to enable)"
-        return 0
-    fi
-
-    if [[ ! -d "$skill_dir" ]]; then
-        RULE_STATUS="pass"
-        RULE_MESSAGE="Wikilink validation skipped (missing directory: $skill_dir)"
-        return 0
-    fi
-
-    local temp_file
-    temp_file=$(mktemp)
-    if scan_wikilinks "$skill_dir" "$temp_file"; then
-        RULE_STATUS="pass"
-        RULE_MESSAGE="All wikilinks are valid"
-    else
-        RULE_STATUS="fail"
-        RULE_MESSAGE="Broken wikilinks found in skill markdown files"
-
-        local line_count=0
-        while IFS= read -r line; do
-            RULE_DETAILS+=("$line")
-            line_count=$((line_count + 1))
-            [[ $line_count -ge 20 ]] && break
-        done < "$temp_file"
-
-        RULE_REMEDIATION="Fix broken [[links]] or add the missing target markdown files."
-    fi
-    rm -f "$temp_file"
-    return 0
 }
 
 main() {

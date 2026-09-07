@@ -113,10 +113,10 @@ These factors can push you to a higher level even if LOC suggests lower:
 | Typo in one file        | 1   | Exempt          | None                            | Truly trivial (<5 chars, single file)    |
 | Typo across 5 files     | 5   | Level 1         | spec + plan + tasks + implementation-summary | Multi-file coordination                  |
 | 95 LOC feature          | 95  | Level 1         | spec + plan + tasks + implementation-summary | Under threshold, baseline docs           |
-| 105 LOC feature         | 105 | Level 2         | L1 + checklist                  | Just over, needs QA validation           |
-| Refactor (no new logic) | 200 | Level 2         | L1 + checklist                  | Complexity needs verification            |
-| Config cascade          | 50  | Level 2         | L1 + checklist                  | Risk trumps LOC - needs validation       |
-| Authentication change   | 80  | Level 2         | L1 + checklist                  | Security implications require QA         |
+| 105 LOC feature         | 105 | Level 2         | L1 + acceptance-criteria        | Just over, needs QA validation           |
+| Refactor (no new logic) | 200 | Level 2         | L1 + acceptance-criteria        | Complexity needs verification            |
+| Config cascade          | 50  | Level 2         | L1 + acceptance-criteria        | Risk trumps LOC - needs validation       |
+| Authentication change   | 80  | Level 2         | L1 + acceptance-criteria        | Security implications require QA         |
 | System redesign         | 300 | Level 3         | L2 + decision-record            | Architectural decisions must be recorded |
 | Multi-team project      | 400 | Level 3         | L2 + decision-record + research | Coordination needs full documentation    |
 
@@ -299,7 +299,7 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
     NO (stay current level)
 ```
 
-**LOC as soft guidance (suggests level):**
+**LOC as one input to `recommend-level.sh`, which scores LOC, file count and risk together:**
 - <100 LOC → Suggests Level 1
 - 100-499 LOC → Suggests Level 2
 - ≥500 LOC → Suggests Level 3
@@ -321,10 +321,10 @@ This decision matrix addresses the following spec requirements:
 | Requirement | Section | Description                                     |
 | ----------- | ------- | ----------------------------------------------- |
 | REQ-006     | §2.1    | Level 1 baseline documentation requirements     |
-| REQ-007     | §2.2    | Level 2 verification requirements (checklist)   |
+| REQ-007     | §2.2    | Level 2 verification requirements (tasks checklist and acceptance criteria) |
 | REQ-008     | §2.3    | Level 3 full documentation (decision records)   |
 | REQ-009     | §2.4    | Level 3+ extended documentation (governance)    |
-| REQ-010     | §3      | LOC thresholds as soft guidance                 |
+| REQ-010     | §3      | LOC as one scored input to the level recommender |
 
 **Source**: `.opencode/skills/system-spec-kit/SKILL.md`
 
