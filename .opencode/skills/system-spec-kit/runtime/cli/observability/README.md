@@ -25,7 +25,6 @@ Current state:
 
 ```text
 observability/
-+-- live-session-wrapper.ts              # Read-tool observation wrapper
 +-- smart-router-analyze.ts              # JSONL analyzer and report writer
 +-- smart-router-measurement.ts          # Static corpus measurement harness
 +-- smart-router-measurement-report.md   # Generated: latest markdown summary from smart-router-measurement.ts
@@ -39,7 +38,6 @@ observability/
 
 | File | Role |
 |---|---|
-| `live-session-wrapper.ts` | Tracks `Read` calls against `.opencode/skills/*` resources for a prompt session. |
 | `smart-router-telemetry.ts` | Defines compliance classes, sanitizes records, and appends JSONL telemetry. |
 | `smart-router-measurement.ts` | Runs static corpus checks using skill-advisor briefs and predicted route metadata. |
 | `smart-router-analyze.ts` | Collapses telemetry rows by prompt and emits class distribution summaries. |

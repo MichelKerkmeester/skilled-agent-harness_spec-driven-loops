@@ -73,6 +73,7 @@ verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
 - [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-cli-runtime/
+- [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-cli-runtime/ and every P1 row is censused in confirmed-findings.md
 - [x] research.md carries a per-directory table: purpose, callers, verdict
 - [x] Every P0 and P1 finding reproduces in-session
 - [x] A ranked removal and merge list with the evidence that nothing documented depends on each item
@@ -95,6 +96,8 @@ and findings belong here.
 | Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-cli-runtime/research.md`, stop reason maxIterationsReached, 17:17 to 19:44, first executor attempt hung and was retried by the runner |
 | Reproduction | Done | `research/confirmed-findings.md`: 12 of 13 removal rows confirmed or corrected, 9 of 11 merge rows, 12 of 13 fix rows; 3 dropped |
 | Remediation | Done | `../007-cli-package-residue-removal` closed every row |
+| Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-cli-runtime/research.md`, 07:31 to 07:54 |
+| Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../014-cli-decommission-orphan-removal` |
 
 ### Deviations and findings
 

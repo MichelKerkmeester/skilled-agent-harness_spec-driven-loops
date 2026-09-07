@@ -26,8 +26,8 @@ const { execSync } = require('child_process');
 ────────────────────────────────────────────────────────────────
 */
 
-const ROOT = path.join(__dirname, '..', '..');
-const SCRIPTS_DIR = path.join(ROOT, 'scripts');
+const ROOT = path.join(__dirname, '..', '..', '..');
+const SCRIPTS_DIR = path.join(ROOT, 'runtime', 'cli');
 const RULES_DIR = path.join(SCRIPTS_DIR, 'rules');
 const FIXTURES_DIR = path.join(SCRIPTS_DIR, 'test-fixtures');
 const VALIDATOR_SCRIPT = path.join(SCRIPTS_DIR, 'spec', 'validate.sh');

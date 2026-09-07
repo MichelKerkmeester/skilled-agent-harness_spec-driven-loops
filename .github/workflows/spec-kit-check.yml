@@ -52,6 +52,14 @@ jobs:
           cd .opencode/skills/system-spec-kit/runtime/cli
           npx vitest run --config ../../vitest.config.ts --project cli
 
+      - name: Legacy module lanes and the bash validation suites
+        # These lanes are what `npm test` runs after the vitest project, and they
+        # rotted unseen while only the vitest project ran here.
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run test:legacy
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run test:validation
+
   mirrors:
     name: Runtime mirrors agree with their sources
     runs-on: ubuntu-latest

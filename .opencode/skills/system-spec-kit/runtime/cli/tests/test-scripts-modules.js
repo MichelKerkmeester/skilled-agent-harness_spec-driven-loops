@@ -174,38 +174,11 @@ async function testCoreWorkflow() {
 
   try {
     const workflow = require(path.join(SCRIPTS_DIR, 'core', 'workflow'));
-    const { validateNoLeakedPlaceholders, validateAnchors } = require(path.join(SCRIPTS_DIR, 'utils', 'validation-utils'));
     const { extractKeyTopics } = require(path.join(SCRIPTS_DIR, 'core', 'topic-extractor'));
 
     // Test 1: Public API boundaries and delegated helpers
     assertType(workflow.runWorkflow, 'function', 'T-002a: runWorkflow exported');
-    assertType(validateNoLeakedPlaceholders, 'function', 'T-002d: validateNoLeakedPlaceholders exported');
-    assertType(validateAnchors, 'function', 'T-002e: validateAnchors exported');
     assertType(extractKeyTopics, 'function', 'T-002f: extractKeyTopics exported');
-
-    // Test 2: validateNoLeakedPlaceholders detects placeholders
-    assertThrows(() => validateNoLeakedPlaceholders('{{TITLE}}', 'test.md'),
-      'T-002g: validateNoLeakedPlaceholders throws on leaked placeholder');
-
-    assertDoesNotThrow(() => validateNoLeakedPlaceholders('No placeholders here', 'test.md'),
-      'T-002h: validateNoLeakedPlaceholders allows clean content');
-
-    // Test 3: validateAnchors detects anchor issues
-    const validContent = '<!-- ANCHOR:test -->content<!-- /ANCHOR:test -->';
-    const warnings = validateAnchors(validContent);
-    if (Array.isArray(warnings) && warnings.length === 0) {
-      pass('T-002i: validateAnchors returns empty array for valid anchors', 'No warnings');
-    } else {
-      fail('T-002i: validateAnchors returns empty array for valid anchors', `Got ${warnings.length} warnings`);
-    }
-
-    const unclosedContent = '<!-- ANCHOR:test -->content';
-    const unclosedWarnings = validateAnchors(unclosedContent);
-    if (unclosedWarnings.length > 0) {
-      pass('T-002j: validateAnchors detects unclosed anchor', unclosedWarnings[0]);
-    } else {
-      fail('T-002j: validateAnchors detects unclosed anchor', 'No warning generated');
-    }
 
     // Test 4: extractKeyTopics returns array of topics
     const topics = extractKeyTopics('Implemented OAuth authentication with JWT tokens');
@@ -2073,78 +2046,6 @@ async function testUtilsFileHelpers() {
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   16. MEDIUM PRIORITY: UTILS/VALIDATION-UTILS.JS TESTS
-────────────────────────────────────────────────────────────────
-*/
-
-async function testUtilsValidationUtils() {
-  log('\n🔬 UTILS: validation-utils.js');
-
-  try {
-    const {
-      validateNoLeakedPlaceholders,
-      validateAnchors
-    } = require(path.join(SCRIPTS_DIR, 'utils', 'validation-utils'));
-
-    // Test 1: validateNoLeakedPlaceholders throws on leaked placeholders
-    assertThrows(() => validateNoLeakedPlaceholders('Content with {{TITLE}} placeholder', 'test.md'),
-      'T-035a: validateNoLeakedPlaceholders throws on leaked placeholder');
-
-    // Test 2: validateNoLeakedPlaceholders allows clean content
-    assertDoesNotThrow(() => validateNoLeakedPlaceholders('Clean content without placeholders', 'test.md'),
-      'T-035b: validateNoLeakedPlaceholders allows clean content');
-
-    // Test 3: validateNoLeakedPlaceholders detects multiple placeholders
-    assertThrows(() => validateNoLeakedPlaceholders('Has {{FOO}} and {{BAR}}', 'test.md'),
-      'T-035c: validateNoLeakedPlaceholders detects multiple placeholders');
-
-    // Test 4: validateAnchors returns empty array for valid anchors
-    const validContent = '<!-- ANCHOR:test -->content<!-- /ANCHOR:test -->';
-    const validWarnings = validateAnchors(validContent);
-    if (Array.isArray(validWarnings) && validWarnings.length === 0) {
-      pass('T-035d: validateAnchors returns empty array for valid anchors', 'No warnings');
-    } else {
-      fail('T-035d: validateAnchors returns empty array for valid anchors', `Got ${validWarnings.length} warnings`);
-    }
-
-    // Test 5: validateAnchors detects unclosed anchors
-    const unclosedContent = '<!-- ANCHOR:unclosed -->content without close';
-    const unclosedWarnings = validateAnchors(unclosedContent);
-    if (unclosedWarnings.length > 0 && unclosedWarnings[0].includes('Unclosed')) {
-      pass('T-035e: validateAnchors detects unclosed anchors', unclosedWarnings[0]);
-    } else {
-      fail('T-035e: validateAnchors detects unclosed anchors', 'No warning generated');
-    }
-
-    // Test 6: validateAnchors detects orphaned closing anchors
-    const orphanedContent = 'content<!-- /ANCHOR:orphan -->';
-    const orphanedWarnings = validateAnchors(orphanedContent);
-    if (orphanedWarnings.length > 0 && orphanedWarnings[0].includes('Orphaned')) {
-      pass('T-035f: validateAnchors detects orphaned closing anchors', orphanedWarnings[0]);
-    } else {
-      fail('T-035f: validateAnchors detects orphaned closing anchors', 'No warning generated');
-    }
-
-    // Test 7: validateAnchors handles multiple anchors
-    const multiContent = '<!-- ANCHOR:one -->a<!-- /ANCHOR:one --><!-- ANCHOR:two -->b<!-- /ANCHOR:two -->';
-    const multiWarnings = validateAnchors(multiContent);
-    if (multiWarnings.length === 0) {
-      pass('T-035g: validateAnchors handles multiple valid anchors', 'No warnings');
-    } else {
-      fail('T-035g: validateAnchors handles multiple valid anchors', `Got ${multiWarnings.length} warnings`);
-    }
-
-  } catch (error) {
-    fail('T-035: Validation utils module', error.message);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   17. MEDIUM PRIORITY: LIB/ASCII-BOXES.JS TESTS
-────────────────────────────────────────────────────────────────
-*/
-
 async function testLibAsciiBoxes() {
   log('\n🔬 LIB: ascii-boxes.js');
 
@@ -2311,71 +2212,6 @@ async function testLibTriggerExtractor() {
     fail('T-037: Trigger extractor module', error.message);
   }
 }
-
-/* ─────────────────────────────────────────────────────────────
-   19. MEDIUM PRIORITY: LIB/EMBEDDINGS.JS TESTS
-────────────────────────────────────────────────────────────────
-*/
-
-async function testLibEmbeddings() {
-  log('\n🔬 LIB: embeddings.js (re-export verification)');
-
-  try {
-    const embeddingsModule = require(path.join(SCRIPTS_DIR, 'lib', 'embeddings'));
-
-    // Test 1: generateEmbedding is exported
-    assertType(embeddingsModule.generateEmbedding, 'function', 'T-038a: generateEmbedding is exported');
-
-    // Test 2: generate_embedding is also exported (snake_case)
-    assertType(embeddingsModule.generateEmbedding, 'function', 'T-038b: generate_embedding is exported');
-
-    // Test 3: EMBEDDING_DIM constant is exported
-    if (typeof embeddingsModule.EMBEDDING_DIM === 'number' && embeddingsModule.EMBEDDING_DIM > 0) {
-      pass('T-038c: EMBEDDING_DIM constant is exported', `Dimension: ${embeddingsModule.EMBEDDING_DIM}`);
-    } else {
-      fail('T-038c: EMBEDDING_DIM constant is exported', `Got: ${embeddingsModule.EMBEDDING_DIM}`);
-    }
-
-    // Test 4: MODEL_NAME constant is exported
-    if (typeof embeddingsModule.MODEL_NAME === 'string' && embeddingsModule.MODEL_NAME.length > 0) {
-      pass('T-038d: MODEL_NAME constant is exported', embeddingsModule.MODEL_NAME);
-    } else {
-      fail('T-038d: MODEL_NAME constant is exported', `Got: ${embeddingsModule.MODEL_NAME}`);
-    }
-
-    // Test 5: get_embedding_dimension function is exported
-    assertType(embeddingsModule.getEmbeddingDimension, 'function', 'T-038e: get_embedding_dimension is exported');
-
-    // Test 6: get_model_name function is exported
-    assertType(embeddingsModule.getModelName, 'function', 'T-038f: get_model_name is exported');
-
-    // Test 7: TASK_PREFIX constant is exported
-    if (embeddingsModule.TASK_PREFIX && embeddingsModule.TASK_PREFIX.DOCUMENT) {
-      pass('T-038g: TASK_PREFIX constant is exported', Object.keys(embeddingsModule.TASK_PREFIX).join(', '));
-    } else {
-      fail('T-038g: TASK_PREFIX constant is exported', 'Missing or incomplete');
-    }
-
-    // Test 8: generateEmbedding returns null for empty input
-    const emptyEmbResult = await embeddingsModule.generateEmbedding('');
-    if (emptyEmbResult === null) {
-      pass('T-038h: generateEmbedding returns null for empty input', 'null returned');
-    } else {
-      fail('T-038h: generateEmbedding returns null for empty input', `Got: ${typeof emptyEmbResult}`);
-    }
-
-    // Note: Full embedding generation tests skipped to avoid model loading overhead
-    skip('T-038i: generateEmbedding produces valid embeddings', 'Requires model loading');
-
-  } catch (error) {
-    fail('T-038: Embeddings module', error.message);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   20. MEDIUM PRIORITY: SPEC-FOLDER/ALIGNMENT-VALIDATOR.JS EXTENDED TESTS
-────────────────────────────────────────────────────────────────
-*/
 
 async function testSpecFolderAlignmentValidatorExtended() {
   log('\n🔬 SPEC-FOLDER: alignment-validator.js (extended)');
@@ -2884,11 +2720,9 @@ async function main() {
   // MEDIUM priority function tests
   await testUtilsPromptUtils();
   await testUtilsFileHelpers();
-  await testUtilsValidationUtils();
   await testUtilsPhaseClassifier();
   await testLibAsciiBoxes();
   await testLibTriggerExtractor();
-  await testLibEmbeddings();
   await testSpecFolderAlignmentValidatorExtended();
   await testExtractorsDiagram();
   await testExtractorsDecisionTree();

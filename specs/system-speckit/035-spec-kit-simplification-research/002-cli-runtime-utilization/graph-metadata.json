@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       "research/lineages/glm-5-3-flash-cli-runtime/research.md",
-      "research/confirmed-findings.md"
+      "research/confirmed-findings.md",
+      "research/lineages/deepseek-v4-flash-cli-runtime/research.md"
     ],
     "entities": [
       {
@@ -198,7 +199,7 @@
     ],
     "causal_summary": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
     "created_at": "2026-09-06T14:29:31Z",
-    "last_save_at": "2026-09-06T18:10:36.509Z",
+    "last_save_at": "2026-09-07T06:23:47.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fa997de148546b040469dece0123913d442f172740fd280654c56f83f6fffa7",
+    "source_fingerprint": "sha256:719f43300ed58e7368e563324a57907d5eee066e15aba5adf0887052cacf6402",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "def6131306e598be8acea966c20670b04147b535ade93378bb0f345b30cc8df5",
+      "spec.md": "ed90219122c90e24ef8c752002cd8aa0fdbe6522070136b5575810c35543a21d",
       "plan.md": "e5389d6baa25313cbfea14f858f2ad0a52c5b0be097dd77080c1dd4ad08bb42e",
-      "tasks.md": "55708a9a7144529b15e84ffa4641480fb65fb73ba5da73f1a65d2acf1973f61b",
+      "tasks.md": "1f46340a06e7b11fddd3a834e19024cf52b222243a5deaaab93779ea15540e10",
       "implementation-summary.md": "56b6e4bd8392034b3372d8594d0124810d37b107cc81497ad572f446d20f91b4"
     },
     "last_active_at": null

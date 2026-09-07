@@ -2,7 +2,7 @@
 // MODULE: Strict Trigger-Phrase Frontmatter Reader
 // ───────────────────────────────────────────────────────────────────
 // A deliberately narrow YAML-frontmatter reader scoped to one key. It exists
-// instead of reusing scripts/lib/frontmatter-migration.ts for two reasons:
+// instead of reusing runtime/cli/lib/frontmatter-migration.ts for two reasons:
 // that module is TypeScript and is only reachable through build output, and
 // its parseSectionValue collapses several distinct failure shapes into a
 // single `undefined`, which cannot produce the per-category diagnostics this

@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/spec/` owns the single detection rule for phase-parent folders, so no caller re-implements the traversal. A folder is a phase parent when it has at least one direct child matching `^[0-9]{3}-[a-z0-9-]+$` and at least one such child carries `spec.md` or `description.json`.
+`lib/spec/` owns the single detection rule for phase-parent folders, so no caller re-implements the traversal. A folder is a phase parent when it has at least one direct child matching `^[0-9]{3}-[a-z0-9][a-z0-9-]*$` and at least one such child carries `spec.md` or `description.json`.
 
 Current state:
 

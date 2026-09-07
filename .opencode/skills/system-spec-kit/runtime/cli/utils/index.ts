@@ -95,11 +95,6 @@ export {
 } from './message-utils.js';
 
 export {
-  validateNoLeakedPlaceholders,
-  validateAnchors,
-} from './validation-utils.js';
-
-export {
   sanitizeToolDescription,
   sanitizeToolInputPaths,
   normalizeToolStatus,

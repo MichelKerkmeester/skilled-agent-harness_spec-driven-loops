@@ -1,0 +1,37 @@
+{
+  "lineage": "deepseek-v4-flash-shared-package",
+  "sessionId": "fanout-deepseek-v4-flash-shared-package-1788760496905-1nuwxt",
+  "loopType": "research",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "convergenceThresholdConfigured": 3,
+  "convergencePolicy": "max-iterations (convergence signals treated as telemetry only; no early synthesis)",
+  "newInfoRatioTrend": [1.0, 0.9, 0.7, 0.8, 0.85, 0.8, 0.75, 0.65, 0.55, 0.5],
+  "rollingAverageLast3": 0.57,
+  "questionCoverage": {
+    "total": 9,
+    "answered": 9,
+    "ratio": 1.0
+  },
+  "findings": {
+    "total": 49,
+    "p1": 7,
+    "p2": 42,
+    "p0": 0
+  },
+  "synthesis": "research.md",
+  "dispositionOfRoundOneRows": {
+    "L1": "fixed (folder-scoring + profile DB cluster survivors)",
+    "L2": "incomplete (factory/profile derivations + divergent bases)",
+    "L3": "fixed (README reader-column drift)",
+    "L4": "environment (dropped)",
+    "L5": "incomplete (main survived; export entry unwired)",
+    "L6": "fixed (CI lane verified)",
+    "L7": "recorded (comment-enforced, not CI)",
+    "L8": "fixed (socket file name unasserted)",
+    "L9": "fixed (EmbeddingProfileExtended survivor)",
+    "L10": "fixed (folder-scoring + re-export survivors)"
+  },
+  "generatedAt": "2026-09-07T09:00:00Z"
+}

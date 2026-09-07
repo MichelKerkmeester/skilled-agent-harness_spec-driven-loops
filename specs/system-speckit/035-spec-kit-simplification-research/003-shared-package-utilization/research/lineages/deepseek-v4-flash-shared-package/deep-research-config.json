@@ -1,0 +1,68 @@
+{
+  "topic": "ROUND TWO of the @spec-kit/shared dependency-and-utilization audit, post-remediation: (1) verify every 009-shared-package-dead-half-removal remediation landed completely and coherently in the current tree — a fix that left one consumer, one document line, one fixture or one asset behind is a finding; (2) find what round one missed, preferring angles it covered in one pass or not at all; (3) re-examine round one's kept rows and recorded decisions only with new evidence. Never reuse a round-one count; recount in this tree. No validate.sh, no node tooling, no git writes; the dist directories in this worktree are untracked and stale — read checked-in source.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization",
+  "createdAt": "2026-09-07T08:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-shared-package-1788760496905-1nuwxt",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "fanout": {
+    "detached": true,
+    "inlineExecutor": true,
+    "artifactDirOverride": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package",
+    "note": "Nested CLI/agent dispatch is forbidden for this lineage; this process runs every iteration inline. The append gateway and validate.sh would write outside the lineage write surface, so state records, deltas, and the state log are written directly inside the lineage dir and no repo tooling is executed."
+  }
+}

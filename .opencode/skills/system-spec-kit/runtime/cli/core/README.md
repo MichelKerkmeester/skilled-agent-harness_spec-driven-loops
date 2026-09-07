@@ -64,6 +64,7 @@ index.ts -> public exports only
 
 ```text
 runtime/cli/core/
++-- alignment-validator.ts       # Spec-folder alignment and thinning targets
 +-- index.ts                  # Public barrel for core modules
 +-- workflow.ts               # Main context-save orchestration
 +-- workflow-accessors.ts     # Typed accessors for workflow objects
@@ -100,7 +101,6 @@ runtime callers -> private helper assumptions not exported by index.ts
 
 ```text
 runtime/cli/core/
-+-- alignment-validator.ts       # Spec-folder alignment and thinning targets
 +-- config.ts                    # Config loading, path wiring, canonical-first specs-dir discovery
 +-- content-cleaner.ts           # HTML stripping and literal-anchor escaping
 +-- daemon-detect.ts             # Process-liveness probe for the save lock
