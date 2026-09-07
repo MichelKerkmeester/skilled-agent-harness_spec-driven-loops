@@ -25,6 +25,11 @@
     "018-sk-design-parent-v2",
     "001-sk-create-chart"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "07-09-26_17-29__the-mechanism-is-named-which-was-the-last-thing.md",
+    "07-09-26_17-32__the-hook-s-reading-is-wrong-on-steps-2-5-and-git.md",
+    "07-09-26_17-36__false-alarm-and-the-cause-is-worth-knowing-grep.md",
+    "07-09-26_17-37__sk-code-now-reports-ok-result-passed-the-full.md"
+  ]
 }
