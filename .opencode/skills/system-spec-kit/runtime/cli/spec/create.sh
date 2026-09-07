@@ -318,7 +318,7 @@ while [[ $i -le $# ]]; do
             echo "  Higher levels ADD value, not just length."
             echo "  Templates located in: .opencode/skills/system-spec-kit/templates/"
             echo ""
-            echo "All levels include: scratch/ (git-ignored working files)"
+            echo "All levels include: scratch/ (working files; NOT git-ignored, add a scratch/.gitignore for anything you do not want committed)"
             echo ""
             echo "Examples:"
             echo "  $0 'Add user authentication system' --short-name 'user-auth'"
@@ -997,7 +997,7 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
         for file in "${CREATED_FILES[@]}"; do
             echo "          ├── $file"
         done
-        echo "          └── scratch/          (git-ignored working files)"
+        echo "          └── scratch/          (working files; NOT git-ignored)"
         echo "              └── .gitkeep"
         echo ""
         echo "───────────────────────────────────────────────────────────────────"
@@ -1607,7 +1607,7 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
             echo "      │   └── scratch/"
             echo "      │       └── .gitkeep"
         done
-        echo "      └── scratch/          (git-ignored working files)"
+        echo "      └── scratch/          (working files; NOT git-ignored)"
         echo "          └── .gitkeep"
         echo ""
         echo "  Phase Documentation Map injected into parent spec.md"
@@ -1798,7 +1798,7 @@ else
         echo "      ├── $file"
     done
     echo "      ├── description.json   (per-folder identity)"
-    echo "      └── scratch/          (git-ignored working files)"
+    echo "      └── scratch/          (working files; NOT git-ignored)"
     echo "          └── .gitkeep"
     echo ""
     echo "  Level $DOC_LEVEL Documentation (manifest-backed Level contract):"
