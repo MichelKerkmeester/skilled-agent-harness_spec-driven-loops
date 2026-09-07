@@ -1,13 +1,19 @@
+import { tmpdir } from 'node:os';
 // ───────────────────────────────────────────────────────────────────
 // TEST: HF model server
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { realpathSync, mkdtempSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+// A short, real temp root. Unix socket paths are capped near 104 bytes, so the
+// platform tmpdir (deep under /var/folders on macOS) is too long; /tmp resolves to
+// /private/tmp on macOS and to itself on Linux, which is what the socket checks need.
+const TMP_ROOT = realpathSync(process.platform === 'win32' ? tmpdir() : '/tmp');
 
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(fileURLToPath(new URL('../../../../../..', import.meta.url)));
@@ -68,7 +74,7 @@ function deferred<T>(): Deferred<T> {
 }
 
 function tempDir(prefix: string): string {
-  const dir = mkdtempSync(join('/private/tmp', prefix));
+  const dir = mkdtempSync(join(TMP_ROOT, prefix));
   tempDirs.push(dir);
   return dir;
 }

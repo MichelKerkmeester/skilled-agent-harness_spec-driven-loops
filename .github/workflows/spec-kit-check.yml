@@ -35,6 +35,9 @@ jobs:
         run: |
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .opencode/package.json.
+          npm --prefix .opencode ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
           npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
