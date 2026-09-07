@@ -169,12 +169,21 @@ underspecified.
 **Not resolvable by vocabulary: 8.** Rows 1-7 plus row 12, which was written as a yield
 and turned out not to be one. Rows 8, 11 and 21 need an operator ruling.
 
-**A margin this thin is not a decision, it is noise.** Row 21 separates two hubs by
-0.0023 and it moved on its own between two scans, while another session was committing
-documentation elsewhere in the fleet. The advisor harvests doc frontmatter, so a
-vocabulary change anywhere can flip a phrase decided this narrowly. Any row whose margin
-is in the third decimal should be read as unowned rather than owned, whichever way it
-happens to fall on the day it is measured.
+**A margin this thin is fragile, not random, and the difference matters.** An earlier
+version of this section called row 21 noise and said it moved on its own. Both were wrong.
+Probed five times in a row the scores are identical to six decimals, 0.741689 against
+0.737555, a deterministic gap of 0.004134. Nothing fluctuates.
+
+What is true is that 0.004 is small enough for an unrelated edit to flip it, and one did:
+the row was absent at generation 729 and present at 734, across a window holding this
+session's own vocabulary changes and four commits from a concurrent session. The advisor
+harvests documentation frontmatter, so the reachable causes are wide. That is sensitivity
+to input, not instability in the scorer, and calling it noise would excuse a result that is
+perfectly reproducible.
+
+The practical reading is unchanged: a row separated in the third decimal is better treated
+as unowned than owned. But it should be decided rather than waited out, because it will not
+drift back on its own.
 
 So the plan's step 2 target, "every hub prints a literal `RESULT: PASSED`", is **not
 reachable through steps 1 and 2 alone.** Vocabulary editing closed 10 of the 20, counting
