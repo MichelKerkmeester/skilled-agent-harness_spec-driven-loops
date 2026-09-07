@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8115095ebeb07c9bcd323d08dc4db8a098566edb141d22393e94e08aed33bd72",
+  "manifestHash": "b6953bc6b72532be791adb67232eb8e21472906a080bfef7e5bd679ee0e9e0e7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8763,6 +8763,9 @@
     "ac traceability table": [
       "AC traceability table"
     ],
+    "ac unmet status": [
+      "AC_UNMET status"
+    ],
     "ac waiver adr": [
       "ac waiver adr"
     ],
@@ -8780,6 +8783,12 @@
     ],
     "accept ship promotion": [
       "accept ship promotion"
+    ],
+    "acceptance closure in checker": [
+      "acceptance closure in checker"
+    ],
+    "acceptance closure tasks": [
+      "acceptance closure tasks"
     ],
     "acceptance coverage gate": [
       "acceptance coverage gate"
@@ -16793,6 +16802,9 @@
     "catalog": [
       "catalog"
     ],
+    "catalog alignment tasks": [
+      "catalog alignment tasks"
+    ],
     "catalog and playbook generator implementation plan": [
       "catalog and playbook generator implementation plan"
     ],
@@ -16940,8 +16952,14 @@
     "catalog playbook tasks": [
       "catalog playbook tasks"
     ],
+    "catalog re pointing": [
+      "catalog re-pointing"
+    ],
     "catalog reality drift": [
       "catalog reality drift"
+    ],
+    "catalog references fixed": [
+      "catalog references fixed"
     ],
     "catalog refresh 031 036": [
       "catalog refresh 031 036",
@@ -16973,6 +16991,9 @@
     ],
     "catalog snippet template plan": [
       "catalog snippet template plan"
+    ],
+    "catalog stale references fixed": [
+      "catalog stale references fixed"
     ],
     "catalog topology migration": [
       "catalog topology migration"
@@ -18205,6 +18226,9 @@
     "check dist staleness worktree noise": [
       "check-dist-staleness worktree noise"
     ],
+    "check doc pointers removed": [
+      "check doc pointers removed"
+    ],
     "check evidence rule": [
       "check-evidence rule"
     ],
@@ -18316,9 +18340,6 @@
     ],
     "check the vision runtime health": [
       "check the vision runtime health"
-    ],
-    "checklist completion gate": [
-      "checklist completion gate"
     ],
     "checklist completion tool": [
       "checklist completion tool"
@@ -18782,6 +18803,9 @@
     "ci fleet gate hardening plan": [
       "ci fleet gate hardening plan"
     ],
+    "ci lanes wired": [
+      "ci lanes wired"
+    ],
     "ci resolution plan": [
       "ci resolution plan"
     ],
@@ -18802,6 +18826,9 @@
     ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
+    ],
+    "ci workflow tasks": [
+      "ci workflow tasks"
     ],
     "circuit breaker accounting fix": [
       "circuit breaker accounting fix"
@@ -19906,6 +19933,9 @@
     ],
     "cli cursor skill plan": [
       "cli-cursor skill plan"
+    ],
+    "cli decommission orphan removal": [
+      "cli decommission orphan removal"
     ],
     "cli detection defaulted": [
       "cli detection-defaulted"
@@ -25977,8 +26007,23 @@
     "completion freshness rule": [
       "completion freshness rule"
     ],
+    "completion gate acceptance closure": [
+      "completion gate acceptance closure"
+    ],
     "completion gate coherence": [
       "completion gate coherence"
+    ],
+    "completion gate criteria": [
+      "completion gate criteria"
+    ],
+    "completion gate plan": [
+      "completion gate plan"
+    ],
+    "completion gate summary": [
+      "completion gate summary"
+    ],
+    "completion gate tasks": [
+      "completion gate tasks"
     ],
     "completion sentinel plugin": [
       "completion sentinel plugin"
@@ -26132,9 +26177,6 @@
     ],
     "composite convergence vote": [
       "composite convergence vote"
-    ],
-    "composite relevance score": [
-      "composite relevance score"
     ],
     "composite uniqueness adr": [
       "composite uniqueness adr"
@@ -31051,6 +31093,9 @@
     ],
     "dangling install symlink": [
       "dangling install symlink"
+    ],
+    "dangling main field": [
+      "dangling main field"
     ],
     "dangling reference sweep": [
       "dangling reference sweep"
@@ -46621,8 +46666,8 @@
     "folder routing alignment": [
       "folder routing alignment"
     ],
-    "folder scoring": [
-      "folder scoring"
+    "folder scoring removed": [
+      "folder scoring removed"
     ],
     "folder state classification": [
       "folder state classification"
@@ -47158,6 +47203,9 @@
     ],
     "freshness hook filename audit": [
       "freshness hook filename audit"
+    ],
+    "freshness malformed class plan": [
+      "freshness malformed class plan"
     ],
     "freshness queue": [
       "freshness queue"
@@ -55007,6 +55055,9 @@
     "lane remediation order": [
       "lane remediation order"
     ],
+    "lane repair tasks": [
+      "lane repair tasks"
+    ],
     "lane source tagging": [
       "lane source tagging"
     ],
@@ -55947,6 +55998,9 @@
     "legacy import question source": [
       "legacy-import question source"
     ],
+    "legacy lane repaired": [
+      "legacy lane repaired"
+    ],
     "legacy lease probe": [
       "legacy lease probe"
     ],
@@ -56042,6 +56096,9 @@
     ],
     "legacy template removal": [
       "legacy template removal"
+    ],
+    "legacy test lanes in ci": [
+      "legacy test lanes in ci"
     ],
     "legacy typed projection diff tasks": [
       "legacy typed projection diff tasks"
@@ -57816,6 +57873,9 @@
     "main fast forward to new tree": [
       "main fast-forward to new tree"
     ],
+    "main field removed": [
+      "main field removed"
+    ],
     "main js manifest json styles css release assets": [
       "main.js manifest.json styles.css release assets"
     ],
@@ -58022,6 +58082,15 @@
     ],
     "makemd plugin": [
       "makemd plugin"
+    ],
+    "malformed fingerprint class": [
+      "malformed fingerprint class"
+    ],
+    "malformed fingerprint criterion": [
+      "malformed fingerprint criterion"
+    ],
+    "malformed fingerprint shipped": [
+      "malformed fingerprint shipped"
     ],
     "malformed graph metadata": [
       "malformed graph metadata"
@@ -61153,9 +61222,6 @@
     ],
     "memory folder continuity rename": [
       "memory folder continuity rename"
-    ],
-    "memory folder ranking": [
-      "memory folder ranking"
     ],
     "memory folder retirement": [
       "memory folder retirement"
@@ -68447,6 +68513,18 @@
     "orphan references wiring": [
       "orphan references wiring"
     ],
+    "orphan removal criteria": [
+      "orphan removal criteria"
+    ],
+    "orphan removal plan": [
+      "orphan removal plan"
+    ],
+    "orphan removal summary": [
+      "orphan removal summary"
+    ],
+    "orphan removal tasks": [
+      "orphan removal tasks"
+    ],
     "orphan row dependency check": [
       "orphan row dependency check"
     ],
@@ -75525,6 +75603,12 @@
     "profile cache task checklist": [
       "profile cache task checklist"
     ],
+    "profile cluster tasks": [
+      "profile cluster tasks"
+    ],
+    "profile database cluster removed": [
+      "profile database cluster removed"
+    ],
     "profile keyed db naming": [
       "profile-keyed db naming"
     ],
@@ -77296,6 +77380,18 @@
     "reader normalization tasks": [
       "reader normalization tasks"
     ],
+    "reader table computed": [
+      "reader table computed"
+    ],
+    "reader table criterion": [
+      "reader table criterion"
+    ],
+    "reader table generated": [
+      "reader table generated"
+    ],
+    "reader table tasks": [
+      "reader table tasks"
+    ],
     "readiness action full scan selective reindex": [
       "readiness action full_scan selective_reindex"
     ],
@@ -77949,9 +78045,6 @@
     ],
     "recency load bearing ranking": [
       "recency load-bearing ranking"
-    ],
-    "recency scoring": [
-      "recency scoring"
     ],
     "reciprocal contradicts edges dormant": [
       "reciprocal contradicts edges dormant"
@@ -79318,6 +79411,9 @@
     ],
     "relationship traversals": [
       "relationship traversals"
+    ],
+    "relative import census": [
+      "relative import census"
     ],
     "relay baseline evidence": [
       "relay baseline evidence"
@@ -84596,6 +84692,9 @@
     "runtime kebab case verification": [
       "runtime kebab-case verification"
     ],
+    "runtime lanes green criterion": [
+      "runtime lanes green criterion"
+    ],
     "runtime lib catalog refresh": [
       "runtime lib catalog refresh"
     ],
@@ -84692,6 +84791,12 @@
     "runtime process lifecycle closure": [
       "runtime process lifecycle closure"
     ],
+    "runtime project green": [
+      "runtime project green"
+    ],
+    "runtime project in ci": [
+      "runtime project in ci"
+    ],
     "runtime promotion and status foundation": [
       "runtime promotion and status foundation"
     ],
@@ -84776,6 +84881,9 @@
     "runtime stress test": [
       "runtime/stress-test"
     ],
+    "runtime suite repair tasks": [
+      "runtime suite repair tasks"
+    ],
     "runtime surface coverage": [
       "runtime surface coverage"
     ],
@@ -84784,6 +84892,9 @@
     ],
     "runtime test helpers": [
       "runtime test helpers"
+    ],
+    "runtime test project green": [
+      "runtime test project green"
     ],
     "runtime test suites": [
       "runtime test suites"
@@ -86160,6 +86271,15 @@
     "sealed version drift corpus evidence": [
       "sealed version drift corpus evidence"
     ],
+    "seams repair plan": [
+      "seams repair plan"
+    ],
+    "seams repair summary": [
+      "seams repair summary"
+    ],
+    "seams repair tasks": [
+      "seams repair tasks"
+    ],
     "search": [
       "Search"
     ],
@@ -86862,11 +86982,23 @@
     "sentence transformers pin": [
       "sentence-transformers pin"
     ],
+    "sentinel checklist gate fixed": [
+      "sentinel checklist gate fixed"
+    ],
     "sentinel decision record": [
       "sentinel decision record"
     ],
+    "sentinel gate plan": [
+      "sentinel gate plan"
+    ],
+    "sentinel repair criteria": [
+      "sentinel repair criteria"
+    ],
     "sentinel shipped state": [
       "sentinel shipped state"
+    ],
+    "sentinel tasks": [
+      "sentinel tasks"
     ],
     "separately revertible migrations": [
       "separately revertible migrations"
@@ -87504,6 +87636,12 @@
     "shard repair survives restart": [
       "shard repair survives restart"
     ],
+    "sharded flag gone": [
+      "sharded flag gone"
+    ],
+    "sharded flag removed": [
+      "sharded flag removed"
+    ],
     "sharded test runner": [
       "sharded test runner"
     ],
@@ -87569,6 +87707,18 @@
     ],
     "shared branch autosync research": [
       "shared branch autosync research"
+    ],
+    "shared cleanup criteria": [
+      "shared cleanup criteria"
+    ],
+    "shared cleanup plan": [
+      "shared cleanup plan"
+    ],
+    "shared cleanup summary": [
+      "shared cleanup summary"
+    ],
+    "shared cleanup tasks": [
+      "shared cleanup tasks"
     ],
     "shared closure verification evidence": [
       "shared closure verification evidence"
@@ -87773,6 +87923,9 @@
     ],
     "shared package duplicate helpers": [
       "shared package duplicate helpers"
+    ],
+    "shared package post remediation cleanup": [
+      "shared package post remediation cleanup"
     ],
     "shared package utilization": [
       "shared package utilization"
@@ -94810,6 +94963,9 @@
     "socket fresh bind symlink reject fix": [
       "socket fresh-bind symlink reject fix"
     ],
+    "socket name assertion": [
+      "socket name assertion"
+    ],
     "socket perimeter hardening sun path guard": [
       "socket perimeter hardening sun_path guard"
     ],
@@ -100213,6 +100369,9 @@
     "tasks": [
       "tasks"
     ],
+    "tasks checklist completion gate": [
+      "tasks checklist completion gate"
+    ],
     "tasks checklist merge": [
       "tasks checklist merge"
     ],
@@ -100640,11 +100799,17 @@
     "template scaffold commands": [
       "template scaffold commands"
     ],
+    "template seams sentinel repair": [
+      "template seams sentinel repair"
+    ],
     "template selection guide": [
       "template selection guide"
     ],
     "template snapshot review": [
       "template snapshot review"
+    ],
+    "template source document list": [
+      "template source document list"
     ],
     "template stripping strip templates": [
       "template stripping strip templates"
@@ -100888,6 +101053,12 @@
     ],
     "test helpers": [
       "test helpers"
+    ],
+    "test lane repair plan": [
+      "test lane repair plan"
+    ],
+    "test lanes green criterion": [
+      "test lanes green criterion"
     ],
     "test only barrel export cleanup": [
       "test-only barrel export cleanup"
@@ -103314,6 +103485,9 @@
     "utcp wiring already registered": [
       "utcp wiring already registered"
     ],
+    "utility tests added": [
+      "utility tests added"
+    ],
     "utils sh rename": [
       "_utils.sh rename"
     ],
@@ -103794,6 +103968,12 @@
     ],
     "validation items by phase": [
       "validation items by phase"
+    ],
+    "validation lane in ci": [
+      "validation lane in ci"
+    ],
+    "validation lane repair": [
+      "validation lane repair"
     ],
     "validation library": [
       "validation library"
@@ -105517,8 +105697,14 @@
     "what shipped": [
       "what shipped"
     ],
+    "what shipped acceptance closure": [
+      "what shipped acceptance closure"
+    ],
     "what shipped ci fix": [
       "what shipped ci fix"
+    ],
+    "what shipped cli orphans": [
+      "what shipped cli orphans"
     ],
     "what shipped cli package cleanup": [
       "what shipped cli package cleanup"
@@ -105534,6 +105720,12 @@
     ],
     "what shipped retrieval drift": [
       "what shipped retrieval drift"
+    ],
+    "what shipped sentinel repair": [
+      "what shipped sentinel repair"
+    ],
+    "what shipped shared cleanup": [
+      "what shipped shared cleanup"
     ],
     "what shipped shared package": [
       "what shipped shared package"
