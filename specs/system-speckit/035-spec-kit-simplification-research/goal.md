@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Two rounds per lane, each launched through the system-deep-loop fan-out runner, never a hand-rolled loop: round one, GLM 5.3 Flash max through DevPass on cli-pi (llmgateway/glm-5.3-flash); round two, DeepSeek V4 Flash max through opencode-go on cli-pi (deepseek-v4-flash-vision-exp) as a second ten-iteration lineage against the remediated tree |
+| D1 | Two rounds per lane, each launched through the system-deep-loop fan-out runner, never a hand-rolled loop: round one, GLM 5.3 Flash max through DevPass on cli-pi (llmgateway/glm-5.3-flash); round two, DeepSeek V4 Flash max through DevPass on cli-pi (llmgateway/deepseek-v4-flash-vision-exp) as a second ten-iteration lineage against the remediated tree |
 | D2 | Lanes run sequentially in worktree 046 so the containment guard cannot cross lanes; a lane silent for fifteen minutes is killed and resumed |
 | D3 | Every charter is improved through sk-prompt before launch |
 | D4 | Each research finding is a hypothesis until reproduced here; unreproducible findings are dropped with a note |
@@ -152,4 +152,5 @@ and findings belong here.
 | Child 012 appended to the binding | The operator asked for the two pre-existing failures to be fixed after the program closed; durable slice changed, parent resent in chat. |
 | Round two opened; D1 and the objective amended | The operator asked for ten more iterations per lane on DeepSeek V4 Flash max; the lanes run sequentially in worktree 046, fast-forwarded to the remediated tree, as a second lineage beside the GLM one; criteria reopened until the round closes. |
 | Round one researched a stale tree | The runner's fast-forward before each lane failed silently on untracked research copies, so lanes 002 to 005 read the tree at the program's start; the census in the main checkout absorbed the difference, and round two starts from the current head. |
+| D1 corrected to DevPass | opencode-go returned a monthly usage limit and Devin its daily quota; the operator chose DevPass on cli-pi, which needed the fan-out route flip in `specs/system-deep-loop/044-cli-pi-devpass-deepseek-route`. |
 <!-- /ANCHOR:log -->
