@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research"
     last_updated_at: "2026-09-06T16:40:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Closed round two; every criterion ticked"
+    recent_action: "Opened round three on expanded angles"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Run five research lanes over system-spec-kit (retrieval, CLI runtime, shared package, templates and acceptance criteria, overengineering), ten iterations per lane per round across two rounds, reproduce every kept finding in-session, then remediate everything confirmed in sibling children, with no deferrals.
+**Objective:** Run five research lanes over system-spec-kit (retrieval, CLI runtime, shared package, templates and acceptance criteria, overengineering), ten iterations per lane per round across two rounds, then a third round of five iterations per lane on expanded angles, reproduce every kept finding in-session, then remediate everything confirmed in sibling children, with no deferrals.
 
 ### Decisions
 
@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Two rounds per lane, each launched through the system-deep-loop fan-out runner, never a hand-rolled loop: round one, GLM 5.3 Flash max through DevPass on cli-pi (llmgateway/glm-5.3-flash); round two, DeepSeek V4 Flash max through DevPass on cli-pi (llmgateway/deepseek-v4-flash-vision-exp) as a second ten-iteration lineage against the remediated tree |
+| D1 | Two rounds per lane, each launched through the system-deep-loop fan-out runner, never a hand-rolled loop: round one, GLM 5.3 Flash max through DevPass on cli-pi (llmgateway/glm-5.3-flash); round two, DeepSeek V4 Flash max through DevPass on cli-pi (llmgateway/deepseek-v4-flash-vision-exp) as a second ten-iteration lineage against the remediated tree; round three, five iterations per lane on eight expanded angles each, GLM 5.3 Flash max through DevPass on cli-pi as a third lineage against the twice-remediated tree |
 | D2 | Lanes run sequentially in worktree 046 so the containment guard cannot cross lanes; a lane silent for fifteen minutes is killed and resumed |
 | D3 | Every charter is improved through sk-prompt before launch |
 | D4 | Each research finding is a hypothesis until reproduced here; unreproducible findings are dropped with a note |
@@ -109,10 +109,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [x] All five research children are Complete with two ten-iteration lineages each and a confirmed-findings.md covering both rounds
-- [x] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
-- [x] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
-- [x] The trigger index regenerates identically with zero malformed documents
+- [ ] All five research children are Complete with two ten-iteration lineages and one five-iteration lineage each and a confirmed-findings.md covering all three rounds
+- [ ] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
+- [ ] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
+- [ ] The trigger index regenerates identically with zero malformed documents
 - [x] The parent goal.md was resent in chat after every change to its durable slice
 <!-- /ANCHOR:completion -->
 
@@ -164,5 +164,6 @@ and findings belong here.
 | Child 016 appended to the binding | Lane 004 round two censused; the runtime test project repaired with it; durable slice changed, parent resent in chat. |
 | Child 017 appended to the binding | Lane 005 round two censused; durable slice changed, parent resent in chat. |
 | Round two closed | Five second lineages ran 10/10 on DevPass DeepSeek; children 013 to 017 closed every confirmed row; program validates 18/18 strict; trigger index regenerated identically on a second run; criteria ticked. |
+| Round three opened | Operator asked for five more iterations per lane on expanded angles with GLM 5.3 Flash max; objective, D1 and criteria amended, parent resent in chat; charters give each lane eight new angles; runner started 10:37 in worktree 046 on `fdca32368e`. |
 | Two CLI test lanes had rotted outside CI | The legacy and validation lanes `npm test` runs were never in the workflow and failed for four accumulated reasons; repaired in 014 and added to CI. The runtime root project fails in seven files and is the next child. |
 <!-- /ANCHOR:log -->
