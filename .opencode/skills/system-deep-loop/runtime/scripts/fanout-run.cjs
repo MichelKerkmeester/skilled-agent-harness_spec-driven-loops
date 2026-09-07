@@ -1967,12 +1967,13 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash and
 // GLM-5.3-Flash are reasoning models whose top tier is `max`, pinned there by operator
 // policy — never dispatched below max. DeepSeek is bare on cli-pi, provider-prefixed on
-// cli-opencode, and its OpenRouter `-latest` variant is the same family and pinned too;
+// cli-opencode, and its OpenRouter `-latest` variant is the same family and pinned too; on
+// cli-pi the bare literal reaches DevPass, whose ladder tops at `max`;
 // GLM-5.3-Flash matches its bare DevPass literal and its OpenRouter `z-ai/` literal.
 //
 // A top tier belongs to the ROUTE, not to the model name. GLM-5.3-Flash offers
-// low/high/max on both OpenRouter and opencode-go — the only two routes whose literals
-// reach here — and no xhigh on either. Its xhigh ceiling is real but Cline-only, and the
+// low/high/max on OpenRouter, opencode-go and DevPass — the routes whose literals
+// reach here — and no xhigh on the first two. Its xhigh ceiling is real but Cline-only, and the
 // Cline route is direct-dispatch with its own tier map, so it never arrives here.
 //
 // Gemini 3.7 Flash tops at `high` (no `max`) and is intentionally not matched; the devin
@@ -2071,7 +2072,9 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // pass-through with no house model, so this synchronous duplicate keeps
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
-  // Bare DeepSeek V4 Flash literal is opencode-go-fronted on pi (direct DeepSeek API retired).
+  // Bare DeepSeek V4 Flash literal is DevPass-fronted on pi (opencode-go fronts the same model,
+  // but one literal maps to one provider, so that route is direct-dispatch only; the direct
+  // DeepSeek API provider was retired).
   'deepseek-v4-flash-vision-exp',
   'minimax-m3',
   'gpt-5.6-luna',
@@ -2270,13 +2273,14 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 
 // Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
 // (openai-codex fronts the GPT-5.6 tunes; minimax and xiaomi front their own families;
-// opencode-go fronts DeepSeek V4 Flash and Qwen 3.8 Max — the direct DeepSeek API
+// opencode-go fronts Qwen 3.8 Max; DevPass fronts DeepSeek V4 Flash under its bare literal
+// since 2026-09-07, for the same flat-price reason GLM moved there — the direct DeepSeek API
 // provider was retired from the roster). Pi selects a model as `<provider>/<id>`; without the
 // provider prefix it falls back to its default provider and dispatches the wrong
 // model. Hand-duplicated as a plain literal so command construction stays
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
-  ['deepseek-v4-flash-vision-exp', 'opencode-go'],
+  ['deepseek-v4-flash-vision-exp', 'llmgateway'],
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],

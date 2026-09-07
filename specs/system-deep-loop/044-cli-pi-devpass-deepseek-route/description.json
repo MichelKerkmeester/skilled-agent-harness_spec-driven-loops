@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/044-cli-pi-devpass-deepseek-route",
+  "description": "The operator asked for a second research round on DeepSeek V4 Flash at `max` through cli-pi",
+  "keywords": [
+    "operator",
+    "asked",
+    "second",
+    "research",
+    "round",
+    "deepseek",
+    "flash",
+    "max",
+    "cli-pi"
+  ],
+  "lastUpdated": "2026-09-07T04:51:46.881Z",
+  "specId": "044",
+  "folderSlug": "cli-pi-devpass-deepseek-route",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

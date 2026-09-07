@@ -1574,7 +1574,9 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
-      'deepseek-v4-flash-vision-exp': 'opencode-go',
+      // DevPass routes DeepSeek V4 Flash under its bare literal → llmgateway/deepseek-v4-flash-vision-exp;
+      // opencode-go fronts the same model but is direct-dispatch only.
+      'deepseek-v4-flash-vision-exp': 'llmgateway',
       'minimax-m3': 'minimax',
       'gpt-5.6-luna': 'openai-codex',
       'gpt-5.6-sol': 'openai-codex',
@@ -1612,7 +1614,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     }
   });
 
-  it('defaults an omitted model to deepseek-v4-flash-vision-exp, max-pinned via its opencode-go provider prefix', () => {
+  it('defaults an omitted model to deepseek-v4-flash-vision-exp, max-pinned via its DevPass provider prefix', () => {
     const binDir = makeTempDir('fanout-run-pi-default-model-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
@@ -1623,7 +1625,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'default',
       opts,
     ) as { args: string[]; effectiveConfig: { model: string } };
-    expect(command.args).toEqual(['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash-vision-exp', '--thinking', 'max', 'bounded prompt']);
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4-flash-vision-exp', '--thinking', 'max', 'bounded prompt']);
     expect(command.effectiveConfig.model).toBe('deepseek-v4-flash-vision-exp');
   });
 
@@ -1635,7 +1637,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       { kind: 'cli-pi', model: 'deepseek-v4-flash-vision-exp', reasoningEffort: 'high' },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
-    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash-vision-exp', '--thinking', 'max', 'p']);
+    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4-flash-vision-exp', '--thinking', 'max', 'p']);
     expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
     // A non-flash pi model keeps the requested effort.
     const proHigh = buildLineageCommand(

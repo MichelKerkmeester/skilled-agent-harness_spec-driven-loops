@@ -180,9 +180,10 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
  * the operator-confirmed picker roster so generic provider routing cannot broaden it.
  */
 export const PI_SUPPORTED_MODELS = [
-  // Bare DeepSeek V4 Flash literal is opencode-go-fronted on pi (the direct DeepSeek
-  // API provider was retired from the roster); `PI_MODEL_PROVIDERS` in fanout-run.cjs
-  // holds the provider mapping for it. The vision variant carries the same price as
+  // Bare DeepSeek V4 Flash literal is DevPass-fronted on pi since 2026-09-07 (opencode-go fronts
+  // the same model but one literal maps to one provider, so that route is direct-dispatch only;
+  // the direct DeepSeek API provider was retired from the roster); `PI_MODEL_PROVIDERS` in
+  // fanout-run.cjs holds the provider mapping for it. The vision variant carries the same price as
   // plain flash on this route and additionally accepts images, so it is the one
   // catalogued; nothing is lost by preferring it.
   'deepseek-v4-flash-vision-exp',
@@ -209,7 +210,7 @@ export const PI_SUPPORTED_MODELS = [
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
-/** Stable rotation default; mirrors the cli-opencode default (`opencode-go/deepseek-v4-flash`) as the bare opencode-go-fronted literal. */
+/** Stable rotation default; the same model the cli-opencode default names, reached here through DevPass under its bare literal. */
 export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-flash-vision-exp';
 
 /** True when `model` is in the enforced cli-pi allowlist. */
@@ -223,13 +224,13 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * here, so one pin covers them.
  *
  * A model's top tier is a property of the ROUTE, not of the model name. GLM-5.3-Flash
- * exposes `low`/`high`/`max` on both OpenRouter and opencode-go — the only two routes whose
+ * exposes `low`/`high`/`max` on OpenRouter, opencode-go and DevPass — the routes whose
  * literals reach this function — and has no `xhigh` on either. It does top out at `xhigh` on
  * Cline, which is why that belief exists; but the Cline route is direct-dispatch only and
  * carries its own tier map, so it never arrives here. Pinning every GLM literal to `xhigh`
  * therefore sent both fan-out routes a tier their provider does not offer.
  *
- * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash`, fronted by opencode-go) and
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash-vision-exp`, fronted by DevPass) and
  * provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
