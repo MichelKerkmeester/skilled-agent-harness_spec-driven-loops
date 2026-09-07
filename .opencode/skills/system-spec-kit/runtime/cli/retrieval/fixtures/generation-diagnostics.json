@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6941,
+    "missing-frontmatter": 6939,
     "non-yaml-frontmatter": 1,
-    "ok": 13637,
+    "ok": 13660,
     "valid-empty-list": 7942
   },
-  "documentsScanned": 28583,
+  "documentsScanned": 28604,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "8115095ebeb07c9bcd323d08dc4db8a098566edb141d22393e94e08aed33bd72",
+  "manifestHash": "b6953bc6b72532be791adb67232eb8e21472906a080bfef7e5bd679ee0e9e0e7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 4,
       "numeric-only": 42,
-      "ok": 35104,
+      "ok": 35168,
       "prose-sentence": 27,
       "single-token": 314,
       "stop-word-only": 3
@@ -37607,24 +37607,6 @@
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-spec-kit/templates/stress-test/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-spec-kit/templates/stress-test/findings.template.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/agents/001-terminal-proof-discipline/review-report.md",
@@ -61191,6 +61173,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis-brief.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis.md",
       "reason": "no opening frontmatter delimiter"
     },
     {

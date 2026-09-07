@@ -94,12 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -119,6 +113,12 @@
       },
       {
         "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -162,17 +162,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-07T07:19:39.614Z",
+    "last_save_at": "2026-09-07T07:22:22.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:de21d6f856fb8c69f0e9860b8520be617872c650f19e318c0280d116b7f58c86",
+    "source_fingerprint": "sha256:1141d72cf0b61011688ec358d4cc18926940b9c672a1b2397df630ff0bbed64c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b85149d8ba8d43d58591b4ac00158096f29d9dae185ecc824e5bcb04eeadfcc4"
+      "spec.md": "aa9cf068e9473cc5dc7a6f4167a3b9413968269918ab5c004ac2673e4524e684"
     },
     "last_active_child_id": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
     "last_active_at": "2026-09-07T02:22:53.073Z"
