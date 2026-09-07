@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
+  "description": "Child 009 removed the shared package's dead half and left its edges uneven",
+  "keywords": [
+    "child",
+    "removed",
+    "shared",
+    "package",
+    "dead",
+    "half",
+    "left",
+    "edges",
+    "uneven"
+  ],
+  "lastUpdated": "2026-09-07T06:32:01.757Z",
+  "specId": "015",
+  "folderSlug": "shared-package-post-remediation-cleanup",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

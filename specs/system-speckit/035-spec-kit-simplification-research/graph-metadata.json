@@ -17,7 +17,8 @@
     "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
     "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair",
     "system-speckit/035-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement",
-    "system-speckit/035-spec-kit-simplification-research/014-cli-decommission-orphan-removal"
+    "system-speckit/035-spec-kit-simplification-research/014-cli-decommission-orphan-removal",
+    "system-speckit/035-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -67,9 +68,9 @@
       "012-pre-existing-test-repair/goal.md",
       "013-trigger-phrase-quality-enforcement/goal.md",
       "014-cli-decommission-orphan-removal/goal.md",
+      "015-shared-package-post-remediation-cleanup/goal.md",
       "001-ripgrep-search-system/research/confirmed-findings.md",
-      "002-cli-runtime-utilization/research/confirmed-findings.md",
-      "003-shared-package-utilization/research/confirmed-findings.md"
+      "002-cli-runtime-utilization/research/confirmed-findings.md"
     ],
     "entities": [
       {
@@ -165,17 +166,17 @@
     ],
     "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
     "created_at": "2026-09-06T14:29:29Z",
-    "last_save_at": "2026-09-07T06:23:48.395Z",
+    "last_save_at": "2026-09-07T06:32:02.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:35f85444c3a7bdd3a6a6a26e0b0144b9721dc53ab0290a8a86ef809cbab45f3f",
+    "source_fingerprint": "sha256:71d45b9f42d079d55c104a2d25138b872fc2e5c4c52495fd49e101f72fdf7546",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25c4a175c9d6909fc50d30df6871df52280ccde42a97de5658b42218d7ce56be"
+      "spec.md": "f7d82d61271496070c14afa9eac4d5f44f8c46fe2a8dbccd895fadf28f44d241"
     },
     "last_active_child_id": "system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification",
     "last_active_at": "2026-09-07T02:22:53.073Z"

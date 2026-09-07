@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       "research/lineages/glm-5-3-flash-shared-package/research.md",
-      "research/confirmed-findings.md"
+      "research/confirmed-findings.md",
+      "research/lineages/deepseek-v4-flash-shared-package/research.md"
     ],
     "entities": [
       {
@@ -198,7 +199,7 @@
     ],
     "causal_summary": "The shared package grew as the neutral layer under a memory server that no longer exists",
     "created_at": "2026-09-06T14:29:32Z",
-    "last_save_at": "2026-09-06T23:37:48.672Z",
+    "last_save_at": "2026-09-07T06:32:01.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a416e247ffd09b30bb7bf47419f17987c253342099d3c7f4a61884608b4e6c3e",
+    "source_fingerprint": "sha256:18ed593f0d8b4e1ac92722030dfc0bcf1bf872cfbaf29e2c182401187c4244b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a57dd1a9f2c6ec83e87bf8280d473251a7f0d7984ebd33fb1dc245e51955081a",
+      "spec.md": "c1c4d9a382acae0234b3af37583cdd101f1ab6fb61091095863966c9e094eadd",
       "plan.md": "5cde40fd0f0f00e0e4991049f2d56158374a9c70079618776ab9e39bfd9ea997",
-      "tasks.md": "596f36d240916bb73501306d0ff39e6520970a7c2d720d26b29b04b7b227669b",
+      "tasks.md": "308482b90604803e49639596821a0e2620b71610b424ed0b8b5e933665cb7ac3",
       "implementation-summary.md": "c9792a0265e07b6949979771d05417dbf7e81d5ef04627eece9a76a4680b05a7"
     },
     "last_active_at": null

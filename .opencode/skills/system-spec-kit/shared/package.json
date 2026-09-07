@@ -3,7 +3,6 @@
   "version": "1.7.2",
   "private": true,
   "type": "module",
-  "main": "dist/index.js",
   "exports": {
     "./workspace/repo-root.mjs": "./workspace/repo-root.mjs",
     "./review-research-paths.cjs": "./review-research-paths.cjs",
@@ -15,7 +14,7 @@
   "scripts": {
     "build": "tsc --build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
-    "test": "node --import tsx --test '*.test.ts' 'frontmatter/*.test.ts' 'parsing/*.test.ts' 'predicates/*.test.ts' 'embeddings/*.test.ts' 'ipc/*.test.ts' 'scoring/*.test.ts' 'utils/*.test.ts'"
+    "test": "node --import tsx --test '*.test.ts' 'frontmatter/*.test.ts' 'parsing/*.test.ts' 'predicates/*.test.ts' 'embeddings/*.test.ts' 'ipc/*.test.ts' 'utils/*.test.ts'"
   },
   "engines": {
     "node": ">=20.11.0"

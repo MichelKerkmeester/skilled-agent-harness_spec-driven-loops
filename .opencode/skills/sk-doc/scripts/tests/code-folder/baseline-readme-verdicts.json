@@ -1,5 +1,5 @@
 {
-  "count": 673,
+  "count": 669,
   "mode": "readme",
   "results": [
     {
@@ -5605,16 +5605,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/system-spec-kit/shared/mcp-server/database/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".opencode/skills/system-spec-kit/shared/parsing/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -5626,16 +5616,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-spec-kit/shared/predicates/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-spec-kit/shared/ranking/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

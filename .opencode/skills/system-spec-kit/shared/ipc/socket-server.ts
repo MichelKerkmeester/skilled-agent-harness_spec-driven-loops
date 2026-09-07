@@ -13,7 +13,7 @@ import path from 'node:path';
 
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
-const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+export const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 // Fallback socket directory for a caller that supplies neither an explicit directory nor
 // SPECKIT_IPC_SOCKET_DIR. It names the skill-advisor daemon because that is the one daemon
 // whose launcher already pins this path, and it MUST stay byte-identical to

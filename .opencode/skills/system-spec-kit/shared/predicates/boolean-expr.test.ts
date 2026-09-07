@@ -3,8 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 
 // Runner: `node --experimental-vm-modules .../boolean-expr.test.js` after tsc.
-// Standalone assertions (no Vitest dependency) to mirror the existing
-// quality-extractors.test.ts convention in this directory.
+// Standalone assertions (no Vitest dependency), the script-style convention
+// the package's own test runner expects.
 // ───────────────────────────────────────────────────────────────────
 
 import {
