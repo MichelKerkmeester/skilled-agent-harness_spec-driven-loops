@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a fixture packet created after the cutoff and under the floor, When `check-ac-coverage.sh` runs with the enforce switch on, Then it fails, and Given a fixture packet created on or before the cutoff, When the same run happens, Then it stays advisory | `check-ac-coverage.sh`'s `_ac_coverage_cutoff_date()` and `run_check` output against both fixtures | Unmet | - |
-| AC-002 | REQ-002 | Given a packet whose `implementation-summary.md` carries no Status row but whose `acceptance-criteria.md` carries `**Status:** Complete`, When `_ac_lifecycle_active()` runs, Then it returns active | `check-ac-coverage.sh:69-99` (or its post-change line range) run against one of children 006-022 as the fixture | Unmet | - |
-| AC-003 | REQ-003 | Given children 006 through 022's `acceptance-criteria.md` files, When the coverage measurement re-runs, Then at least 70 of 77 rows are covered | The re-measurement output from tasks.md T024, naming the new per-file and total counts | Unmet | - |
-| AC-004 | REQ-004 | Given `runtime/ENV-REFERENCE.md`, When it is read after this phase closes, Then it documents `SPECKIT_AC_COVERAGE_CUTOFF` in the same table and style as the neighboring rows | `.opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, the new row near line 170 | Unmet | - |
-| AC-005 | REQ-005 | Given each of children 006 through 022, When `validate.sh <folder> --strict` runs with `SPECKIT_AC_COVERAGE_ENFORCE=true`, Then it passes and the coverage rule's message shows it evaluated rather than skipped | `validate.sh` output for each of the 16 folders, individually run | Unmet | - |
-| AC-006 | REQ-006 | Given the Manual-infeasible asymmetry between `_ac_analyze_canonical()` and `_ac_analyze_traceability()`, When the operator decision from tasks.md T002 is made, Then it is recorded with its rationale, and the retrofit in AC-003 follows it consistently | The recorded decision (in `decision-record.md` if it changes closure semantics, or in this phase's implementation-summary.md otherwise) plus a spot-check of the retrofit's citations against it | Unmet | - |
+| AC-001 | REQ-001 | Given a fixture packet created after the cutoff and under the floor, When `check-ac-coverage.sh` runs with the enforce switch on, Then it fails, and Given a fixture packet created on or before the cutoff, When the same run happens, Then it stays advisory | `check-ac-coverage.sh`'s `_ac_coverage_cutoff_date()` and `run_check` output against both fixtures | Met | - |
+| AC-002 | REQ-002 | Given a packet whose `implementation-summary.md` carries no Status row but whose `acceptance-criteria.md` carries `**Status:** Complete`, When `_ac_lifecycle_active()` runs, Then it returns active | `check-ac-coverage.sh:69-99` (or its post-change line range) run against one of children 006-022 as the fixture | Met | - |
+| AC-003 | REQ-003 | Given children 006 through 022's `acceptance-criteria.md` files, When the coverage measurement re-runs, Then at least 70 of 77 rows are covered | The re-measurement output from tasks.md T024, naming the new per-file and total counts | Met | - |
+| AC-004 | REQ-004 | Given `runtime/ENV-REFERENCE.md`, When it is read after this phase closes, Then it documents `SPECKIT_AC_COVERAGE_CUTOFF` in the same table and style as the neighboring rows | `.opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, the new row near line 170 | Met | - |
+| AC-005 | REQ-005 | Given each of children 006 through 022, When `validate.sh <folder> --strict` runs with `SPECKIT_AC_COVERAGE_ENFORCE=true`, Then it passes and the coverage rule's message shows it evaluated rather than skipped | `validate.sh` output for each of the 16 folders, individually run | Met | - |
+| AC-006 | REQ-006 | Given the Manual-infeasible asymmetry between `_ac_analyze_canonical()` and `_ac_analyze_traceability()`, When the operator decision from tasks.md T002 is made, Then it is recorded with its rationale, and the retrofit in AC-003 follows it consistently | The recorded decision (in `decision-record.md` if it changes closure semantics, or in this phase's implementation-summary.md otherwise) plus a spot-check of the retrofit's citations against it | Met | - |
 
 ### Status values
 

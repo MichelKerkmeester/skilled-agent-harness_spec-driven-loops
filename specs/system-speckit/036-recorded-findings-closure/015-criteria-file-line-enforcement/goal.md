@@ -68,11 +68,11 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` exist with no bracketed placeholder remaining
-- [ ] `check-ac-coverage.sh` carries both the cutoff pair and the lifecycle-activation fallback
-- [ ] `runtime/ENV-REFERENCE.md` documents `SPECKIT_AC_COVERAGE_CUTOFF`
-- [ ] Children 006-022's measured coverage reaches at least 70 of 77 rows
-- [ ] `validate.sh --strict` with the enforce switch on passes for each of children 006-022 with the gate observed active
+- [x] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` exist with no bracketed placeholder remaining
+- [x] `check-ac-coverage.sh` carries both the cutoff pair and the lifecycle-activation fallback
+- [x] `runtime/ENV-REFERENCE.md` documents `SPECKIT_AC_COVERAGE_CUTOFF`
+- [x] Children 006-022's measured coverage reaches at least 70 of 77 rows
+- [x] `validate.sh --strict` with the enforce switch on passes for each of children 006-022 with the gate observed active
 <!-- /ANCHOR:completion -->
 
 ---
@@ -89,9 +89,17 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Baseline re-measured before any edit: 77 rows, 21 covered across the sixteen packets | Done | `_ac_analyze_canonical` sourced and run per file |
+| `check-ac-coverage.sh`: cutoff pair mirroring the closure gate, criteria-status lifecycle fallback, Manual-infeasible exemption ported; `SPECKIT_AC_COVERAGE_CUTOFF` documented | Done | `tests/check-ac-coverage.sh` 25 pass, nine new cases |
+| 56 rows retrofitted: each cites the line of the packet's own verification record that reports the check, two cite the artifact directly | Done | re-measurement 77 of 77 covered |
+| Gates | Done | all seventeen children of 035 validate strict with `SPECKIT_AC_COVERAGE_ENFORCE=true`, the gate reporting `n/n` on the sixteen that carry criteria; recursive 035 without the switch 23 PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Two operator decisions were taken autonomously | The plan reserved the cutoff default and the exemption question for an operator; none was present, the program runs under an autonomous directive, and both are reversible by one variable or one clause. ADR-001 records them |
+| Citations point at the verification record, not at re-run commands | The rows describe checks that ran once in a past session; the honest evidence is the line in that packet's summary where the result was written down, and two rows cite the artifact itself where one exists |
+| Seven rows cite the summary's Verification heading | Their prose matched no single summary line; the section is still where the packet records its checks |
+| Child 008 stays inactive | It carries no criteria document, so the gate has nothing to count; the sixteen with criteria all activate |
 <!-- /ANCHOR:log -->

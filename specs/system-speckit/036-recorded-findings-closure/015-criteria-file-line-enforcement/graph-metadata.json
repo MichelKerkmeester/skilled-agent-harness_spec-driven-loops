@@ -14,7 +14,11 @@
       "acceptance criteria file line enforcement",
       "coverage floor cutoff rollout",
       "lifecycle activation gap",
-      "citation retrofit coverage floor"
+      "citation retrofit coverage floor",
+      "coverage cutoff decision",
+      "manual infeasible exemption",
+      "acceptance coverage enforcement",
+      "decision record"
     ],
     "key_topics": [
       "acceptance",
@@ -31,15 +35,19 @@
       "gap"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "runtime/cli/rules/check-ac-coverage.sh",
+      "runtime/cli/tests/check-ac-coverage.sh",
       "runtime/ENV-REFERENCE.md",
+      "tests/check-ac-coverage.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
       "specs/system-speckit/035-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md",
       ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
@@ -76,21 +84,27 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": "runtime/ENV-REFERENCE.md",
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-ac-coverage.sh",
         "source": "derived"
       },
       {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "runtime/ENV-REFERENCE.md",
         "source": "derived"
       },
       {
@@ -182,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default (`runtime/ENV-REFERENCE.md:166-168`)",
     "created_at": "2026-09-07T15:05:56Z",
-    "last_save_at": "2026-09-07T15:46:00.803Z",
+    "last_save_at": "2026-09-07T18:10:22.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +209,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a944abeb0cebf8ed1ec848d100feb5eef1b56c7856ab9852af5eed68359c9826",
+    "source_fingerprint": "sha256:76c9772b55d0eb04a11af807f7f99207d78a24fec7fc58632c137b761a371962",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0a3d539a9809e93a58af03d6caf8b95b0a910f901c529728261245e9b45e5691",
-      "plan.md": "4b15d63295bb9cbb4b4674a424441af4f2832103b82711fa1611e24d951346c5",
-      "tasks.md": "ec36745ddaaaa6bc63286b5dd2c1afcca818a0bfb17f4f3ceb3868503aa5f058",
-      "implementation-summary.md": "c618fe61dacd6ad74904871a5704d1dc58ec852cd6535e527914de6015318233"
+      "spec.md": "de6634a46fc2a7b833070b0ff12edac8996e08abf644032368b5ec397d1b973e",
+      "plan.md": "8819e07f0906d1d55baafe7427577ed998d1c16dd8a7be731937d15699ea80bc",
+      "tasks.md": "f8fa0bf0240c6a55d8dd8f8198aaf1b4ab8432d77b0a6a7ea9170686b96d89ac",
+      "decision-record.md": "3bd2e897239bd538a893ad418bd8ef045aba8b6b54cd401e0669caa794cfdb4b",
+      "implementation-summary.md": "ce445ea93f48cf9ce8f5817eca0ffe8d41d7064fc04143c6cc301db3c5dbdedc"
     },
     "last_active_at": null
   }

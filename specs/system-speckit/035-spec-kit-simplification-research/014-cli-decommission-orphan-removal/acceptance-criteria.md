@@ -54,11 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the removals, When the package rebuilds and the residue search runs, Then the build exits zero and only changelogs name the removed files | rebuild exit 0; `npm run check` exit 0; dist freshness fresh; the search returned only changelog entries | Met | - |
-| AC-002 | REQ-002 | Given the repaired lanes, When `test:legacy` and `test:validation` run, Then both exit zero and the workflow lists both | legacy: 262 passed, 0 failed; validation: three suites RESULT: PASSED; the workflow parses with the new step | Met | - |
-| AC-003 | REQ-003 | Given the environment reference, When every variable is checked for a reader, Then none is without one | 27 variables compared against the runtime, shared, bin, hooks and plugins trees; the one reader-less row removed | Met | - |
-| AC-004 | REQ-004 | Given the four leftover sites, When they are read, Then each matches the code | the two regex sites carry the enforced form; the three fixtures no longer name the flag; the tree tag names retrieval and sync | Met | - |
-| AC-005 | REQ-005 | Given the CLI project, When vitest runs it whole, Then zero tests fail | the full CLI project passed 138 files and 1,355 tests with zero failures | Met | - |
+| AC-001 | REQ-001 | Given the removals, When the package rebuilds and the residue search runs, Then the build exits zero and only changelogs name the removed files | `implementation-summary.md:108` records the check: rebuild exit 0; `npm run check` exit 0; dist freshness fresh; the search returned only changelog entries | Met | - |
+| AC-002 | REQ-002 | Given the repaired lanes, When `test:legacy` and `test:validation` run, Then both exit zero and the workflow lists both | `implementation-summary.md:109` records the check: legacy: 262 passed, 0 failed; validation: three suites RESULT: PASSED; the workflow parses with the new step | Met | - |
+| AC-003 | REQ-003 | Given the environment reference, When every variable is checked for a reader, Then none is without one | `implementation-summary.md:73` records the check: 27 variables compared against the runtime, shared, bin, hooks and plugins trees; the one reader-less row removed | Met | - |
+| AC-004 | REQ-004 | Given the four leftover sites, When they are read, Then each matches the code | `implementation-summary.md:95` records the check: the two regex sites carry the enforced form; the three fixtures no longer name the flag; the tree tag names retrieval and sync | Met | - |
+| AC-005 | REQ-005 | Given the CLI project, When vitest runs it whole, Then zero tests fail | `implementation-summary.md:112` records the check: the full CLI project passed 138 files and 1,355 tests with zero failures | Met | - |
 
 ### Status values
 

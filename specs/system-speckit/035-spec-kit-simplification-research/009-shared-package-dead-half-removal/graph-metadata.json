@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Roughly forty percent of the shared package was a second package nothing imported: an in-process embeddings library and the ranking, contract and chunking modules built for the memory pipeline, kept alive by a root barrel and by tests written to explain them",
     "created_at": "2026-09-06T23:32:43Z",
-    "last_save_at": "2026-09-06T23:37:49.110Z",
+    "last_save_at": "2026-09-07T18:10:20.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f480a8dbaeb8fdf654a279d0a18c182523ec75f24339bcfad22a4938a9180c2e",
+    "source_fingerprint": "sha256:42edd4ebb9d10334e69fd484204f5e48588812844cbf8155fab152d882fca4ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e5cdc71816f47c30fe828e343db1b964cf84d12ed95b3b3ce0e2edf86988cef",

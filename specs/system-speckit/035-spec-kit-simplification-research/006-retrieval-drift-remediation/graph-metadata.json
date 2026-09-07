@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The retrieval code is correct and its documents are not: the conventions describe a concept lane over an embedded index that does not exist, the search router carries a recipe that drops three mandatory flags, the presentation asset names three of five match classes, the READMEs give test commands over a directory that was moved, and the doctor never performs the one cheap check that would have caught the committed index lagging its manifest",
     "created_at": "2026-09-06T15:20:31Z",
-    "last_save_at": "2026-09-06T15:31:12.387Z",
+    "last_save_at": "2026-09-07T18:10:20.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:567b5e5cc7aae11047bdec044c3bf1f1dad9628357cfe58ee67031e1b56b238a",
+    "source_fingerprint": "sha256:61904fe23405cd2ffec3269e0c69ef390e82770a039bd1fc95bedf25ed4053cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1ae84c90780e02f37269af75ea708d3cf34b39fc162a1db4b1b7201e2daa451",

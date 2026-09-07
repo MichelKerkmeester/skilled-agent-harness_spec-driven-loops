@@ -66,24 +66,67 @@ _ac_required_count() {
     }'
 }
 
-_ac_lifecycle_active() {
-    local folder="$1"
-    local level_num="$2"
-    local summary_file="$folder/implementation-summary.md"
-
-    [[ "$level_num" -lt 2 ]] && return 1
-    # Either source can carry the evidence; requiring the legacy one would leave
-    # a canonical packet unmeasured.
-    if [[ ! -f "$folder/acceptance-criteria.md" ]]; then
-        _ac_traceability_file "$folder" >/dev/null || return 1
+# Rollout boundary for the enforce switch, the same shape the closure gate uses:
+# a packet created after the cutoff fails under the floor when enforcement is
+# on, a packet created on or before it stays advisory on every branch, and a
+# malformed override falls back to the default instead of grandfathering
+# everything by string comparison.
+_AC_CUTOFF_DEFAULT="2026-08-30"
+_AC_CUTOFF_NOTE=""
+_ac_coverage_cutoff_date() {
+    local raw="${SPECKIT_AC_COVERAGE_CUTOFF:-$_AC_CUTOFF_DEFAULT}"
+    local candidate="${raw:0:10}"
+    if [[ "$candidate" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+        printf '%s' "$candidate"
+        return 0
     fi
-    [[ -f "$summary_file" ]] || return 1
+    _AC_CUTOFF_NOTE="SPECKIT_AC_COVERAGE_CUTOFF='$raw' is not an ISO date; using $_AC_CUTOFF_DEFAULT"
+    printf '%s' "$_AC_CUTOFF_DEFAULT"
+}
 
-    # Read the Status CELL and match it whole. A substring test against the
-    # rendered row matches "incomplete" inside "complete", which activates the
-    # gate on a packet that says it is not finished.
-    local status
-    status="$(awk -F'|' '
+# Packet creation date from the spec.md metadata table; the awk lowers the line
+# itself because IGNORECASE is not honoured on every platform.
+_ac_created_date() {
+    local spec_file="$1"
+    [[ -f "$spec_file" ]] || return 1
+    local value
+    value="$(awk '
+        { line = tolower($0) }
+        line ~ /\|[[:space:]]*\*{0,2}created\*{0,2}[[:space:]]*\|/ {
+            if (match($0, /[0-9]{4}-[0-9]{2}-[0-9]{2}/)) {
+                print substr($0, RSTART, RLENGTH)
+                exit
+            }
+        }
+    ' "$spec_file")"
+    [[ -n "$value" ]] || return 1
+    printf '%s' "$value"
+}
+
+# True when the packet was created after the cutoff, so the enforce switch may
+# fail it. A packet with no readable creation date is treated as pre-cutoff.
+_ac_after_cutoff() {
+    local folder="$1"
+    local created cutoff
+    created="$(_ac_created_date "$folder/spec.md")" || return 1
+    cutoff="$(_ac_coverage_cutoff_date)"
+    [[ "$created" > "$cutoff" ]]
+}
+
+_ac_status_is_active() {
+    case "$1" in
+        in-progress|"in progress"|implemented|complete|completed|done|shipped|delivered) return 0 ;;
+    esac
+    return 1
+}
+
+# Read the Status CELL of the summary table and match it whole. A substring
+# test against the rendered row matches "incomplete" inside "complete", which
+# activates the gate on a packet that says it is not finished.
+_ac_summary_status() {
+    local summary_file="$1"
+    [[ -f "$summary_file" ]] || return 1
+    awk -F'|' '
         function norm(v) {
             gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
             gsub(/\*\*|`|\.$/, "", v)
@@ -93,11 +136,47 @@ _ac_lifecycle_active() {
         /^[[:space:]]*\|/ {
             if (norm($2) == "status") { print norm($3); exit }
         }
-    ' "$summary_file")"
-    case "$status" in
-        in-progress|"in progress"|implemented|complete|completed|done|shipped|delivered) return 0 ;;
-    esac
-    return 1
+    ' "$summary_file"
+}
+
+# The criteria document carries its own **Status:** field; a packet that never
+# wrote a summary table still says there whether it is finished.
+_ac_criteria_status() {
+    local ac_file="$1"
+    [[ -f "$ac_file" ]] || return 1
+    local line
+    line="$(grep -m1 -E '^\*\*Status:?\*\*' "$ac_file" || true)"
+    [[ -n "$line" ]] || return 1
+    line="${line#\*\*Status}"
+    line="${line#:}"
+    line="${line#\*\*}"
+    line="${line#:}"
+    printf '%s' "$line" | tr '[:upper:]' '[:lower:]' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/`//g' -e 's/\.$//'
+}
+
+_ac_lifecycle_active() {
+    local folder="$1"
+    local level_num="$2"
+    local summary_file="$folder/implementation-summary.md"
+    local ac_file="$folder/acceptance-criteria.md"
+
+    [[ "$level_num" -lt 2 ]] && return 1
+    # Either source can carry the evidence; requiring the legacy one would leave
+    # a canonical packet unmeasured.
+    if [[ ! -f "$ac_file" ]]; then
+        _ac_traceability_file "$folder" >/dev/null || return 1
+    fi
+
+    # A completion signal in either document activates the gate: the summary's
+    # Status row when the packet carries one, else the criteria document's own
+    # Status field.
+    local status
+    status="$(_ac_summary_status "$summary_file" 2>/dev/null || true)"
+    if _ac_status_is_active "$status"; then
+        return 0
+    fi
+    status="$(_ac_criteria_status "$ac_file" 2>/dev/null || true)"
+    _ac_status_is_active "$status"
 }
 
 # The merged tasks document is the only home for verification traceability.
@@ -246,6 +325,9 @@ _ac_analyze_canonical() {
             ev_l = lower(evidence)
             if (ev_l == "" || ev_l == "-" || ev_l == "n/a") next
             if (has_file_line(evidence)) { covered++; next }
+            # The same exemption the traceability path grants: a row that says
+            # automation is infeasible and gives a rationale is covered.
+            if (ev_l ~ /^`?manual[- ]infeasible/ && length(ev_l) > 20) { covered++; next }
 
             malformed++
             if (length(malformed_ids) > 0) malformed_ids = malformed_ids ", " toupper(id)
@@ -369,6 +451,10 @@ run_check() {
     if _ac_floor_was_clamped; then
         RULE_DETAILS+=("SPECKIT_AC_COVERAGE_FLOOR was outside [0,1]; using $floor")
     fi
+    _ac_coverage_cutoff_date >/dev/null
+    if [[ -n "$_AC_CUTOFF_NOTE" ]]; then
+        RULE_DETAILS+=("$_AC_CUTOFF_NOTE")
+    fi
     if [[ "${malformed:-0}" -gt 0 ]]; then
         RULE_DETAILS+=("Malformed evidence citation(s): ${malformed_ids:-unknown}")
     fi
@@ -378,11 +464,14 @@ run_check() {
         return 0
     fi
 
-    if _ac_enforce; then
+    if _ac_enforce && _ac_after_cutoff "$folder"; then
         RULE_STATUS="fail"
         RULE_MESSAGE="AC_COVERAGE (enforced): ${covered}/${total} ACs have evidence; floor ${required}/${total}. Cite file:line in the Verification cell of each criterion."
-        RULE_REMEDIATION="In acceptance-criteria.md, give each criterion's Verification cell a file:line citation."
+        RULE_REMEDIATION="In acceptance-criteria.md, give each criterion's Verification cell a file:line citation, or open it with Manual-infeasible and a rationale."
         return 0
+    fi
+    if _ac_enforce; then
+        RULE_DETAILS+=("Enforcement not applied: packet created on or before the coverage cutoff $(_ac_coverage_cutoff_date)")
     fi
 
     if [[ -f "$ac_file" ]]; then
@@ -391,7 +480,7 @@ run_check() {
         return 0
     fi
 
-    if _ac_enforce; then
+    if _ac_enforce && _ac_after_cutoff "$folder"; then
         RULE_STATUS="fail"
         RULE_MESSAGE="AC_COVERAGE (enforced): ${covered}/${total} ACs have evidence; floor ${required}/${total}"
         RULE_REMEDIATION="Add file:line evidence to traceability rows, or mark Manual-infeasible with a rationale when automation is not feasible."

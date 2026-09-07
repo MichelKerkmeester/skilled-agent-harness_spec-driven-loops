@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the fixture packet, When its implementation summary is edited after stamping and the rule runs with the flag on, Then it warns, and with the enforce switch it fails with exit 2 | the freshness suite passed 17 cases and skipped 1, where the two stale cases failed before | Met | - |
-| AC-002 | REQ-002 | Given a manifest of this test and the checker, When the checker runs, Then it prints "all entries are tracked" with exit 0 | the manifest suite passed both cases, where the tracked case failed before | Met | - |
-| AC-003 | REQ-003 | Given both test files, When they are searched, Then `checklist.md` appears in neither | the rewrite asserted its absence from the freshness suite; the manifest suite never named it | Met | - |
-| AC-004 | REQ-004 | Given the CLI project, When vitest runs it whole, Then zero tests fail | the full CLI project passed 138 files and 1,351 tests with zero failures, where one file failed on every earlier run | Met | - |
+| AC-001 | REQ-001 | Given the fixture packet, When its implementation summary is edited after stamping and the rule runs with the flag on, Then it warns, and with the enforce switch it fails with exit 2 | `implementation-summary.md:98` records the check: the freshness suite passed 17 cases and skipped 1, where the two stale cases failed before | Met | - |
+| AC-002 | REQ-002 | Given a manifest of this test and the checker, When the checker runs, Then it prints "all entries are tracked" with exit 0 | `implementation-summary.md:99` records the check: the manifest suite passed both cases, where the tracked case failed before | Met | - |
+| AC-003 | REQ-003 | Given both test files, When they are searched, Then `checklist.md` appears in neither | `implementation-summary.md:98` records the check: the rewrite asserted its absence from the freshness suite; the manifest suite never named it | Met | - |
+| AC-004 | REQ-004 | Given the CLI project, When vitest runs it whole, Then zero tests fail | `implementation-summary.md:102` records the check: the full CLI project passed 138 files and 1,351 tests with zero failures, where one file failed on every earlier run | Met | - |
 
 ### Status values
 

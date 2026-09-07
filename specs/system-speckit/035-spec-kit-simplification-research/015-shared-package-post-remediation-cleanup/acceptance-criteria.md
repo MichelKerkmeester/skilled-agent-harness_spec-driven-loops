@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the shared package, When it builds from clean and its lane runs, Then the build exits zero and the lane counts the two new tests | `tsc --build --force` exit 0; `npm test` 12 pass, 0 fail, with "jsonc strip ok" and "context types ok" in the output | Met | - |
-| AC-002 | REQ-002 | Given the removals, When the CLI rebuilds and the runtime builds, Then both exit zero and dist freshness reports fresh | rebuild exit 0; `npm run check` exit 0; runtime build exit 0; "All watched dist outputs are fresh" | Met | - |
-| AC-003 | REQ-003 | Given the README, When each group's variables are searched across the package, Then the cell names exactly the reading files | the cells were generated from that search; the sk-doc validator exit 0 | Met | - |
-| AC-004 | REQ-004 | Given the skill, the bin scripts and the advisor, When the removed names are searched, Then only changelogs match | the search returned no line outside changelogs | Met | - |
+| AC-001 | REQ-001 | Given the shared package, When it builds from clean and its lane runs, Then the build exits zero and the lane counts the two new tests | `implementation-summary.md:102` records the check: `tsc --build --force` exit 0; `npm test` 12 pass, 0 fail, with "jsonc strip ok" and "context types ok" in the output | Met | - |
+| AC-002 | REQ-002 | Given the removals, When the CLI rebuilds and the runtime builds, Then both exit zero and dist freshness reports fresh | `implementation-summary.md:103` records the check: rebuild exit 0; `npm run check` exit 0; runtime build exit 0; "All watched dist outputs are fresh" | Met | - |
+| AC-003 | REQ-003 | Given the README, When each group's variables are searched across the package, Then the cell names exactly the reading files | `implementation-summary.md:106` records the check: the cells were generated from that search; the sk-doc validator exit 0 | Met | - |
+| AC-004 | REQ-004 | Given the skill, the bin scripts and the advisor, When the removed names are searched, Then only changelogs match | `implementation-summary.md:98` records the check: the search returned no line outside changelogs | Met | - |
 
 ### Status values
 

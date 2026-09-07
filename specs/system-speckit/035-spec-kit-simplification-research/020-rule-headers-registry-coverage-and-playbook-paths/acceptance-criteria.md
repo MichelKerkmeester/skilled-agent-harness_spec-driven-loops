@@ -55,8 +55,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given a fresh Level 2 scaffold, When validate.sh runs with --strict --json, Then every registry rule id appears once | `runtime/cli/tests/validate-runs-every-registry-rule.vitest.ts:19` scaffolds and asserts; it failed on `AI_PROTOCOLS` until `runtime/cli/rules/check-ai-protocols.sh:131` reported the registry's id, then passed | Met | - |
-| AC-002 | REQ-002 | Given the helper, When read, Then no allowlist, expiry or grandfather branch remains | `runtime/cli/rules/check-canonical-save-helper.cjs` has zero occurrences of the word; `node --check` passes | Met | - |
-| AC-003 | REQ-003 | Given the four lanes and the program, When they run, Then all pass | the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0 | Met | - |
+| AC-002 | REQ-002 | Given the helper, When read, Then no allowlist, expiry or grandfather branch remains | `implementation-summary.md:70` records the check: `runtime/cli/rules/check-canonical-save-helper.cjs` has zero occurrences of the word; `node --check` passes | Met | - |
+| AC-003 | REQ-003 | Given the four lanes and the program, When they run, Then all pass | `implementation-summary.md:109` records the check: the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0 | Met | - |
 | AC-004 | REQ-004 | Given the four playbook files and SKILL.md, When read, Then the commands name `system-deep-loop/runtime/tests` paths that exist and the routing sentence names a subset | `ls` on the three test paths; `SKILL.md:95` carries the corrected sentence | Met | - |
 
 ### Status values

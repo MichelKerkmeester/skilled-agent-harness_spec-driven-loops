@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the two workflow files, When their triggers are read, Then both name push for main and the release lines | `.github/workflows/spec-kit-check.yml:4` and `changed-packet-validation.yml:4` carry the push block; both parse | Met | - |
 | AC-002 | REQ-002 | Given the validation lane, When it runs, Then the four harnesses run after the suites | `runtime/cli/package.json:22` names them; the lane's log lists each with exit 0 | Met | - |
-| AC-003 | REQ-003 | Given the four lanes and the program, When they run, Then all pass | the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0 | Met | - |
+| AC-003 | REQ-003 | Given the four lanes and the program, When they run, Then all pass | `implementation-summary.md:110` records the check: the runtime project passed 104 files and 1,260 tests, the CLI project 139 files and 1,358 tests, the legacy lane exit 0, and the validation lane 31 and 83 checks plus the four harnesses with exit 0 | Met | - |
 | AC-004 | REQ-004 | Given the reference and the save asset, When read, Then the skip switch has a row and the categories match the runtime | `runtime/ENV-REFERENCE.md` row for the switch; `.opencode/commands/speckit/save.md:48` lists the six names in `runtime/lib/validation/spec-doc-structure.ts:156` | Met | - |
 
 ### Status values
