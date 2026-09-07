@@ -1,9 +1,10 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Embedders — Ollama adapter (shared)
 // ───────────────────────────────────────────────────────────────────
-// Canonical OllamaAdapter for the shared embedding stack owned by the skill
-// advisor. A consumer's local `mcp-server/lib/embedders/adapters/ollama.ts`
-// re-exports from here, so a fix to the daemon protocol lands once.
+// Canonical Ollama transport for the shared embedding stack. The advisor's
+// `mcp-server/lib/embedders/adapters/ollama.ts` re-exports the adapter, and the
+// legacy `providers/ollama.ts` provider embeds through an instance of it, so
+// the daemon protocol, its timeouts and its error classification live once.
 // ───────────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter, EmbedderOptions } from '../adapter.js';
@@ -17,6 +18,20 @@ export type OllamaInputType = 'document' | 'query';
 
 export interface OllamaEmbedOptions {
   readonly inputType?: OllamaInputType;
+}
+
+/** Per-instance overrides; the environment supplies the defaults. */
+export interface OllamaAdapterOptions {
+  /** Backend origin; defaults to OLLAMA_BASE_URL or the local daemon. */
+  readonly baseUrl?: string;
+  /** One deadline for every request, taking precedence over the split defaults. */
+  readonly timeoutMs?: number;
+}
+
+/** Result of probing whether a model is loaded on a reachable backend. */
+export interface OllamaAvailability {
+  readonly available: boolean;
+  readonly reason?: string;
 }
 
 interface OllamaTag {
@@ -100,8 +115,8 @@ const OLLAMA_DOCUMENT_PER_INPUT_TIMEOUT_MS = 2_000;
 // 4. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
-function getOllamaBaseUrl(): string {
-  return (process.env.OLLAMA_BASE_URL || DEFAULT_OLLAMA_BASE_URL).replace(/\/+$/, '');
+export function resolveOllamaBaseUrl(value: string | undefined = process.env.OLLAMA_BASE_URL): string {
+  return (value || DEFAULT_OLLAMA_BASE_URL).replace(/\/+$/, '');
 }
 
 // A positive OLLAMA_REQUEST_TIMEOUT_MS pins every request to one deadline, for
@@ -111,8 +126,8 @@ function getTimeoutOverrideMs(): number | null {
   return Number.isFinite(raw) && raw > 0 ? raw : null;
 }
 
-function embedTimeoutMs(inputType: OllamaInputType, inputCount: number): number {
-  const override = getTimeoutOverrideMs();
+function embedTimeoutMs(inputType: OllamaInputType, inputCount: number, instanceTimeoutMs: number | null): number {
+  const override = instanceTimeoutMs ?? getTimeoutOverrideMs();
   if (override !== null) return override;
   if (inputType === 'query') return OLLAMA_QUERY_TIMEOUT_MS;
   return OLLAMA_DOCUMENT_BASE_TIMEOUT_MS
@@ -137,20 +152,6 @@ function getManifestModelName(manifest: EmbedderManifest): string {
   return manifest.ollamaName || manifest.name;
 }
 
-function normalizeErrorMessage(value: unknown): string {
-  if (value instanceof Error) {
-    return value.message;
-  }
-  if (typeof value === 'object' && value !== null) {
-    try {
-      return JSON.stringify(value);
-    } catch {
-      return String(value);
-    }
-  }
-  return String(value);
-}
-
 async function readJson(response: Response): Promise<unknown> {
   try {
     return await response.json();
@@ -169,6 +170,47 @@ function isModelMissingResponse(response: Response, body: unknown): boolean {
     : '';
 
   return /model.*(not found|not loaded|pull)|pull.*model/i.test(message);
+}
+
+function normalizeErrorMessage(value: unknown): string {
+  if (value instanceof Error) {
+    return value.message;
+  }
+  if (typeof value === 'object' && value !== null) {
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return String(value);
+    }
+  }
+  return String(value);
+}
+
+/**
+ * Ask the backend which models it serves and report whether `ollamaTag` is
+ * among them. Both the adapter's readiness probe and the provider's
+ * availability check are this one request; the reason strings are what the
+ * provider has always surfaced to its callers.
+ */
+export async function probeOllamaModel(
+  baseUrl: string,
+  ollamaTag: string,
+  timeoutMs: number = OLLAMA_TAGS_TIMEOUT_MS,
+): Promise<OllamaAvailability> {
+  let response: Response;
+  try {
+    response = await fetchWithTimeout(`${baseUrl}/api/tags`, { method: 'GET' }, timeoutMs);
+  } catch (error: unknown) {
+    return { available: false, reason: `Ollama backend unreachable at ${baseUrl}: ${normalizeErrorMessage(error)}` };
+  }
+  if (!response.ok) {
+    return { available: false, reason: `Ollama /api/tags returned ${response.status} ${response.statusText}` };
+  }
+  const tags = parseOllamaTagNames(await readJson(response));
+  if (!tags.has(ollamaTag)) {
+    return { available: false, reason: `Ollama model is not loaded: ${ollamaTag}` };
+  }
+  return { available: true };
 }
 
 function isNumberArray(value: unknown): value is number[] {
@@ -219,16 +261,19 @@ function parseOllamaTagNames(body: unknown): Set<string> {
 
 export class OllamaAdapter implements EmbedderAdapter {
   readonly name: string;
-  readonly dim: number;
+  // A manifest that declares no dimension (dim 0) learns it from the first
+  // response, which is how an operator-named model with no registry row embeds.
+  dim: number;
   readonly backend: BackendKind = 'ollama';
   readonly prefixQuery?: string;
   readonly prefixDocument?: string;
+  readonly baseUrl: string;
 
   private readonly ollamaTag: string;
-  private readonly baseUrl: string;
   private readonly maxInputChars?: number;
+  private readonly timeoutMs: number | null;
 
-  constructor(private readonly manifest: EmbedderManifest) {
+  constructor(private readonly manifest: EmbedderManifest, options: OllamaAdapterOptions = {}) {
     if (manifest.backend !== 'ollama') {
       throw new TypeError(`OllamaAdapter requires an ollama manifest, got ${manifest.backend}`);
     }
@@ -238,8 +283,9 @@ export class OllamaAdapter implements EmbedderAdapter {
     this.prefixQuery = manifest.prefixQuery;
     this.prefixDocument = manifest.prefixDocument;
     this.ollamaTag = getManifestModelName(manifest);
-    this.baseUrl = getOllamaBaseUrl();
+    this.baseUrl = resolveOllamaBaseUrl(options.baseUrl);
     this.maxInputChars = manifest.maxInputChars;
+    this.timeoutMs = typeof options.timeoutMs === 'number' && options.timeoutMs > 0 ? options.timeoutMs : null;
   }
 
   async embed(texts: ReadonlyArray<string>, options: EmbedderOptions = {}): Promise<Float32Array[]> {
@@ -262,23 +308,12 @@ export class OllamaAdapter implements EmbedderAdapter {
   }
 
   async ready(): Promise<boolean> {
-    let response: Response;
-    try {
-      response = await fetchWithTimeout(
-        `${this.baseUrl}/api/tags`,
-        { method: 'GET' },
-        getTimeoutOverrideMs() ?? OLLAMA_TAGS_TIMEOUT_MS,
-      );
-    } catch {
-      return false;
-    }
+    return (await this.availability()).available;
+  }
 
-    if (!response.ok) {
-      return false;
-    }
-
-    const body = await readJson(response);
-    return parseOllamaTagNames(body).has(this.ollamaTag);
+  /** The readiness probe with its reason, for callers that report why. */
+  async availability(): Promise<OllamaAvailability> {
+    return probeOllamaModel(this.baseUrl, this.ollamaTag, this.timeoutMs ?? getTimeoutOverrideMs() ?? OLLAMA_TAGS_TIMEOUT_MS);
   }
 
   private applyPrefix(text: string, inputType: OllamaInputType): string {
@@ -304,7 +339,7 @@ export class OllamaAdapter implements EmbedderAdapter {
     input: ReadonlyArray<string>,
     inputType: OllamaInputType,
   ): Promise<unknown> {
-    const timeoutMs = embedTimeoutMs(inputType, input.length);
+    const timeoutMs = embedTimeoutMs(inputType, input.length, this.timeoutMs);
     const batchResponse = await this.postJson('/api/embed', { model: this.ollamaTag, input }, timeoutMs);
     if (batchResponse.response.ok) {
       return batchResponse.body;
@@ -358,6 +393,9 @@ export class OllamaAdapter implements EmbedderAdapter {
   }
 
   private toVector(row: number[]): Float32Array {
+    if (this.dim <= 0) {
+      this.dim = row.length;
+    }
     if (row.length !== this.dim) {
       throw new OllamaDimensionMismatchError(this.ollamaTag, this.dim, row.length);
     }

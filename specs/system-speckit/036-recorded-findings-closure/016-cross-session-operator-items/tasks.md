@@ -61,6 +61,8 @@ contextType: "general"
 - [ ] T011 Run `python3 .opencode/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py` and confirm `diff_entries=0`
 - [ ] T012 Confirm `git worktree list` no longer names `046-v4-gemini-research`, or confirm the escalation note from T007 is present and complete
 - [ ] T013 Update `spec.md`, `plan.md` and this document's own state to reflect what shipped and what was escalated
+- [ ] T014 Remove the retired `/memory:save` command bridge from `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts` so `command-bridge-resolution-guard.vitest.ts` and `command-metadata-e2e.vitest.ts` pass; routed here by 011's ADR-001
+- [ ] T015 Rerun `mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts` three times and record whether the three daemon assertions that failed once under 011 are flaky or broken; routed here by 011's ADR-001
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -9,7 +9,7 @@
 import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 export interface ParsedDocFrontmatter {
   readonly title: string;

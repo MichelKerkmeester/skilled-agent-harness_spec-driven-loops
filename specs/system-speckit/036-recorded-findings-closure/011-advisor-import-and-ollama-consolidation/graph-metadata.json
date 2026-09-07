@@ -39,17 +39,19 @@
       "golden"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
       "shared/embeddings/adapters/ollama.ts",
       "shared/embeddings/providers/ollama.ts",
+      "shared/README.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/utils/skill-markdown.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
@@ -57,7 +59,8 @@
       ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/refresh-roundtrip.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/semantic-shadow-ablation.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures/seed-skill-embeddings.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts",
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -91,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -99,7 +108,13 @@
       {
         "name": "ollama.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
+        "path": "shared/embeddings/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
         "source": "derived"
       },
       {
@@ -145,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -185,29 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Finding R5-01 (`specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages/deepseek-v4-flash-shared-package/research.md:25`) found two parallel live implementations of the same Ollama embedding backend, both reached from the same daemon flow: `shared/embeddings/adapters/ollama.ts` (366 lines) and `shared/embeddings/providers/ollama.ts` (424 lines), together ~790 lines with two separate contracts and two config surfaces",
     "created_at": "2026-09-07T15:05:52Z",
-    "last_save_at": "2026-09-07T15:40:57.248Z",
+    "last_save_at": "2026-09-07T17:49:15.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,15 +219,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8b3d23ed2cf67ef9dd11a17041b0913ccefe3fb310f53ae5f21568978281d41",
+    "source_fingerprint": "sha256:ffad37b9c078333a2b688df1e6cc7db8483ceea14f5a74342ec2a245b7abfc8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "256dd80ac78b6edcda97b57d5ad75b17de0a5b334788f1e30ffcd225b2097b88",
-      "plan.md": "682a54dea5b9b13925f4a57000d9280d94ce617e22c35f0b269edae22a7aa6d5",
-      "tasks.md": "9ca35c0a2f8f74a09dcfa2a34d00bb87fe3663c8083afc5320a50404d9c22fc7",
-      "implementation-summary.md": "ebf6a7d26fd8e5612fa0362d241ea1f4b7a3cebfdc6de3e3c57e94f7e94a76db"
+      "spec.md": "8f634022089333521e1f41affad2956b2eac25d8833aa848aa84b74eebd82f9e",
+      "plan.md": "8152825d5b22ae9be7f520f3bd08ee104c03e0e3aba1261ebb5becfd58d03cb6",
+      "tasks.md": "d4738d6ad049d987973674ffb1c03c01a69e6040e2728a9b7613bcf0b9e8f84d",
+      "decision-record.md": "b9d3167c56e571a83df069d86c2ed3cf584c73c287a085531aeed0291a8b0953",
+      "implementation-summary.md": "a017b3ede375d582b051cdfd847cbf6f91d29ac4bb47bc5dba963745b242ced6"
     },
     "last_active_at": null
   }

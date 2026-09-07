@@ -55,8 +55,8 @@ vi.mock('../../lib/embedders/registry.js', async (importOriginal) => {
 });
 
 // Mock the legacy createEmbeddingsProvider so the legacy-path test stays offline too
-vi.mock('@spec-kit/shared/embeddings/factory', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@spec-kit/shared/embeddings/factory')>();
+vi.mock('@spec-kit/shared/embeddings/factory.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@spec-kit/shared/embeddings/factory.js')>();
   return {
     ...actual,
     createEmbeddingsProvider: vi.fn(async () => ({

@@ -123,7 +123,7 @@ Audit-trail summary only. Each child's plan carries the exact list.
 | 8 | 008-review-research-scaffold-paths/ | review and research packets creatable through the scaffolder | complete |
 | 9 | 009-references-corpus-routing/ | every reference routed or removed | complete |
 | 10 | 010-manifest-dead-fields-and-coaching-markers/ | unread manifest fields and scaffold markers gone or wired | complete |
-| 11 | 011-advisor-import-and-ollama-consolidation/ | one Ollama implementation and one import form in the advisor | planned |
+| 11 | 011-advisor-import-and-ollama-consolidation/ | one Ollama implementation and one import form in the advisor | complete; AC-002 waived by ADR-001, routed to 014 and 016 |
 | 12 | 012-root-resolver-consolidation/ | the minimum root resolvers with a parity test | planned |
 | 13 | 013-gate1-instruction-parity/ | the Gate 1 lookup in every runtime instruction file | planned |
 | 14 | 014-registration-schema-unification/ | one source for the five hook registration files | planned |

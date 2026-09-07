@@ -30,8 +30,8 @@ const { embedDocument, embedQuery, createEmbeddingsProvider } = vi.hoisted(() =>
   };
 });
 
-vi.mock('@spec-kit/shared/embeddings/factory', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@spec-kit/shared/embeddings/factory')>();
+vi.mock('@spec-kit/shared/embeddings/factory.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@spec-kit/shared/embeddings/factory.js')>();
   return {
     ...actual,
     createEmbeddingsProvider,

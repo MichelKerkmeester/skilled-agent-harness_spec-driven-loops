@@ -6,12 +6,18 @@ import { EmbeddingProfile } from '../profile.js';
 import { getCanonicalFallback } from '../registry.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
 import type { EmbeddingProfileData, IEmbeddingProvider, ProviderMetadata } from '../../types.js';
+import { OllamaAdapter, probeOllamaModel, resolveOllamaBaseUrl } from '../adapters/ollama.js';
+import type { OllamaAvailability } from '../adapters/ollama.js';
+
+// The provider is the legacy single-text surface over the same transport the
+// adapter exposes: prefixing and chunking happen here, then every request goes
+// through an OllamaAdapter built from a prefix-free manifest.
+export { resolveOllamaBaseUrl };
 
 // ───────────────────────────────────────────────────────────────────
 // 1. MANIFESTS
 // ───────────────────────────────────────────────────────────────────
 
-const DEFAULT_OLLAMA_BASE_URL = 'http://127.0.0.1:11434';
 // Derived from registry MANIFESTS[0].
 const DEFAULT_MODEL: string = getCanonicalFallback('ollama');
 const EMBEDDING_TIMEOUT = 30000;
@@ -53,34 +59,11 @@ interface OllamaOptions {
   timeout?: number;
 }
 
-interface OllamaTag {
-  readonly name?: unknown;
-  readonly model?: unknown;
-}
-
-interface OllamaTagsResponse {
-  readonly models?: unknown;
-}
-
-interface OllamaEmbedResponse {
-  readonly embeddings?: unknown;
-  readonly embedding?: unknown;
-}
-
-interface OllamaAvailability {
-  available: boolean;
-  reason?: string;
-}
-
 let availabilityPromise: Promise<OllamaAvailability> | null = null;
 
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────────
-
-export function resolveOllamaBaseUrl(value: string | undefined = process.env.OLLAMA_BASE_URL): string {
-  return (value || DEFAULT_OLLAMA_BASE_URL).replace(/\/+$/, '');
-}
 
 export function getOllamaManifest(name: string | undefined | null): OllamaManifest | undefined {
   if (!name) {
@@ -111,69 +94,6 @@ function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-function isNumberArray(value: unknown): value is number[] {
-  return Array.isArray(value) && value.every((item) => typeof item === 'number' && Number.isFinite(item));
-}
-
-function parseEmbeddingRows(body: unknown): number[][] {
-  if (typeof body !== 'object' || body === null) {
-    return [];
-  }
-
-  const payload = body as OllamaEmbedResponse;
-  if (Array.isArray(payload.embeddings) && payload.embeddings.every(isNumberArray)) {
-    return payload.embeddings;
-  }
-
-  if (isNumberArray(payload.embedding)) {
-    return [payload.embedding];
-  }
-
-  return [];
-}
-
-function parseOllamaTagNames(body: unknown): Set<string> {
-  if (typeof body !== 'object' || body === null) {
-    return new Set();
-  }
-
-  const response = body as OllamaTagsResponse;
-  if (!Array.isArray(response.models)) {
-    return new Set();
-  }
-
-  return new Set(
-    response.models
-      .map((model: OllamaTag) => {
-        if (typeof model.name === 'string') return model.name;
-        if (typeof model.model === 'string') return model.model;
-        return null;
-      })
-      .filter((name): name is string => name !== null),
-  );
-}
-
-async function readJson(response: Response): Promise<unknown> {
-  try {
-    return await response.json();
-  } catch {
-    return null;
-  }
-}
-
-async function fetchWithTimeout(url: string, init: RequestInit, timeoutMs: number): Promise<Response> {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    return await fetch(url, {
-      ...init,
-      signal: controller.signal,
-    });
-  } finally {
-    clearTimeout(timeoutId);
-  }
-}
-
 function l2Normalize(vector: Float32Array): Float32Array {
   let norm = 0;
   for (const value of vector) {
@@ -191,18 +111,6 @@ function l2Normalize(vector: Float32Array): Float32Array {
   return normalized;
 }
 
-function isModelMissingResponse(response: Response, body: unknown): boolean {
-  if (response.status === 404) {
-    return true;
-  }
-
-  const message = typeof body === 'object' && body !== null && 'error' in body
-    ? String((body as { error?: unknown }).error)
-    : '';
-
-  return /model.*(not found|not loaded|pull)|pull.*model/i.test(message);
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 3. PROVIDER CLASS
 // ───────────────────────────────────────────────────────────────────
@@ -217,6 +125,7 @@ export class OllamaProvider implements IEmbeddingProvider {
   requestCount: number;
 
   private readonly manifest: OllamaManifest;
+  private readonly adapter: OllamaAdapter;
 
   constructor(options: OllamaOptions = {}) {
     this.manifest = resolveManifest(options.model, options.dim);
@@ -227,6 +136,14 @@ export class OllamaProvider implements IEmbeddingProvider {
     this.timeout = options.timeout || EMBEDDING_TIMEOUT;
     this.isHealthy = true;
     this.requestCount = 0;
+    // Prefixes and length limits are applied here before the request, so the
+    // adapter receives a manifest without them and never applies them twice.
+    this.adapter = new OllamaAdapter({
+      name: this.manifest.name,
+      dim: this.dim,
+      backend: 'ollama',
+      ollamaName: this.manifest.ollamaName,
+    }, { baseUrl: this.baseUrl, timeoutMs: this.timeout });
   }
 
   static async canLoad(options: Pick<OllamaOptions, 'model' | 'baseUrl' | 'timeout'> = {}): Promise<OllamaAvailability> {
@@ -234,19 +151,7 @@ export class OllamaProvider implements IEmbeddingProvider {
       availabilityPromise = (async (): Promise<OllamaAvailability> => {
         const manifest = resolveManifest(options.model);
         const baseUrl = resolveOllamaBaseUrl(options.baseUrl);
-        try {
-          const response = await fetchWithTimeout(`${baseUrl}/api/tags`, { method: 'GET' }, options.timeout || 5000);
-          if (!response.ok) {
-            return { available: false, reason: `Ollama /api/tags returned ${response.status} ${response.statusText}` };
-          }
-          const tags = parseOllamaTagNames(await readJson(response));
-          if (!tags.has(manifest.ollamaName)) {
-            return { available: false, reason: `Ollama model is not loaded: ${manifest.ollamaName}` };
-          }
-          return { available: true };
-        } catch (error: unknown) {
-          return { available: false, reason: `Ollama backend unreachable at ${baseUrl}: ${getErrorMessage(error)}` };
-        }
+        return probeOllamaModel(baseUrl, manifest.ollamaName, options.timeout || 5000);
       })();
     }
 
@@ -276,61 +181,17 @@ export class OllamaProvider implements IEmbeddingProvider {
     return semanticChunk(prefixed, this.maxTextLength);
   }
 
-  private async postJson(path: string, payload: Record<string, unknown>): Promise<{ response: Response; body: unknown }> {
-    const response = await fetchWithTimeout(`${this.baseUrl}${path}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(payload),
-    }, this.timeout);
-
-    return {
-      response,
-      body: await readJson(response),
-    };
-  }
-
-  private async embedPrepared(input: string): Promise<Float32Array> {
-    const batchResponse = await this.postJson('/api/embed', {
-      model: this.manifest.ollamaName,
-      input: [input],
-    });
-
-    let body = batchResponse.body;
-    if (!batchResponse.response.ok) {
-      if (batchResponse.response.status !== 404) {
-        this.throwForEmbeddingResponse(batchResponse.response, body);
-      }
-
-      const legacyResponse = await this.postJson('/api/embeddings', {
-        model: this.manifest.ollamaName,
-        prompt: input,
-      });
-      if (!legacyResponse.response.ok) {
-        this.throwForEmbeddingResponse(legacyResponse.response, legacyResponse.body);
-      }
-      body = legacyResponse.body;
-    }
-
-    const [row] = parseEmbeddingRows(body);
+  private async embedPrepared(input: string, inputType: 'document' | 'query'): Promise<Float32Array> {
+    const [row] = await this.adapter.embed([input], { inputType });
     if (!row) {
       throw new Error('Ollama returned no embedding rows');
     }
     if (this.dim <= 0) {
-      this.dim = row.length;
-    } else if (row.length !== this.dim) {
-      throw new Error(`Ollama embedding dimension mismatch for ${this.modelName}: expected ${this.dim}, got ${row.length}`);
+      this.dim = this.adapter.dim;
     }
 
     this.requestCount += 1;
-    return l2Normalize(new Float32Array(row));
-  }
-
-  private throwForEmbeddingResponse(response: Response, body: unknown): never {
-    if (isModelMissingResponse(response, body)) {
-      throw new Error(`Ollama model is not loaded: ${this.manifest.ollamaName}`);
-    }
-
-    throw new Error(`Ollama embedding request failed (${response.status} ${response.statusText}): ${JSON.stringify(body)}`);
+    return l2Normalize(row);
   }
 
   async generateEmbedding(text: string): Promise<Float32Array | null> {
@@ -341,7 +202,7 @@ export class OllamaProvider implements IEmbeddingProvider {
     }
 
     try {
-      return await this.embedPrepared(input);
+      return await this.embedPrepared(input, 'document');
     } catch (error: unknown) {
       this.isHealthy = false;
       console.warn(`[ollama] Generation failed: ${getErrorMessage(error)}`);
@@ -354,7 +215,7 @@ export class OllamaProvider implements IEmbeddingProvider {
     if (!input) {
       return null;
     }
-    return await this.embedPrepared(input);
+    return await this.embedPrepared(input, 'document');
   }
 
   async embedQuery(text: string): Promise<Float32Array | null> {
@@ -362,7 +223,7 @@ export class OllamaProvider implements IEmbeddingProvider {
     if (!input) {
       return null;
     }
-    return await this.embedPrepared(input);
+    return await this.embedPrepared(input, 'query');
   }
 
   async warmup(): Promise<boolean> {

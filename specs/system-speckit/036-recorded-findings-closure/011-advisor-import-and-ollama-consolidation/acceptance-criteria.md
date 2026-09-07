@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,11 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the merged Ollama implementation, When both getAdapter('ollama').embed() and createEmbeddingsProvider() are called, Then both resolve through the same implementation with no capability lost | Direct read of the merged file plus the two call sites in skill-graph-db.ts | Unmet | - |
-| AC-002 | REQ-002 | Given the merge, When the advisor's own test suite runs, Then it passes | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run test` | Unmet | - |
-| AC-003 | REQ-003 | Given the nine advisor-owned files, When their @spec-kit/shared specifiers are normalized, Then every one uses the .js extension form | `rg -n "from '@spec-kit/shared[^']*'" .opencode/skills/system-skill-advisor/mcp-server` shows only `.js`-suffixed specifiers | Unmet | - |
-| AC-004 | REQ-004 | Given the normalized specifiers, When a lint rule or test is added, Then it fails on a future extensionless @spec-kit/shared specifier under the advisor | The new lint rule or test, run against a throwaway extensionless specifier to confirm it fails | Unmet | - |
-| AC-005 | REQ-005 | Given the merge and the specifier fix, When the golden-prompt suite runs, Then it passes and the unicode-normalization isolation doctrine file is unchanged | `npx vitest run routing-golden-prompts.vitest.ts` and `git diff` shows no change to unicode-normalization.ts | Unmet | - |
+| AC-001 | REQ-001 | Given the merged Ollama implementation, When both getAdapter('ollama').embed() and createEmbeddingsProvider() are called, Then both resolve through the same implementation with no capability lost | Direct read of the merged file plus the two call sites in skill-graph-db.ts | Met | - |
+| AC-002 | REQ-002 | Given the merge, When the advisor's own test suite runs, Then it passes | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run test` | Waived | ADR-001 |
+| AC-003 | REQ-003 | Given the nine advisor-owned files, When their @spec-kit/shared specifiers are normalized, Then every one uses the .js extension form | `rg -n "from '@spec-kit/shared[^']*'" .opencode/skills/system-skill-advisor/mcp-server` shows only `.js`-suffixed specifiers | Met | - |
+| AC-004 | REQ-004 | Given the normalized specifiers, When a lint rule or test is added, Then it fails on a future extensionless @spec-kit/shared specifier under the advisor | The new lint rule or test, run against a throwaway extensionless specifier to confirm it fails | Met | - |
+| AC-005 | REQ-005 | Given the merge and the specifier fix, When the golden-prompt suite runs, Then it passes and the unicode-normalization isolation doctrine file is unchanged | `npx vitest run routing-golden-prompts.vitest.ts` and `git diff` shows no change to unicode-normalization.ts | Met | - |
 
 ### Status values
 
