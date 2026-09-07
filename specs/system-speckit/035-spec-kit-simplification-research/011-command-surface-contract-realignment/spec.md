@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-09-07 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 11 |
+| **Phase** | 11 of 12 |
 | **Predecessor** | 005-overengineering-simplification |
-| **Successor** | None |
+| **Successor** | 012-pre-existing-test-repair |
 | **Handoff Criteria** | Every row of `005-overengineering-simplification/research/confirmed-findings.md` is fixed, documented or carries a recorded decision, and the command assets, the help printer and their tests agree with the level contract |
 <!-- /ANCHOR:metadata -->
 

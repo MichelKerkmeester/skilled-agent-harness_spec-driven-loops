@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9d189fd107b1d0f33190bb8cc637f0e1c38327416a49a78e4d7938ab42910c10",
+  "manifestHash": "4baf2dbd19314a2e780841a3a972d40fc0b99cad6c51093472f5ded79e1235a1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18518,6 +18518,9 @@
     "child env allowlist consumption plan": [
       "child env allowlist consumption plan"
     ],
+    "child manifest test isolation": [
+      "child manifest test isolation"
+    ],
     "child path existence": [
       "child path existence"
     ],
@@ -21029,6 +21032,9 @@
     ],
     "cli process memory leak deep research": [
       "CLI process memory leak deep research"
+    ],
+    "cli project green": [
+      "cli project green"
     ],
     "cli prompt quality card": [
       "cli prompt quality card"
@@ -27021,6 +27027,9 @@
     ],
     "continuity freshness skip codes skip codes": [
       "CONTINUITY_FRESHNESS_SKIP_CODES skip codes"
+    ],
+    "continuity freshness test fixture": [
+      "continuity freshness test fixture"
     ],
     "continuity freshness validator": [
       "CONTINUITY_FRESHNESS validator"
@@ -47087,6 +47096,15 @@
     "freshness fix tasks": [
       "freshness fix tasks"
     ],
+    "freshness fixture fixed": [
+      "freshness fixture fixed"
+    ],
+    "freshness fixture plan": [
+      "freshness fixture plan"
+    ],
+    "freshness fixture tasks": [
+      "freshness fixture tasks"
+    ],
     "freshness gate regression": [
       "freshness gate regression"
     ],
@@ -47675,6 +47693,9 @@
     ],
     "full plugin runtime": [
       "full plugin runtime"
+    ],
+    "full project green": [
+      "full project green"
     ],
     "full projection safe native tiers": [
       "full-projection safe-native tiers"
@@ -58065,6 +58086,9 @@
     "manifest impl plan": [
       "manifest impl plan"
     ],
+    "manifest isolation plan": [
+      "manifest isolation plan"
+    ],
     "manifest json app compatibility": [
       "manifest.json app compatibility"
     ],
@@ -58100,6 +58124,9 @@
     ],
     "manifest spec kit runtime": [
       "manifest @spec-kit/runtime"
+    ],
+    "manifest suite tasks": [
+      "manifest suite tasks"
     ],
     "manifest template self check": [
       "manifest template self-check"
@@ -74733,6 +74760,9 @@
     "pre existing test failures triage": [
       "pre-existing test failures triage"
     ],
+    "pre existing test repair": [
+      "pre-existing test repair"
+    ],
     "pre migration dry run": [
       "pre-migration dry run"
     ],
@@ -80306,6 +80336,9 @@
     "repository root resolution": [
       "repository root resolution"
     ],
+    "reproduce then repair": [
+      "reproduce then repair"
+    ],
     "reproduce write escape": [
       "reproduce write escape"
     ],
@@ -81805,6 +81838,9 @@
     ],
     "retired checklist command workflows": [
       "retired checklist command workflows"
+    ],
+    "retired checklist fixture": [
+      "retired checklist fixture"
     ],
     "retired compiled routing paths catalog": [
       "retired compiled routing paths catalog"
@@ -100760,6 +100796,18 @@
     "test reliability remediation": [
       "test reliability remediation"
     ],
+    "test repair criteria": [
+      "test repair criteria"
+    ],
+    "test repair plan": [
+      "test repair plan"
+    ],
+    "test repair summary": [
+      "test repair summary"
+    ],
+    "test repair tasks": [
+      "test repair tasks"
+    ],
     "test runtime bound": [
       "test runtime bound"
     ],
@@ -105375,6 +105423,9 @@
     ],
     "what shipped template contract": [
       "what shipped template contract"
+    ],
+    "what shipped test repair": [
+      "what shipped test repair"
     ],
     "when does a folder need code md": [
       "when does a folder need code.md"

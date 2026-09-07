@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair",
+  "description": "Two suites failed before this program and stayed red through it",
+  "keywords": [
+    "two",
+    "suites",
+    "failed",
+    "program",
+    "stayed",
+    "red"
+  ],
+  "lastUpdated": "2026-09-07T04:03:53.394Z",
+  "specId": "012",
+  "folderSlug": "pre-existing-test-repair",
+  "parentChain": [
+    "system-speckit",
+    "035-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

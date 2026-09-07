@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
-  "spec_folder": "system-speckit/035-spec-kit-simplification-research/011-command-surface-contract-realignment",
+  "packet_id": "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair",
+  "spec_folder": "system-speckit/035-spec-kit-simplification-research/012-pre-existing-test-repair",
   "parent_id": "system-speckit/035-spec-kit-simplification-research",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command surface contract realignment",
-      "retired checklist command workflows",
-      "validate help lists every rule",
-      "symbolic template names",
-      "command surface realignment plan",
-      "workflow assets literal replacement",
-      "help printer test",
-      "acceptance criteria step",
-      "command surface realignment tasks",
-      "workflow asset rewrite tasks",
-      "help printer tasks",
+      "pre-existing test repair",
+      "continuity freshness test fixture",
+      "child manifest test isolation",
+      "retired checklist fixture",
+      "test repair plan",
+      "freshness fixture plan",
+      "manifest isolation plan",
+      "reproduce then repair",
+      "test repair tasks",
+      "freshness fixture tasks",
+      "manifest suite tasks",
       "verification checklist"
     ],
     "key_topics": [
-      "command",
-      "surface",
-      "contract",
-      "realignment",
+      "pre-existing",
+      "test",
+      "repair",
+      "continuity",
+      "freshness",
+      "fixture",
+      "child",
+      "manifest",
+      "isolation",
       "retired",
       "checklist",
-      "workflows",
-      "validate",
-      "help",
-      "lists",
-      "every",
-      "rule"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -47,13 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "runtime/cli/spec/validate.sh",
-      "runtime/cli/tests/validate-help-lists-every-rule.vitest.ts",
-      "references/validation/validation-rules.md",
-      "runtime/cli/optimizer/README.md",
-      "runtime/cli/resource-map/README.md",
-      "runtime/tests/fixtures/golden-queries.json",
-      "runtime/tests/env-reference-drift.vitest.ts"
+      "runtime/tests/continuity-freshness.vitest.ts",
+      "runtime/cli/tests/recursive-child-manifest.vitest.ts",
+      "runtime/cli/validation/continuity-freshness.ts"
     ],
     "entities": [
       {
@@ -93,39 +89,21 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "runtime/cli/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate-help-lists-every-rule.vitest.ts",
+        "name": "continuity-freshness.vitest.ts",
         "kind": "test",
-        "path": "runtime/cli/tests/validate-help-lists-every-rule.vitest.ts",
+        "path": "runtime/tests/continuity-freshness.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "validation-rules.md",
-        "kind": "doc",
-        "path": "references/validation/validation-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "runtime/cli/optimizer/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "golden-queries.json",
-        "kind": "config",
-        "path": "runtime/tests/fixtures/golden-queries.json",
-        "source": "derived"
-      },
-      {
-        "name": "env-reference-drift.vitest.ts",
+        "name": "recursive-child-manifest.vitest.ts",
         "kind": "test",
-        "path": "runtime/tests/env-reference-drift.vitest.ts",
+        "path": "runtime/cli/tests/recursive-child-manifest.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "runtime/cli/validation/continuity-freshness.ts",
         "source": "derived"
       },
       {
@@ -159,7 +137,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Two",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -177,13 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Every",
+        "name": "Overview Both",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Contract",
+        "name": "Pattern Test",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -195,15 +173,33 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Level",
+        "name": "Data Flow Fixture",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The level contract retired `checklist.md` and made `acceptance-criteria.md` the closure document, and child 010 brought the skill's own documents to that contract",
-    "created_at": "2026-09-07T03:35:37.269Z",
-    "last_save_at": "2026-09-07T04:03:53.880Z",
+    "causal_summary": "Two suites failed before this program and stayed red through it",
+    "created_at": "2026-09-07T04:03:53.305Z",
+    "last_save_at": "2026-09-07T04:03:53.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3acd6bdbaf8e69826197dcc1264440c87003e718744a2ef475b7dafe2d88ecf",
+    "source_fingerprint": "sha256:3cc7675180298169b76323846f1db3a59417573f6c022ce295b0b84c010b1a53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8c2db2a8886f1a00b886e787b797d2a855b1bf844fdced4b1269dfbdd7513ca",
-      "plan.md": "98d509566b73b96337783b92a4417f674deb098881c4c4d95a8bdf5b39155995",
-      "tasks.md": "4f64c529b760badc973f21096de0c82042e5baa9879d3f0abf29e6509e876233",
-      "implementation-summary.md": "2ef5431469cfd90cd00d697d78933695731d877baeae3847502c089040a39ff9"
+      "spec.md": "13ccfeba75879b706e3d4aa38e0e255b51996567a9fbf36979f8469ac2b02511",
+      "plan.md": "8591e2c3e9ee5e5d2bd602620634c6e1dbafa0ecf87bb1976ad546bd86abf4e7",
+      "tasks.md": "c6aa7392def50cf2fadd4ad03accadbe86789bfc254f31d33130cedf96571fdf",
+      "implementation-summary.md": "5fe3d1d4892567eb1cee5b8ddbeb11fa333e7a078386cc68f8be1dc07a5e6f87"
     },
     "last_active_child_id": null,
     "last_active_at": null

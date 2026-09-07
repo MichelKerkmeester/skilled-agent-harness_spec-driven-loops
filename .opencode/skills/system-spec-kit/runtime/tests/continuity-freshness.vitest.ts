@@ -49,7 +49,7 @@ function createPacket(root: string): string {
     '    recent_action: "Verified packet"',
     '    next_safe_action: "Keep verifying"',
     '    blockers: []',
-    '    key_files: ["checklist.md"]',
+    '    key_files: ["tasks.md"]',
     '    session_dedup:',
     '      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"',
     '      session_id: "freshness-fixture"',
@@ -62,8 +62,7 @@ function createPacket(root: string): string {
 
   writeWithFreshFingerprint(path.join(folder, 'spec.md'), `${frontmatter('Spec', 'complete')}\n# Spec\n`);
   writeWithFreshFingerprint(path.join(folder, 'plan.md'), `${frontmatter('Plan')}\n# Plan\n`);
-  writeWithFreshFingerprint(path.join(folder, 'tasks.md'), `${frontmatter('Tasks')}\n# Tasks\n`);
-  writeWithFreshFingerprint(path.join(folder, 'checklist.md'), `${frontmatter('Checklist')}\n# Checklist\n\n- [x] Fixture check. Evidence: vitest.\n`);
+  writeWithFreshFingerprint(path.join(folder, 'tasks.md'), `${frontmatter('Tasks')}\n# Tasks\n\n- [x] Fixture check. Evidence: vitest.\n`);
   writeWithFreshFingerprint(path.join(folder, 'implementation-summary.md'), `${frontmatter('Implementation Summary')}\n# Implementation Summary\n`);
   fs.writeFileSync(
     path.join(folder, 'graph-metadata.json'),
@@ -162,7 +161,7 @@ describe('completion continuity freshness', () => {
     const folder = createPacket(root);
 
     const before = runValidate(folder, { SPECKIT_COMPLETION_FRESHNESS: undefined });
-    fs.appendFileSync(path.join(folder, 'checklist.md'), '\nEdited after green evidence.\n', 'utf8');
+    fs.appendFileSync(path.join(folder, 'implementation-summary.md'), '\nEdited after green evidence.\n', 'utf8');
     const after = runValidate(folder, { SPECKIT_COMPLETION_FRESHNESS: undefined });
 
     expect(before.status).toBe(0);
@@ -170,13 +169,15 @@ describe('completion continuity freshness', () => {
     expect(after.stdout).toBe(before.stdout);
   });
 
+  // The rule verifies a claim against implementation-summary.md's own
+  // fingerprint, so only an edit to that document can make the packet stale.
   it('warns on the stale-verdict fixture class when a completion fingerprint is stale', () => {
     const sourceFixture = JSON.parse(fs.readFileSync(REVIEWER_STALE_VERDICT, 'utf8')) as { id: string };
     expect(sourceFixture.id).toBe('reviewer-stale-verdict');
 
     const root = makeTempDir('speckit-freshness-warn-');
     const folder = createPacket(root);
-    fs.appendFileSync(path.join(folder, 'checklist.md'), '\nEdited after green evidence.\n', 'utf8');
+    fs.appendFileSync(path.join(folder, 'implementation-summary.md'), '\nEdited after green evidence.\n', 'utf8');
 
     const result = runValidate(folder, { SPECKIT_COMPLETION_FRESHNESS: 'true' });
     const parsed = JSON.parse(result.stdout) as { entries: Array<{ rule: string; status: string; message: string }> };
@@ -192,7 +193,7 @@ describe('completion continuity freshness', () => {
   it('promotes the stale completion fingerprint to an error in enforce mode', () => {
     const root = makeTempDir('speckit-freshness-enforce-');
     const folder = createPacket(root);
-    fs.appendFileSync(path.join(folder, 'checklist.md'), '\nEdited after green evidence.\n', 'utf8');
+    fs.appendFileSync(path.join(folder, 'implementation-summary.md'), '\nEdited after green evidence.\n', 'utf8');
 
     const result = runValidate(folder, {
       SPECKIT_COMPLETION_FRESHNESS: 'true',
@@ -233,7 +234,7 @@ describe('completion continuity freshness', () => {
     const root = makeTempDir('speckit-freshness-table-status-');
     const folder = createPacketWithoutCompletionClaim(root);
     const specPath = path.join(folder, 'spec.md');
-    const checklistPath = path.join(folder, 'checklist.md');
+    const tasksPath = path.join(folder, 'tasks.md');
     const summaryPath = path.join(folder, 'implementation-summary.md');
     fs.writeFileSync(
       path.join(folder, 'graph-metadata.json'),
@@ -272,19 +273,19 @@ describe('completion continuity freshness', () => {
       '| **Status** | Completed |',
     ].join('\n'), 'utf8');
     writeWithFreshFingerprint(specPath, fs.readFileSync(specPath, 'utf8'));
-    fs.writeFileSync(checklistPath, [
+    fs.writeFileSync(tasksPath, [
       '---',
-      'title: "Checklist"',
+      'title: "Tasks"',
       '_memory:',
       '  continuity:',
       '    session_dedup:',
       '      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"',
       '---',
-      '# Checklist',
+      '# Tasks',
       '',
       '- [x] Fixture check [EVIDENCE: vitest.]',
     ].join('\n'), 'utf8');
-    writeWithFreshFingerprint(checklistPath, fs.readFileSync(checklistPath, 'utf8'));
+    writeWithFreshFingerprint(tasksPath, fs.readFileSync(tasksPath, 'utf8'));
 
     const result = validateContinuityFreshness(folder);
 

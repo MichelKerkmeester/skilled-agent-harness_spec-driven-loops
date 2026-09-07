@@ -86,6 +86,7 @@ phase and binds as if written here.
 | 009-shared-package-dead-half-removal | `009-shared-package-dead-half-removal/goal.md` |
 | 010-template-contract-alignment | `010-template-contract-alignment/goal.md` |
 | 011-command-surface-contract-realignment | `011-command-surface-contract-realignment/goal.md` |
+| 012-pre-existing-test-repair | `012-pre-existing-test-repair/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -148,4 +149,5 @@ and findings belong here.
 | Lane 005 measured its worktree twice | The empty adapter directory and the fingerprint collision were worktree 046 artifacts; both re-measured in the main checkout and recorded in the lane's confirmed findings. |
 | The command surface outranked the lane's P1 rows | The eight /speckit:* assets still scaffolded the retired checklist; found by the census, fixed in 011. |
 | Program closed | Lanes 001 to 005 Complete with 10 iterations and a confirmed-findings.md each; children 006 to 011 Complete; `validate.sh --strict --recursive` printed RESULT: PASSED twelve times; the trigger index regenerated twice to the same hash with zero malformed documents; the durable slice was resent after the 011 binding change. |
+| Child 012 appended to the binding | The operator asked for the two pre-existing failures to be fixed after the program closed; durable slice changed, parent resent in chat. |
 <!-- /ANCHOR:log -->
