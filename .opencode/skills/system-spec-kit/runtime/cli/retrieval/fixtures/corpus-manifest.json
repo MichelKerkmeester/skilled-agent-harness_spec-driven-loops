@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0f5c440e7ab6a08f964fa53a3a7d0c77e91691f75283f57f648bd1b018d637fd",
+  "corpusHash": "9ad5a58f3052c3424f3107c6deb9f2e628828403ea9e92d6680041b7ce8ded85",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28642,
+  "includedPathCount": 28744,
   "includedPaths": [
     ".opencode/install-guides/README.md",
     ".opencode/install-guides/install-scripts/README.md",
@@ -11980,6 +11980,7 @@
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/implementation-summary.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/dispatch-prompt.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/goal.md",
@@ -18099,6 +18100,7 @@
     "specs/system-skill-advisor/024-routing-perfection-research/acceptance-criteria.md",
     "specs/system-skill-advisor/024-routing-perfection-research/decision-record.md",
     "specs/system-skill-advisor/024-routing-perfection-research/implementation-summary.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/ownership-table.md",
     "specs/system-skill-advisor/024-routing-perfection-research/plan.md",
     "specs/system-skill-advisor/024-routing-perfection-research/research/dispatch-prompt.md",
     "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis-brief.md",
@@ -28660,10 +28662,110 @@
     "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/spec.md",
     "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/tasks.md",
     "specs/system-speckit/035-spec-kit-simplification-research/goal.md",
-    "specs/system-speckit/035-spec-kit-simplification-research/spec.md"
+    "specs/system-speckit/035-spec-kit-simplification-research/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/decision-record.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/decision-record.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/acceptance-criteria.md",
+    "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/implementation-summary.md",
+    "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/plan.md",
+    "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/spec.md",
+    "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/tasks.md",
+    "specs/system-speckit/036-recorded-findings-closure/goal.md",
+    "specs/system-speckit/036-recorded-findings-closure/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dfecc907a2771f7b5d9d136f164f4af7f5432fc707e2169a77a094d071cb7fc3",
+  "manifestHash": "ad82d50b789168a3a476c033709b839b1d00f837d39e401aab7d1ffb9b6ace6f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30006,6 +30108,10 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages",
       "reason": "excluded directory"
     },
     {
@@ -32454,6 +32560,70 @@
     },
     {
       "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/scratch",
       "reason": "excluded directory"
     },
     {
