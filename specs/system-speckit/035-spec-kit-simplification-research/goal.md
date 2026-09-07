@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/035-spec-kit-simplification-research"
     last_updated_at: "2026-09-06T16:40:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Opened round three on expanded angles"
+    recent_action: "Closed round three; every criterion ticked"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-06-simplification-research"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -92,6 +92,11 @@ phase and binds as if written here.
 | 015-shared-package-post-remediation-cleanup | `015-shared-package-post-remediation-cleanup/goal.md` |
 | 016-template-seams-and-sentinel-repair | `016-template-seams-and-sentinel-repair/goal.md` |
 | 017-completion-gate-and-catalog-alignment | `017-completion-gate-and-catalog-alignment/goal.md` |
+| 018-scaffold-placeholder-and-upgrade-truth | `018-scaffold-placeholder-and-upgrade-truth/goal.md` |
+| 019-ci-push-gates-and-runtime-doc-truth | `019-ci-push-gates-and-runtime-doc-truth/goal.md` |
+| 020-rule-headers-registry-coverage-and-playbook-paths | `020-rule-headers-registry-coverage-and-playbook-paths/goal.md` |
+| 021-shared-readme-generator-and-dead-exports | `021-shared-readme-generator-and-dead-exports/goal.md` |
+| 022-doctor-signal-truth-and-conventions-precision | `022-doctor-signal-truth-and-conventions-precision/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -109,10 +114,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] All five research children are Complete with two ten-iteration lineages and one five-iteration lineage each and a confirmed-findings.md covering all three rounds
-- [ ] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
-- [ ] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
-- [ ] The trigger index regenerates identically with zero malformed documents
+- [x] All five research children are Complete with two ten-iteration lineages and one five-iteration lineage each and a confirmed-findings.md covering all three rounds
+- [x] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason
+- [x] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
+- [x] The trigger index regenerates identically with zero malformed documents
 - [x] The parent goal.md was resent in chat after every change to its durable slice
 <!-- /ANCHOR:completion -->
 
@@ -167,5 +172,8 @@ and findings belong here.
 | Round three opened | Operator asked for five more iterations per lane on expanded angles with GLM 5.3 Flash max; objective, D1 and criteria amended, parent resent in chat; charters give each lane eight new angles; runner started 10:37 in worktree 046 on `fdca32368e`. |
 | Round three re-scoped and parallelized | First attempt spent 19 calls building a harness in one iteration; charters rebound to one angle per iteration with a twelve-call cap. Turns still took six to seven minutes at max reasoning, so the operator chose to keep max and run the five lanes in parallel; D1 and D2 amended, parent resent in chat; relaunch 11:35 and 12:03. |
 | Round three switched to DeepSeek | At 14:30 the GLM pace projected a finish near 22:00; the operator switched lanes 002 to 005 to DeepSeek V4 Flash max through DevPass. Their one to two GLM iterations each are parked for the census; lane 001 continues on GLM at 4 of 5. D1 amended, parent resent in chat. |
+| Children 018 to 021 appended to the binding | Lanes 004, 002, 005 and 003 censused from their DeepSeek syntheses and parked GLM iterations; lane 001 finished on GLM at 15:07; durable slice changed, parent resent in chat. |
+| Child 022 appended to the binding | Lane 001 censused from its GLM synthesis and the aborted first attempt; durable slice changed, parent resent in chat. |
+| Round three closed | Five lineages of five bounded iterations (lane 001 on GLM, lanes 002 to 005 on DeepSeek after the switch, with the parked GLM iterations kept as evidence); children 018 to 022 closed every confirmed row; program validates 23/23 strict; trigger index identical on a second run; criteria ticked. |
 | Two CLI test lanes had rotted outside CI | The legacy and validation lanes `npm test` runs were never in the workflow and failed for four accumulated reasons; repaired in 014 and added to CI. The runtime root project fails in seven files and is the next child. |
 <!-- /ANCHOR:log -->

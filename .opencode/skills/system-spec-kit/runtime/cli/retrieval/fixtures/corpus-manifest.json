@@ -1,5 +1,5 @@
 {
-  "corpusHash": "04e3a0a7d344e447ac2e932647dd5e61888fca33835f5c3a8290a1b0e9a410ae",
+  "corpusHash": "dbc1de427fb4d087fa7dbda2b8e3d9b706864a19cdf6ee5a029e2b7f7237ebca",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28604,
+  "includedPathCount": 28642,
   "includedPaths": [
     ".opencode/install-guides/README.md",
     ".opencode/install-guides/install-scripts/README.md",
@@ -2895,6 +2895,8 @@
     ".opencode/skills/sk-communication/references/visual-explanation.md",
     ".opencode/skills/sk-design/ROUTER.md",
     ".opencode/skills/sk-design/SKILL.md",
+    ".opencode/skills/sk-design/benchmark/README.md",
+    ".opencode/skills/sk-design/changelog/v2.0.0.0.md",
     ".opencode/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md",
     ".opencode/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md",
     ".opencode/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
@@ -11975,6 +11977,11 @@
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/research/research.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/goal.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/relocation-goal.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/relocation-note.md",
@@ -18090,6 +18097,7 @@
     "specs/system-skill-advisor/023-semantic-lane-enablement/goal.md",
     "specs/system-skill-advisor/023-semantic-lane-enablement/spec.md",
     "specs/system-skill-advisor/024-routing-perfection-research/acceptance-criteria.md",
+    "specs/system-skill-advisor/024-routing-perfection-research/decision-record.md",
     "specs/system-skill-advisor/024-routing-perfection-research/implementation-summary.md",
     "specs/system-skill-advisor/024-routing-perfection-research/plan.md",
     "specs/system-skill-advisor/024-routing-perfection-research/research/dispatch-prompt.md",
@@ -28621,11 +28629,41 @@
     "specs/system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/plan.md",
     "specs/system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/spec.md",
     "specs/system-speckit/035-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/tasks.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/acceptance-criteria.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/goal.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/implementation-summary.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/plan.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/spec.md",
+    "specs/system-speckit/035-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/tasks.md",
     "specs/system-speckit/035-spec-kit-simplification-research/goal.md",
     "specs/system-speckit/035-spec-kit-simplification-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b6953bc6b72532be791adb67232eb8e21472906a080bfef7e5bd679ee0e9e0e7",
+  "manifestHash": "d93b4750e934a642c7692c122e823bccf65ff67fa31fb6954caae8c8b467dd2a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29968,6 +30006,10 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/scratch",
       "reason": "excluded directory"
     },
     {

@@ -3,10 +3,10 @@
     "duplicate-phrase": 62,
     "missing-frontmatter": 6939,
     "non-yaml-frontmatter": 1,
-    "ok": 13660,
+    "ok": 13698,
     "valid-empty-list": 7942
   },
-  "documentsScanned": 28604,
+  "documentsScanned": 28642,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "b6953bc6b72532be791adb67232eb8e21472906a080bfef7e5bd679ee0e9e0e7",
+  "manifestHash": "d93b4750e934a642c7692c122e823bccf65ff67fa31fb6954caae8c8b467dd2a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -24,16 +24,16 @@
       "generic-workflow-word": 171,
       "numeric-only": 121,
       "prose-sentence": 18,
-      "single-token": 825,
+      "single-token": 826,
       "stop-word-only": 12
     },
     "phrases": {
       "editor-fallback": 2,
       "generic-workflow-word": 4,
       "numeric-only": 42,
-      "ok": 35168,
+      "ok": 35222,
       "prose-sentence": 27,
-      "single-token": 314,
+      "single-token": 315,
       "stop-word-only": 3
     }
   },
@@ -99043,6 +99043,10 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/012-chart-hover-and-pointer-states/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/scratch",
       "reason": "excluded directory"
     },
     {
