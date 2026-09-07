@@ -41,7 +41,7 @@ run_check() {
     local doc_name
     while IFS= read -r doc_name; do
         [[ -n "$doc_name" ]] && spec_files+=("$doc_name")
-    done < <(node "$helper_script" docs "$contract_level")
+    done < <(node "$helper_script" template-docs "$contract_level")
     local -a missing_header=()
     local -a checked_files=()
 

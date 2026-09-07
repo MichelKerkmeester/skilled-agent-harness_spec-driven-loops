@@ -276,7 +276,7 @@ Level 3+: Level 3 + extended governance sections
 Phase:    lean parent trio plus child phase folders
 ```
 
-Optional support documents such as `handover.md`, `debug-delegation.md`, `research.md` and `resource-map.md` render through the workflow that owns them. Templates use ANCHOR markers to mark logical sections. Validation checks required anchors, section ordering, template version alignment and cross-reference consistency. The `template-compliance-contract.md` reference defines which anchors are required at each level.
+Optional support documents such as `handover.md`, `debug-delegation.md` and `research.md` render through the workflow that owns them; `resource-map.md` has no owning workflow and is rendered by hand with the inline gate renderer. Templates use ANCHOR markers to mark logical sections. Validation checks required anchors, section ordering, template version alignment and cross-reference consistency. The `template-compliance-contract.md` reference defines which anchors are required at each level.
 
 `create.sh` rejects `--path` values that traverse outside the repository with a clear error before any write. Set `SPECKIT_POST_VALIDATE=1` when a strict workflow should run full validation immediately after scaffolding. A mkdir-based advisory lock protects `description.json` and `graph-metadata.json` writes during canonical save so two parallel `/speckit:save` calls for the same packet do not race.
 

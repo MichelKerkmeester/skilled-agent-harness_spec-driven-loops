@@ -39,10 +39,10 @@ Current templates (user-facing only):
 |-------|-----------|
 | **Level 1** | spec.md, plan.md, tasks.md, implementation-summary.md |
 | **Level 2, 3, 3+** | + acceptance-criteria.md; the higher levels add sections inside these files, not files |
-| **Lazy add-ons, every level** | decision-record.md, before-after.md, timeline.md, roadmap.md, goal.md, resource-map.md |
-| **Command or workflow owned** | handover.md, debug-delegation.md, research/research.md |
+| **Lazy add-ons, every numbered level** | decision-record.md, before-after.md, timeline.md, roadmap.md, goal.md, resource-map.md, handover.md, debug-delegation.md, research/research.md |
+| **Written by a command or workflow** | handover.md, debug-delegation.md, research/research.md; phase parents omit the last two, and review and research packets omit goal.md as well |
 
-> **Flat, not cumulative:** the `lazyAddonDocs` list in `spec-kit-docs.json` is identical at Levels 1, 2, 3 and 3+. A level changes which sections a core template renders, never which add-ons exist.
+> **Flat, not cumulative:** the `lazyAddonDocs` list in `spec-kit-docs.json` is identical at Levels 1, 2, 3 and 3+. A level changes which sections a core template renders, never which add-ons exist. The packet-type rows are the only ones that narrow it, as the table says.
 
 ---
 

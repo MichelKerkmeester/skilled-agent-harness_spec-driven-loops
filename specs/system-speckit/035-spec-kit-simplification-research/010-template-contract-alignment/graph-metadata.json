@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The template system's documents described a different system from the one that runs: a cumulative per-level ladder where the real add-on list is flat, a closure document that \"warns\" where the rule fails, a hard block on decision records that no rule enforces, seven documents \"written when you ask\" of which only four had a flag, a `checklist.md` retired months ago, and a manifest taxonomy nothing reads",
     "created_at": "2026-09-07T02:03:48Z",
-    "last_save_at": "2026-09-07T02:11:05.472Z",
+    "last_save_at": "2026-09-07T06:57:33.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4cb935d82b773660bd5877c0e22a92d388766e49cee80b3f5b19bbca0c6f601",
+    "source_fingerprint": "sha256:6758af5c1d61792cad3fc6ac050d938023cd23821b138f5ca8497ed5ef234883",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "44800f81b4120a43e79fbe4ececf209627731abf6ba17563480230030d77ec45",

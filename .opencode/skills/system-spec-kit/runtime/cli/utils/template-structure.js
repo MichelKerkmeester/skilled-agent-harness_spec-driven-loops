@@ -192,6 +192,20 @@ function getContractDocs(level, templatesRoot = getTemplatesRoot()) {
   return [...contract.requiredCoreDocs, ...contract.requiredAddonDocs];
 }
 
+// Every document a template renders for an author: the required set, the
+// optional closure document, and the add-ons create.sh or the renderer scaffold
+// from a template. Workflow-written add-ons stay out because their writers do
+// not stamp a marker. The template-source rule reads this list and skips any
+// document that is not present; the file-presence rules keep reading the
+// required set above.
+const AUTHOR_SCAFFOLDED_LAZY_DOCS = ['before-after.md', 'timeline.md', 'roadmap.md', 'decision-record.md', 'goal.md', 'resource-map.md'];
+
+function getTemplateSourceDocs(level, templatesRoot = getTemplatesRoot()) {
+  const contract = loadLevelContract(level, templatesRoot);
+  const lazy = (contract.lazyAddonDocs || []).filter((doc) => AUTHOR_SCAFFOLDED_LAZY_DOCS.includes(doc));
+  return [...getContractDocs(level, templatesRoot), ...(contract.optionalAddonDocs || []), ...lazy];
+}
+
 function getLifecycleRequiredDocs(level, templatesRoot = getTemplatesRoot()) {
   const contract = loadLevelContract(level, templatesRoot);
   return [...contract.lifecycleRequiredDocs.afterImplementationStarts];
@@ -900,6 +914,10 @@ function runCli(argv) {
       return 0;
     }
 
+    if (command === 'template-docs') {
+      console.log(getTemplateSourceDocs(level).join('\n'));
+      return 0;
+    }
     if (command === 'docs') {
       console.log(getContractDocs(level).join('\n'));
       return 0;

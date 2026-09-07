@@ -54,7 +54,6 @@ WITH_LAZY_ADDONS=false  # Opt in to the level-agnostic add-on documents
 WITH_GOAL=false         # Opt in to the durable-directive document
 SKIP_BRANCH=true   # Default: stay on the current branch (opt in with --branch). The owner's workflow commits directly to main; auto-branching is unwanted friction.
 TRACK=""           # Optional track segment: places the folder under .opencode/specs/<track>/ with per-track numbering
-SHARDED=false  # Enable sharded spec sections for Level 3
 SUBFOLDER_MODE=false  # Enable versioned sub-folder creation
 SUBFOLDER_BASE=""     # Base folder for sub-folder mode
 SUBFOLDER_TOPIC=""    # Topic name for the sub-folder
@@ -147,9 +146,6 @@ while [[ $i -le $# ]]; do
                 exit 1
             fi
             TRACK="$next_arg"
-            ;;
-        --sharded)
-            SHARDED=true
             ;;
         --with-lazy-addons)
             WITH_LAZY_ADDONS=true
@@ -281,7 +277,6 @@ while [[ $i -le $# ]]; do
             echo "  --level N           Documentation level: 1, 2, 3, or 3+ (extended)"
             echo "                      1=baseline, 2=verification, 3=full, 3+=extended"
             echo "                      Default: 1"
-            echo "  --sharded           Create sharded spec sections (Level 3 only)"
             echo "                      Creates spec-sections/ with modular documentation"
             echo "  --with-lazy-addons  Add before-after.md, timeline.md, roadmap.md, and decision-record.md"
             echo "                      (off by default; all are valid at every level)"
@@ -329,7 +324,6 @@ while [[ $i -le $# ]]; do
             echo "  $0 'Add user authentication system' --short-name 'user-auth'"
             echo "  $0 'Implement complex OAuth2 flow' --level 2"
             echo "  $0 'Major architecture redesign' --level 3 --number 50"
-            echo "  $0 'Large platform migration' --level 3 --sharded"
             echo ""
             echo "Sub-folder Versioning Examples:"
             echo "  $0 --subfolder specs/005-context-capture 'Initial implementation'"
@@ -1718,41 +1712,6 @@ if [[ "$DOC_LEVEL" == "phase" ]]; then
     scaffold_phase_parent_validation_child "$FEATURE_DIR" "$FEATURE_DESCRIPTION"
 fi
 
-# ───────────────────────────────────────────────────────────────
-# 7. SHARDED SPEC SECTIONS (Level 3 with --sharded flag)
-# ───────────────────────────────────────────────────────────────
-
-if [[ "$SHARDED" = true ]] && [[ "${DOC_LEVEL/+/}" -ge 3 ]]; then
-    # Create spec-sections directory
-    mkdir -p "$FEATURE_DIR/spec-sections"
-    CREATED_FILES+=("spec-sections/")
-
-    # Resolve sharded templates directory
-    SHARDED_TEMPLATES_DIR="$TEMPLATES_BASE/sharded"
-
-    # Copy sharded index template (overwrites the standard spec.md)
-    if [[ -f "$SHARDED_TEMPLATES_DIR/spec-index.md" ]]; then
-        cp "$SHARDED_TEMPLATES_DIR/spec-index.md" "$FEATURE_DIR/spec.md"
-    else
-        >&2 echo "[speckit] Warning: Sharded template not found: $SHARDED_TEMPLATES_DIR/spec-index.md"
-    fi
-
-    # Copy section templates
-    for shard in 01-overview.md 02-requirements.md 03-architecture.md 04-testing.md; do
-        if [[ -f "$SHARDED_TEMPLATES_DIR/$shard" ]]; then
-            cp "$SHARDED_TEMPLATES_DIR/$shard" "$FEATURE_DIR/spec-sections/$shard"
-            CREATED_FILES+=("spec-sections/$shard")
-        else
-            >&2 echo "[speckit] Warning: Sharded template not found: $SHARDED_TEMPLATES_DIR/$shard"
-            touch "$FEATURE_DIR/spec-sections/$shard"
-            CREATED_FILES+=("spec-sections/$shard (empty - template not found)")
-        fi
-    done
-
-elif [[ "$SHARDED" = true ]] && [[ "${DOC_LEVEL/+/}" -lt 3 ]]; then
-    echo "Warning: --sharded flag is only supported with --level 3 or 3+. Ignoring --sharded." >&2
-fi
-
 # Set paths for output
 SPEC_FILE="$FEATURE_DIR/spec.md"
 
@@ -1795,8 +1754,8 @@ if $JSON_MODE; then
     fi
 
     # P1-03 FIX: Escape JSON values to prevent injection
-    printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s","DOC_LEVEL":"%s","SHARDED":%s%s%s%s,"CREATED_FILES":[%s]}\n' \
-        "$(_json_escape "$BRANCH_NAME")" "$(_json_escape "$SPEC_FILE")" "$FEATURE_NUM" "$DOC_LEVEL" "$SHARDED" "$complexity_json" "$expansion_json" "$description_json" "$files_json"
+    printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s","DOC_LEVEL":"%s"%s%s%s,"CREATED_FILES":[%s]}\n' \
+        "$(_json_escape "$BRANCH_NAME")" "$(_json_escape "$SPEC_FILE")" "$FEATURE_NUM" "$DOC_LEVEL" "$complexity_json" "$expansion_json" "$description_json" "$files_json"
 else
     echo ""
     echo "───────────────────────────────────────────────────────────────────"
@@ -1842,9 +1801,7 @@ else
            else
                echo "      (Architecture decisions - adds ~150 LOC)"
            fi
-           if [[ "$SHARDED" = true ]]; then
-               echo "    ✓ Sharded: spec-sections/ (modular documentation)"
-           fi ;;
+           ;;
     esac
     echo ""
     echo "  Next steps:"

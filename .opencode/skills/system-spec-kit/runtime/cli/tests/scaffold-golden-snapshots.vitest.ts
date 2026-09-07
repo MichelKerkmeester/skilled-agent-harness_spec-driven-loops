@@ -79,6 +79,7 @@ describe('manifest template golden snapshots', () => {
       'timeline.md': ['metadata', 'timeline', 'milestones'],
       'roadmap.md': ['metadata', 'now-next-later', 'milestones-targets', 'dependencies'],
       'decision-record.md': ['adr-001'],
+      'goal.md': ['directive', 'completion', 'log'],
     };
 
     for (const [docName, anchors] of Object.entries(expectedAnchors)) {
@@ -118,6 +119,19 @@ describe('manifest template golden snapshots', () => {
       for (const docName of lazyDocs) {
         expect(fs.existsSync(path.join(optInPath, docName)), docName).toBe(true);
       }
+      // The goal document has its own flag and is not part of the lazy four.
+      expect(fs.existsSync(path.join(optInPath, 'goal.md'))).toBe(false);
+      const goalPath = path.join(root, '003-with-goal');
+      const goalResult = spawnSync(
+        'bash',
+        [CREATE_SCRIPT, '--path', goalPath, '--level', '1', '--skip-branch', '--with-goal', 'goal flag test'],
+        { cwd: SKILL_ROOT, encoding: 'utf8' },
+      );
+      expect(goalResult.status, goalResult.stderr).toBe(0);
+      const goal = fs.readFileSync(path.join(goalPath, 'goal.md'), 'utf8');
+      expect(goal).toContain('SPECKIT_TEMPLATE_SOURCE');
+      expect(goal).toContain('<!-- ANCHOR:directive -->');
+      expect(goal).toContain('last_updated_by: "scaffold"');
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }

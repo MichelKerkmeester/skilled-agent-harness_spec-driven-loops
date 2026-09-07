@@ -90,6 +90,7 @@ phase and binds as if written here.
 | 013-trigger-phrase-quality-enforcement | `013-trigger-phrase-quality-enforcement/goal.md` |
 | 014-cli-decommission-orphan-removal | `014-cli-decommission-orphan-removal/goal.md` |
 | 015-shared-package-post-remediation-cleanup | `015-shared-package-post-remediation-cleanup/goal.md` |
+| 016-template-seams-and-sentinel-repair | `016-template-seams-and-sentinel-repair/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -159,5 +160,6 @@ and findings belong here.
 | Child 013 appended to the binding | Lane 001 round two censused; durable slice changed, parent resent in chat. |
 | Child 014 appended to the binding | Lane 002 round two censused; durable slice changed, parent resent in chat. |
 | Child 015 appended to the binding | Lane 003 round two censused; durable slice changed, parent resent in chat. |
+| Child 016 appended to the binding | Lane 004 round two censused; the runtime test project repaired with it; durable slice changed, parent resent in chat. |
 | Two CLI test lanes had rotted outside CI | The legacy and validation lanes `npm test` runs were never in the workflow and failed for four accumulated reasons; repaired in 014 and added to CI. The runtime root project fails in seven files and is the next child. |
 <!-- /ANCHOR:log -->

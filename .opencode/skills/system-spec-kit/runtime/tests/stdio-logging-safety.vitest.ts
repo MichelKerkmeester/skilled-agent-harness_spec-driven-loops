@@ -12,6 +12,9 @@ const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}scripts${path.sep}migrations${path.sep}`,
   `${path.sep}lib${path.sep}deep-loop${path.sep}executor-audit.ts`,
   `${path.sep}lib${path.sep}validation${path.sep}orchestrator.ts`,
+  // The structure module doubles as the registry's node rule entrypoint and
+  // answers the orchestrator on stdout the same way.
+  `${path.sep}lib${path.sep}validation${path.sep}spec-doc-structure.ts`,
   `${path.sep}matrix_runners${path.sep}run-matrix.ts`,
   // Every hook adapter answers its host on stdout; that write is the hook
   // protocol, not logging, so each runtime's adapter folder is excluded alike.
@@ -22,6 +25,9 @@ const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}hooks${path.sep}devin${path.sep}`,
   `${path.sep}hooks${path.sep}opencode${path.sep}`,
   `${path.sep}skill-advisor${path.sep}bench${path.sep}`,
+  // The CLI package moved under runtime/; its entrypoints and evals print their
+  // results on stdout by contract, which is output, not logging.
+  `${path.sep}runtime${path.sep}cli${path.sep}`,
   `${path.sep}skill_advisor${path.sep}bench${path.sep}`,
 ];
 const STDOUT_LOG_PATTERN = /\bconsole\.(log|info|debug)\s*\(|process\.stdout\.write\s*\(/;

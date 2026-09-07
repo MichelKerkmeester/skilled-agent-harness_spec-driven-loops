@@ -175,7 +175,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 
 ### Level 3: Full Documentation (LOC guidance: >=500)
 
-**Required Templates:** Level 2 + `decision-record.md`
+**Templates:** the Level 2 set; `decision-record.md` is a lazy add-on here as at every level
 
 **Recommended completion artifact for phased work:** packet-local changelog files generated from `templates/changelog/root.md` or `templates/changelog/phase.md`
 
@@ -183,6 +183,8 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 ```bash
 bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
+
+Add `--with-lazy-addons` to scaffold `before-after.md`, `timeline.md`, `roadmap.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`; both work at every level.
 
 **Optional Templates:**
 ```bash

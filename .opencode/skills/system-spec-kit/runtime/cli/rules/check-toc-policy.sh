@@ -26,6 +26,7 @@ run_check() {
         "spec.md"
         "plan.md"
         "tasks.md"
+        "acceptance-criteria.md"
         "decision-record.md"
         "implementation-summary.md"
         "handover.md"

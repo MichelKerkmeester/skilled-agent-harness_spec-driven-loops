@@ -209,7 +209,7 @@ _ac_analyze_canonical() {
             return v
         }
         function lower(v) { return tolower(v) }
-        function has_file_line(v) { return v ~ /(^|[[:space:](`])[^[:space:]|()`]+:[0-9]+([[:space:]).,;`]|$)/ }
+        function has_file_line(v) { return v ~ /(^|[[:space:](`])[^[:space:]|()`:]*[.\/][^[:space:]|()`:]*:[0-9]+([[:space:]).,;`]|$)/ }
         BEGIN { fence = 0; in_table = 0; c_id = 0; c_ev = 0; c_status = 0; rows = 0; covered = 0; malformed = 0 }
         /^[[:space:]]*(```|~~~)/ { fence = 1 - fence; next }
         fence { next }
@@ -261,7 +261,7 @@ _ac_analyze_traceability() {
     awk -F'|' -v merged_tasks="$merged_tasks" '
         function trim(value) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", value); return value }
         function lower(value) { return tolower(value) }
-        function has_file_line(value) { return value ~ /(^|[[:space:](])[^[:space:]|()]+:[0-9]+([[:space:]).,;]|$)/ }
+        function has_file_line(value) { return value ~ /(^|[[:space:](])[^[:space:]|():]*[.\/][^[:space:]|():]*:[0-9]+([[:space:]).,;]|$)/ }
         BEGIN { rows = 0; covered = 0; malformed = 0; in_verification = (merged_tasks != "true") }
         merged_tasks == "true" && /<!-- ANCHOR:protocol -->/ { in_verification = 1; next }
         merged_tasks == "true" && /<!-- \/ANCHOR:(summary|sign-off) -->/ { in_verification = 0; next }

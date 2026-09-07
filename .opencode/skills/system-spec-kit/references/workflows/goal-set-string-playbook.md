@@ -85,7 +85,7 @@ document tells the next agent the same thing.
 
 ## 6. CREATING THE FILE
 
-No command writes `goal.md` on its own. Two paths exist:
+Nothing writes `goal.md` unasked. Two paths exist:
 
 1. `create.sh ... --with-goal` scaffolds it with the other packet documents,
    at any level and on phase parents.

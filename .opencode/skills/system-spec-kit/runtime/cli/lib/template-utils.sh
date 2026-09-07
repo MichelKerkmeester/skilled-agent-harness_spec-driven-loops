@@ -207,9 +207,11 @@ _manifest_template_path() {
     if [[ "$render_level" == "phase" ]] && [[ "$template_name" == "spec.md" ]]; then
         manifest_name="phase-parent.spec.md.tmpl"
     elif [[ "$template_name" == *.tmpl ]]; then
-        manifest_name="$template_name"
+        manifest_name="$(basename "$template_name")"
     else
-        manifest_name="${template_name}.tmpl"
+        # Manifest names such as research/research.md carry their packet path;
+        # the template itself lives flat under its role folder.
+        manifest_name="$(basename "$template_name").tmpl"
     fi
 
     # Templates live in role-based folders: core (required), addons (optional),

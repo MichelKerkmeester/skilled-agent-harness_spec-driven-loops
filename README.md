@@ -181,7 +181,8 @@ Sixteen templates ship under `.opencode/skills/system-spec-kit/templates/`. Whic
 | ------- | --------- | ----- |
 | `scaffold` - written when the packet is created | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` (after implementation starts), `acceptance-criteria.md` (Level 2 and above) | `core/`, `addons/` |
 | `--with-lazy-addons` on `create.sh` | `before-after.md`, `timeline.md`, `roadmap.md`, `decision-record.md` | `addons/` |
-| `--with-goal` on `create.sh`, or the inline gate renderer by hand | `goal.md`, `resource-map.md` | `addons/` |
+| `--with-goal` on `create.sh` | `goal.md` | `addons/` |
+| The inline gate renderer by hand | `resource-map.md`, or any add-on for an existing packet | `addons/` |
 | Command or agent owned | `handover.md` (memory save), `debug-delegation.md` (`@debug`), `research.md` (`/deep:research`) | `addons/` |
 | Packet type, not a level | `phase-parent.spec.md`, `review.spec.md` | `packet-types/` |
 
