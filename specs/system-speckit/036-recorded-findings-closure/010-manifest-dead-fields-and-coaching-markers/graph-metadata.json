@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manifest dead field removal",
+      "scaffold coaching marker cleanup",
+      "creation trigger absence behavior",
+      "scaffold validation counts block",
+      "manifest dead field plan",
+      "scaffold marker removal plan",
+      "extension guide field update",
+      "create sh block deletion",
+      "manifest dead field tasks",
+      "scaffold marker removal tasks",
+      "extension guide edit task",
+      "golden snapshot verification task"
+    ],
+    "key_topics": [
+      "manifest",
+      "dead",
+      "field",
+      "removal",
+      "scaffold",
+      "coaching",
+      "marker",
+      "cleanup",
+      "creation",
+      "trigger",
+      "absence",
+      "behavior"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "templates/spec-kit-docs.json",
+      "runtime/cli/spec/create.sh",
+      "templates/README.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+      ".opencode/skills/system-spec-kit/templates/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXTENSION-GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`templates/spec-kit-docs.json` carries a `creationTrigger` and an `absenceBehavior` field on every one of its 16 `documents[]` entries (32 key occurrences, `spec-kit-docs.json:26-117`), and `EXTENSION-GUIDE.md:33-36` already states in its own maintainer instructions that \"nothing reads it at runtime: the scaffolder and the validator both work from the `levels` rows below.",
+    "created_at": "2026-09-07T15:05:51Z",
+    "last_save_at": "2026-09-07T15:40:56.975Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ce38c91346b838721cc87cc8204cf84cfc3d2de71a0ec655e47dfc638f2b099",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e2d7d788c06556b53c3196528f99bc25ece8de4484f18fff2e8c49e543358ebd",
+      "plan.md": "53c5de8e33d9ab6a32d3d32b48d282cb27f7aaee3b934b859d743eca8d5950c1",
+      "tasks.md": "3c53fb8898aba974a861a6649b26786c57df363eb3957cd5a43ddb296e3fcd14",
+      "implementation-summary.md": "a4a9cc7ac7051d191e4cc952aa9ba9eb62cd0e1da7120a13beeeddb01d215dee"
+    },
+    "last_active_at": null
+  }
+}

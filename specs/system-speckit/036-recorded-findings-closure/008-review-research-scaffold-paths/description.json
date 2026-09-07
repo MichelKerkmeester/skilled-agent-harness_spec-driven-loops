@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths",
+  "description": "`templates/spec-kit-docs.json` declares both `review` and `research` as full level entries with `requiredCoreDocs` of `['spec.md',",
+  "keywords": [
+    "templates",
+    "spec-kit-docs",
+    "json",
+    "declares",
+    "review",
+    "research",
+    "full",
+    "level",
+    "entries",
+    "requiredcoredocs",
+    "spec"
+  ],
+  "lastUpdated": "2026-09-07T15:40:10.352Z",
+  "specId": "008",
+  "folderSlug": "review-research-scaffold-paths",
+  "parentChain": [
+    "system-speckit",
+    "036-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

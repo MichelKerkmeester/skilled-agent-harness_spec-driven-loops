@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 1 instruction parity",
+      "runtime instruction file drift",
+      "codex nodeterm block boundary",
+      "trigger index lookup pointer"
+    ],
+    "key_topics": [
+      "gate",
+      "instruction",
+      "parity",
+      "runtime",
+      "file",
+      "drift",
+      "codex",
+      "nodeterm",
+      "block",
+      "boundary",
+      "trigger",
+      "index"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".codex/AGENTS.md",
+      ".cursor/rules/skill-routing.md",
+      "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/confirmed-findings.md",
+      ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".pi/SYNC.md",
+      ".cursor/SYNC.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+      ".opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".pi/extensions/README.md",
+      "runtime/cli/retrieval/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-advisories.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Generate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Gate 1's trigger-index lookup instruction is authored in exactly one place, the root `AGENTS.md` (`AGENTS.md:83`), and `CLAUDE.md` is a symlink to it (`lrwxr-xr-x CLAUDE.md -> AGENTS.md`)",
+    "created_at": "2026-09-07T15:05:54Z",
+    "last_save_at": "2026-09-07T15:45:40.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2c4ed2d6bbe89bab8defd834c5aa93c2a9ed9cae852f99ec9540b2620bed63c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "584d11aab30ee5abca1116a40111625dace04ac4f66b1e3a14a133f22cabf775",
+      "plan.md": "5ca32b05b9f5886fe34ec70c27feefd629de067ec5c633fd8d4f3d0f5e38fb5a",
+      "tasks.md": "29296314d9d1dfc8f8bed6f440d3db6b7810d0c12367dc1798efce11f35d918e",
+      "implementation-summary.md": "ca8fc5c78dfc52271c49a97c0fe8f050f3b769a11a56405906cda2a1fe0f0ef7"
+    },
+    "last_active_at": null
+  }
+}

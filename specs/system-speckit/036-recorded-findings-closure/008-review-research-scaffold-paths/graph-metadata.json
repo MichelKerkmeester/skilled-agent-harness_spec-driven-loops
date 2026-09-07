@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review research scaffold paths",
+      "create sh level review research",
+      "review report template",
+      "path typed document placement",
+      "review research scaffold plan",
+      "review report template technical approach",
+      "path typed document move",
+      "scaffold golden testing strategy",
+      "review research scaffold tasks",
+      "review report template task",
+      "path typed document move task",
+      "scaffold golden verification"
+    ],
+    "key_topics": [
+      "review",
+      "research",
+      "scaffold",
+      "paths",
+      "level",
+      "report",
+      "template",
+      "path",
+      "typed",
+      "document",
+      "placement",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "templates/spec-kit-docs.json",
+      "templates/packet-types/review.spec.md.tmpl",
+      "utils/template-structure.js",
+      "lib/template-utils.sh",
+      "tests/scaffold-golden-snapshots.vitest.ts",
+      "spec/check-placeholders.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/runtime/cli/lib/template-utils.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      "runtime/cli/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "review.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/review.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": "lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts",
+        "kind": "test",
+        "path": "tests/scaffold-golden-snapshots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": "spec/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`templates/spec-kit-docs.json` declares both `review` and `research` as full level entries with `requiredCoreDocs` of `['spec.md', 'review/review-report.md']` and `['spec.md', 'research/research.md']` (verified by loading the manifest 2026-09-07)",
+    "created_at": "2026-09-07T15:05:49Z",
+    "last_save_at": "2026-09-07T15:41:31.655Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6a16bb6cc5c8c1381a2d6add065a9fbc3675c14b29f99540f4cabbeddab7048d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "80c1ba1a877b2f829ddf651af5c15a77223bfa6bdee543dccb30670880e4a459",
+      "plan.md": "30ceb7fb95e98aae109b0eae392490e06a0cf8c6e3a3eed34991ba7b3ed0262f",
+      "tasks.md": "29945c9ff833276bab6a0f3938bfb77631e8c15bf4d8fd4b94469f78f54ce759",
+      "implementation-summary.md": "cd615b18df281d52c58770ce0cd5a9dc252b4a09501622d284062ab50afdf187"
+    },
+    "last_active_at": null
+  }
+}

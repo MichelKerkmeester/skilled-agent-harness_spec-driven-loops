@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge",
+  "spec_folder": "system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge",
+  "parent_id": "system-speckit/036-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lifecycle command asset merge",
+      "auto confirm twin merge",
+      "save context tail duplication",
+      "validate sh cadence comment",
+      "lifecycle command merge plan",
+      "execution mode branch technical approach",
+      "save context tail extraction",
+      "command tree parity testing strategy",
+      "lifecycle command merge tasks",
+      "execution mode branch task",
+      "save context tail task",
+      "command tree parity verification"
+    ],
+    "key_topics": [
+      "lifecycle",
+      "command",
+      "asset",
+      "merge",
+      "auto",
+      "confirm",
+      "twin",
+      "save",
+      "context",
+      "tail",
+      "duplication",
+      "validate"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/commands/speckit/assets/speckit-plan-auto.yaml",
+      ".opencode/commands/speckit/assets/speckit-implement-auto.yaml",
+      ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
+      ".opencode/commands/speckit/plan.md",
+      ".github/workflows/command-tree-parity.yml",
+      ".opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      "runtime-mirrors/sync-runtime-mirrors.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-plan-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-implement-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-tree-parity.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Structural",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three `/speckit:` lifecycle commands each ship as an auto/confirm pair, six YAML assets between 780 and 1,388 lines (verified 2026-09-07: `speckit-plan-auto.yaml` 780 lines, `speckit-plan-confirm.yaml` 849 lines)",
+    "created_at": "2026-09-07T15:05:46Z",
+    "last_save_at": "2026-09-07T15:41:27.569Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea787ceba21b94dd1c43cf91fbf23c96b9c795e5bdeeb75c25422249b107a460",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3b8aa903df20449695e74c6ebd0e8240f9bf7db789ca464cb3a133d905c775b2",
+      "plan.md": "0421aeaa9fe383748a7a60568a4491128395e3ab0f56f7a2158ce0cda674af21",
+      "tasks.md": "e3171c3549b035abe7d79b544b1116b8d37def32f67f659069028b134254e809",
+      "implementation-summary.md": "de288d837cebeb532f0f11c0c3b03628edaee8b263ad38766b9a383f81ccfe8a"
+    },
+    "last_active_at": null
+  }
+}

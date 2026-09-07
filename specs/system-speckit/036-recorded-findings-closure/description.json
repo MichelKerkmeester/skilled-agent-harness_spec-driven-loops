@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/036-recorded-findings-closure",
+  "description": "The spec-kit simplification program ran three research rounds over five lanes and remediated every confirmed finding in seventeen children, but it",
+  "keywords": [
+    "spec-kit",
+    "simplification",
+    "program",
+    "ran",
+    "three",
+    "research",
+    "rounds",
+    "five",
+    "lanes",
+    "remediated",
+    "every",
+    "confirmed",
+    "finding",
+    "seventeen",
+    "children"
+  ],
+  "lastUpdated": "2026-09-07T15:08:54.202Z",
+  "specId": "036",
+  "folderSlug": "recorded-findings-closure",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
