@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The autonomous model-benchmark workflow now passes the improvement state log to the runner, so benchmark reports are paired with reducer-visible benchmark_run ledger rows."
 trigger_phrases:
   - "implementation"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:94ad53f5c7bf3297ecf814a39a1d278dc7f6aea703e2152e3a3a5a8c9c628242"
       session_id: "model-benchmark-reducer-ledger-2026-06-29"
       parent_session_id: null
     completion_pct: 100

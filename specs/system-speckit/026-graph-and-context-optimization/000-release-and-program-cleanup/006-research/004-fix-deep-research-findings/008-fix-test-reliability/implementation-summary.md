@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 009 Test Reliability Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 009 Test Reliability Remediation"
 description: "Six surgical test-only edits + one shared env-snapshot helper close findings F-015-C5-01..06. Hard-coded developer paths removed, absolute latency assertions gated behind BENCHMARK=1, real-timer sleeps replaced by deterministic fake timers, env mutations snapshotted/restored, repo-local fixture roots moved to os.tmpdir() mkdtemp."
 trigger_phrases:
   - "F-015-C5"

@@ -1,5 +1,5 @@
 ---
-title: "Session Handover: Speckit Command Goal Prompt Offer [template:handover.md]"
+title: "Session Handover: Speckit Command Goal Prompt Offer"
 description: "Handover for phase 009 before command implementation begins, preserving scope, planned files, risks, and next safe actions."
 trigger_phrases:
   - "speckit goal prompt handover"

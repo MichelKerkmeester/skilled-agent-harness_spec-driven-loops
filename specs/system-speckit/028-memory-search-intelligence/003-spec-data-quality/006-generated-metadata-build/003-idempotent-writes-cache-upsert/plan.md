@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Idempotent Writes and Global-Cache Upsert [template:level_2/plan.md]"
+title: "Implementation Plan: Idempotent Writes and Global-Cache Upsert"
 description: "Add a content fingerprint over the canonical description fields, a per-folder no-op write skip, a content-gated aggregate-cache write, and a targeted upsertDescriptionCacheEntry that replaces the broad ensureDescriptionCache rescan for the per-folder save path, all in folder-discovery.ts behind a default-OFF flag with a grandfather report mode, plus one vitest proving idempotency and the scoped upsert."
 trigger_phrases:
   - "idempotent description writes"

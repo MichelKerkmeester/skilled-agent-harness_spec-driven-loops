@@ -1,5 +1,5 @@
 ---
-title: "Plan: spec-memory vitest stabilization [template:level_1/plan.md]"
+title: "Plan: spec-memory vitest stabilization"
 description: "Cluster-by-cluster remediation plan for 168 pre-existing vitest failures."
 trigger_phrases:
   - "008 vitest plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Scoring Hardening [template:level_2/plan.md]"
+title: "Implementation Plan: Scoring Hardening"
 description: "Harden the scoring path behind default-OFF flags. Surface a grounding signal in the envelope, subtract a measured corpus noise-floor before banding, add a cite_with_caveat tier, bridge stage4.evidenceGapDetected into the request-quality verdict and document the calibration re-fit as a proven non-fix. Each behavioral flag graduates only against the off-corpus fixtures with a grandfather report mode for the legacy fixtures."
 trigger_phrases:
   - "scoring hardening"

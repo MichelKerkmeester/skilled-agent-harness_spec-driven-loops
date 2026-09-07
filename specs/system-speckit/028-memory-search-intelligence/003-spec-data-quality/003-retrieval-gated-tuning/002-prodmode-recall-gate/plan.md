@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: C2 Prod-Mode Recall Gate [template:level_2/plan.md]"
+title: "Implementation Plan: C2 Prod-Mode Recall Gate"
 description: "Build a prod-window recall instrument from a multi-target gold set, a PROMOTION and REGRESSION wrapper that reads only the prod-lens completeRecall@3/@5/@8 columns plus an order-sensitive NDCG@K companion with a top1 guard, a stored baseline, reusing the export already present on the unchanged dual-mode harness and the shared eval-metrics functions."
 trigger_phrases:
   - "prod mode recall gate"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate [template:level_2/tasks.md]"
+title: "Tasks: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "ears requirements tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: B2 Guarded data-quality Route on /doctor [template:level_2/plan.md]"
+title: "Implementation Plan: B2 Guarded data-quality Route on /doctor"
 description: "Add a diagnostic-default data-quality route to /doctor that applies safe-class fixes only behind --confirm, reusing the B1 dq-engine and the frozen fixClass registry."
 trigger_phrases:
   - "doctor data quality route plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: launcher lease acquisition-time reclaim [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: launcher lease acquisition-time reclaim"
 description: "PRE-IMPLEMENTATION scaffold for launcher lease acquisition-time reclaim."
 trigger_phrases:
   - "launcher lease acquisition reclaim"

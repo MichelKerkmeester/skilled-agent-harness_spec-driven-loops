@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Automation Self-Management Deep Research [template:level_2/tasks.md]"
+title: "Tasks: Automation Self-Management Deep Research"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Task tracker for the 7-iteration automation reality map research packet."
 trigger_phrases:

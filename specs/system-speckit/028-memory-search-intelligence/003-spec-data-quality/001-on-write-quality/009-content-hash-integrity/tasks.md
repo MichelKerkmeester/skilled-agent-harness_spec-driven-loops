@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A9 Read-Time Content-Hash Integrity Verification [template:level_2/tasks.md]"
+title: "Tasks: A9 Read-Time Content-Hash Integrity Verification"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "content hash integrity"

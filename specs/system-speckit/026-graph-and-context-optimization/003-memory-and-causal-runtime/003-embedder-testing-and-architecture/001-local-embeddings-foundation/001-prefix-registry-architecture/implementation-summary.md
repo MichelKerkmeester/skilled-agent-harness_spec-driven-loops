@@ -25,7 +25,7 @@ _memory:
       - "scratch/test-prefix-registry.mjs"
       - "scratch/test-cocoindex-prompts.py"
     session_dedup:
-      fingerprint: "sha256:01400169bd6c00000000000000000000000000000000000000000000000000ad"
+      fingerprint: "sha256:f6518bf4e837e19f739e9a736041586f76acfc88228e7be803171fe0306df32e"
       session_id: "014-001-impl-2026-05-12"
       parent_session_id: null
     completion_pct: 100

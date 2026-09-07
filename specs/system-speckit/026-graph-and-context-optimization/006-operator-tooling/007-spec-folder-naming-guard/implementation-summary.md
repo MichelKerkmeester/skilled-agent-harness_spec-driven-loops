@@ -19,7 +19,7 @@ _memory:
       - "implementation-summary.md"
       - "research.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6705b7a275b12342265855b6fa1e9f4fb618cb3de12d879bb0c4ec3f134491f2"
       session_id: "naming-guard-research-2026-06-06"
       parent_session_id: null
     completion_pct: 100

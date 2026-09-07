@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Before building an Obsidian mode we do not know Obsidian's real automation surface: whether there is a first-party CLI, which community CLIs exist and are maintained, which MCP servers exist and how they authenticate (Local REST API token vs direct vault filesystem), and whether any of it works headlessly without the desktop app running",
     "created_at": "2026-08-02T05:50:26Z",
-    "last_save_at": "2026-08-30T15:39:10.053Z",
+    "last_save_at": "2026-09-07T16:16:55.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f271f89df91a826edd4f2b9c36c57bff3cb7aa126716bbbee94077f9fdd13910",
+    "source_fingerprint": "sha256:faf9184abd9e50951656b65ce13ce443144e983de7710c46aa5907cb6ebde835",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34e2ba1f979493063062ab4117246b54ce561189c9f3474640f5e4e3132136a1",
       "plan.md": "99ea2e1c51226f1e93085561b36fc766918c2d753ac706033ade4d8c2b0bfd95",
       "tasks.md": "e3d87a888491927942e523115f189c3958765fc1cc54bd36e36af013423f5807",
-      "implementation-summary.md": "72a1b4d7aab0244ff093df41b06fc4971c49a0dfeae267fafcc732b5f9c1f1e1",
-      "research/research.md": "700d13cc7a4aabdc2b7f78d086fb349d90cc79a2fb868e0f99f44f40fc26633d"
+      "implementation-summary.md": "f7c01b56ac41a1c4805d27c06ac2ba13dc66925df846701b38e13255f314d2c4",
+      "research/research.md": "97e3a6488cafa7ef795c4a91feba8001d1c3e2734cc15b76302b5d9c84fe8c41"
     },
     "last_active_child_id": null,
     "last_active_at": null

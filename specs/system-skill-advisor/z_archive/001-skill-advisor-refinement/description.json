@@ -18,7 +18,7 @@
     "threshold",
     "explicitly"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.728Z",
+  "lastUpdated": "2026-09-07T16:14:46.791Z",
   "specId": "001",
   "folderSlug": "skill-advisor-refinement",
   "parentChain": [
@@ -26,5 +26,6 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "3"
 }

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. The B2 doctor data-quality route is scaffolded and specified, no code is written yet."
 trigger_phrases:
   - "doctor dq route summary"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: model-benchmark reducer ledger [template:level_1/tasks.md]"
+title: "Tasks: model-benchmark reducer ledger"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

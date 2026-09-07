@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json"
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:44f78084991c52f823f21e0ac83a9469651a55b8777674ca29af28960e7d937f"
       session_id: "70859d71-f191-429c-96cd-6b73bb9745d8"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: OFF baseline audit + penalty removal [template:level_1/tasks.md]"
+title: "Tasks: OFF baseline audit + penalty removal"
 description: "T001-T012 covering measurement, verdict, conditional patch, and verification."
 trigger_phrases:
   - "011/001 tasks"

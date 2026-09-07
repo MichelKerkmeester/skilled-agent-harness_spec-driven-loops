@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Phase 053 doc-alignment and README fill-in [template:decision-record.md]"
+title: "Decision Record: Phase 053 doc-alignment and README fill-in"
 description: "Three architecture decisions taken before phase 053 dispatch: full-coverage merge scope, multi-prefix retention for merged playbook IDs, and in-place stay for manifest maintainer docs."
 trigger_phrases:
   - "phase 053 decisions"

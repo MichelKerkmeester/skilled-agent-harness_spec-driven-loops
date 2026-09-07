@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Router Consistency Hardening [template:examples/level_1/implementation-summary.md]"
+title: "Implementation Summary: Router Consistency Hardening"
 description: "Delivery evidence for qualifying bare MCP tool names across 7 routers and correcting the sk-doc command_template router standard."
 trigger_phrases:
   - "router consistency hardening summary"

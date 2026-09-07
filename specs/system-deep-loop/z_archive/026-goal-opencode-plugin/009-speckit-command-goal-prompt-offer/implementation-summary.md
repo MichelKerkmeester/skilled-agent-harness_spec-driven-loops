@@ -22,7 +22,7 @@ _memory:
       - ".opencode/commands/speckit/assets/speckit_resume_presentation.txt"
       - ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
     session_dedup:
-      fingerprint: "sha256:6af2e2258ab05cbf7379f8d258d998b461eba95f03eb6c58a78a1ce2100a7a3d"
+      fingerprint: "sha256:942c169303c5fff8ed44577bcef385911645f5f35498247f0403397e6df2f8c1"
       session_id: "032-phase-009-goal-offer-20260703"
       parent_session_id: null
     completion_pct: 100

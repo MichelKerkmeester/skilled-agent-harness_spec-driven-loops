@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: mcp-contract-parity [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 4: mcp-contract-parity"
 description: "Realign four MCP tool contracts (public schema, Zod, allow-list, handler, docs), thread governance through bulk ingest paths, correct stale-graph guidance, and add a parity guard test. Surgical, additive edits across nine source files plus one new test."
 trigger_phrases:
   - "mcp contract parity plan"

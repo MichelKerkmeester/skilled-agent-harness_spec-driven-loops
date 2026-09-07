@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Worktree/Branch Naming Overhaul [template:level-3/tasks.md]"
+title: "Tasks: Worktree/Branch Naming Overhaul"
 description: "Level 3 task list for the naming overhaul: allocator + validators, pre-push gate, migration helper, self-test, docs rewrite, and packet verification."
 trigger_phrases:
   - "tasks"

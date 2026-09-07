@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: DONE. Renamed 5 markdown + 2 JSON files in sk-prompt-models dash to underscore and repaired all live references; the four model-profile filenames stay dashed; drift guard and strict validate green."
 trigger_phrases:
   - "filename underscore alignment status"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/references/pattern_index.md"
       - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f3ee72f01d0536791b73994f8de05576e0a3c9df3b7156febe2cae5b606bdfee"
       session_id: "claude-opus-005-filename-underscore-alignment"
       parent_session_id: null
     completion_pct: 100

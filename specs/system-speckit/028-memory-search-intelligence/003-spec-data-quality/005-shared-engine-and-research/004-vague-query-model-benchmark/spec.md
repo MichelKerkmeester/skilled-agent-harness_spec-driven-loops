@@ -1,5 +1,5 @@
 ---
-title: "Spec: Vague-Query Model Benchmark [template:level_2/spec.md]"
+title: "Spec: Vague-Query Model Benchmark"
 description: "A characterization benchmark of how four LLMs drive the /memory:search command on deliberately vague queries, measuring tool efficiency, envelope fidelity, and whether the deterministic retrieval-quality verdict stays stable across models. Runs a 4-model by 12-query by 3-sample matrix of read-only dispatches and reports per-model behavioral profiles plus a model recommendation."
 trigger_phrases:
   - "vague query model benchmark"

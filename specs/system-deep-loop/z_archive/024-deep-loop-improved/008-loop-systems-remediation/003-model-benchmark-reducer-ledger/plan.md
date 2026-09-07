@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: model-benchmark reducer ledger [template:level_1/plan.md]"
+title: "Implementation Plan: model-benchmark reducer ledger"
 description: "Add explicit state-log forwarding to the autonomous model-benchmark workflow so run-benchmark can append reducer-visible benchmark_run rows even when benchmark outputs live outside the improvement runtime folder."
 trigger_phrases:
   - "implementation"

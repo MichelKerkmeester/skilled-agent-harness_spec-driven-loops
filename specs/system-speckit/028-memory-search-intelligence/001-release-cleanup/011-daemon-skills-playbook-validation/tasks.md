@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 028 Daemon Skills Playbook Validation [template:level_2/tasks.md]"
+title: "Tasks: 028 Daemon Skills Playbook Validation"
 description: "The task list for the daemon-skills playbook validation. Stress run, isolation built, 222 of 471 playbook scenarios run across three models, scored, with findings and remediation logged. The remaining 249 spec-kit scenarios are recorded as not-run after the workspace wipe."
 trigger_phrases:
   - "daemon skills playbook validation tasks"

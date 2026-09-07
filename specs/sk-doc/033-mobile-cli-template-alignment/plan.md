@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code-mobile-cli Template Alignment [template:level-3/plan.md]"
+title: "Implementation Plan: sk-code-mobile-cli Template Alignment"
 description: "Five disjoint work lanes bringing the sk-code-mobile-cli packet back onto the sk-create-skill contracts, each gated by a command whose output is read before any conformance claim."
 trigger_phrases:
   - "mobile cli alignment plan"

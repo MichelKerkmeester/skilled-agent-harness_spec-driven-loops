@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 007 Topology And Build/Dist Boundary Remediation [template:level_2/tasks.md]"
+title: "Tasks: 007 Topology And Build/Dist Boundary Remediation"
 description: "Task list for closing F-019-D4-02..03 and F-020-D5-01..04. Six surgical edits + 3 new vitest files + 1 dist orphan deletion + validate + stress + commit + push."
 trigger_phrases:
   - "F-019-D4 tasks"

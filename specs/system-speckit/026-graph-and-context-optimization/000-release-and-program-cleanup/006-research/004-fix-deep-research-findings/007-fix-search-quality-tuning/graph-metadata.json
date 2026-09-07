@@ -44,9 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tests/stage3-rerank-regression.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "stage3-rerank-regression.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage3-rerank-regression.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five tuning findings sit in the search subsystem",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.804Z",
+    "last_save_at": "2026-09-07T16:17:36.933Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24b935cc064bc82fe6d567f16ff1d5c768eafd3ae031780a6de5e71bf9445896",
+    "source_fingerprint": "sha256:7d52ca0de734477d736d2681a1b1cadb8fc4493c8fc4ea6cdf6680c63ab812b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f69f678e3779dc9bfa4618d8b366afa04796ff164bfad80399b719c8b0b185b8",
-      "plan.md": "a4ab61286dc3e4ab91dbb84b2675d4e4faab3d63c9ab81efa61da281f5048624",
-      "tasks.md": "15c1ee5dd952424cc4db0edf9f418c6cef3aba2dd174beb250e6d2a41a82023b",
-      "implementation-summary.md": "55b42b55d8581bebb4331723d210d18aaf939bc42dfe729ff0cf59772063e7d7"
+      "spec.md": "0432ab249dfe18c8d7a46418e3580aaabfd9da8ba15e558012a2f24285c7d8aa",
+      "plan.md": "ebc341c2de6bba595427e603dd167c358fbbfdf46d7221fc675566219a47e92c",
+      "tasks.md": "01acb82bfad057b27bfdd1f52f2070c16dac278a82230eb94213b8318e8ccd73",
+      "implementation-summary.md": "5aa2d315a2f79651118c1c5402edc8430a48a37338b1d58db965c7e54a0758bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

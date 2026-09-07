@@ -44,10 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,24 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "phase-parent-pointer.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -197,7 +176,7 @@
     ],
     "causal_summary": "Five findings flagged the deep-loop workflow state machine",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-08-30T15:39:26.091Z",
+    "last_save_at": "2026-09-07T16:17:26.516Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b54dad9cf9fb400dde90135bf8cf6bfdf5daecfdb029d3677b5819fea3c52973",
+    "source_fingerprint": "sha256:a9c95b2ce2d6574327b2f18b6a9e800f782f172dc4d73c1eb7984822f1b66af9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0fdbc6038fa5a2e6eda899123d649f50e37df1cf6d4ae9fd211823172add8d57",
-      "plan.md": "2257d3f844dcdcb96700d7d09b199d945bda95e53a61258fc771b61bbd11ea45",
-      "tasks.md": "1e2b2c54863ebbf9b12db50002cb1d617524aa4e889289c8d910b54cbd6131f3",
-      "implementation-summary.md": "c6ad29a918976ee020c9fee1d546467a8f105f8324cc1150d5e46cdb02fd6b60"
+      "spec.md": "42083a238b9060ac9d831458a245fac0263c0b63c65140297e2c16803a07387f",
+      "plan.md": "9f4950620d9e41a31e80404d481dbe0f84ccd5cfec70b8629542205bec9c7626",
+      "tasks.md": "ed79bef7796d341113fa26ea37637dcb69fba4df677cbe77ed93f4e9c54fa1a8",
+      "implementation-summary.md": "fd9d5dd23622baafb79e99cad53ef8b8e5ec7e2b1e150b61779e2a0664139ab6"
     },
     "last_active_child_id": null,
     "last_active_at": null

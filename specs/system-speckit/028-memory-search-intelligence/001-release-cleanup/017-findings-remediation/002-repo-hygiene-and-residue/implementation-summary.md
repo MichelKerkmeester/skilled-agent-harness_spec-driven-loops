@@ -18,7 +18,7 @@ _memory:
       - "approved-findings.md"
       - "refutations.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:986f342dad475e6cf0d82038c33fdb299c86ed9aff317af36964d6863de4697c"
       session_id: "2026-07-27-028-017-002"
       parent_session_id: null
     completion_pct: 100

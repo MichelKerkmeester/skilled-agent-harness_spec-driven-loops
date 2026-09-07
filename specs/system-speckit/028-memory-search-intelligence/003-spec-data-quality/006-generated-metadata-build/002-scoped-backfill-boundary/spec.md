@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Scoped Backfill Boundary and Exclusion Unification [template:level_2/spec.md]"
+title: "Feature Specification: Scoped Backfill Boundary and Exclusion Unification"
 description: "The graph-metadata backfill CLI ignores a positional folder and defaults to the repo-wide root, collection does not match writer rules so one corrupt folder aborts the whole run, and the z_* exclusion policy is split across backfill, memory-index, code-graph, and the description scanner whose local skip list omits z_*. This phase adds an explicit scoped backfill boundary, makes collection match writer rules and isolate failures, and introduces an authoritative z_* exclusion helper with a descriptions.json guard, every behavioral fix shipping behind a default-off flag or a grandfather report mode so existing prefixed paths and prose statuses do not mass-fail."
 trigger_phrases:
   - "scoped backfill boundary"

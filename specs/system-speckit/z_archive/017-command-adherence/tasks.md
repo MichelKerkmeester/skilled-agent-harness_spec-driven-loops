@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Command Adherence [template:level_1/tasks.md] [system-spec-kit/z_archive/017-command-adherence/tasks]"
+title: "Tasks: Command Adherence [system-spec-kit/z_archive/017-command-adherence/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "017-command-adherence"

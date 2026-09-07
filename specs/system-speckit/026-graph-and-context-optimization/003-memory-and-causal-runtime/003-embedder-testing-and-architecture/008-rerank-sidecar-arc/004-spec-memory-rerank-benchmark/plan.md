@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: spec-memory rerank A/B benchmark [template:level_1/plan.md]"
+title: "Implementation Plan: spec-memory rerank A/B benchmark"
 description: "Three-phase plan: fixture authoring, harness implementation, run + report + decision."
 trigger_phrases:
   - "004 plan rerank benchmark"

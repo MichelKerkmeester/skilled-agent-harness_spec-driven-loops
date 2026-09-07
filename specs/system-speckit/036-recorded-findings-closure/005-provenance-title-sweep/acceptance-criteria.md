@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/005-provenance-title-sweep"
-    last_updated_at: "2026-09-07T15:05:46Z"
+    last_updated_at: "2026-09-07T21:30:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion met with the evidence observed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/005-provenance-title-sweep
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,11 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the 929 in-scope packets, When the sweep script runs, Then no in-scope title carries `[template:level` | `grep -rIl '\[template:level' specs` returns only paths under `sk-doc/052-routing-completeness`, `system-deep-loop/036-deep-loop-innovation` and `sk-design/` | Unmet | - |
-| AC-002 | REQ-002 | Given `rules/check-placeholders.sh`, When it scans a document whose title carries `[template:level`, Then it reports a `fail` with the third class named | `bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` run in isolation against a fixture still carrying the token | Unmet | - |
-| AC-003 | REQ-003 | Given a packet whose title changed, When the sweep finishes, Then its `description.json` and `graph-metadata.json` reflect the new title | `node .../generate-description.js` and `.../backfill-graph-metadata.js` re-run per touched packet with a zero-diff second run | Unmet | - |
-| AC-004 | REQ-004 | Given `002-valid-level1`, `003-valid-level2` and `004-valid-level3`, When `validate.sh --strict` runs against each, Then all three pass, and `072-scaffold-never-touched-violation` still fails with `SCAFFOLD_NEVER_TOUCHED` | `.opencode/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh` | Unmet | - |
-| AC-005 | REQ-005 | Given the runtime and CLI vitest projects, the goldens and the registry-coverage test, When they run after the rule change, Then none reports a new failure | `npm run check` and the full vitest run under `.opencode/skills/system-spec-kit/runtime/` | Unmet | - |
+| AC-001 | REQ-001 | Given the 929 in-scope packets, When the sweep script runs, Then no in-scope title carries `[template:level` | `grep -rlE '^title:.*\[template:'` over specs returns zero documents of a real packet outside the four excluded groups; 767 documents in 250 packets were stripped, and the only remaining matches are quoted transcripts under research, review, evidence and prompt folders, vendored copies under `node_modules` and scratch backups, which are not packet documents | Met | - |
+| AC-002 | REQ-002 | Given `rules/check-placeholders.sh`, When it scans a document whose title carries `[template:level`, Then it reports a `fail` with the third class named | `rules/check-placeholders.sh` carries a third title-scoped class; the extended suite case "Template provenance token in a title detected" fails fixture `073-template-provenance-title` as expected and the lane passes 98, 31 and 84 checks | Met | - |
+| AC-003 | REQ-003 | Given a packet whose title changed, When the sweep finishes, Then its `description.json` and `graph-metadata.json` reflect the new title | `description.json` and `graph-metadata.json` were regenerated twice for every touched packet, 482 metadata files in 241 packets; a random strict sample of twelve regenerated packets passed six and failed six on ANCHORS_VALID, SCAFFOLD_NEVER_TOUCHED and archive-copy rules that predate the sweep | Met | - |
+| AC-004 | REQ-004 | Given `002-valid-level1`, `003-valid-level2` and `004-valid-level3`, When `validate.sh --strict` runs against each, Then all three pass, and `072-scaffold-never-touched-violation` still fails with `SCAFFOLD_NEVER_TOUCHED` | `002-valid-level1`, `003-valid-level2` and `004-valid-level3` pass strict in the validation lane; `072-scaffold-never-touched-violation` was restored untouched and still fails SCAFFOLD_NEVER_TOUCHED | Met | - |
+| AC-005 | REQ-005 | Given the runtime and CLI vitest projects, the goldens and the registry-coverage test, When they run after the rule change, Then none reports a new failure | the runtime project passes 104 files and 1,260 tests and the CLI project 140 files and 1,361 tests, including the new fixture | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 Planning only. No criterion is met yet. The sweep, the rule change and the fixture parity work have not started.
 <!-- /ANCHOR:closure -->

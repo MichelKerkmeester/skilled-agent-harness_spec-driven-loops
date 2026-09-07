@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Eighty of the audit's 88 findings were path-checked but never claim-tested",
     "created_at": "2026-07-27T08:41:07Z",
-    "last_save_at": "2026-08-30T15:39:34.701Z",
+    "last_save_at": "2026-09-07T16:18:05.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f603e07e45103d6e9070bb03689fdc7a298662db212a6eed62cd9302348268c5",
+    "source_fingerprint": "sha256:29544ed5e53627fc3a5b4d3ef5668cf6abc33eda84e85eaa9f4897ba6fed3909",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4092f6dea6b9fdfedce195594df06b42cb69564037063b07ec2eb1587dae2a4f",
-      "plan.md": "ae096ecf97d9b4d4b4f16aab1a57bd841017947b5de61b7cc7e246fa1d4b06bb",
-      "tasks.md": "81ef1d300b67e6ad39adc31c9cffb5ae584da24e4192723cb347049488400fe3",
-      "implementation-summary.md": "a83122072957b787e56f9b6d1cd18eed8845dd10a27de51aac7bcae6b1b9b568"
+      "plan.md": "d6450d891bca027468854dc701cbd5aec873a035441505b9dce3bfe4002605a2",
+      "tasks.md": "54308cfd20f4208883e039abef9fed381d26a01ff579dad9030f1de8f35536a9",
+      "implementation-summary.md": "2a2ce184a5d13b7ee31911155cb663f965291966ac2bb86964997936073aa284"
     },
     "last_active_child_id": null,
     "last_active_at": null

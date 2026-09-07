@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Novel Context-Budget-Fitting Assembler [template:level_2/tasks.md]"
+title: "Tasks: Novel Context-Budget-Fitting Assembler"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "context budget assembler"

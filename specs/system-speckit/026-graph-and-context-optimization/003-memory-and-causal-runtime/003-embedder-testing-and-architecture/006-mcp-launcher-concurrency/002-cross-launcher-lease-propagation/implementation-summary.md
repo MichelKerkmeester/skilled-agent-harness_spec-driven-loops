@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-code-graph/references/launcher-lease.md"
       - ".opencode/skills/system-spec-kit/references/launcher-lease.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:94614b0ea9d5da4cf34be1186c4a33e7f79ddee9c7d2f2d57a00f31dd365199c"
       session_id: "007-cross-launcher-lease-propagation"
       parent_session_id: null
     completion_pct: 95

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like remediation or phase-N [template:level_2/plan.md]"
+title: "Implementation Plan: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like remediation or phase-N"
 description: "Documentation-layer behavioral nudge: rewrite naming guidance across 4 YAML workflows, 2 create.sh fallback sites, complete.md Q8, and a new SKILL.md ALWAYS rule, with verification via YAML parse + create.sh smoke + validate.sh --strict."
 trigger_phrases:
   - "literal naming plan"

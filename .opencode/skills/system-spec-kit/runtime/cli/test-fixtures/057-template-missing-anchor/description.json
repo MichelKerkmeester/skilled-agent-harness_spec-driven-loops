@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/057-template-missing-anchor",
+  "description": "This fixture intentionally omits a required anchor pair",
+  "keywords": [
+    "fixture",
+    "intentionally",
+    "omits",
+    "required",
+    "anchor",
+    "pair"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.706Z",
+  "specId": "057",
+  "folderSlug": "template-missing-anchor",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

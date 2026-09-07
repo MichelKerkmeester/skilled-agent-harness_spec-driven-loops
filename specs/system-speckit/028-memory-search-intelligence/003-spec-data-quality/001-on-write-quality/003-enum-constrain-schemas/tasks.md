@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A3 Enum-Constrain JSON Metadata Schemas [template:level_2/tasks.md]"
+title: "Tasks: A3 Enum-Constrain JSON Metadata Schemas"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "enum constrain schemas"

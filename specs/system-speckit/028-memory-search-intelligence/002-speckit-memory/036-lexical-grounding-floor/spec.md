@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Lexical-Grounding Floor and Single-Hit Corroboration [template:level_2/spec.md]"
+title: "Feature Specification: Lexical-Grounding Floor and Single-Hit Corroboration"
 description: "The verdict and citation path scores good and cite_results from the absolute cosine plus a top-margin alone, with zero query-term or lexical-grounding signal, so a fluent off-corpus term such as kubernetes earns a confident citation on one spurious high-cosine hit. A lone above-floor hit also produces the largest top-margin and can reach good through qualityRatio on a single result with a zero margin, so the margin signal perversely rewards the spurious hit. This phase gates good and cite_results on a lexical-grounding floor and requires single-hit corroboration, both behind a default-OFF flag."
 trigger_phrases:
   - "lexical grounding floor"

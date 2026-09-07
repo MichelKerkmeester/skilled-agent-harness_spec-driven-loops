@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Drift Gate and Shared Synopsis Extractor [template:level_2/plan.md]"
+title: "Implementation Plan: Drift Gate and Shared Synopsis Extractor"
 description: "Build one shared derivePacketSynopsis helper used for both the description and causal_summary fields, a checkGeneratedMetadataDrift function that re-derives one folder and compares the generated fields ignoring volatile timestamps, a persisted source_doc_hashes freshness key, and a report-only drift wiring into strict validation and dry-run backfill, all behind a default-OFF flag and a grandfather report mode."
 trigger_phrases:
   - "generated metadata drift gate"

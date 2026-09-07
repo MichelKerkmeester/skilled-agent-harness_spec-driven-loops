@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs"
       - ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:844409f84574d7abf7710b6ddc78c99e00f2ca3a69fc07605aa00cf762e3556c"
       session_id: "build-20260528"
       parent_session_id: null
     completion_pct: 0

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Full spec-kit advisor import decoupling [template:level_3/plan.md]"
+title: "Implementation Plan: Full spec-kit advisor import decoupling"
 description: "Plan for isolating spec-kit from advisor source imports, classifying baseline regressions, and shipping the scoped decoupling commit."
 trigger_phrases:
   - "019 plan"

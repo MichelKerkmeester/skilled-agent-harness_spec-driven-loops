@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: dead-code-removal [template:level-1/tasks.md]"
+title: "Tasks: Phase 3: dead-code-removal"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

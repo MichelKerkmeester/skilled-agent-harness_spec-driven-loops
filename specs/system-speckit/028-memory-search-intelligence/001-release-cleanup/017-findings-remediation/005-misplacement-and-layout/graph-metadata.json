@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Files sit where their owning subsystem's documented layout says they should not: test directories contradicting an assets-only contract, a personal macOS keyboard config in a public repository, committed scripts embedding one workstation's absolute paths, and live SQLite state under two spellings of the same directory name",
     "created_at": "2026-07-27T08:41:11Z",
-    "last_save_at": "2026-08-30T15:39:34.737Z",
+    "last_save_at": "2026-09-07T16:18:07.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a84e139c02eef30c9392679ed235b98ce346cc059db7323eb07db8f5a6fc58da",
+    "source_fingerprint": "sha256:3b1dd6574940617ca5ecd88db5b5263dae843cfb8e244144db94ce013cdc4666",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a2de3d8d555b64613c8488cab7d773103e3a876fd71079782bcf7886d1d7feb3",
-      "plan.md": "36a472c6d340c6c8ca1fb0e6a8e52e7b2a1841c78a630b35611f8087d065fbe9",
-      "tasks.md": "a12991bb5f9f45c8848e799f56a63b615939def371b1a6b44642a86b4d9cb127",
-      "implementation-summary.md": "da61c9db3394010e8669d55fac5865cc8129eaee347b331ce21c0da5f1e349db"
+      "plan.md": "0aaa93ece0f645e840bda2bc4de9f1d248dc97e0a51c72d62574bf1cdd61d4ae",
+      "tasks.md": "2d98474e4da892d0d36b8f45dbbcfe1a9885743d4548f9d017140b19a0d0c18a",
+      "implementation-summary.md": "7e070244c7d8d7d9c626ee667ec58939c764d2fbecd721c209d522c8f7472dff"
     },
     "last_active_child_id": null,
     "last_active_at": null

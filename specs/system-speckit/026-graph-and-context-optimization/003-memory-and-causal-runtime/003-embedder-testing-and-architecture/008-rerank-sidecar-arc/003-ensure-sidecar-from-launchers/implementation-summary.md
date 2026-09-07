@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Ensure rerank sidecar from launchers [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Ensure rerank sidecar from launchers"
 description: "Phase 003 launcher integration implemented with unit/build validation; live smoke validation is blocked by this sandbox's process/socket/home-write restrictions and missing sidecar venv."
 trigger_phrases:
   - "003 implementation summary"

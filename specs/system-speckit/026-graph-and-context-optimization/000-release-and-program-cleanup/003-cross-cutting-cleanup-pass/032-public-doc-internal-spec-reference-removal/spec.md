@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Public Doc Internal Spec Reference Removal [template:level_2/spec.md]"
+title: "Feature Specification: Public Doc Internal Spec Reference Removal"
 description: "Remove hardcoded internal spec packet paths from public-facing commands, setup guides, READMEs, skill references, assets, feature catalogs, and manual testing playbooks."
 trigger_phrases:
   - "public docs"

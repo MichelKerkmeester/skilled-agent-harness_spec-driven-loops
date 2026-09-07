@@ -1,18 +1,42 @@
 {
-  "name": "Tiny Notes Export",
-  "specFolder": ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1",
-  "description": "A tiny fixture feature that exports one note to a text file for validation baseline checks",
-  "keywords": [
-    "tiny",
-    "notes",
-    "export"
-  ],
-  "lastUpdated": "2026-06-12T00:00:00.000Z",
-  "level": "1",
-  "status": "in_progress",
   "trigger_phrases": [
     "tiny notes export",
     "level 1 fixture",
     "valid baseline"
-  ]
+  ],
+  "level": "1",
+  "name": "Tiny Notes Export",
+  "status": "in_progress",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/002-valid-level1",
+  "description": "A tiny fixture feature that exports one note to a text file for validation baseline checks",
+  "keywords": [
+    "tiny",
+    "fixture",
+    "feature",
+    "exports",
+    "one",
+    "note",
+    "text",
+    "file",
+    "validation",
+    "baseline",
+    "checks"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.721Z",
+  "specId": "002",
+  "folderSlug": "valid-level1",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

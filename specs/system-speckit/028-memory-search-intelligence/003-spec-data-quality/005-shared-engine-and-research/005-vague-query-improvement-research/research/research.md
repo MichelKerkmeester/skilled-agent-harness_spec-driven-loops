@@ -1,5 +1,5 @@
 ---
-title: "Research: 005 Post-Benchmark Improvement Study [template:research]"
+title: "Research: 005 Post-Benchmark Improvement Study"
 description: "A 10-angle deep-research study, seeded by the 029 model benchmark, on improving the 005 spec-data-quality program. Finds the benchmarked off-corpus false-positive is a score-calibration miss not an envelope-fidelity miss, that lexical grounding is the convergent root-cause fix four angles arrived at independently, and that the eval harness already holds the measurement machinery but lacks the off-corpus fixture. Produces 12 ranked proposals across two distinct soft spots, with a recommended build order."
 trigger_phrases:
   - "005 improvement research"

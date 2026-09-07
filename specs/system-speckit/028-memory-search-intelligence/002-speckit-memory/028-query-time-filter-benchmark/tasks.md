@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Query-Time Existence Filter Benchmark & Hardening [template:level_2/tasks.md]"
+title: "Tasks: Query-Time Existence Filter Benchmark & Hardening"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "query-time existence filter benchmark"

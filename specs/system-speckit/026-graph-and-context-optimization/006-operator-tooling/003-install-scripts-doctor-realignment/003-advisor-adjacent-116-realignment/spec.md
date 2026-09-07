@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: advisor-adjacent-116-realignment [template:level_1/spec.md]"
+title: "Feature Specification: Phase 2: advisor-adjacent-116-realignment"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

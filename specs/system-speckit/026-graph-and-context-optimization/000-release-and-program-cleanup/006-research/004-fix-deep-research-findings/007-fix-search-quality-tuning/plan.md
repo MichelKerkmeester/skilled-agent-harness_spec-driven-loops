@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 008 Search Quality Tuning [template:level_2/plan.md]"
+title: "Implementation Plan: 008 Search Quality Tuning"
 description: "Five surgical search-quality fixes plus targeted tests close findings F-011-C1-01..05 from packet 046. Adds NDCG/MRR metrics, lowers the rerank gate floor for weak-margin/disagreement triggers, enforces the cross-encoder candidate cap, graduates a bounded CocoIndex overfetch, and promotes a small guarded learned-blend weight."
 trigger_phrases:
   - "F-011-C1 plan"

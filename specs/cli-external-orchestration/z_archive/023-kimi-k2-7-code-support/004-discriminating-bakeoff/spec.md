@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: discriminating-bakeoff [template:level_1/spec.md]"
+title: "Feature Specification: Phase 4: discriminating-bakeoff"
 description: "Run 006's bakeoff saturated on easy fixtures and returned an uninformative TIE; this phase re-runs the kimi-k2.7-code framework bakeoff on strict adversarial validators so correctness separates the frameworks and the registry default is empirically grounded."
 trigger_phrases:
   - "kimi discriminating bakeoff"

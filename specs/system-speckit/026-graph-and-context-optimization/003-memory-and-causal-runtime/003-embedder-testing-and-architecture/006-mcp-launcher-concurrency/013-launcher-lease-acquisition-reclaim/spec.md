@@ -1,5 +1,5 @@
 ---
-title: "Spec: launcher lease acquisition-time reclaim [template:level_1/spec.md]"
+title: "Spec: launcher lease acquisition-time reclaim"
 description: "Follow-on packet for atomic acquisition-time reclaim when a new launcher encounters a stale skill_graph_daemon_lease row owned by a dead PID."
 trigger_phrases:
   - "launcher lease acquisition reclaim"

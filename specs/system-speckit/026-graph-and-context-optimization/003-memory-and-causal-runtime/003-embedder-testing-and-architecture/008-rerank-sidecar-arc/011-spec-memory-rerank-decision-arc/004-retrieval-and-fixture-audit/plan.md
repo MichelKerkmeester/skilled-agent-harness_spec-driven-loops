@@ -1,5 +1,5 @@
 ---
-title: "Plan: retrieval + fixture audit [template:level_1/plan.md]"
+title: "Plan: retrieval + fixture audit"
 description: "5-phase audit + branch decision. Wall clock ~1-2 hours."
 trigger_phrases:
   - "011/004 plan"

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has no manualtestingplaybook/ directory",
     "created_at": "2026-05-06T13:19:26Z",
-    "last_save_at": "2026-08-30T15:39:19.075Z",
+    "last_save_at": "2026-09-07T16:17:12.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec1064011322165893f616f4915c21f26f5a3db387c640dbe5c231ff1e52e701",
+    "source_fingerprint": "sha256:b56ea6d69a652c82d14fe5b51283075086beb5434f552f31e4055e600f8db099",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c53d44a69da0d1509be69563c6d602ecae2da6173fe44b0130f032e3bc24af6d",
-      "plan.md": "06b99e6d4d2a65cf0482c2428f95e9111b50bf32f5478514a13e34d03c8a3fa0",
-      "tasks.md": "eb069a6ddb928f863a2e39e640eb7d05c369147c1bfcc03b6519402437cc36ef",
-      "implementation-summary.md": "0096b29bbccaeaedf11f8009ef075b61215702ea5c1de0cabd93f52c73f8e501"
+      "plan.md": "41533825e39ffbc2b872ae74856aef48e6d6fe185c56d54cb36a2d4f19626a84",
+      "tasks.md": "6ddefa9e323597691269c73ea0c4917690abe0a223cd76f95e1cdfb54780fdcc",
+      "implementation-summary.md": "850bbaa8dacdf6bbb63310369cce4ece0ff72379a798ba8680cf130ce8994464"
     },
     "last_active_child_id": null,
     "last_active_at": null

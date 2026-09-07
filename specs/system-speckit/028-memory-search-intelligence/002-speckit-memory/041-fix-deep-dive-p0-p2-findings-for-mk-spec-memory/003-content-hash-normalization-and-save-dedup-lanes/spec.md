@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: content-hash-normalization-and-save-dedup-lanes [template:level_3/spec.md]"
+title: "Feature Specification: Phase 3: content-hash-normalization-and-save-dedup-lanes"
 description: "Stops save-path snapshot churn in mk-spec-memory: normalizes content-hash input with a dual-compare migration, unifies the two continuity-fingerprint builders, makes PE-gate UPDATE/REINFORCE lanes reachable, fixes the P0 full-auto canonical save self-reject, and gates the save dedup lanes so unchanged re-saves return unchanged instead of minting deprecated snapshots."
 trigger_phrases:
   - "content hash normalization"

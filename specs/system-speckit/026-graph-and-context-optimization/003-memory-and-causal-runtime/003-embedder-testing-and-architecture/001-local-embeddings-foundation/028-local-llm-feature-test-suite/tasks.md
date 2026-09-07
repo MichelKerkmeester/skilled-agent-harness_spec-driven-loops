@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Comprehensive local-LLM (hf-local + llama-cpp) feature test suite. 10 functional vitest groups + perf benchmarks (embedding latency, throughput, cold-start, migration throughput). Validates every feature claim in shared/README, embedding_resilience, INSTALL_GUIDE, ENV_REFERENCE, feature_catalog 23/05-5. Acceptance: 0 failed assertions; perf baseline captured for regression tracking. [template:level_2/tasks.md]"
+title: "Tasks: Comprehensive local-LLM (hf-local + llama-cpp) feature test suite. 10 functional vitest groups + perf benchmarks (embedding latency, throughput, cold-start, migration throughput). Validates every feature claim in shared/README, embedding_resilience, INSTALL_GUIDE, ENV_REFERENCE, feature_catalog 23/05-5. Acceptance: 0 failed assertions; perf baseline captured for regression tracking."
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

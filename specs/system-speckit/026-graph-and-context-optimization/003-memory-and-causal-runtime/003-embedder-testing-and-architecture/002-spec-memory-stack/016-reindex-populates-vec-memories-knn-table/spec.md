@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: reindex-populates-vec-memories-knn-table [template:level_1/spec.md]"
+title: "Feature Specification: Phase 1: reindex-populates-vec-memories-knn-table"
 description: "Memory search returned degraded confidence at Z=1.2 because the runtime KNN table vec_memories was empty and the factory could not find vec_<dim> in the main DB. Both layers are fixed in this packet."
 trigger_phrases:
   - "vec_memories knn empty"

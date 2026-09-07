@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: injection-plugin [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: injection-plugin"
 description: "Extend mk-goal.js with passive system-context injection using the existing state store and a fail-open transform hook."
 trigger_phrases:
   - "goal injection plan"

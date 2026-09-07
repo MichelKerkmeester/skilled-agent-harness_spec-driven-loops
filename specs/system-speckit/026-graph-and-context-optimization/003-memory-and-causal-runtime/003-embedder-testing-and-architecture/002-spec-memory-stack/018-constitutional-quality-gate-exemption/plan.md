@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: constitutional-quality-gate-exemption [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: constitutional-quality-gate-exemption"
 description: "Single-file 5-line patch to memory-index.ts:474 plus rebuild plus daemon restart. The patch ORs isConstitutional into the existing useWarnOnly branch so constitutional policy markdown passes through warn-only sufficiency mode."
 trigger_phrases:
   - "constitutional exemption plan"

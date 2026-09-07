@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will extend verify_integrity with a read-time content-hash recompute behind a default-off flag. No code change has landed."
 trigger_phrases:
   - "content hash integrity"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A6 HVR Style Auto-Fix Linter [template:level_2/spec.md]"
+title: "Feature Specification: A6 HVR Style Auto-Fix Linter"
 description: "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is documented but unenforced on authored spec-docs, so the rule drifts by hand. No fence-aware length-neutral style fixer exists in the live quality machinery."
 trigger_phrases:
   - "hvr style"

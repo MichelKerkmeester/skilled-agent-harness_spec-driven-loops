@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Closed derived.status to a shared z.enum, added the first-class GENERATED_METADATA_INTEGRITY validator wired into the validation orchestrator and validate.sh strict behind a grandfather report mode, and stopped the parser preserving a legacy bad status. The 9-case vitest passes and validate.sh --strict on this folder exits 0."
 trigger_phrases:
   - "generated metadata validator"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts"
       - ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5935219edf183a88c2bc944f50a4ae9d3b8f161f345f2cfb934647fd2cc393b0"
       session_id: "phase-036-metadata-validator-status-enum"
       parent_session_id: null
     completion_pct: 100

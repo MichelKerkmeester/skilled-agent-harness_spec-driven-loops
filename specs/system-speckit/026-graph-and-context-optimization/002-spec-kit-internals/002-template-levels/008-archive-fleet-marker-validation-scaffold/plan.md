@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: z-archive-marker-validation-sweep [template:level_3/plan.md]"
+title: "Implementation Plan: z-archive-marker-validation-sweep"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

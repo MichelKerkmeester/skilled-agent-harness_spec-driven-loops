@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian-tables/"
       - ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian42-brat/"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:04c457293265ac73a03af1fa05b9d07241722488b761fbe0a86a981a2071b037"
       session_id: "scaffold-scaffold/009-community-plugin-support"
       parent_session_id: null
     completion_pct: 100

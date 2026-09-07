@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: framework-bakeoff [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: framework-bakeoff"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "kimi bakeoff tasks"

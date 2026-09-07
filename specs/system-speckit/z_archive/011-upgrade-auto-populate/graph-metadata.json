@@ -193,7 +193,7 @@
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to Upgrade Auto Populate",
     "created_at": "2026-04-12T09:02:53.565Z",
-    "last_save_at": "2026-08-30T15:39:37.734Z",
+    "last_save_at": "2026-09-07T16:19:12.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd0c3d0774b8b0ee16862b910a992288faff81568b2749b7f44ba05c3144006d",
+    "source_fingerprint": "sha256:35587ae4e42325aea74b47969046c64f864e7835204cb1d7f9d0a662f74784d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c96bc9d7d5d6cc39a6b31cef3f36cbf4735958a18e9b4e98137ab0086737c0d",
       "plan.md": "5d606b4d4bc87d61da9c1b98ab32e74796b3343c4e671eee1234ef142ae07b0f",
-      "tasks.md": "dbfba4331dc064737dffc56ea0c5398020a4976c24b448f62de48e7e2fd7712d",
+      "tasks.md": "4141cae5b4ca890999b78cb8b1adbd33e144dc21dfa27fc2daa934881e5d3a5b",
       "decision-record.md": "bf0e59e7a0da21c6109f5df52f5cddb9422f6867b2d25af6f85ca1371e1918e1",
-      "implementation-summary.md": "070be1b0f27d0a1e8c4c78e03dd20f766dfd3a0972deb023645dd7067ac18960"
+      "implementation-summary.md": "e150469ff8a44fd9c490da4fa62601d4a3b70144ee87ff12470663e8b4a62891"
     },
     "last_active_child_id": null,
     "last_active_at": null

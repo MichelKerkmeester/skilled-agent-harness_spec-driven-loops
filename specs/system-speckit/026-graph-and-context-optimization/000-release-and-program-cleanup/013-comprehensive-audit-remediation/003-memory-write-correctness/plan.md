@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: memory-write-correctness [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 3: memory-write-correctness"
 description: "Wire entity-density invalidation into the shared post-mutation hook and add regression tests for the update-path cache clear and the atomic-save uuid-suffixed orphan recovery."
 trigger_phrases:
   - "entity density invalidation plan"

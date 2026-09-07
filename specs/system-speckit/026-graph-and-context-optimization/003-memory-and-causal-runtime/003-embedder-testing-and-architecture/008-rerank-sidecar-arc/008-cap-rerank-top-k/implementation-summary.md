@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: cap spec-memory rerank top-k [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: cap spec-memory rerank top-k"
 description: "PRE-IMPLEMENTATION stub. Will be filled with Phase C bench + verdict."
 trigger_phrases:
   - "008 cap top-k summary"

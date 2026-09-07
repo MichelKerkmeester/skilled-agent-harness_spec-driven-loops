@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Reindex the renamed system-deep-loop 036 router-replay-surface-slice-sync and 037 scenario-loader-code-surface-sync folders and repoint their stale copied metadata identifiers and inbound references [template:level_1/plan.md]"
+title: "Implementation Plan: Reindex the renamed system-deep-loop 036 router-replay-surface-slice-sync and 037 scenario-loader-code-surface-sync folders and repoint their stale copied metadata identifiers and inbound references"
 description: "Regenerate description.json and graph-metadata.json for both renamed folders via the existing generators, fix internal doc references to the old slug, and repoint two confirmed inbound references in 124-sk-code-parent."
 trigger_phrases:
   - "deep-loop 036 037 reindex plan"

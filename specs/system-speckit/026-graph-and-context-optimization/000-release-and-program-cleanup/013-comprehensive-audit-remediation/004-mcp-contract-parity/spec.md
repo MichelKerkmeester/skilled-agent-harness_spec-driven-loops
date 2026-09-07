@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: mcp-contract-parity [template:level_1/spec.md]"
+title: "Feature Specification: Phase 4: mcp-contract-parity"
 description: "MCP tool contracts drifted across public JSON schema, Zod validation, the allow-list, handlers, and docs, so callers cannot discover real parameters and governance/coverage metadata is validated then silently dropped. This phase realigns the four contract-parity tools and adds a guard test."
 trigger_phrases:
   - "mcp contract parity"

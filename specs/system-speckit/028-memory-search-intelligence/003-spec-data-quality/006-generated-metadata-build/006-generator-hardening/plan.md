@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Generator Hardening [template:level_2/plan.md]"
+title: "Implementation Plan: Generator Hardening"
 description: "Persist a graph-metadata source fingerprint derived from the current source docs over a volatile-ignoring projection, unify the phase-child contract behind one shared listPhaseChildren helper consumed by both isPhaseParent and resolveChildrenIds, and move access and freshness telemetry out of the generated JSON into the DB or index layer, all behind a default-off flag and a grandfather report mode so existing files do not mass-fail."
 trigger_phrases:
   - "graph metadata source fingerprint"

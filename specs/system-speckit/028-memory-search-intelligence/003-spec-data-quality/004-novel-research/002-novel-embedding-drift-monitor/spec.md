@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Novel embedding-drift monitoring plus alerting [template:level_2/spec.md]"
+title: "Feature Specification: Novel embedding-drift monitoring plus alerting"
 description: "The re-index path has no mixed-vector guard. There is no per-chunk record of which embedding regime produced a vector, so a corpus that mixes old and new model or normalizer or strategy versions is undetectable and silently confounds every prod-mode completeRecall@3 read."
 trigger_phrases:
   - "embedding drift monitor"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Shared Safe-Fix Engine [template:level_2/spec.md]"
+title: "Feature Specification: Shared Safe-Fix Engine"
 description: "The five keystone front doors each need a safe-fix path, a detector inventory, and a fixClass policy, but none exists yet so each would hand-roll its own. Without one shared engine, one registry, and one frozen allow-list the front doors will diverge on what counts as a safe fix."
 trigger_phrases:
   - "shared safe-fix engine"

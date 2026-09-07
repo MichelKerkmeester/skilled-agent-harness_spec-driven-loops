@@ -1,5 +1,5 @@
 ---
-title: "Spec: retrieval + fixture audit (decision gate before Phase 3) [template:level_1/spec.md]"
+title: "Spec: retrieval + fixture audit (decision gate before Phase 3)"
 description: "Diagnostic gate inserted between Phase 2 HOLD and Phase 3 fine-tune. Phase 1 (OFF) and Phase 2 (bge-v2-m3) produced literally identical retrieval metrics (hit-rate@5 0.12, NDCG@10 0.11, recall@5 0.12) on the 50-probe fixture, with 16/50 probes having stale gold_memory_ids. The AI Council (gpt-5.5 xhigh, 3-1 vote) ruled Phase 3 fine-tune cannot succeed without first proving (a) which gold IDs are still valid, (b) whether gold docs even enter the pre-rerank candidate pool, (c) whether direct-handler-replay matches canonical daemon IPC, and (d) whether rerank scores actually change final order. This audit produces a mechanical branch: retrieval work / scoring-integration work / Phase 3 justified."
 trigger_phrases:
   - "011/004 retrieval audit"

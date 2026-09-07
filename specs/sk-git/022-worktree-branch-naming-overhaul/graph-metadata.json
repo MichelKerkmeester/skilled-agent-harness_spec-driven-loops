@@ -52,7 +52,6 @@
       ".opencode/skills/sk-git/SKILL.md",
       "scripts/README.md",
       ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
-      "git-hooks/README.md",
       ".opencode/package.json"
     ],
     "entities": [
@@ -203,7 +202,7 @@
     ],
     "causal_summary": "The owner-first grammar scatters the Git-UI branch tree into a per-skill pile and couples every branch to a single clone-wide 4-digit counter that cannot be scoped per namespace",
     "created_at": "2026-08-16T06:45:24.918Z",
-    "last_save_at": "2026-08-30T15:39:18.698Z",
+    "last_save_at": "2026-09-07T16:17:07.032Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b648dc58a9ed5039adf16983baf85d08d822f4d9d506c86c89d505d3b49c748c",
+    "source_fingerprint": "sha256:d92b6ef70f702885e7fb4169b704fa680f668451f1a8752b4ca3ad9175ccf139",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e9b2119720ee08189e8c089fb4ebd8aee4f864530b1b4f0e443e08de9d5451e",
-      "plan.md": "7a907cddc7c76d22cd9a10d679ea9508b51b75e0e2c81d2143ee7a7bff180537",
-      "tasks.md": "4660b987761c24dac43a701a09e49f9a28a8a15c2e8990897327053c1c9d567c",
-      "decision-record.md": "0c5759abe2d00465040e5f19c66c627b3e8224ecf4a78fd2e90ca9a2646602a7",
-      "implementation-summary.md": "e601108784937bb21de2525bd34e9f35454a8c61ce77eb2d1092685d0600f2b8"
+      "spec.md": "44474651411ac8ba5c0e74b1832f1c4701b9671ed08b4c61c2eca499f88d9b7d",
+      "plan.md": "1f662986de6fcfcce187edfdbf9877856eff2dfa40b2f964d6ced76bece6a8da",
+      "tasks.md": "18dacf5bbb8c7a41f8cedf27f003928257ac8df3258854a80d0e00e7f3be8f7c",
+      "decision-record.md": "6955d436101a39a658070b2aff50bbe7aecc12e88344c4285dced6cf650d077f",
+      "implementation-summary.md": "114a1d556cc3dc496ea215509f794a04dc3a2b66f9d4e051779f4cee71ce48e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

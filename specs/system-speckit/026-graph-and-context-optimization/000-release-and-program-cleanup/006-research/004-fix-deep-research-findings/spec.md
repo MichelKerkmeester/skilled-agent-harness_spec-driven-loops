@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent) [template:level_2/spec.md]"
+title: "Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent)"
 description: "Phase parent that closes the 78 remaining findings (27 P1 + 51 P2) from packet 046's 20-iteration deep research. Decomposes the work across 10 sub-phase children grouped by subsystem so each child stays a tractable Level 2 packet."
 trigger_phrases:
   - "049 deep research finding remediation"

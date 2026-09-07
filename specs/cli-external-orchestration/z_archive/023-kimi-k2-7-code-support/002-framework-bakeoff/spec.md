@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: framework-bakeoff [template:level_1/spec.md]"
+title: "Feature Specification: Phase 2: framework-bakeoff"
 description: "kimi-k2.7-code shipped with an unverified RCAF default; this phase ran the model-benchmark bakeoff (run 006) to find its best prompt framework but saturated on easy fixtures (TIE). Superseded by phase 004 (run 007: COSTAR promoted, empirical)."
 trigger_phrases:
   - "kimi k2.7 framework bakeoff"

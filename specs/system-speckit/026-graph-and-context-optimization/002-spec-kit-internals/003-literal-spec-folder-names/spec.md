@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like remediation or phase-N [template:level_2/spec.md]"
+title: "Feature Specification: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like remediation or phase-N"
 description: "AI-derived spec-folder and phase slugs default to generic placeholders (remediation, phase-N) across 10 generation surfaces with no enforcement of literal subject tokens."
 trigger_phrases:
   - "literal naming"

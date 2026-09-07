@@ -47,18 +47,11 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/memory/README.md",
       "shared/utils/token-estimate.ts",
-      "scripts/memory/reindex-embeddings.ts",
-      "lib/cognitive/adaptive-ranking.ts",
       "shared/utils/path-security.ts",
-      "shared/lib/structure-aware-chunker.ts",
-      "handlers/save/types.ts",
       "shared/config.ts",
       "core/config.ts",
-      ".opencode/skills/system-spec-kit/.gitignore",
-      "scripts/utils/path-utils.ts",
-      "lib/eval/eval-quality-proxy.ts"
+      ".opencode/skills/system-spec-kit/.gitignore"
     ],
     "entities": [
       {
@@ -98,45 +91,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/README.md",
-        "source": "derived"
-      },
-      {
         "name": "token-estimate.ts",
         "kind": "code",
         "path": "shared/utils/token-estimate.ts",
         "source": "derived"
       },
       {
-        "name": "reindex-embeddings.ts",
-        "kind": "code",
-        "path": "scripts/memory/reindex-embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.ts",
-        "kind": "code",
-        "path": "lib/cognitive/adaptive-ranking.ts",
-        "source": "derived"
-      },
-      {
         "name": "path-security.ts",
         "kind": "code",
         "path": "shared/utils/path-security.ts",
-        "source": "derived"
-      },
-      {
-        "name": "structure-aware-chunker.ts",
-        "kind": "code",
-        "path": "shared/lib/structure-aware-chunker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "handlers/save/types.ts",
         "source": "derived"
       },
       {
@@ -149,18 +112,6 @@
         "name": ".gitignore",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/.gitignore",
-        "source": "derived"
-      },
-      {
-        "name": "path-utils.ts",
-        "kind": "code",
-        "path": "scripts/utils/path-utils.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-quality-proxy.ts",
-        "kind": "code",
-        "path": "lib/eval/eval-quality-proxy.ts",
         "source": "derived"
       },
       {
@@ -204,11 +155,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
     "created_at": "2026-04-12T09:02:50.240Z",
-    "last_save_at": "2026-08-30T15:39:38.218Z",
+    "last_save_at": "2026-09-07T16:19:15.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +212,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e52c73f297f22791a353d89d2b85067970e4713b5ec0d90693425814e1f0f0d5",
+    "source_fingerprint": "sha256:87fd4b7e64397193dbd3471a2ccffaba659b91502cc4ffe375410a0671056b7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3461dfd2cfb8b1326787c0c1a8d8de5a9ff791ae161bb9235eb29e2aec2546d",
       "plan.md": "33b47b3986abbf288d60fd288359ad4115d7635b8b5cb536526c75868388d065",
-      "tasks.md": "07633ffefe6be5f6c38c6028df65cdfc7b51ef4107fc81d1f3ed0dfdb8b7026e",
+      "tasks.md": "f3a1d8ecee16b7378c1d8fe8d40ad5b90ebcca656e6112dd025be10263a8c723",
       "decision-record.md": "ed21c41fa5b63b37dd881b97baaad66f0f68bd0df574138f970929107ab27dae",
       "implementation-summary.md": "1c3cb7c2128baa7ca10e935283977f7c0eab7ae4a8a2c4dcd1b3a1de4b043514",
       "research/research.md": "b3a62bb66b9b6c3cdfc69eab25ca7e6717467098e16d5c8c7d9c941a01b07c45"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: DONE. Re-ran the kimi-k2.7-code bakeoff on strict validators (run 007); correctness separated, costar promoted as the corroborated default, rcaf retired as weakest."
 trigger_phrases:
   - "kimi discriminating status"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
       - ".opencode/skills/sk-prompt-models/references/models/_index.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2ea554660b4045ad24b5a874f130fe4f69ec1df93c45c4633767483cdfaa0c53"
       session_id: "claude-opus-004-discriminating-bakeoff"
       parent_session_id: null
     completion_pct: 100

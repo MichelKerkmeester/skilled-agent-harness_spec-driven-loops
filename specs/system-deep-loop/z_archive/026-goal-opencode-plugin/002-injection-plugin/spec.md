@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: injection-plugin [template:level_1/spec.md]"
+title: "Feature Specification: Phase 2: injection-plugin"
 description: "The goal plugin now passively injects a sanitized and fenced active goal block into OpenCode system context when a session has an active goal."
 trigger_phrases:
   - "goal injection"

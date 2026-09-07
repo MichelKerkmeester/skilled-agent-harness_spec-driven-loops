@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: state-store [template:level_1/spec.md]"
+title: "Feature Specification: Phase 1: state-store"
 description: "The goal plugin now persists per-session goal state with atomic writes, queued mutations, and fail-closed session id handling."
 trigger_phrases:
   - "goal state store"

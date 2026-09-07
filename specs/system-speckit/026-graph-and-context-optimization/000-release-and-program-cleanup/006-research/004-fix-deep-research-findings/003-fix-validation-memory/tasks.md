@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 004 Validation And Memory Remediation [template:level_2/tasks.md]"
+title: "Tasks: 004 Validation And Memory Remediation"
 description: "Task list for closing F-005-A5-01..06, F-008-B3-01..02, F-009-B4-01..05. Thirteen surgical edits + 7 vitest files + 4 fixtures + validate + stress + commit + push."
 trigger_phrases:
   - "F-005-A5 tasks"

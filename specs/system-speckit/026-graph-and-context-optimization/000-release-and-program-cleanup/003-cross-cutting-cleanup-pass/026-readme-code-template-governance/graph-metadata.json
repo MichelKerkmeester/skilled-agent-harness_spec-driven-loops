@@ -49,10 +49,6 @@
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/README.md",
       "templates/scratch/README.md",
-      ".opencode/skills/system-spec-kit/scripts/README.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/README.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/README.md",
-      ".opencode/skills/system-spec-kit/scripts/memory/README.md",
       ".opencode/skills/system-spec-kit/templates/README.md",
       ".opencode/skills/system-spec-kit/templates/scratch/README.md"
     ],
@@ -204,7 +200,7 @@
     ],
     "causal_summary": "The README template work changed two `sk-doc` documentation templates and needed packet-local status, checklist, and verification evidence before release cleanup could treat the work as complete",
     "created_at": "2026-05-02T11:03:13Z",
-    "last_save_at": "2026-08-30T15:39:28.084Z",
+    "last_save_at": "2026-09-07T16:17:31.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a8ec5024835a625a2d24e0193afbfb23e88e31b8436c40a2bf29ff746a90895",
+    "source_fingerprint": "sha256:955500f34530f26fdeb3d397e149feff43235212bc281bc5b4a174b4898dbbab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50c8395c5d122870029386ad3b8db0534a7f42c046b8c8100ca33df509039253",
-      "plan.md": "571f86a3ab463bbbe697b5aacad1c9ffc5f4f3b95f82d951e5642e64e2a7ab29",
-      "tasks.md": "fa15a12b51238cc646d3a3dcc28cad40ac306ff5e09e5118e97f456a0c2e185c",
-      "implementation-summary.md": "3fec936c91a7cd964e1fd9da10db9b12f44353949b5d8bb2e05e05aa28da3c10"
+      "spec.md": "c4ac43c1660cfa2d0a470167d50013c3c7886f842c83172e33a830ae222b4a69",
+      "plan.md": "46a63958007d70f21e65d9e51587245ff4580afd73366e935f5f9db797ea5704",
+      "tasks.md": "f30e6779d7d28e7084536c21287a4704ba9d38c489aa3b1e3ed1d995d54aab41",
+      "implementation-summary.md": "f56f9b16097fdaf35ac526da5011c315d547f1e19a13cf6f97768d0a16532b16"
     },
     "last_active_child_id": null,
     "last_active_at": null

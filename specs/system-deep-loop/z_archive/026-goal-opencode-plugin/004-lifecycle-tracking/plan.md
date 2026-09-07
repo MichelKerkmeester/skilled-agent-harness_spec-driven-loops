@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: lifecycle-tracking [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 4: lifecycle-tracking"
 description: "Extend the existing ESM plugin with lifecycle helpers, guarded usage accounting, activity evidence capture, and a focused node unit test."
 trigger_phrases:
   - "goal lifecycle plan"

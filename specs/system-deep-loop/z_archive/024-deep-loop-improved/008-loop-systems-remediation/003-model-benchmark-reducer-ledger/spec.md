@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: model-benchmark reducer ledger [template:level_1/spec.md]"
+title: "Feature Specification: model-benchmark reducer ledger"
 description: "Model-benchmark auto runs wrote benchmark reports but could omit the reducer-visible benchmark_run ledger row when outputs lived outside the improvement runtime folder. This phase makes the auto workflow pass the state log explicitly so reducer rollups can see benchmark runs."
 trigger_phrases:
   - "model-benchmark"

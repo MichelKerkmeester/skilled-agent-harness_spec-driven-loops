@@ -200,7 +200,7 @@
     ],
     "causal_summary": "After `010-multi-client-stdio-socket-bridge` shipped (`feat(016/006/010)` at `088cb82a0`), the codex runtime could not complete the MCP handshake for `mkskilladvisor`, `mkcodeindex`, and intermittently `mk-spec-memory`",
     "created_at": "2026-05-23T11:55:15.585Z",
-    "last_save_at": "2026-08-30T15:39:30.983Z",
+    "last_save_at": "2026-09-07T16:17:50.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d76a8b9d1c8c409daf1a621952de925ac605348d2bdfebfe92c79baff6b6e05",
+    "source_fingerprint": "sha256:9af7178bbae12b843804878887bf7c5ce565389fa7c31594e2d1054d4d95b056",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7a17ca09962f40fe9ecd1cd76c3dc1ec1a5b99e2e3a65d10970d58429a57ea3",
-      "plan.md": "9716e844fc53c03a77a09cfb893f0bef74205fa4d9ae82cf375ab814b5d46089",
-      "tasks.md": "4c347d851df6f0c562bdd046860f8b2c8d15961e55b68b602dc8f4a1e0bbba84",
-      "implementation-summary.md": "e28c932088734c74c9de9e4f16c8660b70aa1434a08d5f1c39939198cdd55114"
+      "plan.md": "b8d491beb39bcc53cad32f8abce70a98004e1eb2caaf0c9c669df230070e40e1",
+      "tasks.md": "329311eab2e978c23186d585d11f06f4a2ba9e4d296a9dcd3aef0e1e41b23515",
+      "implementation-summary.md": "4e98b7c47f7a9bc2d7c42e73da5a6415afc73af9ccbd4841ce60c88cac355e91"
     },
     "last_active_child_id": null,
     "last_active_at": null

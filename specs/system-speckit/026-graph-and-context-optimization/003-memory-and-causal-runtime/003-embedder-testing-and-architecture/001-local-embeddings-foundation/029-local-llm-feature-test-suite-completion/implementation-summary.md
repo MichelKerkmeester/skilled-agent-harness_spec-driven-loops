@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: local-LLM feature test suite completion [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: local-LLM feature test suite completion"
 description: "PRE-IMPLEMENTATION scaffold for local-LLM feature test suite completion."
 trigger_phrases:
   - "local-llm feature test suite completion"

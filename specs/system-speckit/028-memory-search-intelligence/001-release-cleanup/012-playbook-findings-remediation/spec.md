@@ -1,5 +1,5 @@
 ---
-title: "Spec: 028 Playbook Findings Remediation [template:level_2/spec.md]"
+title: "Spec: 028 Playbook Findings Remediation"
 description: "Remediation spec for the real product findings surfaced by the daemon-skills playbook validation (packet 011) and the core memory-search-intelligence re-run. The fixes were authored by gpt-5.5-fast high in eight clusters in worktree wt/0008-findings-remediation, each verified by vitest, typecheck, mutation checks on the risky fixes, comment hygiene and alignment drift, then landed on the 028 review-branch mainline. Isolation and harness artifacts are excluded. The code is verified per cluster and landed on the 028 review-branch mainline (system-speckit/028-memory-search-intelligence), pending a whole-suite run across all clusters together before the 028 branch merges to main."
 trigger_phrases:
   - "playbook findings remediation"

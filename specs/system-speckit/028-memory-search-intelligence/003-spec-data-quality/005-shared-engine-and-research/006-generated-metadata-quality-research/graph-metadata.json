@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
     "created_at": "2026-06-27T17:15:40.899Z",
-    "last_save_at": "2026-08-30T15:39:35.794Z",
+    "last_save_at": "2026-09-07T16:18:29.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +205,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9b6929c6056a58da1f4d3bcc5a924faf7a056b442d6d653023fb67bb512d7bd9",
+    "source_fingerprint": "sha256:9ae9f26e19b1e507f69ee8c7037dbe532b447608c435235ff0b1a1f987fc5828",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e90760a784ff42a161d56371827985d812bef347a9eac2a6f56a0921e8c3af81",
-      "plan.md": "debc671c116bbdc3d0b54cbe950e1faec96b601ca7990d7ccc1888216ef29c17",
-      "tasks.md": "a09e42d4e5db6f806f5195127b62bef6cc04ab7e308ee133380f94a00d9c8c87",
-      "implementation-summary.md": "371d4da94574ba91bf324de299768493db6eceb00eb36b479d9c8b0fcecc9f12",
-      "research/research.md": "c019804186c0b5baaadcdf97202c8dc1db44606fb7899576d937c3b436e30e35"
+      "spec.md": "be7992c617f44609116f227f197da93f81b86e2574e8b2632d945159ce847be3",
+      "plan.md": "1fa06613f773905ffe9da2dc8625515b109b2d96a2ae31eb22b4d81d73b09308",
+      "tasks.md": "647454f2a37974df3e65ad0d84ab69de691a5e89ce079652d070a74458d98fb0",
+      "implementation-summary.md": "fc7b53a0f98154ae12e20c872fc2c8d871948fd58fcf67ce19d6f19325142a48",
+      "research/research.md": "97ff79e27138e3f8646a2ec9b6bf836285824fa3bbe55eee299fb4b595b9a287"
     },
     "last_active_child_id": null,
     "last_active_at": null

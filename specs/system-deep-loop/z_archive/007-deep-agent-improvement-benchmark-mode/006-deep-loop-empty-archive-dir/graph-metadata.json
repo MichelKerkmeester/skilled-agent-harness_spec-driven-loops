@@ -44,11 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-      "scripts/tests/deep-research-contract-parity.vitest.ts",
-      "scripts/tests/deep-review-contract-parity.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-contract-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-contract-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p … {statepaths.archiveroot}` on every fresh/resume run, but the archive root is only used on a `restart` move (rare) — so it almost always stayed empty, littering packets with empty `researcharchive/`",
     "created_at": "2026-05-29T05:57:34.890Z",
-    "last_save_at": "2026-08-30T15:39:23.659Z",
+    "last_save_at": "2026-09-07T16:17:17.223Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9fc1d739697debf3af84c244d6ebeedfdc763e9b87f77d19c00b0016452c836",
+    "source_fingerprint": "sha256:b39136bb6960aa83878f31f7b4c2a82084865be1c9ed1e0dad4268fac61b1178",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9143c08f6049e60c77002d010879fe014a04a7dbe88d450f40844070a489918e",
       "plan.md": "ec0ff9c69e60a896f34a6ccb9edbc4fbde44ea20e8c0a20ce24f8a214ed7f988",
       "tasks.md": "32aa2f74fecdb32985b75c660339459e012386a4dd0326e392cf8faa9f7d4d17",
-      "implementation-summary.md": "d00c035c3057b76d1940397f31aaace5a5b4f81dcda3dc059f20b3cebf9bffc4"
+      "implementation-summary.md": "e76e80debbab3f724dd7971d77ce5f4ddecb837163dcdaffbe83366711790a9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

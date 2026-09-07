@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Generated-Metadata Validator and Status Enum [template:level_2/plan.md]"
+title: "Implementation Plan: Generated-Metadata Validator and Status Enum"
 description: "Close derived.status to a shared z.enum at the schema boundary, add a first-class GENERATED_METADATA_INTEGRITY rule validating both JSON files through the shared schemas plus path-prefix and enum invariants registered as an error in strict mode behind a grandfather report mode, and stop the parser preserving a legacy bad status by re-deriving on the closed enum or falling back to planned plus a review flag."
 trigger_phrases:
   - "generated metadata validator"

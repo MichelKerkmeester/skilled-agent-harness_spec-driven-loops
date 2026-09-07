@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Reindex the renamed system-deep-loop 036 router-replay-surface-slice-sync and 037 scenario-loader-code-surface-sync folders and repoint their stale copied metadata identifiers and inbound references [template:level_1/tasks.md]"
+title: "Tasks: Reindex the renamed system-deep-loop 036 router-replay-surface-slice-sync and 037 scenario-loader-code-surface-sync folders and repoint their stale copied metadata identifiers and inbound references"
 description: "Nine tasks across Setup, Implementation and Verification: overlap-check, regenerate both folders' metadata, fix internal and inbound references, then grep-verify zero remaining old-slug matches."
 trigger_phrases:
   - "deep-loop 036 037 reindex tasks"

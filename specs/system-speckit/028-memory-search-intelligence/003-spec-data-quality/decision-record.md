@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Spec-Kit Data Quality by Default [template:level_3/decision-record.md]"
+title: "Decision Record: Spec-Kit Data Quality by Default"
 description: "Decision record for running a research loop before building any spec-kit data-quality change."
 trigger_phrases:
   - "spec data quality decision"

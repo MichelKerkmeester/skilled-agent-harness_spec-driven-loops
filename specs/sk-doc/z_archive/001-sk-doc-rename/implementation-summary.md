@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementati [03--commands-and-skills/010-sk-doc-rename/implementation-summary]"
+title: "Implementation Summary"
 description: "Completed repo-wide canonical rename implementation for documentation skill references plus removal of stale visual-skill claims from live docs, with strict verification closure."
 trigger_phrases:
   - "implementation"

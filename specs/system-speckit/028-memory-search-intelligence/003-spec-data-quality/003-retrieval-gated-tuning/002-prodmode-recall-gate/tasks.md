@@ -1,5 +1,5 @@
 ---
-title: "Tasks: C2 Prod-Mode Recall Gate [template:level_2/tasks.md]"
+title: "Tasks: C2 Prod-Mode Recall Gate"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "prod mode recall gate"

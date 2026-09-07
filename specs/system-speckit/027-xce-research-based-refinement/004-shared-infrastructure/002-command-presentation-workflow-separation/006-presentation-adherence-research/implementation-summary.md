@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Presentation Adherence Research [template:examples/level_1/implementation-summary.md]"
+title: "Implementation Summary: Presentation Adherence Research"
 description: "Delivery evidence for the fifty-angle research program: scaffolding complete, iterations in flight."
 trigger_phrases:
   - "adherence research summary"

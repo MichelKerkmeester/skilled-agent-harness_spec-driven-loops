@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Audit and harden graph-metadata.json child-drift, where a phase parent's children_ids silently lags the phase-child folders present on disk [template:level_3/decision-record.md]"
+title: "Decision Record: Audit and harden graph-metadata.json child-drift, where a phase parent's children_ids silently lags the phase-child folders present on disk"
 description: "ADR-001 picks the drift check's severity and remediation mode: a warning under --strict that becomes blocking once the repo is reconciled, and flag-only reconciliation with no auto-regen of children_ids."
 trigger_phrases:
   - "drift check severity decision"

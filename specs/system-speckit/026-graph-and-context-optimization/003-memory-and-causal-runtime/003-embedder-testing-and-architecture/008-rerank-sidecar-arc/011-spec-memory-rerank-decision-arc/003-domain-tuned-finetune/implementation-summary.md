@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: domain-tuned reranker fine-tune [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: domain-tuned reranker fine-tune"
 description: "Filled by cli-codex execution: §Phase A-F results, §Eval Results, §Verdict, §Commit Handoff. Supersedes 010 packet's intent with template-stripping refinement."
 trigger_phrases:
   - "011/003 summary"

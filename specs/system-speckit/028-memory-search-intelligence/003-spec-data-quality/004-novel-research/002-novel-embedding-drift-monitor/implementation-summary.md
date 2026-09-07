@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Novel Embedding-Drift Monitoring plus Alerting [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Novel Embedding-Drift Monitoring plus Alerting"
 description: "PLANNED scaffold for the embedding-drift monitor. No code is written yet. Records the planned regime fingerprint, the per-regime census and the report-only detector design."
 trigger_phrases:
   - "embedding drift monitor status"

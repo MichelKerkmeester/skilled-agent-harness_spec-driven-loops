@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 003 Advisor Quality [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 003 Advisor Quality"
 description: "Eight surgical advisor-quality fixes close findings F-006-B1-01..03, F-012-C2-01..04, and F-013-C3-01. Codex timeout fallback now routes through the shared renderAdvisorBrief, the OpenCode bridge silently fails open in disabled mode, the dead alternate renderer is removed, graph-causal conflict signals survive lane emit, projection distinguishes derived triggers from derived keywords, fusion adds a token-stuffing dispersion guard, ambiguity is computed from ranking score across tied clusters, and review-plus-write prompts route to sk-code."
 trigger_phrases:
   - "F-006-B1"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 6: broad-scope-timeout-caveat [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 6: broad-scope-timeout-caveat"
 description: "Additive doc edits recording Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation across sk-prompt-models + cli-opencode, plus repair of stale kimi-k2.6 references; verified by the card-sync guard + strict validate."
 trigger_phrases:
   - "kimi k2.7 timeout caveat plan"

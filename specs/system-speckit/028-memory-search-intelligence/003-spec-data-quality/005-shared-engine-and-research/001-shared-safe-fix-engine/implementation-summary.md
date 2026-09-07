@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. The shared safe-fix engine is scaffolded with spec, plan, tasks and checklist. No code is built yet."
 trigger_phrases:
   - "shared safe-fix engine"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3cef57bccffa1aa4a0f72125b3ac227aa95b34f6819bb1c3251fe88f1e243db8"
       session_id: "template-session"
       parent_session_id: null
     completion_pct: 0

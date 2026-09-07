@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 008 Search Quality Tuning [template:level_2/spec.md]"
+title: "Feature Specification: 008 Search Quality Tuning"
 description: "Resolve five findings F-011-C1-01..05 from packet 046 across the search-quality stress harness, the conditional rerank gate, the cross-encoder candidate window, the CocoIndex calibration overfetch, and the Stage 2 learned blend. Adds NDCG/MRR rank-sensitive metrics, lowers the rerank floor for weak-margin/disagreement triggers, enforces provider maxDocuments before the cross-encoder call, graduates a bounded adaptive overfetch, and promotes a small guarded blend of the learned Stage 2 model."
 trigger_phrases:
   - "F-011-C1"

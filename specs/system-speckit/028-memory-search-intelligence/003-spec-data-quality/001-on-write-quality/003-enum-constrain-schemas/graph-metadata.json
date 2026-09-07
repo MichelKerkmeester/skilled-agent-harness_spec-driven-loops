@@ -38,8 +38,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/commands/doctor/scripts/route-validate.py",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/commands/doctor/scripts/route-validate.py"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "route-validate.py",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/route-validate.py",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
     "created_at": "2026-06-27T17:15:33.334Z",
-    "last_save_at": "2026-08-30T15:39:35.538Z",
+    "last_save_at": "2026-09-07T16:18:16.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80b1b8b97fd43363770fd14c8097dacac4c8841c4f729292fec998258c587b10",
+    "source_fingerprint": "sha256:1c499e4f31e9468014e13c9d116f902e718fb74cbaccccabad3a9340dd9b7806",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2958a20a4b68723b22866d7d2869282f05e94b672bbd18d23b7c0017d459c62f",
-      "plan.md": "c884671ee5b88dacd0efbe5285ac6ceb33ab670b2424711e0b26ef8826019e44",
-      "tasks.md": "d87f5c6d07229fced3b4c4fa9b19c096f4cd531358b1fa982c8d8d17b1bd0806",
-      "implementation-summary.md": "e3070826690f043ef1a4d893f31197d547759974e2a82be90350b6199f07708e"
+      "spec.md": "6c0d32e71fbeb24085eb95cbfeeaca499b8d906f03ae155802eb34894d76decb",
+      "plan.md": "9b458406b030eb75b2d930dac72365c9f4fb22255e699c3260bf186be966a096",
+      "tasks.md": "36e1ac6a14f4d1e6e5033f83209642c37e93657a980caec20df9fb1fb2fbd908",
+      "implementation-summary.md": "df7409ce17e128535302ef43dd03142b48db73084ffd1419e98720352284a4a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Advisor Self-Recommendation Penalty Contract [template:level_2/plan.md]"
+title: "Implementation Plan: Advisor Self-Recommendation Penalty Contract"
 description: "Plan for documenting the implicit advisor self-recommendation penalty with a durable WHY comment and locking its behavior with a regression test that fires it in the production-default state, with no change to the penalty value or routing logic, proven by the advisor build typecheck and a confirmed break-on-removal of the test."
 importance_tier: "important"
 contextType: "general"

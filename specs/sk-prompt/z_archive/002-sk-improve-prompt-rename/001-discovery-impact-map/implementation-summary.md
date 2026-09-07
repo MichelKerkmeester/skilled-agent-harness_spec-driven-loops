@@ -21,7 +21,7 @@ _memory:
       - "tasks.md"
       - "spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f9ef90d47d5e502459cf38c92f92a71122a052b2bc1ddd8dbc70471598a8ddd2"
       session_id: "codex-2026-05-06-082-001"
       parent_session_id: null
     completion_pct: 100

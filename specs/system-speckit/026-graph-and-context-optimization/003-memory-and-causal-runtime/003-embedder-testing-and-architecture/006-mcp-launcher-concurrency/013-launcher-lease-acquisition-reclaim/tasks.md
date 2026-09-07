@@ -1,5 +1,5 @@
 ---
-title: "Tasks: launcher lease acquisition-time reclaim [template:level_1/tasks.md]"
+title: "Tasks: launcher lease acquisition-time reclaim"
 description: "Open tasks for launcher acquisition-time stale lease reclaim."
 trigger_phrases:
   - "launcher lease acquisition reclaim"

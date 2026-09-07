@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: repo-hygiene-and-residue [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 2: repo-hygiene-and-residue"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

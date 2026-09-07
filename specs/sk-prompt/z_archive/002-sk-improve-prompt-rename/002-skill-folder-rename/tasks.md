@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: skill-folder-rename [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: skill-folder-rename"
 description: "Completed Phase 002 task ledger for the sk-improve-prompt to sk-prompt folder rename."
 trigger_phrases:
   - "tasks"

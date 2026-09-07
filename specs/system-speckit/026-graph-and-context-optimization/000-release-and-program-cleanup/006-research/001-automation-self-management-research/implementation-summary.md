@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Automation Self-Management Deep Research [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Automation Self-Management Deep Research"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Completed packet-local deep research artifacts and validation for the automation reality map."
 trigger_phrases:

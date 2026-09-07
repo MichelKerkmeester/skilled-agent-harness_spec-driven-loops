@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: B2 Guarded data-quality Route on /doctor [template:level_2/spec.md]"
+title: "Feature Specification: B2 Guarded data-quality Route on /doctor"
 description: "/doctor has no data-quality route, so the spec corpus has no interactive front door for running the shared DQ detectors and applying safe fixes. This phase adds a data-quality route modeled on the code-graph route shape, diagnostic by default and mutating behind --confirm and --dry-run over the same B1 safe-fix engine."
 trigger_phrases:
   - "doctor data quality route"

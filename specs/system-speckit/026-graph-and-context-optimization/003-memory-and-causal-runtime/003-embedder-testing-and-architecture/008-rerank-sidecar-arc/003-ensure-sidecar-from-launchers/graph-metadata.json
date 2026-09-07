@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After phase 002 ships a runnable sidecar, neither MCP launcher knows to start it or attach to it",
     "created_at": "2026-05-23T11:55:15.607Z",
-    "last_save_at": "2026-08-30T15:39:31.078Z",
+    "last_save_at": "2026-09-07T16:17:52.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06486669e98dd4fe63b308e7cf88e1d90cf0938e11fa82c88d6fe3a115fb5e93",
+    "source_fingerprint": "sha256:bd1b2d4917a7b8ee1344fc61a8a199ea9ab5de52f7dd46e638a54321b82202a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba88501602c9d0f93d4477c174a8488ada016628442cbda7344fc82b5c37f385",
-      "plan.md": "3f30366bcdbb30b9068013fa70661c33f755ca06280843fd9c7b949270b1e9d2",
-      "tasks.md": "646cbb72b96df7b43f88c0248ed08aad7f2e5dd8da919cc1836a12a3b992cf66",
-      "implementation-summary.md": "68bf21f473ed810d1090651d96609faa590077ba2f30a6512ebff3b9ef008394"
+      "plan.md": "80d3c69d30a111db3296a806dba950263626191c77ac49ab4e66c127079b209e",
+      "tasks.md": "e0432d7275497f2649483465c5b63e1d967cf90c83e44420ff8e4d3defcd52bf",
+      "implementation-summary.md": "1255b7a9b2383c7de195ca2aef5332b53b52f55a83b468e30f861f8fdf4030b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

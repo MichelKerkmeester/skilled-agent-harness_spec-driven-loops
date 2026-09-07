@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Completed fix: deep-research init no longer eagerly creates archive_root; all four deep-loop restart branches archive lazily and guarded; regression tests added; 5 empty archive dirs removed."
 trigger_phrases:
   - "deep loop archive summary"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
       - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:21462ba18416c934f9b5579431ba98b19bcc30813abc2ca2f91aa4a476417f22"
       session_id: "deep-loop-archive-fix-20260529"
       parent_session_id: null
     completion_pct: 100

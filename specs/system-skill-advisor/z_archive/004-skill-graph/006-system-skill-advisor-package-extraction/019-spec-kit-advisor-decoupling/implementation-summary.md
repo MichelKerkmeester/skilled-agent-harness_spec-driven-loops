@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Full spec-kit advisor import decoupling [template:level_3/implementation-summary.md]"
+title: "Implementation Summary: Full spec-kit advisor import decoupling"
 description: "Import isolation is implemented: spec-kit no longer imports advisor source from its MCP server tree, advisor tests pass, and memory regressions are classified as baseline-red."
 trigger_phrases:
   - "019 implementation summary"

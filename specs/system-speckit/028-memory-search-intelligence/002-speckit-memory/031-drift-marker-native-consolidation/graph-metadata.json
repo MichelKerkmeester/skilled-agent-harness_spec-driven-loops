@@ -42,18 +42,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
-      "scripts/git-hooks/drift-marker-write.ts",
-      "scripts/tests/drift-marker-write.vitest.ts",
-      "scripts/evals/check-no-mcp-lib-imports.ts",
-      "scripts/check-api-boundary.sh",
-      ".opencode/skills/system-spec-kit/scripts/git-hooks/drift-marker-write.ts",
-      "scripts/spec-folder/generate-description.ts",
-      "scripts/graph/backfill-graph-metadata.ts",
-      "api/index.ts",
-      "scripts/dist/git-hooks/drift-marker-write.js",
-      ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts",
-      ".opencode/skills/system-spec-kit/scripts/check-api-boundary.sh"
+      "api/index.ts"
     ],
     "entities": [
       {
@@ -87,57 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-drift-marker.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
-        "source": "derived"
-      },
-      {
-        "name": "drift-marker-write.ts",
-        "kind": "code",
-        "path": "scripts/git-hooks/drift-marker-write.ts",
-        "source": "derived"
-      },
-      {
-        "name": "drift-marker-write.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/drift-marker-write.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-no-mcp-lib-imports.ts",
-        "kind": "code",
-        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-api-boundary.sh",
-        "kind": "script",
-        "path": "scripts/check-api-boundary.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-description.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/generate-description.ts",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": "scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
         "name": "index.ts",
         "kind": "code",
         "path": "api/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "drift-marker-write.js",
-        "kind": "code",
-        "path": "scripts/dist/git-hooks/drift-marker-write.js",
         "source": "derived"
       },
       {
@@ -199,11 +140,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Entrypoint",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Shrink",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lock",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
     "created_at": "2026-07-09T20:28:44.767Z",
-    "last_save_at": "2026-08-30T15:39:35.204Z",
+    "last_save_at": "2026-09-07T16:18:11.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f67fa539aebdd2e257f4e96c8f8b33aea7c5673c0935bce5bddf0c368f64128c",
+    "source_fingerprint": "sha256:983672386014c9c424808e3c935822eedd437c47b22a9f2a22136517d69ae0af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49484fc8b62b4b97ea5f51f3866b3d5a81ee4aa79a6db8eb6d3fab9c7da84a39",
+      "spec.md": "f57193e1241625e8cd4843eb562254b007d8ef812cc6a439e3982c48893dfe3c",
       "plan.md": "cafe26f54c50bba7f5ebcc96cf738d8923504563d34f4f994a148cd86a2b8932",
       "tasks.md": "48af9985bf16dca1c9d7fe77841fe1403d312181dc2b52ba2717ecc076556dbe",
       "decision-record.md": "2a85363cde575c9d2efed7b0dd5ac849d6a9ba40ee56b80b41fcae9094d05330",
-      "implementation-summary.md": "bc5eba20e884eec78081958e0c39a356105c8a0c81030871e419cd4ddfb7a967"
+      "implementation-summary.md": "a4827fc427c5f6e4450e3315f06e284357010df6ccaeddaff447ebbafe25b0fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

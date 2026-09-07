@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: 005 Post-Benchmark Improvement Research [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 005 Post-Benchmark Improvement Research"
 description: "Status COMPLETE for a research-only deliverable. The 10-angle study diagnosed the benchmarked off-corpus false-positive as a score-calibration miss not an envelope-fidelity miss, converged on a lexical-grounding floor as the root-cause fix, cross-model verified the load-bearing claims, and produced 12 ranked proposals with a build order. Findings live in research/research.md. No calibration or scorer or command or lever code was modified."
 trigger_phrases:
   - "005 improvement research summary"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "research/research.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:20360775a6e2c65c9276a5973e8523b876a31367ee2eba438c039af1c79fae73"
       session_id: "2026-06-22-summary-030-vague-query-improvement-research"
       parent_session_id: null
     completion_pct: 100

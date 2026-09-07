@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: factory-shard-fallback-for-hf-voyage-openai [template:level_1/spec.md]"
+title: "Feature Specification: factory-shard-fallback-for-hf-voyage-openai"
 description: "Factory provider resolution was reviewed for hf-local, voyage, and openai ADR-012 shard fallback parity. No code patch is required because only Ollama has a persisted active-embedder database resolver in factory.ts."
 trigger_phrases:
   - "factory shard fallback"

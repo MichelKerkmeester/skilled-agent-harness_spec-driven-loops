@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:849a670ba6923aa32cdbb1af9c9804a6138d9a1c1f20c8b2c56d532511bd8119"
       session_id: "scaffold-041-cli-pi-devpass-glm-route"
       parent_session_id: null
     completion_pct: 0

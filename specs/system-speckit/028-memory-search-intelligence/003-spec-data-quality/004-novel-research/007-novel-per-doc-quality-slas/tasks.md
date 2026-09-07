@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Per-Doc Quality SLAs [template:level_2/tasks.md]"
+title: "Tasks: Per-Doc Quality SLAs"
 description: "Task Format: T### [P?] Description (file path). PLANNED scaffold, no task started."
 trigger_phrases:
   - "per doc quality sla tasks"

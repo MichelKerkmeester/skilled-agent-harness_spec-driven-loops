@@ -195,7 +195,7 @@
     ],
     "causal_summary": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
     "created_at": "2026-08-30T09:55:28Z",
-    "last_save_at": "2026-09-06T07:05:04.711Z",
+    "last_save_at": "2026-09-07T16:19:10.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b91fab7499f3ee2efab1cf1b38f96f4165f3f09e893acf7992570ae8bd69dd4",
+    "source_fingerprint": "sha256:ed8d862d295d83d825f1ce1dd5c7e6d300759eb92249eb593799e94603e1065e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a11eac2fe28cbd1504d607c49d7a3e77c299962332a2a0ee6fe1bde774ec383",
       "plan.md": "914e7d0cd7048c31654944dedd98b4c804e6bb35b731e091d044579579d4872b",
       "tasks.md": "68560e023b7cbc6c430f52520d5e98bdf1074041aed91c8d6a1758da5654718a",
-      "implementation-summary.md": "2b878ee4556f721dea9c92fc1caf6df4e1777b5b869c4ac842f06875b6ef79dd"
+      "implementation-summary.md": "632b802ad3de6560bf94da021a7f790787b60c6419a8db0545396155429faf61"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. Implemented on-branch 2026-07-05 (Wave D + A′ + B2); both acceptance tests met.",
     "created_at": "2026-07-05T05:43:02.602Z",
-    "last_save_at": "2026-08-30T15:39:27.304Z",
+    "last_save_at": "2026-09-07T16:17:29.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a8d41bf45a3234dc4fa56b188c1bf2efa4a4a8e20ea93972bc0b1aa522fb175",
+    "source_fingerprint": "sha256:53d3f5a9e2c2aa0b014bebdefedef47622eac15c25b97221536f846fb7b195ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87d37798fbde75b67f2d74507cfe455b63da68b20d7c9031643dd49d69950e36",
-      "plan.md": "5f6a91c948ffc1bb180148f4a38eb128053b236d2bcd0a214f444a28f2ec8adb",
-      "tasks.md": "11fb59481861dac55e4b5a484df834135c3e98a9bb82bdfc138f932292906d6a",
-      "decision-record.md": "e42c32d3ee3990af91a34a3e70fe8ee64f064a99d6d435d99f383c2e883df426",
-      "implementation-summary.md": "cfdaeff6b0a73ecb5a1b4b854d60f9cc8fd8492b037cd0c99955d9d9ee2bb9b1"
+      "spec.md": "64d15560b7ce6c299e36ff067c92c98d1a7b727dab197db8233f52330d10a964",
+      "plan.md": "32222adc5aeb4beefb72e3247a9f3919ad386ebffd33848a9514105338e415c0",
+      "tasks.md": "5679e3c0e5cf29ded57326729f37fac7e05c6a44db032130ba04efc39fb44469",
+      "decision-record.md": "14af8c230310aef929aaa5e43b879b428497de996417128bc8708f14e143b155",
+      "implementation-summary.md": "44112d8e293a01bfc1cb3c63d573740cfa3de4943775f5dd5c8a695a44157875"
     },
     "last_active_child_id": null,
     "last_active_at": null

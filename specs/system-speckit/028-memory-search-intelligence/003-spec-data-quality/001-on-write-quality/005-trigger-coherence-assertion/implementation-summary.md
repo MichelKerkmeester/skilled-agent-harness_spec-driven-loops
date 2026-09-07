@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will add a warn-tier rule asserting subset coherence of trigger_phrases across spec.md frontmatter, description.json, and graph-metadata.derived. No code change has landed."
 trigger_phrases:
   - "trigger phrases coherence"

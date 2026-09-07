@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Router Consistency Hardening [template:examples/level_1/tasks.md]"
+title: "Tasks: Router Consistency Hardening"
 description: "Task ledger for qualifying bare MCP tool names across 7 routers and correcting the sk-doc command_template router standard."
 trigger_phrases:
   - "router consistency hardening tasks"

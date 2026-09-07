@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 30: Client-Side MCP Reconnect Survival [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 30: Client-Side MCP Reconnect Survival"
 description: "Evaluator-first: instrument the frontend transport drop (P0) before building any mitigation, then a measured keepalive (P1), a stdout-hygiene confirm (P2), and an HTTP/SSE transport ROI note (P3)."
 trigger_phrases:
   - "client reconnect plan"

@@ -10,7 +10,7 @@
     "skill-advisor",
     "surface"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.132Z",
+  "lastUpdated": "2026-09-07T16:14:46.605Z",
   "specId": "008",
   "folderSlug": "fix-skill-advisor-quality",
   "parentChain": [
@@ -22,5 +22,6 @@
   "memoryNameHistory": [
     "01-05-26_08-18__closed-8-advisor-quality-findings-f-006-b1-01-03.md",
     "01-05-26_08-20__closed-8-advisor-quality-findings-f-006-b1-01-03.md"
-  ]
+  ],
+  "level": "2"
 }

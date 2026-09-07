@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Flag Graduation Benchmark [template:level_2/tasks.md]"
+title: "Tasks: Flag Graduation Benchmark"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "flag graduation benchmark"

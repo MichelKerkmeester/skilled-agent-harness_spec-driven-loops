@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/036-recorded-findings-closure/005-provenance-title-sweep"
-    last_updated_at: "2026-09-07T00:00:00Z"
+    last_updated_at: "2026-09-07T21:30:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed every criterion"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,11 +72,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `grep -rIl '\[template:level' specs` returns only paths under the four excluded groups
-- [ ] `rules/check-placeholders.sh` reports a title carrying the token as a fail under a third named class
-- [ ] `002-valid-level1`, `003-valid-level2` and `004-valid-level3` validate strict clean under the new class
-- [ ] The runtime and CLI vitest projects, the goldens and `npm run check` pass with no new failure
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this child
+- [x] `grep -rIl '\[template:level' specs` returns only paths under the four excluded groups
+- [x] `rules/check-placeholders.sh` reports a title carrying the token as a fail under a third named class
+- [x] `002-valid-level1`, `003-valid-level2` and `004-valid-level3` validate strict clean under the new class
+- [x] The runtime and CLI vitest projects, the goldens and `npm run check` pass with no new failure
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,9 +93,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| 767 titles stripped in 250 packets, 482 metadata files regenerated, rule class and fixture added | Done | `implementation-summary.md` Verification |
+| Gates | Done | validation lane 98, 31 and 84; goldens and registry coverage; progressive validation 50; both projects green |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| The first regeneration list reached vendored copies and scratch backups inside archived packets | Every change under a `node_modules`, `scratch` or `.backup-` path was reverted; those copies are not packet documents and keep their titles as found |
+| The never-touched fixture was restored | The sweep's second pass had reached it through the fixture tree; it is byte-identical to HEAD again and still fails its own rule |
+| Quoted transcripts still contain title lines with the token | Research iterations, prompt captures and evidence logs quote old documents; they are bodies, not frontmatter, and the rule scans a packet's root documents only |
 <!-- /ANCHOR:log -->

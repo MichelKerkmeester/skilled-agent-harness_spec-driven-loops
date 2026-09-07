@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will add one safe fence-aware prose-style detector for the HVR voice on spec-docs. No code change has landed."
 trigger_phrases:
   - "hvr style"

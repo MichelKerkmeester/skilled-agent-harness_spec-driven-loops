@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Manual Playbook Sweep Findings Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: Manual Playbook Sweep Findings Remediation"
 description: "Per-finding root-cause hypotheses and proposed fixes, grouped by theme, updated dynamically as new FAILs are confirmed."
 trigger_phrases:
   - "playbook sweep findings remediation plan"

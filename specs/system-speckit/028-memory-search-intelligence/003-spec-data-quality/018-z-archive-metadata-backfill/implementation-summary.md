@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Hand-authored lean cold-tier container nodes for the nine z_archive roots so each archive is a discoverable graph node excluded from default recall. Sixteen files are committable; the two under a gitignored external tree are on-disk only."
 trigger_phrases:
   - "z_archive container summary"

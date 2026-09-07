@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Automatic Drift Self-Healing [template:level_2/tasks.md]"
+title: "Tasks: Automatic Drift Self-Healing"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "automatic drift self-healing"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Route the cli-pi GLM-5.3-Flash fan-out literal through the DevPass LLM Gateway [template:level-1/spec.md]"
+title: "Feature Specification: Route the cli-pi GLM-5.3-Flash fan-out literal through the DevPass LLM Gateway"
 description: "The deep-loop fan-out could reach GLM-5.3-Flash only through opencode-go or OpenRouter, both of which bill per token, while the operator holds a flat-price DevPass plan whose GLM route is the only one carrying both xhigh and max. One literal maps to one provider, so this packet moves the bare glm-5.3-flash literal to llmgateway and accepts the opencode-go route becoming direct-dispatch only."
 trigger_phrases:
   - "cli-pi devpass glm route"

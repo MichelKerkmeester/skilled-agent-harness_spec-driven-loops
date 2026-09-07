@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Drift Gate and Shared Synopsis Extractor [template:level_2/tasks.md]"
+title: "Tasks: Drift Gate and Shared Synopsis Extractor"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "generated metadata drift gate"

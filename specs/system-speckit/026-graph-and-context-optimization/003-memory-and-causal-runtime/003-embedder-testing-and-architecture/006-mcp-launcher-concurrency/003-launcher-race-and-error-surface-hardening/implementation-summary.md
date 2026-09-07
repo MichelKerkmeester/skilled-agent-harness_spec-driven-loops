@@ -25,7 +25,7 @@ _memory:
       - ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:26325faa23f32f9ce8ac5f7c6e47353ad72a8486e4b4c112da30d0f9bd9dcce6"
       session_id: "008-lease-hardening-from-review"
       parent_session_id: null
     completion_pct: 100

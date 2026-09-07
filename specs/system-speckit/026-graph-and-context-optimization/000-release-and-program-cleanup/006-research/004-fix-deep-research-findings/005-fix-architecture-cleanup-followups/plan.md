@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 006 Architecture Cleanup Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 006 Architecture Cleanup Remediation"
 description: "Apply 15 surgical refactors and add tests for findings F-016-D1-01..08, F-017-D2-01..03, F-018-D3-01..04. Order is D3 (low risk) -> D2 (medium risk) -> D1 (highest risk for build breakage)."
 trigger_phrases:
   - "F-016-D1 plan"

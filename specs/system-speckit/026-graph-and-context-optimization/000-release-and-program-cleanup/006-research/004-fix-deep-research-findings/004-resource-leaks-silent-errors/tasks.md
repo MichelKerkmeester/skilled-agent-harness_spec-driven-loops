@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 005 Resource Leaks And Silent Errors Remediation [template:level_2/tasks.md]"
+title: "Tasks: 005 Resource Leaks And Silent Errors Remediation"
 description: "Task list for closing F-003-A3-01..03 and F-004-A4-01, F-004-A4-04. Five surgical edits + 11 new vitests + 1 existing-test update + validate + stress + commit + push."
 trigger_phrases:
   - "F-003-A3 tasks"

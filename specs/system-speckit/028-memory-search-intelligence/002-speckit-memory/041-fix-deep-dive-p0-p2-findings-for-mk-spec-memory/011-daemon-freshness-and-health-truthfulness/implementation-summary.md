@@ -22,7 +22,7 @@ _memory:
       - "bin/spec-memory.cjs"
       - "mcp_server/handlers/memory-crud-health.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f0ac96f92388b80cdc62e333950c305f95f870e35046bd69163bcf510ebe8ad0"
       session_id: "2026-07-03-016-011-implementation"
       parent_session_id: null
     completion_pct: 100

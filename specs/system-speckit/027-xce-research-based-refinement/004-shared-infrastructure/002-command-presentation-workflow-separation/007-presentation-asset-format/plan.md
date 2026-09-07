@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Presentation Asset Format — .md to .txt [template:examples/level_1/plan.md]"
+title: "Implementation Plan: Presentation Asset Format — .md to .txt"
 description: "Plan to rename command presentation assets to .txt and update all references and generators."
 trigger_phrases:
   - "presentation asset format plan"

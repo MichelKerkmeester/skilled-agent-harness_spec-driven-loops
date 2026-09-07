@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: lease-hardening-from-review [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: lease-hardening-from-review"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

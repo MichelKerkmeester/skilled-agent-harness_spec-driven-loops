@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Added a generated-metadata drift gate and one shared synopsis extractor used by both the description and causal_summary fields, with a persisted source_doc_hashes freshness key, all behind the default-OFF SPECKIT_GENERATED_METADATA_DRIFT_GATE flag and a grandfather report mode. 11-case vitest passes, typecheck and touched-module regression are green, validate.sh --strict exits 0."
 trigger_phrases:
   - "generated metadata drift gate"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts"
       - ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c0e41f7862d81b4d991ddf3664f66257ba9d65e5d78646fd1aa764ed7c597f12"
       session_id: "markdown-session"
       parent_session_id: null
     completion_pct: 100

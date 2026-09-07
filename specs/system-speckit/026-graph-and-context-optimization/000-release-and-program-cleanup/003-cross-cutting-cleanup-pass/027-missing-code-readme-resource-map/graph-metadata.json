@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The release-cleanup packet needed bounded code-folder README coverage",
     "created_at": "2026-05-02T13:46:02Z",
-    "last_save_at": "2026-08-30T15:39:28.095Z",
+    "last_save_at": "2026-09-07T16:17:31.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e2faf9c7a6b04dc09b7967435db9c4f5f704336d704b1c71fe49883fbc6bda26",
+    "source_fingerprint": "sha256:1ddd1510e7b80854ba807933402c45ce20bd8f46eeb99241bb48c11cc6817680",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f09785997b5e384e4251fdf0f1470a580d682cd1159aa0e0ef2ffbfafe34c041",
-      "plan.md": "2563c622093412055dc9157842bbd01316e3e30f2808d329b07c9c3b5c119045",
-      "tasks.md": "a5198352311166ea3ef1333ea14bb65403f04e64faacdf1d739472846f4a4396",
-      "implementation-summary.md": "037771d217a35275a4b9698ed46fe87491bade0548f4095fd7798e676d80a0ef",
-      "resource-map.md": "17371f7525e31b6061059f9072797e72be583105e46cf331b4cf8e73eda3591a"
+      "spec.md": "deff92d354199242db0a0cb1c1760afc73ef89bd21dbc75909aabf809770f03d",
+      "plan.md": "92cf4bb5b4ffee47094ceeefe0d5164cae1aff258366569aee61857d54ea5acc",
+      "tasks.md": "18a8da036b3d8bb3d5a4febc7fe43d72d7de424d8c6297325559a05d6735fa52",
+      "implementation-summary.md": "0eea7caabc8957bc4b06bc1e078c5591e662fe6c4a39ad04dc816365407be74c",
+      "resource-map.md": "35c53b871894cfb3fe6a77d2d6b5ffd227e6d87987ee7f6a78368adb86e1d7d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

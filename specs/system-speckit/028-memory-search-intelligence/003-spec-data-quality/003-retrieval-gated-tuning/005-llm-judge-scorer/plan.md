@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: C5 LLM-as-judge quality scorer [template:level_2/plan.md]"
+title: "Implementation Plan: C5 LLM-as-judge quality scorer"
 description: "Compute a real LLM-as-judge semantic quality score on the write path, persist it into the existing quality_score column, route it into the already-shipped qualityScore multiplier behind a default-off flag, and prove its marginal value over the form-only scorer before any promotion."
 trigger_phrases:
   - "llm judge quality scorer"

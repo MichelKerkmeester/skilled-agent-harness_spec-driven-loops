@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Drift-Marker Native Consolidation [template:level_2/spec.md]"
+title: "Feature Specification: Drift-Marker Native Consolidation"
 description: "The Layer-2 git-hook drift-marker writer (.opencode/scripts/git-hooks/lib/memory-drift-marker.sh) re-implements four pieces of logic that already exist as tested TypeScript in mcp_server: DB-directory-override precedence (missing config.ts's boundary-enforcement check), the suspect/marker dedup-key format, the atomic temp-file-plus-rename write, and the lock-acquire/stale-reclaim pattern (a different, untested 45s staleness constant vs. 5 minutes, and no owner-liveness check). Fix: replace the embedded heredoc JS with a real call to a compiled, tested Node entrypoint that imports the four existing TS helpers directly."
 trigger_phrases:
   - "drift marker native consolidation"

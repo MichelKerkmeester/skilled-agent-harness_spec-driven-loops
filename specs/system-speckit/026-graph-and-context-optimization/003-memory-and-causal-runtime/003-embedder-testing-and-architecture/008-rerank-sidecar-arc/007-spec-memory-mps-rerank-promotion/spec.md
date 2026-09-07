@@ -1,5 +1,5 @@
 ---
-title: "Spec: spec-memory MPS rerank promotion candidate [template:level_1/spec.md]"
+title: "Spec: spec-memory MPS rerank promotion candidate"
 description: "Re-evaluate whether spec-memory's SPECKIT_CROSS_ENCODER default can flip ON if Qwen3-Reranker-0.6B runs on Apple Silicon MPS instead of CPU. Phase 004 and the 2026-05-20 re-run both showed CPU exceeded the MCP rerank-gate timeout on 77 percent of probes; MPS is the cheapest experiment that could plausibly clear all three promotion gates."
 trigger_phrases:
   - "007 mps rerank"

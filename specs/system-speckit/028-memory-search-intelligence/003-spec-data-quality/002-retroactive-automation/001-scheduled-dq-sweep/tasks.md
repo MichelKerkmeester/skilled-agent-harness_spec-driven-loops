@@ -1,5 +1,5 @@
 ---
-title: "Tasks: B1 Scheduled DQ Sweep [template:level_2/tasks.md]"
+title: "Tasks: B1 Scheduled DQ Sweep"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "scheduled dq sweep"

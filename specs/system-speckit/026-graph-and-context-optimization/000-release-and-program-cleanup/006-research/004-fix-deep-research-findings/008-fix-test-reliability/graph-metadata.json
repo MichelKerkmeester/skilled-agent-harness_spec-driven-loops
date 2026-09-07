@@ -42,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated runs",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.813Z",
+    "last_save_at": "2026-09-07T16:17:37.170Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e638cf316ba8ca4c05097eecae845c99ab2a8ffc376ac5f54a1fb8cbfe8f6e98",
+    "source_fingerprint": "sha256:c2933d7f29400ab59e33f7ea8d6c623151a10312c31ad6bbeb23d3a541860cf8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9aecc5e757c80b4fb2afd57af8e5959d6d8a29648e6e4d7268c4670e8c81af50",
-      "plan.md": "82564a21b6aef4db6cd3e38761de73db0f1e45fb21967148ce4c71fef7ba430b",
-      "tasks.md": "17e2eab91c44a81719939d68dd41ff6e8b4d8850cbdcef4bab9261e6089ec25d",
-      "implementation-summary.md": "40c7b9243e689f4d9b12202aa377a87d0d39b8ef6c279d18a1768411b82ea61f"
+      "spec.md": "d7536f42212b4f50addc5260a95971996d9a84d2f76fe1e6abec24e54aa8c6a6",
+      "plan.md": "02b2bb2c089608df1ab2f2093bc74e8120c576d18d025de1f89c22d3be3dfc17",
+      "tasks.md": "7c4fcf078de02addfae6b053fd3241f9470647a2703605e96d538c3032e9a21c",
+      "implementation-summary.md": "d087cc9c892ecd3c1aaf71af0db5837209d31f1772409da152a367a285f81a20"
     },
     "last_active_child_id": null,
     "last_active_at": null

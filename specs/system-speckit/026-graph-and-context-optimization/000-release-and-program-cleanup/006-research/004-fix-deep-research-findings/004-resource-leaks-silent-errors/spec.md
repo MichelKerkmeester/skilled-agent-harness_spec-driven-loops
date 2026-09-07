@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: 005 Resource Leaks And Silent Errors Remediation [template:level_2/spec.md]"
+title: "Feature Specification: 005 Resource Leaks And Silent Errors Remediation"
 description: "Closes 5 findings F-003-A3-01..03 and F-004-A4-01, F-004-A4-04 from packet 046. Plugs three resource leaks (target-refresh path leak, unbounded diagnostics array, unbounded reindex-slot queue) and surfaces two silent error paths (SQLite projection fallback and malformed graph-metadata) so operators see degradation reasons instead of disappearing watch targets."
 trigger_phrases:
   - "F-003-A3"

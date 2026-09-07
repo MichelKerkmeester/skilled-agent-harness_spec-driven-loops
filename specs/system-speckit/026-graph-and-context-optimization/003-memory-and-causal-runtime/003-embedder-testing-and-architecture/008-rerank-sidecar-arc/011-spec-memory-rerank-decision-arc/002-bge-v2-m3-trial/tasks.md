@@ -1,5 +1,5 @@
 ---
-title: "Tasks: bge-reranker-v2-m3 trial [template:level_1/tasks.md]"
+title: "Tasks: bge-reranker-v2-m3 trial"
 description: "T001-T016 covering allowlist config, pre-fetch, wire-up, benchmark, verdict."
 trigger_phrases:
   - "011/002 tasks"

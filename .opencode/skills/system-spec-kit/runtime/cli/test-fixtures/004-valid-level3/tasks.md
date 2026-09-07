@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Tiny Catalog Sync [template:level-3/tasks.md]"
+title: "Tasks: Tiny Catalog Sync"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
 trigger_phrases:
   - "tiny catalog sync"
@@ -104,7 +104,7 @@ CORE TEMPLATE (~60 lines)
 -->
 
 ---
-title: "Verification Checklist: Tiny Catalog Sync [template:level-3/checklist.md]"
+title: "Verification Checklist: Tiny Catalog Sync"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
 trigger_phrases:
   - "tiny catalog sync"

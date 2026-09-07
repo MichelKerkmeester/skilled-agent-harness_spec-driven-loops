@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode [template:level_1/tasks.md]"
+title: "Tasks: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

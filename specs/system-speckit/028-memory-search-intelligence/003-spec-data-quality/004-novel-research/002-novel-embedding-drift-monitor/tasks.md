@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Novel Embedding-Drift Monitoring plus Alerting [template:level_2/tasks.md]"
+title: "Tasks: Novel Embedding-Drift Monitoring plus Alerting"
 description: "Task breakdown for the per-chunk regime fingerprint, the per-regime census and the report-only drift detector that guards the re-index path."
 trigger_phrases:
   - "embedding drift monitor tasks"

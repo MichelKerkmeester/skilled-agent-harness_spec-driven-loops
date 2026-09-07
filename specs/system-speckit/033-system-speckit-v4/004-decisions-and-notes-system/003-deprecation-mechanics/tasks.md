@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: deprecation-mechanics [template:level-1/tasks.md]"
+title: "Tasks: Phase 3: deprecation-mechanics"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "phase three deprecation tasks"

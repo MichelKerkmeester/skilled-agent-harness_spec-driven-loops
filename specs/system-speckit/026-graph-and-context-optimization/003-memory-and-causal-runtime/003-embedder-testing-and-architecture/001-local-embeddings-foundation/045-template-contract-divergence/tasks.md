@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 044 Template contract divergence [template:level_2/tasks.md]"
+title: "Tasks: 044 Template contract divergence"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "044 tasks"

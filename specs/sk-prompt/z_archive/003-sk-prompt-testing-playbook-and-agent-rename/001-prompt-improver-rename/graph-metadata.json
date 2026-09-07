@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`)",
     "created_at": "2026-05-06T13:19:25Z",
-    "last_save_at": "2026-08-30T15:39:19.065Z",
+    "last_save_at": "2026-09-07T16:17:12.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:880c2a40c2aad6459c542d576b2e8ad358cb16ddda3cf26988693a750fc394cb",
+    "source_fingerprint": "sha256:7f5cf23f863b17e03191ac3c20d4bdc09bf3f0e1246eb74882f6fcf08607a6eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55eea95ba3be6a8d568471bc0b9ea4bf3f09a45065534ef42aab9ce943523958",
-      "plan.md": "e91e3d79edd84a18c04c6b039af4d4ae07ef83130a4798ef858211822876d961",
-      "tasks.md": "9c9a1f97a4885154ad9d73a21113e750443069c9229455da7e0d62fd4438e36e",
-      "implementation-summary.md": "1d30b1540da347c5b00dccf1781823c7202a6b2d1aef014c8feeb6fe886593cc"
+      "plan.md": "b6443f0cb961824c6896469ff5122f8dac00abbf8622c66d6886cab5c53ada5a",
+      "tasks.md": "822f83a0e7513aa8f856b82232e4e04576fc06ec86411307e0c5c9350d1905af",
+      "implementation-summary.md": "6874ef73d36fc347bb2d046177ee0e8cba3c81028de223c43c23b6c637d18527"
     },
     "last_active_child_id": null,
     "last_active_at": null

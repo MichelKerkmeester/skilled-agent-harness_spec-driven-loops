@@ -44,10 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      "scripts/rules/check-ac-coverage.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -193,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extraction",
     "created_at": "2026-06-27T17:15:34.402Z",
-    "last_save_at": "2026-08-30T15:39:35.565Z",
+    "last_save_at": "2026-09-07T16:18:18.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb5a55060b8888df9a2e90dacd2a087799c624a058585a6d32ed779863285531",
+    "source_fingerprint": "sha256:95c9a03ea16136680de2930a0e3bce82fecb25b7f5fb06180bff0d3dc19f4ec0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "309a8ff3b2b783026231539ade1e1a3cfed4b772f731b41924aff0f872e88b41",
-      "plan.md": "98ad075035183decd7b224308467007fc3e5a0375f76fe98c60a232486afe465",
-      "tasks.md": "433277049332c67b42fa2224c2d2b4fab853a873519a68a96c7785d892011e5a",
-      "implementation-summary.md": "6daf77dfad1d4fa549ab872362244abf938174c13fcd269d5b8073a6a9f19e5f"
+      "spec.md": "8d46a1612448320faf5840bd5f34cf5df916b50e71b704fb4d68dc90b362047f",
+      "plan.md": "8d029340baba9ccc4cf05c9365bfacf8238bb40679b8527f794bfda9cd844d48",
+      "tasks.md": "33bea98f34ab823c4523f6a7e8074e5c897f51195f8bb0c3c2cd606dc1cb8c9f",
+      "implementation-summary.md": "885875e7a5c259eab51f4e355a3db104916d460319c1a4c2b8826f8efab4a635"
     },
     "last_active_child_id": null,
     "last_active_at": null

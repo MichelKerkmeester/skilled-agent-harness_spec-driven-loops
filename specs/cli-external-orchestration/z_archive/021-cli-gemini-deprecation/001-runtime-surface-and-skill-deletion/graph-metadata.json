@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manifests, and MCP setup guidance",
     "created_at": "2026-06-05T06:49:52Z",
-    "last_save_at": "2026-08-30T15:39:08.650Z",
+    "last_save_at": "2026-09-07T16:16:53.282Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f498a3360ba68b78232a09b93ce376dc83799d6aa3d3a4076d6862458231235a",
+    "source_fingerprint": "sha256:63764a9e017a05d275ead1418c7203000e02f79effe074a409628acec4f9f009",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3ca49f0ea4c30a771f8c996985c597d683b18b3162900a88f440c779dfbe5170",
       "plan.md": "6d597777ea1a7f7fcd2813d85cd69af1b9d9df6121047e40689804bb2e755fd2",
       "tasks.md": "cc6df12e9fe371899165b06776ed16b1c9c51ce84d6a9d128c9b5cfee2472434",
       "decision-record.md": "d9181d39d6dceed10050fd0781e7339100a1bc5b0eeebdcebc6bbc22fa296ab7",
-      "implementation-summary.md": "e382bae9de930eb57464762b9ec991e1ab29be501d66b7589329cd8f6e623997",
+      "implementation-summary.md": "61b59d3af9deef3eefc14b68e2ab12ad018a54dbfc5a5d1c278788b5487dc584",
       "resource-map.md": "e8dfd62ed22d1d33113db6a8588e29365c607dde2dcfef3227deb1e3b836b4cc"
     },
     "last_active_child_id": null,

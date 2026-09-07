@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Tri-System Deep Research Program [template:examples/level_1/implementation-summary.md]"
+title: "Implementation Summary: Tri-System Deep Research Program"
 description: "Delivery evidence for the fifty-angle research program: scaffolding complete, iterations in flight."
 trigger_phrases:
   - "tri-system research summary"

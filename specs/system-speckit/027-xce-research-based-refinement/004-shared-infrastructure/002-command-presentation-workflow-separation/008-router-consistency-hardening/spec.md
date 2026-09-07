@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Router Consistency Hardening [template:examples/level_1/spec.md]"
+title: "Feature Specification: Router Consistency Hardening"
 description: "Qualify the bare/mixed MCP tool names left in 7 command routers' allowed-tools, and correct the sk-doc command_template §11 router standard so it accurately describes the two router variants."
 trigger_phrases:
   - "router consistency hardening"

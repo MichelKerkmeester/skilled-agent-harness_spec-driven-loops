@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:657e839ea544118931d79f720374f258e902439bce79d4c3ec6d80e59fa6b4b9"
       session_id: "markdown-session"
       parent_session_id: null
     completion_pct: 100

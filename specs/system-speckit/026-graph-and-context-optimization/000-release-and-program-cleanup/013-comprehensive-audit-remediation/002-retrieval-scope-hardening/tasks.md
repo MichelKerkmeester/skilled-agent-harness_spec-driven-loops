@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: retrieval-scope-hardening [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: retrieval-scope-hardening"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "retrieval scope tasks"

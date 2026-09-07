@@ -45,8 +45,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
       ".opencode/specs/descriptions.json"
     ],
     "entities": [
@@ -78,18 +76,6 @@
         "name": "v3.4.0.0.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement-results.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement-report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:42Z",
-    "last_save_at": "2026-08-30T15:39:19.040Z",
+    "last_save_at": "2026-09-07T16:17:11.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49c5f4f2005b791c51c1e50cad7677b62636c1412badd16793ef929662c5cfb5",
+    "source_fingerprint": "sha256:6c71961b282b39cad8c92e92e86b822c47bdb4520f3c47fb58e14e6a8c13b5fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9dacf6c71be2409315c8c55b6466e19140bd7d6253992616fcce71986af0c2a",
-      "plan.md": "7b97b57a952deff65a8eec843c88b51e3c0f7199cc3fee1f5f17c8665acfb97b",
-      "tasks.md": "c2c21f8dcb6d94b425cc53c9e31ecb0f543eda97beaf52ceaf36fa99a76e5748",
-      "implementation-summary.md": "d4c366f7eaa55c7b2bad6155e53e6d7270f2f2adcd320a0fc0e3e2b63094248f"
+      "plan.md": "65317045abe80c10ec06afb4ccb32f04a04f17fe046b4e526b79f03f2628928c",
+      "tasks.md": "a5088fb3ceb0455380dac04842e5a36ba431d6ca6634fdea660e975b03e50bb7",
+      "implementation-summary.md": "6ee4a17e353b86e001e3b01e49c81b560c787c22bc7dc3969b8ae37327305c5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

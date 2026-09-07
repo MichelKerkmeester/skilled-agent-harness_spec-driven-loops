@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 11: daemon-freshness-and-health-truthfulness [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 11: daemon-freshness-and-health-truthfulness"
 description: "Fix the dist-freshness bootstrap deadlock at the build finalizer, make the CLI gate and hook fallback honest about stale-dist, repair memory_health diagnostics, and timebox a SIGBUS crash-loop diagnosis."
 trigger_phrases:
   - "dist freshness deadlock"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Cocoindex dedup from shared rerank sidecar [template:level_1/plan.md]"
+title: "Implementation Plan: Cocoindex dedup from shared rerank sidecar"
 description: "Three-phase plan: adapter implementation + dispatch wiring + tests + A/B benchmark + PROMOTE/HOLD decision."
 trigger_phrases:
   - "006 plan cocoindex dedup"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Novel GO Automatic Example and Test Generation From Specs [template:level_2/plan.md]"
+title: "Implementation Plan: Novel GO Automatic Example and Test Generation From Specs"
 description: "Plans an additive human-approved generator that reads a spec REQUIREMENTS anchor and proposes worked examples and test stubs as a separate artifact, default-off, never a rewrite of requirement prose."
 trigger_phrases:
   - "example generation plan"

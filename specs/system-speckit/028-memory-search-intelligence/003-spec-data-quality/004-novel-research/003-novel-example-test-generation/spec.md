@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Novel GO Automatic Example and Test Generation From Specs [template:level_2/spec.md]"
+title: "Feature Specification: Novel GO Automatic Example and Test Generation From Specs"
 description: "Authored requirement prose carries no examples or test stubs so adherence stays unprovable per requirement and the spec-REQ-to-tasks linkage has nothing concrete to anchor on. This phase adds an additive human-approved generator that proposes worked examples and test stubs from a spec's requirements without ever rewriting requirement prose."
 trigger_phrases:
   - "example generation"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Substrate Stress Harness Sandbox Cleanup [template:level_2/spec.md]"
+title: "Feature Specification: Substrate Stress Harness Sandbox Cleanup"
 description: "The substrate stress harness writes its evidence and scratch into _sandbox/24--local-llm-query-intelligence/ at the repository root and nothing removes it, so every run leaves a clutter folder behind. The obvious in-harness cleanup breaks the vitest runner, which reads the summary TSV after the subprocess exits. This phase adds a flag-gated and test-driven sandbox cleanup that removes the throwaway hermetic code-graph DB on every run, removes the whole run dir on demand, and lets the test reap the sandbox only after it has consumed the TSV."
 trigger_phrases:
   - "substrate sandbox cleanup"

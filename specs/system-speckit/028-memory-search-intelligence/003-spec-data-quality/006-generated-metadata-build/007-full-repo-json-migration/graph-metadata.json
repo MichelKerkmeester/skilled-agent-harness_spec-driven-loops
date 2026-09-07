@@ -37,12 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-      "scripts/graph/migrate-generated-json.ts",
-      ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,30 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-generated-json.ts",
-        "kind": "code",
-        "path": "scripts/graph/migrate-generated-json.ts",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-generated-json.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
         "source": "derived"
       },
       {
@@ -188,11 +159,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Stage",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind default-OFF flags so the on-disk repo is untouched",
     "created_at": "2026-06-27T17:15:43.078Z",
-    "last_save_at": "2026-08-30T15:39:35.891Z",
+    "last_save_at": "2026-09-07T16:18:33.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e280f43faea2368f74bd7b33f43ed1672f674749337a161b727d19111c10e73",
+    "source_fingerprint": "sha256:c19ede6157ed4d22dc15115ec5a765d85e3ed91878c43777a05532be54537109",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e71ddbdc6a5ad67ada0b736acc36b5bf12661f4d12a75855d62867dac8d33559",
-      "plan.md": "d5e897c7bc5b2624c272007705198c35e2195b01289174945ae72153cef93b9f",
-      "tasks.md": "8c00b9f893b5f838f2ad16ddffab91b9543167061da0fedce9d1847a850ebb84",
-      "implementation-summary.md": "c52deaf8aeac18ae12b0d459d4daf2a205da2390a1f5d700dcb12971ba9ffa66"
+      "spec.md": "e975ececee1846d776b2e9852fab477d52e5d089ec0985438285ddbc4721a239",
+      "plan.md": "4947bc438e749cfec2f6422dff03406cc6101ff622f1bca78254261f970f7caa",
+      "tasks.md": "6db02836841a8694d32058e240a257d3a26cb3c0015421334c41293affbbc989",
+      "implementation-summary.md": "e9665be45b5a2a03ca951c3cf531c05aec0cacef2820b97a10293ea61d5b06c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

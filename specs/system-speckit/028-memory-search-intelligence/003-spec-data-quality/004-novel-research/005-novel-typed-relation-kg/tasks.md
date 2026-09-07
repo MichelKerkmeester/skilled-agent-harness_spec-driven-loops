@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Novel typed-relation KG auto-extracted [template:level_2/tasks.md]"
+title: "Tasks: Novel typed-relation KG auto-extracted"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "typed relation kg"

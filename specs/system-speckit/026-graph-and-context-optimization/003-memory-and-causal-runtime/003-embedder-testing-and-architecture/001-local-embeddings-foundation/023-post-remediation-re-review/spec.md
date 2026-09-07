@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. [template:level_2/spec.md]"
+title: "Feature Specification: Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast."
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

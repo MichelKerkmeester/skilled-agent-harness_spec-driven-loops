@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: active-decisions-design [template:level-1/tasks.md]"
+title: "Tasks: Phase 2: active-decisions-design"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "phase two design tasks"

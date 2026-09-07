@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Substrate Stress Harness Sandbox Cleanup [template:level_2/tasks.md]"
+title: "Tasks: Substrate Stress Harness Sandbox Cleanup"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "substrate sandbox cleanup"

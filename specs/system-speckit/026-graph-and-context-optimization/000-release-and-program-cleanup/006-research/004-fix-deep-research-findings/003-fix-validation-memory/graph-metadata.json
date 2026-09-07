@@ -45,11 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-      "lib/description/description-schema.ts",
-      "scripts/rules/check-spec-doc-integrity.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "tests/memory-parser-extended.vitest.ts"
+      "lib/description/description-schema.ts"
     ],
     "entities": [
       {
@@ -77,27 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "check-spec-doc-integrity.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-        "source": "derived"
-      },
-      {
         "name": "description-schema.ts",
         "kind": "code",
         "path": "lib/description/description-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "memory-parser-extended.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-parser-extended.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,11 +173,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Thirteen",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Thirteen validators and parsers across the advisor, memory, and spec-validation subsystems leak loose-typing, generic-parse, and false-positive bugs identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.761Z",
+    "last_save_at": "2026-09-07T16:17:34.866Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a78b54c9f28b9111d8bfc4d5e5d502c0ed8f16df2a0888d5bcf96c6c45d6f05",
+    "source_fingerprint": "sha256:a668d6a5438f7aeda98892dde31bd2960f36b6337130c46eb3aa24dc790c74a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26b73e984be6192aeaedb70131413559b3c1be03a6f727fd5ce2b797586b327e",
-      "plan.md": "1a9a22e8805265ac5735ad9f7498d0843c745cfc0faef6af2f6c5bb9dd1b9206",
-      "tasks.md": "870eacc2e14b1eae50391d3b40f680fe44165499b9e821012220f57591fe0786",
-      "implementation-summary.md": "6ef0277cf2b4794742195a82bbefaa6228060995f20f56c40f8ffd173e5b6d3e"
+      "spec.md": "d2cb751bbd375077135eb32e4ea8faca8f93b937934baabadeefb9895f5d1b60",
+      "plan.md": "65a859bf0286e698a5357db3a33e2f36b9fb61ca006e727877202e6fe97f4c6b",
+      "tasks.md": "9021892951c91703cdfa2686f684cebfe3fbbd04a25d2ca7c872895ff808d64a",
+      "implementation-summary.md": "1fd0e8dd8f21c957fa543b5044740fc8c708afaf9753db26cfce87265cab80de"
     },
     "last_active_child_id": null,
     "last_active_at": null

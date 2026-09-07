@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Scaffold only. This phase plans a report-only freshness decay queue over the shipped FSRS retrievability number and is not yet built."
 trigger_phrases:
   - "freshness decay queue"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6f59c770cfeae03346f7c21ef92496cdd19c96eed3dbfea53579437db04335a9"
       session_id: "template-session"
       parent_session_id: null
     completion_pct: 0

@@ -1,5 +1,5 @@
 ---
-title: "Spec: 031 Generated JSON Quality and Safety Research [template:level_2/spec.md]"
+title: "Spec: 031 Generated JSON Quality and Safety Research"
 description: "A 10-angle deep-research study on improving the quality and safety of the spec-kit generated JSON metadata, description.json and graph-metadata.json, and the generators that produce them. Covers broad-walk over-reach, non-idempotent writes, relationship and identity drift, and the weak generated-JSON contract. Read-only, the synthesized and skeptically cross-checked proposals live in research/research.md, no generator or schema or validator code is modified."
 trigger_phrases:
   - "generated json quality research"

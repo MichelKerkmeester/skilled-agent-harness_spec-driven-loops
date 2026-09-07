@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: Iteration-001 Daemon Concurrency Fixes [template:level_2/plan.md]"
+title: "Implementation Plan: Iteration-001 Daemon Concurrency Fixes"
 description: "Localized fixes to watcher / lifecycle / generation / cache-invalidation paths surfaced by packet 046 deep research. Token-tagged locks, serialized watcher drain, ordered shutdown, monotonic invalidation."
 trigger_phrases:
   - "implementation plan"

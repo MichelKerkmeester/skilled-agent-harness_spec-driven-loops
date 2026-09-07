@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A3 Enum-Constrain JSON Metadata Schemas [template:level_2/plan.md]"
+title: "Implementation Plan: A3 Enum-Constrain JSON Metadata Schemas"
 description: "Replace the free-string importance_tier status and content_type fields in the two JSON metadata zod schemas with closed enums sourced from named as-const tuples, mirroring the existing mutation_class and save_lineage enum discipline, landing in warn so the legacy corpus never hard-breaks."
 trigger_phrases:
   - "enum constrain schemas"

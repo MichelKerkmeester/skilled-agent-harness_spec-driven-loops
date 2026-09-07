@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: meta-and-quality [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 3: meta-and-quality"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

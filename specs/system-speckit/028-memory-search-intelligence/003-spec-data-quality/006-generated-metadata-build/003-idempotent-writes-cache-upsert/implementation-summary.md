@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Shipped the description-side idempotent writes and the targeted global-cache upsert behind the default-OFF SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES flag. A content fingerprint excluding the volatile lastUpdated drives a per-folder no-op skip and an aggregate-cache content gate, a new upsertDescriptionCacheEntry replaces only the target row, and the canonical-save escape hatch still bumps lastUpdated. The currently-failing graph idempotency test was reconciled to the no-op contract."
 trigger_phrases:
   - "idempotent description writes"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-idempotent.vitest.ts"
       - ".opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c411629cab77eab4ca4eac8dee3cfb51afbabaf68c39fdde38f7329056982e8f"
       session_id: "phase-035-idempotent-writes-cache-upsert"
       parent_session_id: null
     completion_pct: 100

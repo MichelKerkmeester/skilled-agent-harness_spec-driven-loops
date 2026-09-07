@@ -1,5 +1,5 @@
 ---
-title: "Tasks: opt-in-only closure [template:level_1/tasks.md]"
+title: "Tasks: opt-in-only closure"
 description: "T001-T016: code patch + supersede sweep + arc closure."
 trigger_phrases:
   - "011/005 tasks"

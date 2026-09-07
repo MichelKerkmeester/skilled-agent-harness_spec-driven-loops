@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: land-recommended-frameworks-data [template:level_1/tasks.md]"
+title: "Tasks: Phase 3: land-recommended-frameworks-data"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

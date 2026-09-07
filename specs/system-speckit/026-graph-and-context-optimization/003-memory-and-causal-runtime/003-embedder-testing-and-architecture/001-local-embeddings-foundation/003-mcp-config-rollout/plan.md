@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: mcp-config-rollout [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 3: mcp-config-rollout"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

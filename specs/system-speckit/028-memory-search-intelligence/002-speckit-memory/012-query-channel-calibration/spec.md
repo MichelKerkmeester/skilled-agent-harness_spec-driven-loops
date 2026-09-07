@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Query-Channel Calibration and Visibility [template:level_2/spec.md]"
+title: "Feature Specification: Query-Channel Calibration and Visibility"
 description: "The graph/degree escalation hatch in query-classifier.ts requires a stopword ratio of 0.5 or higher, which content-rich 2-3-term queries (the dominant real-world query style) never hit. Live telemetry shows graph/degree ran on only 2/7 recent queries despite a 1.0 hit rate and fully corroborating results when they did run."
 trigger_phrases:
   - "query channel calibration"

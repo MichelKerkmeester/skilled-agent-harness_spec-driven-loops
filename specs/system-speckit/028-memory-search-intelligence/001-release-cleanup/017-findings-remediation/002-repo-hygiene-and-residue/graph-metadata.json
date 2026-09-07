@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Committed scratch residue, stale and duplicated ignore rules, rotated logs, and dated benchmark output have accumulated in the tree",
     "created_at": "2026-07-27T08:41:08Z",
-    "last_save_at": "2026-08-30T15:39:34.709Z",
+    "last_save_at": "2026-09-07T16:18:05.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ea98c9a25e0147fab3bcb60543177a96485d6ca9ccfbfdd5891647eaa30e0d1",
+    "source_fingerprint": "sha256:3c970ada4e88f7c1acd46db1f539c2fa0add9b2bc7956dc217f6f527c1345656",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f80e4c096df32294e59579de51371946e57d5135ffbd7d679e9419c5d25f995a",
-      "plan.md": "ab8f5886d992eeca1afe93e263123f34b75970716fb24f4dfc8238ad8ba7f419",
-      "tasks.md": "230a9519dcddda6a3622049aed17b8875eb79de2420397cde696153b69cbd7cd",
-      "implementation-summary.md": "986f342dad475e6cf0d82038c33fdb299c86ed9aff317af36964d6863de4697c"
+      "plan.md": "0d69b2a68116dc8183640ac5ba4987348cb45c2cb3b5d92c867d6f874b5b567d",
+      "tasks.md": "b87784f682a7788ef1a081d03ac98f79074a3b587864db9e8fb73751c2eee866",
+      "implementation-summary.md": "38432dc9184417cd9528d3cbc1da12fc728eaca89bc9a14bc94120337ab7957a"
     },
     "last_active_child_id": null,
     "last_active_at": null

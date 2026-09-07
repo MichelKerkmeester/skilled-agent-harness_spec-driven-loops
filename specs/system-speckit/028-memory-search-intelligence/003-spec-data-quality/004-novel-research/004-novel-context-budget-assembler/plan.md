@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Novel Context-Budget-Fitting Assembler [template:level_2/plan.md]"
+title: "Implementation Plan: Novel Context-Budget-Fitting Assembler"
 description: "Plans a pure post-floor assembler that dedups near-duplicate results and prefers diverse packets within a token budget, default-off, no re-index and no recall change."
 trigger_phrases:
   - "context budget assembler"

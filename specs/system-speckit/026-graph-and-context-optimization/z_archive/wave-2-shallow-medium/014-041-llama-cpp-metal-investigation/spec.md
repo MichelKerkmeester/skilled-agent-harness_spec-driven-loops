@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: llama-cpp Metal Investigation [template:level_1/spec.md]"
+title: "Feature Specification: llama-cpp Metal Investigation"
 description: "Research-only packet documenting node-llama-cpp Metal initialization failures on darwin/arm64. The packet captures local evidence, evaluates likely causes, and records a no-source-change recommendation for a future implementation packet."
 trigger_phrases:
   - "llama-cpp"

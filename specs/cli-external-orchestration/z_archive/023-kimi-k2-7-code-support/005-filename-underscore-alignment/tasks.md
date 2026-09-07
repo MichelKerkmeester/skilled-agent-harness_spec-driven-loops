@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: filename-underscore-alignment [template:level_1/tasks.md]"
+title: "Tasks: Phase 5: filename-underscore-alignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "filename underscore alignment tasks"

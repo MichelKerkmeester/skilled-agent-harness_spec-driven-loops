@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate [template:level_2/plan.md]"
+title: "Implementation Plan: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate"
 description: "Plans a clone of the shipped AC_COVERAGE rule into a default-off REQ_COVERAGE gate plus EARS grammar, a constraint tier, and a soft EARS linter in the spec and tasks templates."
 trigger_phrases:
   - "ears requirements plan"

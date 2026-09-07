@@ -1,5 +1,5 @@
 ---
-title: "Feature Research: llama-cpp Metal Investigation [template:research.md]"
+title: "Feature Research: llama-cpp Metal Investigation"
 description: "Technical investigation into node-llama-cpp Metal initialization warnings and CPU fallback behavior for local EmbeddingGemma GGUF embeddings."
 trigger_phrases:
   - "llama-cpp"

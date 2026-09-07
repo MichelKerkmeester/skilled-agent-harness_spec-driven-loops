@@ -1,5 +1,5 @@
 ---
-title: "Plan: domain-tuned reranker fine-tune (with template-stripping) [template:level_1/plan.md]"
+title: "Plan: domain-tuned reranker fine-tune (with template-stripping)"
 description: "Phase-3 execution: scripts skeleton → triple gen → template-strip validation → training → eval → publish."
 trigger_phrases:
   - "011/003 plan"

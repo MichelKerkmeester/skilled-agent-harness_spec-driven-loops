@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Planned and scaffolded. A8 surfaces provenance governance fields in the two metadata JSONs and freshness-binds causal_summary to source_docs. Not yet built."
 trigger_phrases:
   - "surface provenance fields summary"

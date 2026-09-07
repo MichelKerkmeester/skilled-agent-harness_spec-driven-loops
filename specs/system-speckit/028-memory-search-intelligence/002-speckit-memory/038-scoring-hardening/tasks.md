@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Scoring Hardening [template:level_2/tasks.md]"
+title: "Tasks: Scoring Hardening"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "scoring hardening"

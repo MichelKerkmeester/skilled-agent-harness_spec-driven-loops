@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Packet 017 closes the hf-local, voyage, and openai shard-fallback follow-on by proving there are no non-Ollama active-embedder database resolvers in factory.ts to patch."
 trigger_phrases:
   - "factory shard fallback implementation"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai/tasks.md"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0170000000000000000000000000000000000000000000000000000000000004"
+      fingerprint: "sha256:291d4934b2636864c80453ee7b565a6570178f7b65222188d49cd9c4c14d1a2b"
       session_id: "016-002-017-factory-shard-fallback-for-hf-voyage-openai"
       parent_session_id: null
     completion_pct: 100

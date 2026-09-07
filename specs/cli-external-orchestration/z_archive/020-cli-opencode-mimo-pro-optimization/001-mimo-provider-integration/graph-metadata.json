@@ -188,7 +188,7 @@
     ],
     "causal_summary": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-models` sentinel never names it",
     "created_at": "2026-06-01T20:21:29.317Z",
-    "last_save_at": "2026-08-30T15:39:08.594Z",
+    "last_save_at": "2026-09-07T16:16:52.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f8b6e11d011c06443850d36847500b6347f3cfcc66b5ea30e4be4d71daf5771",
+    "source_fingerprint": "sha256:825a1c2700736beb79cd2b960fbbce4e8837dd165ec77ec72254a91660104500",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e2d210013c4b07c71826166d3c504dfca089be13eba7564086944311bc91169",
       "plan.md": "6ab4f4d65c2b7f11c896bdacf17011e45071e17670aa6154f598543930015d4b",
-      "tasks.md": "c23cfa62c529883ce3c250ca3e1941de84440e8ffe6425260803618ff67f6612",
-      "implementation-summary.md": "56139720866df204e3fe7e03fd14dbda8ef54053eaa9ee198ddb1980f77e8ade"
+      "tasks.md": "90fe7f4cbb0a8291cee8bdc54d48b5f8bc18249d99ff62a6fd6dfbc2704cb65d",
+      "implementation-summary.md": "be7f55b3ed23cded943f8d65043c7c7a4d6196c6bbb4bcc1074367ac8bea49fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

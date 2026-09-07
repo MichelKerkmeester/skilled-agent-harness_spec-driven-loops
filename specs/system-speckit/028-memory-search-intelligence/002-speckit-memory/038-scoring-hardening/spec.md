@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Scoring Hardening [template:level_2/spec.md]"
+title: "Feature Specification: Scoring Hardening"
 description: "The verdict and citation path scores an off-corpus term as good on a lone high-cosine hit because banding reads the raw absolute relevance with no grounding signal, no noise-floor subtraction, and no evidence-gap bridge. This phase surfaces a grounding signal in the envelope, subtracts a measured corpus noise-floor before banding, adds a cite_with_caveat tier for borderline grounding, bridges stage4.evidenceGapDetected into the request-quality verdict and documents the calibration re-fit as a proven non-fix. Every behavioral change ships behind a default-OFF flag against the new off-corpus fixtures."
 trigger_phrases:
   - "scoring hardening"

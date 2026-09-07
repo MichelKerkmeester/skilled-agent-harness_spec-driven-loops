@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Flag Graduation Benchmark [template:level_2/spec.md]"
+title: "Feature Specification: Flag Graduation Benchmark"
 description: "This program shipped a set of default-OFF flags whose benefit is inert until each one is measured and graduated. This Stage 4 benchmark runs a real before-and-after on live data and queries for every default-OFF flag from the program, reusing the phase 025 false-confirm driver and the phase 029 benchmark harness, graduates the flags that measurably earn it to default-ON, and keeps the rest off with the reason recorded, per the 028 earn-or-delete discipline, with the verdicts written to benchmark-status.md and keep-off-flag-roadmap.md."
 trigger_phrases:
   - "flag graduation benchmark"

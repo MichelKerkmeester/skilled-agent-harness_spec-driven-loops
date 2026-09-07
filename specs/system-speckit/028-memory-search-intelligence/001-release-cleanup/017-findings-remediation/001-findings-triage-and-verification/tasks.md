@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: findings-triage-and-verification [template:level-1/tasks.md]"
+title: "Tasks: Phase 1: findings-triage-and-verification"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

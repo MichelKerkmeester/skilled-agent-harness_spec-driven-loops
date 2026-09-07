@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: optin-5dim-scorer-and-skill-docs [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: optin-5dim-scorer-and-skill-docs"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

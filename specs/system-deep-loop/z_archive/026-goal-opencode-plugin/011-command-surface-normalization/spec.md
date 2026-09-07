@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 11: command-surface-normalization [template:level_1/spec.md]"
+title: "Feature Specification: Phase 11: command-surface-normalization"
 description: "Stop the /goal command's filename churn (renamed twice already) and sweep every stale reference across code, phase docs, catalogs, and playbooks; fix two smaller config-contract gaps."
 trigger_phrases:
   - "goal command rename"

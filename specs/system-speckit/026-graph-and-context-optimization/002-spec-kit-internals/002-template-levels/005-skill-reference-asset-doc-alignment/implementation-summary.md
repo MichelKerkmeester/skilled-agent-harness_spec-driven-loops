@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: skill references assets alignment [template:level_3/implementation-summary.md]"
+title: "Implementation Summary: skill references assets alignment"
 description: "Final audit evidence for the Round 5 skill, references, and assets alignment packet."
 trigger_phrases:
   - "skill references assets alignment summary"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/assets/"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:861752246d17ec3b68b214430f4e3a2f01c7b2c244acd2e26e61934f89923057"
       session_id: "scaffold-scaffold/005-skill-reference-asset-doc-alignment"
       parent_session_id: null
     completion_pct: 100

@@ -16,7 +16,7 @@
     "dimensions",
     "runs"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.342Z",
+  "lastUpdated": "2026-09-07T16:14:44.254Z",
   "specId": "001",
   "folderSlug": "deep-research-recommendations",
   "parentChain": [
@@ -27,5 +27,6 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "02-05-26_09-57__060-packet-is-research-only-implementation-of.md"
-  ]
+  ],
+  "level": "3"
 }

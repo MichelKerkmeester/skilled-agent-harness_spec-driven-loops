@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f3974a8c2f3aabccde4726c12f72be179b962f7d06896c7d52b8ce47befb7e80"
       session_id: "scaffold-057-roster-drop-grok-from-devin"
       parent_session_id: null
     completion_pct: 100

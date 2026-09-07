@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: reindex-populates-vec-memories-knn-table [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: reindex-populates-vec-memories-knn-table"
 description: "All tasks complete: diagnosis, data backfill, two code patches, type-check plus build, daemon restart, verification."
 trigger_phrases:
   - "vec_memories tasks complete"

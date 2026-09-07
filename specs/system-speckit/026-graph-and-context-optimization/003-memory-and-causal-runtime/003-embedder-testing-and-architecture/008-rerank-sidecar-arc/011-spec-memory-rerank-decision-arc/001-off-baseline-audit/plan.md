@@ -1,5 +1,5 @@
 ---
-title: "Plan: OFF baseline audit + penalty removal [template:level_1/plan.md]"
+title: "Plan: OFF baseline audit + penalty removal"
 description: "Phase-1 execution plan: baseline measurement, penalty-site discovery, conditional patch, validation."
 trigger_phrases:
   - "011/001 plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Presentation Adherence Research [template:examples/level_1/plan.md]"
+title: "Implementation Plan: Presentation Adherence Research"
 description: "Plan for executing fifty read-only research iterations over the three system skills with orchestrator-written state."
 trigger_phrases:
   - "presentation adherence research plan"

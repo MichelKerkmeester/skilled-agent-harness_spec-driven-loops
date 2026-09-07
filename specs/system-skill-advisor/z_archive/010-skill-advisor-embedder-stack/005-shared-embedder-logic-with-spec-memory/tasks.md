@@ -1,5 +1,5 @@
 ---
-title: "Tasks: shared embedder logic with spec-memory [template:level_2/tasks.md]"
+title: "Tasks: shared embedder logic with spec-memory"
 description: "Task record for shared embedder factory alignment plus the 2026-07-08 Round 2 post-ship hardening pass."
 trigger_phrases:
   - "shared embedder logic skill-advisor"

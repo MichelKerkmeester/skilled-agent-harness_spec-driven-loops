@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Version-Suffix Flag-Name Cleanup [template:level_2/plan.md]"
+title: "Implementation Plan: Version-Suffix Flag-Name Cleanup"
 description: "Plan for the hard clean rename that drops the _V1 suffix from twelve live SPECKIT flags. The rename runs as a single exact-name substitution over an explicit live-file list, excludes every archived and historical record, and is proven by a zero-occurrence search, both mcp_server typechecks, and the affected vitest suite."
 importance_tier: "important"
 contextType: "general"

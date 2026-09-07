@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Ensure rerank sidecar from launchers [template:level_1/plan.md]"
+title: "Implementation Plan: Ensure rerank sidecar from launchers"
 description: "Three-phase plan: audit launcher entry points, author shared ensure helper, wire into both launchers + runtime configs."
 trigger_phrases:
   - "003 plan ensure sidecar"

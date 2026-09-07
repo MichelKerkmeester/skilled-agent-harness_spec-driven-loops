@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Flag Graduation Benchmark [template:level_2/plan.md]"
+title: "Implementation Plan: Flag Graduation Benchmark"
 description: "Build a Stage 4 benchmark driver that toggles each default-OFF program flag in isolation against the migrated live corpus, reuses the phase 025 false-confirm driver for the safety metric and the phase 029 benchmark harness for retrieval and scoring, gates each graduation on a measured before-and-after across both metrics, flips the earners to default-ON, keeps the rest off with the reason recorded, and writes the verdicts to benchmark-status.md and keep-off-flag-roadmap.md."
 trigger_phrases:
   - "flag graduation benchmark"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: llama-cpp Metal Investigation [template:level_1/plan.md]"
+title: "Implementation Plan: llama-cpp Metal Investigation"
 description: "Research-only plan for documenting local node-llama-cpp Metal initialization failures and choosing a future path. The approach is evidence collection, hypothesis scoring, and ADR capture without source changes."
 trigger_phrases:
   - "llama-cpp"

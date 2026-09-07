@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Reindexed the renamed deep-loop 036 and 037 folders: regenerated their metadata against the new paths, fixed every old-slug reference inside their docs, and repointed the two inbound references. Both folders validate --strict 0/0."
 trigger_phrases:
   - "deep-loop 036 037 summary"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/description.json"
       - ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d816ef6ebd11e1de17c6c05f3b08368edffd7ee8c12df7aa709670c43abde825"
       session_id: "scaffold-scaffold/053-deep-loop-036-037-reindex"
       parent_session_id: null
     completion_pct: 100

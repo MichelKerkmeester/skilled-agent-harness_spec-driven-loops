@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will build a prod-window recall gate over the completeRecall@3/@5/@8 columns plus an order-sensitive NDCG@K companion, from a multi-target gold set, a PROMOTION and REGRESSION wrapper, and a stored baseline. No code change has landed."
 trigger_phrases:
   - "prod mode recall gate"

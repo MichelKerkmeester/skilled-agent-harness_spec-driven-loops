@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: llama-cpp Metal Investigation [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: llama-cpp Metal Investigation"
 description: "Research packet delivered local evidence for node-llama-cpp Metal initialization failures and recorded an ADR recommendation. No source code or existing packet was changed."
 trigger_phrases:
   - "implementation"
@@ -22,7 +22,7 @@ _memory:
       - "scratch/probe-gpulayers-zero-auto.txt"
       - "scratch/probe-gpulayers-zero-cpu.txt"
     session_dedup:
-      fingerprint: "sha256:0ab1b99cb3026ef246f50c4451b004daca1c1e4ac0dace29998d3b6e78811640"
+      fingerprint: "sha256:68f98543019e501ec55e0742d6fa7023a43d566cf171dcb0e60ddacb1efe462d"
       session_id: "cli-codex-gpt5.5-xhigh-fast-041"
       parent_session_id: null
     completion_pct: 100

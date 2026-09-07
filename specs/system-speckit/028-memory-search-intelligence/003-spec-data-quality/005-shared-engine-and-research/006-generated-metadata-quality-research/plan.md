@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: 031 Generated JSON Quality and Safety Research [template:level_2/plan.md]"
+title: "Implementation Plan: 031 Generated JSON Quality and Safety Research"
 description: "The approach for a 10-angle read-only study of the generated-JSON quality and safety surface, with orchestrator-written state and a skeptical cross-model verification pass. Research-only, no generator or parser or schema or validator code modified. Status complete."
 trigger_phrases:
   - "generated json quality research plan"

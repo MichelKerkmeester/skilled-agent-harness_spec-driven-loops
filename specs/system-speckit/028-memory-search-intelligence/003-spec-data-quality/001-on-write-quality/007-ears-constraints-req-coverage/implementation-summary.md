@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Scaffolded phase plan for the A7 EARS, constraint tier, and REQ_COVERAGE gate, status PLANNED, nothing built yet."
 trigger_phrases:
   - "ears requirements status"

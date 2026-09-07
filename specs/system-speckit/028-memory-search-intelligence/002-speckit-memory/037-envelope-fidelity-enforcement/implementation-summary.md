@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Shipped envelopeRender pre-rendered verdict fragment, the conditionally-mandatory render-slot contract, and a deterministic post-render fidelity check with a grandfather report mode, all behind the default-OFF SPECKIT_ENVELOPE_FIDELITY_V1 flag. Vitest 12/12 green, flag-off byte-identical, typecheck clean."
 trigger_phrases:
   - "envelope fidelity enforcement"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a7993b9da9d802ab930d8c790a76281ad2b322050964ffa7a2e53bc643cb79c6"
       session_id: "phase-027-envelope-fidelity-enforcement"
       parent_session_id: null
     completion_pct: 100

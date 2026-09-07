@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 003 Advisor Quality [template:level_2/plan.md]"
+title: "Implementation Plan: 003 Advisor Quality"
 description: "Eight surgical advisor-quality fixes plus one additive scorer vitest close findings F-006-B1-01..03, F-012-C2-01..04, and F-013-C3-01 from packet 046. Aligns Codex fallback brief, removes OpenCode bridge model-visible disabled string, deletes dead alternate renderer, preserves graph-causal conflict signal, splits derived trigger/keyword fields, adds task-intent dispersion guard, computes ambiguity from ranking score across tied clusters, and routes review-plus-write prompts to sk-code."
 trigger_phrases:
   - "F-006-B1 plan"

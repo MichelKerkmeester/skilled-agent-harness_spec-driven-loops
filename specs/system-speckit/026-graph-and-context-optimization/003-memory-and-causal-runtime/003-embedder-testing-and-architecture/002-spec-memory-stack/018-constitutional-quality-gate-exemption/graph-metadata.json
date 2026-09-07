@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "handlers/memory-index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Constitutional markdown files under `.opencode/skills//constitutional/` hard-rejected during `memoryindexscan` with `INSUFFICIENTCONTEXTABORT`",
     "created_at": "2026-05-19T19:40:59Z",
-    "last_save_at": "2026-08-30T15:39:30.342Z",
+    "last_save_at": "2026-09-07T16:17:47.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b92d7403e094fb7fdd0fc961cb833553fee213df1eb31d87f34111621d83ae3",
+    "source_fingerprint": "sha256:230b1e760ca63bdbd48a2161c22b74f578a3cca64f6763eede8a71caa399de15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40cb0fe3bbfcc2c855c86caeec5cfd55960d147bb28de8a5b2f4c17bdf855f1d",
-      "plan.md": "17d58d27a028a04e699d3c46229f38596289d710bd655fb8cb3e6375c58a6e38",
-      "tasks.md": "5d35f7e34281621780f2223eb03c638a52bf6ee5e3502e006c39e80dc5b6fd25",
-      "implementation-summary.md": "85c51aa1da67ee27797984520f1a4edfc9f4752c7d4250fcc8cb00e00de47be4"
+      "spec.md": "b999720448280a3a3c35b65d0c1ba6701e8c4c09c6c564ea502dbfb4e88f08b6",
+      "plan.md": "98bd41568d7d08381e4b020a1891690226c19718c1e6c86f5053f09b46742fab",
+      "tasks.md": "4252239dec42bc5c8543404cca431238f400849d96da65cc2c3c139880e468f8",
+      "implementation-summary.md": "64a653b090f8bffd999b3780ae839099cff8761d3bc1fb2f7bd376080b6fc915"
     },
     "last_active_child_id": null,
     "last_active_at": null

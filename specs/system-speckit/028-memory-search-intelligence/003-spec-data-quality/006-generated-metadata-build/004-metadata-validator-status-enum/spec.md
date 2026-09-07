@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Generated-Metadata Validator and Status Enum [template:level_2/spec.md]"
+title: "Feature Specification: Generated-Metadata Validator and Status Enum"
 description: "The generated graph-metadata status field is open. normalizeDerivedStatus returns the raw normalized string for any unknown value and the Zod schema accepts any non-empty string, so em-dash prose becomes a valid status. The shallow GRAPH_METADATA_SHAPE and DESCRIPTION_SHAPE checks run as warnings rather than a real completion gate, and the parser preserves a legacy bad status when a packet has no implementation-summary.md. This phase closes derived.status to a shared enum at the schema boundary, adds a first-class generated-metadata validator wired into strict mode, and re-derives legacy bad statuses instead of preserving them."
 trigger_phrases:
   - "generated metadata validator"

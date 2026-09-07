@@ -1,5 +1,5 @@
 ---
-title: "Plan: launcher lease acquisition-time reclaim [template:level_1/plan.md]"
+title: "Plan: launcher lease acquisition-time reclaim"
 description: "Plan to close the acquisition-time stale lease race in the launcher lease table."
 trigger_phrases:
   - "launcher lease acquisition reclaim"

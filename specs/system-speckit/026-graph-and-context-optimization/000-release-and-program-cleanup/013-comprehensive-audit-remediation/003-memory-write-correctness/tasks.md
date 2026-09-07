@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: memory-write-correctness [template:level_1/tasks.md]"
+title: "Tasks: Phase 3: memory-write-correctness"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "memory write correctness tasks"

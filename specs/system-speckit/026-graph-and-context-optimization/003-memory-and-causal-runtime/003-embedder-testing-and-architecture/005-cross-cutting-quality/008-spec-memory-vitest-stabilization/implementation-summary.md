@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: spec-memory vitest stabilization [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: spec-memory vitest stabilization"
 description: "SCAFFOLD-ONLY. Execution deferred until operator opts in."
 trigger_phrases:
   - "008 vitest summary"

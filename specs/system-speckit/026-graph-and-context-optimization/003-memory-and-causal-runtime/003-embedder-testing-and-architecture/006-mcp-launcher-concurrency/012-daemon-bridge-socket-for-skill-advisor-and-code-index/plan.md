@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Daemon bridge socket for skill-advisor and code-index [template:level_1/plan.md]"
+title: "Implementation Plan: Daemon bridge socket for skill-advisor and code-index"
 description: "Three-phase plan: socket-server copy + daemon refactor in both packages + launcher allowlist update + builds + smoke verification."
 trigger_phrases:
   - "012 plan"

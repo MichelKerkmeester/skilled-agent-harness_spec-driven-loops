@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 010 CLI Orchestrator Skill Doc Drift [template:level_2/plan.md]"
+title: "Implementation Plan: 010 CLI Orchestrator Skill Doc Drift"
 description: "Six surgical doc edits across five CLI orchestrator skills to close findings F-007-B2-01..06 from packet 046 iteration-007."
 trigger_phrases:
   - "F-007-B2 plan"

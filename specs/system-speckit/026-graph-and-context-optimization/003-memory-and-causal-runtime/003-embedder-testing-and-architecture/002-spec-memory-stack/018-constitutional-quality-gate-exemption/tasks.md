@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: constitutional-quality-gate-exemption [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: constitutional-quality-gate-exemption"
 description: "All tasks complete: patch landed, build clean, daemon restart pending in main agent."
 trigger_phrases:
   - "constitutional exemption tasks"

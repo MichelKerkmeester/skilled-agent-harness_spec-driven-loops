@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs & catalog drift, fixture refresh, legacy dependency/comment residue. cli-codex gpt-5.5 reasoning=high service_tier=standard (NOT fast). [template:level_2/tasks.md]"
+title: "Tasks: Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs & catalog drift, fixture refresh, legacy dependency/comment residue. cli-codex gpt-5.5 reasoning=high service_tier=standard (NOT fast)."
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

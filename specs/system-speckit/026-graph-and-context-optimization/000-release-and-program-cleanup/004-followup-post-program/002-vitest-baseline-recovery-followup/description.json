@@ -7,7 +7,7 @@
     "runtime regression parked",
     "unit h parked test closure"
   ],
-  "level": 1,
+  "level": "1",
   "importance_tier": "important",
   "contextType": "implementation",
   "status": "complete",
@@ -41,7 +41,7 @@
     "discoverable",
     "followup"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.767Z",
+  "lastUpdated": "2026-09-07T16:17:33.573Z",
   "specId": "002",
   "folderSlug": "vitest-baseline-recovery-followup",
   "parentChain": [

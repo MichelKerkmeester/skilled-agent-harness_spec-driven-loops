@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 6: advisor-and-validate [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 6: advisor-and-validate"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

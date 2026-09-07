@@ -1,5 +1,5 @@
 ---
-title: "Tasks: MiniMax Token Plan default provider [template:level_2/tasks.md]"
+title: "Tasks: MiniMax Token Plan default provider"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "minimax token plan tasks"

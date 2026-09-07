@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Shared Identity Resolver and Merge Safety [template:level_2/tasks.md]"
+title: "Tasks: Shared Identity Resolver and Merge Safety"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "shared spec folder identity resolver"

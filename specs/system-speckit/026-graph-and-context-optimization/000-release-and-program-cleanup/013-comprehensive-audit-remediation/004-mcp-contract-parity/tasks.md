@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: mcp-contract-parity [template:level_1/tasks.md]"
+title: "Tasks: Phase 4: mcp-contract-parity"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "mcp contract parity tasks"

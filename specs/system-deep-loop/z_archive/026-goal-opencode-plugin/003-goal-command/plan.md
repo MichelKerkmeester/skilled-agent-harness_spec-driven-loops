@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: goal-command [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 3: goal-command"
 description: "Add the root /goal command and plugin tools around the existing state and injection helpers, keeping command markdown state-free."
 trigger_phrases:
   - "goal command plan"

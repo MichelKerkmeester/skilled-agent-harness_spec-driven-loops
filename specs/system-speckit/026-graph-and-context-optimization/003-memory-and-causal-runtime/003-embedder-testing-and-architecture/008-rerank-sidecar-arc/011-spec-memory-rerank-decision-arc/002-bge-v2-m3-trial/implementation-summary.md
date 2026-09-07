@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: bge-reranker-v2-m3 trial [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: bge-reranker-v2-m3 trial"
 description: "Phase C/D benchmark and verdict for bge-reranker-v2-m3."
 trigger_phrases:
   - "011/002 summary"

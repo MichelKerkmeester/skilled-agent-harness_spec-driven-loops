@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: lifecycle-tracking [template:level_1/tasks.md]"
+title: "Tasks: Phase 4: lifecycle-tracking"
 description: "Lifecycle tracking tasks for goal event handling, usage accounting, prompt blocking, and verification."
 trigger_phrases:
   - "goal lifecycle tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A10 Per-Surface Gates [template:level_2/plan.md]"
+title: "Implementation Plan: A10 Per-Surface Gates"
 description: "Add write-time conformance gates to the skill-doc command and context-eng surfaces. Five report-only detectors land default-off and warn-only first, reusing shipped route-validate, advisor, and canary machinery."
 trigger_phrases:
   - "per-surface gates plan"

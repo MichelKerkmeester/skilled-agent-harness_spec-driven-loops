@@ -1,5 +1,5 @@
 ---
-title: "Task Breakdown: Hard-rule enforcement + dispatch-reliability hardening (handoff) [template:level_2/tasks.md]"
+title: "Task Breakdown: Hard-rule enforcement + dispatch-reliability hardening (handoff)"
 description: "Implementation task list for the hardening. Core (Wave D + A′ + B2, T00-T13) shipped 2026-07-05; T14 (B1) and T15 (burn-in) remain. Per-task commit evidence in implementation-summary.md."
 trigger_phrases:
   - "hardening implementation tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Novel Freshness Decay Auto-Refresh Queue [template:level_2/spec.md]"
+title: "Feature Specification: Novel Freshness Decay Auto-Refresh Queue"
 description: "The shipped FSRS retrievability number ranks and decays memories but nothing reads it to queue stale docs for maintenance. A decayed doc silently rots with no report-only signal that it needs a human refresh."
 trigger_phrases:
   - "freshness decay queue"

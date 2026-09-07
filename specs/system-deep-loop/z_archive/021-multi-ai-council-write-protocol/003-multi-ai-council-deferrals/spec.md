@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals) [template:level_3/spec.md]"
+title: "Feature Specification: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals)"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

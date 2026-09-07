@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Off-Corpus Eval Fixture and False-Confirm Gate [template:level_2/spec.md]"
+title: "Feature Specification: Off-Corpus Eval Fixture and False-Confirm Gate"
 description: "The 029 model benchmark caught /memory:search confidently citing an off-corpus term (kubernetes scored good at 0.78 on an unrelated doc) but the eval harness cannot reproduce it. All six ground-truth hard-negatives are in-corpus decoys with a real relevance-3 target so no sample tests the absent-term case, and the falseGoodOnHardNegatives metric that would measure it already exists yet sits dormant with no driver and no CI gate. This phase adds the off-corpus fixture and wires the dormant metric behind a CI threshold."
 trigger_phrases:
   - "off corpus eval fixture"

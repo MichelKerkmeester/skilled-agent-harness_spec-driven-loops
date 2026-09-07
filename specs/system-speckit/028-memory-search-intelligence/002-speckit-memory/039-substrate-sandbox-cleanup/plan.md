@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Substrate Stress Harness Sandbox Cleanup [template:level_2/plan.md]"
+title: "Implementation Plan: Substrate Stress Harness Sandbox Cleanup"
 description: "Add a sandbox cleanup to the substrate stress harness without breaking the vitest runner that reads the summary TSV after the subprocess exits. Always remove the throwaway hermetic code-graph DB, add a --clean flag for standalone runs that removes the whole run dir and the empty parent, and move the common-path auto-clean into the test afterAll so it reaps only after the TSV is consumed. All cleanup is best-effort and fails closed on a shared parent."
 trigger_phrases:
   - "substrate sandbox cleanup"

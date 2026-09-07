@@ -1,5 +1,5 @@
 ---
-title: "Tasks: factory-shard-fallback-for-hf-voyage-openai [template:level_1/tasks.md]"
+title: "Tasks: factory-shard-fallback-for-hf-voyage-openai"
 description: "Task list for the packet 017 resolver audit and documentation-only closure."
 trigger_phrases:
   - "factory shard fallback tasks"

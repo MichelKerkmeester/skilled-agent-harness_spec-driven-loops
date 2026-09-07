@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 6: broad-scope-timeout-caveat [template:level_1/tasks.md]"
+title: "Tasks: Phase 6: broad-scope-timeout-caveat"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "kimi k2.7 timeout caveat tasks"

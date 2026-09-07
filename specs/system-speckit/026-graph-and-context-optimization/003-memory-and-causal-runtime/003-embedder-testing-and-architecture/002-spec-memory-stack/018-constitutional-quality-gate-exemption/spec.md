@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: constitutional-quality-gate-exemption [template:level_1/spec.md]"
+title: "Feature Specification: Phase 1: constitutional-quality-gate-exemption"
 description: "Constitutional markdown files were hard-rejected by memory_index_scan because they lack ANCHOR tags and primary-evidence sections by design. Add isConstitutional to the warn-only branch so constitutional policy text passes the strict sufficiency gate like spec docs do."
 trigger_phrases:
   - "constitutional warn-only exemption"

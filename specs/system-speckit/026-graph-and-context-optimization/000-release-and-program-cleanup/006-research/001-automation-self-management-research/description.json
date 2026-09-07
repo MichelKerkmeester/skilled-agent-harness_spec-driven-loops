@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research",
   "description": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection,",
   "keywords": [
@@ -15,7 +16,7 @@
     "hook",
     "injection"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.675Z",
+  "lastUpdated": "2026-09-07T16:14:49.636Z",
   "specId": "001",
   "folderSlug": "automation-self-management-research",
   "parentChain": [
@@ -25,6 +26,5 @@
     "006-research"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

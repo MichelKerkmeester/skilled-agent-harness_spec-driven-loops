@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status PLANNED. Scaffolded phase that will wire both shape rules to the real zod schemas, flip their severity to error, and delete the dead legacy_grandfathered bypass. No code change has landed."
 trigger_phrases:
   - "schema warn to error"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The goal plugin now has a fail-closed per-session state store with atomic writes and queued mutations."
 trigger_phrases:
   - "goal state store implementation"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/plugins/tests/mk-goal-state.test.cjs"
       - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
-      fingerprint: "sha256:dbff518b69da1cde31738a7b71cb8b6432a6ebe56aa24eb6738096801631935d"
+      fingerprint: "sha256:6ab81395c2a9b056cf48d169be2c06ad9c453cee2296d951d81bbd9e292570ad"
       session_id: "goal-m1-state-store-20260629"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A2 Trigger Propagation and Derived Description [template:level_2/tasks.md]"
+title: "Tasks: A2 Trigger Propagation and Derived Description"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "trigger propagation description"

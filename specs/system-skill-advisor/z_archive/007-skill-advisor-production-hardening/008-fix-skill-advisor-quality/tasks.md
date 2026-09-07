@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 003 Advisor Quality [template:level_2/tasks.md]"
+title: "Tasks: 003 Advisor Quality"
 description: "Task list for closing F-006-B1-01..03, F-012-C2-01..04, F-013-C3-01. Eight surgical fixes plus one additive scorer vitest + fixture update + validate + commit + push."
 trigger_phrases:
   - "F-006-B1 tasks"

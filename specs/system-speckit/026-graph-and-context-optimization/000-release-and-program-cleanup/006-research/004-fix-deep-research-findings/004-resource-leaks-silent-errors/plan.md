@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 005 Resource Leaks And Silent Errors Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 005 Resource Leaks And Silent Errors Remediation"
 description: "Apply 5 surgical edits across watcher.ts, file-watcher.ts, and projection.ts/types.ts. Add 3 vitest files; update 1 existing scorer test for the new filesystem-fallback contract. Preserve watcher API for sub-phase 006."
 trigger_phrases:
   - "F-003-A3 plan"

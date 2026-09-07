@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: spec-memory MPS rerank promotion candidate [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: spec-memory MPS rerank promotion candidate"
 description: "PRE-IMPLEMENTATION stub. Will be filled with Phase C bench results + Phase D verdict + Phase E closeout actions."
 trigger_phrases:
   - "007 mps implementation summary"

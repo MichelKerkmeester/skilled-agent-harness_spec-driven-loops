@@ -1,5 +1,5 @@
 ---
-title: "Feature Research: Spec-Folder Naming-Convention Guard - Cross-Runtime Feasibility [template:research.md]"
+title: "Feature Research: Spec-Folder Naming-Convention Guard - Cross-Runtime Feasibility"
 description: "Feasibility study and recommended design for a cross-runtime guard preventing badly-named or mis-located spec folders at creation time. Verdict: PARTIAL."
 trigger_phrases:
   - "naming guard research"

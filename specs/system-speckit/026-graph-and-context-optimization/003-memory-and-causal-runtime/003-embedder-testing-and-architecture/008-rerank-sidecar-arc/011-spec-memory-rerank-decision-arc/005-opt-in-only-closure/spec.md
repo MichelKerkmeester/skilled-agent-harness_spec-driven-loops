@@ -1,5 +1,5 @@
 ---
-title: "Spec: spec-memory rerank — opt-in-only closure [template:level_1/spec.md]"
+title: "Spec: spec-memory rerank — opt-in-only closure"
 description: "Terminal verdict for arc 011: keep the shared rerank-sidecar framework for cocoindex but make spec-memory's consumption explicitly opt-in (default OFF). Flips SPECKIT_CROSS_ENCODER default true→false, conditions WEIGHT_RERANKER penalty on intentional opt-in, supersedes sibling 011/002+003+004 + arc-008 spec-memory tuning packets (005/007/008/009), and closes arc 011 with a defensible decision recorded across docs."
 trigger_phrases:
   - "011/005 opt-in closure"

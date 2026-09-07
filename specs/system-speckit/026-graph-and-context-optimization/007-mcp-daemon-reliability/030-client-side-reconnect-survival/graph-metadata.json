@@ -195,7 +195,7 @@
     ],
     "causal_summary": "When Claude Code's client-side MCP transport to a still-alive local stdio daemon drops",
     "created_at": "2026-06-08T15:19:03Z",
-    "last_save_at": "2026-08-30T15:39:32.582Z",
+    "last_save_at": "2026-09-07T16:17:59.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8552142eb12b3e6c42e03b312f6501543d03dbc574dac6840fff1b13a69cb8d7",
+    "source_fingerprint": "sha256:5faf6f95a32ef77e35fc59cedfa4f9573d01135508181dd6b6e15cb344bdb392",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7456d74f02a392523a841c40bea805ce43901d6570c97934da334ce704f05ab8",
-      "plan.md": "5f697ae3c259d1adea40d286f4e4ae80b3c2af5d2c53bd9c207a5a4200982d48",
-      "tasks.md": "9a0b0022e1834c9680d43eb3dc099794cd709d5f9205d164baa29e932d47d3d1",
-      "implementation-summary.md": "18ae67b997f3d8260f6a0a93f80342370f2faced3bb7a9413b412cbb5540ab17"
+      "spec.md": "e477b8bdaf5196ad3ceae8858fda6a1a8c7fe66464f254bc879d34955006c98a",
+      "plan.md": "276df89890593f9eb727c410aa2864d191b57a888702a551eeab4f54bee7f406",
+      "tasks.md": "25f236da9654de4e0f16c0ec38daf4f6d49a19d581cebdd272de8db709458d0d",
+      "implementation-summary.md": "e1d0d6416219e4ceeb3d98987c38fa6e76a57c2e6397041d0f46b97eeddab857"
     },
     "last_active_child_id": null,
     "last_active_at": null

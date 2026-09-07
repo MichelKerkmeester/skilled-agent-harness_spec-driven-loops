@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Entity-density routing now reflects memory_update mutations immediately, and the atomic-save uuid-suffixed orphan recovery is regression-protected."
 trigger_phrases:
   - "entity density invalidation summary"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3686c73155b24a5105af76208ec3409f0fbae657befd20856a317f6c0f326f7c"
       session_id: "scaffold-scaffold/003-memory-write-correctness"
       parent_session_id: null
     completion_pct: 100

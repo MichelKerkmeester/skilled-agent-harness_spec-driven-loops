@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The goal plugin needed durable session-scoped state before it could inject or manage a goal",
     "created_at": "2026-06-28T20:44:08Z",
-    "last_save_at": "2026-08-30T15:39:25.631Z",
+    "last_save_at": "2026-09-07T16:17:22.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e5c50e3bcadef61cd38efc7396744f844413adee010af69bf40ceb0c33f3d9d",
+    "source_fingerprint": "sha256:dd675c33896c809cea554cd1722515baad3006d2607940b60096542f6c69313a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "032ce5f675f97e61603124f5a289fd9db9c7b036b9566b21706b5523a61bf0a9",
-      "plan.md": "08138f9294ed796de0f7c4fd2e99c9b75ef559506ce0c67f60f88fbf4a3ed02f",
-      "tasks.md": "cb3cdda577049c44f1c652fa50568a9bb38728ff7d4a4324e10918ae4a5448ca",
-      "implementation-summary.md": "a5862a44159faadd5a8e746cb7b8c2659e4be9282ad8ef0a477d00eac5275c91"
+      "spec.md": "96f0d18c8c6eb8d901fef9a29c6fadc8ccb0ec7ade95d2950692cec78819ca54",
+      "plan.md": "ba497af3aa3ee4205c6197de8c6e938ecdcdc8bb0cb42b4ac0bc82d0098e1618",
+      "tasks.md": "359bb8947e88a7ee948fd1406a9e17b64b83d51de93f818c1e40ea5c02b6a6d8",
+      "implementation-summary.md": "44a386928eac1b8872053b5e149a34bdaef556c38c8efbb72263c3302fc52e1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

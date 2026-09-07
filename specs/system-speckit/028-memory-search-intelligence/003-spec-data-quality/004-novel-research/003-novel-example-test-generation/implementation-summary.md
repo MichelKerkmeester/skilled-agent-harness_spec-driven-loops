@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Novel GO Automatic Example and Test Generation From Specs [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Novel GO Automatic Example and Test Generation From Specs"
 description: "Planned-status implementation record for the additive example and test-stub generator, scaffolded ahead of build with no completion claims."
 trigger_phrases:
   - "example generation implementation"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: content-hash-normalization-and-save-dedup-lanes [template:level_3/tasks.md]"
+title: "Tasks: Phase 3: content-hash-normalization-and-save-dedup-lanes"
 description: "Task breakdown: confirm-before-fix probes and vitest baseline first, then content-hash normalization with dual-compare migration, PE-gate lane reachability, the P0 full-auto canonical save fix, save dedup lane gating, and verification with un-skipped parity tests."
 trigger_phrases:
   - "content hash normalization tasks"

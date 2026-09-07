@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 006 Architecture Cleanup Remediation [template:level_2/tasks.md]"
+title: "Tasks: 006 Architecture Cleanup Remediation"
 description: "Task list for closing F-016-D1-01..08, F-017-D2-01..03, F-018-D3-01..04. Fifteen surgical refactors + 2 vitest files + typecheck + stress + validate + commit + push."
 trigger_phrases:
   - "F-016-D1 tasks"

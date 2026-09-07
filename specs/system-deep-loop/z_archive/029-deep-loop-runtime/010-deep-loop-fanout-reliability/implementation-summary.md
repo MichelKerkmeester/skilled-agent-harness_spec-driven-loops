@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Fan-out CLI lineages now fail when their subprocess fails, run concurrently up to the cap, honor per-lineage iteration caps, and never emit an out-of-enum service_tier; comment hygiene and the SKILL.md inventory are corrected."
 trigger_phrases:
   - "fanout reliability summary"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts"
       - ".opencode/skills/system-code-graph/mcp_server/core/config.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5c4b68807052456d74da11d0d2bb41d3353fd76eded38a2870fe6b766b442098"
       session_id: "impl-013-001-deep-loop-fanout-reliability"
       parent_session_id: null
     completion_pct: 100

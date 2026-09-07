@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Earlier rounds cleaned `.opencode/agents/`, `.opencode/commands/speckit/`, `AGENTS.md`, `CLAUDE.md`, and three top-level READMEs",
     "created_at": "2026-05-02T06:36:10Z",
-    "last_save_at": "2026-08-30T15:39:29.311Z",
+    "last_save_at": "2026-09-07T16:17:40.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55e16a4a1e79460ea9281ec17497405b5718ab6c886ad44c72067c78b1559de4",
+    "source_fingerprint": "sha256:03c0a65ec687b6084225525bc593a97c62c0e8628100897c4456d895c41ebb10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0c654bd9da478b85170cd2227a1b54bc3516a5b19ba595e6efaef32602b7906",
-      "plan.md": "bdb29e21de51c91828892f35501e6d6f5b3f8a4762a1b6af058c9aae3bdd394a",
-      "tasks.md": "6868c1109304aa17c2826882da77517bce46a993baaa77d1d5fe56fbbeaccd84",
-      "decision-record.md": "9b28ffa992073b45489df7193ad7d59f33e8a4d8361ecd5d4c1e175b75deabd5",
-      "implementation-summary.md": "a9d0a52fb971cbfaf1b98488be40a67ffe02fd3a711f3553f594c5a788921fda"
+      "spec.md": "a8bbc258395f261c11f7063f8227af1a9a82b4709604d96d0c1fc38f98b6e063",
+      "plan.md": "023e780854b0d23902a7f8a7edce4d1e152480cbda3f65bb75dfe998f9f86925",
+      "tasks.md": "48cad496dfc68ce57b029934e8ccccde4aa9bb375614e486071777d07450b45d",
+      "decision-record.md": "60967764e09b261bc383d871c01a4de3f846eab987543b007dcda6780abde1aa",
+      "implementation-summary.md": "f68b9764acf401ef9a537e47d94e8e6a66dc5968ebaf19d109ceb8b1f6fd3ecb"
     },
     "last_active_child_id": null,
     "last_active_at": null

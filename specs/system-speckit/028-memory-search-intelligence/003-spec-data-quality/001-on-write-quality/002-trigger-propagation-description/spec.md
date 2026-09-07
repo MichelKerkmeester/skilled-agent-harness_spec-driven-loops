@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A2 Trigger Propagation and Derived Description [template:level_2/spec.md]"
+title: "Feature Specification: A2 Trigger Propagation and Derived Description"
 description: "description.json never carries the curated frontmatter trigger_phrases and its description is a verbatim copy of the spec title. Propagate the curated triggers into the JSON and derive a real extractive description so the retrieval and adherence readers stop seeing a title where a description and triggers should be."
 trigger_phrases:
   - "trigger propagation description"

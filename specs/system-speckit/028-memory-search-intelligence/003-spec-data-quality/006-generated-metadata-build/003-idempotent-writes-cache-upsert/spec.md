@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Idempotent Writes and Global-Cache Upsert [template:level_2/spec.md]"
+title: "Feature Specification: Idempotent Writes and Global-Cache Upsert"
 description: "The per-folder description generator stamps lastUpdated with new Date and the savePerFolderDescription helper writes unconditionally, so a rerun on unchanged content dirties the folder. Running that generator also triggers ensureDescriptionCache to regenerate the whole tree by scanning every base path, pulling unrelated sessions folders into a scoped commit. Two convergent fixes are specified: content-hash gated description and global cache writes, and a targeted global-cache upsert split from full rebuild, both behind a default-OFF flag so the existing wall-clock-stamped files do not mass-fail."
 trigger_phrases:
   - "idempotent description writes"

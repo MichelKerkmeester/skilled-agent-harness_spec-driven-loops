@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 002 Deep-Loop Workflow State-Machine Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 002 Deep-Loop Workflow State-Machine Remediation"
 description: "Five surgical fixes across two YAML workflow assets and one TS module to close findings F-010-B5-01..04 and F-019-D4-01 from packet 046 and 019."
 trigger_phrases:
   - "F-010-B5 plan"

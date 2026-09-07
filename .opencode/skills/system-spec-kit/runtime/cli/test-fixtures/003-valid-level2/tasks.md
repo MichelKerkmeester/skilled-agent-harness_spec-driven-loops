@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Tiny Reminder Toggle [template:level-2/tasks.md]"
+title: "Tasks: Tiny Reminder Toggle"
 description: "A tiny fixture feature that toggles one reminder flag and records verification details."
 trigger_phrases:
   - "tiny reminder toggle"
@@ -104,7 +104,7 @@ CORE TEMPLATE (~60 lines)
 -->
 
 ---
-title: "Verification Checklist: Tiny Reminder Toggle [template:level-2/checklist.md]"
+title: "Verification Checklist: Tiny Reminder Toggle"
 description: "A tiny fixture feature that toggles one reminder flag and records verification details."
 trigger_phrases:
   - "tiny reminder toggle"

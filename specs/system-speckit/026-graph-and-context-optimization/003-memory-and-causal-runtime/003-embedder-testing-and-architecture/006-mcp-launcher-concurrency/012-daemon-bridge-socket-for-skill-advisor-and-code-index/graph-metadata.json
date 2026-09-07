@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 010 (`feat(016/006/010)` at commit `088cb82a0`) introduced the multi-client stdio↔socket bridge but shipped daemon-side binding only for `mk-spec-memory` (via `mcpserver/lib/ipc/socket-server.ts`)",
     "created_at": "2026-05-23T11:55:15.587Z",
-    "last_save_at": "2026-08-30T15:39:30.991Z",
+    "last_save_at": "2026-09-07T16:17:51.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89fbf8519826458b44dd02dd79afc68f3a33eaa1a0d028b3964c39e275ec0882",
+    "source_fingerprint": "sha256:66f1a1c1a2f8d58f2799f2a428a3399527bfc4508c877144c49b86592734f8f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "073898e32b523d501a3b11b7bd5720dde325e93e9298958e05f3cf7258c02135",
-      "plan.md": "2222ca9806908b92af8123487b1a11b0656b7bd2d5e43f6e16f015784937c750",
-      "tasks.md": "86cab0f29b508f4dec77d57e6f19b1e13fe4998ecb6bd83b972c4ae319644d50",
-      "implementation-summary.md": "c6264aad1210b2c3106b3666f822438c7cd379bc0ad17b312654564b276192e7"
+      "plan.md": "72a01943b357b4f5838d13f966f8aaab44128d137e794d5113dd84250db79722",
+      "tasks.md": "c7d342b3b572cd53332e63bffe5e6fc746a34540be002dae8b723d119a2d642f",
+      "implementation-summary.md": "9fea088502cbdf9b7e86c009f4834be0c3bc98fd949a9d44185eedb64b64be8a"
     },
     "last_active_child_id": null,
     "last_active_at": null

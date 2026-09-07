@@ -22,7 +22,7 @@ _memory:
       - ".opencode/plugins/README.md"
       - ".opencode/skills/"
     session_dedup:
-      fingerprint: "sha256:828450c92c75cf6a740640c17b76b21073ca9b59cc8fecd840465b0320751d34"
+      fingerprint: "sha256:5a0d367c997cb4ce25215952123a4e0cb6ce3d8fba4e724e903c007d6686150a"
       session_id: "public-doc-internal-spec-reference-removal-2026-05-18"
       parent_session_id: null
     completion_pct: 100

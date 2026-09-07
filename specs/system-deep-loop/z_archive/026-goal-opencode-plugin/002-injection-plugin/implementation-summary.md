@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Active goals now appear in OpenCode system context as sanitized passive guidance, with status output exposing the exact injection preview."
 trigger_phrases:
   - "goal injection implementation"
@@ -18,7 +18,7 @@ _memory:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
-      fingerprint: "sha256:6f58a7f11018395111712324cd1a5f38ae2494e0fa811aaf51f94ea8e98b9d6e"
+      fingerprint: "sha256:7ed5033db635a7eba191022ca2c26bc0738aa61f8aeb893835c8b0134b03e11e"
       session_id: "goal-m1-injection-plugin-20260629"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: spec-memory rerank A/B benchmark [template:level_1/tasks.md]"
+title: "Tasks: spec-memory rerank A/B benchmark"
 description: "Task breakdown for the spec-memory rerank A/B benchmark."
 trigger_phrases:
   - "004 tasks rerank benchmark"

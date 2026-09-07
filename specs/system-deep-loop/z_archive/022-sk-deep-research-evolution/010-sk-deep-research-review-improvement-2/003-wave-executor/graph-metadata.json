@@ -42,16 +42,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs",
-      ".opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs",
-      ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
-      ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
-      ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -82,60 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "wave-segment-planner.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "wave-lifecycle.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "wave-coordination-board.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "wave-segment-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "wave-convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-wave-planner.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-wave-executor.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-wave-merge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-loop-wave-resume.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +134,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Segmented",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context We",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop products are currently optimized for one iteration stream at a time",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-08-30T15:39:24.486Z",
+    "last_save_at": "2026-09-07T16:17:20.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: Iteration-001 Daemon Concurrency Fixes [template:level_2/tasks.md]"
+title: "Tasks: Iteration-001 Daemon Concurrency Fixes"
 description: "Task tracking for the four daemon concurrency fixes (F-001-A1-01..04) plus two new stress test describe blocks."
 trigger_phrases:
   - "tasks"

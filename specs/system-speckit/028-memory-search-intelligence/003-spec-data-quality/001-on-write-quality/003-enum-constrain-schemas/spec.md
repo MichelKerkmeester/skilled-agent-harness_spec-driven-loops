@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A3 Enum-Constrain JSON Metadata Schemas [template:level_2/spec.md]"
+title: "Feature Specification: A3 Enum-Constrain JSON Metadata Schemas"
 description: "The graph-metadata and description zod schemas type importance_tier status and content_type as free strings so any typo or drifted vocabulary persists unguarded while the command surface already machine-checks its mutation_class enum. This phase borrows that enum discipline to constrain the three JSON fields."
 trigger_phrases:
   - "enum constrain schemas"

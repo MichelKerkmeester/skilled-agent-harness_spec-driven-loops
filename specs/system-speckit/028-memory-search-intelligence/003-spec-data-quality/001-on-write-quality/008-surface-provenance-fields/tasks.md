@@ -1,5 +1,5 @@
 ---
-title: "Tasks: A8 Surface Provenance Fields [template:level_2/tasks.md]"
+title: "Tasks: A8 Surface Provenance Fields"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "surface provenance fields tasks"

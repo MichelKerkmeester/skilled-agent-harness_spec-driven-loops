@@ -41,9 +41,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "dist/handlers/memory-search.js",
-      "evidence/off-baseline-2026-05-21.json",
-      "lib/search/search-flags.ts"
+      "evidence/off-baseline-2026-05-21.json"
     ],
     "entities": [
       {
@@ -71,21 +69,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-search.js",
-        "kind": "code",
-        "path": "dist/handlers/memory-search.js",
-        "source": "derived"
-      },
-      {
         "name": "off-baseline-2026-05-21.json",
         "kind": "config",
         "path": "evidence/off-baseline-2026-05-21.json",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -189,11 +175,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sidecar to talk to",
     "created_at": "2026-05-23T11:55:15.627Z",
-    "last_save_at": "2026-08-30T15:39:31.140Z",
+    "last_save_at": "2026-09-07T16:17:55.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59a2268e0942e15e2af04f2b307a05b2dfaa7127ebe932f4869339941a179607",
+    "source_fingerprint": "sha256:ac327d9ddb7076d873c2703df43aa60555216d5eeda6c833dc40742da442a745",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0cff255ea089392ce74be4f33f83fd3363146f99a7d1b4ba10313c03b5a7b77",
-      "plan.md": "1abc815c3b26c301796631391fecdbd044a16ab86b8515acdd82e77ae0424c94",
-      "tasks.md": "7daea82a35041250ddb87af934b5c62d06e075708850e2536e0821d4917f6e6c",
-      "implementation-summary.md": "42c0d22c17d5322481e3b267f33697e46171a2d3c4e0142facc171068ad0437e"
+      "spec.md": "e9e0ba2eaee548e41b3385670af4674559396c11c1b47b6209bee30a4f7c52ae",
+      "plan.md": "9826734d0acd5b93fd251873699a201dd57242e170fef4a56f4e20b59a3e099d",
+      "tasks.md": "e1abcf4b16c5f063ac472fe59dae90ca71d6d89182229b135363563acf23822d",
+      "implementation-summary.md": "a81da1f6708dfa92deba563ae4d6241d125f9b5550cc70750402a83551a64865"
     },
     "last_active_child_id": null,
     "last_active_at": null

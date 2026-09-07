@@ -1,5 +1,5 @@
 ---
-title: "Spec: shared embedder logic with spec-memory [template:level_2/spec.md]"
+title: "Spec: shared embedder logic with spec-memory"
 description: "Refactor packet that made skill-advisor consume the same shared embedder factory and default embedder infrastructure as mk-spec-memory/spec-memory, plus a 2026-07-08 Round 2 hardening pass (provider persistence, cross-server DB-path leakage fix, onnx shutdown-crash mitigation)."
 trigger_phrases:
   - "shared embedder logic skill-advisor"

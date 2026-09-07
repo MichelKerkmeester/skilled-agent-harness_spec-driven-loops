@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: DONE. Documented Kimi K2.7 Code's broad-scope over-exploration -> 600s-timeout -> 0-bytes failure mode + mitigation across sk-prompt-models + cli-opencode and repaired stale kimi-k2.6 references; card-sync guard + strict validate green."
 trigger_phrases:
   - "kimi k2.7 timeout caveat status"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/sk-prompt-models/assets/model_profiles.json"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:18ac2705aee2c3f522db978d16deb2489e15532fa6c71ac2a4f5af60a276d558"
       session_id: "2026-06-17-149-006-broad-scope-timeout-caveat"
       parent_session_id: null
     completion_pct: 100

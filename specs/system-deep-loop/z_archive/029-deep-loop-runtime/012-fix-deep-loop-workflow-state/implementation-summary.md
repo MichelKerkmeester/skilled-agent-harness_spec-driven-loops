@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 002 Deep-Loop Workflow State-Machine Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 002 Deep-Loop Workflow State-Machine Remediation"
 description: "Five surgical fixes across two deep-loop workflow YAML assets and one TS module close findings F-010-B5-01..04 and F-019-D4-01. Lock cleanup on halt/cancel paths reaffirmed; fallback iteration records carry canonical schema; --no-resource-map flag flows from parser into config; child saves refresh parent children_ids and last_save_at."
 trigger_phrases:
   - "F-010-B5"

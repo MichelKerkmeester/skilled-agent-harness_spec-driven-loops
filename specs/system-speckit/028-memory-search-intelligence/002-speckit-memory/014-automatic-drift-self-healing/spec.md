@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Automatic Drift Self-Healing [template:level_2/spec.md]"
+title: "Feature Specification: Automatic Drift Self-Healing"
 description: "The memory index's stale-row detection, move-reconciliation, and orphan-sweep machinery already exists but only runs when a human manually calls memory_index_scan; nothing triggers it automatically, the sweep is capped at 200 rows/scan, and the query path never checks file existence at all. This phase closes the loop with three layers -- query-time existence filtering, a git-hook-triggered scoped scan, and a full-sweep backstop -- so drift stops silently re-accumulating after 007/008 clear today's backlog."
 trigger_phrases:
   - "automatic drift self-healing"

@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "assessment.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:76605ad7b50b7b19f46cc3b2fb64833103b4853dd2355ced3a8b3a02b8f6c685"
       session_id: "2026-07-27-028-017-009"
       parent_session_id: null
     completion_pct: 100

@@ -46,11 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/specs/descriptions.json",
-      "scripts/dist/spec/is-phase-parent.js"
+      ".opencode/specs/descriptions.json"
     ],
     "entities": [
       {
@@ -84,33 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "check-graph-metadata.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.js",
-        "kind": "code",
-        "path": "scripts/dist/spec/is-phase-parent.js",
         "source": "derived"
       },
       {
@@ -196,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that parent",
     "created_at": "2026-07-06T06:03:21Z",
-    "last_save_at": "2026-08-30T15:39:36.045Z",
+    "last_save_at": "2026-09-07T16:18:34.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4af2b32305bb93e44631dcfd6b89fea2b68ffa8e1eb52ee7ea9f2f482537a670",
+    "source_fingerprint": "sha256:7564442421acef72ea1ca9589568714a04182e6d2ac7c6869fac0788e7432d45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35abf1f866248f551b1fe0f63197ad9aefbff595c199b00513694a2178b1c8a5",
-      "plan.md": "c802797e5aead58acf7328e4f6bba48e220bdd88ab6a7e92a383a6ca05b7db12",
-      "tasks.md": "5b24931f753d75712ecb8a63590d7532f17d2b27b316cca81b28809f13e35196",
-      "decision-record.md": "ddd80c71547c2e9371e46d7bffb13f59562af6591ad08b2b9cb4472f982d3688",
-      "implementation-summary.md": "a24209690d8c6119e835b816c9abd9e3cbf950ef26c896dce2085fdb526d0606"
+      "plan.md": "633fca85743a4e0386fd09693b6d04ab66f94cc8cf14d0001401e3d6f7222102",
+      "tasks.md": "0b63470a7f481d84e5dfc73771e0c604b52f74a047e166dbdce333b7c03a0543",
+      "decision-record.md": "00fe25a89f864d7dcccf0e962efd78ee1fa2b6a97f53705a5ebe2b983912d85c",
+      "implementation-summary.md": "0c21fba8663ec2201ed5102df726330b6f5490dbbda8e394a1f045501dd3d756"
     },
     "last_active_child_id": null,
     "last_active_at": null

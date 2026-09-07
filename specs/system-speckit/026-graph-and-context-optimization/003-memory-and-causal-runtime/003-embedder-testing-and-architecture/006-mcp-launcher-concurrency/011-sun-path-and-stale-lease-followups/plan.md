@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sun_path socket-dir + stale-lease reclaim followups [template:level_1/plan.md]"
+title: "Implementation Plan: sun_path socket-dir + stale-lease reclaim followups"
 description: "Plan capturing already-shipped runtime-config fix (commit 9ae9a6f4e) plus this packet's doc-alignment + recipe + arc-parent updates, and identifying the follow-on packet for dead-PID lease reclaim."
 trigger_phrases:
   - "011 plan"

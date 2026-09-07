@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Search-Quality Fixes [template:level_2/plan.md]"
+title: "Implementation Plan: Search-Quality Fixes"
 description: "Land the six 029 deep-research fixes in dependency order, smallest blast radius first, each behavioral change reversible. The keystone bridges the dead evidence-gap cap, the other five tighten a benchmark metric, telemetry honesty, a row score, deterministic ranking behind a default-off flag, and the presentation contract. Each MCP change is host-verified with its focused vitest, then dist is rebuilt and the daemon recycled so a fast-subset re-run exercises the live fixes."
 trigger_phrases:
   - "search quality fixes plan"

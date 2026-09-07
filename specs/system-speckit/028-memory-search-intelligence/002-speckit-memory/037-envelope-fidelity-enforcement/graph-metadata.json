@@ -37,10 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/search.md",
-      "formatters/search-results.ts",
-      "handlers/memory-search.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,24 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -186,11 +165,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:35.256Z",
+    "last_save_at": "2026-09-07T16:18:13.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:731cbda754b6fb583cc47db0e962501a4b2236f81b5f5f33b6cb7071a81bafaf",
+    "source_fingerprint": "sha256:496c62b38f1a00c3442f11d654cb852286d82d3e2ab997b7c2aa07d3272f1d4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9be4bbc76e90b3a774927f6ebf4c8da64b49c7c97331a7f4b0d015adb2a1166b",
-      "plan.md": "bbe88595be2486910da4730f812f512dc4f8bbe07131770ea52e14f4c1767180",
-      "tasks.md": "2b711021ea48775fabe68273985ea853d364a42a755f56c44abcb4748431f338",
-      "implementation-summary.md": "39c23346d7a98534746f0c4f416b3e487ac69fbfc0568867cae60d082059578d"
+      "spec.md": "c0a51f581f96f4644940c69def6d1afbaca54efbf0c3a1fb701e881746cf9b91",
+      "plan.md": "afdb85da154d734a37b92db165b2664e873147d54b7d5ab7792bf3c9bf46eea8",
+      "tasks.md": "0c9f49d343dc39bd3806cf835b2e6550d6729fc699d05e04b584cea46b843171",
+      "implementation-summary.md": "d5a066211bd42e06a9ba3e29d332ef77abb0fda3ba87006e7097a8a73dfb1b29"
     },
     "last_active_child_id": null,
     "last_active_at": null

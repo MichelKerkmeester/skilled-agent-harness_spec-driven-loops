@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: 028 Playbook Findings Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 028 Playbook Findings Remediation"
 description: "The cluster-by-cluster remediation approach for the playbook validation findings. gpt-5.5-fast high authored the fixes in eight clusters in worktree wt/0008-findings-remediation, each cluster verified by vitest plus typecheck plus mutation checks on the risky fixes plus comment hygiene plus alignment drift, then committed; the commits are landed on the 028 review-branch mainline. Status complete and code verified per cluster; a whole-suite run across all clusters together, before the 028 branch merges to main, is pending."
 trigger_phrases:
   - "playbook findings remediation plan"

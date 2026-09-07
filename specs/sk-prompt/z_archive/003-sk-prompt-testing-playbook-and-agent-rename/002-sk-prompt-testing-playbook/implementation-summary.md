@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/sk-prompt/SKILL.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:0096b29bbccaeaedf11f8009ef075b61215702ea5c1de0cabd93f52c73f8e501"
       session_id: "codex-2026-05-06-085-002-complete"
       parent_session_id: null
     completion_pct: 100

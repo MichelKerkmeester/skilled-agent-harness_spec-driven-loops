@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 11: daemon-freshness-and-health-truthfulness [template:level_1/spec.md]"
+title: "Feature Specification: Phase 11: daemon-freshness-and-health-truthfulness"
 description: "Break the dist-freshness bootstrap deadlock that takes the spec-memory CLI surface down, make hook fallback failures visible, fix memory_health diagnostics that can never fire, and run a timeboxed SIGBUS crash-loop diagnosis."
 trigger_phrases:
   - "dist freshness deadlock"

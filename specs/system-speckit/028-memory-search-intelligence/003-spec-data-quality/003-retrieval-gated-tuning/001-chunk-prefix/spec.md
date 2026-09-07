@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: C1 deterministic header-path plus curated-signal chunk prefix [template:level_2/spec.md]"
+title: "Feature Specification: C1 deterministic header-path plus curated-signal chunk prefix"
 description: "The embed path strips frontmatter triggers, title, and the header path before hashing, so every spec-doc chunk vector loses its strongest curated retrieval signal. C1 re-injects that signal as a deterministic chunk prefix behind a new coverage guard."
 trigger_phrases:
   - "chunk prefix"

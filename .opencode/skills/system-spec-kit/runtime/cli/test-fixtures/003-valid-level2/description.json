@@ -1,18 +1,41 @@
 {
-  "name": "Tiny Reminder Toggle",
-  "specFolder": ".opencode/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2",
-  "description": "A tiny fixture feature that toggles one reminder flag and records verification details",
-  "keywords": [
-    "tiny",
-    "reminder",
-    "toggle"
-  ],
-  "lastUpdated": "2026-06-12T00:00:00.000Z",
-  "level": "2",
-  "status": "in_progress",
   "trigger_phrases": [
     "tiny reminder toggle",
     "level 2 fixture",
     "valid baseline"
-  ]
+  ],
+  "level": "2",
+  "name": "Tiny Reminder Toggle",
+  "status": "in_progress",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/003-valid-level2",
+  "description": "A tiny fixture feature that toggles one reminder flag and records verification details",
+  "keywords": [
+    "tiny",
+    "fixture",
+    "feature",
+    "toggles",
+    "one",
+    "reminder",
+    "flag",
+    "records",
+    "verification",
+    "details"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.684Z",
+  "specId": "003",
+  "folderSlug": "valid-level2",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -1,5 +1,5 @@
 ---
-title: "Spec: 028 Daemon Skills Playbook Validation [template:level_2/spec.md]"
+title: "Spec: 028 Daemon Skills Playbook Validation"
 description: "Salvaged results and findings spec for the daemon-skills playbook validation benchmark. Every stress suite was run plus 222 of 471 manual-testing-playbook scenarios across three cli models, each scored, with 14 real product findings documented. The benchmark workspace was wiped on a process exit and this packet is reconstructed from the surviving session transcript and recovered eval logs."
 trigger_phrases:
   - "daemon skills playbook validation"

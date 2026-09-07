@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d154c3d891a69476ae32e9b1fe964e123fe85420d92838f16f31b087f83b6db6"
       session_id: "scaffold-scaffold/008-archive-fleet-marker-validation-scaffold"
       parent_session_id: null
     completion_pct: 0

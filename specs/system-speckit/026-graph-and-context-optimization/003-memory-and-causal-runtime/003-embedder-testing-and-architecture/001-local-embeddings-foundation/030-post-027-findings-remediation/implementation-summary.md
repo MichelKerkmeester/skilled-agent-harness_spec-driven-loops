@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:49ef3e5bec8c9a667a1d795d80e1b7a5fb3c173fc91c5f0644c9c5263a1f561d"
       session_id: "scaffold-scaffold/030-post-027-findings-remediation"
       parent_session_id: null
     completion_pct: 0

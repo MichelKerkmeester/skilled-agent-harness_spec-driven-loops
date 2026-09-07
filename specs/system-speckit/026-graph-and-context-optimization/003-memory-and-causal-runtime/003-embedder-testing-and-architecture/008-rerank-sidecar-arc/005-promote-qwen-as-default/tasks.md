@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Promote Qwen3-Reranker-0.6B as the spec-memory default [template:level_1/tasks.md]"
+title: "Tasks: Promote Qwen3-Reranker-0.6B as the spec-memory default"
 description: "Task breakdown for the decision-gated final promotion phase."
 trigger_phrases:
   - "005 tasks promote qwen"

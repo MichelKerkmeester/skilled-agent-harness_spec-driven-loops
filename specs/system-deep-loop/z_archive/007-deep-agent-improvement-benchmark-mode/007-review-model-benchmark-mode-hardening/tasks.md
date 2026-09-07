@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration [template:level_1/tasks.md]"
+title: "Tasks: Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

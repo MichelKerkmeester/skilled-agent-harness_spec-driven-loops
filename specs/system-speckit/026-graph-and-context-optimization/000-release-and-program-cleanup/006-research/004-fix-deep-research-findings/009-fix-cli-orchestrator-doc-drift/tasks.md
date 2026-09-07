@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
-title: "Tasks: 010 CLI Orchestrator Skill Doc Drift [template:level_2/tasks.md]"
+title: "Tasks: 010 CLI Orchestrator Skill Doc Drift"
 description: "Task list for closing F-007-B2-01..06. Six surgical doc edits + validate + commit + push."
 trigger_phrases:
   - "F-007-B2 tasks"

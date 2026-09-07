@@ -37,9 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "dist/lib/eval/eval-metrics.js",
-      "dist/lib/eval/ground-truth-data.js"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,18 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "eval-metrics.js",
-        "kind": "code",
-        "path": "dist/lib/eval/eval-metrics.js",
-        "source": "derived"
-      },
-      {
-        "name": "ground-truth-data.js",
-        "kind": "code",
-        "path": "dist/lib/eval/ground-truth-data.js",
         "source": "derived"
       },
       {
@@ -185,11 +171,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
     "created_at": "2026-06-27T17:15:36.570Z",
-    "last_save_at": "2026-08-30T15:39:35.631Z",
+    "last_save_at": "2026-09-07T16:18:22.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c35fdeb8737435329b51e88260d065f937ce387596b3936224b430ecbdfef8c0",
+    "source_fingerprint": "sha256:bf5f8bf53aeb36650f06c19c37b937e0696503a63aa92d82ad707ad816d11baa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a33ccc3cb82743c48565278b56ca2475a3afb77b3eaba3cac5a7ba9c0c938f09",
-      "plan.md": "6506fc8ccbf4840cde632106a816fe5ad12394f6725ed4f9315ae3909e9fd74c",
-      "tasks.md": "6d780f935f891168ba8d6e38575a8d4d0da2780a14e776ad2f584da5ca06c6d2",
-      "implementation-summary.md": "165fbc439f51e3757a77b01268bf5426f818a8fd35ba633eb1bae413fa0ece62"
+      "spec.md": "c7f9ffa8d251a8d78446870fe7d1afcd0915ba73b5ae7966620ddee422bf5eb7",
+      "plan.md": "fb30d9a82d05dc41960d89a65a094e1add55a5fcdb7125b531ee67c29d847e69",
+      "tasks.md": "e988d1b1f59930c87c0b3b089ae3b810c9c5f5a1edd7fc40f151298a48e8d7c5",
+      "implementation-summary.md": "0d55a6ef27a2d60fbb4f143090b1c0555523e27e898fa463479ea777fe8e1b54"
     },
     "last_active_child_id": null,
     "last_active_at": null

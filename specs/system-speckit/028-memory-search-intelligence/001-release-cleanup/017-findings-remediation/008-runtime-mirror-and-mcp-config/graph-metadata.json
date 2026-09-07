@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Runtime mirror directories have diverged from their canonical sources, one mirror is a stale physical copy rather than a link, and MCP server configuration exists in three places that disagree about which servers are registered",
     "created_at": "2026-07-27T08:41:13Z",
-    "last_save_at": "2026-08-30T15:39:34.763Z",
+    "last_save_at": "2026-09-07T16:18:08.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64432972eb24081647e0f5529551378fa4bc0cd50437fb690d0e667bf230bdd9",
+    "source_fingerprint": "sha256:693220bdb428e0d56a0c2cef0cf3957cc11fc1cdf48f348b5acd5fcc5dc2d8e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5ca65a087b5dc89594d9f4745528c9c92e29b4f4f7ce8642888159145cddbbf",
-      "plan.md": "7a76135356f908ec94e0fad473bcf0ec425367851b0425fffefd0b0ff70aab72",
-      "tasks.md": "ce1351c2a75977044b74cf0a54201025f60c099d8ab4e30517ed606b92f303e1",
-      "implementation-summary.md": "6f3a3f76354525ef143d448106f768983060f28be91bcaade48d19a7ffc8e727"
+      "plan.md": "305cc528da664088d32e2282fd70edaa54277b0a4e62719a5c51d1dcb4ababc3",
+      "tasks.md": "29eec646dbd8a07a247e6ce0f4288a4fdf2fe53d9c48b16359be4f8c5343f64a",
+      "implementation-summary.md": "896e9f20245c026d9c3dfb9950ea714e231d0346be8dd342c977c175abebe058"
     },
     "last_active_child_id": null,
     "last_active_at": null

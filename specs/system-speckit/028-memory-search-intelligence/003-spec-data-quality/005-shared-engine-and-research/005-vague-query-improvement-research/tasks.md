@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 005 Post-Benchmark Improvement Research [template:level_2/tasks.md]"
+title: "Tasks: 005 Post-Benchmark Improvement Research"
 description: "The research task list for the 10-angle read-only improvement study, all tasks done. Covers setup, the ten angle seats, the cross-model verification pass and the synthesis into research.md. No calibration or scorer or command or lever code modified."
 trigger_phrases:
   - "005 improvement research tasks"

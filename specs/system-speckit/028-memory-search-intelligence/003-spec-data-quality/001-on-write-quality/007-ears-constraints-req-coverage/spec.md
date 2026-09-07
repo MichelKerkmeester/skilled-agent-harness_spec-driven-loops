@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate [template:level_2/spec.md]"
+title: "Feature Specification: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate"
 description: "Spec requirement prose has no shared grammar and the spec-REQ-to-tasks linkage is unguarded, so requirements drift from their build tasks. This phase adds EARS patterns, an always/ask-first/never constraint tier, a soft EARS linter, and a REQ_COVERAGE gate cloned from the shipped AC_COVERAGE rule."
 trigger_phrases:
   - "ears requirements"

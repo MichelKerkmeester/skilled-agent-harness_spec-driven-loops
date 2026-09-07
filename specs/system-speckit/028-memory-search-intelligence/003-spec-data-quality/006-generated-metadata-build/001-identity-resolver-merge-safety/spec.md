@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Shared Identity Resolver and Merge Safety [template:level_2/spec.md]"
+title: "Feature Specification: Shared Identity Resolver and Merge Safety"
 description: "The spec-kit generators that produce description.json and graph-metadata.json drift on identity and lose lineage. description.json stores a caller-base-relative specFolder while graph metadata strips to a specs-root-relative path, and mergeGraphMetadata spreads the refreshed snapshot so top-level parent_id and children_ids come from the recomputation, meaning a null-deriving parent erases lineage and a scoped or racing scan deletes children."
 trigger_phrases:
   - "shared spec folder identity resolver"

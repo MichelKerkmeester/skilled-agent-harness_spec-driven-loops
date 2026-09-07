@@ -19,7 +19,7 @@ _memory:
     key_files:
       - "spec.md"
     session_dedup:
-      fingerprint: "sha256:0140039e3e0c0000000000000000000000000000000000000000000000000ed3"
+      fingerprint: "sha256:e983801dc4605f24d7a09b4d0a2eb552e34e87fc34a7d88ef2e10c750101bec9"
       session_id: "014-003-impl-2026-05-12"
       parent_session_id: null
     completion_pct: 100

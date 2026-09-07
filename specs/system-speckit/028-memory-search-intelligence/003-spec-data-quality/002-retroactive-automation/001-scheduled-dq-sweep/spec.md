@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: B1 Scheduled DQ Sweep [template:level_2/spec.md]"
+title: "Feature Specification: B1 Scheduled DQ Sweep"
 description: "The eight shipped CI workflows are all on pull_request with paths filters so a corpus-wide data-quality check never runs on a timer or on demand. No standing sweep catches path-filter escapes, backfill blind spots, or cross-surface coherence drift."
 trigger_phrases:
   - "scheduled dq sweep"

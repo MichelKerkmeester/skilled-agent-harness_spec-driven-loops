@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deferred-followups [template:level_3/plan.md]"
+title: "Implementation Plan: deferred-followups"
 description: "Four-phase implementation plan for the ten Gate 7 deferred followups."
 trigger_phrases:
   - "implementation"

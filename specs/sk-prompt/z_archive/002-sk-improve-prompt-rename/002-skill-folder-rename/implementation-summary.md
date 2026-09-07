@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
       - ".opencode/changelog/sk-prompt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:48c292408a5065a268b828adf5216c198b360a7ccd3da264992a453c4101f1ee"
       session_id: "scaffold-scaffold/002-skill-folder-rename"
       parent_session_id: null
     completion_pct: 100

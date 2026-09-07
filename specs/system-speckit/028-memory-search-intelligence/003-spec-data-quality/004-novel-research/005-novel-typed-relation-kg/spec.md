@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Novel typed-relation KG auto-extracted [template:level_2/spec.md]"
+title: "Feature Specification: Novel typed-relation KG auto-extracted"
 description: "The save-time LLM typed-relation backfill scaffold ships but is unwired and the deterministic extractor emits structural relation types the causal_edges CHECK constraint rejects, so the typed-relation knowledge graph has no LLM-derived semantic edges and no navigation or provenance surface over them."
 trigger_phrases:
   - "typed relation kg"

@@ -1,5 +1,5 @@
 ---
-title: "Spec: local-LLM feature test suite completion [template:level_1/spec.md]"
+title: "Spec: local-LLM feature test suite completion"
 description: "Action packet for implementing the 10 functional groups and 4 performance benchmarks promised by predecessor 028-local-llm-feature-test-suite but not delivered."
 trigger_phrases:
   - "local-llm feature test suite completion"

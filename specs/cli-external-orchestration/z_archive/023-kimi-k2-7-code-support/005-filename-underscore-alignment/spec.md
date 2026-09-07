@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: filename-underscore-alignment [template:level_1/spec.md]"
+title: "Feature Specification: Phase 5: filename-underscore-alignment"
 description: "Align sk-prompt-models documentation and asset filenames to the house underscore convention (dashes to underscores), then repair every live inbound reference. Five descriptive markdown files and two dash-named JSON assets are renamed; the four references/models/<id>.md profiles are kept dashed because a pre-commit drift guard derives their path from the dashed model id."
 trigger_phrases:
   - "sk-prompt-models filename underscore"

@@ -38,9 +38,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
       "api/index.ts"
     ],
     "entities": [
@@ -66,24 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
-        "source": "derived"
-      },
-      {
-        "name": "scoped-backfill-boundary.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
         "source": "derived"
       },
       {
@@ -187,11 +166,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Setup",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual defects in the backfill and exclusion paths",
     "created_at": "2026-06-27T17:15:41.714Z",
-    "last_save_at": "2026-08-30T15:39:35.839Z",
+    "last_save_at": "2026-09-07T16:18:30.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:901034b77e4d6eb5060f9ea0a894182951ec6532422e7ff0f0596a79285b6174",
+    "source_fingerprint": "sha256:c6afeede2722be4f62bb5fdce4d12f8e5dc3497c370634adf3ebb6a392d0019e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "69be958c0bd361ef295047414458d9393d771a61474149b0707e65217f40b6bf",
-      "plan.md": "505ac21207a3fb0fcaca58f841701581ece2e00b297f155c15d34cd844d66d4c",
-      "tasks.md": "488ce35775d1491fdc5123a92e13b2257bec3f5176bf7750d61f7fb81a7cf805",
-      "implementation-summary.md": "bbd551e9a0a881b83e36fea7674c83640d7f0410c8b957e78c0a7b65917b645d"
+      "spec.md": "e1f2f2055d03b341aee3e9feb1354212283183f51515bf528e26bf81d35f311f",
+      "plan.md": "f889049cb39156cd38c71aca2fb235be99ea4b1ea2250649091066a8e7b07d0e",
+      "tasks.md": "0cc64172dd1d56a6ea82202dbea5835cda8ec31232fa8e2b1b637413ed6759b9",
+      "implementation-summary.md": "d39fe5d9994f14ba6dea48434664992e98b52350f567b9dbc667c229d0779e61"
     },
     "last_active_child_id": null,
     "last_active_at": null

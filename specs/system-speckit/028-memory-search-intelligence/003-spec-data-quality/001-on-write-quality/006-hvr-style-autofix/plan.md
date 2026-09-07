@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A6 HVR Style Auto-Fix Linter [template:level_2/plan.md]"
+title: "Implementation Plan: A6 HVR Style Auto-Fix Linter"
 description: "Add one safe fence-aware prose-style detector that swaps em-dashes prose semicolons and Oxford commas on spec-docs registered fixClass safe on the shared detector registry length-neutral and idempotent."
 trigger_phrases:
   - "hvr style"

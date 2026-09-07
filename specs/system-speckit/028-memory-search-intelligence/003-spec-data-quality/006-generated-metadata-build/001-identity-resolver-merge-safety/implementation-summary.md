@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status IMPLEMENTED. Added a shared resolveSpecFolderIdentity helper consumed by both generators and made mergeGraphMetadata preserve a non-null parent_id and treat children_ids as append-only behind the default-OFF SPECKIT_IDENTITY_MERGE_SAFETY flag. The grandfather report listing is deferred to a follow-up pass. Verified by 11 new vitest plus 385 regression assertions, dist rebuilt."
 trigger_phrases:
   - "shared spec folder identity resolver"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/identity-resolver-merge-safety.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a88e6614135d19dc5e84870e4d68448245044046fbbd145b49b848bb140738ac"
       session_id: "claude-opus-session"
       parent_session_id: null
     completion_pct: 90

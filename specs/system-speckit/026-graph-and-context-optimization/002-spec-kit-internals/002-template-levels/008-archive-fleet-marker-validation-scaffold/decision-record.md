@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: z-archive-marker-validation-sweep [template:level_3/decision-record.md]"
+title: "Decision Record: z-archive-marker-validation-sweep"
 description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
 trigger_phrases:
   - "decision"

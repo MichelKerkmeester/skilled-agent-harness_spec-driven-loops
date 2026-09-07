@@ -1,5 +1,5 @@
 ---
-title: "Spec: CocoIndex install hygiene pipx repair [template:level_1/spec.md]"
+title: "Spec: CocoIndex install hygiene pipx repair"
 description: "Open repair packet split from completed diagnosis 005-cocoindex-install-hygiene; applies the pipx editable repair once operator-side pipx config allows writes."
 trigger_phrases:
   - "cocoindex pipx repair"

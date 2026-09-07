@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Surfaced a grounding signal in the envelope (rec 7), subtracted a measured corpus noise-floor before banding (rec 8), added a cite_with_caveat tier (rec 10), bridged stage4.evidenceGapDetected into the verdict (rec 11) and documented the calibration re-fit as a proven non-fix (rec 12), each behavioral change behind a default-OFF flag. Implemented in the real TypeScript sources, compiled to dist, covered by a 16-case vitest, no regression across 248 touched-suite cases."
 trigger_phrases:
   - "scoring hardening"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-hardening.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8246093a10ebe748b44568d63fff1d12e0477b8779cb0640e6be4dd2d23ab407"
       session_id: "claude-opus-session"
       parent_session_id: null
     completion_pct: 100

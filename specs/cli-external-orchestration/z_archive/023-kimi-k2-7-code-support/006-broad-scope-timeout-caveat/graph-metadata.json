@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dispatch at `--variant high`, `kimi-for-coding/k2p7` over-explores (many sequential file reads) and exceeds a 600s timeout WITHOUT emitting — and because opencode flushes only the final assistant message to stdout, the killed run yields 0 bytes (looks like a hang though the model was working)",
     "created_at": "2026-06-17T11:00:00Z",
-    "last_save_at": "2026-08-30T15:39:08.808Z",
+    "last_save_at": "2026-09-07T16:16:55.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b4eca8a6b602609d577b9219523df7b76b7613f3787f541b26e15288a4f9e57",
+    "source_fingerprint": "sha256:108e117bd7d8defd576987d33713ef239885751587d2454d1f2a7de4caeda94b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4935068afac00fd045a1648364fea6cee5dadd4b3e06965dc2cb6ad76ac31d48",
-      "plan.md": "21bb6c7fa72b16fcb82b6fda8c93a9b2f58f089efcd2404ccfa8631cc14d4bb0",
-      "tasks.md": "28be66ff1e95d89da14495a6f010a73bd82a0d0d36c2daa758450e98f1ad25d1",
-      "implementation-summary.md": "b43aa3e168d72ae2369a73a0ded20aedd8296aa9a9d72f7625890067417e9d8b"
+      "plan.md": "b0ca2cae94b1e2f02672cd7e363635cedbffa76e4eb6d3de043ab7b891f6b13c",
+      "tasks.md": "38ba99fcd8202605d0928bfcb2bb6c895cb687ff7fab426fc7db2e7015888ede",
+      "implementation-summary.md": "0008eb508e945536f89f9cc7bc107a77b5f73370559d47599e45008e1a2ecec7"
     },
     "last_active_child_id": null,
     "last_active_at": null

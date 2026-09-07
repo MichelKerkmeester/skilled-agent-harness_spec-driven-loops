@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
-title: "Implementation Summary: 007 Topology And Build/Dist Boundary Remediation [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: 007 Topology And Build/Dist Boundary Remediation"
 description: "Six surgical edits across the implement-workflow YAML, the dual phase-parent detection mirrors, the OpenCode plugin, the source/dist alignment checker, the dist tree, and the MJS plugin bridge close findings F-019-D4-02..03 and F-020-D5-01..04. Adds explicit phase-path grammar (documentation-only), a manifest-size health helper for phase parents, fixes the kebab/snake cache-signature mismatch, expands the alignment checker to cover all runtime-critical dist subtrees, deletes the orphan harness.js, and adds a smoke test plus decision-record header for the source-of-truth MJS bridge."
 trigger_phrases:
   - "F-019-D4-02"

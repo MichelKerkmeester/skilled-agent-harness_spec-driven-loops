@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: reindex-populates-vec-memories-knn-table [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: reindex-populates-vec-memories-knn-table"
 description: "Two-surface fix: patch reindex.ts to dual-write vec_<dim> and vec_memories, patch factory.ts to follow the ADR-012 shard split when resolving the active ollama embedder."
 trigger_phrases:
   - "vec_memories backfill plan"

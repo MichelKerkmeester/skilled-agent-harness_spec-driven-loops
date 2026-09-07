@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: A2 Trigger Propagation and Derived Description [template:level_2/plan.md]"
+title: "Implementation Plan: A2 Trigger Propagation and Derived Description"
 description: "Populate trigger_phrases in the per-folder description generator from curated frontmatter plus a derived extractive set capped at 12, demote the title-copy to a fallback so a real description wins, and raise the extractTriggersFromContent cap to match."
 trigger_phrases:
   - "trigger propagation description"

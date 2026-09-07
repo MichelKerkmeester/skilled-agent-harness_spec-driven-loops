@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Promote Qwen3-Reranker-0.6B as the spec-memory default [template:level_1/plan.md]"
+title: "Implementation Plan: Promote Qwen3-Reranker-0.6B as the spec-memory default"
 description: "Three-phase plan: read phase 004 verdict, apply PROMOTE or HOLD path, update arc parent status."
 trigger_phrases:
   - "005 plan promote qwen default"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Generator Hardening [template:level_2/tasks.md]"
+title: "Tasks: Generator Hardening"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "graph metadata source fingerprint"

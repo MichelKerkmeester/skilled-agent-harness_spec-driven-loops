@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Each of these derives a document from something that already exists, so their failure mode is drift: the artifact stops describing its source and nobody notices, because it still looks like a valid document",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-09-01T11:49:40.109Z",
+    "last_save_at": "2026-09-07T16:17:05.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0114fddde102c42f0572ddcd13dbeba2690bc14ee3dcbbce0e128a0fe55ecea6",
+    "source_fingerprint": "sha256:7ab5029995b6a8f6edac5fb24ee79d35c7348393e792e8e9a5ec80742a6287c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "642906e81eaf6e864f345723ed891a16cce8ecb17b7ecdbf858cdc9aaebf98d4",
-      "plan.md": "e7b8a8164f85c9290081db2ee6d95688f746081a2c39627f63f48b3c2e4e42ef",
-      "tasks.md": "d14d02203e7deb960973e84c5889cc0b8937d1db3fccf8270e2d218d65a8e2c8",
-      "implementation-summary.md": "63e0ad21de3a787fad3fff5704606f0f532e6bb884a2fd9cfac5a3f2e831de3d"
+      "plan.md": "76d000faa35032709c8fcea30ad0763cfda087481b24e2b4c528528b0d4d5e06",
+      "tasks.md": "dabcd730c2269cceb1443c85a2be9b7ada1c951d5e46d00b6c8760351b8f3117",
+      "implementation-summary.md": "a78dace9bd25fdcd1985b40625178867e08ec5f317477cf54965f42b7ec41b5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

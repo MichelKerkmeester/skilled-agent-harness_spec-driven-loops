@@ -195,7 +195,7 @@
     ],
     "causal_summary": "HF cache was empty (48KB) post-reboot",
     "created_at": "2026-05-12T16:27:48Z",
-    "last_save_at": "2026-08-30T15:39:29.629Z",
+    "last_save_at": "2026-09-07T16:17:42.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:104376502380418ac81733e22d8a46cf6cbb9c28d4730743b57d3e12b1f2a14d",
+    "source_fingerprint": "sha256:95bb558c1ca4e6e6b050f6430f9a8180627f23d7e0418e9f798ca19ad965bdf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d5195c83cc2b19c294f352092439ee32c4ea3d9459802fc8c26827efa8ac5ce4",
-      "plan.md": "ce77ec71529a9943c78f80bdfa9a2b4ee1a6f5e0040fba811d5a68d27b64a7d3",
-      "tasks.md": "7fdfa77b84207aa8fa72240724273a68a73c4b9449cdb72c721a514f736b3b1c",
-      "implementation-summary.md": "ced85fa7e5e43dbec1cbf84d40e71c422d810a6f3b3a02d2d8a3a778cb35ba0e"
+      "plan.md": "a7fa6a265406c454363c97d59c4d6db7bc8d1b0c80191f40224e0633f72aa672",
+      "tasks.md": "0527f2f8a263fad9f5d1d133642ccb56b7159d26c8ece1cf3e63e3630430e6c2",
+      "implementation-summary.md": "9d1d68ab997b782f0da15244cc72fe20cc67e07cbecbc4408c63c6bd1598334c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 053 doc-alignment and README fill-in [template:level_3/plan.md]"
+title: "Implementation Plan: Phase 053 doc-alignment and README fill-in"
 description: "Five-work-block dispatch plan for sk-doc template alignment, two missing folder READMEs, and operator_runbook -> manual_testing_playbook merge."
 trigger_phrases:
   - "phase 053 plan"

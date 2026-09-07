@@ -21,7 +21,7 @@ _memory:
       - "scratch/vitest-post-unit-h.json"
       - ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f6eea2bdc71c88b1e04c199f19acc9f1cb47f26a587f93805a9d0c7c3d2468eb"
       session_id: "vitest-recovery-followup-2026-05-09"
       parent_session_id: null
     completion_pct: 100

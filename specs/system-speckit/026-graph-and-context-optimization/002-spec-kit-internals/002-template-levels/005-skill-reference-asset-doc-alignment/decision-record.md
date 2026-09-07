@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: skill references assets alignment [template:level_3/decision-record.md]"
+title: "Decision Record: skill references assets alignment"
 description: "Audit-boundary decision for stale versus legitimate terminology during the Round 5 skill reference and asset sweep."
 trigger_phrases:
   - "skill references assets alignment decisions"

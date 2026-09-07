@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Version-Suffix Flag-Name Cleanup [template:level_2/spec.md]"
+title: "Feature Specification: Version-Suffix Flag-Name Cleanup"
 description: "Twelve live SPECKIT search and UX-hook feature flags carry a _V1 version suffix in their env-var name. A flag name is a stable runtime contract and must never encode a version number, because the version belongs in the changelog and the spec history rather than in the operator-facing knob. This phase performs a hard clean rename that drops the _V1 suffix from all twelve flags across the live reader code, every live consumer, every test that sets or asserts the env name, and the live reference docs, with no backward-compatible alias. The rename is confined to the live tree and never touches archived or historical records, because a record of what a flag was named at the time it was written must stay true to that moment."
 trigger_phrases:
   - "version suffix flag rename"

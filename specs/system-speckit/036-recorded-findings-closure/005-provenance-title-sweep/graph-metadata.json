@@ -39,7 +39,7 @@
       "scaffold"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/cli/rules/check-placeholders.sh",
+      "runtime/cli/tests/test-validation-extended.sh",
       "rules/check-placeholders.sh",
       "spec/check-placeholders.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
@@ -97,13 +99,13 @@
       {
         "name": "check-placeholders.sh",
         "kind": "script",
-        "path": "rules/check-placeholders.sh",
+        "path": "runtime/cli/rules/check-placeholders.sh",
         "source": "derived"
       },
       {
         "name": "test-validation-extended.sh",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh",
+        "path": "runtime/cli/tests/test-validation-extended.sh",
         "source": "derived"
       },
       {
@@ -205,7 +207,7 @@
     ],
     "causal_summary": "`grep -rIl '\\[template:level' specs` currently returns 1,178 files, of which 947 `.md` documents carry the token on their own `title:` frontmatter line rather than in prose quoting it elsewhere (verified 2026-09-07 by filtering the raw match list against `^title:.\\[template:level`)",
     "created_at": "2026-09-07T15:05:45Z",
-    "last_save_at": "2026-09-07T15:41:25.410Z",
+    "last_save_at": "2026-09-07T16:32:41.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4edd4d33ed520b334c01b28f81c684e3ccf3ddb320caa90cef55882831e179c4",
+    "source_fingerprint": "sha256:17c7e269635cd45cb9a900be98e661e7b99c0362ac16d9b9351d4188ab37b53d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ab98f72298afc5cbcfaf4ccf316cb46866e017c5322a18172b64479138e83a4",
+      "spec.md": "9731c16a46d37d65f4499b7fcf20ebe7b107bd18c2b15c06655230a795b60eed",
       "plan.md": "ec9c7bcbb18ffc4f1551868b7761dae1769f093981404aa44f054237f7cfca64",
-      "tasks.md": "e5150cd23ad256b8fd3fd28bcddcedae83138d00ba4da5aec1fbe3ba1451e275",
-      "implementation-summary.md": "1c1cb5fb2357ee6f27b3f13eb3b662e4f01bc44058c0d7bba0f33e76e0d9cfe3"
+      "tasks.md": "bbc22bfd44a8df4299c624f63347f05df2b69af0e526321c07776499d29afe33",
+      "implementation-summary.md": "874a76e2035201d7339f8cdde90c3df81b24f8f927e18c81b713d615d86cee91"
     },
     "last_active_at": null
   }

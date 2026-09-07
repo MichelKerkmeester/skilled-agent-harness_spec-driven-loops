@@ -1,5 +1,5 @@
 ---
-title: "Plan: local-LLM feature test suite completion [template:level_1/plan.md]"
+title: "Plan: local-LLM feature test suite completion"
 description: "Plan to implement the missing local-LLM test groups and performance benchmarks from predecessor 028."
 trigger_phrases:
   - "local-llm feature test suite completion"

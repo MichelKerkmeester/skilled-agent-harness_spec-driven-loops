@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: goal-command [template:level_1/spec.md]"
+title: "Feature Specification: Phase 3: goal-command"
 description: "The root /goal command now routes passive goal operations through mk_goal and mk_goal_status with status output that includes injection_preview."
 trigger_phrases:
   - "goal command"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: prompt-improver-rename [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: prompt-improver-rename"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

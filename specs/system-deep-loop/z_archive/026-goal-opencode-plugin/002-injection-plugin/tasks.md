@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: injection-plugin [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: injection-plugin"
 description: "Completed tasks for passive active-goal injection, transform append behavior, and injection preview verification."
 trigger_phrases:
   - "goal injection tasks"

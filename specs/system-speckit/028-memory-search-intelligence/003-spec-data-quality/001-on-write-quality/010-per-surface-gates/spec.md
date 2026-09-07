@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: A10 Per-Surface Gates [template:level_2/spec.md]"
+title: "Feature Specification: A10 Per-Surface Gates"
 description: "The skill-doc command and context-eng surfaces have no write-time conformance gates. SKILL.md frontmatter carries two ungoverned version grammars, route-validate ships eight assertions that are doctor-only, about thirty workflow YAMLs have no schema validator, and the intent-trigger vocabulary lives in three hand-synced copies with no canary."
 trigger_phrases:
   - "per-surface gates"

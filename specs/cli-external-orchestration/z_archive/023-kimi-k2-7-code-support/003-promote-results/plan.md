@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: promote-results [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 3: promote-results"
 description: "Edit the registry DATA from the bakeoff verdict, mirror it into the kimi reference doc, then re-run the card-sync guard and strict validation."
 trigger_phrases:
   - "kimi promote plan"

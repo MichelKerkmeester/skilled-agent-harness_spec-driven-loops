@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Tri-System Deep Research Program [template:examples/level_1/tasks.md]"
+title: "Tasks: Tri-System Deep Research Program"
 description: "Task ledger for the fifty-angle research program over the three system skills."
 trigger_phrases:
   - "tri-system research tasks"

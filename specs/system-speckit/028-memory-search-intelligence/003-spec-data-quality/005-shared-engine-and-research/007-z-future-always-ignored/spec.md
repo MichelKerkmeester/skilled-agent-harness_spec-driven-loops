@@ -1,5 +1,5 @@
 ---
-title: "Spec: z_future Always Ignored In Backfill [template:level_2/spec.md]"
+title: "Spec: z_future Always Ignored In Backfill"
 description: "A scoped fix to the graph-metadata backfill generator so its tree walk unconditionally skips the z_future staging area. A default run previously entered z_future, the parser threw because z_future is not a supported specs root, and the walk over-reached. The fix adds z_future to the walk exclusion set and corrects the header comment, then rebuilds the dist."
 trigger_phrases:
   - "z future always ignored"

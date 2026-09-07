@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: optin-5dim-scorer-and-skill-docs [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: optin-5dim-scorer-and-skill-docs"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

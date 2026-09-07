@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
     "created_at": "2026-07-02T05:31:05.812Z",
-    "last_save_at": "2026-08-30T15:39:25.696Z",
+    "last_save_at": "2026-09-07T16:17:24.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8d2b3feefa91af56aae9cb75a1bd087663cf28653c6a134769ad49dc6b50e800",
+    "source_fingerprint": "sha256:9851aedeae0c29bae6766b048a4499ec4a673f0c93881f9ca32b81410f672fa0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "039d1adc4e465931dba16b94a8582e98e52f749a219c2d7da39703afe656a4b9",
       "plan.md": "243c42bda44ba0a7d200d7c4296aebbc099e667f2204b7bc37aff40f2736def8",
       "tasks.md": "54f1105546688f8c1461d94595c87f31ab319dc441620c3264e1d3b7cceb34ec",
-      "implementation-summary.md": "5d6972a0c96b25918474f44ce41ca60951d867883f49e4f44349702d5ffffefe",
-      "handover.md": "faba53cae6c87310eec13b7d97ee7447246a0afa693f8184c643558db543feaf"
+      "implementation-summary.md": "2e34be89c49d219be0bc4be12c6163000ec3ab6d774e061befbc700059d3dc0b",
+      "handover.md": "2673791261ea199f8654f4c0dd7c35dd9f8baec8bd35e70c917245620ea52c6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

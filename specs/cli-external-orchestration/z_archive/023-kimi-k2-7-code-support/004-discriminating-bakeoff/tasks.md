@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: discriminating-bakeoff [template:level_1/tasks.md]"
+title: "Tasks: Phase 4: discriminating-bakeoff"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "kimi bakeoff tasks"

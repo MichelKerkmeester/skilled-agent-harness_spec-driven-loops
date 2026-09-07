@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: root-and-config [template:level_1/tasks.md]"
+title: "Tasks: Phase 5: root-and-config"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

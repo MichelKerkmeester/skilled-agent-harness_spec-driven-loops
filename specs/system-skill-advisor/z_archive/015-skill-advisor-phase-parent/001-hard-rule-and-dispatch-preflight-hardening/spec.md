@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Hard-rule enforcement + dispatch-reliability hardening [template:level_2/spec.md]"
+title: "Feature Specification: Hard-rule enforcement + dispatch-reliability hardening"
 description: "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. Implemented on-branch 2026-07-05 (Wave D + A′ + B2); both acceptance tests met."
 trigger_phrases:
   - "hard rule enforcement"

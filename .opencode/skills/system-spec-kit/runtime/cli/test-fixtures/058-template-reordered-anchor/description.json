@@ -1,0 +1,35 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/test-fixtures/058-template-reordered-anchor",
+  "description": "This fixture intentionally swaps required anchor IDs while keeping header text intact",
+  "keywords": [
+    "fixture",
+    "intentionally",
+    "swaps",
+    "required",
+    "anchor",
+    "ids",
+    "while",
+    "keeping",
+    "header",
+    "text",
+    "intact"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.696Z",
+  "specId": "058",
+  "folderSlug": "template-reordered-anchor",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-rerank-sidecar skill [template:level_1/plan.md]"
+title: "Implementation Plan: system-rerank-sidecar skill"
 description: "Three-phase plan: scaffold skill folder + author Python sidecar + tests + install script."
 trigger_phrases:
   - "002 plan sidecar skill"

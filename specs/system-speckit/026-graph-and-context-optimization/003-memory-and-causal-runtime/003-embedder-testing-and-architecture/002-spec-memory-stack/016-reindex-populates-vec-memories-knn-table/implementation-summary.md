@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Root-cause fix for memory_search Z=1.2 degraded confidence: reindex now dual-writes vec_memories alongside vec_<dim>, and the factory follows ADR-012 shard split when resolving the active ollama embedder."
 trigger_phrases:
   - "vec_memories knn backfill"
@@ -25,7 +25,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/database/vectors/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/database/migrations/README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:92c8173a47870e5d2e053d4284b1a942a277d71d306d3116d8f9b4189962742e"
       session_id: "016-002-016-vec-memories-knn-fix"
       parent_session_id: null
     completion_pct: 100

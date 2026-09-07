@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Novel Context-Budget-Fitting Assembler [template:level_2/spec.md]"
+title: "Feature Specification: Novel Context-Budget-Fitting Assembler"
 description: "The prod search path returns the post-floor result set with no density discipline so near-duplicate packets and redundant chunks consume the context budget without adding distinct information. This phase adds a budget-fitting assembler that runs AFTER the floor on the returned set, dedups near-duplicates and prefers diverse packets, improving context density and diversity with no re-index and no recall change."
 trigger_phrases:
   - "context budget assembler"

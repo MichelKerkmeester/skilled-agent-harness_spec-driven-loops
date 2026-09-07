@@ -44,14 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
-      "scripts/spec/is-phase-parent.ts",
-      "scripts/evals/check-source-dist-alignment.ts",
-      "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-      "scripts/dist/spec/is-phase-parent.js",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,36 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment-orphans.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.js",
-        "kind": "code",
-        "path": "scripts/dist/spec/is-phase-parent.js",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -197,11 +160,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Six",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.795Z",
+    "last_save_at": "2026-09-07T16:17:36.250Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd0a2d122eb8c821917df6bf29aa217ca65e0bc4f039c9d40373400f1074190f",
+    "source_fingerprint": "sha256:98074fc1d0d40d0ea75ee88902cb2416bac2785ab98f962ebe4fce404224d9fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87f3baff029548e3cb1a52f05ed572c49491247a1b886ff9d618680ffbf9a1f5",
-      "plan.md": "5b4435a246b8277505ed6c85f0906c685bf86f78e66b37b196befd7936555a92",
-      "tasks.md": "b4ddb4c64105e67d2a074c44f5cd72f76190b969846f416e0d52a72cc38d7285",
-      "implementation-summary.md": "9f3b1351927612b770931b2c6fcbac6efe85c6b77ecc3461eaada6cdf59da823"
+      "spec.md": "bd44f88b7aad30760300d28e647e87b78d95aa1f2049dd133c19ad7e9f899c18",
+      "plan.md": "cb58b8ddcc45560d30e99a210bac2a3feabaf4afce7a57e48edf186f29fef6cc",
+      "tasks.md": "7da66eb20a4dae50b236a073fa8a87bf0519198466e909f5801a48bdc352a8f6",
+      "implementation-summary.md": "3e0ffbe41c49386c7dda54ba24648c2476980f7261bdca18c5dab101557203ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

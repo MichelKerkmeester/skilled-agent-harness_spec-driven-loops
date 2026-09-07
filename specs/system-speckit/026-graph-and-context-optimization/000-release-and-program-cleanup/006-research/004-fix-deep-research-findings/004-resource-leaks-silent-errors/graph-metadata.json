@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five findings from packet 046's deep research describe long-running daemon resource leaks plus two silent error paths that hide degraded behavior from operators:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-30T15:39:28.771Z",
+    "last_save_at": "2026-09-07T16:17:35.545Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2c6ab6f796b06adebedb5160ca58c08618719d7665cc4bdcc1565a124cbe523",
+    "source_fingerprint": "sha256:40a4bea1d56cbe38cd98512bbdbf32d90ae67a79dd7e25c44338872aa76e5fe8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e25123bdaffe14e57adc7ffd33ae8a2c6c1da7d5288f263161d50f286f7fe9b",
-      "plan.md": "d71a34d34ba3f091945c9f7b2059cdab2e79881f5d6652b9c3fe83df445aaf09",
-      "tasks.md": "08e4290de6859320627351175494d32809e02d4c951ec0e538b82dc2fb14775e",
-      "implementation-summary.md": "c0560e34ef20292d91282f065360f28f97271e9bd074bc17bcdc4a9283bb8251"
+      "spec.md": "019bfec2b3cf686b90f25bce652263e04477cf46964ab2fc6683158b6d5b5dba",
+      "plan.md": "d1450805c23d85b083f488d13342b1a5baf15315df6021b6032aeeaa7c3c4288",
+      "tasks.md": "51c678516f9ba36b3c6187181bc3c061e87ce6b6de0f6dfa6b100fc67b50eb86",
+      "implementation-summary.md": "bd5006fcf121ea9815098720744c7121d81a06893a195b00f6064b23306354cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

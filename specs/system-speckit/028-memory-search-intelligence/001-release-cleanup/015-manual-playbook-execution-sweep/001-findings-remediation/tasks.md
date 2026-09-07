@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Manual Playbook Sweep Findings Remediation [template:level_2/tasks.md]"
+title: "Tasks: Manual Playbook Sweep Findings Remediation"
 description: "One task per confirmed FAIL finding; Phase 1 (plan) done per-finding as discovered, Phase 2 (fix) deferred to a future implementation session."
 trigger_phrases:
   - "playbook sweep findings remediation tasks"

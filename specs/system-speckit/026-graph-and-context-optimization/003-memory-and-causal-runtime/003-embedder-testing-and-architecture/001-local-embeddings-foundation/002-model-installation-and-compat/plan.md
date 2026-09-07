@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: model-installation-and-compat [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: model-installation-and-compat"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

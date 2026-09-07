@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: cross-launcher-lease-propagation [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: cross-launcher-lease-propagation"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

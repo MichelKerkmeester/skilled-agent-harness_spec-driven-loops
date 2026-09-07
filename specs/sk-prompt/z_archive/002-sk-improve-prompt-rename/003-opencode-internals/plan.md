@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 003 OpenCode Internals [template:level_2/plan.md]"
+title: "Implementation Plan: Phase 003 OpenCode Internals"
 description: "Rotate Phase 003 OpenCode internals from sk-improve-prompt to sk-prompt with scoped verification."
 trigger_phrases:
   - "implementation"

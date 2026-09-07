@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Backfill description.json and graph-metadata.json for the nine z_archive root directories across .opencode/specs so each archive becomes a discoverable, cold-tier container node in the memory graph [template:level_2/spec.md]"
+title: "Feature Specification: Backfill description.json and graph-metadata.json for the nine z_archive root directories across .opencode/specs so each archive becomes a discoverable, cold-tier container node in the memory graph"
 description: "Nine z_archive root directories contain hundreds of already-indexed archived spec folders, but none of the nine roots carries its own description.json or graph-metadata.json, so the archive as a collection has no graph node and cannot be traversed or discovered as a unit."
 trigger_phrases:
   - "z_archive root metadata"

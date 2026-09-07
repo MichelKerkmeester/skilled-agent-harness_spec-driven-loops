@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Presentation Asset Format — .md to .txt [template:examples/level_1/implementation-summary.md]"
+title: "Implementation Summary: Presentation Asset Format — .md to .txt"
 description: "Delivery evidence for renaming the 24 command presentation assets to .txt and updating all references."
 trigger_phrases:
   - "presentation asset format summary"

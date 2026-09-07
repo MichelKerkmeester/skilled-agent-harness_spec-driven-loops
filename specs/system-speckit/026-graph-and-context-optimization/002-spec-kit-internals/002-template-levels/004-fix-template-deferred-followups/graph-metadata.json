@@ -45,12 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "scripts/spec/validate.sh",
-      "scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -81,24 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "inline-gate-renderer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
         "source": "derived"
       },
       {
@@ -196,11 +173,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 003 implementation packet left ten Gate 7 items deferred after the round-3 sweep",
     "created_at": "2026-05-01T20:32:55Z",
-    "last_save_at": "2026-08-30T15:39:29.301Z",
+    "last_save_at": "2026-09-07T16:17:39.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84d092d0ce858c1a03445ca4e355fdc29f89692a07d6f848cc4fe34d8b14a559",
+    "source_fingerprint": "sha256:3ffc24ccb6704559d189dfb592b3ea8715b1af26334fd52a1d60ca51ebc2fd75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be03c5c014bc0512ad19fcfd6548f4f772046f0ad796f3dc13fd43031466e36f",
-      "plan.md": "f0ade96a84128e12df316cdc1c91b8c1237a07f5430e3b4b8c3fbf2c5d652957",
-      "tasks.md": "e52ef3fda12a00b9164f63423021151696959cf64e7afb2488785328ce50bbdc",
-      "decision-record.md": "313188514d487d5caa9fb6759d98c17d767f2775d19faceec0912ed44f621646",
-      "implementation-summary.md": "235cb873b9974c3ee10acd6bcc5894cfb998b4d099c721348d57bc3fdd654447"
+      "spec.md": "18a7242aabb38652cd640ab10393c1833b4eb322c1051a8a077bbb1be1f96a73",
+      "plan.md": "f63e458a239eeafec8944290d85e2a7b9c8af9b93e6c05be0b1aeb25c9092b04",
+      "tasks.md": "22992db1649e7f3ea191d8d74739b066e8a3502ae432df1db0e32b02e36db530",
+      "decision-record.md": "55772de392efe9fdb77d62b9443c6acfc7cdabffd74ec7cbcfba056d3f6da2cd",
+      "implementation-summary.md": "d2362a7f100cfaed79df9085609fd4c3acec0751cd1ba2a4421efc36a6ccaf90"
     },
     "last_active_child_id": null,
     "last_active_at": null

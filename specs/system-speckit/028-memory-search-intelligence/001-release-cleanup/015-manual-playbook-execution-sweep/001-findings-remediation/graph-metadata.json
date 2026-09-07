@@ -39,15 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "formatters/search-results.ts",
-      "lib/search/hybrid-search.ts",
-      "handlers/memory-index.ts",
-      "handlers/eval-reporting.ts",
-      "lib/eval/reporting-dashboard.ts",
-      "lib/validation/preflight.ts",
-      "lib/search/intent-classifier.ts",
-      "hooks/index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,54 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-reporting.ts",
-        "kind": "code",
-        "path": "handlers/eval-reporting.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reporting-dashboard.ts",
-        "kind": "code",
-        "path": "lib/eval/reporting-dashboard.ts",
-        "source": "derived"
-      },
-      {
-        "name": "preflight.ts",
-        "kind": "code",
-        "path": "lib/validation/preflight.ts",
-        "source": "derived"
-      },
-      {
-        "name": "intent-classifier.ts",
-        "kind": "code",
-        "path": "lib/search/intent-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "hooks/index.ts",
         "source": "derived"
       },
       {
@@ -193,11 +137,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Stage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Remediation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
     "created_at": "2026-07-02T11:57:47.283Z",
-    "last_save_at": "2026-08-30T15:39:34.663Z",
+    "last_save_at": "2026-09-07T16:18:04.597Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d7ac6adee99f4ad0457ae7cb064291e7d15d99cb0ce213571482d5e968c0a9f",
+    "source_fingerprint": "sha256:ce255ce65b019147068c9b436517633f1e8040d8b3a673b8c1ca2ceedafb6c4e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b9c1ebee05b9b4ea9ea0c55c7d075e54aa6e0467678566b2520833a2f04de23",
-      "plan.md": "2078fc820e78cf30d596630bc261254145af00c4c777ad9bdc12dc752fd60ac5",
-      "tasks.md": "31956b5fca972826797af3b4ab35c702ae4de7e18d5ad8aafacb004a84348ea2",
-      "implementation-summary.md": "1bfc2adc2933a052bb9702d47ea3785740bff8ca7a5e0f2ce63b4f99826731c1"
+      "spec.md": "f673b846da0105049e90382dac4d2b278525ebf74156c3ce5c2e6ccdd1c3b57f",
+      "plan.md": "ebfbc07710a0df9104624f63e91ace35cdeddfa46f11f2b4b3e1d08a0c141ea3",
+      "tasks.md": "9d41dc96a636153993a6433f06f6bcbc020d8ac77991f000d21d2d6715ff2428",
+      "implementation-summary.md": "42f9c3e6203df7f9cf7fd71265f49dc22d53db6d7acb1f86ad05704ad8bd3bc6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: spec-memory rerank A/B benchmark [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: spec-memory rerank A/B benchmark"
 description: "PRE-IMPLEMENTATION stub for the spec-memory rerank A/B benchmark + report."
 trigger_phrases:
   - "004 implementation summary"

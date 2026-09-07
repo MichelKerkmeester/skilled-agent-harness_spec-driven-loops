@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 13: design-fidelity-and-polish [template:level_1/spec.md]"
+title: "Feature Specification: Phase 13: design-fidelity-and-polish"
 description: "Wire a real usage_limited detector (operator-chosen resolution) plus phases 001-008 metadata and observability polish items."
 trigger_phrases:
   - "usage_limited status decision"

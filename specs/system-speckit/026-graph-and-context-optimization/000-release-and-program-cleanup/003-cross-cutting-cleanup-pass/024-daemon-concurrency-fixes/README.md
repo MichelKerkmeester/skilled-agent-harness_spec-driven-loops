@@ -1,5 +1,5 @@
 ---
-title: "Packet 048 — Iteration-001 Daemon Concurrency Fixes [template:level_2/README.md]"
+title: "Packet 048 — Iteration-001 Daemon Concurrency Fixes"
 description: "Index for the Level 2 remediation packet that fixes the four daemon concurrency findings (F-001-A1-01..04) surfaced by packet 046 deep research iteration-001."
 trigger_phrases:
   - "packet 048"

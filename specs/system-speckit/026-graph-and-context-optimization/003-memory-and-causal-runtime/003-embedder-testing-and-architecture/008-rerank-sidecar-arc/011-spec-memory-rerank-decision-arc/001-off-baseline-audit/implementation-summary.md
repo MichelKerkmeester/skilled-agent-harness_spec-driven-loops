@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: OFF baseline audit + penalty removal [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: OFF baseline audit + penalty removal"
 description: "Phase-1 evidence. Filled by cli-codex execution: §Baseline Numbers, §Penalty Site, §Verdict, optional §Failure Analysis, §Commit Handoff."
 trigger_phrases:
   - "011/001 summary"

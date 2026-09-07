@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: discriminating-bakeoff [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 4: discriminating-bakeoff"
 description: "Clone the framework-bakeoff profile onto invalid-dominant strict validators with a 0.0 correctness gate, run it as 007 through the sweep engine with throttled serial real Kimi dispatches, then promote the separating result into the registry and reference docs."
 trigger_phrases:
   - "kimi bakeoff plan"

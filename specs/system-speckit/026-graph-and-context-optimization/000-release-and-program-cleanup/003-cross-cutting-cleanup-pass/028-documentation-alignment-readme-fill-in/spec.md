@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Doc-alignment and missing-README fill-in [template:level_3/spec.md]"
+title: "Feature Specification: Doc-alignment and missing-README fill-in"
 description: "Align five doc-quality drift items under system-spec-kit/ with sk-doc canonical templates; add two missing folder READMEs; merge skill_advisor operator_runbook into manual_testing_playbook."
 trigger_phrases:
   - "doc alignment phase 053"

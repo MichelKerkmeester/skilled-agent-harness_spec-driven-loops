@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Generated-Metadata Validator and Status Enum [template:level_2/tasks.md]"
+title: "Tasks: Generated-Metadata Validator and Status Enum"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "generated metadata validator"

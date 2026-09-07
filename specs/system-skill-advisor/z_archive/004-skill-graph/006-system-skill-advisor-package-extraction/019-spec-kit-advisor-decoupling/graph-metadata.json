@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`system-spec-kit/mcpserver` still contained advisor source imports after advisor extraction",
     "created_at": "2026-05-15T06:55:51.323Z",
-    "last_save_at": "2026-08-30T15:39:26.560Z",
+    "last_save_at": "2026-09-07T16:17:27.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59492ee8fd79b3d12cc08cfef1410e14aa0d9367d726f5c809e37a1ef31ce853",
+    "source_fingerprint": "sha256:eab5416e9e92a94db4c28e2d07156660489873f054ef777ef3d46ddff9f96486",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba956d9163e8ac42de78ca3497d8d3b25beecaf93ef41089a6af63ed0f9337ac",
-      "plan.md": "c7af1a7125381cd7c0f2946be488f1821be0c2ecf337dc9c7ff7c143a5dd60c0",
-      "tasks.md": "9cca9d8c81fd922e2aac06126950dc7eeaa26dcf3cb43f41fcc257a303d31063",
-      "decision-record.md": "8eaf8d81b35a878ecb9cdedc9181046b1e5ae55ccad121b109b577895c83899c",
-      "implementation-summary.md": "9ab1ff137e0b5aff17abdf00d212b45f6fcae139a1b76097ce300522827d84e8"
+      "plan.md": "9f9c3aead6861dd3e1d6d0580810dee4e3dbb3a77ce9e8d1eeb17cbad96877b1",
+      "tasks.md": "d0bab5de5eeb1b7c8501f4e0e1d5ff9971c5ee802137c6bc214d5af3fb35c4fc",
+      "decision-record.md": "0164284d6ad36b1d417d21c2c6475ca6b24d29d16d1b26f23a66e7212a41b5af",
+      "implementation-summary.md": "d3ff3fb451812c8bdbf5c81673a1dd5a9e5d1ac8737616a9011375f143c1a2b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

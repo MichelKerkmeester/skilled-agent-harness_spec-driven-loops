@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: z_future Always Ignored In Backfill [template:level_2/plan.md]"
+title: "Implementation Plan: z_future Always Ignored In Backfill"
 description: "Add z_future to the backfill walk exclusion set so the tree walk unconditionally prunes the staging area, correct the header comment to match, and rebuild the dist via tsc. The change is one set entry plus a comment, scoped to the backfill generator and its dist, leaving the parser and z_archive handling untouched."
 trigger_phrases:
   - "z future always ignored"

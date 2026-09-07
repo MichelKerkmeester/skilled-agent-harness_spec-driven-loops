@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: sk-prompt-testing-playbook [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: sk-prompt-testing-playbook"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

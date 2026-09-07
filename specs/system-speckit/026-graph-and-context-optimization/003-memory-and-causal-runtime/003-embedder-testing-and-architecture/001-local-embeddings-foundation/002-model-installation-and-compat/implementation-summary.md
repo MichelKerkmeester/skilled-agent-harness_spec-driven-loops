@@ -22,7 +22,7 @@ _memory:
       - "scratch/test-embeddinggemma.mjs"
       - "../../../../../skills/system-spec-kit/mcp_server/scratch/test-embeddinggemma.mjs"
     session_dedup:
-      fingerprint: "sha256:0140029e1d0c00000000000000000000000000000000000000000000000000ed"
+      fingerprint: "sha256:6675e375c820faa62e6cdb6c0436fc95f4e4e6eba09a7f18e9d85ae24c07995f"
       session_id: "014-002-impl-2026-05-12"
       parent_session_id: null
     completion_pct: 100

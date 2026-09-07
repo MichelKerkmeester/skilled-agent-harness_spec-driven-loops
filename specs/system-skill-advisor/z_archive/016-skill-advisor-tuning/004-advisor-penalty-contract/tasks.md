@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Advisor Self-Recommendation Penalty Contract [template:level_2/tasks.md]"
+title: "Tasks: Advisor Self-Recommendation Penalty Contract"
 description: "Task breakdown for documenting the implicit advisor self-recommendation penalty with a durable WHY comment and locking it with a regression test that breaks loudly on removal."
 importance_tier: "supporting"
 contextType: "general"

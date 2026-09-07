@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 8: validate-sweep-changelog-reindex [template:level_1/spec.md]"
+title: "Feature Specification: Phase 8: validate-sweep-changelog-reindex"
 description: "Final completion sweep for spec 130: recursive validation, duplication-guard, data-prose round-trip across 8 profiles, per-skill changelogs, skill-advisor reindex."
 trigger_phrases:
   - "130 phase 8 validate sweep"

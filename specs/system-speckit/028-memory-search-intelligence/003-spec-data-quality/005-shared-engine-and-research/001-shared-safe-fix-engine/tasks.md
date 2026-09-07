@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Shared Safe-Fix Engine [template:level_2/tasks.md]"
+title: "Tasks: Shared Safe-Fix Engine"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "shared safe-fix engine"

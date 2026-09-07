@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: system-rerank-sidecar skill [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: system-rerank-sidecar skill"
 description: "Implementation evidence for the dedicated Qwen reranker HTTP sidecar skill."
 trigger_phrases:
   - "002 implementation summary"

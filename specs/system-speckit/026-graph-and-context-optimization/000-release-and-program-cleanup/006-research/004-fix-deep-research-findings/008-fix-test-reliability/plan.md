@@ -1,6 +1,6 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-title: "Implementation Plan: 009 Test Reliability Remediation [template:level_2/plan.md]"
+title: "Implementation Plan: 009 Test Reliability Remediation"
 description: "Six surgical test-only edits + one shared env-snapshot helper to close findings F-015-C5-01..06 from packet 046 iteration-015."
 trigger_phrases:
   - "F-015-C5 plan"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Retrieval Floor Experiment [template:level_2/tasks.md]"
+title: "Tasks: Retrieval Floor Experiment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "retrieval floor experiment"

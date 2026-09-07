@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Automation Self-Management Deep Research [template:level_2/plan.md]"
+title: "Implementation Plan: Automation Self-Management Deep Research"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Plan for producing a source-grounded automation reality map across skill advisor, code graph, system-spec-kit, memory/database, and hook runtime surfaces."
 trigger_phrases:

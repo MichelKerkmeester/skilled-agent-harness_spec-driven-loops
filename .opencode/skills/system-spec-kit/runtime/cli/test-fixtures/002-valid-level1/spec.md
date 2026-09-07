@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Tiny Notes Export [template:level-1/spec.md]"
+title: "Feature Specification: Tiny Notes Export"
 description: "A tiny fixture feature that exports one note to a text file for validation baseline checks."
 trigger_phrases:
   - "tiny notes export"

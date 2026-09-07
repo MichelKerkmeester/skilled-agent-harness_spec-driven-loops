@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
     "created_at": "2026-08-30T09:55:29Z",
-    "last_save_at": "2026-09-06T07:05:04.483Z",
+    "last_save_at": "2026-09-07T16:19:11.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c70231373a55721bd223ed5289309db3d6ab4d88d0e98754f4cfcf3f95c81c0d",
+    "source_fingerprint": "sha256:26d05fc6bd860bb3dfe751145fc593edb5722c16dd39015b4747dc6f79fc31d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "630006220cc71406f275b99ff4883bba65ecdea7fdc349e3eb487a8be3125879",
       "plan.md": "1db6d2e1caa8707c3a105499578d0dfeaf5daf4f73e31d3a76c4b65dfeb59c57",
       "tasks.md": "355e7320f360ce4b3292a612adbacee47323ceee4026095787c2c6ad1f04c3c9",
-      "implementation-summary.md": "49a6ea9a916902ff64b1dbb2ba5dfc47618e6db2952c6695b785ccd114fef898"
+      "implementation-summary.md": "01a735ad9daa60b4fab2810d704fc8ac8e066ef49be0b84af66090d32530285a"
     },
     "last_active_child_id": null,
     "last_active_at": null

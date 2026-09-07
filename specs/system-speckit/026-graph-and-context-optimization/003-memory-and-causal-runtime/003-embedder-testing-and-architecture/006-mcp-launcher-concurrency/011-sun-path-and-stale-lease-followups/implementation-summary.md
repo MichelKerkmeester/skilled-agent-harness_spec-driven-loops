@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: sun_path socket-dir + stale-lease reclaim followups [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: sun_path socket-dir + stale-lease reclaim followups"
 description: "Narrative summary of the retroactive packet capturing commit 9ae9a6f4e, the documentation alignment, and the operational lease-clear recipe used to recover."
 trigger_phrases:
   - "011 implementation summary"

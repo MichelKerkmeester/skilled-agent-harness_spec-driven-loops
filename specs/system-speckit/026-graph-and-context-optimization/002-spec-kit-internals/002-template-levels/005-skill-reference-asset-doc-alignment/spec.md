@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: skill references assets alignment [template:level_3/spec.md]"
+title: "Feature Specification: skill references assets alignment"
 description: "Audit the AI-facing system-spec-kit skill documentation surface after the 003 and 004 template and validation packets."
 trigger_phrases:
   - "skill references assets alignment"

@@ -14,7 +14,7 @@
     "anchor",
     "tags"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.992Z",
+  "lastUpdated": "2026-09-07T16:14:56.472Z",
   "specId": "012",
   "folderSlug": "spec-doc-anchor-tags",
   "parentChain": [
@@ -22,5 +22,6 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

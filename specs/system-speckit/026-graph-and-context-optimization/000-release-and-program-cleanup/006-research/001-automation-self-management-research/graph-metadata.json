@@ -53,8 +53,6 @@
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-007.md",
       "research/deltas/iteration-001.jsonl",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".claude/settings.local.json",
       "research/deep-research-strategy.md"
@@ -118,18 +116,6 @@
         "name": "iteration-001.jsonl",
         "kind": "file",
         "path": "research/deltas/iteration-001.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -203,11 +189,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing, auto-routing, auto-prioritizing, etc.)",
     "created_at": "2026-04-29T13:15:00.000Z",
-    "last_save_at": "2026-08-30T15:39:28.715Z",
+    "last_save_at": "2026-09-07T16:17:33.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:d05e9a4f4d68a243b31c14ce6b1ff24816d771f07176ab85a019a11536567913",
+    "source_fingerprint": "sha256:1302464528eeb5b4ddf922daf9a49fbcf2fb4df15e2963f2e0abbd64207877a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4161bce4db7219e14633857cfeb71ed7a9f19f93b7509ae1d2d0bb709b5fecf4",
-      "plan.md": "c3b9aad66bdfec59595fd710ddc9d0a22b1d9a90a93d8fe4c5225eedd72fc92e",
-      "tasks.md": "96e08a592a0f4030fad5756f05199894442f91bffdab434eee083bb66cdb839d",
-      "implementation-summary.md": "05a9ae0c2be79b216682294f5d4d2b4ea4fd27418d81d8aeddf48761ec39c0f9",
+      "plan.md": "b9c67155d5a4eef9aa0a8e9310ac3e9a8b44c8ba5cf4460fcc1cf0d898cbb0e0",
+      "tasks.md": "0e3163916af22722a1a7dc205b3f03bfe3efed143ab535e6a70f4fc950727c89",
+      "implementation-summary.md": "631b5184fd5df66916c1cdcf0623078e5bfd39212e38b3e4c06bc3221a59f454",
       "resource-map.md": "106afa763573a190524f2cd955cfadffc6754f7ab33ca6f01991d4cc3601c730"
     },
     "last_active_child_id": null,

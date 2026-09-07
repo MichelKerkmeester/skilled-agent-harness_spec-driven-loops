@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Manual Testing Playbook Execution Sweep [template:level_3/tasks.md]"
+title: "Tasks: Manual Testing Playbook Execution Sweep"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "manual playbook execution sweep tasks"

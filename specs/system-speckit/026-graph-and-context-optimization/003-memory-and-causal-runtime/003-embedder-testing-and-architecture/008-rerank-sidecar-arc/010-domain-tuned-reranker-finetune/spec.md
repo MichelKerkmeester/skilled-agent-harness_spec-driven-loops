@@ -1,5 +1,5 @@
 ---
-title: "Spec: domain-tuned reranker fine-tune for spec-memory corpus [template:level_1/spec.md]"
+title: "Spec: domain-tuned reranker fine-tune for spec-memory corpus"
 description: "Fine-tune a small cross-encoder (ms-marco-base or BGE-base) on (query, spec-doc) triples drawn from spec-memory's actual corpus. The 2026-05-21 ms-marco bench showed that off-the-shelf models trained on web passages reorder spec-memory's structured-markdown docs WORSE than positional fallback. A domain fine-tune is the most-expensive but only-untested-path to potentially unblock spec-memory's default-on flip. SCAFFOLD ONLY — execution gated on packets 008+009 outcomes AND a successful deep-research convergence."
 trigger_phrases:
   - "010 domain fine-tune"

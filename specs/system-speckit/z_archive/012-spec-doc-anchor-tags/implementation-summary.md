@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1 [system-spec-kit/z_archive/012-spec-doc-anchor-tags/implementation-summary]"
+title: "Implementation Summary"
 description: "Archive normalization summary for Spec Doc Anchor Tags."
 trigger_phrases:
   - "012-spec-doc-anchor-tags"

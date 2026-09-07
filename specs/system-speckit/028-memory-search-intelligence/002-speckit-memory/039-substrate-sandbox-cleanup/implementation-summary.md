@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. Added cleanupSandbox({ clean }) to the substrate stress harness finally block, a --clean CLI flag, and a test afterAll reap. The harness always removes the throwaway hermetic code-graph DB and, under --clean, the whole run dir and the now-empty _sandbox parent; the test reaps the sandbox only after it reads the summary TSV. All cleanup is best-effort and fails closed on a shared parent. node --check, comment-hygiene, a standalone --clean run, and npm run stress:substrate are all green and _sandbox is gone after each run."
 trigger_phrases:
   - "substrate sandbox cleanup"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f1676501913bef9b3803e1bf9ba1d3670c14292a5ea6a6211fdc44b73ad63440"
       session_id: "claude-opus-session"
       parent_session_id: null
     completion_pct: 100

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The Stage 4 flag graduation benchmark is built and run, and the earn-or-delete reckoning is complete. A harness under scripts measured every default-OFF packet 028 flag against the migrated live tree, reusing the phase 036 integrity validator for the migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the verdict flags. The first pass graduated six. A migration re-run then graduated the drift gate and generator hardening once their fields were written, and a fixture re-benchmark graduated cite-with-caveat, evidence-gap and envelope-fidelity. Of the thirteen built flags, twelve graduated to default-ON or enforcing and one, grounding-signal, was deleted as purely informational. The flips are committed. Verdicts are in benchmark-results.md."
 trigger_phrases:
   - "flag graduation benchmark"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b25ae9588b9e8d70f594b3153ad1adbf837f44066f118fbc243bc3ba4f955107"
       session_id: "phase-040-flag-graduation-benchmark"
       parent_session_id: null
     completion_pct: 100

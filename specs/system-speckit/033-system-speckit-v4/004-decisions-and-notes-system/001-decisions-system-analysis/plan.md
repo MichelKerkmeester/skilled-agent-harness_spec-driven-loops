@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: analysis [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 1: analysis"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "deprecate constitutional memory plan"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Backfill description.json and graph-metadata.json for the nine z_archive root directories across .opencode/specs so each archive becomes a discoverable, cold-tier container node in the memory graph [template:level_2/tasks.md]"
+title: "Tasks: Backfill description.json and graph-metadata.json for the nine z_archive root directories across .opencode/specs so each archive becomes a discoverable, cold-tier container node in the memory graph"
 description: "Ten tasks across Setup, Implementation and Verification: confirm container-folder support, resolve parent_id per root, generate and tag all nine root pairs, then verify shape and recall impact."
 trigger_phrases:
   - "z_archive container backfill tasks"

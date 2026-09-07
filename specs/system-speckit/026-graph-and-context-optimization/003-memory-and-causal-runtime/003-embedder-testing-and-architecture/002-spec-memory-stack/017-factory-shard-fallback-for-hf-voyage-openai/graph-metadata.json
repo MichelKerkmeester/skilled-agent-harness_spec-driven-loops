@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet `016-reindex-populates-vec-memories-knn-table` fixed the Ollama factory resolver so it accepts ADR-012 vector shards when the main DB lacks `vec<dim>`",
     "created_at": "2026-05-19T19:21:53Z",
-    "last_save_at": "2026-08-30T15:39:30.335Z",
+    "last_save_at": "2026-09-07T16:17:46.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ac504874eeb3345807792f96105c0ec5cf987711707f55820ed1edef73bc44b",
+    "source_fingerprint": "sha256:6fc3e0cbb8b9c9539fecbbfff0151babddf6c5cd545e4850421a383277e24433",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d80bc942bf412bb2012c7ad33e2d234a6a9c38b4f8fa768d088fc873e85e62c3",
-      "plan.md": "929e0089422cf2cf986a714a3f03d18e1f1ae0f97d7ea96d23714ab63b072754",
-      "tasks.md": "c5fae72e9c3d05eacf662f90d016d101bc69b71bb1a7cd681b92ff5ce4fa4374",
-      "implementation-summary.md": "ae1fe3ed79688c7aa95924f241dbf9331cfa620cbd3c6bde5c98f5dfc672d51d"
+      "spec.md": "4bfb74f28918f9b911c5874739a575ce6c74fc5225d905b3c77ef9c431252380",
+      "plan.md": "24835951523e5e2310fb368262e91e07127715546f15c7287f66bf39994c6d90",
+      "tasks.md": "b61359dc336c9da57662809e7a8add7ea705f82dcb8c2a3e8762989e0c3bdc66",
+      "implementation-summary.md": "690f1932be058a6267bbc64729e813ec6432748bb98b68a14d5a5d2d28fcacfe"
     },
     "last_active_child_id": null,
     "last_active_at": null

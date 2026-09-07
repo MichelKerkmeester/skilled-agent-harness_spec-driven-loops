@@ -19,7 +19,7 @@ _memory:
       - "CORRECTIONS.md"
       - "deferred-findings.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a83122072957b787e56f9b6d1cd18eed8845dd10a27de51aac7bcae6b1b9b568"
       session_id: "2026-07-27-028-017-001"
       parent_session_id: null
     completion_pct: 100

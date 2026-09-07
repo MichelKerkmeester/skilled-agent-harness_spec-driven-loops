@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
       - ".opencode/install_guides/README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:197c06986cdf840b838c7a68577f608492ef1bfc2e252ff44f9fdd94392d28d0"
       session_id: "70859d71-f191-429c-96cd-6b73bb9745d8"
       parent_session_id: null
     completion_pct: 100

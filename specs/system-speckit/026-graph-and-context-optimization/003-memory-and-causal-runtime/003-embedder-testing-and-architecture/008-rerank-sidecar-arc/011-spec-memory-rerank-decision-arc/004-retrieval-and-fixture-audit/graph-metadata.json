@@ -42,9 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/search/pipeline/stage3-rerank.ts",
       "evidence/probe-classification-2026-05-21.json",
-      "dist/handlers/memory-search.js",
       "evidence/candidate-coverage-2026-05-21.json",
       "evidence/handler-parity-2026-05-21.md",
       "evidence/rerank-effect-2026-05-21.json"
@@ -75,21 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "stage3-rerank.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage3-rerank.ts",
-        "source": "derived"
-      },
-      {
         "name": "probe-classification-2026-05-21.json",
         "kind": "config",
         "path": "evidence/probe-classification-2026-05-21.json",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.js",
-        "kind": "code",
-        "path": "dist/handlers/memory-search.js",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
     "created_at": "2026-05-23T11:55:15.634Z",
-    "last_save_at": "2026-08-30T15:39:31.164Z",
+    "last_save_at": "2026-09-07T16:17:57.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0aca939feafdb69ebc5f8586cc89dafdfe030467e01ea8c91a333b32a22d24d",
+    "source_fingerprint": "sha256:5277fb4d906018fab1ad53a77cbcfd2b305d597053fa6cefd6cc0de25e46a4ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd649fcc0706658d192a1710accdbd92aab89ee9b5e58afbc04e199228ad609d",
-      "plan.md": "73c0e2abfebe5d69b013cd83e7bb63786920a9bd12ac83160e1d8cbaf1cf38db",
-      "tasks.md": "832dd8aa799106641af82fa3076283f2f6dd9e1b44609705e8b47f3aedfe6d10",
-      "implementation-summary.md": "a2b38fae28b6febeb2c04994bff654a6c20d07236a90c6f3f2e42ad6a575e712"
+      "spec.md": "817f24af33475fa401574ec1fd6c03f5475beecb136cc79de89bd69a0d94c5be",
+      "plan.md": "693abf67097db44fe51752e76350333fe51d5d6c16ee8b11c764ccb84c3fceb0",
+      "tasks.md": "73d6650c88741707c11bcb455928240e8ed62c7a5ddeb7b1d8f90734cd94e10b",
+      "implementation-summary.md": "c19d6aac9133582cf3f274fffa772cfbd9d6f6f9e9b7509cc97c9a6eafec5f7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The orchestration tooling documents behavior its runtime does not implement",
     "created_at": "2026-07-27T08:41:12Z",
-    "last_save_at": "2026-08-30T15:39:34.755Z",
+    "last_save_at": "2026-09-07T16:18:08.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6da8ab8654ed76c8739c92d61bb765ab4ad0b4e90c0d232bd93a10e880528597",
+    "source_fingerprint": "sha256:33037ef2caff9d8bddcf77f86e6b30cb9996447c04a2362c3f9c6a17b49b4e94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5252c54b28705e9194350ee3ce4749fa9f66c73c7c2e4b8a226e1aa4bd487fa0",
-      "plan.md": "cb851b4f719501cba04dd6d007e78b5f1af3eed4ccd11de769d32f84d572a4a0",
-      "tasks.md": "01ef96c8422198b65300dfc8bbb2c09f6aedd3c4784a92bf3c51f8809dc49731",
-      "implementation-summary.md": "27ea7bbebed8fd3099b02b094d635eb7f188482fc04a17eda06a92a83e086eac"
+      "plan.md": "f8dc83dd4087179c8187aea9ad3e6d5d08cefe94639e3c3b8c20c026cbf1b206",
+      "tasks.md": "598354d12a4235fa213027448a35c1ebd235821a291191b39eacc5f65527aa3b",
+      "implementation-summary.md": "48ea412e72efb59ae31b24e429f5f7e6e01b66627dbd07d82e8cf1c4da8e2d89"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Spec: bge-reranker-v2-m3 off-the-shelf trial [template:level_1/spec.md]"
+title: "Spec: bge-reranker-v2-m3 off-the-shelf trial"
 description: "Phase 2 of the rerank decision arc. Adds BAAI/bge-reranker-v2-m3 (Apache-2.0, 568M, multilingual + diverse text) to the system-rerank-sidecar allowlist and runs the same 50-probe fixture used in Phases 004 and 011/001. The hypothesis: ms-marco's failure was a model-corpus mismatch issue solvable with a stronger off-the-shelf model — not a runtime issue, not a need for fine-tuning. Gated on Phase 1 returning OFF_DEFICIENT with concrete failure-mode targets."
 trigger_phrases:
   - "011/002 bge-reranker-v2-m3 trial"

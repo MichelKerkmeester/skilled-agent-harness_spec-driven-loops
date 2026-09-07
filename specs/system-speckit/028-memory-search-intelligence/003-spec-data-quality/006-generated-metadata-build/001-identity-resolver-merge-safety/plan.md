@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Shared Identity Resolver and Merge Safety [template:level_2/plan.md]"
+title: "Implementation Plan: Shared Identity Resolver and Merge Safety"
 description: "Introduce a shared resolveSpecFolderIdentity helper returning a specs-root-relative specFolder, parentId, and childrenIds consumed by both generators, and make mergeGraphMetadata preserve a non-null existing parent_id and treat children_ids as append-only, all behind a default-OFF flag with a grandfather report mode so existing files do not mass-fail."
 trigger_phrases:
   - "shared spec folder identity resolver"
