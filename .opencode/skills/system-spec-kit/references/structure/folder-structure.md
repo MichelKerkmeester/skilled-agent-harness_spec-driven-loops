@@ -50,7 +50,6 @@ templates/
 ├── spec-kit-docs.json              # Level contract resolved by create.sh
 ├── examples/               # Rendered examples by Level
 ├── changelog/              # Template history
-├── stress-test/            # Review/research rubric assets
 └── scratch/                # Local ignored render workspace
 ```
 

@@ -91,7 +91,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 **Column binding:** the criteria table is parsed by header name, not by column position, so an escaped pipe or an added column cannot shift the Status cell.
 
-`AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. The `SPECKIT_AC_COVERAGE_ENFORCE` flag is documented as a future promotion switch; changing validation outcome requires a later severity change backed by adoption evidence.
+`AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. `SPECKIT_AC_COVERAGE_ENFORCE=true` turns an under-floor result into a failure. The floor is aspirational today: across the repository about one in five criteria marked Met cites a `file:line`, so enabling the switch fleet-wide would fail most closed packets until their Verification cells are retro-cited.
 
 **Rule ID:** `AC_COVERAGE`  
 **Severity:** INFO  

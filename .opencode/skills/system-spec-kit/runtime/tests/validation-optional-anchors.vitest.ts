@@ -61,7 +61,7 @@ describe('Level 2 optional template anchors', () => {
     });
 
     expect(result.status).toBe(0);
-    expect(result.stdout).toContain('ANCHORS_VALID: All anchor pairs valid');
+    expect(result.stdout).toContain('ANCHORS_VALID: Anchors well formed');
     expect(result.stdout).toContain('RESULT: PASSED');
   });
 });

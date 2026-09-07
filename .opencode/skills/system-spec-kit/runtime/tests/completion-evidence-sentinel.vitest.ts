@@ -3,7 +3,7 @@
 // - Claim gate: no-claim / no-spec-folder short-circuits to 'ok', never spawns check-completion.sh
 // - Checklist evaluation: a completed P0 item missing an evidence marker advises EVIDENCE_MISSING;
 //   the same item WITH a marker resolves 'ok'
-// - Level 1 fallback: no checklist.md falls back to an implementation-summary.md stat
+// - Level 1 fallback: no verification section in tasks.md falls back to an implementation-summary.md stat
 // - Dedup: an identical packet+message pair only advises once
 // - Kill switch + fail-open on an unexpected internal error
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -39,7 +39,22 @@ const NON_CLAIM_TEXT = 'Let me look at a few more things before continuing.';
 function makeFixtureFolder(options: { checklist?: string | null; implementationSummary?: boolean }): string {
   const dir = mkdtempSync(join(tmpdir(), 'completion-sentinel-fixture-'));
   if (typeof options.checklist === 'string') {
-    writeFileSync(join(dir, 'checklist.md'), options.checklist, 'utf8');
+    // The verification checklist is a section of tasks.md, scoped by the
+    // protocol and summary anchors check-completion.sh reads between.
+    writeFileSync(join(dir, 'tasks.md'), [
+      '# Tasks',
+      '',
+      '<!-- ANCHOR:protocol -->',
+      '## Verification Protocol',
+      '<!-- /ANCHOR:protocol -->',
+      '',
+      options.checklist,
+      '',
+      '<!-- ANCHOR:summary -->',
+      '## Verification Summary',
+      '<!-- /ANCHOR:summary -->',
+      '',
+    ].join('\n'), 'utf8');
   }
   if (options.implementationSummary) {
     writeFileSync(join(dir, 'implementation-summary.md'), '# Summary\n\nDone.\n', 'utf8');

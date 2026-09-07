@@ -97,7 +97,7 @@ describe('registry rule script resolution', () => {
 
   it('resolves validation TypeScript rules to compiled validation scripts', () => {
     expect(__testables.resolveRegistryRuleScript('validation/continuity-freshness.ts')).toBe(
-      path.join(SKILL_ROOT, 'scripts', 'dist', 'validation', 'continuity-freshness.js'),
+      path.join(SKILL_ROOT, 'runtime', 'cli', 'dist', 'validation', 'continuity-freshness.js'),
     );
   });
 });

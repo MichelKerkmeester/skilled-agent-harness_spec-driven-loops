@@ -1,0 +1,12 @@
+{"type":"config","topic":"fanout-deepseek-v4-flash-templates-1788761493727-f3q25r","maxIterations":10,"generation":1,"timestamp":"2026-09-07T08:20:00.000Z"}
+{"type":"iteration","iteration":1,"run":1,"status":"complete","newInfoRatio":1.0,"ruledOut":[],"timestamp":"2026-09-07T08:34:00.000Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"complete","newInfoRatio":0.444,"ruledOut":[],"timestamp":"2026-09-07T08:52:00.000Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"complete","newInfoRatio":0.417,"ruledOut":[],"timestamp":"2026-09-07T09:05:00.000Z"}
+{"type":"iteration","iteration":4,"run":4,"status":"complete","newInfoRatio":0.364,"ruledOut":[],"timestamp":"2026-09-07T09:20:00.000Z"}
+{"type":"iteration","iteration":5,"run":5,"status":"complete","newInfoRatio":0.308,"ruledOut":[],"timestamp":"2026-09-07T09:33:00.000Z"}
+{"type":"iteration","iteration":6,"run":6,"status":"complete","newInfoRatio":0.214,"ruledOut":[],"timestamp":"2026-09-07T09:48:00.000Z"}
+{"type":"iteration","iteration":7,"run":7,"status":"complete","newInfoRatio":0.273,"ruledOut":[],"timestamp":"2026-09-07T10:02:00.000Z"}
+{"type":"iteration","iteration":8,"run":8,"status":"complete","newInfoRatio":0.222,"ruledOut":[],"timestamp":"2026-09-07T10:16:00.000Z"}
+{"type":"iteration","iteration":9,"run":9,"status":"complete","newInfoRatio":0.167,"ruledOut":[],"timestamp":"2026-09-07T10:30:00.000Z"}
+{"type":"iteration","iteration":10,"run":10,"status":"complete","newInfoRatio":0.0,"ruledOut":[],"timestamp":"2026-09-07T10:42:00.000Z"}
+{"type":"event","event":"synthesis_complete","sessionId":"fanout-deepseek-v4-flash-templates-1788761493727-f3q25r","loopType":"research","stopPolicy":"max-iterations","stopReason":"maxIterationsReached","totalIterations":10,"iterationsCompleted":10,"findingsTotal":34,"findingsP0":0,"findingsP1":6,"findingsP2":28,"questionsAnswered":"8/8 + CQ-001..009","ruledOutTotal":22,"report":"research.md","resourceMap":"resource-map.md","note":"terminal synthesis; written directly by the inline executor inside the lineage (append-gateway semantics; gateway binary not invoked per executor instruction)"}

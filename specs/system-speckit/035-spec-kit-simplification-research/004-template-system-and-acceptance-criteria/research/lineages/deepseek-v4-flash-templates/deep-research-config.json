@@ -1,0 +1,93 @@
+{
+  "topic": "Context: Ground truth under .opencode/skills/system-spec-kit/: templates/{core/,addons/,packet-types/,spec-kit-docs.json,CONTRACT.md,EXTENSION-GUIDE.md,README.md,MIGRATION.md}; runtime/cli/spec/create.sh(--with-lazy-addons,--phase,--with-goal); runtime/cli/templates/inline-gate-renderer.ts; runtime/lib/templates/level-contract-resolver.ts; runtime/cli/rules/{check-ac-closure,check-ac-coverage,check-files,check-template-source}.sh; runtime/cli/spec/{check-completion.sh,check-template-staleness.sh}; runtime/cli/utils/template-structure.js; native ANCHORS_VALID/SPEC_DOC_SUFFICIENCY checks in runtime/lib/validation/; references/structure/{folder-structure,phase-definitions}.md; references/templates/*.md; references/workflows/goal-set-string-playbook.md; SKILL.md; root README.md. These may disagree with each other on scope, composition, and enforcement. || Role: Documentation-implementation auditor — ROUND TWO of this lane, after the remediation in sibling 010-template-contract-alignment. Treat the manifest, create.sh, and the validator rules as ground truth, and README.md, SKILL.md, and references/ prose as claims to test against them, never the reverse. || Round-two mandate, in priority order: (1) verify each 010 remediation landed completely and coherently in the current tree — a fix that left one consumer, one document line, one fixture or one asset behind is a finding; (2) find what round one (GLM 5.3 Flash, 10 iterations, 35 findings) missed, preferring angles it covered in one pass or not at all; (3) re-examine round one's kept rows and recorded decisions only with new evidence that the stated reason is wrong. Do not re-report a row confirmed-findings marks fixed unless the fix is incomplete; never reuse a round-one count — recount in this tree. || Action: rotate one angle per pass, evidence only from the cited files, with an emphasis on the post-remediation seams: (1) the reorganized contract (versions reconciled, documents[] declared descriptive, resource-map.md in every lazy list, context-index.md removed) vs the validator that consumes it — collectDocuments, FREEFORM exclusions, LAZY_DOCS_WITH_STATIC_ANCHORS, OPTIONAL_CONTINUITY_DOCS; (2) create.sh --with-goal + contract-driven acceptance-criteria decision vs the manifest lazy/optional lists and the flag help; (3) --with-lazy-addons (4 docs) vs the 9-doc lazyAddonDocs arrays vs the prose that now describes them; (4) acceptance-criteria.md: AC_CLOSURE/AC_COVERAGE post-remediation (enforce switch), and whether TEMPLATE_SOURCE's checked set includes it; (5) the completion stack: tasks.md checklist via check-completion.sh, hooks README, sentinel comments, runtime README discovery list, EXPOSER vs validator boundary; (6) the goal addon end to end: --with-goal render path through template-utils.sh -> inline-gate-renderer.ts, phase-parent handling, sectionGates vs LAZY_DOCS_WITH_STATIC_ANCHORS enforcement; (7) version fields: the new template-version-parity test's coverage vs phase/review/research contracts, check-template-staleness.sh, check-template-source.sh example, level-contract-resolver templateVersions; (8) which surfaces could merge or drop now, and which remediation rows left residue. || Format: one finding per entry: path:line, the claim, what the manifest/script/rule does, severity (P0 broken, P1 wrong-or-unused, P2 cosmetic), one-line recommendation: remove, merge, fix, or document. Cite every claim as [SOURCE: path:line]. || Target: a decision-ready findings ledger for spec-kit maintainers on whether the 010 remediation is complete, and what remains. Non-goals: no file edits, no new templates, no prose-style review, no repo tooling runs (check-in source only; dist/ is stale and untracked), no validate.sh, no node tooling, no git writes.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+  "artifactDir": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/lineages/deepseek-v4-flash-templates",
+  "createdAt": "2026-09-07T08:20:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "detachedFanout": {
+    "inline": true,
+    "note": "This detached lineage process is the executor for EVERY iteration; no nested CLI/agent/subprocess dispatch. step_resolve_artifact_root satisfied by config.fanout_lineage_artifact_dir override: artifact_dir bound directly to the override value; resolveArtifactRoot node command not run."
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "executable": "pi",
+    "model": "deepseek-v4-flash-vision-exp",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-flash-templates-1788761493727-f3q25r",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "note": "Detached fan-out: the reducer function (registry/dashboard/strategy machine-owned sections) is performed inline by the lineage executor after each iteration, deriving strictly from the iteration delta records. No reduce-state.cjs invocation; every write stays inside the lineage directory.",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "statePaths": {
+    "stateLog": "deep-research-state.jsonl",
+    "iterationPattern": "iterations/iteration-NNN.md",
+    "deltaPattern": "deltas/iter-NNN.jsonl",
+    "report": "research.md",
+    "resourceMap": "resource-map.md",
+    "note": "Lineage-confined: all state lives at artifactDir root (flat), not under the packet research/ dir, because the lineage write surface is the lineage directory itself. State record written directly by the inline executor (append gateway semantics modeled by the seeded ledgers; gateway binary not invoked per executor instruction)."
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "deep-research-state.jsonl:NA;lineage-internal",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only (append gateway semantics; written directly by this executor)",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable (synthesis-owned)",
+    "resource-map.md": "mutable (synthesis-owned)"
+  }
+}

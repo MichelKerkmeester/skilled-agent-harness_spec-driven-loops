@@ -105,6 +105,7 @@ templates/
 │   ├── decision-record.md.tmpl
 │   ├── handover.md.tmpl
 │   ├── debug-delegation.md.tmpl
+│   ├── goal.md.tmpl
 │   ├── research.md.tmpl
 │   ├── resource-map.md.tmpl
 │   ├── before-after.md.tmpl
@@ -117,9 +118,8 @@ templates/
 │   ├── level-1/
 │   ├── level-2/
 │   ├── level-3/
-│   └── level_3+/
-├── changelog/
-├── stress-test/
+│   └── level-3+/
+├── changelog/                  # Packet-local changelog templates, versioned by their own v1.0 markers and outside the manifest
 └── scratch/
 ```
 
@@ -139,6 +139,7 @@ templates/
 | `addons/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
 | `addons/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
 | `addons/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
+| `addons/goal.md.tmpl`                   | Renders the durable directive an operator sets as the session objective.        |
 | `EXTENSION-GUIDE.md`                      | Explains how maintainers add a new document type.                                |
 | `examples/`                               | Shows rendered output for Levels 1, 2, 3 and 3+. Phase-parent scaffolding is defined by the manifest template contract. |
 

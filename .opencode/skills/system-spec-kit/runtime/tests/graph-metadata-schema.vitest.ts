@@ -89,7 +89,23 @@ function createSpecFolder(options: GraphMetadataFixtureOptions = {}): string {
   planFrontmatter.push('---');
   fs.writeFileSync(path.join(specFolder, 'plan.md'), [...planFrontmatter, '', '# Plan'].join('\n'), 'utf-8');
   const tasksLines = options.tasksItems ?? [];
-  fs.writeFileSync(path.join(specFolder, 'tasks.md'), ['# Tasks', '', ...tasksLines].join('\n'), 'utf-8');
+  // The verification checklist is a section of tasks.md since the standalone
+  // document retired; the parser reads it between the protocol and summary anchors.
+  const verificationLines = (options.includeChecklist ?? false)
+    ? [
+      '',
+      '<!-- ANCHOR:protocol -->',
+      '## Verification Protocol',
+      '<!-- /ANCHOR:protocol -->',
+      '',
+      ...(options.checklistItems ?? ['- [x] Verify graph metadata']),
+      '',
+      '<!-- ANCHOR:summary -->',
+      '## Verification Summary',
+      '<!-- /ANCHOR:summary -->',
+    ]
+    : [];
+  fs.writeFileSync(path.join(specFolder, 'tasks.md'), ['# Tasks', '', ...tasksLines, ...verificationLines].join('\n'), 'utf-8');
   const implementationSummaryFrontmatter = [
     '---',
     'title: "Implementation Summary"',
@@ -118,17 +134,6 @@ function createSpecFolder(options: GraphMetadataFixtureOptions = {}): string {
       `| \`${reference}\` | Modify | Fixture reference ${index + 1} |`
     )),
   ].join('\n'), 'utf-8');
-  if (options.includeChecklist ?? false) {
-    const checklistItems = options.checklistItems ?? ['- [x] Verify graph metadata'];
-    fs.writeFileSync(path.join(specFolder, 'checklist.md'), [
-      '---',
-      'title: "Checklist"',
-      '---',
-      '',
-      '# Checklist',
-      ...checklistItems,
-    ].join('\n'), 'utf-8');
-  }
 
   const implementationSummaryPaths = options.materializeImplementationSummaryReferences === false
     ? []
@@ -154,7 +159,7 @@ function createSpecFolder(options: GraphMetadataFixtureOptions = {}): string {
     ) {
       absolutePath = path.join(root, '.opencode', 'specs', normalized);
     } else if (normalized === 'spec.md' || normalized === 'plan.md' || normalized === 'tasks.md'
-      || normalized === 'checklist.md' || normalized === 'decision-record.md'
+      || normalized === 'acceptance-criteria.md' || normalized === 'decision-record.md'
       || normalized === 'implementation-summary.md' || normalized === 'research.md'
       || normalized === 'handover.md' || normalized === 'resource-map.md' || normalized.startsWith('research/')) {
       absolutePath = path.join(specFolder, normalized);
@@ -552,7 +557,7 @@ describe('graph metadata schema and parser', () => {
 
     vi.spyOn(fs, 'readFileSync').mockImplementation((...args: Parameters<typeof fs.readFileSync>) => {
       const [filePath] = args;
-      if (typeof filePath === 'string' && filePath.endsWith('checklist.md')) {
+      if (typeof filePath === 'string' && filePath.endsWith('tasks.md')) {
         const error = new Error('permission denied') as NodeJS.ErrnoException;
         error.code = 'EACCES';
         throw error;

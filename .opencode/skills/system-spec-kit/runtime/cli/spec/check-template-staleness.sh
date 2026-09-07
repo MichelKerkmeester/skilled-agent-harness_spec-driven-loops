@@ -61,6 +61,9 @@ EOF
 # 2. TEMPLATE VERSION DETECTION
 # ───────────────────────────────────────────────────────────────
 
+# The checker classifies a folder by spec.md's marker against spec.md.tmpl's
+# manifest version; the other templates share that version by the parity test,
+# so one comparison stands for the set.
 get_current_template_version() {
     local manifest_path="$TEMPLATE_DIR/spec-kit-docs.json"
     if [[ ! -f "$manifest_path" ]]; then
@@ -171,7 +174,7 @@ main() {
                        local basename_md
                        basename_md=$(basename "$md_file")
                        case "$basename_md" in
-                           spec.md|plan.md|tasks.md|decision-record.md|implementation-summary.md)
+                           spec.md|plan.md|tasks.md|acceptance-criteria.md|goal.md|decision-record.md|implementation-summary.md)
                                if head -n 30 "$md_file" | grep -q "SPECKIT_TEMPLATE_SOURCE:"; then
                                    # Only bump the version portion (vN.N), preserving the template ID
                                    # e.g., "plan-core | v2.0" → "plan-core | v2.2"

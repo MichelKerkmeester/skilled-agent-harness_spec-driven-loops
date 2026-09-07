@@ -19,44 +19,6 @@
     "acceptance-criteria.md.tmpl": "v2.2",
     "goal.md.tmpl": "v2.2"
   },
-  "privateTaxonomy": {
-    "kinds": [
-      "implementation",
-      "phase-parent",
-      "review-record"
-    ],
-    "capabilities": [
-      "qa-verification",
-      "architecture-decisions",
-      "governance-expansion"
-    ],
-    "presets": {
-      "1": [
-        "implementation"
-      ],
-      "2": [
-        "implementation",
-        "qa-verification"
-      ],
-      "3": [
-        "implementation",
-        "qa-verification",
-        "architecture-decisions"
-      ],
-      "3+": [
-        "implementation",
-        "qa-verification",
-        "architecture-decisions",
-        "governance-expansion"
-      ],
-      "phase": [
-        "phase-parent"
-      ],
-      "review": [
-        "review-record"
-      ]
-    }
-  },
   "documents": {
     "spec.md": {
       "template": "spec.md.tmpl",
@@ -145,7 +107,7 @@
     "acceptance-criteria.md": {
       "template": "acceptance-criteria.md.tmpl",
       "owner": "author",
-      "creationTrigger": "scaffold",
+      "creationTrigger": "scaffold at Levels 2, 3 and 3+",
       "absenceBehavior": "hard-error"
     },
     "goal.md": {

@@ -4,7 +4,7 @@ import { dirname, join, resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
@@ -17,6 +17,11 @@ const writers = require(join(
 };
 
 const tempDirs: string[] = [];
+// The writers refuse a packet outside the configured specs authorities, so the
+// temporary packets are authorized by naming their parent as one.
+const AUTHORIZED_ROOTS_ENV = 'DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS';
+const previousAuthorizedRoots = process.env[AUTHORIZED_ROOTS_ENV];
+process.env[AUTHORIZED_ROOTS_ENV] = tmpdir();
 
 function makePacket(): string {
   const dir = mkdtempSync(join(tmpdir(), 'council-scope-'));
@@ -26,6 +31,10 @@ function makePacket(): string {
 
 afterEach(() => {
   while (tempDirs.length) rmSync(tempDirs.pop()!, { recursive: true, force: true });
+});
+afterAll(() => {
+  if (previousAuthorizedRoots === undefined) delete process.env[AUTHORIZED_ROOTS_ENV];
+  else process.env[AUTHORIZED_ROOTS_ENV] = previousAuthorizedRoots;
 });
 
 describe('ai-council path-scoped write authority', () => {

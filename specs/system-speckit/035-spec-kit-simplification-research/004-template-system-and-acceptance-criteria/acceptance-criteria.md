@@ -57,6 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given research.md, When a finding is read, Then it cites path:line on the claim side and the evidence side | reproduction notes in research/confirmed-findings.md | Met | - |
 | AC-003 | REQ-003 | Given the iteration files, When their focus lines are listed, Then every charted angle appears at least once | focus lines in the iteration files | Met | - |
 | AC-004 | REQ-004 | Given the confirmed table, When each row is opened, Then the cited lines show the finding | session log in implementation-summary.md | Met | - |
+| AC-005 | REQ-001 | Given the second lineage launched after remediation, When it exits, Then ten iteration files and ten state events exist and every P1 row is censused | listing of `research/lineages/deepseek-v4-flash-templates/iterations` and its state log; confirmed-findings.md §6 | Met | - |
 
 ### Status values
 

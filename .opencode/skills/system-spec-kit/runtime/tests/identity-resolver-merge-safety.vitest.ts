@@ -193,50 +193,50 @@ describe('mergeGraphMetadata lineage safety', () => {
   it('unions children so a scoped scan missing a child never deletes it, with a stable order', () => {
     process.env[FLAG] = 'true';
     const base = deriveRefreshed();
-    const refreshed: GraphMetadata = { ...base, children_ids: ['p/033-identity'] };
-    const existing: GraphMetadata = { ...base, children_ids: ['p/033-identity', 'p/034-sibling'] };
+    const refreshed: GraphMetadata = { ...base, children_ids: ['system-spec-kit/900-merge-fixture/033-identity'] };
+    const existing: GraphMetadata = { ...base, children_ids: ['system-spec-kit/900-merge-fixture/033-identity', 'system-spec-kit/900-merge-fixture/034-sibling'] };
 
     const merged = mergeGraphMetadata(existing, refreshed);
 
-    expect(merged.children_ids).toEqual(['p/033-identity', 'p/034-sibling']);
+    expect(merged.children_ids).toEqual(['system-spec-kit/900-merge-fixture/033-identity', 'system-spec-kit/900-merge-fixture/034-sibling']);
     // A rerun over the union must not reshuffle the persisted order.
     const rerun = mergeGraphMetadata(merged, refreshed);
-    expect(rerun.children_ids).toEqual(['p/033-identity', 'p/034-sibling']);
+    expect(rerun.children_ids).toEqual(['system-spec-kit/900-merge-fixture/033-identity', 'system-spec-kit/900-merge-fixture/034-sibling']);
   });
 
   it('removes a relationship only under the explicit prune mode', () => {
     process.env[FLAG] = 'true';
     const base = deriveRefreshed();
-    const refreshed: GraphMetadata = { ...base, parent_id: null, children_ids: ['p/033-identity'] };
+    const refreshed: GraphMetadata = { ...base, parent_id: null, children_ids: ['system-spec-kit/900-merge-fixture/033-identity'] };
     const existing: GraphMetadata = {
       ...base,
       parent_id: 'system-spec-kit/028-feature',
-      children_ids: ['p/033-identity', 'p/034-sibling'],
+      children_ids: ['system-spec-kit/900-merge-fixture/033-identity', 'system-spec-kit/900-merge-fixture/034-sibling'],
     };
 
     const normal = mergeGraphMetadata(existing, refreshed);
     expect(normal.parent_id).toBe('system-spec-kit/028-feature');
-    expect(normal.children_ids).toEqual(['p/033-identity', 'p/034-sibling']);
+    expect(normal.children_ids).toEqual(['system-spec-kit/900-merge-fixture/033-identity', 'system-spec-kit/900-merge-fixture/034-sibling']);
 
     const pruned = mergeGraphMetadata(existing, refreshed, { prune: true });
     expect(pruned.parent_id).toBeNull();
-    expect(pruned.children_ids).toEqual(['p/033-identity']);
+    expect(pruned.children_ids).toEqual(['system-spec-kit/900-merge-fixture/033-identity']);
   });
 
   it('passes lineage through verbatim from the refreshed snapshot when the flag is explicitly off', () => {
     process.env[FLAG] = 'false';
     const base = deriveRefreshed();
-    const refreshed: GraphMetadata = { ...base, parent_id: null, children_ids: ['p/033-identity'] };
+    const refreshed: GraphMetadata = { ...base, parent_id: null, children_ids: ['system-spec-kit/900-merge-fixture/033-identity'] };
     const existing: GraphMetadata = {
       ...base,
       parent_id: 'system-spec-kit/028-feature',
-      children_ids: ['p/033-identity', 'p/034-sibling'],
+      children_ids: ['system-spec-kit/900-merge-fixture/033-identity', 'system-spec-kit/900-merge-fixture/034-sibling'],
     };
 
     const merged = mergeGraphMetadata(existing, refreshed);
 
     expect(merged.parent_id).toBeNull();
-    expect(merged.children_ids).toEqual(['p/033-identity']);
+    expect(merged.children_ids).toEqual(['system-spec-kit/900-merge-fixture/033-identity']);
     expect(merged.parent_id_review_required).toBeUndefined();
   });
 
@@ -259,7 +259,7 @@ describe('mergeGraphMetadata lineage safety', () => {
     expect(pruned.metadata.children_ids).toEqual([]);
   });
 
-  it('does not prune a child id whose target still exists on disk', () => {
+  it('prunes a child id outside the packet\'s own identity even when its target exists on disk', () => {
     process.env[FLAG] = 'true';
     const track = makeTrackRoot();
     const parent = path.join(track, '028-feature');
@@ -283,6 +283,8 @@ describe('mergeGraphMetadata lineage safety', () => {
       }),
     ]);
     const pruned = refreshGraphMetadataForSpecFolder(parent, { now: '2026-06-22T00:00:02Z', prune: true });
-    expect(pruned.metadata.children_ids).toEqual(['system-spec-kit/999-external']);
+    // A child id must live under the parent's identity; a sibling packet that
+    // exists on disk is still not this parent's child, so prune removes it.
+    expect(pruned.metadata.children_ids).toEqual([]);
   });
 });

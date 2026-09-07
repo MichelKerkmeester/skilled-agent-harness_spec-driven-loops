@@ -11,7 +11,7 @@ import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter
 
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
-import { runSpecDocStructureRule, FREEFORM_WORKFLOW_DOCS, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
+import { CANONICAL_CONTINUITY_DOC, OPTIONAL_CONTINUITY_DOCS, runSpecDocStructureRule, FREEFORM_WORKFLOW_DOCS, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
 import {
   checkGeneratedMetadataIntegrity,
   resolveGeneratedMetadataIntegrity,
@@ -78,18 +78,6 @@ const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'rules');
 const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'dist', 'validation');
 const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review', 'research']);
-const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
-const OPTIONAL_CONTINUITY_DOCS = new Set([
-  'spec.md',
-  'plan.md',
-  'tasks.md',
-  'handover.md',
-  'debug-delegation.md',
-  'research/research.md',
-  'before-after.md',
-  'timeline.md',
-  'roadmap.md',
-]);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const REQUIRED_SCALAR_FRONTMATTER_FIELDS = ['title', 'description', 'importance_tier', 'contextType'];
 const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md'];

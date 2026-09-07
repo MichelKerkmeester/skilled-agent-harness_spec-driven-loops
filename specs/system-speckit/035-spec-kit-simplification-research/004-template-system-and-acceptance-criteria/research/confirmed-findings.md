@@ -80,3 +80,59 @@ Found during the census, not in the synthesis: `runtime/tests/continuity-freshne
 
 1. Whether the `documents` index in the manifest should be wired into enforcement or removed outright now that it is declared descriptive.
 2. Whether the continuity-freshness test should be rewritten around `tasks.md` or retired with the document it edits.
+
+---
+
+## 6. ROUND TWO (DeepSeek V4 Flash max through DevPass, 10 iterations on the remediated tree)
+
+Source: `lineages/deepseek-v4-flash-templates/research.md`, stop reason `maxIterationsReached`, 34 findings: 6 P1, 28 P2. Censused in the main checkout on 2026-09-07 before child `016-template-seams-and-sentinel-repair` was opened.
+
+### Verdict held
+
+Every machine-level claim of child 010 held: the goal flag scaffolds at every creatable level, the closure decision is list-driven, the enforce switch fails, the staleness checker reads the manifest that exists, and every template version matches its marker. Round two's rows are the seams beside those changes.
+
+### P1 rows
+
+| ID | Claim | Census | Disposition |
+|----|-------|--------|-------------|
+| f-iter001-001 | The optional-continuity set is defined twice with different members | `orchestrator.ts` had nine members, `spec-doc-structure.ts` ten | Fixed: one exported set in the structure module, imported by the orchestrator; `resource-map.md` joins it because its template ships no continuity block, and `acceptance-criteria.md` stays optional in both readers |
+| f-iter002-001 | The extension guide says the lazy list is the same at every level | Numbered levels identical; phase drops two, review and research drop three | Fixed: the guide, the style guide and a new parity case say so |
+| f-iter003-001 | The template guide calls `decision-record.md` required at Level 3 | The manifest lists it lazy at every level | Fixed |
+| f-iter004-001 | Child 010's own criteria cite no `file:line` | Six Met rows, none path-cited | Fixed: every row now names the line that proves it |
+| f-iter005-001 | The completion-evidence sentinel gates its whole evaluation on `checklist.md` | `completion-evidence-sentinel.cjs:500` stat'd the retired file, so `check-completion.sh` never ran from the Stop hook | Fixed: the sentinel gates on a `tasks.md` carrying the verification section's protocol anchor; its three tests build that section instead of the retired document |
+| f-iter009-001 | `--sharded` advertises a templates directory that does not exist | `templates/sharded/` absent; the block warned and touched empty stubs | Fixed: the flag, its help rows and the block are removed |
+
+### P2 rows
+
+| ID | Claim | Disposition |
+|----|-------|-------------|
+| f-iter001-002 | `resource-map.md` renders with a continuity warning | Fixed by the unified set |
+| f-iter001-003 | The freeform exemption comment claims inertness at numbered levels | Fixed: the comment states what the exemption does |
+| f-iter001-004 | The document collector special-cases the closure document instead of the optional list | Fixed: every present optional add-on is collected |
+| f-iter001-005 | `goal.md` has section gates but no anchor enforcement | Fixed: it joins the static-anchor set; the decision-record omission is commented as deliberate |
+| f-iter002-002 | Field descriptions and the absence enum in the extension guide | Fixed: the trigger is a label, the enum has the two values the manifest uses |
+| f-iter002-003 | The README says `resource-map.md` renders through an owning workflow | Fixed in both READMEs |
+| f-iter002-004 | The closure document's trigger is level-qualified | Fixed: the index entry says at which levels |
+| f-iter003-002 | The style guide's lazy row omits three documents and overstates "every level" | Fixed |
+| f-iter003-003 | One README trigger row joins two creators | Fixed: two rows |
+| f-iter003-004 | The scaffold walkthrough names neither flag | Fixed |
+| f-iter003-005 | The ToC lists disagree with the rule | Fixed: `acceptance-criteria.md` joins the rule, which now matches both documents |
+| f-iter004-002 | One in five Met criteria cite `file:line` repository-wide | Documented: the coverage reference now calls the floor aspirational and says what enabling the switch would do |
+| f-iter004-003 | The template-source rule checks required documents only | Fixed: a separate document list carries the closure document and the six author-scaffolded add-ons, without widening the file-presence rules |
+| f-iter004-004 | The evidence pattern accepts clock times and ports | Fixed: a path-like token is required before the colon |
+| f-iter005-002, 003, 004 | The sentinel header and two README sentences | Fixed with the sentinel; the README sentences were rewritten in child 010's own pass and re-read |
+| f-iter006-001 | The playbook contradicts itself about who writes `goal.md` | Fixed |
+| f-iter006-002 | The skill's gate list omits the four flag-owned documents | Fixed |
+| f-iter006-003 | The template helper cannot resolve `research/research.md` | Fixed: the helper resolves by basename |
+| f-iter007-001 | The staleness checker compares one template | Documented in the checker: the parity test keeps the others at the same version |
+| f-iter007-002 | The changelog templates are untracked by the manifest | Documented in the templates README |
+| f-iter007-003 | The auto-upgrade set omits two scaffolded documents | Fixed |
+| f-iter008-001 | The templates README omits `goal.md.tmpl` and misnames one example directory | Fixed |
+| f-iter008-002 | `privateTaxonomy` has no consumer | Removed |
+| f-iter008-003 | No golden covers the goal scaffold | Fixed: the goal template joins the anchor goldens and a `--with-goal` scaffold case |
+| f-iter008-004 | `templates/stress-test/` has no consumer | Removed with its folder-structure and README rows |
+| f-iter009-002 | The parity suite pins only the numbered lazy lists | Fixed: a case pins how the packet-type rows narrow it |
+
+### The seven runtime suites
+
+The same defect class reached the runtime test project, which CI never ran: three suites built the retired checklist document, one expected pre-nesting paths, one expected an old rule message, one expected children ids outside the packet's identity to survive a merge, one hit the council writers' new authorized-roots guard, and the stdio check scanned the CLI package that now nests under the runtime. All seven are repaired at their own faults in this child.

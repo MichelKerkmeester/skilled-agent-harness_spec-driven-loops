@@ -69,6 +69,18 @@ describe('template version parity', () => {
     }
   });
 
+  it('pins how the packet-type rows narrow the lazy list', () => {
+    const manifest = loadManifest();
+    const numbered = new Set(manifest.levels['1'].lazyAddonDocs);
+    // Phase parents drop the two documents a workflow writes into a child.
+    const phase = [...manifest.levels.phase.lazyAddonDocs].sort();
+    expect(phase).toEqual([...numbered].filter((doc) => !['debug-delegation.md', 'research/research.md'].includes(doc)).sort());
+    // Review and research packets drop the goal document as well.
+    for (const level of ['review', 'research']) {
+      expect([...manifest.levels[level].lazyAddonDocs].sort(), level).toEqual(phase.filter((doc) => doc !== 'goal.md'));
+    }
+  });
+
   it('points the staleness checker at the manifest that exists', () => {
     const script = fs.readFileSync(STALENESS_CHECKER, 'utf8');
     const match = script.match(/manifest_path="\$TEMPLATE_DIR\/([^"]+)"/);

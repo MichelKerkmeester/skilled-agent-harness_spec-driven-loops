@@ -73,6 +73,7 @@ verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
 - [x] 10 iteration files and 10 state events exist under research/lineages/glm-5-3-flash-templates/
+- [x] Round two: 10 iteration files and 10 state events exist under research/lineages/deepseek-v4-flash-templates/ and every P1 row is censused in confirmed-findings.md
 - [x] research.md carries a document-by-document table: owner, creation trigger, absence behavior, what create.sh and the renderer actually do, what the README and SKILL.md claim
 - [x] Every P0 and P1 finding reproduces in-session
 - [x] A stated answer on resource-map, timeline, roadmap and goal status, and on which completion surface the validator really reads
@@ -95,6 +96,8 @@ and findings belong here.
 | Lane ran 10/10, synthesis written | Done | `research/lineages/glm-5-3-flash-templates/research.md`, stop reason maxIterationsReached, 01:29 to 03:49 |
 | Census | Done | `research/confirmed-findings.md`: all 15 P1 rows confirmed, 20 P2 rows fixed, documented or recorded |
 | Remediation | Done | `../010-template-contract-alignment` closed every row |
+| Round two ran 10/10 on DevPass DeepSeek, synthesis written | Done | `research/lineages/deepseek-v4-flash-templates/research.md`, 08:11 to 08:34 |
+| Round two census and remediation | Done | `research/confirmed-findings.md` §6; `../016-template-seams-and-sentinel-repair` |
 
 ### Deviations and findings
 

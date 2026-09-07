@@ -25,8 +25,10 @@ Use this guide when extending the manifest taxonomy, template version map, or le
 2. Add an entry in `spec-kit-docs.json.documents` with:
    - `template`: the template filename.
    - `owner`: `author`, `command`, `agent`, or `workflow`.
-   - `creationTrigger`: the workflow that creates it.
-   - `absenceBehavior`: `hard-error`, `warn`, or `silent-skip`.
+   - `creationTrigger`: how the document comes to exist, as a label: `scaffold`,
+     `explicit-option`, `phase-scaffold`, or the command or workflow that writes it.
+   - `absenceBehavior`: `hard-error` or `silent-skip`; no rule produces a warning
+     for an absent document.
    This section is a descriptive index for readers. Nothing reads it at
    runtime: the scaffolder and the validator both work from the `levels`
    rows below, and a template is found by its `.tmpl` name in the role
@@ -42,7 +44,9 @@ Use this guide when extending the manifest taxonomy, template version map, or le
      understands the rollout, because the file-presence rule has no notion of
      when a packet was created.
    - `lazyAddonDocs` for files a packet gets only on request. The list is
-     the same at every level and mixes two ownership models: documents an
+     identical across the four numbered levels; phase parents drop the two
+     documents a workflow writes into a child, and review and research
+     packets drop `goal.md` as well. It mixes two ownership models: documents an
      author asks for (`--with-lazy-addons` scaffolds four of them,
      `--with-goal` one, the inline gate renderer any of them) and documents a
      command or workflow writes (`handover.md`, `debug-delegation.md`,

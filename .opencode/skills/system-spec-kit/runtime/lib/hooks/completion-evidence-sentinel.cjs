@@ -4,7 +4,7 @@
 // ║ PURPOSE: Runtime-agnostic gate + policy for the completion-evidence      ║
 // ║          sentinel. When a turn ends with a completion claim, this        ║
 // ║          module checks recorded artifacts only -- a folder's            ║
-// ║          checklist.md via check-completion.sh --json, or a Level 1       ║
+// ║          tasks.md's verification section via check-completion.sh --json, or a       ║
 // ║          folder's implementation-summary.md via a stat -- and returns a  ║
 // ║          transport-free decision so each runtime adapter (the Claude     ║
 // ║          Stop hook, the OpenCode session.idle plugin) can surface it in  ║
@@ -214,7 +214,7 @@ function detailForChecklistStatus(status, specFolder, data) {
 function verdictFromChecklistResult(result, specFolder) {
   if (!result || !result.ok || !result.data || typeof result.data !== 'object') {
     // Spawn/parse failure: fail open. This also covers the (pre-checked-away)
-    // "checklist.md not found" branch of the script, which reports no status.
+    // "verification section not found" branch of the script, which reports no status.
     return { decision: 'ok', detail: null };
   }
   const status = typeof result.data.status === 'string' ? result.data.status : null;
@@ -495,9 +495,14 @@ function evaluateCompletionEvidence(request = {}) {
     const projectDir = completionState.resolveProjectDir(request.projectDir);
     const absoluteSpecFolder = completionState.resolveSpecFolder(rawSpecFolder, projectDir);
 
+    // The verification checklist lives inside tasks.md since the standalone
+    // checklist document retired; check-completion.sh scopes on its protocol
+    // anchor, so that anchor is what makes the spawn worth paying for.
     let hasChecklist = false;
     try {
-      hasChecklist = statSync(join(absoluteSpecFolder, 'checklist.md')).isFile();
+      const tasksPath = join(absoluteSpecFolder, 'tasks.md');
+      hasChecklist = statSync(tasksPath).isFile()
+        && readFileSync(tasksPath, 'utf8').includes('<!-- ANCHOR:protocol -->');
     } catch (_) {
       hasChecklist = false;
     }

@@ -194,12 +194,21 @@ function normalizeSpecKitLevel(raw: string): SpecKitLevel {
 /**
  * Freeform workflow artifacts carry their own (non-continuity) frontmatter
  * schema and no spec-doc anchors, so they are exempt from the _memory-block and
- * anchor-sufficiency gates. No numbered level references these, so the exclusion
- * is inert for Levels 1-3+ and phase parents.
+ * anchor-sufficiency gates. The numbered levels list research/research.md as a
+ * lazy add-on, so the exemption is what keeps a deep-research output from being
+ * held to the spec-doc contract; review/review-report.md reaches here only from
+ * review packets.
  */
 export const FREEFORM_WORKFLOW_DOCS = new Set(['review/review-report.md', 'research/research.md']);
-const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
-const OPTIONAL_CONTINUITY_DOCS = new Set([
+export const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
+/**
+ * Documents whose `_memory` continuity block is optional. The one home of this
+ * set: the orchestrator's native frontmatter rule imports it, so a document
+ * cannot get two verdicts from two copies. resource-map.md is here because its
+ * template ships no continuity block; goal.md is absent because its template
+ * does.
+ */
+export const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
   'plan.md',
   'tasks.md',
@@ -210,8 +219,12 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
   'before-after.md',
   'timeline.md',
   'roadmap.md',
+  'resource-map.md',
 ]);
-const LAZY_DOCS_WITH_STATIC_ANCHORS = new Set(['before-after.md', 'timeline.md', 'roadmap.md']);
+// goal.md carries contract section gates like the three author add-ons, so its
+// anchors are required whenever the document is present. decision-record.md is
+// deliberately absent: its entries are dynamic and its own contract owns them.
+const LAZY_DOCS_WITH_STATIC_ANCHORS = new Set(['before-after.md', 'timeline.md', 'roadmap.md', 'goal.md']);
 
 function collectDocuments(folder: string, level: string): DocumentRecord[] {
   const documents: DocumentRecord[] = [];
@@ -222,8 +235,12 @@ function collectDocuments(folder: string, level: string): DocumentRecord[] {
     ...contract.lifecycleRequiredDocs.afterImplementationStarts,
     ...contract.lazyAddonDocs,
   ]);
-  if (fs.existsSync(path.join(folder, 'acceptance-criteria.md'))) {
-    contractDocs.add('acceptance-criteria.md');
+  // Optional add-ons are validated when present; the file-presence rule owns
+  // whether they must exist, so their absence is not this module's concern.
+  for (const basename of contract.optionalAddonDocs) {
+    if (fs.existsSync(path.join(folder, basename))) {
+      contractDocs.add(basename);
+    }
   }
 
   for (const basename of contractDocs) {
