@@ -102,4 +102,5 @@ and findings belong here.
 |------|------|
 | Two rows did not reproduce | The pi adapters' import base is documented; the example file is at the root |
 | The mirror job had never run on a push | So its missing install was invisible until the push trigger existed; lane 003's round found the same job |
+| The first push run failed twice more | The mirror scripts require the shared package's compiled output, and the runner ships no ripgrep; the workflow builds the package and installs ripgrep now |
 <!-- /ANCHOR:log -->
