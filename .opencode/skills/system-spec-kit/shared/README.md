@@ -187,7 +187,7 @@ Every variable this package reads, one row per variable, with the files that rea
 | Provider selection | `EMBEDDINGS_PROVIDER` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts` |
 | Provider selection | `EMBEDDING_DIM` | `embeddings/factory.ts`, `embeddings/profile.ts` |
 | Ollama | `OLLAMA_EMBEDDINGS_MODEL` | `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/ollama.ts` |
-| Ollama | `OLLAMA_BASE_URL` | `embeddings/adapters/ollama.ts`, `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/ollama.ts` |
+| Ollama | `OLLAMA_BASE_URL` | `embeddings/adapters/ollama.ts`, `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts` |
 | Ollama | `OLLAMA_REQUEST_TIMEOUT_MS` | `embeddings/adapters/ollama.ts` |
 | Local HF model server | `HF_EMBEDDINGS_MODEL` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/hf-local.ts` |
 | Local HF model server | `HF_EMBEDDINGS_DTYPE` | `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/hf-local.ts` |

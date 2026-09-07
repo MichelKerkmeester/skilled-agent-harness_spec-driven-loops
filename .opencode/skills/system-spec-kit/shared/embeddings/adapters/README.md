@@ -25,7 +25,7 @@ The `@spec-kit/shared` package owns these adapters. Server packages may re-expor
 
 | File | Responsibility |
 |---|---|
-| `ollama.ts` | Implements the shared Ollama adapter contract. |
+| `ollama.ts` | Implements the shared Ollama adapter contract and is the one Ollama transport: `providers/ollama.ts` embeds through an instance of it. |
 
 ---
 

@@ -66,6 +66,7 @@ contextType: "general"
 - [ ] T016 Run `node runtime-mirrors/sync-runtime-mirrors.cjs --check` against the regenerated files and confirm it still exits 0
 - [ ] T017 Run every runtime's own hook adapter test, plus the `directive-lifecycle-adapter-parity` and `completion-evidence` suites, and confirm they pass unchanged
 - [ ] T018 Update `spec.md`, `plan.md` and this document's own state to reflect what shipped
+- [ ] T019 Repair `mcp-server/tests/hooks/settings-driven-invocation-parity.vitest.ts`, whose regex still expects the Claude hook command under `mcp-server/dist/hooks/claude/` while the registration files point at `runtime/dist/hooks/claude/`; routed here by 011's ADR-001
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -9,7 +9,7 @@
 // in which fields they pluck from the result — they must NOT diverge
 // in the parsing itself.
 
-import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
 
 export interface ParsedSkillMarkdown {
   /** Frontmatter key/value pairs, with surrounding quotes stripped. */

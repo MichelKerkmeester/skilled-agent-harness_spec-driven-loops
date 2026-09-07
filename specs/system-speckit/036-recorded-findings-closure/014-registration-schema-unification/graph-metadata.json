@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Five CLI runtimes each register the same behavioral contract (which script runs on which lifecycle event) through five hand-authored files that disagree on structure, not just syntax",
     "created_at": "2026-09-07T15:05:55Z",
-    "last_save_at": "2026-09-07T15:45:53.244Z",
+    "last_save_at": "2026-09-07T17:49:14.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6134d69cdcd4dc88ff363652af8c381c8cd111733c098511d76e6d52616b05f0",
+    "source_fingerprint": "sha256:941c60103a589bb66730871e94f8de41efb9fe9c0bdd8d0307a35ba738d4f83b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "31bd76cb3ce7ac6885147038bd4aca8a7e7508bfa255a959b301678a0a4f2f3a",
       "plan.md": "3587bd6d8299021b368e7a01ef65beddd1b0c38f19e7797a297fb91198127194",
-      "tasks.md": "dc813787c11586309f9320bf995e723362901e0ea2eda3a6c9811e157d48263a",
+      "tasks.md": "b5859146ce015db8d16b979d85a81ecb49c7b9b3996b542de0d8e360fd1a302a",
       "implementation-summary.md": "f60bfd115f00504e56ef95ec8ccaed668d39f309644bb62ec3b43011f71bec92"
     },
     "last_active_at": null

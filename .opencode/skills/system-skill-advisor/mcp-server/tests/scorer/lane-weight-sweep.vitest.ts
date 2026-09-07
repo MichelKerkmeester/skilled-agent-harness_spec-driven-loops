@@ -6,7 +6,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 
-import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
+import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 import {
   runLaneWeightSweep,

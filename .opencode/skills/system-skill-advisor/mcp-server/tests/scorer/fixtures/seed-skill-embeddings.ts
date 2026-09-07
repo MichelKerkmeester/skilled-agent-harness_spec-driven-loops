@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
+import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 export interface SeededSkill {
   readonly id: string;
