@@ -186,7 +186,6 @@ path.bar-right {
 </div>
 <script>
 /* CHART_DATA:BEGIN */
-const GROUPS = ['Men', 'Women'];
 const DATA = [
   { label: '0\u20139', values: [412, 398] },
   { label: '10\u201319', values: [455, 431] },
@@ -199,6 +198,21 @@ const DATA = [
   { label: '80+', values: [142, 246] }
 ];
 /* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'men', label: 'Men', token: '--chart-series-3', classes: ['bar-left'] },
+  { key: 'women', label: 'Women', token: '--chart-series-1', classes: ['bar-right'] }
+];
+/* CHART_SERIES:END */
 
 // Everything below draws. Two groups, one per side, is the whole form: the mirror is the
 // comparison, and a third side would be read against a mirror that is not there.
@@ -252,7 +266,7 @@ function fmt(v, decimals) {
 // The card prints both counts no matter which bar of the band is pointed at, because the
 // reader's question about one side is whether the other side matches it.
 function cardRows(d) {
-  return GROUPS.map(function (g, s) { return [g, fmt(d.values[s])]; });
+  return SERIES.map(function (series, s) { return [series.label, fmt(d.values[s])]; });
 }
 
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
@@ -295,9 +309,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -415,10 +434,10 @@ for (let t = 0; t <= TICKS; t += 1) {
 // half, so a reader maps a fill to a group without leaving the picture. The right entry's
 // swatch is placed from the label's measured width, which a character count would only guess.
 node('rect', { x: 32, y: 8, width: 8, height: 8 }, 'bar-left');
-node('text', { x: 44, y: 16 }, 'key').textContent = GROUPS[0];
+node('text', { x: 44, y: 16 }, 'key').textContent = SERIES[0].label;
 const keyRight = node('text', { x: 688, y: 16, 'text-anchor': 'end' }, 'key');
-keyRight.textContent = GROUPS[1];
-node('rect', { x: 688 - (keyRight.getComputedTextLength() || GROUPS[1].length * 6.2) - 12, y: 8, width: 8, height: 8 }, 'bar-right');
+keyRight.textContent = SERIES[1].label;
+node('rect', { x: 688 - (keyRight.getComputedTextLength() || SERIES[1].label.length * 6.2) - 12, y: 8, width: 8, height: 8 }, SERIES[1].classes[0]);
 
 // Rows run oldest at the top to youngest at the bottom, which is how a pyramid is read: the
 // wide base of the young and the thin crown of the old are the shape the form exists to show.
@@ -436,12 +455,12 @@ DATA.forEach(function (d, i) {
   markable(node('path', {
     d: mirrorRounded(AXIS_L - wLeft, rowTop, wLeft, BAR, MARK_R),
     style: '--mark-index:' + drawn
-  }, 'bar-left'), d.label, cardRows(d));
+  }, SERIES[0].classes[0]), d, cardRows(d));
   drawn += 1;
   markable(node('path', {
     d: endRounded(AXIS_R, rowTop, wRight, BAR, MARK_R),
     style: '--mark-index:' + drawn
-  }, 'bar-right'), d.label, cardRows(d));
+  }, SERIES[1].classes[0]), d, cardRows(d));
   drawn += 1;
   node('text', { x: (AXIS_L + AXIS_R) / 2, y: rowTop + BAR / 2 + 5, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
 });

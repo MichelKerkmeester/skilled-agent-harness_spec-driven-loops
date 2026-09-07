@@ -189,6 +189,14 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'period'
+};
+/* READOUT:END */
+
 // Everything below draws. This is the one form in the corpus whose value axis does not
 // start at zero, because a price chart forced to zero flattens every move it exists to show.
 const SVG = 'http://www.w3.org/2000/svg';
@@ -278,9 +286,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -369,7 +382,7 @@ DATA.forEach(function (d, i) {
   const top = Math.min(y(d.open), y(d.close));
   const height = Math.max(Math.abs(y(d.open) - y(d.close)), 1.5);
   markable(node('rect', { x: cx - bodyWidth / 2, y: top, width: bodyWidth, height: height }, rising ? 'up' : 'down'),
-    d.period, [['Open', fmt(d.open)], ['High', fmt(d.high)], ['Low', fmt(d.low)], ['Close', fmt(d.close)]]);
+    d, [['Open', fmt(d.open)], ['High', fmt(d.high)], ['Low', fmt(d.low)], ['Close', fmt(d.close)]]);
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = d.period;
 });
 

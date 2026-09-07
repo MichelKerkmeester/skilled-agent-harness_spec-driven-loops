@@ -204,7 +204,6 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
 </div>
 <script>
 /* CHART_DATA:BEGIN */
-const SERIES = ['Perpetual', 'Subscription', 'Services', 'Training'];
 const DATA = [
   { period: 'Jan 1', values: [52, 14, 24, 11] },
   { period: 'Feb 1', values: [51, 15, 23, 9] },
@@ -232,6 +231,28 @@ const DATA = [
   { period: 'Dec 2', values: [18, 50, 24, 10] }
 ];
 /* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'perpetual', label: 'Perpetual', token: '--chart-series-1', classes: ['band-1'] },
+  { key: 'subscription', label: 'Subscription', token: '--chart-series-2', classes: ['band-2'] },
+  { key: 'services', label: 'Services', token: '--chart-series-3', classes: ['band-3'] },
+  { key: 'training', label: 'Training', token: '--chart-series-4', classes: ['band-4'] }
+];
+/* CHART_SERIES:END */
+
+/* CURVE:BEGIN */
+const CURVE = 'linear';
+// Linear keeps monthly measured totals direct and does not invent curvature between periods.
+/* CURVE:END */
 
 // Everything below draws. Bands that touch carry a stroke in the surface role, so no two
 // data colours ever share an edge and each band is read against the ground.
@@ -282,6 +303,30 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+function curvePath(points) {
+  if (!points.length) return '';
+  const coordinates = points.map(function (point) { return point.split(',').map(Number); });
+  if (CURVE === 'step') {
+    let path = 'M' + points[0];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      path += ' H' + coordinates[i][0] + ' V' + coordinates[i][1];
+    }
+    return path;
+  }
+  if (CURVE === 'monotone') {
+    let path = 'M' + coordinates[0][0] + ',' + coordinates[0][1];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      const previous = coordinates[i - 1];
+      const current = coordinates[i];
+      const dx = (current[0] - previous[0]) / 3;
+      path += ' C' + (previous[0] + dx) + ',' + previous[1] + ' ' + (current[0] - dx) + ',' + current[1]
+        + ' ' + current[0] + ',' + current[1];
+    }
+    return path;
+  }
+  return 'M' + points.join(' L');
+}
+
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
 // not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
 // and returns an em dash for a reading nobody took, so the card can never disagree with the
@@ -322,9 +367,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -434,11 +484,11 @@ if (run.length) runs.push(run);
 // this file defines, so the two cannot drift apart without a run saying which side moved.
 const CAPACITY = 4;
 function bandClass(i) {
-  return i < CAPACITY ? 'band-' + (i + 1) : 'over-capacity';
+  return i < CAPACITY ? SERIES[i].classes[0] : 'over-capacity';
 }
 
 const floors = DATA.map(function () { return 0; });
-SERIES.forEach(function (name, s) {
+SERIES.forEach(function (series, s) {
   // The card's one row reports the series total the table's own Total column reports, read
   // along the other axis: the same sum taken over every period instead of every series. A
   // band is one path spanning the whole width, so pointing at it selects a series and never
@@ -455,10 +505,12 @@ SERIES.forEach(function (name, s) {
       floors[i] += DATA[i].values[s];
       upper.push(x(i) + ',' + y(floors[i]));
     });
+    const upperPath = curvePath(upper);
+    const lowerPath = curvePath(lower.reverse());
     markable(node('path', {
-      d: 'M' + upper.join(' L') + ' L' + lower.reverse().join(' L') + ' Z',
+      d: upperPath + ' L' + lowerPath.slice(1) + ' Z',
       'data-series': s + 1
-    }, 'band ' + bandClass(s)), name, [['Total, whole period', fmt(total)]]);
+    }, 'band ' + bandClass(s)), series, [['Total, whole period', fmt(total)]]);
   });
 });
 
@@ -491,7 +543,8 @@ DATA.forEach(function (d, i) {
 const legend = document.getElementById('legend-stacked-area');
 const entries = [];
 let cursor = 0;
-SERIES.forEach(function (name, s) {
+SERIES.forEach(function (series, s) {
+  const name = series.label;
   const entry = document.createElementNS(SVG, 'g');
   entry.setAttribute('data-series', s + 1);
   entry.setAttribute('tabindex', '0');
@@ -533,7 +586,7 @@ if (SERIES.length > CAPACITY) {
 }
 
 const headRow = document.getElementById('head-row');
-SERIES.concat(['Total']).forEach(function (name) {
+SERIES.map(function (series) { return series.label; }).concat(['Total']).forEach(function (name) {
   const th = document.createElement('th');
   th.setAttribute('scope', 'col');
   th.textContent = name;

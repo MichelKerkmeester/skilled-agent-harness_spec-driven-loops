@@ -38,6 +38,22 @@ A colour system is an answer to "what does colour mean in this chart". That is t
 
 Start at `neutral`. Reach for another only when the data has the property that system encodes. A categorical palette on ordered data throws away the ordering, and an ordered ramp on unordered categories invents one.
 
+### What the shadcn comparison kept
+
+The shadcn comparison measured a much tighter categorical light-theme set than the standalone
+one: shadcn light has a 16.0° minimum adjacent hue gap and 1.72:1 minimum own/opposite-ground
+contrast, while standalone categorical light has a 92.9° gap and 3.37:1 minimum own/opposite-ground
+contrast. The dark measurements were 71.1° and 2.92:1/2.15:1 for shadcn, against 96.5° and
+3.38:1/1.72:1 for standalone categorical. The numbers support keeping the standalone role split
+and its existing gates rather than replacing it with a raw five-token ramp; they do not create a
+new CVD or hue threshold here.
+[SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:55-66]
+
+The transferable part is semantic indirection: a named series owns a palette token through its
+key, and a mark reaches that token through the class the key declares. That keeps the palette
+roles here while making a per-key colour change one auditable edit in the chart's series block.
+[SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:123-132]
+
 ### Two names for one system
 
 The second column exists because two vocabularies name these three systems and both are

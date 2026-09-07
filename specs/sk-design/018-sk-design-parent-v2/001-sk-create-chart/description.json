@@ -11,15 +11,23 @@
     "report",
     "templates"
   ],
-  "lastUpdated": "2026-09-06T16:00:14.530Z",
+  "lastUpdated": "2026-09-07T21:14:30.271Z",
   "specId": "001",
   "folderSlug": "sk-create-chart",
   "parentChain": [
     "sk-design",
     "018-sk-design-parent-v2"
   ],
-  "memorySequence": 1,
+  "memorySequence": 9,
   "memoryNameHistory": [
-    "06-09-26_17-00__packet-018-is-closed-phase-005-is-committed-as.md"
+    "06-09-26_17-00__packet-018-is-closed-phase-005-is-committed-as.md",
+    "07-09-26_17-11__re-attempting-step-4-with-the-measurement.md",
+    "07-09-26_17-22__step-6-is-running-the-shadcn-research-fan-out.md",
+    "07-09-26_17-25__two-done-criteria-closed-and-the-rulings-got.md",
+    "07-09-26_17-27__the-ownership-table-is-now-fully-diagnosed-all-11.md",
+    "07-09-26_17-49__step-6-is-relaunched-and-this-time-i-m-not.md",
+    "07-09-26_18-45__evidence-run-is-in-progress-the-fleet-scan-takes.md",
+    "07-09-26_19-01__both-rulings-applied-in-one-edit-to-category.md",
+    "07-09-26_19-11__all-six-items-verified-live-nothing-further-to.md"
   ]
 }

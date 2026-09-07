@@ -209,7 +209,6 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
 </div>
 <script>
 /* CHART_DATA:BEGIN */
-const SEGMENTS = ['Platform', 'Services', 'Support'];
 const DATA = [
   { label: 'Home market', values: [58, 24, 13] },
   { label: 'Continent', values: [51, 17, 10] },
@@ -217,6 +216,22 @@ const DATA = [
   { label: 'New market', values: [6, 19, 5] }
 ];
 /* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'platform', label: 'Platform', token: '--chart-series-1', classes: ['series-1'] },
+  { key: 'services', label: 'Services', token: '--chart-series-2', classes: ['series-2'] },
+  { key: 'support', label: 'Support', token: '--chart-series-3', classes: ['series-3'] }
+];
+/* CHART_SERIES:END */
 
 // Everything below draws. Segments that touch carry a stroke in the surface role, so
 // no two data colours ever share an edge and each one is read against the ground.
@@ -309,9 +324,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -415,7 +435,7 @@ svg.style.setProperty('--chart-grow-base', BASE + 'px');
 // this file defines, so the two cannot drift apart without a run saying which side moved.
 const CAPACITY = 3;
 function seriesClass(i) {
-  return i < CAPACITY ? 'series-' + (i + 1) : 'over-capacity';
+  return i < CAPACITY ? SERIES[i].classes[0] : 'over-capacity';
 }
 
 const slot = (RIGHT - LEFT) / DATA.length;
@@ -433,10 +453,11 @@ DATA.forEach(function (d, i) {
     // market it sits in, because a segment past the printed-number gate carries its value
     // twice: once on the mark, once in the card, and the two come from the same fmt call.
     // Below the gate the figure prints nothing and the card is the only reading.
+    const datum = { label: SERIES[s].label + ', ' + d.label };
     markable(node(top ? 'path' : 'rect', top
       ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R), style: '--mark-index:' + i, 'data-series': s + 1 }
       : { x: cx - barWidth / 2, y: y, width: barWidth, height: h, style: '--mark-index:' + i, 'data-series': s + 1 },
-      'seg ' + seriesClass(s)), SEGMENTS[s] + ', ' + d.label, [['Value', fmt(v)]]);
+      'seg ' + seriesClass(s)), datum, [['Value', fmt(v)]]);
     if (h >= 22) {
       // The printed value belongs to its segment, so it dims with it rather than staying at
       // full strength over a segment that has stepped back.
@@ -461,7 +482,8 @@ DATA.forEach(function (d, i) {
 const legend = document.getElementById('legend-stacked-bars');
 const entries = [];
 let cursor = 0;
-SEGMENTS.forEach(function (name, s) {
+SERIES.forEach(function (series, s) {
+  const name = series.label;
   const entry = document.createElementNS(SVG, 'g');
   entry.setAttribute('data-series', s + 1);
   entry.setAttribute('tabindex', '0');
@@ -489,7 +511,8 @@ SEGMENTS.forEach(function (name, s) {
 legend.setAttribute('transform', 'translate(' + (RIGHT - (cursor - 16)) + ',0)');
 
 const headRow = document.getElementById('head-row');
-SEGMENTS.forEach(function (name) {
+SERIES.forEach(function (series) {
+  const name = series.label;
   const th = document.createElement('th');
   th.setAttribute('scope', 'col');
   th.textContent = name;
@@ -501,12 +524,12 @@ SEGMENTS.forEach(function (name) {
 // Past that ceiling the figure says so in the picture, where the person reading the chart will
 // see it, rather than in a console nobody opens. The notice grows the frame instead of sitting
 // inside the plot, so it never lands on a mark.
-if (SEGMENTS.length > CAPACITY) {
+if (SERIES.length > CAPACITY) {
   const box = svg.getAttribute('viewBox').split(' ');
   const grown = Number(box[3]) + 22;
   svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
   node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
-    fmt(SEGMENTS.length) + ' segments are drawn and this colour system carries ' + fmt(CAPACITY)
+    fmt(SERIES.length) + ' segments are drawn and this colour system carries ' + fmt(CAPACITY)
     + '. The rest are drawn outside the encoding, so merge the tail before drawing or move to the neutral system.';
 }
 

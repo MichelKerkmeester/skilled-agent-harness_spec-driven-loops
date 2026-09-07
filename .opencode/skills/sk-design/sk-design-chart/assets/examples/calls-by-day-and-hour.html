@@ -175,6 +175,14 @@ const VALUES = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'day'
+};
+/* READOUT:END */
+
 // Everything below renders. The block above is the only part to edit.
 const SVG = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('chart');
@@ -269,9 +277,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -374,9 +387,10 @@ VALUES.forEach(function (row, r) {
     .textContent = ROWS[r];
   row.forEach(function (v, c) {
     const cls = cellClass(v);
+    const datum = { day: ROWS[r] };
     markable(node('rect', {
       x: GUTTER + c * CELL_W, y: TOP + r * CELL_H, width: CELL_W, height: CELL_H
-    }, 'cell ' + cls), ROWS[r], [[COLUMNS[c], fmt(v)]]);
+    }, 'cell ' + cls), datum, [[COLUMNS[c], fmt(v)]]);
     // The empty swatch is the ground held back rather than a colour of its own, so the number
     // printed on it is chosen against the ground. Reading the rule value here instead would
     // hand the contrast maths an alpha on the dark theme, which it cannot parse.

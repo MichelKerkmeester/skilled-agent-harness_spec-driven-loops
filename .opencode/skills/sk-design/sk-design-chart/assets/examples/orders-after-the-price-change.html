@@ -181,6 +181,19 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'day'
+};
+/* READOUT:END */
+
+/* CURVE:BEGIN */
+const CURVE = 'linear';
+// Linear connects observed price-change readings directly and leaves missing days as gaps.
+/* CURVE:END */
+
 // Everything below renders. The block above is the only part to edit.
 const SVG = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('chart');
@@ -233,6 +246,30 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+function curvePath(points) {
+  if (!points.length) return '';
+  const coordinates = points.map(function (point) { return point.split(',').map(Number); });
+  if (CURVE === 'step') {
+    let path = 'M' + points[0];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      path += ' H' + coordinates[i][0] + ' V' + coordinates[i][1];
+    }
+    return path;
+  }
+  if (CURVE === 'monotone') {
+    let path = 'M' + coordinates[0][0] + ',' + coordinates[0][1];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      const previous = coordinates[i - 1];
+      const current = coordinates[i];
+      const dx = (current[0] - previous[0]) / 3;
+      path += ' C' + (previous[0] + dx) + ',' + previous[1] + ' ' + (current[0] - dx) + ',' + current[1]
+        + ' ' + current[0] + ',' + current[1];
+    }
+    return path;
+  }
+  return 'M' + points.join(' L');
+}
+
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
 // not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
 // and returns an em dash for a reading nobody took, so the card can never disagree with the
@@ -273,9 +310,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their values.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -352,16 +394,18 @@ fade.setAttribute('y1', TOP);
 fade.setAttribute('y2', BASE);
 
 const points = DATA.map(function (d, i) { return x(i) + ',' + y(d.value); });
-node('path', { d: 'M' + LEFT + ',' + BASE + ' L' + points.join(' L') + ' L' + RIGHT + ',' + BASE + ' Z' }, 'area');
-node('path', { d: 'M' + points.join(' L') }, 'line');
+const linePath = curvePath(points);
+node('path', { d: 'M' + LEFT + ',' + BASE + ' L' + linePath.slice(1) + ' L' + RIGHT + ',' + BASE + ' Z' }, 'area');
+node('path', { d: linePath }, 'line');
 
 // A dot per reading says where a value was actually recorded. A line alone leaves that to
 // be guessed from its corners, and a corner is also what a steep pair of readings makes
 // where nothing was recorded at all. The figure prints only the emphasised low, so the
 // card is the only reading of the value for every other day.
 DATA.forEach(function (d, i) {
+  const datum = { day: 'Day ' + d.day };
   markable(node('circle', { cx: x(i), cy: y(d.value), r: 2.5 }, 'dot'),
-    'Day ' + d.day, [['Orders placed', fmt(d.value)]]);
+    datum, [['Orders placed', fmt(d.value)]]);
 });
 
 DATA.forEach(function (d, i) {
@@ -372,8 +416,9 @@ DATA.forEach(function (d, i) {
 
 const lowest = DATA.reduce(function (a, b) { return b.value < a.value ? b : a; }, DATA[0]);
 const lowIndex = DATA.indexOf(lowest);
+const datum = { day: 'Day ' + lowest.day };
 markable(node('circle', { cx: x(lowIndex), cy: y(lowest.value), r: 5 }, 'mark'),
-  'Day ' + lowest.day, [['Orders placed', fmt(lowest.value)]]);
+  datum, [['Orders placed', fmt(lowest.value)]]);
 node('text', { x: x(lowIndex) + 10, y: y(lowest.value) + 4 }, 'note').textContent = fmt(lowest.value);
 
 const rows = document.getElementById('rows');

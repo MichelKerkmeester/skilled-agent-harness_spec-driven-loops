@@ -195,6 +195,14 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'from'
+};
+/* READOUT:END */
+
 // Everything below draws. The bins are drawn at equal widths in the order they are listed,
 // so the data block has to stay contiguous and equal-width: the form reads shape, and uneven
 // bins would draw a shape the counts do not have. The counts live in the card and the table
@@ -287,9 +295,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -403,10 +416,11 @@ for (let e = 0; e <= DATA.length; e += 1) {
 DATA.forEach(function (d, i) {
   // The stylesheet grows each column from the axis and staggers it by this index. An index
   // is where a mark sits in the drawing, so nothing in the data block reaches the timing.
+  const datum = { from: rangeLabel(d) + ' min' };
   markable(node('path', {
     d: topRounded(LEFT + slot * i, y(d.count), slot, BASE - y(d.count), MARK_R),
     style: '--mark-index:' + i
-  }, d.lead ? 'col-lead' : 'col'), rangeLabel(d) + ' min', [['Builds', fmt(d.count)]]);
+  }, d.lead ? 'col-lead' : 'col'), datum, [['Builds', fmt(d.count)]]);
 });
 
 const rows = document.getElementById('rows');

@@ -152,8 +152,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 9 | 009-chart-visual-overhaul/ | Rebuild the chart corpus to the look two research lineages proved, in dependency order, decomposed into seven child phases of its own | Complete |
 | 10 | 010-chart-review-remediation/ | Close the rendering defects and checker holes a fresh review found, and reconcile the documents that disagreed with the packet | Complete |
 | 11 | 011-chart-command-surface/ | Build `/create:chart` and land it on every runtime surface a command has to reach | Complete |
-
-| 13 | 013-shadcn-reference-research/ | [Phase 13 scope] | Pending |
+| 12 | 012-chart-hover-and-pointer-states/ | Give every chart form a hover and pointer state, with the logic and templates to carry it, decomposed into ten child phases | Complete |
+| 13 | 013-shadcn-reference-research/ | Six cited research angles against a frozen shadcn corpus: what transfers as a decision to a standalone corpus that bans React, Recharts and Tailwind | Complete |
+| 14 | 014-shadcn-adoptions/ | Land the three adopted decisions as checker-held contracts: series-key token indirection, local readout knobs, declared curve intent | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -175,7 +176,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 008 | 009 | Both research lineages complete their five iterations each, and their findings are adjudicated into one recommendation set with a verdict per item | `research/research.md` ranks every recommendation with an evilcharts `file:line` behind it, and no file under the chart skill changed yet |
 | 009 | 010 | Every one of the seven child phases closes against its own goal document | `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED` from the final state |
 | 010 | 011 | Every defect the review found carries a before and after measurement, and every checker hole left open carries the mutation that proves it | `check-corpus.cjs --render` prints `RESULT: PASSED`, and each new assertion was watched failing on a mutated copy with the rule unwired as the control |
-| 012-chart-hover-and-pointer-states | 013-shadcn-reference-research | [Criteria TBD] | [Verification TBD] |
+| 012 | 013 | Every hover and pointer child closes and the corpus checker passes | `check-corpus.cjs` prints RESULT: PASSED from the final state |
+| 013 | 014 | Six angles answered with citations and every decision tagged implementable or needs a corpus change | `research/lineages/luna/research.md` holds six sections and the final synthesis |
 <!-- /ANCHOR:phase-map -->
 
 ---

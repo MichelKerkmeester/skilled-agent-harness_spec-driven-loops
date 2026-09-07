@@ -207,6 +207,14 @@ const METRICS = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
 // Everything below draws. The ranges and the tick are what turn a number into a comparison:
 // the bar says where the week landed, the bands say what kind of landing it was, and the
 // tick says what it was aiming at.
@@ -310,9 +318,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -454,7 +467,7 @@ METRICS.forEach(function (m, i) {
 
   // The whole row is one mark: the ranges, the bar, the tick and both labels answer for the
   // same reading, so the card they open carries the three figures that row is judged by.
-  markable(row, m.label, [['Actual', valueText(m)], ['Target', targetText(m)], ['Gap', gapText(m)]]);
+  markable(row, m, [['Actual', valueText(m)], ['Target', targetText(m)], ['Gap', gapText(m)]]);
   svg.appendChild(row);
 });
 

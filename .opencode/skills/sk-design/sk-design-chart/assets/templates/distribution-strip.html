@@ -193,6 +193,14 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
 // Everything below draws. The vertical scatter inside a strip is spacing rather than data:
 // it is derived from the record's position with an integer mixer, so two opens of this file
 // place every dot identically. That is why there is no call to the platform random function.
@@ -281,9 +289,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -364,7 +377,7 @@ DATA.forEach(function (group, gi) {
   node('text', { x: LEFT - 14, y: cy + 5, 'text-anchor': 'end' }, 'cat').textContent = group.label;
   group.values.forEach(function (v, i) {
     markable(node('circle', { cx: x(v), cy: cy + spread(gi * 733 + i * 29 + 5) * JITTER, r: 3 }, 'dot'),
-      group.label, [[UNIT, fmt(v)]]);
+      group, [[UNIT, fmt(v)]]);
   });
   const mid = median(group.values);
   node('line', { x1: x(mid), y1: cy - JITTER / 2 - 6, x2: x(mid), y2: cy + JITTER / 2 + 6 }, 'median');

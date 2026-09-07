@@ -221,6 +221,19 @@ const DATA = [
 ];
 /* CHART_DATA:END */
 
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'day'
+};
+/* READOUT:END */
+
+/* CURVE:BEGIN */
+const CURVE = 'linear';
+// Linear connects daily measured orders without smoothing away the observed changes.
+/* CURVE:END */
+
 // Everything below draws. A near-hairline is the right weight here: heavy enough to hold on
 // paper, light enough that the line reads as a measurement rather than as a border. The area fill helps only
 // when the reader is reading shape rather than reading values off the axis.
@@ -271,6 +284,30 @@ function fmt(v, decimals) {
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
+function curvePath(points) {
+  if (!points.length) return '';
+  const coordinates = points.map(function (point) { return point.split(',').map(Number); });
+  if (CURVE === 'step') {
+    let path = 'M' + points[0];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      path += ' H' + coordinates[i][0] + ' V' + coordinates[i][1];
+    }
+    return path;
+  }
+  if (CURVE === 'monotone') {
+    let path = 'M' + coordinates[0][0] + ',' + coordinates[0][1];
+    for (let i = 1; i < coordinates.length; i += 1) {
+      const previous = coordinates[i - 1];
+      const current = coordinates[i];
+      const dx = (current[0] - previous[0]) / 3;
+      path += ' C' + (previous[0] + dx) + ',' + previous[1] + ' ' + (current[0] - dx) + ',' + current[1]
+        + ' ' + current[0] + ',' + current[1];
+    }
+    return path;
+  }
+  return 'M' + points.join(' L');
+}
+
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
 // not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
 // and returns an em dash for a reading nobody took, so the card can never disagree with the
@@ -311,9 +348,14 @@ tipRows.forEach(function (row, i) {
 
 // A mark answers a pointer only once it is registered here. That is what keeps the forms
 // that earn a card apart from the ones whose marks already print their own value.
-function markable(el, name, rows) {
+function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
-  MARKS.set(el, { name: name, rows: rows });
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+    })
+  });
   return el;
 }
 
@@ -420,12 +462,12 @@ segments.forEach(function (points) {
     const from = points[0].split(',')[0];
     const to = points[points.length - 1].split(',')[0];
     node('path', {
-      d: 'M' + from + ',' + BASE + ' L' + points.join(' L') + ' L' + to + ',' + BASE + ' Z',
+      d: 'M' + from + ',' + BASE + ' L' + curvePath(points).slice(1) + ' L' + to + ',' + BASE + ' Z',
       'data-series': 1
     }, 'area');
   }
   node('path', {
-    d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : ''),
+    d: curvePath(points) + (points.length === 1 ? ' L' + points[0] : ''),
     'data-series': 1
   }, 'line');
 });
@@ -437,8 +479,9 @@ segments.forEach(function (points) {
 // the guard is what keeps a day with no reading from becoming a mark with nothing to say.
 DATA.forEach(function (d, i) {
   if (!Number.isFinite(d.value)) return;
+  const datum = { day: 'Day ' + d.day };
   markable(node('circle', { cx: x(i), cy: y(d.value), r: 2.5, 'data-series': 1 }, 'dot'),
-    'Day ' + d.day, [['Orders', fmt(d.value)]]);
+    datum, [['Orders', fmt(d.value)]]);
 });
 
 // A line with a hole in it and a line that is simply short look the same, so the count
@@ -487,7 +530,8 @@ if (readings.length) {
   // The emphasised crown covers its own dot, so this circle is the day's mark on the
   // picture: without it, the one day the figure does print its value would be the one
   // day whose pointer finds no mark.
-  markable(marker, 'Day ' + lowest.day, [['Orders', fmt(lowest.value)]]);
+  const datum = { day: 'Day ' + lowest.day };
+  markable(marker, datum, [['Orders', fmt(lowest.value)]]);
   const note = document.createElementNS(SVG, 'text');
   note.setAttribute('x', x(lowIndex) + 10);
   note.setAttribute('y', y(lowest.value) + 4);
