@@ -24,111 +24,75 @@
   "documents": {
     "spec.md": {
       "template": "spec.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "plan.md": {
       "template": "plan.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "tasks.md": {
       "template": "tasks.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "implementation-summary.md": {
       "template": "implementation-summary.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "decision-record.md": {
       "template": "decision-record.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "silent-skip"
+      "owner": "author"
     },
     "phase-parent.spec.md": {
       "template": "phase-parent.spec.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "phase-scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "review.spec.md": {
       "template": "review.spec.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "research.spec.md": {
       "template": "research.spec.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "resource-map.md": {
       "template": "resource-map.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "silent-skip"
+      "owner": "author"
     },
     "handover.md": {
       "template": "handover.md.tmpl",
-      "owner": "command",
-      "creationTrigger": "memory-save",
-      "absenceBehavior": "silent-skip"
+      "owner": "command"
     },
     "debug-delegation.md": {
       "template": "debug-delegation.md.tmpl",
-      "owner": "agent",
-      "creationTrigger": "debug-dispatch",
-      "absenceBehavior": "silent-skip"
+      "owner": "agent"
     },
     "research/research.md": {
       "template": "research.md.tmpl",
-      "owner": "workflow",
-      "creationTrigger": "deep-research",
-      "absenceBehavior": "silent-skip"
+      "owner": "workflow"
     },
     "before-after.md": {
       "template": "before-after.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "silent-skip"
+      "owner": "author"
     },
     "timeline.md": {
       "template": "timeline.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "silent-skip"
+      "owner": "author"
     },
     "roadmap.md": {
       "template": "roadmap.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "silent-skip"
+      "owner": "author"
     },
     "review/review-report.md": {
       "template": "review-report.md.tmpl",
-      "owner": "workflow",
-      "creationTrigger": "deep-review",
-      "absenceBehavior": "hard-error"
+      "owner": "workflow"
     },
     "acceptance-criteria.md": {
       "template": "acceptance-criteria.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold at Levels 2, 3 and 3+",
-      "absenceBehavior": "hard-error"
+      "owner": "author"
     },
     "goal.md": {
       "template": "goal.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "explicit-option",
-      "absenceBehavior": "silent-skip"
+      "owner": "author"
     }
   },
   "levels": {

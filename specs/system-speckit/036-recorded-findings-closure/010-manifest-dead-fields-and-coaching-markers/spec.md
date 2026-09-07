@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-07 |
 | **Branch** | `scaffold/010-manifest-dead-fields-and-coaching-markers` |
 | **Parent Spec** | ../spec.md |

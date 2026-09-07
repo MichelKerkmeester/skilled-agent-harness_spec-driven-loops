@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-07
 <!-- /ANCHOR:metadata -->
 
@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given spec-kit-docs.json's 16 documents[] entries, When creationTrigger and absenceBehavior are removed, Then EXTENSION-GUIDE.md's description of them is removed in the same change | `grep -c "creationTrigger\|absenceBehavior" .opencode/skills/system-spec-kit/templates/spec-kit-docs.json .opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md` returns 0 | Unmet | - |
-| AC-002 | REQ-002 | Given create.sh's two scaffold marker blocks, When they are removed, Then a freshly scaffolded packet's spec.md and plan.md carry neither block | A throwaway `create.sh` scaffold run at Level 3+, output inspected for the two marker strings | Unmet | - |
-| AC-003 | REQ-003 | Given the manifest and create.sh edits, When the three named suites run, Then all three pass at the same count as before the edit | `npx vitest run scaffold-golden-snapshots.vitest.ts template-version-parity.vitest.ts level-contract-resolver.vitest.ts` | Unmet | - |
-| AC-004 | REQ-004 | Given the edited tree, When a repo-wide grep runs for the four removed names, Then no hit appears outside git history | `rg -n "creationTrigger|absenceBehavior|SCAFFOLD_VALIDATION_COUNTS|SCAFFOLD_AI_PROTOCOL_MARKERS" .opencode/skills/system-spec-kit` | Unmet | - |
+| AC-001 | REQ-001 | Given spec-kit-docs.json's 16 documents[] entries, When creationTrigger and absenceBehavior are removed, Then EXTENSION-GUIDE.md's description of them is removed in the same change | `grep -c "creationTrigger\|absenceBehavior" .opencode/skills/system-spec-kit/templates/spec-kit-docs.json .opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md` returns 0 | Met | - |
+| AC-002 | REQ-002 | Given create.sh's two scaffold marker blocks, When they are removed, Then a freshly scaffolded packet's spec.md and plan.md carry neither block | A throwaway `create.sh` scaffold run at Level 3+, output inspected for the two marker strings | Met | - |
+| AC-003 | REQ-003 | Given the manifest and create.sh edits, When the three named suites run, Then all three pass at the same count as before the edit | `npx vitest run scaffold-golden-snapshots.vitest.ts template-version-parity.vitest.ts level-contract-resolver.vitest.ts` | Met | - |
+| AC-004 | REQ-004 | Given the edited tree, When a repo-wide grep runs for the four removed names, Then no hit appears outside git history | `rg -n "creationTrigger|absenceBehavior|SCAFFOLD_VALIDATION_COUNTS|SCAFFOLD_AI_PROTOCOL_MARKERS" .opencode/skills/system-spec-kit` | Met | - |
 
 ### Status values
 

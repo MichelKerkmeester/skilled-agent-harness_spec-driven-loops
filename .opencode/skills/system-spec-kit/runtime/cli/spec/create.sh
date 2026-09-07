@@ -661,40 +661,6 @@ finalize_scaffold_templates() {
         ' "$md_file"
         ensure_template_source_near_top "$md_file"
     done
-
-    if [[ -f "$folder_path/spec.md" ]] && ! grep -q "SCAFFOLD_VALIDATION_COUNTS" "$folder_path/spec.md" 2>/dev/null; then
-        cat >> "$folder_path/spec.md" <<'EOF'
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
-EOF
-    fi
-
-    local doc_level_num="${doc_level/+/}"
-    if [[ -f "$folder_path/plan.md" ]] && [[ "$doc_level_num" =~ ^[0-9]+$ ]] && [[ "$doc_level_num" -ge 3 ]] && ! grep -q "SCAFFOLD_AI_PROTOCOL_MARKERS" "$folder_path/plan.md" 2>/dev/null; then
-        cat >> "$folder_path/plan.md" <<'EOF'
-
-<!-- SCAFFOLD_AI_PROTOCOL_MARKERS:
-AI EXECUTION
-Pre-Task Checklist
-Execution Rules
-Status Reporting Format
-Blocked Task Protocol
--->
-EOF
-    fi
 }
 
 scaffold_phase_parent_validation_child() {
