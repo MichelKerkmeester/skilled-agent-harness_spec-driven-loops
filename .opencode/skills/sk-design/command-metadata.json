@@ -2,8 +2,8 @@
   {
     "command": "/design:extract",
     "ownerMode": "sk-design-md-generator",
-    "description": "Measure an existing surface into a Style Reference and validate the result. :auto/:confirm.",
-    "argumentHint": "<url-or-path> [:auto|:confirm]",
+    "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. The sk-design-md-generator skill.",
+    "argumentHint": "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]",
     "userIntent": {
       "job": "I want a specification of what an existing surface already looks like, not a new design.",
       "ownedSignals": [

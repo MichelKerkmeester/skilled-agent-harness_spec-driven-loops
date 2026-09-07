@@ -6,11 +6,35 @@ on:
     paths:
       - '.opencode/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The mirror-parity job compares generated mirrors against their sources.
+      # Triggering on the spec-kit runtime alone let a mirror drift on a command
+      # or agent commit, ship unseen, and fail here later on whoever next touched
+      # the runtime. Every mirror source and every mirror output triggers it now.
+      - '.opencode/commands/**'
+      - '.opencode/agents/**'
+      - '.opencode/skills/*/command-metadata.json'
+      - '.codex/**'
+      - '.claude/**'
+      - '.cursor/**'
+      - '.devin/**'
+      - '.pi/**'
   pull_request:
     branches: [main]
     paths:
       - '.opencode/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The mirror-parity job compares generated mirrors against their sources.
+      # Triggering on the spec-kit runtime alone let a mirror drift on a command
+      # or agent commit, ship unseen, and fail here later on whoever next touched
+      # the runtime. Every mirror source and every mirror output triggers it now.
+      - '.opencode/commands/**'
+      - '.opencode/agents/**'
+      - '.opencode/skills/*/command-metadata.json'
+      - '.codex/**'
+      - '.claude/**'
+      - '.cursor/**'
+      - '.devin/**'
+      - '.pi/**'
 
 permissions:
   contents: read
