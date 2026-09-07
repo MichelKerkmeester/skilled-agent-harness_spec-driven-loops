@@ -95,6 +95,10 @@ Baseline (pre-reconciliation): ~32 failing across six clusters after the code-gr
 - **Hook settings (3):** `settings-driven-invocation-parity` — matcher-group count changed.
 - **Launcher env fixtures (~4):** `launcher-bootstrap`, `skill-advisor-launcher-orphan-reaping` — `createChildEnv` now derives `SPECKIT_IPC_SOCKET_DIR` (launcher-derived, not a parent passthrough).
 - **Stress (2):** lifecycle-routing active-entry count; plugin-bridge directive expectation.
+
+### Re-baseline resumed (2026-09-07)
+
+The frozen-baseline cluster was re-baselined a second time after the deep-loop and design consolidations and the recorded-findings program moved the scorer's inputs. Delta on the recompiled graph: Python gold-correct 112 to 114, native preserved 107 to 108, ledger 77 to 76 entries (two added, three resolved, three changed). No threshold, ratchet or assertion was loosened; the one native regression is recorded as an accepted divergence with its reason.
 <!-- /ANCHOR:evidence -->
 
 ---

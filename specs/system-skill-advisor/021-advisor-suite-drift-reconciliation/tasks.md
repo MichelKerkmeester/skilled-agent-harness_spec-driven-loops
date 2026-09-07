@@ -73,12 +73,27 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Re-baseline resumed (2026-09-07)
+
+The parity re-baseline that the original run left to its owners was resumed after the deep-loop and design consolidations and the recorded-findings program moved the scorer's inputs again.
+
+- [x] T011 Recompile `scripts/skill-graph.json` with its own compiler and review the delta: `sk-design-md-generator` folded into the `sk-design` hub, signal counts grown for six skills, one topology warning gone, node set otherwise identical
+- [x] T012 Re-run the parity trio on the fresh graph and confirm the graph moved no result: corpus parity 114 Python-correct and 108 preserved against a frozen 112 and 107; two new, three resolved and three changed divergences
+- [x] T013 Review each moved row and record it: the one native regression (`rr-iter2-020`, a docs audit routed to sk-doc) accepted with its reason in both the corpus test and the ledger; the ledger regenerated with `capture-local-native-divergence-ledger.mjs --write` and its five new or changed reasons written by hand
+- [x] T014 Confirm no gate weakened: counts moved upward only, the scorer-eval ratchet stayed green untouched, and graph health passes
+- [x] T015 Full suite re-run and typecheck; `validate.sh --strict` on this packet
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] Reconcilable subset green (`40 -> 4`); no gate weakened
 - [x] Every baseline/test/fixture edit reviewed clean
 - [x] Residual reds documented and left to their owners
+- [x] Parity re-baseline resumed and landed on the fresh skill graph (Phase 4)
 <!-- /ANCHOR:completion -->
 
 ---
