@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 13 judged shadcn's chart decisions against the 26-form standalone corpus and found three worth carrying: semantic token indirection with per-key colours, local tooltip formatter and key-alias knobs, and explicit curve intent (linear, step, monotone) where a time form draws a path",
     "created_at": "2026-09-07T19:55:17Z",
-    "last_save_at": "2026-09-07T21:23:41.977Z",
+    "last_save_at": "2026-09-07T21:55:04.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b118d386d08a0af69987929b8128cfffab23ec93a46e445e609b996b1678bd1f",
+    "source_fingerprint": "sha256:b967cdb1c99bf7c9d29dedafe2a6dc609dcffc865e9e56900d6d212eb4a554ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "901bfa0aac0d7037946acd11c7dd10ecda8370bfb3dd1fc7b8a16eb74e59f57b",
       "plan.md": "3e559e0a895c5b2503e1708949d7f4d9b3c9607b1ff63c557f817960321f35a4",
-      "tasks.md": "d747bcb5070ec3a757d77826f337cf514f1411aec620eb3a0ac0673342c60bee",
-      "implementation-summary.md": "2d6dea7a7a1e024c3db457fcf11ec774f2b72840af9b2c202def71772e33c64b"
+      "tasks.md": "68ab199b2c612514ae4d3b6c43ba02554295cd0f99f46345f8814dda19cddde1",
+      "implementation-summary.md": "c690cc81f8f0d4b816ea6b20ac2508826f23a77893a4e112afcd7c41330b9df1"
     },
     "last_active_at": null
   }

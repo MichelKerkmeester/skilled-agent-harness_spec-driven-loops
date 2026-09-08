@@ -58,7 +58,7 @@ contextType: "general"
 
 - [x] T009 `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` prints `RESULT: PASSED` with zero errors; paste the summary line into `implementation-summary.md`. Evidence: final output `Summary: errors: 0` and `RESULT: PASSED`.
 - [x] T010 One mutation per new assertion recorded with the exact error line it produced, then reverted. Evidence: `scratch/mutations.md`; isolated copies remain only under `scratch/` as permitted.
-- [x] T011 `check-corpus.cjs --render` run if a browser exists; otherwise the render-dependent checks are recorded as unknown, not inferred. Evidence: command attempted; Chrome exited 134 on a direct local-file invocation and the checker returned no document, so render-dependent checks are unknown.
+- [x] T011 `check-corpus.cjs --render` run if a browser exists; otherwise the render-dependent checks are recorded as unknown, not inferred. Evidence: the final run printed `RESULT: PASSED`, `Summary: errors: 0`, with card-readout 22/0, pointer-reach 22/0, settled-render 70/0, dark-render 35/0 and render 35/0; an earlier attempt had aborted (exit 134) before the corpus settled.
 - [x] T012 No external reference entered any template (`checkNoExternalResources` still passes) and no existing assertion or gate was loosened (diff of `check-corpus.cjs` reviewed). Evidence: final `no-external: 210 assertion(s), 0 failure(s)` and the checker diff retains all prior paths and thresholds.
 - [x] T013 `validate.sh <this folder> --strict` prints `RESULT: PASSED`; `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` and `implementation-summary.md` reflect what shipped. Evidence: final strict validation command.
 <!-- /ANCHOR:phase-3 -->
@@ -70,7 +70,7 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Static and mutation verification passed; render-only checks are explicitly unknown because the browser runtime aborted before producing a document
+- [x] Static, mutation and render verification passed; the render-dependent families returned zero failures on the final corpus
 <!-- /ANCHOR:completion -->
 
 ---
