@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms",
+  "description": "Tremor, Vercel and LayerChart answer three reader questions our 26 forms do not: a trend at KPI size, a run of discrete statuses over time, and a",
+  "keywords": [
+    "tremor",
+    "vercel",
+    "layerchart",
+    "answer",
+    "three",
+    "reader",
+    "questions",
+    "forms",
+    "trend",
+    "kpi",
+    "size",
+    "run",
+    "discrete",
+    "statuses",
+    "time"
+  ],
+  "lastUpdated": "2026-09-08T18:28:10.209Z",
+  "specId": "024",
+  "folderSlug": "micro-forms",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
