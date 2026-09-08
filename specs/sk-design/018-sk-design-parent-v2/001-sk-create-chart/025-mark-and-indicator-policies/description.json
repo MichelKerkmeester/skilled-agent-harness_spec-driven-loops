@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies",
+  "description": "Mark choices that carry meaning are still implicit per template: whether a short series shows its points, whether an area may split at zero, whether a",
+  "keywords": [
+    "mark",
+    "choices",
+    "carry",
+    "meaning",
+    "still",
+    "implicit",
+    "per",
+    "template",
+    "whether",
+    "short",
+    "series",
+    "shows",
+    "points",
+    "area",
+    "split",
+    "zero"
+  ],
+  "lastUpdated": "2026-09-08T18:28:10.213Z",
+  "specId": "025",
+  "folderSlug": "mark-and-indicator-policies",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

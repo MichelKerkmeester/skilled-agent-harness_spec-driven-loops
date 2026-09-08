@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header",
+  "description": "Both research lanes found the same anatomy gap: our scalar and time-series forms carry their reading only as 14px prose while Apple, Vercel and Tremor",
+  "keywords": [
+    "research",
+    "lanes",
+    "found",
+    "same",
+    "anatomy",
+    "gap",
+    "scalar",
+    "time-series",
+    "forms",
+    "carry",
+    "reading",
+    "only",
+    "14px",
+    "prose",
+    "while",
+    "apple",
+    "vercel",
+    "tremor"
+  ],
+  "lastUpdated": "2026-09-08T18:28:10.204Z",
+  "specId": "023",
+  "folderSlug": "metric-delta-header",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
