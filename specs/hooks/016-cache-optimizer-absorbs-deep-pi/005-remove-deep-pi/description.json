@@ -1,0 +1,18 @@
+{
+  "specFolder": "hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
+  "description": "Phase 5: remove-deep-pi",
+  "keywords": [
+    "phase",
+    "remove-deep-pi"
+  ],
+  "lastUpdated": "2026-09-08T17:57:04.988Z",
+  "specId": "005",
+  "folderSlug": "remove-deep-pi",
+  "parentChain": [
+    "hooks",
+    "016-cache-optimizer-absorbs-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

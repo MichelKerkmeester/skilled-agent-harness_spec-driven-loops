@@ -1,0 +1,33 @@
+{
+  "specFolder": "hooks/016-cache-optimizer-absorbs-deep-pi",
+  "description": "Absorb DeepPi's measured cache economics, retry loop guard and hash-verified edits into pi-cache-optimizer, reclaim the DeepSeek-direct models it had ",
+  "keywords": [
+    "absorb",
+    "deeppi",
+    "measured",
+    "cache",
+    "economics",
+    "retry",
+    "loop",
+    "guard",
+    "hash-verified",
+    "edits",
+    "pi-cache-optimizer",
+    "reclaim",
+    "deepseek-direct",
+    "models",
+    "carved",
+    "remove",
+    "deep-pi",
+    "extension"
+  ],
+  "lastUpdated": "2026-09-08T17:57:01.587Z",
+  "specId": "016",
+  "folderSlug": "cache-optimizer-absorbs-deep-pi",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

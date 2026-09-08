@@ -38,6 +38,7 @@ This package is a fork of `jiangge/pi-cache-optimizer` v2.8.0. The fork is publi
 - Warns once for third-party OpenAI-compatible proxies missing cache/session-affinity compat flags.
 - Detects adaptive-thinking compat for Claude (opus-4.6+ including Opus 5, sonnet-4.6+ including Sonnet 5, fable-5+) and Kimi Coding K3 / `kimi-for-coding` custom channels.
 - Shows daily cumulative provider/model footer stats by default, with an opt-in current-session display mode.
+- Reports input cost, savings against a fully-uncached baseline, and prefix churn through `/cache-optimizer stats`, priced from the model registry rather than hardcoded rates.
 - Supports optional router-extension integration through versioned global protocols (`Symbol.for("pi.routing.registry.v1")` and `Symbol.for("pi.cache.hints.v1")`) without importing router packages.
 
 Caching is provider-side and best-effort. Third-party proxies and router extensions can still hide cache usage, reject unsupported parameters, or route requests across multiple upstreams.
@@ -69,7 +70,7 @@ This extension is validated against Pi 0.83.0 and remains designed for Pi 0.82+.
 | `/cache-optimizer disable` | Disables optimization for the current Pi process, resets local footer stats, and keeps collecting footer stats in disabled comparison mode. Run `/reload` or restart Pi to return to startup behavior. |
 | `/cache-optimizer doctor` | Shows active model/provider/API/base URL/compat plus low-hit diagnosis. |
 | `/cache-optimizer compat` | Shows copyable compat advice for the active model, if applicable. |
-| `/cache-optimizer stats` | Shows today's local provider/model counters and recent trend for the active model. |
+| `/cache-optimizer stats` | Shows today's local provider/model counters, recent trend, input cost, estimated savings against a fully-uncached baseline, and detected prefix churn for the active model. |
 | `/cache-optimizer reset` | Resets local footer stats for the active provider/model; upstream provider cache is not modified. |
 | `/cache-optimizer config footer-mode total\|session\|process` | Persist the footer stats mode. Persistent command configuration overrides the environment variable. |
 | `/cache-optimizer fix` | Auto-repairs safe compat issues for the active model (adaptive thinking, DeepSeek reasoning, OpenAI proxy session affinity). Shows preview + risk warning, requires confirmation. **Only modifies `models.json` after explicit user approval.** |
@@ -278,6 +279,16 @@ If only one model should change, use `modelOverrides`:
 ## Footer stats
 
 Stats are read-only local counters stored in Pi's agent directory (default: `~/.pi/agent/pi-cache-optimizer-stats.json`; custom agent dirs use `PI_CODING_AGENT_DIR`). Both today's provider/model totals and hashed session buckets are maintained. The footer shows daily totals by default, the conversation-session bucket in `session` mode, or the in-memory process bucket in `process` mode. The stats file contains only dates and numeric counters — no API keys, prompts, payloads, headers, responses, or model output. Footer mode configuration is stored separately in `pi-cache-optimizer-config.json`. Process-mode counters are memory-only and are intentionally absent from that file.
+
+### Cache economics in `/cache-optimizer stats`
+
+Beyond the token counters, the `stats` command reports input cost, savings, and prefix churn for the active model:
+
+- **Pricing** comes from the model's `cost` block in `models.json` (`input` and `cacheRead`, USD per 1M tokens). No prices are hardcoded. When a model has no cost data, the report says **unpriced** rather than showing zero — add `cost.input` and `cost.cacheRead` to the model entry to enable the economics lines.
+- **Input cost** is computed from provider-reported usage token counts (uncached input at the input rate, cached reads at the cached-read rate, writes at the configured write rate) and covers only the priced requests, which the report counts.
+- **Savings** is measured against an explicit baseline stated in the output: the same input tokens billed fully uncached. The baseline is shown so the number is checkable.
+- **Prefix churn** counts how often the stable prompt prefix shipped for a model changed between consecutive requests. It is a report-only counter and never changes behavior. Legitimate context growth (new files, new session content) can also count as churn.
+- The report always ends with a note that provider cache expiry can miss even on a stable prefix — the hit rate is an observation, not a guarantee.
 
 Pi 0.79+ also includes a built-in footer `CH` marker for the latest prompt cache hit rate. This extension complements that marker with persisted provider/model counters plus proxy compat diagnostics.
 

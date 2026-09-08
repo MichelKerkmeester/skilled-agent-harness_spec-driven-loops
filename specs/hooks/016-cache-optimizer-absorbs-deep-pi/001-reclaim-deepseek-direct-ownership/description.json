@@ -1,0 +1,18 @@
+{
+  "specFolder": "hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
+  "description": "Phase 1: reclaim-deepseek-direct-ownership",
+  "keywords": [
+    "phase",
+    "reclaim-deepseek-direct-ownership"
+  ],
+  "lastUpdated": "2026-09-08T17:57:02.248Z",
+  "specId": "001",
+  "folderSlug": "reclaim-deepseek-direct-ownership",
+  "parentChain": [
+    "hooks",
+    "016-cache-optimizer-absorbs-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

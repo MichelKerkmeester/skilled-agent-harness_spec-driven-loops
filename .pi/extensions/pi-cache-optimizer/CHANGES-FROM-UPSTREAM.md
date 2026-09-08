@@ -6,7 +6,7 @@
 
 ## 1. OVERVIEW
 
-This fork starts from `jiangge/pi-cache-optimizer` v2.8.0 and adds a narrow ownership boundary for DeepSeek-direct models. The patched fork commit is `5132d137ce28cb91ec12a5475832df4d5154085a`, and the copy at `.pi/extensions/pi-cache-optimizer/` is the runtime source used by Pi.
+This fork starts from `jiangge/pi-cache-optimizer` v2.8.0. It briefly carried a narrow ownership boundary for DeepSeek-direct models; that boundary was reverted on 2026-09-08 (see §2), and the fork now runs for every model Pi can reach. The patched fork commit is `5132d137ce28cb91ec12a5475832df4d5154085a`, and the copy at `.pi/extensions/pi-cache-optimizer/` is the runtime source used by Pi.
 
 | Field | Value |
 | --- | --- |
@@ -31,6 +31,15 @@ This fork starts from `jiangge/pi-cache-optimizer` v2.8.0 and adds a narrow owne
 ### Later Test Coverage (2026-08-08)
 
 - In a later work session on 2026-08-08 (adding test coverage for the sibling `deep-pi` fork's ownership boundary, not a further change to this fork's guard logic), changed the `package.json` test script from targeting one test file to running every `tests/*.test.ts` file under `node:test`, and added two new test files: `tests/ownership-composition.test.ts` (a combined-host test proving `deep-pi` and this fork never both react to the same model) and `tests/hook-guards.test.ts` (six tests exercising the six guarded hooks directly). The guard predicate and its six call sites were not modified.
+
+### Guard Patch Reverted (2026-09-08)
+
+The ownership split is over, so the guard patch above is reverted. The sibling `deep-pi` extension is unloaded and this fork handles `deepseek/deepseek-v4-flash` and `deepseek/deepseek-v4-pro` like every other model. Keeping the carve-out would have left those two models with no cache handling; keeping the sibling loaded would have made both extensions act on them, so the predicate removal and the unload shipped as one change:
+
+- Removed `isDeepPiOwned` and its export from `index.ts`, and removed its early-return call site from each of the six hooks: `session_start`, `model_select`, `before_agent_start`, `before_provider_request`, `after_provider_response`, and `message_end`. `isDeepSeekLikeModel` was kept unchanged; it still drives the broader proxy compat warnings.
+- Removed `extensions/deep-pi` from the `packages` array in `.pi/settings.json`. The `deep-pi` directory itself remains in the tree for now; a later phase removes it.
+- Deleted the tests that existed to police the split: both `tests/ownership-composition.test.ts` files, `tests/hook-guards.test.ts` (its entire coverage was the guard), and the boundary test in `tests/review-findings.test.ts`.
+- Deleted the shared fixture `deepseek-ownership.json` and the composition helper `composition/one-owner.ts`. A repo-wide grep confirmed nothing outside the two composition tests imported them.
 
 ### Non-DeepSeek Path Hardening (2026-08-09)
 
@@ -58,7 +67,7 @@ The DeepSeek compat path treated `supportsLongCacheRetention` as a required/miss
 
 ### Rationale
 
-`pi-cache-optimizer` previously ran unconditionally for DeepSeek's direct API. The sibling `deep-pi` extension now owns `deepseek/deepseek-v4-flash` and `deepseek/deepseek-v4-pro` exclusively, so this fork is a no-op for those two exact models and remains active for every other provider and model, including DeepSeek-family IDs on other providers such as `opencode/deepseek-v4-flash-free`.
+`pi-cache-optimizer` previously ran unconditionally for DeepSeek's direct API, then ceded `deepseek/deepseek-v4-flash` and `deepseek/deepseek-v4-pro` to the sibling `deep-pi` extension through the carve-out above. That split ended on 2026-09-08, so this fork again runs for every model Pi can reach, including the two DeepSeek-direct models and DeepSeek-family IDs on other providers such as `opencode/deepseek-v4-flash-free`.
 
 ---
 
@@ -70,6 +79,7 @@ The DeepSeek compat path treated `supportsLongCacheRetention` as a required/miss
 - Current state (after the later test-file additions): `npm test` passes 34 tests across 8 suites; `tsc --noEmit` remains clean.
 - Current state (after the 2026-08-09 non-DeepSeek hardening pass): `npm test` passes 51 tests across 13 suites; `tsc --noEmit` remains clean. Beyond the automated suite, a standalone manual scenario run drove the real registered `before_provider_request`/`after_provider_response`/`message_end` hooks through realistic multi-turn sequences for K1, K2, and K5 (not test-runner mocks) — all 9 scenarios passed after fixing the K5 error-recording asymmetry above.
 - Current state (after the 2026-08-13 DeepSeek long-retention advice consistency fix): `npm test` passes 53 tests across 14 suites; `tsc --noEmit` remains clean. A standalone functional check confirmed the warning for a DeepSeek-on-proxy channel now lists only `sendSessionAffinityHeaders` as missing, keeps `supportsLongCacheRetention` out of the copyable snippet, and reports it as verify-first optional.
+- Current state (after the 2026-09-08 ownership revert): `npm run check` passes 40 tests across 12 suites with `tsc --noEmit` clean and a clean `npm pack --dry-run`. The suite is smaller than before because the tests that policed the ownership split were deleted with the split itself.
 - Live Pi sessions confirmed that the guard fires only for the two exact DeepSeek-direct model IDs.
 - A non-DeepSeek session incremented statistics normally.
 - An `opencode/deepseek-v4-flash-free` session created a new statistics entry.
