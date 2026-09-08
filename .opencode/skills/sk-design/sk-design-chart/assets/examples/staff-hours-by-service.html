@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="chart-template" content="staff-hours-by-service">
 <meta name="chart-color-system" content="neutral">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
 <title>Staff hours by service</title>
 <style>
 /* CHART_PALETTE:BEGIN system=neutral */
@@ -28,7 +31,7 @@
 
 /* CHART_PALETTE_DARK:BEGIN system=neutral */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-scheme="light"]) {
     --chart-surface: #161513;
     --chart-ink: #F2F0EC;
     --chart-muted: #A8A5A0;
@@ -40,6 +43,17 @@
     --chart-emphasis: #DD6336;
   }
 }
+:root[data-scheme="dark"] {
+  --chart-surface: #161513;
+  --chart-ink: #F2F0EC;
+  --chart-muted: #A8A5A0;
+  --chart-rule: #F2F0EC17;
+  --chart-series-1: #E2E1DE;
+  --chart-series-2: #B0AEAA;
+  --chart-series-3: #8A8783;
+  --chart-series-4: #686561;
+  --chart-emphasis: #DD6336;
+}
 /* CHART_PALETTE_DARK:END */
 
 html { box-sizing: border-box; }
@@ -50,7 +64,7 @@ body {
   background: var(--chart-surface);
   color: var(--chart-ink);
   font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
 }
 .card {
@@ -61,16 +75,24 @@ body {
   border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
-.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
 /* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
    at 720 units wide, and below roughly two thirds of that the axis labels start to
    collide, so the figure scrolls sideways and the marks keep the size they were
    drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
    produces a picture nobody can read on the device most readers open it on. */
-.figure { margin: 0; overflow-x: auto; }
+.figure { margin: 0; overflow-x: auto; position: relative; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
-.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
    moved the page: the card, the headline and the source line all slid sideways with it, which is
@@ -80,8 +102,8 @@ body {
    that is the whole reason the drawing needs a number and this does not. */
 .notice { fill: var(--chart-muted); font-size: 12px; }
 .table-pan { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
@@ -89,8 +111,8 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .bar { fill: var(--chart-series-1); }
 .bar-lead { fill: var(--chart-emphasis); }
-.axis { stroke: var(--chart-rule); stroke-width: 1; }
-.cat { fill: var(--chart-ink); font-size: 13px; }
+.axis { stroke: none; stroke-width: 0; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
 .val { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 /* Every figure a reader compares is set in one mono face, so an axis rung, a value label
    and a table cell line up digit under digit and a column of numbers reads as a column.
@@ -108,7 +130,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       <desc id="fig-desc">Six services drawn as horizontal bars, ordered largest first. Home visits take 412 hours a week, more than the four smallest services combined. The table below the chart carries every value as text.</desc>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: rota export for weeks 14 to 25, extracted 2 July.</p>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding">Home visits and the day centre account for 680 of the 1,030 weekly hours, the rest just 350.</p>
+    <p class="source" data-chart-part="source">Source: rota export for weeks 14 to 25, extracted 2 July.</p>
+  </div>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -166,7 +191,7 @@ if (!HAS_READABLE_DATA) {
 
 // The corner comes from the ladder in the palette block rather than from a number typed
 // here, so one edit reaches every form instead of one file.
-const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-mark')) || 0;
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-track')) || 0;
 
 // A bar rounds only the end that meets nothing. The end at the axis stays square, because a
 // rounded corner there reads as a bar that starts a little after the line it is measured

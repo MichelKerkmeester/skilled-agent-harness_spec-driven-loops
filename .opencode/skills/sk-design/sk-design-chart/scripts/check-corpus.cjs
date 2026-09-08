@@ -47,7 +47,7 @@ const CURVE_END = '/* CURVE:END */';
 const CATALOG_BEGIN = '<!-- CHART_CATALOG:BEGIN -->';
 const CATALOG_END = '<!-- CHART_CATALOG:END -->';
 
-const CARD_PARTS = ['headline', 'subtitle', 'figure', 'source'];
+const CARD_PARTS = ['headline', 'subtitle', 'figure', 'footer', 'source'];
 
 // Values a colour-bearing property may hold. Anything else is a literal, and a literal
 // outside the palette block is how a template stops following its own colour system.
@@ -166,12 +166,20 @@ function canonicalBlock(palette, systemId) {
 function canonicalDarkBlock(palette, systemId) {
   const lines = [];
   lines.push(`/* CHART_PALETTE_DARK:BEGIN system=${systemId} */`);
+  // The media block yields to an explicit light pin. Without the exclusion a reader on a dark
+  // machine could never see the light rendering of a form, and the gallery's light column would
+  // silently show dark twice.
   lines.push('@media (prefers-color-scheme: dark) {');
-  lines.push('  :root {');
+  lines.push('  :root:not([data-scheme="light"]) {');
   for (const [prop, value] of customPropertiesDark(palette, systemId)) {
     lines.push(`    ${prop}: ${value};`);
   }
   lines.push('  }');
+  lines.push('}');
+  lines.push(':root[data-scheme="dark"] {');
+  for (const [prop, value] of customPropertiesDark(palette, systemId)) {
+    lines.push(`  ${prop}: ${value};`);
+  }
   lines.push('}');
   lines.push(PALETTE_DARK_END);
   return lines.join('\n');
@@ -845,14 +853,16 @@ function checkAccessibility(file, src, ids) {
 }
 
 function checkCardParts(file, src) {
+  const isProofSheet = file.startsWith('assets/color/');
+  const expectedParts = isProofSheet ? ['headline', 'subtitle', 'figure', 'source'] : CARD_PARTS;
   const parts = [];
   const re = /data-chart-part\s*=\s*"([^"]+)"/g;
   let m;
   while ((m = re.exec(src)) !== null) parts.push(m[1]);
-  tally('card-parts', CARD_PARTS.length);
-  if (parts.join(',') === CARD_PARTS.join(',')) return;
+  tally('card-parts', expectedParts.length);
+  if (parts.join(',') === expectedParts.join(',')) return;
   record('card-parts', 'error', file,
-    `card parts are [${parts.join(', ')}] and the contract is [${CARD_PARTS.join(', ')}] in that order. The fixed four are what make a chart legible with no caption`);
+    `card parts are [${parts.join(', ')}] and the contract is [${expectedParts.join(', ')}] in that order. The fixed card anatomy is what makes a chart legible with no caption`);
 }
 
 function checkDeterminism(file, src) {
@@ -1204,11 +1214,11 @@ function checkInteractionState(file, src) {
       `the drawing ships data-chart-dim="${m[1]}", so it opens with one series already held against the rest. The attribute is empty until a reader asks`);
   }
 
-  const tooltip = /<g\b[^>]*\bdata-chart-tooltip\b[^>]*>([\s\S]*?)<\/g>/gi;
+  const tooltip = /<([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*\bdata-chart-tooltip\b[^>]*>([\s\S]*?)<\/\1>/gi;
   while ((m = tooltip.exec(markup)) !== null) {
-    if (!m[1].trim()) continue;
+    if (!m[2].trim()) continue;
     record('interaction-state', 'error', file,
-      'the tooltip group ships with content in it, so a card is on screen before a reader has pointed at anything. The group is declared empty and the drawing code fills it');
+      'the tooltip element ships with content in it, so a card is on screen before a reader has pointed at anything. The element is declared empty and the drawing code fills it');
   }
 }
 
@@ -1378,10 +1388,23 @@ function checkGeometryBlock(files) {
 // of the next template's axis tick is a choice out of six rungs rather than a guess, which only
 // holds while something rejects a seventh rung.
 function checkTypeScale(file, src, palette) {
-  const scale = palette.typeScale || {};
+  // The palette file remains the source of truth for colours and numeric contrast gates. This
+  // visual projection is the measured chart register: the standalone corpus adopts the compact
+  // card scale from the frozen shadcn copy without editing the palette source that owns those
+  // unrelated gates.
   const allowed = new Map();
-  for (const [role, value] of Object.entries(scale.roles || {})) allowed.set(parseFloat(value), role);
-  for (const [role, value] of Object.entries(scale.departures || {})) allowed.set(parseFloat(value), role);
+  if (file.startsWith('assets/color/')) {
+    const scale = palette.typeScale || {};
+    for (const [role, value] of Object.entries(scale.roles || {})) allowed.set(parseFloat(value), role);
+    for (const [role, value] of Object.entries(scale.departures || {})) allowed.set(parseFloat(value), role);
+  } else {
+    allowed.set(16, 'headline');
+    allowed.set(14, 'body');
+    allowed.set(12, 'label/tick/note');
+    allowed.set(10, 'monthStrip');
+    allowed.set(56, 'hero');
+    allowed.set(34, 'ringTotal');
+  }
 
   const { styles, scripts } = regionsOf(stripHtmlComments(src));
   const sizes = [];
@@ -1414,6 +1437,90 @@ function checkTypeScale(file, src, palette) {
     if (allowed.has(size)) continue;
     record('type-scale', 'error', file,
       `sets ${size}px, which is not one of the published rungs (${[...allowed.keys()].sort(function (a, b) { return a - b; }).join(', ')}). A size off the scale is a size chosen out of the air, and the scale is what stops the next form guessing`);
+  }
+}
+
+// A keyed series has a legend as well as a palette mapping. The mapping check proves which
+// token paints a class, while this check proves the reader gets one labelled chip for each named
+// stream and that the control is placed below the plot where the card leaves room for it.
+function checkLegend(file, src) {
+  const form = path.basename(file, '.html');
+  if (!KEYED_SERIES_FORMS.has(form)) return;
+  const { scripts, markup, styles } = regionsOf(stripHtmlComments(src));
+  const code = stripJsComments(scripts.join('\n'));
+  const css = stripJsComments(styles.join('\n'));
+  tally('legend', 7);
+
+  const legends = [...markup.matchAll(/<([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*\bdata-chart-legend\b[^>]*>/gi)];
+  if (legends.length !== 1) {
+    record('legend', 'error', file,
+      `expected one HTML data-chart-legend element and found ${legends.length}. Every named series needs one keyed legend row below the plot`);
+  } else if (legends[0][1].toLowerCase() === 'svg' || legends[0][1].toLowerCase() === 'g') {
+    record('legend', 'error', file,
+      'the data-chart-legend register is still inside SVG. The legend is a row of HTML chips below the plot so its labels remain readable and keyboard reachable');
+  }
+  if (!/SERIES\s*\.\s*forEach\s*\(/.test(code)) {
+    record('legend', 'error', file,
+      'the legend code does not iterate the declared SERIES list. One chip per declared key cannot be proved from a hand-counted legend');
+  }
+  if (!/data-series/.test(code) || !/appendChild\s*\(\s*entry\s*\)/.test(code)) {
+    record('legend', 'error', file,
+      'legend entries do not carry their series key and append one entry per series. A chip without its key cannot drive or explain the dim state');
+  }
+  if (!/label\.textContent\s*=\s*name/.test(code) && !/label\.textContent\s*=\s*series\.label/.test(code)) {
+    record('legend', 'error', file,
+      'legend labels are not copied from the declared series names. A hand-written label can drift from CHART_SERIES');
+  }
+  if (!/legend-entry|legend-chip|key-swatch/.test(code) || !/gap\s*:\s*16px/.test(css)) {
+    record('legend', 'error', file,
+      'the legend has no measured chip/gap vocabulary. Chips use an 8px mark, a 2px corner and a 16px row gap');
+  }
+  if (!/justify-content\s*:\s*center/i.test(css)) {
+    record('legend', 'error', file,
+      'the legend row is not centered below the plot. Keyed chips share the centered 16px-gap register');
+  }
+}
+
+// Tooltip text belongs to the positioned HTML card. SVG remains the accessible picture, but it
+// must not become a second text layer whose values can drift from READOUT or disappear outside
+// the narrow card box.
+function checkTooltipCard(file, src) {
+  const { scripts, markup, styles } = regionsOf(stripHtmlComments(src));
+  const code = stripJsComments(scripts.join('\n'));
+  const css = stripJsComments(styles.join('\n'));
+  const hasTooltip = /\bdata-chart-tooltip\b/.test(markup);
+  tally('tooltip-card', hasTooltip ? 8 : 1);
+  if (!hasTooltip) return;
+
+  const cards = [...markup.matchAll(/<([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*\bdata-chart-tooltip\b[^>]*>/gi)];
+  if (cards.length !== 1 || cards[0][1].toLowerCase() === 'svg' || cards[0][1].toLowerCase() === 'g') {
+    record('tooltip-card', 'error', file,
+      'a tooltip-bearing form does not declare exactly one positioned HTML tooltip element. Tooltip text must not be painted as an SVG group');
+  }
+  if (/<(?:text|tspan)\b[^>]*\btip-(?:name|label|value)\b/i.test(markup)
+    || /tipNode\s*\(\s*['"](?:text|tspan|rect)['"]/.test(code)) {
+    record('tooltip-card', 'error', file,
+      'tooltip text is still created in SVG. The card readout belongs to the HTML tooltip element and its per-series rows');
+  }
+  const requirements = [
+    [/position\s*:\s*absolute/i, 'position:absolute'],
+    [/padding\s*:\s*6px\s+10px/i, '6px 10px padding'],
+    [/border\s*:\s*1px/i, 'a one-pixel border'],
+    [/border-radius\s*:\s*var\(\s*--chart-radius-pill\s*\)/i, 'the 8px card radius rung'],
+    [/box-shadow\s*:/i, 'a soft shadow'],
+    [/\.tip-indicator[^{]*\{[^}]*width\s*:\s*8px[^}]*height\s*:\s*8px/i, 'an 8px indicator'],
+  ];
+  for (const [re, what] of requirements) {
+    if (re.test(css)) continue;
+    record('tooltip-card', 'error', file, `the HTML tooltip has no ${what}. The card follows the measured shadcn content spacing and indicator register`);
+  }
+  if (!/document\.createElement\s*\(\s*['"]span['"]\s*\)/.test(code) || !/tip-indicator/.test(code)) {
+    record('tooltip-card', 'error', file,
+      'the tooltip builder does not create an indicator-bearing HTML row for each READOUT value');
+  }
+  if (!/READOUT\s*\.\s*label\s*\(/.test(code) || !/READOUT\s*\.\s*value\s*\(/.test(code) || !/style\.left/.test(code) || !/style\.top/.test(code)) {
+    record('tooltip-card', 'error', file,
+      'the positioned HTML card is not filled from READOUT and positioned from the mark. A visible card without those links can drift from the table or leave the chart box');
   }
 }
 
@@ -1927,7 +2034,7 @@ const CARD_READOUT_DRIVER = `<script>
         if (!card || !card.hasAttribute('data-open')) continue;
         result.sampled++;
         var shown = [];
-        card.querySelectorAll('text,tspan').forEach(function (n) {
+        card.querySelectorAll('.tip-name,.tip-label,.tip-value').forEach(function (n) {
           if (!n.children.length) shown = shown.concat(tokens(n.textContent));
         });
         shown.filter(isNumber).forEach(function (v) {
@@ -2284,6 +2391,8 @@ function main() {
     checkInteractionState(name, src);
     checkNumberFormat(name, src);
     checkTypeScale(name, src, palette);
+    checkLegend(name, src);
+    checkTooltipCard(name, src);
     checkGradientSweep(name, src, systemId);
     checkSeriesMapping(name, src, palette, systemId);
     checkCurveContract(name, src);

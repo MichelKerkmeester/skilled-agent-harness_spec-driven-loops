@@ -28,7 +28,7 @@ Three files sit here, each one a lookup or a contract rather than a guide to rea
 | [`color-system.md`](./color-system.md) | Before choosing a palette, and whenever a request asks for more categories than a system carries |
 | [`template-contract.md`](./template-contract.md) | Before authoring or editing any template file |
 
-The catalog holds twenty-one chart forms across six question families. When no row answers the question in front of you, defer with the gap named rather than answering freehand, because a freehand chart is what the template-first rule exists to prevent.
+The catalog holds twenty-six chart forms across six question families. When no row answers the question in front of you, defer with the gap named rather than answering freehand, because a freehand chart is what the template-first rule exists to prevent.
 
 ---
 

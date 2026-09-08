@@ -125,7 +125,9 @@ The workflow is template-first, and that is a constraint rather than a preferenc
 
 ### What the corpus holds
 
-Twenty-one chart forms across six question families: comparison, composition, time, distribution, relationship and matrix. `references/catalog.md` is the index and the corpus check reads it in both directions, so a row naming a missing file and a file carrying no row both fail. One form is one file. There are no gallery pages to lift a block out of, because what reaches a reader is a delivery and a gallery ships every other form's demo data alongside the one they asked for. When no row answers the question in front of you, report the gap rather than improvising a form.
+Twenty-six chart forms across six question families: comparison, composition, time, distribution, relationship and matrix. `references/catalog.md` is the index and the corpus check reads it in both directions, so a row naming a missing file and a file carrying no row both fail. One form is one file. There are no gallery pages to lift a block out of, because what reaches a reader is a delivery and a gallery ships every other form's demo data alongside the one they asked for. When no row answers the question in front of you, report the gap rather than improvising a form.
+
+The corpus shares a measured visual register for card anatomy, type scale, bare axes, bar and line geometry, positioned HTML tooltip cards and keyed legend chips. The gallery passes each frame's light or dark scheme through a `data-scheme` attribute because pinning an iframe's `color-scheme` does not change the `prefers-color-scheme` selectors the templates honour.
 
 ---
 

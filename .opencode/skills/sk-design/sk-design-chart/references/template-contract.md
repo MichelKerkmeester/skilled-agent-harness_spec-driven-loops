@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the twenty-three rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the twenty-five rules the corpus check enforces on every one."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -26,16 +26,17 @@ Both of those properties are load-bearing. The reader is a writer or an operatio
 
 ## 2. THE DELIVERY UNIT
 
-One file holds one chart. Inside it, the visible unit is a card with four parts in a fixed order.
+One file holds one chart. Inside it, the visible unit is a card with five parts in a fixed order.
 
 | Part | Marker | What goes in it |
 | --- | --- | --- |
 | Headline | `data-chart-part="headline"` | A conclusion, not a chart type. "Revenue by plan" is a label. "Where we gained and where we bled" is an argument |
 | Subtitle | `data-chart-part="subtitle"` | The legend and the time range, in a sentence |
 | Figure | `data-chart-part="figure"` | The drawing itself |
-| Source | `data-chart-part="source"` | Where the numbers came from |
+| Footer | `data-chart-part="footer"` | The one-line finding in ink, separated from the figure by the rule |
+| Source | `data-chart-part="source"` | The muted description line in the footer; where the numbers came from |
 
-The fixed four are what make a chart legible with no caption around it. The headline rule is the highest-value writing rule in this packet: a reader who takes nothing but the top line should still have learned something.
+The fixed five are what make a chart legible with no caption around it. The headline rule is the highest-value writing rule in this packet: a reader who takes nothing but the top line should still have learned something. The footer is part of the card rather than a caption added around it: the finding tells the reader what to notice, and the source stays attached to that reading.
 
 ### Gallery and delivery are different things
 
@@ -69,7 +70,7 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
   </style>
 </head>
 <body>
-  the card: headline, subtitle, figure, source
+  the card: headline, subtitle, figure, footer with finding and source
   a table carrying data-chart-table
   <script>
     /* CHART_DATA:BEGIN */
@@ -96,37 +97,52 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
 
 The sentinels are how the corpus check finds the three regions it has an opinion about. Do not rename them, and use each pair once. The dark pair carries its own name for that reason: a second block under the light block's name would be the same sentinel twice, and then nothing can say which region a drifted value came from.
 
-### The type scale, as six named roles
+### The type scale, as the compact card register
 
-Five sizes were in use across the corpus before any document named them, which made the size of
-a twenty-first template's axis tick a guess. The roles below record what the corpus already
-does. They are a reading of the files rather than a proposal, so adopting them moved nothing.
-
-The twenty-first template has since landed and took every size from this table, which is the
-scale doing the one job it was published for. `type-scale` now holds it: the nine values live in
-the palette source beside the corner ladder, for the same reason the ladder sits there, and a
-size a file sets that is on neither list fails. Both routes are read, a `font-size` declared in
-the stylesheet and one set as an attribute from the drawing code, because they are the same
-decision wearing two syntaxes.
+The visual pass moves the corpus to the compact register in the frozen shadcn examples: a title
+that is easy to scan, a description that stays secondary, and 12px figure labels that remain
+legible beside a data mark. `type-scale` holds the allowed projection in the checker, and a size
+outside it fails rather than becoming a one-off guess.
 
 | Role | Size | What is set in it |
 | --- | --- | --- |
-| headline | 21px | The card headline, and nothing else |
-| body | 15px | The page default every file sets on `body`. In the drawing it appears once, as the unit caption beside the one hero number a form prints |
-| subtitle | 14px | The subtitle under the headline |
-| label | 13px | The source line, the table, the table caption, and a category name inside the drawing where there is room for it |
-| note | 12px | A notice, a hover card line, a value label, an axis name, and a key entry |
-| tick | 11px | An axis tick, and a category name or key entry in a form too dense to carry the label size |
+| headline | 16px | The card title, semibold and ink coloured |
+| body | 14px | The page default and the card description |
+| label/tick/note | 12px | Axis ticks, footer labels, tooltip rows, legend labels and compact in-figure notes |
+| month strip | 10px | A month name in the calendar grid, where the year leaves a narrow strip |
+| hero | 56px | The single headline number in `progress-single` |
+| ring total | 34px | The total at the centre of `unit-ring` |
 
-In-figure text steps down a rung as a form gets denser, which is why a category name appears at
-13px in `bar-rows` and at 11px in `waterfall`. That is the scale working rather than a drift: the
-rung is chosen for the space the text has, out of six rungs rather than out of the air.
+The values are measured from the frozen shadcn copy: the card header keeps title and description
+together (`chart-area-interactive.tsx:157-164`), Cartesian labels use the compact chart text
+register (`chart.tsx:63-69`), and the footer uses `text-sm`, `font-medium` and a muted second row
+(`chart-line-linear.tsx:78-84`). The standalone files express those roles in CSS rather than in
+Tailwind utilities, but the scale is the same decision.
 
-Three sizes sit outside the scale, each on one form, and each is a departure with a reason
-written beside it in the file. `progress-single` prints its hero figure at 56px and
-`unit-ring` prints its ring total at 34px, because both are a single number that is the point
-of the chart rather than a label on it. `calendar-grid` prints a month name at 10px, because a
-year of days leaves a strip narrower than the tick size can sit in.
+The two departures remain deliberate. `progress-single` prints its hero figure at 56px and
+`unit-ring` prints its ring total at 34px because each is the point of the chart rather than a
+label on it. `calendar-grid` keeps its 10px month strip because a year of days leaves no room for
+the full label rung.
+
+### The shadcn visual register
+
+The corpus keeps the shadcn choices that survive the standalone-file constraint. The frozen line
+examples remove both axis and tick lines, leave an 8px tick margin, draw a 2px line and turn point
+dots off (`chart-line-default.tsx:56-74`). The frozen area examples use a vertical 0.8-to-0.1
+gradient and 0.4 flat opacity for stacked areas (`chart-area-gradient.tsx:72-112`). The frozen
+tooltip content uses a bordered, rounded, padded, shadowed card with muted labels and mono values
+(`chart.tsx:190-259`), while the legend uses 8px squares with 2px corners and a 16px row gap
+(`chart.tsx:290-322`).
+
+The HTML projection is deliberately local: `--chart-surface`, `--chart-rule`, `--chart-muted`,
+and the series tokens supply all paint; the card is positioned inside `.figure`; and the card reads
+the form's `READOUT` block. The tooltip is never an SVG text layer. A keyed multi-series form gets
+one centered HTML legend row below the plot, generated from `CHART_SERIES`, with one button chip per key.
+
+Cartesian single-series forms use the first categorical series token for their primary mark. The
+emphasis token is reserved for the highlighted mark. Unit grids, rings, ordered ramps and other
+non-Cartesian forms keep their existing colour logic because their colour is carrying a different
+question.
 
 ### The geometry defaults ride beside the palette block
 
@@ -306,7 +322,12 @@ A file carries one palette block per theme and no more than two, each matched ag
 
 The second block sits inside the same style element, immediately after the light one, wrapped in a `prefers-color-scheme: dark` media query and its own sentinel pair. It redeclares the six colour roles and nothing else. The corner rungs stay in the light block alone, because a corner cannot differ between two grounds and a value copied into a second place is a value that can disagree with the first.
 
-Nothing in the file switches themes. A delivered chart has no state to keep a preference in and no place to put a control, so the reader's operating system is the only signal, and a browser that never resolves the query paints the light block. That is also what makes the print path work: the query does not apply to print, so a chart printed from a dark browser goes onto paper the way it always did.
+The delivered file still follows the reader's operating-system preference by default. For a
+deterministic capture, it also accepts `?scheme=light` or `?scheme=dark` and sets
+`data-scheme` on the document before the chart paints; the matching dark projection sits beside
+the media query. The gallery passes that query to every frame, because pinning `color-scheme` on
+an iframe does not change what `prefers-color-scheme` resolves inside the template. A browser that
+never resolves either signal paints the light block, and print still has the light document path.
 
 Two blocks double the surface a drift can hide in, which is the cost of the amendment and the reason the ceiling is two rather than open. The check counts the sentinels and fails a third block, a repeated pair and a value that disagrees with the source in either direction.
 
@@ -334,7 +355,7 @@ than a shared value.
 
 ---
 
-## 7. THE TWENTY-THREE RULES
+## 7. THE TWENTY-FIVE RULES
 
 Every rule below is enforced, and three are enforced in part. The check name is what appears in the
 corpus check output, so a failure points at the rule it broke.
@@ -359,7 +380,7 @@ Section 9 carries the full account of what a run does not observe.
 | 8 | Exactly one data block, before the drawing code | `data-block` | An editor hunting for the numbers through the rendering |
 | 9 | Element ids unique in the file | `unique-ids` | Two charts silently rendering into one container |
 | 10 | Every `svg` carries `role="img"` and an `aria-labelledby` that resolves, and the file carries a `data-chart-table` | `accessibility` | A screen reader getting nothing at all from the chart |
-| 11 | The four card parts, present and in order | `card-parts` | A chart that needs a caption to be understood |
+| 11 | The five card parts, present and in order | `card-parts` | A chart that needs a caption to be understood |
 | 12 | No randomness and no clock in rendering code, and two renders of one file settle to the same document | `determinism`, `settled-render` | Two renders of one file that disagree |
 | 13 | A file that animates carries a `prefers-reduced-motion` fallback that removes the motion, the motion never repeats, and it settles within one second of first paint | `motion` | Motion shipped to a reader who asked their system for none, and a review that screenshots a chart still moving |
 | 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox`. The table region can scroll sideways too | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other, or a wide table dragging the whole page sideways with it |
@@ -372,6 +393,8 @@ Section 9 carries the full account of what a run does not observe.
 | 21 | A named multi-series stream declares one key, one palette token and the classes that paint it, and the key and paint agree | `series-mapping` | A series whose name, token and mark class drift apart while an indexed legend continues to look plausible |
 | 22 | A tooltip-bearing form declares local label, value and datum-field key knobs beside its data, and the card reads them from the registered datum | `number-format` | A card that formats or selects its label outside the form's declared readout contract |
 | 23 | A time path declares `linear`, `step` or `monotone`, gives its rationale and hands the choice to the path builder | `curve-contract` | A path whose interpolation is hidden, out of set or natural by accident |
+| 24 | Every keyed multi-series form carries one HTML legend generated from its declared series, with one keyed chip and matching label per stream | `legend` | A named series that the drawing uses but the reader cannot identify or hold against the others |
+| 25 | Every tooltip-bearing form carries one positioned HTML card with measured padding, radius, border, shadow, per-series indicator and `READOUT` label/value wiring; SVG does not paint the card text | `tooltip-card` | A tooltip that drifts from the table, escapes the card, or leaves a second SVG text layer behind |
 
 Rule 4 used to say exactly one block, and it said so for a good reason: one block per file is one
 place a colour can drift, and a diff shows it. A theme is the one thing that argument does not
@@ -504,8 +527,8 @@ Everything else here is unasserted. What a handler may do, where a card flips, w
 
 | Attribute | Where it goes | What it means |
 | --- | --- | --- |
-| `data-chart-tooltip` | a group inside the drawing | The form carries a hover card. The group is declared in the markup, empty, and the drawing code fills it and raises it above the marks |
-| `data-chart-legend` | a group inside the drawing | The form carries its key inside the figure. Each entry is a button, because the key is also the control for the dim |
+| `data-chart-tooltip` | a positioned HTML element inside the figure | The form carries a hover card. The element is declared empty, filled from `READOUT`, and raised above the marks without painting tooltip text in SVG |
+| `data-chart-legend` | an HTML row below the plot inside the figure | The form carries its key inside the figure. Each entry is a button, because the key is also the control for the dim |
 | `data-chart-dim` | the `svg` element | The form can hold one series against the rest. The attribute is empty until a reader asks, and the series index fills it |
 | `data-chart-inert` | the chart's figure wrapper (the `<div class="figure" data-chart-part="figure">` element, not a literal `<figure>` tag) | The form correctly answers a pointer with nothing. The attribute's value is the reason, and an empty or whitespace-only value fails the check |
 

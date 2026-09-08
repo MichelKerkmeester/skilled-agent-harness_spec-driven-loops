@@ -170,6 +170,20 @@ Two things do not rotate, and both refusals are as deliberate as the rotation. T
 
 **Index 0 is always the value furthest from that theme's ground.** On paper the first series value is the darkest and on ink it is the brightest, and in both cases it is the one that carries most. That is what keeps `neutral` ranking importance the same way on both grounds and keeps `ordered` reading as more in the same direction. A dark ramp that simply reversed the light array would satisfy the gates and still be wrong, because the light ramp's chroma was placed for a light ground.
 
+**A single-series Cartesian form starts on the first series token of its own system.** A line, bar
+or area with one data stream uses `--chart-series-1` for its primary mark, whichever system the
+form declares; a neutral form stays neutral rather than borrowing the categorical ramp, because the
+categorical emphasis token is ink and the orange highlighted mark would be lost. The `--chart-emphasis` role remains for the one highlighted mark the headline is
+about. This keeps a lone series inside the same series vocabulary that a multi-series form
+will use later, while the emphasis still reads as a deliberate exception. Unit grids, rings,
+ordered ramps and other non-Cartesian forms keep their existing colour logic; their colour is
+encoding a part-to-whole, magnitude or structural question rather than a lone Cartesian stream.
+
+The rule is the HTML corpus' projection of the frozen shadcn examples: line and area examples
+paint through a named series token (`chart-line-default.tsx:68-73`, `chart-area-default.tsx:70-76`),
+and custom dots reserve their separate treatment for an active or deliberately named point
+(`chart-line-label-custom.tsx:87-97`).
+
 **Shapes that touch are separated by a stroke in `surface`.** Stacked segments, pie slices and treemap cells all carry a surface-coloured separator, so no two data colours ever share an edge. This is what makes the contrast gate satisfiable: with the separator, every mark is read against the ground rather than against its neighbour. Without it, four categories on a light ground is arithmetically impossible, because all-pairs separation at 3:1 runs out of room after two values.
 
 **Colour is never the only cue.** Categories keep labels, ordered data keeps position or length, emphasis keeps a headline. Remove the colour and the chart still has to be readable. That is an accessibility floor and it is also a hedge against a reader printing in greyscale.

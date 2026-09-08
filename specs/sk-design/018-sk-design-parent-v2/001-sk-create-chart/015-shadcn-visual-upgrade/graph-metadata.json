@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart visual upgrade",
+      "shadcn chart look",
+      "tooltip card",
+      "legend chips",
+      "gallery light column",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "chart",
+      "visual",
+      "upgrade",
+      "shadcn",
+      "look",
+      "tooltip",
+      "card",
+      "legend",
+      "chips",
+      "gallery",
+      "light",
+      "column"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/measurements.md",
+      "scripts/README.md",
+      "scratch/mutations.md",
+      "scratch/baseline.md",
+      ".opencode/skills/sk-design/sk-design-chart/assets/gallery.html",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
+      "scratch/inventory.md",
+      "scratch/codex-luna-last-message.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "measurements.md",
+        "kind": "doc",
+        "path": "scratch/measurements.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutations.md",
+        "kind": "doc",
+        "path": "scratch/mutations.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "gallery.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/gallery.html",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex-luna-last-message.md",
+        "kind": "doc",
+        "path": "scratch/codex-luna-last-message.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Raise",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 13 compared shadcn's chart examples with the standalone corpus and phase 14 adopted the three structural ideas worth keeping: keyed series tokens, local readout knobs and declared curves",
+    "created_at": "2026-09-08T05:12:18Z",
+    "last_save_at": "2026-09-08T06:32:19.375Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:030ee9589d56235c71d3b23d931fd34ba29c00995e5f8f0309f31a9321e5efec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "40382947124252eee4e071e982d622c36bb111bc600e1a9440dfe5fea67c470a",
+      "plan.md": "fe49539dbbb1c529f2380b9dafe134f3542e9a45c772076117fb97b469022d9f",
+      "tasks.md": "366b752fc43e6a1e484f4c56ad767dbd49f1637314d2b1a79260c894f63deb6b",
+      "implementation-summary.md": "fd09f841e7e2443b112263e3d66f056e742b67570bd16f524a90daa0083ec766"
+    },
+    "last_active_at": null
+  }
+}

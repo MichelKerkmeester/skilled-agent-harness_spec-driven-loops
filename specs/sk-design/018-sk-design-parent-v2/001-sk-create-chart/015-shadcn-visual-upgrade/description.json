@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade",
+  "description": "Phase 13 compared shadcn's chart examples with the standalone corpus and phase 14 adopted the three structural ideas worth keeping: keyed series",
+  "keywords": [
+    "phase",
+    "compared",
+    "shadcn",
+    "chart",
+    "examples",
+    "standalone",
+    "corpus",
+    "adopted",
+    "three",
+    "structural",
+    "ideas",
+    "worth",
+    "keeping",
+    "keyed",
+    "series"
+  ],
+  "lastUpdated": "2026-09-08T06:32:09.664Z",
+  "specId": "015",
+  "folderSlug": "shadcn-visual-upgrade",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

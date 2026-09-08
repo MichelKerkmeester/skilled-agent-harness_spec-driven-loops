@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="chart-template" content="dumbbell">
 <meta name="chart-color-system" content="neutral">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
 <title>A before and an after per category</title>
 <style>
 /* CHART_PALETTE:BEGIN system=neutral */
@@ -28,7 +31,7 @@
 
 /* CHART_PALETTE_DARK:BEGIN system=neutral */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-scheme="light"]) {
     --chart-surface: #161513;
     --chart-ink: #F2F0EC;
     --chart-muted: #A8A5A0;
@@ -39,6 +42,17 @@
     --chart-series-4: #686561;
     --chart-emphasis: #DD6336;
   }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #161513;
+  --chart-ink: #F2F0EC;
+  --chart-muted: #A8A5A0;
+  --chart-rule: #F2F0EC17;
+  --chart-series-1: #E2E1DE;
+  --chart-series-2: #B0AEAA;
+  --chart-series-3: #8A8783;
+  --chart-series-4: #686561;
+  --chart-emphasis: #DD6336;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -66,7 +80,7 @@ body {
   background: var(--chart-surface);
   color: var(--chart-ink);
   font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
 }
 .card {
@@ -77,16 +91,24 @@ body {
   border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
-.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
 /* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
    at 720 units wide, and below roughly two thirds of that the axis labels start to
    collide, so the figure scrolls sideways and the marks keep the size they were
    drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
    produces a picture nobody can read on the device most readers open it on. */
-.figure { margin: 0; overflow-x: auto; }
+.figure { margin: 0; overflow-x: auto; position: relative; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
-.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
    moved the page: the card, the headline and the source line all slid sideways with it, which is
@@ -95,8 +117,8 @@ body {
    below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
    that is the whole reason the drawing needs a number and this does not. */
 .table-pan { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
@@ -115,14 +137,14 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
 .grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
-.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 /* Every figure a reader compares is set in one mono face, so an axis rung, a value label
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The sentence about undrawn days keeps the body face, because it is prose and not a figure. */
-.tick, td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* A category name is prose rather than a figure, so it keeps the body face while the value
    ticks under the plot take the mono face. */
-.rowlabel { fill: var(--chart-muted); font-size: 11px; }
+.rowlabel { fill: var(--chart-muted); font-size: 12px; }
 
 /* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
    describes, so it travels with the drawing when a narrow screen pans it sideways instead of
@@ -130,14 +152,29 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    outline around a floating card reads as a second chart element rather than as a note about
    the first one. It carries no text until a reader points at something, so a file nobody
    touches paints exactly what it painted before the card existed. */
-[data-chart-tooltip] { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+[data-chart-tooltip] {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  min-width: 128px;
+  max-width: calc(100% - 16px);
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--chart-rule) 50%, transparent);
+  border-radius: var(--chart-radius-pill);
+  background: var(--chart-surface);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--chart-ink) 16%, transparent);
+  display: grid;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
 [data-chart-tooltip][data-open] { opacity: 1; }
-.tip-card { fill: var(--chart-surface); stroke: color-mix(in srgb, var(--chart-rule) 50%, transparent); stroke-width: 1; rx: var(--chart-radius-track); }
-.tip-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { fill: var(--chart-muted); font-size: 12px; }
-/* The figures in the card take the same mono face as the axis and the table, so a value read
-   off a mark and the same value read out of the table sit digit under digit. */
-.tip-value { fill: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+.tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
+.tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+.tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* A reader who clicks a control inside the figure should not be left looking at a ring they
    never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
    the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
@@ -171,10 +208,13 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 308" id="chart">
       <title id="fig-title">Cold build time per pipeline, before and after remote caching</title>
       <desc id="fig-desc">One row per pipeline, with a dot at that pipeline's cold build time before remote caching and a dot at its time after, joined by a line. Before the change the ten pipelines build in 8 to 64 minutes, and after it they build in 4 to 49. Nine build faster afterwards; the search indexer alone takes four minutes longer. The widest change is marked. The table below the chart carries both readings and the change for every pipeline.</desc>
-      <g data-chart-tooltip id="tip-dumbbell"></g>
     </svg>
+    <div data-chart-tooltip id="tip-dumbbell" class="tip-card" aria-live="polite"></div>
   </div>
-  <p class="source" data-chart-part="source">Source: CI build telemetry, one cold run per pipeline either side of the caching rollout. Replace the data block at the top of the script and nothing else.</p>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding">Search-indexer is the one pipeline to slow down, climbing from 19 to 23 minutes after caching.</p>
+    <p class="source" data-chart-part="source">Source: CI build telemetry, one cold run per pipeline either side of the caching rollout. Replace the data block at the top of the script and nothing else.</p>
+  </div>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -272,78 +312,75 @@ function changeText(d) {
 // so a title on a mark inside it was never announced. The table below the chart is, and still
 // is, the complete reading.
 const TIP_PAD = 10;
-const TIP_LINE = 16;
 const TIP_FLOOR = 128;
 const TIP_ROWS = 3;
 const tipLayer = document.getElementById('tip-dumbbell');
 const MARKS = new Map();
 
-function tipNode(name, cls) {
-  const el = document.createElementNS(SVG, name);
-  el.setAttribute('class', cls);
-  tipLayer.appendChild(el);
+function tipNode(cls) {
+  const el = document.createElement('span');
+  el.className = cls;
   return el;
 }
 
-const tipCard = tipNode('rect', 'tip-card');
-const tipName = tipNode('text', 'tip-name');
+const tipName = tipNode('tip-name');
+tipLayer.appendChild(tipName);
 const tipRows = [];
 for (let r = 0; r < TIP_ROWS; r += 1) {
-  tipRows.push({ label: tipNode('text', 'tip-label'), value: tipNode('text', 'tip-value') });
+  const row = document.createElement('div');
+  row.className = 'tip-row';
+  const indicator = tipNode('tip-indicator');
+  const label = tipNode('tip-label');
+  const value = tipNode('tip-value');
+  row.appendChild(indicator);
+  row.appendChild(label);
+  row.appendChild(value);
+  tipLayer.appendChild(row);
+  tipRows.push({ indicator, label, value });
 }
-tipName.setAttribute('x', TIP_PAD);
-tipName.setAttribute('y', TIP_PAD + 12);
-tipRows.forEach(function (row, i) {
-  row.label.setAttribute('x', TIP_PAD);
-  row.label.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
-  row.value.setAttribute('y', TIP_PAD + 12 + TIP_LINE * (i + 1));
-  row.value.setAttribute('text-anchor', 'end');
-});
 
-// A mark answers a pointer only once it is registered here. That is what keeps the forms
-// that earn a card apart from the ones whose marks already print their own value.
 function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
+  const seriesNumber = el.getAttribute('data-series') || '1';
   MARKS.set(el, {
     name: READOUT.label(datum[READOUT.key]),
     rows: rows.map(function (row) {
-      return [READOUT.label(row[0]), READOUT.value(row[1], row[2])];
+      return {
+        label: READOUT.label(row[0]),
+        value: READOUT.value(row[1], row[2]),
+        token: '--chart-series-' + seriesNumber
+      };
     })
   });
   return el;
 }
 
-// The card is sized from the text that is actually in it. A character count assumes an
-// advance this font stack does not promise, and the floor stops a short reading collapsing
-// into a chip narrow enough to break a two-word label across two lines.
 function openTip(mark) {
   const info = MARKS.get(mark);
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
-    row.label.textContent = info.rows[i][0];
-    row.value.textContent = info.rows[i][1];
+    const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
+    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    row.label.textContent = item.label;
+    row.value.textContent = item.value;
   });
-  let width = Math.max(TIP_FLOOR, (tipName.getComputedTextLength() || 0) + TIP_PAD * 2);
-  tipRows.forEach(function (row) {
-    const used = (row.label.getComputedTextLength() || 0) + (row.value.getComputedTextLength() || 0);
-    width = Math.max(width, used + TIP_PAD * 2 + 18);
-  });
-  const height = TIP_PAD * 2 + 12 + TIP_LINE * tipRows.length;
-  tipCard.setAttribute('width', width);
-  tipCard.setAttribute('height', height);
-  tipRows.forEach(function (row) { row.value.setAttribute('x', width - TIP_PAD); });
-
-  // A card that would open past the right edge or above the top opens on the other side of
-  // its mark instead, so it is never drawn outside the frame the chart is allowed to use.
-  const view = svg.getAttribute('viewBox').split(' ');
-  const box = mark.getBBox();
-  let x = box.x + box.width + 12;
-  if (x + width > Number(view[2])) x = box.x - width - 12;
-  if (x < 0) x = 0;
-  let y = box.y + box.height / 2 - height / 2;
-  if (y < 0) y = 0;
-  if (y + height > Number(view[3])) y = Number(view[3]) - height;
-  tipLayer.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+  const figure = tipLayer.parentElement;
+  const markBox = mark.getBoundingClientRect();
+  const frameBox = figure.getBoundingClientRect();
+  tipLayer.style.width = 'max-content';
+  const width = Math.min(
+    Math.max(tipLayer.scrollWidth, TIP_FLOOR),
+    Math.max(TIP_FLOOR, figure.clientWidth - 16)
+  );
+  tipLayer.style.width = width + 'px';
+  const height = tipLayer.offsetHeight;
+  let left = markBox.right - frameBox.left + 12;
+  if (left + width > figure.clientWidth) left = markBox.left - frameBox.left - width - 12;
+  left = Math.max(8, Math.min(left, Math.max(8, figure.clientWidth - width - 8)));
+  let top = markBox.top - frameBox.top + (markBox.height - height) / 2;
+  top = Math.max(8, Math.min(top, Math.max(8, figure.clientHeight - height - 8)));
+  tipLayer.style.left = left + 'px';
+  tipLayer.style.top = top + 'px';
   tipLayer.setAttribute('data-open', '');
 }
 
@@ -544,9 +581,8 @@ document.addEventListener('click', function (e) {
     closeTip();
   }
 });
-// The card is raised above the marks once the drawing is finished, so it is never painted
-// underneath the mark it is describing.
-svg.appendChild(tipLayer);
+// The card remains a sibling of the SVG, so its absolute position stays within the figure.
+
 // The drawing ends here. Everything above it ran because the data block held something to draw.
 }
 </script>

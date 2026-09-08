@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming",
+  "description": "`sk-design-md-generator` measures a live site into a v3 Style Reference, a `DESIGN.md` whose colour table, typography section and radius table hold",
+  "keywords": [
+    "sk-design-md-generator",
+    "measures",
+    "live",
+    "site",
+    "style",
+    "reference",
+    "design",
+    "whose",
+    "colour",
+    "table",
+    "typography",
+    "section",
+    "radius",
+    "hold"
+  ],
+  "lastUpdated": "2026-09-08T06:23:44.967Z",
+  "specId": "016",
+  "folderSlug": "design-md-theming",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

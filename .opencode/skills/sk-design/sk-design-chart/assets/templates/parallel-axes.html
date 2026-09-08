@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="chart-template" content="parallel-axes">
 <meta name="chart-color-system" content="categorical">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
 <title>One entity set across several dimensions</title>
 <style>
 /* CHART_PALETTE:BEGIN system=categorical */
@@ -28,7 +31,7 @@
 
 /* CHART_PALETTE_DARK:BEGIN system=categorical */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-scheme="light"]) {
     --chart-surface: #161513;
     --chart-ink: #F2F0EC;
     --chart-muted: #A8A5A0;
@@ -39,6 +42,17 @@
     --chart-series-4: #7657BF;
     --chart-emphasis: #F2F0EC;
   }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #161513;
+  --chart-ink: #F2F0EC;
+  --chart-muted: #A8A5A0;
+  --chart-rule: #F2F0EC17;
+  --chart-series-1: #DBBD6D;
+  --chart-series-2: #57AABF;
+  --chart-series-3: #D25F4D;
+  --chart-series-4: #7657BF;
+  --chart-emphasis: #F2F0EC;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -66,7 +80,7 @@ body {
   background: var(--chart-surface);
   color: var(--chart-ink);
   font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
 }
 .card {
@@ -77,16 +91,24 @@ body {
   border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
-.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
 /* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
    at 720 units wide, and below roughly two thirds of that the axis labels start to
    collide, so the figure scrolls sideways and the marks keep the size they were
    drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
    produces a picture nobody can read on the device most readers open it on. */
-.figure { margin: 0; overflow-x: auto; }
+.figure { margin: 0; overflow-x: auto; position: relative; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
-.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
    moved the page: the card, the headline and the source line all slid sideways with it, which is
@@ -95,28 +117,28 @@ body {
    below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
    that is the whole reason the drawing needs a number and this does not. */
 .table-pan { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
 
-.line-1 { fill: none; stroke: var(--chart-series-1); stroke-width: 1; }
-.line-2 { fill: none; stroke: var(--chart-series-2); stroke-width: 1; }
-.line-3 { fill: none; stroke: var(--chart-series-3); stroke-width: 1; }
-.line-4 { fill: none; stroke: var(--chart-series-4); stroke-width: 1; }
+.line-1 { fill: none; stroke: var(--chart-series-1); stroke-width: 2; }
+.line-2 { fill: none; stroke: var(--chart-series-2); stroke-width: 2; }
+.line-3 { fill: none; stroke: var(--chart-series-3); stroke-width: 2; }
+.line-4 { fill: none; stroke: var(--chart-series-4); stroke-width: 2; }
 .dot-1 { fill: var(--chart-series-1); }
 .dot-2 { fill: var(--chart-series-2); }
 .dot-3 { fill: var(--chart-series-3); }
 .dot-4 { fill: var(--chart-series-4); }
 /* The axis rules are furniture and the crossing lines are the data, so the rules draw at
    the hairline the data lines draw at rather than at double their weight. */
-.axis { stroke: var(--chart-rule); }
+.axis { stroke: none; }
 .axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.bound { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.key { fill: var(--chart-muted); font-size: 11px; }
+.bound { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
 /* The key blocks carry the ladder's mark corner, so the swatch beside a supplier's name reads
    as a small copy of the marks on its line. */
 .key-swatch { rx: var(--chart-radius-mark); }
@@ -155,10 +177,13 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
       <title id="fig-title">Four suppliers across five measures</title>
       <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Each supplier takes the swatch printed beside its name where its line ends on the right. Alpha is lowest on unit price at 4.1 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
-      <g data-chart-legend id="legend-parallel-axes"></g>
     </svg>
+    <div data-chart-legend id="legend-parallel-axes" class="legend-row" aria-label="Chart series"></div>
   </div>
-  <p class="source" data-chart-part="source">Source: procurement vendor scorecard, tender evaluation. Replace the data block at the top of the script and nothing else.</p>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding">Alpha costs 4.1 pounds but takes 43 hours to respond, over ten times Delta's 4 hours.</p>
+    <p class="source" data-chart-part="source">Source: procurement vendor scorecard, tender evaluation. Replace the data block at the top of the script and nothing else.</p>
+  </div>
 </div>
 <div class="card">
   <div class="table-pan">
@@ -303,6 +328,25 @@ AXES.forEach(function (axis, j) {
 // keyboard too.
 const legend = document.getElementById('legend-parallel-axes');
 const entries = [];
+SERIES.forEach(function (series, s) {
+  const name = series.label;
+  const entry = document.createElement('button');
+  entry.type = 'button';
+  entry.className = 'legend-entry';
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('aria-pressed', 'false');
+  entry.setAttribute('aria-label', name);
+  const swatch = document.createElement('span');
+  swatch.className = 'key-swatch';
+  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  const label = document.createElement('span');
+  label.className = 'key';
+  label.textContent = name;
+  entry.appendChild(swatch);
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  entries.push(entry);
+});
 DATA.forEach(function (d, s) {
   const series = SERIES[s];
   const points = d.values.map(function (v, j) { return ax(j) + ',' + ay(j, v); });
@@ -312,27 +356,6 @@ DATA.forEach(function (d, s) {
       d.label + ', ' + AXES[j].name + ': ' + fmt(v) + ' ' + AXES[j].unit);
   });
 
-  const endY = ay(AXES.length - 1, d.values[AXES.length - 1]);
-  const entry = document.createElementNS(SVG, 'g');
-  entry.setAttribute('data-series', s + 1);
-  entry.setAttribute('tabindex', '0');
-  entry.setAttribute('role', 'button');
-  entry.setAttribute('aria-pressed', 'false');
-  const swatch = document.createElementNS(SVG, 'rect');
-  swatch.setAttribute('x', RIGHT + 8);
-  swatch.setAttribute('y', endY - 4);
-  swatch.setAttribute('width', 8);
-  swatch.setAttribute('height', 8);
-  swatch.setAttribute('class', 'key-swatch ' + series.classes[1]);
-  entry.appendChild(swatch);
-  const label = document.createElementNS(SVG, 'text');
-  label.setAttribute('x', RIGHT + 20);
-  label.setAttribute('y', endY + 4);
-  label.setAttribute('class', 'key');
-  label.textContent = series.label;
-  entry.appendChild(label);
-  legend.appendChild(entry);
-  entries.push(entry);
 });
 
 const headRow = document.getElementById('head-row');

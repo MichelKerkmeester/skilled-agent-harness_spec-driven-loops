@@ -10,7 +10,7 @@ trigger_phrases:
   - "chart colour system"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # sk-design-chart
@@ -27,7 +27,7 @@ version: 1.2.0.0
 | **Invoke with** | "create a chart", "plot the data", a named form such as "treemap" or a direct read of `SKILL.md` |
 | **Works on** | A dataset and the comparison someone wants to make from it |
 | **Produces** | One self-contained HTML file, built from a form file and one colour system |
-| **Corpus** | Twenty-one chart forms across six question families, plus three colour systems |
+| **Corpus** | Twenty-six chart forms across six question families, plus three colour systems |
 
 ---
 
@@ -42,6 +42,8 @@ A form file that already renders has had those problems solved once. Copying it 
 ### What It Does
 
 You describe the comparison a reader needs to make. The catalog in `references/catalog.md` turns that comparison into one row, and the row names the file that draws it. You copy that file, swap its data block and apply one colour system. A validator then proves the corpus still renders.
+
+The visual register is shared by the corpus: a 16px semibold title, a muted 14px description, a two-row footer, bare axes with 12px tabular ticks, a horizontal dashed grid, measured bar and line geometry, positioned HTML tooltip cards and keyed legend chips. The gallery carries each template's light or dark scheme through a `data-scheme` attribute so the standalone files and their delivery frames use the same palette selectors.
 
 One form is one file, so there is no gallery page to lift a block out of. The packet holds no per-request logic. It holds a corpus and the rules for picking from it.
 
