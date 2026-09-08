@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the phase decomposition against a read of both extensions"
-    next_safe_action: "Execute 005-remove-deep-pi"
+    next_safe_action: "Execute 006-reconcile-extension-documentation"
     blockers: []
     key_files:
       - ".pi/extensions/pi-cache-optimizer/index.ts"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-016-cache-optimizer-absorbs-deep-pi"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 83
     open_questions: []
     answered_questions:
       - "Workspace: the operator chose the current branch, because the Pi runtime loads extensions from this checkout's .pi/ tree and the vendored dependencies exist only here"
@@ -136,7 +136,7 @@ Enumerated per phase in each child's own `spec.md`. The surfaces this decomposit
 | 2 | `002-port-cache-economics/` | Measured economics for every model: cache-read vs uncached tokens, hit rate, real input cost, estimated savings, prefix churn, and a command that reports them | Complete |
 | 3 | `003-port-retry-loop-guard/` | Detect and break paid retry loops so a failing turn stops re-billing the same request | Complete |
 | 4 | `004-port-hash-verified-edits/` | Hash-verified line edits, so an edit that no longer matches what the model was shown fails instead of applying to moved content | Complete |
-| 5 | `005-remove-deep-pi/` | Retire the extension directory, its enabled-package entry and every live reference, leaving historical records intact | Planned |
+| 5 | `005-remove-deep-pi/` | Retire the extension directory, its enabled-package entry and every live reference, leaving historical records intact | Complete |
 | 6 | `006-reconcile-extension-documentation/` | Bring the root README and every other README or inventory that documents Pi extensions in line with what actually ships, once 001-005 are done and tested | Planned |
 
 ### Phase Transition Rules

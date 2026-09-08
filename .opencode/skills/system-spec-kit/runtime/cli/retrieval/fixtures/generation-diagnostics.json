@@ -3,10 +3,10 @@
     "duplicate-phrase": 62,
     "missing-frontmatter": 6948,
     "non-yaml-frontmatter": 1,
-    "ok": 13899,
-    "valid-empty-list": 7943
+    "ok": 13942,
+    "valid-empty-list": 7942
   },
-  "documentsScanned": 28853,
+  "documentsScanned": 28895,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "ee5657915432836ac87dabf5c021099ee4218a426161e625601cc7fc1f5989d9",
+  "manifestHash": "d2dade02c0ddbb6e056156750878bd3b819def8ef5319571b655c0d7fea26b14",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 4,
       "numeric-only": 42,
-      "ok": 35596,
+      "ok": 35637,
       "prose-sentence": 27,
       "single-token": 315,
       "stop-word-only": 3
@@ -97760,13 +97760,6 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/confirmed-findings.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
     }
   ],
   "skippedPaths": [
@@ -98555,6 +98548,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/z_archive",
       "reason": "excluded directory"
     },
@@ -99180,6 +99177,22 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/scratch",
       "reason": "excluded directory"
     },
     {
@@ -101704,6 +101717,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/scratch",
       "reason": "excluded directory"
     },
     {

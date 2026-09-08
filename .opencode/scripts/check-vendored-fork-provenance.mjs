@@ -7,14 +7,6 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const RECORD_PATH = join(ROOT, ".opencode/scripts/vendored-fork-provenance.json");
 const FORKS = [
 	{
-		name: "deep-pi",
-		directory: ".pi/extensions/deep-pi",
-		identity: {
-			repository: "https://github.com/christopherarter/deep-pi.git",
-			commit: "0f1cbd8124b4fb35df97f85aa943d730f4aae549",
-		},
-	},
-	{
 		name: "pi-cache-optimizer",
 		directory: ".pi/extensions/pi-cache-optimizer",
 		identity: {

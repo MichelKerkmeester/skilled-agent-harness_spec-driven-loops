@@ -1,11 +1,17 @@
 {
+  "level": "3",
   "specFolder": "hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
-  "description": "Phase 1: reconcile-extension-documentation",
+  "description": "Measured before this phase was written, the documentation surface is not where one would guess:",
   "keywords": [
+    "measured",
     "phase",
-    "reconcile-extension-documentation"
+    "written",
+    "documentation",
+    "surface",
+    "one",
+    "guess"
   ],
-  "lastUpdated": "2026-09-08T18:00:25.434Z",
+  "lastUpdated": "2026-09-08T19:07:13.652Z",
   "specId": "006",
   "folderSlug": "reconcile-extension-documentation",
   "parentChain": [
@@ -13,6 +19,5 @@
     "016-cache-optimizer-absorbs-deep-pi"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ee5657915432836ac87dabf5c021099ee4218a426161e625601cc7fc1f5989d9",
+  "manifestHash": "d2dade02c0ddbb6e056156750878bd3b819def8ef5319571b655c0d7fea26b14",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11617,6 +11617,9 @@
     "alignment mode registry entry": [
       "alignment mode-registry entry"
     ],
+    "alignment mode removed": [
+      "alignment mode removed"
+    ],
     "alignment mode resolver p0": [
       "alignment mode resolver P0"
     ],
@@ -12191,6 +12194,9 @@
     ],
     "apply 5 dimension rubric": [
       "apply 5-dimension rubric"
+    ],
+    "apply confirmed drift to release notes": [
+      "apply confirmed drift to release notes"
     ],
     "apply design md to chart": [
       "apply DESIGN.md to chart",
@@ -13332,6 +13338,9 @@
     ],
     "atomic ledger derived views": [
       "atomic ledger-derived views"
+    ],
+    "atomic ownership flip": [
+      "atomic ownership flip"
     ],
     "atomic per file persistence fix": [
       "atomic per-file persistence fix"
@@ -15493,6 +15502,9 @@
     "boundary receipt implementation": [
       "boundary receipt implementation"
     ],
+    "boundary runner removal": [
+      "boundary runner removal"
+    ],
     "boundary violation bucket": [
       "boundary violation bucket"
     ],
@@ -16270,8 +16282,14 @@
     "cache optimizer deep pi manual testing": [
       "cache-optimizer deep-pi manual testing"
     ],
+    "cache optimizer edits": [
+      "cache optimizer edits"
+    ],
     "cache optimizer fix long retention": [
       "cache-optimizer fix long retention"
+    ],
+    "cache optimizer loops": [
+      "cache optimizer loops"
     ],
     "cache optimizer playbook": [
       "cache-optimizer playbook"
@@ -16285,8 +16303,14 @@
     "cache optimizer playbook tasks": [
       "cache-optimizer playbook tasks"
     ],
+    "cache optimizer stats cost": [
+      "cache optimizer stats cost"
+    ],
     "cache optimizer warning": [
       "cache optimizer warning"
+    ],
+    "cache savings estimate": [
+      "cache savings estimate"
     ],
     "cache split verification": [
       "cache split verification"
@@ -17516,6 +17540,18 @@
     "changelog draft drift results": [
       "changelog draft drift results"
     ],
+    "changelog draft drift table": [
+      "changelog draft drift table"
+    ],
+    "changelog draft patch plan": [
+      "changelog draft patch plan"
+    ],
+    "changelog draft update summary": [
+      "changelog draft update summary"
+    ],
+    "changelog draft update tasks": [
+      "changelog draft update tasks"
+    ],
     "changelog enrichment steps": [
       "changelog enrichment steps"
     ],
@@ -17575,6 +17611,12 @@
     ],
     "changelog rewrite closeout": [
       "changelog rewrite closeout"
+    ],
+    "changelog rewrite from confirmed drift": [
+      "changelog rewrite from confirmed drift"
+    ],
+    "changelog rewrite input": [
+      "changelog rewrite input"
     ],
     "changelog shipped vs planned mislabel fix": [
       "changelog shipped vs planned mislabel fix"
@@ -26614,6 +26656,9 @@
     "confirm no do not edit fence changed": [
       "confirm no do-not-edit fence changed"
     ],
+    "confirmed drift table": [
+      "confirmed drift table"
+    ],
     "confirmed row application": [
       "confirmed row application"
     ],
@@ -34464,6 +34509,9 @@
     "deep pi playbook tasks": [
       "deep-pi playbook tasks"
     ],
+    "deep pi reference sweep": [
+      "deep-pi reference sweep"
+    ],
     "deep pi repoint": [
       "deep-pi repoint"
     ],
@@ -40531,6 +40579,9 @@
     "documentation levels": [
       "documentation levels"
     ],
+    "documentation matches shipped state": [
+      "documentation matches shipped state"
+    ],
     "documentation quality program": [
       "documentation quality program"
     ],
@@ -45550,6 +45601,9 @@
     ],
     "fetch task file": [
       "fetch task file"
+    ],
+    "fewer skills safer paths": [
+      "fewer skills safer paths"
     ],
     "fidelity checklist": [
       "fidelity checklist"
@@ -72685,6 +72739,9 @@
     "phase 28 implementation summary": [
       "phase 28 implementation summary"
     ],
+    "phase 3 cache optimizer": [
+      "phase 3 cache optimizer"
+    ],
     "phase 3 closeout": [
       "phase 3 closeout"
     ],
@@ -72696,6 +72753,9 @@
     ],
     "phase 39 implementation summary": [
       "phase 39 implementation summary"
+    ],
+    "phase 4 cache optimizer": [
+      "phase 4 cache optimizer"
     ],
     "phase 4 dedicated sk code mode for mobile cli app work": [
       "phase 4 — dedicated sk-code mode for mobile-cli app work"
@@ -73213,11 +73273,17 @@
     "pi cache affinity plan": [
       "pi cache affinity plan"
     ],
+    "pi cache break": [
+      "pi cache break"
+    ],
     "pi cache economics reporting": [
       "pi cache economics reporting"
     ],
     "pi cache gap scoping": [
       "pi cache gap scoping"
+    ],
+    "pi cache hash verified": [
+      "pi cache hash-verified"
     ],
     "pi cache optimizer": [
       "pi cache optimizer",
@@ -75091,6 +75157,9 @@
     "plugin2 auth null fix": [
       "plugin2.auth null fix"
     ],
+    "plugins inventory update": [
+      "plugins inventory update"
+    ],
     "plugins we support": [
       "plugins we support"
     ],
@@ -75864,6 +75933,9 @@
     ],
     "prefetch cache": [
       "prefetch cache"
+    ],
+    "prefix churn detection": [
+      "prefix churn detection"
     ],
     "prefix registry": [
       "prefix registry"
@@ -78881,6 +78953,9 @@
     "reciprocal symmetry drift": [
       "reciprocal symmetry drift"
     ],
+    "reclaim deepseek direct ownership": [
+      "reclaim deepseek direct ownership"
+    ],
     "recommend level sh": [
       "recommend-level.sh"
     ],
@@ -78928,6 +79003,9 @@
     ],
     "reconcile parent packet": [
       "reconcile parent packet"
+    ],
+    "reconcile pi extension documentation": [
+      "reconcile pi extension documentation"
     ],
     "reconcile primary checkout after worktree push": [
       "reconcile primary checkout after worktree push"
@@ -80424,6 +80502,9 @@
     "release notes": [
       "release notes"
     ],
+    "release notes corrections": [
+      "release notes corrections"
+    ],
     "release notes evidence": [
       "release notes evidence"
     ],
@@ -80746,6 +80827,9 @@
     "remove dead skill metadata fields": [
       "remove dead skill metadata fields"
     ],
+    "remove deep pi extension": [
+      "remove deep-pi extension"
+    ],
     "remove deepseek provider roster": [
       "remove deepseek provider roster"
     ],
@@ -80775,6 +80859,9 @@
     ],
     "remove interface commands": [
       "remove interface commands"
+    ],
+    "remove isdeeppiowned carve out": [
+      "remove isdeeppiowned carve-out"
     ],
     "remove llama cpp references": [
       "remove llama-cpp references"
@@ -81440,6 +81527,9 @@
     ],
     "reproduce write escape": [
       "reproduce write escape"
+    ],
+    "reproduced drift rows": [
+      "reproduced drift rows"
     ],
     "reproduction before remediation": [
       "reproduction before remediation"
@@ -82953,6 +83043,9 @@
     "retire the sweep tasks": [
       "retire the sweep tasks"
     ],
+    "retire vendored fork": [
+      "retire vendored fork"
+    ],
     "retired benchmark handling": [
       "retired benchmark handling"
     ],
@@ -84329,6 +84422,9 @@
     ],
     "root readme nomic embedder alignment": [
       "root README nomic embedder alignment"
+    ],
+    "root readme pi extensions": [
+      "root readme pi extensions"
     ],
     "root readme refresh": [
       "root readme refresh"
@@ -89008,6 +89104,9 @@
     "shared output wrapper seam": [
       "shared output wrapper seam"
     ],
+    "shared ownership fixture removal": [
+      "shared ownership fixture removal"
+    ],
     "shared package confirmed findings": [
       "shared package confirmed findings"
     ],
@@ -89854,6 +89953,9 @@
     ],
     "six gates": [
       "six gates"
+    ],
+    "six hubs not seven": [
+      "six hubs not seven"
     ],
     "six mode holdout coverage": [
       "six mode holdout coverage"
@@ -104884,6 +104986,15 @@
     "v4 0 0 0 changelog rewrite": [
       "v4.0.0.0 changelog rewrite"
     ],
+    "v4 0 0 0 release notes": [
+      "v4.0.0.0 release notes"
+    ],
+    "v4 changelog": [
+      "v4 changelog"
+    ],
+    "v4 changelog draft update": [
+      "v4 changelog draft update"
+    ],
     "v4 deep review cleanup": [
       "v4 deep-review cleanup"
     ],
@@ -104892,6 +105003,12 @@
     ],
     "v4 pro retirement status": [
       "v4 pro retirement status"
+    ],
+    "v4 release notes corrections applied": [
+      "v4 release notes corrections applied"
+    ],
+    "v4 state inventory": [
+      "v4 state inventory"
     ],
     "v4 state inventory research": [
       "v4 state inventory research"
@@ -106925,6 +107042,9 @@
     "what changed between these two screenshots": [
       "what changed between these two screenshots"
     ],
+    "what changed in v4": [
+      "what changed in v4"
+    ],
     "what colors are in this design": [
       "what colors are in this design"
     ],
@@ -107002,6 +107122,9 @@
     ],
     "what shipped test repair": [
       "what shipped test repair"
+    ],
+    "what v4 actually ships": [
+      "what v4 actually ships"
     ],
     "when does a folder need code md": [
       "when does a folder need code.md"
