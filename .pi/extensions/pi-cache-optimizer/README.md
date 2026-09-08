@@ -19,6 +19,7 @@ This package is a fork of `jiangge/pi-cache-optimizer` v2.8.0. The fork is publi
 - [Install](#install)
 - [Commands](#commands)
 - [Persistent opt-out](#persistent-opt-out)
+- [Retry loop guard](#retry-loop-guard)
 - [Footer cache stats mode](#footer-cache-stats-mode)
 - [OpenAI-compatible proxy setup](#openai-compatible-proxy-setup)
 - [Adaptive thinking models](#adaptive-thinking-models)
@@ -39,6 +40,7 @@ This package is a fork of `jiangge/pi-cache-optimizer` v2.8.0. The fork is publi
 - Detects adaptive-thinking compat for Claude (opus-4.6+ including Opus 5, sonnet-4.6+ including Sonnet 5, fable-5+) and Kimi Coding K3 / `kimi-for-coding` custom channels.
 - Shows daily cumulative provider/model footer stats by default, with an opt-in current-session display mode.
 - Reports input cost, savings against a fully-uncached baseline, and prefix churn through `/cache-optimizer stats`, priced from the model registry rather than hardcoded rates.
+- Stops paid retry loops: tracks tool-call batches and escalates only when a whole batch fails repeatedly, with any successful call resetting the streaks.
 - Supports optional router-extension integration through versioned global protocols (`Symbol.for("pi.routing.registry.v1")` and `Symbol.for("pi.cache.hints.v1")`) without importing router packages.
 
 Caching is provider-side and best-effort. Third-party proxies and router extensions can still hide cache usage, reject unsupported parameters, or route requests across multiple upstreams.
@@ -85,6 +87,28 @@ The interactive `/cache-optimizer` menu includes `Footer mode`, where you can ch
 | `PI_CACHE_OPTIMIZER_NO_SKILL_COMPRESSION=1` | Keep Pi's verbose skill XML. |
 | `PI_CACHE_OPTIMIZER_NO_OPENAI_CACHE_KEY=1` | Disable the OpenAI-compatible `prompt_cache_key` fallback. Preferred explicit opt-out. |
 | `PI_CACHE_OPTIMIZER_OPENAI_CACHE_KEY=0` | Disable the same fallback via the legacy inverse switch. Values `0`, `false`, `no`, or `off` disable it. |
+
+## Retry loop guard
+
+A failing turn can re-issue the same billable tool batch until the budget is gone. This extension tracks tool calls as batches — one batch is the set of tool calls in a single assistant message — and escalates only when the **whole batch fails repeatedly** with no success in between.
+
+**When it fires:**
+
+- The 3rd consecutive all-failed batch gets a `[loop guard]` notice appended to the tool result the model sees, telling it to change arguments, use another tool, or report the blocker. The turn is not ended.
+- The 4th consecutive all-failed batch stops the turn: a notification is shown and the agent operation is aborted, so the same request is not billed again.
+
+**What resets the streaks:**
+
+- Any successful tool call — a partial success means the turn is converging, not looping.
+- The assistant moving on without calling any tools.
+- A new session. Guard state is per-session, in-memory only, and never written to disk.
+
+**What it does not do:**
+
+- It never rewrites, retries, or "fixes" the user's request to make a call succeed.
+- It cannot fire on a first attempt, and one legitimate retry never triggers it: escalation requires three consecutive all-failed batches.
+- It does not change transport-level retry policy; provider-side retries remain the provider's concern.
+- It does not affect cache measurement, prompt rewriting, compat warnings, `doctor`, or `fix`.
 
 ## Footer cache stats mode
 

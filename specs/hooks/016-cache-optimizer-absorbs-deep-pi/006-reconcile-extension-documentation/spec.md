@@ -1,29 +1,49 @@
 ---
-title: "Feature Specification: Phase 1: reconcile-extension-documentation"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 6: documentation matches what ships"
+description: "Once the extension is gone and its capabilities live elsewhere, the documents that describe the Pi extension surface still describe the old arrangement. This phase reconciles them against the shipped tree, and answers whether the root README should carry a Pi-extension section at all, since today it carries none."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
-importance_tier: "normal"
-contextType: "general"
+  - "reconcile pi extension documentation"
+  - "plugins inventory update"
+  - "root readme pi extensions"
+  - "documentation matches shipped state"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation"
+    last_updated_at: "2026-09-08T00:00:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Authored against a measured documentation surface"
+    next_safe_action: "Execute once 001-005 are done and tested"
+    blockers: []
+    key_files:
+      - ".pi/PLUGINS.md"
+      - ".pi/extensions/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-016-006-reconcile-extension-documentation"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions:
+      - "The root README carries no Pi-extension content today, so this phase decides whether it should rather than assuming there is text to correct"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Phase 1: reconcile-extension-documentation
+# Feature Specification: Phase 6: documentation matches what ships
 
 <!-- SPECKIT_LEVEL: 3 -->
-
 
 ---
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+After 001-005 the Pi extension surface is materially different: one cache extension instead of two,
+carrying capabilities it did not have. The documents describing that surface were written for the
+old arrangement. This phase reconciles them against the tree as it actually ships.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: verify every claim against the tree rather than editing around the old wording; run last, so it documents behavior rather than intent.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: 001-005 done AND tested.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -32,15 +52,12 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-09-08 |
-| **Branch** | `scaffold/006-reconcile-extension-documentation` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
 | **Predecessor** | 005-remove-deep-pi |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,15 +65,15 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the Reconcile the root README and every other README or inventory that documents Pi extensions with the post-change reality specification.
+This is **Phase 6** of the parent decomposition, and the last.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: documentation only. No behavior change; if this phase wants one, that is a
+finding for a new packet, not an edit here.
 
-**Dependencies**:
-- [To be defined during planning]
+**Dependencies**: 001-005 shipped and verified. Documentation written before the behavior is tested
+documents an intention, which is the failure this ordering avoids.
 
-**Deliverables**:
-- [To be defined during planning]
+**Deliverables**: every live document describing Pi extensions matches the shipped tree.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -68,10 +85,28 @@ This is **Phase 6** of the Reconcile the root README and every other README or i
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+Measured before this phase was written, the documentation surface is not where one would guess:
+
+| Document | Pi-extension mentions | Role |
+|----------|----------------------|------|
+| `.pi/extensions/README.md` | 16 | The extensions inventory |
+| `.pi/PLUGINS.md` | 13 | The installed-plugin roster |
+| `.pi/SYNC.md` | 6 | How `.pi/` derives from `.opencode/` |
+| Root `README.md` | **0** | Carries no Pi-extension content at all |
+| `.opencode/skills/README.txt` | 0 | Mentions runtime plugins generically |
+
+So "update the root README" is not a correction task: there is nothing there to correct. The phase
+has to answer a different question — whether the root README *should* describe the Pi extension
+surface, given it never has — and then either add a section deliberately or record that the
+inventory lives under `.pi/` and the root correctly stays silent.
+
+The three `.pi/` documents do carry stale content, and they are the substance of this phase.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+Every live document that describes Pi extensions describes the ones that exist and what they now
+do, and the root README's silence on the subject is a decision rather than an oversight.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -80,19 +115,27 @@ This is **Phase 6** of the Reconcile the root README and every other README or i
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- `.pi/extensions/README.md`, `.pi/PLUGINS.md`, `.pi/SYNC.md`.
+- `.pi/extensions/pi-cache-optimizer/README.md`, where capabilities gained in 002-004 are described.
+- A decision on whether the root `README.md` should carry a Pi-extension section, recorded either way.
+- Any other README the residue sweep in 005 surfaced as live.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- **Historical records.** Unchanged, per the parent decision.
+- **Behavior.** If reconciling reveals a behavior gap, it is reported as a finding, not fixed here.
+- **`.opencode/skills/README.txt`**, already reconciled and carrying no extension-specific claim.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.pi/extensions/README.md` | Modify | Inventory of what is installed and what each extension does |
+| `.pi/PLUGINS.md` | Modify | Roster reconciled against `.pi/settings.json` |
+| `.pi/SYNC.md` | Modify | Derivation and drift-checking description, where it names the retired extension |
+| `.pi/extensions/pi-cache-optimizer/README.md` | Modify | Economics, retry guard and verified-edit behavior as shipped |
+| `README.md` | Modify or unchanged | Whichever the recorded decision selects |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -104,13 +147,16 @@ This is **Phase 6** of the Reconcile the root README and every other README or i
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | No live document lists a retired extension as installed |
+| REQ-002 | The surviving extension's documented capabilities match what it does, checked against the code |
+| REQ-003 | The root README question is answered explicitly, either by adding a section or recording why not |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-004 | The plugin roster matches `.pi/settings.json` entry for entry |
+| REQ-005 | Documentation validators pass on every changed file |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -121,8 +167,9 @@ This is **Phase 6** of the Reconcile the root README and every other README or i
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A residue sweep over live documents finds no retired extension named as current.
+- **SC-002**: Each documented capability is traceable to code that implements it.
+- **SC-003**: `validate_document.py` passes on every changed file.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -132,93 +179,15 @@ This is **Phase 6** of the Reconcile the root README and every other README or i
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Documentation written from the spec rather than the code | High — describes intent, not behavior | Every claim traced to the implementing code; the phase runs after the behavior is tested |
+| Risk | Editing around old wording instead of re-reading it | Medium — stale claims survive a rewrite | Each document is re-derived from the tree, not patched sentence by sentence |
+| Risk | The root README grows a section nobody maintains | Medium | The decision is recorded with its reason, so a later reader can revisit it deliberately |
 <!-- /ANCHOR:risks -->
 
 ---
 
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 
-## 7. NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-
-### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-
-### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-
----
-
-## 8. EDGE CASES
-
-### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-
-### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-
----
-
-## 9. COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Triggers |
-|-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
-
----
-
-## 10. RISK MATRIX
-
-| Risk ID | Description | Impact | Likelihood | Mitigation |
-|---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
-
----
-
-## 11. USER STORIES
-
-### US-001: [Title] (Priority: P0)
-
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
-
-**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
-
----
-
-### US-002: [Title] (Priority: P1)
-
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
-
-**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
-
----
-
-## 12. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Should the root README describe the Pi extension surface at all? It never has. Adding a section creates a maintenance obligation at the most-read file in the repo; leaving it silent keeps the inventory where the runtime lives. Decide and record, do not drift.
 <!-- /ANCHOR:questions -->
-
----
-
-## RELATED DOCUMENTS
-
-- **Implementation Plan**: See `plan.md`
-- **Task Breakdown**: See `tasks.md`
-- **Verification Checklist**: See `tasks.md`
-- **Decision Records**: See `decision-record.md`
-
----
-
-
