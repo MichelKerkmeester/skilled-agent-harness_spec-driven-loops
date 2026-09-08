@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. One helper now owns the check so every boundary rejects the same escapes.",
     "created_at": "2026-09-05T19:16:53Z",
-    "last_save_at": "2026-09-08T17:59:21.270Z",
+    "last_save_at": "2026-09-08T18:23:47.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:495eed593ba1a0ab0b53de68f63e0190de2a203378c93da06c9535ce11dd6a9a",
+    "source_fingerprint": "sha256:a300e46af240c7b34574898d3b948850ac840e21e18d5b7a73541d51d4cd490e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b407dfe0ff10cd81ef7c8f4b5c95cd1121211e3798e5ada952113cbf317de7a0",
+      "spec.md": "f23b39bad3cfc75bae38ab2590404a085d7b49ded5aeccd2282f9aa9cab7ac6a",
       "plan.md": "e966ca2d838007199b0287e4f62cfc680c1243bca719fcf9240e6f2fcb7dac9f",
       "tasks.md": "62e58b2092c3fa58f39f798b7747ca801764f8241c17fb3e5d6ed7a68e703d9b",
       "implementation-summary.md": "266a776df7f2029d85b46cdf50b9aa618260a151285678f4f1b053dd6f705081"

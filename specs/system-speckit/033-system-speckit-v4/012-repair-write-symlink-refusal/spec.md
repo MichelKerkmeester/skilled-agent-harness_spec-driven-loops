@@ -27,7 +27,7 @@ contextType: "implementation"
 | **Status** | Complete |
 | **Created** | 2026-08-30 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 12 of 34 |
+| **Phase** | 12 of 35 |
 | **Predecessor** | `../011-graph-metadata-write-containment/spec.md` |
 | **Successor** | `../013-repair-handle-containment/spec.md` |
 | **Branch** | `scaffold/044-repair-write-symlink-refusal` |

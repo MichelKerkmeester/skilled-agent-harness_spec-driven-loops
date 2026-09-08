@@ -51,7 +51,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-speckit/033-system-speckit-v4 |
-| **Phase** | 30 of 34 |
+| **Phase** | 30 of 35 |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |

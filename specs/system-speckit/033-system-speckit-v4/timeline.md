@@ -1,6 +1,6 @@
 ---
 title: "Timeline: system-speckit-v4"
-description: "Chronological record of the thirty-four packets that make up system-spec-kit v4, ordered by first commit, with what each shipped, its status and its key commits, built from git history."
+description: "Chronological record of the thirty-five packets that make up system-spec-kit v4, ordered by first commit, with what each shipped, its status and its key commits, built from git history."
 trigger_phrases:
   - "system speckit v4 timeline"
   - "which spec was worked on first"
@@ -15,14 +15,14 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> The order in which the thirty-four v4 packets were started and finished, taken from git.
+> The order in which the thirty-five v4 packets were started and finished, taken from git.
 
 ---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** system-spec-kit v4, children 001 to 034 of this parent
+**Subject:** system-spec-kit v4, children 001 to 035 of this parent
 **Status:** Complete
 **Started:** 2026-08-15
 **Last updated:** 2026-09-08
@@ -103,6 +103,8 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 **2026-09-07:** `033-ci-dependency-hardening` (was `037-ci-dependency-hardening`) started; 1 commit over 0 nested phases. Outcome: The pre-commit hook runs the same six mirror checks CI runs, the Spec-Kit Check workflow triggers on every mirror source and output, and the forty-four open Dependabot alerts reach zero. Status Complete; last commit 2026-09-07.
 
 **2026-09-08:** `034-v4-state-inventory-research` started; 0 commits over 0 nested phases. Outcome: Two ten-iteration lanes, GPT-5.6 Luna on codex and DeepSeek V4 Flash on devin, inventory what the repository ships and rank every stale claim in the old v4 changelog draft; nineteen drift rows ranked, seventeen reproduced, three lane findings dropped. Status Complete; last commit 2026-09-08.
+
+**2026-09-08:** `035-v4-changelog-draft-update` started; 0 commits over 0 nested phases. Outcome: The v4.0.0.0 changelog draft corrected at every confirmed drift row and extended with the memory decommission, runtime rename, completion-gate, simplification, closure and CI work it predated. Status Complete; last commit 2026-09-08.
 
 ### Chronology table
 
@@ -212,6 +214,8 @@ gantt
     ci-dependency-hardening :2026-09-07, 2026-09-07
     section 034
     v4-state-inventory-research :2026-09-08, 2026-09-08
+    section 035
+    v4-changelog-draft-update :2026-09-08, 2026-09-08
 ```
 
 ### Key commits
@@ -439,6 +443,11 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **34. 034-v4-state-inventory-research**
 
 - `d1f75a15f6` 2026-09-08 refactor(specs): nest the last four system-speckit packets under the v4 parent
+- `e4b8fa56ec` 2026-09-08 docs(specs): close the v4 state inventory research with the merged drift table
+
+**35. 035-v4-changelog-draft-update**
+
+- (this commit) 2026-09-08 docs(specs): bring the v4 changelog draft in line with the repository
 
 <!-- /ANCHOR:timeline -->
 
@@ -472,4 +481,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **Second consolidation wave into this parent:** 2026-09-08. Status: Done. Evidence: children `029` to `033` renumbered by first commit; `spec.md` phase map and this timeline.
 
 **Repository state inventoried and the old changelog draft fact-checked:** 2026-09-08, `034`. Status: Done. Evidence: `034-v4-state-inventory-research/research/confirmed-drift.md`.
+
+**Changelog draft brought in line with the repository:** 2026-09-08, `035`. Status: Done. Evidence: `CHANGELOG-v4.0.0.0.md` and `035-v4-changelog-draft-update/implementation-summary.md`.
 <!-- /ANCHOR:milestones -->

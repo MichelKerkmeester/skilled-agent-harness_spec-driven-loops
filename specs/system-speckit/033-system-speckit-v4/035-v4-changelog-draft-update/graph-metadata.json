@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
-  "spec_folder": "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
+  "packet_id": "system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update",
+  "spec_folder": "system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update",
   "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
@@ -11,41 +11,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "repair handle containment",
-      "path containment followups",
-      "repair scan to write gap",
-      "directory swap symlink",
-      "containment branch subsumed",
-      "path containment plan",
-      "handle identity check",
-      "write proves its own precondition",
-      "scan time observation to write",
-      "remove process-derived root source",
-      "directory swap fails first",
-      "repair handle containment tasks"
+      "v4 changelog draft update",
+      "changelog rewrite from confirmed drift",
+      "release notes corrections",
+      "changelog draft patch plan",
+      "apply confirmed drift to release notes",
+      "changelog draft update tasks",
+      "changelog draft update summary",
+      "v4 release notes corrections applied"
     ],
     "key_topics": [
-      "repair",
-      "handle",
-      "containment",
-      "path",
-      "followups",
-      "scan",
-      "write",
-      "gap",
-      "directory",
-      "swap",
-      "symlink",
-      "branch"
+      "changelog",
+      "draft",
+      "rewrite",
+      "confirmed",
+      "drift",
+      "release",
+      "notes",
+      "corrections",
+      "patch",
+      "plan",
+      "apply",
+      "tasks"
     ],
-    "importance_tier": "important",
-    "status": "in_progress",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -68,18 +62,6 @@
         "source": "derived"
       },
       {
-        "name": "acceptance-criteria.md",
-        "kind": "doc",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -92,25 +74,25 @@
         "source": "derived"
       },
       {
-        "name": "Path Containment Follow",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Two",
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -128,19 +110,13 @@
         "source": "derived"
       },
       {
-        "name": "opposite",
-        "kind": "key_phrase",
+        "name": "One Python",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
+        "name": "one",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -152,69 +128,84 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "2. PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan: v4 changelog draft update",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Gate",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
-        "kind": "proper_noun",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
+        "name": "an",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
+        "name": "Tasks",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
+        "name": "Verification",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
+        "name": "Tasks: v4 changelog draft update",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "The Verification",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
-    "created_at": "2026-08-30T14:17:45Z",
-    "last_save_at": "2026-09-08T18:23:43.700Z",
+    "causal_summary": "`../CHANGELOG-v4.0.0.0.md` described a memory engine, an `/interface:` family, an alignment mode, a prompt hub and an owner-first branch grammar that the release does not ship, and said nothing about the memory decommission, the runtime rename, the simplification program, the recorded-findings closure or the CI hardening that landed after it was drafted",
+    "created_at": "2026-09-08T18:23:31.206Z",
+    "last_save_at": "2026-09-08T18:25:19.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f523a39d1ab1c51636c8488a1c0d94196fe64bfe39b2b7dbabfa374b1abf7c2",
+    "source_fingerprint": "sha256:358edd5e07769be43294953bb6aa78a7af9c78b32bb8e9bc027af150c071de8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "785d2c052427d20ceea1bcb724e05605cbbe566fb1667f389796eecd00210d1e",
-      "plan.md": "04bacd77ee82eb8a9e537665457838c22155dc594943df6edf6147405e52110b",
-      "tasks.md": "6f5ea0f71eddbb03edc7ff8b8d7589d3f6fd0625349961cac735144f63b15616",
-      "decision-record.md": "577b952e14586e4629eae11224a4a92e5045b2330afde5392c2be720af9482c7",
-      "implementation-summary.md": "85117e4ae74d915b54d557dd313bced8e4f847cb02fc3a402d343827f9aceddf"
+      "spec.md": "54d9945130ae6931c935c6a5925a4971efbbf5f099f2ba838aa454730a0549ec",
+      "plan.md": "c9d33ccac0da32d462c2a6b81e84c59c62ff589462347c32669302048972a3ce",
+      "tasks.md": "b60e901743df1bb6fd3f76fb7c0ed1cbb5b76d4580344f7667922f528bb4351a",
+      "implementation-summary.md": "e68d489938667b8e64de47a9a8d116b41926af4063aceed8c404c23cb1ef1468"
     },
     "last_active_child_id": null,
     "last_active_at": null
