@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`../CHANGELOG-v4.0.0.0.md` described a memory engine, an `/interface:` family, an alignment mode, a prompt hub and an owner-first branch grammar that the release does not ship, and said nothing about the memory decommission, the runtime rename, the simplification program, the recorded-findings closure or the CI hardening that landed after it was drafted",
     "created_at": "2026-09-08T18:23:31.206Z",
-    "last_save_at": "2026-09-08T18:25:19.673Z",
+    "last_save_at": "2026-09-08T18:37:26.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:358edd5e07769be43294953bb6aa78a7af9c78b32bb8e9bc027af150c071de8c",
+    "source_fingerprint": "sha256:e116e4b5584ff8b302c7d5df7a2afaf148f3a5becb3fa39a037b9aadf1c36d87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54d9945130ae6931c935c6a5925a4971efbbf5f099f2ba838aa454730a0549ec",
+      "spec.md": "5865470798663fa8ff12b5f04f8e92576240182342f854a0f185d162de53c5c3",
       "plan.md": "c9d33ccac0da32d462c2a6b81e84c59c62ff589462347c32669302048972a3ce",
       "tasks.md": "b60e901743df1bb6fd3f76fb7c0ed1cbb5b76d4580344f7667922f528bb4351a",
-      "implementation-summary.md": "e68d489938667b8e64de47a9a8d116b41926af4063aceed8c404c23cb1ef1468"
+      "implementation-summary.md": "3c11eb588b50c83b06c587177421fb5cfcb7886699e94dab2dd911bd18992503"
     },
     "last_active_child_id": null,
     "last_active_at": null

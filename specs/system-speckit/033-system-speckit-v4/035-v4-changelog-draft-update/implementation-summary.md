@@ -37,13 +37,15 @@ _memory:
 |-------|-------|
 | **Status** | Complete |
 | **Input** | `../034-v4-state-inventory-research/research/confirmed-drift.md` |
-| **Output** | `../CHANGELOG-v4.0.0.0.md`, 455 lines |
+| **Output** | `../CHANGELOG-v4.0.0.0.md`, 451 lines, rewritten to HVR |
 <!-- /ANCHOR:status -->
 
 ---
 
 <!-- ANCHOR:changes -->
 ## 2. WHAT CHANGED
+
+- Whole-document rewrite to the human voice rules in a direct, lightly promotional register: 130 em dashes and 63 prose semicolons removed, Oxford list commas dropped, active voice and direct address throughout, headings kept, `&nbsp;` and `---` structure kept.
 
 - Intro and at-a-glance: memory commands named as retired, `/design:*` in place of `/interface:*`, six hubs, goals scoped to OpenCode, Cursor and Pi, a new bullet for the spec-kit work.
 - Spec Kit section: the memory-engine and dark-flags subsections replaced by four new ones (memory database retired, runtime renamed and nested, completion gate coherence with forty rules and the acceptance-criteria and goal addons, three simplification rounds and the findings closure); template count corrected to 1,275; CI mirror parity and Dependabot zero in the closing paragraph.
@@ -65,4 +67,5 @@ _memory:
 
 - `rg -n 'memory_search|/interface|alignment|prompt-models|/prompt-improve|sk-create-diagram|MK_HOOKS|ninety-six|NNNN|1,314|/doc:quality|pi-subagents|eight modes' ../CHANGELOG-v4.0.0.0.md` returns only lines that describe a removal or a correction.
 - Parent `validate.sh --strict` first verdict PASSED with this child present.
+- `python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py ../CHANGELOG-v4.0.0.0.md`: em dashes 130 to 0, prose semicolons 63 to 0. The 31 remaining `;` hits are all `&nbsp;` entities at column 6. Soft flags left: `craft` as the noun in "prompt craft", and a handful of common verbs.
 <!-- /ANCHOR:verification -->
