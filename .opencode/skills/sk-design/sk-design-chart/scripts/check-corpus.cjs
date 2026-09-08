@@ -1375,7 +1375,7 @@ function checkNumberFormat(file, src) {
   // A hover card prints a figure that is nowhere else in the picture, so it is the one place a
   // raw value would reach a reader with no formatter between them.
   if (!/\bdata-chart-tooltip\b/.test(markup)) return;
-  tally('number-format', 5);
+  tally('number-format', 6);
   if (!/function\s+fmt\s*\(/.test(code)) {
     record('number-format', 'error', file,
       'the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them');
@@ -1404,6 +1404,10 @@ function checkNumberFormat(file, src) {
     if (re.test(block)) continue;
     record('number-format', 'error', file,
       `the READOUT block has no ${what}. A tooltip form declares its label formatter, value formatter and key alias beside CHART_DATA`);
+  }
+  if (!/\bunit\s*:\s*['"][^'"]*['"]/.test(block)) {
+    record('number-format', 'error', file,
+      'the READOUT block has no unit field. The card prints the unit after the value, and an empty string is the way to say there is none');
   }
   const codeOutside = stripJsComments(joined.slice(0, start) + joined.slice(end));
   if (!/\bREADOUT\s*\.\s*label\s*\(/.test(codeOutside)) {
@@ -1601,6 +1605,24 @@ function checkLegend(file, src) {
   }
 }
 
+// The reader-visible source line records provenance: where the numbers came from. The
+// instruction telling an editor what to change when retargeting the chart is addressed to
+// someone editing the script, so it lives in the comment directly above the data block it
+// governs — one home, next to the thing it describes. When it rides inside the source line
+// instead, the provenance crowds the instruction and the wording gets duplicated in two
+// roles that drift apart. The source-line check errors when the sentence has crept back into
+// the source element, which happens the moment a template is written without the comment.
+function checkSourceLine(file, src) {
+  const { markup } = regionsOf(stripHtmlComments(src));
+  tally('source-line', 1);
+  const source = /<p\b[^>]*class\s*=\s*"source"[^>]*data-chart-part\s*=\s*"source"[^>]*>([\s\S]*?)<\/p>/.exec(markup);
+  if (!source) return;
+  if (source[1].includes('Replace the data block')) {
+    record('source-line', 'error', file,
+      'the source line still carries the retarget instruction, so the line the reader sees mixes provenance with editing directions. That instruction governs the script, so it belongs in the comment above the data block, not in the reader-visible source line');
+  }
+}
+
 // Tooltip text belongs to the positioned HTML card. SVG remains the accessible picture, but it
 // must not become a second text layer whose values can drift from READOUT or disappear outside
 // the narrow card box.
@@ -1642,6 +1664,64 @@ function checkTooltipCard(file, src) {
     record('tooltip-card', 'error', file,
       'the positioned HTML card is not filled from READOUT and positioned from the mark. A visible card without those links can drift from the table or leave the chart box');
   }
+}
+
+// The finding sentence states a direction, so the cue before the words carries that direction
+// rather than the reader working it out. The check reads the code after comments are stripped, so
+// a FINDING block the cue never consults fails the way it would silently fail a reader: the
+// arrow would say whatever the handwriting said, and handwriting drifts from the sentence.
+function checkFindingCue(file, src) {
+  const { scripts, markup } = regionsOf(stripHtmlComments(src));
+  const code = stripJsComments(scripts.join('\n'));
+  tally('finding-cue', 3);
+  if (!/class\s*=\s*"finding"/.test(markup)) return;
+  if (!/const\s+FINDING\s*=/.test(code)) {
+    record('finding-cue', 'error', file,
+      'the finding paragraph declares no FINDING block. The direction the reader meets before the sentence has to come from the number the sentence tracks, not from handwriting');
+    return;
+  }
+  if (!/trend\s*:\s*'(up|down|none)'/.test(code)) {
+    record('finding-cue', 'error', file,
+      'the FINDING block declares no direction of up, down or none. A trend outside that set cannot decide what the cue before the finding says');
+  }
+  if (!/FINDING\s*\.\s*trend/.test(code)) {
+    record('finding-cue', 'error', file,
+      'the cue is not read from FINDING.trend. A cue that does not consult the declared trend can disagree with the sentence it introduces');
+  }
+}
+
+// The data table folds behind a native disclosure so the printed card stays a picture with its
+// readouts while every plotted value stays one click away for whoever needs the numbers. The
+// fold wraps the table's data-chart-table register rather than replacing it, and the default
+// state follows the interaction register: a form that already answers the pointer in a tooltip
+// starts closed, while a form without a tooltip is inert, so its table starts open as the only
+// readable source of the values.
+function checkTableDisclosure(file, src) {
+  const { markup } = regionsOf(stripHtmlComments(src));
+  tally('table-disclosure', 3);
+  const hasTooltip = /\bdata-chart-tooltip\b/.test(markup);
+  const details = /<details\b[^>]*class="data"[^>]*>/.exec(markup);
+  if (!details) {
+    record('table-disclosure', 'error', file,
+      'no <details class="data"> disclosure wraps the data-chart-table. The table is folded, not removed: the disclosure keeps every plotted value in the document for the reader who needs the numbers');
+    return;
+  }
+  const close = markup.indexOf('</details>', details.index);
+  const table = /<table\b[^>]*\bdata-chart-table\b/.exec(markup);
+  if (!table || close === -1 || table.index < details.index || table.index > close) {
+    record('table-disclosure', 'error', file,
+      'the data-chart-table is not inside the <details class="data"> disclosure. The table is folded, not removed: lifting it out of the details drops the summary the reader uses to reach the numbers');
+  }
+  if (!/<summary\b/.test(markup.slice(details.index, close === -1 ? markup.length : close))) {
+    record('table-disclosure', 'error', file,
+      'the disclosure details carries no <summary>. Without a summary the folded table has no visible, keyboard-operable label, so a pointerless reader cannot reopen the numbers');
+  }
+  const hasOpen = /(^|\s)open(?=[\s>]|$)/.test(details[0]);
+  if (hasOpen === !hasTooltip) return;
+  record('table-disclosure', 'error', file,
+    hasTooltip
+      ? 'the disclosure carries open although the form answers the pointer in a tooltip. A tooltip-bearing form keeps the table folded, because the opened card would duplicate a table the reader did not ask for'
+      : 'the disclosure does not carry open although the form has no tooltip. An inert form hides its only readable values, so the table starts open');
 }
 
 // A single mark may sweep along its own ramp, and only where the system already encodes
@@ -2542,6 +2622,9 @@ function main() {
     checkTypeScale(name, src, palette);
     checkLegend(name, src);
     checkTooltipCard(name, src);
+    checkFindingCue(name, src);
+    checkTableDisclosure(name, src);
+    checkSourceLine(name, src);
     checkGradientSweep(name, src, systemId);
     checkSeriesMapping(name, src, palette, systemId);
     checkCurveContract(name, src);
