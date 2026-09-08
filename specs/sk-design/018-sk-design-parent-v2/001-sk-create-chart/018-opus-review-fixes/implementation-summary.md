@@ -58,7 +58,8 @@ The checker no longer lets a themed block through when a role is not a six-digit
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `scripts/check-corpus.cjs` | Modified | Hex-only roles, distinguishability gate, `hueGap`, unused exports removed |
+| `scripts/check-corpus.cjs` | Modified | Hex-only roles, distinguishability gate, `hueGap`, unused exports removed, type scale read from the palette source |
+| `assets/color/palettes.json`, `references/template-contract.md` | Modified | `typeScale` carries the chart roles, departures and the sheet scale |
 | `scripts/apply-design-md.cjs` | Modified | Distinguishability on admit, relative provenance, stack-aware fonts |
 | `references/design-md-theming.md` | Modified | Rules as implemented |
 | `assets/templates/grouped-bars.html`, `assets/templates/stacked-bars.html`, `assets/examples/grouped-bars-stripe-style.html` | Modified | Category-headed cards; delivery palette regenerated |
@@ -83,7 +84,7 @@ Each checker rule was proved by a mutation on a themed copy scanned with `--extr
 |----------|-----|
 | Distinguishability is contrast or hue, not both | A category set tells colours apart by hue where a ramp tells them apart by weight; requiring the ramp step alone would refuse every real brand palette |
 | Ink is the last neutral fallback, not the first | It keeps the highlighted mark distinct from the fourth series |
-| Type scale stays in the checker for now | Moving it into the palette source touches the two proof sheets; recorded as the open question |
+| The chart type scale lives in the palette source | The checker reads `typeScale.roles` and `departures` for forms and `sheetRoles` for the two proof sheets, so a change of register is a change to one file |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -106,7 +107,7 @@ Each checker rule was proved by a mutation on a themed copy scanned with `--extr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The visual type scale is hard-coded in the checker** while `palettes.json` still describes the two proof sheets. Recorded as the open question; not changed here.
+1. **None open from the review.** Every finding is fixed; the reviewer's confirmed-clean list is the baseline.
 <!-- /ANCHOR:limitations -->
 
 ---

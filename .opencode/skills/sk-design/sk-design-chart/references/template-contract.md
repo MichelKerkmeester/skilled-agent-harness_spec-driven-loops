@@ -103,8 +103,9 @@ The sentinels are how the corpus check finds the two palette regions it has an o
 
 The visual pass moves the corpus to the compact register in the frozen shadcn examples: a title
 that is easy to scan, a description that stays secondary, and 12px figure labels that remain
-legible beside a data mark. `type-scale` holds the allowed projection in the checker, and a size
-outside it fails rather than becoming a one-off guess.
+legible beside a data mark. The palette source publishes the projection under `typeScale`, the
+`type-scale` family reads it from there, and a size outside it fails rather than becoming a
+one-off guess. The two palette proof sheets keep their finer six-rung scale under `sheetRoles`.
 
 | Role | Size | What is set in it |
 | --- | --- | --- |

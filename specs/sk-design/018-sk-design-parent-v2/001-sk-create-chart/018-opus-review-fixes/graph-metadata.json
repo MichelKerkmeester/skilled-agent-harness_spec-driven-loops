@@ -48,7 +48,8 @@
       "scratch/mutations.txt",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md",
+      ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "design-md-theming.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An independent Opus review of packets 015, 016 and 017 found that the checker's design-md branch skipped every gate when a role was not a six-digit hex, that two of the cursor default's series were the same green, that the reference described a series rule the mapper did not implement, that three evidence cells in 016 pointed at wrong lines and a stale capture, and that multi-series tooltip cards named the series in the header and \"Value\" on the row instead of the category and the series",
     "created_at": "2026-09-08T08:14:39Z",
-    "last_save_at": "2026-09-08T08:18:59.546Z",
+    "last_save_at": "2026-09-08T09:39:10.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9484fc8ecbd3f0f392b3827ee0467e594e641f121653e757e5bd90f27b9fa99c",
+    "source_fingerprint": "sha256:dd9c19d91d2f031ba096608140bbd02f444b8e1f9930999aaa66ef29efb3fd8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e5276e5443ffe25ec373a3bc6a5e524f72930c6cffb7e6d0569130c33921dc4",
+      "spec.md": "12711ee6baa43a6542d2d734dbe32fbcfddf3aea5e7a69ea17608feae0cc7746",
       "plan.md": "3df089dbee093b37072c72f733b381db3c93b84520f8a3cd961e73eb1e9f95c8",
       "tasks.md": "cf175e2efeb99bb3c700ac6ad2b03f5ad25b7c405529197eb985f3923107615f",
-      "implementation-summary.md": "6a5a9ef70d3637cb974b19c1e45b28058ad712fe65c0b457fe16922a44a2cf3d"
+      "implementation-summary.md": "fe22db1479094401a8a4c751fa319db2d596a30adeea019f1fca9873a6c3d092"
     },
     "last_active_at": null
   }

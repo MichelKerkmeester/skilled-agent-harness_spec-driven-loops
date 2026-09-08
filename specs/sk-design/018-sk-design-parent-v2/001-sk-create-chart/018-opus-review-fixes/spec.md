@@ -50,10 +50,9 @@ Every P1 is fixed with a mutation or a regenerated artefact proving it, the P2s 
 - Tooltip cards on grouped bars, stacked bars and the stripe delivery name the category in the header and the series on the row.
 - Evidence: 016's acceptance citations repointed to the lines that hold, the test count corrected, the six themed captures regenerated from the committed script, the generated themed sets removed from scratch.
 - `fig-title` renamed `fig-label` on the `<desc>` and its `aria-labelledby` in all 33 files.
+- The chart type scale moved from the checker into `palettes.json`; the `sourceRows` alias removed from the mapper.
 
 ### Out of Scope
-- Moving the visual type scale from the checker into `palettes.json` - a larger change to the palette source, recorded as an open item.
-- The `sourceRows` alias in the mapper - harmless, left as it is.
 
 ### Files to Change
 
@@ -64,6 +63,7 @@ Every P1 is fixed with a mutation or a regenerated artefact proving it, the P2s 
 | `.opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md` | Modify | The series rule as implemented, the hex rule, the font rule |
 | `.opencode/skills/sk-design/sk-design-chart/assets/templates/{grouped-bars,stacked-bars}.html`, `assets/examples/grouped-bars-stripe-style.html` | Modify | Category-headed cards |
 | `.opencode/skills/sk-design/sk-design-chart/assets/**/*.html` | Modify | `fig-label` |
+| `.opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json` | Modify | `typeScale` carries the chart roles, departures and the sheet scale |
 | `.opencode/skills/sk-design/sk-design-chart/screenshots/**` | Regenerate | Captures of the fixed corpus |
 | `../016-design-md-theming/{acceptance-criteria,implementation-summary}.md`, `scratch/captures/` | Modify | Corrected evidence |
 <!-- /ANCHOR:scope -->
@@ -111,7 +111,7 @@ Every P1 is fixed with a mutation or a regenerated artefact proving it, the P2s 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the visual type scale live in `palettes.json` rather than in `checkTypeScale`? The reviewer's point stands; it is a change to the palette source and its two proof sheets.
+- None. The type scale question was closed on the operator's instruction to apply every fix: the chart roles and departures now live in `palettes.json` under `typeScale`, the proof sheets keep theirs under `sheetRoles`, and the checker reads both.
 <!-- /ANCHOR:questions -->
 
 ---

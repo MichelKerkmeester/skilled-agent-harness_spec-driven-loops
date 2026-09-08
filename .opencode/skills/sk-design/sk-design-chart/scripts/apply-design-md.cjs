@@ -430,27 +430,26 @@ function themeIsDeclaredDark(design, tokens) {
 }
 
 function deriveTheme(rows, stock, light, useDesignValues, gates, label) {
-  const sourceRows = rows;
-  const surfaceRow = useDesignValues ? chooseSurface(sourceRows, light) : rowFor(stock.surface, sourceRows, `stock ${light ? 'light' : 'dark'} surface`);
+  const surfaceRow = useDesignValues ? chooseSurface(rows, light) : rowFor(stock.surface, rows, `stock ${light ? 'light' : 'dark'} surface`);
   const surface = useDesignValues ? surfaceRow.value : stock.surface;
-  const inkRow = useDesignValues ? chooseInk(sourceRows, light) : rowFor(stock.ink, sourceRows, `stock ${light ? 'light' : 'dark'} ink`);
+  const inkRow = useDesignValues ? chooseInk(rows, light) : rowFor(stock.ink, rows, `stock ${light ? 'light' : 'dark'} ink`);
   const ink = useDesignValues ? inkRow.value : stock.ink;
   const mutedResult = useDesignValues
-    ? targetTextRow(sourceRows, surface, gates.textOnSurface, stock.muted, ink)
-    : { row: rowFor(stock.muted, sourceRows, `stock ${light ? 'light' : 'dark'} muted`), value: stock.muted };
+    ? targetTextRow(rows, surface, gates.textOnSurface, stock.muted, ink)
+    : { row: rowFor(stock.muted, rows, `stock ${light ? 'light' : 'dark'} muted`), value: stock.muted };
   const chrome = {
     surface,
     ink,
     muted: mutedResult.value,
     rule: ruleValue(ink),
   };
-  const series = chooseSeries(sourceRows, surface, ink, gates, label);
-  const emphasis = chooseEmphasis(sourceRows, surface, ink, series[0].value, gates, series);
+  const series = chooseSeries(rows, surface, ink, gates, label);
+  const emphasis = chooseEmphasis(rows, surface, ink, series[0].value, gates, series);
   const mappings = [
     { role: 'surface', row: surfaceRow, value: surface },
     { role: 'ink', row: inkRow, value: ink },
     { role: 'muted', row: mutedResult.row, value: mutedResult.value, adjusted: mutedResult.adjusted },
-    { role: 'rule', row: rowFor(chrome.rule, sourceRows, `ink at ${STOCK_DARK_ALPHA} alpha`), value: chrome.rule },
+    { role: 'rule', row: rowFor(chrome.rule, rows, `ink at ${STOCK_DARK_ALPHA} alpha`), value: chrome.rule },
     ...series.map((entry, index) => ({ role: `series-${index + 1}`, row: entry.row, value: entry.value })),
     { role: 'emphasis', row: emphasis.row, value: emphasis.value },
   ];
