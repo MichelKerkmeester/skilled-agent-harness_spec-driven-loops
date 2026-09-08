@@ -35,7 +35,6 @@
     "npm:pi-blackhole",
     "npm:pi-cache-optimizer",
     "npm:pi-statusline",
-    "npm:pi-subagents",
     "npm:pi-web-access",
     "git:github.com/dbachelder/pi-btw",
     "git:github.com/janvitos/pi-plan-build@main"
