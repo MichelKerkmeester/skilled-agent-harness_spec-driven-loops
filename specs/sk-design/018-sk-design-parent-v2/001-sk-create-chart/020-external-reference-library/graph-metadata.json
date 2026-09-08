@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "library/gallery.html",
+      "library/index.md",
+      "scratch/capture.sh",
+      "library/index.json",
+      "scratch/capture-playwright.cjs",
+      "scratch/sources.json",
+      "scratch/build-library.py",
+      "scratch/contact-sheet.cjs",
+      "scratch/capture-round2.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "gallery.html",
+        "kind": "file",
+        "path": "library/gallery.html",
+        "source": "derived"
+      },
+      {
+        "name": "index.md",
+        "kind": "doc",
+        "path": "library/index.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture.sh",
+        "kind": "script",
+        "path": "scratch/capture.sh",
+        "source": "derived"
+      },
+      {
+        "name": "index.json",
+        "kind": "config",
+        "path": "library/index.json",
+        "source": "derived"
+      },
+      {
+        "name": "capture-playwright.cjs",
+        "kind": "file",
+        "path": "scratch/capture-playwright.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sources.json",
+        "kind": "config",
+        "path": "scratch/sources.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-library.py",
+        "kind": "file",
+        "path": "scratch/build-library.py",
+        "source": "derived"
+      },
+      {
+        "name": "contact-sheet.cjs",
+        "kind": "file",
+        "path": "scratch/contact-sheet.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "capture-round2.sh",
+        "kind": "script",
+        "path": "scratch/capture-round2.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Health",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The chart corpus was measured against one external reference, the frozen shadcn copy",
+    "created_at": "2026-09-08T12:00:52Z",
+    "last_save_at": "2026-09-08T12:24:16.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8850a0ad8f17cd246089e9a0dc5f29ea152f815aabe9a62324fcd659c46b7a45",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "32b6f0c8d81674b51e7cea3400374b7af59b42394d313808d1e2f96ed4cc770e",
+      "plan.md": "956bec94d7ede2350466d828c59209a82c7abeea18fad696bcdfc4338de58088",
+      "tasks.md": "31795798f15f90c0ac9e00744c77c407eecfd8ea5e4fa546e6fdf97ed0bdd3b2",
+      "implementation-summary.md": "ab465f0362d6048433800818bf0f761720a56d787f601623fe909239f1153e67"
+    },
+    "last_active_at": null
+  }
+}
