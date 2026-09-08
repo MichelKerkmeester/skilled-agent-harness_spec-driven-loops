@@ -82,19 +82,22 @@ async function captureGuardHooks() {
       hooksByName.set(type, list);
     },
     registerCommand() {},
+    registerTool() {},
   } as unknown as ExtensionAPI;
   freshModule.default(pi);
   // The registration call installs every handler synchronously. The guard's
   // message_end handler is registered before the stats handler (which other
   // suites capture as the last message_end registration), so it is the
-  // first message_end handler in registration order.
+  // first message_end handler in registration order. The hash-verified
+  // edits annotation hook registers the first tool_result handler, so the
+  // guard's tool_result handler is the last one registered.
   const messageEndHandlers = hooksByName.get('message_end') ?? [];
   const toolResultHandlers = hooksByName.get('tool_result') ?? [];
   assert.ok(messageEndHandlers.length >= 1, 'message_end handler registered');
-  assert.ok(toolResultHandlers.length >= 1, 'tool_result handler registered');
+  assert.ok(toolResultHandlers.length >= 2, 'tool_result handlers registered');
   return {
     messageEnd: messageEndHandlers[0],
-    toolResult: toolResultHandlers[0],
+    toolResult: toolResultHandlers.at(-1)!,
   };
 }
 

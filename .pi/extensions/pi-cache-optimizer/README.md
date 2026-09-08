@@ -20,6 +20,7 @@ This package is a fork of `jiangge/pi-cache-optimizer` v2.8.0. The fork is publi
 - [Commands](#commands)
 - [Persistent opt-out](#persistent-opt-out)
 - [Retry loop guard](#retry-loop-guard)
+- [Hash-verified edits](#hash-verified-edits)
 - [Footer cache stats mode](#footer-cache-stats-mode)
 - [OpenAI-compatible proxy setup](#openai-compatible-proxy-setup)
 - [Adaptive thinking models](#adaptive-thinking-models)
@@ -109,6 +110,18 @@ A failing turn can re-issue the same billable tool batch until the budget is gon
 - It cannot fire on a first attempt, and one legitimate retry never triggers it: escalation requires three consecutive all-failed batches.
 - It does not change transport-level retry policy; provider-side retries remain the provider's concern.
 - It does not affect cache measurement, prompt rewriting, compat warnings, `doctor`, or `fix`.
+
+## Hash-verified edits
+
+Exact-string editing fails silently when a file changes between the model's read and its edit: the edit still matches somewhere and lands on the wrong lines. This extension adds a hash-anchored editing path that carries the evidence instead.
+
+- `read` output is annotated with per-line content hashes (`     N:HHHHHHHH→content`).
+- The `edit_lines` tool replaces an inclusive 1-based line range (`from..to`) with `new_text`, but only when the endpoint hashes it is given still match the file as it is now.
+- On drift, the edit is **refused** with an error naming the drifted line, the claimed vs. actual hash, and the current line content, so the next attempt can be built from a fresh `read`.
+
+**Refusal is the failure mode.** A stale hash never falls back to a fuzzy or best-effort match; a looser match is exactly the silent corruption this path exists to prevent. The existing exact-string `edit` tool is untouched, and the unguarded path remains available for edits built from current content.
+
+The capability is editing, not caching, and its placement inside this extension is under review. It is implemented as one self-contained block with a single registration entry point and no shared state with the cache code, so it can be lifted into its own extension without being unpicked from cache internals.
 
 ## Footer cache stats mode
 
