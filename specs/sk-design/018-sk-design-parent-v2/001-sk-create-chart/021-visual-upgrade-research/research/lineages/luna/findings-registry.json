@@ -1,0 +1,441 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "question": "How do the current chart cards compare with strong reference card anatomy, hierarchy and spacing?",
+      "answer": "The shared five-part card register is strong. A narrowly scoped metric-and-delta treatment remains worth investigating for scalar and time-series forms.",
+      "iteration": 1,
+      "evidence": "iterations/iteration-001.md"
+    },
+    {
+      "question": "Which mark treatments are genuinely missing or weak after the shipped phases 15 to 19?",
+      "answer": "The shipped register is coherent. Add per-form sparse-dot and meaningful-zero signed-area policies, while retaining current line weight, flat stack separators, gap handling and baseline-anchored columns.",
+      "iteration": 2,
+      "evidence": "iterations/iteration-002.md"
+    },
+    {
+      "question": "Which tooltip, legend and interaction patterns improve reading without adding decoration?",
+      "answer": "Keep the shipped tooltip geometry, table fallback, below-plot legend and reversible dimming. Add per-series tooltip indicator shapes, permit data-backed contextual totals, and earn cursor guides only for dense multi-series forms.",
+      "iteration": 3,
+      "evidence": "iterations/iteration-003.md"
+    },
+    {
+      "question": "Which colour and dark-ground changes are numerically safe under the cursor register and its gates?",
+      "answer": "The current cursor palette is numerically safe. Preserve the three systems, their independent dark values and role semantics, and use existing tokens for future scoped additions.",
+      "iteration": 4,
+      "evidence": "iterations/iteration-004.md"
+    },
+    {
+      "question": "Which missing micro-forms earn a place, and which enforceable rules belong in the checker?",
+      "answer": "Add one spark capability with line, area and bar variants, plus tracker and bar-list. Keep KPI delta as optional anatomy, retain the existing progress and countable-ring answers, and enforce stable shared contracts while leaving question-fit and visual judgement per-template.",
+      "iteration": 5,
+      "evidence": "iterations/iteration-005.md"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "luna-i001-f001",
+      "title": "Shared five-part card register is already coherent",
+      "description": "Headline, subtitle, figure, footer finding and source are ordered and visibly separated.",
+      "iteration": 1,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:226-245", ".opencode/skills/sk-design/sk-design-chart/screenshots/templates/daily-line.png"]
+    },
+    {
+      "id": "luna-i001-f002",
+      "title": "Optional metric and delta are the credible anatomy gap",
+      "description": "References foreground a scalar or period delta where the generic time-series card foregrounds narrative text.",
+      "iteration": 1,
+      "status": "supported",
+      "sources": ["020-external-reference-library/library/details/apple-hig-charts-light-07.jpg", "020-external-reference-library/library/details/vercel-docs-analytics-light-01.jpg", "020-external-reference-library/library/tremor-blocks-light.jpg"]
+    },
+    {
+      "id": "luna-i001-f003",
+      "title": "Global spacing should stay stable",
+      "description": "The 760px card, shared padding and 480px figure floor are deliberate while plot geometry is per form.",
+      "iteration": 1,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:59-107", ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:150-164"]
+    },
+    {
+      "id": "luna-i001-f004",
+      "title": "Conclusion headlines should remain",
+      "description": "The corpus headline and footer carry interpretation rather than only chart type labels.",
+      "iteration": 1,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:31-39", "020-external-reference-library/library/details/shadcn-line-light-01.jpg"]
+    },
+    {
+      "id": "luna-i001-f005",
+      "title": "Dashboard chrome is out of standalone scope",
+      "description": "Controls and toolbars are product context, not a universal delivery-card part.",
+      "iteration": 1,
+      "status": "ruled_out",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:27-43", "020-external-reference-library/library/details/vercel-docs-analytics-light-01.jpg", "020-external-reference-library/library/details/carbon-anatomy-light-01.jpg"]
+    },
+    {
+      "id": "luna-i002-f001",
+      "title": "Shipped line, area and bar register is coherent",
+      "description": "The current 2px line, restrained single-area fade, flat separated stack and baseline-anchored columns cover common questions without a global mark reset.",
+      "iteration": 2,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:128-147,332-353", ".opencode/skills/sk-design/sk-design-chart/assets/templates/stacked-area.html:128-142,349-370", ".opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html:129-131,266-318"]
+    },
+    {
+      "id": "luna-i002-f002",
+      "title": "Sparse series need an explicit point policy",
+      "description": "Transparent hit circles preserve interaction but hide point density. A per-form sparse-dot policy is useful, while dense daily lines should remain dotless by default.",
+      "iteration": 2,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:516-524", "020-external-reference-library/library/details/index.md:23,26", "020-external-reference-library/library/details/mantine-area-light-17.jpg"]
+    },
+    {
+      "id": "luna-i002-f003",
+      "title": "Signed area around a meaningful zero is missing",
+      "description": "The current area closes every run to one baseline treatment. A signed form should split positive and negative fills only when zero is semantically meaningful.",
+      "iteration": 2,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:484-513", "020-external-reference-library/library/details/mantine-area-light-09.jpg", "020-external-reference-library/library/details/index.md:26,28"]
+    },
+    {
+      "id": "luna-i002-f004",
+      "title": "Flat separated stack fills should remain",
+      "description": "The existing 0.4 fills, 2px surface separators and four-series capacity guard keep composition and identity distinct. A universal gradient would add ambiguity.",
+      "iteration": 2,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/stacked-area.html:128-142,515-527", "020-external-reference-library/library/details/tremor-area-light-01.jpg"]
+    },
+    {
+      "id": "luna-i002-f005",
+      "title": "Baseline-anchored column geometry is correct",
+      "description": "Rounding only the free end preserves quantitative contact with the baseline. Fully rounded reference bars do not justify changing this default.",
+      "iteration": 2,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html:129-131,266-280", "020-external-reference-library/library/details/shadcn-bar-light-05.jpg"]
+    },
+    {
+      "id": "luna-i002-f006",
+      "title": "Curve, label and density choices belong to individual forms",
+      "description": "Smooth curves, in-band labels, grouped bars and dense monochrome areas are valid specialized variants but should not become global defaults or new catalog families without a question.",
+      "iteration": 2,
+      "status": "supported",
+      "sources": ["020-external-reference-library/library/details/index.md:21,27,29", ".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:332-353", ".opencode/skills/sk-design/sk-design-chart/references/catalog.md:44-69"]
+    },
+    {
+      "id": "luna-i003-f001",
+      "title": "Shipped tooltip geometry is contract-strong",
+      "description": "The HTML card is bounded, palette-driven, positioned against the mark, initialized empty and wired to the same readout values as the table.",
+      "iteration": 3,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:173-203,393-436", ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:415-418,621-625"]
+    },
+    {
+      "id": "luna-i003-f002",
+      "title": "Contextual headers and totals should be optional",
+      "description": "Formatter, unit and total rows help when the data contract supplies them, but should not become decorative tooltip chrome.",
+      "iteration": 3,
+      "status": "supported",
+      "sources": ["020-external-reference-library/library/details/shadcn-tooltip-dark-05.jpg", "020-external-reference-library/library/details/shadcn-tooltip-dark-09.jpg", "020-external-reference-library/library/details/vercel-analytics-dark-03.jpg", ".opencode/skills/sk-design/sk-design-chart/assets/templates/stacked-area.html:644-662"]
+    },
+    {
+      "id": "luna-i003-f003",
+      "title": "Mixed mark types need truthful tooltip indicators",
+      "description": "The shared square indicator hides the composed chart's line-versus-column distinction that the legend already carries.",
+      "iteration": 3,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:197-203,409-417", ".opencode/skills/sk-design/sk-design-chart/assets/templates/bar-line-composed.html:158-160,645-671", "020-external-reference-library/library/details/shadcn-tooltip-dark-02.jpg"]
+    },
+    {
+      "id": "luna-i003-f004",
+      "title": "Dimming and pointer reach are reversible and bounded",
+      "description": "0.3 non-selected opacity, empty initial state, latch reset, keyboard controls and REACH 36 support comparison without changing the settled picture.",
+      "iteration": 3,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/stacked-area.html:155-169,664-698", ".opencode/skills/sk-design/sk-design-chart/assets/templates/daily-line.html:599-703", ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:589-619"]
+    },
+    {
+      "id": "luna-i003-f005",
+      "title": "Below-plot legend placement is the correct small-card default",
+      "description": "The current below-plot 16px-gap row matches compact area references, while Carbon's side legend and panel serve larger compositions.",
+      "iteration": 3,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/templates/stacked-area.html:106-109,578-603", "020-external-reference-library/library/details/mantine-area-light-13.jpg", "020-external-reference-library/library/details/carbon-legends-light-07.jpg"]
+    },
+    {
+      "id": "luna-i003-f006",
+      "title": "Cursor guides should be earned by dense multi-series forms",
+      "description": "A guide or active marker can anchor a crowded x position, but the default tooltip remains legible without a permanent guide.",
+      "iteration": 3,
+      "status": "supported",
+      "sources": ["020-external-reference-library/library/details/carbon-anatomy-light-01.jpg", "020-external-reference-library/library/details/vercel-analytics-light-03.jpg", "020-external-reference-library/library/details/shadcn-tooltip-dark-01.jpg"]
+    },
+    {
+      "id": "luna-i004-f001",
+      "title": "The stock palette clears both-theme numeric gates with narrow margins",
+      "description": "The lowest light categorical and neutral mark ratios are 3.02:1 and 3.01:1, while the light ordered adjacent separation is 1.30:1. The corresponding dark minima also clear their gates.",
+      "iteration": 4,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json:64-103", ".opencode/skills/sk-design/sk-design-chart/scripts/color-gates.cjs:38-60"]
+    },
+    {
+      "id": "luna-i004-f002",
+      "title": "Dark palette blocks are explicit theme values, not reversed light arrays",
+      "description": "The dark ground uses explicit neutral, ordered and categorical values with measured dark-surface ratios rather than a byte-reversed light palette.",
+      "iteration": 4,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json:11-17,81-103", ".opencode/skills/sk-design/sk-design-chart/references/color-system.md:197-203,248-271"]
+    },
+    {
+      "id": "luna-i004-f003",
+      "title": "Role-based colour should remain separate from a raw shadcn blue family",
+      "description": "The recorded comparison supports the cursor's neutral, ordered and categorical role split instead of adding another blue family with weaker reported separation.",
+      "iteration": 4,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/references/color-system.md:41-64"]
+    },
+    {
+      "id": "luna-i004-f004",
+      "title": "Rule is structural and remains outside mark contrast gates",
+      "description": "Light rule is #CDCDC9 and dark rule is #F7F7F417, or 9.02 percent alpha. Separators and tooltip borders should reuse structural roles rather than become data colours.",
+      "iteration": 4,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json:5-17,64-74", ".opencode/skills/sk-design/sk-design-chart/references/color-system.md:219,292-294"]
+    },
+    {
+      "id": "luna-i004-f005",
+      "title": "Ordered ramps are the only supported multi-step sweep",
+      "description": "The ordered ramp clears its two-theme step and endpoint gates, while categorical colour remains unordered and should not be turned into a magnitude sweep.",
+      "iteration": 4,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json:86-93", ".opencode/skills/sk-design/sk-design-chart/references/color-system.md:223-240,253-260"]
+    },
+    {
+      "id": "luna-i004-f006",
+      "title": "Reference screenshots do not provide admissible external token values",
+      "description": "The local Carbon, Apple, Vercel and Observable captures provide rendered pixels but no external hex or RGB token table, so they cannot justify a new contrast-tested token.",
+      "iteration": 4,
+      "status": "supported",
+      "sources": ["specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/index.md:7-14,35-38,49-58", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/carbon-palettes-light-01.jpg", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/apple-hig-charts-light-01.jpg", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/vercel-analytics-dark-03.jpg", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/plot-area-docs-dark-06.jpg"]
+    },
+    {
+      "id": "luna-i005-f001",
+      "title": "The missing frontier is compact capability, not full-size catalog coverage",
+      "description": "The 26 current rows cover the principal quantitative question families, while the local references expose compact monitoring and context forms that are not represented as catalog rows.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/references/catalog.md:42-69,105-118,149-167", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/index.md:25-29"]
+    },
+    {
+      "id": "luna-i005-f002",
+      "title": "Spark earns one capability with line, area and bar variants",
+      "description": "The compact trend role is distinct from the full daily-line form, but its three marks should share one spark question rather than become unrelated gaps.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": ["specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/tremor-spark-light.jpg", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/vercel-analytics-light-01.jpg", ".opencode/skills/sk-design/sk-design-chart/references/catalog.md:57"]
+    },
+    {
+      "id": "luna-i005-f003",
+      "title": "Tracker earns a discrete status-over-time form",
+      "description": "Equal status blocks answer whether each period was healthy, missing or exceptional, distinct from a numeric daily line and a full-year quantity grid.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": ["specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/tremor-tracker-light.jpg", ".opencode/skills/sk-design/sk-design-chart/references/catalog.md:57,59", ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json:95-103"]
+    },
+    {
+      "id": "luna-i005-f004",
+      "title": "Bar-list earns a compact ranked-list variant",
+      "description": "In-bar labels and right-edge values create a compact density contract for long names while preserving the existing comparison semantics.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": ["specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/tremor-bar-list-light.jpg", ".opencode/skills/sk-design/sk-design-chart/references/catalog.md:49-50"]
+    },
+    {
+      "id": "luna-i005-f005",
+      "title": "KPI delta belongs to optional card anatomy",
+      "description": "A primary value and meaningful baseline delta can improve a form whose data supplies them, but goal progress and countable part-to-whole already have honest forms.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": ["specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/tremor-spark-light.jpg", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/vercel-docs-analytics-light-01.jpg", "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/apple-hig-charts-light-07.jpg", ".opencode/skills/sk-design/sk-design-chart/references/catalog.md:53,61,132,139-142"]
+    },
+    {
+      "id": "luna-i005-f006",
+      "title": "Existing checker assertions cover the stable shared contract",
+      "description": "Document, card, geometry, palette, data, catalog and interaction assertions can catch concrete drift in new forms, including missing parts, failed theme gates, index drift, prefilled cards and unreachable marks.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/scripts/README.md:73-131", ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:394-410,543-545,589-619"]
+    },
+    {
+      "id": "luna-i005-f007",
+      "title": "Only explicit new contracts justify new checker assertions",
+      "description": "A mark-policy declaration could cover point, curve, fill and meaningful-zero intent, and a tooltip-indicator declaration could match indicator kind to mark kind, while question-fit remains review judgement.",
+      "iteration": 5,
+      "status": "supported",
+      "sources": [".opencode/skills/sk-design/sk-design-chart/references/template-contract.md:502-514,539-545", ".opencode/skills/sk-design/sk-design-chart/scripts/README.md:97-116"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Universal KPI tabs, toolbar, minimap or product-context header inside every standalone delivery card.",
+      "reason": "The references show these in application compositions while the contract defines one chart card and a separate table as the delivery unit.",
+      "iteration": 1
+    },
+    {
+      "direction": "Global increase to card padding, card width or card radius based only on larger reference crops.",
+      "reason": "The current measurements are deliberate and the contract makes plot geometry per form.",
+      "iteration": 1
+    },
+    {
+      "direction": "Global visible points on every line and area.",
+      "reason": "The current daily line intentionally uses transparent circles as hit regions and reserves the visible point for the emphasized datum; references present dots as a variant for sparse or point-oriented data.",
+      "iteration": 2
+    },
+    {
+      "direction": "Universal smooth interpolation or gradient fills for stacked composition.",
+      "reason": "Curve and fill choices carry data meaning. A smooth or gradient stack could imply values between observations and compete with series identity.",
+      "iteration": 2
+    },
+    {
+      "direction": "Rounding the baseline end of quantitative columns.",
+      "reason": "The baseline is the measurement anchor, so the free-end-only path keeps the column in contact with its scale.",
+      "iteration": 2
+    },
+    {
+      "direction": "Adding LayerChart, Unovis or another external mark family to the catalog solely because the library contains it.",
+      "reason": "The question-first catalog already maps the shipped forms and reserves specialized missing-form decisions for the final angle.",
+      "iteration": 2
+    },
+    {
+      "direction": "Global tooltip padding, radius, shadow or width restyle.",
+      "reason": "The current 128px floor, 6px by 10px padding, bounded placement and table-backed readout already satisfy the interaction contract.",
+      "iteration": 3
+    },
+    {
+      "direction": "Icons in every tooltip.",
+      "reason": "The icon reference is a specialized label treatment and the current swatch or rule can carry series identity with less visual noise.",
+      "iteration": 3
+    },
+    {
+      "direction": "Moving every legend above or beside the plot.",
+      "reason": "The contract and compact examples support below-plot legends, while alternate positions belong to larger compositions.",
+      "iteration": 3
+    },
+    {
+      "direction": "A permanent cursor guide on every form.",
+      "reason": "The default tooltip works without a guide, and a guide only earns its space when x-position ambiguity is demonstrated.",
+      "iteration": 3
+    },
+    {
+      "direction": "Treating legend click and legend hover as the same state without an explicit contract decision.",
+      "reason": "The current code wires legend click and keyboard latch but no pointerenter or pointerleave preview, so the two states are observably different.",
+      "iteration": 3
+    },
+    {
+      "direction": "Replacing the cursor palette with a raw shadcn blue set.",
+      "reason": "The local numeric comparison does not show a safer result for the raw blue family, while the current role systems clear their gates.",
+      "iteration": 4
+    },
+    {
+      "direction": "Reversing the light arrays to make the dark theme.",
+      "reason": "The dark palette is authored as separate values against its own surface and has its own measured ratios.",
+      "iteration": 4
+    },
+    {
+      "direction": "Adding a new unmeasured external palette token from Carbon, Apple, Vercel or Observable screenshots.",
+      "reason": "The local captures do not expose source token values and screenshot pixels are not enough to identify a safe token.",
+      "iteration": 4
+    },
+    {
+      "direction": "Using the structural rule role as a data mark.",
+      "reason": "Rule is intentionally ungated and is reserved for low-contrast structure rather than marks that carry data.",
+      "iteration": 4
+    },
+    {
+      "direction": "Adding categorical multi-step sweeps.",
+      "reason": "A sweep encodes magnitude or position, which conflicts with categorical semantics and the ordered-only sweep contract.",
+      "iteration": 4
+    },
+    {
+      "direction": "Adding progress-circle or radial-ring as new catalog questions solely from gauge and ring imagery.",
+      "reason": "The current progress-single and unit-ring forms cover the existing questions, while the inspected radial captures do not add a distinct data contract.",
+      "iteration": 5
+    },
+    {
+      "direction": "Treating KPI delta as a sixth universal card part or a standalone chart id.",
+      "reason": "Metric and delta are useful only when a data-backed baseline exists, so they belong to optional anatomy around an existing chart question.",
+      "iteration": 5
+    },
+    {
+      "direction": "Adding three unrelated catalog rows for spark line, spark area and spark bar.",
+      "reason": "The references present the marks as variants of one compact trend role, not three independent reader questions.",
+      "iteration": 5
+    },
+    {
+      "direction": "Replacing bar-rows comparison semantics with a new palette or external implementation merely to reproduce a bar-list capture.",
+      "reason": "Bar-list changes label placement and compact density while preserving the comparison question and existing colour contract.",
+      "iteration": 5
+    },
+    {
+      "direction": "Making the checker judge headline quality, guide density, metric eligibility or radial worth.",
+      "reason": "Those choices require question and visual review, and the contract explicitly excludes headline and by-eye picture judgement from static assertions.",
+      "iteration": 5
+    }
+  ],
+  "coverageBySources": {
+    "current-corpus": 8,
+    "template-contract": 4,
+    "vercel": 2,
+    "apple": 2,
+    "carbon": 2,
+    "tremor": 2,
+    "shadcn": 3,
+    "mantine": 2,
+    "observable": 2,
+    "layerchart": 1,
+    "unovis": 2,
+    "tooltip-variants": 9,
+    "legends": 5,
+    "palette-gates": 6,
+    "external-palette-captures": 5,
+    "micro-forms": 7,
+    "checker-assertions": 2
+  },
+  "convergenceScore": 0.63,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "sessionId": "fanout-luna-1788882013467-0smwwf",
+  "generation": 1,
+  "status": "COMPLETE",
+  "lastUpdated": "2026-09-08T16:18:47Z",
+  "stopReason": "maxIterationsReached",
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 30,
+    "sourceFindings": 30,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.63,
+    "coverageBySources": {
+      "current-corpus": 8,
+      "template-contract": 4,
+      "vercel": 2,
+      "apple": 2,
+      "carbon": 2,
+      "tremor": 2,
+      "shadcn": 3,
+      "mantine": 2,
+      "observable": 2,
+      "layerchart": 1,
+      "unovis": 2,
+      "tooltip-variants": 9,
+      "legends": 5,
+      "palette-gates": 6,
+      "external-palette-captures": 5,
+      "micro-forms": 7,
+      "checker-assertions": 2
+    }
+  }
+}

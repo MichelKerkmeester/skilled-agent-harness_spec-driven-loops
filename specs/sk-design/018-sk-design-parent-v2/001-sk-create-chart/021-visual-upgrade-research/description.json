@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research",
+  "description": "The corpus has been upgraded against one reference, shadcn, and re-based on the cursor register",
+  "keywords": [
+    "corpus",
+    "upgraded",
+    "against",
+    "one",
+    "reference",
+    "shadcn",
+    "re-based",
+    "cursor",
+    "register"
+  ],
+  "lastUpdated": "2026-09-08T16:39:01.229Z",
+  "specId": "021",
+  "folderSlug": "visual-upgrade-research",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

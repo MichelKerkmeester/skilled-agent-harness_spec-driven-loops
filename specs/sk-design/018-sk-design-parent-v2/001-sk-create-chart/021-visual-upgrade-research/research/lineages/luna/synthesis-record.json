@@ -1,0 +1,18 @@
+{
+  "type": "synthesis",
+  "event": "synthesis_complete",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "sessionId": "fanout-luna-1788882013467-0smwwf",
+  "parentSessionId": null,
+  "lineageId": "fanout-luna-1788882013467-0smwwf",
+  "generation": 1,
+  "totalIterations": 5,
+  "answeredCount": 5,
+  "totalQuestions": 5,
+  "stopReason": "maxIterationsReached",
+  "status": "complete",
+  "terminal": true,
+  "artifactDir": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/lineages/luna",
+  "timestamp": "2026-09-08T16:21:27Z"
+}
