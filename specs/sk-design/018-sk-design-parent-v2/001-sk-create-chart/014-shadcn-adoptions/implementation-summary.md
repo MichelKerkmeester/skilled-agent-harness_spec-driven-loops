@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions"
-    last_updated_at: "2026-09-07T20:41:13Z"
-    last_updated_by: "codex"
-    recent_action: "Recorded final implementation and verification evidence"
+    last_updated_at: "2026-09-07T21:48:13Z"
+    last_updated_by: "verification-leaf"
+    recent_action: "Recorded the render-gate result; every recorded control reproduced against the final corpus"
     next_safe_action: "Conductor review and commit the scoped packet"
     blockers: []
     key_files: []
@@ -90,8 +90,11 @@ was introduced.
 The binding work was implemented in the checker first and then applied to the corpus. The static
 checker passed all 35 scanned files (26 templates), and the contract checks were exercised against
 isolated mutations: a missing series token, a missing `READOUT` block, `CURVE = 'natural'` and the
-decorative `READOUT.key` alias pattern. The gallery was regenerated with `scripts/build-gallery.cjs`,
-and the packet metadata was regenerated twice after the document close-out.
+decorative `READOUT.key` alias pattern. Each of those recorded controls was reproduced against the
+finished corpus, one failure each. The gallery was regenerated with `scripts/build-gallery.cjs`,
+and the packet metadata was regenerated twice after the document close-out. A final verification
+pass then ran the render gate on the finished corpus: every render-dependent family (card-readout,
+pointer-reach, settled-render, dark-render, render) returned zero failures.
 
 The `sk-code` smart route resolved the surface as WEBFLOW/standalone HTML with implementation as
 the primary intent and verification as the secondary intent. The loaded guidance was the webflow
@@ -129,7 +132,7 @@ also applied.
 | Mutation: `CURVE = 'natural'` | PASS negative control — exit 1; `FAIL [curve-contract] ... CURVE "natural" is outside {linear, step, monotone}. Natural interpolation is not a declared intent`. |
 | `scripts/build-gallery.cjs` | PASS — `wrote assets/gallery.html: 26 forms, 52 frames`. |
 | `grep` block counts | PASS — 18 template `READOUT` blocks, four delivery `READOUT` blocks, three template `CURVE` blocks and one delivery `CURVE` block. |
-| `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render` | UNKNOWN — exit 1; Chrome was present but every render invocation returned no document, and a direct local-file invocation aborted with exit 134. |
+| `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render` | PASS — `RESULT: PASSED`, `Summary: errors: 0`; the five render-dependent families returned 0 failures (card-readout 22, pointer-reach 22, settled-render 70, dark-render 35, render 35). An earlier pass had aborted (exit 134, no document); the finished corpus renders, settles and answers the pointer under the checker's standard Chrome path. |
 | `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions --strict` | PASS — `RESULT: PASSED`. |
 <!-- /ANCHOR:verification -->
 
@@ -138,9 +141,8 @@ also applied.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Render runtime unavailable.** The installed Chrome binary aborts before returning a document, so card-readout, pointer-reach, screenshot and theme-render checks are unknown. Static checker, script parsing and mutation evidence remain available.
-2. **Policy-gated decisions remain open.** Keyboard/pointer release gating, colour-vision-deficiency thresholds, data-accuracy metadata and retargetability manifests were intentionally not implemented.
-3. **Mutation chronology note.** The semantic readout assertion was authored before the consumer refresh, and its isolated negative control was captured before the final verification gate. The exact failure and final pass are retained as evidence.
+1. **Policy-gated decisions remain open.** Keyboard/pointer release gating, colour-vision-deficiency thresholds, data-accuracy metadata and retargetability manifests were intentionally not implemented.
+2. **Mutation chronology note.** The semantic readout assertion was authored before the consumer refresh, and its isolated negative control was captured before the final verification gate. The exact failure and final pass are retained as evidence, and the control was reproduced against the final checker during the final verification pass.
 <!-- /ANCHOR:limitations -->
 
 ---

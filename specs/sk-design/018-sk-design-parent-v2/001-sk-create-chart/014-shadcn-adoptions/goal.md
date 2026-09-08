@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions"
-    last_updated_at: "2026-09-07T20:41:13Z"
-    last_updated_by: "codex"
-    recent_action: "Completed the three checker-held chart contracts and packet evidence"
+    last_updated_at: "2026-09-07T21:48:13Z"
+    last_updated_by: "verification-leaf"
+    recent_action: "Re-verified the final corpus: render gate, mutated copies, corrected evidence cites"
     next_safe_action: "Conductor review and commit the scoped packet"
     blockers: []
     key_files: []
@@ -98,12 +98,13 @@ and findings belong here.
 | Negative controls captured | Done | `scratch/mutations.md`; three isolated copies each returned `RESULT: FAILED` |
 | Reference and gallery updates landed | Done | `template-contract.md`, `catalog.md`, `color-system.md`; `assets/gallery.html` |
 | Review fix: wire `READOUT.key` to the registered datum | Done | 22 tooltip-bearing files read `datum[READOUT.key]` or a keyed record; the semantic mutation returned the recorded `FAIL [number-format]` line; final corpus returned `RESULT: PASSED` |
-| Final verification | Done | static checker `RESULT: PASSED`; strict packet validation `RESULT: PASSED` |
+| Final verification | Done | static checker, `--render` and strict packet validation each `RESULT: PASSED` |
+| Independent verification of the final corpus | Done | `--render` returned `RESULT: PASSED` with the five render-dependent families at zero failures (card-readout 22, pointer-reach 22, settled-render 70, dark-render 35, render 35); the three mutated copies were recreated from the final corpus and each produced exactly one recorded failure; the decorative wiring control was reproduced separately; four stale evidence line cites in `acceptance-criteria.md` were corrected |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Render-dependent checks | Chrome is installed but aborts before returning a document (exit 134 on direct local-file invocation); `--render` is recorded as unknown, never inferred. | `implementation-summary.md` Known Limitations |
-| Mutation chronology | Assertions were written before consumer edits; the required negative controls were captured before the final gate, but not before the first consumer edit. | The contract checks and exact failures remain valid; this is recorded honestly rather than hidden. |
+| Render-dependent checks | First runs aborted (exit 134, no document) and were recorded unknown; a later independent `--render` run of the final corpus returned `RESULT: PASSED` with every render-dependent family at zero failures |
+| Mutation chronology | Assertions were written before consumer edits; the required negative controls were captured before the final gate, but not before the first consumer edit. The contract checks and exact failures remain valid, and the final verification pass reproduced every recorded control against the final corpus, one failure each. |
 <!-- /ANCHOR:log -->
