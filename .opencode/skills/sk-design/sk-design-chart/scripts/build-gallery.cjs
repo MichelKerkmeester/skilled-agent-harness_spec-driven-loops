@@ -58,7 +58,7 @@ function render(list) {
     const frames = SCHEMES.map((scheme) => `
         <figure class="frame">
           <figcaption>${scheme.label}</figcaption>
-          <iframe src="${escapeAttr(form.file)}" title="${escapeAttr(form.title)}, ${scheme.label.toLowerCase()} scheme"
+          <iframe src="${escapeAttr(form.file + '?scheme=' + scheme.id)}" title="${escapeAttr(form.title)}, ${scheme.label.toLowerCase()} scheme"
                   loading="lazy" data-scheme="${scheme.id}"></iframe>
         </figure>`).join('');
     return `
@@ -111,16 +111,14 @@ function render(list) {
 ${cards}
 <script>
 // Each frame pins its own scheme so the pair is a comparison rather than two copies of whatever the
-// reader's system happens to be set to. The pin is written into the framed document once it loads,
-// because a colour scheme cannot be forced on a frame from outside it.
+// reader's system happens to be set to. The query is read before the chart paints, while the direct
+// attribute assignment keeps the pin true if a browser restores a frame from its cache.
 document.querySelectorAll('iframe[data-scheme]').forEach(function (frame) {
   frame.addEventListener('load', function () {
     try {
       var doc = frame.contentDocument;
       if (!doc) return;
-      var style = doc.createElement('style');
-      style.textContent = ':root { color-scheme: ' + frame.dataset.scheme + ' !important; }';
-      doc.head.appendChild(style);
+      doc.documentElement.dataset.scheme = frame.dataset.scheme;
       doc.documentElement.style.colorScheme = frame.dataset.scheme;
     } catch (err) {
       // A frame that refuses inspection keeps the reader's own scheme, which is a degraded

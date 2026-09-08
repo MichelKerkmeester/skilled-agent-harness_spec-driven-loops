@@ -155,6 +155,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 12 | 012-chart-hover-and-pointer-states/ | Give every chart form a hover and pointer state, with the logic and templates to carry it, decomposed into ten child phases | Complete |
 | 13 | 013-shadcn-reference-research/ | Six cited research angles against a frozen shadcn corpus: what transfers as a decision to a standalone corpus that bans React, Recharts and Tailwind | Complete |
 | 14 | 014-shadcn-adoptions/ | Land the three adopted decisions as checker-held contracts: series-key token indirection, local readout knobs, declared curve intent | Complete |
+| 15 | 015-shadcn-visual-upgrade/ | Bring every form, delivery and the gallery to the visual register of the frozen shadcn examples: card footer, bare axes, rounded marks, gradient areas, tooltip card, legend chips, scheme pin | In Progress |
+| 16 | 016-design-md-theming/ | Theme any form from a v3 Style Reference DESIGN.md on request: a script that derives a gated palette, typeface and corner ladder, refuses failing palettes and writes themed copies with provenance | Planned |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

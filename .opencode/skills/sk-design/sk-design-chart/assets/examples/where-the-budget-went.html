@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="chart-template" content="where-the-budget-went">
 <meta name="chart-color-system" content="categorical">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
 <title>Where the grant was spent</title>
 <style>
 /* CHART_PALETTE:BEGIN system=categorical */
@@ -28,7 +31,7 @@
 
 /* CHART_PALETTE_DARK:BEGIN system=categorical */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-scheme="light"]) {
     --chart-surface: #161513;
     --chart-ink: #F2F0EC;
     --chart-muted: #A8A5A0;
@@ -40,6 +43,17 @@
     --chart-emphasis: #F2F0EC;
   }
 }
+:root[data-scheme="dark"] {
+  --chart-surface: #161513;
+  --chart-ink: #F2F0EC;
+  --chart-muted: #A8A5A0;
+  --chart-rule: #F2F0EC17;
+  --chart-series-1: #DBBD6D;
+  --chart-series-2: #57AABF;
+  --chart-series-3: #D25F4D;
+  --chart-series-4: #7657BF;
+  --chart-emphasis: #F2F0EC;
+}
 /* CHART_PALETTE_DARK:END */
 
 html { box-sizing: border-box; }
@@ -50,7 +64,7 @@ body {
   background: var(--chart-surface);
   color: var(--chart-ink);
   font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
 }
 .card {
@@ -61,16 +75,24 @@ body {
   border-radius: var(--chart-radius-card);
   background: var(--chart-surface);
 }
-.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
 /* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
    at 720 units wide, and below roughly two thirds of that the axis labels start to
    collide, so the figure scrolls sideways and the marks keep the size they were
    drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
    produces a picture nobody can read on the device most readers open it on. */
-.figure { margin: 0; overflow-x: auto; }
+.figure { margin: 0; overflow-x: auto; position: relative; }
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
-.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
    moved the page: the card, the headline and the source line all slid sideways with it, which is
@@ -80,8 +102,8 @@ body {
    that is the whole reason the drawing needs a number and this does not. */
 .notice { fill: var(--chart-muted); font-size: 12px; }
 .table-pan { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
@@ -111,7 +133,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
       <desc id="fig-desc">One hundred squares in five rows of twenty, filled left to right by category. Frontline staff take fifty-four squares. The table below the chart carries every share as text.</desc>
     </svg>
   </div>
-  <p class="source" data-chart-part="source">Source: audited annual accounts for the year to 31 March, published 12 August.</p>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding">Frontline staff take 54% of the 2.4 million grant, against 46% for the other three categories combined.</p>
+    <p class="source" data-chart-part="source">Source: audited annual accounts for the year to 31 March, published 12 August.</p>
+  </div>
 </div>
 <div class="card">
   <div class="table-pan">
