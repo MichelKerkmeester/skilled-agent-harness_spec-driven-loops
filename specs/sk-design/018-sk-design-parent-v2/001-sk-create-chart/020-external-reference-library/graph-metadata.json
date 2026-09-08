@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The chart corpus was measured against one external reference, the frozen shadcn copy",
     "created_at": "2026-09-08T12:00:52Z",
-    "last_save_at": "2026-09-08T14:43:29.620Z",
+    "last_save_at": "2026-09-08T14:44:24.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f825731e414bd340aa4c2cfe57f072d480527ea0e4216351cf08d21851ccc52f",
+    "source_fingerprint": "sha256:6414db25e5af3b637371b685b92c1fd65872975cb0ddb0b084b7ae1cfc607ff5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d7f3e88e838a7a585a2ecd1c13e60b888381730b72fbec9a2e0e63f72719d48",
+      "spec.md": "c094de5e33f654482f947977db6ac3162979e79c9cb2afa115303173e3b9da42",
       "plan.md": "956bec94d7ede2350466d828c59209a82c7abeea18fad696bcdfc4338de58088",
-      "tasks.md": "ed20ffa6536c4f0c8d40f9866fccd445c1002c4e9aad9ccfafad5c60c7b3b172",
-      "implementation-summary.md": "74ae728788f29051b8b0dadecd934d1862f558a34d597b2cec06b158b6484c1d"
+      "tasks.md": "d27264e48c41c11feadb51d8fbcbab79f5139d8dfae04c41c30611389e69605c",
+      "implementation-summary.md": "0fb2fe18843346b0090a1659ca3aa8c55127144fb6e90dcfaf6eb9faad86a1f2"
     },
     "last_active_at": null
   }

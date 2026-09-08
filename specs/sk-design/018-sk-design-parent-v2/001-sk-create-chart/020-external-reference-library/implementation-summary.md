@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The corpus now has a second external reference beside the frozen shadcn copy: page captures of what good chart design looks like across component libraries, chart libraries, design systems and editorial products, and 224 zoomed crops of the charts themselves at 2x, with Vercel, Carbon and Apple covered in depth.
+The corpus now has a second external reference beside the frozen shadcn copy: page captures of what good chart design looks like across component libraries, chart libraries, design systems and editorial products, and 210 zoomed crops of the charts themselves at 2x, with Vercel, Carbon and Apple covered in depth.
 
 ### screenshot library of well-designed charts from external sources
 
@@ -59,7 +59,7 @@ Open `library/gallery.html` to browse the captures with a caption each; `index.m
 | File | Action | Purpose |
 |------|--------|---------|
 | `library/*.jpg` | Created | 52 page captures |
-| `library/details/*.jpg` | Created | 224 chart crops at 2x from 24 pages, with their own index and gallery |
+| `library/details/*.jpg` | Created | 210 chart crops at 2x from 24 pages, with their own index and gallery |
 | `library/index.md`, `index.json`, `gallery.html` | Created | Index, manifest, gallery |
 | `scratch/capture.sh`, `capture-round2.sh`, `contact-sheet.cjs` | Created | Reproduction and triage tooling |
 <!-- /ANCHOR:what-built -->
