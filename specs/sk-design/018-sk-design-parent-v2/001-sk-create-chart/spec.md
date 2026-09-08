@@ -161,6 +161,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 18 | 018-opus-review-fixes/ | Fresh Opus review of 015 to 017: hex-only themed roles, a series distinguishability gate, mapper parity, category-headed cards, corrected evidence, relative provenance | Complete |
 | 19 | 019-cursor-stock-register/ | The cursor Style Reference becomes the stock chart register: palette source, every stock block, typeface and corner ladder derived from it under the corpus gates | Complete |
 | 20 | 020-external-reference-library/ | A screenshot library of well-designed charts from 31 public sources in both colour schemes, indexed with what each is worth borrowing | Complete |
+| 21 | 021-visual-upgrade-research/ | Two-lane deep research on the reference library: luna complete, glm one of five; ranked backlog of visual upgrades for templates, assets and the skill | In Progress |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

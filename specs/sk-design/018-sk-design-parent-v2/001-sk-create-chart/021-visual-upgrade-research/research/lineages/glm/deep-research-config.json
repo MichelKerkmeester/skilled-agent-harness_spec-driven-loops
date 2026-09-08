@@ -1,0 +1,86 @@
+{
+  "topic": "What should the standalone chart corpus visually upgrade, judged against the external reference library. Read specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/dispatch-prompt.md first; it is the brief. Five angles, one per iteration, in order.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research",
+  "artifactDir": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/lineages/glm",
+  "artifactDirSource": "bound via config.fanout_lineage_artifact_dir override; step_resolve_artifact_root not executed (executor instruction)",
+  "createdAt": "2026-09-08T16:15:00Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900,
+    "inlineNote": "per the fanout instruction, every iteration executes in this process; no nested dispatch"
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1788882013467-0smwwf",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanout": {
+      "label": "glm",
+      "artifactDir": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/lineages/glm"
+    }
+  },
+  "resourceMapPresent": false,
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ],
+    "rootNote": "fanout lineage: the state packet lives at the lineage root, not at {spec_folder}/research/"
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
+    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.stopPolicy"],
+    "promotionMode": "advisory-only"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "openQuestions": [
+    "Which mark treatments — line weight, dot policy, area gradient and opacity, bar radius and gap, stack separators, the highlighted mark — are missing or weak in the 26 forms after the shipped phases 15-19?",
+    "Which tooltip, legend and interaction patterns in the reference library improve reading without adding decoration our pointer contract cannot afford?",
+    "Which colour and dark-ground changes are defensible by number under the cursor register and its six contrast gates?",
+    "Which missing micro-visualisations earn a row in the question-first catalogue, and which findings from angles 1-4 become enforceable corpus-check assertions rather than per-template judgement?"
+  ],
+  "resolvedQuestions": [
+    {
+      "question": "Where does our five-part card (headline, subtitle, figure, footer finding, source) read as a template rather than a product, judged against the reference cards' anatomy, typography and spacing?",
+      "answer": "The furniture is at reference parity (type scale 16/14/12, footer weights, 1px rule, 8px gaps — confirmed at both sources); the divergence is figure aspect (26/26 frames 24.4-55.6% of their 720-unit width, median 43.4%, vs the reference's locked 56.25%), and the product gap is the missing prominent number: a metric+delta register in the header, which every product-grade reference leads with.",
+      "iteration": 1,
+      "evidence": "iterations/iteration-001.md"
+    }
+  ],
+  "keyFindings": [
+    {"id": "glm-i001-f001", "iteration": 1, "title": "Our figures run shorter of the reference aspect; the text furniture is at parity", "evidence": "26-file viewBox survey; daily-line.html:59-75,94-105; scratch/shadcn/chart.tsx:60", "summary": "Divergence is the figure, not the furniture; 25/26 frames sit 24-47% width-relative vs their 56.25%.", "ranking": 3, "class": "analysis"},
+    {"id": "glm-i001-f002", "iteration": 1, "title": "The product gap is the missing prominent number in the header", "evidence": "daily-line.html:104,227-228; contract type scale; details/apple-hig-charts-light-07/-08, details/vercel-docs-analytics-light-01, tremor-blocks-light.jpg notes", "summary": "No scalar/time-series form carries its reading as a number; every product-grade reference leads with it.", "ranking": 1, "class": "recommendation", "mark": "implementable today"},
+    {"id": "glm-i001-f003", "iteration": 1, "title": "Ours already better: conclusion headlines and jitter-free axis numbers", "evidence": "daily-line.html:227,139,203 vs scratch/shadcn/charts/chart-line-linear.tsx:34-36 and chart.tsx:248-251", "summary": "Recorded as findings, not gaps.", "ranking": 4, "class": "analysis"},
+    {"id": "glm-i001-f004", "iteration": 1, "title": "Header chrome, fixed insets and date-thinned labels are kept differences", "evidence": "chart-area-interactive.tsx:163-186; chart-line-linear.tsx:32-35; catalog.md; daily-line.html:59-75", "summary": "Their mechanisms need a runtime; ours need a one-time measurement. No change.", "ranking": 5, "class": "kept-decision"},
+    {"id": "glm-i001-f005", "iteration": 1, "title": "The reference's signed trend cue is a 16px inline-SVG icon", "evidence": "scratch/shadcn/charts/chart-line-linear.tsx:56-63; template-contract.md section 5", "summary": "A direction cue is available as a hand-drawn 2-path inline mark; feeds the metric+delta shape.", "ranking": 2, "class": "recommendation", "mark": "implementable today"},
+    {"id": "glm-i001-f006", "iteration": 1, "title": "The footer text register is at reference parity", "evidence": "scratch/shadcn/charts/chart-line-linear.tsx:56-63 vs daily-line.html:103-105", "summary": "The metric+delta work is additive in the header; the footer needs nothing.", "ranking": 6, "class": "analysis"}
+  ],
+  "ruledOut": [
+    {"approach": "Header controls, a header border and fixed 12px insets in every card", "reason": "Their mechanisms need a runtime and component library; our eight inert forms and widest-label insets are recorded decisions", "evidence": "chart-area-interactive.tsx:163-186; chart-line-linear.tsx:32-35; daily-line.html:59-75", "iteration": 1},
+    {"approach": "Changes to card padding, card width or footer weights", "reason": "Dimension-for-dimension parity with the reference footer confirmed at both sources", "evidence": "chart-line-linear.tsx:56-63 vs daily-line.html:103-105", "iteration": 1},
+    {"approach": "Trusting the contract prose over the shipped file for the area fade", "reason": "The file says 0.35/0.04 where the prose says 0.8/0.1; the discrepancy moved to angle 2's evidence", "evidence": "daily-line.html:137-138", "iteration": 1}
+  ],
+  "qualityGuards": {
+    "sourceDiversity": "pass — the angle's central finding (f002) triangulates three independent reference sources (Apple HIG, Vercel, Tremor) plus the frozen shadcn source; caveat: theirs-side is note+source grade, no pixel measurements (executor image path degraded, documented in iteration-001 Assessment)",
+    "focusAlignment": "pass — all six findings answer K1's anatomy/typography/spacing scope; the fade discrepancy was forwarded, not absorbed",
+    "noSingleWeakSource": "pass — no finding rests on one source alone; f001's survey is our own 26 files, f002 has three independent reference notes"
+  },
+  "blockedStopHistory": [],
+  "note": "Reducer-owned. Rebuilt from deltas and iteration records after each iteration; agent-written versions are discarded on the next refresh."
+}
