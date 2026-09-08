@@ -45,9 +45,9 @@
     "@earendil-works/pi-tui": "*"
   },
   "devDependencies": {
-    "@types/node": "^24.12.4",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.7"
+    "@types/node": "^26.4.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
   },
   "scripts": {
     "test": "vitest --run",
