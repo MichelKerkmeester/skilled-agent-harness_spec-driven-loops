@@ -48,6 +48,8 @@
       "library/gallery.html",
       "library/index.md",
       "scratch/capture.sh",
+      "scratch/capture-details.cjs",
+      "scratch/build-details.py",
       "library/index.json",
       "scratch/capture-playwright.cjs",
       "scratch/sources.json",
@@ -96,6 +98,18 @@
         "name": "capture.sh",
         "kind": "script",
         "path": "scratch/capture.sh",
+        "source": "derived"
+      },
+      {
+        "name": "capture-details.cjs",
+        "kind": "file",
+        "path": "scratch/capture-details.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-details.py",
+        "kind": "file",
+        "path": "scratch/build-details.py",
         "source": "derived"
       },
       {
@@ -187,23 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Capture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The chart corpus was measured against one external reference, the frozen shadcn copy",
     "created_at": "2026-09-08T12:00:52Z",
-    "last_save_at": "2026-09-08T12:24:16.284Z",
+    "last_save_at": "2026-09-08T14:43:29.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8850a0ad8f17cd246089e9a0dc5f29ea152f815aabe9a62324fcd659c46b7a45",
+    "source_fingerprint": "sha256:f825731e414bd340aa4c2cfe57f072d480527ea0e4216351cf08d21851ccc52f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32b6f0c8d81674b51e7cea3400374b7af59b42394d313808d1e2f96ed4cc770e",
+      "spec.md": "3d7f3e88e838a7a585a2ecd1c13e60b888381730b72fbec9a2e0e63f72719d48",
       "plan.md": "956bec94d7ede2350466d828c59209a82c7abeea18fad696bcdfc4338de58088",
-      "tasks.md": "31795798f15f90c0ac9e00744c77c407eecfd8ea5e4fa546e6fdf97ed0bdd3b2",
-      "implementation-summary.md": "ab465f0362d6048433800818bf0f761720a56d787f601623fe909239f1153e67"
+      "tasks.md": "ed20ffa6536c4f0c8d40f9866fccd445c1002c4e9aad9ccfafad5c60c7b3b172",
+      "implementation-summary.md": "74ae728788f29051b8b0dadecd934d1862f558a34d597b2cec06b158b6484c1d"
     },
     "last_active_at": null
   }

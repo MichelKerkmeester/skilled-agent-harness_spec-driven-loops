@@ -1,0 +1,1682 @@
+[
+  {
+    "file": "details/vercel-analytics-light-01.jpg",
+    "name": "vercel-analytics",
+    "scheme": "light",
+    "url": "https://vercel.com/analytics",
+    "note": "A hairline sparkline over a muted grid, and the conversion line with its two-row tooltip card",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-analytics-light-03.jpg",
+    "name": "vercel-analytics",
+    "scheme": "light",
+    "url": "https://vercel.com/analytics",
+    "note": "A hairline sparkline over a muted grid, and the conversion line with its two-row tooltip card",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-analytics-dark-01.jpg",
+    "name": "vercel-analytics",
+    "scheme": "dark",
+    "url": "https://vercel.com/analytics",
+    "note": "A hairline sparkline over a muted grid, and the conversion line with its two-row tooltip card",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-analytics-dark-03.jpg",
+    "name": "vercel-analytics",
+    "scheme": "dark",
+    "url": "https://vercel.com/analytics",
+    "note": "A hairline sparkline over a muted grid, and the conversion line with its two-row tooltip card",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-analytics-light-01.jpg",
+    "name": "vercel-docs-analytics",
+    "scheme": "light",
+    "url": "https://vercel.com/docs/analytics",
+    "note": "The Web Analytics panel: KPI header with deltas, a stepped area chart, and the paths and referrers tables beside it",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-analytics-light-02.jpg",
+    "name": "vercel-docs-analytics",
+    "scheme": "light",
+    "url": "https://vercel.com/docs/analytics",
+    "note": "The Web Analytics panel: KPI header with deltas, a stepped area chart, and the paths and referrers tables beside it",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-analytics-dark-01.jpg",
+    "name": "vercel-docs-analytics",
+    "scheme": "dark",
+    "url": "https://vercel.com/docs/analytics",
+    "note": "The Web Analytics panel: KPI header with deltas, a stepped area chart, and the paths and referrers tables beside it",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-analytics-dark-02.jpg",
+    "name": "vercel-docs-analytics",
+    "scheme": "dark",
+    "url": "https://vercel.com/docs/analytics",
+    "note": "The Web Analytics panel: KPI header with deltas, a stepped area chart, and the paths and referrers tables beside it",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-observability-light-01.jpg",
+    "name": "vercel-docs-observability",
+    "scheme": "light",
+    "url": "https://vercel.com/docs/observability",
+    "note": "Invocations and error-rate panels: dense area and bar series with a compact legend and an inline table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-observability-light-02.jpg",
+    "name": "vercel-docs-observability",
+    "scheme": "light",
+    "url": "https://vercel.com/docs/observability",
+    "note": "Invocations and error-rate panels: dense area and bar series with a compact legend and an inline table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-observability-dark-01.jpg",
+    "name": "vercel-docs-observability",
+    "scheme": "dark",
+    "url": "https://vercel.com/docs/observability",
+    "note": "Invocations and error-rate panels: dense area and bar series with a compact legend and an inline table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-docs-observability-dark-02.jpg",
+    "name": "vercel-docs-observability",
+    "scheme": "dark",
+    "url": "https://vercel.com/docs/observability",
+    "note": "Invocations and error-rate panels: dense area and bar series with a compact legend and an inline table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-speed-insights-light-01.jpg",
+    "name": "vercel-speed-insights",
+    "scheme": "light",
+    "url": "https://vercel.com/docs/speed-insights",
+    "note": "Real Experience Score dashboard and a choropleth with its ranked country table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-speed-insights-light-02.jpg",
+    "name": "vercel-speed-insights",
+    "scheme": "light",
+    "url": "https://vercel.com/docs/speed-insights",
+    "note": "Real Experience Score dashboard and a choropleth with its ranked country table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-speed-insights-dark-01.jpg",
+    "name": "vercel-speed-insights",
+    "scheme": "dark",
+    "url": "https://vercel.com/docs/speed-insights",
+    "note": "Real Experience Score dashboard and a choropleth with its ranked country table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/vercel-speed-insights-dark-02.jpg",
+    "name": "vercel-speed-insights",
+    "scheme": "dark",
+    "url": "https://vercel.com/docs/speed-insights",
+    "note": "Real Experience Score dashboard and a choropleth with its ranked country table",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-anatomy-light-01.jpg",
+    "name": "carbon-anatomy",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/chart-anatomy/",
+    "note": "Annotated anatomy of a line chart and a donut: title, axes, gridlines, legend, tooltip and toolbar numbered",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-anatomy-light-02.jpg",
+    "name": "carbon-anatomy",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/chart-anatomy/",
+    "note": "Annotated anatomy of a line chart and a donut: title, axes, gridlines, legend, tooltip and toolbar numbered",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-01.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-02.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-03.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-04.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-05.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-06.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-axes-light-07.jpg",
+    "name": "carbon-axes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+    "note": "Do and do not pairs for axis ranges, gaps in data, label density and truncation",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-01.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-02.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-03.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-07.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-08.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-09.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-12.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-13.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-legends-light-14.jpg",
+    "name": "carbon-legends",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/legends/",
+    "note": "Legend placement, patterned bars as a colour alternative, a filtered legend, the legend modal",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-01.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-02.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-03.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-04.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-05.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-06.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-07.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-palettes-light-08.jpg",
+    "name": "carbon-palettes",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+    "note": "Categorical, sequential and diverging palettes on light and dark grounds: bubble, radar, donut, stacked area, heat map, choropleth, alluvial",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-01.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-03.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-05.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-07.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-09.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-11.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-12.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-13.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-simple-light-14.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "note": "Carbon Charts live examples: natural and stacked area, horizontal and grouped bars, floating and stacked bars, box plot, bubble",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-01.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-02.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-03.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-04.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-05.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-06.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-08.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-09.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-10.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-11.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-12.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-13.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/carbon-storybook-light-14.jpg",
+    "name": "carbon-storybook",
+    "scheme": "light",
+    "url": "https://charts.carbondesignsystem.com/",
+    "note": "The Storybook thumbnails: one blue, no chrome, every form reduced to its mark",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-01.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-02.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-03.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-04.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-05.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-07.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-light-08.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-01.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-02.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-03.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-04.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-05.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-07.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-hig-charts-dark-08.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "note": "The hero histogram, the anatomy diagram, bar and line examples, and the steps bars with their large-number headers",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-health-light-01.jpg",
+    "name": "apple-health",
+    "scheme": "light",
+    "url": "https://www.apple.com/ios/health/",
+    "note": "Health app screens: a bar trend on the watch and phone, and the high heart rate notification",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-health-light-02.jpg",
+    "name": "apple-health",
+    "scheme": "light",
+    "url": "https://www.apple.com/ios/health/",
+    "note": "Health app screens: a bar trend on the watch and phone, and the high heart rate notification",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-light-02.jpg",
+    "name": "apple-swift-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/documentation/charts",
+    "note": "The Swift Charts overview strip: line, bar and scatter in the framework defaults",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-dark-02.jpg",
+    "name": "apple-swift-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/documentation/charts",
+    "note": "The Swift Charts overview strip: line, bar and scatter in the framework defaults",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-light-02.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "light",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-light-03.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "light",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-light-04.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "light",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-light-05.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "light",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-dark-02.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-dark-03.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-dark-04.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/apple-swift-charts-creating-dark-05.jpg",
+    "name": "apple-swift-charts-creating",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts",
+    "note": "The tutorial series: shapes on a grid, then a single bar chart, a stacked bar and a grouped bar in the framework palette",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-area-light-02.jpg",
+    "name": "shadcn-area",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/area",
+    "note": "Area cards as shipped: linear, step, legend and stacked variants with the footer trend line, each an isolated frame",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-area-light-03.jpg",
+    "name": "shadcn-area",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/area",
+    "note": "Area cards as shipped: linear, step, legend and stacked variants with the footer trend line, each an isolated frame",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-area-light-04.jpg",
+    "name": "shadcn-area",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/area",
+    "note": "Area cards as shipped: linear, step, legend and stacked variants with the footer trend line, each an isolated frame",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-area-light-05.jpg",
+    "name": "shadcn-area",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/area",
+    "note": "Area cards as shipped: linear, step, legend and stacked variants with the footer trend line, each an isolated frame",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-bar-light-02.jpg",
+    "name": "shadcn-bar",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "note": "Bar cards: horizontal, labelled, the mixed bar list with per-row colour, negative bars on both grounds",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-bar-light-05.jpg",
+    "name": "shadcn-bar",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "note": "Bar cards: horizontal, labelled, the mixed bar list with per-row colour, negative bars on both grounds",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-bar-light-07.jpg",
+    "name": "shadcn-bar",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "note": "Bar cards: horizontal, labelled, the mixed bar list with per-row colour, negative bars on both grounds",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-bar-light-09.jpg",
+    "name": "shadcn-bar",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "note": "Bar cards: horizontal, labelled, the mixed bar list with per-row colour, negative bars on both grounds",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-bar-dark-06.jpg",
+    "name": "shadcn-bar",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "note": "Bar cards: horizontal, labelled, the mixed bar list with per-row colour, negative bars on both grounds",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-bar-dark-09.jpg",
+    "name": "shadcn-bar",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "note": "Bar cards: horizontal, labelled, the mixed bar list with per-row colour, negative bars on both grounds",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-01.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-02.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-03.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-04.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-05.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-07.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-light-08.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-01.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-02.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-03.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-04.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-05.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-06.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-07.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-08.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-line-dark-09.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "note": "The whole line family on both grounds: default, linear, step, multiple, dots, custom dots, dot colours, label and custom label",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-01.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-02.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-03.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-04.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-05.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-06.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-07.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-08.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/shadcn-tooltip-dark-09.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "note": "Every tooltip card variant open over the same stacked bars: default, line indicator, no indicator, custom label, label formatter, no label, formatter, icons, advanced with a total row",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/tremor-area-light-01.jpg",
+    "name": "tremor-area",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/area-chart",
+    "note": "Tremor area charts: soft gradient fills, a legend at the top right, an axis title, a stacked three-series example",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/tremor-area-light-05.jpg",
+    "name": "tremor-area",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/area-chart",
+    "note": "Tremor area charts: soft gradient fills, a legend at the top right, an axis title, a stacked three-series example",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/tremor-area-light-06.jpg",
+    "name": "tremor-area",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/area-chart",
+    "note": "Tremor area charts: soft gradient fills, a legend at the top right, an axis title, a stacked three-series example",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/tremor-area-light-07.jpg",
+    "name": "tremor-area",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/area-chart",
+    "note": "Tremor area charts: soft gradient fills, a legend at the top right, an axis title, a stacked three-series example",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/tremor-area-light-09.jpg",
+    "name": "tremor-area",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/area-chart",
+    "note": "Tremor area charts: soft gradient fills, a legend at the top right, an axis title, a stacked three-series example",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-01.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-02.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-03.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-07.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-09.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-11.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-13.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/mantine-area-light-17.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "note": "Mantine areas: dotted markers, stacked and split-colour variants, a legend below, a step curve",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-01.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-02.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-03.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-04.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-05.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-06.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-07.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-08.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-09.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-10.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-11.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-12.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-13.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-14.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-15.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-16.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-17.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-light-18.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-01.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-02.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-03.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-04.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-05.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-06.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-07.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-08.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-09.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-10.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-11.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-12.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-13.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-14.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-15.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-16.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-17.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/layerchart-dark-18.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "note": "LayerChart thumbnails on both grounds: arcs and rings, area and range, funnel, radial, ridgeline, candlestick, timeline, ranked bars, grouped bars",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-01.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-02.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-03.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-05.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-06.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-07.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-08.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-09.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-10.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-11.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-12.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-13.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-14.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-15.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-light-16.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-dark-01.jpg",
+    "name": "plot-area-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-dark-02.jpg",
+    "name": "plot-area-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-dark-03.jpg",
+    "name": "plot-area-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-dark-05.jpg",
+    "name": "plot-area-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/plot-area-docs-dark-06.jpg",
+    "name": "plot-area-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/area",
+    "note": "Observable Plot area marks: monochrome fills, negative regions, gaps, a horizontal area, stacked bands in colour and in grey, faceted small multiples",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-01.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-02.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-03.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-04.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-05.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-06.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-07.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-08.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-09.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-10.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-11.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-12.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-13.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-14.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/unovis-gallery-light-15.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "note": "Unovis gallery items: basic and multi-line, lines with gaps, a timeline, stacked and non-stacked areas, a baseline area, step area, grouped and stacked bars, scatter with varied size and shape",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "details/owid-life-expectancy-light-01.jpg",
+    "name": "owid-life-expectancy",
+    "scheme": "light",
+    "url": "https://ourworldindata.org/grapher/life-expectancy",
+    "note": "The grapher card alone: direct end labels, entity selector, tabs, source and download row",
+    "captured": "2026-09-08"
+  }
+]

@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The corpus now has a second external reference beside the frozen shadcn copy: a library of what good chart design looks like across component libraries, chart libraries, design systems and editorial products, in both colour schemes where the source offers them.
+The corpus now has a second external reference beside the frozen shadcn copy: page captures of what good chart design looks like across component libraries, chart libraries, design systems and editorial products, and 224 zoomed crops of the charts themselves at 2x, with Vercel, Carbon and Apple covered in depth.
 
 ### screenshot library of well-designed charts from external sources
 
@@ -58,7 +58,8 @@ Open `library/gallery.html` to browse the captures with a caption each; `index.m
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `library/*.jpg` | Created | 52 captures |
+| `library/*.jpg` | Created | 52 page captures |
+| `library/details/*.jpg` | Created | 224 chart crops at 2x from 24 pages, with their own index and gallery |
 | `library/index.md`, `index.json`, `gallery.html` | Created | Index, manifest, gallery |
 | `scratch/capture.sh`, `capture-round2.sh`, `contact-sheet.cjs` | Created | Reproduction and triage tooling |
 <!-- /ANCHOR:what-built -->
@@ -92,6 +93,7 @@ Two bare-Chrome rounds showed that lazily rendered galleries capture empty and t
 | Check | Result |
 |-------|--------|
 | Contact sheets, rounds one to three | Read; keepers and drops recorded in `index.md` |
+| Crop sheets for Vercel, Carbon, Apple, shadcn, Tremor, LayerChart, Mantine, Plot, Unovis | Read; blank iframes, icons and text-only crops dropped |
 | Full-size capture read | `tremor-spark-light` read at full size: spark area, line and bar, the KPI example, the fill variants |
 | `gallery.html` | Rendered and read |
 | `validate.sh --strict` | PASS |
@@ -103,6 +105,8 @@ Two bare-Chrome rounds showed that lazily rendered galleries capture empty and t
 ## Known Limitations
 
 1. **Captures stop at 3200 pixels.** Long galleries continue below; the source link on each capture is the way to the rest.
+3. **shadcn renders each chart in an iframe that only paints when scrolled into view**, so some frames were blank at capture time and were dropped; the light tooltip page and part of the area page are covered by their dark or light sibling instead.
+4. **TanStack's landing produced no crop** because its chart elements report a zero-size box to the driver; the page capture stands in.
 2. **Sites that theme by their own switch are captured in their default scheme only.** A hand capture with the switch flipped would add their dark register.
 <!-- /ANCHOR:limitations -->
 
