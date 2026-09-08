@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "description": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
+  "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
+    "spec-kit",
+    "simplification",
+    "research",
+    "across",
+    "independently",
+    "executable",
+    "child",
+    "phase",
+    "folders"
+  ],
+  "lastUpdated": "2026-09-08T16:16:02.929Z",
+  "specId": "030",
+  "folderSlug": "spec-kit-simplification-research",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "07-09-26_13-39__all-five-executors-are-alive-and-the-deepseek.md",
+    "07-09-26_17-42__context-was-compacted-so-i-am-stopping-here-per.md"
+  ]
+}

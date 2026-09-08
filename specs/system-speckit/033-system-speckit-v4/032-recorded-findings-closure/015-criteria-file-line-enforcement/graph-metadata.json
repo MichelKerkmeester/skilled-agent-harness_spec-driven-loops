@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement",
+  "spec_folder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement",
+  "parent_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "acceptance criteria file line enforcement",
+      "coverage floor cutoff rollout",
+      "lifecycle activation gap",
+      "citation retrofit coverage floor",
+      "coverage cutoff decision",
+      "manual infeasible exemption",
+      "acceptance coverage enforcement",
+      "decision record"
+    ],
+    "key_topics": [
+      "acceptance",
+      "criteria",
+      "file",
+      "line",
+      "enforcement",
+      "coverage",
+      "floor",
+      "cutoff",
+      "rollout",
+      "lifecycle",
+      "activation",
+      "gap"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "runtime/cli/rules/check-ac-coverage.sh",
+      "runtime/cli/tests/check-ac-coverage.sh",
+      "runtime/ENV-REFERENCE.md",
+      "tests/check-ac-coverage.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+      "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md",
+      ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default (`runtime/ENV-REFERENCE.md:166-168`)",
+    "created_at": "2026-09-07T15:05:56Z",
+    "last_save_at": "2026-09-08T15:47:17.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e38764dc1e277d7dae1e1c134ea1be6db0b089f2710afc40a721356d239c7127",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "84c133993b20f23fb6ad64e766557181796447b4b6aab403d16b8eb1b43bb04d",
+      "plan.md": "8819e07f0906d1d55baafe7427577ed998d1c16dd8a7be731937d15699ea80bc",
+      "tasks.md": "ece779e2375bc92e3a879489bc2d85ccdb196f9ed7cf37618d880886129d3591",
+      "decision-record.md": "2ce42d29a693e6a468921f6e9b964404d44a34e82add18add70f22b668feeaaa",
+      "implementation-summary.md": "b5bc990ffcde501737daa4b7602c056ceed6ade714a97c4489c749db51374604"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+  "description": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the",
+  "keywords": [
+    "changelog-v4",
+    "parent",
+    "folder",
+    "drafted",
+    "memory-database",
+    "decommission",
+    "runtime",
+    "rename",
+    "simplification",
+    "program"
+  ],
+  "lastUpdated": "2026-09-08T16:17:16.096Z",
+  "specId": "034",
+  "folderSlug": "v4-state-inventory-research",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

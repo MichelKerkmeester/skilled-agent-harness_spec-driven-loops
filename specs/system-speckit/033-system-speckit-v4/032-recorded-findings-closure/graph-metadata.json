@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "spec_folder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/007-links-scan-registry-rule",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recorded findings closure",
+      "spec-kit simplification follow-up",
+      "hook adapter port",
+      "provenance title sweep",
+      "recorded findings goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "recorded",
+      "findings",
+      "closure",
+      "spec-kit",
+      "simplification",
+      "follow-up",
+      "hook",
+      "adapter",
+      "port",
+      "provenance",
+      "title",
+      "sweep"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "001-hook-adapter-thin-transports/goal.md",
+      "002-multiplexed-rule-split/goal.md",
+      "003-playbook-provenance-lines/goal.md",
+      "004-fingerprint-stamp-regeneration/goal.md",
+      "005-provenance-title-sweep/goal.md",
+      "006-lifecycle-command-asset-merge/goal.md",
+      "007-links-scan-registry-rule/goal.md",
+      "008-review-research-scaffold-paths/goal.md",
+      "009-references-corpus-routing/goal.md",
+      "010-manifest-dead-fields-and-coaching-markers/goal.md",
+      "011-advisor-import-and-ollama-consolidation/goal.md",
+      "012-root-resolver-consolidation/goal.md",
+      "013-gate1-instruction-parity/goal.md",
+      "014-registration-schema-unification/goal.md",
+      "015-criteria-file-line-enforcement/goal.md",
+      "016-cross-session-operator-items/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Tree Parity",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Registry Drift Guard",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit simplification program ran three research rounds over five lanes and remediated every confirmed finding in seventeen children, but it closed some rows as recorded decisions rather than fixes: duplicated hook adapter text, multiplexed rule scripts, playbook entries without provenance, 27 hand-written attestation stamps, 1,240 titles carrying template provenance, six lifecycle command assets that repeat each other, a links scan that is a tool rather than a rule, packet types the scaffolder cannot create, seventeen browse-only reference files, manifest fields nothing reads, the",
+    "created_at": "2026-09-07T15:05:40Z",
+    "last_save_at": "2026-09-08T17:59:26.128Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:ee831155e9006a82776a367be88e845e2ed179b35496512c3275827615259618",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b9ab980a1efb261fda189186e6c4a0b82af6deabc88b125889dcd1fb77aa2e5"
+    },
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items",
+    "last_active_at": "2026-09-07T18:30:04.452Z"
+  }
+}

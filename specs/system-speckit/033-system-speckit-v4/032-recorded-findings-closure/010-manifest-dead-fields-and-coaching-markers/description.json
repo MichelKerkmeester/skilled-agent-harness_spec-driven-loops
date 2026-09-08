@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers",
+  "description": "`templates/spec-kit-docs.json` carries a `creationTrigger` and an `absenceBehavior` field on every one of its 16 `documents[]` entries (32 key",
+  "keywords": [
+    "templates",
+    "spec-kit-docs",
+    "json",
+    "carries",
+    "creationtrigger",
+    "absencebehavior",
+    "field",
+    "every",
+    "one",
+    "documents",
+    "entries",
+    "key"
+  ],
+  "lastUpdated": "2026-09-07T17:30:41.283Z",
+  "specId": "010",
+  "folderSlug": "manifest-dead-fields-and-coaching-markers",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

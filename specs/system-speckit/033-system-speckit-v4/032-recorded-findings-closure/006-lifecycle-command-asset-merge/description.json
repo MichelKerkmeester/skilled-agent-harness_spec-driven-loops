@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge",
+  "description": "The three `/speckit:` lifecycle commands each ship as an auto/confirm pair, six YAML assets between 780 and 1,388 lines (verified 2026-09-07:",
+  "keywords": [
+    "three",
+    "speckit",
+    "lifecycle",
+    "commands",
+    "ship",
+    "auto",
+    "confirm",
+    "pair",
+    "six",
+    "yaml",
+    "assets",
+    "between",
+    "lines",
+    "verified"
+  ],
+  "lastUpdated": "2026-09-07T16:52:08.798Z",
+  "specId": "006",
+  "folderSlug": "lifecycle-command-asset-merge",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

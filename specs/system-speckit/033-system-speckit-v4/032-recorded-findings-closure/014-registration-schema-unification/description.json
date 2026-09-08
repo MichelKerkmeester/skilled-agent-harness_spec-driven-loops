@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification",
+  "description": "Five CLI runtimes each register the same behavioral contract (which script runs on which lifecycle event) through five hand-authored files that",
+  "keywords": [
+    "five",
+    "cli",
+    "runtimes",
+    "register",
+    "same",
+    "behavioral",
+    "contract",
+    "script",
+    "runs",
+    "lifecycle",
+    "event",
+    "hand-authored",
+    "files"
+  ],
+  "lastUpdated": "2026-09-07T18:01:32.703Z",
+  "specId": "014",
+  "folderSlug": "registration-schema-unification",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

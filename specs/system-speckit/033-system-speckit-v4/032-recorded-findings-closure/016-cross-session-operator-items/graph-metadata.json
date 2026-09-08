@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items",
+  "spec_folder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items",
+  "parent_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross session operator items",
+      "coordinate not overwrite",
+      "spec kit check mirror job",
+      "worktree 046 removal"
+    ],
+    "key_topics": [
+      "cross",
+      "session",
+      "operator",
+      "items",
+      "coordinate",
+      "overwrite",
+      "spec",
+      "kit",
+      "check",
+      "mirror",
+      "job",
+      "worktree"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".codex/prompts/design-chart.md",
+      "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/spec.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/routing-registry-drift.yml",
+      ".codex/prompts/design-diagram.md",
+      ".opencode/commands/design/chart.md",
+      ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-chart.md",
+        "kind": "doc",
+        "path": ".codex/prompts/design-chart.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "design-diagram.md",
+        "kind": "doc",
+        "path": ".codex/prompts/design-diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "chart.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/chart.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-file-manifest.txt",
+        "kind": "file",
+        "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Coordinate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over, because another session or another packet owns them",
+    "created_at": "2026-09-07T15:05:57Z",
+    "last_save_at": "2026-09-08T15:47:17.092Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:059944d534bfbc45923fb5e3150a3d499c9500d1c4ae0e509f8be9ddb94e2bb1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "71522054c49ec7823c095e8b0a67e1c0f2d038b2115f84e777992d05a4b625de",
+      "plan.md": "639dd47116f43e55f7788007425a23eb6e79a8c10672088d914ed207eea1605d",
+      "tasks.md": "36b74d287f2c8e2a57fe03fa4b2e5799a2bc821f34349ee5a1f61240f0a0a6b6",
+      "implementation-summary.md": "7224d16e828eb263b166d864bd7c779f959e2aea4fe6ef9f5e2a3abd89c068cf"
+    },
+    "last_active_at": null
+  }
+}

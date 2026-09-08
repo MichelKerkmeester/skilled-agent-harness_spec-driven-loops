@@ -46,7 +46,7 @@ _memory:
 | **Status** | Complete — fix implemented and verified (negative control → fix → both suites green); awaiting commit go-ahead |
 | **Created** | 2026-08-22 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 2 of 24 |
+| **Phase** | 2 of 34 |
 | **Predecessor** | `../001-plan-preflight-track-packets/spec.md` |
 | **Successor** | `../003-spec-doc-template-reduction/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |

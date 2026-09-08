@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system",
+  "parent_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ripgrep search system",
+      "ripgrep search system research lane",
+      "glm research lane spec kit",
+      "ripgrep search system findings",
+      "research lane execution plan",
+      "ripgrep search system lane plan",
+      "reproduction before remediation",
+      "research lane tasks",
+      "lane launch and monitoring",
+      "ripgrep search system lane tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "ripgrep",
+      "search",
+      "system",
+      "research",
+      "lane",
+      "glm",
+      "spec",
+      "kit",
+      "findings",
+      "execution",
+      "plan",
+      "reproduction"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/lineages/glm-5-3-flash-ripgrep-search/research.md",
+      "research/confirmed-findings.md",
+      ".opencode/commands/speckit/search.md",
+      "references/retrieval/retrieval-conventions.md",
+      "research/lineages/deepseek-v4-flash-ripgrep-search/research.md",
+      "research/lineages/glm-5-3-flash-ripgrep-search-r3/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited together",
+    "created_at": "2026-09-06T14:29:30Z",
+    "last_save_at": "2026-09-08T15:47:10.995Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:723ded4e2cdf6cd1e9b0e8b81244d2e502efe02531c244d14cea9f71fe17c5b1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "47304249c5ec6b1226276f74535f43909de843a1403f0faea08625881716cb01",
+      "plan.md": "4fa92eb8d60cb5b53cfd6ca57a695bcebfa9bbd4ad60dc45641b5e35000f4923",
+      "tasks.md": "d1d78868b39f472cedacfd3f62e40dd1c5418886eddc45d2f7d3ae14e0bbeb28",
+      "implementation-summary.md": "1a45d7e8cd34d636bc68685496392a5bc6b8ecfac3518c5f2aeb9cb56c582773"
+    },
+    "last_active_at": null
+  }
+}

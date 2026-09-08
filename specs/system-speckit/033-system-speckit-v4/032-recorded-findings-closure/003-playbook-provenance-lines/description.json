@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines",
+  "description": "The manual-testing-playbook under `.opencode/skills/system-spec-kit/manual-testing-playbook/` holds 85 markdown files (1 root index plus 84",
+  "keywords": [
+    "manual-testing-playbook",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "holds",
+    "markdown",
+    "files",
+    "root",
+    "index",
+    "plus"
+  ],
+  "lastUpdated": "2026-09-07T16:04:57.239Z",
+  "specId": "003",
+  "folderSlug": "playbook-provenance-lines",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

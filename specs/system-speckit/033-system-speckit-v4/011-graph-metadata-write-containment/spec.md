@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Status** | Complete |
 | **Created** | 2026-08-30 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 11 of 24 |
+| **Phase** | 11 of 34 |
 | **Predecessor** | `../010-goal-file-addon/spec.md` |
 | **Successor** | `../012-repair-write-symlink-refusal/spec.md` |
 | **Branch** | `scaffold/043-workspace-path-containment` |

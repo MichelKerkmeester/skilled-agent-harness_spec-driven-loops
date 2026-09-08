@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement",
+  "description": "The convention said to declare phrases of two or more tokens and never to index bare numbers or generic words, and nothing enforced the first two",
+  "keywords": [
+    "convention",
+    "said",
+    "declare",
+    "phrases",
+    "two",
+    "tokens",
+    "never",
+    "index",
+    "bare",
+    "numbers",
+    "generic",
+    "words",
+    "nothing",
+    "enforced",
+    "first"
+  ],
+  "lastUpdated": "2026-09-07T06:03:20.524Z",
+  "specId": "013",
+  "folderSlug": "trigger-phrase-quality-enforcement",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

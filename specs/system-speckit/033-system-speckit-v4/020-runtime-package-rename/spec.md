@@ -40,7 +40,7 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-09-04 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 20 of 24 |
+| **Phase** | 20 of 34 |
 | **Predecessor** | `../019-memory-decommission-branch-landing/spec.md` |
 | **Successor** | `../021-decommission-debt-and-cli-nesting/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |

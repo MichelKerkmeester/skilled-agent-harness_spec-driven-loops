@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing",
+  "description": "Finding F3-14",
+  "keywords": [
+    "finding",
+    "f3-14"
+  ],
+  "lastUpdated": "2026-09-07T17:20:37.761Z",
+  "specId": "009",
+  "folderSlug": "references-corpus-routing",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system",
+  "description": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited",
+  "keywords": [
+    "lexical",
+    "retrieval",
+    "system",
+    "replaced",
+    "database",
+    "year",
+    "generator",
+    "lookup",
+    "command",
+    "gate",
+    "usage",
+    "documentation",
+    "never",
+    "audited"
+  ],
+  "lastUpdated": "2026-09-07T13:14:16.353Z",
+  "specId": "001",
+  "folderSlug": "ripgrep-search-system",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

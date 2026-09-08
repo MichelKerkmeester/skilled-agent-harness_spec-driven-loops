@@ -1,6 +1,6 @@
 ---
 title: "Timeline: system-speckit-v4"
-description: "Chronological record of the twenty-four packets that make up system-spec-kit v4, ordered by first commit, with what each shipped, its status and its key commits, built from git history."
+description: "Chronological record of the thirty-four packets that make up system-spec-kit v4, ordered by first commit, with what each shipped, its status and its key commits, built from git history."
 trigger_phrases:
   - "system speckit v4 timeline"
   - "which spec was worked on first"
@@ -15,18 +15,18 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> The order in which the twenty-four v4 packets were started and finished, taken from git.
+> The order in which the thirty-four v4 packets were started and finished, taken from git.
 
 ---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** system-spec-kit v4, children 001 to 028 of this parent
+**Subject:** system-spec-kit v4, children 001 to 034 of this parent
 **Status:** Complete
 **Started:** 2026-08-15
-**Last updated:** 2026-09-06
-**Owner:** the spec-kit maintainers; regenerated from `git log`, nothing hand-typed
+**Last updated:** 2026-09-08
+**Owner:** the spec-kit maintainers; regenerated from `git log` over each packet's current and former paths, excluding the bulk housekeeping commits from 2026-09-06 onward that touch five or more children (consolidation moves, repoints, metadata and provenance sweeps); nothing hand-typed
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -36,61 +36,73 @@ contextType: "general"
 
 Each entry is a packet's first commit. The outcome names what the packet left behind and when its last commit landed.
 
-**2026-08-15:** `001-plan-preflight-track-packets` (was `034-plan-preflight-nested-packet-resolution`) started; 8 commits over 0 nested phases. Outcome: The /speckit:plan Step-5 prerequisite helper resolves the feature dir from the git branch and hard-rejects any non-NNN branch, so it cannot target a track-nested packet such as specs/anobel.com/008-di. Status Complete; last commit 2026-09-04.
+**2026-08-15:** `001-plan-preflight-track-packets` (was `034-plan-preflight-nested-packet-resolution`) started; 5 commits over 0 nested phases. Outcome: The /speckit:plan Step-5 prerequisite helper resolves the feature dir from the git branch and hard-rejects any non-NNN branch, so it cannot target a track-nested packet such as specs/anobel.com/008-di. Status Complete; last commit 2026-09-04.
 
-**2026-08-22:** `002-daemon-reaper-orphan-classification` (was `035-process-reaper-classification-fix`) started; 9 commits over 0 nested phases. Outcome: The daemon-reaper misclassifies an orphaned spec-memory server as an external MCP process because its external-MCP guard matches the mcp-server/ directory in the daemon's own path. Status Complete; last commit 2026-09-04.
+**2026-08-22:** `002-daemon-reaper-orphan-classification` (was `035-process-reaper-classification-fix`) started; 6 commits over 0 nested phases. Outcome: The daemon-reaper misclassifies an orphaned spec-memory server as an external MCP process because its external-MCP guard matches the mcp-server/ directory in the daemon's own path. Status Complete; last commit 2026-09-04.
 
-**2026-08-26:** `003-spec-doc-template-reduction` (was `036-spec-doc-template-reduction`) started; 28 commits over 13 nested phases. Outcome: Phase parent for Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility. Status Draft; last commit 2026-09-06.
+**2026-08-26:** `003-spec-doc-template-reduction` (was `036-spec-doc-template-reduction`) started; 27 commits over 13 nested phases. Outcome: Phase parent for Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility. Status Draft; last commit 2026-09-07.
 
-**2026-08-26:** `004-decisions-and-notes-system` (was `037-decisions-memory-redesign`) started; 15 commits over 6 nested phases. Outcome: Phase parent for Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill. Status Draft; last commit 2026-09-04.
+**2026-08-26:** `004-decisions-and-notes-system` (was `037-decisions-memory-redesign`) started; 17 commits over 6 nested phases. Outcome: Phase parent for Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill. Status Draft; last commit 2026-09-07.
 
-**2026-08-28:** `005-skills-runtime-state-consolidation` (was `038-skills-state-consolidation`) started; 6 commits over 0 nested phases. Outcome: Seven runtime-state directories sit directly under .opencode/skills/, so the folder a user opens to find skills shows mostly machine state instead. Status Complete; last commit 2026-08-30.
+**2026-08-28:** `005-skills-runtime-state-consolidation` (was `038-skills-state-consolidation`) started; 4 commits over 0 nested phases. Outcome: Seven runtime-state directories sit directly under .opencode/skills/, so the folder a user opens to find skills shows mostly machine state instead. Status Complete; last commit 2026-09-06.
 
-**2026-08-28:** `006-derived-metadata-repair-tool` (was `039-derived-repair-automation`) started; 10 commits over 0 nested phases. Outcome: Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did. Status In Progress; last commit 2026-08-30.
+**2026-08-28:** `006-derived-metadata-repair-tool` (was `039-derived-repair-automation`) started; 7 commits over 0 nested phases. Outcome: Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did. Status In Progress; last commit 2026-08-30.
 
-**2026-08-29:** `007-completion-gate-coherence` (was `040-validation-gate-coherence`) started; 10 commits over 0 nested phases. Outcome: Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself. Status Complete; last commit 2026-08-30.
+**2026-08-29:** `007-completion-gate-coherence` (was `040-validation-gate-coherence`) started; 7 commits over 0 nested phases. Outcome: Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself. Status Complete; last commit 2026-08-30.
 
-**2026-08-29:** `008-template-contracts-and-acceptance-criteria` (was `033-spec-kit-template-optimization`) started; 24 commits over 4 nested phases. Outcome: Phase parent for spec-kit document-template optimization: level-gated template contracts, context-cost reduction, and a canonical acceptance-criteria document that gates packet closure at Levels 2, 3 . Status In Progress; last commit 2026-09-04.
+**2026-08-29:** `008-template-contracts-and-acceptance-criteria` (was `033-spec-kit-template-optimization`) started; 21 commits over 4 nested phases. Outcome: Phase parent for spec-kit document-template optimization: level-gated template contracts, context-cost reduction, and a canonical acceptance-criteria document that gates packet closure at Levels 2, 3 . Status In Progress; last commit 2026-09-04.
 
-**2026-08-29:** `009-validation-rule-reduction` (was `041-validation-reduction`) started; 19 commits over 8 nested phases. Outcome: Reduce the completion gate to the few checks a machine actually reads, and make the rest impossible to violate rather than detected afterwards. Status Complete; last commit 2026-09-01.
+**2026-08-29:** `009-validation-rule-reduction` (was `041-validation-reduction`) started; 17 commits over 8 nested phases. Outcome: Reduce the completion gate to the few checks a machine actually reads, and make the rest impossible to violate rather than detected afterwards. Status Complete; last commit 2026-09-06.
 
-**2026-08-29:** `010-goal-file-addon` (was `042-nested-goal-template-addon`) started; 15 commits over 4 nested phases. Outcome: Phase parent for a goal.md addon: a short durable parent directive that references per-phase child goal files, entering the Level contract as a lazy add-on and reaching the speckit command surface run. Status In Progress; last commit 2026-09-04.
+**2026-08-29:** `010-goal-file-addon` (was `042-nested-goal-template-addon`) started; 13 commits over 4 nested phases. Outcome: Phase parent for a goal.md addon: a short durable parent directive that references per-phase child goal files, entering the Level contract as a lazy add-on and reaching the speckit command surface run. Status In Progress; last commit 2026-09-06.
 
-**2026-08-30:** `011-graph-metadata-write-containment` (was `043-workspace-path-containment`) started; 7 commits over 0 nested phases. Outcome: The graph-metadata write guard classified a destination as spec-shaped and wrote it, so any path containing a specs segment was accepted - including one outside the repository. Status Complete; last commit 2026-09-02.
+**2026-08-30:** `011-graph-metadata-write-containment` (was `043-workspace-path-containment`) started; 4 commits over 0 nested phases. Outcome: The graph-metadata write guard classified a destination as spec-shaped and wrote it, so any path containing a specs segment was accepted - including one outside the repository. Status Complete; last commit 2026-09-02.
 
-**2026-08-30:** `012-repair-write-symlink-refusal` (was `044-repair-write-symlink-refusal`) started; 8 commits over 0 nested phases. Outcome: The repair script decided a path was a regular file during its scan and wrote it later. Status Complete; last commit 2026-09-02.
+**2026-08-30:** `012-repair-write-symlink-refusal` (was `044-repair-write-symlink-refusal`) started; 5 commits over 0 nested phases. Outcome: The repair script decided a path was a regular file during its scan and wrote it later. Status Complete; last commit 2026-09-02.
 
-**2026-08-30:** `013-repair-handle-containment` (was `046-path-containment-followups`) started; 7 commits over 0 nested phases. Outcome: The repair write decides a path is safe by inspecting it, then writes through a handle that can point somewhere else: swapping a scanned directory for a symlink overwrites a file outside the tree. Status Complete; last commit 2026-09-01.
+**2026-08-30:** `013-repair-handle-containment` (was `046-path-containment-followups`) started; 4 commits over 0 nested phases. Outcome: The repair write decides a path is safe by inspecting it, then writes through a handle that can point somewhere else: swapping a scanned directory for a symlink overwrites a file outside the tree. Status Complete; last commit 2026-09-01.
 
-**2026-08-30:** `014-daemon-and-test-harness-hardening` (was `045-daemon-and-test-harness-hardening`) started; 12 commits over 4 nested phases. Outcome: Phase parent for four production-observed failure classes in daemon supervision and the vitest harness, each traced to a safety mechanism that exists and is correct but is never reached at runtime. Status Complete; last commit 2026-09-04.
+**2026-08-30:** `014-daemon-and-test-harness-hardening` (was `045-daemon-and-test-harness-hardening`) started; 11 commits over 4 nested phases. Outcome: Phase parent for four production-observed failure classes in daemon supervision and the vitest harness, each traced to a safety mechanism that exists and is correct but is never reached at runtime. Status Complete; last commit 2026-09-07.
 
-**2026-08-31:** `015-apply-path-and-candidate-filter-fixes` (was `047-review-remediation`) started; 8 commits over 0 nested phases. Outcome: Three P1 findings survived four deep-review iterations across three models: an apply path that treated an omitted enable decision as permission, a candidate filter that judged from a stale snapshot, a. Status Complete; last commit 2026-09-01.
+**2026-08-31:** `015-apply-path-and-candidate-filter-fixes` (was `047-review-remediation`) started; 5 commits over 0 nested phases. Outcome: Three P1 findings survived four deep-review iterations across three models: an apply path that treated an omitted enable decision as permission, a candidate filter that judged from a stale snapshot, a. Status Complete; last commit 2026-09-01.
 
-**2026-08-31:** `016-sequential-thinking-residue-removal` (was `048-decommissioned-server-residue`) started; 5 commits over 0 nested phases. Outcome: The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit 7673da6bc24, and specs/sk-doc carries an empty false-st. Status Complete; last commit 2026-09-02.
+**2026-08-31:** `016-sequential-thinking-residue-removal` (was `048-decommissioned-server-residue`) started; 2 commits over 0 nested phases. Outcome: The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit 7673da6bc24, and specs/sk-doc carries an empty false-st. Status Complete; last commit 2026-09-02.
 
-**2026-09-02:** `017-memory-database-decommission` (was `049-memory-decommission`) started; 22 commits over 7 nested phases. Outcome: Phase parent for removing the system-spec-memory MCP database subsystem and replacing it with grep-first retrieval. Status Complete; last commit 2026-09-05.
+**2026-09-02:** `017-memory-database-decommission` (was `049-memory-decommission`) started; 19 commits over 7 nested phases. Outcome: Phase parent for removing the system-spec-memory MCP database subsystem and replacing it with grep-first retrieval. Status Complete; last commit 2026-09-05.
 
-**2026-09-02:** `018-single-segment-packet-pointer` (was `050-single-segment-packet-pointer`) started; 4 commits over 0 nested phases. Outcome: Let SPECDOC_FRONTMATTER_004 accept a single safe path segment in packet_pointer instead of demanding a track/name pair, so a repository that keeps packets directly under specs/ can pass. Status Draft; last commit 2026-09-02.
+**2026-09-02:** `018-single-segment-packet-pointer` (was `050-single-segment-packet-pointer`) started; 2 commits over 0 nested phases. Outcome: Let SPECDOC_FRONTMATTER_004 accept a single safe path segment in packet_pointer instead of demanding a track/name pair, so a repository that keeps packets directly under specs/ can pass. Status Draft; last commit 2026-09-07.
 
-**2026-09-04:** `019-memory-decommission-branch-landing` (was `052-memory-decommission-landing`) started; 49 commits over 0 nested phases. Outcome: The memory-database decommission existed only on a side branch while the release branch and main still carried the memory server, its hooks and its commands; this packet lands the branch, aligns the c. Status Complete; last commit 2026-09-06.
+**2026-09-04:** `019-memory-decommission-branch-landing` (was `052-memory-decommission-landing`) started; 47 commits over 0 nested phases. Outcome: The memory-database decommission existed only on a side branch while the release branch and main still carried the memory server, its hooks and its commands; this packet lands the branch, aligns the c. Status Complete; last commit 2026-09-06.
 
-**2026-09-04:** `020-runtime-package-rename` (was `053-spec-kit-runtime-rename`) started; 12 commits over 0 nested phases. Outcome: The surviving spec-kit package still carries an MCP identity it no longer has: folder and npm name say mcp-server, the MCP SDK and six other dependencies have no importer, and about 140 live files poi. Status Complete; last commit 2026-09-05.
+**2026-09-04:** `020-runtime-package-rename` (was `053-spec-kit-runtime-rename`) started; 9 commits over 0 nested phases. Outcome: The surviving spec-kit package still carries an MCP identity it no longer has: folder and npm name say mcp-server, the MCP SDK and six other dependencies have no importer, and about 140 live files poi. Status Complete; last commit 2026-09-05.
 
-**2026-09-05:** `021-decommission-debt-and-cli-nesting` (was `054-decommission-debt-fixes`) started; 43 commits over 7 nested phases. Outcome: Close the debt the memory-decommission review loop recorded, move the trigger index under runtime, and align the runtime and scripts packages with the OpenCode code standards and code-folder README co. Status Complete; last commit 2026-09-05.
+**2026-09-05:** `021-decommission-debt-and-cli-nesting` (was `054-decommission-debt-fixes`) started; 40 commits over 7 nested phases. Outcome: Close the debt the memory-decommission review loop recorded, move the trigger index under runtime, and align the runtime and scripts packages with the OpenCode code standards and code-folder README co. Status Complete; last commit 2026-09-05.
 
-**2026-09-05:** `022-shared-containment-helper` (was `055-path-containment-seam`) started; 4 commits over 0 nested phases. Outcome: The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. Status Complete; last commit 2026-09-05.
+**2026-09-05:** `022-shared-containment-helper` (was `055-path-containment-seam`) started; 1 commit over 0 nested phases. Outcome: The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. Status Complete; last commit 2026-09-05.
 
-**2026-09-06:** `023-trigger-index-root-and-drift-fixes` (was `056-integration-research-remediation`) started; 7 commits over 4 nested phases. Outcome: Phase parent for remediating the eleven findings of the Sonnet 5 integration research: the trigger-index root regression and README rule count, phantom children and unvalidated track roots, the deferr. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `023-trigger-index-root-and-drift-fixes` (was `056-integration-research-remediation`) started; 4 commits over 4 nested phases. Outcome: Phase parent for remediating the eleven findings of the Sonnet 5 integration research: the trigger-index root regression and README rule count, phantom children and unvalidated track roots, the deferr. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `024-metadata-regeneration-and-shared-parser` (was `057-metadata-regeneration-and-parser-edges`) started; 5 commits over 0 nested phases. Outcome: Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatt. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `024-metadata-regeneration-and-shared-parser` (was `057-metadata-regeneration-and-parser-edges`) started; 3 commits over 0 nested phases. Outcome: Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatt. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `025-docs-reality-alignment-research` started; 1 commit over 0 nested phases. Outcome: A ten-iteration DeepSeek V4 Flash lane on the pi CLI checked the playbook, catalog and references against the runtime; seventeen mismatches reported, fourteen reproduced; a two-iteration Gemini 3.8 Flash pass added nineteen more, eighteen reproduced; a five-iteration DeepSeek pass added eleven more plus a twenty-file phantom-test sweep; a Claude Fable 5 verification confirmed the fixes and found fourteen residue sites. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `025-docs-reality-alignment-research` started; 6 commits over 0 nested phases. Outcome: A ten-iteration DeepSeek V4 Flash lane on the pi CLI checked the playbook, catalog and references against the runtime; seventeen mismatches reported, fourteen reproduced; a two-iteration Gemini 3.8 Flash pass added nineteen more, eighteen reproduced; a five-iteration DeepSeek pass added eleven more plus a twenty-file phantom-test sweep; a Claude Fable 5 verification confirmed the fixes and found fourteen residue sites. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `026-runtime-code-standards-research` started; 1 commit over 0 nested phases. Outcome: A parallel ten-iteration lane audited the shared package and runtime against the sk-code standards; eighteen deviations reported, twelve confirmed, four dropped with evidence; a two-iteration Gemini 3.8 Flash pass added sixteen more, all reproduced, including the misplaced telemetry store; a five-iteration DeepSeek pass added eleven more, all reproduced; a Claude Fable 5 verification repaired the dead CLI check gate and gave the telemetry store its writer. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `026-runtime-code-standards-research` started; 7 commits over 0 nested phases. Outcome: A parallel ten-iteration lane audited the shared package and runtime against the sk-code standards; eighteen deviations reported, twelve confirmed, four dropped with evidence; a two-iteration Gemini 3.8 Flash pass added sixteen more, all reproduced, including the misplaced telemetry store; a five-iteration DeepSeek pass added eleven more, all reproduced; a Claude Fable 5 verification repaired the dead CLI check gate and gave the telemetry store its writer. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `027-doc-path-strict-mode-and-retired-capability-fixes` started; 1 commit over 0 nested phases. Outcome: The fourteen confirmed doc mismatches plus eighteen from the Gemini pass fixed at their cited lines, plus same-class sites; strict mode, moved paths, phantom rules and retired capabilities now match the runtime. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `027-doc-path-strict-mode-and-retired-capability-fixes` started; 4 commits over 0 nested phases. Outcome: The fourteen confirmed doc mismatches plus eighteen from the Gemini pass fixed at their cited lines, plus same-class sites; strict mode, moved paths, phantom rules and retired capabilities now match the runtime. Status Complete; last commit 2026-09-06.
 
-**2026-09-06:** `028-header-tags-hook-catch-and-script-test-fixes` started; 1 commit over 0 nested phases. Outcome: Header tags normalized, silent hook catches made to report, dead modules and migrations removed, scripts and the API given tests, the completeness errexit bug fixed, and the shared config root bug that lost phase parents' active-child pointers fixed with the classifier taught to read the store. Status Complete; last commit 2026-09-06.
+**2026-09-06:** `028-header-tags-hook-catch-and-script-test-fixes` started; 7 commits over 0 nested phases. Outcome: Header tags normalized, silent hook catches made to report, dead modules and migrations removed, scripts and the API given tests, the completeness errexit bug fixed, and the shared config root bug that lost phase parents' active-child pointers fixed with the classifier taught to read the store. Status Complete; last commit 2026-09-07.
+
+**2026-09-06:** `029-goal-operator-resync-rule` (was `034-goal-operator-resync-rule`) started; 1 commit over 0 nested phases. Outcome: The goal addon template and its playbook carry one rule - when anything above the log changes, resend the full parent goal.md in chat - so the operator's session objective never drifts from the file. Status Complete; last commit 2026-09-06.
+
+**2026-09-06:** `030-spec-kit-simplification-research` (was `035-spec-kit-simplification-research`) started; 36 commits over 22 nested phases. Outcome: Three research rounds over the spec-kit surface, from the ripgrep search system and CLI runtime utilization through overengineering, template contracts and doctor signal truth, each lane remediated in its own child. Status Complete; last commit 2026-09-07.
+
+**2026-09-07:** `031-ci-shared-package-resolution` (was `029-ci-shared-package-resolution`) started; 3 commits over 0 nested phases. Outcome: The four workflows red since the shared-parser adoption fixed: the install step, the tracked declaration, one link, and the regenerated mirrors. Status Complete; last commit 2026-09-07.
+
+**2026-09-07:** `032-recorded-findings-closure` (was `036-recorded-findings-closure`) started; 20 commits over 16 nested phases. Outcome: Every finding the simplification program recorded rather than fixed closed, one phase per cluster, plus the operator items it left open. Status Complete; last commit 2026-09-07.
+
+**2026-09-07:** `033-ci-dependency-hardening` (was `037-ci-dependency-hardening`) started; 1 commit over 0 nested phases. Outcome: The pre-commit hook runs the same six mirror checks CI runs, the Spec-Kit Check workflow triggers on every mirror source and output, and the forty-four open Dependabot alerts reach zero. Status Complete; last commit 2026-09-07.
+
+**2026-09-08:** `034-v4-state-inventory-research` started; 0 commits over 0 nested phases. Outcome: Two ten-iteration lanes, GPT-5.6 Luna on codex and DeepSeek V4 Flash on devin, inventory what the repository ships and rank every stale claim in the old v4 changelog draft; the merge and reproduction pass follow. Status In Progress; last commit 2026-09-08.
 
 ### Chronology table
 
@@ -137,11 +149,11 @@ gantt
     section 002
     daemon-reaper-orphan-classification :2026-08-22, 2026-09-04
     section 003
-    spec-doc-template-reduction :2026-08-26, 2026-09-06
+    spec-doc-template-reduction :2026-08-26, 2026-09-07
     section 004
-    decisions-and-notes-system :2026-08-26, 2026-09-04
+    decisions-and-notes-system :2026-08-26, 2026-09-07
     section 005
-    skills-runtime-state-consolidation :2026-08-28, 2026-08-30
+    skills-runtime-state-consolidation :2026-08-28, 2026-09-06
     section 006
     derived-metadata-repair-tool :2026-08-28, 2026-08-30
     section 007
@@ -149,9 +161,9 @@ gantt
     section 008
     template-contracts-and-acceptance-criter :2026-08-29, 2026-09-04
     section 009
-    validation-rule-reduction :2026-08-29, 2026-09-01
+    validation-rule-reduction :2026-08-29, 2026-09-06
     section 010
-    goal-file-addon :2026-08-29, 2026-09-04
+    goal-file-addon :2026-08-29, 2026-09-06
     section 011
     graph-metadata-write-containment :2026-08-30, 2026-09-02
     section 012
@@ -159,7 +171,7 @@ gantt
     section 013
     repair-handle-containment :2026-08-30, 2026-09-01
     section 014
-    daemon-and-test-harness-hardening :2026-08-30, 2026-09-04
+    daemon-and-test-harness-hardening :2026-08-30, 2026-09-07
     section 015
     apply-path-and-candidate-filter-fixes :2026-08-31, 2026-09-01
     section 016
@@ -167,7 +179,7 @@ gantt
     section 017
     memory-database-decommission :2026-09-02, 2026-09-05
     section 018
-    single-segment-packet-pointer :2026-09-02, 2026-09-02
+    single-segment-packet-pointer :2026-09-02, 2026-09-07
     section 019
     memory-decommission-branch-landing :2026-09-04, 2026-09-06
     section 020
@@ -187,7 +199,19 @@ gantt
     section 027
     doc-path-strict-mode-and-retired-capability-fixes :2026-09-06, 2026-09-06
     section 028
-    header-tags-hook-catch-and-script-test-fixes :2026-09-06, 2026-09-06
+    header-tags-hook-catch-and-script-test-fixes :2026-09-06, 2026-09-07
+    section 029
+    goal-operator-resync-rule :2026-09-06, 2026-09-06
+    section 030
+    spec-kit-simplification-research :2026-09-06, 2026-09-07
+    section 031
+    ci-shared-package-resolution :2026-09-07, 2026-09-07
+    section 032
+    recorded-findings-closure :2026-09-07, 2026-09-07
+    section 033
+    ci-dependency-hardening :2026-09-07, 2026-09-07
+    section 034
+    v4-state-inventory-research :2026-09-08, 2026-09-08
 ```
 
 ### Key commits
@@ -382,6 +406,40 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 
 - `ee8a17b5b1` 2026-09-06 fix(spec-kit): align runtime headers, hooks and script tests with the sk-code standards
 
+**29. 029-goal-operator-resync-rule**
+
+- `dc65cb895e` 2026-09-06 feat(spec-kit): make the goal addon tell the agent to resend the parent goal when it changes
+
+**30. 030-spec-kit-simplification-research**
+
+- `ffbd8cd304` 2026-09-06 docs(specs): open the spec-kit simplification research program with nested goals
+- `e4f9b9254b` 2026-09-06 fix(spec-kit): close the ripgrep research lane and remediate the retrieval drift it found
+- `3f161d2ee9` 2026-09-06 refactor(spec-kit): remove the CLI package residue and wire its check gate into CI
+- `bff4bbd091` 2026-09-07 feat(spec-kit): let the acceptance-coverage gate enforce, and retrofit the program's criteria
+- `5518bf5751` 2026-09-07 fix(spec-kit): close the cross-session operator items and the routed advisor fixes
+
+**31. 031-ci-shared-package-resolution**
+
+- `f62d8bbc78` 2026-09-07 ci: install the spec-kit workspace before checkers that import its shared package
+- `e773415510` 2026-09-07 ci: install sk-doc before the checkers that live under it
+- `d4bc61da91` 2026-09-07 docs(specs): record the workflow outcome of the CI resolution fix
+
+**32. 032-recorded-findings-closure**
+
+- `c431a8c6da` 2026-09-07 docs(specs): open the recorded findings closure program with sixteen planned children
+- `667cfadff1` 2026-09-07 refactor(spec-kit): run the spec-gate orchestration once in the core
+- `f49317f9bb` 2026-09-07 refactor(spec-kit): give each canonical-save registry row its own rule script
+- `37f3ad5a81` 2026-09-07 docs(specs): close the recorded-findings program with all sixteen children complete
+- `ed7faf6b60` 2026-09-07 docs(specs): record the green workflows that close the last criteria of the program
+
+**33. 033-ci-dependency-hardening**
+
+- `4478de62d2` 2026-09-07 chore(deps): lift fast-uri, qs and toml past their advisories and record the CI hardening packet
+
+**34. 034-v4-state-inventory-research**
+
+- (not yet committed) 2026-09-08 research lanes launched and completed; commit pending
+
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -404,4 +462,14 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **Consolidation into this parent:** 2026-09-06. Status: Done. Evidence: `spec.md` phase map and the commits that moved, repointed and regenerated the tree.
 
 **Docs and code checked against reality and remediated:** 2026-09-06, `025` to `028`. Status: Done. Evidence: the two `confirmed-findings.md` tables and the summaries of `027` and `028`.
+
+**Simplification researched over three rounds and every lane remediated:** 2026-09-06 to 2026-09-07, `030`. Status: Done. Evidence: its twenty-two children, all Complete.
+
+**Every recorded finding and open operator item closed:** 2026-09-07, `032`. Status: Done. Evidence: `032-recorded-findings-closure/016-cross-session-operator-items/implementation-summary.md`.
+
+**CI mirror parity enforced at commit time and the Dependabot backlog cleared:** 2026-09-07, `031` and `033`. Status: Done. Evidence: `033-ci-dependency-hardening/acceptance-criteria.md`.
+
+**Second consolidation wave into this parent:** 2026-09-08. Status: Done. Evidence: children `029` to `033` renumbered by first commit; `spec.md` phase map and this timeline.
+
+**Repository state inventoried and the old changelog draft fact-checked:** 2026-09-08, `034`. Status: In progress. Evidence: `034-v4-state-inventory-research/research/lineages/{luna,deepseek}/research.md`.
 <!-- /ANCHOR:milestones -->

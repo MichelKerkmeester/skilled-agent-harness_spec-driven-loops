@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6940,
+    "missing-frontmatter": 6948,
     "non-yaml-frontmatter": 1,
-    "ok": 13799,
-    "valid-empty-list": 7942
+    "ok": 13899,
+    "valid-empty-list": 7943
   },
-  "documentsScanned": 28744,
+  "documentsScanned": 28853,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "ad82d50b789168a3a476c033709b839b1d00f837d39e401aab7d1ffb9b6ace6f",
+  "manifestHash": "ee5657915432836ac87dabf5c021099ee4218a426161e625601cc7fc1f5989d9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 4,
       "numeric-only": 42,
-      "ok": 35486,
+      "ok": 35596,
       "prose-sentence": 27,
       "single-token": 315,
       "stop-word-only": 3
@@ -7672,9 +7672,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/pi-subagents-agent-parse.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "line": 1,
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.0.0.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -12573,6 +12573,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.2.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.5.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -46551,6 +46569,36 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/details/index.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/library/index.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -97712,6 +97760,13 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/confirmed-findings.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
     }
   ],
   "skippedPaths": [
@@ -97801,6 +97856,10 @@
     },
     {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-design/sk-design-chart/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -98276,6 +98335,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/067-deferred-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -98465,6 +98532,26 @@
     },
     {
       "path": "specs/hooks/015-git-hook-gate-reduction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99057,6 +99144,42 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/017-visual-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/018-opus-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/019-cursor-stock-register/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/020-external-reference-library/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99929,6 +100052,10 @@
     },
     {
       "path": "specs/system-deep-loop/043-review-leaf-protocol/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/scratch",
       "reason": "excluded directory"
     },
     {
@@ -101460,111 +101587,123 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/034-goal-operator-resync-rule/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/029-goal-operator-resync-rule/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/001-ripgrep-search-system/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/003-shared-package-utilization/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/research/lineages",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-spec-kit-simplification-research/005-overengineering-simplification/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/001-hook-adapter-thin-transports/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/002-multiplexed-rule-split/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/003-playbook-provenance-lines/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/004-fingerprint-stamp-regeneration/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/005-provenance-title-sweep/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/006-lifecycle-command-asset-merge/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/007-links-scan-registry-rule/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/007-links-scan-registry-rule/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/008-review-research-scaffold-paths/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/009-references-corpus-routing/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/012-root-resolver-consolidation/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/013-gate1-instruction-parity/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/014-registration-schema-unification/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/015-criteria-file-line-enforcement/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-recorded-findings-closure/016-cross-session-operator-items/scratch",
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/033-ci-dependency-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/scratch",
       "reason": "excluded directory"
     },
     {

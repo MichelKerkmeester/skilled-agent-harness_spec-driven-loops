@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity",
+  "description": "Gate 1's trigger-index lookup instruction is authored in exactly one place, the root `AGENTS.md` (`AGENTS.md:83`), and `CLAUDE.md` is a symlink to it",
+  "keywords": [
+    "gate",
+    "trigger-index",
+    "lookup",
+    "instruction",
+    "authored",
+    "exactly",
+    "one",
+    "place",
+    "root",
+    "agents",
+    "claude",
+    "symlink"
+  ],
+  "lastUpdated": "2026-09-07T17:54:07.512Z",
+  "specId": "013",
+  "folderSlug": "gate1-instruction-parity",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

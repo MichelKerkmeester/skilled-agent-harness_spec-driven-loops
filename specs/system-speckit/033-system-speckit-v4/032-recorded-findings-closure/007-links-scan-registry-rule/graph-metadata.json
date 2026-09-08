@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/007-links-scan-registry-rule",
+  "spec_folder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/007-links-scan-registry-rule",
+  "parent_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "links scan registry rule",
+      "wikilink registry row",
+      "memory name link allowlist",
+      "check links registry coverage",
+      "links scan registry rule plan",
+      "run check adapter technical approach",
+      "memory name allowlist strategy",
+      "registry coverage testing",
+      "links scan registry rule tasks",
+      "run check adapter task",
+      "memory name allowlist task",
+      "registry coverage verification"
+    ],
+    "key_topics": [
+      "links",
+      "scan",
+      "registry",
+      "rule",
+      "wikilink",
+      "row",
+      "memory",
+      "name",
+      "link",
+      "allowlist",
+      "check",
+      "coverage"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/rules/check-links.sh",
+      "runtime/cli/lib/validator-registry.json",
+      "references/workflows/rename-pattern.md",
+      "runtime/cli/rules/README.md",
+      "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
+      "rules/check-links.sh",
+      "lib/validator-registry.json",
+      "tests/validate-runs-every-registry-rule.vitest.ts",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
+      "rules/check-placeholders.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/references/workflows/rename-pattern.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/rules/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-links.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-links.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "rename-pattern.md",
+        "kind": "doc",
+        "path": "references/workflows/rename-pattern.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/rules/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-validation-rule-engine.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-runs-every-registry-rule.vitest.ts",
+        "kind": "test",
+        "path": "tests/validate-runs-every-registry-rule.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "notion-bases-relation-rollup.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": "rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`rules/check-links.sh`'s own header states it plainly: \"A standalone scan run on demand: it has no validator-registry row, so validate.sh never sources it\" (`check-links.sh:5-6`)",
+    "created_at": "2026-09-07T15:05:48Z",
+    "last_save_at": "2026-09-08T15:47:15.806Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9768a1506b94528c3e0f5ed5fc134c4b3d81a5f50ac47ab465da4c19411253ff",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9dfc9f61af19b2a10314f0b807b1014c513beeca535402e22f67c7dfdd00efdb",
+      "plan.md": "e2a002f380b20325ba050364430a3f65817c6e0afe5e1b2f09696714b7503cfb",
+      "tasks.md": "5a659c629aaf69b720e223cca2a007527eebbed14c747969dd729496a04353af",
+      "implementation-summary.md": "9ae3617d6f6b79561ccdc750399f5787b91240e5dcd4706bd07de19a9576e2f8"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration",
+  "description": "27 closed packets' `implementation-summary.md` carry a human-mnemonic value in the slot `memory.continuity.sessiondedup.fingerprint` reserves for a",
+  "keywords": [
+    "closed",
+    "packets",
+    "implementation-summary",
+    "carry",
+    "human-mnemonic",
+    "value",
+    "slot",
+    "memory",
+    "continuity",
+    "sessiondedup",
+    "fingerprint",
+    "reserves"
+  ],
+  "lastUpdated": "2026-09-07T16:12:19.417Z",
+  "specId": "004",
+  "folderSlug": "fingerprint-stamp-regeneration",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

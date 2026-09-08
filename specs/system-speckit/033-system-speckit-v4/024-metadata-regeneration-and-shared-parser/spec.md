@@ -27,7 +27,7 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-09-05 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 24 of 24 |
+| **Phase** | 24 of 34 |
 | **Predecessor** | `../023-trigger-index-root-and-drift-fixes/spec.md` |
 | **Successor** | None |
 | **Branch** | `skilled/v4.0.0.0` |

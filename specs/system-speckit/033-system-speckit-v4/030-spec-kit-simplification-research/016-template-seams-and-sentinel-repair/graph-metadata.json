@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair",
+  "parent_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template seams sentinel repair",
+      "sentinel checklist gate fixed",
+      "sharded flag removed",
+      "runtime test project green",
+      "seams repair plan",
+      "sentinel gate plan",
+      "runtime project in ci",
+      "template source document list",
+      "seams repair tasks",
+      "sentinel tasks",
+      "runtime suite repair tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "template",
+      "seams",
+      "sentinel",
+      "repair",
+      "checklist",
+      "gate",
+      "sharded",
+      "flag",
+      "removed",
+      "runtime",
+      "test",
+      "project"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/lib/hooks/completion-evidence-sentinel.cjs",
+      "runtime/lib/validation/spec-doc-structure.ts",
+      "runtime/cli/spec/create.sh",
+      "lib/template-utils.sh",
+      "spec/check-template-staleness.sh",
+      "runtime/cli/rules/check-ac-coverage.sh",
+      "utils/template-structure.js",
+      "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+      "templates/spec-kit-docs.json",
+      "templates/README.md",
+      "templates/EXTENSION-GUIDE.md",
+      "references/structure/folder-structure.md",
+      "references/workflows/goal-set-string-playbook.md",
+      ".github/workflows/spec-kit-check.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": "runtime/lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": "lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-staleness.sh",
+        "kind": "script",
+        "path": "spec/check-template-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXTENSION-GUIDE.md",
+        "kind": "doc",
+        "path": "templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": "references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 010 made the level contract the one authority and left the code and prose beside it untouched",
+    "created_at": "2026-09-07T06:57:32.879Z",
+    "last_save_at": "2026-09-08T15:47:14.324Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:46b2f9fc4bdeb841e3774ad6e0451ea7eb7dc354e00138afa0c561e87a6f0f7e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e736fdcb27f106329ae394aa9f011227be0cb88b2f9a3ff1470abff5be0712b8",
+      "plan.md": "8afc268b63fd422a336d8c1da12ba1b6fddbcdad28e316e594caf112dc5e8307",
+      "tasks.md": "ce328c10292fb8b0fbcd42c977772969c2a692ea7f584a0905c2fb81f24c737e",
+      "implementation-summary.md": "7fb2319e52fa76834a665030bc076c7c5c140078c4ed893bf7f91e3391cea1f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
