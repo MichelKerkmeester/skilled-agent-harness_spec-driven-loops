@@ -102,7 +102,7 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 
 **2026-09-07:** `033-ci-dependency-hardening` (was `037-ci-dependency-hardening`) started; 1 commit over 0 nested phases. Outcome: The pre-commit hook runs the same six mirror checks CI runs, the Spec-Kit Check workflow triggers on every mirror source and output, and the forty-four open Dependabot alerts reach zero. Status Complete; last commit 2026-09-07.
 
-**2026-09-08:** `034-v4-state-inventory-research` started; 0 commits over 0 nested phases. Outcome: Two ten-iteration lanes, GPT-5.6 Luna on codex and DeepSeek V4 Flash on devin, inventory what the repository ships and rank every stale claim in the old v4 changelog draft; the merge and reproduction pass follow. Status In Progress; last commit 2026-09-08.
+**2026-09-08:** `034-v4-state-inventory-research` started; 0 commits over 0 nested phases. Outcome: Two ten-iteration lanes, GPT-5.6 Luna on codex and DeepSeek V4 Flash on devin, inventory what the repository ships and rank every stale claim in the old v4 changelog draft; nineteen drift rows ranked, seventeen reproduced, three lane findings dropped. Status Complete; last commit 2026-09-08.
 
 ### Chronology table
 
@@ -438,7 +438,7 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 
 **34. 034-v4-state-inventory-research**
 
-- (not yet committed) 2026-09-08 research lanes launched and completed; commit pending
+- `d1f75a15f6` 2026-09-08 refactor(specs): nest the last four system-speckit packets under the v4 parent
 
 <!-- /ANCHOR:timeline -->
 
@@ -471,5 +471,5 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 
 **Second consolidation wave into this parent:** 2026-09-08. Status: Done. Evidence: children `029` to `033` renumbered by first commit; `spec.md` phase map and this timeline.
 
-**Repository state inventoried and the old changelog draft fact-checked:** 2026-09-08, `034`. Status: In progress. Evidence: `034-v4-state-inventory-research/research/lineages/{luna,deepseek}/research.md`.
+**Repository state inventoried and the old changelog draft fact-checked:** 2026-09-08, `034`. Status: Done. Evidence: `034-v4-state-inventory-research/research/confirmed-drift.md`.
 <!-- /ANCHOR:milestones -->
