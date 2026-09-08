@@ -39,7 +39,7 @@
       "decisions"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,16 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scripts/README.md",
+      "scratch/parse-contract.md",
+      "scratch/checker-notes.md",
+      "scratch/mutations.md",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-design/sk-design-chart/scripts/README.md",
-      "scripts/README.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md",
+      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/tests/apply-design-md.test.cjs"
     ],
     "entities": [
       {
@@ -89,15 +96,57 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "parse-contract.md",
+        "kind": "doc",
+        "path": "scratch/parse-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "checker-notes.md",
+        "kind": "doc",
+        "path": "scratch/checker-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutations.md",
+        "kind": "doc",
+        "path": "scratch/mutations.md",
+        "source": "derived"
+      },
+      {
+        "name": "apply-design-md.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+        "source": "derived"
+      },
+      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "design-md-theming.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/README.md",
+        "path": ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "apply-design-md.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/tests/apply-design-md.test.cjs",
         "source": "derived"
       },
       {
@@ -153,53 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Parse",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-design-md-generator` measures a live site into a v3 Style Reference, a `DESIGN.md` whose colour table, typography section and radius table hold every value verbatim",
     "created_at": "2026-09-08T06:21:09Z",
-    "last_save_at": "2026-09-08T06:23:45.140Z",
+    "last_save_at": "2026-09-08T07:59:29.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b5a90c7bb22ebdb983bce380e6b2bac2853db4f6578b7ea32e3920d4cad1bbf",
+    "source_fingerprint": "sha256:ceb5cc62a39b510c9918c049721fb60f11b4bf82fdd8e508884d33afb85cf142",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "629b787bdea553f3b77f590680b79d325ddfbca097d13d8267d3f531fce32303",
-      "plan.md": "79596bfd121c2c80ec1639e6344a4b649f1bf8aeaea0c08e92b01f3a709c2b41",
-      "tasks.md": "54597d8e7bbcd146ef6ff9dd8d27ebe98a21889c61f29587c70606546decd750",
-      "implementation-summary.md": "0195ab000eaa8b908c77b4222ca453c577199ae946db330b1f87524da9eaa1b8"
+      "spec.md": "c6751c6021da820c15ef9c5ad67c35e6ac5c486bcb51e36eda7f6134618a0c58",
+      "plan.md": "fbdd2fb7bff41e88a1fbb0dc7e71850e551428f703fa0679cf07a185792c7b5f",
+      "tasks.md": "830c91800a60173378e8fa4882bf443173114e3bda6952f27a4d013d61e3a90f",
+      "implementation-summary.md": "fa43112f7789032b7e637d391270025f4ef8b3989a1b985bd05b6047c69374db"
     },
     "last_active_at": null
   }

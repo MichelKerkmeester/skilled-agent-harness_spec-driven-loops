@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the twenty-five rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the twenty-five rules the corpus check enforces on every one, including provenance-gated design-md deliveries."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.9.0.0
+version: 2.0.0.0
 ---
 
 # Chart Template Contract
@@ -57,10 +57,12 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
   <meta name="chart-color-system" content="<system>">
   <style>
     /* CHART_PALETTE:BEGIN system=<system> */
+    /* DESIGN.md provenance: path=<local path> sha256=<64 hex> generator=<version> */
     :root { every colour role and every corner rung, pasted from the palette source }
     /* CHART_PALETTE:END */
 
     /* CHART_PALETTE_DARK:BEGIN system=<system> */
+    /* DESIGN.md provenance: path=<local path> sha256=<64 hex> generator=<version> */
     @media (prefers-color-scheme: dark) {
       :root { every colour role again, pasted from the same source's dark values }
     }
@@ -95,7 +97,7 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
 </html>
 ```
 
-The sentinels are how the corpus check finds the three regions it has an opinion about. Do not rename them, and use each pair once. The dark pair carries its own name for that reason: a second block under the light block's name would be the same sentinel twice, and then nothing can say which region a drifted value came from.
+The sentinels are how the corpus check finds the two palette regions it has an opinion about. Do not rename them, and use each pair once. The dark pair carries its own name for that reason: a second block under the light block's name would be the same sentinel twice, and then nothing can say which region a drifted value came from.
 
 ### The type scale, as the compact card register
 
@@ -335,6 +337,22 @@ To show a colour value as text, read it at runtime with `getComputedStyle(docume
 
 Which system to pick, what the roles mean and where the ceilings are: `color-system.md`.
 
+### The design-md delivery branch
+
+A delivery generated from a local v3 `DESIGN.md` may carry `system=design-md` in both palette
+sentinels. It remains a copy of its source form: the existing `chart-template` and
+`chart-color-system` identity lines stay byte-identical, while the two palette blocks, the
+provenance comments, the font declarations and the light corner ladder carry the reference's
+projection. The block system is authoritative for this delivery branch, so it does not enter the
+stock source-equality comparison or the catalog.
+
+The provenance comment must be the first line after each begin marker and must carry the input path
+as given to the applicator, a 64-hex SHA-256 of that `DESIGN.md`, and the applicator version. The
+checker accepts the branch only when both comments are well formed and the inline `surface`, `ink`,
+`muted`, `series-1` through `series-4` and `emphasis` values clear the same gates as the stock
+systems on both grounds. A malformed comment or a failed inline gate is an error; there is no
+force path and no source-equality exemption for a stock system.
+
 ### The corner ladder rides in the same block
 
 The light block carries one more kind of shared value: the five corner rungs, `--chart-radius-mark`
@@ -372,8 +390,8 @@ Section 9 carries the full account of what a run does not observe.
 | --- | --- | --- | --- |
 | 1 | Complete document: doctype, `lang`, charset, viewport, a non-empty title | `document-shape` | Shipping a fragment as a deliverable |
 | 2 | Identity tag present, lower-case kebab, equal to the filename stem | `identity` | A file nothing can index |
-| 3 | Declared colour system exists in the palette source | `identity` | A template pointing at a system nobody defined |
-| 4 | One palette block per theme, two at most, each matching its own projection of the source in both directions | `palette-block` | Silent theme drift, invisible in a diff |
+| 3 | A stock colour system exists in the palette source, or a design-md delivery carries the provenance-gated branch | `identity`, `design-md` | A file pointing at a system nobody defined, or a themed copy with an untraceable palette |
+| 4 | One palette block per theme, two at most, each matching its own stock projection, or a design-md block with provenance and inline gates | `palette-block`, `design-md` | Silent theme drift, invisible in a diff, or a themed block that bypasses the gates |
 | 5 | No colour literal outside the palette block | `colour-literals` | A palette edit that reaches half the file |
 | 6 | No remote resource and no runtime fetch | `no-external` | A chart that stops working away from the network |
 | 7 | Every inline script compiles | `script-parses` | A file that throws on open, which no reading catches |
@@ -657,7 +675,8 @@ check cannot see.
 
 | Document | Purpose |
 | --- | --- |
-| [`color-system.md`](./color-system.md) | The three systems, their roles and their gates |
+| [`color-system.md`](./color-system.md) | The three stock systems, the design-md delivery adapter, their roles and their gates |
+| [`design-md-theming.md`](./design-md-theming.md) | How a local v3 DESIGN.md becomes a provenance-gated delivery |
 | [`catalog.md`](./catalog.md) | The index from a question to a chart form |
 | [`../scripts/README.md`](../scripts/README.md) | How to run the corpus check and how to prove it can fail |
 | [`../assets/color/palette-sheet-neutral.html`](../assets/color/palette-sheet-neutral.html) | The working skeleton to copy |

@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.0.0
+version: 1.4.0.0
 metadata:
   packetKind: workflow
 ---
@@ -23,10 +23,11 @@ Use this packet when the request involves:
 
 - Building a chart that plots data: a ranked comparison, a part-to-whole split, a time series, a distribution, a relationship or a matrix.
 - Deciding which chart form answers the comparison a reader needs to make.
-- Choosing or applying one of the packet's three colour systems.
+- Choosing or applying one of the packet's three stock colour systems, or a provenance-gated design-md delivery.
+- Applying a local v3 `DESIGN.md` Style Reference to a chart delivery.
 - Adding a chart form to the corpus, or checking that the corpus still renders.
 
-Keyword triggers: `create a chart`, `plot the data`, `data visualization`, `treemap`, `waterfall chart`, `heatmap`, `box plot`, `histogram`, `chart catalog`, `chart colour system`, `standalone html chart`.
+Keyword triggers: `create a chart`, `plot the data`, `data visualization`, `treemap`, `waterfall chart`, `heatmap`, `box plot`, `histogram`, `chart catalog`, `chart colour system`, `standalone html chart`, `DESIGN.md`, `style reference`, `measured site's look`, `theme a chart`.
 
 ### When NOT to Use
 
@@ -34,7 +35,7 @@ Use another `sk-doc` packet when:
 
 - The artifact explains a structure rather than plotting values. A flow, an architecture, a sequence or a state machine is `sk-design-diagram` work.
 - The request is about the prose around a chart rather than the chart. That is `sk-create-readme` or `sk-create-quality-control`.
-- The request asks for interface design values or a measured style reference. Those belong to `sk-design` and `sk-design-md-generator`.
+- The request asks to extract interface design values from a site. Extraction belongs to `sk-design-md-generator`; applying an already extracted local `DESIGN.md` stays here.
 
 The boundary against `sk-design-diagram` is the one that actually gets tested, because that packet already names bar, line, scatter and radar in its own selection guide. The split is what the artifact carries. A diagram carries a structure a reader follows. A chart carries values a reader compares.
 
@@ -104,7 +105,8 @@ def route_resources(request):
 | --- | --- | --- |
 | Chart lookup | `references/catalog.md` | Turn the comparison a reader needs into one chart form and the file that draws it |
 | Chart forms | `assets/templates/` | One self-contained file per form, copied whole rather than extracted from |
-| Colour systems | `assets/color/` | The three named systems, the palette source they read and their proof sheets |
+| Colour systems | `assets/color/` | The three named stock systems, the palette source they read and their proof sheets |
+| Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms |
 | Template contract | `references/template-contract.md` | What a form file has to contain before the corpus check passes it |
 | Worked deliveries | `assets/examples/` | One finished delivery per family, read when a form file alone is unclear |
 | Corpus validation | `scripts/` | Prove every form still renders after a change |
@@ -123,6 +125,13 @@ The workflow is template-first, and that is a constraint rather than a preferenc
 6. Keep the result a single self-contained file. It opens in a browser with no install step.
 7. Run the corpus validator before reporting the result.
 
+When the request names a `DESIGN.md`, a style reference or a measured site's look, route the
+application branch to `scripts/apply-design-md.cjs`. It reads the v3 headings documented by
+`references/design-md-theming.md`, derives both grounds from local values, and writes themed
+copies only after the corpus gates pass. A request that asks for themed charts without naming a
+reference runs it with `--default`, the `cursor` bundle from the style library. If the request asks to create the Style Reference itself,
+route that extraction to `sk-design-md-generator`; this packet owns application, not extraction.
+
 ### What the corpus holds
 
 Twenty-six chart forms across six question families: comparison, composition, time, distribution, relationship and matrix. `references/catalog.md` is the index and the corpus check reads it in both directions, so a row naming a missing file and a file carrying no row both fail. One form is one file. There are no gallery pages to lift a block out of, because what reaches a reader is a delivery and a gallery ships every other form's demo data alongside the one they asked for. When no row answers the question in front of you, report the gap rather than improvising a form.
@@ -136,7 +145,7 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 ### ✅ ALWAYS
 
 - Copy a form file that already renders, and change only its data block.
-- Apply exactly one colour system per artifact.
+- Apply exactly one colour system per artifact; a `design-md` delivery is accepted only with its provenance comment and both inline gate checks.
 - Produce a single self-contained file that opens with no install step.
 - Run the corpus validator before reporting a result.
 - Author every chart and every palette in this packet.
@@ -171,6 +180,7 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 - The artifact is one self-contained file that opens in a browser.
 - The file traces back to one named row in `references/catalog.md`.
 - One colour system is applied throughout.
+- A local `DESIGN.md` can produce a deterministic, provenance-bearing delivery without changing stock forms or palettes.
 - The corpus validator exits clean.
 
 ---

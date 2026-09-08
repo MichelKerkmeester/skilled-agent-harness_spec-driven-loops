@@ -9,6 +9,7 @@
  * Usage:
  *   node check-corpus.cjs            structural checks only
  *   node check-corpus.cjs --render   also open every template in a headless browser
+ *   node check-corpus.cjs --extra DIR also check HTML deliveries outside this package
  *
  * Exit 0 only when the run prints RESULT: PASSED. Read the marker, not the exit code:
  * a run that dies before its first check also exits without printing failures.
@@ -21,6 +22,7 @@ const path = require('path');
 const os = require('os');
 const vm = require('vm');
 const { execFileSync } = require('child_process');
+const { channel, luminance, contrast, round2 } = require('./color-gates.cjs');
 
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
@@ -46,6 +48,18 @@ const CURVE_BEGIN = '/* CURVE:BEGIN */';
 const CURVE_END = '/* CURVE:END */';
 const CATALOG_BEGIN = '<!-- CHART_CATALOG:BEGIN -->';
 const CATALOG_END = '<!-- CHART_CATALOG:END -->';
+const DESIGN_MD_PROVENANCE = /\/\*\s*DESIGN\.md provenance:\s*path=(.*?)\s+sha256=([0-9a-f]{64})\s+generator=([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\s*\*\//i;
+const DESIGN_MD_LIGHT_PROPS = new Set([
+  '--chart-surface', '--chart-ink', '--chart-muted', '--chart-rule',
+  '--chart-radius-mark', '--chart-radius-track', '--chart-radius-swatch',
+  '--chart-radius-pill', '--chart-radius-card', '--chart-series-1',
+  '--chart-series-2', '--chart-series-3', '--chart-series-4', '--chart-emphasis',
+]);
+const DESIGN_MD_DARK_PROPS = new Set([
+  '--chart-surface', '--chart-ink', '--chart-muted', '--chart-rule',
+  '--chart-series-1', '--chart-series-2', '--chart-series-3', '--chart-series-4',
+  '--chart-emphasis',
+]);
 
 const CARD_PARTS = ['headline', 'subtitle', 'figure', 'footer', 'source'];
 
@@ -81,28 +95,6 @@ function tally(check, n) {
 function rel(p) {
   return path.relative(PACKAGE_ROOT, p) || path.basename(p);
 }
-
-/* ---------------------------------------------------------------- colour maths */
-
-function channel(c) {
-  const v = c / 255;
-  return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-}
-
-function luminance(hex) {
-  const n = parseInt(hex.slice(1), 16);
-  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
-}
-
-function contrast(a, b) {
-  const la = luminance(a);
-  const lb = luminance(b);
-  const hi = Math.max(la, lb);
-  const lo = Math.min(la, lb);
-  return (hi + 0.05) / (lo + 0.05);
-}
-
-const round2 = (n) => Math.round(n * 100) / 100;
 
 /* ------------------------------------------------------------- palette source */
 
@@ -436,7 +428,7 @@ function checkIdentity(file, src, palette) {
   }
   if (!systemId) {
     record('identity', 'error', file, 'no <meta name="chart-color-system"> declaration');
-  } else if (!palette.systems[systemId]) {
+  } else if (!palette.systems[systemId] && systemId !== 'design-md') {
     record('identity', 'error', file, `declares colour system "${systemId}", which the palette source does not define`);
   }
   return { id, systemId };
@@ -458,6 +450,105 @@ function regionOf(src, spec) {
 }
 
 const occurrences = (src, needle) => src.split(needle).length - 1;
+
+function inlinePaletteProperties(block) {
+  const properties = new Map();
+  const propRe = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
+  let match;
+  while ((match = propRe.exec(block.text)) !== null) properties.set(match[1], match[2].trim());
+  return properties;
+}
+
+function isHexColour(value) {
+  return /^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$/.test(value);
+}
+
+function checkDesignMdBlock(file, block, palette, spec) {
+  const expected = spec.theme === 'light' ? DESIGN_MD_LIGHT_PROPS : DESIGN_MD_DARK_PROPS;
+  const actual = inlinePaletteProperties(block);
+  const themeLabel = `design-md ${spec.theme}`;
+  const gates = palette.gates;
+  let checked = 0;
+  const lines = block.text.split(/\r?\n/);
+  const provenance = DESIGN_MD_PROVENANCE.exec(lines[1] || '');
+  checked += 1;
+  if (!provenance || !provenance[1].trim()) {
+    record('design-md', 'error', file,
+      `${themeLabel} provenance is missing or malformed directly under the begin marker; expected path, sha256=<64 hex> and generator=<version>`);
+  }
+
+  const problems = [];
+  for (const prop of expected) {
+    if (!actual.has(prop)) problems.push(`missing ${prop}`);
+  }
+  for (const prop of actual.keys()) {
+    if (!expected.has(prop)) problems.push(`unexpected ${prop}`);
+  }
+  if (problems.length) {
+    record('design-md', 'error', file,
+      `${themeLabel} palette properties are incomplete: ${problems.join('; ')}`);
+  }
+
+  const valueFor = (role) => actual.get(`--chart-${role}`);
+  const surface = valueFor('surface');
+  const ink = valueFor('ink');
+  const muted = valueFor('muted');
+  const series = [1, 2, 3, 4].map((i) => valueFor(`series-${i}`));
+  const emphasis = valueFor('emphasis');
+  const colourRoles = ['surface', 'ink', 'muted', ...series.map((_, i) => `series-${i + 1}`), 'emphasis'];
+  const valid = colourRoles.every((role) => isHexColour(valueFor(role)));
+  if (valid) {
+    for (const role of ['ink', 'muted']) {
+      const ratio = contrast(valueFor(role), surface);
+      checked += 1;
+      if (ratio < gates.textOnSurface) {
+        record('design-md', 'error', file,
+          `${themeLabel} ${role} reads ${round2(ratio)}:1 on the ${spec.theme} ground, below the ${gates.textOnSurface}:1 text gate`);
+      }
+    }
+    series.forEach((value, index) => {
+      const ratio = contrast(value, surface);
+      checked += 1;
+      if (ratio < gates.markOnSurface) {
+        record('design-md', 'error', file,
+          `${themeLabel} series[${index}] reads ${round2(ratio)}:1 on the ${spec.theme} ground, below the ${gates.markOnSurface}:1 mark gate`);
+      }
+    });
+    // A themed block stands in for a neutral or categorical system, and the stock checker gates
+    // those by the mark ratio alone; the ramp step and end gates belong to a magnitude ramp,
+    // which a Style Reference does not supply and the theming script refuses to write.
+    const emphasisRatio = contrast(emphasis, surface);
+    checked += 1;
+    if (emphasisRatio < gates.markOnSurface) {
+      record('design-md', 'error', file,
+        `${themeLabel} emphasis reads ${round2(emphasisRatio)}:1 on the ${spec.theme} ground, below the ${gates.markOnSurface}:1 mark gate`);
+    }
+    const emphasisSeparation = contrast(emphasis, series[0]);
+    checked += 1;
+    if (emphasisSeparation < gates.emphasisAgainstFirstSeries) {
+      record('design-md', 'error', file,
+        `${themeLabel} emphasis reads ${round2(emphasisSeparation)}:1 against series[0], below the ${gates.emphasisAgainstFirstSeries}:1 emphasis separation gate`);
+    }
+  }
+
+  const rule = valueFor('rule');
+  if (spec.mediaQuery && !spec.mediaQuery.test(block.text)) {
+    record('design-md', 'error', file,
+      `${themeLabel} palette block carries no prefers-color-scheme query, so its values would paint on every reader`);
+  }
+  if (spec.theme === 'dark' && rule) {
+    checked += 1;
+    const ruleParts = /^#([0-9A-Fa-f]{6})([0-9A-Fa-f]{2})$/.exec(rule);
+    if (!ruleParts || !isHexColour(ink) || `#${ruleParts[1]}`.toUpperCase() !== ink.toUpperCase()) {
+      record('design-md', 'error', file,
+        `${themeLabel}.rule must be the dark ink colour followed by a non-full alpha`);
+    } else if (parseInt(ruleParts[2], 16) === 255) {
+      record('design-md', 'error', file,
+        `${themeLabel}.rule carries a full alpha, which makes it a solid value wearing an alpha channel`);
+    }
+  }
+  tally('design-md', checked + expected.size);
+}
 
 // Rule 4: one palette block per theme, two at most, each matched against its own projection of
 // the source in both directions.
@@ -493,6 +584,10 @@ function checkPaletteBlock(file, src, palette, declaredSystem) {
         `the ${spec.theme} palette block declares system "${block.systemId}" and the meta tag declares "${declaredSystem}"`);
       continue;
     }
+    if (block.systemId === 'design-md') {
+      checkDesignMdBlock(file, block, palette, spec);
+      continue;
+    }
     if (!palette.systems[block.systemId]) continue;
 
     // A dark block outside its media query paints on every reader, which is the one way a
@@ -504,10 +599,7 @@ function checkPaletteBlock(file, src, palette, declaredSystem) {
     }
 
     const expected = spec.projection(palette, block.systemId);
-    const actual = new Map();
-    const propRe = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
-    let m;
-    while ((m = propRe.exec(block.text)) !== null) actual.set(m[1], m[2].trim());
+    const actual = inlinePaletteProperties(block);
 
     const problems = [];
     for (const [prop, value] of expected) {
@@ -2358,8 +2450,34 @@ function htmlFilesUnder(dir) {
   return out.sort();
 }
 
+function parseExtraDirectory(argv) {
+  const index = argv.indexOf('--extra');
+  if (index === -1) return null;
+  const value = argv[index + 1];
+  if (!value || value.startsWith('--')) throw new Error('--extra needs a directory path');
+  const directory = path.resolve(value);
+  if (!fs.existsSync(directory) || !fs.statSync(directory).isDirectory()) {
+    throw new Error(`--extra directory does not exist: ${value}`);
+  }
+  return directory;
+}
+
+function fileLabel(file, extraDirectory) {
+  if (extraDirectory && (file === extraDirectory || file.startsWith(extraDirectory + path.sep))) {
+    return `--extra/${path.relative(extraDirectory, file)}`;
+  }
+  return rel(file);
+}
+
 function main() {
   const wantRender = process.argv.includes('--render');
+  let extraDirectory;
+  try {
+    extraDirectory = parseExtraDirectory(process.argv.slice(2));
+  } catch (error) {
+    console.error(`ERROR: ${error.message}`);
+    process.exit(2);
+  }
   const palette = loadPalette();
   checkRadiusRungs(palette);
   for (const theme of THEMES) checkPaletteSource(palette, theme);
@@ -2367,12 +2485,15 @@ function main() {
   // The gallery frames every chart rather than being one. Running the chart rules over it would
   // ask a contact sheet for a data block and a colour system it has no business carrying; its own
   // obligation is completeness, which checkGallery below is what enforces.
-  const files = htmlFilesUnder(ASSET_ROOT).filter((f) => f !== GALLERY);
+  const internalFiles = htmlFilesUnder(ASSET_ROOT).filter((f) => f !== GALLERY);
+  const extraFiles = extraDirectory ? htmlFilesUnder(extraDirectory) : [];
+  const files = [...internalFiles, ...extraFiles];
   const templateIdentities = new Map();
 
   for (const file of files) {
     const src = fs.readFileSync(file, 'utf8');
-    const name = rel(file);
+    const isExtra = extraFiles.includes(file);
+    const name = fileLabel(file, extraDirectory);
     checkDocumentShape(name, src);
     const { id, systemId } = checkIdentity(name, src, palette);
     const blocks = checkPaletteBlock(name, src, palette, systemId);
@@ -2403,7 +2524,7 @@ function main() {
     // A delivery is also the copy somebody edits, so it is the copy most likely to be handed an
     // empty block. The one file this does not reach is a proof sheet, whose data block is the
     // palette it draws rather than a reading it displays.
-    if (file.startsWith(TEMPLATE_DIR + path.sep) || file.startsWith(EXAMPLE_DIR + path.sep)) {
+    if (isExtra || file.startsWith(TEMPLATE_DIR + path.sep) || file.startsWith(EXAMPLE_DIR + path.sep)) {
       checkEmptyNotice(name, src);
     }
     if (id && file.startsWith(TEMPLATE_DIR + path.sep)) templateIdentities.set(id, file);
@@ -2529,4 +2650,13 @@ function checkContractCoverage(templateFiles) {
   process.exit(errors.length ? 1 : 0);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = {
+  channel,
+  luminance,
+  contrast,
+  round2,
+  checkPaletteSource,
+  checkDesignMdBlock,
+};
