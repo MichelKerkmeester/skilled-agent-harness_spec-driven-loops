@@ -1514,22 +1514,16 @@ function checkGeometryBlock(files) {
 // of the next template's axis tick is a choice out of six rungs rather than a guess, which only
 // holds while something rejects a seventh rung.
 function checkTypeScale(file, src, palette) {
-  // The palette file remains the source of truth for colours and numeric contrast gates. This
-  // visual projection is the measured chart register: the standalone corpus adopts the compact
-  // card scale from the frozen shadcn copy without editing the palette source that owns those
-  // unrelated gates.
+  // The palette source publishes both registers: the chart roles and departures every form is
+  // held to, and the finer sheet scale the two palette proof sheets keep. Reading them here
+  // rather than restating them means a change of register is a change to one file.
   const allowed = new Map();
-  if (file.startsWith('assets/color/')) {
-    const scale = palette.typeScale || {};
-    for (const [role, value] of Object.entries(scale.roles || {})) allowed.set(parseFloat(value), role);
-    for (const [role, value] of Object.entries(scale.departures || {})) allowed.set(parseFloat(value), role);
-  } else {
-    allowed.set(16, 'headline');
-    allowed.set(14, 'body');
-    allowed.set(12, 'label/tick/note');
-    allowed.set(10, 'monthStrip');
-    allowed.set(56, 'hero');
-    allowed.set(34, 'ringTotal');
+  const scale = palette.typeScale || {};
+  const sources = file.startsWith('assets/color/')
+    ? [scale.sheetRoles]
+    : [scale.roles, scale.departures];
+  for (const group of sources) {
+    for (const [role, value] of Object.entries(group || {})) allowed.set(parseFloat(value), role);
   }
 
   const { styles, scripts } = regionsOf(stripHtmlComments(src));
