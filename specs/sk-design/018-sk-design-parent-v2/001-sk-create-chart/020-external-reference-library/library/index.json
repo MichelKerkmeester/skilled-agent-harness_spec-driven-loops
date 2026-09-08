@@ -1,0 +1,470 @@
+[
+  {
+    "file": "shadcn-area-light.jpg",
+    "name": "shadcn-area",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/area",
+    "kind": "component library",
+    "note": "The register the corpus adopted: card header and footer, bare axes, horizontal dashed grid, gradient area, chip legend; the interactive area with its range select at the top, twelve variants below.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-area-dark.jpg",
+    "name": "shadcn-area",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/area",
+    "kind": "component library",
+    "note": "The register the corpus adopted: card header and footer, bare axes, horizontal dashed grid, gradient area, chip legend; the interactive area with its range select at the top, twelve variants below.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-bar-light.jpg",
+    "name": "shadcn-bar",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "kind": "component library",
+    "note": "Bar family: rounded free corners, label inside and above, negative bars, horizontal bars, a mixed bar list with per-row colour.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-bar-dark.jpg",
+    "name": "shadcn-bar",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/bar",
+    "kind": "component library",
+    "note": "Bar family: rounded free corners, label inside and above, negative bars, horizontal bars, a mixed bar list with per-row colour.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-line-light.jpg",
+    "name": "shadcn-line",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/line",
+    "kind": "component library",
+    "note": "Line family: 2px linear and step lines, dot policies, a custom-label line with the highlighted point, a two-series header with totals.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-line-dark.jpg",
+    "name": "shadcn-line",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/line",
+    "kind": "component library",
+    "note": "Line family: 2px linear and step lines, dot policies, a custom-label line with the highlighted point, a two-series header with totals.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-tooltip-light.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "kind": "component library",
+    "note": "Every tooltip card variant on the same stacked bar: indicator dot, line and dashed, no indicator, no label, custom label and formatter. The card measured in phase 15.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-tooltip-dark.jpg",
+    "name": "shadcn-tooltip",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/tooltip",
+    "kind": "component library",
+    "note": "Every tooltip card variant on the same stacked bar: indicator dot, line and dashed, no indicator, no label, custom label and formatter. The card measured in phase 15.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-radial-light.jpg",
+    "name": "shadcn-radial",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/radial",
+    "kind": "component library",
+    "note": "Radial rings with a centred total in several forms; a form the corpus deliberately does not draw, kept as the counter-example.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-radial-dark.jpg",
+    "name": "shadcn-radial",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/radial",
+    "kind": "component library",
+    "note": "Radial rings with a centred total in several forms; a form the corpus deliberately does not draw, kept as the counter-example.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-pie-light.jpg",
+    "name": "shadcn-pie",
+    "scheme": "light",
+    "url": "https://ui.shadcn.com/charts/pie",
+    "kind": "component library",
+    "note": "Pie and donut variants with legends and centre labels; the other form the corpus substitutes with unit grids and rings.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "shadcn-pie-dark.jpg",
+    "name": "shadcn-pie",
+    "scheme": "dark",
+    "url": "https://ui.shadcn.com/charts/pie",
+    "kind": "component library",
+    "note": "Pie and donut variants with legends and centre labels; the other form the corpus substitutes with unit grids and rings.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tremor-area-light.jpg",
+    "name": "tremor-area",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/area-chart",
+    "kind": "component library",
+    "note": "Tremor area chart: soft gradient fills, a compact legend row, a dark code block beside the live example; the Tailwind sibling of the shadcn register.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tremor-tracker-light.jpg",
+    "name": "tremor-tracker",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/tracker",
+    "kind": "component library",
+    "note": "The tracker: a row of status cells for uptime or deployments, the smallest chart form on the list and one the corpus lacks.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tremor-bar-list-light.jpg",
+    "name": "tremor-bar-list",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/bar-list",
+    "kind": "component library",
+    "note": "The bar list: ranked horizontal bars with the label inside the bar and the value at the right edge; a table and a chart at once.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tremor-spark-light.jpg",
+    "name": "tremor-spark",
+    "scheme": "light",
+    "url": "https://www.tremor.so/docs/visualizations/spark-chart",
+    "kind": "component library",
+    "note": "Spark area, line and bar charts at KPI size; the micro-visualisation family worth adding to the corpus.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tremor-blocks-light.jpg",
+    "name": "tremor-blocks",
+    "scheme": "light",
+    "url": "https://blocks.tremor.so/",
+    "kind": "component library",
+    "note": "Composed dashboard blocks: KPI cards with sparklines, chart cards with header controls, in one visual system.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "mantine-area-light.jpg",
+    "name": "mantine-area",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/area-chart/",
+    "kind": "component library",
+    "note": "Recharts wrapped in a full component system: legend below, series toggles, stacked and split variants, a restrained blue and teal pair on a plain grid.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "mantine-bar-light.jpg",
+    "name": "mantine-bar",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/bar-chart/",
+    "kind": "component library",
+    "note": "Grouped, stacked and waterfall bars with a violet ramp; the legend and tooltip share the library tokens.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "mantine-line-light.jpg",
+    "name": "mantine-line",
+    "scheme": "light",
+    "url": "https://mantine.dev/charts/line-chart/",
+    "kind": "component library",
+    "note": "Line charts with gradient strokes, dashed reference lines and per-point dots; the gradient-line idea is distinctive.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "nivo-line-light.jpg",
+    "name": "nivo-line",
+    "scheme": "light",
+    "url": "https://nivo.rocks/line/",
+    "kind": "component library",
+    "note": "A saturated pastel set on a light grid with the live prop editor beside it; dense multi-line in a playful palette.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "nivo-bar-light.jpg",
+    "name": "nivo-bar",
+    "scheme": "light",
+    "url": "https://nivo.rocks/bar/",
+    "kind": "component library",
+    "note": "Stacked and grouped bars in the same pastel set, with pattern fills as a colour alternative.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "chartjs-line-light.jpg",
+    "name": "chartjs-line",
+    "scheme": "light",
+    "url": "https://www.chartjs.org/docs/latest/samples/line/line.html",
+    "kind": "library samples",
+    "note": "The canvas default: pink and blue lines with markers on a grey grid. The baseline for un-designed defaults.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "chartjs-line-dark.jpg",
+    "name": "chartjs-line",
+    "scheme": "dark",
+    "url": "https://www.chartjs.org/docs/latest/samples/line/line.html",
+    "kind": "library samples",
+    "note": "The canvas default: pink and blue lines with markers on a grey grid. The baseline for un-designed defaults.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "apex-line-light.jpg",
+    "name": "apex-line",
+    "scheme": "light",
+    "url": "https://apexcharts.com/javascript-chart-demos/line-charts/",
+    "kind": "library samples",
+    "note": "Twelve line variants in a gallery grid: annotations, dashed, stepline, gradient, missing data, real-time. Useful for annotation placement.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "echarts-examples-light.jpg",
+    "name": "echarts-examples",
+    "scheme": "light",
+    "url": "https://echarts.apache.org/examples/en/index.html",
+    "kind": "library samples",
+    "note": "The widest catalogue of forms; one colour set across hundreds of examples.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "d3-gallery-light.jpg",
+    "name": "d3-gallery",
+    "scheme": "light",
+    "url": "https://observablehq.com/@d3/gallery",
+    "kind": "library samples",
+    "note": "The D3 gallery of bespoke forms; the reference for what a standalone SVG can express.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "plot-gallery-light.jpg",
+    "name": "plot-gallery",
+    "scheme": "light",
+    "url": "https://observablehq.com/@observablehq/plot-gallery",
+    "kind": "library samples",
+    "note": "Observable Plot examples in one restrained style: dots, lines, bars, areas, facets, maps.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "plot-area-docs-light.jpg",
+    "name": "plot-area-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/area",
+    "kind": "library docs",
+    "note": "The area mark page in both schemes: monochrome fills on bare axes, stacked and banded variants, the leanest area charts on the list.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "plot-area-docs-dark.jpg",
+    "name": "plot-area-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/area",
+    "kind": "library docs",
+    "note": "The area mark page in both schemes: monochrome fills on bare axes, stacked and banded variants, the leanest area charts on the list.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "plot-line-docs-light.jpg",
+    "name": "plot-line-docs",
+    "scheme": "light",
+    "url": "https://observablehq.com/plot/marks/line",
+    "kind": "library docs",
+    "note": "The line mark page in both schemes: thin ink lines, gap handling, multi-series with a colour legend.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "plot-line-docs-dark.jpg",
+    "name": "plot-line-docs",
+    "scheme": "dark",
+    "url": "https://observablehq.com/plot/marks/line",
+    "kind": "library docs",
+    "note": "The line mark page in both schemes: thin ink lines, gap handling, multi-series with a colour legend.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "vegalite-examples-light.jpg",
+    "name": "vegalite-examples",
+    "scheme": "light",
+    "url": "https://vega.github.io/vega-lite/examples/",
+    "kind": "library samples",
+    "note": "The Vega-Lite example gallery; declarative charts with sensible default axes and legends.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "vega-editor-line-light.jpg",
+    "name": "vega-editor-line",
+    "scheme": "light",
+    "url": "https://vega.github.io/editor/#/examples/vega-lite/line",
+    "kind": "library docs",
+    "note": "A single Vega-Lite line beside its spec; the default axis and grid treatment.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "layerchart-light.jpg",
+    "name": "layerchart",
+    "scheme": "light",
+    "url": "https://layerchart.com/",
+    "kind": "component library",
+    "note": "Svelte chart set on a landing with a violet accent; the thumbnail wall shows the whole range in one visual system, in both schemes.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "layerchart-dark.jpg",
+    "name": "layerchart",
+    "scheme": "dark",
+    "url": "https://layerchart.com/",
+    "kind": "component library",
+    "note": "Svelte chart set on a landing with a violet accent; the thumbnail wall shows the whole range in one visual system, in both schemes.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tanstack-charts-light.jpg",
+    "name": "tanstack-charts",
+    "scheme": "light",
+    "url": "https://tanstack.com/charts/latest",
+    "kind": "component library",
+    "note": "The 2026 entrant: composed SVG and canvas charts, funnel, rings and a world map in both schemes.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "tanstack-charts-dark.jpg",
+    "name": "tanstack-charts",
+    "scheme": "dark",
+    "url": "https://tanstack.com/charts/latest",
+    "kind": "component library",
+    "note": "The 2026 entrant: composed SVG and canvas charts, funnel, rings and a world map in both schemes.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "unovis-gallery-light.jpg",
+    "name": "unovis-gallery",
+    "scheme": "light",
+    "url": "https://unovis.dev/gallery",
+    "kind": "component library",
+    "note": "Line, area, stacked and scatter galleries in one modular system; the area-with-gaps and multi-line examples are close to the corpus forms.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "visx-gallery-light.jpg",
+    "name": "visx-gallery",
+    "scheme": "light",
+    "url": "https://airbnb.io/visx/gallery",
+    "kind": "component library",
+    "note": "Low-level primitives from Airbnb; expressive one-off forms rather than a system.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "amcharts-demos-light.jpg",
+    "name": "amcharts-demos",
+    "scheme": "light",
+    "url": "https://www.amcharts.com/demos/",
+    "kind": "library samples",
+    "note": "A demo grid with a violet and blue set; breadth of column and stacked variants.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "plotly-line-light.jpg",
+    "name": "plotly-line",
+    "scheme": "light",
+    "url": "https://plotly.com/javascript/line-charts/",
+    "kind": "library docs",
+    "note": "The Plotly default; the only major library with keyboard mark navigation by default.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "carbon-simple-light.jpg",
+    "name": "carbon-simple",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+    "kind": "design system",
+    "note": "IBM Carbon guidance on simple chart types with the resources and the Carbon chart look below.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "carbon-chart-anatomy-light.jpg",
+    "name": "carbon-chart-anatomy",
+    "scheme": "light",
+    "url": "https://carbondesignsystem.com/data-visualization/chart-anatomy/",
+    "kind": "design system",
+    "note": "Carbon chart anatomy: the annotated diagram of title, axes, legend, gridlines and tooltip with the spacing rules.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "apple-hig-charts-light.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "light",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "kind": "design system",
+    "note": "Apple HIG charts page in both schemes: the hero chart and the anatomy section behind Swift Charts.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "apple-hig-charts-dark.jpg",
+    "name": "apple-hig-charts",
+    "scheme": "dark",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/charts",
+    "kind": "design system",
+    "note": "Apple HIG charts page in both schemes: the hero chart and the anatomy section behind Swift Charts.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "urban-styleguide-light.jpg",
+    "name": "urban-styleguide",
+    "scheme": "light",
+    "url": "https://urbaninstitute.github.io/graphics-styleguide/",
+    "kind": "editorial style guide",
+    "note": "The Urban Institute style guide with its chart parts, typography and colour sections in view.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "owid-life-expectancy-light.jpg",
+    "name": "owid-life-expectancy",
+    "scheme": "light",
+    "url": "https://ourworldindata.org/grapher/life-expectancy",
+    "kind": "editorial product",
+    "note": "Our World in Data grapher: direct end labels, entity selector, table and map tabs, a source line and download row, with the explanatory sections below. The best public editorial chart product.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "owid-co2-light.jpg",
+    "name": "owid-co2",
+    "scheme": "light",
+    "url": "https://ourworldindata.org/grapher/co-emissions-per-capita",
+    "kind": "editorial product",
+    "note": "The same grapher on a dense multi-line series; log toggle and label collision handling.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "flourish-examples-light.jpg",
+    "name": "flourish-examples",
+    "scheme": "light",
+    "url": "https://flourish.studio/examples/",
+    "kind": "editorial product",
+    "note": "Flourish template gallery on a dark ground; editorial forms with strong typography.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "vercel-analytics-light.jpg",
+    "name": "vercel-analytics",
+    "scheme": "light",
+    "url": "https://vercel.com/analytics",
+    "kind": "product marketing",
+    "note": "A single hairline line chart as a hero with a small tooltip card, then dashboard panels; the most minimal register on the list.",
+    "captured": "2026-09-08"
+  },
+  {
+    "file": "vercel-analytics-dark.jpg",
+    "name": "vercel-analytics",
+    "scheme": "dark",
+    "url": "https://vercel.com/analytics",
+    "kind": "product marketing",
+    "note": "A single hairline line chart as a hero with a small tooltip card, then dashboard panels; the most minimal register on the list.",
+    "captured": "2026-09-08"
+  }
+]
