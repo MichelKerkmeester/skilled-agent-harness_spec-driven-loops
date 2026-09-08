@@ -192,7 +192,7 @@
     ],
     "causal_summary": "An operator sets a session objective by pasting a packet's durable goal slice",
     "created_at": "2026-09-06T14:24:58Z",
-    "last_save_at": "2026-09-08T17:59:22.532Z",
+    "last_save_at": "2026-09-08T18:23:48.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4da0d770067ce3dd1e79e99fbeb3eb9ae6535c895e3608fe42e6ee37bd87c756",
+    "source_fingerprint": "sha256:a04e7c3b9d320e3c822450efd745f9447ace7a57453038aecc7a8fe65d02ae79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "077048e051c87744e324b14995f4bc7cf79df4f95292ab7b003baae7ac895e6b",
+      "spec.md": "9d52294f9978f90ba71ead91b40f849334fea309fff1ad134543b5fb684826da",
       "plan.md": "72cd315782284eb30be9f0bc507df259f32c48d6898e9e4901045283cbd28fa2",
       "tasks.md": "629384f00363448ffa5ba35adfc312c4e2d1b70eb012245eb12310bded6ae4b9",
       "implementation-summary.md": "0e5a1018653f0104d3cf5afb82cd51cced24600cdd44ae2b945afeab0a0a2dc3"

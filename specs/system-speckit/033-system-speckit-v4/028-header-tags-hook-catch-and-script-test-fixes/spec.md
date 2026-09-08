@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-09-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 28 of 34 |
+| **Phase** | 28 of 35 |
 | **Predecessor** | 027-doc-path-strict-mode-and-retired-capability-fixes |
 | **Successor** | 031-ci-shared-package-resolution |
 | **Handoff Criteria** | Every confirmed row applied or decided, gates green, metadata regenerated |

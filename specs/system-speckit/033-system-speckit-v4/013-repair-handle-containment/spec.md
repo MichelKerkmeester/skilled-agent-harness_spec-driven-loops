@@ -46,7 +46,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-08-30 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 13 of 34 |
+| **Phase** | 13 of 35 |
 | **Predecessor** | `../012-repair-write-symlink-refusal/spec.md` |
 | **Successor** | `../014-daemon-and-test-harness-hardening/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |

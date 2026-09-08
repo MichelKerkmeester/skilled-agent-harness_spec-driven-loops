@@ -175,17 +175,17 @@
     ],
     "causal_summary": "The spec-kit simplification program ran three research rounds over five lanes and remediated every confirmed finding in seventeen children, but it closed some rows as recorded decisions rather than fixes: duplicated hook adapter text, multiplexed rule scripts, playbook entries without provenance, 27 hand-written attestation stamps, 1,240 titles carrying template provenance, six lifecycle command assets that repeat each other, a links scan that is a tool rather than a rule, packet types the scaffolder cannot create, seventeen browse-only reference files, manifest fields nothing reads, the",
     "created_at": "2026-09-07T15:05:40Z",
-    "last_save_at": "2026-09-08T17:59:26.128Z",
+    "last_save_at": "2026-09-08T18:23:51.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ee831155e9006a82776a367be88e845e2ed179b35496512c3275827615259618",
+    "source_fingerprint": "sha256:774a7622b0b1884b365ee886cfe80012e33ec3eb0b454aee530452e3a2a60bee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b9ab980a1efb261fda189186e6c4a0b82af6deabc88b125889dcd1fb77aa2e5"
+      "spec.md": "a36c50fb38f522cb8cc3699e6b7500ee81b9d9807a76917d6410921b69806d61"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items",
     "last_active_at": "2026-09-07T18:30:04.452Z"

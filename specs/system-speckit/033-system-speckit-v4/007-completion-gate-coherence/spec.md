@@ -44,7 +44,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-08-29 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 7 of 34 |
+| **Phase** | 7 of 35 |
 | **Predecessor** | `../006-derived-metadata-repair-tool/spec.md` |
 | **Successor** | `../008-template-contracts-and-acceptance-criteria/spec.md` |
 | **Branch** | `skilled/v4.0.0.0` |

@@ -37,7 +37,8 @@
     "system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution",
     "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
     "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening",
-    "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research"
+    "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+    "system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update"
   ],
   "manual": {
     "depends_on": [],
@@ -115,18 +116,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Thirty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-08 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
+    "causal_summary": "Thirty-five packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-08 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-08T18:06:39.682Z",
+    "last_save_at": "2026-09-08T18:23:37.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cace4f23ecab7c927128b572439a97feab90811e49b952ad838848dcf9f7b8fd",
+    "source_fingerprint": "sha256:88c9b4bc78332b363795bc3133ed6dbbd3bffcc8067a2ec58600193a0d50f00e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ac265967e741dbab4e4a2e804906c4eefb5f834caa041d86a05c082a29518c9a"
+      "spec.md": "d94fe2425072b4703a8536b3d0d7a2e0ff221760c26b75fa477ba80b9f9e57ed"
     },
     "last_active_at": null
   }

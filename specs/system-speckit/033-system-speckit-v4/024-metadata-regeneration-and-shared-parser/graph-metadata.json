@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatter parser in their JavaScript callers.",
     "created_at": "2026-09-06T04:26:02Z",
-    "last_save_at": "2026-09-08T17:59:22.135Z",
+    "last_save_at": "2026-09-08T18:23:47.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:551299c1241c3e9d71306d2c273ee1bf85400e709ac94a56aeee8943bafee3d5",
+    "source_fingerprint": "sha256:b5698cb10488988252be99c17842357906a087dac6662b59186bceebe8d18585",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64f9439b399e458640f04df8e4a23ea79887b5536b6611cdc117b2e31b7751a7",
+      "spec.md": "b23c6a10464bcccdf0391b9a91c4edc53bdc12686d2915244dbdaa075f7339f0",
       "plan.md": "c5d7cf495dd420df654bd5bd2374dc78c645eaa732f156b62f26adbaad9c3c51",
       "tasks.md": "aca103319fb3dd38b26153b51ac16110fa345f5c4c3d345dcacddda5f0b9162b",
       "implementation-summary.md": "e5483e85b8dbb0763a0436348060c051b9dcee53047c524212533bf4cf5b2f24"
