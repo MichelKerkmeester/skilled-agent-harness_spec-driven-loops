@@ -1,0 +1,75 @@
+{
+  "topic": "ROLE: Repository state auditor and release-notes fact-checker. Inventory what this repository actually ships on branch skilled/v4.0.0.0 today and measure an old changelog draft against it. Read-only outside the bound research directory. Never fetch remote content.",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+  "artifactDir": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/research/lineages/deepseek",
+  "createdAt": "2026-09-08T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1788884019738-h5vslh",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/lineages/deepseek/findings-registry.json",
+    "dashboardFile": "research/lineages/deepseek/deep-research-dashboard.md",
+    "strategyFile": "research/lineages/deepseek/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/lineages/deepseek/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "resource_map_present": false,
+  "loopType": "research",
+  "fanoutLineageLabel": "deepseek",
+  "stopPolicy": "max-iterations"
+}

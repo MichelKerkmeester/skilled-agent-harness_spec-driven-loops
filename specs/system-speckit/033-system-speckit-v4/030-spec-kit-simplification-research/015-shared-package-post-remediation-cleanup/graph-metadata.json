@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
+  "parent_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared package post remediation cleanup",
+      "dangling main field",
+      "profile database cluster removed",
+      "folder scoring removed",
+      "shared cleanup plan",
+      "reader table computed",
+      "socket name assertion",
+      "utility tests added",
+      "shared cleanup tasks",
+      "profile cluster tasks",
+      "reader table tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "shared",
+      "package",
+      "post",
+      "remediation",
+      "cleanup",
+      "dangling",
+      "main",
+      "field",
+      "profile",
+      "database",
+      "cluster",
+      "removed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "shared/package.json",
+      "shared/embeddings/profile.ts",
+      "shared/types.ts",
+      "runtime/lib/utils/index-scope.ts",
+      "runtime/tests/index-scope.vitest.ts",
+      "shared/ipc/socket-server.ts",
+      "shared/ipc/socket-server.test.ts",
+      "shared/utils/jsonc-strip.test.ts",
+      "shared/context-types.test.ts",
+      "shared/predicates/boolean-expr.test.ts",
+      "runtime/cli/core/tree-thinning.ts",
+      "runtime/cli/tests/tree-thinning.vitest.ts",
+      "shared/README.md",
+      ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "shared/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "runtime/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/index-scope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.test.ts",
+        "kind": "test",
+        "path": "shared/ipc/socket-server.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "jsonc-strip.test.ts",
+        "kind": "test",
+        "path": "shared/utils/jsonc-strip.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-types.test.ts",
+        "kind": "test",
+        "path": "shared/context-types.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.test.ts",
+        "kind": "test",
+        "path": "shared/predicates/boolean-expr.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tree-thinning.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/tree-thinning.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tree-thinning.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/tree-thinning.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 009 removed the shared package's dead half and left its edges uneven",
+    "created_at": "2026-09-07T06:32:01.673Z",
+    "last_save_at": "2026-09-08T15:47:14.298Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:93e6e2b09868acd1be42a47668b397fc7e22f96589c988809603a8634ad583e6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "966f106288d85be13bcdabc80715aca7781f4b42c9153c1495d7ccebb07b3c0e",
+      "plan.md": "63732a642faee5a58796deb5a508d78c10a364c5be64e93fdb40698eb8ade37d",
+      "tasks.md": "92c789e82cfeb59ccac6cd94dc6502e15388f4b69f24e23b5e999503f950bccd",
+      "implementation-summary.md": "f07f83c815d680fc7dac67312a7713efb685f05c6e62ca5b06cf7da169210aad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

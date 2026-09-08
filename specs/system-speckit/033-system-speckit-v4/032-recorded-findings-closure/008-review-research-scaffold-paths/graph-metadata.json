@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths",
+  "spec_folder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths",
+  "parent_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review research scaffold paths",
+      "create sh level review research",
+      "review report template",
+      "path typed document placement",
+      "review research scaffold plan",
+      "review report template technical approach",
+      "path typed document move",
+      "scaffold golden testing strategy",
+      "review research scaffold tasks",
+      "review report template task",
+      "path typed document move task",
+      "scaffold golden verification"
+    ],
+    "key_topics": [
+      "review",
+      "research",
+      "scaffold",
+      "paths",
+      "level",
+      "report",
+      "template",
+      "path",
+      "typed",
+      "document",
+      "placement",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "templates/packet-types/review-report.md.tmpl",
+      "templates/packet-types/research.spec.md.tmpl",
+      "templates/spec-kit-docs.json",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/lib/template-utils.sh",
+      "runtime/cli/utils/template-structure.js",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/templates/inline-gate-renderer.ts",
+      "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+      "runtime/cli/tests/review-record-validation.vitest.ts",
+      "templates/CONTRACT.md",
+      "templates/README.md",
+      "templates/packet-types/review.spec.md.tmpl",
+      "utils/template-structure.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/review-report.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "research.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/research.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "runtime/cli/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.ts",
+        "kind": "code",
+        "path": "runtime/cli/templates/inline-gate-renderer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/scaffold-golden-snapshots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-record-validation.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/review-record-validation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CONTRACT.md",
+        "kind": "doc",
+        "path": "templates/CONTRACT.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/review.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`templates/spec-kit-docs.json` declares both `review` and `research` as full level entries with `requiredCoreDocs` of `['spec.md', 'review/review-report.md']` and `['spec.md', 'research/research.md']` (verified by loading the manifest 2026-09-07)",
+    "created_at": "2026-09-07T15:05:49Z",
+    "last_save_at": "2026-09-08T15:47:15.877Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aaa529f2424308880133c041073b80a72a3bdf566394d5a0e90a3c605a5fbe9e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b0f792675a5a377c5f47952c2d69aba721ccb931f3f8860c39ec21aac452f1c0",
+      "plan.md": "f3304a0ba8ed71cae6d444868216beaab9653375a61f019ff4ec17604158ddcd",
+      "tasks.md": "e0a4d73b5851d3bd4dc1806f85291abf8f99cb6b57fc84b74d99619f819d4170",
+      "implementation-summary.md": "5e6b03c94988aaf2822ff208b0050ed21cfbcacc1ec6ee36a4654c27495bc700"
+    },
+    "last_active_at": null
+  }
+}

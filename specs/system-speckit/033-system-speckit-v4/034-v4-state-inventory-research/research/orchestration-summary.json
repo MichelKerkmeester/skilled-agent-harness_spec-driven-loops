@@ -1,0 +1,22 @@
+{
+  "run_id": "1788884019738-h5vslh",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 0,
+  "failed": 2,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 2
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 2,
+    "salvage_miss": 0
+  }
+}

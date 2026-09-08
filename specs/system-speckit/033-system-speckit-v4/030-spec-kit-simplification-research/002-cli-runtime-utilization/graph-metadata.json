@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "parent_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli runtime utilization",
+      "cli runtime utilization research lane",
+      "glm research lane spec kit",
+      "cli runtime utilization findings",
+      "research lane execution plan",
+      "cli runtime utilization lane plan",
+      "reproduction before remediation",
+      "research lane tasks",
+      "lane launch and monitoring",
+      "cli runtime utilization lane tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "cli",
+      "runtime",
+      "utilization",
+      "research",
+      "lane",
+      "glm",
+      "spec",
+      "kit",
+      "findings",
+      "execution",
+      "plan",
+      "reproduction"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/lineages/glm-5-3-flash-cli-runtime/research.md",
+      "research/confirmed-findings.md",
+      "research/lineages/deepseek-v4-flash-cli-runtime/research.md",
+      "research/lineages/deepseek-v4-flash-cli-runtime-r3/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
+    "created_at": "2026-09-06T14:29:31Z",
+    "last_save_at": "2026-09-08T15:47:10.981Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b57cc8ea72822076528fe5b59d9ae8c520242366aa90735030e4d7754da09449",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "84d58dd801778746cbe29590498459887d0f48e22fbc58719966537b5a0a4af0",
+      "plan.md": "e5389d6baa25313cbfea14f858f2ad0a52c5b0be097dd77080c1dd4ad08bb42e",
+      "tasks.md": "e78cf594c4ac268cd26981cb8a449d8420798279f077532348196f9b17688e2e",
+      "implementation-summary.md": "871e6ff3fd854e2872a77c8d3cd9402a6cf72b196a64d75b786f86ff3220f3be"
+    },
+    "last_active_at": null
+  }
+}

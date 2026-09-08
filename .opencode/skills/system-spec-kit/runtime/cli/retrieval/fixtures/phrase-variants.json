@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ad82d50b789168a3a476c033709b839b1d00f837d39e401aab7d1ffb9b6ace6f",
+  "manifestHash": "ee5657915432836ac87dabf5c021099ee4218a426161e625601cc7fc1f5989d9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11569,6 +11569,9 @@
     "alignment discovery tasks": [
       "alignment discovery tasks"
     ],
+    "alignment drift gate green": [
+      "alignment drift gate green"
+    ],
     "alignment drift verification": [
       "alignment drift verification"
     ],
@@ -12189,6 +12192,10 @@
     "apply 5 dimension rubric": [
       "apply 5-dimension rubric"
     ],
+    "apply design md to chart": [
+      "apply DESIGN.md to chart",
+      "apply design md to chart"
+    ],
     "apply hunter skeptic referee pattern": [
       "apply hunter skeptic referee pattern"
     ],
@@ -12206,6 +12213,9 @@
     ],
     "apply scoring rubric": [
       "apply scoring rubric"
+    ],
+    "apply style reference to chart": [
+      "apply style reference to chart"
     ],
     "apply tag to task": [
       "apply tag to task"
@@ -14171,6 +14181,9 @@
     ],
     "baseline reconciliation": [
       "baseline reconciliation"
+    ],
+    "baseline restore decision": [
+      "baseline restore decision"
     ],
     "baseline resume ladder suite": [
       "baseline resume ladder suite"
@@ -16251,6 +16264,9 @@
     "cache management workflow": [
       "cache management workflow"
     ],
+    "cache optimizer deep pi absorption": [
+      "cache optimizer deep pi absorption"
+    ],
     "cache optimizer deep pi manual testing": [
       "cache-optimizer deep-pi manual testing"
     ],
@@ -17494,6 +17510,12 @@
     "changelog described the scaffold": [
       "changelog described the scaffold"
     ],
+    "changelog draft drift": [
+      "changelog draft drift"
+    ],
+    "changelog draft drift results": [
+      "changelog draft drift results"
+    ],
     "changelog enrichment steps": [
       "changelog enrichment steps"
     ],
@@ -17866,6 +17888,9 @@
     "chart foundation record": [
       "chart foundation record"
     ],
+    "chart from design md": [
+      "chart from design md"
+    ],
     "chart from table": [
       "chart from table"
     ],
@@ -18201,6 +18226,9 @@
     ],
     "chart visual pass defects": [
       "chart visual pass defects"
+    ],
+    "chart visual upgrade": [
+      "chart visual upgrade"
     ],
     "chart yaml block example": [
       "chart yaml block example"
@@ -18910,6 +18938,9 @@
     ],
     "ci lanes wired": [
       "ci lanes wired"
+    ],
+    "ci mirror parity": [
+      "ci mirror parity"
     ],
     "ci push triggers": [
       "ci push triggers"
@@ -21003,6 +21034,12 @@
     "cli pi bridge phase parent 045": [
       "cli pi bridge phase parent 045"
     ],
+    "cli pi carve out rationale": [
+      "cli-pi carve-out rationale"
+    ],
+    "cli pi carve out shipped": [
+      "cli-pi carve-out shipped"
+    ],
     "cli pi cli opencode flash thinking pin": [
       "cli-pi cli-opencode flash thinking pin"
     ],
@@ -21135,6 +21172,9 @@
     "cli pi ox alpha": [
       "cli-pi ox-alpha"
     ],
+    "cli pi packet tasks": [
+      "cli-pi packet tasks"
+    ],
     "cli pi playbook build": [
       "cli-pi playbook build"
     ],
@@ -21161,6 +21201,9 @@
     ],
     "cli pi self dispatch": [
       "cli-pi self dispatch"
+    ],
+    "cli pi self invocation removal": [
+      "cli-pi self invocation removal"
     ],
     "cli pi skill packet": [
       "cli-pi skill packet"
@@ -26856,6 +26899,9 @@
     "containment catch 22 closed": [
       "containment catch-22 closed"
     ],
+    "containment decision record": [
+      "containment decision record"
+    ],
     "containment false positive": [
       "containment false positive"
     ],
@@ -26868,8 +26914,14 @@
     "containment helper plan": [
       "containment helper plan"
     ],
+    "containment implementation plan": [
+      "containment implementation plan"
+    ],
     "containment plus observability": [
       "containment plus observability"
+    ],
+    "containment quarantine preserve": [
+      "containment quarantine preserve"
     ],
     "containment recovery patch": [
       "containment recovery patch"
@@ -26895,8 +26947,17 @@
     "containment symlink autoscope summary": [
       "containment symlink autoscope summary"
     ],
+    "containment task breakdown": [
+      "containment task breakdown"
+    ],
     "containment tasks": [
       "containment tasks"
+    ],
+    "containment testing strategy": [
+      "containment testing strategy"
+    ],
+    "containment verification checklist": [
+      "containment verification checklist"
     ],
     "containment violation": [
       "containment_violation"
@@ -35810,6 +35871,9 @@
     "deepseek direct api playbook run": [
       "deepseek direct api playbook run"
     ],
+    "deepseek direct ownership reclaim": [
+      "deepseek direct ownership reclaim"
+    ],
     "deepseek exclusion patch": [
       "deepseek exclusion patch"
     ],
@@ -36058,6 +36122,18 @@
     ],
     "deferred closeout complete": [
       "deferred closeout complete"
+    ],
+    "deferred closure": [
+      "deferred closure"
+    ],
+    "deferred closure plan": [
+      "deferred closure plan"
+    ],
+    "deferred closure summary": [
+      "deferred closure summary"
+    ],
+    "deferred closure tasks": [
+      "deferred closure tasks"
     ],
     "deferred code checker fixes": [
       "deferred code checker fixes"
@@ -36409,6 +36485,18 @@
     ],
     "deny by default rules": [
       "deny by default rules"
+    ],
+    "dependabot alerts": [
+      "dependabot alerts"
+    ],
+    "dependabot remediation plan": [
+      "dependabot remediation plan"
+    ],
+    "dependabot tasks": [
+      "dependabot tasks"
+    ],
+    "dependabot zero": [
+      "dependabot zero"
     ],
     "dependencies by resolution trace": [
       "dependencies by resolution trace"
@@ -37311,6 +37399,12 @@
     "design md cardinal rules": [
       "design.md cardinal rules"
     ],
+    "design md chart delivery": [
+      "design-md chart delivery"
+    ],
+    "design md colour system": [
+      "design-md colour system"
+    ],
     "design md exemplar conformance adr": [
       "DESIGN.md exemplar conformance ADR"
     ],
@@ -37428,6 +37522,9 @@
     ],
     "design md section order": [
       "design md section order"
+    ],
+    "design md theming": [
+      "design-md theming"
     ],
     "design md token pipeline plan": [
       "DESIGN.md token pipeline plan"
@@ -39241,6 +39338,12 @@
     "dispatch log wave 008": [
       "dispatch log wave 008"
     ],
+    "dispatch mandate removal evidence": [
+      "dispatch mandate removal evidence"
+    ],
+    "dispatch mandate removal tasks": [
+      "dispatch mandate removal tasks"
+    ],
     "dispatch matrix authoring": [
       "dispatch matrix authoring"
     ],
@@ -40671,6 +40774,9 @@
     "drift fix verification": [
       "drift fix verification"
     ],
+    "drift gate first clean run": [
+      "drift gate first clean run"
+    ],
     "drift gate inert": [
       "drift gate inert"
     ],
@@ -40761,6 +40867,12 @@
     "drift verifier baseline capture": [
       "drift verifier baseline capture"
     ],
+    "drift verifier tasks": [
+      "drift verifier tasks"
+    ],
+    "drift verifier tracked only": [
+      "drift verifier tracked only"
+    ],
     "drive figma from the terminal": [
       "drive figma from the terminal"
     ],
@@ -40799,6 +40911,9 @@
     ],
     "drop one checklist item": [
       "drop one checklist item"
+    ],
+    "drop the injected dispatch mandate": [
+      "drop the injected dispatch mandate"
     ],
     "drop v1 from flag name": [
       "drop V1 from flag name"
@@ -43265,6 +43380,15 @@
     "executor audit": [
       "executor audit"
     ],
+    "executor audit carve out": [
+      "executor audit carve-out"
+    ],
+    "executor audit exemption": [
+      "executor audit exemption"
+    ],
+    "executor audit exemption evidence": [
+      "executor audit exemption evidence"
+    ],
     "executor audit provenance": [
       "executor audit provenance"
     ],
@@ -44652,6 +44776,9 @@
     "fan out write boundary weak model": [
       "fan-out write boundary weak model"
     ],
+    "fan out write containment": [
+      "fan-out write containment"
+    ],
     "fan out write failure salvage": [
       "fan-out write-failure salvage"
     ],
@@ -44780,6 +44907,9 @@
     ],
     "fanout run failure propagation": [
       "fanout-run failure propagation"
+    ],
+    "fanout run two lineages": [
+      "fanout run two lineages"
     ],
     "fanout runtime requirement": [
       "fanout runtime requirement"
@@ -48126,6 +48256,9 @@
     "g4 g9 verification handover": [
       "G4-G9 verification handover"
     ],
+    "gallery light column": [
+      "gallery light column"
+    ],
     "gantt chart timeline": [
       "gantt chart timeline"
     ],
@@ -50451,6 +50584,9 @@
     "gtm delay requestidlecallback": [
       "gtm delay requestidlecallback"
     ],
+    "guard layer split decision": [
+      "guard layer split decision"
+    ],
     "guard order disjoint": [
       "guard order disjoint"
     ],
@@ -50713,6 +50849,15 @@
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
     ],
+    "hard rule check registration": [
+      "hard rule check registration"
+    ],
+    "hard rule guard generalisation": [
+      "hard rule guard generalisation"
+    ],
+    "hard rule registration closed": [
+      "hard rule registration closed"
+    ],
     "hardcoded checkout root": [
       "hardcoded checkout root"
     ],
@@ -50814,6 +50959,9 @@
     ],
     "hash guard": [
       "hash guard"
+    ],
+    "hash verified edits pi": [
+      "hash verified edits pi"
     ],
     "head footer panel structure": [
       "head footer panel structure"
@@ -54805,6 +54953,9 @@
     "jsonc quality checks": [
       "jsonc quality checks"
     ],
+    "jsonl false positive": [
+      "jsonl false positive"
+    ],
     "jsonl lock held merge": [
       "jsonl lock-held merge"
     ],
@@ -56461,6 +56612,9 @@
     "legal stop gates": [
       "legal-stop gates"
     ],
+    "legend chips": [
+      "legend chips"
+    ],
     "lenient manual field extraction": [
       "lenient manual field extraction"
     ],
@@ -56789,6 +56943,12 @@
     ],
     "lineage registry merge plan": [
       "lineage registry merge plan"
+    ],
+    "lineage worktree architecture": [
+      "lineage worktree architecture"
+    ],
+    "lineage worktree lane decision": [
+      "lineage worktree lane decision"
     ],
     "linear design md example": [
       "Linear DESIGN.md example"
@@ -57638,6 +57798,9 @@
     "lock ownership task list": [
       "lock ownership task list"
     ],
+    "lockfile audit fix": [
+      "lockfile audit fix"
+    ],
     "lockfile vulnerability remediation": [
       "lockfile vulnerability remediation"
     ],
@@ -57814,6 +57977,15 @@
     ],
     "low signal query": [
       "low signal query"
+    ],
+    "luna and deepseek research": [
+      "luna and deepseek research"
+    ],
+    "luna deepseek lane checklist": [
+      "luna deepseek lane checklist"
+    ],
+    "luna deepseek lane outcome": [
+      "luna deepseek lane outcome"
     ],
     "luna devpass": [
       "luna devpass"
@@ -59114,6 +59286,9 @@
     ],
     "master research packet": [
       "master research packet"
+    ],
+    "match the site s chart colours": [
+      "match the site's chart colours"
     ],
     "match triggers baseline latency": [
       "match triggers baseline latency"
@@ -61188,6 +61363,9 @@
     "measured or inferred card": [
       "measured or inferred card"
     ],
+    "measured site s look": [
+      "measured site's look"
+    ],
     "measured vs authored": [
       "measured vs authored"
     ],
@@ -63060,8 +63238,17 @@
     "mirror drift policy": [
       "mirror drift policy"
     ],
+    "mirror gate shipped": [
+      "mirror gate shipped"
+    ],
+    "mirror gate tasks": [
+      "mirror gate tasks"
+    ],
     "mirror job install step": [
       "mirror job install step"
+    ],
+    "mirror parity gate plan": [
+      "mirror parity gate plan"
     ],
     "mirror parity tasks": [
       "mirror parity tasks"
@@ -70959,6 +71146,9 @@
     "per kind state dir isolation": [
       "per-kind state-dir isolation"
     ],
+    "per lineage worktree containment": [
+      "per-lineage worktree containment"
+    ],
     "per mode authority cutover contract": [
       "per-mode authority cutover contract"
     ],
@@ -73005,6 +73195,9 @@
     "pi allowlist tasks": [
       "pi allowlist tasks"
     ],
+    "pi ancestry lockfile exemption": [
+      "pi ancestry lockfile exemption"
+    ],
     "pi api key": [
       "pi api key"
     ],
@@ -73019,6 +73212,9 @@
     ],
     "pi cache affinity plan": [
       "pi cache affinity plan"
+    ],
+    "pi cache economics reporting": [
+      "pi cache economics reporting"
     ],
     "pi cache gap scoping": [
       "pi cache gap scoping"
@@ -73228,6 +73424,9 @@
     "pi default provider cline": [
       "pi default provider cline"
     ],
+    "pi delegation boundary": [
+      "pi delegation boundary"
+    ],
     "pi dev": [
       "pi.dev"
     ],
@@ -73320,6 +73519,9 @@
     ],
     "pi dispatch directive tasks": [
       "pi dispatch directive tasks"
+    ],
+    "pi dispatch guard carve out": [
+      "pi dispatch guard carve-out"
     ],
     "pi dispatch hardening plan": [
       "Pi dispatch hardening plan"
@@ -73706,8 +73908,14 @@
     "pi output projection tasks": [
       "pi output projection tasks"
     ],
+    "pi paid retry loop guard": [
+      "pi paid retry loop guard"
+    ],
     "pi passthrough model selection": [
       "pi passthrough model selection"
+    ],
+    "pi preflight hook change": [
+      "pi preflight hook change"
     ],
     "pi print mode": [
       "pi print mode"
@@ -73889,6 +74097,18 @@
     "pi runtime compatibility tasks": [
       "pi runtime compatibility tasks"
     ],
+    "pi self dispatch": [
+      "pi self dispatch"
+    ],
+    "pi self dispatch plan": [
+      "pi self dispatch plan"
+    ],
+    "pi self dispatch summary": [
+      "pi self dispatch summary"
+    ],
+    "pi self dispatch tasks": [
+      "pi self dispatch tasks"
+    ],
     "pi session goal tasks": [
       "pi session goal tasks"
     ],
@@ -73946,11 +74166,20 @@
     "pi streamable http": [
       "pi streamable http"
     ],
-    "pi subagent": [
-      "pi subagent"
-    ],
     "pi subagent directive": [
       "pi subagent directive"
+    ],
+    "pi subagent directive removal": [
+      "pi subagent directive removal"
+    ],
+    "pi subagent directive removal plan": [
+      "pi subagent directive removal plan"
+    ],
+    "pi subagent directive removal summary": [
+      "pi subagent directive removal summary"
+    ],
+    "pi subagent directive removal tasks": [
+      "pi subagent directive removal tasks"
     ],
     "pi subagent dispatch shrink": [
       "pi subagent dispatch shrink"
@@ -73958,11 +74187,11 @@
     "pi subagent schema mapping": [
       "pi subagent schema mapping"
     ],
-    "pi subagents": [
-      "pi-subagents"
-    ],
     "pi subagents capsule": [
       "pi-subagents capsule"
+    ],
+    "pi subagents deprecated": [
+      "pi subagents deprecated"
     ],
     "pi subagents directive": [
       "pi subagents directive"
@@ -73970,8 +74199,29 @@
     "pi subagents field mapping": [
       "pi-subagents field mapping"
     ],
-    "pi subagents package": [
-      "pi-subagents package"
+    "pi subagents hook cleanup status": [
+      "pi-subagents hook cleanup status"
+    ],
+    "pi subagents hook cleanup tasks": [
+      "pi-subagents hook cleanup tasks"
+    ],
+    "pi subagents mandate removal plan": [
+      "pi-subagents mandate removal plan"
+    ],
+    "pi subagents package removal": [
+      "pi-subagents package removal"
+    ],
+    "pi subagents removal tasks": [
+      "pi-subagents removal tasks"
+    ],
+    "pi subagents retired": [
+      "pi-subagents retired"
+    ],
+    "pi subagents retirement": [
+      "pi-subagents retirement"
+    ],
+    "pi subagents retirement plan": [
+      "pi-subagents retirement plan"
     ],
     "pi subagents translation": [
       "pi-subagents translation"
@@ -74405,6 +74655,9 @@
     "playbook gold code surface translation": [
       "playbook gold code-surface translation"
     ],
+    "playbook heading rename": [
+      "playbook heading rename"
+    ],
     "playbook implementation summary": [
       "playbook implementation summary"
     ],
@@ -74671,6 +74924,9 @@
     ],
     "playbook validator ownership decision": [
       "playbook validator ownership decision"
+    ],
+    "playbook verdict triage headings": [
+      "playbook verdict triage headings"
     ],
     "playbook verification checklist": [
       "playbook verification checklist"
@@ -75420,6 +75676,9 @@
     "pre claim gate": [
       "pre claim gate"
     ],
+    "pre commit mirror gate": [
+      "pre-commit mirror gate"
+    ],
     "pre commit review guidance": [
       "pre commit review guidance"
     ],
@@ -75728,6 +75987,9 @@
     ],
     "preserve advisor routing tokens": [
       "preserve advisor routing tokens"
+    ],
+    "preserve by default decision": [
+      "preserve by default decision"
     ],
     "preserve research packet": [
       "preserve research packet"
@@ -77317,6 +77579,12 @@
     "quantized onnx embedding load": [
       "quantized ONNX embedding load"
     ],
+    "quarantine implementation tasks": [
+      "quarantine implementation tasks"
+    ],
+    "quarantine mode approach": [
+      "quarantine mode approach"
+    ],
     "quarantine rebuild": [
       "quarantine rebuild"
     ],
@@ -78796,6 +79064,9 @@
     "recursion guard": [
       "recursion guard"
     ],
+    "recursion guard adr": [
+      "recursion guard adr"
+    ],
     "recursion guard macos": [
       "recursion guard macos"
     ],
@@ -80153,6 +80424,9 @@
     "release notes": [
       "release notes"
     ],
+    "release notes evidence": [
+      "release notes evidence"
+    ],
     "release notes template": [
       "release notes template"
     ],
@@ -80478,6 +80752,9 @@
     "remove devin goal remnants": [
       "remove devin goal remnants"
     ],
+    "remove dispatch directive plan": [
+      "remove dispatch directive plan"
+    ],
     "remove embedding readiness flag": [
       "remove embedding readiness flag"
     ],
@@ -80549,6 +80826,9 @@
     ],
     "remove stored token": [
       "remove stored token"
+    ],
+    "remove subagent dispatch directive": [
+      "remove subagent dispatch directive"
     ],
     "remove superset hook": [
       "remove superset hook"
@@ -81753,6 +82033,9 @@
     ],
     "research lane in progress": [
       "research lane in progress"
+    ],
+    "research lane task list": [
+      "research lane task list"
     ],
     "research lane tasks": [
       "research lane tasks"
@@ -85145,6 +85428,9 @@
     "runner leg table opencode plan": [
       "runner LEG_TABLE opencode plan"
     ],
+    "runs failed emails": [
+      "runs failed emails"
+    ],
     "runsuspectconfirmation one confirmer": [
       "runSuspectConfirmation one confirmer"
     ],
@@ -88302,6 +88588,9 @@
     "severity weighted stop ratio": [
       "severity weighted stop ratio"
     ],
+    "shadcn chart look": [
+      "shadcn chart look"
+    ],
     "shadow adapters delete": [
       "shadow adapters delete"
     ],
@@ -88505,6 +88794,9 @@
     ],
     "shared branch autosync research": [
       "shared branch autosync research"
+    ],
+    "shared checkout concurrent editor": [
+      "shared checkout concurrent editor"
     ],
     "shared cleanup criteria": [
       "shared cleanup criteria"
@@ -94958,6 +95250,9 @@
     "skill installation steps": [
       "skill installation steps"
     ],
+    "skill inventory luna deepseek": [
+      "skill inventory luna deepseek"
+    ],
     "skill isolation code graph skill advisor": [
       "skill isolation code-graph skill-advisor"
     ],
@@ -96363,11 +96658,17 @@
     "spec kit catalog reconciliation": [
       "spec-kit catalog reconciliation"
     ],
+    "spec kit check failing": [
+      "spec-kit check failing"
+    ],
     "spec kit check mirror job": [
       "spec kit check mirror job"
     ],
     "spec kit check on push": [
       "spec-kit check on push"
+    ],
+    "spec kit check triggers": [
+      "spec-kit check triggers"
     ],
     "spec kit check workflow": [
       "spec kit check workflow"
@@ -99037,6 +99338,9 @@
     ],
     "style library mjs tasks": [
       "style-library.mjs tasks"
+    ],
+    "style reference chart": [
+      "style reference chart"
     ],
     "style reference schema": [
       "style reference schema"
@@ -102101,6 +102405,12 @@
     "text over photos readable": [
       "text over photos readable"
     ],
+    "theme chart from design md": [
+      "theme chart from DESIGN.md"
+    ],
+    "theme charts from style reference": [
+      "theme charts from style reference"
+    ],
     "theme css runtime vars css stand in": [
       "theme.css runtime-vars.css stand in"
     ],
@@ -102682,6 +102992,9 @@
     ],
     "tools per mcp server": [
       "tools per mcp server"
+    ],
+    "tooltip card": [
+      "tooltip card"
     ],
     "top 2 ambiguity": [
       "top 2 ambiguity"
@@ -104568,6 +104881,9 @@
     "v3 style reference design system handoff": [
       "v3 Style Reference design system handoff"
     ],
+    "v4 0 0 0 changelog rewrite": [
+      "v4.0.0.0 changelog rewrite"
+    ],
     "v4 deep review cleanup": [
       "v4 deep-review cleanup"
     ],
@@ -104576,6 +104892,15 @@
     ],
     "v4 pro retirement status": [
       "v4 pro retirement status"
+    ],
+    "v4 state inventory research": [
+      "v4 state inventory research"
+    ],
+    "v4 state inventory summary": [
+      "v4 state inventory summary"
+    ],
+    "v4 state inventory tasks": [
+      "v4 state inventory tasks"
     ],
     "v8 cross spec contamination overreach": [
       "V8 cross-spec contamination overreach"
@@ -106621,6 +106946,9 @@
     "what does spec kit do": [
       "what does spec kit do"
     ],
+    "what does v4 actually ship": [
+      "what does v4 actually ship"
+    ],
     "what goes in a rule": [
       "what goes in a rule"
     ],
@@ -107322,6 +107650,9 @@
     ],
     "worktree per session automation": [
       "worktree per session automation"
+    ],
+    "worktree phase tasks": [
+      "worktree phase tasks"
     ],
     "worktree portability verification": [
       "worktree portability verification"

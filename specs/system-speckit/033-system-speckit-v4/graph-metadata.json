@@ -32,7 +32,12 @@
     "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
     "system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
     "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
-    "system-speckit/033-system-speckit-v4/029-ci-shared-package-resolution"
+    "system-speckit/033-system-speckit-v4/029-goal-operator-resync-rule",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+    "system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution",
+    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+    "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening",
+    "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research"
   ],
   "manual": {
     "depends_on": [],
@@ -98,7 +103,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Twenty",
+        "name": "Problem Statement Thirty",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -110,18 +115,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
+    "causal_summary": "Thirty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-08 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-07T05:42:09.137Z",
+    "last_save_at": "2026-09-08T17:59:13.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5c9b0e7d8d7b9791398dc03fe89b3dc1ddbf005d34f2372f112a639c0a01db72",
+    "source_fingerprint": "sha256:689a2702e8706857a28cf45075d9505b7cac521126d7bc507058941ef3abbcd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b22221e7dfaf1657050d3389cca85862ec071f2c2722780ba7d6d49edd84d43a"
+      "spec.md": "bf53724c6fe476318cf6fd37651a12acfb3c648f4e25a86ff754bb1bdb8c9cff"
     },
     "last_active_at": null
   }

@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification",
+  "description": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure:",
+  "keywords": [
+    "thirty-nine",
+    "validator",
+    "rules",
+    "six-runtime",
+    "hook",
+    "matrix",
+    "hundreds",
+    "reference",
+    "catalog",
+    "documents",
+    "root",
+    "carry",
+    "spec-kit",
+    "procedure"
+  ],
+  "lastUpdated": "2026-09-07T13:09:22.514Z",
+  "specId": "005",
+  "folderSlug": "overengineering-simplification",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "07-09-26_03-22__lane-005-is-progressing-2-of-10-iterations.md"
+  ]
+}

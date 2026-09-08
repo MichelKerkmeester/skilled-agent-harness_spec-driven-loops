@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths",
+  "description": "Six registry rule ids were named by no test, and one of them, the protocol rule, reported a singular id the registry does not carry, so validation",
+  "keywords": [
+    "six",
+    "registry",
+    "rule",
+    "ids",
+    "named",
+    "test",
+    "one",
+    "them",
+    "protocol",
+    "reported",
+    "singular",
+    "carry",
+    "validation"
+  ],
+  "lastUpdated": "2026-09-07T13:22:02.714Z",
+  "specId": "020",
+  "folderSlug": "rule-headers-registry-coverage-and-playbook-paths",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

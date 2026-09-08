@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair",
+  "parent_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-existing test repair",
+      "continuity freshness test fixture",
+      "child manifest test isolation",
+      "retired checklist fixture",
+      "test repair plan",
+      "freshness fixture plan",
+      "manifest isolation plan",
+      "reproduce then repair",
+      "test repair tasks",
+      "freshness fixture tasks",
+      "manifest suite tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "pre-existing",
+      "test",
+      "repair",
+      "continuity",
+      "freshness",
+      "fixture",
+      "child",
+      "manifest",
+      "isolation",
+      "retired",
+      "checklist",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/tests/continuity-freshness.vitest.ts",
+      "runtime/cli/tests/recursive-child-manifest.vitest.ts",
+      "runtime/cli/validation/continuity-freshness.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/continuity-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "recursive-child-manifest.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/recursive-child-manifest.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "runtime/cli/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two suites failed before this program and stayed red through it",
+    "created_at": "2026-09-07T04:03:53.305Z",
+    "last_save_at": "2026-09-08T15:47:13.751Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f231a7d1bba32c937786a1712a307d2a8a52505c768e49f999f9f855b031012d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "13ccfeba75879b706e3d4aa38e0e255b51996567a9fbf36979f8469ac2b02511",
+      "plan.md": "8591e2c3e9ee5e5d2bd602620634c6e1dbafa0ecf87bb1976ad546bd86abf4e7",
+      "tasks.md": "c6aa7392def50cf2fadd4ad03accadbe86789bfc254f31d33130cedf96571fdf",
+      "implementation-summary.md": "ecae4b5804009e35c96fbf9a8a894bf3f26e819089f8ca65464a8c86e41e03a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

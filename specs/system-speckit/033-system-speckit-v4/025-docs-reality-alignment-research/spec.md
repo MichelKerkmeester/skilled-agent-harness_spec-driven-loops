@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-09-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 25 of 26 |
+| **Phase** | 25 of 34 |
 | **Predecessor** | 024-metadata-regeneration-and-shared-parser |
 | **Successor** | 026-runtime-code-standards-research |
 | **Handoff Criteria** | Ten iterations complete, findings reproduced, confirmed table handed to the remediation child |

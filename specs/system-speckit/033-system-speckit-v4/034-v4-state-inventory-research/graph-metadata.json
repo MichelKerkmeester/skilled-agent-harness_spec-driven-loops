@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+  "spec_folder": "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 state inventory research",
+      "changelog draft drift",
+      "what does v4 actually ship",
+      "skill inventory luna deepseek",
+      "release notes evidence",
+      "v4.0.0.0 changelog rewrite",
+      "research lane execution plan",
+      "fanout run two lineages",
+      "luna and deepseek research",
+      "v4 state inventory tasks",
+      "research lane task list",
+      "luna deepseek lane checklist"
+    ],
+    "key_topics": [
+      "state",
+      "inventory",
+      "research",
+      "changelog",
+      "draft",
+      "drift",
+      "actually",
+      "ship",
+      "skill",
+      "luna",
+      "deepseek",
+      "release"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/launch-research.sh",
+      "scratch/topic.txt",
+      "research/orchestration-status.log"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launch-research.sh",
+        "kind": "script",
+        "path": "scratch/launch-research.sh",
+        "source": "derived"
+      },
+      {
+        "name": "topic.txt",
+        "kind": "file",
+        "path": "scratch/topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "concurrency",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the recorded-findings closure and the CI hardening landed",
+    "created_at": "2026-09-08T16:16:33.826Z",
+    "last_save_at": "2026-09-08T16:17:18.261Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:631d6b218bb30fef1062ac001b73e8eb6035bc8f23251fb677b1143050d5ad13",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ad797595fbd6b88ddec1057c49833a9c77aa7b579cc92191f9ded8c14526e78e",
+      "plan.md": "52eecaa51607798dff144095ff67261f672d978a9c8e3fe55e5e74d999bddd41",
+      "tasks.md": "e280f437c00d6ba6a069ee32a2aafc6c1a8e881099f62ba2576eb53c962fac1a",
+      "implementation-summary.md": "f744333434c46cc26d70d742d3f0d54a43a0151355857ec3a6f6450a277e9cae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-09-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 27 of 28 |
+| **Phase** | 27 of 34 |
 | **Predecessor** | 026-runtime-code-standards-research |
 | **Successor** | 028-header-tags-hook-catch-and-script-test-fixes |
 | **Handoff Criteria** | Every confirmed row applied or decided, gates green, metadata regenerated |

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision",
+  "parent_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor retrieval signals",
+      "staleness signal truth",
+      "phrase judge seven classes",
+      "retrieval recipe flags",
+      "doctor retrieval signals plan",
+      "remediation plan",
+      "round three plan",
+      "census then fix",
+      "doctor retrieval signals tasks",
+      "remediation tasks",
+      "round three tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "doctor",
+      "retrieval",
+      "signals",
+      "staleness",
+      "signal",
+      "truth",
+      "phrase",
+      "judge",
+      "seven",
+      "classes",
+      "recipe",
+      "flags"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".codex/AGENTS.md",
+      ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".opencode/commands/doctor/_routes.yaml",
+      "references/retrieval/retrieval-conventions.md",
+      "runtime/cli/retrieval/fixtures/residue-allowlist.json",
+      "runtime/cli/retrieval/README.md",
+      "templates/EXTENSION-GUIDE.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/references/examples.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "residue-allowlist.json",
+        "kind": "config",
+        "path": "runtime/cli/retrieval/fixtures/residue-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXTENSION-GUIDE.md",
+        "kind": "doc",
+        "path": "templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "examples.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor retrieval target declared nine staleness signals and computed six: no activity produced a fresh manifest, ran the recipe without `--no-config`, or scanned anchors, and the lookup pass policy named a frozen prompt set no activity read",
+    "created_at": "2026-09-07T13:14:47.205Z",
+    "last_save_at": "2026-09-08T15:47:15.253Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3b2803e8b687b6af3b82fb9e473e3a586921f583a34d8c5d61262cd3630f895c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "14af646e99f63bffbb6c6caf40fa71d2e5869829434195cd9dcde140e12569cf",
+      "plan.md": "730ece22df109e1f066309fdde34a48a5deeacbe4f2fb0b81fdba87694d3b65c",
+      "tasks.md": "d8fccd0d8dd64fb4b87b613929c92da03fa19a757cdf9da7dcde63fee48be46c",
+      "implementation-summary.md": "67057d639f192a646dd8336452987699d707d51e8523f638e392ede5c9772c8f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement",
+  "description": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default",
+  "keywords": [
+    "check-ac-coverage",
+    "already",
+    "ships",
+    "floor",
+    "default",
+    "advisory",
+    "speckitaccoverageenforce",
+    "switch"
+  ],
+  "lastUpdated": "2026-09-07T18:10:21.123Z",
+  "specId": "015",
+  "folderSlug": "criteria-file-line-enforcement",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "032-recorded-findings-closure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

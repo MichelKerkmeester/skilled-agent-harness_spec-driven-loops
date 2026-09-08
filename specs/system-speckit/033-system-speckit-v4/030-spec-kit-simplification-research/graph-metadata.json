@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "spec_folder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/008-env-example-dead-flags",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/009-shared-package-dead-half-removal",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports",
+    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "001-quiet-spec-kit",
+      "phase parent",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "001-quiet-spec-kit",
+      "phase",
+      "parent",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding",
+      "phased",
+      "decomposition"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "008-env-example-dead-flags/implementation-summary.md",
+      "001-ripgrep-search-system/goal.md",
+      "002-cli-runtime-utilization/goal.md",
+      "003-shared-package-utilization/goal.md",
+      "004-template-system-and-acceptance-criteria/goal.md",
+      "005-overengineering-simplification/goal.md",
+      "006-retrieval-drift-remediation/goal.md",
+      "007-cli-package-residue-removal/goal.md",
+      "008-env-example-dead-flags/goal.md",
+      "009-shared-package-dead-half-removal/goal.md",
+      "010-template-contract-alignment/goal.md",
+      "011-command-surface-contract-realignment/goal.md",
+      "012-pre-existing-test-repair/goal.md",
+      "013-trigger-phrase-quality-enforcement/goal.md",
+      "014-cli-decommission-orphan-removal/goal.md",
+      "015-shared-package-post-remediation-cleanup/goal.md",
+      "016-template-seams-and-sentinel-repair/goal.md",
+      "017-completion-gate-and-catalog-alignment/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
+    "created_at": "2026-09-06T14:29:29Z",
+    "last_save_at": "2026-09-08T17:59:22.049Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:2a1c615092bb6da34b572813634812c85a367e35004f37135d3753fa1e3f7c85",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f86000e10d81c461c79650ff37c1ab6d05e36c15cbab21b0b3328654f7a0d01c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-09-07T16:42:32.195Z"
+  }
+}

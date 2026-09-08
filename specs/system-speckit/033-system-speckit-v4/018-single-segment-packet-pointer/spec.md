@@ -46,7 +46,7 @@ _memory:
 | **Status** | Draft |
 | **Created** | 2026-09-02 |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 18 of 24 |
+| **Phase** | 18 of 34 |
 | **Predecessor** | `../017-memory-database-decommission/spec.md` |
 | **Successor** | `../019-memory-decommission-branch-landing/spec.md` |
 | **Level** | 1 |

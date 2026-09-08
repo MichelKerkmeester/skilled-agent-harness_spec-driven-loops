@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/029-goal-operator-resync-rule",
+  "description": "An operator sets a session objective by pasting a packet's durable goal slice",
+  "keywords": [
+    "operator",
+    "sets",
+    "session",
+    "objective",
+    "pasting",
+    "packet",
+    "durable",
+    "goal",
+    "slice"
+  ],
+  "lastUpdated": "2026-09-08T16:16:02.922Z",
+  "specId": "029",
+  "folderSlug": "goal-operator-resync-rule",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

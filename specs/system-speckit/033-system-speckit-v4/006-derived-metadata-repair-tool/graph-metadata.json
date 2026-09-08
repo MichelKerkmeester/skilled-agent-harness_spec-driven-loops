@@ -171,7 +171,7 @@
     ],
     "causal_summary": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
     "created_at": "2026-08-28T19:49:57.185Z",
-    "last_save_at": "2026-09-06T07:07:52.405Z",
+    "last_save_at": "2026-09-08T17:59:13.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,10 +180,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4767d30c13468ebe373bb90ac3acba28092c4da6dc71d6a6db98e7d479925af",
+    "source_fingerprint": "sha256:82ffbb27770c1c33231ea1bc1a89ca4c39313f21961909bd87785f07d1a4d0f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "798fc8c37d8886b32de6ad6cd9900d746ee7250dbb6f30a1dce8afa52e58ef6e",
+      "spec.md": "1020b5ea05b89c9443ca757b5692396d249df9f96764744b99ab1b5994b93deb",
       "plan.md": "83a9601b6e30c5b219ac5897ebdae7a1e6b8153c88a001ef13f91ae76b1d3d9d",
       "tasks.md": "fb72ca5fa1c4f1de171afc8a502f7a7d517808da839e7dcb4c3fc3f9e6a7bc93",
       "implementation-summary.md": "1b72df3c438e5753dd27ea45261e2c4d7f17e0e80796f54d18f7d1626eeea426"

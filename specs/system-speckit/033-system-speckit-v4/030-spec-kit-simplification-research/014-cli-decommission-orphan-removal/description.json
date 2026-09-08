@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal",
+  "description": "Round one certified directories as wired without enumerating their files, and the decommission's orphans survived inside them: an unregistered rule",
+  "keywords": [
+    "round",
+    "one",
+    "certified",
+    "directories",
+    "wired",
+    "without",
+    "enumerating",
+    "files",
+    "decommission",
+    "orphans",
+    "survived",
+    "inside",
+    "them",
+    "unregistered",
+    "rule"
+  ],
+  "lastUpdated": "2026-09-07T06:23:47.846Z",
+  "specId": "014",
+  "folderSlug": "cli-decommission-orphan-removal",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

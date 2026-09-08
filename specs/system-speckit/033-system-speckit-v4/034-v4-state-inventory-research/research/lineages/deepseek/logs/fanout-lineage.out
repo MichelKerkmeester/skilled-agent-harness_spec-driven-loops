@@ -1,0 +1,167 @@
+
+
+The lineage directory exists with scaffolding. Let me read the rest of the SKILL.md and inspect the existing lineage state.
+
+The lineage scaffolding exists but is empty of state files. Let me load the loop protocol and state format references to get the file layout right, plus the asset templates.
+
+Now the strategy template and JSONL schemas:
+
+Now the outputs reference and the changelog draft (the key comparison target):
+
+Let me read the rest of the changelog draft:
+
+Reading the final changelog section, plus the v4 timeline and spec for chronological context:
+
+Now let me check the v4 spec.md for the phase map and program scope:
+
+I have full context. Now phase_init: writing the config, strategy, and state log into the lineage directory.
+
+Now the strategy file:
+
+Phase init complete. Starting **Iteration 1: Angle 1 — ROSTER**:
+
+
+
+
+
+Rich data. A few more roster checks — hub-router presence, sk-prompt's leaf manifest (the draft claims it's a hub with two modes), and command frontmatter names:
+
+Roster data is solid. Writing iteration 1 artifacts:
+
+
+
+Iteration 1 complete. Starting **Iteration 2: Angle 2 — SYSTEM-SPEC-KIT**:
+
+
+
+
+
+
+
+Writing iteration 2 artifacts:
+
+
+
+Iteration 2 complete. Starting **Iteration 3: Angle 3 — SYSTEM-DEEP-LOOP**:
+
+
+
+
+
+
+
+Writing iteration 3 artifacts:
+
+
+
+Iteration 3 complete. Starting **Iteration 4: Angle 4 — SYSTEM-SKILL-ADVISOR**:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Writing iteration 4 artifacts:
+
+
+
+Iteration 4 complete. Starting **Iteration 5: Angle 5 — SK-DOC**:
+
+
+
+
+
+Writing iteration 5 artifacts:
+
+
+
+Iteration 5 complete. Starting **Iteration 6: Angle 6 — CLI-EXTERNAL-ORCHESTRATION**:
+
+
+
+
+
+
+
+
+
+
+
+Writing iteration 6 artifacts:
+
+
+
+Iteration 6 complete. Starting **Iteration 7: Angle 7 — THE OTHER HUBS**:
+
+
+
+
+
+
+
+Writing iteration 7 artifacts:
+
+
+
+Iteration 7 complete. Starting **Iteration 8: Angle 8 — RUNTIME MIRRORS, HOOKS, CI AND GOALS**:
+
+
+
+
+
+
+
+Writing iteration 8 artifacts:
+
+
+
+Iteration 8 complete. Starting **Iteration 9: Angle 9 — BREAKING CHANGES AND UPGRADE NOTES**:
+
+
+
+
+
+
+
+Writing iteration 9 artifacts:
+
+
+
+Iteration 9 complete. Starting **Iteration 10: Angle 10 — DRAFT-VERSUS-REALITY** (final angle):
+
+
+
+
+
+Writing iteration 10 artifacts (the full draft walk):
+
+
+
+All 10 iterations complete. Now **phase_synthesis**: writing research.md with the full inventory, ranked drift table, upgrade notes, and disagreements.
+
+Updating the strategy file with final state, then verifying the lineage:
+
+The lineage is complete. Final strategy update to record answered questions and completion:
+
+
+
+All phases complete. The lineage delivered:
+
+- **phase_init**: `deep-research-config.json`, `deep-research-strategy.md`, `deep-research-state.jsonl` (config + initialized event)
+- **phase_main_loop**: 10 iterations, one per angle (ROSTER → SYSTEM-SPEC-KIT → SYSTEM-DEEP-LOOP → SYSTEM-SKILL-ADVISOR → SK-DOC → CLI-EXTERNAL-ORCHESTRATION → OTHER HUBS → MIRRORS/HOOKS/CI/GOALS → BREAKING CHANGES → DRAFT-VS-REALITY), each with `iterations/iteration-NNN.md`, `deltas/iter-NNN.jsonl`, and a state record
+- **phase_synthesis**: `research.md` with full hub inventory (6 hubs/7 standalone, 45 modes, 37 commands, 12 agents), 22-row ranked drift table (5 P0s), 14 confirmed upgrade-note candidates, and 7 disagreements for the reproduction pass — stop reason `maxIterationsReached` recorded both in the state log and synthesis
+
+Key findings: the draft's memory_search/memory_save, /interface:*, deep-alignment, /create:diagram, and sk-prompt-models claims describe surfaces that no longer exist on `skilled/v4.0.0.0`; cli-claude-code is reserved-but-unwired; the branch grammar is `worktrees/NNN-slug` with owner-first names rejected.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

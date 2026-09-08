@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: system-speckit-v4"
-description: "Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix on 2026-08-15 through the metadata regeneration on 2026-09-06, consolidated in chronological order with a timeline, covering template reduction, validation-gate coherence, path containment, daemon hardening, the memory-database decommission and its landing, the runtime rename, and the integration research remediation."
+description: "Phase parent for repo v4 of system-spec-kit: the thirty-four packets from the plan-preflight fix on 2026-08-15 through the state inventory research on 2026-09-08, consolidated in chronological order with a timeline, covering template reduction, validation-gate coherence, path containment, daemon hardening, the memory-database decommission and its landing, the runtime rename, the reality-alignment and simplification research rounds, the recorded-findings closure, CI mirror parity, and the changelog fact-check."
 trigger_phrases:
   - "system speckit v4"
   - "spec kit v4 timeline"
@@ -40,7 +40,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix through the metadata regeneration, consolidated in chronological order with a timeline
+# Feature Specification: Phase parent for repo v4 of system-spec-kit: the thirty-four packets from the plan-preflight fix through the state inventory research, consolidated in chronological order with a timeline
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -65,10 +65,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped. Anyone reading the track saw fragments; nothing showed the sequence.
+Thirty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-08 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped. Anyone reading the track saw fragments; nothing showed the sequence.
 
 ### Purpose
-Hold the twenty-four packets as phases in chronological order under one parent that a reader can call v4, with a timeline, literal names, and retrieval that reaches every child.
+Hold the thirty-four packets as phases in chronological order under one parent that a reader can call v4, with a timeline, literal names, and retrieval that reaches every child.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -79,7 +79,7 @@ Hold the twenty-four packets as phases in chronological order under one parent t
 ## 3. SCOPE
 
 ### In Scope
-- The twenty-four packets as children 001 to 024, numbered by first commit; nested phases keep their own structure with generic names made literal and 041's numbering gap closed.
+- The thirty-four packets as children 001 to 034, numbered by first commit; nested phases keep their own structure with generic names made literal and 041's numbering gap closed.
 - Every live reference repointed; changelogs, archives, lineages and scratch kept as recorded history.
 - `timeline.md` with a chronological table and gantt built from git history.
 - Trigger phrases and headings tuned for the ripgrep-first retrieval that replaced the memory database.
@@ -93,7 +93,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| 24 packets under this parent | Move | all | `git mv` into chronological slots with the approved names |
+| 34 packets under this parent | Move | all | `git mv` into chronological slots with the approved names |
 | `spec.md`, `description.json`, `graph-metadata.json` per packet | Modify, Regenerate | all | Back-reference rows, pointers, derived metadata |
 | `timeline.md` | Create | parent | Chronological record |
 <!-- /ANCHOR:scope -->
@@ -109,22 +109,22 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |-------|--------|-------|--------|
 | 1 | 001-plan-preflight-track-packets/ | was `034-plan-preflight-nested-packet-resolution`; first commit 2026-08-15, last 2026-09-04 | complete |
 | 2 | 002-daemon-reaper-orphan-classification/ | was `035-process-reaper-classification-fix`; first commit 2026-08-22, last 2026-09-04 | complete |
-| 3 | 003-spec-doc-template-reduction/ | was `036-spec-doc-template-reduction`; first commit 2026-08-26, last 2026-09-06 | draft |
-| 4 | 004-decisions-and-notes-system/ | was `037-decisions-memory-redesign`; first commit 2026-08-26, last 2026-09-04 | draft |
-| 5 | 005-skills-runtime-state-consolidation/ | was `038-skills-state-consolidation`; first commit 2026-08-28, last 2026-08-30 | complete |
+| 3 | 003-spec-doc-template-reduction/ | was `036-spec-doc-template-reduction`; first commit 2026-08-26, last 2026-09-07 | draft |
+| 4 | 004-decisions-and-notes-system/ | was `037-decisions-memory-redesign`; first commit 2026-08-26, last 2026-09-07 | draft |
+| 5 | 005-skills-runtime-state-consolidation/ | was `038-skills-state-consolidation`; first commit 2026-08-28, last 2026-09-06 | complete |
 | 6 | 006-derived-metadata-repair-tool/ | was `039-derived-repair-automation`; first commit 2026-08-28, last 2026-08-30 | in progress |
 | 7 | 007-completion-gate-coherence/ | was `040-validation-gate-coherence`; first commit 2026-08-29, last 2026-08-30 | complete |
 | 8 | 008-template-contracts-and-acceptance-criteria/ | was `033-spec-kit-template-optimization`; first commit 2026-08-29, last 2026-09-04 | in progress |
-| 9 | 009-validation-rule-reduction/ | was `041-validation-reduction`; first commit 2026-08-29, last 2026-09-01 | complete |
-| 10 | 010-goal-file-addon/ | was `042-nested-goal-template-addon`; first commit 2026-08-29, last 2026-09-04 | in progress |
+| 9 | 009-validation-rule-reduction/ | was `041-validation-reduction`; first commit 2026-08-29, last 2026-09-06 | complete |
+| 10 | 010-goal-file-addon/ | was `042-nested-goal-template-addon`; first commit 2026-08-29, last 2026-09-06 | in progress |
 | 11 | 011-graph-metadata-write-containment/ | was `043-workspace-path-containment`; first commit 2026-08-30, last 2026-09-02 | complete |
 | 12 | 012-repair-write-symlink-refusal/ | was `044-repair-write-symlink-refusal`; first commit 2026-08-30, last 2026-09-02 | complete |
 | 13 | 013-repair-handle-containment/ | was `046-path-containment-followups`; first commit 2026-08-30, last 2026-09-01 | complete |
-| 14 | 014-daemon-and-test-harness-hardening/ | was `045-daemon-and-test-harness-hardening`; first commit 2026-08-30, last 2026-09-04 | complete |
+| 14 | 014-daemon-and-test-harness-hardening/ | was `045-daemon-and-test-harness-hardening`; first commit 2026-08-30, last 2026-09-07 | complete |
 | 15 | 015-apply-path-and-candidate-filter-fixes/ | was `047-review-remediation`; first commit 2026-08-31, last 2026-09-01 | complete |
 | 16 | 016-sequential-thinking-residue-removal/ | was `048-decommissioned-server-residue`; first commit 2026-08-31, last 2026-09-02 | complete |
 | 17 | 017-memory-database-decommission/ | was `049-memory-decommission`; first commit 2026-09-02, last 2026-09-05 | complete |
-| 18 | 018-single-segment-packet-pointer/ | was `050-single-segment-packet-pointer`; first commit 2026-09-02, last 2026-09-02 | draft |
+| 18 | 018-single-segment-packet-pointer/ | was `050-single-segment-packet-pointer`; first commit 2026-09-02, last 2026-09-07 | draft |
 | 19 | 019-memory-decommission-branch-landing/ | was `052-memory-decommission-landing`; first commit 2026-09-04, last 2026-09-06 | complete |
 | 20 | 020-runtime-package-rename/ | was `053-spec-kit-runtime-rename`; first commit 2026-09-04, last 2026-09-05 | complete |
 | 21 | 021-decommission-debt-and-cli-nesting/ | was `054-decommission-debt-fixes`; first commit 2026-09-05, last 2026-09-05 | complete |
@@ -135,7 +135,12 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 26 | 026-runtime-code-standards-research/ | ten-iteration research lane: shared and runtime code against the sk-code standards | complete |
 | 27 | 027-doc-path-strict-mode-and-retired-capability-fixes/ | forty-three confirmed doc mismatches and twenty phantom test citations fixed, three waves | complete |
 | 28 | 028-header-tags-hook-catch-and-script-test-fixes/ | thirty-four confirmed code-standards deviations fixed, three waves; store path and classifier bugs included | complete |
-| 29 | 029-ci-shared-package-resolution/ | the four workflows red since the shared-parser adoption fixed: install step, tracked declaration, one link, regenerated mirrors | complete |
+| 29 | 029-goal-operator-resync-rule/ | was `034-goal-operator-resync-rule`; the goal addon tells the working agent to resend the parent goal.md whenever its durable slice changes | complete |
+| 30 | 030-spec-kit-simplification-research/ | was `035-spec-kit-simplification-research`; three research rounds over twenty-two children, from the ripgrep search system to doctor signal truth | complete |
+| 31 | 031-ci-shared-package-resolution/ | was `029-ci-shared-package-resolution`; the four workflows red since the shared-parser adoption fixed: install step, tracked declaration, one link, regenerated mirrors | complete |
+| 32 | 032-recorded-findings-closure/ | was `036-recorded-findings-closure`; sixteen children closing every finding the simplification program recorded rather than fixed, plus its open operator items | complete |
+| 33 | 033-ci-dependency-hardening/ | was `037-ci-dependency-hardening`; the pre-commit hook runs all six CI mirror checks, the workflow triggers on every mirror source, and the Dependabot backlog reaches zero | complete |
+| 34 | 034-v4-state-inventory-research/ | two ten-iteration lanes, GPT-5.6 Luna and DeepSeek V4 Flash, inventory what the repository ships today and measure the old changelog draft against it | in progress |
 
 ### Phase Transition Rules
 

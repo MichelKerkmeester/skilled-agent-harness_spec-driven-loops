@@ -1,0 +1,408 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets/spec.md b/specs/system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets/spec.md
+index 3475fc26cb..b32e186248 100644
+--- a/specs/system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets/spec.md
+@@ -48,7 +48,7 @@ _memory:
+ | **Status** | Complete |
+ | **Created** | 2026-08-15 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 1 of 24 |
++| **Phase** | 1 of 34 |
+ | **Predecessor** | None |
+ | **Successor** | `../002-daemon-reaper-orphan-classification/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/spec.md b/specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/spec.md
+index f84f237bdb..c0a5e10f2d 100644
+--- a/specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification/spec.md
+@@ -46,7 +46,7 @@ _memory:
+ | **Status** | Complete — fix implemented and verified (negative control → fix → both suites green); awaiting commit go-ahead |
+ | **Created** | 2026-08-22 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 2 of 24 |
++| **Phase** | 2 of 34 |
+ | **Predecessor** | `../001-plan-preflight-track-packets/spec.md` |
+ | **Successor** | `../003-spec-doc-template-reduction/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation/spec.md b/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation/spec.md
+index 9c39018f12..733ae74017 100644
+--- a/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation/spec.md
+@@ -38,7 +38,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-08-28 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 5 of 24 |
++| **Phase** | 5 of 34 |
+ | **Predecessor** | `../004-decisions-and-notes-system/spec.md` |
+ | **Successor** | `../006-derived-metadata-repair-tool/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool/spec.md b/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool/spec.md
+index e1c61215fd..e194c54e1c 100644
+--- a/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool/spec.md
+@@ -46,7 +46,7 @@ _memory:
+ | **Status** | In Progress |
+ | **Created** | 2026-08-28 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 6 of 24 |
++| **Phase** | 6 of 34 |
+ | **Predecessor** | `../005-skills-runtime-state-consolidation/spec.md` |
+ | **Successor** | `../007-completion-gate-coherence/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/007-completion-gate-coherence/spec.md b/specs/system-speckit/033-system-speckit-v4/007-completion-gate-coherence/spec.md
+index 6b4e9eef05..61d44272b1 100644
+--- a/specs/system-speckit/033-system-speckit-v4/007-completion-gate-coherence/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/007-completion-gate-coherence/spec.md
+@@ -44,7 +44,7 @@ _memory:
+ | **Status** | Complete |
+ | **Created** | 2026-08-29 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 7 of 24 |
++| **Phase** | 7 of 34 |
+ | **Predecessor** | `../006-derived-metadata-repair-tool/spec.md` |
+ | **Successor** | `../008-template-contracts-and-acceptance-criteria/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment/spec.md b/specs/system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment/spec.md
+index 507cdb9afa..d854cb34ca 100644
+--- a/specs/system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment/spec.md
+@@ -28,7 +28,7 @@ contextType: "implementation"
+ | **Status** | Complete |
+ | **Created** | 2026-08-30 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 11 of 24 |
++| **Phase** | 11 of 34 |
+ | **Predecessor** | `../010-goal-file-addon/spec.md` |
+ | **Successor** | `../012-repair-write-symlink-refusal/spec.md` |
+ | **Branch** | `scaffold/043-workspace-path-containment` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal/spec.md b/specs/system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal/spec.md
+index 3c05bcd2c4..91dbb0744d 100644
+--- a/specs/system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal/spec.md
+@@ -27,7 +27,7 @@ contextType: "implementation"
+ | **Status** | Complete |
+ | **Created** | 2026-08-30 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 12 of 24 |
++| **Phase** | 12 of 34 |
+ | **Predecessor** | `../011-graph-metadata-write-containment/spec.md` |
+ | **Successor** | `../013-repair-handle-containment/spec.md` |
+ | **Branch** | `scaffold/044-repair-write-symlink-refusal` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/013-repair-handle-containment/spec.md b/specs/system-speckit/033-system-speckit-v4/013-repair-handle-containment/spec.md
+index b545425b5d..8adfbc47a8 100644
+--- a/specs/system-speckit/033-system-speckit-v4/013-repair-handle-containment/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/013-repair-handle-containment/spec.md
+@@ -46,7 +46,7 @@ _memory:
+ | **Status** | Complete |
+ | **Created** | 2026-08-30 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 13 of 24 |
++| **Phase** | 13 of 34 |
+ | **Predecessor** | `../012-repair-write-symlink-refusal/spec.md` |
+ | **Successor** | `../014-daemon-and-test-harness-hardening/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes/spec.md b/specs/system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes/spec.md
+index f0f906feba..5d30789c38 100644
+--- a/specs/system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes/spec.md
+@@ -29,7 +29,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-08-31 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 15 of 24 |
++| **Phase** | 15 of 34 |
+ | **Predecessor** | `../014-daemon-and-test-harness-hardening/spec.md` |
+ | **Successor** | `../016-sequential-thinking-residue-removal/spec.md` |
+ | **Branch** | `scaffold/047-review-remediation` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/spec.md b/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/spec.md
+index 173a3467af..50a41dc09e 100644
+--- a/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/spec.md
+@@ -26,7 +26,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-08-31 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 16 of 24 |
++| **Phase** | 16 of 34 |
+ | **Predecessor** | `../015-apply-path-and-candidate-filter-fixes/spec.md` |
+ | **Successor** | `../017-memory-database-decommission/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer/spec.md b/specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer/spec.md
+index c74d9133c2..c860c8ccc1 100644
+--- a/specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer/spec.md
+@@ -46,7 +46,7 @@ _memory:
+ | **Status** | Draft |
+ | **Created** | 2026-09-02 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 18 of 24 |
++| **Phase** | 18 of 34 |
+ | **Predecessor** | `../017-memory-database-decommission/spec.md` |
+ | **Successor** | `../019-memory-decommission-branch-landing/spec.md` |
+ | **Level** | 1 |
+diff --git a/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/spec.md b/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/spec.md
+index 0a5d531782..b74eb18947 100644
+--- a/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/spec.md
+@@ -29,7 +29,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-09-04 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 19 of 24 |
++| **Phase** | 19 of 34 |
+ | **Predecessor** | `../018-single-segment-packet-pointer/spec.md` |
+ | **Successor** | `../020-runtime-package-rename/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` via `worktrees/044-zvec-grep-integration` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/spec.md b/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/spec.md
+index ad6f35306c..854d4971b4 100644
+--- a/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/spec.md
+@@ -40,7 +40,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-09-04 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 20 of 24 |
++| **Phase** | 20 of 34 |
+ | **Predecessor** | `../019-memory-decommission-branch-landing/spec.md` |
+ | **Successor** | `../021-decommission-debt-and-cli-nesting/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/spec.md b/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/spec.md
+index 69e33260b7..b0c8148d9b 100644
+--- a/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/spec.md
+@@ -29,7 +29,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-09-05 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 21 of 24 |
++| **Phase** | 21 of 34 |
+ | **Predecessor** | `../020-runtime-package-rename/spec.md` |
+ | **Successor** | `../022-shared-containment-helper/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/022-shared-containment-helper/spec.md b/specs/system-speckit/033-system-speckit-v4/022-shared-containment-helper/spec.md
+index a6ccfdaf5e..0a28605fbc 100644
+--- a/specs/system-speckit/033-system-speckit-v4/022-shared-containment-helper/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/022-shared-containment-helper/spec.md
+@@ -26,7 +26,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-09-05 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 22 of 24 |
++| **Phase** | 22 of 34 |
+ | **Predecessor** | `../021-decommission-debt-and-cli-nesting/spec.md` |
+ | **Successor** | `../023-trigger-index-root-and-drift-fixes/spec.md` |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/spec.md b/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/spec.md
+index bf2a9e0fa5..0069031bd3 100644
+--- a/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser/spec.md
+@@ -27,7 +27,7 @@ contextType: "general"
+ | **Status** | Complete |
+ | **Created** | 2026-09-05 |
+ | **Parent Spec** | `../spec.md` |
+-| **Phase** | 24 of 24 |
++| **Phase** | 24 of 34 |
+ | **Predecessor** | `../023-trigger-index-root-and-drift-fixes/spec.md` |
+ | **Successor** | None |
+ | **Branch** | `skilled/v4.0.0.0` |
+diff --git a/specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/spec.md b/specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/spec.md
+index 70d11dbbfb..d13a23a54c 100644
+--- a/specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research/spec.md
+@@ -44,7 +44,7 @@ _memory:
+ | **Created** | 2026-09-06 |
+ | **Branch** | `skilled/v4.0.0.0` |
+ | **Parent Spec** | ../spec.md |
+-| **Phase** | 25 of 26 |
++| **Phase** | 25 of 34 |
+ | **Predecessor** | 024-metadata-regeneration-and-shared-parser |
+ | **Successor** | 026-runtime-code-standards-research |
+ | **Handoff Criteria** | Ten iterations complete, findings reproduced, confirmed table handed to the remediation child |
+diff --git a/specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/spec.md b/specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/spec.md
+index c0462c7c05..efff32413c 100644
+--- a/specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/spec.md
+@@ -44,7 +44,7 @@ _memory:
+ | **Created** | 2026-09-06 |
+ | **Branch** | `skilled/v4.0.0.0` |
+ | **Parent Spec** | ../spec.md |
+-| **Phase** | 26 of 26 |
++| **Phase** | 26 of 34 |
+ | **Predecessor** | 025-docs-reality-alignment-research |
+ | **Successor** | none |
+ | **Handoff Criteria** | Ten iterations complete, findings reproduced, confirmed table handed to the remediation child |
+diff --git a/specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/spec.md b/specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/spec.md
+index 23fde1ffdf..b539dc70d7 100644
+--- a/specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes/spec.md
+@@ -44,7 +44,7 @@ _memory:
+ | **Created** | 2026-09-06 |
+ | **Branch** | `skilled/v4.0.0.0` |
+ | **Parent Spec** | ../spec.md |
+-| **Phase** | 27 of 28 |
++| **Phase** | 27 of 34 |
+ | **Predecessor** | 026-runtime-code-standards-research |
+ | **Successor** | 028-header-tags-hook-catch-and-script-test-fixes |
+ | **Handoff Criteria** | Every confirmed row applied or decided, gates green, metadata regenerated |
+diff --git a/specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/spec.md b/specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/spec.md
+index 485514eed7..7e4579fb49 100644
+--- a/specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes/spec.md
+@@ -44,9 +44,9 @@ _memory:
+ | **Created** | 2026-09-06 |
+ | **Branch** | `skilled/v4.0.0.0` |
+ | **Parent Spec** | ../spec.md |
+-| **Phase** | 28 of 29 |
++| **Phase** | 28 of 34 |
+ | **Predecessor** | 027-doc-path-strict-mode-and-retired-capability-fixes |
+-| **Successor** | 029-ci-shared-package-resolution |
++| **Successor** | 031-ci-shared-package-resolution |
+ | **Handoff Criteria** | Every confirmed row applied or decided, gates green, metadata regenerated |
+ <!-- /ANCHOR:metadata -->
+ 
+diff --git a/specs/system-speckit/033-system-speckit-v4/graph-metadata.json b/specs/system-speckit/033-system-speckit-v4/graph-metadata.json
+index 216950c915..823a19aa5c 100644
+--- a/specs/system-speckit/033-system-speckit-v4/graph-metadata.json
++++ b/specs/system-speckit/033-system-speckit-v4/graph-metadata.json
+@@ -32,7 +32,12 @@
+     "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
+     "system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
+     "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+-    "system-speckit/033-system-speckit-v4/029-ci-shared-package-resolution"
++    "system-speckit/033-system-speckit-v4/029-goal-operator-resync-rule",
++    "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
++    "system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution",
++    "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
++    "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening",
++    "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research"
+   ],
+   "manual": {
+     "depends_on": [],
+@@ -98,7 +103,7 @@
+         "source": "derived"
+       },
+       {
+-        "name": "Problem Statement Twenty",
++        "name": "Problem Statement Thirty",
+         "kind": "proper_noun",
+         "path": "spec.md",
+         "source": "derived"
+@@ -110,18 +115,18 @@
+         "source": "derived"
+       }
+     ],
+-    "causal_summary": "Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
++    "causal_summary": "Thirty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-07 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
+     "created_at": "2026-09-06T06:42:39Z",
+-    "last_save_at": "2026-09-07T05:42:09.137Z",
++    "last_save_at": "2026-09-08T16:16:40.254Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+       "spec.md"
+     ],
+-    "source_fingerprint": "sha256:5c9b0e7d8d7b9791398dc03fe89b3dc1ddbf005d34f2372f112a639c0a01db72",
++    "source_fingerprint": "sha256:77d19731632050b9a1c1e0b7ed17839ae5c2fda138b4d2b19a1e8649f12336df",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "b22221e7dfaf1657050d3389cca85862ec071f2c2722780ba7d6d49edd84d43a"
++      "spec.md": "b70b29e0f6880be54c08d2c93505b60b5f3aa7fceff12f67636f4313bdc6e383"
+     },
+     "last_active_at": null
+   }
+diff --git a/specs/system-speckit/033-system-speckit-v4/spec.md b/specs/system-speckit/033-system-speckit-v4/spec.md
+index 018f34805b..ced174cef2 100644
+--- a/specs/system-speckit/033-system-speckit-v4/spec.md
++++ b/specs/system-speckit/033-system-speckit-v4/spec.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Feature Specification: system-speckit-v4"
+-description: "Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix on 2026-08-15 through the metadata regeneration on 2026-09-06, consolidated in chronological order with a timeline, covering template reduction, validation-gate coherence, path containment, daemon hardening, the memory-database decommission and its landing, the runtime rename, and the integration research remediation."
++description: "Phase parent for repo v4 of system-spec-kit: the thirty-four packets from the plan-preflight fix on 2026-08-15 through the state inventory research on 2026-09-08, consolidated in chronological order with a timeline, covering template reduction, validation-gate coherence, path containment, daemon hardening, the memory-database decommission and its landing, the runtime rename, the reality-alignment and simplification research rounds, the recorded-findings closure, and CI mirror parity."
+ trigger_phrases:
+   - "system speckit v4"
+   - "spec kit v4 timeline"
+@@ -40,7 +40,7 @@ _memory:
+     - What needs done: the high-level outcome the phases work toward
+ -->
+ 
+-# Feature Specification: Phase parent for repo v4 of system-spec-kit: the twenty-four packets from the plan-preflight fix through the metadata regeneration, consolidated in chronological order with a timeline
++# Feature Specification: Phase parent for repo v4 of system-spec-kit: the thirty-four packets from the plan-preflight fix through the CI and dependency hardening, consolidated in chronological order with a timeline
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
+@@ -65,10 +65,10 @@ _memory:
+ ## 2. PROBLEM & PURPOSE
+ 
+ ### Problem Statement
+-Twenty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-06 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped. Anyone reading the track saw fragments; nothing showed the sequence.
++Thirty-four packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-07 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped. Anyone reading the track saw fragments; nothing showed the sequence.
+ 
+ ### Purpose
+-Hold the twenty-four packets as phases in chronological order under one parent that a reader can call v4, with a timeline, literal names, and retrieval that reaches every child.
++Hold the thirty-four packets as phases in chronological order under one parent that a reader can call v4, with a timeline, literal names, and retrieval that reaches every child.
+ 
+ > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+ <!-- /ANCHOR:problem -->
+@@ -79,7 +79,7 @@ Hold the twenty-four packets as phases in chronological order under one parent t
+ ## 3. SCOPE
+ 
+ ### In Scope
+-- The twenty-four packets as children 001 to 024, numbered by first commit; nested phases keep their own structure with generic names made literal and 041's numbering gap closed.
++- The thirty-three packets as children 001 to 034, numbered by first commit; nested phases keep their own structure with generic names made literal and 041's numbering gap closed.
+ - Every live reference repointed; changelogs, archives, lineages and scratch kept as recorded history.
+ - `timeline.md` with a chronological table and gantt built from git history.
+ - Trigger phrases and headings tuned for the ripgrep-first retrieval that replaced the memory database.
+@@ -93,7 +93,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
+ 
+ | File Path | Change Type | Phase | Description |
+ |-----------|-------------|-------|-------------|
+-| 24 packets under this parent | Move | all | `git mv` into chronological slots with the approved names |
++| 34 packets under this parent | Move | all | `git mv` into chronological slots with the approved names |
+ | `spec.md`, `description.json`, `graph-metadata.json` per packet | Modify, Regenerate | all | Back-reference rows, pointers, derived metadata |
+ | `timeline.md` | Create | parent | Chronological record |
+ <!-- /ANCHOR:scope -->
+@@ -109,22 +109,22 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
+ |-------|--------|-------|--------|
+ | 1 | 001-plan-preflight-track-packets/ | was `034-plan-preflight-nested-packet-resolution`; first commit 2026-08-15, last 2026-09-04 | complete |
+ | 2 | 002-daemon-reaper-orphan-classification/ | was `035-process-reaper-classification-fix`; first commit 2026-08-22, last 2026-09-04 | complete |
+-| 3 | 003-spec-doc-template-reduction/ | was `036-spec-doc-template-reduction`; first commit 2026-08-26, last 2026-09-06 | draft |
+-| 4 | 004-decisions-and-notes-system/ | was `037-decisions-memory-redesign`; first commit 2026-08-26, last 2026-09-04 | draft |
+-| 5 | 005-skills-runtime-state-consolidation/ | was `038-skills-state-consolidation`; first commit 2026-08-28, last 2026-08-30 | complete |
++| 3 | 003-spec-doc-template-reduction/ | was `036-spec-doc-template-reduction`; first commit 2026-08-26, last 2026-09-07 | draft |
++| 4 | 004-decisions-and-notes-system/ | was `037-decisions-memory-redesign`; first commit 2026-08-26, last 2026-09-07 | draft |
++| 5 | 005-skills-runtime-state-consolidation/ | was `038-skills-state-consolidation`; first commit 2026-08-28, last 2026-09-06 | complete |
+ | 6 | 006-derived-metadata-repair-tool/ | was `039-derived-repair-automation`; first commit 2026-08-28, last 2026-08-30 | in progress |
+ | 7 | 007-completion-gate-coherence/ | was `040-validation-gate-coherence`; first commit 2026-08-29, last 2026-08-30 | complete |
+ | 8 | 008-template-contracts-and-acceptance-criteria/ | was `033-spec-kit-template-optimization`; first commit 2026-08-29, last 2026-09-04 | in progress |
+-| 9 | 009-validation-rule-reduction/ | was `041-validation-reduction`; first commit 2026-08-29, last 2026-09-01 | complete |
++| 9 | 009-validation-rule-reduction/ | was `041-validation-reduction`; first commit 2026-08-29, last 2026-09-06 | complete |
+ | 10 | 010-goal-file-addon/ | was `042-nested-goal-template-addon`; first commit 2026-08-29, last 2026-09-04 | in progress |
+ | 11 | 011-graph-metadata-write-containment/ | was `043-workspace-path-containment`; first commit 2026-08-30, last 2026-09-02 | complete |
+ | 12 | 012-repair-write-symlink-refusal/ | was `044-repair-write-symlink-refusal`; first commit 2026-08-30, last 2026-09-02 | complete |
+ | 13 | 013-repair-handle-containment/ | was `046-path-containment-followups`; first commit 2026-08-30, last 2026-09-01 | complete |
+-| 14 | 014-daemon-and-test-harness-hardening/ | was `045-daemon-and-test-harness-hardening`; first commit 2026-08-30, last 2026-09-04 | complete |
++| 14 | 014-daemon-and-test-harness-hardening/ | was `045-daemon-and-test-harness-hardening`; first commit 2026-08-30, last 2026-09-07 | complete |
+ | 15 | 015-apply-path-and-candidate-filter-fixes/ | was `047-review-remediation`; first commit 2026-08-31, last 2026-09-01 | complete |
+ | 16 | 016-sequential-thinking-residue-removal/ | was `048-decommissioned-server-residue`; first commit 2026-08-31, last 2026-09-02 | complete |
+ | 17 | 017-memory-database-decommission/ | was `049-memory-decommission`; first commit 2026-09-02, last 2026-09-05 | complete |
+-| 18 | 018-single-segment-packet-pointer/ | was `050-single-segment-packet-pointer`; first commit 2026-09-02, last 2026-09-02 | draft |
++| 18 | 018-single-segment-packet-pointer/ | was `050-single-segment-packet-pointer`; first commit 2026-09-02, last 2026-09-07 | draft |
+ | 19 | 019-memory-decommission-branch-landing/ | was `052-memory-decommission-landing`; first commit 2026-09-04, last 2026-09-06 | complete |
+ | 20 | 020-runtime-package-rename/ | was `053-spec-kit-runtime-rename`; first commit 2026-09-04, last 2026-09-05 | complete |
+ | 21 | 021-decommission-debt-and-cli-nesting/ | was `054-decommission-debt-fixes`; first commit 2026-09-05, last 2026-09-05 | complete |
+@@ -135,7 +135,12 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
+ | 26 | 026-runtime-code-standards-research/ | ten-iteration research lane: shared and runtime code against the sk-code standards | complete |
+ | 27 | 027-doc-path-strict-mode-and-retired-capability-fixes/ | forty-three confirmed doc mismatches and twenty phantom test citations fixed, three waves | complete |
+ | 28 | 028-header-tags-hook-catch-and-script-test-fixes/ | thirty-four confirmed code-standards deviations fixed, three waves; store path and classifier bugs included | complete |
+-| 29 | 029-ci-shared-package-resolution/ | the four workflows red since the shared-parser adoption fixed: install step, tracked declaration, one link, regenerated mirrors | complete |
++| 29 | 029-goal-operator-resync-rule/ | was `034-goal-operator-resync-rule`; the goal addon tells the working agent to resend the parent goal.md whenever its durable slice changes | complete |
++| 30 | 030-spec-kit-simplification-research/ | was `035-spec-kit-simplification-research`; three research rounds over twenty-two children, from the ripgrep search system to doctor signal truth | complete |
++| 31 | 031-ci-shared-package-resolution/ | was `029-ci-shared-package-resolution`; the four workflows red since the shared-parser adoption fixed: install step, tracked declaration, one link, regenerated mirrors | complete |
++| 32 | 032-recorded-findings-closure/ | was `036-recorded-findings-closure`; sixteen children closing every finding the simplification program recorded rather than fixed, plus its open operator items | complete |
++| 33 | 033-ci-dependency-hardening/ | was `037-ci-dependency-hardening`; the pre-commit hook runs all six CI mirror checks, the workflow triggers on every mirror source, and the Dependabot backlog reaches zero | complete |
++| 34 | 034-v4-state-inventory-research/ | two ten-iteration lanes, GPT-5.6 Luna and DeepSeek V4 Flash, inventory what the repository ships today and measure the old changelog draft against it | in progress |
+ 
+ ### Phase Transition Rules
+ 

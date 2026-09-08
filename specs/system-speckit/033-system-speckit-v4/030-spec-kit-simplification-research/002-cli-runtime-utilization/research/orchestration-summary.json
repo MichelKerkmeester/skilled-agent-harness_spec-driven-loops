@@ -1,0 +1,71 @@
+{
+  "run_id": "1788759071033-5hbquq",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-v4-flash-cli-runtime",
+      "state_log": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/research/lineages/deepseek-v4-flash-cli-runtime/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-07T05:31:11.039Z",
+        "end_at_iso": "2026-09-07T05:54:56.193Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 14,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 15
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T07:31:30.000Z",
+          "deltaMs": 5673807
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T07:32:00.000Z",
+          "deltaMs": 5703807
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T07:47:00.000Z",
+          "deltaMs": 6603807
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T08:02:00.000Z",
+          "deltaMs": 7503807
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-07T08:20:00.000Z",
+          "deltaMs": 8583807
+        }
+      ]
+    }
+  ]
+}

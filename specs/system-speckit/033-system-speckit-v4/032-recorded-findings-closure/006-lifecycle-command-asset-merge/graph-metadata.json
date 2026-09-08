@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge",
+  "spec_folder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge",
+  "parent_id": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lifecycle command asset merge",
+      "auto confirm twin merge",
+      "save context tail duplication",
+      "validate sh cadence comment",
+      "lifecycle command merge plan",
+      "execution mode branch technical approach",
+      "save context tail extraction",
+      "command tree parity testing strategy",
+      "lifecycle command merge tasks",
+      "execution mode branch task",
+      "save context tail task",
+      "command tree parity verification"
+    ],
+    "key_topics": [
+      "lifecycle",
+      "command",
+      "asset",
+      "merge",
+      "auto",
+      "confirm",
+      "twin",
+      "save",
+      "context",
+      "tail",
+      "duplication",
+      "validate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/commands/speckit/assets/speckit-save-context-tail.yaml",
+      ".opencode/commands/speckit/README.txt",
+      "runtime/cli/tests/test-phase-command-workflows.js",
+      "runtime/cli/tests/yaml-intake-event-payloads.vitest.ts",
+      "shared/predicates/boolean-expr.test.ts",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      ".opencode/commands/speckit/plan.md",
+      ".github/workflows/command-tree-parity.yml",
+      ".opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh",
+      ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      "runtime-mirrors/sync-runtime-mirrors.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-save-context-tail.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-save-context-tail.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "yaml-intake-event-payloads.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/yaml-intake-event-payloads.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.test.ts",
+        "kind": "test",
+        "path": "shared/predicates/boolean-expr.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-tree-parity.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three `/speckit:` lifecycle commands each ship as an auto/confirm pair, six YAML assets between 780 and 1,388 lines (verified 2026-09-07: `speckit-plan-auto.yaml` 780 lines, `speckit-plan-confirm.yaml` 849 lines)",
+    "created_at": "2026-09-07T15:05:46Z",
+    "last_save_at": "2026-09-08T15:47:15.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e70f3c6f0c06eefa7b9188abf4e5acf35900dc2ae9b427bdff9bbdc71db5430b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "300b2821772d93413d712bcb0d2834c57234630405c240cadd0b239ae96d26cb",
+      "plan.md": "1d5a239d9d81f7dad022e37d6d5eb322ec473633df4c901717fcc4530357be78",
+      "tasks.md": "75496c8ec015738c1f43d9b50c576c2156bfc140f3857a95efa9c8fae4a1e20a",
+      "implementation-summary.md": "634563f4920c75c1c9a6b2cec525ce48e7d1c6b8ca7aa0ff8fcf08fe50f9176f"
+    },
+    "last_active_at": null
+  }
+}

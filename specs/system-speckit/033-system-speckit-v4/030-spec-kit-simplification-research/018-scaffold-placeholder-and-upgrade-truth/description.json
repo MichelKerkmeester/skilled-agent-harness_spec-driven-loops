@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth",
+  "description": "The scaffolder replaced every `[YOURVALUEHERE: x]` slot with the feature name, so a phase parent's open questions and predecessor became its own name,",
+  "keywords": [
+    "scaffolder",
+    "replaced",
+    "every",
+    "yourvaluehere",
+    "slot",
+    "feature",
+    "name",
+    "phase",
+    "parent",
+    "open",
+    "questions",
+    "predecessor",
+    "became",
+    "own"
+  ],
+  "lastUpdated": "2026-09-07T13:22:01.457Z",
+  "specId": "018",
+  "folderSlug": "scaffold-placeholder-and-upgrade-truth",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

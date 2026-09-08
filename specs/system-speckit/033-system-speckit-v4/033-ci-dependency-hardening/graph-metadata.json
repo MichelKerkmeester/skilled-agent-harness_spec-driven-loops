@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening",
+  "spec_folder": "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci mirror parity",
+      "runs failed emails",
+      "spec-kit check failing",
+      "dependabot alerts",
+      "pre-commit mirror gate",
+      "mirror parity gate plan",
+      "dependabot remediation plan",
+      "spec-kit check triggers",
+      "lockfile audit fix",
+      "mirror gate tasks",
+      "dependabot tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "mirror",
+      "parity",
+      "runs",
+      "failed",
+      "emails",
+      "spec-kit",
+      "check",
+      "failing",
+      "dependabot",
+      "alerts",
+      "pre-commit",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".opencode/commands/README.txt",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/package-lock.json",
+      ".opencode/skills/system-skill-advisor/mcp-server/package-lock.json",
+      ".opencode/skills/mcp-code-mode/mcp-server/package-lock.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Commit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator received a \"runs failed\" email on every push for days",
+    "created_at": "2026-09-07T19:44:27Z",
+    "last_save_at": "2026-09-08T17:59:27.440Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:11c646cb876b0958ba7c0ef603ca34d4687db852043d37df6210804a898e2625",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e044ca07b655be31403cb319406b21d318eef1a7db609f94a8330b84797111e5",
+      "plan.md": "5206bd91074d5d7b213a37907439803f975019f5ab8e8abb1632ce0a70df1b84",
+      "tasks.md": "9b4643786e82a56876d062a90c5bdb386cb4482aa536653598f0876cc34221ec",
+      "implementation-summary.md": "da7c5e688cb5b832430fb260e595a5b49ac402dca3a5997da9ede51efec0cb06"
+    },
+    "last_active_at": null
+  }
+}

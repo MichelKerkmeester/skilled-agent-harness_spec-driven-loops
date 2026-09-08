@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision",
+  "description": "The doctor retrieval target declared nine staleness signals and computed six: no activity produced a fresh manifest, ran the recipe without",
+  "keywords": [
+    "doctor",
+    "retrieval",
+    "target",
+    "declared",
+    "nine",
+    "staleness",
+    "signals",
+    "computed",
+    "six",
+    "activity",
+    "produced",
+    "fresh",
+    "manifest",
+    "ran",
+    "recipe",
+    "without"
+  ],
+  "lastUpdated": "2026-09-07T13:22:03.916Z",
+  "specId": "022",
+  "folderSlug": "doctor-signal-truth-and-conventions-precision",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "030-spec-kit-simplification-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
