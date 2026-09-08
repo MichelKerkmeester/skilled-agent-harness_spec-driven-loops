@@ -53,6 +53,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
+- [x] T006 Chart crops at 2x: two crop passes (the second adds iframes and a lower size floor), five sheets read, 224 keepers built. Evidence: `scratch/capture-details.cjs`, `library/details/`
 - [x] T008 Gallery page rendered and read
 - [x] T009 Walled and erroring sources recorded with reasons
 - [x] T010 Packet docs; validate strict RESULT: PASSED

@@ -46,7 +46,8 @@ A curated, indexed screenshot library of well-designed charts from public source
 
 ### In Scope
 - Three capture rounds over 58 candidate pages: two with bare headless Chrome at 1440 by 1000, then a Playwright pass driving the installed Chrome that scrolls each page so lazily rendered cards draw and captures down to 3200 pixels; a contact-sheet tool for triage.
-- 52 keepers from 39 sources converted to JPEG under `library/`, with `index.md` (source, kind, what to look at), `index.json` and a browsable `gallery.html` that links each capture to its source.
+- 52 page keepers from 39 sources converted to JPEG under `library/`, with `index.md` (source, kind, what to look at), `index.json` and a browsable `gallery.html` that links each capture to its source.
+- 224 element-level chart crops at 2x under `library/details/` from 24 source pages, found by what they are (SVG, canvas, chart image, chart card or the iframe a page renders a chart in), scrolled into view and captured alone with a margin; curated by eye, with their own `index.md`, `index.json` and `gallery.html`. Vercel, Carbon and Apple were widened to five, seven and five pages for this.
 - A "not captured" record naming every source that failed and why.
 
 ### Out of Scope
@@ -57,7 +58,10 @@ A curated, indexed screenshot library of well-designed charts from public source
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `library/*.jpg` (52) | Create | The captures, 1200 wide, scrolled pages down to 3200 pixels |
+| `library/*.jpg` (52) | Create | The page captures, 1200 wide, scrolled pages down to 3200 pixels |
+| `library/details/*.jpg` (224) | Create | The chart crops at 2x, longest side 1600 |
+| `library/details/{index.md,index.json,gallery.html}` | Create | Index and gallery for the crops |
+| `scratch/capture-details.cjs`, `scratch/build-details.py` | Create | Crop capture and builder |
 | `library/index.md`, `library/index.json`, `library/gallery.html` | Create | Index, manifest and gallery |
 | `scratch/capture-playwright.cjs`, `scratch/sources.json`, `scratch/build-library.py`, `scratch/contact-sheet.cjs` | Create | Reproduction: capture, source manifest with the dark-scheme flag, builder, triage sheet |
 | `scratch/capture.sh`, `scratch/capture-round2.sh` | Create | The first two bare-Chrome rounds, kept as the record |
@@ -86,7 +90,7 @@ A curated, indexed screenshot library of well-designed charts from public source
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: 52 captures, 39 sources, both schemes for 13 of them, all triaged by eye from contact sheets.
+- **SC-001**: 52 page captures from 39 sources and 224 chart crops from 24 pages, all triaged by eye from contact sheets.
 - **SC-002**: The gallery page renders every capture with its caption and source link.
 <!-- /ANCHOR:success-criteria -->
 
@@ -106,7 +110,7 @@ A curated, indexed screenshot library of well-designed charts from public source
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. Tremor rendered once Playwright drove a full Chrome profile, so its spark, tracker and bar-list pages are in the library.
+- Tremor's tracker, bar list and spark components sit below the crop size floor and inside the docs frame, so they are in the page captures but not the crops; a hand crop would add them.
 <!-- /ANCHOR:questions -->
 
 ---
