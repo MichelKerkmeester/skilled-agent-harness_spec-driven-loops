@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio (program umbrella over six phases) |
 | **Priority** | P1 |
-| **Status** | Partially shipped: styles-DB core, the `/interface:*` commands, and the reviews delivered; mode consolidation is **In Progress**; hallmark adoption and several style-DB evolution packets remain **Planned**; persistent activation SLO-gated |
+| **Status** | Partially shipped: styles-DB core, the `/interface:*` commands, and the reviews delivered; mode consolidation is **In Progress**; hallmark adoption shipped in five lanes; several style-DB evolution packets remain **Planned**; persistent activation SLO-gated |
 | **Created** | 2026-07-22 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -106,7 +106,7 @@ Present the whole sk-design program as one navigable record, organized into six 
 | 1 | `001-research/` | All research: style-database patterns, design-command redesign, Rust opportunities, hallmark-skill research, and the gap-remediation research program | **Complete** |
 | 2 | `002-style-database/` | The style database build + evolution: foundation, JS capabilities, measured-native, growth, library restructure, persistent activation, READMEs, and the manual-testing playbook | **Largely shipped; persistent activation SLO-gated** |
 | 3 | `003-interface-commands/` | The `/interface:*` creation commands: build, alias-namespace retirement, rewrite, research refactor, and the command benchmark | **Complete** |
-| 4 | `004-hallmark-design-system/` | Hallmark design-system adoption: surgical fixes, evidence envelopes, authored cards, and the brand-first lane | **Planned — four lanes specced, not built** |
+| 4 | `004-hallmark-design-system/` | Hallmark design-system adoption: surgical fixes, evidence envelopes, authored cards, and the brand-first lane | **Complete — all five adoption lanes shipped** |
 | 5 | `005-reviews-and-remediation/` | Program reviews and remediation: review-remediation, session-shipped-work review, remediation-program review, post-review remediation, and program review artifacts | **Complete** |
 | 6 | `006-design-mode-consolidation/` | Reduce the hub to four modes while preserving foundations and audit as permanent interface subworkflows | **In Progress** |
 
