@@ -175,7 +175,11 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 ## 5. VALIDATION
 
 ```bash
-node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/hooks/shared/hook-flags.test.cjs
+# node:test suites
+node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/hooks/shared/hook-flags.test.cjs
+
+# dispatch-audit is a vitest suite and cannot run under node --test
+npx vitest run --root .opencode/hooks/dispatch/lib dispatch-audit.test.mjs
 ```
 
 Expected result: all suites pass.

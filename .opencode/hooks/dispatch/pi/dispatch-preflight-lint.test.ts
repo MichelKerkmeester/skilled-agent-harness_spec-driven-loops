@@ -117,7 +117,8 @@ describe("Pi dispatch deny matrix", () => {
     ["deep-loop executor", 'opencode run "task"', "/deep:review --executor cli-opencode", false],
     ["deep-loop executor mismatch", 'devin -p "task"', "/deep:review --executor cli-opencode", true],
     ["deep-loop executor equals", 'devin -p "task"', "/deep:review --executor cli-devin", false],
-    ["cli-pi self-recursion", 'pi -p "task"', "use cli-pi", true],
+    ["cli-pi named by the user", 'pi -p "task"', "use cli-pi", false],
+    ["cli-pi without an override", 'pi -p "task"', "run the task", true],
     ["negated mode mention", 'devin -p "task"', "do not use cli-devin", true],
     ["quoted mode mention", 'devin -p "task"', 'use "cli-devin"', true],
     ["history mode mention is not current authorization", 'devin -p "task"', '[user] dispatch via cli-devin [assistant] done [user] run the task', true],
@@ -154,8 +155,15 @@ describe("registered Pi extension boundary", () => {
   });
 
   it("allows a positive raw user override for the inspected executor", async () => {
-    const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task"');
+    const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task" </dev/null');
     expect(result).toBeUndefined();
+  });
+
+  // Allowed is not the same as silent: a dispatch missing `</dev/null` still earns the
+  // advisory its skill declares, and an advisory must never read as a denial.
+  it("advises without blocking when a permitted dispatch omits the stdin redirect", async () => {
+    const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task"');
+    expect(result?.block).not.toBe(true);
   });
 
   it.each([
@@ -168,11 +176,14 @@ describe("registered Pi extension boundary", () => {
     expect(result?.block).toBe(true);
   });
 
-  it("denies self-dispatch before an override can apply", async () => {
-    const { result } = await invokeFactory("use cli-pi", 'pi --offline -p "task"');
-    expect(result?.block).toBe(true);
-    expect(result?.reason).toMatch(/self|never|cli-pi/i);
-    expect(result?.reason).not.toMatch(/explicitly name/);
+  // Pi has no in-process delegation of its own, so a named cli-pi dispatch is judged by the
+  // same override rule as any sibling executor rather than refused for being Pi.
+  it("allows a named cli-pi dispatch and still denies an unnamed one", async () => {
+    const { result: named } = await invokeFactory("use cli-pi", 'pi --offline -p "task" </dev/null');
+    expect(named).toBeUndefined();
+
+    const { result: unnamed } = await invokeFactory("run the task", 'pi --offline -p "task" </dev/null');
+    expect(unnamed?.block).toBe(true);
   });
 
   it("denies an executor mismatch and a mismatched deep-loop executor", async () => {

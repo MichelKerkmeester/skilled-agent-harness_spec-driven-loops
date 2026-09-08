@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Phase K Stress Measurement Vitest Config
+// ───────────────────────────────────────────────────────────────────
+
 const ROOT = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public';
 const MCP_SERVER = `${ROOT}/.opencode/skills/system-spec-kit/mcp_server`;
 const PACKET = `${ROOT}/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test`;

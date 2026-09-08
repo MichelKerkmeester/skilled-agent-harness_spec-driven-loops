@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Runtime Hook Test Runner (All Runtimes)
+// ───────────────────────────────────────────────────────────────────
+
 import { mkdirSync } from 'node:fs';
 
 import { RESULTS_DIR, compactStatusCounts, detectSandbox, isDirectRun, writeResults } from './common.ts';

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Copilot Runtime Hook Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { mkdtempSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 

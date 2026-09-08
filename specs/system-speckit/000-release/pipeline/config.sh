@@ -4,6 +4,7 @@
 # without hard-coded, session-scoped temp paths (the trap that bit the first run).
 
 # --- locations -------------------------------------------------------------
+set -uo pipefail
 REPO="$(git rev-parse --show-toplevel 2>/dev/null)"
 SPEC="$REPO/specs/system-speckit/000-release"
 # Durable, regenerable work dir under HOME (survives sessions; safe to delete).

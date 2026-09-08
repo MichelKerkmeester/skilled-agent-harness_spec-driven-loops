@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement",
+  "spec_folder": "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi self dispatch",
+      "cli-pi self invocation removal",
+      "pi-subagents retirement",
+      "pi subagents deprecated",
+      "pi dispatch guard carve-out",
+      "pi self dispatch plan",
+      "executor audit carve-out",
+      "pi preflight hook change",
+      "pi-subagents retirement plan",
+      "cli-pi packet tasks",
+      "pi self dispatch tasks",
+      "executor audit exemption"
+    ],
+    "key_topics": [
+      "self",
+      "dispatch",
+      "cli-pi",
+      "invocation",
+      "removal",
+      "pi-subagents",
+      "retirement",
+      "subagents",
+      "deprecated",
+      "guard",
+      "carve-out",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".pi/extensions/dispatch-preflight-lint.ts",
+      "scratch/vitest.pi-hook.config.mts",
+      ".pi/SYNC.md",
+      ".opencode/skills/README.txt",
+      "scratch/baseline/vitest-guard-suites.txt",
+      "scratch/baseline/typecheck.txt",
+      "scratch/baseline/residue-self-invocation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.pi-hook.config.mts",
+        "kind": "file",
+        "path": "scratch/vitest.pi-hook.config.mts",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-guard-suites.txt",
+        "kind": "file",
+        "path": "scratch/baseline/vitest-guard-suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "typecheck.txt",
+        "kind": "file",
+        "path": "scratch/baseline/typecheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "residue-self-invocation.txt",
+        "kind": "file",
+        "path": "scratch/baseline/residue-self-invocation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inside Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two facts changed under the `cli-pi` packet and neither is reflected in it",
+    "created_at": "2026-09-08T12:09:08.809Z",
+    "last_save_at": "2026-09-08T14:47:04.928Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b3e05c3ca56f72d7310445786ec5537413c32115560bf1baf2c5bb4ab2f8cbfd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0f8cb5c73040953a363118cf6fbc30a03601fad59d34f4a4ccf31f2adae025d8",
+      "plan.md": "74b02b455f0aeef9c0142b10a1a371334b0e22b8d5fb61290c53cd871d154957",
+      "tasks.md": "1f20afb7479b2a532598fbd8d544640039714f52be7195fdfa1604d4b075c9b6",
+      "decision-record.md": "2f1aec087964ddd2437abe4f9e5d8cd9a29163352917c285bdaa6c08bd3c23bb",
+      "implementation-summary.md": "aecee9de143bf18a588a5f70e8b7ac1e5a8c49dbae0bc65d24f7ce2ec72da226"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

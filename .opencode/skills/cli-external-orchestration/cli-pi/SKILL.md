@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.3.0.0
+version: 1.5.0.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -12,25 +12,18 @@ hard_rules:
     check: command-v-pi-required
     message: "Run command -v pi before every dispatch; if it fails, refuse the route without constructing or launching a command."
     severity: error
-  - id: self-invocation-prohibited
-    check: pi-self-invocation-guard
-    message: "Refuse dispatch when Pi runtime signals are present; a running CLI skill never dispatches itself."
-    severity: error
-  - id: deep-loop-runtime-required
-    check: deep-loop-runtime-delegation
-    message: "Delegate execution to the shipped deep-loop runtime; this skill must not implement a second Pi adapter."
-    severity: error
 ---
 
 <!-- Keywords: pi cli, pi agent, pi.dev cli, pi coding agent, delegate to pi, cross-ai, headless dispatch, json event stream, rpc mode, native skills, extensions, pi packages -->
 
 # Pi CLI Orchestrator - Cross-AI Task Delegation
 
-> **CRITICAL — SELF-INVOCATION PROHIBITED**
+> **A Pi session MAY dispatch this skill.** Pi has no in-process delegation of its own, so the CLI
+> is the only way a Pi session can hand work out; being inside Pi is not a reason to refuse.
 >
-> This skill dispatches to the Pi CLI binary, pi. If the agent reading this skill is already running inside Pi, refuse to construct a Pi invocation.
->
-> A running CLI skill never dispatches itself. The cli-X skills are for cross-AI delegation only.
+> What still refuses: the shared runtime rejects a dispatch from inside a fan-out lineage, and one
+> whose kind already appears in the dispatch stack. Those bound a runaway spawn chain and are
+> unchanged. The sibling cli-X packets keep their own guards; this carve-out is Pi's alone.
 
 Orchestrate Pi's terminal coding agent for headless coding, read-only tool-constrained reviews, JSON event-stream integrations, RPC clients, and Pi-native resource discovery. The pinned contract is the source for confirmed command behavior: [Pi contract pin](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). Pi-native skills, prompt templates, and some package surfaces remain documented but unconfirmed unless a source says otherwise.
 
@@ -47,11 +40,10 @@ Orchestrate Pi's terminal coding agent for headless coding, read-only tool-const
 - **JSON event output**: use when a caller needs Pi's line-delimited event stream.
 - **RPC integration**: use when a long-lived stdin/stdout protocol is explicitly requested.
 - **Pi-native resources**: use when the task concerns Pi skills, prompt templates, extensions, or installed packages.
-- **Community package delegation**: use when the task explicitly names pi-subagents or pi-mcp-extension.
+- **Community package delegation**: use when the task explicitly names pi-mcp-extension.
 
 ### When NOT to Use
 
-- **You ARE Pi already.** Refuse if process ancestry indicates a Pi process or the local project heuristic indicates an active Pi context. The guard is intentionally conservative.
 - Pi is not installed or cannot be found on PATH.
 - The task is a small in-process change that the calling AI already understands.
 - The task requires a feature that belongs to the shared deep-loop runtime rather than this packet.
@@ -71,42 +63,6 @@ command -v pi || echo "Not installed. Install @earendil-works/pi-coding-agent be
 
 The pinned contract confirms the binary version used for the contract run and the headless entry point. For exact flags and observed failure behavior, load [cli-reference.md](./references/cli-reference.md).
 
-### Self-Invocation Guard
-
-Use the following guard before loading a dispatch template:
-
-~~~python
-def detect_self_invocation():
-    """Return a signal when the caller is likely already inside Pi."""
-    # Process ancestry is a documented-but-unconfirmed signal for this packet.
-    try:
-        ancestry = subprocess.check_output(
-            ["ps", "-o", "command=", "-p", str(os.getppid())],
-            text=True,
-        )
-        if "/pi" in ancestry or ancestry.strip().endswith(" pi"):
-            return ("ancestry", "pi")
-    except (OSError, subprocess.SubprocessError):
-        pass
-
-    # The .pi directory is a non-conclusive project heuristic, not proof of an active session.
-    if os.path.isdir(os.path.join(os.getcwd(), ".pi")):
-        return ("project-heuristic", ".pi")
-
-    # No first-party environment signal is treated as confirmed here. Absence of a
-    # detected signal is not proof that no Pi session is active.
-    return None
-
-signal = detect_self_invocation()
-if signal:
-    refuse(
-        "Self-invocation refused: the caller may already be running inside Pi. "
-        "Use a different runtime or a fresh shell session."
-    )
-~~~
-
-The guard deliberately uses only process ancestry and the non-conclusive project heuristic. It does not invent an environment variable or infer safety from a missing signal.
-
 ### Resource Loading Levels
 
 | Level | Load when | Resources |
@@ -125,7 +81,7 @@ INTENT_SIGNALS = {
     "REVIEW": {"weight": 4, "keywords": ["review", "audit", "bug", "second opinion", "cross-validate"]},
     "HEADLESS": {"weight": 4, "keywords": ["pi cli", "pi agent", "headless", "print mode", "json event"]},
     "RPC": {"weight": 4, "keywords": ["rpc", "stdin", "stdout", "jsonl", "persistent process"]},
-    "AGENT_DELEGATION": {"weight": 4, "keywords": ["delegate", "subagent", "pi-subagents", "agent bridge"]},
+    "AGENT_DELEGATION": {"weight": 4, "keywords": ["delegate", "built-in tools", "tool allowlist", "agent bridge"]},
     "NATIVE_RESOURCES": {"weight": 4, "keywords": ["skill", "prompt template", "extension", "pi-mcp-extension", "package"]},
     "PATTERNS": {"weight": 3, "keywords": ["pattern", "workflow", "session", "resume", "continue"]},
     "TEMPLATES": {"weight": 3, "keywords": ["template", "prompt", "how to ask", "pi prompt"]},
@@ -144,7 +100,7 @@ RESOURCE_MAP = {
 
 LOADING_LEVELS = {
     "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
-    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "mcp extension", "subagent package", "native skills"],
+    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "mcp extension", "native skills"],
     "ON_DEMAND": ["references/native-skills-and-extensions.md", "references/mcp-and-third-party-packages.md", "assets/prompt-templates.md"],
 }
 
@@ -173,7 +129,7 @@ The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`]
 
 ### Execution Ownership
 
-This packet owns provider-specific routing, the availability probe, prompt construction, and the self-invocation guard. The shared deep-loop runtime owns process construction and execution. The runtime now supports the `cli-pi` executor kind — its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so dispatch through the executor kind directly. Do not add a packet-local wrapper, spawn path, or command builder.
+This packet owns provider-specific routing, the availability probe, and prompt construction. The shared deep-loop runtime owns process construction and execution. The runtime now supports the `cli-pi` executor kind — its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so dispatch through the executor kind directly. Do not add a packet-local wrapper, spawn path, or command builder.
 
 **Seven providers are reachable:** `openai-codex`, `opencode-go`, `openrouter`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's flat-price LLM Gateway plan), `minimax` and `xiaomi`. Two of them — `cline-pass` and `llmgateway` — are not Pi builtins and exist only because `.pi/models.json` declares them; their setup, credentials and removal are in [.pi/custom-providers.md](../../../../.pi/custom-providers.md).
 
@@ -184,12 +140,11 @@ The pinned contract confirms that headless Pi uses print mode, that JSON mode em
 ### Dispatch Lifecycle
 
 1. Verify the binary with command -v pi.
-2. Run the self-invocation guard.
-3. Classify the request as print, JSON, RPC, read-only tool-constrained review, native-resource inspection, or generation.
-4. Compose the prompt using [prompt-quality-card.md](./assets/prompt-quality-card.md).
-5. Pass the request to the shared deep-loop runtime.
-6. Capture stdout and stderr separately when the runtime allows it.
-7. Validate the output, changed files, and required tests before handback.
+2. Classify the request as print, JSON, RPC, read-only tool-constrained review, native-resource inspection, or generation.
+3. Compose the prompt using [prompt-quality-card.md](./assets/prompt-quality-card.md).
+4. Pass the request to the shared deep-loop runtime.
+5. Capture stdout and stderr separately when the runtime allows it.
+6. Validate the output, changed files, and required tests before handback.
 
 ### Headless Modes
 
@@ -212,7 +167,7 @@ Pi's native resource surfaces are documented separately because their discovery 
 
 - [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) covers skills, prompt templates, and extensions.
 - [mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) covers packages, MCP, and community bridges.
-- [agent-delegation.md](./references/agent-delegation.md) distinguishes built-in tools from community subagent packages.
+- [agent-delegation.md](./references/agent-delegation.md) covers Pi's built-in tool surface and the delegation boundary.
 
 ### Prompt Construction
 
@@ -241,26 +196,25 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### ✅ ALWAYS
 
 1. Run command -v pi before every dispatch.
-2. Run the self-invocation guard before constructing a command.
-3. Delegate execution to the shared deep-loop runtime.
-4. Choose print, JSON, or RPC deliberately. RPC is persistent and is not a print-mode alias.
-5. Capture and inspect output text for provider and extension failures.
-6. Use the prompt-quality card's two-tier precedence rule.
-7. Apply the least-permissive tool set that satisfies the task.
-8. Validate Pi-generated changes with the repository's code and test gates.
-9. Keep the current runtime as conductor and Pi as delegated executor.
-10. Treat Pi-native discovery claims as confirmed only when backed by the pinned contract or a linked live documentation page.
-11. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §7; never hardcode a runtime) and map each subtask to the right agent (code, review, design, deep-research, markdown). Core Pi has no native persona surface on `pi -p`, so INLINE the persona block into the payload — the child cannot resolve agent paths by reference. A persona-less leaf runs as a generic assistant, dropping its tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
-12. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+2. Delegate execution to the shared deep-loop runtime.
+3. Choose print, JSON, or RPC deliberately. RPC is persistent and is not a print-mode alias.
+4. Capture and inspect output text for provider and extension failures.
+5. Use the prompt-quality card's two-tier precedence rule.
+6. Apply the least-permissive tool set that satisfies the task.
+7. Validate Pi-generated changes with the repository's code and test gates.
+8. Keep the current runtime as conductor and Pi as delegated executor.
+9. Treat Pi-native discovery claims as confirmed only when backed by the pinned contract or a linked live documentation page.
+10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §7; never hardcode a runtime) and map each subtask to the right agent (code, review, design, deep-research, markdown). Core Pi has no native persona surface on `pi -p`, so INLINE the persona block into the payload — the child cannot resolve agent paths by reference. A persona-less leaf runs as a generic assistant, dropping its tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
+11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
 
 ### ⛔ NEVER
 
 1. Never dispatch when command -v pi fails.
-2. Never dispatch Pi from a Pi session detected by the guard.
+2. Never dispatch Pi from inside a fan-out lineage, or when cli-pi already appears in the dispatch stack; the shared runtime refuses both.
 3. Never build a second Pi adapter inside this packet.
 4. Never trust exit code alone as proof of model execution.
 5. Never claim that skill or prompt-template flattening has been live-verified here.
-6. Never install pi-subagents or pi-mcp-extension without explicit package and trust review.
+6. Never install pi-mcp-extension without explicit package and trust review.
 7. Never treat community packages as Pi first-party features.
 8. Never use a bare single-token pi alias in routing metadata.
 9. Never pass secrets or provider keys in prompts.
@@ -268,11 +222,10 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### ⚠️ ESCALATE IF
 
 1. Pi is missing from PATH.
-2. The self-invocation guard detects ancestry or the .pi heuristic.
-3. The task needs a successful provider dispatch but no credentials are available.
-4. The task depends on a native discovery behavior still marked unconfirmed.
-5. The task requests an install or project-local package change without trust approval.
-6. The task requests RPC lifecycle behavior that the shared runtime does not yet support.
+2. The task needs a successful provider dispatch but no credentials are available.
+3. The task depends on a native discovery behavior still marked unconfirmed.
+4. The task requests an install or project-local package change without trust approval.
+5. The task requests RPC lifecycle behavior that the shared runtime does not yet support.
 
 ---
 
@@ -284,7 +237,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 - [providers-and-models.md](./references/providers-and-models.md) - Authenticated provider/model roster, the `--thinking` effort scale, and the GPT-5.6 ceiling cross-map
 - [pi-tools.md](./references/pi-tools.md) - Pi capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor/executor patterns, cross-validation, and anti-patterns
-- [agent-delegation.md](./references/agent-delegation.md) - Built-in boundary and community subagent package guidance
+- [agent-delegation.md](./references/agent-delegation.md) - Pi's built-in tool surface and the delegation boundary
 - [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) - Pi-native discovery surfaces with confidence labels
 - [mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) - MCP and community package boundaries
 
@@ -307,7 +260,6 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### Dispatch Completion
 
 - Pi is present on PATH before launch.
-- The self-invocation guard returns no signal.
 - The selected mode matches the requested output contract.
 - Output is captured and checked for auth, extension, and package errors.
 - Any workspace changes pass the calling workflow's verification gates.

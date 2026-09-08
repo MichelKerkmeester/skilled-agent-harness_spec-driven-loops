@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Coding Agent Ambient Types
+// ───────────────────────────────────────────────────────────────────
+
 declare module "@earendil-works/pi-coding-agent" {
   export function getAgentDir(): string;
 

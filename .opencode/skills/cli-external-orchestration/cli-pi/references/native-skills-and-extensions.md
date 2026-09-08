@@ -56,7 +56,7 @@ The repository's cli-pi SKILL.md is an OpenCode skill packet. Pi's native SKILL.
 |---|---|---|
 | Advisor identity | Hub graph metadata | Not part of Pi's documented skill standard |
 | Routing | mode-registry.json and hub-router.json | Per Pi docs, unconfirmed resource discovery |
-| Runtime guard | hard_rules and self-invocation guard | Per Pi docs, unconfirmed loading behavior |
+| Runtime guard | hard_rules | Per Pi docs, unconfirmed loading behavior |
 | References | Packet-local references directory | Per Pi docs, unconfirmed skill-relative resources |
 | Verification | parent-skill-check and package validator | Per Pi docs, unconfirmed Pi validation warnings |
 

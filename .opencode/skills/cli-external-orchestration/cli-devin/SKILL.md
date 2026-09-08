@@ -12,14 +12,6 @@ hard_rules:
     check: command-v-devin-required
     message: "Run `command -v devin` before every dispatch; if it fails, refuse the route without constructing or launching a command."
     severity: error
-  - id: self-invocation-prohibited
-    check: devin-self-invocation-guard
-    message: "Refuse dispatch when Devin runtime signals are present; a running CLI skill never dispatches itself."
-    severity: error
-  - id: deep-loop-runtime-required
-    check: deep-loop-runtime-delegation
-    message: "Delegate execution to the shipped deep-loop runtime; this skill must not implement a second Devin adapter."
-    severity: error
 ---
 
 <!-- Keywords: devin, devin-cli, cognition, cross-ai, cloud-handoff, subagent-delegation, code-generation, code-review, second-opinion, multi-model, session-management, handoff, swe -->

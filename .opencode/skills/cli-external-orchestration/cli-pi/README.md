@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # cli-pi
@@ -31,13 +31,13 @@ version: 1.4.0.0
 
 ### Why This Skill Exists
 
-A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, accidental self-invocation, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
-That is the whole reason this skill exists. It makes Pi reachable as a controlled headless surface: probe the binary, guard against self-invocation, pick the output contract and delegate execution to the shared deep-loop runtime. The calling AI stays the conductor and validates what comes back. The skill is not a launcher for one command. Matching the consumer to the right surface is the point.
+That is the whole reason this skill exists. It makes Pi reachable as a controlled headless surface: probe the binary, pick the output contract and delegate execution to the shared deep-loop runtime. The calling AI stays the conductor and validates what comes back. The skill is not a launcher for one command. Matching the consumer to the right surface is the point.
 
 ### What It Does
 
-cli-pi probes for the pi binary, guards against likely self-invocation, selects the requested headless surface and delegates process execution to the shared deep-loop runtime. It keeps Pi-native skills, prompt templates, extensions, MCP and community packages in separate references, so documentation-only behavior is not mistaken for live verification.
+cli-pi probes for the pi binary, selects the requested headless surface and delegates process execution to the shared deep-loop runtime. It keeps Pi-native skills, prompt templates, extensions, MCP and community packages in separate references, so documentation-only behavior is not mistaken for live verification.
 
 ### The Output Contract Layer
 
@@ -130,7 +130,6 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 | Different failure exit codes | The pinned contract observed exit 0 and exit 1 for similar unauthenticated runs | Inspect output text and classify the failure |
 | Extension load failure | An extension can block the session when its export is invalid | Remove or fix the extension, then rerun with the required validation |
 | JSON consumer hangs or misparses | JSON mode is line-delimited and RPC is persistent | Choose one contract and parse JSONL records correctly |
-| Self-invocation refused | The guard found Pi ancestry or a .pi heuristic | Use a different runtime or a fresh shell session |
 | Package install asks for trust | Project-local package changes need approval | Review the package and approve project-local changes explicitly |
 
 ---
@@ -145,9 +144,9 @@ A: No. The pinned contract treats RPC as a persistent stdin/stdout JSONL protoco
 
 A: No. That discovery behavior remains documented but unconfirmed. The packet labels the claim and routes live verification to the native-resource reference.
 
-**Q: Are pi-subagents and pi-mcp-extension first-party Pi features?**
+**Q: Is pi-mcp-extension a first-party Pi feature?**
 
-A: No. They are community packages. The package reference separates their documented surfaces from the Pi CLI contract and does not treat installation as approval.
+A: No. It is a community package. The package reference separates its documented surfaces from the Pi CLI contract and does not treat installation as approval.
 
 **Q: Why not use the alias pi?**
 
@@ -161,7 +160,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 |---|---|
 | Availability | command -v pi prints a path before dispatch |
 | CLI contract | cli-reference.md matches the pinned implementation summary |
-| Self-invocation | Guard refuses detected ancestry or project heuristic |
+| Recursion bounds | A fan-out lineage and a repeated dispatch stack are still refused by the shared runtime |
 | Output handling | Text, JSON and RPC consumers use the matching parser |
 | Workspace safety | Returned changes pass the calling workflow's verification gates |
 | Package safety | Community packages remain explicitly labeled and trust-gated |

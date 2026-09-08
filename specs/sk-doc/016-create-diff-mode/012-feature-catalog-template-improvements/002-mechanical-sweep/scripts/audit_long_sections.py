@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Read-only audit: identify snippet files where HOW IT WORKS has >3 paragraphs but no H3 sub-headings.
 Writes long_sections_audit.csv to the output directory.

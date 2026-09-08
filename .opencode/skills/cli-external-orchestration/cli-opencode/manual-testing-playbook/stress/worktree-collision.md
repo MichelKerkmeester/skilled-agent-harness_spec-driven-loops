@@ -31,7 +31,7 @@ from a single hermetic run.
   cell `cli-opencode:EC-012`.
 - Operator prompt: `Run the manifest-indexed hermetic stress test for cli-opencode:EC-012 and report PASS, FAIL, or SKIP with the exact blocker.`
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, capture
-  stdout, stderr, and the exit code, and classify the result against the Pass/Fail criteria below.
+  stdout, stderr, and the exit code, and judge the result against the Pass/Fail criteria below.
 - Expected signals: the verbose Vitest reporter names the exact test `runs cli-opencode from each isolated worktree cwd` as passed, and the
   final file/test summary line reports the run as green.
 - Pass/fail: PASS when the command exits 0 and the named test is reported passed; FAIL when the
@@ -68,13 +68,13 @@ The command exits `0`, and the verbose Vitest reporter names `runs cli-opencode 
 - **ledger/artifacts**: Two isolated worktree dispatches succeed and their captured CWDs equal the two distinct worktree realpaths. This cell proves boundary separation, not a simultaneous lock-contention run.
 - Fixtures are temporary and removed by test teardown, so the durable evidence is the terminal transcript and exit code.
 
-### Pass / Fail
+### Verdict
 
 - **PASS**: The command exits 0 and the exact manifest-indexed test is reported as passed.
 - **FAIL**: The command exits non-zero after the test starts, an assertion fails, or the command exceeds the test's bound.
 - **SKIP**: Only Node, npm, or the checked-in Vitest dependency cannot start; record the exact missing prerequisite. Missing external CLI authentication is not a valid skip because this cell is hermetic.
 
-### Failure Triage
+### Triage
 
 1. **Harness failure**: Vitest cannot load the file, the test is not discovered, or temporary fixture setup fails before the shipped command path runs.
 2. **Dependency SKIP**: A local Node/npm/Vitest prerequisite is unavailable; preserve the preflight error and do not report PASS.

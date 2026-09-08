@@ -193,8 +193,8 @@ SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
 
 Select the headless contract deliberately: `--mode text` (print), `--mode json` (JSONL event stream), or `--mode rpc` (persistent JSONL protocol) — RPC is not a print-mode alias. See [integration-patterns.md](./integration-patterns.md) §4/§6/§7.
 
-### Self-invocation guard
-A Pi dispatch must never re-enter a session already running inside Pi. Run the guard before constructing any command — see [../SKILL.md](../SKILL.md) §2, "Self-Invocation Guard".
+### Recursion bounds
+A Pi session may dispatch this packet: Pi has no in-process delegation left, so the CLI is its only way to hand work out. What the shared runtime still refuses is a dispatch from inside a fan-out lineage, and one whose kind already appears in the dispatch stack.
 
 ### Parallel / fan-out
 Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outside this hub — see §6.
@@ -212,5 +212,5 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 - [cli-reference.md](./cli-reference.md) — full `pi` flags, headless modes, auth failure behavior, §13 model selection
 - [integration-patterns.md](./integration-patterns.md) — conductor/executor dispatch shapes, print/JSON/RPC, and anti-patterns
-- [../SKILL.md](../SKILL.md) — cli-pi mode overview, routing, and self-invocation guard
+- [../SKILL.md](../SKILL.md) — cli-pi mode overview, routing, and recursion bounds
 - [../../cli-codex/references/providers-and-models.md](../../cli-codex/references/providers-and-models.md) — authoritative GPT-5.6 effort-ceiling cross-map for the `openai-codex` tiers

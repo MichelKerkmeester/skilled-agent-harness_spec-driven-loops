@@ -149,7 +149,7 @@ function renderAgent(agent) {
     `name: ${yamlString(agent.name)}`,
     `description: ${yamlString(agent.description)}`,
     // Always emit an explicit tools: list, even when empty. Omitting the key
-    // makes pi-subagents fall back to Pi's full builtin tool set for that
+    // makes an agent-loading runtime fall back to Pi's full builtin tool set for that
     // agent, silently discarding the source agent's own scoped permissions.
     'tools:',
     ...tools.map((tool) => `  - ${tool}`),

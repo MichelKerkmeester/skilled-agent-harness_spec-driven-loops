@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Convert 2-column '| File | Focus |' validation tables to 3-column '| File | Type | Role |'.
 Type is derived from the file path extension. Idempotent. Supports --dry-run.

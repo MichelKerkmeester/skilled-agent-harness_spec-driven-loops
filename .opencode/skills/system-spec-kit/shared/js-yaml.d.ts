@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: js-yaml Ambient Types
+// ───────────────────────────────────────────────────────────────────
+
 // Ambient declaration for the js-yaml API surface the shared package uses.
 // The CLI carries its own (load-only) declaration; shared needs dump as well.
 

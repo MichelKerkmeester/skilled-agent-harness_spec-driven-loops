@@ -1,10 +1,9 @@
 ---
 title: "Pi MCP and Third-Party Packages"
-description: "Boundary guide for Pi MCP integrations, pi-subagents, pi-mcp-extension, trust, and documented-but-unconfirmed package behavior."
+description: "Boundary guide for Pi MCP integrations, pi-mcp-extension, trust, and documented-but-unconfirmed package behavior."
 trigger_phrases:
   - "pi mcp"
   - "pi-mcp-extension"
-  - "pi-subagents package"
   - "pi third-party package"
   - "pi streamable http"
   - "pi stdio"
@@ -17,13 +16,13 @@ version: 1.1.0.0
 
 This reference separates Pi's first-party CLI from community packages that extend it.
 
-The local pin confirmed the pi-subagents install path; phase 007 additionally confirmed pi-mcp-extension's stdio transport live, and phase 012 confirmed pi-subagents' agent-mirroring surface live. Neither phase live-verified a full successful provider-backed dispatch through either package. Source: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+Phase 007 confirmed pi-mcp-extension's stdio transport live. It did not live-verify a full successful provider-backed dispatch through the package. Source: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
 ## 1. OVERVIEW
 
 ### Core Principle
 
-Pi's core stays intentionally small; MCP and multi-agent workflows are third-party packages (`pi-mcp-extension`, `pi-subagents`), not built-in Pi features. A package's README is not a Pi CLI contract.
+Pi's core stays intentionally small; MCP is a third-party package (`pi-mcp-extension`), not a built-in Pi feature. A package's README is not a Pi CLI contract.
 
 ### Purpose
 
@@ -31,7 +30,7 @@ Separates confirmed first-party Pi behavior from community-package behavior, and
 
 ### When to Use
 
-- A request names MCP, pi-mcp-extension, pi-subagents, stdio, streamable HTTP, SSE, or package installation
+- A request names MCP, pi-mcp-extension, stdio, streamable HTTP, SSE, or package installation
 - Deciding whether a package claim is confirmed by the local pin or only by the package's own docs
 
 ---
@@ -50,35 +49,11 @@ Therefore:
 
 ---
 
-## 3. PI-SUBAGENTS
-
-pi-subagents is a community package, not a first-party Pi feature. The local pin confirmed this command:
-
-~~~bash
-pi install npm:pi-subagents -l --approve
-~~~
-
-The package installed four packages into a project-local .pi npm directory during the pin. The observed package included agents, prompts, skills, source, and an index file. This confirms the installation observation only.
-
-The untrusted form failed:
-
-~~~bash
-pi install npm:pi-subagents -l
-~~~
-
-The observed failure said the project was not trusted and required --approve. This trust gate applies to the install operation in the pinned environment.
-
-**Confirmed (phase 012):** beyond the install itself, `.pi/agents/**/*.md` agent-mirroring is live. All 13 canonical `.opencode/agents/*.md` files translate into pi-subagents' 17-field schema via `sync-agents-pi.cjs`, and a live `pi --offline --approve` session loaded all 13 without a schema error. `pi-subagents` also exposed its own tools (`subagent`, `subagent_wait`, `subagent_supervisor`, `intercom`) in that same session.
-
-Do not claim that every pi-subagents command, agent type, or model setting is confirmed by that install — only the install path and the agent-mirroring surface above are.
-
----
-
-## 4. PI-MCP-EXTENSION
+## 3. PI-MCP-EXTENSION
 
 pi-mcp-extension is a community package, not a first-party Pi feature. Its package page is separate from the Pi CLI contract: [Pi package page](https://pi.dev/packages/pi-mcp-extension).
 
-**Confirmed (phase 007):** the install verb below was run live and the package was installed into `.pi/settings.json`'s `packages` array. (`pi-subagents` was added to that same array later, in phase 012 — phase 007 confirmed only `pi-mcp-extension`'s own install.)
+**Confirmed (phase 007):** the install verb below was run live and the package was installed into `.pi/settings.json`'s `packages` array. Phase 007 confirmed `pi-mcp-extension`'s own install only.
 
 ~~~bash
 pi install npm:pi-mcp-extension
@@ -99,7 +74,7 @@ Treat the package as optional and untrusted until:
 
 ---
 
-## 5. MCP TRANSPORT DECISION
+## 4. MCP TRANSPORT DECISION
 
 Transport terms must not be conflated:
 
@@ -114,7 +89,7 @@ Pi RPC and MCP are different layers. RPC connects a caller to Pi. MCP connects a
 
 ---
 
-## 6. CONFIGURATION SCOPE
+## 5. CONFIGURATION SCOPE
 
 Per Pi docs, unconfirmed: pi-mcp-extension reads an agent-level config and a project-level config, with project settings able to override global settings. Source: [pi-mcp-extension](https://pi.dev/packages/pi-mcp-extension).
 
@@ -130,7 +105,7 @@ Never copy a production MCP configuration into a delegated prompt.
 
 ---
 
-## 7. INSTALL REVIEW
+## 6. INSTALL REVIEW
 
 Before any package install:
 
@@ -148,7 +123,7 @@ The package source is not an authority over the hub's routing or advisor identit
 
 ---
 
-## 8. MCP PROMPTS
+## 7. MCP PROMPTS
 
 Use this handoff shape when a task explicitly requests MCP:
 
@@ -167,7 +142,7 @@ If version or transport is unknown, stop at documentation and say so.
 
 ---
 
-## 9. SECURITY RULES
+## 8. SECURITY RULES
 
 - Review community package source before install.
 - Never install a package only because a model suggested it.
@@ -181,18 +156,17 @@ If version or transport is unknown, stop at documentation and say so.
 
 ---
 
-## 10. ROUTING RULES
+## 9. ROUTING RULES
 
-Route to this reference when the request names MCP, pi-mcp-extension, pi-subagents, stdio, streamable HTTP, SSE, or package installation. Route to [agent-delegation.md](./agent-delegation.md) when the request is about child agents. Route to [native-skills-and-extensions.md](./native-skills-and-extensions.md) when the request is about skills, prompt templates, or extension discovery.
+Route to this reference when the request names MCP, pi-mcp-extension, stdio, streamable HTTP, SSE, or package installation. Route to [agent-delegation.md](./agent-delegation.md) when the request is about child agents. Route to [native-skills-and-extensions.md](./native-skills-and-extensions.md) when the request is about skills, prompt templates, or extension discovery.
 
 The hub still routes the outer task through cli-pi. A package must not create a second workflow mode or a second advisor identity.
 
 ---
 
-## 11. CONFIDENCE CHECKLIST
+## 10. CONFIDENCE CHECKLIST
 
 - [ ] First-party versus community status is explicit.
-- [ ] pi-subagents install and agent-mirroring claims are cited to the local pin / phase 012.
 - [ ] Stdio behavior is cited to phase 007, not stated as a documentation claim.
 - [ ] HTTP and SSE behavior are not claimed as live.
 - [ ] RPC is not confused with MCP.

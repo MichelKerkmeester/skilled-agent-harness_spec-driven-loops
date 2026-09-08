@@ -151,7 +151,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 | Persistent bidirectional session | Not native | `--mode rpc` | Pi-exclusive among the 6 siblings |
 | Native extension system | Not applicable (host runtime) | `.pi/extensions/*.ts` | First-party; confirmed live-loading (phase 012) |
 | Native prompt templates | Not applicable (host runtime) | `.pi/prompts/*.md` | First-party, shared only with `cli-codex` |
-| Subagent delegation | Task tool (native) | `pi-subagents` package | Third-party for Pi, unlike Devin's native `run_subagent` |
+| Subagent delegation | Task tool (native) | None; Pi dropped the feature | Delegation from Pi goes back out through a CLI dispatch |
 | MCP integration | Native | `pi-mcp-extension` package | Third-party for Pi; stdio transport confirmed (phase 007) |
 | Multi-provider models | Single model per session | Multiple providers via custom providers | Default `google`; GPT-5.6 via `openai-codex` custom provider (operator-confirmed roster) |
 | Reasoning-effort control | Session-level | `--thinking off..max` | Standalone flag, not folded into model id |

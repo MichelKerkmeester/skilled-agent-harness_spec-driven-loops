@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: better-sqlite3 Ambient Types
+// ───────────────────────────────────────────────────────────────────
+
 // Ambient declaration for the better-sqlite3 surface this package uses. The
 // upstream types package used to be borrowed from a sibling skill's
 // node_modules; that dependency edge is gone, so the shape lives here.

@@ -83,7 +83,7 @@ Each prompt is a small stub that points at the canonical file rather than duplic
 # Pi entry: /create-agent
 ```
 
-`pi-subagents` discovers `.pi/agents/**/*.md` after its built-in, package, and user agent sources. The package is not installed in the runtime config; agent profiles under `.pi/agents/` remain as generated mirror deliverables and are discovered only by a runtime that loads the package.
+No installed surface reads `.pi/agents/**/*.md` today. Pi core exposes `--skill` and `--prompt-template` but has no agent flag, and the community package that used to discover these profiles went away with Pi's subagents feature. The mirror stays generated and drift-checked so the deliverable is ready if a consumer returns; nothing currently loads it, and this file is the place that says so.
 
 ---
 

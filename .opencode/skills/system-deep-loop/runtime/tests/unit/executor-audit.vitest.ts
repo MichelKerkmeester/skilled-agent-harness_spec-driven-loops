@@ -5,6 +5,8 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
 import {
+  CLI_DISPATCH_STACK_ENV,
+  FANOUT_LINEAGE_ENV,
   RECURSION_GUARD_EXIT_CODE,
   appendExecutorAuditToLastRecord,
   buildExecutorAuditRecord,
@@ -421,13 +423,16 @@ describe('executor-audit', () => {
     expect(detectFromRuntimeEnv('native', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(false);
   });
 
-  it('uses Pi state and home metadata while keeping unconfirmed env surfaces absent', () => {
+  // The detector still reads Pi lockfiles; what changed is that the guard no longer refuses
+  // on what it finds, so the two halves are asserted at the layers that actually own them.
+  it('still resolves Pi lockfile names while the guard no longer refuses cli-pi for them', () => {
     const stateDir = mkdtempSync(join(tmpdir(), 'executor-pi-state-'));
     const homeDir = mkdtempSync(join(tmpdir(), 'executor-pi-home-'));
 
     try {
       mkdirSync(join(stateDir, 'locks'));
       writeFileSync(join(stateDir, 'locks', 'pi.lock'), 'pid=123\n', 'utf8');
+      expect(detectFromLockfile('cli-pi', [stateDir])).toBe(true);
       expect(validateExecutorDispatchAllowed({
         ...cliClaudeExecutor(),
         kind: 'cli-pi',
@@ -436,10 +441,11 @@ describe('executor-audit', () => {
       }, {
         env: { SPECKIT_PI_STATE_DIR: stateDir },
         ancestryCmdlines: [],
-      })).toMatchObject({ allowed: false, layer: 'lockfile', reason: 'recursion-guard-lockfile' });
+      })).toEqual({ allowed: true });
 
       mkdirSync(join(homeDir, '.pi', 'locks'), { recursive: true });
       writeFileSync(join(homeDir, '.pi', 'locks', 'pi.lock'), 'pid=123\n', 'utf8');
+      expect(detectFromLockfile('cli-pi', [join(homeDir, '.pi')])).toBe(true);
       expect(validateExecutorDispatchAllowed({
         ...cliClaudeExecutor(),
         kind: 'cli-pi',
@@ -448,7 +454,7 @@ describe('executor-audit', () => {
       }, {
         env: { HOME: homeDir },
         ancestryCmdlines: [],
-      })).toMatchObject({ allowed: false, layer: 'lockfile', reason: 'recursion-guard-lockfile' });
+      })).toEqual({ allowed: true });
     } finally {
       rmSync(stateDir, { recursive: true, force: true });
       rmSync(homeDir, { recursive: true, force: true });
@@ -742,5 +748,124 @@ describe('executor-audit recursion guard: nested cli-codex dispatch', () => {
     if (existsSync('/proc/self/stat') || existsSync('/bin/ps')) {
       expect(cmdlines.length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('executor-audit recursion guard: pi self-presence exemption', () => {
+  function executorOfKind(kind: ExecutorConfig['kind']): ExecutorConfig {
+    return {
+      kind,
+      model: null,
+      configDir: null,
+      reasoningEffort: null,
+      serviceTier: null,
+      sandboxMode: null,
+      timeoutSeconds: 900,
+    };
+  }
+
+  // Kind -> a command line that contains that kind's binary, so the ancestry layer sees it.
+  const OTHER_KINDS: ReadonlyArray<[ExecutorConfig['kind'], string]> = [
+    ['cli-codex', '/opt/homebrew/bin/codex exec -p'],
+    ['cli-claude-code', '/opt/homebrew/bin/claude -p'],
+    ['cli-opencode', '/opt/homebrew/bin/opencode run'],
+    ['cli-cursor', '/opt/homebrew/bin/cursor-agent -p'],
+    ['cli-devin', '/opt/homebrew/bin/devin -p'],
+  ];
+
+  it('allows a cli-pi dispatch whose only signal is the pi binary in process ancestry', () => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {
+        env: {},
+        ancestryCmdlines: ['/opt/homebrew/bin/pi -p'],
+        statePaths: [],
+      }),
+    ).toEqual({ allowed: true });
+  });
+
+  it('allows a cli-pi dispatch whose only signal is a pi dispatch lockfile', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'executor-guard-pi-lock-'));
+
+    try {
+      writeFileSync(join(tempDir, 'cli-pi.lock'), 'pid=123\n', 'utf8');
+
+      expect(
+        validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {
+          env: {},
+          ancestryCmdlines: [],
+          statePaths: [tempDir],
+        }),
+      ).toEqual({ allowed: true });
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  // The exemption is keyed to one kind. A kind-agnostic rewrite passes the two cases above
+  // and fails here, which is the whole reason this case exists.
+  it.each(OTHER_KINDS)('still refuses %s on the ancestry layer', (kind, commandLine) => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind(kind), {
+        env: {},
+        ancestryCmdlines: [commandLine],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'ancestry',
+      reason: 'recursion-guard-ancestry',
+    });
+  });
+
+  it.each(OTHER_KINDS)('still refuses %s on the lockfile layer', (kind) => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'executor-guard-other-lock-'));
+
+    try {
+      writeFileSync(join(tempDir, `${kind}.lock`), 'pid=123\n', 'utf8');
+
+      expect(
+        validateExecutorDispatchAllowed(executorOfKind(kind), {
+          env: {},
+          ancestryCmdlines: [],
+          statePaths: [tempDir],
+        }),
+      ).toMatchObject({
+        allowed: false,
+        layer: 'lockfile',
+        reason: 'recursion-guard-lockfile',
+      });
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  // Being inside Pi is now allowed; being inside a spawn chain is not, and the exemption
+  // must not have reached the two layers that bound one.
+  it('still refuses a cli-pi dispatch from inside a fan-out lineage', () => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {
+        env: { [FANOUT_LINEAGE_ENV]: 'outer-lineage' },
+        ancestryCmdlines: ['/opt/homebrew/bin/pi -p'],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'lineage',
+      reason: 'recursion-guard-lineage',
+    });
+  });
+
+  it('still refuses a cli-pi dispatch already named in the dispatch stack', () => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind('cli-pi'), {
+        env: { [CLI_DISPATCH_STACK_ENV]: 'cli-codex:cli-pi' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'stack',
+      reason: 'recursion-guard-stack',
+    });
   });
 });

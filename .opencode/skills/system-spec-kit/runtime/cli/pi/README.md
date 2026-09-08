@@ -24,7 +24,7 @@ description: "Generators that keep .pi/agents and .pi/prompts in sync with their
 
 ## 3. CONSUMERS
 
-- Pi discovers project-local prompt and extension resources from `.pi/`; `pi-subagents` discovers project-local agent profiles from `.pi/agents/**/*.md` after its built-in, package, and user agent sources.
+- Pi discovers project-local prompt and extension resources from `.pi/`. Project-local agent profiles under `.pi/agents/**/*.md` currently have no reader: Pi core has no agent flag, and the package that used to discover them went away with Pi's subagents feature. The mirror is still generated and drift-checked as a ready deliverable.
 - CI or a runtime-mirror verification pass can run both generators with `--check` to detect source/output drift without changing files.
 
 ---

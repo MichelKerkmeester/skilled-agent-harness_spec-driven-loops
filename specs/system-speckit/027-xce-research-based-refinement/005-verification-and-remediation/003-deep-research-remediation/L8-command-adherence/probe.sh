@@ -15,6 +15,7 @@
 # passes, opencode changed run-message semantics; re-pin the protocol note in
 # cli-opencode SKILL.md.
 
+set -uo pipefail
 set -u
 MODEL="${1:-openai/gpt-5.5}"
 VARIANT="${2:-medium}"

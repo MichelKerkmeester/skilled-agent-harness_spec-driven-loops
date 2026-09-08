@@ -186,9 +186,6 @@ export function shouldDenyPiDispatch(input: PiDispatchGuardInput = {}): boolean 
   if (typeof input.dispatchSkill !== "string" || !input.dispatchSkill) return input.inspectionKind === "direct";
   if (input.inspectionKind === "direct" && input.inspectedExecutor !== input.dispatchSkill) return true;
 
-  // A pi session must never dispatch itself, even when explicitly named.
-  if (input.dispatchSkill === "cli-pi") return true;
-
   const userText = stripInjectedContent(typeof input.userText === "string" ? input.userText.slice(0, MAX_CAPTURED_USER_TEXT) : "");
   if (userText.length === 0) return true;
 
@@ -249,12 +246,6 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
         userText: currentUserText(ctx),
       });
       if (denied) {
-        if (dispatchSkill === "cli-pi") {
-          return {
-            block: true,
-            reason: "Pi cannot dispatch itself: cli-pi is never authorized.",
-          };
-        }
         if (inspection.kind !== "direct") {
           return {
             block: true,

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Add 'Related references:' prev/next links to SOURCE METADATA in snippet files missing them.
 Idempotent. Links use relative paths within the same category directory.

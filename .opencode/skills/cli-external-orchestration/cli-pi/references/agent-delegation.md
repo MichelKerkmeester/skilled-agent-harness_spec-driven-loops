@@ -1,37 +1,37 @@
 ---
 title: "Pi Agent Delegation Reference"
-description: "Delegation guidance for Pi's built-in tool boundary and the community pi-subagents bridge."
+description: "Delegation guidance for Pi's built-in tool boundary and for handing work out of a Pi session by CLI dispatch."
 trigger_phrases:
   - "pi agent delegation"
-  - "pi subagent"
-  - "pi-subagents"
+  - "pi built-in tools"
+  - "pi delegation boundary"
   - "pi worker"
   - "delegate from pi"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Pi Agent Delegation Reference
 
-This reference prevents a common category error: Pi's core CLI tools are not the same thing as a subagent framework.
+This reference prevents a common category error: Pi's core CLI tools are not the same thing as a delegation framework.
 
-The local contract pin confirmed the pi-subagents install verb and package contents. Pi's own documentation says the core stays small and does not include built-in sub-agents. Keep those sources separate: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md), [Using Pi](https://pi.dev/docs/latest/usage).
+Pi's core stays small and has no sub-agents, and no community package supplies them either. A Pi session that needs to hand work out dispatches a CLI, itself included. Sources: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md), [Using Pi](https://pi.dev/docs/latest/usage).
 
 ## 1. OVERVIEW
 
 ### Core Principle
 
-Pi's 7 built-in tools cover file/shell operations only; multi-agent delegation is a third-party package (`pi-subagents`), not a first-party Pi feature. Confirmed install path and agent-mirroring behavior are cited to the local contract pin and phase 012, everything else stays labeled per Pi docs, unconfirmed.
+Pi's 7 built-in tools cover file and shell operations only. Pi has no in-process delegation at all: no built-in sub-agents, and no community package standing in for them any more. Delegation therefore leaves the session as a CLI dispatch, and everything not confirmed by the local pin stays labeled per Pi docs, unconfirmed.
 
 ### Purpose
 
-Distinguishes Pi's built-in tool surface from the community `pi-subagents` package, documents the confirmed `.pi/agents/**/*.md` project-agent-mirror convention, and gives the conductor model for delegating to child Pi sessions.
+Distinguishes Pi's built-in tool surface from delegation, and gives the conductor model, request shape, and handback contract for work handed to a child session.
 
 ### When to Use
 
-- Deciding whether a task needs a Pi built-in tool or a `pi-subagents` child dispatch
-- Understanding how `.opencode/agents/*.md` translates into pi-subagents' 17-field schema
+- Deciding whether a task needs a Pi built-in tool or a child dispatch
+- Composing the request and handback for a child session
 - Choosing an exploration, review, or implementation child pattern
 
 ---
@@ -56,50 +56,45 @@ Per Pi docs, unconfirmed: Pi's core intentionally does not include built-in sub-
 
 ---
 
-## 3. COMMUNITY BRIDGE
+## 3. DELEGATION LEAVES THROUGH A CLI DISPATCH
 
-pi-subagents is a community package, not a first-party Pi CLI mode. The local pin installed it with:
+Pi cannot spawn a worker in-process. Work that must run somewhere else leaves through a CLI
+dispatch, and `cli-pi` is a legal target: a Pi session may dispatch pi, because refusing it would
+leave Pi with no delegation route at all.
 
-~~~bash
-pi install npm:pi-subagents -l --approve
-~~~
+Two bounds survive that permission, both enforced by the shared runtime rather than by prose:
 
-The install succeeded in the contract run and produced a self-contained project package with agents, prompts, skills, source, and an index file. That evidence confirms the install path and observed package shape, not every behavior of the package.
+- A dispatch from inside a fan-out lineage is refused. A lineage was spawned to do the work, not
+  to delegate it again.
+- A dispatch whose kind already appears in the dispatch stack is refused, which is what stops a
+  chain from growing without limit.
 
-The package's community status matters:
+Neither is about being inside Pi. Both are about already being inside a chain.
 
-- Pi core does not own the package contract.
-- Package versions can change independently.
-- Package permissions and prompts need review.
-- A package install mutates project-local settings.
-- The package must not become an invisible hub dependency.
-
-## 3A. PROJECT AGENT MIRRORS
-
-Project-local Pi agent profiles live at `.pi/agents/**/*.md` as flat files, one profile per `.opencode/agents/*.md` source. The supported frontmatter keeps the required `name`, carries `description`, and maps allowed OpenCode permissions to Pi tool names in the `tools` array (`read`, `write`, `edit`, `bash`, `grep`, `find`, and `ls` where the source permission has a literal Pi equivalent). Unmapped OpenCode-only permissions stay documented as YAML comments; unsupported optional schema fields remain omitted rather than guessed.
-
-pi-subagents resolves agents in this order: built-in, installed package, user `~/.pi/agent/agents/**/*.md`, then project `.pi/agents/**/*.md`. Project files win when names collide, so these flat project mirrors are the authoritative local override.
+One leftover is worth naming rather than leaving for someone to rediscover: the generated
+`.pi/agents/` profile mirrors have no consumer any more, and the generator that writes them is
+dead code awaiting its own cleanup.
 
 ---
 
 ## 4. CONDUCTOR MODEL
 
-When using a community subagent bridge, the calling AI remains the outer conductor:
+When work leaves the Pi session, the calling AI remains the outer conductor:
 
 ~~~text
 Outer calling AI
   -> defines task, scope, and acceptance criteria
 Pi main session
-  -> decides whether the bridge is appropriate
-Community package
-  -> creates and manages delegated child work
+  -> decides whether a child dispatch is appropriate
+Dispatched child session
+  -> does the delegated work under the stated scope
 Pi main session
   -> reports child output
 Outer calling AI
   -> validates files, tests, and claims
 ~~~
 
-The outer conductor must not assume that a child package inherits the parent spec folder, worktree policy, or permission boundary. Put those requirements in the prompt and verify the result.
+The outer conductor must not assume that a child inherits the parent spec folder, worktree policy, or permission boundary. Put those requirements in the prompt and verify the result.
 
 ---
 
@@ -113,7 +108,7 @@ Use a delegation request with these fields:
 | Context | Relevant files and known evidence |
 | Scope | Allowed paths and forbidden paths |
 | Child role | Explore, review, or implement |
-| Model | Explicit only when the package supports it |
+| Model | Explicit, from the packet's closed roster |
 | Tools | Least permissive set |
 | Verification | Tests and checks |
 | Handback | Required summary and evidence |
@@ -169,7 +164,7 @@ Use a write-capable child only when the parent has approved the scope and verifi
 - The no-scope-creep rule.
 - The handback format.
 
-Do not let a package-created child decide the hub's documentation scope or invent an adapter.
+Do not let a child decide the hub's documentation scope or invent an adapter.
 
 ---
 
@@ -189,7 +184,7 @@ Avoid parallel writes to settings, registries, or the same source file.
 
 ## 10. TRUST AND ROLLBACK
 
-The pin confirmed that pi install can reject an untrusted project and that --approve allows a project-local install. Before installing a community bridge:
+The pin confirmed that pi install can reject an untrusted project and that --approve allows a project-local install. That gate still applies to the community packages this packet does document, `pi-mcp-extension` among them. Before installing one:
 
 1. Review the package source and version.
 2. Record the settings file that will change.

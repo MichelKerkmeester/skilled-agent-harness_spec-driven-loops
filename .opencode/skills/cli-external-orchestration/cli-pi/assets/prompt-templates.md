@@ -55,7 +55,7 @@ This asset provides structured, copy-paste ready dispatch templates for invoking
 command -v pi
 ```
 
-Run the self-invocation guard from [SKILL.md](../SKILL.md). Do not construct a dispatch when either check fails.
+Confirm the binary probe from [SKILL.md](../SKILL.md). Do not construct a dispatch when it fails.
 
 **Example:**
 
@@ -173,7 +173,7 @@ Do not install without explicit trust approval.
 Return a rollback command and a safe verification probe.
 ```
 
-Use for pi-subagents or pi-mcp-extension. They are community packages, not first-party Pi features.
+Use for pi-mcp-extension. It is a community package, not a first-party Pi feature.
 
 **Example:**
 
