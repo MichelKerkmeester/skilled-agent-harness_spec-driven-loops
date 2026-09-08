@@ -40,7 +40,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/changelog-update-plan.md"
     ],
     "entities": [
       {
@@ -65,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-update-plan.md",
+        "kind": "doc",
+        "path": "scratch/changelog-update-plan.md",
         "source": "derived"
       },
       {
@@ -158,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Tasks",
         "kind": "heading",
         "path": "tasks.md",
@@ -170,19 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Tasks: v4 changelog draft update",
-        "kind": "quoted",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -190,7 +191,7 @@
     ],
     "causal_summary": "`../CHANGELOG-v4.0.0.0.md` described a memory engine, an `/interface:` family, an alignment mode, a prompt hub and an owner-first branch grammar that the release does not ship, and said nothing about the memory decommission, the runtime rename, the simplification program, the recorded-findings closure or the CI hardening that landed after it was drafted",
     "created_at": "2026-09-08T18:23:31.206Z",
-    "last_save_at": "2026-09-08T18:56:22.999Z",
+    "last_save_at": "2026-09-08T20:05:03.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdf29d1249447f95f96ae80a848a793b184e76f31c2bbbbcab28e4d0a4db27cd",
+    "source_fingerprint": "sha256:72fe5b29d9cc4180e6e98c41e5d2906135dccc55f80623c07667d43473f3a513",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5865470798663fa8ff12b5f04f8e92576240182342f854a0f185d162de53c5c3",
-      "plan.md": "c9d33ccac0da32d462c2a6b81e84c59c62ff589462347c32669302048972a3ce",
-      "tasks.md": "b60e901743df1bb6fd3f76fb7c0ed1cbb5b76d4580344f7667922f528bb4351a",
-      "implementation-summary.md": "c9024992133671055e1f629f3e394168b1eebefeeeae6e137742e95109d524f5"
+      "spec.md": "a6412b0895fdcaf0abaee3392f36ba5812bd40c79d01b10f624143b380c31aa4",
+      "plan.md": "ffc9b13106dff30f7a82f92c30053aa7c8a7580c77561e9fe8d3d39cc9150611",
+      "tasks.md": "be0ff1d1bdae6712e03a68427519843c911756efc54b306f44357950038591fe",
+      "implementation-summary.md": "beb56df0b455afff7cb5abcfebe9fa1d39f53e219e4226cfa6a078ef1ee3bca7"
     },
     "last_active_child_id": null,
     "last_active_at": null
