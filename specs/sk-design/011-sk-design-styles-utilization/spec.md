@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio |
 | **Priority** | P1 |
-| **Status** | Research complete (001–003); implementation phases 004–010 scaffolded (planned, not started) in build order: 004 retrieval → 005 schema → 006 STUDY → 007 seam → 008 pilots → 009 heavy modes → 010 transport |
+| **Status** | Complete: research 001 to 003 delivered ranked syntheses, and implementation 004 to 010 shipped in build order, each child implemented, reviewed and verified by its own test count; the open-design live path stays capability-gated |
 | **Created** | 2026-07-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -102,13 +102,13 @@ Determine, with evidence, the smart ways to put the styles library to work acros
 | 1 | `001-research-utilization/` | Deep-research: how to index, retrieve, and consume the styles library across sk-design + modes | Complete — 8 iters, ranked synthesis |
 | 2 | `002-md-generator-upgrade/` | Deep-research: how the library upgrades the design-md-generator mode (exemplars, schema calibration, token grounding, validation) | Complete — 5 iters, ranked nine-lever synthesis |
 | 3 | `003-global-modes-utilization/` | Deep-research: how the library integrates globally across the hub + interface/foundations/motion/audit/open-design modes | Complete — 6 iters, ranked six-consumer synthesis |
-| 4 | `004-retrieval-substrate/` | Build the shared retrieval engine (manifest, eligibility, cards, hydration, proof gate, FTS accelerator) — foundation for all below | Planned — scaffold |
-| 5 | `005-md-generator-schema-contract/` | Versioned v3 schema authority + Quick Start + baselines + hard/advisory validator split | Planned — scaffold |
-| 6 | `006-md-generator-study-exemplars/` | Bounded pre-WRITE STUDY exemplars behind rights/injection/leak gates | Planned — scaffold |
-| 7 | `007-shared-context-seam/` | `CORPUS_CONTEXT_PLAN v1` envelope + shared proof/provenance fields for all modes | Planned — scaffold |
-| 8 | `008-interface-audit-pilots/` | First two mode consumers: interface relational exemplars + audit comparison lane | Planned — scaffold |
-| 9 | `009-foundations-motion/` | Relationship-heavy modes: foundations compatibility graph + motion polarity-aware evidence | Planned — scaffold |
-| 10 | `010-open-design-transport/` | Open Design grounding receipt + reconciliation (terminal phase) | Planned — scaffold |
+| 4 | `004-retrieval-substrate/` | Build the shared retrieval engine (manifest, eligibility, cards, hydration, proof gate, FTS accelerator) — foundation for all below | Complete — implemented, reviewed, verified (17/17 fixtures) |
+| 5 | `005-md-generator-schema-contract/` | Versioned v3 schema authority + Quick Start + baselines + hard/advisory validator split | Complete — implemented, reviewed, verified (149/149 tests) |
+| 6 | `006-md-generator-study-exemplars/` | Bounded pre-WRITE STUDY exemplars behind rights/injection/leak gates | Complete — implemented, reviewed, verified (162/162 tests) |
+| 7 | `007-shared-context-seam/` | `CORPUS_CONTEXT_PLAN v1` envelope + shared proof/provenance fields for all modes | Complete — implemented, reviewed, verified (28/28 tests) |
+| 8 | `008-interface-audit-pilots/` | First two mode consumers: interface relational exemplars + audit comparison lane | Complete — implemented, reviewed, verified (36/36 tests) |
+| 9 | `009-foundations-motion/` | Relationship-heavy modes: foundations compatibility graph + motion polarity-aware evidence | Complete — implemented, reviewed, verified (43/43 tests) |
+| 10 | `010-open-design-transport/` | Open Design grounding receipt + reconciliation (terminal phase) | Complete — implemented, reviewed, verified (25/25 tests; live path gated) |
 
 ### Phase Transition Rules
 

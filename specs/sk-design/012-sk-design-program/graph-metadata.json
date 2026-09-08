@@ -98,16 +98,16 @@
     ],
     "causal_summary": "The sk-design program grew across many packets — style-database research and build, the design-command redesign, hallmark design-system adoption, and several review and remediation passes",
     "created_at": "2026-07-19T06:10:01.540Z",
-    "last_save_at": "2026-09-06T04:27:43.637Z",
+    "last_save_at": "2026-09-08T04:49:13.505Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:675a536afebe3a584ca473087c8d0c1602477853f938db5bc1688bdda038d1c3",
+    "source_fingerprint": "sha256:761fffcd2b1686d14dd11d5dbd7daa870ea5e7b06a258fecd806537284793769",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e424cf16830e933308e665138c73dbf117ea4a59184ddee09f6ce1eb2d62bb2"
+      "spec.md": "cd87312f7d210f594d230bdbe7c202962ac48a9867d9d87114f85f7fb57d11f8"
     },
     "last_active_child_id": "sk-design/012-sk-design-program/006-design-mode-consolidation",
     "last_active_at": "2026-07-26T09:15:26.818Z"
