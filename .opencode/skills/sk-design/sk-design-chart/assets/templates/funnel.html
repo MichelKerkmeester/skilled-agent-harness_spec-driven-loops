@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -161,8 +162,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* A reader who clicks a control inside the figure should not be left looking at a ring they
    never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
@@ -198,10 +201,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Deal count per stage for every enquiry opened last year, widest first. The share beside each bar is what the stage above retained; the paid pilot is the pipeline's cliff and security review its flat spot.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 338" id="chart">
-      <title id="fig-title">Deal count by pipeline stage</title>
+      <desc id="fig-title">Deal count by pipeline stage</desc>
       <desc id="fig-desc">Seven stages drawn as centred horizontal bars that narrow as the count falls, widest first. Enquiries received is the widest at 2,148 deals and closed won the narrowest at 178, with the paid pilot the steepest single drop. The table below the chart carries every count and every retained share as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-funnel" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-funnel" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Only 412 of the 904 deals that clear security review continue to the paid pilot, 46%.</p>
@@ -212,7 +215,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Deal count by stage, widest first. Retained is the share of the stage above that reached this one; the first stage has none.</caption>
-      <thead><tr><th scope="col">Stage</th><th scope="col">Count</th><th scope="col">Retained</th></tr></thead>
+      <thead><tr><th scope="col">Stage</th><th scope="col" class="num">Count</th><th scope="col" class="num">Retained</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

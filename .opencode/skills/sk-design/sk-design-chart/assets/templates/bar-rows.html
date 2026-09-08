@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -163,7 +164,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Median working days per stage, every request closed last quarter. The longest stage carries the emphasis colour because it is what the headline is about.</p>
   <div class="figure" data-chart-part="figure" data-chart-inert="Each bar's value is printed at its end, with its unit suffix">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
-      <title id="fig-title">Median working days by stage</title>
+      <desc id="fig-title">Median working days by stage</desc>
       <desc id="fig-desc">Six stages drawn as horizontal bars, ordered longest first. Onboarding is the longest at eighteen days. The table below the chart carries every value as text.</desc>
     </svg>
   </div>
@@ -176,7 +177,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Median working days by stage, longest first.</caption>
-      <thead><tr><th scope="col">Stage</th><th scope="col">Working days</th></tr></thead>
+      <thead><tr><th scope="col">Stage</th><th scope="col" class="num">Working days</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

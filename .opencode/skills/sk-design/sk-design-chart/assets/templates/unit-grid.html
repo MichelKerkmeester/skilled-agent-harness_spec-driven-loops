@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -151,7 +152,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="subtitle" data-chart-part="subtitle">One square is one percent of the support hours logged last month. Squares are countable, which is the point: a reader compares shares by counting rather than by estimating an angle.</p>
   <div class="figure" data-chart-part="figure" data-chart-inert="Each part's share is printed in the key with its percent sign, and a square is one percent by construction">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 230" id="chart">
-      <title id="fig-title">Support hours by account tier, one square per percent</title>
+      <desc id="fig-title">Support hours by account tier, one square per percent</desc>
       <desc id="fig-desc">One hundred squares in five rows of twenty, filled left to right by tier. The two largest accounts take fifty squares. The table below the chart carries every share as text.</desc>
     </svg>
   </div>
@@ -164,7 +165,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="table-pan">
     <table data-chart-table>
       <caption>Share of support hours by account tier. The shares sum to one hundred.</caption>
-      <thead><tr><th scope="col">Tier</th><th scope="col">Share of hours</th></tr></thead>
+      <thead><tr><th scope="col">Tier</th><th scope="col" class="num">Share of hours</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -175,7 +176,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
   <p class="subtitle" data-chart-part="subtitle">Four shortlisted suppliers across five measures, each on its own scale. The axes are not pointed the same way, so a high line is not a good line. Read each axis on its own and read the crossings between them. Each line is named where it ends.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
-      <title id="fig-title">Four suppliers across five measures</title>
+      <desc id="fig-title">Four suppliers across five measures</desc>
       <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Each supplier takes the swatch printed beside its name where its line ends on the right. Alpha is lowest on unit price at 4.1 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
     </svg>
     <div data-chart-legend id="legend-parallel-axes" class="legend-row" aria-label="Chart series"></div>
@@ -362,6 +363,7 @@ const headRow = document.getElementById('head-row');
 AXES.forEach(function (axis) {
   const th = document.createElement('th');
   th.setAttribute('scope', 'col');
+  th.className = 'num';
   th.textContent = axis.name + ' (' + axis.unit + ')';
   headRow.appendChild(th);
 });

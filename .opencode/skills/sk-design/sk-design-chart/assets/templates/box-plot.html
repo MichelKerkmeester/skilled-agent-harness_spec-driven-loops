@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -169,8 +170,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The whiskers and the median line are drawn across the box, so they let the pointer through
    to the box underneath rather than reading as a hole in the middle of it. */
@@ -193,10 +196,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="subtitle" data-chart-part="subtitle">Days to resolve a case, five-number summary per team, all cases closed this year. A box hides how the values pile up inside it, so reach for the distribution strip whenever the pile is the finding rather than the summary.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
-      <title id="fig-title">Days to resolve a case, by team</title>
+      <desc id="fig-title">Days to resolve a case, by team</desc>
       <desc id="fig-desc">Five boxes, each running from the lower quartile to the upper quartile with a line at the median and whiskers to the extremes. Casework, Appeals and Complex sit at medians of 24, 36 and 38 days while their ranges run from 9 to 47, 21 to 58 and 6 to 91. The table below the chart carries all five numbers for every team.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-box-plot" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-box-plot" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Appeals, Complex and Reviews cluster near medians of 36 to 42 days, yet Complex spans 85 days end to end.</p>
@@ -207,7 +210,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="table-pan">
     <table data-chart-table>
       <caption>Days to resolve a case, five-number summary per team.</caption>
-      <thead><tr><th scope="col">Team</th><th scope="col">Lowest</th><th scope="col">Lower quartile</th><th scope="col">Median</th><th scope="col">Upper quartile</th><th scope="col">Highest</th></tr></thead>
+      <thead><tr><th scope="col">Team</th><th scope="col" class="num">Lowest</th><th scope="col" class="num">Lower quartile</th><th scope="col" class="num">Median</th><th scope="col" class="num">Upper quartile</th><th scope="col" class="num">Highest</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

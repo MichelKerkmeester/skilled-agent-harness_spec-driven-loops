@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -178,7 +179,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="subtitle" data-chart-part="subtitle">Movement from gross bookings to net revenue for the year, in thousands. Six steps is the working limit for this form. Past about eight the connectors start to dominate the picture.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
-      <title id="fig-title">From gross bookings to net revenue</title>
+      <desc id="fig-title">From gross bookings to net revenue</desc>
       <desc id="fig-desc">Six columns showing a running total. Each column takes the swatch printed beside its name in the key: the first and last columns are anchors resting on the baseline, a column rising from the previous total is an increase, and a column falling from it is a decrease. Gross bookings of 4360 fall by 812 for discounting and 358 for churn, then rise by 464 for expansion and 189 for services, ending at a net of 3843. The table below the chart carries every step as text.</desc>
     </svg>
   </div>
@@ -191,7 +192,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="table-pan">
     <table data-chart-table>
       <caption>Movement from gross bookings to net revenue, in thousands.</caption>
-      <thead><tr><th scope="col">Step</th><th scope="col">Movement</th><th scope="col">Running total</th></tr></thead>
+      <thead><tr><th scope="col">Step</th><th scope="col" class="num">Movement</th><th scope="col" class="num">Running total</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
