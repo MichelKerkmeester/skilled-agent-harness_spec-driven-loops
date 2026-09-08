@@ -1,5 +1,5 @@
 {
-  "corpusHash": "86e9c824309895f09fecbbdebad690142faa3d8c30bed9b19db1ae66a1d62865",
+  "corpusHash": "17a576c44acf5c6d3b9c3b1a14ec596ccb32a05cdf1086b174b1f1b0277e4cf5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28853,
+  "includedPathCount": 28895,
   "includedPaths": [
     ".opencode/install-guides/README.md",
     ".opencode/install-guides/install-scripts/README.md",
@@ -9273,30 +9273,42 @@
     "specs/hooks/015-git-hook-gate-reduction/spec.md",
     "specs/hooks/015-git-hook-gate-reduction/tasks.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/acceptance-criteria.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/goal.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/implementation-summary.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/plan.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/spec.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/tasks.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/acceptance-criteria.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/goal.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/implementation-summary.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/plan.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/spec.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/tasks.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/acceptance-criteria.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/goal.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/implementation-summary.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/plan.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/spec.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/tasks.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/acceptance-criteria.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/goal.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/implementation-summary.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/plan.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/spec.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/tasks.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/acceptance-criteria.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/implementation-summary.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/plan.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/spec.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/tasks.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/acceptance-criteria.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/goal.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/implementation-summary.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/plan.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/spec.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/tasks.md",
+    "specs/hooks/016-cache-optimizer-absorbs-deep-pi/goal.md",
     "specs/hooks/016-cache-optimizer-absorbs-deep-pi/spec.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/spec.md",
@@ -12074,6 +12086,30 @@
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/research/research.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/goal.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/relocation-goal.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/relocation-note.md",
@@ -28867,14 +28903,20 @@
     "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/acceptance-criteria.md",
     "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/research/confirmed-drift.md",
+    "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ee5657915432836ac87dabf5c021099ee4218a426161e625601cc7fc1f5989d9",
+  "manifestHash": "d2dade02c0ddbb6e056156750878bd3b819def8ef5319571b655c0d7fea26b14",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29668,6 +29710,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/z_archive",
       "reason": "excluded directory"
     },
@@ -30293,6 +30339,22 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/021-visual-upgrade-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32817,6 +32879,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/scratch",
       "reason": "excluded directory"
     },
     {

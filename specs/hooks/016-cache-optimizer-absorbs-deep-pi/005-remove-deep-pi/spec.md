@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Authored against a live reference inventory"
-    next_safe_action: "Execute once 002-004 have shipped"
+    recent_action: "Shipped and independently verified"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - ".opencode/scripts/vendored-fork-provenance.json"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-016-005-remove-deep-pi"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "65 files carry a live reference; the rest are historical records that stay unedited"
@@ -54,7 +54,7 @@ generated indexes that will regenerate. Historical records keep naming it.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-08 |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 004-port-hash-verified-edits |

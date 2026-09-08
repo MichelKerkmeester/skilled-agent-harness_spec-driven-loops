@@ -3,8 +3,8 @@
 Reference list of all pi plugins installed for this environment. Eight npm
 packages install at both user level (`~/.pi/agent/npm`) and project level
 (`.pi/npm`) carrying the same set; two git-source extensions (`pi-btw`,
-`pi-plan-build`) install the same way under `git/`. `deep-pi` and
-`pi-cache-optimizer` load from local extension directories (`.pi/extensions/`).
+`pi-plan-build`) install the same way under `git/`. `pi-cache-optimizer`
+loads from its local extension directory (`.pi/extensions/`).
 Entries are sorted alphabetically by package name.
 
 ---
@@ -20,13 +20,6 @@ A structured questionnaire the model can put to you when it would otherwise gues
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)
 
 A todo list for the model, rendered as a live overlay that survives /reload and conversation compaction
-
----
-
-#### deep-pi (v1.0.0)
-[github.com/christopherarter/deep-pi](https://github.com/christopherarter/deep-pi)
-
-Direct DeepSeek cache economics, prefix stability, and retry reduction for the Pi coding agent
 
 ---
 

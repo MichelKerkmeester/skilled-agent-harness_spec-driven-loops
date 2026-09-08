@@ -1,11 +1,17 @@
 {
+  "level": "3",
   "specFolder": "hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
-  "description": "Phase 1: reclaim-deepseek-direct-ownership",
+  "description": "`isDeepPiOwned` (`index.ts:1462`) returns true for exactly `provider === 'deepseek'` with id",
   "keywords": [
-    "phase",
-    "reclaim-deepseek-direct-ownership"
+    "isdeeppiowned",
+    "index",
+    "returns",
+    "true",
+    "exactly",
+    "provider",
+    "deepseek"
   ],
-  "lastUpdated": "2026-09-08T17:57:02.248Z",
+  "lastUpdated": "2026-09-08T18:53:38.581Z",
   "specId": "001",
   "folderSlug": "reclaim-deepseek-direct-ownership",
   "parentChain": [
@@ -13,6 +19,5 @@
     "016-cache-optimizer-absorbs-deep-pi"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

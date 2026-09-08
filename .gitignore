@@ -255,7 +255,6 @@ tmp/
 .claude/scheduled_tasks.lock
 .claude/settings.local.json
 .pi/*.tmp
-.pi/deep-pi-stats.json*
 .pi/pi-fast-mode-w-subagent-support-config.json
 .pi/modes.json
 

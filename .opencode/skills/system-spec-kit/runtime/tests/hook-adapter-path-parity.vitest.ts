@@ -109,7 +109,6 @@ function cursorRegistrations(): Registration[] {
 const PI_NON_ADAPTER_ENTRIES = new Set([
   'README.md',
   'lib',
-  'deep-pi',
   'pi-cache-optimizer',
   'pi-fast-mode-w-subagent-support',
 ]);
