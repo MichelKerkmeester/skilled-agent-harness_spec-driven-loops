@@ -39,16 +39,26 @@
       "release"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "research/research.md",
       "scratch/launch-research.sh",
       "scratch/topic.txt",
-      "research/orchestration-status.log"
+      "research/orchestration-status.log",
+      "research/lineages/luna/research.md",
+      "research/lineages/deepseek/research.md",
+      "research/confirmed-drift.md",
+      ".codex/SYNC.md",
+      ".cursor/SYNC.md",
+      ".devin/SYNC.md",
+      "runtime/data/trigger-index.json",
+      ".opencode/bin/skill-advisor.cjs",
+      ".codex/config.toml"
     ],
     "entities": [
       {
@@ -82,6 +92,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "launch-research.sh",
         "kind": "script",
         "path": "scratch/launch-research.sh",
@@ -100,13 +116,37 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "confirmed-drift.md",
+        "kind": "doc",
+        "path": "research/confirmed-drift.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".codex/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -136,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -158,47 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "concurrency",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the recorded-findings closure and the CI hardening landed",
     "created_at": "2026-09-08T16:16:33.826Z",
-    "last_save_at": "2026-09-08T16:17:18.261Z",
+    "last_save_at": "2026-09-08T18:06:37.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,15 +216,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:631d6b218bb30fef1062ac001b73e8eb6035bc8f23251fb677b1143050d5ad13",
+    "source_fingerprint": "sha256:51db046dab4e81ae64480c17228ecbe693c63a64bcade29833e952fa5fb5c054",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ad797595fbd6b88ddec1057c49833a9c77aa7b579cc92191f9ded8c14526e78e",
-      "plan.md": "52eecaa51607798dff144095ff67261f672d978a9c8e3fe55e5e74d999bddd41",
-      "tasks.md": "e280f437c00d6ba6a069ee32a2aafc6c1a8e881099f62ba2576eb53c962fac1a",
-      "implementation-summary.md": "f744333434c46cc26d70d742d3f0d54a43a0151355857ec3a6f6450a277e9cae"
+      "spec.md": "68662e326e5510accbdb6dfc2fc3446c9b1d08993a01a08c9315c5b4d1893a43",
+      "plan.md": "eb7172c74466adff66e6ef191ce03d41609d0ff15da4d2dacc6c01ecea91a42a",
+      "tasks.md": "b4b3cfffcf281cfa2b2dc95ec7e3e17324f7addca1ea909487f954105214a1ff",
+      "implementation-summary.md": "68430131d58c0c2d98a58a9398e2869da072ba052b4c19665d7e476419480f2d",
+      "research/research.md": "88086f18a1446b91da4566297feb1f009301abb07f50e2a73aeff28d80df989e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -43,10 +43,10 @@ Two lineages run in parallel with concurrency two: `luna` on cli-codex (`gpt-5.6
 - [x] The parent's Gate 3 answer binds writes to this child's `research/`
 
 ### Definition of Done
-- [ ] Ten iteration files and ten state events per lane
-- [ ] `research/research.md` merged with the inventory and the drift table
-- [ ] Every P0 and P1 drift row reproduced or dropped with a note
-- [ ] `validate.sh --strict` passes on this child and the parent
+- [x] Ten iteration files and ten state events per lane
+- [x] `research/research.md` merged with the inventory and the drift table
+- [x] Every P0 and P1 drift row reproduced or dropped with a note
+- [x] `validate.sh --strict` passes on this child and the parent
 <!-- /ANCHOR:quality-gates -->
 
 ---

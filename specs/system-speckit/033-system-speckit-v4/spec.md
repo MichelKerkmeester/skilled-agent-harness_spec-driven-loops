@@ -140,7 +140,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 31 | 031-ci-shared-package-resolution/ | was `029-ci-shared-package-resolution`; the four workflows red since the shared-parser adoption fixed: install step, tracked declaration, one link, regenerated mirrors | complete |
 | 32 | 032-recorded-findings-closure/ | was `036-recorded-findings-closure`; sixteen children closing every finding the simplification program recorded rather than fixed, plus its open operator items | complete |
 | 33 | 033-ci-dependency-hardening/ | was `037-ci-dependency-hardening`; the pre-commit hook runs all six CI mirror checks, the workflow triggers on every mirror source, and the Dependabot backlog reaches zero | complete |
-| 34 | 034-v4-state-inventory-research/ | two ten-iteration lanes, GPT-5.6 Luna and DeepSeek V4 Flash, inventory what the repository ships today and measure the old changelog draft against it | in progress |
+| 34 | 034-v4-state-inventory-research/ | two ten-iteration lanes, GPT-5.6 Luna and DeepSeek V4 Flash, inventory what the repository ships today and measure the old changelog draft against it | complete |
 
 ### Phase Transition Rules
 

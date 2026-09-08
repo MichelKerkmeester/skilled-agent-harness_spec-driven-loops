@@ -38,9 +38,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Run
 
-- [ ] T004 Launch both lanes detached through fanout-run.cjs, ten iterations each, stop policy max-iterations (scratch/launch-research.sh)
-- [ ] T005 Monitor log growth and iteration files; resume a lane silent for fifteen minutes (research/lineages/*/iterations)
-- [ ] T006 Confirm ten iteration files and ten state events per lane and that each lane's research.md was synthesized
+- [x] T004 Launch both lanes detached through fanout-run.cjs, ten iterations each, stop policy max-iterations (scratch/launch-research.sh)
+- [x] T005 Monitor log growth and iteration files; resume a lane silent for fifteen minutes (research/lineages/*/iterations)
+- [x] T006 Confirm ten iteration files and ten state events per lane and that each lane's research.md was synthesized
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,8 +48,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Merge
 
-- [ ] T007 Merge the two lanes into one inventory and one drift table, keeping disagreements as rows (research/research.md)
-- [ ] T008 Reproduce every P0 and P1 drift row in this session; drop what does not reproduce (research/confirmed-drift.md)
+- [x] T007 Merge the two lanes into one inventory and one drift table, keeping disagreements as rows (research/research.md)
+- [x] T008 Reproduce every P0 and P1 drift row in this session; drop what does not reproduce (research/confirmed-drift.md)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,8 +57,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Close
 
-- [ ] T009 Run strict validation on this child and the parent
-- [ ] T010 Regenerate description and graph metadata, stamp completion, add the parent map row and the timeline entry
+- [x] T009 Run strict validation on this child and the parent
+- [x] T010 Regenerate description and graph metadata, stamp completion, add the parent map row and the timeline entry
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,11 +98,11 @@ Every row below is ticked only with the command or listing that proved it, recor
 
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Ten iterations and ten events per lane confirmed by listing
-- [ ] CHK-022 [P1] Every P0 and P1 drift row reproduced or dropped with a note
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Ten iterations and ten events per lane confirmed by listing
+- [x] CHK-022 [P1] Every P0 and P1 drift row reproduced or dropped with a note
 
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
 <!-- /ANCHOR:verification -->
