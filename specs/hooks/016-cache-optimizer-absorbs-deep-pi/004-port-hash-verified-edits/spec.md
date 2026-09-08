@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Authored against a read of the source module"
-    next_safe_action: "Dispatch implementation to cli-devin"
+    recent_action: "Shipped; siting question still open"
+    next_safe_action: "Operator decides whether the capability stays in this extension"
     blockers: []
     key_files:
       - ".pi/extensions/pi-cache-optimizer/index.ts"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-016-004-port-hash-verified-edits"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Refusal, never a fuzzy fallback: a looser match is exactly the silent corruption this phase prevents"
@@ -49,7 +49,7 @@ An edit built against what a model was shown can land on different content if th
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-08 |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 003-port-retry-loop-guard |

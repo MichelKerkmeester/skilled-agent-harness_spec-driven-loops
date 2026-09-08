@@ -6,11 +6,11 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { copyFile, mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 
 import { getAgentDir } from '@earendil-works/pi-coding-agent';
 import type {
@@ -7778,7 +7778,588 @@ export function recordToolOutcome(
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 11. HOOK REGISTRATION AND COMMANDS
+// 11. HASH-VERIFIED EDITS
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Hash-anchored editing: reads are annotated with per-line content hashes,
+ * and edits are applied through the `edit_lines` tool, which verifies the
+ * endpoint hashes it is given against the file as it is now.
+ *
+ * Exact-string editing fails silently when content moves between read and
+ * write: the edit still matches somewhere and lands on the wrong lines.
+ * Hash-anchored editing carries the evidence instead. A stale endpoint hash
+ * is refused, never re-matched fuzzily, and the refusal names the drifted
+ * line so the next attempt can be built from a fresh read.
+ *
+ * This capability is editing, not caching, and its placement inside a cache
+ * extension is under review. It is kept as one self-contained block with a
+ * single registration entry point and no shared state with the cache code,
+ * so it can be lifted into its own extension without being unpicked.
+ */
+
+/** One inclusive line-range replacement guarded by endpoint hashes. */
+export interface HashEdit {
+  from: number;
+  from_hash: string;
+  to: number;
+  to_hash: string;
+  new_text: string;
+}
+
+/** Runtime counters for the annotation hook and the edit_lines tool. */
+export interface HashVerifiedEditStats {
+  /** Number of read results annotated. */
+  readsAnnotated: number;
+  /** Number of edit_lines calls. */
+  editCalls: number;
+  /** Number of edit_lines hash mismatches (refusals). */
+  hashMismatches: number;
+  /** Number of successful edit_lines applications. */
+  editSuccesses: number;
+}
+
+/**
+ * JSON Schema for the `edit_lines` tool parameters.
+ *
+ * The schema remains a plain JSON Schema object because the runtime only
+ * exposes JSON Schema to the model; TypeBox symbols are not needed here.
+ */
+export const editLinesSchema = {
+  type: 'object',
+  properties: {
+    path: {
+      type: 'string',
+      description: 'Path to the file to edit (relative to cwd or absolute).',
+    },
+    edits: {
+      type: 'array',
+      description: 'Hash-anchored edits to apply. Each edit replaces lines from..to ' +
+        '(inclusive, 1-based) with new_text.',
+      items: {
+        type: 'object',
+        properties: {
+          from: { type: 'integer', description: '1-based start line number.' },
+          from_hash: {
+            type: 'string',
+            description: '8-char hex hash of the from line (from the read annotation).',
+          },
+          to: { type: 'integer', description: '1-based end line number (inclusive).' },
+          to_hash: {
+            type: 'string',
+            description: '8-char hex hash of the to line (from the read annotation).',
+          },
+          new_text: {
+            type: 'string',
+            description: 'Replacement text for lines from..to. May contain multiple lines ' +
+              '(newline-separated).',
+          },
+        },
+        required: ['from', 'from_hash', 'to', 'to_hash', 'new_text'],
+      },
+    },
+  },
+  // `edits` is intentionally NOT required at the schema level. A confused
+  // call that carries the sibling `edit` tool's vocabulary (top-level
+  // oldText/newText) would otherwise be hard-rejected by schema validation
+  // before `execute` runs, with an opaque error. Keeping it optional lets
+  // execute detect the mix-up and return a corrective, self-steering error.
+  required: ['path'],
+} as const;
+
+/** Annotation format: `     N:HHHHHHHH→content`. */
+const ANNOTATED_LINE_RE = /^\s*\d+:([0-9a-f]{8})\u2192/;
+
+/**
+ * Serialize writes to one path so two concurrent edit_lines calls cannot
+ * interleave their compare-and-swap and silently clobber each other's edit.
+ */
+const writeQueues = new Map<string, Promise<void>>();
+
+async function withWriteQueue<T>(path: string, work: () => Promise<T>): Promise<T> {
+  const previous = writeQueues.get(path) ?? Promise.resolve();
+  // The promise executor assigns the resolver synchronously before the turn can settle.
+  let release!: () => void;
+  const turn = new Promise<void>((settle) => {
+    release = settle;
+  });
+  const tail = previous.catch(() => undefined).then(() => turn);
+  writeQueues.set(path, tail);
+  await previous.catch(() => undefined);
+  try {
+    return await work();
+  } finally {
+    release();
+    if (writeQueues.get(path) === tail) writeQueues.delete(path);
+  }
+}
+
+/**
+ * Replace a file via temp + rename, refusing when the file no longer holds
+ * the content the caller validated (compare-and-swap), and refusing to
+ * report success when the replacement did not land.
+ *
+ * @param path - File path to replace.
+ * @param content - New file content.
+ * @param expectedContent - Content the file must still hold at write time.
+ * @throws {@link Error} If the file changed since the caller's read.
+ */
+export async function atomicWriteFile(
+  path: string,
+  content: string,
+  expectedContent: string,
+): Promise<void> {
+  const temporary = join(dirname(path), `.${basename(path)}.${process.pid}.${randomUUID()}.tmp`);
+  let created = false;
+  try {
+    await withWriteQueue(path, async () => {
+      await writeFile(temporary, content, 'utf8');
+      created = true;
+      const current = await readFile(path, 'utf8');
+      if (current !== expectedContent) {
+        throw new Error(
+          'File changed since it was read; refusing to overwrite. Re-read the file and retry.',
+        );
+      }
+      await rename(temporary, path);
+      created = false;
+      // A non-cooperating writer could replace the target right after our
+      // rename; do not report success while the on-disk content is someone
+      // else's.
+      const landed = await readFile(path, 'utf8');
+      if (landed !== content) {
+        throw new Error(
+          'File changed during replacement; refusing to report success. Re-read the file and retry.',
+        );
+      }
+    });
+  } finally {
+    if (created) await unlink(temporary).catch(() => undefined);
+  }
+}
+
+/** Read-tool continuation markers: display metadata, not file content. */
+function isReadNoticeLine(line: string): boolean {
+  return (
+    line.startsWith('[Showing') ||
+    (line.startsWith('[') && line.includes('to continue.]'))
+  );
+}
+
+/**
+ * Hash a line of content: SHA-256 truncated to 8 hex chars, computed on the
+ * trailing-whitespace-trimmed line so edits that only touch trailing spaces
+ * do not cause spurious mismatches.
+ */
+export function lineHash(line: string): string {
+  const trimmed = line.replace(/\s+$/, '');
+  return createHash('sha256').update(trimmed).digest('hex').slice(0, 8);
+}
+
+/** Check whether a line already carries a hash annotation. */
+export function isAnnotatedLine(line: string): boolean {
+  return ANNOTATED_LINE_RE.test(line);
+}
+
+/** Format one line as `     N:HHHHHHHH→content`. */
+export function annotateLine(lineNumber: number, content: string): string {
+  const num = String(lineNumber).padStart(5, ' ');
+  return `${num}:${lineHash(content)}\u2192${content}`;
+}
+
+/**
+ * Annotate raw file content with per-line numbers and hashes.
+ *
+ * Read-tool notice lines (for example `[Showing lines 1-50 of 200...]`) and
+ * the blank separator line directly before one pass through unannotated, so
+ * the model can tell display metadata from file content. Already-annotated
+ * lines pass through unchanged, so re-annotation is idempotent.
+ *
+ * @param content - Raw file content (newline-separated).
+ * @param startLine - 1-based line number of the first line (offset reads).
+ */
+export function annotateContent(content: string, startLine = 1): string {
+  const lines = content.split('\n');
+  const result: string[] = [];
+  let lineNum = startLine;
+  for (let i = 0; i < lines.length; i++) {
+    // The loop bounds guarantee that the split array contains this line.
+    const line = lines[i]!;
+    if (isReadNoticeLine(line)) {
+      result.push(line);
+      continue;
+    }
+    if (line === '' && i + 1 < lines.length && isReadNoticeLine(lines[i + 1]!)) {
+      result.push(line);
+      continue;
+    }
+    if (isAnnotatedLine(line)) {
+      result.push(line);
+    } else {
+      result.push(annotateLine(lineNum, line));
+    }
+    lineNum++;
+  }
+  return result.join('\n');
+}
+
+/**
+ * Validate hash-anchored edits against the file's current lines.
+ *
+ * Refusal is the failure mode: a stale endpoint hash never falls back to a
+ * looser match, because a looser match is exactly the silent corruption this
+ * exists to prevent. The returned error names the drifted line, the claimed
+ * and actual hashes, and the current line content so the next attempt can be
+ * built from a fresh read.
+ *
+ * @returns Error string naming the first failure, or null when all edits pass.
+ */
+export function validateEdits(lines: string[], edits: HashEdit[]): string | null {
+  for (const edit of edits) {
+    const fromIdx = edit.from - 1;
+    const toIdx = edit.to - 1;
+
+    if (fromIdx < 0 || fromIdx >= lines.length) {
+      return `edit_lines: line ${edit.from} is out of range (file has ${lines.length} lines).`;
+    }
+    if (toIdx < 0 || toIdx >= lines.length || toIdx < fromIdx) {
+      return `edit_lines: line ${edit.to} is out of range or before 'from' ` +
+        `(file has ${lines.length} lines).`;
+    }
+
+    // The range check above guarantees that the indexed line exists.
+    const actualFromHash = lineHash(lines[fromIdx]!);
+    if (actualFromHash !== edit.from_hash) {
+      return (
+        `edit_lines: line ${edit.from} hash mismatch — claimed "${edit.from_hash}", ` +
+        `actual "${actualFromHash}".\nCurrent line: "${lines[fromIdx]}"\n\n` +
+        "The file may have changed since it was last read. Use 'read' to get fresh content " +
+        'with current hashes, then retry.'
+      );
+    }
+
+    if (edit.to !== edit.from) {
+      // The range check above guarantees that the indexed end line exists.
+      const actualToHash = lineHash(lines[toIdx]!);
+      if (actualToHash !== edit.to_hash) {
+        return (
+          `edit_lines: line ${edit.to} hash mismatch — claimed "${edit.to_hash}", ` +
+          `actual "${actualToHash}".\nCurrent line: "${lines[toIdx]}"\n\n` +
+          "The file may have changed since it was last read. Use 'read' to get fresh content " +
+          'with current hashes, then retry.'
+        );
+      }
+    }
+  }
+  // Reject overlapping ranges so reverse-order application cannot clobber
+  // another replacement.
+  for (let i = 0; i < edits.length; i++) {
+    for (let j = i + 1; j < edits.length; j++) {
+      // Loop bounds guarantee that both indexed edits exist.
+      const first = edits[i]!;
+      const second = edits[j]!;
+      if (first.from <= second.to && second.from <= first.to) {
+        return `edit_lines: edit ${i + 1} (lines ${first.from}-${first.to}) overlaps edit ${
+          j + 1
+        } (lines ${second.from}-${second.to}). Ranges must not overlap.`;
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Apply hash-anchored edits to file lines (after validation).
+ *
+ * Edits are applied in reverse order so earlier edits keep their line
+ * numbers. Pure function extracted for testing.
+ */
+export function applyEditsToLines(lines: string[], edits: HashEdit[]): string[] {
+  const result = [...lines];
+  const sortedEdits = [...edits].sort((a, b) => b.to - a.to);
+  for (const edit of sortedEdits) {
+    const fromIdx = edit.from - 1;
+    const toIdx = edit.to - 1;
+    const newLines = edit.new_text.split('\n');
+    result.splice(fromIdx, toIdx - fromIdx + 1, ...newLines);
+  }
+  return result;
+}
+
+/**
+ * Build the success summary shown to the model.
+ * Pure function extracted for testing.
+ */
+export function buildEditSummary(edits: HashEdit[], path: string): string {
+  const linesChanged = edits.reduce((sum, e) => sum + (e.to - e.from + 1), 0);
+  const newLinesAdded = edits.reduce((sum, e) => sum + e.new_text.split('\n').length, 0);
+  return `Successfully applied ${edits.length} edit${
+    edits.length !== 1 ? 's' : ''
+  } to ${path} (${linesChanged} line${
+    linesChanged !== 1 ? 's' : ''
+  } replaced, ${newLinesAdded} line${newLinesAdded !== 1 ? 's' : ''} added).`;
+}
+
+/**
+ * Detect a call to edit_lines that carries the sibling `edit` tool's
+ * parameter shape (top-level oldText/newText) instead of `edits`.
+ *
+ * Models that have just used `edit` frequently reach for `edit_lines` and
+ * carry edit's vocabulary across. Rather than failing with an opaque
+ * schema-validation message, the edit_lines tool calls this guard from
+ * `execute` (enabled by keeping `edits` optional in the schema) and returns
+ * a corrective, self-steering error.
+ *
+ * @returns Corrective error string if the args look edit-shaped, else null.
+ */
+export function detectConfusedEditArgs(params: unknown): string | null {
+  if (!params || typeof params !== 'object') return null;
+  // The object guard ensures property lookup is safe; only string-keyed fields are read.
+  const p = params as Record<string, unknown>;
+
+  // If a valid-looking `edits` array is present, this is a real edit_lines
+  // call (or a different kind of misuse handled by validateEdits).
+  if (Array.isArray(p.edits)) return null;
+
+  // Detect the sibling edit tool's top-level vocabulary before schema
+  // validation obscures the mistake.
+  const editToolKeys = ['oldText', 'newText', 'old_string', 'new_string'];
+  const hasEditVocab = editToolKeys.some((k) => k in p);
+  if (!hasEditVocab) return null;
+
+  return [
+    "edit_lines received `oldText`/`newText` (the `edit` tool's parameters), but " +
+    'edit_lines does not accept those.',
+    '',
+    'edit_lines requires `edits`: an array of { from, from_hash, to, to_hash, new_text }, ' +
+    'where each hash comes from the per-line annotations in a prior `read` of `path` ' +
+    '(format: N:HHHHHHHH→content).',
+    '',
+    '  → If you want exact-text replacement: call `edit` instead (path + edits[] of ' +
+    '{oldText, newText}).',
+    '  → If you want hash-anchored edits: `read` the file first, then build each edit from the ' +
+    '#<hash> annotations shown at each line.',
+    '',
+    'Example edit_lines call:',
+    '  { "path": "lib/foo.ex", "edits": [',
+    '    { "from": 42, "from_hash": "a1b2c3d4", "to": 48, "to_hash": "8b4c1d9e", ' +
+    '"new_text": "    new body" }',
+    '  ] }',
+  ].join('\n');
+}
+
+/**
+ * Register the hash-verified editing capability: a `tool_result` hook that
+ * annotates read output with per-line hashes, and the `edit_lines` tool that
+ * refuses edits whose endpoint hashes drifted.
+ *
+ * This function is the capability's only interface to the rest of the
+ * extension. The vendored ambient host types stop at `message_end`, so the
+ * hook and tool register through a narrowed surface that types only the
+ * fields used here, mirroring the retry-loop guard's registration.
+ *
+ * @param pi - Extension API used to register the hook and the tool.
+ * @returns Mutable runtime counters for the registered hook and tool.
+ */
+export function registerHashVerifiedEdits(pi: ExtensionAPI): HashVerifiedEditStats {
+  const stats: HashVerifiedEditStats = {
+    readsAnnotated: 0,
+    editCalls: 0,
+    hashMismatches: 0,
+    editSuccesses: 0,
+  };
+
+  const host = pi as unknown as {
+    on(
+      event: 'tool_result',
+      handler: (
+        event: {
+          toolName: string;
+          isError: boolean;
+          input?: Record<string, unknown>;
+          content: { type: string; text?: string }[];
+          details?: unknown;
+        },
+        ctx: ExtensionContext,
+      ) => unknown,
+    ): void;
+    registerTool(tool: {
+      name: string;
+      label: string;
+      description: string;
+      promptSnippet?: string;
+      promptGuidelines?: string[];
+      parameters: unknown;
+      executionMode?: string;
+      execute(
+        toolCallId: string,
+        params: Record<string, unknown>,
+        signal: AbortSignal | undefined,
+        onUpdate: unknown,
+        ctx: { cwd?: string },
+      ): Promise<{
+        content: { type: 'text'; text: string }[];
+        isError?: boolean;
+        details?: unknown;
+      }>;
+    }): void;
+  };
+
+  // ── Hook: annotate read tool results with line hashes ────────────
+  host.on('tool_result', async (event) => {
+    if (event.toolName !== 'read') return;
+    if (event.isError) return;
+    const textContent = event.content.find(
+      (c): c is { type: 'text'; text: string } => c.type === 'text' && typeof c.text === 'string',
+    );
+    if (!textContent) return;
+    // The SDK supplies tool input as an open object; only the optional read
+    // offset is used here.
+    const input = event.input as { offset?: number } | Record<string, unknown> | undefined;
+    const offset = typeof input?.offset === 'number' && input.offset > 0 ? input.offset : 1;
+    const annotated = annotateContent(textContent.text, offset);
+    if (annotated === textContent.text) return;
+    stats.readsAnnotated++;
+    return {
+      content: event.content.map((c) =>
+        c.type === 'text' && typeof c.text === 'string'
+          ? { type: 'text' as const, text: annotated }
+          : c
+      ),
+      // Preserve details unchanged so Pi's built-in renderer keeps its display data.
+      details: event.details,
+    };
+  });
+
+  // ── Register the edit_lines tool ─────────────────────────────────
+  const editLinesTool = {
+    name: 'edit_lines',
+    label: 'edit lines',
+    description:
+      'Edit a file using hash-anchored line ranges. Each edit specifies a line range (from..to, ' +
+      '1-based inclusive) with the expected content hashes at both endpoints. The tool reads the ' +
+      'file fresh, verifies the hashes match, and refuses on mismatch with a precise error ' +
+      'showing the claimed vs. actual hash.\n\n' +
+      'When to use which:\n' +
+      "- Use edit_lines when you have a RECENT 'read' of the file whose output shows per-line " +
+      'hash annotations (format: N:HHHHHHHH→content). It is robust to nearby edits and avoids ' +
+      'reproducing large unchanged blocks.\n' +
+      "- Use 'edit' when you only have the text and want exact-string replacement " +
+      '(its params are path + edits[] of {oldText, newText}).\n' +
+      '- Do NOT mix the two tools: edit_lines takes `edits` of {from, from_hash, to, to_hash, ' +
+      'new_text} — never top-level oldText/newText.\n\n' +
+      'Example call:\n' +
+      '  { "path": "lib/foo.ex", "edits": [\n' +
+      '    { "from": 42, "from_hash": "a1b2c3d4", "to": 48, "to_hash": "8b4c1d9e", ' +
+      '"new_text": "    new body" }\n' +
+      '  ] }\n\n' +
+      "If you do not have current hashes, call 'read' first (its output is annotated with " +
+      '#<hash> at each line), then build edits from those annotations.',
+    promptSnippet: 'Edit file using hash-anchored line ranges (preferred when you have a recent ' +
+      'read with hash annotations)',
+    promptGuidelines: [
+      "Prefer edit_lines for edits to files you've recently read with 'read'. The read output " +
+      'includes per-line hashes (format: N:HHHHHHHH→content). Use these hashes with edit_lines ' +
+      'to avoid character-perfect old_string reproduction.',
+      "Use 'edit' only when you don't have a fresh read with hash annotations, or when you need " +
+      'to match a specific string without line numbers.',
+      'edit_lines and edit are different tools with different parameter shapes. edit_lines takes ' +
+      '`edits` of {from, from_hash, to, to_hash, new_text} — never top-level oldText/newText. ' +
+      "If you find yourself passing oldText/newText to edit_lines, stop and call 'edit' instead.",
+    ],
+    // The SDK's schema field uses a generic parameter type; this tool
+    // intentionally exposes plain JSON Schema.
+    parameters: editLinesSchema as unknown,
+    executionMode: 'sequential',
+    async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
+      stats.editCalls++;
+      const confused = detectConfusedEditArgs(params);
+      if (confused) {
+        return {
+          content: [{ type: 'text' as const, text: confused }],
+          isError: true,
+          details: undefined,
+        };
+      }
+      const pathParam = typeof params?.path === 'string' ? params.path : undefined;
+      const edits = Array.isArray(params?.edits) ? (params.edits as HashEdit[]) : [];
+      if (!pathParam || edits.length === 0) {
+        return {
+          content: [
+            {
+              type: 'text' as const,
+              text: 'edit_lines: `edits` is required and must be a non-empty ' +
+                'array of {from, from_hash, ' +
+                "to, to_hash, new_text}.\n\nIf you meant exact-text replacement, call 'edit' " +
+                '(path + edits[] of {oldText, newText}).\nIf you want hash-anchored edits, call ' +
+                "'read' first to get per-line hashes, then pass `edits` here.",
+            },
+          ],
+          isError: true,
+          details: undefined,
+        };
+      }
+      // The vendored ambient context type omits cwd, which the host does
+      // provide at runtime; fall back to the process cwd when it is absent.
+      const cwd = typeof ctx?.cwd === 'string' ? ctx.cwd : process.cwd();
+      const absolutePath = resolve(cwd, pathParam);
+      let content: string;
+      try {
+        content = await readFile(absolutePath, 'utf8');
+      } catch (err: unknown) {
+        return {
+          content: [
+            {
+              type: 'text' as const,
+              text: `Error reading file: ${err instanceof Error ? err.message : String(err)}`,
+            },
+          ],
+          isError: true,
+          details: undefined,
+        };
+      }
+      const lines = content.split('\n');
+      const validationError = validateEdits(lines, edits);
+      if (validationError) {
+        stats.hashMismatches++;
+        return {
+          content: [{ type: 'text' as const, text: validationError }],
+          isError: true,
+          details: undefined,
+        };
+      }
+      const newContent = applyEditsToLines(lines, edits).join('\n');
+      try {
+        await atomicWriteFile(absolutePath, newContent, content);
+      } catch (err: unknown) {
+        return {
+          content: [
+            {
+              type: 'text' as const,
+              text: `Error writing file: ${err instanceof Error ? err.message : String(err)}`,
+            },
+          ],
+          isError: true,
+          details: undefined,
+        };
+      }
+      stats.editSuccesses++;
+      return {
+        content: [{ type: 'text' as const, text: buildEditSummary(edits, pathParam) }],
+        details: {
+          editsApplied: edits.length,
+          linesChanged: edits.reduce((sum, e) => sum + (e.to - e.from + 1), 0),
+          linesAdded: edits.reduce((sum, e) => sum + e.new_text.split('\n').length, 0),
+        },
+      };
+    },
+  };
+  host.registerTool(editLinesTool);
+  return stats;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 12. HOOK REGISTRATION AND COMMANDS
 // ───────────────────────────────────────────────────────────────────
 
 /**
@@ -7788,6 +8369,10 @@ export function recordToolOutcome(
  * @returns Nothing; registration occurs as a side effect.
  */
 export default function (pi: ExtensionAPI): void {
+  // Hash-verified editing (section 11) registers first: its tool_result
+  // annotation hook and the retry-loop guard both listen to tool_result, and
+  // hook-capture tests treat the first registration as the annotation hook.
+  registerHashVerifiedEdits(pi);
   const warnedModels = new Set<string>();
   const promptCacheRetention400Models = new Set<string>();
   const warnedPromptCacheRetention400Models = new Set<string>();

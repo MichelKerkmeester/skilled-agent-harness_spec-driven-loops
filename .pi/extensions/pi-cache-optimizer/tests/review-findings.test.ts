@@ -818,6 +818,7 @@ describe('footer stats modes', () => {
         ) {
           commands.set(name, command);
         },
+        registerTool() {},
       } as any);
 
       const command = commands.get('cache-optimizer');
@@ -873,6 +874,7 @@ describe('footer stats modes', () => {
         ) {
           commands.set(name, command);
         },
+        registerTool() {},
       } as any);
 
       const command = commands.get('cache-optimizer');
@@ -1106,6 +1108,7 @@ describe('explicit compat precedence', () => {
           handlers.set(name, handler);
         },
         registerCommand() {},
+        registerTool() {},
       } as any);
       const hook = handlers.get('before_provider_request');
       assert.ok(hook);
@@ -1385,6 +1388,7 @@ describe('/cache-optimizer fix command', () => {
         ) {
           commands.set(name, command);
         },
+        registerTool() {},
       } as any);
 
       const command = commands.get('cache-optimizer');
