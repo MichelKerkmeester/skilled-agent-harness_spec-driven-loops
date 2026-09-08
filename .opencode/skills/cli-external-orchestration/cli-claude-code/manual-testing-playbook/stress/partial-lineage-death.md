@@ -76,6 +76,8 @@ The command exits `0`, and the verbose Vitest reporter names `reports a signal-k
 
 ### Triage
 
+**Failure triage**:
+
 1. **Harness failure**: Vitest cannot load the file, the test is not discovered, or temporary fixture setup fails before the shipped command path runs.
 2. **Dependency SKIP**: A local Node/npm/Vitest prerequisite is unavailable; preserve the preflight error and do not report PASS.
 3. **Adapter defect**: The harness starts and the assertion against the shipped cli-claude-code command or process behavior fails; retain stdout, stderr, exit status, and the failing assertion.
