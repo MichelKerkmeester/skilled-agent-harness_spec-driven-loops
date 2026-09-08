@@ -52,7 +52,7 @@ _memory:
 - sk-doc: fourteen modes, `sk-create-diagram` replaced by `sk-create-repo-rule`, `/doc:quality` alias removed, diagrams and charts pointed at `/design:*`.
 - Deep loops: alignment subsection deleted, seven ledger modes, six registry modes.
 - Hooks: `SYSTEM_HOOKS_DISABLED`, 102 symlinks, twenty-two concerns. Goals: resync rule added. Pi: `pi-subagents` directive described as removed.
-- Design: three `/design:*` commands with the chart catalog and diagram types; unreproduced corpus and speed numbers dropped.
+- Design: rewritten around the sk-design v2.0.0.0 hub story. Four modes with fundamentals as the default for every laid-out surface, the md generator back as a mode, chart and diagram moved in from sk-doc, rendered screenshots per form, the shadcn chart register with three stock colour systems and DESIGN.md theming, the compiled-routing caveat, and procedure cards placed where they live (the md generator). Unreproduced corpus and speed numbers dropped.
 - sk-code: mobile-cli and obsidian surfaces added; unreproduced benchmark numbers softened.
 - Git: numbered `worktrees/` and `branches/` grammar, owner-first rejected.
 - Prompt section rewritten as a standalone skill behind `/prompt:improve`.
