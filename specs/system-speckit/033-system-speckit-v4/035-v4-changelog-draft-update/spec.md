@@ -56,7 +56,7 @@ _memory:
 `../CHANGELOG-v4.0.0.0.md` described a memory engine, an `/interface:*` family, an alignment mode, a prompt hub and an owner-first branch grammar that the release does not ship, and said nothing about the memory decommission, the runtime rename, the simplification program, the recorded-findings closure or the CI hardening that landed after it was drafted.
 
 ### Purpose
-Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is applied to the draft at its cited line, the late-cycle work is described in the draft's own voice, and the unverified numbers it carried are removed rather than restated.
+Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is applied to the draft, the late-cycle work is added, the unverified numbers are removed, and the whole document is rewritten to the human voice rules with the direct, lightly promotional tone of the earlier root READMEs.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -65,12 +65,13 @@ Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is
 ## 3. SCOPE
 
 ### In Scope
-- Surgical replacements in `../CHANGELOG-v4.0.0.0.md` for the seventeen confirmed rows and the three dropped findings
+- Corrections in `../CHANGELOG-v4.0.0.0.md` for the seventeen confirmed rows and the three dropped findings
+- A full prose rewrite to the human voice rules: no em dashes, semicolons or Oxford commas, active voice, direct address, varied sentence length
 - New paragraphs for the memory decommission, runtime rename, completion-gate coherence, simplification and closure programs, CI mirror parity, the goal-resync rule and the design commands
 - Frontmatter trigger phrases for the draft
 
 ### Out of Scope
-- Restyling the draft's existing prose or restructuring its sections
+- Restructuring the draft's sections or moving the file to `.opencode/changelog/`
 - Publishing the release or moving the file out of the parent folder
 
 ### Files to Change
@@ -90,6 +91,7 @@ Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is
 | REQ-001 | No stale name from the confirmed table survives in the draft except inside a sentence that describes its removal |
 | REQ-002 | Every late-cycle packet from the parent timeline (017 to 034) is reflected in the draft |
 | REQ-003 | Numbers the research could not reproduce are removed or softened |
+| REQ-004 | The HVR scan reports no hard blocker in prose; the only `;` hits are the `&nbsp;` entities the changelog format requires |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -99,4 +101,5 @@ Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is
 
 - **SC-001**: `rg` for each stale name in the draft returns only lines that describe the removal
 - **SC-002**: The parent validates strict with this child present
+- **SC-003**: `hvr_scan.py` on the draft reports zero em dashes and zero prose semicolons
 <!-- /ANCHOR:success-criteria -->
