@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/018-opus-review-fixes",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/018-opus-review-fixes",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/mutations.txt",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutations.txt",
+        "kind": "file",
+        "path": "scratch/mutations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "apply-design-md.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "design-md-theming.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An independent Opus review of packets 015, 016 and 017 found that the checker's design-md branch skipped every gate when a role was not a six-digit hex, that two of the cursor default's series were the same green, that the reference described a series rule the mapper did not implement, that three evidence cells in 016 pointed at wrong lines and a stale capture, and that multi-series tooltip cards named the series in the header and \"Value\" on the row instead of the category and the series",
+    "created_at": "2026-09-08T08:14:39Z",
+    "last_save_at": "2026-09-08T08:18:59.546Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9484fc8ecbd3f0f392b3827ee0467e594e641f121653e757e5bd90f27b9fa99c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0e5276e5443ffe25ec373a3bc6a5e524f72930c6cffb7e6d0569130c33921dc4",
+      "plan.md": "3df089dbee093b37072c72f733b381db3c93b84520f8a3cd961e73eb1e9f95c8",
+      "tasks.md": "cf175e2efeb99bb3c700ac6ad2b03f5ad25b7c405529197eb985f3923107615f",
+      "implementation-summary.md": "6a5a9ef70d3637cb974b19c1e45b28058ad712fe65c0b457fe16922a44a2cf3d"
+    },
+    "last_active_at": null
+  }
+}

@@ -219,8 +219,8 @@ path.past, path.current {
   <h1 class="headline" data-chart-part="headline">Every channel grew this year except the one we spent the budget on</h1>
   <p class="subtitle" data-chart-part="subtitle">Signups by acquisition channel, last year against this year. Every channel is read as a pair, so the gap inside a pair is the finding and the height of the pair is the context it sits in.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
-      <desc id="fig-title">Signups by channel, two years compared</desc>
+    <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
+      <desc id="fig-label">Signups by channel, two years compared</desc>
       <desc id="fig-desc">Five channels, each with a pair of columns for last year and this year. Each year takes the swatch printed beside its name in the key, and within every pair the left column is last year and the right column is this year. Paid search is the only channel where this year is lower. The table below the chart carries both years as text.</desc>
     </svg>
     <div data-chart-tooltip id="tip-grouped-bars" class="tip-card" aria-live="polite"></div>
@@ -496,7 +496,7 @@ DATA.forEach(function (d, i) {
       d: topRounded(x, y(v), barWidth, BASE - y(v), MARK_R),
       style: '--mark-index:' + drawn,
       'data-series': s + 1
-    }, series.classes[0]), series, [['Value', fmt(v)]]);
+    }, series.classes[0]), { label: d.label }, [[series.label, fmt(v)]]);
     drawn += 1;
   });
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = d.label;

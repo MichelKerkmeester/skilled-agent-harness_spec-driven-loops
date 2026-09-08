@@ -58,7 +58,7 @@ The mapping preserves the chart packet's role vocabulary and uses table order as
 | `ink` | The darkest text-role colour on the light ground, and the lightest text-role colour on the dark ground |
 | `muted` | A text-role colour nearest the stock muted ratio that still clears the text gate |
 | `rule` | The selected ink colour held at the stock dark-rule alpha |
-| `series-1` through `series-4` | Chromatic table values in table order, each taken verbatim and kept only when it clears the mark gate; when fewer than four clear, the table's own neutral text tones fill the remaining series darkest first, with the ink held back until last so it stays free for emphasis. No value is adjusted |
+| `series-1` through `series-4` | Chromatic table values that clear the mark gate, each taken verbatim, chosen greedily by hue distance from the hues already chosen so no two neighbours share a hue; a pair that is both under the separation ratio and within thirty degrees of hue is refused as one colour. When fewer than four clear, the table's own neutral text tones fill the remaining series darkest first, with the ink held back until last so it stays free for emphasis. No value is adjusted |
 | `emphasis` | The most saturated remaining chromatic value that clears the mark gate and the emphasis floor against series 1; when every clearing hue is spent on series, the ink, as the stock categorical system does |
 
 The lightest and darkest background/text choices are calculated separately for each ground. A
@@ -69,7 +69,7 @@ systems to fill a missing chromatic role.
 
 The corner ladder uses the largest measured radius that does not exceed each stock rung. A rung
 with no measured value below its ceiling becomes `0px`; it never grows a corner beyond the stock
-ladder. The measured primary typeface precedes its substitute stack in the body declaration. A
+ladder. The measured primary typeface precedes its substitute stack in every body declaration, and every declaration that already names a monospace face takes the reference's mono stack; the choice is by what the declaration is, not by where it sits. A
 dedicated mono typeface is used when the reference supplies one; otherwise the primary stack is
 used for the mono declarations as well.
 
@@ -98,6 +98,8 @@ rounding produce both results.
 
 - `textOnSurface` applies to ink and muted.
 - `markOnSurface` applies to all four series and emphasis.
+- Any two series must differ by the separation ratio or by thirty degrees of hue.
+- Every colour role must be a six-digit hex; the checker errors on anything else rather than skipping the gates.
 - `emphasisAgainstFirstSeries` applies to emphasis against series 1.
 - `rule` remains ungated by design, but a dark rule must be its theme's ink followed by a non-full alpha.
 

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/018-opus-review-fixes",
+  "description": "An independent Opus review of packets 015, 016 and 017 found that the checker's design-md branch skipped every gate when a role was not a six-digit",
+  "keywords": [
+    "independent",
+    "opus",
+    "review",
+    "packets",
+    "found",
+    "checker",
+    "design-md",
+    "branch",
+    "skipped",
+    "every",
+    "gate",
+    "role",
+    "six-digit"
+  ],
+  "lastUpdated": "2026-09-08T08:18:58.572Z",
+  "specId": "018",
+  "folderSlug": "opus-review-fixes",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
