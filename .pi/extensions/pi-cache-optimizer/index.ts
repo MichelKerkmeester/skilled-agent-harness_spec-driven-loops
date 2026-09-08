@@ -269,6 +269,32 @@ interface CacheStats {
   cachedInputTokens: number;
   cacheWriteInputTokens: number;
   totalInputTokens: number;
+  /**
+   * Actual input cost in USD accumulated only from requests whose model had
+   * pricing data; see pricedRequests for how many requests it covers.
+   */
+  inputCostUsd: number;
+  /**
+   * What the same input tokens would have cost billed fully uncached
+   * (totalInputTokens × input price). The explicit savings baseline.
+   */
+  uncachedBaselineCostUsd: number;
+  /** Number of requests that contributed to the cost fields above. */
+  pricedRequests: number;
+  /** Detected stable-prefix changes between consecutive requests for this model. */
+  prefixChurnCount: number;
+}
+
+/**
+ * Per-token USD pricing resolved from the model registry's cost block
+ * (models.json `cost` values are USD per 1M tokens). The cache-write rate is
+ * only meaningful for providers that report write tokens and charge them
+ * separately (Anthropic family); where the config carries none it is zero.
+ */
+interface ModelInputPricing {
+  inputPerToken: number;
+  cacheReadPerToken: number;
+  cacheWritePerToken: number;
 }
 
 interface PersistedCacheStatsV2 {
@@ -438,10 +464,6 @@ interface CacheProviderAdapter {
 
 interface CacheHintsInstallOptions {
   discardPrevious?: (value: unknown) => boolean;
-}
-
-interface UsageNormalizationOptions {
-  allowInputOnlyPiUsage?: boolean;
 }
 
 interface FooterStatsModeResolution {
@@ -1459,11 +1481,6 @@ function isDeepSeekLikeModel(model: PiModel | undefined): boolean {
   return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['deepseek']);
 }
 
-function isDeepPiOwned(model: PiModel | undefined): boolean {
-  return model?.provider === 'deepseek' &&
-    (model.id === 'deepseek-v4-flash' || model.id === 'deepseek-v4-pro');
-}
-
 function isDeepSeekLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   return modelOrAssistantMessageHas(message, model, ['deepseek']);
 }
@@ -2456,10 +2473,9 @@ function readCacheWriteFromDetails(details: UnknownRecord | undefined): number |
 // We reconstruct the total prompt-token count as input + cacheRead + cacheWrite.
 // Pi guarantees that input, cacheRead, and cacheWrite are always present on
 // assistant messages processed through its provider pipeline (at least as zero).
-//
-// Only DeepSeek sets allowInputOnly=true so that a cache miss (cacheRead=0) still
-// contributes total input tokens to the denominator.
-function getPiNormalizedUsage(message: unknown, allowInputOnly = false): UsageSnapshot | undefined {
+// When the cache keys are entirely absent but input is present, the response is
+// a full miss (no cache fields reported), so it stays in the denominator.
+function getPiNormalizedUsage(message: unknown): UsageSnapshot | undefined {
   const usage = usageRecordFromAssistant(message);
   if (!usage) return undefined;
 
@@ -2468,7 +2484,7 @@ function getPiNormalizedUsage(message: unknown, allowInputOnly = false): UsageSn
   const cacheWrite = getNonNegativeNumber(usage, 'cacheWrite');
   const hasCacheSignal = cacheRead !== undefined || cacheWrite !== undefined;
 
-  if (!hasCacheSignal && (input === undefined || !allowInputOnly)) return undefined;
+  if (!hasCacheSignal && input === undefined) return undefined;
 
   // Under healthy Pi normalization input is the uncached portion, so
   // totalInput = input + cacheRead + cacheWrite gives the full prompt token count.
@@ -2514,8 +2530,6 @@ function getOpenAIRawUsage(message: unknown): UsageSnapshot | undefined {
     getNestedRecord(usage, 'inputTokensDetails');
   const cacheRead = readCachedTokensFromDetails(promptDetails) ??
     readCachedTokensFromDetails(inputDetails);
-  if (cacheRead === undefined) return undefined;
-
   const cacheWrite = readCacheWriteFromDetails(promptDetails) ??
     readCacheWriteFromDetails(inputDetails) ?? 0;
   const totalInput = getFirstNonNegativeNumber(
@@ -2523,9 +2537,15 @@ function getOpenAIRawUsage(message: unknown): UsageSnapshot | undefined {
     usage.promptTokens,
     usage.input_tokens,
     usage.inputTokens,
-  ) ?? cacheRead + cacheWrite;
+  );
+  if (cacheRead === undefined) {
+    // OpenAI-family responses omit cached_tokens on a full miss, so retain the
+    // prompt-token count as the denominator rather than dropping the sample.
+    if (totalInput === undefined) return undefined;
+    return { cacheRead: 0, cacheWrite: 0, totalInput };
+  }
 
-  return { cacheRead, cacheWrite, totalInput };
+  return { cacheRead, cacheWrite, totalInput: totalInput ?? cacheRead + cacheWrite };
 }
 
 // Raw fallback for Anthropic/Claude responses that still carry their native usage fields.
@@ -2603,9 +2623,8 @@ function getGeminiRawUsage(message: unknown): UsageSnapshot | undefined {
 function normalizeWithFallback(
   message: unknown,
   rawNormalizer: (message: unknown) => UsageSnapshot | undefined,
-  options: UsageNormalizationOptions = {},
 ): UsageSnapshot | undefined {
-  return getPiNormalizedUsage(message, options.allowInputOnlyPiUsage) ?? rawNormalizer(message);
+  return getPiNormalizedUsage(message) ?? rawNormalizer(message);
 }
 
 function addOpenAIPromptCacheKey(
@@ -3042,7 +3061,7 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
       return isDeepSeekLikeAssistantMessage(message, model);
     },
     normalizeUsage(message) {
-      return normalizeWithFallback(message, getDeepSeekRawUsage, { allowInputOnlyPiUsage: true });
+      return normalizeWithFallback(message, getDeepSeekRawUsage);
     },
     warningText(model) {
       if (!isDeepSeekCompatCheckApplicable(model)) return undefined;
@@ -4080,6 +4099,10 @@ function emptyCacheStats(day = currentLocalDay()): CacheStats {
     cachedInputTokens: 0,
     cacheWriteInputTokens: 0,
     totalInputTokens: 0,
+    inputCostUsd: 0,
+    uncachedBaselineCostUsd: 0,
+    pricedRequests: 0,
+    prefixChurnCount: 0,
   };
 }
 
@@ -4091,12 +4114,87 @@ function emptyAllCacheStats(day = currentLocalDay()): Partial<Record<CacheProvid
   >;
 }
 
-function addUsageToCacheStats(stats: CacheStats, usage: UsageSnapshot): void {
+/**
+ * Resolve per-token pricing from a model's registry cost block. A model is
+ * priced only when both the input and the cached-read rate are present and
+ * positive; anything else is unknown and must render as "unpriced" rather
+ * than as zero. Cost-block values are USD per 1M tokens.
+ */
+function readModelInputPricing(model: PiModel | undefined): ModelInputPricing | undefined {
+  const cost = model?.cost;
+  if (!cost) return undefined;
+  const inputPerToken = getNumber(cost.input);
+  const cacheReadPerToken = getNumber(cost.cacheRead);
+  if (inputPerToken === undefined || inputPerToken <= 0) return undefined;
+  if (cacheReadPerToken === undefined || cacheReadPerToken <= 0) return undefined;
+  const cacheWritePerToken = getNumber(cost.cacheWrite);
+  return {
+    inputPerToken: inputPerToken / 1_000_000,
+    cacheReadPerToken: cacheReadPerToken / 1_000_000,
+    cacheWritePerToken: cacheWritePerToken !== undefined && cacheWritePerToken > 0
+      ? cacheWritePerToken / 1_000_000
+      : 0,
+  };
+}
+
+/**
+ * Resolve pricing for a model, falling back to the model registry when the
+ * model object itself carries no cost block (e.g. routed upstream refs).
+ */
+function resolveModelPricing(
+  model: PiModel | undefined,
+  ctx?: ContextWithOptionalModelRegistry,
+): ModelInputPricing | undefined {
+  const pricing = readModelInputPricing(model);
+  if (pricing) return pricing;
+  if (!model) return undefined;
+  return readModelInputPricing(findModelInRegistry(ctx?.modelRegistry, model.provider, model.id));
+}
+
+/**
+ * Whether the stable prefix shipped for a request changed versus the previous
+ * request for the same model. Counting and reporting only — it never changes
+ * behavior. The first observation for a model is never churn.
+ */
+function detectStablePrefixChurn(previousPrefix: string | undefined, currentPrefix: string): boolean {
+  return previousPrefix !== undefined && previousPrefix !== currentPrefix;
+}
+
+/**
+ * Actual input cost of one request from provider-reported token counts and
+ * the model's own rates: the uncached portion at the input rate, cached reads
+ * at the cached-read rate, writes at the write rate when configured.
+ */
+function computeInputCostUsd(usage: UsageSnapshot, pricing: ModelInputPricing): number {
+  const uncachedInput = Math.max(0, usage.totalInput - usage.cacheRead - usage.cacheWrite);
+  return uncachedInput * pricing.inputPerToken +
+    usage.cacheRead * pricing.cacheReadPerToken +
+    usage.cacheWrite * pricing.cacheWritePerToken;
+}
+
+/**
+ * The explicit savings baseline: the same input tokens billed fully uncached.
+ * Stated in the report so the number is checkable.
+ */
+function computeUncachedBaselineCostUsd(usage: UsageSnapshot, pricing: ModelInputPricing): number {
+  return usage.totalInput * pricing.inputPerToken;
+}
+
+function addUsageToCacheStats(
+  stats: CacheStats,
+  usage: UsageSnapshot,
+  pricing: ModelInputPricing | undefined,
+): void {
   stats.totalRequests += 1;
   if (usage.cacheRead > 0) stats.hitRequests += 1;
   stats.cachedInputTokens += usage.cacheRead;
   stats.cacheWriteInputTokens += usage.cacheWrite;
   stats.totalInputTokens += usage.totalInput;
+  if (pricing) {
+    stats.pricedRequests += 1;
+    stats.inputCostUsd += computeInputCostUsd(usage, pricing);
+    stats.uncachedBaselineCostUsd += computeUncachedBaselineCostUsd(usage, pricing);
+  }
 }
 
 function formatTokenCount(value: number): string {
@@ -4140,6 +4238,26 @@ function formatTokenM(value: number): string {
   if (millions < 0.01) return millions.toFixed(4);
   if (millions >= 10) return millions.toFixed(1);
   return millions.toFixed(2);
+}
+
+/**
+ * Format a USD amount for the report. Sub-dollar amounts keep four decimals
+ * so daily costs remain distinguishable from zero and baseline minus cost
+ * visibly reconciles to savings.
+ */
+function formatUsd(value: number): string {
+  const v = Math.max(0, value);
+  if (v >= 1) return `$${v.toFixed(2)}`;
+  if (v > 0) return `$${v.toFixed(4)}`;
+  return '$0.00';
+}
+
+/** Format a per-token rate as USD per 1M tokens for the report. */
+function formatUsdPerMillion(perToken: number): string {
+  const perMillion = Math.max(0, perToken) * 1_000_000;
+  if (perMillion >= 1) return `$${perMillion.toFixed(2)}/M`;
+  if (perMillion >= 0.01) return `$${perMillion.toFixed(3)}/M`;
+  return `$${perMillion.toFixed(4)}/M`;
 }
 
 /**
@@ -4206,6 +4324,7 @@ function buildStatsOutput(
   adapter: CacheProviderAdapter | undefined,
   stats: CacheStats | undefined,
   recentSamples: CacheUsageSample[],
+  pricing: ModelInputPricing | undefined,
 ): string {
   const lines: string[] = [];
 
@@ -4242,6 +4361,37 @@ function buildStatsOutput(
   }
 
   lines.push('');
+  lines.push('── Economics ──');
+  if (pricing) {
+    lines.push(
+      `Pricing:     ${formatUsdPerMillion(pricing.inputPerToken)} input · ${
+        formatUsdPerMillion(pricing.cacheReadPerToken)
+      } cached read`,
+    );
+    lines.push(
+      `Input cost:  ${formatUsd(currentStats.inputCostUsd)} over ${
+        currentStats.pricedRequests
+      } priced request(s) of ${currentStats.totalRequests}`,
+    );
+    lines.push(
+      `Baseline:    ${formatUsd(currentStats.uncachedBaselineCostUsd)} ` +
+        '(same input tokens billed fully uncached)',
+    );
+    const savings = currentStats.uncachedBaselineCostUsd - currentStats.inputCostUsd;
+    lines.push(
+      `Savings:     ${
+        savings >= 0 ? formatUsd(savings) : `-${formatUsd(-savings)}`
+      } vs baseline`,
+    );
+  } else {
+    lines.push(
+      'Pricing:     unpriced — no input/cached-read rates in the models.json cost block',
+    );
+    lines.push('Cost:        unpriced');
+  }
+  lines.push(`Prefix churn: ${currentStats.prefixChurnCount}`);
+
+  lines.push('');
   lines.push('── Recent trend ──');
   lines.push(formatRecentTrendSummary(recentSamples, 10));
   lines.push(formatRecentTrendSummary(recentSamples, 30));
@@ -4257,6 +4407,11 @@ function buildStatsOutput(
       '   The proxy may not return prompt_cache_hit_tokens or usage.input/cacheRead in responses.',
     );
   }
+
+  lines.push('');
+  lines.push(
+    'Note: provider cache expiry can miss even on a stable prefix; the hit rate is not a guarantee.',
+  );
 
   return lines.join('\n');
 }
@@ -4293,6 +4448,14 @@ function parseCacheStats(value: unknown): CacheStats | undefined {
     return undefined;
   }
 
+  // Records persisted before cost accounting existed carry no economics
+  // fields; they migrate forward with the old counters intact and zeros for
+  // the new ones.
+  const inputCostUsd = getNonNegativeNumber(stats, 'inputCostUsd') ?? 0;
+  const uncachedBaselineCostUsd = getNonNegativeNumber(stats, 'uncachedBaselineCostUsd') ?? 0;
+  const pricedRequests = getNonNegativeNumber(stats, 'pricedRequests') ?? 0;
+  const prefixChurnCount = getNonNegativeNumber(stats, 'prefixChurnCount') ?? 0;
+
   return {
     day: stats.day,
     totalRequests,
@@ -4300,6 +4463,10 @@ function parseCacheStats(value: unknown): CacheStats | undefined {
     cachedInputTokens,
     cacheWriteInputTokens,
     totalInputTokens,
+    inputCostUsd,
+    uncachedBaselineCostUsd,
+    pricedRequests,
+    prefixChurnCount,
   };
 }
 
@@ -4313,6 +4480,10 @@ function addCacheStatsTotals(target: CacheStats, source: CacheStats): void {
   target.cachedInputTokens += source.cachedInputTokens;
   target.cacheWriteInputTokens += source.cacheWriteInputTokens;
   target.totalInputTokens += source.totalInputTokens;
+  target.inputCostUsd += source.inputCostUsd;
+  target.uncachedBaselineCostUsd += source.uncachedBaselineCostUsd;
+  target.pricedRequests += source.pricedRequests;
+  target.prefixChurnCount += source.prefixChurnCount;
 }
 
 function mergeCacheStatsForTotal(
@@ -7169,7 +7340,6 @@ export const __internals_for_tests = {
   describeMissingDeepSeekCompat,
   describeOptionalDeepSeekCompat,
   isDeepSeekCompatCheckApplicable,
-  isDeepPiOwned,
   describeMissingCacheCompatForModel,
   buildDeepSeekCompatSuggestion,
   buildDeepSeekCompatWarningText,
@@ -7330,6 +7500,16 @@ export const __internals_for_tests = {
   parsePersistedCacheStats,
   deriveTotalsByModelFromSessionStats,
   parsePersistedTotalsByModel,
+  // Cache economics helpers
+  readModelInputPricing,
+  resolveModelPricing,
+  computeInputCostUsd,
+  computeUncachedBaselineCostUsd,
+  detectStablePrefixChurn,
+  formatUsd,
+  formatUsdPerMillion,
+  getPiNormalizedUsage,
+  getOpenAIRawUsage,
   // Recent sample / stats output / diagnosis helpers
   MAX_RECENT_SAMPLES,
   buildStatsOutput,
@@ -7458,6 +7638,8 @@ export default function (pi: ExtensionAPI): void {
   let currentSessionHashSet = false;
   let lastActualRoutedModel: PersistedRoutedModelRef | undefined;
   let latestCacheHint: PiCacheHintSnapshot | undefined;
+  /** Last shipped stable prefix per model key, for prefix-churn counting. */
+  const lastShippedStablePrefixByModel = new Map<string, string>();
   const PERSIST_DEBOUNCE_MS = 2000;
 
   function rememberPromptCacheKeyUnsupported(model: PiModel, ctx: ExtensionContext): void {
@@ -8005,7 +8187,6 @@ export default function (pi: ExtensionAPI): void {
   }
 
   pi.on('session_start', async (event, ctx) => {
-    if (isDeepPiOwned(ctx.model)) return;
     if (runtimeOptimizerEnabled) requestLongCacheRetention();
     await restoreCacheStats(event.reason, ctx);
     await publishStatus(ctx);
@@ -8023,7 +8204,6 @@ export default function (pi: ExtensionAPI): void {
   });
 
   pi.on('model_select', async (event, ctx) => {
-    if (isDeepPiOwned(resolveRouteModel(event.model, ctx) ?? event.model)) return;
     if (runtimeOptimizerEnabled) {
       notifyCacheCompatIfNeeded(
         resolveRouteModel(event.model, ctx) ?? event.model,
@@ -8035,7 +8215,6 @@ export default function (pi: ExtensionAPI): void {
   });
 
   pi.on('before_agent_start', async (event, _ctx) => {
-    if (isDeepPiOwned(resolveRouteModel(_ctx.model, _ctx) ?? _ctx.model)) return;
     latestCacheHint = undefined;
     // Clear the legacy global before any bypass/disable early return. A valid
     // rewrite path republishes the current session key below; otherwise callers
@@ -8111,6 +8290,22 @@ export default function (pi: ExtensionAPI): void {
     // ships to the provider.
     const optimized = optimizeSystemPrompt(compressedPrompt, event.systemPromptOptions);
 
+    // Prefix-churn detection: when the stable prefix shipped for this model
+    // changed versus its previous request, count it. Counting and reporting
+    // only — it never alters the prompt or any other behavior.
+    const shippedStablePrefix = optimized.changed ? optimized.stablePrefix : '';
+    if (model) {
+      const churnModelKey = modelKey(model);
+      const previousPrefix = lastShippedStablePrefixByModel.get(churnModelKey);
+      if (detectStablePrefixChurn(previousPrefix, shippedStablePrefix)) {
+        const churnSessionKey = sessionModelKey(model);
+        getOrCreateStatsByModelKey(churnSessionKey).prefixChurnCount += 1;
+        getOrCreateProcessStatsForModel(model).prefixChurnCount += 1;
+        getOrCreateTotalStatsForModel(model).prefixChurnCount += 1;
+      }
+      lastShippedStablePrefixByModel.set(churnModelKey, shippedStablePrefix);
+    }
+
     const promptCacheKey = getSessionPromptCacheKey(_ctx);
     const cacheRetention = process.env[PI_CACHE_RETENTION_ENV] === LONG_CACHE_RETENTION_VALUE
       ? LONG_CACHE_RETENTION_VALUE
@@ -8159,7 +8354,6 @@ export default function (pi: ExtensionAPI): void {
   });
 
   pi.on('before_provider_request', (event, ctx) => {
-    if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     const requestModel = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
 
     // Anthropic rejects mixed cache breakpoints when a 1h block appears after
@@ -8222,7 +8416,6 @@ export default function (pi: ExtensionAPI): void {
   });
 
   pi.on('after_provider_response', (event, ctx) => {
-    if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     const model = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
     if (!runtimeOptimizerEnabled || !model) return;
 
@@ -8290,7 +8483,6 @@ export default function (pi: ExtensionAPI): void {
   });
 
   pi.on('message_end', async (event, ctx) => {
-    if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     syncSessionHash(ctx);
     const msgRecord = asRecord(event.message);
     const requestModel = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
@@ -8404,15 +8596,19 @@ export default function (pi: ExtensionAPI): void {
 
     await rollOverStatsIfNeeded(ctx);
 
+    // Cost accounting needs a model identity for the pricing lookup; a missing
+    // stats model (legacy family fallback) stays unpriced by definition.
+    const pricing = statsModel ? resolveModelPricing(statsModel, ctx) : undefined;
+
     // Update session, process-local, and cumulative buckets for the actual
     // routed model. The process bucket is intentionally never persisted.
     if (statsModel) {
       const sk = sessionModelKey(statsModel);
-      addUsageToCacheStats(getOrCreateStatsByModelKey(sk), usage);
-      addUsageToCacheStats(getOrCreateProcessStatsForModel(statsModel), usage);
-      addUsageToCacheStats(getOrCreateTotalStatsForModel(statsModel), usage);
+      addUsageToCacheStats(getOrCreateStatsByModelKey(sk), usage, pricing);
+      addUsageToCacheStats(getOrCreateProcessStatsForModel(statsModel), usage, pricing);
+      addUsageToCacheStats(getOrCreateTotalStatsForModel(statsModel), usage, pricing);
     } else {
-      addUsageToCacheStats(getStatsForModel(undefined, adapter), usage);
+      addUsageToCacheStats(getStatsForModel(undefined, adapter), usage, undefined);
     }
 
     schedulePersistCacheStats(ctx);
@@ -8507,7 +8703,8 @@ export default function (pi: ExtensionAPI): void {
         const sk = model ? sessionModelKey(model) : undefined;
         const statsState = model ? cacheStatsTotalsByModel[modelKey(model)] : undefined;
         const samples = sk ? getRecentSamples(sk) : [];
-        const output = buildStatsOutput(model, adapter, statsState, samples);
+        const pricing = resolveModelPricing(model, asExtensionContext(cmdCtx));
+        const output = buildStatsOutput(model, adapter, statsState, samples, pricing);
         cmdCtx.ui.notify(output, 'info');
       } else if (subcommand === 'config') {
         const configKey = commandParts[1];
@@ -9051,7 +9248,8 @@ export default function (pi: ExtensionAPI): void {
               const sk = model ? sessionModelKey(model) : undefined;
               const statsState = model ? cacheStatsTotalsByModel[modelKey(model)] : undefined;
               const samples = sk ? getRecentSamples(sk) : [];
-              const output = buildStatsOutput(model, adapter, statsState, samples);
+              const pricing = resolveModelPricing(model, asExtensionContext(cmdCtx));
+              const output = buildStatsOutput(model, adapter, statsState, samples, pricing);
               cmdCtx.ui.notify(output, 'info');
             }
           } else if (choice === menuOptions[4]) {

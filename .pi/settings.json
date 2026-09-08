@@ -27,7 +27,6 @@
     "xiaomi/mimo-v2.5-pro-ultraspeed"
   ],
   "packages": [
-    "extensions/deep-pi",
     "extensions/pi-cache-optimizer",
     "extensions/pi-fast-mode-w-subagent-support",
     "npm:@juicesharp/rpiv-ask-user-question",

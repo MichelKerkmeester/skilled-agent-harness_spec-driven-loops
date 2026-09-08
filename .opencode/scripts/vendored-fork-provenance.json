@@ -9,7 +9,9 @@
       "files": [
         "LICENSE",
         "README.md",
+        "extensions/README.md",
         "extensions/deeppi.ts",
+        "extensions/deeppi/README.md",
         "extensions/deeppi/eligibility.ts",
         "extensions/deeppi/hashlines.ts",
         "extensions/deeppi/stability.ts",
@@ -18,10 +20,11 @@
         "extensions/deeppi/telemetry.ts",
         "extensions/deeppi/utils.ts",
         "package.json",
+        "scripts/README.md",
         "scripts/live-benchmark.mjs",
         "tsconfig.json"
       ],
-      "filesHash": "sha256:330c9ca984558cf16774679d94a3061eea18e594842b2bfb52f168165c58a8d2"
+      "filesHash": "sha256:6c0a50bead64945f92f959d25dff6e13b45229d934dbe3d904cd1140b84917fb"
     },
     "pi-cache-optimizer": {
       "identity": {
@@ -32,7 +35,7 @@
         "index.ts",
         "package.json"
       ],
-      "filesHash": "sha256:477ba012c7a297f8f49d9dcd30e26d80846c113530f9799c65b630eebb56dc1b"
+      "filesHash": "sha256:794ff87d1311448157f95c35117f4ac05eebafaeaa6044cada177d277a102e0e"
     }
   }
 }

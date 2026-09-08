@@ -1,0 +1,71 @@
+---
+title: "Goal: retire the extension"
+description: "The durable directive this phase executes against and the criteria that decide when it is done."
+trigger_phrases:
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
+  - "goal binding"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi"
+    last_updated_at: "2026-09-08T00:00:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Authored the durable directive"
+    next_safe_action: "Execute against the completion criteria"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-016-005-remove-deep-pi"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Goal: retire the extension
+
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
+
+**Objective:** `deep-pi` is absent from the tree, from the enabled-package list, and from every live reference, while historical records still name it.
+
+### Decisions
+
+Frozen choices for this phase. The parent goal's decisions bind here too; changing one of those is
+an amendment to `../goal.md`.
+
+| ID | Decision |
+|----|----------|
+| P1 | Runs only after 001-004 ship, so capability never lapses |
+| P2 | Historical records are untouched: prior packets, changelogs, benchmark reports, the dispatch audit log |
+| P3 | Generated indexes are regenerated, not hand-edited |
+
+### Completion criteria
+
+1. The directory, the `.pi/settings.json` entry and the live references are gone.
+2. A live Pi session still loads every remaining extension.
+3. A residue sweep finds the name only in historical records.
+
+### Operator copy
+
+The operator holds the parent directive as the session objective. A change here that alters a
+parent decision or criterion is an amendment to the parent: apply it there and resend that file.
+<!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:log -->
+## 2. LOG
+
+| Date | Event |
+|------|-------|
+| 2026-09-08 | Phase goal authored |
+<!-- /ANCHOR:log -->

@@ -83,22 +83,6 @@ describe('stable prompt reordering', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 3. MODEL OWNERSHIP
-// ───────────────────────────────────────────────────────────────────
-
-describe('DeepSeek Pi-owned model detection', () => {
-  test('matches only DeepSeek V4 Flash and Pro models', () => {
-    assert.equal(internals.isDeepPiOwned({ provider: 'deepseek', id: 'deepseek-v4-flash' }), true);
-    assert.equal(internals.isDeepPiOwned({ provider: 'deepseek', id: 'deepseek-v4-pro' }), true);
-    assert.equal(
-      internals.isDeepPiOwned({ provider: 'opencode', id: 'deepseek-v4-flash-free' }),
-      false,
-    );
-    assert.equal(internals.isDeepPiOwned({ provider: 'openai', id: 'gpt-5' }), false);
-  });
-});
-
-// ───────────────────────────────────────────────────────────────────
 // 4. OPENAI PROMPT CACHE KEY
 // ───────────────────────────────────────────────────────────────────
 
@@ -547,6 +531,10 @@ describe('cache-write display', () => {
         cachedInputTokens: 100,
         cacheWriteInputTokens: 1_000_000,
         totalInputTokens: 1_500_000,
+        inputCostUsd: 0,
+        uncachedBaselineCostUsd: 0,
+        pricedRequests: 0,
+        prefixChurnCount: 0,
       }),
       /write 1\.00M tok/,
     );
@@ -572,6 +560,10 @@ describe('footer stats modes', () => {
     cachedInputTokens: 400,
     cacheWriteInputTokens: 100,
     totalInputTokens: 1000,
+    inputCostUsd: 0.001,
+    uncachedBaselineCostUsd: 0.002,
+    pricedRequests: 2,
+    prefixChurnCount: 0,
   };
   const totalStats = {
     day: '2026-08-03',
@@ -580,6 +572,10 @@ describe('footer stats modes', () => {
     cachedInputTokens: 4000,
     cacheWriteInputTokens: 500,
     totalInputTokens: 8000,
+    inputCostUsd: 0.01,
+    uncachedBaselineCostUsd: 0.02,
+    pricedRequests: 9,
+    prefixChurnCount: 1,
   };
   const statsByModel = {
     [internals.makeSessionModelKey(sessionHash, model.provider, model.id)]: sessionStats,
