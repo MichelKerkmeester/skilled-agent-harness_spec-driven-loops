@@ -7599,7 +7599,186 @@ export const __internals_for_tests = {
 };
 
 // ───────────────────────────────────────────────────────────────────
-// 10. HOOK REGISTRATION AND COMMANDS
+// 10. RETRY LOOP GUARD
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Batch-level paid-retry loop guard.
+ *
+ * A failing turn can re-issue the same billable tool batch until the budget
+ * is gone. The guard collects tool calls as batches — a batch is the set of
+ * tool calls in one assistant message — records an outcome per expected
+ * call, and escalates only when the WHOLE batch fails repeatedly with no
+ * success in between. Any successful call resets both streaks, so a single
+ * legitimate retry can never fire it. The guard breaks a loop; it never
+ * rewrites, retries, or "fixes" the user's request to make a call succeed,
+ * and when it fires it surfaces the blocker instead of failing quietly.
+ */
+
+/** Tool call expected to produce an outcome in the current batch. */
+export interface ExpectedToolCall {
+  id: string;
+  name: string;
+}
+
+/** Result recorded for one expected tool call. */
+export interface ToolOutcome extends ExpectedToolCall {
+  isError: boolean;
+  text: string;
+}
+
+/** Decision returned after a tool outcome completes or advances a batch. */
+export type RetryGuardDecision =
+  | { kind: 'pending' | 'none' }
+  | { kind: 'guard' | 'abort'; message: string };
+
+/** Mutable counters and in-flight outcomes used by the loop guard. */
+export interface RetryLoopGuardState {
+  expected: ExpectedToolCall[];
+  outcomes: Map<string, ToolOutcome>;
+  lastSignature: string | null;
+  repeatCount: number;
+  blockedTurnStreak: number;
+}
+
+/**
+ * Normalize a failed tool result into a signature for consecutive-failure dedup.
+ *
+ * Strips workspace-specific details (paths, line numbers, timestamps, hex
+ * addresses) so the same failure class across different files still counts
+ * as a repeat, while a genuinely different failure restarts the repeat
+ * streak. The blocked-turn streak still escalates on alternating failures,
+ * so a stuck turn cannot hide behind changing error text.
+ */
+function errorSignature(toolName: string, errorText: string): string {
+  const normalized = errorText
+    // Remove paths so equivalent failures share a signature across workspaces.
+    .replace(/\/[^\s:]+/g, '<path>')
+    // Remove line numbers so the same failure class survives source movement.
+    .replace(/line \d+/gi, 'line N')
+    // Remove timestamps so repeated failures remain comparable over time.
+    .replace(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/g, '<timestamp>')
+    // Remove memory addresses so process-specific details do not split signatures.
+    .replace(/\b0x[0-9a-f]+\b/gi, '<hex>')
+    .slice(0, 200);
+  return `${toolName}:${normalized}`;
+}
+
+/** Concatenate a tool result's text blocks into the error text the model sees. */
+function extractErrorText(content: unknown): string {
+  if (!Array.isArray(content)) return '';
+  return content
+    .filter((block): block is { type: 'text'; text?: unknown } => {
+      const record = asRecord(block);
+      return record?.type === 'text' && typeof record.text === 'string';
+    })
+    .map((block) => block.text as string)
+    .join('\n');
+}
+
+function batchSignatureFromOutcomes(outcomes: ToolOutcome[]): string {
+  return outcomes
+    .map((outcome) => `${outcome.name}\0${errorSignature(outcome.name, outcome.text)}`)
+    .join('\0\0');
+}
+
+/** Extract assistant tool calls from a message-shaped value. */
+export function toolCallsFromMessage(message: unknown): ExpectedToolCall[] {
+  // Pi message-end events carry a message object when the assistant produced output.
+  const value = asRecord(message);
+  if (value?.role !== 'assistant' || !Array.isArray(value.content)) return [];
+  return value.content.flatMap((block) => {
+    // Assistant content blocks expose the tagged fields inspected below.
+    const call = asRecord(block);
+    return call?.type === 'toolCall' && typeof call.id === 'string' && typeof call.name === 'string'
+      ? [{ id: call.id, name: call.name }]
+      : [];
+  });
+}
+
+/** Create empty mutable state for the loop guard. */
+export function createRetryLoopGuardState(): RetryLoopGuardState {
+  return {
+    expected: [],
+    outcomes: new Map(),
+    lastSignature: null,
+    repeatCount: 0,
+    blockedTurnStreak: 0,
+  };
+}
+
+/** Reset counters and discard any in-flight tool batch. */
+export function resetRetryLoopGuard(state: RetryLoopGuardState): void {
+  state.expected = [];
+  state.outcomes = new Map();
+  state.lastSignature = null;
+  state.repeatCount = 0;
+  state.blockedTurnStreak = 0;
+}
+
+/**
+ * Start tracking a new assistant tool-call batch.
+ *
+ * @param state - Mutable loop-guard state.
+ * @param calls - Tool calls expected to produce outcomes.
+ */
+export function startToolBatch(state: RetryLoopGuardState, calls: ExpectedToolCall[]): void {
+  state.expected = calls;
+  state.outcomes = new Map();
+}
+
+/**
+ * Record one tool result and escalate after repeated all-failed batches.
+ *
+ * @param state - Mutable loop-guard state.
+ * @param outcome - Result for one expected tool call.
+ * @returns The guard, abort, pending, or no-op decision for the batch.
+ */
+export function recordToolOutcome(
+  state: RetryLoopGuardState,
+  outcome: ToolOutcome,
+): RetryGuardDecision {
+  if (!state.expected.some((call) => call.id === outcome.id)) return { kind: 'none' };
+  state.outcomes.set(outcome.id, outcome);
+  if (state.outcomes.size < state.expected.length) return { kind: 'pending' };
+  // The expected batch contains each call id once, so a size match means every lookup is defined.
+  const ordered = state.expected.map((call) => state.outcomes.get(call.id)!);
+  state.expected = [];
+  state.outcomes = new Map();
+  if (ordered.some((value) => !value.isError)) {
+    // Any successful call resets both streaks: a partial success means the
+    // turn is converging, not looping.
+    state.lastSignature = null;
+    state.repeatCount = 0;
+    state.blockedTurnStreak = 0;
+    return { kind: 'none' };
+  }
+  const signature = batchSignatureFromOutcomes(ordered);
+  state.repeatCount = state.lastSignature === signature ? state.repeatCount + 1 : 1;
+  state.lastSignature = signature;
+  state.blockedTurnStreak++;
+  const level = Math.max(state.repeatCount, state.blockedTurnStreak);
+  // A completed all-failed batch is non-empty because batches start from assistant tool calls.
+  const lastError = ordered.at(-1)!.text.slice(0, 300);
+  if (level === 3) {
+    return {
+      kind: 'guard',
+      message: `[loop guard] Every tool call in this batch failed repeatedly. ` +
+        `Change arguments, use another tool, or report the blocker. Last error: ${lastError}`,
+    };
+  }
+  if (level >= 4) {
+    return {
+      kind: 'abort',
+      message: `[loop guard] Stopped a repeated failed tool batch to stop re-billing ` +
+        `the same request. Last error: ${lastError}`,
+    };
+  }
+  return { kind: 'none' };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 11. HOOK REGISTRATION AND COMMANDS
 // ───────────────────────────────────────────────────────────────────
 
 /**
@@ -7621,6 +7800,8 @@ export default function (pi: ExtensionAPI): void {
   const warnedSendSessionAffinityHeaders403Models = new Set<string>();
   const openAISdkHeader403Models = new Set<string>();
   const warnedOpenAISdkHeader403Models = new Set<string>();
+  // Session-scoped retry-loop guard state; never persisted. Reset on session_start.
+  const retryLoopGuardState = createRetryLoopGuardState();
   let cacheStatsByModel: Record<string, CacheStats> = {};
   let cacheStatsProcessByModel: Record<string, CacheStats> = {};
   let cacheStatsTotalsByModel: Record<string, CacheStats> = {};
@@ -8187,6 +8368,8 @@ export default function (pi: ExtensionAPI): void {
   }
 
   pi.on('session_start', async (event, ctx) => {
+    // Guard state is session-scoped: a fresh session starts with clean streaks.
+    resetRetryLoopGuard(retryLoopGuardState);
     if (runtimeOptimizerEnabled) requestLongCacheRetention();
     await restoreCacheStats(event.reason, ctx);
     await publishStatus(ctx);
@@ -8479,6 +8662,63 @@ export default function (pi: ExtensionAPI): void {
         );
         return;
       }
+    }
+  });
+
+  // ── Paid-retry loop guard ─────────────────────────────────────────
+  // Batch-level failure tracking for billable tool calls (section 10):
+  // only a repeated whole-batch failure escalates, any success resets the
+  // streaks, and the guard never rewrites the request to make a call succeed.
+  // The message_end handler must stay registered BEFORE the stats handler
+  // below: hook-capture tests treat the stats message_end as the last
+  // registration, and the two handlers do not interact.
+  pi.on('message_end', async (event) => {
+    const msgRecord = asRecord(event.message);
+    // Pi emits message_end for EVERY message — including tool-result
+    // messages (role "toolResult") and user turns. Only assistant turns
+    // carry tool calls or end a blocked streak; ignoring everything else
+    // keeps a tool-result's message_end from resetting the streak mid-batch.
+    if (msgRecord?.role !== 'assistant') return;
+    const calls = toolCallsFromMessage(event.message);
+    if (calls.length > 0) {
+      startToolBatch(retryLoopGuardState, calls);
+    } else {
+      // The assistant moved on without calling any tools — the blocked
+      // streak is over. A later all-failed batch starts a fresh streak.
+      resetRetryLoopGuard(retryLoopGuardState);
+    }
+  });
+
+  // The vendored ambient host types stop at message_end and omit the abort
+  // method, while the host has emitted tool_result events and supported
+  // abort since Pi 0.82. The guard registers through a narrowed surface
+  // that types only the fields it reads.
+  const guardHost = pi as unknown as {
+    on(
+      event: 'tool_result',
+      handler: (
+        event: { toolCallId: string; toolName: string; isError: boolean; content: unknown },
+        ctx: ExtensionContext & { abort(): void },
+      ) => unknown,
+    ): void;
+  };
+  guardHost.on('tool_result', async (event, ctx) => {
+    const text = extractErrorText(event.content);
+    const decision = recordToolOutcome(retryLoopGuardState, {
+      id: event.toolCallId,
+      name: event.toolName,
+      isError: event.isError,
+      text,
+    });
+    if (decision.kind === 'guard') {
+      // First escalation: surface the blocker inside the tool result the
+      // model sees without ending the turn, so it can change strategy.
+      return { content: [{ type: 'text' as const, text: `${text}\n\n${decision.message}` }] };
+    }
+    if (decision.kind === 'abort') {
+      // Hard stop: re-issuing the same billable batch is the loop itself.
+      ctx.abort();
+      ctx.ui.notify(decision.message, 'warning');
     }
   });
 
