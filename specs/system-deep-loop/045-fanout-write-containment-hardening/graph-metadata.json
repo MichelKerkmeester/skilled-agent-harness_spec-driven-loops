@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening",
+  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan-out write containment",
+      "containment quarantine preserve",
+      "shared checkout concurrent editor",
+      "per-lineage worktree containment",
+      "containment implementation plan",
+      "quarantine mode approach",
+      "lineage worktree architecture",
+      "containment testing strategy",
+      "containment task breakdown",
+      "quarantine implementation tasks",
+      "worktree phase tasks",
+      "containment verification checklist"
+    ],
+    "key_topics": [
+      "fan-out",
+      "write",
+      "containment",
+      "quarantine",
+      "preserve",
+      "shared",
+      "checkout",
+      "concurrent",
+      "editor",
+      "per-lineage",
+      "worktree",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
+    "created_at": "2026-09-08T17:47:19Z",
+    "last_save_at": "2026-09-08T17:59:29.623Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:db58b51c1fa0cb6a7f6059da1b314c880045d50a49e075fca446f7d2804ba667",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6deec9526aa4508f16038d6c82dc02d57221f4232c1a1df6ae0e1e494e4c8953",
+      "plan.md": "f36d80a6194c9277944faa463008affd78bf89a92a966ab4fae6a7b79c97c272",
+      "tasks.md": "27b07911db2e80009aee64525ac959d7107daff1539cebc7fd35be9ae4eda6e5",
+      "decision-record.md": "841d9c3bcb92ce5c8f9f462d1dda87bd81606e3d2297d7824114ed38855cea0d",
+      "implementation-summary.md": "9ea75b60e60c344f60750cb86dbaa2040af3bfca5376ff4157d137ae064956f8"
+    },
+    "last_active_at": null
+  }
+}
