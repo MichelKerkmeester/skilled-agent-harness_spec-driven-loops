@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -166,8 +167,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* Each mark grows from the anchor it is measured against over half a second, and consecutive
@@ -199,10 +202,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="subtitle" data-chart-part="subtitle">Build durations on the deploy pipeline, last full month, counted into ten-minute bins. Adjacent bins share an edge, so the axis is labelled by where each bin starts and ends, and a column's height is how many builds fell inside it.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
-      <title id="fig-title">Build durations in ten-minute bins</title>
+      <desc id="fig-title">Build durations in ten-minute bins</desc>
       <desc id="fig-desc">Build durations on the deploy pipeline counted into ten adjacent bins from zero to a hundred minutes. The modal bin, thirty to forty minutes, carries the emphasis colour with forty-six builds, and the two slowest bins hold a single build each. The table below the chart carries every bin's range and count as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-histogram" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-histogram" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">The busiest bin is 30 to 40 minutes with 46 builds, the most of the 150 total.</p>
@@ -213,7 +216,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="table-pan">
     <table data-chart-table>
       <caption>Builds per ten-minute bin, last full month.</caption>
-      <thead><tr><th scope="col">Bin (minutes)</th><th scope="col">Builds</th></tr></thead>
+      <thead><tr><th scope="col">Bin (minutes)</th><th scope="col" class="num">Builds</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -194,7 +195,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* The figure reveals itself left to right on first paint, so a reader watches the series
@@ -223,7 +224,7 @@ svg[data-chart-dim="4"] [data-series]:not([data-series="4"]) { opacity: 0.3; }
   <p class="subtitle" data-chart-part="subtitle">Revenue by licence type over twenty-four months, in millions. The height of the whole stack is the total and the width of a band is its share, so the argument is the crossing rather than either band on its own.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
-      <title id="fig-title">Revenue by licence type over twenty-four months</title>
+      <desc id="fig-title">Revenue by licence type over twenty-four months</desc>
       <desc id="fig-desc">Four bands stacked over a continuous time axis. Each licence type takes the swatch printed beside its name in the key, left to right, and the bands stack in the same order from the foot of the chart upward: perpetual, then subscription, then services, then training. The perpetual band narrows from 52 to 18 while the subscription band widens from 14 to 50, crossing in month fourteen. The total stays between 96 and 105 throughout. The table below the chart carries every month as text.</desc>
     </svg>
     <div data-chart-tooltip id="tip-stacked-area" class="tip-card" aria-live="polite"></div>
@@ -618,6 +619,7 @@ const headRow = document.getElementById('head-row');
 SERIES.map(function (series) { return series.label; }).concat(['Total']).forEach(function (name) {
   const th = document.createElement('th');
   th.setAttribute('scope', 'col');
+  th.className = 'num';
   th.textContent = name;
   headRow.appendChild(th);
 });

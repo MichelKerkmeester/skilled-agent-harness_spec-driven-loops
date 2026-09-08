@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -165,8 +166,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The median rule is drawn across its strip, so it lets the pointer through to the dots
    underneath rather than reading as a gap in the middle of the band. */
@@ -189,10 +192,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Time to first response in minutes, one dot per ticket, forty-eight tickets per cohort. The vertical mark is the median. Every record is present, which is what makes this honest where a summary would not be.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 268" id="chart">
-      <title id="fig-title">Time to first response by cohort</title>
+      <desc id="fig-title">Time to first response by cohort</desc>
       <desc id="fig-desc">Three horizontal strips of dots, one dot per ticket, jittered vertically so overlapping records stay countable. The first cohort runs from 28 to 53 minutes and the third runs from 8 to 76, around a median that sits between the other two. The table below the chart carries the five-number summary for each cohort and then every reading behind it, so a pointer is never the only way to a value.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-distribution-strip" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-distribution-strip" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Q3 spans 68 minutes from low to high, nearly triple Q1's range of 25.</p>
@@ -203,7 +206,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Time to first response in minutes. The strip above carries every record, and this table carries the summary of each cohort followed by every reading in it.</caption>
-      <thead><tr><th scope="col">Cohort</th><th scope="col">Records</th><th scope="col">Lowest</th><th scope="col">Median</th><th scope="col">Highest</th><th scope="col">Every record, sorted</th></tr></thead>
+      <thead><tr><th scope="col">Cohort</th><th scope="col" class="num">Records</th><th scope="col" class="num">Lowest</th><th scope="col" class="num">Median</th><th scope="col" class="num">Highest</th><th scope="col" class="num">Every record, sorted</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

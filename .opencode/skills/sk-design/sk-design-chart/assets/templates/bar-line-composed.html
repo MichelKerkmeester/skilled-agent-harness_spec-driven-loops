@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -201,7 +202,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The rate line is read at its dots, and it crosses the later columns on its way down the
    plot, so it lets the pointer through to the column underneath rather than reading as a
@@ -236,7 +237,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
   <p class="subtitle" data-chart-part="subtitle">Orders placed, and the share of sessions that ended in one, over the eight weeks to 24 August. The columns are read against the left scale and the line against the right, because the two measures are hundreds of times apart and one scale would press the rate flat onto the baseline.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart" data-chart-dim="">
-      <title id="fig-title">Orders and conversion rate over eight weeks</title>
+      <desc id="fig-title">Orders and conversion rate over eight weeks</desc>
       <desc id="fig-desc">Eight weekly columns for orders placed, read against the left scale, with a line for the conversion rate read against the right scale. Each measure takes the colour of the axis it is measured against. Orders rise every week from 1,120 to 2,010 while the conversion rate falls every week from 4.3 to 2.8 percent, so the growth came from more sessions rather than from better ones. The table below the chart carries both series as text.</desc>
     </svg>
     <div data-chart-tooltip id="tip-bar-line-composed" class="tip-card" aria-live="polite"></div>
@@ -251,7 +252,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Orders placed and conversion rate, eight weeks.</caption>
-      <thead><tr><th scope="col">Week</th><th scope="col">Orders</th><th scope="col">Conversion rate, percent</th></tr></thead>
+      <thead><tr><th scope="col">Week</th><th scope="col" class="num">Orders</th><th scope="col" class="num">Conversion rate, percent</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

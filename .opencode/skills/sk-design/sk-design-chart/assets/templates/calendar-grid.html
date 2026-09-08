@@ -124,6 +124,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -170,8 +171,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* A reader who clicks a control inside the figure should not be left looking at a ring they
    never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
@@ -191,10 +194,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Deployments per day across a full year, one cell per day, weeks running left to right. Darker is more. Nothing else in this corpus substitutes for this shape, because a weekly total hides the weekday pattern that is the finding.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 176" id="chart">
-      <title id="fig-title">Deployments per day across a full year</title>
+      <desc id="fig-title">Deployments per day across a full year</desc>
       <desc id="fig-desc">Fifty-two columns of seven days. Weekend rows are consistently pale, and a band of pale columns runs through the summer weeks. The table below the chart carries all three hundred and sixty-four days as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-calendar-grid" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-calendar-grid" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Weekends carry just 182 of the 4,637 deployments logged, under 4% of the year's total.</p>
@@ -205,7 +208,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Deployments per day, one row per week, Sunday first.</caption>
-      <thead><tr><th scope="col">Week</th><th scope="col">Sun</th><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th></tr></thead>
+      <thead><tr><th scope="col">Week</th><th scope="col" class="num">Sun</th><th scope="col" class="num">Mon</th><th scope="col" class="num">Tue</th><th scope="col" class="num">Wed</th><th scope="col" class="num">Thu</th><th scope="col" class="num">Fri</th><th scope="col" class="num">Sat</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

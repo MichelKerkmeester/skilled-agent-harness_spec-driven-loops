@@ -109,6 +109,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -158,8 +159,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The printed value sits on top of its cell, so it lets the pointer through to the cell
    underneath rather than reading as a gap in the grid. */
@@ -182,10 +185,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Calls answered per two-hour slot, averaged over the eight weeks to 22 August. Each column is labelled with the hour the slot opens. The numbers are printed because rota planning is done from the values rather than from the shape.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 290" id="chart">
-      <title id="fig-title">Calls answered by day of the week and time of day</title>
+      <desc id="fig-title">Calls answered by day of the week and time of day</desc>
       <desc id="fig-desc">A grid of seven weekdays by twelve two-hour slots, shaded darker for higher call volume, with every value printed in its cell. Weekday volume peaks in the 08 and 14 slots and the whole weekend sits below 70 calls in every slot. The table below the chart carries the same grid as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-calls-by-day-and-hour" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-calls-by-day-and-hour" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Saturday's peak slot draws 66 calls, far under Monday's 08:00 slot of 268.</p>
@@ -443,6 +446,7 @@ const headRow = document.getElementById('head-row');
 COLUMNS.forEach(function (name) {
   const th = document.createElement('th');
   th.setAttribute('scope', 'col');
+  th.className = 'num';
   th.textContent = name;
   headRow.appendChild(th);
 });

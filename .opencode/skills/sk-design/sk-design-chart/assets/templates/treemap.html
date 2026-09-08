@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -169,8 +170,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The labels sit on top of their cells, so they let the pointer through to the cell
    underneath rather than reading as a dead patch inside it. */
@@ -193,10 +196,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Last month's cloud spend, grouped by service family and broken down by line item. Area is the encoding, so a cell twice the size cost twice as much. Below about thirty leaves the tail is merged before drawing.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 336" id="chart">
-      <title id="fig-title">Cloud spend by service family and line item</title>
+      <desc id="fig-title">Cloud spend by service family and line item</desc>
       <desc id="fig-desc">Four service families drawn as columns whose width is their share of the bill, each split into line items whose height is their share of the family. Storage is the widest column. The table below the chart carries every line item as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-treemap" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-treemap" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Storage costs 272 of the 598 total, 45%, and its archive line alone tops Network's 79.</p>
@@ -207,7 +210,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Cloud spend by service family and line item, in thousands.</caption>
-      <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col">Spend</th></tr></thead>
+      <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col" class="num">Spend</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

@@ -124,6 +124,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -182,8 +183,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* Each mark grows from the anchor it is measured against over half a second, and consecutive
@@ -215,10 +218,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Service desk figures for week 42. Each measure is drawn as a bar over three qualitative ranges, crossed by a tick at its target, and every row is scaled to the top of its own ranges. The shading deepens from the low band to the high band and names none of them good or bad; the table below the chart carries every figure, including each range's upper bound.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 280" id="chart">
-      <title id="fig-title">Service desk measures against their targets, week 42</title>
+      <desc id="fig-title">Service desk measures against their targets, week 42</desc>
       <desc id="fig-desc">Four measures as horizontal bullet bars. Each row lays three qualitative ranges as deepening shades, carries the actual value as a thick bar over them, and is crossed by a tick at its target: first response stands at 3.4 hours against a target of 2, backlog age at 9 days against 5, reopened tickets at 4.1 percent against 5, and escalations at 7 per hundred tickets against 4. The table below the chart carries every figure as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-bullet" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-bullet" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Backlog age runs at 9 days against a target of 5, the widest miss of the four measures.</p>
@@ -229,7 +232,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Service desk, week 42: each measure against its target, with the upper bounds of the three qualitative ranges behind its bar. The gap is actual minus target.</caption>
-      <thead><tr><th scope="col">Measure</th><th scope="col">Actual</th><th scope="col">Target</th><th scope="col">Gap</th><th scope="col">Low band &le;</th><th scope="col">Mid band &le;</th><th scope="col">High band &le;</th></tr></thead>
+      <thead><tr><th scope="col">Measure</th><th scope="col" class="num">Actual</th><th scope="col" class="num">Target</th><th scope="col" class="num">Gap</th><th scope="col" class="num">Low band &le;</th><th scope="col" class="num">Mid band &le;</th><th scope="col" class="num">High band &le;</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

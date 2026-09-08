@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -184,7 +185,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* Each mark grows from the anchor it is measured against over half a second, and consecutive
@@ -217,7 +218,7 @@ path.past, path.current {
   <p class="subtitle" data-chart-part="subtitle">Signups by acquisition channel, last year against this year. Every channel is read as a pair, so the gap inside a pair is the finding and the height of the pair is the context it sits in.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
-      <title id="fig-title">Signups by channel, two years compared</title>
+      <desc id="fig-title">Signups by channel, two years compared</desc>
       <desc id="fig-desc">Five channels, each with a pair of columns for last year and this year. Each year takes the swatch printed beside its name in the key, and within every pair the left column is last year and the right column is this year. Paid search is the only channel where this year is lower. The table below the chart carries both years as text.</desc>
     </svg>
     <div data-chart-tooltip id="tip-grouped-bars" class="tip-card" aria-live="polite"></div>
@@ -232,7 +233,7 @@ path.past, path.current {
   <div class="table-pan">
     <table data-chart-table>
       <caption>Signups by channel, last year against this year.</caption>
-      <thead><tr><th scope="col">Channel</th><th scope="col">Last year</th><th scope="col">This year</th></tr></thead>
+      <thead><tr><th scope="col">Channel</th><th scope="col" class="num">Last year</th><th scope="col" class="num">This year</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

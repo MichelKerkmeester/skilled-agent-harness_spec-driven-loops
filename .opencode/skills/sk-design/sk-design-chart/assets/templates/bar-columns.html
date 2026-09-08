@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -170,7 +171,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="subtitle" data-chart-part="subtitle">Pallets despatched per site, last full week. Site codes are short, which is what makes columns the right orientation here.</p>
   <div class="figure" data-chart-part="figure" data-chart-inert="Each column's value is printed above it">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
-      <title id="fig-title">Pallets despatched by site</title>
+      <desc id="fig-title">Pallets despatched by site</desc>
       <desc id="fig-desc">Seven sites drawn as vertical columns against a value axis. The tallest site despatched 840 pallets and carries the emphasis colour. The table below the chart carries every value as text.</desc>
     </svg>
   </div>
@@ -183,7 +184,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="table-pan">
     <table data-chart-table>
       <caption>Pallets despatched per site, last full week.</caption>
-      <thead><tr><th scope="col">Site</th><th scope="col">Pallets</th></tr></thead>
+      <thead><tr><th scope="col">Site</th><th scope="col" class="num">Pallets</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -188,7 +189,7 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The printed values sit in the middle of the segment they name, so they let the pointer
    through to the segment underneath rather than reading as a hole in the middle of it. */
@@ -227,7 +228,7 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
   <p class="subtitle" data-chart-part="subtitle">Revenue by product line within each market, in millions, last financial year. Only the bottom segment of a stack shares a baseline, so that is the one comparison the form makes cleanly and the rest are read as shares of their own column.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
-      <title id="fig-title">Revenue by product line within each market</title>
+      <desc id="fig-title">Revenue by product line within each market</desc>
       <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Each product line takes the swatch printed beside its name in the key, left to right, and the segments stack in the same order from the foot of every column upward: platform, then services, then support. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
     </svg>
     <div data-chart-tooltip id="tip-stacked-bars" class="tip-card" aria-live="polite"></div>
@@ -543,6 +544,7 @@ SERIES.forEach(function (series) {
   const name = series.label;
   const th = document.createElement('th');
   th.setAttribute('scope', 'col');
+  th.className = 'num';
   th.textContent = name;
   headRow.appendChild(th);
 });

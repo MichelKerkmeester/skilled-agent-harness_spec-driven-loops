@@ -19,7 +19,8 @@
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade",
-    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming"
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/017-visual-review-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -151,17 +152,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-08T06:42:57.783Z",
+    "last_save_at": "2026-09-08T07:22:02.236Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e122d246a915ba9c508b126fc1c48290e61fc90a1c6a3985356be31f1ee0f286",
+    "source_fingerprint": "sha256:c0c9fe8fca1cd36c398a1bd4e17765057d317761b4fb50335f41f246bb01edea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e83801f5589f0ee27fa3951fd192301b4d64110e406621e6a5fb2bd3a1face64"
+      "spec.md": "9ffd49e9ff38b29dc52a4864910634097c7c70e29be3e379339b836a1e656e91"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T18:11:54.124Z"

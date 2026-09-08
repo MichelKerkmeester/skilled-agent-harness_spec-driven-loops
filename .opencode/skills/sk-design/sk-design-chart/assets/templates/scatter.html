@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -166,8 +167,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* A reader who clicks a control inside the figure should not be left looking at a ring they
    never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
@@ -187,10 +190,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="subtitle" data-chart-part="subtitle">Squad size against tickets closed per person per week, eighteen squads. Past a few dozen points this stops being a relationship chart and becomes a distribution, which is a different form.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 316" id="chart">
-      <title id="fig-title">Squad size against tickets closed per person</title>
+      <desc id="fig-title">Squad size against tickets closed per person</desc>
       <desc id="fig-desc">Eighteen points rising from left to right, so larger squads close more per person. One squad of fourteen closes only nine per person and sits well below the pattern. The table below the chart carries both values for every squad.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-scatter" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-scatter" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Pinnacle closes just 9 tickets per person despite having 14 members, far below Orchard's 27.</p>
@@ -201,7 +204,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="table-pan">
     <table data-chart-table>
       <caption>Squad size against tickets closed per person per week.</caption>
-      <thead><tr><th scope="col">Squad</th><th scope="col">People</th><th scope="col">Closed per person</th></tr></thead>
+      <thead><tr><th scope="col">Squad</th><th scope="col" class="num">People</th><th scope="col" class="num">Closed per person</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

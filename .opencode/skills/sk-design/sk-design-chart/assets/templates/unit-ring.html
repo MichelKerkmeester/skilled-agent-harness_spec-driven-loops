@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
@@ -151,7 +152,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">One tick is one incident, reading clockwise from the top. The silhouette is the familiar ring and the marks inside it are countable, which is what fixes the angle-estimation problem a pie has.</p>
   <div class="figure" data-chart-part="figure" data-chart-inert="Each group's count is printed in the key beside its swatch, and the total is printed at the ring's centre">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
-      <title id="fig-title">Incidents by root cause, one tick per incident</title>
+      <desc id="fig-title">Incidents by root cause, one tick per incident</desc>
       <desc id="fig-desc">Forty-five ticks arranged in a ring, grouped by cause. Configuration change and dependency timeout together account for thirty-four of the forty-five. The table below the chart carries every count as text.</desc>
     </svg>
   </div>
@@ -164,7 +165,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Incidents by root cause, last month.</caption>
-      <thead><tr><th scope="col">Root cause</th><th scope="col">Incidents</th></tr></thead>
+      <thead><tr><th scope="col">Root cause</th><th scope="col" class="num">Incidents</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>

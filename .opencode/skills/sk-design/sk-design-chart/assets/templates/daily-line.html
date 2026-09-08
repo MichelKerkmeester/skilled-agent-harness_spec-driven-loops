@@ -121,6 +121,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -131,8 +132,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 :root { --chart-area-fill: url(#area-fade); }
 
 .area { fill: var(--chart-area-fill); }
-.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.8; }
-.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0.1; }
+/* A neutral series sits close to the ink, so the fade that suits a hue would read as a wall
+   under the line. It runs lighter here and the 2px line stays the mark. */
+.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.35; }
+.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0.04; }
 .line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
 /* Dashed and drawn below full strength, because the rule token is also the card border and
    a grid at the same weight competes with the frame around it. The grid is the thing a
@@ -193,8 +196,10 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* The figure reveals itself left to right on first paint, so a reader watches the series
@@ -223,7 +228,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
   <p class="subtitle" data-chart-part="subtitle">Orders placed per day across four weeks to the twenty-eighth. The lowest day carries a marker because it is what the headline is about.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart" data-chart-dim="">
-      <title id="fig-title">Orders per day over twenty-eight days</title>
+      <desc id="fig-title">Orders per day over twenty-eight days</desc>
       <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
       <defs>
         <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
@@ -232,7 +237,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
         </linearGradient>
       </defs>
     </svg>
-    <div data-chart-tooltip id="tip-daily-line" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-daily-line" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">The 212 high on day 4 is never matched again after day 11 drops to a low of 96.</p>
@@ -243,7 +248,7 @@ svg[data-chart-dim="2"] [data-series]:not([data-series="2"]) { opacity: 0.3; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Orders placed per day, twenty-eight days.</caption>
-      <thead><tr><th scope="col">Day</th><th scope="col">Orders</th></tr></thead>
+      <thead><tr><th scope="col">Day</th><th scope="col" class="num">Orders</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
@@ -466,13 +471,12 @@ const fade = document.getElementById('area-fade');
 fade.setAttribute('y1', TOP);
 fade.setAttribute('y2', BASE);
 
-// The value axis keeps the baseline and every other interior rung, and no rung above the
-// highest reading, where no mark is left for a line to serve. The readings themselves are
-// carried by the line, the card and the table, so the surviving ladder anchors the scale
-// rather than carrying every figure.
+// The value axis keeps the baseline and every rung up to the highest reading, and no rung
+// above it, where no mark is left for a line to serve. Four rungs let a reader place a day
+// without the card; the exact figures stay with the line, the card and the table.
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
-  if (t % 2 === 1 || value > peak) continue;
+  if (value > peak) continue;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
@@ -568,8 +572,9 @@ if (readings.length) {
   const datum = { day: 'Day ' + lowest.day };
   markable(marker, datum, [['Orders', fmt(lowest.value)]]);
   const note = document.createElementNS(SVG, 'text');
-  note.setAttribute('x', x(lowIndex) + 10);
-  note.setAttribute('y', y(lowest.value) + 4);
+  note.setAttribute('x', x(lowIndex));
+  note.setAttribute('y', y(lowest.value) + 22);
+  note.setAttribute('text-anchor', 'middle');
   note.setAttribute('class', 'note');
   note.textContent = fmt(lowest.value);
   entry.appendChild(note);

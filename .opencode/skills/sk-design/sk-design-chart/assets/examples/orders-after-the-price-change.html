@@ -106,6 +106,7 @@ table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
 th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -166,8 +167,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 [data-chart-tooltip][data-open] { opacity: 1; }
 .tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
 .tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
 .tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
-.tip-label { color: var(--chart-muted); font-size: 12px; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* A reader whose system asks for less motion gets the card with no fade. The motion is
@@ -183,7 +186,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p class="subtitle" data-chart-part="subtitle">Orders placed per day. Day 1 is 28 April and day 28 is 25 May. The new price took effect on day 11, which is the marked low.</p>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
-      <title id="fig-title">Orders per day across the price change</title>
+      <desc id="fig-title">Orders per day across the price change</desc>
       <defs>
         <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
           <stop offset="0" class="fade-top"></stop>
@@ -192,7 +195,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
       </defs>
       <desc id="fig-desc">A daily line over twenty-eight days with an area fill beneath it that fades toward the baseline. Orders average 184 a day for the ten days before the price change, drop to 94 on the day itself, and average 141 a day for the seventeen days after. The table below the chart carries every reading as text.</desc>
     </svg>
-    <div data-chart-tooltip id="tip-orders-after-the-price-change" class="tip-card" aria-live="polite"></div>
+    <div data-chart-tooltip data-single-series="" id="tip-orders-after-the-price-change" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
     <p class="finding">Orders fell from 184 to a low of 94 the day the new price took effect.</p>
@@ -203,7 +206,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="table-pan">
     <table data-chart-table>
       <caption>Orders placed per day, 28 April to 25 May.</caption>
-      <thead><tr><th scope="col">Day</th><th scope="col">Orders placed</th></tr></thead>
+      <thead><tr><th scope="col">Day</th><th scope="col" class="num">Orders placed</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
