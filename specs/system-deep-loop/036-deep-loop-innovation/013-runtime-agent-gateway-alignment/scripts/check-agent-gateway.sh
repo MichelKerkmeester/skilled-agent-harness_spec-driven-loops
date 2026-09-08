@@ -10,6 +10,7 @@
 # template MUST resolve and be scanned. A missing target or a short check count
 # is a failure — the guard never exits 0 just because it skipped what it could not find.
 
+set -uo pipefail
 set -u
 cd "$(git -C "$(dirname "$0")" rev-parse --show-toplevel)" || exit 1
 

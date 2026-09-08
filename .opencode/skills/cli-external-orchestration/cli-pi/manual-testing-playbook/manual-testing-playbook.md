@@ -8,7 +8,7 @@ version: 1.0.0.1
 
 > **EXECUTION POLICY**: Every executable scenario MUST be executed for real - not mocked, not stubbed, and not classified as an unsupported automation case. AI agents executing these scenarios must run the actual Pi commands, including `pi --offline --approve -p "..."` for dispatches and `pi install npm:<pkg> -l --approve` only when an install scenario explicitly covers an already-approved package, inspect real output, capture stderr and exit codes, and verify behavior from output content. The only acceptable classifications are PASS, FAIL, or SKIP with a specific blocker. This playbook uses strict three-state verdict discipline throughout, including review and release readiness.
 
-> **SELF-INVOCATION GUARD**: This playbook validates the `cli-pi` skill from a non-Pi runtime. Before composing a dispatch, read `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` §2, **Self-Invocation Guard**. The guard checks whether the parent process command contains `/pi` or ends with ` pi`, and whether the current project contains `.pi`; the project-directory result is a non-conclusive heuristic. The guard does not treat a missing environment variable as proof of safety. If it detects a signal, refuse the dispatch and record that signal.
+> **RECURSION BOUNDS**: This playbook may be run from a Pi runtime or a non-Pi one. Being inside Pi is no longer a reason to refuse a `cli-pi` dispatch, because Pi has no in-process delegation left. What the shared runtime still refuses, and what a scenario must record if it fires, is a dispatch from inside a fan-out lineage and a dispatch whose kind already appears in the dispatch stack.
 
 This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 36 canonical scenario files.
 
@@ -67,10 +67,10 @@ Coverage note (2026-08-10): the package covers Pi version/help, settings, extens
 2. Pi is installed and available: `command -v pi` returns a path and `pi --version` returns a non-empty current runtime version.
 3. The operator has a safe Pi config directory. Do not write the real `~/.pi/agent/` directory; use the documented `PI_CODING_AGENT_DIR` override pointing at an isolated temporary directory when a live command needs config state.
 4. Successful provider-backed turns require provider credentials. If the output says `No API key found for the selected model`, any sub-check requiring a model turn is SKIP with that exact blocker; startup, static, and local package checks may still pass.
-5. The active runtime is not Pi itself. Run the self-invocation guard from a shell or another AI runtime and record any ancestry or `.pi` heuristic signal.
+5. The run is not inside a fan-out lineage and `cli-pi` is not already in the dispatch stack; the shared runtime refuses both. The active runtime may itself be Pi.
 6. The `cli-pi` skill references and assets exist under `.opencode/skills/cli-external-orchestration/cli-pi/{references,assets}/`.
 7. The current project-local fixtures exist before execution: `.pi/settings.json`, `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/`, and `.pi/mcp.json`.
-8. Do not install a new package during routine playbook execution. Package scenarios validate the current project settings and `pi-subagents`; optional MCP-host checks SKIP when `pi-mcp-extension` is not installed or approved.
+8. Do not install a new package during routine playbook execution. Package scenarios validate the current project settings as observed; optional MCP-host checks SKIP when `pi-mcp-extension` is not installed or approved.
 9. Do not write into the operator's real global Pi config or agent directory. Project/global precedence scenarios are documentation-grounded and SKIP any live collision test that would cross that boundary.
 
 ---
@@ -167,7 +167,7 @@ This section records safe execution waves for the manual-testing package. It doe
 ### Recommended Wave Layout
 
 - Wave 1, parallel-safe static and filesystem checks: `PI-001`, `PI-003`, `PI-004`, `PI-005`, `PI-006`, `PI-008`, `PI-010`, `PI-013`, `PI-017`, `PI-018`, `PI-019`
-- Wave 2, isolated Pi startup and extension/package loading: `PI-007`, `PI-009`, `PI-014`, `PI-015`, `PI-021`
+- Wave 2, isolated Pi startup and extension/package loading: `PI-007`, `PI-014`, `PI-015`, `PI-021`
 - Wave 3, cite-only MCP evidence: `PI-011`, `PI-012`
 - Wave 4, guarded negative and precedence checks: `PI-002`, `PI-016`
 - Wave 5, authenticated live traces (requires a provider credential and a probe fixture): `PI-020`
@@ -212,11 +212,12 @@ This category validates the flat `.pi/prompts/` mirror and the documented `$ARGU
 
 ---
 
-## 10. AGENT BRIDGE (`PI-009..PI-010`)
+## 10. AGENT BRIDGE (`PI-010`)
 
-This category covers the installed community subagent bridge, project agent mirrors, schema synchronization, and the documented project-over-global collision rule.
+This category covers project agent mirrors and the documented project-over-global collision rule. The
+community subagent bridge that consumed those mirrors is gone, so nothing here validates a
+delegation package any more.
 
-- `PI-009`: [Pi-subagents agent parsing and tool surface](agent-bridge/pi-subagents-agent-parse.md)
 - `PI-010`: [Project agent override](agent-bridge/project-agent-override.md)
 
 ---
@@ -288,10 +289,10 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` | Routing, self-invocation guard, provider preflight, headless modes, and hard rules | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
+| `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` | Routing, provider preflight, headless modes, and hard rules | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
 | `.opencode/skills/cli-external-orchestration/cli-pi/references/cli-reference.md` | Confirmed flags, config-dir override, JSON/RPC distinctions, and output-first failure handling | `PI-001`, `PI-002`, `PI-017` |
 | `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
-| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
+| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core, session-lifecycle bridge behavior, and paired advisory delivery | `PI-014`, `PI-015`, `PI-016`, `PI-020`, `PI-022` |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
 | `.pi/models.json`, `.pi/settings.json`, and `.pi/custom-providers.md` | Config-wired cline-pass provider block, three-segment references, and the slashed model-id contract | `PI-023` |
@@ -325,7 +326,6 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 
 ### AGENT BRIDGE
 
-- PI-009: [Pi-subagents agent parsing and tool surface](agent-bridge/pi-subagents-agent-parse.md)
 - PI-010: [Project agent override](agent-bridge/project-agent-override.md)
 
 ### MCP HOST INTEGRATION
@@ -365,7 +365,7 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 This category runs the shared hermetic stress-matrix cells for the `cli-pi` adapter: authentication,
 model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
 transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
-integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
+integrity, and same-kind recursion. Every cell runs as a fully automated Vitest check with no live
 external Pi process; there is no operator-facing prompt beyond the run-this-test instruction.
 
 - `cli-pi-EC-001`: [Authentication failure](stress/auth-failure.md)

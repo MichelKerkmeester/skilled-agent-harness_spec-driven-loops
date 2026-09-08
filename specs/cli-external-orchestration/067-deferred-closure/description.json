@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-external-orchestration/067-deferred-closure",
+  "description": "Packet 066 shipped its carve-out and recorded six adjacent findings it was not scoped to fix",
+  "keywords": [
+    "packet",
+    "shipped",
+    "carve-out",
+    "recorded",
+    "six",
+    "adjacent",
+    "findings",
+    "scoped"
+  ],
+  "lastUpdated": "2026-09-08T14:46:22.283Z",
+  "specId": "067",
+  "folderSlug": "deferred-closure",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

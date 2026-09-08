@@ -31,6 +31,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Set
@@ -151,10 +152,38 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def tracked_paths(root: str) -> Set[str] | None:
+    """Realpaths of the files git tracks under `root`, or None when that is unknowable.
+
+    Ignored and untracked trees are not repository content: build caches, sibling
+    worktrees, vendored clones and throwaway output all live in the working tree
+    without being part of it. Holding them to this repository's house style reports
+    thousands of findings nobody can act on and drowns the ones that matter.
+
+    Returning None keeps the verifier usable outside a checkout, where the working
+    tree is all there is.
+    """
+    try:
+        completed = subprocess.run(
+            ["git", "-C", root, "ls-files", "-z"],
+            capture_output=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+    paths: Set[str] = set()
+    for entry in completed.stdout.decode("utf-8", "replace").split("\0"):
+        if entry:
+            paths.add(os.path.realpath(os.path.join(root, entry)))
+    return paths
+
+
 def iter_code_files(roots: Iterable[str]) -> Iterable[str]:
     seen_paths: Set[str] = set()
     for root in roots:
         abs_root = os.path.realpath(root)
+        tracked = tracked_paths(abs_root)
         for current_root, dirs, files in os.walk(abs_root):
             dirs[:] = [entry for entry in dirs if entry not in EXCLUDED_DIRS]
             for filename in files:
@@ -167,6 +196,8 @@ def iter_code_files(roots: Iterable[str]) -> Iterable[str]:
                         continue
                     if any(part in EXCLUDED_DIRS for part in candidate.split(os.sep)):
                         # Resolved generated and external targets stay outside this scan.
+                        continue
+                    if tracked is not None and candidate not in tracked:
                         continue
                     if candidate in seen_paths:
                         continue
@@ -461,6 +492,25 @@ def check_rust(path: str, lines: List[str], content: str) -> List[Finding]:
     return findings
 
 
+def is_jsonl(content: str) -> bool:
+    """Return True when every non-blank line parses as its own JSON value.
+
+    Line-delimited JSON is a real format, widely used for captured event streams,
+    and it never parses as a single document. Reporting it as malformed states
+    something untrue about the file, so it is recognised rather than flagged.
+    """
+    lines = [line for line in content.splitlines() if line.strip()]
+    if len(lines) < 2:
+        # A single line that failed the whole-document parse is just broken JSON.
+        return False
+    for line in lines:
+        try:
+            json.loads(line)
+        except json.JSONDecodeError:
+            return False
+    return True
+
+
 def check_json(path: str, content: str) -> List[Finding]:
     findings: List[Finding] = []
     if is_known_malformed_json_fixture(path):
@@ -469,6 +519,8 @@ def check_json(path: str, content: str) -> List[Finding]:
     try:
         json.loads(content)
     except json.JSONDecodeError as error:
+        if is_jsonl(content):
+            return findings
         fallback_error = error
         if TSCONFIG_JSON_RE.match(os.path.basename(path).lower()):
             cleaned = strip_jsonc_comments(content)
@@ -615,12 +667,15 @@ def check_router_paths(roots: Iterable[str]) -> List[Finding]:
     seen: Set[str] = set()
     for root in roots:
         abs_root = os.path.realpath(root)
+        tracked = tracked_paths(abs_root)
         for current_root, dirs, files in os.walk(abs_root):
             dirs[:] = [entry for entry in dirs if entry not in EXCLUDED_DIRS]
             if "SKILL.md" not in files:
                 continue
             skill_md = os.path.join(current_root, "SKILL.md")
             real = os.path.realpath(skill_md)
+            if tracked is not None and real not in tracked:
+                continue
             if real in seen:
                 continue
             seen.add(real)

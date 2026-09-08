@@ -444,11 +444,26 @@ function contained(target, root) {
 // lexical check cannot see a symlink: `specs/anywhere -> /etc` resolves inside
 // the tree and writes outside it. Real paths only ever narrow what is accepted;
 // a target that fails the lexical check is refused without consulting the disk.
+// `.opencode/specs` is a symlink to the packet tree and is the path the operating
+// rules name, so a target written that way was refused by the lexical test before the
+// real path could vouch for it. Both spellings are accepted lexically; neither is
+// trusted on that basis alone, because the real-path containment below still has to
+// agree, and that is what keeps `specs/anywhere -> /etc` out.
+const SPEC_ROOT_ALIASES = ['specs', path.join('.opencode', 'specs')];
+
 function insideSpecs(target) {
-  const specsRoot = path.resolve(REPO, 'specs');
-  if (!contained(path.resolve(REPO, target), specsRoot)) return false;
+  const absoluteTarget = path.resolve(REPO, target);
+  const roots = SPEC_ROOT_ALIASES.map((alias) => path.resolve(REPO, alias));
+  if (!roots.some((root) => contained(absoluteTarget, root))) return false;
   try {
-    return contained(fs.realpathSync(path.resolve(REPO, target)), fs.realpathSync(specsRoot));
+    const realTarget = fs.realpathSync(absoluteTarget);
+    return roots.some((root) => {
+      try {
+        return contained(realTarget, fs.realpathSync(root));
+      } catch {
+        return false;
+      }
+    });
   } catch {
     // Nothing on disk to resolve; the existence check reports it by name.
     return true;

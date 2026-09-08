@@ -134,7 +134,7 @@ RESOURCE_MAP = {
 - Each mode's first-slice leaves are its own CLI command reference plus its
   integration-pattern guide; the deeper per-mode references (its
   `providers-and-models.md` provider/model catalog, tool catalogs, permission
-  matrices, self-invocation guards) load on demand inside the packet, not on the
+  matrices, recursion guards) load on demand inside the packet, not on the
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target executor
   (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or

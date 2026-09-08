@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Rename '## 2. CURRENT REALITY' to '## 2. HOW IT WORKS' in all feature catalog snippet files.
 Idempotent. Supports --dry-run.

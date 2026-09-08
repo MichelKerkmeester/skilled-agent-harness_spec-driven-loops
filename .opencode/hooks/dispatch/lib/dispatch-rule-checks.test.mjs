@@ -1,6 +1,7 @@
 // Dependency-free tests for the dispatch hard-rule engine. Run: node --test <this file>
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseHardRules, readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
@@ -16,15 +17,62 @@ test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
     'stdin-redirect-required', 'explicit-model-required', 'no-bare-agent-general',
     'command-flag-for-slash-prompt', 'share-requires-confirmation',
   ]);
-  assert.equal(readHardRules(CC).length, 1);
+  // Assert the ids, not a bare count: this line read `length, 1` while the packet had
+  // carried two rules since its permission-mode rule was added, so the count drifted
+  // silently and the assertion was failing rather than guarding anything.
+  assert.deepEqual(readHardRules(CC).map((r) => r.id), [
+    'stdin-redirect-required', 'non-interactive-permission-mode-risk',
+  ]);
   assert.ok(co.every((r) => r.message && r.severity)); // full shape survives parsing
 });
 
+// This guard used to name CO and CC explicitly. Those were the only two packets whose
+// checks were all implemented, so the four that declared unimplemented ones were never
+// looked at: eleven rules, several at severity `error`, silently doing nothing for as
+// long as they had existed. Enumerate the directory instead of listing packets by hand.
 test('CI GUARD: every declared check id maps to a known check (a typo fails loudly)', () => {
-  for (const md of [CO, CC]) {
+  const packets = fs.readdirSync(CLI_ORCHESTRATION, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-'))
+    .map((entry) => path.join(CLI_ORCHESTRATION, entry.name, 'SKILL.md'))
+    .filter((md) => fs.existsSync(md));
+
+  assert.ok(packets.length >= 6, `expected every cli-* packet to be scanned, saw ${packets.length}`);
+  for (const md of packets) {
     for (const rule of readHardRules(md)) {
       assert.ok(KNOWN_CHECKS.includes(rule.check), `unknown check "${rule.check}" in ${md}`);
     }
+  }
+});
+
+test('stdin-redirect-required covers every headless CLI shape, not just opencode run', () => {
+  const shapes = [
+    'opencode run "task"',
+    'pi -p "task"',
+    'claude -p "task"',
+    'codex exec "task"',
+    'devin -p "task"',
+    'cursor-agent -p "task"',
+  ];
+  for (const cmd of shapes) {
+    assert.equal(CHECKS['stdin-redirect-required'](cmd), false, `unredirected: ${cmd}`);
+    assert.equal(CHECKS['stdin-redirect-required'](`${cmd} </dev/null`), true, `redirected: ${cmd}`);
+  }
+  assert.equal(CHECKS['stdin-redirect-required']('npm test'), true); // not a dispatch → n/a
+});
+
+test('availability checks pass for a resolvable binary and never refuse without PATH', () => {
+  // `sh` is on PATH anywhere this suite can run, so it stands in for a present binary.
+  const present = CHECKS['command-v-pi-required'];
+  assert.equal(present('npm test'), true); // command does not invoke pi → n/a
+
+  const savedPath = process.env.PATH;
+  try {
+    delete process.env.PATH;
+    assert.equal(present('pi -p "task"'), true); // no PATH to resolve against → cannot refuse
+    process.env.PATH = '/nonexistent-dir-for-this-test';
+    assert.equal(present('pi -p "task"'), false); // conclusively absent → refuse
+  } finally {
+    process.env.PATH = savedPath;
   }
 });
 

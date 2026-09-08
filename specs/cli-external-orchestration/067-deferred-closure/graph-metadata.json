@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/067-deferred-closure",
+  "spec_folder": "cli-external-orchestration/067-deferred-closure",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deferred closure",
+      "alignment drift gate green",
+      "jsonl false positive",
+      "hard rule check registration",
+      "playbook verdict triage headings",
+      "deferred closure plan",
+      "drift verifier tracked only",
+      "hard rule guard generalisation",
+      "deferred closure tasks",
+      "drift verifier tasks",
+      "playbook heading rename",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "deferred",
+      "closure",
+      "alignment",
+      "drift",
+      "gate",
+      "green",
+      "jsonl",
+      "false",
+      "positive",
+      "hard",
+      "rule",
+      "check"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      "hooks/README.md",
+      ".pi/SYNC.md",
+      ".opencode/logs/cli-dispatch-audit.log"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.log",
+        "kind": "file",
+        "path": ".opencode/logs/cli-dispatch-audit.log",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Triage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 066 shipped its carve-out and recorded six adjacent findings it was not scoped to fix",
+    "created_at": "2026-09-08T14:46:31.603Z",
+    "last_save_at": "2026-09-08T14:46:31.603Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d165b996cebcb640e3969a1c599f2ba02101feb60f6a4afbf57104f1c7993be1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ef152cc7d803045e724dd4ca0025e93b5c02a27f381a74840414836ebd91c2b",
+      "plan.md": "3135286930be31c6453ec83419ae01b66b7d8b995233d4abcfa826151388cdb6",
+      "tasks.md": "bb71a2330f7b18732bcc966fea9f546f5035bc195ec996a04548bd678fdf97ba",
+      "implementation-summary.md": "4b572c797297f0597e8ef5c98867e7ce06251dfaf28b8278d1f07b0330e89502"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

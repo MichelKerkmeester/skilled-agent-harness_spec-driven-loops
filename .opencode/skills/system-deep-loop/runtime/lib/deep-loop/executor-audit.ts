@@ -100,6 +100,13 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-pi': '.pi',
 };
 
+// Two of the five recursion layers ask "is the caller sitting inside this CLI right now" —
+// ancestry and lockfile. Pi has no in-process delegation of its own, so for pi that question
+// has no useful answer left: refusing on it leaves a Pi session with no way to hand work out
+// at all. The layers that bound a runaway spawn chain, lineage and stack, are deliberately
+// NOT listed here and still apply to every kind, this one included.
+const SELF_PRESENCE_EXEMPT_KINDS: ReadonlySet<ExecutorKind> = new Set<ExecutorKind>(['cli-pi']);
+
 const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
   'PATH',
   'HOME',
@@ -855,7 +862,9 @@ export function validateExecutorDispatchAllowed(
     };
   }
 
-  if (detectFromAncestry(kind, context.ancestryCmdlines)) {
+  const selfPresenceExempt = SELF_PRESENCE_EXEMPT_KINDS.has(kind);
+
+  if (!selfPresenceExempt && detectFromAncestry(kind, context.ancestryCmdlines)) {
     return {
       allowed: false,
       layer: 'ancestry',
@@ -875,7 +884,7 @@ export function validateExecutorDispatchAllowed(
   }
 
   const statePaths = context.statePaths ?? getDefaultStatePaths(kind, env);
-  if (detectFromLockfile(kind, statePaths)) {
+  if (!selfPresenceExempt && detectFromLockfile(kind, statePaths)) {
     return {
       allowed: false,
       layer: 'lockfile',

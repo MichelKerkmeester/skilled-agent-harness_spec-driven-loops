@@ -4,6 +4,7 @@
 # file writes on the parent side removes the RM-8 destructive-write class:
 # workers never get write authority and never see --dangerously-skip-permissions.
 
+set -uo pipefail
 log(){ printf '%s %s\n' "$(date +%H:%M:%S)" "$*" | tee -a "$LOG" >&2; }
 
 # dispatch_opencode <model> <prompt-file> <raw-out>  -> model's stdout in raw-out

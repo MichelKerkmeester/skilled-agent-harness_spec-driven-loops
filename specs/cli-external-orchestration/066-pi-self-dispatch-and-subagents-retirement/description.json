@@ -1,0 +1,21 @@
+{
+  "specFolder": "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement",
+  "description": "Two facts changed under the `cli-pi` packet and neither is reflected in it",
+  "keywords": [
+    "two",
+    "facts",
+    "changed",
+    "cli-pi",
+    "packet",
+    "reflected"
+  ],
+  "lastUpdated": "2026-09-08T12:08:03.282Z",
+  "specId": "066",
+  "folderSlug": "pi-self-dispatch-and-subagents-retirement",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

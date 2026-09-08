@@ -12,14 +12,6 @@ hard_rules:
     check: command-v-cursor-agent-required
     message: "Run `command -v cursor-agent` before every dispatch; if it fails, refuse the route without constructing or launching a command."
     severity: error
-  - id: self-invocation-prohibited
-    check: cursor-self-invocation-guard
-    message: "Refuse dispatch when Cursor runtime signals are present; a running CLI skill never dispatches itself."
-    severity: error
-  - id: deep-loop-runtime-required
-    check: deep-loop-runtime-delegation
-    message: "Delegate execution to the shipped deep-loop runtime; this skill must not implement a second Cursor adapter."
-    severity: error
 ---
 
 <!-- Keywords: cursor, cursor-agent, cursor-cli, composer, cross-ai, agent-delegation, worktree, cloud-worker, plugin-marketplace, shared-editor-config, plan-mode, ask-mode -->

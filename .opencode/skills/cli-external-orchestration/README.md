@@ -31,7 +31,7 @@ version: 1.4.2.0
 | **Use it for** | Cross-AI CLI dispatch: coding, review, research, delegation and second opinions through six external CLI runtimes |
 | **Invoke with** | Gate 2 keyword routing such as "cli dispatch" or "delegate to codex". No mode has a bound slash command (`command: null`) |
 | **Routes to** | `cli-opencode/`, `cli-claude-code/`, `cli-codex/`, `cli-cursor/`, `cli-devin/` or `cli-pi/` via `mode-registry.json` (all mutating packets, `mutatesWorkspace: true`) |
-| **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin or Pi session whose writes land in this repo's workspace. Each mode's self-invocation guard blocks a runtime from dispatching itself |
+| **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin or Pi session whose writes land in this repo's workspace. Most modes' guards block a runtime from dispatching itself; `cli-pi` is the deliberate exception |
 
 ---
 
@@ -88,7 +88,7 @@ Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-r
 Four behaviors keep dispatch honest:
 
 - `cli-codex` fails closed when the binary is absent. `cli-devin` and `cli-pi` gate routing on `command -v`.
-- The self-invocation guard blocks a runtime from dispatching itself.
+- A runtime is blocked from dispatching itself, except `cli-pi`, which a Pi session may dispatch because Pi has no in-process delegation left. Every mode is still refused from inside a fan-out lineage or a repeated dispatch stack.
 - One `graph-metadata.json` carries the single advisor identity for all six modes, unioning their intent signals, trigger phrases, domains and outward edges.
 - Each mode keeps its own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/`. Its `references/providers-and-models.md` is the single source for that mode's providers, model ids, effort tiers and dispatch shapes.
 

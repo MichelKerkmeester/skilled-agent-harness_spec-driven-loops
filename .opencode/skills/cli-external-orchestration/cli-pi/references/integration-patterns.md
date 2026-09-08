@@ -82,7 +82,6 @@ Use print mode for a bounded request that needs one final response or a workspac
 ~~~text
 PRECHECK
   command -v pi
-  self-invocation guard
   provider/auth output policy
 
 DISPATCH
@@ -182,7 +181,7 @@ When a task needs native resources:
 
 ## 10. COMMUNITY PACKAGE HANDOFF
 
-pi-subagents and pi-mcp-extension are community packages, not first-party Pi CLI modes. See [mcp-and-third-party-packages.md](./mcp-and-third-party-packages.md). A package request must include:
+pi-mcp-extension is a community package, not a first-party Pi CLI mode. See [mcp-and-third-party-packages.md](./mcp-and-third-party-packages.md). A package request must include:
 
 - Package name and source.
 - Requested install scope.
@@ -200,14 +199,13 @@ Do not silently turn an optional package into a required dependency of the hub.
 Use this order for a write-capable dispatch:
 
 1. Confirm binary availability.
-2. Confirm self-invocation guard.
-3. Confirm mode and tool boundary.
-4. Dispatch through the shared runtime.
-5. Inspect output text and exit status.
-6. Inspect changed files.
-7. Run syntax and focused tests.
-8. Run the stack gate.
-9. Produce a concise handback.
+2. Confirm mode and tool boundary.
+3. Dispatch through the shared runtime.
+4. Inspect output text and exit status.
+5. Inspect changed files.
+6. Run syntax and focused tests.
+7. Run the stack gate.
+8. Produce a concise handback.
 
 The calling AI owns the final acceptance decision. Pi output is evidence, not authority.
 
@@ -260,7 +258,7 @@ The handback must not claim a successful model run when the output only shows a 
 | Persistent bidirectional session | `--mode rpc`, confirmed | No | No (session resume/fork only) |
 | First-party extension system | `.pi/extensions/*.ts`, confirmed | No (external `hooks.json`) | No (external `hooks.v1.json`) |
 | Read-only exploration mode | `--tools read,grep,find,ls` | `--mode ask`/`--mode plan` | `--permission-mode auto` |
-| Subagent delegation | `pi-subagents` package, confirmed | Not native | `run_subagent`, native |
+| Subagent delegation | None; Pi dropped the feature and the community package with it | Not native | `run_subagent`, native |
 
 ### Cross-Validation Strategies
 

@@ -7,6 +7,7 @@
         "assets/color/palette-sheet-ordered.html",
         "assets/color/palettes.json",
         "assets/examples/calls-by-day-and-hour.html",
+        "assets/examples/grouped-bars-stripe-style.html",
         "assets/examples/orders-after-the-price-change.html",
         "assets/examples/pick-times-by-depot.html",
         "assets/examples/staff-hours-by-service.html",
@@ -42,6 +43,7 @@
         "references/README.md",
         "references/catalog.md",
         "references/color-system.md",
+        "references/design-md-theming.md",
         "references/template-contract.md"
       ],
       "packet": "sk-design-chart",

@@ -7,6 +7,7 @@
 // down, so this parses just enough YAML for the flat hard_rules list rather than pulling a lib.
 
 import fs from 'node:fs';
+import path from 'node:path';
 
 // ── Frontmatter parsing ──────────────────────────────────────────────────────
 
@@ -70,13 +71,57 @@ export function readHardRules(skillMdPath) {
 
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
 
+// Every headless CLI here inherits the parent terminal's stdin and can hang
+// indefinitely with no output, which reads as a slow model rather than a deadlock.
+// Five packets declared the stdin rule while the check only recognised `opencode run`,
+// so their rule never fired; these are the print-mode shapes each one documents.
+const HEADLESS_DISPATCH_SHAPES = [
+  /\bopencode\s+run\b/,
+  /\bpi\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
+  /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
+  /\bcodex\s+exec\b/,
+  /\bdevin\s+(?:[^|;&]*\s)?-p\b/,
+  /\bcursor-agent\s+(?:[^|;&]*\s)?-p\b/,
+];
+
+/**
+ * Build a check that refuses a dispatch whose binary is absent from PATH.
+ *
+ * Fail-open by construction: it refuses only when PATH is readable AND the binary is
+ * conclusively not on it. A missing PATH, an unreadable directory or any thrown error
+ * resolves to a pass, because the cost of a false refusal is a blocked dispatch while
+ * the cost of a false pass is the exec failure the caller would have seen anyway.
+ *
+ * @param {string} binary
+ * @param {RegExp} shape - matches commands that actually invoke the binary
+ * @returns {(cmd: string) => boolean}
+ */
+function binaryOnPathCheck(binary, shape) {
+  return (cmd) => {
+    if (!shape.test(cmd)) return true; // command does not invoke it → n/a
+    const rawPath = process.env.PATH;
+    if (!rawPath) return true; // nothing to resolve against → cannot refuse
+    for (const dir of rawPath.split(path.delimiter)) {
+      if (!dir) continue;
+      try {
+        fs.accessSync(path.join(dir, binary), fs.constants.X_OK);
+        return true;
+      } catch {
+        // Not here, or not executable here. Keep looking.
+      }
+    }
+    return false;
+  };
+}
+
 export const CHECKS = {
-  // opencode run must close/redirect stdin or it can inherit an open stdin and hang at 0% CPU.
+  // A headless dispatch must close/redirect stdin or it can inherit an open stdin
+  // and hang at 0% CPU, emitting nothing at all.
   'stdin-redirect-required': (cmd) => {
-    if (!/\bopencode\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
+    if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
     if (STDIN_REDIRECT.test(cmd)) return true; // stdin handled
-    // A pipe feeding opencode (`... | opencode run`) also closes inherited stdin.
-    if (/\|\s*(AI_SESSION_CHILD=\S+\s+)?opencode\s+run\b/.test(cmd)) return true;
+    // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin.
+    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\s+run|pi|claude|codex|devin|cursor-agent)\b/.test(cmd)) return true;
     return false;
   },
   // Without an explicit model the run falls back to the configured default; when that
@@ -96,6 +141,14 @@ export const CHECKS = {
   },
   // --share publishes the session; flag for confirmation (advisory — can't verify consent here).
   'share-requires-confirmation': (cmd) => !/--share(\s|$)/.test(cmd),
+  // The four availability rules below were declared with `severity: error` but had no
+  // implementation, so they never refused anything. Each answers one question: does the
+  // binary this command invokes actually resolve on PATH? Anything uncertain passes —
+  // a guard that cannot see PATH must not invent a refusal.
+  'command-v-codex-required': binaryOnPathCheck('codex', /\bcodex\s+/),
+  'command-v-cursor-agent-required': binaryOnPathCheck('cursor-agent', /\bcursor-agent\s+/),
+  'command-v-devin-required': binaryOnPathCheck('devin', /\bdevin\s+/),
+  'command-v-pi-required': binaryOnPathCheck('pi', /\bpi\s+/),
   // Non-interactive claude -p with a Bash-heavy prompt and no permission bypass can deadlock.
   'non-interactive-permission-mode-risk': (cmd) => {
     if (!/\bclaude\s+-p\b|\bclaude\s+--print\b/.test(cmd)) return true;

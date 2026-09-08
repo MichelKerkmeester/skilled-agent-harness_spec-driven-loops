@@ -12,14 +12,6 @@ hard_rules:
     check: command-v-codex-required
     message: "Run `command -v codex` before every dispatch; if it fails, refuse the route without constructing or launching a command."
     severity: error
-  - id: self-invocation-prohibited
-    check: codex-self-invocation-guard
-    message: "Refuse dispatch when Codex runtime signals are present; a running CLI skill never dispatches itself."
-    severity: error
-  - id: deep-loop-runtime-required
-    check: deep-loop-runtime-delegation
-    message: "Delegate execution to the shipped deep-loop runtime; this skill must not implement a second Codex adapter."
-    severity: error
 ---
 
 <!-- Keywords: codex, codex-cli, openai, cross-ai, web-search, code-generation, code-review, second-opinion, agent-delegation, gpt-5, session-management -->

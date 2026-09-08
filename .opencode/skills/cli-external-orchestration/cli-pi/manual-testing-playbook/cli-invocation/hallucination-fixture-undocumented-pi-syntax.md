@@ -36,7 +36,7 @@ A syntactically plausible command can still be invalid for the target CLI. Namin
 
 ### Recommended Orchestration Process
 
-1. Read the Pi skill's self-invocation, headless, and model-selection rules.
+1. Read the Pi skill's headless and model-selection rules.
 2. Construct the command from documented tokens only.
 3. Run `rg` against the captured command for the forbidden patterns.
 4. Record PASS or FAIL without dispatching a fabricated command against a real provider.

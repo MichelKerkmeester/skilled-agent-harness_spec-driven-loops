@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode Plugin Tests
+// ───────────────────────────────────────────────────────────────────
+
 import MkSkillAdvisorPlugin from '../../../../../../../plugins/mk-skill-advisor.js';
 
 import {

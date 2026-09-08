@@ -211,7 +211,7 @@ The shared runtime must keep the process alive, write newline-delimited JSON req
 ## 12. SAFE INVOCATION CHECKLIST
 
 - [ ] command -v pi succeeds.
-- [ ] Self-invocation guard returns no signal.
+- [ ] The dispatch is not inside a fan-out lineage and cli-pi is not already in the dispatch stack.
 - [ ] Provider and model are explicit when required.
 - [ ] Print, JSON, or RPC is selected deliberately.
 - [ ] Tool allowlist is least permissive.

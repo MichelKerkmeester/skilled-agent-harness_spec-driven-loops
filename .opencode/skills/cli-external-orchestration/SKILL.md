@@ -12,7 +12,7 @@ metadata:
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, six workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, self-invocation guard, and hard rules in its packet, and the hub only routes by `workflowMode`.
+One skill, six workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
 
 ---
 
@@ -31,7 +31,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 
 ### When NOT to Use
 
-- The current runtime IS the target CLI — each mode's own self-invocation guard refuses self-dispatch (see that packet's §2); this hub does no dispatch itself and carries no guard of its own.
+- The current runtime IS the target CLI — most modes refuse self-dispatch through their own guard (see that packet's §2); `cli-pi` is the exception and may be dispatched from inside Pi. This hub does no dispatch itself and carries no guard of its own.
 - Application-code implementation or review, or measured design-reference extraction with no CLI-dispatch need — use `sk-code` / `sk-design-md-generator` directly.
 - A quick in-process task with no cross-AI handoff — dispatching to an external CLI process is unnecessary overhead.
 
@@ -149,9 +149,9 @@ cli-external-orchestration/
 - `description.json` owns advisor-facing summary fields.
 - `graph-metadata.json` owns the one skill-graph identity node for the whole hub (`family: cli`).
 
-### Self-Invocation Guards Stay Packet-Local
+### Recursion Guards Stay Packet-Local
 
-Each mode's self-invocation guard is runtime-signal-based (env var / process ancestry / lockfile or a documented heuristic), not path-based, so it is unaffected by this hub's routing layer. `cli-opencode` additionally carries a parallel-detached carve-out that `cli-claude-code` intentionally does not — that asymmetry is preserved.
+Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile or a documented heuristic), not path-based, so it is unaffected by this hub's routing layer. Two asymmetries are deliberate and preserved: `cli-opencode` carries a parallel-detached carve-out that `cli-claude-code` intentionally does not, and `cli-pi` is exempt from the two layers that mean "the caller is inside this CLI" — Pi has no in-process delegation left, so refusing those would leave a Pi session no way to hand work out. The layers that bound a spawn chain, fan-out lineage and dispatch stack, apply to every mode without exception.
 
 ---
 
@@ -174,7 +174,7 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 
 - Never add a second packet array.
 - Never add packet-local `graph-metadata.json` files.
-- Never let any mode dispatch itself — the self-invocation guard is packet-owned and non-negotiable.
+- Never let any mode dispatch itself from inside a fan-out lineage or a repeated dispatch stack — those bounds are non-negotiable for every mode. Whether being *inside* the target CLI also refuses is packet-owned, and `cli-pi` deliberately allows it.
 - Never let the executor CLI (the HOW) override the calling skill's own workflow (the WHAT) — "use cli-opencode gpt-5.5 high" still runs inside the caller's skill-owned route.
 
 ### ⚠️ ESCALATE IF

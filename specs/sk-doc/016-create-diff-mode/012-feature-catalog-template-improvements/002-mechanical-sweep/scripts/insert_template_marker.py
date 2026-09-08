@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Insert '<!-- sk-doc-template: skill_asset_feature_catalog -->' after H1 in all snippet files
 that do not already have it. Idempotent. Supports --dry-run.
