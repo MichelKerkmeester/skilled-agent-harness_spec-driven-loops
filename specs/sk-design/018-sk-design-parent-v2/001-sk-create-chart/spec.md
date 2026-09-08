@@ -159,6 +159,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 16 | 016-design-md-theming/ | Theme any form from a v3 Style Reference DESIGN.md on request: a script that derives a gated palette, typeface and corner ladder, refuses failing palettes and writes themed copies with provenance | Complete |
 | 17 | 017-visual-review-fixes/ | Operator review fixes inside the register: aligned numeric headers, a clean tooltip card without the native title, no indicators on single-series cards, daily-line fade and rungs | Complete |
 | 18 | 018-opus-review-fixes/ | Fresh Opus review of 015 to 017: hex-only themed roles, a series distinguishability gate, mapper parity, category-headed cards, corrected evidence, relative provenance | Complete |
+| 19 | 019-cursor-stock-register/ | The cursor Style Reference becomes the stock chart register: palette source, every stock block, typeface and corner ladder derived from it under the corpus gates | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
