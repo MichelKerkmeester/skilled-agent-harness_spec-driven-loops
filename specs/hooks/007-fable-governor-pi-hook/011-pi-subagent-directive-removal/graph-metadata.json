@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/011-pi-subagent-directive-removal",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/011-pi-subagent-directive-removal",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi subagent directive removal",
+      "remove subagent dispatch directive",
+      "pi-subagents package removal",
+      "drop the injected dispatch mandate",
+      "pi subagent directive removal plan",
+      "remove dispatch directive plan",
+      "pi-subagents mandate removal plan",
+      "pi subagent directive removal tasks",
+      "dispatch mandate removal tasks",
+      "pi-subagents hook cleanup tasks",
+      "pi subagent directive removal summary",
+      "dispatch mandate removal evidence"
+    ],
+    "key_topics": [
+      "subagent",
+      "directive",
+      "removal",
+      "remove",
+      "dispatch",
+      "pi-subagents",
+      "package",
+      "drop",
+      "injected",
+      "mandate",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/prompt-advisor.vitest.ts",
+      ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
+      ".opencode/hooks/injection-contract.md",
+      ".pi/PLUGINS.md",
+      ".pi/SYNC.md",
+      ".pi/extensions/prompt-advisor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/prompt-advisor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-dedup.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Subagent Directive Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "test",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OVERVIEW",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. TECHNICAL CONTEXT",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 injected a Pi-only per-turn directive mandating the native pi-subagents plugin for subagent delegation, and phase 006 added tool-call enforcement of the same policy",
+    "created_at": "2026-09-08T07:25:00.675Z",
+    "last_save_at": "2026-09-08T07:25:00.675Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7ef45509bb42544027ea40fde019ad42adc4c32ed11bc76f63db312c7f2ed9d2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16cfe0463569660fcf234a34be7b6ea546010b84e7203cca02766df6d523de5c",
+      "plan.md": "143836916fb01b7a9417c4a8d47ca87dd6fd62535cf944e17f0ceb8f31b7a708",
+      "tasks.md": "7e6c30518257279efecae0da2f545fc6443c8d1604ae47bba2e4a000a276771f",
+      "implementation-summary.md": "2b16e4527dafe5e5bcefde0ec403e14fe6e571ab96c7cd46a2820cbccc33ba08"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

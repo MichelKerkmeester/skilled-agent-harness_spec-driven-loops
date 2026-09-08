@@ -1,0 +1,27 @@
+{
+  "specFolder": "hooks/007-fable-governor-pi-hook/011-pi-subagent-directive-removal",
+  "description": "Phase 003 injected a Pi-only per-turn directive mandating the native pi-subagents plugin for subagent delegation, and phase 006 added tool-call",
+  "keywords": [
+    "phase",
+    "injected",
+    "pi-only",
+    "per-turn",
+    "directive",
+    "mandating",
+    "native",
+    "pi-subagents",
+    "plugin",
+    "subagent",
+    "delegation",
+    "tool-call"
+  ],
+  "lastUpdated": "2026-09-08T07:24:11.125Z",
+  "specId": "011",
+  "folderSlug": "pi-subagent-directive-removal",
+  "parentChain": [
+    "hooks",
+    "007-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

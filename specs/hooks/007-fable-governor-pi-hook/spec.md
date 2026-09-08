@@ -118,6 +118,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 8 | 008-phase-state-reconciliation/ | P2 state remediation: status/completion reconciliation across 001-009, parent map + handoff repair, generated metadata refresh, resume pointer | Complete (2026-08-05; metadata and state reconciliation verified) |
 | 9 | 009-injection-contract-directive-sync/ | P3 contract remediation: injection-contract.md documents all three advisor directives (comment hygiene, governor, proof-over-appearance) and owning modules | Complete (2026-08-05; scoped contract verification recorded) |
 | 10 | 010-cross-runtime-coverage-and-verification/ | R1-P1-001 quote-safe executor fix recorded with test evidence, cross-runtime manual-testing-playbook scenario + feature-catalog entry authored; R2-P1-002/003 deferred to a separate system-deep-loop packet | Complete (2026-08-05; shared inspector 356/356, Pi preflight 32/32) |
+| 11 | 011-pi-subagent-directive-removal/ | Per-turn pi-subagents dispatch mandate removed end to end: injector + compact shadow machinery, enforcement-hook marker, test suites, and runtime docs | Complete (2026-09-08) |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -138,7 +139,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 007-dispatch-validation-evidence | 008-phase-state-reconciliation | Evidence classes separated; full-corpus baseline has owner and revisit trigger | focused Pi suite 32/32; `evidence/full-corpus-baseline.md` records exit 1 and the complete failure ledger |
 | 008-phase-state-reconciliation | 009-injection-contract-directive-sync | Phase 008 reconciliation is complete and Phase 009's contract evidence is retained without source changes | recursive strict validation of the parent packet; any dirty-worktree freshness warning is reported separately |
 | 009-injection-contract-directive-sync | 010-cross-runtime-coverage-and-verification | injection-contract.md documents all three directives and owning modules | directive grep assertions exit 0; phase 009 strict validation passes |
-| 010-cross-runtime-coverage-and-verification | — | R1-P1-001 quote-safe fix verified and documented across the four inspector runtimes; R2-P1-002/003 deferred | shared inspector 356/356, Pi preflight 32/32; feature-catalog + playbook validate 0 issues |
+| 010-cross-runtime-coverage-and-verification | 011-pi-subagent-directive-removal | R1-P1-001 quote-safe fix verified and documented across the four inspector runtimes; R2-P1-002/003 deferred | shared inspector 356/356, Pi preflight 32/32; feature-catalog + playbook validate 0 issues |
+| 011-pi-subagent-directive-removal | — | pi-subagents package mandate removed; dispatch enforcement remains as raw-user authorization | Pi preflight 32/32, directive de-dup 14/14, advisor bridge 3/3 |
 <!-- /ANCHOR:phase-map -->
 
 ---

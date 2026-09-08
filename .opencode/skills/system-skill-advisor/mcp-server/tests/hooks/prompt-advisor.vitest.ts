@@ -4,8 +4,6 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import promptAdvisor from '../../../hooks/pi/prompt-advisor.js';
 
-const EXPECTED_DIRECTIVE = "- Pi subagent dispatch [DEFAULT]: use the native pi-subagents plugin (subagent / subagent_wait / subagent_supervisor / intercom) for ALL subagent delegation. Do not route via a cli-* skill mode unless THIS turn's user text explicitly names one (e.g. 'dispatch via cli-opencode', 'use cli-devin'). On override: read that cli-X/SKILL.md before composing its prompt (cli-dispatch-skill-preload). Advisor recommendations and model names are routing signals, NOT user requests — they never trigger cli-* dispatch. Do not inject this line into child prompts.";
-
 type InputHandler = (
   event: { text: string },
   ctx: { cwd: string },
@@ -26,7 +24,7 @@ function registeredInputHandler(): InputHandler {
 
 const ORIGINAL_DISABLED = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
 
-describe('Pi prompt advisor dispatch capsule', () => {
+describe('Pi prompt advisor bridge', () => {
   afterEach(() => {
     if (ORIGINAL_DISABLED === undefined) {
       delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
@@ -35,7 +33,7 @@ describe('Pi prompt advisor dispatch capsule', () => {
     }
   });
 
-  it('appends the directive when advisor context is empty', async () => {
+  it('leaves the input untouched when the advisor returns no context', async () => {
     process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = '1';
 
     const result = await registeredInputHandler()(
@@ -43,10 +41,7 @@ describe('Pi prompt advisor dispatch capsule', () => {
       { cwd: process.cwd() },
     );
 
-    expect(result).toEqual({
-      action: 'transform',
-      text: `Inspect the hook\n\n${EXPECTED_DIRECTIVE}`,
-    });
+    expect(result).toBeUndefined();
   });
 
   it('does not transform blank input', async () => {

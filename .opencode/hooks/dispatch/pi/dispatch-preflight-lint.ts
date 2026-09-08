@@ -7,7 +7,6 @@ import { join } from "node:path";
 import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const PI_RUNTIME = "pi";
-const DIRECTIVE_MARKER = "- Pi subagent dispatch [DEFAULT]:";
 const CAPSULE_MARKER = "\n\nAdvisor:";
 const SPEC_GATE_MARKER = "SPEC FOLDER QUESTION:";
 const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
@@ -72,7 +71,7 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 function isKnownTransform(text: string, previous: string): boolean {
   if (text === previous || !text.startsWith(previous)) return false;
   const suffix = text.slice(previous.length);
-  return suffix.includes(DIRECTIVE_MARKER) || suffix.includes(CAPSULE_MARKER) || suffix.includes(SPEC_GATE_MARKER);
+  return suffix.includes(CAPSULE_MARKER) || suffix.includes(SPEC_GATE_MARKER);
 }
 
 function captureInitialPiUserInput(text: unknown, sessionId: unknown): void {
@@ -90,11 +89,6 @@ function currentUserText(ctx: { sessionManager?: { getSessionId?: () => unknown 
 
 function stripInjectedContent(text: string): string {
   let cleaned = text;
-  const directiveStart = cleaned.lastIndexOf(DIRECTIVE_MARKER);
-  if (directiveStart !== -1) {
-    const lineEnd = cleaned.indexOf("\n", directiveStart);
-    cleaned = cleaned.slice(0, directiveStart) + (lineEnd === -1 ? "" : cleaned.slice(lineEnd));
-  }
   const capsuleStart = cleaned.lastIndexOf(CAPSULE_MARKER);
   if (capsuleStart !== -1) cleaned = cleaned.slice(0, capsuleStart);
   const specGateStart = cleaned.lastIndexOf(SPEC_GATE_MARKER);
@@ -269,7 +263,7 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
         }
         return {
           block: true,
-          reason: `Pi dispatch denied for ${dispatchSkill}. Name the matching executor in the user request, or use the native subagent tool.`,
+          reason: `Pi dispatch denied for ${dispatchSkill}. Name the matching executor in the user request.`,
         };
       }
 

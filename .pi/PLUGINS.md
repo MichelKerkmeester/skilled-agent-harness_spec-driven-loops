@@ -89,13 +89,6 @@ Claude Code-compatible command-driven statusline extension
 
 ---
 
-#### pi-subagents (v0.50.0)
-[github.com/nicobailon/pi-subagents](https://github.com/nicobailon/pi-subagents)
-
-Delegating tasks to subagents with chains, parallel execution, and TUI clarification
-
----
-
 #### pi-web-access (v0.23.0)
 [github.com/nicobailon/pi-web-access](https://github.com/nicobailon/pi-web-access)
 
