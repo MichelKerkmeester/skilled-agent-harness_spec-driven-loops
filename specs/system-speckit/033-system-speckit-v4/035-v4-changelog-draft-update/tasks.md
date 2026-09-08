@@ -19,6 +19,9 @@ contextType: "implementation"
 - [x] T001 Patch every confirmed drift row at its cited line with an anchor-asserting replacement (../CHANGELOG-v4.0.0.0.md)
 - [x] T002 Add the late-cycle subsections and the corrected upgrade notes (../CHANGELOG-v4.0.0.0.md)
 - [x] T003 Verify no stale name survives outside a removal sentence and the parent validates strict
+- [x] T004 Digest the last ten changelog entries of every skill and mode, one agent each, into scratch/changelog-digests/ with a merged index
+- [x] T005 Turn the digests into a numbered change plan per draft section (scratch/changelog-update-plan.md)
+- [x] T006 Apply the plan to the draft through the markdown agent and verify the HVR scan, residue grep, counts and structure
 <!-- /ANCHOR:tasks -->
 
 ---

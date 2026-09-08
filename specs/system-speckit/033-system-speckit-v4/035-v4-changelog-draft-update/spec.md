@@ -92,6 +92,7 @@ Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is
 | REQ-002 | Every late-cycle packet from the parent timeline (017 to 034) is reflected in the draft |
 | REQ-003 | Numbers the research could not reproduce are removed or softened |
 | REQ-004 | The HVR scan reports no hard blocker in prose; the only `;` hits are the `&nbsp;` entities the changelog format requires |
+| REQ-005 | Every skill and mode changelog is digested against the draft and each correction the digests ground is applied or recorded as an operator item |
 <!-- /ANCHOR:requirements -->
 
 ---
