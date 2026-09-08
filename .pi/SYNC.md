@@ -83,7 +83,7 @@ Each prompt is a small stub that points at the canonical file rather than duplic
 # Pi entry: /create-agent
 ```
 
-`pi-subagents` discovers `.pi/agents/**/*.md` after its built-in, package, and user agent sources.
+`pi-subagents` discovers `.pi/agents/**/*.md` after its built-in, package, and user agent sources. The package is not installed in the runtime config; agent profiles under `.pi/agents/` remain as generated mirror deliverables and are discovered only by a runtime that loads the package.
 
 ---
 
