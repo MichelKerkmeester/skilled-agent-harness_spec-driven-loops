@@ -1375,7 +1375,7 @@ function checkNumberFormat(file, src) {
   // A hover card prints a figure that is nowhere else in the picture, so it is the one place a
   // raw value would reach a reader with no formatter between them.
   if (!/\bdata-chart-tooltip\b/.test(markup)) return;
-  tally('number-format', 6);
+  tally('number-format', 7);
   if (!/function\s+fmt\s*\(/.test(code)) {
     record('number-format', 'error', file,
       'the file carries a hover card and defines no fmt() of its own, so the figures it prints have nothing formatting them');
@@ -1410,6 +1410,12 @@ function checkNumberFormat(file, src) {
       'the READOUT block has no unit field. The card prints the unit after the value, and an empty string is the way to say there is none');
   }
   const codeOutside = stripJsComments(joined.slice(0, start) + joined.slice(end));
+  // A declared unit that the card never prints is a promise the reader cannot see, so the
+  // readout code has to read the field, not merely the block carry it.
+  if (!/\bREADOUT\s*\.\s*unit\b/.test(codeOutside)) {
+    record('number-format', 'error', file,
+      'the readout code never reads READOUT.unit, so a declared unit would not reach the card');
+  }
   if (!/\bREADOUT\s*\.\s*label\s*\(/.test(codeOutside)) {
     record('number-format', 'error', file,
       'tooltip readout code never calls READOUT.label(). The card must read its local label formatter');
@@ -1673,8 +1679,8 @@ function checkTooltipCard(file, src) {
 function checkFindingCue(file, src) {
   const { scripts, markup } = regionsOf(stripHtmlComments(src));
   const code = stripJsComments(scripts.join('\n'));
-  tally('finding-cue', 3);
   if (!/class\s*=\s*"finding"/.test(markup)) return;
+  tally('finding-cue', 3);
   if (!/const\s+FINDING\s*=/.test(code)) {
     record('finding-cue', 'error', file,
       'the finding paragraph declares no FINDING block. The direction the reader meets before the sentence has to come from the number the sentence tracks, not from handwriting');
@@ -1698,6 +1704,7 @@ function checkFindingCue(file, src) {
 // readable source of the values.
 function checkTableDisclosure(file, src) {
   const { markup } = regionsOf(stripHtmlComments(src));
+  if (!/\bdata-chart-table\b/.test(markup)) return;
   tally('table-disclosure', 3);
   const hasTooltip = /\bdata-chart-tooltip\b/.test(markup);
   const details = /<details\b[^>]*class="data"[^>]*>/.exec(markup);

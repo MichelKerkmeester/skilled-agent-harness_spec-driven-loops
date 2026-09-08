@@ -356,6 +356,34 @@ checker accepts the branch only when both comments are well formed and the inlin
 systems on both grounds. A malformed comment or a failed inline gate is an error; there is no
 force path and no source-equality exemption for a stock system.
 
+### The card reads as a product, not a template
+
+Five rules from the polish pass, each held by the checker.
+
+- **The source line is the source.** The visible `data-chart-part="source"` text names where the
+  numbers came from and nothing else; the instruction that retargeting means replacing the data
+  block lives in a comment directly above `CHART_DATA`. The `source-line` family errors when that
+  instruction creeps back into the line a reader sees.
+- **The plot is the largest thing on the card.** Cartesian forms draw in a 392-unit-high frame on
+  the 720-unit width, about 54 percent, with the baseline, tick row and legend moved down with the
+  frame. Forms whose shape does not fill a taller frame (calendar grid, heat matrix, unit grid and
+  ring, treemap, progress, bullet, funnel, independent percentages, population pyramid) keep their
+  own height; the reasoning per form is recorded with the pass.
+- **The table folds, it never leaves.** The data table sits inside `<details class="data">` with a
+  "Show the data" summary, open on inert forms and closed on forms with a tooltip, and keeps
+  `data-chart-table` on the table itself so the accessibility and card-readout checks read it
+  unchanged. The `table-disclosure` family holds the wrapper, the summary and the open state.
+- **A finding declares its direction.** A `FINDING` block beside `READOUT` carries `trend` as
+  `up`, `down` or `none` with a one-line reason; the footer draws a 12px inline arrow in the
+  emphasis colour for up or down and nothing for none. A share, a comparison or a spread is
+  `none`; only a change over time earns an arrow. The `finding-cue` family holds the block, the
+  set and the read.
+- **Numbers carry their unit and ticks stay short.** `READOUT.unit` is a short string, or empty
+  when the card mixes units, printed after the value with a thin space; every tooltip form
+  declares it. Axis ticks at or above five digits render through a hand-written `compact()` as
+  `12k` or `1.2M` with one decimal at most, while the card and the table keep full digits, and
+  `toLocaleString` and `Intl` stay forbidden.
+
 ### The corner ladder rides in the same block
 
 The light block carries one more kind of shared value: the five corner rungs, `--chart-radius-mark`

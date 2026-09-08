@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish"
     last_updated_at: "2026-09-08T18:22:02Z"
     last_updated_by: "scaffold"
-    recent_action: "Opened the packet; build dispatched to GLM-5.3-Flash via pi"
-    next_safe_action: "Verify the build with the render gate and captures"
+    recent_action: "Five moves landed and verified; packet closed"
+    next_safe_action: "Commit with the chart package; start phase 023"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -74,12 +74,12 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] No visible source line contains "Replace the data block"; the `source-line` family holds it
-- [ ] Every cartesian plot is 50 to 56 percent of frame width; `scratch/proportions.md` lists all 26
-- [ ] Every table sits under a `details` disclosure and the card-readout render check still passes
-- [ ] Every finding declares `FINDING.trend` and draws its cue; every tooltip form declares `READOUT.unit`
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED`; captures regenerated; contract and changelog updated
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this packet
+- [x] No visible source line contains "Replace the data block"; the `source-line` family holds it
+- [x] Every cartesian plot is 50 to 56 percent of frame width; `scratch/proportions.md` lists all 26
+- [x] Every table sits under a `details` disclosure and the card-readout render check still passes
+- [x] Every finding declares `FINDING.trend` and draws its cue; every tooltip form declares `READOUT.unit`
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED`; captures regenerated; contract and changelog updated
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,10 +96,18 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Move A and F: source line, contract fade | Done | GLM handback; `source-line` 36/0 |
+| Move B: plot proportion | Done | `scratch/proportions.md`; render PASSED |
+| Move C: table disclosure | Done | `table-disclosure` 108/0 |
+| Move D: finding cue | Done | `finding-cue` 108/0 |
+| Move E: unit and compact ticks | Done | number-format unit assertion; compact in 18 files |
+| Contract section, changelog v1.6.0.0, versions | Done | conductor |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Thinking tier | Dispatched at `high`, not `max`: the max tier stalled twice on agentic briefs with no output after twenty minutes while a trivial max prompt answered in sixteen seconds; each move at high finished in eight to eighteen minutes |
+| Review fixes | Sonnet found the unit assertion proved declaration only, two mutation records overwritten, tallies before guards, stale captures; all four fixed by the conductor |
+| Briefs | The single 628-line brief was replaced by five short literal briefs through the prompt-improver; that is what made the pace acceptable |
 <!-- /ANCHOR:log -->

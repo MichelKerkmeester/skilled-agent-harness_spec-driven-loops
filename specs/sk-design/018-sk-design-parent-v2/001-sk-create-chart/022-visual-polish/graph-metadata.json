@@ -3,6 +3,7 @@
   "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish",
   "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish",
   "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +48,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/mutations.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
       "scratch/proportions.md",
-      "scratch/mutations.md"
+      "scratch/dispatch-a.md"
     ],
     "entities": [
       {
@@ -90,6 +93,12 @@
         "source": "derived"
       },
       {
+        "name": "mutations.md",
+        "kind": "doc",
+        "path": "scratch/mutations.md",
+        "source": "derived"
+      },
+      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
@@ -102,25 +111,25 @@
         "source": "derived"
       },
       {
+        "name": "v1.6.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "proportions.md",
         "kind": "doc",
         "path": "scratch/proportions.md",
         "source": "derived"
       },
       {
-        "name": "mutations.md",
+        "name": "dispatch-a.md",
         "kind": "doc",
-        "path": "scratch/mutations.md",
+        "path": "scratch/dispatch-a.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -145,6 +154,12 @@
       },
       {
         "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six things make a rendered chart read as a template rather than a product",
     "created_at": "2026-09-08T18:22:02Z",
-    "last_save_at": "2026-09-08T20:19:31.362Z",
+    "last_save_at": "2026-09-08T20:28:11.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f25e3eadb8b6cacd8ffddf3f753a96e7e1491effdfe1bd8967d3f1f2b056caa",
+    "source_fingerprint": "sha256:415b548850fbe0ac03445b086f04fc44716be7b5a6f519950d0a33f016534085",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68cc0278db8d11eccae2ffde226489a29df8a0e69bd59bcef8a6ac53ccd465c8",
-      "plan.md": "356cdf3942ae8a75ae71d80c38f081519cf312ea33860807c059645ede7b1275",
-      "tasks.md": "a60c63901b0ab04711703d69eb872acd5e8d9f90a3cce11ef0344fc1af8bb839",
-      "implementation-summary.md": "1cf8cb2dbfae8cc01cad84fe2db5b47ed9dae660405a7fc9b30563631dacc82b"
+      "spec.md": "aab30d7b8108b1202bb2be852828bf1ecefde34410602231b3b387bbdaa55772",
+      "plan.md": "6e7267a1e7fc24ba90f244910cce78da8f960be4a006ae57e61485097d3c388f",
+      "tasks.md": "75df0496ff3ddc6605bc4eaf8a4e3229e71106a086e5ce44d9736acb8578b340",
+      "implementation-summary.md": "766ca16496324827cb6d1f34520e07403f5f09a788afc0c85dc27153f4a3a41e"
     },
     "last_active_at": null
   }

@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish"
     last_updated_at: "2026-09-08T18:22:02Z"
     last_updated_by: "scaffold"
-    recent_action: "Opened the packet; build dispatched to GLM-5.3-Flash via pi"
-    next_safe_action: "Verify the build with the render gate and captures"
+    recent_action: "Five moves landed and verified; packet closed"
+    next_safe_action: "Commit with the chart package; start phase 023"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-08
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given any template or delivery, When its source line is read, Then it names the source only and the `source-line` assertion fails a copy carrying the authoring sentence | pending | Unmet | - |
-| AC-002 | REQ-002 | Given any cartesian form, When its viewBox is measured, Then plot height is 50 to 56 percent of frame width and the narrow-viewport and render checks pass | pending | Unmet | - |
-| AC-003 | REQ-002 | Given any form, When the page renders, Then the data table sits under a details disclosure, stays under data-chart-table, and the card-readout check passes | pending | Unmet | - |
-| AC-004 | REQ-002 | Given a form with a finding, When FINDING.trend is up or down, Then an inline arrow precedes the finding in the emphasis colour; when none, no arrow; an invalid trend fails finding-cue | pending | Unmet | - |
-| AC-005 | REQ-002 | Given a tooltip form, When READOUT.unit is declared, Then the card prints it after the value and ticks at or above five digits render compactly without toLocaleString or Intl | pending | Unmet | - |
-| AC-006 | REQ-002 | Given the contract, When read, Then the fade figures match the templates and FINDING, unit and the disclosure are stated; changelog v1.6.0.0 exists | pending | Unmet | - |
+| AC-001 | REQ-001 | Given any template or delivery, When its source line is read, Then it names the source only and the `source-line` assertion fails a copy carrying the authoring sentence | `scripts/check-corpus.cjs` `checkSourceLine`, family `source-line` 36 assertions 0 failures; `rg "Replace the data block" assets/templates assets/examples` returns nothing; `scratch/mutations.md` records the FAIL line | Met | - |
+| AC-002 | REQ-002 | Given any cartesian form, When its viewBox is measured, Then plot height is 50 to 56 percent of frame width and the narrow-viewport and render checks pass | `scratch/proportions.md` lists 16 forms raised to 392 (distribution strip 380) and 10 kept with reasons; `narrow-viewport` 108 assertions 0 failures; render gate PASSED | Met | - |
+| AC-003 | REQ-002 | Given any form, When the page renders, Then the data table sits under a details disclosure, stays under data-chart-table, and the card-readout check passes | `checkTableDisclosure`, family `table-disclosure` 108 assertions 0 failures; 8 templates open, 18 closed, 3 proof sheets folded; `card-readout` render check PASSED | Met | - |
+| AC-004 | REQ-002 | Given a form with a finding, When FINDING.trend is up or down, Then an inline arrow precedes the finding in the emphasis colour; when none, no arrow; an invalid trend fails finding-cue | `checkFindingCue`, family `finding-cue` 99 assertions 0 failures; 7 up or down, 26 none across 33 files; `scratch/mutations.md` records the `sideways` FAIL line | Met | - |
+| AC-005 | REQ-002 | Given a tooltip form, When READOUT.unit is declared, Then the card prints it after the value and ticks at or above five digits render compactly without toLocaleString or Intl | `number-format` unit assertion; 23 READOUT blocks carry `unit`; `compact()` in 18 cartesian files; `scratch/mutations.md` records the missing-unit FAIL line | Met | - |
+| AC-006 | REQ-002 | Given the contract, When read, Then the fade figures match the templates and FINDING, unit and the disclosure are stated; changelog v1.6.0.0 exists | `references/template-contract.md` fade paragraph and the new "The card reads as a product" section; `changelog/v1.6.0.0.md`; `SKILL.md` and `README.md` at 1.6.0.0 | Met | - |
 
 ### Status values
 
@@ -84,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Six criteria are open; the build has not run.
+All six criteria are met by the static and render gates, the four recorded mutations, the regenerated captures and the contract and changelog updates.
 <!-- /ANCHOR:closure -->
