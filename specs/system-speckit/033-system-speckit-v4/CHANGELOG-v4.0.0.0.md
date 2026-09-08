@@ -28,6 +28,7 @@ Most of this does not change how you call the system. The `/deep:*`, `/create:*`
 - **Every run replayable.** A typed evidence ledger is the authoritative record for every loop mode. Runs replay from it, every state transition is authorized, and the legacy files are projections of it.
 - **Executors that only run when installed.** Codex, Devin, Cursor and Pi show up as routable only when their binary is present, so a missing tool never fails halfway through a run.
 - **Pi hosts the framework natively.** `cli-pi` gained bridges for the repo's skills, commands, agents, MCP servers and hooks. It is the deepest runtime integration of the six.
+- **Design becomes a hub.** `sk-design` went from one skill to a parent of four modes. Fundamentals decides values for any laid-out surface, the md generator measures a live site into a Style Reference, and chart and diagram moved in from sk-doc under `/design:*`.
 - **Docs that make anything.** A git-free before-and-after diff, repo-rule authoring and plain-English output join the terminal under `/create:*`. Diagrams across 27 types and charts across 26 forms arrive under `/design:*`.
 - **One code skill, two axes.** Code guidance is scoped to what you are doing and to the stack you are doing it on, with review as a first-class mode and Rust as a first-class language.
 - **Safer git.** Every commit lands in your IDE checkout on its own. Push, mass-delete and branch-name paths now stop and ask.
@@ -257,23 +258,34 @@ The Gate-3 spec question also stays quiet on read-only turns, and the hook refer
 
 ## The Design Surface
 
-The design surface stopped being a stack of reconstructed packets and became a working system. A library of real-world styles lives on your own machine behind a fast database, the design commands settled under `/design:*` and the hub was refactored to behave more like Claude Design. One transport, Open Design, leaves the building.
+`sk-design` was a single skill. It is now a parent hub of four modes that projects one design identity and routes you to the mode that owns the decision in front of you. Two of those modes moved in from sk-doc, one returned from a standalone life, and the values mode grew from screens to every laid-out surface. Around the hub, the chart corpus was rebuilt on a real visual register, a library of real-world styles lives on your own machine, and one transport, Open Design, leaves the building.
+
+#### One Hub, Four Modes
+
+The hub carries no procedure of its own. It decides which mode owns the question and hands over.
+
+- **`sk-design-fundamentals`**, the default. It designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. That used to mean screen UI only. It now covers slide decks, printed pages and document layouts too, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen. It routes by alias and carries no command of its own.
+- **`sk-design-md-generator`**, behind `/design:extract`. It measures a live site's real CSS into a v3 Style Reference `DESIGN.md` through an extract, write and validate pipeline, and it validates one you already have. It was a standalone skill and came back as a mode.
+- **`sk-design-chart`**, behind `/design:chart`. Turn the comparison a reader needs into one of 26 catalog forms and ship it as a standalone HTML file.
+- **`sk-design-diagram`**, behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws.
+
+Chart and diagram used to live under sk-doc as `sk-create-chart` and `sk-create-diagram`. They moved here, took the hub's name, and gained the routing they never had. Every form the two canvas modes ship now has a rendered screenshot kept beside its mode, so you can see a chart before you ask for it. The `/interface:*` family that preceded all this is gone.
+
+One honest caveat. The other five hubs resolve through a compiled router contract first. This hub does not yet, so its routing is the registry and the root router alone. Joining the compiled closure is planned, not shipped.
+
+&nbsp;
+
+#### Charts on a Real Register
+
+The chart corpus was brought to the shadcn visual register, with three named stock colour systems, their palette source and proof sheets checked in beside the forms. Three decisions from that work are held by checkers rather than by convention, so a form cannot drift off the register without a gate going red. A cursor-derived Style Reference became the stock chart register late in the cycle, and a fresh review of every chart packet was closed before release.
+
+Charts also theme from your own site now. Point the chart mode at a local v3 `DESIGN.md` and `apply-design-md.cjs` derives a gated delivery palette from its measured values, both grounds included, without fetching anything or changing the stock files. Extraction stays with the md generator. Applying an extracted reference stays with the chart mode.
+
+&nbsp;
 
 #### A Style Library You Own
 
-You have a design reference library on your own machine instead of behind someone else's network call. The Refero styles, each carrying four tabs, were pulled into a local token library after a 50-style pilot came back clean. Around it sits a retrieval substrate that picks a style by eligibility first, and behind that a persistent style database built on SQLite with full-text search and vector lookup, so the corpus the modes study is the one you query. The legacy default stays until you flip it yourself.
-
-&nbsp;
-
-#### Three Design Commands
-
-The design hub answers to four modes and three commands. `/design:extract` measures a live site into a Style Reference `DESIGN.md`. `/design:chart` authors a standalone HTML chart from a catalog of 26 forms, one per reader question. `/design:diagram` produces HTML/SVG diagrams across 27 types with draw.io and Mermaid import and export. The `/interface:*` family that preceded them is gone. The fundamentals mode that decides values and behavior sits behind all three, and a cursor-derived Style Reference became the stock chart register late in the cycle.
-
-&nbsp;
-
-#### A Claude-Style Hub
-
-Under the hood, the design hub was refactored to behave more like Claude Design while keeping OpenCode's native routing and its single advisor identity. It gained a manager-style shell and a private layer of procedure cards, with each mode pointing at its own procedures. Nothing about how you call it changed. The modes kept their authority and routing, and the md-generator's boundary stayed put. The work closed on a conditional parity verdict, with the live and browser scenarios left for you to confirm.
+You have a design reference library on your own machine instead of behind someone else's network call. The Refero styles, each carrying four tabs, were pulled into a local token library after a 50-style pilot came back clean. Around it sits a retrieval substrate that picks a style by eligibility first, and behind that a persistent style database built on SQLite with full-text search and vector lookup, so the corpus the modes study is the one you query. The legacy default stays until you flip it yourself. The md generator also carries a private layer of procedure cards for its extraction work, each step pointing at its own card.
 
 &nbsp;
 
