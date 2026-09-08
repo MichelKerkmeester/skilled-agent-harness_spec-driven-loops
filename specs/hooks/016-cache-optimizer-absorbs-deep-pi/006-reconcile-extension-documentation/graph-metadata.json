@@ -1,26 +1,227 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
-  "parent_id": null,
+  "packet_id": "hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
+  "spec_folder": "hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
+  "parent_id": "hooks/016-cache-optimizer-absorbs-deep-pi",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: reconcile-extension-documentation",
+  "derived": {
+    "trigger_phrases": [
+      "reconcile pi extension documentation",
+      "plugins inventory update",
+      "root readme pi extensions",
+      "documentation matches shipped state",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "reconcile",
+      "extension",
+      "documentation",
+      "plugins",
+      "inventory",
+      "root",
+      "readme",
+      "extensions",
+      "matches",
+      "shipped",
+      "state",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".pi/PLUGINS.md",
+      ".pi/extensions/README.md",
+      ".pi/settings.json",
+      ".pi/extensions/pi-cache-optimizer/README.md",
+      ".pi/deep-pi-stats.json",
+      ".pi/SYNC.md",
+      ".opencode/skills/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-pi-stats.json",
+        "kind": "config",
+        "path": ".pi/deep-pi-stats.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Measured before this phase was written, the documentation surface is not where one would guess:",
     "created_at": "2026-09-08T18:00:24Z",
-    "last_save_at": "2026-09-08T18:00:24Z",
+    "last_save_at": "2026-09-08T20:37:11.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:19b47b0895a919f95ce13d0d68b3da515321c199ac72c6e39d3c5863a6eceda5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0080fc36b2b566161285eab857fdde4d357082f2ac6e91107851ac13f584677c",
+      "plan.md": "8771d53f7b909e6191daa32b4fcaf02e0ef837386945b83320a60068e6b9495d",
+      "tasks.md": "d361fde89cdf7c36c3bc7148ef3a85d9e9844c0040fda8f137eb9b42b1a85286",
+      "implementation-summary.md": "8a154ee9059b1a774acec42c4fec1cc6d7a8b220a90fc620e8d5f8b83ef479e8"
+    },
+    "last_active_at": null
   }
 }

@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "hooks/016-cache-optimizer-absorbs-deep-pi",
   "description": "Pi loads two cache extensions whose responsibilities are divided by a hand-maintained model",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "count": 1024,
+  "count": 1016,
   "mode": "readme",
   "results": [
     {
@@ -10361,86 +10361,6 @@
       "warnings": []
     },
     {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/benchmark/reports/2026-08-17--manual-testing-playbook--deeppi-behavior/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/benchmark/reports/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/benchmarks/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/extensions/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/extensions/deeppi/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/scripts/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".pi/extensions/deep-pi/tests/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
-      "warnings": []
-    },
-    {
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
@@ -10452,19 +10372,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".pi/extensions/pi-cache-optimizer/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {

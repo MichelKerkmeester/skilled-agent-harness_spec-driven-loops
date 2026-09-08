@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute 001 against its own goal"
+    recent_action: "All six phases shipped, verified and validated"
+    next_safe_action: "None; packet complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-016-cache-optimizer-absorbs-deep-pi"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -80,10 +80,42 @@ anything above changes, the full text is resent in chat so the operator can upda
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+| Surface | Bound to |
+|---------|----------|
+| Phase goals | `001-*/goal.md` through `006-*/goal.md` |
+| Packet spec | `spec.md` |
+| Closure gate | each phase's `acceptance-criteria.md` |
+| Operator copy | the session objective, which judges completion |
+<!-- /ANCHOR:binding -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+
+- [x] No model reaches Pi without cache handling — the carve-out predicate is gone and the
+      extension suite covers the previously excluded models
+- [x] Economics, retry guard and verified edits are exercised beyond the DeepSeek-direct pair —
+      the suite exercises the OpenAI, Claude and Gemini usage adapters; the live dispatch ran on
+      the DevPass route, which is itself a DeepSeek model, so live coverage off DeepSeek is
+      suite-based rather than observed
+- [x] The retired extension is absent from the tree, from `.pi/settings.json`, and from every live
+      reference — including its statistics data file, which phase 005 had re-tracked
+- [x] Historical records still name it, unedited
+- [x] Every phase passes `validate.sh --strict`, and the parent passes `--recursive`
+- [x] READMEs describe the shipped state, verified after 001-005 were tested
+<!-- /ANCHOR:completion -->
+
+---
+
 <!-- ANCHOR:log -->
-## 2. LOG
+## 4. LOG
 
 | Date | Event |
 |------|-------|
 | 2026-09-08 | Packet scaffolded; phase decomposition and execution contract frozen |
+| 2026-09-08 | All six phases shipped; parent and children validate clean |
 <!-- /ANCHOR:log -->

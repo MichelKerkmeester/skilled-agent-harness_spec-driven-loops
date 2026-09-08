@@ -62,6 +62,28 @@ parent decision or criterion is an amendment to the parent: apply it there and r
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+| Surface | Bound to |
+|---------|----------|
+| Parent goal | `../goal.md` |
+| Phase spec | `spec.md` |
+| Closure gate | `acceptance-criteria.md` |
+<!-- /ANCHOR:binding -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+
+- [x] No live document lists a retired extension as installed
+- [x] Documented capabilities match what the code does
+- [x] The root README question is answered explicitly
+<!-- /ANCHOR:completion -->
+
+---
+
 <!-- ANCHOR:log -->
 ## 2. LOG
 

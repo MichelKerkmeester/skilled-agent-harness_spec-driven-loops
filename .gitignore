@@ -257,6 +257,7 @@ tmp/
 .pi/*.tmp
 .pi/pi-fast-mode-w-subagent-support-config.json
 .pi/modes.json
+.pi/deep-pi-stats.json*
 
 # ───────────────────────────────────────────
 # Project-specific specs (all providers)

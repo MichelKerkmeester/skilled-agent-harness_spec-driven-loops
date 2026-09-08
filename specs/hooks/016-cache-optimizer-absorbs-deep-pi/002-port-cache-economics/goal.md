@@ -62,6 +62,30 @@ parent decision or criterion is an amendment to the parent: apply it there and r
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+| Surface | Bound to |
+|---------|----------|
+| Parent goal | `../goal.md` |
+| Phase spec | `spec.md` |
+| Closure gate | `acceptance-criteria.md` |
+<!-- /ANCHOR:binding -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+
+- [x] Cost and savings come from provider-reported usage
+- [x] A no-cache-fields response counts as a full miss
+- [x] An existing persisted record migrates forward without loss
+- [x] The report renders for a non-DeepSeek model
+- [x] Prefix churn is detected and counted
+<!-- /ANCHOR:completion -->
+
+---
+
 <!-- ANCHOR:log -->
 ## 2. LOG
 

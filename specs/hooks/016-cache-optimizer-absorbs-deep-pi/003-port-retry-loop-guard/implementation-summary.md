@@ -1,35 +1,34 @@
 ---
-title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: break paid retry loops"
+description: "What shipped in this phase, the evidence behind each claim, and what was left undone or unverified."
 trigger_phrases:
   - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
-importance_tier: "normal"
-contextType: "general"
+  - "phase outcome"
+  - "verification evidence"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-port-retry-loop-guard"
-    last_updated_at: "2026-09-08T17:57:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard"
+    last_updated_at: "2026-09-08T00:00:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Recorded the shipped outcome and its evidence"
+    next_safe_action: "None; phase complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".pi/extensions/pi-cache-optimizer/index.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-003-port-retry-loop-guard"
+      session_id: "spec-016-003-port-retry-loop-guard"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
+# Implementation Summary: break paid retry loops
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -38,9 +37,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-port-retry-loop-guard |
-| **Completed** | 2026-09-08 |
 | **Level** | 3 |
+| **Status** | Complete |
+| **Completed** | 2026-09-08 |
+| **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +48,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 3: port-retry-loop-guard
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Added batch-level retry tracking to `.pi/extensions/pi-cache-optimizer/index.ts`: tool calls are
+collected from an assistant message as a batch, outcomes are recorded per call, and escalation fires
+only when a whole batch fails repeatedly with no success in between. Any successful call resets the
+streaks. Added `tests/retry-loop-guard.test.ts`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +59,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Wired to the existing tool-call and tool-result hooks, with per-session state that is never
+written to disk.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -75,9 +68,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-| Decision | Why |
-|----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+**Batch-level, not per-call.** A per-call counter fires on a single legitimate retry and misses the
+expensive case, where a batch partially succeeds every time and never converges.
+
+**The guard breaks a loop and nothing more.** It never rewrites the request to make one succeed,
+and when it fires it surfaces the blocker rather than failing quietly.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +82,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Extension suite | exit 0, 56 -> 68 passing, tsc clean |
+| Storm | A driven retry storm escalates and stops |
+| Negative controls | One legitimate retry stays silent; the guard cannot fire on a first attempt; a success mid-streak resets; two independent batches do not share a streak; a tool-result `message_end` does not reset mid-batch |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,9 +92,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+The executor's Critic pass caught that its own first version of the "one legitimate retry" test was
+wrong: the case it wrote was a second all-failed batch in the same streak, so a streak of two was
+correct behavior rather than a defect. The test was corrected, not the code.
 <!-- /ANCHOR:limitations -->
-
----
-
-

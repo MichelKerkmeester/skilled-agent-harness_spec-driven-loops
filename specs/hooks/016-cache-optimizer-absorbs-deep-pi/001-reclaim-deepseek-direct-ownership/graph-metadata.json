@@ -1,26 +1,225 @@
 {
   "schema_version": 1,
-  "packet_id": "016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
-  "spec_folder": "016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
-  "parent_id": null,
+  "packet_id": "hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
+  "spec_folder": "hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
+  "parent_id": "hooks/016-cache-optimizer-absorbs-deep-pi",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: reclaim-deepseek-direct-ownership",
+  "derived": {
+    "trigger_phrases": [
+      "reclaim deepseek direct ownership",
+      "remove isdeeppiowned carve-out",
+      "shared ownership fixture removal",
+      "atomic ownership flip",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "reclaim",
+      "deepseek",
+      "direct",
+      "ownership",
+      "remove",
+      "isdeeppiowned",
+      "carve-out",
+      "shared",
+      "fixture",
+      "removal",
+      "atomic",
+      "flip"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/settings.json",
+      ".opencode/scripts/vendored-fork-provenance.json",
+      ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "vendored-fork-provenance.json",
+        "kind": "config",
+        "path": ".opencode/scripts/vendored-fork-provenance.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-findings.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGES-FROM-UPSTREAM.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`isDeepPiOwned` (`index.ts:1462`) returns true for exactly `provider === 'deepseek'` with id",
     "created_at": "2026-09-08T17:57:01Z",
-    "last_save_at": "2026-09-08T17:57:01Z",
+    "last_save_at": "2026-09-08T20:24:08.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e112309149e8231649fe9f32469b553c65a5d0859852e99aa7ec30509201c190",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "809cde6319e00ab77ae1d2a6d49d52ea76fd64f9cf3bb3c5485dc687616b509e",
+      "plan.md": "cd7ac0b40e45f3c885920f97b743ec35f52b5968504abc66be937633f57c6bf4",
+      "tasks.md": "1cf9023752676ad2f755dab83c4e252184912a5fd5472c76dd1a37d58eb414cc",
+      "implementation-summary.md": "bc8b7552ff3d592d6fed5e9e764aa979dee38d4d0805076e1152f43d8fee0fff"
+    },
+    "last_active_at": null
   }
 }

@@ -62,6 +62,30 @@ parent decision or criterion is an amendment to the parent: apply it there and r
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+| Surface | Bound to |
+|---------|----------|
+| Parent goal | `../goal.md` |
+| Phase spec | `spec.md` |
+| Closure gate | `acceptance-criteria.md` |
+<!-- /ANCHOR:binding -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+
+- [x] A repeated whole-batch failure escalates instead of re-issuing
+- [x] Any successful call resets the streaks
+- [x] The guard cannot fire on a first attempt
+- [x] One legitimate retry is unaffected
+- [x] Guard state does not persist across sessions
+<!-- /ANCHOR:completion -->
+
+---
+
 <!-- ANCHOR:log -->
 ## 2. LOG
 

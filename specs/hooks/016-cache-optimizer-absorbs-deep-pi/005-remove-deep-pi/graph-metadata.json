@@ -1,26 +1,227 @@
 {
   "schema_version": 1,
-  "packet_id": "016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
-  "spec_folder": "016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
-  "parent_id": null,
+  "packet_id": "hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
+  "spec_folder": "hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
+  "parent_id": "hooks/016-cache-optimizer-absorbs-deep-pi",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 5: remove-deep-pi",
+  "derived": {
+    "trigger_phrases": [
+      "remove deep-pi extension",
+      "retire vendored fork",
+      "deep-pi reference sweep",
+      "boundary runner removal",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "remove",
+      "deep-pi",
+      "extension",
+      "retire",
+      "vendored",
+      "fork",
+      "reference",
+      "sweep",
+      "boundary",
+      "runner",
+      "removal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/scripts/vendored-fork-provenance.json",
+      ".opencode/scripts/check-vendored-fork-provenance.mjs",
+      ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
+      ".pi/PLUGINS.md",
+      "specs/descriptions.json",
+      ".opencode/logs/cli-dispatch-audit.log",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vendored-fork-provenance.json",
+        "kind": "config",
+        "path": ".opencode/scripts/vendored-fork-provenance.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-vendored-fork-provenance.mjs",
+        "kind": "file",
+        "path": ".opencode/scripts/check-vendored-fork-provenance.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-path-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.log",
+        "kind": "file",
+        "path": ".opencode/logs/cli-dispatch-audit.log",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The extension directory is 53 tracked files and a large vendored dependency tree that nothing",
     "created_at": "2026-09-08T17:57:04Z",
-    "last_save_at": "2026-09-08T17:57:04Z",
+    "last_save_at": "2026-09-08T20:24:14.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e948711acb303869c2fc847bc377e9404b678f02d6c09621e84e7b03224e73f4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5359fb9785b800c9202de0ab3193ea344747811fdcc7f36e7f275f7bb45b0876",
+      "plan.md": "854ca646db5e838165c1add0b8291a327c5170c24f5c1cfb0c30ba8fcdeb3589",
+      "tasks.md": "e0c92c0eb3b619c42d0d6255e853f8bec8536e3ded45e9f2cdb3ed6f20f1e589",
+      "implementation-summary.md": "c869d53cc99cc1956b1c4c8abbf37c7648d136353eaac4020cd86ecc45b7913e"
+    },
+    "last_active_at": null
   }
 }

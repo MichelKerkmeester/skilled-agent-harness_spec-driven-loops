@@ -1,10 +1,14 @@
 # Pi Plugins
 
-Reference list of all pi plugins installed for this environment. Eight npm
-packages install at both user level (`~/.pi/agent/npm`) and project level
-(`.pi/npm`) carrying the same set; two git-source extensions (`pi-btw`,
-`pi-plan-build`) install the same way under `git/`. `pi-cache-optimizer`
-loads from its local extension directory (`.pi/extensions/`).
+## 1. OVERVIEW
+
+Reference list of all pi plugins enabled for this environment, matching the
+`.pi/settings.json` `packages` array. Six npm packages install at both user
+level (`~/.pi/agent/npm`) and project level (`.pi/npm`); two git-source
+extensions (`pi-btw`, `pi-plan-build`) install the same way under `git/`;
+`pi-cache-optimizer` and `pi-fast-mode-w-subagent-support` load from local
+extension directories (`.pi/extensions/`). The npm manifests at both scopes
+are install artifacts and can retain packages that are no longer enabled.
 Entries are sorted alphabetically by package name.
 
 ---

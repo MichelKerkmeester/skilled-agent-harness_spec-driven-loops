@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Authored against a measured documentation surface"
-    next_safe_action: "Execute once 001-005 are done and tested"
+    recent_action: "Reconciled the documents and closed the residue defects"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - ".pi/PLUGINS.md"
@@ -23,10 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-016-006-reconcile-extension-documentation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The root README carries no Pi-extension content today, so this phase decides whether it should rather than assuming there is text to correct"
+      - "The root README stays silent on Pi extensions: it is a public template describing the reusable framework surface, and the extension inventory lives with the runtime under .pi/ (PLUGINS.md roster, SYNC.md derivation, extensions/README.md bridges). Adding a section would duplicate it in the most-read file and burden forks of the template with install state they do not carry."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 6: documentation matches what ships
@@ -53,7 +54,7 @@ old arrangement. This phase reconciles them against the tree as it actually ship
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-08 |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 005-remove-deep-pi |
@@ -189,5 +190,12 @@ do, and the root README's silence on the subject is a decision rather than an ov
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the root README describe the Pi extension surface at all? It never has. Adding a section creates a maintenance obligation at the most-read file in the repo; leaving it silent keeps the inventory where the runtime lives. Decide and record, do not drift.
+- **RESOLVED (2026-09-08):** the root README stays silent on Pi extensions, as a decision
+  rather than an oversight. The root README is a public template that inventories the
+  reusable framework surface (skills, commands, MCP servers, spec workflow). Pi extensions
+  are operator install state, and the inventory is already documented where the runtime
+  lives: `.pi/PLUGINS.md` (roster), `.pi/SYNC.md` (derivation), `.pi/extensions/README.md`
+  (guard bridges), and the extension READMEs under `.pi/extensions/`. Adding a section
+  would duplicate that inventory in the most-read file in the repo, and a fork of this
+  template would inherit a section describing install state it does not carry.
 <!-- /ANCHOR:questions -->
