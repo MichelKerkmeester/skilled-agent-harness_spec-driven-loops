@@ -142,6 +142,14 @@ function parseTokens(file) {
 // style library because its warm parchment and ink match the corpus' own chrome, it carries a
 // muted ladder and a hairline rule, and its accents clear the mark gate on both grounds.
 const DEFAULT_DESIGN_PATH = path.resolve(PACKAGE_ROOT, '..', 'sk-design-md-generator', 'styles', 'library', 'bundles', 'cursor', 'DESIGN.md');
+// Provenance records the reference by a path a second machine can resolve: relative to the
+// repository root, never the absolute path of whoever ran the script.
+const REPO_ROOT = path.resolve(PACKAGE_ROOT, '..', '..', '..', '..');
+function provenancePath(given) {
+  const absolute = path.resolve(given);
+  const relative = path.relative(REPO_ROOT, absolute);
+  return relative && !relative.startsWith('..') ? relative.split(path.sep).join('/') : given;
+}
 
 function parseArgs(argv) {
   const options = { forms: null, all: false, tokens: null, scheme: 'both', out: null };
@@ -338,14 +346,6 @@ function chooseSeries(rows, surface, ink, gates, label) {
     .filter((row) => row.value.toLowerCase() !== surface.toLowerCase())
     .sort((a, b) => (a.value.toLowerCase() === ink.toLowerCase()) - (b.value.toLowerCase() === ink.toLowerCase()));
   const selected = [];
-  const admit = (row) => {
-    const value = row.value;
-    if (contrast(value, surface) < gates.markOnSurface) return;
-    if (selected.some((entry) => entry.value.toLowerCase() === value.toLowerCase())) return;
-    selected.push({ row, value });
-  };
-  // Hues are taken greedily by distance from the hues already chosen, so two greens do not sit
-  // side by side while a red waits in the table; ties fall back to table order.
   const hueOf = (row) => {
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(row.value.slice(i, i + 2), 16) / 255);
     const max = Math.max(r, g, b); const min = Math.min(r, g, b); const d = max - min;
@@ -354,6 +354,17 @@ function chooseSeries(rows, surface, ink, gates, label) {
     return ((h * 60) + 360) % 360;
   };
   const gap = (a, b) => { const x = Math.abs(a - b) % 360; return x > 180 ? 360 - x : x; };
+  const admit = (row) => {
+    const value = row.value;
+    if (contrast(value, surface) < gates.markOnSurface) return;
+    if (selected.some((entry) => entry.value.toLowerCase() === value.toLowerCase())) return;
+    // Two series a reader cannot tell apart, close in luminance and close in hue, are one
+    // colour wearing two names; the checker refuses such a pair, so the mapper never makes one.
+    if (selected.some((entry) => contrast(entry.value, value) < gates.rampStepSeparation && gap(hueOf(row), hueOf(entry.row)) < 30)) return;
+    selected.push({ row, value });
+  };
+  // Hues are taken greedily by distance from the hues already chosen, so two greens do not sit
+  // side by side while a red waits in the table; ties fall back to table order.
   const clearing = chromatic.filter((row) => contrast(row.value, surface) >= gates.markOnSurface);
   const pool = [...clearing];
   while (selected.length < 4 && pool.length) {
@@ -509,7 +520,7 @@ function fontStack(face, substitute) {
 }
 
 function provenance(pathGiven, hash) {
-  return `/* DESIGN.md provenance: path=${pathGiven} sha256=${hash} generator=${VERSION} */`;
+  return `/* DESIGN.md provenance: path=${provenancePath(pathGiven)} sha256=${hash} generator=${VERSION} */`;
 }
 
 function paletteBlock(theme, light, pathGiven, hash, radius) {
@@ -553,10 +564,11 @@ function replaceRegion(source, begin, end, replacement, label) {
 function replaceFonts(source, typography) {
   const body = fontStack(typography.body.face, typography.body.substitute);
   const mono = fontStack(typography.mono.face, typography.mono.substitute);
-  let seen = 0;
+  // A declaration is replaced by what it already is: a stack that names a monospace face gets
+  // the reference's mono stack, any other gets the body stack. Position in the sheet is not a
+  // signal, and a template with two body stacks or none stays correct.
   return source.replace(/(<style\b[^>]*>[\s\S]*?<\/style>)/gi, (styleBlock) => styleBlock.replace(/font-family\s*:\s*[^;]+;/gi, (declaration) => {
-    const stack = seen === 0 ? body : mono;
-    seen += 1;
+    const stack = /monospace/i.test(declaration) ? mono : body;
     return `font-family: ${stack};`;
   }));
 }

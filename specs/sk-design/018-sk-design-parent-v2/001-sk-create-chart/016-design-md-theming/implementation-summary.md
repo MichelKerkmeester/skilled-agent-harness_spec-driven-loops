@@ -129,13 +129,13 @@ conductor to rerun outside this sandbox.
 | `node --check scripts/apply-design-md.cjs` | PASS, exit 0. |
 | `node --test scripts/tests/` | PASS, 6 tests, 0 failures (two added by the conductor: the default reference themes a categorical form; an ordered form named outright is refused). |
 | Stripe apply command | PASS, wrote `bar-columns.html` and `daily-line.html`; `RESULT: PASSED`. |
-| `check-corpus.cjs --extra scratch/themed` | PASS, 38 files, 156 `design-md` assertions, `Summary: errors: 0`, `RESULT: PASSED`. |
-| `check-corpus.cjs` | PASS, 36 files, 52 `design-md` assertions, `Summary: errors: 0`, `RESULT: PASSED`. |
+| `check-corpus.cjs --extra <dir>` | PASS on a default-themed set of 22 forms, `Summary: errors: 0`, `RESULT: PASSED`; the generated set is not kept under scratch, one documented command reproduces it. |
+| `check-corpus.cjs` | PASS, `Summary: errors: 0`, `RESULT: PASSED`; the `design-md` family reports 70 assertions after the fresh-review fixes (six-digit roles and series distinguishability). |
 | Mutation receipts | PASS, three exact failures recorded in `scratch/mutations.md`; all targets restored. |
 | `check-corpus.cjs --render` (conductor) | PASS on the corpus with the proof delivery, `Summary: errors: 0`, `RESULT: PASSED`; PASS with `--extra` on the whole default-themed set. |
 | Default and example derivations (conductor) | PASS: `--default --all` themed 22 forms and skipped the four ordered ones with a note; stripe, vercel, linear and supabase each derived two gated grounds with measured series. |
 | Independent Sonnet review (conductor) | Returned FAIL with one P0, one P1, two P2. P0 (non-deterministic output) was an artefact of the review running while the mapper was being amended; on the settled tree three separate processes produced byte-identical files (sha `d420b59a…` and `d488184…` three times). P1 (themed copy kept its stock `chart-color-system` meta and the checker carried an exception for it) fixed: the writer rewrites the meta and the exception is gone. P2 (delivery name off the spec's path; undocumented chromatic threshold) fixed. |
-| `validate.sh --strict --no-recursive` | PASS, `AC_COVERAGE` 9/9, `Summary: Errors: 0  Warnings: 0`, and literal `RESULT: PASSED`. |
+| `validate.sh --strict --no-recursive` | PASS, `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`; AC coverage line pasted from the final run in the fresh-review packet, `018-opus-review-fixes/implementation-summary.md` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -148,7 +148,7 @@ conductor to rerun outside this sandbox.
    value. Every other role is a table value or the stock dark chrome.
 2. **A bundle with fewer than four gate-clearing hues borrows neutral tones for the rest.** The
    cursor default does this on the light ground only when a form declares four series; its
-   captures under `scratch/captures/` show the result.
+   captures under `scratch/captures/`, regenerated from the committed script, show the result.
 3. **Ordered forms are not themed.** They keep the stock magnitude ramp inside a themed set.
 <!-- /ANCHOR:limitations -->
 

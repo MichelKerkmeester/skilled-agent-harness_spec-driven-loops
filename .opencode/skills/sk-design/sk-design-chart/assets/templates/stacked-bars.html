@@ -227,8 +227,8 @@ svg[data-chart-dim="3"] [data-series]:not([data-series="3"]) { opacity: 0.3; }
   <h1 class="headline" data-chart-part="headline">The revenue mix holds everywhere except in the market we entered last year</h1>
   <p class="subtitle" data-chart-part="subtitle">Revenue by product line within each market, in millions, last financial year. Only the bottom segment of a stack shares a baseline, so that is the one comparison the form makes cleanly and the rest are read as shares of their own column.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
-      <desc id="fig-title">Revenue by product line within each market</desc>
+    <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 330" id="chart" data-chart-dim="">
+      <desc id="fig-label">Revenue by product line within each market</desc>
       <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Each product line takes the swatch printed beside its name in the key, left to right, and the segments stack in the same order from the foot of every column upward: platform, then services, then support. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
     </svg>
     <div data-chart-tooltip id="tip-stacked-bars" class="tip-card" aria-live="polite"></div>
@@ -487,15 +487,15 @@ DATA.forEach(function (d, i) {
     const top = s === d.values.length - 1;
     // Every segment of a column carries the column's index, so the whole stack grows on one
     // timing and arrives as one shape. An index is where a mark sits in the drawing, so
-    // nothing in the data block reaches the timing. The card names the product line and the
-    // market it sits in, because a segment past the printed-number gate carries its value
+    // nothing in the data block reaches the timing. The card names the market in its header and
+    // the product line on the row, because a segment past the printed-number gate carries its value
     // twice: once on the mark, once in the card, and the two come from the same fmt call.
     // Below the gate the figure prints nothing and the card is the only reading.
-    const datum = { label: SERIES[s].label + ', ' + d.label };
+    const datum = { label: d.label };
     markable(node(top ? 'path' : 'rect', top
       ? { d: topRounded(cx - barWidth / 2, y, barWidth, h, MARK_R), style: '--mark-index:' + i, 'data-series': s + 1 }
       : { x: cx - barWidth / 2, y: y, width: barWidth, height: h, style: '--mark-index:' + i, 'data-series': s + 1 },
-      'seg ' + seriesClass(s)), datum, [['Value', fmt(v)]]);
+      'seg ' + seriesClass(s)), datum, [[SERIES[s].label, fmt(v)]]);
     if (h >= 22) {
       // The printed value belongs to its segment, so it dims with it rather than staying at
       // full strength over a segment that has stepped back.

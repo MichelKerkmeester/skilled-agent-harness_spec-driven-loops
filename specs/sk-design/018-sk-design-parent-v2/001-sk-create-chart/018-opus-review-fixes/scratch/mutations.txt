@@ -1,0 +1,3 @@
+== rgb:   FAIL [design-md] --extra/grouped-bars.html: design-md light series-1 is rgb(245,78,0), and a themed role has to be a six-digit hex so its ratio can be measured
+== alpha:   FAIL [design-md] --extra/grouped-bars.html: design-md light series-1 is #F54E0008, and a themed role has to be a six-digit hex so its ratio can be measured
+== twin:   FAIL [design-md] --extra/grouped-bars.html: design-md light series[1] and series[3] differ by 1:1 and 1 degrees of hue, which a reader cannot tell apart

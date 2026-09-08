@@ -459,6 +459,20 @@ function inlinePaletteProperties(block) {
   return properties;
 }
 
+// Hue distance in degrees on the HSL wheel, for the one gate that asks whether two categorical
+// values read as different colours rather than as different weights of one.
+function hueGap(a, b) {
+  const hue = (hex) => {
+    const [r, g, bl] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+    const max = Math.max(r, g, bl); const min = Math.min(r, g, bl); const d = max - min;
+    if (!d) return 0;
+    const h = max === r ? ((g - bl) / d) % 6 : max === g ? (bl - r) / d + 2 : (r - g) / d + 4;
+    return ((h * 60) + 360) % 360;
+  };
+  const x = Math.abs(hue(a) - hue(b)) % 360;
+  return x > 180 ? 360 - x : x;
+}
+
 function isHexColour(value) {
   return /^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$/.test(value);
 }
@@ -492,11 +506,20 @@ function checkDesignMdBlock(file, block, palette, spec) {
   const valueFor = (role) => actual.get(`--chart-${role}`);
   const surface = valueFor('surface');
   const ink = valueFor('ink');
-  const muted = valueFor('muted');
   const series = [1, 2, 3, 4].map((i) => valueFor(`series-${i}`));
   const emphasis = valueFor('emphasis');
   const colourRoles = ['surface', 'ink', 'muted', ...series.map((_, i) => `series-${i + 1}`), 'emphasis'];
-  const valid = colourRoles.every((role) => isHexColour(valueFor(role)));
+  // A role that is not a six-digit hex is an error in its own right, never a reason to skip the
+  // gates quietly: an rgb() value or an eight-digit hex with a faint alpha would otherwise pass
+  // a block the ratios were never computed for.
+  let valid = true;
+  for (const role of colourRoles) {
+    checked += 1;
+    if (/^#[0-9A-Fa-f]{6}$/.test(valueFor(role) || '')) continue;
+    valid = false;
+    record('design-md', 'error', file,
+      `${themeLabel} ${role} is ${valueFor(role) || 'missing'}, and a themed role has to be a six-digit hex so its ratio can be measured`);
+  }
   if (valid) {
     for (const role of ['ink', 'muted']) {
       const ratio = contrast(valueFor(role), surface);
@@ -516,7 +539,18 @@ function checkDesignMdBlock(file, block, palette, spec) {
     });
     // A themed block stands in for a neutral or categorical system, and the stock checker gates
     // those by the mark ratio alone; the ramp step and end gates belong to a magnitude ramp,
-    // which a Style Reference does not supply and the theming script refuses to write.
+    // which a Style Reference does not supply and the theming script refuses to write. What a
+    // category set does owe is that any two of its series can be told apart: a pair that is
+    // both close in luminance and close in hue is one colour wearing two names.
+    for (let a = 0; a < series.length; a += 1) {
+      for (let b = a + 1; b < series.length; b += 1) {
+        checked += 1;
+        const apart = contrast(series[a], series[b]) >= gates.rampStepSeparation || hueGap(series[a], series[b]) >= 30;
+        if (apart) continue;
+        record('design-md', 'error', file,
+          `${themeLabel} series[${a}] and series[${b}] differ by ${round2(contrast(series[a], series[b]))}:1 and ${Math.round(hueGap(series[a], series[b]))} degrees of hue, which a reader cannot tell apart`);
+      }
+    }
     const emphasisRatio = contrast(emphasis, surface);
     checked += 1;
     if (emphasisRatio < gates.markOnSurface) {
@@ -2652,11 +2686,3 @@ function checkContractCoverage(templateFiles) {
 
 if (require.main === module) main();
 
-module.exports = {
-  channel,
-  luminance,
-  contrast,
-  round2,
-  checkPaletteSource,
-  checkDesignMdBlock,
-};
