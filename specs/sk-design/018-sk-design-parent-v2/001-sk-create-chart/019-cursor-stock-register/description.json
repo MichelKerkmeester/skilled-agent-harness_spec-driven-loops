@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/019-cursor-stock-register",
+  "description": "The operator asked for the best Style Reference in the library to be the initial default styling of charts",
+  "keywords": [
+    "operator",
+    "asked",
+    "best",
+    "style",
+    "reference",
+    "library",
+    "initial",
+    "default",
+    "styling",
+    "charts"
+  ],
+  "lastUpdated": "2026-09-08T10:16:16.413Z",
+  "specId": "019",
+  "folderSlug": "cursor-stock-register",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

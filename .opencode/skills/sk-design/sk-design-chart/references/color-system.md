@@ -180,11 +180,25 @@ roles, and keeps the measured face before the substitute stack. It never fetches
 remote resource. If the table cannot supply four chromatic values that clear the series gates, the
 script names the shortfall and writes nothing.
 
+## Where the values come from
+
+Since v1.5.0.0 the stock values are the cursor Style Reference in the style library,
+`sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md`, chosen from a survey of the
+whole library for a warm parchment and ink that suit a printed chart, a full muted ladder, a
+hairline rule, and accents that clear the mark gate on both grounds. Parchment, ink, ash,
+driftwood, mist, stone and linen carry the chrome and the `neutral` system; ember, verdant,
+crimson and amber carry the `categorical` system; ember drawn toward each ground carries the
+`ordered` ramp; and the ink itself is the dark ground, which the reference already uses behind
+its light action fills. Four values were moved by the least amount that clears a gate and the
+palette source names each: ash to `#72716C` for muted, amber to `#BE8332` on paper, mist to
+`#908F8D` as the fourth neutral step, and the far end of the paper ramp to `#E64B02`. The corner
+ladder follows the reference's 4px corner, with 8px for the card. Everything else is verbatim.
+
 **A theme boundary is the one place a hue may be re-chosen.** That rule above was written when there was one ground, and mixing toward the surface is exactly what makes a mark disappear when the surface is near-black. So a system's dark values are chosen for the dark ground rather than derived from its light ones, under one stated rule: a dark value is re-chosen at a hue the dark ground can carry, and its lightness is set so it holds the same ratio against near-black that its light counterpart holds against paper.
 
 The reason a hue has to move is arithmetic rather than taste. A hue reaches its own ceiling of lightness: pure blue tops out near a tenth of the luminance pure yellow reaches, so the categorical system's navy, which carries the brightest slot on paper, cannot carry the brightest slot on ink without desaturating into a pale grey-blue. Each hue therefore lands in the slot whose lightness it can reach with its chroma intact, and the set rotates: navy, rust, green and violet on paper become gold, cyan, rose and violet-blue on ink.
 
-Two things do not rotate, and both refusals are as deliberate as the rotation. The `neutral` system has no hue to move, so its dark values stay warm greys. The `ordered` ramp stays in the teal family, because a magnitude ramp needs one hue and teal is a family that reaches the lightness the dark carrying end needs without washing out. What changes there is direction and chroma, not hue.
+Two things do not rotate, and both refusals are as deliberate as the rotation. The `neutral` system has no hue to move, so its dark values stay warm greys. The `ordered` ramp stays in the ember family, because a magnitude ramp needs one hue and teal is a family that reaches the lightness the dark carrying end needs without washing out. What changes there is direction and chroma, not hue.
 
 **Index 0 is always the value furthest from that theme's ground.** On paper the first series value is the darkest and on ink it is the brightest, and in both cases it is the one that carries most. That is what keeps `neutral` ranking importance the same way on both grounds and keeps `ordered` reading as more in the same direction. A dark ramp that simply reversed the light array would satisfy the gates and still be wrong, because the light ramp's chroma was placed for a light ground.
 

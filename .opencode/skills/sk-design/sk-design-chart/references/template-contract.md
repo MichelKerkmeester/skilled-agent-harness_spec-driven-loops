@@ -360,7 +360,9 @@ The light block carries one more kind of shared value: the five corner rungs, `-
 through `--chart-radius-card`. They are not colours and they live in their own object in the
 palette source, but they are emitted into the same block because every file already carries that
 block and the check already compares it against the source in both directions. They appear once
-and only in that block, since a corner is the same corner on either ground.
+and only in that block, since a corner is the same corner on either ground. The rungs follow the
+cursor reference: 2px for a mark, 4px for a track, a swatch and the tooltip card, 8px for the
+card itself.
 
 A corner is never typed into a file. A stylesheet reaches a rung the way it reaches a colour, and
 SVG marks take theirs from CSS too: `rx` is a geometry property, so `.box { rx: var(--chart-radius-mark); }`

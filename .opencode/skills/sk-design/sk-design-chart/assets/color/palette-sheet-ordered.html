@@ -9,38 +9,50 @@
 <style>
 /* CHART_PALETTE:BEGIN system=ordered */
 :root {
-  --chart-surface: #FAF8F5;
-  --chart-ink: #1A1917;
-  --chart-muted: #52504E;
-  --chart-rule: #E0DFDC;
+  --chart-surface: #F7F7F4;
+  --chart-ink: #26251E;
+  --chart-muted: #72716C;
+  --chart-rule: #CDCDC9;
   --chart-radius-mark: 2px;
   --chart-radius-track: 4px;
-  --chart-radius-swatch: 6px;
-  --chart-radius-pill: 8px;
-  --chart-radius-card: 10px;
-  --chart-series-1: #213B3D;
-  --chart-series-2: #275C63;
-  --chart-series-3: #2E7F89;
-  --chart-series-4: #69A2A9;
-  --chart-series-5: #A3C4C7;
-  --chart-emphasis: #B4471F;
+  --chart-radius-swatch: 4px;
+  --chart-radius-pill: 4px;
+  --chart-radius-card: 8px;
+  --chart-series-1: #E64B02;
+  --chart-series-2: #F56C2C;
+  --chart-series-3: #F69363;
+  --chart-series-4: #F6B798;
+  --chart-series-5: #F7DACB;
+  --chart-emphasis: #26251E;
 }
 /* CHART_PALETTE:END */
 
 /* CHART_PALETTE_DARK:BEGIN system=ordered */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --chart-surface: #161513;
-    --chart-ink: #F2F0EC;
-    --chart-muted: #A8A5A0;
-    --chart-rule: #F2F0EC17;
-    --chart-series-1: #A1D4DC;
-    --chart-series-2: #47AFBE;
-    --chart-series-3: #318893;
-    --chart-series-4: #28646A;
-    --chart-series-5: #1F4649;
-    --chart-emphasis: #DD6336;
+  :root:not([data-scheme="light"]) {
+    --chart-surface: #26251E;
+    --chart-ink: #F7F7F4;
+    --chart-muted: #A1A19F;
+    --chart-rule: #F7F7F417;
+    --chart-series-1: #F54E00;
+    --chart-series-2: #CF4606;
+    --chart-series-3: #AA3F0B;
+    --chart-series-4: #853810;
+    --chart-series-5: #603116;
+    --chart-emphasis: #F7F7F4;
   }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #26251E;
+  --chart-ink: #F7F7F4;
+  --chart-muted: #A1A19F;
+  --chart-rule: #F7F7F417;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #CF4606;
+  --chart-series-3: #AA3F0B;
+  --chart-series-4: #853810;
+  --chart-series-5: #603116;
+  --chart-emphasis: #F7F7F4;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -67,7 +79,7 @@ body {
   padding: 32px 20px;
   background: var(--chart-surface);
   color: var(--chart-ink);
-  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-family: CursorGothic, Inter, system-ui, "Helvetica Neue", sans-serif;
   font-size: 15px;
   line-height: 1.5;
 }

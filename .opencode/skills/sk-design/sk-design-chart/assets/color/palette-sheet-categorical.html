@@ -9,36 +9,47 @@
 <style>
 /* CHART_PALETTE:BEGIN system=categorical */
 :root {
-  --chart-surface: #FAF8F5;
-  --chart-ink: #1A1917;
-  --chart-muted: #52504E;
-  --chart-rule: #E0DFDC;
+  --chart-surface: #F7F7F4;
+  --chart-ink: #26251E;
+  --chart-muted: #72716C;
+  --chart-rule: #CDCDC9;
   --chart-radius-mark: 2px;
   --chart-radius-track: 4px;
-  --chart-radius-swatch: 6px;
-  --chart-radius-pill: 8px;
-  --chart-radius-card: 10px;
-  --chart-series-1: #28405C;
-  --chart-series-2: #874420;
-  --chart-series-3: #487B3B;
-  --chart-series-4: #A377B6;
-  --chart-emphasis: #1A1917;
+  --chart-radius-swatch: 4px;
+  --chart-radius-pill: 4px;
+  --chart-radius-card: 8px;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #BE8332;
+  --chart-emphasis: #26251E;
 }
 /* CHART_PALETTE:END */
 
 /* CHART_PALETTE_DARK:BEGIN system=categorical */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --chart-surface: #161513;
-    --chart-ink: #F2F0EC;
-    --chart-muted: #A8A5A0;
-    --chart-rule: #F2F0EC17;
-    --chart-series-1: #DBBD6D;
-    --chart-series-2: #57AABF;
-    --chart-series-3: #D25F4D;
-    --chart-series-4: #7657BF;
-    --chart-emphasis: #F2F0EC;
+  :root:not([data-scheme="light"]) {
+    --chart-surface: #26251E;
+    --chart-ink: #F7F7F4;
+    --chart-muted: #A1A19F;
+    --chart-rule: #F7F7F417;
+    --chart-series-1: #F54E00;
+    --chart-series-2: #1F8A65;
+    --chart-series-3: #CF2D56;
+    --chart-series-4: #C08532;
+    --chart-emphasis: #F7F7F4;
   }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #26251E;
+  --chart-ink: #F7F7F4;
+  --chart-muted: #A1A19F;
+  --chart-rule: #F7F7F417;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #C08532;
+  --chart-emphasis: #F7F7F4;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -65,7 +76,7 @@ body {
   padding: 32px 20px;
   background: var(--chart-surface);
   color: var(--chart-ink);
-  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-family: CursorGothic, Inter, system-ui, "Helvetica Neue", sans-serif;
   font-size: 15px;
   line-height: 1.5;
 }

@@ -47,7 +47,7 @@ function forms() {
       return {
         id,
         file: `templates/${name}`,
-        title: textOf(src, /<title id="fig-title">([\s\S]*?)<\/title>/, id),
+        title: textOf(src, /<desc id="fig-label">([\s\S]*?)<\/desc>/, id),
         system: textOf(src, /<meta name="chart-color-system" content="([^"]*)"/, 'neutral'),
       };
     });
