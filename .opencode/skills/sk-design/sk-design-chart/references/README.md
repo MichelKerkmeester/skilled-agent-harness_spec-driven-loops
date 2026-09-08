@@ -1,20 +1,21 @@
 ---
 title: "sk-design-chart References"
-description: "Router for this packet's reference set: the colour systems, the template contract and the index from a comparison to the chart form that answers it."
+description: "Router for this packet's reference set: the colour systems, the design-md delivery guide, the template contract and the index from a comparison to the chart form that answers it."
 trigger_phrases:
   - "chart references"
   - "which chart type"
   - "chart lookup"
   - "chart catalog"
   - "chart template contract"
+  - "design-md theming"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # sk-design-chart References
 
-The reference set answers three questions in order: which chart form answers the comparison the reader needs, what colour means in the chart and what the file has to contain.
+The reference set answers four questions in order: which chart form answers the comparison the reader needs, what colour means in the chart, how a local `DESIGN.md` becomes a delivery and what the file has to contain.
 
 ---
 
@@ -26,6 +27,7 @@ Three files sit here, each one a lookup or a contract rather than a guide to rea
 | --- | --- |
 | [`catalog.md`](./catalog.md) | **First, always.** Maps a comparison to one chart form and the file that draws it |
 | [`color-system.md`](./color-system.md) | Before choosing a palette, and whenever a request asks for more categories than a system carries |
+| [`design-md-theming.md`](./design-md-theming.md) | When applying a local v3 `DESIGN.md` or reviewing a provenance-gated delivery |
 | [`template-contract.md`](./template-contract.md) | Before authoring or editing any template file |
 
 The catalog holds twenty-six chart forms across six question families. When no row answers the question in front of you, defer with the gap named rather than answering freehand, because a freehand chart is what the template-first rule exists to prevent.
@@ -36,7 +38,7 @@ The catalog holds twenty-six chart forms across six question families. When no r
 
 Reference files in this packet are lookups and contracts. They route a request to a template and they carry no render code of their own, because a render block copied into a reference is a second copy that drifts from the template it came from.
 
-Chart markup lives in `../assets/`. Colour values live in `../assets/color/palettes.json` and nowhere else. This directory holds the index that finds them and the rules they follow.
+Chart markup lives in `../assets/`. Stock colour values live in `../assets/color/palettes.json` and nowhere else. A local design reference is read by `../scripts/apply-design-md.cjs`, and this directory holds the guide that defines how its values earn the same roles and gates.
 
 ---
 

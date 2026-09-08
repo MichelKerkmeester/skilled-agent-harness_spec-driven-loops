@@ -8,9 +8,11 @@ trigger_phrases:
   - "plot the data"
   - "chart or diagram"
   - "chart colour system"
+  - "theme chart from DESIGN.md"
+  - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 # sk-design-chart
@@ -27,7 +29,7 @@ version: 1.3.0.0
 | **Invoke with** | "create a chart", "plot the data", a named form such as "treemap" or a direct read of `SKILL.md` |
 | **Works on** | A dataset and the comparison someone wants to make from it |
 | **Produces** | One self-contained HTML file, built from a form file and one colour system |
-| **Corpus** | Twenty-six chart forms across six question families, plus three colour systems |
+| **Corpus** | Twenty-six chart forms across six question families, plus three stock colour systems and provenance-gated design-md deliveries |
 
 ---
 
@@ -42,6 +44,13 @@ A form file that already renders has had those problems solved once. Copying it 
 ### What It Does
 
 You describe the comparison a reader needs to make. The catalog in `references/catalog.md` turns that comparison into one row, and the row names the file that draws it. You copy that file, swap its data block and apply one colour system. A validator then proves the corpus still renders.
+
+When a request names a local v3 `DESIGN.md`, or passes `--default` for the `cursor` bundle in the
+style library, `scripts/apply-design-md.cjs` derives the chart role
+palette, typeface stacks and corner ladder from its documented tables. The script reuses the
+corpus gates, refuses to write on a failure, and places a hash-bearing provenance comment in both
+theme blocks. Site extraction remains the job of `sk-design-md-generator`; this packet applies the
+reference it receives.
 
 The visual register is shared by the corpus: a 16px semibold title, a muted 14px description, a two-row footer, bare axes with 12px tabular ticks, a horizontal dashed grid, measured bar and line geometry, positioned HTML tooltip cards and keyed legend chips. The gallery carries each template's light or dark scheme through a `data-scheme` attribute so the standalone files and their delivery frames use the same palette selectors.
 
@@ -77,9 +86,9 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 | [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow, the rules |
 | [`references/`](./references/) | The catalog, the colour systems and the template contract |
 | [`assets/templates/`](./assets/templates/) | One self-contained file per chart form, copied whole |
-| [`assets/color/`](./assets/color/) | The three colour systems, their palette source and their proof sheets |
+| [`assets/color/`](./assets/color/) | The three stock colour systems, their palette source and their proof sheets |
 | [`assets/examples/`](./assets/examples/) | One finished delivery per family, for when a form file alone is unclear |
-| [`scripts/`](./scripts/) | The corpus validator |
+| [`scripts/`](./scripts/) | The corpus validator, shared gate arithmetic and the local `DESIGN.md` applicator |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |
 | [`changelog/`](./changelog/) | One file per release, named `v[version].md` |
 
@@ -98,6 +107,8 @@ That is a constraint rather than a preference. This repository is MIT and public
 | Check | How to run it | What a pass looks like |
 |---|---|---|
 | Corpus | `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
+| Design reference | `node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs <DESIGN.md> --forms <a,b> --out <dir>` | `RESULT: PASSED` and deterministic themed copies |
+| Outside delivery | `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` with `design-md` provenance and gates checked |
 | Package shape | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-design/sk-design-chart --check --strict` | `Result: PASS` |
 | Hub shape | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` | Zero invariant failures |
 | Voice | `python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | Zero hard blockers |

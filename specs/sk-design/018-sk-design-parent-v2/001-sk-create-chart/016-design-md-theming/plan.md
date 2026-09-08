@@ -44,8 +44,8 @@ Parse the three v3 sections by their documented headings, rank the colours into 
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Corpus static and render gates passing with the proof delivery; tests passing
-- [ ] Docs updated (spec/plan/tasks, acceptance criteria, goal, implementation summary, references, routing, changelog)
+- [ ] Corpus static and render gates passing with the proof delivery; tests passing — static and tests pass, but render is sandbox-blocked.
+- [x] Docs updated (spec/plan/tasks, acceptance criteria, goal, implementation summary, references, routing, changelog) — packet docs record the observed render limitation.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -117,8 +117,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `design-md-format.md` v3 and the four bundled examples | Internal | Green | The parse contract and fixtures |
-| Phase 15 committed | Internal | Pending | Themed copies must inherit the final visual system |
-| A local Chrome for `--render` | Environment | Green on 2026-09-08 | Render of the proof delivery would be unknown |
+| Phase 15 committed | Internal | Green | `git log` returned commit `416827fd10` before the applicator run |
+| A local Chrome for `--render` | Environment | Blocked in sandbox | The render command exits 1 because Chrome returns no document; the conductor must rerun it elsewhere |
 <!-- /ANCHOR:dependencies -->
 
 ---

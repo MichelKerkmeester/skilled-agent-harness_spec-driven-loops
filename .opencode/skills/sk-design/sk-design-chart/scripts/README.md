@@ -1,22 +1,22 @@
 ---
 title: "sk-design-chart Scripts"
-description: "How to run the corpus check, what each of its checks enforces, what four of them still cannot see, and how to prove any of it can fail before trusting a green run."
+description: "How to apply a local DESIGN.md, run the corpus check over stock and outside deliveries, and prove the gates can fail before trusting a green run."
 trigger_phrases:
   - "chart validator"
   - "chart corpus check"
   - "validate chart templates"
   - "check-corpus"
+  - "apply DESIGN.md to chart"
 importance_tier: normal
 contextType: reference
-version: 1.6.0.0
+version: 1.7.0.0
 ---
 
 # sk-design-chart Scripts
 
-One script lives here. `check-corpus.cjs` is the corpus check. It enforces every rule the template
-contract states, and three of them it enforces in part: the contract's section 7 names which three
-and section 9 says what a run does not observe. A green run means what those two sections say it
-means and no more.
+Three small scripts live here. `apply-design-md.cjs` derives a provenance-gated delivery from a
+local v3 `DESIGN.md`, `color-gates.cjs` owns the shared contrast arithmetic, and `check-corpus.cjs`
+enforces the template contract. A green run means what the contract says it means and no more.
 
 ---
 
@@ -25,14 +25,26 @@ means and no more.
 Run it from the repository root. The first form is the one to reach for by default.
 
 ```bash
+# derive themed copies from a local v3 Style Reference
+node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
+  path/to/DESIGN.md --forms grouped-bars,daily-line --out scratch/themed
+node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
+  --default --all --out scratch/themed      # the cursor bundle; ordered forms are skipped with a note
+
 # structural checks over the whole corpus
 node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
 
 # the same, plus opening every template in a headless browser
 node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render
+
+# check themed HTML outside the package with the same file-level families
+node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra scratch/themed
 ```
 
-It needs Node and nothing else. `--render` needs a Chrome or Chromium binary, found on the usual paths or named by `CHROME_PATH`.
+The applicator needs Node and no package dependency. Its input is a local file: URLs are refused.
+It accepts `--forms a,b` or `--all`, `--out DIR`, `--scheme light|dark|both` and an optional local
+`--tokens tokens.json`; it writes nothing until both derived themes clear the gates. `--render`
+needs a Chrome or Chromium binary, found on the usual paths or named by `CHROME_PATH`.
 
 ---
 
@@ -40,6 +52,8 @@ It needs Node and nothing else. `--render` needs a Chrome or Chromium binary, fo
 
 | File | Role |
 | --- | --- |
+| [`apply-design-md.cjs`](apply-design-md.cjs) | Parse the documented v3 DESIGN.md tables, derive both grounds, refuse failed gates and write deterministic themed copies |
+| [`color-gates.cjs`](color-gates.cjs) | Shared sRGB luminance, contrast and rounding functions used by the applicator and checker |
 | [`check-corpus.cjs`](check-corpus.cjs) | The corpus check. It reads every template in the corpus and asserts the template contract against each one. With `--render` it also opens each template in a headless browser |
 
 ---
@@ -58,7 +72,17 @@ Each open pins its colour scheme with a browser flag rather than inheriting the 
 
 ## 4. WHAT IT CHECKS
 
-Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`, `series-mapping`, `legend`, `tooltip-card`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+Per file, the checker runs `document-shape`, `identity`, `palette-block`, `design-md`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`, `radius`, `series-mapping`, `legend` and `tooltip-card`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+
+`design-md` is the narrow exception to stock source equality. A block with that system must carry
+the provenance comment immediately under its begin marker, including the local input path, a
+64-hex SHA-256 and the applicator version. The checker then parses the inline roles in both blocks
+and applies the text, mark, ramp, separation and emphasis gates. A malformed comment or a failed
+ratio is an error; stock systems still use the original byte-equality path.
+
+`--extra DIR` adds every `.html` file under `DIR` to those file-level checks without adding it to
+the package catalog, gallery or shared geometry set. This is the proof path for a delivery written
+outside `assets/` and is deliberately separate from the stock corpus inventory.
 
 `series-mapping` is the newest and the one worth reading the reason for. Every other colour rule
 asks where a value came from; this one asks which mark received it. A file whose indexed classes

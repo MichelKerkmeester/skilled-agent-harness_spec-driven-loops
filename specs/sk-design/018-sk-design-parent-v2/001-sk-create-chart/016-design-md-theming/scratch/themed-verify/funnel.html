@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="funnel">
+<meta name="chart-color-system" content="design-md">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
+<title>Pipeline drop-off, centred funnel</title>
+<style>
+/* CHART_PALETTE:BEGIN system=design-md */
+/* DESIGN.md provenance: path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md sha256=c94a9bf3f244454085b26e0484ea064ad095e36808ef69f2509b56ffe7a8a52d generator=1.4.0.0 */
+:root {
+  --chart-surface: #F7F7F4;
+  --chart-ink: #26251E;
+  --chart-muted: #72716C;
+  --chart-rule: #26251E17;
+  --chart-radius-mark: 0px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 4px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 8px;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #34785C;
+  --chart-emphasis: #26251E;
+}
+/* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=design-md */
+/* DESIGN.md provenance: path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md sha256=c94a9bf3f244454085b26e0484ea064ad095e36808ef69f2509b56ffe7a8a52d generator=1.4.0.0 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #F54E00;
+    --chart-series-2: #1F8A65;
+    --chart-series-3: #CF2D56;
+    --chart-series-4: #C08532;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #161513;
+  --chart-ink: #F2F0EC;
+  --chart-muted: #A8A5A0;
+  --chart-rule: #F2F0EC17;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #C08532;
+  --chart-emphasis: #F2F0EC;
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: CursorGothic, Inter, system-ui, "Helvetica Neue";
+  font-size: 14px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; position: relative; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+
+.bar { fill: var(--chart-series-1); }
+.bar-lead { fill: var(--chart-emphasis); }
+.axis { stroke: none; stroke-width: 0; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.val { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The stage names keep the body face, because they are names rather than figures. */
+.val, td.num { font-family: berkeleyMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas; font-variant-numeric: tabular-nums; }
+
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  min-width: 128px;
+  max-width: calc(100% - 16px);
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--chart-rule) 50%, transparent);
+  border-radius: var(--chart-radius-pill);
+  background: var(--chart-surface);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--chart-ink) 16%, transparent);
+  display: grid;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
+.tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+[data-chart-tooltip][data-single-series] .tip-indicator { display: none; }
+[data-chart-tooltip][data-single-series] .tip-row { grid-template-columns: minmax(0, 1fr) auto; }
+.tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
+.tip-value { color: var(--chart-ink); font-size: 12px; font-family: berkeleyMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas; font-variant-numeric: tabular-nums; }
+/* A reader who clicks a control inside the figure should not be left looking at a ring they
+   never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
+   the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
+   are there to be copied out of it. */
+.figure svg :focus:not(:focus-visible) { outline: none; }
+/* Each mark grows from the anchor it is measured against over half a second, and consecutive
+   marks start slightly apart so the eye follows the order the chart is arranged in. The delay
+   comes from a mark's place in the drawing order, which is geometry: no number in the data
+   block reaches the timing. It is capped rather than accumulated, so a file carrying thirty
+   rows still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.bar, .bar-lead {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: chart-grow-x 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately, and the
+   card with no fade. The motion is removed rather than shortened, because a fast animation
+   is still an animation and a fast fade is still a fade, to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  [data-chart-tooltip] { transition: none; }
+  .bar, .bar-lead { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The paid pilot keeps fewer than half the deals that reach it, and one enquiry in twelve becomes a win</h1>
+  <p class="subtitle" data-chart-part="subtitle">Deal count per stage for every enquiry opened last year, widest first. The share beside each bar is what the stage above retained; the paid pilot is the pipeline's cliff and security review its flat spot.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 338" id="chart">
+      <desc id="fig-title">Deal count by pipeline stage</desc>
+      <desc id="fig-desc">Seven stages drawn as centred horizontal bars that narrow as the count falls, widest first. Enquiries received is the widest at 2,148 deals and closed won the narrowest at 178, with the paid pilot the steepest single drop. The table below the chart carries every count and every retained share as text.</desc>
+    </svg>
+    <div data-chart-tooltip data-single-series="" id="tip-funnel" class="tip-card" aria-live="polite"></div>
+  </div>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding">Only 412 of the 904 deals that clear security review continue to the paid pilot, 46%.</p>
+    <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+  </div>
+</div>
+<div class="card">
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Deal count by stage, widest first. Retained is the share of the stage above that reached this one; the first stage has none.</caption>
+      <thead><tr><th scope="col">Stage</th><th scope="col" class="num">Count</th><th scope="col" class="num">Retained</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { label: 'Enquiries received', value: 2148 },
+  { label: 'Qualified by sales', value: 1372 },
+  { label: 'Demo delivered', value: 958 },
+  { label: 'Security review passed', value: 904 },
+  { label: 'Paid pilot started', value: 412, lead: true },
+  { label: 'Proposal accepted', value: 341 },
+  { label: 'Closed won', value: 178 }
+];
+/* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+// Everything below draws. A funnel is the right shape whenever a pipeline is read for its
+// drop-off rather than for any one stage's size: every bar shares one centre line, so the
+// narrowing from row to row is itself the number the reader came for, and no bar is anchored
+// to an edge that would make the stages look comparable only at their starts.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The share of the stage above that reached this one, formatted in one place and read by
+// the label beside each bar, the hover card and the table alike, so a figure cannot
+// disagree with itself because two call sites rounded it differently. The first stage has
+// no stage above, and a gap in the data divides nothing, so both render as the em dash a
+// missing reading wears everywhere else in this file.
+function retainedCell(i) {
+  if (i === 0) return '\u2014';
+  const above = DATA[i - 1].value;
+  const here = DATA[i].value;
+  if (!Number.isFinite(above) || !Number.isFinite(here) || above === 0) return '\u2014';
+  return fmt((here / above) * 100, 1) + '%';
+}
+
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// share printed beside the bars or with the table under the chart.
+//
+// A funnel bar prints nothing on the mark: by the last stage the bar is a sliver too narrow
+// to carry its own count legibly, so the count and the retained share live in the card and
+// in the table under the chart.
+const TIP_PAD = 10;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 2;
+const tipLayer = document.getElementById('tip-funnel');
+const MARKS = new Map();
+
+function tipNode(cls) {
+  const el = document.createElement('span');
+  el.className = cls;
+  return el;
+}
+
+const tipName = tipNode('tip-name');
+tipLayer.appendChild(tipName);
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  const row = document.createElement('div');
+  row.className = 'tip-row';
+  const indicator = tipNode('tip-indicator');
+  const label = tipNode('tip-label');
+  const value = tipNode('tip-value');
+  row.appendChild(indicator);
+  row.appendChild(label);
+  row.appendChild(value);
+  tipLayer.appendChild(row);
+  tipRows.push({ indicator, label, value });
+}
+
+function markable(el, datum, rows) {
+  el.setAttribute('data-mark', '');
+  const seriesNumber = el.getAttribute('data-series') || '1';
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return {
+        label: READOUT.label(row[0]),
+        value: READOUT.value(row[1], row[2]),
+        token: '--chart-series-' + seriesNumber
+      };
+    })
+  });
+  return el;
+}
+
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
+    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    row.label.textContent = item.label;
+    row.value.textContent = item.value;
+  });
+  const figure = tipLayer.parentElement;
+  const markBox = mark.getBoundingClientRect();
+  const frameBox = figure.getBoundingClientRect();
+  tipLayer.style.width = 'max-content';
+  const width = Math.min(
+    Math.max(tipLayer.scrollWidth, TIP_FLOOR),
+    Math.max(TIP_FLOOR, figure.clientWidth - 16)
+  );
+  tipLayer.style.width = width + 'px';
+  const height = tipLayer.offsetHeight;
+  let left = markBox.right - frameBox.left + 12;
+  if (left + width > figure.clientWidth) left = markBox.left - frameBox.left - width - 12;
+  left = Math.max(8, Math.min(left, Math.max(8, figure.clientWidth - width - 8)));
+  let top = markBox.top - frameBox.top + (markBox.height - height) / 2;
+  top = Math.max(8, Math.min(top, Math.max(8, figure.clientHeight - height - 8)));
+  tipLayer.style.left = left + 'px';
+  tipLayer.style.top = top + 'px';
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-track')) || 0;
+
+// A funnel bar is centred, so neither end meets an axis it is measured from and both ends
+// round. A bar shorter than its own corner has the corner clamped to the bar, so a small
+// stage stays a bar rather than collapsing into a lozenge.
+function roundedBar(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w / 2, h / 2));
+  return 'M' + (x + k) + ',' + y +
+    ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w - k) + ',' + (y + h) +
+    ' H' + (x + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + x + ',' + (y + h - k) +
+    ' V' + (y + k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + k) + ',' + y + ' Z';
+}
+
+// Every bar is centred on the frame's own middle, so a stage's count reads as the bar's
+// spread either side of the spine, and HALF is the half-width of the widest bar that
+// everything else narrows from. The label gutter is the 180 units left of the widest bar
+// minus its 12-unit gap: at the 13px .cat size the font stack averages about 6.6 units a
+// character, which is a budget of roughly 27 characters. A longer name runs off the left
+// edge rather than wrapping, and the fix is to shorten the name or narrow the bars for it.
+const CTR = 360;
+const HALF = 168;
+const GUTTER = 180;
+const TOP = 12;
+const ROW = 46;
+const BAR = 28;
+const max = DATA.reduce(function (m, d) { return Math.max(m, d.value); }, 0);
+
+// The spine is drawn first so the bars paint over its middle: it shows through in the gaps
+// between stages, which is what makes a stack of centred blocks read as one narrowing shape.
+node('line', { x1: CTR, y1: TOP - 4, x2: CTR, y2: TOP + DATA.length * ROW - 12 }, 'axis');
+
+DATA.forEach(function (d, i) {
+  const y = TOP + i * ROW;
+  const hw = HALF * (d.value / max);
+  node('text', { x: GUTTER - 12, y: y + BAR / 2 + 5, 'text-anchor': 'end' }, 'cat').textContent = d.label;
+  // The stylesheet grows each bar from its left edge and staggers it by this index. An index is
+  // where a mark sits in the drawing, so nothing in the data block reaches the timing.
+  markable(node('path', { d: roundedBar(CTR - hw, y, hw * 2, BAR, MARK_R), style: '--mark-index:' + i },
+    d.lead ? 'bar-lead' : 'bar'), d,
+    [['Count', fmt(d.value)], ['Retained', retainedCell(i)]]);
+  // The share beside a bar is the drop made legible: what the stage above kept. The first
+  // stage has nothing above it, so it takes no share.
+  if (i > 0) {
+    node('text', { x: CTR + hw + 12, y: y + BAR / 2 + 5 }, 'val').textContent = retainedCell(i);
+  }
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d, i) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  const count = document.createElement('td');
+  count.className = 'num';
+  count.textContent = fmt(d.value);
+  const retained = document.createElement('td');
+  retained.className = 'num';
+  retained.textContent = retainedCell(i);
+  tr.appendChild(th);
+  tr.appendChild(count);
+  tr.appendChild(retained);
+  rows.appendChild(tr);
+});
+
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+// The reach a pointer gets when it lands on no mark at all. Far enough that a small mark is easy
+// to hit, short enough that pointing at empty space still means nothing.
+const REACH = 36;
+const BOXES = new Map();
+
+// getBBox reports the geometry the element was drawn with, independent of layout and of the entry
+// animation's transform. A region measured from the painted box would move while the mark grows in.
+function markBox(el) {
+  let box = BOXES.get(el);
+  if (box === undefined) {
+    try {
+      const g = el.getBBox();
+      box = { x: g.x, y: g.y, w: g.width, h: g.height };
+    } catch (err) {
+      box = null;
+    }
+    BOXES.set(el, box);
+  }
+  return box;
+}
+
+function pointerInDrawing(e) {
+  const ctm = svg.getScreenCTM();
+  if (!ctm) return null;
+  const p = svg.createSVGPoint();
+  p.x = e.clientX;
+  p.y = e.clientY;
+  return p.matrixTransform(ctm.inverse());
+}
+
+// These marks sit closer together than a comfortable pointer target is wide, so growing each one
+// to a usable size would make neighbours overlap and steal each other's card. Handing every mark
+// the region that is nearer to it than to any other gives it the largest target it can have
+// without taking one away from its neighbour.
+function markAt(e) {
+  const target = e && e.target;
+  const direct = target && target.closest ? target.closest('[data-mark]') : null;
+  if (direct) return direct;
+  const at = pointerInDrawing(e);
+  if (!at) return null;
+  let inside = null;
+  let nearest = null;
+  let best = Infinity;
+  MARKS.forEach(function (_info, el) {
+    const box = markBox(el);
+    if (!box) return;
+    const area = box.w * box.h;
+    // A pointer within a mark's own box belongs to that mark even when a smaller neighbour's
+    // centre is nearer, which is what distance alone gets wrong on a stacked column.
+    if (at.x >= box.x && at.x <= box.x + box.w && at.y >= box.y && at.y <= box.y + box.h) {
+      if (!inside || area < inside.area) inside = { el: el, area: area };
+      return;
+    }
+    const dx = at.x - (box.x + box.w / 2);
+    const dy = at.y - (box.y + box.h / 2);
+    const d = dx * dx + dy * dy;
+    // A tie goes to the larger mark. Where a form draws an emphasised mark over an ordinary one at
+    // the same point, the emphasised one is what the figure prints and what the reader is aiming at.
+    if (d < best || (d === best && nearest && area > nearest.area)) {
+      best = d;
+      nearest = { el: el, area: area };
+    }
+  });
+  if (inside) return inside.el;
+  return best <= REACH * REACH && nearest ? nearest.el : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card remains a sibling of the SVG, so its absolute position stays within the figure.
+
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
+</script>
+</body>
+</html>

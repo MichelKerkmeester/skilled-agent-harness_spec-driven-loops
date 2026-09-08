@@ -11,17 +11,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming"
-    last_updated_at: "2026-09-08T07:20:00Z"
+    last_updated_at: "2026-09-08T07:11:51Z"
     last_updated_by: "claude-conductor"
-    recent_action: "Opened the packet; build waits for phase 15 to be committed"
-    next_safe_action: "Dispatch the build once phase 15 is committed"
-    blockers: []
+    recent_action: "Closed after the conductor render gates and review fixes"
+    next_safe_action: "Commit with the chart package"
+    blockers:
+      - "Headless Chrome returns no document for render, card-readout and pointer-reach in this sandbox"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-phase-016-design-md-theming"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -74,12 +75,12 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs` themes two forms from the bundled stripe `DESIGN.md` into a directory and `check-corpus.cjs --extra <dir>` prints `RESULT: PASSED` on them
-- [ ] The same script refuses a fixture whose accent fails the mark gate, writing nothing and naming role, ratio and gate
-- [ ] A themed copy differs from its source only in palette blocks, provenance comment, font stacks and corner ladder
-- [ ] One stripe-themed delivery sits under `assets/examples/` and the full corpus prints `RESULT: PASSED` static and under `--render`
-- [ ] `SKILL.md` routes a `DESIGN.md` request to the script; `references/design-md-theming.md`, `template-contract.md`, `color-system.md` and `changelog/v1.4.0.0.md` record the fourth system
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this packet
+- [x] `node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs` themes two forms from the bundled stripe `DESIGN.md` into a directory and `check-corpus.cjs --extra <dir>` prints `RESULT: PASSED` on them
+- [x] The same script refuses a fixture whose accent fails the mark gate, writing nothing and naming role, ratio and gate
+- [x] A themed copy differs from its source only in palette blocks, provenance comment, font stacks and corner ladder
+- [x] One stripe-themed delivery sits under `assets/examples/` and the full corpus prints `RESULT: PASSED` static and under `--render`
+- [x] `SKILL.md` routes a `DESIGN.md` request to the script; `references/design-md-theming.md`, `template-contract.md`, `color-system.md` and `changelog/v1.4.0.0.md` record the fourth system
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,10 +97,16 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened with the seven scope items | Done | this file; `spec.md` section 3 |
+| Phase 15 dependency confirmed | Done | `git log -1 --format='%h %s' -- .opencode/skills/sk-design/sk-design-chart` returned `416827fd10 feat(sk-design): bring the chart corpus to the shadcn visual register and plan DESIGN.md theming` |
+| Local DESIGN.md applicator and checker branch | Done | `node --test scripts/tests/` passed 4 tests; static and extra corpus runs returned `RESULT: PASSED` |
+| Stripe proof delivery | Done | `assets/examples/grouped-bars-stripe-style.html`; exact two-form apply run returned `RESULT: PASSED` |
+| Packet close-out | Open on render | strict validation passed with `AC_COVERAGE` 9/9; AC-006 remains open on sandbox render |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Render environment | Inside the codex sandbox `check-corpus.cjs --render` could not open a document; the conductor ran the render gate on the corpus with the proof delivery and on the whole default-themed set, both `RESULT: PASSED`. |
+| Mapper amendments by the conductor | Series and emphasis are measured or nothing (the build darkened them toward ink); neutral text tones fill missing series with the ink last; emphasis falls back to the ink; series are ordered by hue distance; muted comes from neutral tones only (the build once chose a crimson text accent) with a minimal darkening allowed; ramp gates dropped for design-md blocks in both the script and the checker; ordered forms refused; `--default` themes from the cursor bundle. The stripe proof delivery was regenerated so its block holds only measured values plus the stock dark chrome. |
+| Stock corpus boundary | No stock template or `assets/color/palettes.json` value was changed by the DESIGN.md delivery; the design-md proof remains an example delivery. |
 <!-- /ANCHOR:log -->

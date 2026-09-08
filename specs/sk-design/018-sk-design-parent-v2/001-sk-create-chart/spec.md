@@ -156,7 +156,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 13 | 013-shadcn-reference-research/ | Six cited research angles against a frozen shadcn corpus: what transfers as a decision to a standalone corpus that bans React, Recharts and Tailwind | Complete |
 | 14 | 014-shadcn-adoptions/ | Land the three adopted decisions as checker-held contracts: series-key token indirection, local readout knobs, declared curve intent | Complete |
 | 15 | 015-shadcn-visual-upgrade/ | Bring every form, delivery and the gallery to the visual register of the frozen shadcn examples: card footer, bare axes, rounded marks, gradient areas, tooltip card, legend chips, scheme pin | Complete |
-| 16 | 016-design-md-theming/ | Theme any form from a v3 Style Reference DESIGN.md on request: a script that derives a gated palette, typeface and corner ladder, refuses failing palettes and writes themed copies with provenance | Planned |
+| 16 | 016-design-md-theming/ | Theme any form from a v3 Style Reference DESIGN.md on request: a script that derives a gated palette, typeface and corner ladder, refuses failing palettes and writes themed copies with provenance | Complete |
 | 17 | 017-visual-review-fixes/ | Operator review fixes inside the register: aligned numeric headers, a clean tooltip card without the native title, no indicators on single-series cards, daily-line fade and rungs | Complete |
 ### Phase Transition Rules
 

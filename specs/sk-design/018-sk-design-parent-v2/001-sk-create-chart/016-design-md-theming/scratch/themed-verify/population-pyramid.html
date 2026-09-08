@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="population-pyramid">
+<meta name="chart-color-system" content="design-md">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
+<title>Population pyramid, two groups mirrored about the centre</title>
+<style>
+/* CHART_PALETTE:BEGIN system=design-md */
+/* DESIGN.md provenance: path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md sha256=c94a9bf3f244454085b26e0484ea064ad095e36808ef69f2509b56ffe7a8a52d generator=1.4.0.0 */
+:root {
+  --chart-surface: #F7F7F4;
+  --chart-ink: #26251E;
+  --chart-muted: #72716C;
+  --chart-rule: #26251E17;
+  --chart-radius-mark: 0px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 4px;
+  --chart-radius-pill: 8px;
+  --chart-radius-card: 8px;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #34785C;
+  --chart-emphasis: #26251E;
+}
+/* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=design-md */
+/* DESIGN.md provenance: path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md sha256=c94a9bf3f244454085b26e0484ea064ad095e36808ef69f2509b56ffe7a8a52d generator=1.4.0.0 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) {
+    --chart-surface: #161513;
+    --chart-ink: #F2F0EC;
+    --chart-muted: #A8A5A0;
+    --chart-rule: #F2F0EC17;
+    --chart-series-1: #F54E00;
+    --chart-series-2: #1F8A65;
+    --chart-series-3: #CF2D56;
+    --chart-series-4: #C08532;
+    --chart-emphasis: #F2F0EC;
+  }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #161513;
+  --chart-ink: #F2F0EC;
+  --chart-muted: #A8A5A0;
+  --chart-rule: #F2F0EC17;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #C08532;
+  --chart-emphasis: #F2F0EC;
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: CursorGothic, Inter, system-ui, "Helvetica Neue";
+  font-size: 14px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; position: relative; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it, which is
+   the failure rule 14 exists to prevent arriving through the half of the card rule 14 never
+   looked at. No floor is declared here because a table already has one. Its cells cannot shrink
+   below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
+   that is the whole reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+
+.bar-left { fill: var(--chart-series-3); }
+.bar-right { fill: var(--chart-series-1); }
+.axis { stroke: none; stroke-width: 0; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+/* Every figure a reader compares is set in one mono face, so an axis rung, a value label
+   and a table cell line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. The category and legend names keep the body face, because they are names rather than figures. */
+td.num { font-family: berkeleyMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+
+/* The hover card. It is drawn inside the figure, in the same coordinates as the mark it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. Its border is half the rule's strength, because a full-weight
+   outline around a floating card reads as a second chart element rather than as a note about
+   the first one. It carries no text until a reader points at something, so a file nobody
+   touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  min-width: 128px;
+  max-width: calc(100% - 16px);
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--chart-rule) 50%, transparent);
+  border-radius: var(--chart-radius-pill);
+  background: var(--chart-surface);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--chart-ink) 16%, transparent);
+  display: grid;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
+.tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+.tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
+.tip-value { color: var(--chart-ink); font-size: 12px; font-family: berkeleyMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas; font-variant-numeric: tabular-nums; }
+
+/* Each mark grows from the anchor it is measured against over half a second, and consecutive
+   marks start slightly apart so the eye follows the order the chart is arranged in. The delay
+   comes from a mark's place in the drawing order, which is geometry: no number in the data
+   block reaches the timing. It is capped rather than accumulated, so a file carrying thirty
+   rows still settles inside the one second the contract names.
+   backwards, not both: the collapsed state applies before the first frame and is gone once
+   the animation ends, so the settled file carries no trace of having moved. */
+@keyframes chart-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+/* The two halves grow outward from the axis each is measured against, so the left half keeps
+   its right edge pinned and the right half its left edge. One shared origin would grow both
+   halves from the same frame edge, and the mirror would breathe on one side only. */
+path.bar-left {
+  transform-box: fill-box;
+  transform-origin: right;
+  animation: chart-grow-x 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+path.bar-right {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: chart-grow-x 0.5s cubic-bezier(0.33, 1, 0.68, 1) backwards;
+  animation-delay: min(var(--mark-index, 0) * 0.05s, 0.5s);
+}
+/* A reader whose system asks for less motion gets the settled picture immediately, and the
+   card with no fade. The motion is removed rather than shortened, because a fast animation
+   is still an animation and a fast fade is still a fade, to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  path.bar-left, path.bar-right { animation: none; }
+  [data-chart-tooltip] { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Nearly twice as many men as women in their twenties, and the reverse past eighty</h1>
+  <p class="subtitle" data-chart-part="subtitle">Registered patients by age band and sex across the four surgeries in the network, men mirrored left of the centre line and women right. Each band is read as a pair: how far the two bars reach tells you which side that age group is heavier in.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 400" id="chart">
+      <desc id="fig-title">Registered patients by age band and sex</desc>
+      <desc id="fig-desc">Nine age bands, youngest at the bottom, with the men's counts drawn to the left of the centre line and the women's to the right. Men in their twenties are the longest bar at 1,204, and past eighty the women's side is the longer one. The table below the chart carries both counts for every band.</desc>
+    </svg>
+    <div data-chart-tooltip id="tip-population-pyramid" class="tip-card" aria-live="polite"></div>
+    <div data-chart-legend id="legend-population-pyramid" class="legend-row" aria-label="Chart series"></div>
+  </div>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding">Men aged 20 to 29 outnumber women 1,204 to 688, while women lead 246 to 142 past eighty.</p>
+    <p class="source" data-chart-part="source">Source: patient registration system, all four surgeries in the network. Replace the data block at the top of the script and nothing else.</p>
+  </div>
+</div>
+<div class="card">
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Registered patients by age band and sex, men and women, all four surgeries.</caption>
+      <thead><tr><th scope="col">Age band</th><th scope="col" class="num">Men</th><th scope="col" class="num">Women</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { label: '0\u20139', values: [412, 398] },
+  { label: '10\u201319', values: [455, 431] },
+  { label: '20\u201329', values: [1204, 688] },
+  { label: '30\u201339', values: [742, 690] },
+  { label: '40\u201349', values: [655, 611] },
+  { label: '50\u201359', values: [598, 640] },
+  { label: '60\u201369', values: [489, 522] },
+  { label: '70\u201379', values: [331, 388] },
+  { label: '80+', values: [142, 246] }
+];
+/* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return String(value); },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'label'
+};
+/* READOUT:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'men', label: 'Men', token: '--chart-series-3', classes: ['bar-left'] },
+  { key: 'women', label: 'Women', token: '--chart-series-1', classes: ['bar-right'] }
+];
+/* CHART_SERIES:END */
+
+// Everything below draws. Two groups, one per side, is the whole form: the mirror is the
+// comparison, and a third side would be read against a mirror that is not there.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return (d.values || []).some(function (v) { return Number.isFinite(v); }); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The card prints both counts no matter which bar of the band is pointed at, because the
+// reader's question about one side is whether the other side matches it.
+function cardRows(d) {
+  return SERIES.map(function (series, s) { return [series.label, fmt(d.values[s])]; });
+}
+
+// The hover card, built once and refilled on each hover so a pointer crossing the plot does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// axis or with the table under the chart.
+//
+// This replaces the browser's own title tooltip on these marks. Nothing is lost to a screen
+// reader by that: the drawing declares role="img", which makes its whole subtree one image,
+// so a title on a mark inside it was never announced. The table below the chart is, and still
+// is, the complete reading.
+const TIP_PAD = 10;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 2;
+const tipLayer = document.getElementById('tip-population-pyramid');
+const MARKS = new Map();
+
+function tipNode(cls) {
+  const el = document.createElement('span');
+  el.className = cls;
+  return el;
+}
+
+const tipName = tipNode('tip-name');
+tipLayer.appendChild(tipName);
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  const row = document.createElement('div');
+  row.className = 'tip-row';
+  const indicator = tipNode('tip-indicator');
+  const label = tipNode('tip-label');
+  const value = tipNode('tip-value');
+  row.appendChild(indicator);
+  row.appendChild(label);
+  row.appendChild(value);
+  tipLayer.appendChild(row);
+  tipRows.push({ indicator, label, value });
+}
+
+function markable(el, datum, rows) {
+  el.setAttribute('data-mark', '');
+  const seriesNumber = el.getAttribute('data-series') || '1';
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return {
+        label: READOUT.label(row[0]),
+        value: READOUT.value(row[1], row[2]),
+        token: '--chart-series-' + seriesNumber
+      };
+    })
+  });
+  return el;
+}
+
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
+    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    row.label.textContent = item.label;
+    row.value.textContent = item.value;
+  });
+  const figure = tipLayer.parentElement;
+  const markBox = mark.getBoundingClientRect();
+  const frameBox = figure.getBoundingClientRect();
+  tipLayer.style.width = 'max-content';
+  const width = Math.min(
+    Math.max(tipLayer.scrollWidth, TIP_FLOOR),
+    Math.max(TIP_FLOOR, figure.clientWidth - 16)
+  );
+  tipLayer.style.width = width + 'px';
+  const height = tipLayer.offsetHeight;
+  let left = markBox.right - frameBox.left + 12;
+  if (left + width > figure.clientWidth) left = markBox.left - frameBox.left - width - 12;
+  left = Math.max(8, Math.min(left, Math.max(8, figure.clientWidth - width - 8)));
+  let top = markBox.top - frameBox.top + (markBox.height - height) / 2;
+  top = Math.max(8, Math.min(top, Math.max(8, figure.clientHeight - height - 8)));
+  tipLayer.style.left = left + 'px';
+  tipLayer.style.top = top + 'px';
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
+// The corner comes from the ladder in the palette block rather than from a number typed
+// here, so one edit reaches every form instead of one file.
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-track')) || 0;
+
+// A bar rounds only the end that meets nothing. The end on the axis stays square, because a
+// rounded corner there reads as a bar that starts a little after the line it is measured
+// from. A bar shorter than its own corner has the corner clamped to its length, so a small
+// value stays a bar rather than collapsing into a lozenge.
+function endRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w, h / 2));
+  return 'M' + x + ',' + y + ' H' + (x + w - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w) + ',' + (y + k) +
+    ' V' + (y + h - k) +
+    ' A' + k + ',' + k + ' 0 0 1 ' + (x + w - k) + ',' + (y + h) +
+    ' H' + x + ' Z';
+}
+
+// The mirrored half of the form grows leftward from its axis, so the end that meets nothing
+// is the left end and the rounding has to be built the other way round. The end on the axis
+// stays square for the same reason the right-hand function above gives.
+function mirrorRounded(x, y, w, h, r) {
+  const k = Math.max(0, Math.min(r, w, h / 2));
+  return 'M' + (x + w) + ',' + y + ' H' + (x + k) +
+    ' A' + k + ',' + k + ' 0 0 0 ' + x + ',' + (y + k) +
+    ' V' + (y + h - k) +
+    ' A' + k + ',' + k + ' 0 0 0 ' + (x + k) + ',' + (y + h) +
+    ' H' + (x + w) + ' Z';
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+// The band names sit in a gutter down the middle of the plot, so both halves keep their full
+// width for their own bars; the two rules that gutter leaves are the axis pair the form is
+// mirrored about. Both halves share one scale, so a longer bar is a heavier count no matter
+// which side it is on, and HALF is the width a full scale reaches from either axis.
+const AXIS_L = 316;
+const AXIS_R = 404;
+const HALF = 240;
+const TOP = 40;
+const ROW = 38;
+const BAR = 24;
+const TICKS = 5;
+const peak = DATA.reduce(function (m, d) { return Math.max(m, d.values[0], d.values[1]); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
+
+node('line', { x1: AXIS_L, y1: TOP - 4, x2: AXIS_L, y2: TOP + (DATA.length - 1) * ROW + BAR }, 'axis');
+node('line', { x1: AXIS_R, y1: TOP - 4, x2: AXIS_R, y2: TOP + (DATA.length - 1) * ROW + BAR }, 'axis');
+
+// The rungs print below the plot on both sides of the centre, because each half is read
+// against its own outer edge and a reader comparing the two sides needs the same ladder
+// twice. One shared ladder is what makes the mirror honest: the two sides cannot quietly
+// take different scales the way two separate charts can.
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  const reach = HALF * (value / max);
+  node('text', { x: AXIS_L - reach - 8, y: TOP + (DATA.length - 1) * ROW + BAR + 18, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
+  node('text', { x: AXIS_R + reach + 8, y: TOP + (DATA.length - 1) * ROW + BAR + 18 }, 'tick').textContent = fmt(value, TICK_DP);
+}
+
+const legend = document.getElementById('legend-population-pyramid');
+const entries = [];
+SERIES.forEach(function (series, s) {
+  const name = series.label;
+  const entry = document.createElement('button');
+  entry.type = 'button';
+  entry.className = 'legend-entry';
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('aria-pressed', 'false');
+  entry.setAttribute('aria-label', name);
+  const swatch = document.createElement('span');
+  swatch.className = 'key-swatch';
+  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  const label = document.createElement('span');
+  label.className = 'key';
+  label.textContent = name;
+  entry.appendChild(swatch);
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  entries.push(entry);
+});
+
+// Rows run oldest at the top to youngest at the bottom, which is how a pyramid is read: the
+// wide base of the young and the thin crown of the old are the shape the form exists to show.
+// Each band draws its left bar and its right bar from the axis that side is measured against.
+// Counts the marks as they are drawn, band by band and left before right, so the growth
+// arrives in the order a person scans. A running count is where a mark sits in the drawing
+// and nothing else: reaching into the data for the same number would let the shape of the
+// data set the timing.
+let drawn = 0;
+DATA.forEach(function (d, i) {
+  const rowTop = TOP + (DATA.length - 1 - i) * ROW;
+  const wLeft = HALF * (d.values[0] / max);
+  const wRight = HALF * (d.values[1] / max);
+  // The stylesheet grows each bar outward from its axis and staggers it by this index.
+  markable(node('path', {
+    d: mirrorRounded(AXIS_L - wLeft, rowTop, wLeft, BAR, MARK_R),
+    style: '--mark-index:' + drawn,
+    'data-series': 1
+  }, SERIES[0].classes[0]), d, cardRows(d));
+  drawn += 1;
+  markable(node('path', {
+    d: endRounded(AXIS_R, rowTop, wRight, BAR, MARK_R),
+    style: '--mark-index:' + drawn,
+    'data-series': 2
+  }, SERIES[1].classes[0]), d, cardRows(d));
+  drawn += 1;
+  node('text', { x: (AXIS_L + AXIS_R) / 2, y: rowTop + BAR / 2 + 5, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  d.values.forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = fmt(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+
+// One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
+// cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader
+// pays for nothing.
+let pinned = null;
+
+// The reach a pointer gets when it lands on no mark at all. Far enough that a small mark is easy
+// to hit, short enough that pointing at empty space still means nothing.
+const REACH = 36;
+const BOXES = new Map();
+
+// getBBox reports the geometry the element was drawn with, independent of layout and of the entry
+// animation's transform. A region measured from the painted box would move while the mark grows in.
+function markBox(el) {
+  let box = BOXES.get(el);
+  if (box === undefined) {
+    try {
+      const g = el.getBBox();
+      box = { x: g.x, y: g.y, w: g.width, h: g.height };
+    } catch (err) {
+      box = null;
+    }
+    BOXES.set(el, box);
+  }
+  return box;
+}
+
+function pointerInDrawing(e) {
+  const ctm = svg.getScreenCTM();
+  if (!ctm) return null;
+  const p = svg.createSVGPoint();
+  p.x = e.clientX;
+  p.y = e.clientY;
+  return p.matrixTransform(ctm.inverse());
+}
+
+// These marks sit closer together than a comfortable pointer target is wide, so growing each one
+// to a usable size would make neighbours overlap and steal each other's card. Handing every mark
+// the region that is nearer to it than to any other gives it the largest target it can have
+// without taking one away from its neighbour.
+function markAt(e) {
+  const target = e && e.target;
+  const direct = target && target.closest ? target.closest('[data-mark]') : null;
+  if (direct) return direct;
+  const at = pointerInDrawing(e);
+  if (!at) return null;
+  let inside = null;
+  let nearest = null;
+  let best = Infinity;
+  MARKS.forEach(function (_info, el) {
+    const box = markBox(el);
+    if (!box) return;
+    const area = box.w * box.h;
+    // A pointer within a mark's own box belongs to that mark even when a smaller neighbour's
+    // centre is nearer, which is what distance alone gets wrong on a stacked column.
+    if (at.x >= box.x && at.x <= box.x + box.w && at.y >= box.y && at.y <= box.y + box.h) {
+      if (!inside || area < inside.area) inside = { el: el, area: area };
+      return;
+    }
+    const dx = at.x - (box.x + box.w / 2);
+    const dy = at.y - (box.y + box.h / 2);
+    const d = dx * dx + dy * dy;
+    // A tie goes to the larger mark. Where a form draws an emphasised mark over an ordinary one at
+    // the same point, the emphasised one is what the figure prints and what the reader is aiming at.
+    if (d < best || (d === best && nearest && area > nearest.area)) {
+      best = d;
+      nearest = { el: el, area: area };
+    }
+  });
+  if (inside) return inside.el;
+  return best <= REACH * REACH && nearest ? nearest.el : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card remains a sibling of the SVG, so its absolute position stays within the figure.
+
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
+</script>
+</body>
+</html>
