@@ -112,6 +112,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 /* The swatch is the largest colour block the corpus draws, so it sits on its own rung: a
    mark corner on a block this size reads as a corner that was forgotten. */
 .swatch { rx: var(--chart-radius-swatch); }
+details.data > summary { cursor: pointer; font-size: 14px; color: var(--chart-muted); padding: 6px 0; list-style: none; }
+details.data > summary::-webkit-details-marker { display: none; }
+details.data > summary svg { display: inline-block; vertical-align: -1px; margin-right: 6px; }
+details.data[open] > summary svg { transform: rotate(90deg); }
 </style>
 </head>
 <body>
@@ -127,6 +131,8 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <p class="source" data-chart-part="source">Source: the palette file in this packet. This sheet reads it through the browser rather than restating it.</p>
 </div>
 <div class="card">
+  <details class="data" open>
+    <summary><svg role="img" aria-labelledby="data-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><title id="data-chevron">Data table disclosure</title><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Show the data</summary>
   <table data-chart-table>
     <caption>The same roles as numbers, so the sheet is readable without seeing it.</caption>
     <thead>
@@ -134,6 +140,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
     </thead>
     <tbody id="role-rows"></tbody>
   </table>
+  </details>
 </div>
 <script>
 /* CHART_DATA:BEGIN */

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish",
+  "description": "Six things make a rendered chart read as a template rather than a product",
+  "keywords": [
+    "six",
+    "things",
+    "rendered",
+    "chart",
+    "read",
+    "template",
+    "rather",
+    "product"
+  ],
+  "lastUpdated": "2026-09-08T18:24:38.545Z",
+  "specId": "022",
+  "folderSlug": "visual-polish",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

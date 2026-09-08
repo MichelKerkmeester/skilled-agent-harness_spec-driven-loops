@@ -102,6 +102,7 @@ body {
 .figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
 .finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.finding .cue { color: var(--chart-emphasis); vertical-align: -1px; margin-right: 6px; }
 .source { margin: 0; font-size: 14px; color: var(--chart-muted); }
 .legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
 .legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
@@ -117,6 +118,10 @@ body {
    below the text in them, which is the intrinsic minimum an SVG at width 100% does not have, and
    that is the whole reason the drawing needs a number and this does not. */
 .table-pan { overflow-x: auto; }
+details.data > summary { cursor: pointer; font-size: 14px; color: var(--chart-muted); padding: 6px 0; list-style: none; }
+details.data > summary::-webkit-details-marker { display: none; }
+details.data > summary svg { display: inline-block; vertical-align: -1px; margin-right: 6px; }
+details.data[open] > summary svg { transform: rotate(90deg); }
 table { width: 100%; border-collapse: collapse; font-size: 12px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
 th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
@@ -208,18 +213,20 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <h1 class="headline" data-chart-part="headline">Nine pipelines build faster after remote caching; one drifts slower</h1>
   <p class="subtitle" data-chart-part="subtitle">Cold build time per pipeline in minutes, before and after enabling remote caching. The widest change is marked. The line between a pair of dots is a distance, not a reading: nothing at its middle was ever measured.</p>
   <div class="figure" data-chart-part="figure">
-    <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 308" id="chart">
+    <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 392" id="chart">
       <desc id="fig-label">Cold build time per pipeline, before and after remote caching</desc>
       <desc id="fig-desc">One row per pipeline, with a dot at that pipeline's cold build time before remote caching and a dot at its time after, joined by a line. Before the change the ten pipelines build in 8 to 64 minutes, and after it they build in 4 to 49. Nine build faster afterwards; the search indexer alone takes four minutes longer. The widest change is marked. The table below the chart carries both readings and the change for every pipeline.</desc>
     </svg>
     <div data-chart-tooltip data-single-series="" id="tip-dumbbell" class="tip-card" aria-live="polite"></div>
   </div>
   <div class="footer" data-chart-part="footer">
-    <p class="finding">Search-indexer is the one pipeline to slow down, climbing from 19 to 23 minutes after caching.</p>
-    <p class="source" data-chart-part="source">Source: CI build telemetry, one cold run per pipeline either side of the caching rollout. Replace the data block at the top of the script and nothing else.</p>
+    <p class="finding" id="finding">Search-indexer is the one pipeline to slow down, climbing from 19 to 23 minutes after caching.</p>
+    <p class="source" data-chart-part="source">Source: CI build telemetry, one cold run per pipeline either side of the caching rollout.</p>
   </div>
 </div>
 <div class="card">
+  <details class="data">
+    <summary><svg role="img" aria-labelledby="data-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><title id="data-chevron">Data table disclosure</title><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Show the data</summary>
   <div class="table-pan">
     <table data-chart-table>
       <caption>Cold build time per pipeline in minutes, before and after remote caching.</caption>
@@ -227,8 +234,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
       <tbody id="rows"></tbody>
     </table>
   </div>
+  </details>
 </div>
 <script>
+// Retargeting this chart means replacing the data block below and nothing else.
 /* CHART_DATA:BEGIN */
 const DATA = [
   { name: 'storefront-web', before: 22, after: 9 }, { name: 'checkout-api', before: 34, after: 11 },
@@ -243,9 +252,17 @@ const DATA = [
 const READOUT = {
   label: function (value) { return String(value); },
   value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
-  key: 'name'
+  key: 'name',
+  unit: 'min'
 };
 /* READOUT:END */
+
+/* FINDING:BEGIN */
+const FINDING = {
+  trend: 'up',
+  why: 'The one pipeline that slowed climbs from 19 to 23 minutes after caching.'
+};
+/* FINDING:END */
 
 // Everything below draws. A pair is two readings and the line between them is only the
 // distance across; the moment a dot appears at its middle, the reader starts reading a
@@ -295,6 +312,14 @@ function fmt(v, decimals) {
   const whole = dot === -1 ? body : body.slice(0, dot);
   const rest = dot === -1 ? '' : body.slice(dot);
   return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// Ticks above four digits read as 12k or 1.2M; values in the card and the table keep every digit.
+function compact(v) {
+  var a = Math.abs(v);
+  if (a >= 1e6) return (Math.round(v / 1e5) / 10).toString().replace(/\.0$/, '') + 'M';
+  if (a >= 1e4) return (Math.round(v / 100) / 10).toString().replace(/\.0$/, '') + 'k';
+  return fmt(v);
 }
 
 // The change carries its sign: a plus is a pipeline that takes longer than it did, because
@@ -365,7 +390,7 @@ function openTip(mark) {
     const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
     row.indicator.style.backgroundColor = 'var(' + item.token + ')';
     row.label.textContent = item.label;
-    row.value.textContent = item.value;
+    row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
   });
   const figure = tipLayer.parentElement;
   const markBox = mark.getBoundingClientRect();
@@ -408,7 +433,7 @@ function niceStep(v) {
 const LEFT = 112;
 const RIGHT = 706;
 const TOP = 16;
-const BASE = 258;
+const BASE = 342;
 const TICKS = 4;
 // A row is drawn only when both of its readings are real numbers. Half a pair is not a pair,
 // and a missing reading reaches the geometry as NaN, which the browser drops without saying
@@ -432,7 +457,7 @@ for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
   if (t % 2 === 1 || value > peak) continue;
   node('line', { x1: x(value), y1: TOP, x2: x(value), y2: BASE }, 'grid');
-  node('text', { x: x(value), y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = fmt(value, TICK_DP);
+  node('text', { x: x(value), y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = compact(value);
 }
 
 // The widest distance takes the emphasis colour, so a reader scanning the rows lands on the
@@ -485,6 +510,28 @@ DATA.forEach(function (d) {
   tr.appendChild(delta);
   rows.appendChild(tr);
 });
+
+/* FINDING_CUE:BEGIN */
+// The finding sentence states a direction, so the cue before the words carries that direction
+// rather than asking the reader to work it out: the tracked number climbs, falls, or, when the
+// sentence only compares readings taken at one moment, the sentence gets no arrow at all.
+const findingParagraph = document.getElementById('finding');
+if (findingParagraph && (FINDING.trend === 'up' || FINDING.trend === 'down')) {
+  const cue = document.createElementNS(SVG, 'svg');
+  cue.setAttribute('class', 'cue');
+  cue.setAttribute('aria-hidden', 'true');
+  cue.setAttribute('width', 12);
+  cue.setAttribute('height', 12);
+  cue.setAttribute('viewBox', '0 0 12 12');
+  const cuePath = document.createElementNS(SVG, 'path');
+  cuePath.setAttribute('d', FINDING.trend === 'up' ? 'M6 10V3M2.5 6.5L6 3l3.5 3.5' : 'M6 2V9M2.5 5.5L6 9l3.5-3.5');
+  cuePath.setAttribute('fill', 'none');
+  cuePath.setAttribute('stroke', 'currentColor');
+  cuePath.setAttribute('stroke-width', 1.5);
+  cue.appendChild(cuePath);
+  findingParagraph.insertBefore(cue, findingParagraph.firstChild);
+}
+/* FINDING_CUE:END */
 
 // One delegated listener on the drawing rather than one per mark. A matrix carries a hundred
 // cells and a calendar three hundred and sixty-four, and a listener each is a cost the reader

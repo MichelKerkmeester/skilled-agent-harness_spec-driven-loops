@@ -131,8 +131,10 @@ the full label rung.
 
 The corpus keeps the shadcn choices that survive the standalone-file constraint. The frozen line
 examples remove both axis and tick lines, leave an 8px tick margin, draw a 2px line and turn point
-dots off (`chart-line-default.tsx:56-74`). The frozen area examples use a vertical 0.8-to-0.1
-gradient and 0.4 flat opacity for stacked areas (`chart-area-gradient.tsx:72-112`). The frozen
+dots off (`chart-line-default.tsx:56-74`). The frozen area examples are our measurement of what
+shadcn ships: a vertical 0.8-to-0.1 gradient with 0.4 flat opacity for stacked areas
+(`chart-area-gradient.tsx:72-112`), from which ours derive — the shipped single-area fade runs
+0.35 to 0.04 (`daily-line.html:137-138`) and the shipped stacked bands sit at 0.4 flat. The frozen
 tooltip content uses a bordered, rounded, padded, shadowed card with muted labels and mono values
 (`chart.tsx:190-259`), while the legend uses 8px squares with 2px corners and a 16px row gap
 (`chart.tsx:290-322`).
