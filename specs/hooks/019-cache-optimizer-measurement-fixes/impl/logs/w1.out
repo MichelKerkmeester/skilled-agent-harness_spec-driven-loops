@@ -1,0 +1,23 @@
+Implemented the cache-signal fix in [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/index.ts:265).
+
+- Preserves cache-field presence through Pi and raw adapters.
+- Adds persisted `unmeasuredRequests`, with migration default `0`.
+- Records tokens and costs for all measured/unmeasured usage.
+- Excludes only unmeasured requests from hit ratios.
+- Shows unmeasured counts in stats output.
+
+Tests added or updated in [cache-economics.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/tests/cache-economics.test.ts:123):
+
+- Input-only usage: unmeasured, tokens/costs retained.
+- Explicit zero fields: measured miss.
+- Undefined usage: no-op.
+- Migration: counters preserved and new field defaults to zero.
+- Stats output: unmeasured count visible and excluded from ratio.
+
+The reverted implementation failed these regression cases. Final verification:
+
+- `npm --prefix .pi/extensions/pi-cache-optimizer run check`: exit `0`
+- 103 tests passed, 0 failed
+- All three code-alignment guards passed
+- Only the package’s three files are modified
+- No commit created

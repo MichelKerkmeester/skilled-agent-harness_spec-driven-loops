@@ -1,0 +1,8 @@
+Implemented and verified.
+
+- Changed cached-read validation to allow explicit `0` while rejecting missing and negative rates: [index.ts:4141](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/index.ts:4141).
+- Updated the old line 54 expectation because explicit zero means free cached reads, not missing pricing: [cache-economics.test.ts:43](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/tests/cache-economics.test.ts:43).
+- Added isolated pricing, cost, savings and report coverage: [cache-economics.test.ts:60](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/tests/cache-economics.test.ts:60).
+- Input rate remains `> 0` only. Zero input pricing stays invalid.
+
+`npm --prefix .pi/extensions/pi-cache-optimizer run check` passed with 104 tests, up from 103. Only the two requested files changed. No commit made.

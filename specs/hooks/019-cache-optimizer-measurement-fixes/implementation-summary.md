@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "hooks/019-cache-optimizer-measurement-fixes"
     last_updated_at: "2026-09-09T12:46:42Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Planned five gated work items from the research"
-    next_safe_action: "Answer Q1 and Q2, then start W1"
+    recent_action: "Shipped all five items, each with a negative control"
+    next_safe_action: "None; all five items shipped"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-hooks/019-cache-optimizer-measurement-fixes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | **Spec Folder** | 019-cache-optimizer-measurement-fixes |
 | **Completed** | 2026-09-09 |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,19 +49,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This packet is the plan; it closes as its five work items land, each with its own gate
-and its own commit.
+All five items, each its own commit, each proved by a control that fails when the change is reverted.
 
-The sequencing carries the substance: the measurement fix comes first because every other number
-depends on the vocabulary it defines, and the two items that could be built on a guess are held
-behind operator answers rather than started optimistically.
+| Item | Commit | Suite |
+|------|--------|-------|
+| W1 — an unreported cache signal is not a miss | `20ece8e556` | 98 → 103 |
+| W2 — an explicit zero cached-read rate is a price | `afba356590` | 103 → 104 |
+| W3 — a model can declare it never reports cache usage | `29fa3b7825` | 104 → 106 |
+| W4 — lift a prefix only after it proves stable | `43f3e075b4` | 106 → 111 |
+| W5 — remember a learned key rejection across restarts | `a3e0d78f24` | 111 → 113 |
 
-The target is `.pi/extensions/pi-cache-optimizer/index.ts` and its `tests/`. The five items land at:
-the usage classifier and its raw readers (`index.ts:2495`, `:2541`, `:2567`, `:2610`), the stats
-accumulation path (`:4188`), the pricing predicate (`:4129`), the `CacheCompat` flag block
-(`:246-263`), the prefix-lifting call site (`:9136`) with its churn map (`:8485`), and the
-in-process rejection set (`:8456`).
+W1 avoided the trap the research identified: tokens and cost record unconditionally, and only
+`hitRequests` and the measured denominator exclude an unreported sample. The naive version would
+have dropped real spend out of Baseline and Savings.
 
+W4 is the one visible behavior change: the first turn now lifts nothing, buying the guarantee that
+a prefix was stable before it is moved.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +72,17 @@ in-process rejection set (`:8456`).
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Each item was dispatched separately to `gpt-5.6-luna` at reasoning effort `max` on the `fast`
+service tier, sandboxed to workspace-write and scoped to the extension directory. Gates ran at each
+boundary rather than once at the end, and no item started before the previous one was committed.
+
+Every result was re-verified here rather than accepted: the diff read, `run check` re-run, and a
+control applied that neutralises the specific new behavior to confirm the new tests actually fail
+without it.
+
+Two dispatches were killed by host memory pressure before printing a closing report. Both had
+already finished their work, which inspection confirmed rather than assumed — the suite was green,
+the required state existed, and the controls failed correctly.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,9 +90,20 @@ in-process rejection set (`:8456`).
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-| Decision | Why |
-|----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+**Cost and the hit ratio are two counters on one path.** This is the whole of W1. Excluding an
+unreported sample from cost as well as from the ratio would understate the savings figure the
+extension exists to produce, which is a worse error than the ambiguity being removed.
+
+**W3 is a companion to W1, not a substitute.** Presence answers per response; the declaration
+answers per model, for the case where the host synthesises zeros before the extension sees anything.
+Merging them would lose whichever case the survivor did not cover.
+
+**Authorization is not churn.** W4 keeps its own state. The churn map is model-keyed, report-only
+and records empty shipments, so reusing it as the authorization record would have been wrong in
+three separate ways.
+
+**W5 keeps injection default-on.** Persisting the learned rejection fixes the repeated 400 without
+costing every well-behaved third-party route its cache key.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -89,7 +113,12 @@ in-process rejection set (`:8456`).
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Suite | 98 → 113, all passing |
+| `npm --prefix .pi/extensions/pi-cache-optimizer run check` | exit 0 after every item |
+| Controls | W1 1 test, W2 1, W3 1, W4 7, W5 1 — each fails with its change neutralised, passes restored |
+| Scope | Only `.pi/extensions/pi-cache-optimizer/` changed; nothing outside touched in any dispatch |
+| Comment hygiene | No artifact ids or spec paths in any diff |
+| Migration | A pre-change stats record loads with counters intact and new fields defaulted |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,7 +126,18 @@ in-process rejection set (`:8456`).
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+**W2 rests on an unanswered question.** It assumes an explicit `cacheRead: 0` in a cost block is an
+authoritative "free" and that absent means "unknown". That is the defensible reading and the
+controls pin it precisely, but if the registry writes `0` to mean unknown, that commit is wrong in
+kind and should be reverted rather than adjusted.
+
+**Nothing is proven against a live provider.** Every control is a unit-level assertion. W4 in
+particular changes shipped prompt bytes, and its real test is a hit rate measured over live traffic
+now that W1 makes that number trustworthy.
+
+**The router-hint item was not built.** Its mechanism is confirmed and its severity is not: nobody
+has reproduced the concurrent case. It stays out until the `requestId` stability question is
+answered, rather than being built against a guessed concurrency model.
 <!-- /ANCHOR:limitations -->
 
 ---
