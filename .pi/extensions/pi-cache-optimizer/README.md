@@ -76,7 +76,7 @@ This extension is validated against Pi 0.83.0 and remains designed for Pi 0.82+.
 | `/cache-optimizer doctor` | Shows active model/provider/API/base URL/compat plus low-hit diagnosis. |
 | `/cache-optimizer compat` | Shows copyable compat advice for the active model, if applicable. |
 | `/cache-optimizer stats` | Shows today's local provider/model counters, recent trend, input cost, estimated savings against a fully-uncached baseline, and detected prefix churn for the active model. |
-| `/cache-optimizer reset` | Resets local footer stats for the active provider/model; upstream provider cache is not modified. |
+| `/cache-optimizer reset` | Resets local footer stats for the active provider/model, and forgets any learned `prompt_cache_key` rejection for it so the next request tries the key again. Upstream provider cache is not modified. |
 | `/cache-optimizer config footer-mode total\|session\|process` | Persist the footer stats mode. Persistent command configuration overrides the environment variable. |
 | `/cache-optimizer fix` | Auto-repairs safe compat issues for the active model (adaptive thinking, DeepSeek reasoning, OpenAI proxy session affinity). Shows preview + risk warning, requires confirmation. **Only modifies `models.json` after explicit user approval.** |
 
@@ -324,9 +324,10 @@ Stats are read-only local counters stored in Pi's agent directory (default: `~/.
 
 Beyond the token counters, the `stats` command reports input cost, savings, and prefix churn for the active model:
 
-- **Pricing** comes from the model's `cost` block in `models.json` (`input` and `cacheRead`, USD per 1M tokens). No prices are hardcoded. When a model has no cost data, the report says **unpriced** rather than showing zero — add `cost.input` and `cost.cacheRead` to the model entry to enable the economics lines.
+- **Pricing** comes from the model's `cost` block (`input` and `cacheRead`, USD per 1M tokens). No prices are hardcoded. When a model has no cost data, the report says **unpriced** rather than showing zero — add `cost.input` and `cost.cacheRead` to the model entry to enable the economics lines. An *explicit* `cacheRead: 0` is treated as a real rate meaning cached reads are free, not as missing data; a model with no cost block at all arrives with a zero **input** rate too, and that is what marks it unpriced. A negative rate is rejected.
 - **Input cost** is computed from provider-reported usage token counts (uncached input at the input rate, cached reads at the cached-read rate, writes at the configured write rate) and covers only the priced requests, which the report counts.
 - **Savings** is measured against an explicit baseline stated in the output: the same input tokens billed fully uncached. The baseline is shown so the number is checkable.
+- **Measured versus unmeasured.** A response that reports no cache fields at all cannot be called a hit or a miss, so it is counted as **unmeasured** and left out of the hit ratio rather than silently scored as a miss. Its tokens and its cost still count in full, because the request really was billed — only the ratio excludes it. `totalRequests` keeps its original meaning, so the measured denominator is `totalRequests` minus `unmeasuredRequests`. A model that never reports cache usage can say so once with the `reportsCacheUsage` compat flag instead of producing a stream of unmeasured requests.
 - **Prefix churn** counts how often the stable prompt prefix shipped for a model changed between consecutive requests. It is a report-only counter and never changes behavior. Legitimate context growth (new files, new session content) can also count as churn.
 - The report always ends with a note that provider cache expiry can miss even on a stable prefix — the hit rate is an observation, not a guarantee.
 
