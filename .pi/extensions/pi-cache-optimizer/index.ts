@@ -4127,9 +4127,10 @@ function emptyAllCacheStats(day = currentLocalDay()): Partial<Record<CacheProvid
 
 /**
  * Resolve per-token pricing from a model's registry cost block. A model is
- * priced only when both the input and the cached-read rate are present and
- * positive; anything else is unknown and must render as "unpriced" rather
- * than as zero. Cost-block values are USD per 1M tokens.
+ * priced only when the input rate is present and positive and the cached-read
+ * rate is present and non-negative. An explicit zero cached-read rate means
+ * cached reads are free; absent or negative rates are unknown or invalid.
+ * Cost-block values are USD per 1M tokens.
  */
 function readModelInputPricing(model: PiModel | undefined): ModelInputPricing | undefined {
   const cost = model?.cost;
@@ -4137,7 +4138,7 @@ function readModelInputPricing(model: PiModel | undefined): ModelInputPricing | 
   const inputPerToken = getNumber(cost.input);
   const cacheReadPerToken = getNumber(cost.cacheRead);
   if (inputPerToken === undefined || inputPerToken <= 0) return undefined;
-  if (cacheReadPerToken === undefined || cacheReadPerToken <= 0) return undefined;
+  if (cacheReadPerToken === undefined || cacheReadPerToken < 0) return undefined;
   const cacheWritePerToken = getNumber(cost.cacheWrite);
   return {
     inputPerToken: inputPerToken / 1_000_000,

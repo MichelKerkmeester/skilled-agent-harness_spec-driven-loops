@@ -40,7 +40,7 @@ describe('model input pricing lookup', () => {
     assert.equal(pricing.cacheWritePerToken, 3.75 / 1_000_000);
   });
 
-  test('treats a missing cost block as unpriced, never as free', () => {
+  test('treats missing or invalid rates as unpriced, never as free', () => {
     assert.equal(internals.readModelInputPricing(costModel(undefined)), undefined);
     assert.equal(
       internals.readModelInputPricing(costModel({ input: 0, output: 0, cacheRead: 0, cacheWrite: 0 })),
@@ -51,10 +51,45 @@ describe('model input pricing lookup', () => {
       undefined,
     );
     assert.equal(
-      internals.readModelInputPricing(costModel({ input: 2.5, output: 10, cacheRead: 0, cacheWrite: 0 })),
+      internals.readModelInputPricing(costModel({ input: 2.5, output: 10, cacheRead: -1, cacheWrite: 0 })),
       undefined,
     );
     assert.equal(internals.readModelInputPricing(undefined), undefined);
+  });
+
+  test('prices an explicit zero cached-read rate and reports real savings', () => {
+    const model = {
+      ...costModel({ input: 2.5, output: 10, cacheRead: 0, cacheWrite: 0 }),
+      id: 'gpt-5.5',
+      name: 'GPT-5.5',
+    };
+    const pricing = internals.readModelInputPricing(model);
+    assert.ok(pricing);
+    assert.equal(pricing.inputPerToken, 2.5 / 1_000_000);
+    assert.equal(pricing.cacheReadPerToken, 0);
+
+    const stats = internals.emptyCacheStats('2026-09-08');
+    internals.addUsageToCacheStats(
+      stats,
+      { cacheRead: 1_000, cacheWrite: 0, totalInput: 2_000 },
+      pricing,
+    );
+
+    assert.equal(stats.pricedRequests, 1);
+    assert.ok(Math.abs(stats.inputCostUsd - 0.0025) < 1e-12);
+    assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 0.005) < 1e-12);
+
+    const output = internals.buildStatsOutput(
+      model,
+      internals.selectAdapterForModel(model),
+      stats,
+      [],
+      pricing,
+    );
+    assert.match(output, /Pricing:.*\$2\.50\/M input · \$0\.0000\/M cached read/);
+    assert.match(output, /Input cost:.*\$0\.0025 over 1 priced request\(s\) of 1/);
+    assert.match(output, /Savings:.*\$0\.0025 vs baseline/);
+    assert.doesNotMatch(output, /unpriced/);
   });
 
   test('resolves pricing from the registry when the model carries no cost block', () => {
