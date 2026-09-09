@@ -100,6 +100,32 @@ function runPackageCase(spec) {
   }
 }
 
+// Not every family runs on an extra. Several are scoped to the shipped directories, and one trips
+// on any copy at all because two files then declare the same identity. Those cases mutate the file
+// where it lives, inside a package copy, so the rule sees a corpus member rather than a visitor.
+function runPackageFileCase(spec) {
+  const directory = copyPackage();
+  try {
+    const checker = path.join(directory, 'scripts', 'check-corpus.cjs');
+    const before = failuresFor(runChecker(checker), spec.family);
+    assert.equal(before.length, 0,
+      `the package copy already fails ${spec.family} unmutated:\n${before.join('\n')}`);
+
+    const target = path.join(directory, spec.file);
+    const original = fs.readFileSync(target, 'utf8');
+    assert.ok(original.includes(spec.from),
+      `the patch anchor is not in ${spec.file}; a case whose patch does not apply proves nothing`);
+    fs.writeFileSync(target, original.replace(spec.from, spec.to), 'utf8');
+
+    const after = failuresFor(runChecker(checker), spec.family);
+    assert.ok(after.length > 0, `${spec.family} did not fire on: ${spec.name}`);
+    assert.ok(after.some((line) => spec.expect.test(line)),
+      `${spec.family} fired on something else:\n${after.join('\n')}`);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
 function editPalette(directory, change) {
   const file = path.join(directory, 'assets', 'color', 'palettes.json');
   const palette = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -107,7 +133,7 @@ function editPalette(directory, change) {
   fs.writeFileSync(file, `${JSON.stringify(palette, null, 2)}\n`, 'utf8');
 }
 
-module.exports = { runFileCase, runPackageCase, editPalette, ROOT, CHECKER };
+module.exports = { runFileCase, runPackageCase, runPackageFileCase, editPalette, ROOT, CHECKER };
 
 test('the corpus is clean before anything is mutated', () => {
   const output = runChecker(CHECKER);
@@ -295,3 +321,198 @@ const PACKAGE_CASES = [
 for (const spec of PACKAGE_CASES) {
   test(spec.name, () => runPackageCase(spec));
 }
+
+// ── the families this line of work did not touch ────────────────────────────────────────────────
+// Coverage that follows only the work leaves the rest of the contract resting on nobody having
+// broken it yet. One case each: enough that a family which stops firing is noticed.
+const REMAINING_FILE_CASES = [
+  { name: 'accessibility refuses a drawing with no role', file: 'assets/templates/bar-columns.html',
+    from: 'role="img" aria-labelledby="fig-label fig-desc"', to: 'aria-labelledby="fig-label fig-desc"',
+    family: 'accessibility', expect: /carries no role/ },
+  { name: 'card-parts refuses a card missing a part', file: 'assets/templates/bar-columns.html',
+    from: 'data-chart-part="source"', to: 'data-chart-part="sauce"',
+    family: 'card-parts', expect: /card parts are/ },
+  { name: 'data-block refuses a second data sentinel', file: 'assets/templates/bar-columns.html',
+    from: '/* CHART_DATA:BEGIN */', to: '/* CHART_DATA:BEGIN */\n/* CHART_DATA:BEGIN */',
+    family: 'data-block', expect: /CHART_DATA sentinel pair/ },
+  { name: 'document-shape refuses a fragment', file: 'assets/templates/bar-columns.html',
+    from: '<!doctype html>', to: '<!-- no doctype -->',
+    family: 'document-shape', expect: /A fragment is not a deliverable/ },
+  { name: 'determinism refuses a random in the drawing', file: 'assets/templates/bar-columns.html',
+    from: 'const rows = document.getElementById', to: 'const jitter = Math.random();\nconst rows = document.getElementById',
+    family: 'determinism', expect: /Math\.random\(\) in rendering code/ },
+  { name: 'table-disclosure refuses a table with no disclosure', file: 'assets/templates/bar-columns.html',
+    from: '<details class="data" open', to: '<section class="data" data-open',
+    family: 'table-disclosure', expect: /details/ },
+  { name: 'unique-ids refuses a duplicated id', file: 'assets/templates/bar-columns.html',
+    from: 'id="fig-label"', to: 'id="chart"',
+    family: 'unique-ids', expect: /./ },
+  { name: 'narrow-viewport refuses a figure with no class to pan it', file: 'assets/templates/bar-columns.html',
+    from: 'class="figure"', to: 'class="figure-region"',
+    family: 'narrow-viewport', expect: /declares no overflow-x/ },
+  { name: 'motion refuses an animation with no reduced-motion fallback', file: 'assets/templates/bar-columns.html',
+    from: '@media (prefers-reduced-motion', to: '@media (prefers-reduced-nothing',
+    family: 'motion', expect: /no prefers-reduced-motion fallback/ },
+  { name: 'no-external refuses a fetched resource', file: 'assets/templates/bar-columns.html',
+    from: '</head>', to: '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">\n</head>',
+    family: 'no-external', expect: /./ },
+  { name: 'number-format refuses a locale-dependent formatter', file: 'assets/templates/bar-columns.html',
+    from: 'const rows = document.getElementById', to: 'const shown = (1).toLocaleString();\nconst rows = document.getElementById',
+    family: 'number-format', expect: /toLocaleString/ },
+  { name: 'script-parses refuses a script that does not compile', file: 'assets/templates/bar-columns.html',
+    from: 'const rows = document.getElementById', to: 'const rows = = document.getElementById',
+    family: 'script-parses', expect: /does not compile/ },
+  { name: 'palette-block refuses a duplicated palette sentinel', file: 'assets/templates/bar-columns.html',
+    from: '/* CHART_PALETTE:END */', to: '/* CHART_PALETTE:END */\n/* CHART_PALETTE:END */',
+    family: 'palette-block', expect: /palette sentinel/ },
+  { name: 'finding-cue refuses a finding with no declared direction', file: 'assets/templates/bar-columns.html',
+    from: 'const FINDING = {', to: 'const FINDING_ABSENT = {',
+    family: 'finding-cue', expect: /declares no FINDING block/ },
+  { name: 'type-scale refuses a size outside the published scale', file: 'assets/templates/bar-columns.html',
+    from: '.source { margin: 0; font-size: 14px', to: '.source { margin: 0; font-size: 15px',
+    family: 'type-scale', expect: /./ },
+  { name: 'design-md refuses a themed delivery whose provenance is malformed',
+    file: 'assets/examples/grouped-bars-stripe-style.html',
+    from: 'sha256=', to: 'sha=',
+    family: 'design-md', expect: /provenance/ },
+];
+for (const spec of REMAINING_FILE_CASES) {
+  test(spec.name, () => runFileCase(spec));
+}
+
+// These reach families the extra route does not.
+const IN_PLACE_CASES = [
+  { name: 'geometry-block refuses a form with no shared measurements', file: 'assets/templates/bar-columns.html',
+    from: '/* GEOMETRY DEFAULTS', to: '/* GEOMETRY NOTES',
+    family: 'geometry-block', expect: /no GEOMETRY DEFAULTS block/ },
+  { name: 'identity refuses a colour system the palette does not carry', file: 'assets/templates/bar-columns.html',
+    from: 'chart-color-system" content="neutral', to: 'chart-color-system" content="invented',
+    family: 'identity', expect: /declares colour system/ },
+  { name: 'interaction-state refuses a form that drops its dim state', file: 'assets/templates/grouped-bars.html',
+    from: 'data-chart-dim=""', to: 'data-chart-dim="1"',
+    family: 'interaction-state', expect: /opens with one series already held/ },
+  { name: 'series-mapping refuses a keyed form with no series block', file: 'assets/templates/grouped-bars.html',
+    from: '/* CHART_SERIES:END */', to: '/* CHART_SERIES:END */\n/* CHART_SERIES:END */',
+    family: 'series-mapping', expect: /CHART_SERIES sentinel pair/ },
+  { name: 'tooltip-card refuses a form whose card is gone', file: 'assets/templates/daily-line.html',
+    from: '<div data-chart-tooltip', to: '<div data-chart-tooltip></div><div data-chart-tooltip',
+    family: 'tooltip-card', expect: /exactly one positioned HTML tooltip element/ },
+  { name: 'source-line refuses a source line carrying the retarget instruction', file: 'assets/templates/bar-columns.html',
+    from: 'Source: warehouse management system', to: 'Replace the data block above. Source: warehouse management system',
+    family: 'source-line', expect: /retarget instruction/ },
+  { name: 'radius refuses a corner typed into the drawing code', file: 'assets/templates/bar-columns.html',
+    from: '.figure { margin: 0;', to: '.figure { border-radius: 7px; margin: 0;',
+    family: 'radius', expect: /is a corner typed into the stylesheet/ },
+];
+for (const spec of IN_PLACE_CASES) {
+  test(spec.name, () => runPackageFileCase(spec));
+}
+
+// The last of them read a reference document, the gallery, or the dark palette, so each mutates
+// the package rather than one form.
+const LAST_CASES = [
+  { name: 'catalog refuses a corpus with no index',
+    mutate: (d) => fs.rmSync(path.join(d, 'references', 'catalog.md')),
+    family: 'catalog', expect: /the catalog is missing/ },
+  { name: 'catalog-system refuses a row whose system is not a system',
+    mutate: (d) => {
+      const file = path.join(d, 'references', 'catalog.md');
+      const text = fs.readFileSync(file, 'utf8');
+      fs.writeFileSync(file, text.replace(
+        '| bar-columns | comparison |', '| bar-columns | comparison |').replace(
+        '| neutral | assets/templates/bar-columns.html |', '| invented | assets/templates/bar-columns.html |'), 'utf8');
+    },
+    family: 'catalog-system', expect: /./ },
+  { name: 'gallery refuses a corpus with nothing showing it',
+    mutate: (d) => fs.rmSync(path.join(d, 'assets', 'gallery.html')),
+    family: 'gallery', expect: /no gallery has been built/ },
+  { name: 'pointer-contract-coverage refuses a form with no contract row',
+    mutate: (d) => {
+      const from = path.join(d, 'assets', 'templates', 'bar-columns.html');
+      const to = path.join(d, 'assets', 'templates', 'bar-columns-copy.html');
+      // A second form has to differ from the first, or the identity rule answers first.
+      const source = fs.readFileSync(from, 'utf8')
+        .replace(/id="fig-label"/g, 'id="fig-label-copy"')
+        .replace(/id="fig-desc"/g, 'id="fig-desc-copy"')
+        .replace(/fig-label fig-desc/g, 'fig-label-copy fig-desc-copy')
+        .replace(/id="chart"/g, 'id="chart-copy"')
+        .replace(/getElementById\('chart'\)/g, "getElementById('chart-copy')");
+      fs.writeFileSync(to, source, 'utf8');
+    },
+    family: 'pointer-contract-coverage', expect: /no row in the pointer contract table/ },
+  { name: 'palette-source-dark refuses a dark value that stops clearing its gate',
+    mutate: (d) => editPalette(d, (p) => {
+      p.systems.categorical.seriesDark[1] = '#101010';
+      p.derivation.roles['categorical.seriesDark[1]'] = '--color-ink';
+    }),
+    family: 'palette-source-dark', expect: /./ },
+  { name: 'gradient-sweep refuses a gradient running between two series values',
+    mutate: (d) => {
+      const file = path.join(d, 'assets', 'templates', 'daily-line.html');
+      const text = fs.readFileSync(file, 'utf8');
+      fs.writeFileSync(file, text.replace(
+        '<linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">',
+        '<linearGradient id="area-sweep" gradientUnits="userSpaceOnUse" x1="0" x2="0"><stop offset="0" stop-color="var(--chart-series-1)"/><stop offset="1" stop-color="var(--chart-series-2)"/></linearGradient>\n        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">',
+      ), 'utf8');
+    },
+    family: 'gradient-sweep', expect: /./ },
+  { name: 'interaction-hygiene refuses an inert drawing that still carries a handler',
+    mutate: (d) => {
+      const file = path.join(d, 'assets', 'templates', 'bar-columns.html');
+      const text = fs.readFileSync(file, 'utf8');
+      fs.writeFileSync(file, text.replace('data-chart-inert="', 'data-chart-dim="" data-chart-inert="'), 'utf8');
+    },
+    family: 'interaction-hygiene', expect: /./ },
+];
+for (const spec of LAST_CASES) {
+  test(spec.name, () => runPackageCase(spec));
+}
+
+// ── the guard that keeps this file honest ───────────────────────────────────────────────────────
+// Coverage written once follows the work that prompted it and then rots: the next family arrives,
+// nobody writes a case, and the suite still passes. So the suite asserts its own completeness. A
+// family may sit outside it only by being named here with a reason, and a reason that has stopped
+// being true fails too.
+const NEEDS_A_BROWSER = {
+  render: 'renders every file and reports what would not paint',
+  'dark-render': 'renders the dark theme',
+  'settled-render': 'watches a file stop moving',
+  'pointer-reach': 'aims a pointer at a mark',
+  'card-readout': 'reads a card the pointer opened',
+};
+
+function registeredFamilies() {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'check-corpus.cjs'), 'utf8');
+  const names = new Set([...source.matchAll(/(?:tally|record)\(\s*'([a-z-]+)'/g)].map((m) => m[1]));
+  // The palette rules address their family through a theme object rather than a literal.
+  names.add('palette-source');
+  names.add('palette-source-dark');
+  return names;
+}
+
+function coveredFamilies() {
+  const source = fs.readFileSync(__filename, 'utf8');
+  return new Set([...source.matchAll(/family:\s*'([a-z-]+)'/g)].map((m) => m[1]));
+}
+
+test('every family the checker registers has a case here, or a stated reason it cannot', () => {
+  const registered = registeredFamilies();
+  const covered = coveredFamilies();
+  const uncovered = [...registered].filter((f) => !covered.has(f) && !NEEDS_A_BROWSER[f]).sort();
+  assert.deepEqual(uncovered, [],
+    `these families are enforced by nothing:\n  ${uncovered.join('\n  ')}\nWrite a case, or name it above with the reason it needs a browser.`);
+});
+
+test('nothing here names a family the checker does not register', () => {
+  const registered = registeredFamilies();
+  const invented = [...coveredFamilies()].filter((f) => !registered.has(f)).sort();
+  assert.deepEqual(invented, [],
+    `these cases name a family that no longer exists, so they assert nothing:\n  ${invented.join('\n  ')}`);
+});
+
+test('no browser exemption outlives the family it excuses', () => {
+  const registered = registeredFamilies();
+  const stale = Object.keys(NEEDS_A_BROWSER).filter((f) => !registered.has(f)).sort();
+  assert.deepEqual(stale, [],
+    `these exemptions excuse a family the checker no longer has:\n  ${stale.join('\n  ')}`);
+});

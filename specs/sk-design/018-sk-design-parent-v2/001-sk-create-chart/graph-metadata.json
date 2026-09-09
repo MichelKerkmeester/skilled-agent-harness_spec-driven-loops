@@ -33,7 +33,8 @@
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries",
-    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite"
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage"
   ],
   "manual": {
     "depends_on": [],
@@ -165,17 +166,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-09T20:09:38.144Z",
+    "last_save_at": "2026-09-09T20:33:06.254Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e825d4636b8038698338bc730d0ced2bf9318fbe896828550f67317caba77386",
+    "source_fingerprint": "sha256:e72956df9eaf8d5a7e435d3221dc0da2c086c11d4af49a0f648da6646ef65ef2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc581788558a8972456fb163f34cd31ab7c1f19964ef786fe8e720c3fb423a2b"
+      "spec.md": "50cec842d7c75977ca99fd6a9389afb32cf1615b7fefeea22b19fc25c94d1925"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T18:11:54.124Z"

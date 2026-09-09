@@ -171,6 +171,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 28 | 028-closeout/ | Every item the chart phases recorded as not-done, closed, plus eleven leaky assertions a fresh review found | Complete |
 | 29 | 029-holding-the-boundaries/ | Four of the five recorded boundaries turned out reachable and are held; the fifth is settled by measurement | Complete |
 | 30 | 030-mutation-suite/ | A standing mutation suite for the corpus check, and a blocking gate that runs it | Complete |
+| 31 | 031-full-family-coverage/ | A case for every family the checker registers, and a guard that fails when one arrives without | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

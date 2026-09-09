@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage",
+  "description": "The mutation suite covered twelve of the forty-seven families the corpus check registers: the ones",
+  "keywords": [
+    "mutation",
+    "suite",
+    "covered",
+    "twelve",
+    "forty-seven",
+    "families",
+    "corpus",
+    "check",
+    "registers",
+    "ones"
+  ],
+  "lastUpdated": "2026-09-09T20:33:03.029Z",
+  "specId": "031",
+  "folderSlug": "full-family-coverage",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

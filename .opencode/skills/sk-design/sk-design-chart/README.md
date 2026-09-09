@@ -12,7 +12,7 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 1.14.0.0
+version: 1.15.0.0
 ---
 
 # sk-design-chart
