@@ -1907,6 +1907,22 @@ function checkCursorGuide(file, src) {
     record('cursor-guide', 'error', file,
       'the figure declares a guide it never draws. A form that says it follows the pointer and does not is the declaration this corpus keeps deleting');
   }
+  if (on) {
+    tally('cursor-guide', 1);
+    // A card registered per band reports that band's whole period, and a hairline then lands in
+    // the middle of the band on every hover rather than on a column. Which of the two a form does
+    // is visible: the registration sits inside the loop over its readings, or inside one over its
+    // series.
+    const perReading = [...code.matchAll(/\bmarkable\s*\(/g)].some((hit) => {
+      const before = code.slice(0, hit.index);
+      const loop = [...before.matchAll(/(\w+)\.forEach\s*\(\s*function|for\s*\(/g)].pop();
+      return loop && /^DATA\.forEach/.test(loop[0] + (loop[1] ? '' : ''));
+    });
+    if (!perReading) {
+      record('cursor-guide', 'error', file,
+        'the figure guides the pointer and registers its card somewhere other than its readings. A card that opens on a series reports that series, and the hairline then sits in the middle of it on every hover rather than on the column under the pointer');
+    }
+  }
   if (on && !/appendChild\(guideLine\)/.test(code)) {
     record('cursor-guide', 'error', file,
       'the guide element is built and never put in the document. A hairline that exists only as a variable is a guide the reader never sees');
@@ -2994,6 +3010,12 @@ function fileLabel(file, extraDirectory) {
 // A carried Style Reference records where it came from and pins every file it carries by hash.
 // One of those pins is held by the derivation rule because the palette depends on it; the rest
 // were written down and checked by nobody, which makes them decoration that reads as evidence.
+// How far the steps of an equal-contrast ramp may differ from each other before the ladder stops
+// reading as even. The shipped ramps hold 0.010 and 0.015; this is loose enough that a re-derivation
+// under a different reference is not forced onto the same arithmetic, and tight enough that a ramp
+// bunched at one end fails.
+const RAMP_EVENNESS = 0.08;
+
 function checkStyleReference() {
   const root = path.join(PACKAGE_ROOT, 'assets', 'style-reference');
   tally('style-reference', 1);
@@ -3153,6 +3175,26 @@ function checkPaletteDerivation(palette) {
       record('palette-derivation', 'error', 'assets/color/palettes.json',
         `${role} is recorded as "${kind}", which the derivation does not describe. An arithmetic nobody wrote down exempts a value for no stated reason`);
       continue;
+    }
+    if (kind === 'ramp-interior') {
+      tally('palette-derivation', 1);
+      const owner = /^([a-z-]+)\.(series|seriesDark)\[/.exec(role);
+      const ladder = owner ? (palette.systems[owner[1]] || {})[owner[2]] : null;
+      if (!ladder || ladder.length < 3) {
+        record('palette-derivation', 'error', 'assets/color/palettes.json',
+          `${role} is recorded as a ramp interior and sits in no ramp this rule can read`);
+      } else {
+        // Equal spacing is the whole content of the exemption: these rungs were not taken from
+        // the reference, they were placed so each step reads as the same size as its neighbours.
+        // The ramp contract holds that every step clears the floor, which a ramp bunched at one
+        // end also does.
+        const steps = ladder.slice(0, -1).map((value, at) => contrast(value, ladder[at + 1]));
+        const spread = Math.max(...steps) - Math.min(...steps);
+        if (spread > RAMP_EVENNESS) {
+          record('palette-derivation', 'error', 'assets/color/palettes.json',
+            `the "${owner[1]}" ramp's steps run from ${Math.min(...steps).toFixed(2)}:1 to ${Math.max(...steps).toFixed(2)}:1, a spread of ${spread.toFixed(2)} against the ${RAMP_EVENNESS} these rungs were placed to hold. A rung recorded as evenly spaced and bunched toward one end encodes a magnitude the data does not have`);
+        }
+      }
     }
     if (kind === 'ink-at-alpha') {
       tally('palette-derivation', 1);

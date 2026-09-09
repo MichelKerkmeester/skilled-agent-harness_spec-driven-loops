@@ -5,8 +5,9 @@ read out of the evilcharts source and written here, so what is measured and what
 are recorded separately below.
 
 **Source:** the evilcharts component library, `src/app/globals.css`, its `:root` and `.dark`
-custom-property blocks. The clone the values were read from sits in another packet's research
-context and is not vendored here; the values are.
+custom-property blocks. Both blocks are carried verbatim beside this file as `source-globals.css`,
+so every converted hex can be checked against the `oklch()` it came from without reaching for the
+library clone, which lives in another packet's research context.
 **Read:** 2026-09-09
 
 ## Measured
@@ -46,4 +47,5 @@ a run themes twenty-five.
 | File | sha256 | Read by |
 |------|--------|---------|
 | `DESIGN.md` | `00bc417a4203d9f3…` | `scripts/apply-design-md.cjs` — its colour table, its typography blocks, its border-radius table and its theme line |
+| `source-globals.css` | `133dd40285d513f4…` | a reader checking a converted hex against the oklch it came from; nothing loads it |
 | `tokens.json` | `90d5a56c859b6103…` | `scripts/apply-design-md.cjs` — `darkMode`, which decides whether the dark theme derives from this reference or from stock chrome |

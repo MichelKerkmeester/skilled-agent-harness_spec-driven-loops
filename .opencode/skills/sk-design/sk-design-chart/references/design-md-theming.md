@@ -109,10 +109,15 @@ corner, against the 2px the corpus ships.
 
 What the floor costs is worth stating rather than leaving to be discovered: a reference whose
 corners are all larger than the corpus rungs contributes none of them. evilcharts publishes 4.4,
-6.4, 8.4 and 12.4px and reaches only the card rung, at 6.4. Mapping by the reference's own element
-names instead — its `cards` row to the card rung rather than the largest value that fits — would
-carry more of a reference through, and would change what every themed set has looked like so far.
-That is a decision about the register, not a defect in this one.
+6.4, 8.4 and 12.4px and reaches only the card rung, at 6.4.
+
+Mapping by the reference's own element names instead — its `cards` row straight to the card rung —
+was measured and rejected. The cursor reference publishes `cards` at 4px and `modals` at 8px, and
+the corpus card rung is 8px because the stock ladder deliberately took the larger of the two when it
+was derived. A name mapping would hand the card rung 4px and the stock reference would stop
+reproducing the stock ladder, which is the one property that says the default is still the reference
+the corpus came from. The floor keeps that true. It buys the property at the cost of a reference
+with larger corners contributing fewer of them, and that is the right side of the trade.
 
 ## Gates before writing
 

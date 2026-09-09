@@ -146,3 +146,27 @@ test('evilcharts declares its dark theme, so the dark set is its own ground and 
     'without its tokens.json sidecar this silently falls back to the corpus stock dark chrome');
   assert.equal(parsed.light.chrome.surface.toLowerCase(), '#ffffff');
 });
+
+// Nine of the eleven forms carrying a REFERENCE block ship an empty list, so the loop that draws a
+// level has never run in this corpus. The static checks prove the code is there and reads the list;
+// only rendering one with an entry in it proves the code works.
+test('a declared reference line reaches the document on a form that ships none', () => {
+  const { execFileSync } = require('node:child_process');
+  const browser = process.env.CHROME_PATH
+    || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+  if (!fs.existsSync(browser)) return; // the render gate owns the browser requirement
+  const form = path.join(ROOT, 'assets', 'templates', 'histogram.html');
+  const source = fs.readFileSync(form, 'utf8');
+  assert.match(source, /const REFERENCE = \[\];/, 'this form is expected to ship an empty list');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'reference-draw-'));
+  const page = path.join(directory, 'form.html');
+  fs.writeFileSync(page, source.replace(
+    'const REFERENCE = [];',
+    "const REFERENCE = [{ value: 20, label: 'Checked level', why: 'exercises the drawing' }];",
+  ), 'utf8');
+  const dom = execFileSync(browser, [
+    '--headless', '--disable-gpu', '--virtual-time-budget=2500', '--dump-dom', `file://${page}`,
+  ], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  assert.match(dom, /<line class="reference"/, 'the declared level is drawn as a rule');
+  assert.match(dom, /<text class="reference-label"[^>]*>Checked level<\/text>/, 'and named at the edge');
+});
