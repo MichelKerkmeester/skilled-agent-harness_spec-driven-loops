@@ -179,19 +179,42 @@ describe('cache economics cost arithmetic', () => {
     assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 500 * pricing.inputPerToken) < 1e-12);
   });
 
+  test('treats a model that never reports cache usage as unmeasured while retaining economics', () => {
+    const stats = internals.emptyCacheStats('2026-09-08');
+    const model = { compat: { reportsCacheUsage: false } };
+    const usage = { cacheRead: 0, cacheWrite: 0, totalInput: 500, hasCacheSignal: true };
+
+    internals.addUsageToCacheStats(stats, usage, pricing, model.compat.reportsCacheUsage);
+
+    assert.equal(stats.unmeasuredRequests, 1);
+    assert.equal(stats.hitRequests, 0);
+    assert.equal(stats.totalRequests, 1);
+    assert.equal(stats.totalInputTokens, 500);
+    assert.equal(stats.pricedRequests, 1);
+    assert.ok(Math.abs(stats.inputCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+    assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+  });
+
   test('counts explicit zero cache fields as one measured miss', () => {
     const stats = internals.emptyCacheStats('2026-09-08');
     const usage = { cacheRead: 0, cacheWrite: 0, totalInput: 500 };
     const message = { role: 'assistant', usage: { input: 500, cacheRead: 0, cacheWrite: 0 } };
-    const adapter = internals.selectAdapterForModel({
+    const model: {
+      provider: string;
+      id: string;
+      name: string;
+      compat: { reportsCacheUsage?: boolean };
+    } = {
       provider: 'proxy',
       id: 'gpt-5.5',
       name: 'GPT-5.5',
-    });
+      compat: {},
+    };
+    const adapter = internals.selectAdapterForModel(model);
     assert.ok(adapter);
     assert.equal(internals.hasMissingUsageFields(message, adapter), false);
 
-    internals.addUsageToCacheStats(stats, usage, pricing);
+    internals.addUsageToCacheStats(stats, usage, pricing, model.compat.reportsCacheUsage);
 
     assert.equal(stats.unmeasuredRequests, 0);
     assert.equal(stats.totalRequests, 1);
@@ -200,6 +223,49 @@ describe('cache economics cost arithmetic', () => {
     assert.equal(stats.totalInputTokens, 500);
     assert.ok(Math.abs(stats.inputCostUsd - 500 * pricing.inputPerToken) < 1e-12);
     assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+  });
+
+  test('lets a reporting model use response presence instead of forcing a hit', () => {
+    const stats = internals.emptyCacheStats('2026-09-08');
+    const model = { compat: { reportsCacheUsage: true } };
+    const unreportedUsage = {
+      cacheRead: 0,
+      cacheWrite: 0,
+      totalInput: 500,
+      hasCacheSignal: false,
+    };
+    const measuredMissUsage = {
+      cacheRead: 0,
+      cacheWrite: 0,
+      totalInput: 500,
+      hasCacheSignal: true,
+    };
+
+    assert.equal(
+      internals.hasReportedCacheSignal(unreportedUsage, model.compat.reportsCacheUsage),
+      false,
+    );
+    assert.equal(
+      internals.hasReportedCacheSignal(measuredMissUsage, model.compat.reportsCacheUsage),
+      true,
+    );
+    internals.addUsageToCacheStats(
+      stats,
+      unreportedUsage,
+      pricing,
+      model.compat.reportsCacheUsage,
+    );
+    internals.addUsageToCacheStats(
+      stats,
+      measuredMissUsage,
+      pricing,
+      model.compat.reportsCacheUsage,
+    );
+
+    assert.equal(stats.unmeasuredRequests, 1);
+    assert.equal(stats.hitRequests, 0);
+    assert.equal(stats.totalRequests, 2);
+    assert.equal(stats.totalRequests - stats.unmeasuredRequests, 1);
   });
 
   test('ignores undefined usage without changing stats', () => {

@@ -249,6 +249,8 @@ interface CacheCompat {
   supportsDeveloperRole?: boolean;
   supportsReasoningEffort?: boolean;
   supportsUsageInStreaming?: boolean;
+  // Some hosts synthesize zero-valued cache fields for models that do not report them.
+  reportsCacheUsage?: boolean;
   supportsStrictMode?: boolean;
   maxTokensField?: 'max_completion_tokens' | 'max_tokens';
   sendSessionAffinityHeaders?: boolean;
@@ -4192,7 +4194,11 @@ function computeUncachedBaselineCostUsd(usage: UsageSnapshot, pricing: ModelInpu
   return usage.totalInput * pricing.inputPerToken;
 }
 
-function hasReportedCacheSignal(usage: UsageSnapshot): boolean {
+function hasReportedCacheSignal(
+  usage: UsageSnapshot,
+  reportsCacheUsage?: boolean,
+): boolean {
+  if (reportsCacheUsage === false) return false;
   if (usage.hasCacheSignal !== undefined) return usage.hasCacheSignal;
   return Object.prototype.hasOwnProperty.call(usage, 'cacheRead') ||
     Object.prototype.hasOwnProperty.call(usage, 'cacheWrite');
@@ -4206,11 +4212,12 @@ function addUsageToCacheStats(
   stats: CacheStats,
   usage: UsageSnapshot | undefined,
   pricing: ModelInputPricing | undefined,
+  reportsCacheUsage?: boolean,
 ): void {
   if (!usage) return;
 
   stats.totalRequests += 1;
-  if (!hasReportedCacheSignal(usage)) {
+  if (!hasReportedCacheSignal(usage, reportsCacheUsage)) {
     stats.unmeasuredRequests += 1;
   } else if (usage.cacheRead > 0) {
     stats.hitRequests += 1;
@@ -4295,11 +4302,17 @@ function formatUsdPerMillion(perToken: number): string {
 
 /**
  * Check whether an assistant message reports a cache signal for the given adapter.
- * Input tokens alone do not make the cache signal measurable.
+ * Input tokens alone do not make the cache signal measurable. A model-level
+ * declaration that usage is never reported also keeps synthesized cache fields
+ * out of the measured hit/miss counts.
  */
-function hasMissingUsageFields(message: unknown, adapter: CacheProviderAdapter): boolean {
+function hasMissingUsageFields(
+  message: unknown,
+  adapter: CacheProviderAdapter,
+  reportsCacheUsage?: boolean,
+): boolean {
   const usage = adapter.normalizeUsage(message);
-  return usage === undefined || !hasReportedCacheSignal(usage);
+  return usage === undefined || !hasReportedCacheSignal(usage, reportsCacheUsage);
 }
 
 /**
@@ -7540,6 +7553,7 @@ export const __internals_for_tests = {
   formatRecentTrendSummary,
   formatHitRatio,
   formatTokenM,
+  hasReportedCacheSignal,
   hasMissingUsageFields,
   keyForModelExt,
   // Session-scoped helpers
@@ -9479,6 +9493,9 @@ export default function (pi: ExtensionAPI): void {
     // the active model id. Virtual routing providers keep message-local
     // identity (router correctness).
     statsModel = consolidateDirectProviderStatsModel(statsModel, ctx.model, ctx);
+    const reportsCacheUsage = statsModel
+      ? getCompat(statsModel).reportsCacheUsage
+      : undefined;
     let routedModelChanged = false;
     if (
       isVirtualRoutingModel(ctx.model, ctx) && statsModel && !isVirtualRoutingModel(statsModel, ctx)
@@ -9503,7 +9520,8 @@ export default function (pi: ExtensionAPI): void {
     // Record recent sample (even when usage is missing, for trend diagnosis)
     if (statsModel) {
       const sk = sessionModelKey(statsModel);
-      const missingFields = usage === undefined || hasMissingUsageFields(event.message, adapter);
+      const missingFields = usage === undefined ||
+        hasMissingUsageFields(event.message, adapter, reportsCacheUsage);
       recordRecentSample(
         sk,
         usage ?? { cacheRead: 0, cacheWrite: 0, totalInput: 0 },
@@ -9526,9 +9544,24 @@ export default function (pi: ExtensionAPI): void {
     // routed model. The process bucket is intentionally never persisted.
     if (statsModel) {
       const sk = sessionModelKey(statsModel);
-      addUsageToCacheStats(getOrCreateStatsByModelKey(sk), usage, pricing);
-      addUsageToCacheStats(getOrCreateProcessStatsForModel(statsModel), usage, pricing);
-      addUsageToCacheStats(getOrCreateTotalStatsForModel(statsModel), usage, pricing);
+      addUsageToCacheStats(
+        getOrCreateStatsByModelKey(sk),
+        usage,
+        pricing,
+        reportsCacheUsage,
+      );
+      addUsageToCacheStats(
+        getOrCreateProcessStatsForModel(statsModel),
+        usage,
+        pricing,
+        reportsCacheUsage,
+      );
+      addUsageToCacheStats(
+        getOrCreateTotalStatsForModel(statsModel),
+        usage,
+        pricing,
+        reportsCacheUsage,
+      );
     } else {
       addUsageToCacheStats(getStatsForModel(undefined, adapter), usage, undefined);
     }
