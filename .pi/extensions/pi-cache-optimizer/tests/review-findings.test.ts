@@ -484,14 +484,14 @@ describe('Anthropic cache TTL ordering repair', () => {
 // 7. FOREIGN RAW USAGE
 // ───────────────────────────────────────────────────────────────────
 
-describe('foreign raw usage full-miss accounting', () => {
+describe('foreign raw usage signal accounting', () => {
   test('counts an Anthropic input-only response as a full miss', () => {
     assert.deepEqual(
       internals.getAnthropicRawUsage({
         role: 'assistant',
         usage: { input_tokens: 123, output_tokens: 8 },
       }),
-      { cacheRead: 0, cacheWrite: 0, totalInput: 123 },
+      { cacheRead: 0, cacheWrite: 0, totalInput: 123, hasCacheSignal: false },
     );
   });
 
@@ -501,7 +501,7 @@ describe('foreign raw usage full-miss accounting', () => {
         role: 'assistant',
         usageMetadata: { promptTokenCount: 456, totalTokenCount: 470 },
       }),
-      { cacheRead: 0, cacheWrite: 0, totalInput: 456 },
+      { cacheRead: 0, cacheWrite: 0, totalInput: 456, hasCacheSignal: false },
     );
   });
 
@@ -535,6 +535,7 @@ describe('cache-write display', () => {
         uncachedBaselineCostUsd: 0,
         pricedRequests: 0,
         prefixChurnCount: 0,
+        unmeasuredRequests: 0,
       }),
       /write 1\.00M tok/,
     );
@@ -564,6 +565,7 @@ describe('footer stats modes', () => {
     uncachedBaselineCostUsd: 0.002,
     pricedRequests: 2,
     prefixChurnCount: 0,
+    unmeasuredRequests: 0,
   };
   const totalStats = {
     day: '2026-08-03',
@@ -576,6 +578,7 @@ describe('footer stats modes', () => {
     uncachedBaselineCostUsd: 0.02,
     pricedRequests: 9,
     prefixChurnCount: 1,
+    unmeasuredRequests: 0,
   };
   const statsByModel = {
     [internals.makeSessionModelKey(sessionHash, model.provider, model.id)]: sessionStats,

@@ -120,6 +120,62 @@ describe('cache economics cost arithmetic', () => {
     assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 0.005) < 1e-9);
   });
 
+  test('records an input-only request without including it in the hit ratio', () => {
+    const stats = internals.emptyCacheStats('2026-09-08');
+    const message = { role: 'assistant', usage: { input: 500 } };
+    const usage = internals.getPiNormalizedUsage(message);
+    const adapter = internals.selectAdapterForModel({
+      provider: 'proxy',
+      id: 'gpt-5.5',
+      name: 'GPT-5.5',
+    });
+    assert.ok(usage);
+    assert.ok(adapter);
+    assert.equal(internals.hasMissingUsageFields(message, adapter), true);
+
+    internals.addUsageToCacheStats(stats, usage, pricing);
+
+    assert.equal(stats.unmeasuredRequests, 1);
+    assert.equal(stats.totalRequests, 1);
+    assert.equal(stats.totalRequests - stats.unmeasuredRequests, 0);
+    assert.equal(stats.hitRequests, 0);
+    assert.equal(stats.totalInputTokens, 500);
+    assert.ok(Math.abs(stats.inputCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+    assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+  });
+
+  test('counts explicit zero cache fields as one measured miss', () => {
+    const stats = internals.emptyCacheStats('2026-09-08');
+    const usage = { cacheRead: 0, cacheWrite: 0, totalInput: 500 };
+    const message = { role: 'assistant', usage: { input: 500, cacheRead: 0, cacheWrite: 0 } };
+    const adapter = internals.selectAdapterForModel({
+      provider: 'proxy',
+      id: 'gpt-5.5',
+      name: 'GPT-5.5',
+    });
+    assert.ok(adapter);
+    assert.equal(internals.hasMissingUsageFields(message, adapter), false);
+
+    internals.addUsageToCacheStats(stats, usage, pricing);
+
+    assert.equal(stats.unmeasuredRequests, 0);
+    assert.equal(stats.totalRequests, 1);
+    assert.equal(stats.totalRequests - stats.unmeasuredRequests, 1);
+    assert.equal(stats.hitRequests, 0);
+    assert.equal(stats.totalInputTokens, 500);
+    assert.ok(Math.abs(stats.inputCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+    assert.ok(Math.abs(stats.uncachedBaselineCostUsd - 500 * pricing.inputPerToken) < 1e-12);
+  });
+
+  test('ignores undefined usage without changing stats', () => {
+    const stats = internals.emptyCacheStats('2026-09-08');
+    const before = { ...stats };
+
+    internals.addUsageToCacheStats(stats, undefined, pricing);
+
+    assert.deepEqual(stats, before);
+  });
+
   test('an unpriced request leaves cost fields at zero', () => {
     const stats = internals.emptyCacheStats('2026-09-08');
     const usage = { cacheRead: 0, cacheWrite: 0, totalInput: 500 };
@@ -135,21 +191,31 @@ describe('cache economics cost arithmetic', () => {
 // 4. FULL-MISS ACCOUNTING
 // ───────────────────────────────────────────────────────────────────
 
-describe('no-cache-fields full-miss accounting', () => {
-  test('a Pi-normalized response without cache fields counts as a full miss', () => {
+describe('no-cache-fields signal accounting', () => {
+  test('a Pi-normalized response without cache fields preserves an unmeasured signal', () => {
     assert.deepEqual(
       internals.getPiNormalizedUsage({ role: 'assistant', usage: { input: 500, output: 10 } }),
-      { cacheRead: 0, cacheWrite: 0, totalInput: 500 },
+      { cacheRead: 0, cacheWrite: 0, totalInput: 500, hasCacheSignal: false },
     );
   });
 
-  test('an OpenAI-shape raw response without cache fields counts as a full miss', () => {
+  test('an OpenAI-shape raw response without cache fields preserves an unmeasured signal', () => {
     assert.deepEqual(
       internals.getOpenAIRawUsage({
         role: 'assistant',
         usage: { prompt_tokens: 500, output_tokens: 10 },
       }),
-      { cacheRead: 0, cacheWrite: 0, totalInput: 500 },
+      { cacheRead: 0, cacheWrite: 0, totalInput: 500, hasCacheSignal: false },
+    );
+  });
+
+  test('an explicit zero cache signal remains measured', () => {
+    assert.deepEqual(
+      internals.getPiNormalizedUsage({
+        role: 'assistant',
+        usage: { input: 500, cacheRead: 0, cacheWrite: 0 },
+      }),
+      { cacheRead: 0, cacheWrite: 0, totalInput: 500, hasCacheSignal: true },
     );
   });
 
@@ -324,6 +390,7 @@ describe('pre-phase stats record migration', () => {
     assert.equal(sessionStats.uncachedBaselineCostUsd, 0);
     assert.equal(sessionStats.pricedRequests, 0);
     assert.equal(sessionStats.prefixChurnCount, 0);
+    assert.equal(sessionStats.unmeasuredRequests, 0);
 
     const totalStats = state.totalsByModel['proxy/gpt-5.5'];
     assert.ok(totalStats);
@@ -392,6 +459,7 @@ describe('pre-phase stats record migration', () => {
       assert.equal(sessionStats.totalInputTokens, 8000);
       assert.equal(sessionStats.inputCostUsd, 0);
       assert.equal(sessionStats.prefixChurnCount, 0);
+      assert.equal(sessionStats.unmeasuredRequests, 0);
     } finally {
       if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
       else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
@@ -422,6 +490,7 @@ describe('cache economics stats report', () => {
     uncachedBaselineCostUsd: 0.0125,
     pricedRequests: 8,
     prefixChurnCount: 2,
+    unmeasuredRequests: 0,
   };
 
   test('renders hit rate, cost, savings and churn for a priced non-DeepSeek model', () => {
@@ -441,6 +510,23 @@ describe('cache economics stats report', () => {
       output,
       /provider cache expiry can miss even on a stable prefix; the hit rate is not a guarantee\./,
     );
+  });
+
+  test('shows unmeasured requests and excludes them from the hit ratio', () => {
+    const output = internals.buildStatsOutput(
+      model,
+      internals.selectAdapterForModel(model),
+      { ...stats, unmeasuredRequests: 2 },
+      [],
+      {
+        inputPerToken: 2.5 / 1_000_000,
+        cacheReadPerToken: 1.25 / 1_000_000,
+        cacheWritePerToken: 0,
+      },
+    );
+
+    assert.match(output, /Requests:.*3 hit \/ 10 total · 38%/);
+    assert.match(output, /Unmeasured:.*2/);
   });
 
   test('renders "unpriced" instead of zero when the model has no pricing data', () => {

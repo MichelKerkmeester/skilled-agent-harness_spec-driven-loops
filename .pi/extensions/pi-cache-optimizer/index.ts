@@ -265,6 +265,7 @@ interface CacheCompat {
 interface CacheStats {
   day: string;
   totalRequests: number;
+  unmeasuredRequests: number;
   hitRequests: number;
   cachedInputTokens: number;
   cacheWriteInputTokens: number;
@@ -428,6 +429,7 @@ interface UsageSnapshot {
   cacheRead: number;
   cacheWrite: number;
   totalInput: number;
+  hasCacheSignal?: boolean;
 }
 
 interface OptimizedSystemPrompt {
@@ -2471,10 +2473,8 @@ function readCacheWriteFromDetails(details: UnknownRecord | undefined): number |
 //   cacheWrite= tokens newly written into cache in this request
 //
 // We reconstruct the total prompt-token count as input + cacheRead + cacheWrite.
-// Pi guarantees that input, cacheRead, and cacheWrite are always present on
-// assistant messages processed through its provider pipeline (at least as zero).
-// When the cache keys are entirely absent but input is present, the response is
-// a full miss (no cache fields reported), so it stays in the denominator.
+// When cache fields are absent but input is present, preserve that absence so
+// hit-ratio accounting can mark the sample unmeasured while retaining its tokens.
 function getPiNormalizedUsage(message: unknown): UsageSnapshot | undefined {
   const usage = usageRecordFromAssistant(message);
   if (!usage) return undefined;
@@ -2496,6 +2496,7 @@ function getPiNormalizedUsage(message: unknown): UsageSnapshot | undefined {
     cacheRead: cacheRead ?? 0,
     cacheWrite: cacheWrite ?? 0,
     totalInput: computed >= floor ? computed : floor,
+    hasCacheSignal,
   };
 }
 
@@ -2514,7 +2515,7 @@ function getDeepSeekRawUsage(message: unknown): UsageSnapshot | undefined {
   // DeepSeek guarantees prompt_tokens = prompt_cache_hit_tokens + prompt_cache_miss_tokens.
   const totalInput = promptTokens ?? cacheRead + (cacheMiss ?? 0);
 
-  return { cacheRead, cacheWrite: 0, totalInput };
+  return { cacheRead, cacheWrite: 0, totalInput, hasCacheSignal: true };
 }
 
 // Raw fallback for OpenAI-family responses that still carry their native usage fields.
@@ -2531,21 +2532,26 @@ function getOpenAIRawUsage(message: unknown): UsageSnapshot | undefined {
   const cacheRead = readCachedTokensFromDetails(promptDetails) ??
     readCachedTokensFromDetails(inputDetails);
   const cacheWrite = readCacheWriteFromDetails(promptDetails) ??
-    readCacheWriteFromDetails(inputDetails) ?? 0;
+    readCacheWriteFromDetails(inputDetails);
+  const hasCacheSignal = cacheRead !== undefined || cacheWrite !== undefined;
   const totalInput = getFirstNonNegativeNumber(
     usage.prompt_tokens,
     usage.promptTokens,
     usage.input_tokens,
     usage.inputTokens,
   );
-  if (cacheRead === undefined) {
-    // OpenAI-family responses omit cached_tokens on a full miss, so retain the
-    // prompt-token count as the denominator rather than dropping the sample.
-    if (totalInput === undefined) return undefined;
-    return { cacheRead: 0, cacheWrite: 0, totalInput };
+  if (!hasCacheSignal && totalInput === undefined) {
+    // OpenAI-family responses omit cached_tokens on an unreported sample, so
+    // retain the prompt-token count for token and cost accounting.
+    return undefined;
   }
 
-  return { cacheRead, cacheWrite, totalInput: totalInput ?? cacheRead + cacheWrite };
+  return {
+    cacheRead: cacheRead ?? 0,
+    cacheWrite: cacheWrite ?? 0,
+    totalInput: totalInput ?? (cacheRead ?? 0) + (cacheWrite ?? 0),
+    hasCacheSignal,
+  };
 }
 
 // Raw fallback for Anthropic/Claude responses that still carry their native usage fields.
@@ -2564,10 +2570,12 @@ function getAnthropicRawUsage(message: unknown): UsageSnapshot | undefined {
     usage.cacheCreationInputTokens,
   );
   const input = getFirstNonNegativeNumber(usage.input_tokens, usage.inputTokens);
-  if (cacheRead === undefined && cacheWrite === undefined) {
+  const hasCacheSignal = cacheRead !== undefined || cacheWrite !== undefined;
+  if (!hasCacheSignal) {
     if (input === undefined) return undefined;
-    // Anthropic omits cache fields on a full miss, so retain input_tokens as the denominator.
-    return { cacheRead: 0, cacheWrite: 0, totalInput: input };
+    // Anthropic omits cache fields on an unreported sample, so retain input_tokens
+    // for token and cost accounting.
+    return { cacheRead: 0, cacheWrite: 0, totalInput: input, hasCacheSignal };
   }
 
   // Anthropic input_tokens = tokens after the last cache breakpoint (neither read nor written).
@@ -2575,6 +2583,7 @@ function getAnthropicRawUsage(message: unknown): UsageSnapshot | undefined {
     cacheRead: cacheRead ?? 0,
     cacheWrite: cacheWrite ?? 0,
     totalInput: (input ?? 0) + (cacheRead ?? 0) + (cacheWrite ?? 0),
+    hasCacheSignal,
   };
 }
 
@@ -2609,11 +2618,12 @@ function getGeminiRawUsage(message: unknown): UsageSnapshot | undefined {
   );
   if (cacheRead === undefined) {
     if (totalInput === undefined) return undefined;
-    // Gemini omits cachedContentTokenCount on a full miss, so retain promptTokenCount.
-    return { cacheRead: 0, cacheWrite: 0, totalInput };
+    // Gemini omits cachedContentTokenCount on an unreported sample, so retain
+    // promptTokenCount for token and cost accounting.
+    return { cacheRead: 0, cacheWrite: 0, totalInput, hasCacheSignal: false };
   }
 
-  return { cacheRead, cacheWrite: 0, totalInput: totalInput ?? cacheRead };
+  return { cacheRead, cacheWrite: 0, totalInput: totalInput ?? cacheRead, hasCacheSignal: true };
 }
 
 // Try Pi-normalized usage first (always present for messages that went through Pi's
@@ -4095,6 +4105,7 @@ function emptyCacheStats(day = currentLocalDay()): CacheStats {
   return {
     day,
     totalRequests: 0,
+    unmeasuredRequests: 0,
     hitRequests: 0,
     cachedInputTokens: 0,
     cacheWriteInputTokens: 0,
@@ -4180,13 +4191,29 @@ function computeUncachedBaselineCostUsd(usage: UsageSnapshot, pricing: ModelInpu
   return usage.totalInput * pricing.inputPerToken;
 }
 
+function hasReportedCacheSignal(usage: UsageSnapshot): boolean {
+  if (usage.hasCacheSignal !== undefined) return usage.hasCacheSignal;
+  return Object.prototype.hasOwnProperty.call(usage, 'cacheRead') ||
+    Object.prototype.hasOwnProperty.call(usage, 'cacheWrite');
+}
+
+function getMeasuredRequestCount(stats: CacheStats): number {
+  return Math.max(0, stats.totalRequests - stats.unmeasuredRequests);
+}
+
 function addUsageToCacheStats(
   stats: CacheStats,
-  usage: UsageSnapshot,
+  usage: UsageSnapshot | undefined,
   pricing: ModelInputPricing | undefined,
 ): void {
+  if (!usage) return;
+
   stats.totalRequests += 1;
-  if (usage.cacheRead > 0) stats.hitRequests += 1;
+  if (!hasReportedCacheSignal(usage)) {
+    stats.unmeasuredRequests += 1;
+  } else if (usage.cacheRead > 0) {
+    stats.hitRequests += 1;
+  }
   stats.cachedInputTokens += usage.cacheRead;
   stats.cacheWriteInputTokens += usage.cacheWrite;
   stats.totalInputTokens += usage.totalInput;
@@ -4207,6 +4234,7 @@ function formatTokenCount(value: number): string {
 }
 
 function formatCacheStats(adapter: CacheProviderAdapter, stats: CacheStats): string {
+  const measuredRequests = getMeasuredRequestCount(stats);
   const percent = stats.totalInputTokens > 0
     ? ` (${Math.round((stats.cachedInputTokens / stats.totalInputTokens) * 100)}%)`
     : '';
@@ -4214,9 +4242,13 @@ function formatCacheStats(adapter: CacheProviderAdapter, stats: CacheStats): str
     ? ` · write ${formatTokenCount(stats.cacheWriteInputTokens)} tok`
     : '';
 
-  return `${adapter.label} ${stats.hitRequests}/${stats.totalRequests} · ${
+  const unmeasuredText = stats.unmeasuredRequests > 0
+    ? ` · ${stats.unmeasuredRequests} unmeasured`
+    : '';
+
+  return `${adapter.label} ${stats.hitRequests}/${measuredRequests} · ${
     formatTokenCount(stats.cachedInputTokens)
-  }/${formatTokenCount(stats.totalInputTokens)} tok${percent}${writeText}`;
+  }/${formatTokenCount(stats.totalInputTokens)} tok${percent}${writeText}${unmeasuredText}`;
 }
 
 /**
@@ -4261,35 +4293,12 @@ function formatUsdPerMillion(perToken: number): string {
 }
 
 /**
- * Check if an assistant message's usage fields appear to be missing or empty.
- * Returns true when Pi-normalized fields (input, cacheRead, cacheWrite) are all
- * absent/zero AND raw usage fields (prompt_tokens, etc.) are also absent/zero
- * for the given adapter.
+ * Check whether an assistant message reports a cache signal for the given adapter.
+ * Input tokens alone do not make the cache signal measurable.
  */
 function hasMissingUsageFields(message: unknown, adapter: CacheProviderAdapter): boolean {
-  const usage = usageRecordFromAssistant(message);
-  if (!usage) return true;
-
-  // Check Pi-normalized fields
-  const input = getNonNegativeNumber(usage, 'input');
-  const cacheRead = getNonNegativeNumber(usage, 'cacheRead');
-  const cacheWrite = getNonNegativeNumber(usage, 'cacheWrite');
-
-  // If Pi-normalized fields exist with non-zero values, usage is present
-  if (cacheRead !== undefined || cacheWrite !== undefined || (input !== undefined && input > 0)) {
-    return false;
-  }
-
-  // Check raw usage for the adapter's provider family
-  const rawUsage = adapter.normalizeUsage(message);
-  if (
-    !rawUsage ||
-    (rawUsage.cacheRead === 0 && rawUsage.cacheWrite === 0 && rawUsage.totalInput === 0)
-  ) {
-    return true;
-  }
-
-  return false;
+  const usage = adapter.normalizeUsage(message);
+  return usage === undefined || !hasReportedCacheSignal(usage);
 }
 
 /**
@@ -4300,16 +4309,17 @@ function formatRecentTrendSummary(samples: CacheUsageSample[], maxCount: number)
   const recent = samples.slice(-maxCount);
   if (recent.length === 0) return `Recent ${maxCount}: no samples yet`;
 
-  const hits = recent.filter((s) => s.hit).length;
+  const measured = recent.filter((s) => !s.missingUsageFields);
+  const hits = measured.filter((s) => s.hit).length;
   const totalCached = recent.reduce((sum, s) => sum + s.cachedInputTokens, 0);
   const totalInput = recent.reduce((sum, s) => sum + s.totalInputTokens, 0);
   const missingCount = recent.filter((s) => s.missingUsageFields).length;
 
-  const hitRatio = formatHitRatio(hits, recent.length);
+  const hitRatio = formatHitRatio(hits, measured.length);
   const tokenRatio = totalInput > 0 ? formatHitRatio(totalCached, totalInput) : 'N/A';
 
   let result =
-    `Recent ${recent.length}/${maxCount}: ${hits}/${recent.length} hits · ${tokenRatio} tok cached`;
+    `Recent ${recent.length}/${maxCount}: ${hits}/${measured.length} hits · ${tokenRatio} tok cached`;
   if (missingCount > 0) {
     result += ` · ${missingCount} missing usage`;
   }
@@ -4337,6 +4347,7 @@ function buildStatsOutput(
 
   const key = modelKey(model);
   const currentStats = stats ?? emptyCacheStats();
+  const measuredRequests = getMeasuredRequestCount(currentStats);
 
   lines.push(`Model key: ${key}`);
   lines.push(`Adapter:   ${adapter.label}`);
@@ -4344,9 +4355,14 @@ function buildStatsOutput(
   lines.push('── Today ──');
   lines.push(
     `Requests:      ${currentStats.hitRequests} hit / ${currentStats.totalRequests} total · ${
-      formatHitRatio(currentStats.hitRequests, currentStats.totalRequests)
+      formatHitRatio(currentStats.hitRequests, measuredRequests)
     }`,
   );
+  if (currentStats.unmeasuredRequests > 0) {
+    lines.push(
+      `Unmeasured:    ${currentStats.unmeasuredRequests} request(s) excluded from hit ratio`,
+    );
+  }
   lines.push(
     `Cached tokens: ${formatTokenM(currentStats.cachedInputTokens)}M / ${
       formatTokenM(currentStats.totalInputTokens)
@@ -4431,6 +4447,7 @@ function parseCacheStats(value: unknown): CacheStats | undefined {
   }
 
   const totalRequests = getNonNegativeNumber(stats, 'totalRequests');
+  const unmeasuredRequests = getNonNegativeNumber(stats, 'unmeasuredRequests') ?? 0;
   const hitRequests = getNonNegativeNumber(stats, 'hitRequests');
   const cachedInputTokens = getNonNegativeNumber(stats, 'cachedInputTokens');
   const cacheWriteInputTokens = getNonNegativeNumber(stats, 'cacheWriteInputTokens') ?? 0;
@@ -4441,7 +4458,9 @@ function parseCacheStats(value: unknown): CacheStats | undefined {
     hitRequests === undefined ||
     cachedInputTokens === undefined ||
     totalInputTokens === undefined ||
+    unmeasuredRequests > totalRequests ||
     hitRequests > totalRequests ||
+    hitRequests + unmeasuredRequests > totalRequests ||
     cachedInputTokens > totalInputTokens ||
     cacheWriteInputTokens > totalInputTokens
   ) {
@@ -4459,6 +4478,7 @@ function parseCacheStats(value: unknown): CacheStats | undefined {
   return {
     day: stats.day,
     totalRequests,
+    unmeasuredRequests,
     hitRequests,
     cachedInputTokens,
     cacheWriteInputTokens,
@@ -4476,6 +4496,7 @@ function cloneCacheStats(stats: CacheStats): CacheStats {
 
 function addCacheStatsTotals(target: CacheStats, source: CacheStats): void {
   target.totalRequests += source.totalRequests;
+  target.unmeasuredRequests += source.unmeasuredRequests;
   target.hitRequests += source.hitRequests;
   target.cachedInputTokens += source.cachedInputTokens;
   target.cacheWriteInputTokens += source.cacheWriteInputTokens;
@@ -5436,8 +5457,9 @@ function buildLowHitDiagnosis(
 
   // 4. Recent trend analysis
   const recent10 = samples.slice(-10);
-  const recent10Hits = recent10.filter((s) => s.hit).length;
-  const recent10Total = recent10.length;
+  const recent10Measured = recent10.filter((s) => !s.missingUsageFields);
+  const recent10Hits = recent10Measured.filter((s) => s.hit).length;
+  const recent10Total = recent10Measured.length;
   const recent10Cached = recent10.reduce((sum, s) => sum + s.cachedInputTokens, 0);
   const recent10Input = recent10.reduce((sum, s) => sum + s.totalInputTokens, 0);
 
@@ -9480,10 +9502,7 @@ export default function (pi: ExtensionAPI): void {
     // Record recent sample (even when usage is missing, for trend diagnosis)
     if (statsModel) {
       const sk = sessionModelKey(statsModel);
-      const missingFields = usage === undefined ||
-          (usage.cacheRead === 0 && usage.cacheWrite === 0 && usage.totalInput === 0)
-        ? true
-        : hasMissingUsageFields(event.message, adapter);
+      const missingFields = usage === undefined || hasMissingUsageFields(event.message, adapter);
       recordRecentSample(
         sk,
         usage ?? { cacheRead: 0, cacheWrite: 0, totalInput: 0 },
