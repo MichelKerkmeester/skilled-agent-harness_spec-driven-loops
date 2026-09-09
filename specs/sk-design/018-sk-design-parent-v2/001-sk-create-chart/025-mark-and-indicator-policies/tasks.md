@@ -70,6 +70,8 @@ contextType: "general"
 - [x] T014 Fix the card row token at its source: a row carries its series' own token, not an ordinal
 - [x] T015 Give the orders delivery the reference line its headline already claims
 - [x] T016 Correct the contract and changelog claims the checks do not actually make
+- [x] T017 Fold in the adjacent label defect on the operator's instruction: the marked low's value moves under its mark
+- [x] T018 Freshness sweep: gallery, 40 captures, catalog and version all regenerated and proved current
 <!-- /ANCHOR:phase-4 -->
 
 ---

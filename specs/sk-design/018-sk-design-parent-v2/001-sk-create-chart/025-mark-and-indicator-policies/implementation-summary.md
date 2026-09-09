@@ -171,9 +171,18 @@ carries that line.
 4. **The set is narrower than "cartesian".** A two-scale form cannot say which scale a chart-wide value belongs to, a horizontal value axis has no single level to draw, and `spark` has the mapping but no axis, no labels and no grid. The contract names those exclusions rather than letting a regex make them silently.
 
 
-**Adjacent, recorded and not fixed.** In `orders-after-the-price-change`, the marked low's value
-label sits immediately right of its dot and reads crowded against it, where `daily-line` places the
-same label clear of the mark. Neither the label nor its placement is touched by this packet.
+**Adjacent, folded in on the operator's instruction.** In `orders-after-the-price-change` the
+marked low's value was printed ten units right of its dot at the dot's own height, so it read as
+part of the mark rather than as a reading of it. It now sits centred under the mark, which is where
+`daily-line` puts the same label, and its `.note` rule gained the `pointer-events: none` that
+`daily-line`'s carries. The pointer change is register consistency rather than a defect repair: the
+label sat beside the dot, not over it, and `pointer-reach` passed before it.
+
+**Adjacent, recorded and not fixed.** The repository's `trigger-index.json` does not match a fresh
+generation, and did not before this work: regenerating it moves about 37,000 lines, none of which
+mention this packet, and all of the sampled churn belongs to other packets' surfaces. Whoever owns
+those surfaces should regenerate and commit it with its manifest. Packet 025 carries six entries in
+the committed index and is reachable through it.
 <!-- /ANCHOR:limitations -->
 
 ---

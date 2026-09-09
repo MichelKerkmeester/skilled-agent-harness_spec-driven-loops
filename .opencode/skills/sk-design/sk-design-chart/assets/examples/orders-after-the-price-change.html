@@ -149,7 +149,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    sits on instead of merging into it. */
 .mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
-.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; pointer-events: none; }
 /* Every figure a reader compares is set in one mono face, so an axis rung, a value label
    and a table cell line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. The headline and the subtitle keep the body face, because they are prose and not figures. */
@@ -557,7 +557,11 @@ const lowIndex = DATA.indexOf(lowest);
 const datum = { day: 'Day ' + lowest.day };
 markable(node('circle', { cx: x(lowIndex), cy: y(lowest.value), r: 5 }, 'mark'),
   datum, [['Orders placed', fmt(lowest.value)]]);
-node('text', { x: x(lowIndex) + 10, y: y(lowest.value) + 4 }, 'note').textContent = fmt(lowest.value);
+// The printed value sits under its mark rather than beside it: at the mark's own height it
+// starts five units from the circle's edge and reads as part of the dot instead of as a
+// reading of it.
+node('text', { x: x(lowIndex), y: y(lowest.value) + 22, 'text-anchor': 'middle' }, 'note')
+  .textContent = fmt(lowest.value);
 
 const rows = document.getElementById('rows');
 DATA.forEach(function (d) {

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Mark choices that carry meaning are still implicit per template: whether a short series shows its points, whether an area may split at zero, whether a composed form's line is shown with a bar-shaped swatch in the tooltip, whether a target or event line exists, and whether a dense multi-series form guides the cursor",
     "created_at": "2026-09-08T18:22:04Z",
-    "last_save_at": "2026-09-09T14:24:36.663Z",
+    "last_save_at": "2026-09-09T14:53:52.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:febbbeac2d83ef9b8f5c08607d926f008c6b7406fb4d8d33ac131b2182bee084",
+    "source_fingerprint": "sha256:475e01f21056166d7d730f1e2038ebb220c5bd287aeda01b0d05695c8fb2b3e5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3065dfe4325fd8ef827e347179a689589ee703f8d0f24bed72c094d6ffd47656",
       "plan.md": "7721d5d55ef65a7a93bc58e12e0906a71b1dbdf38d79a59a5e6041a053d6b7f7",
-      "tasks.md": "efc1e65a9a97952a36661cea4de2a77463390ee83faaa416d5a08e6bfe332a5d",
-      "implementation-summary.md": "9743f502ea69f37503837e7c282e943332e7b5a627a519acb494df29f275cbfd"
+      "tasks.md": "6d64d46920a42f34f1fd362b42052cc75d83e4359c5d3dd73091432496178903",
+      "implementation-summary.md": "9fd53a294b4bdefaa85673e21c11ed553bb42a77b372c7a2fa65cdbd18b1e4d2"
     },
     "last_active_at": null
   }
