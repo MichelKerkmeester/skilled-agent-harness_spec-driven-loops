@@ -168,6 +168,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 25 | 025-mark-and-indicator-policies/ | Sparse-point and meaningful-zero mark policies, per-series key kinds, reference lines, density-earned cursor guides, with their checker families | Complete |
 | 26 | 026-embedded-style-reference/ | The Style Reference the stock palette was derived from, carried beside the forms it produced, with the generator override unchanged | Complete |
 | 27 | 027-evilcharts-style-reference/ | A second Style Reference, written from the evilcharts stylesheet, giving the theming override a worked case | Complete |
+| 28 | 028-closeout/ | Every item the chart phases recorded as not-done, closed, plus eleven leaky assertions a fresh review found | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

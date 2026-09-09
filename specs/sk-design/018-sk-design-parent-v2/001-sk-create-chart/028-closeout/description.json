@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout",
+  "description": "Four phases closed with items recorded rather than done",
+  "keywords": [
+    "four",
+    "phases",
+    "closed",
+    "items",
+    "recorded",
+    "rather",
+    "done"
+  ],
+  "lastUpdated": "2026-09-09T18:21:11.821Z",
+  "specId": "028",
+  "folderSlug": "closeout",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

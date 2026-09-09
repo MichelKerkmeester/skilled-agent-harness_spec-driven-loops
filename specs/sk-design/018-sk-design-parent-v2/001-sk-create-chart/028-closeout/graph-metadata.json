@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/references/color-system.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json",
+        "source": "derived"
+      },
+      {
+        "name": "apply-design-md.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four phases closed with items recorded rather than done",
+    "created_at": "2026-09-09T17:46:09Z",
+    "last_save_at": "2026-09-09T18:21:21.597Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26109740731f52c3874898a06bb340606c4fd381b2465456ad61a8c7fa663f3b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d9f871bc7e6429341dfece274ce6475176c51a6e6ba1275645f956da7af4f9b4",
+      "plan.md": "12612f9f644a68e3e85ab16d0883a6b208bf28d65f22223071ea40cb65d07f3c",
+      "tasks.md": "c528200d97bfd072e7a4f36938cd45e713488ea9627d43c5a4ae7c7e3750f0a9",
+      "implementation-summary.md": "3648824cc39fbd4f003b8896c3beab14a880d2eb3641840d1e8086b4c97c7dcb"
+    },
+    "last_active_at": null
+  }
+}

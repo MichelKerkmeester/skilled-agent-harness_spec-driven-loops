@@ -188,7 +188,16 @@ hairline rule, and accents that clear the mark gate on both grounds. Since v1.10
 carries its own copy of that reference at `assets/style-reference/cursor/`, so the values here are
 derived from a file this packet owns rather than from one a sibling library regenerates.
 `assets/style-reference/cursor/origin.md` records where the copy came from and pins each file by
-hash. Parchment, ink, ash,
+hash.
+
+**Since v1.12.0.0 the derivation is held rather than described.** The palette source carries a
+`derivation` block naming the reference, its hash, the four departures with the gate each was made
+to clear, and the values that come from an arithmetic the reference cannot carry: the ordered ramp's
+interior rungs, spaced by equal contrast, and the dark rule, which is ink at alpha. The
+`palette-derivation` family checks all of it — that the reference is still the file the palette was
+derived from, that every value is either published by it, a named departure or one of those
+arithmetic ones, and that each departure is still necessary and still sufficient. The prose above
+stays because it explains why; the block is what fails when the two drift. Parchment, ink, ash,
 driftwood, mist, stone and linen carry the chrome and the `neutral` system; ember, verdant,
 crimson and amber carry the `categorical` system; ember drawn toward each ground carries the
 `ordered` ramp; and the ink itself is the dark ground, which the reference already uses behind
@@ -199,9 +208,11 @@ ladder follows the reference's 4px corner, with 8px for the card. Everything els
 
 **A theme boundary is the one place a hue may be re-chosen.** That rule above was written when there was one ground, and mixing toward the surface is exactly what makes a mark disappear when the surface is near-black. So a system's dark values are chosen for the dark ground rather than derived from its light ones, under one stated rule: a dark value is re-chosen at a hue the dark ground can carry, and its lightness is set so it holds the same ratio against near-black that its light counterpart holds against paper.
 
-The reason a hue has to move is arithmetic rather than taste. A hue reaches its own ceiling of lightness: pure blue tops out near a tenth of the luminance pure yellow reaches, so the categorical system's navy, which carries the brightest slot on paper, cannot carry the brightest slot on ink without desaturating into a pale grey-blue. Each hue therefore lands in the slot whose lightness it can reach with its chroma intact, and the set rotates: navy, rust, green and violet on paper become gold, cyan, rose and violet-blue on ink.
+The reason a hue may have to move is arithmetic rather than taste. A hue reaches its own ceiling of lightness: pure blue tops out near a tenth of the luminance pure yellow reaches, so a hue carrying the brightest slot on paper cannot always carry the brightest slot on ink without desaturating. Where that bites, the hue lands in the slot whose lightness it can reach with its chroma intact.
 
-Two things do not rotate, and both refusals are as deliberate as the rotation. The `neutral` system has no hue to move, so its dark values stay warm greys. The `ordered` ramp stays in the ember family, because a magnitude ramp needs one hue and teal is a family that reaches the lightness the dark carrying end needs without washing out. What changes there is direction and chroma, not hue.
+**The palette that ships needs none of it, and that is worth stating rather than leaving the rule to imply otherwise.** Since the corpus was rebased on the cursor reference, all four `categorical` hues clear the mark gate on both grounds unchanged: ember at 3.28:1 on paper and 4.37:1 on ink, verdant at 4.01 and 3.57, crimson at 4.70 and 3.05. Only the fourth value moves, and it moves back: amber is darkened to `#BE8332` to clear 3:1 on paper and returns to its measured `#C08532` on ink, where it reaches 4.86:1 unaided. The rotation rule stays because it is what a future reference with a narrower hue would need; this one does not exercise it.
+
+Two systems would not rotate in any case. The `neutral` system has no hue to move, so its dark values are the same warm greys ordered from the other end. The `ordered` ramp stays in the ember family on both grounds, because a magnitude ramp needs one hue; what changes is direction, running toward the paper on light and toward the ink on dark.
 
 **Index 0 is always the value furthest from that theme's ground.** On paper the first series value is the darkest and on ink it is the brightest, and in both cases it is the one that carries most. That is what keeps `neutral` ranking importance the same way on both grounds and keeps `ordered` reading as more in the same direction. A dark ramp that simply reversed the light array would satisfy the gates and still be wrong, because the light ramp's chroma was placed for a light ground.
 

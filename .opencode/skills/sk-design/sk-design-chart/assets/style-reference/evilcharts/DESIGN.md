@@ -118,9 +118,9 @@ The dark ground is `#090909` with `#fafafa` ink and `#a1a1a1` for secondary text
 hues are **re-chosen, not lightened**: Cobalt, Jade, Amber, Violet and Rose replace the light set
 rather than deriving from it. Only Amber appears in both, and it moves from fifth position on paper
 to third on ink. Both sets sit in the colour table above, because both are tokens this reference
-ships; measured against the two grounds they turn out to be complements rather than alternatives.
-Flame, Teal and Deep clear a mark on white and fail on ink; Jade, Amber and Gold do the reverse;
-only Violet and Rose clear on both. That is the decision this
+ships. Measured against the two grounds at the 3:1 a mark needs, four clear on both — Flame, Teal,
+Violet and Rose. Deep and Cobalt clear only on white, and Gold, Amber and Jade only on ink, so
+neither set on its own offers four hue-separated candidates for both themes. That is the decision this
 reference is worth reading for: a hue that carries a slot on a white ground cannot always reach the
 lightness that slot needs on a dark one, so the set is re-picked per ground.
 

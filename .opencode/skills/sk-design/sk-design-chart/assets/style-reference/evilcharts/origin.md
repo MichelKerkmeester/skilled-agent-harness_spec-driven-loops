@@ -45,5 +45,5 @@ a run themes twenty-five.
 
 | File | sha256 | Read by |
 |------|--------|---------|
-| `DESIGN.md` | `103c6d6c1e0b584f…` | `scripts/apply-design-md.cjs` — its colour table, its typography blocks, its border-radius table and its theme line |
+| `DESIGN.md` | `00bc417a4203d9f3…` | `scripts/apply-design-md.cjs` — its colour table, its typography blocks, its border-radius table and its theme line |
 | `tokens.json` | `90d5a56c859b6103…` | `scripts/apply-design-md.cjs` — `darkMode`, which decides whether the dark theme derives from this reference or from stock chrome |

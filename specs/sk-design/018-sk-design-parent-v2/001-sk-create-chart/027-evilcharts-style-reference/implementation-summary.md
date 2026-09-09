@@ -96,7 +96,7 @@ evilcharts' own ground — visible only in the derived palette, since the run pa
 
 | Decision | Why |
 |----------|-----|
-| Both chart sets sit in one colour table | The library ships two, and measured against the two grounds they are complements rather than alternatives: three clear on white and fail on ink, three do the reverse, two clear on both. A light-only table cannot fill the dark series. |
+| Both chart sets sit in one colour table | The library ships two, and neither on its own offers four hue-separated candidates for both grounds. Four of the nine hues clear on both, Deep and Cobalt only on white, Gold, Amber and Jade only on ink. *(This row first gave the wrong hues and the wrong reason; corrected in the closeout.)* |
 | The two unusable chart colours are recorded, not corrected | Gold and Amber reach 1.72:1 and 2.13:1 against the reference's own white, below the 3:1 a mark needs. A Style Reference documents a source; the gates decide what a themed figure may use, and they already refuse them. |
 | `tokens.json` is authored and labelled as such | It is the applicator's own contract, not something the library ships. `origin.md` says so rather than letting it read as measured. |
 | The stock register is untouched | The operator asked for a reference, not a restyle. Whether any evilcharts reading should move into the stock is a separate decision with the whole corpus as its blast radius. |

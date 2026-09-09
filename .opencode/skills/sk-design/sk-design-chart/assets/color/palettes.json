@@ -134,5 +134,92 @@
       ],
       "emphasisDark": "#F7F7F4"
     }
+  },
+  "derivation": {
+    "note": "What the palette owes the Style Reference it was derived from, in a form the corpus check can hold rather than a form a reader has to trust. Every role is in exactly one of the three lists below: it takes a reference token verbatim, it departs from one to clear a named gate, or it comes from an arithmetic the reference cannot carry.",
+    "reference": "assets/style-reference/cursor/DESIGN.md",
+    "sha256": "c94a9bf3f244454085b26e0484ea064ad095e36808ef69f2509b56ffe7a8a52d",
+    "kinds": {
+      "ramp-interior": "A rung between the ends of a magnitude ramp, placed by equal contrast rather than by mixing toward the ground. The ramp contract in palette-source holds its separation and its direction.",
+      "ink-at-alpha": "That theme’s ink at a fixed alpha, computed rather than picked."
+    },
+    "roles": {
+      "chrome.surface": "--color-parchment",
+      "chrome.ink": "--color-ink",
+      "chrome.rule": "--color-stone",
+      "chromeDark.surface": "--color-ink",
+      "chromeDark.ink": "--color-parchment",
+      "chromeDark.muted": "--color-mist",
+      "neutral.series[0]": "--color-ink",
+      "neutral.series[1]": "--color-ash",
+      "neutral.series[2]": "--color-driftwood",
+      "neutral.seriesDark[0]": "--color-parchment",
+      "neutral.seriesDark[1]": "--color-linen",
+      "neutral.seriesDark[2]": "--color-stone",
+      "neutral.seriesDark[3]": "--color-mist",
+      "neutral.emphasis": "--color-ember",
+      "neutral.emphasisDark": "--color-ember",
+      "ordered.seriesDark[0]": "--color-ember",
+      "ordered.emphasis": "--color-ink",
+      "ordered.emphasisDark": "--color-parchment",
+      "categorical.series[0]": "--color-ember",
+      "categorical.series[1]": "--color-verdant",
+      "categorical.series[2]": "--color-crimson",
+      "categorical.seriesDark[0]": "--color-ember",
+      "categorical.seriesDark[1]": "--color-verdant",
+      "categorical.seriesDark[2]": "--color-crimson",
+      "categorical.seriesDark[3]": "--color-amber",
+      "categorical.emphasis": "--color-ink",
+      "categorical.emphasisDark": "--color-parchment"
+    },
+    "departures": [
+      {
+        "role": "chrome.muted",
+        "from": "--color-ash",
+        "measured": "#7A7974",
+        "shipped": "#72716C",
+        "gate": "textOnSurface",
+        "against": "chrome.surface",
+        "why": "Ash is the reference workhorse muted tone and reads secondary text, which owes the text gate rather than the mark gate."
+      },
+      {
+        "role": "neutral.series[3]",
+        "from": "--color-mist",
+        "measured": "#A1A19F",
+        "shipped": "#908F8D",
+        "gate": "markOnSurface",
+        "against": "chrome.surface",
+        "why": "Mist is the fourth neutral step and carries a mark, so it owes the mark gate on paper."
+      },
+      {
+        "role": "categorical.series[3]",
+        "from": "--color-amber",
+        "measured": "#C08532",
+        "shipped": "#BE8332",
+        "gate": "markOnSurface",
+        "against": "chrome.surface",
+        "why": "Amber carries the fourth categorical slot on paper. It returns to its measured tone on ink, where it clears unaided."
+      },
+      {
+        "role": "ordered.series[0]",
+        "from": "--color-ember",
+        "measured": "#F54E00",
+        "shipped": "#E64B02",
+        "gate": "rampStepSeparation",
+        "against": "ordered.series[1]",
+        "why": "Not a surface crossing. Ember at its measured tone sits 1.18 from the second rung, under the 1.3 a ramp step needs, so five rungs do not fit above the ground."
+      }
+    ],
+    "derived": {
+      "ordered.series[1]": "ramp-interior",
+      "ordered.series[2]": "ramp-interior",
+      "ordered.series[3]": "ramp-interior",
+      "ordered.series[4]": "ramp-interior",
+      "ordered.seriesDark[1]": "ramp-interior",
+      "ordered.seriesDark[2]": "ramp-interior",
+      "ordered.seriesDark[3]": "ramp-interior",
+      "ordered.seriesDark[4]": "ramp-interior",
+      "chromeDark.rule": "ink-at-alpha"
+    }
   }
 }

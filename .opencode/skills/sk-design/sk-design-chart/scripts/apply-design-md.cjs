@@ -497,11 +497,16 @@ function mappingLines(theme, label) {
   });
 }
 
+// Each rung takes the largest corner the reference publishes that still fits it. A reference with
+// nothing that small has said nothing about that rung, and the corpus value stands: collapsing to
+// zero squared every data mark, legend swatch and progress capsule in a themed set, and did it
+// without a word. This is a floor, so a reference whose corners are all larger than the corpus
+// rungs contributes none of them; what that costs is written down beside the mapping.
 function radiusLadder(measured, stockRadius) {
   return STOCK_LADDER.map((role) => {
     const stockValue = Number.parseFloat(stockRadius[role]);
     const candidates = measured.filter((value) => value <= stockValue);
-    const value = candidates.length ? Math.max(...candidates) : 0;
+    const value = candidates.length ? Math.max(...candidates) : stockValue;
     return [role, `${value}px`];
   });
 }
@@ -681,6 +686,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  DEFAULT_DESIGN_PATH,
   VERSION,
   parseArgs,
   parseColors,

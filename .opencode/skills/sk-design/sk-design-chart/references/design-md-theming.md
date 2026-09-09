@@ -98,6 +98,22 @@ produces without a diff, and leave the stock palette derived from a capture that
 hash. Overriding is unchanged: pass any other `DESIGN.md` path, including one `sk-design-md-generator`
 has just produced, and the script themes from that instead.
 
+## The corner ladder is a floor, not a mapping
+
+Each of the corpus's five rungs takes the largest corner the reference publishes that still fits it.
+A reference with nothing that small has said nothing about that rung and the corpus value stands,
+the way an ordered form keeps the stock ramp when a colour table cannot supply one. It used to
+collapse to zero instead, which squared every data mark, legend swatch and progress capsule in a
+themed set and said nothing about having done so; even the stock reference produced a zero mark
+corner, against the 2px the corpus ships.
+
+What the floor costs is worth stating rather than leaving to be discovered: a reference whose
+corners are all larger than the corpus rungs contributes none of them. evilcharts publishes 4.4,
+6.4, 8.4 and 12.4px and reaches only the card rung, at 6.4. Mapping by the reference's own element
+names instead — its `cards` row to the card rung rather than the largest value that fits — would
+carry more of a reference through, and would change what every themed set has looked like so far.
+That is a decision about the register, not a defect in this one.
+
 ## Gates before writing
 
 The thresholds come from `assets/color/palettes.json` on every run. The applicator uses the shared

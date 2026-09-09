@@ -14,7 +14,10 @@ const test = require('node:test');
 const apply = require('../apply-design-md.cjs');
 
 const ROOT = path.resolve(__dirname, '..', '..');
-const EXAMPLES = path.join(ROOT, '..', 'sk-design-md-generator', 'references', 'examples');
+// The four borrowed references are vendored beside this suite rather than read out of the sibling
+// skill: they are coverage for the override path, and coverage that fails when an unrelated library
+// is pruned is coverage nobody can trust.
+const EXAMPLES = path.join(__dirname, 'fixtures', 'references');
 const TEMPLATE = path.join(ROOT, 'assets', 'templates', 'bar-columns.html');
 const FIXTURE = path.join(__dirname, 'fixtures', 'refusal-design.md');
 
@@ -111,4 +114,35 @@ test('an ordered form named outright is refused and keeps its stock ramp', () =>
   const output = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'design-md-ordered-')), 'out');
   assert.throws(() => apply.run(['--default', '--forms', 'bullet', '--out', output]), /ordered form/);
   assert.equal(fs.existsSync(output), false);
+});
+
+// The two references the packet carries are the ones a run actually reaches for: the stock, which
+// --default reads, and the second one, which exists to prove the override is not theoretical.
+// Nothing else in the suite would notice if either stopped deriving.
+test('both carried references derive two gated themes', () => {
+  for (const name of ['cursor', 'evilcharts']) {
+    const carried = path.join(ROOT, 'assets', 'style-reference', name, 'DESIGN.md');
+    const parsed = apply.derive({ designPath: carried, scheme: 'both' });
+    assert.equal(parsed.failures.length, 0, `${name} should clear every derived gate`);
+    assert.equal(parsed.light.series.length, 4, `${name} light series capacity`);
+    assert.equal(parsed.dark.series.length, 4, `${name} dark series capacity`);
+  }
+});
+
+test('the stock reference is the one --default reads, and its pin matches the palette', () => {
+  const crypto = require('node:crypto');
+  const palette = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'color', 'palettes.json'), 'utf8'));
+  const referencePath = path.join(ROOT, palette.derivation.reference);
+  assert.equal(referencePath, apply.DEFAULT_DESIGN_PATH,
+    'the palette records the reference --default actually reads, so the two cannot drift apart');
+  const digest = crypto.createHash('sha256').update(fs.readFileSync(referencePath)).digest('hex');
+  assert.equal(digest, palette.derivation.sha256, 'the palette pin matches the carried reference');
+});
+
+test('evilcharts declares its dark theme, so the dark set is its own ground and not stock chrome', () => {
+  const reference = path.join(ROOT, 'assets', 'style-reference', 'evilcharts', 'DESIGN.md');
+  const parsed = apply.derive({ designPath: reference, scheme: 'both' });
+  assert.equal(parsed.dark.chrome.surface.toLowerCase(), '#090909',
+    'without its tokens.json sidecar this silently falls back to the corpus stock dark chrome');
+  assert.equal(parsed.light.chrome.surface.toLowerCase(), '#ffffff');
 });

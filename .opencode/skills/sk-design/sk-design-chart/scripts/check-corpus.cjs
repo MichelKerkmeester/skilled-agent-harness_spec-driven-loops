@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const vm = require('vm');
+const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { channel, luminance, contrast, round2 } = require('./color-gates.cjs');
 
@@ -316,6 +317,18 @@ function checkPaletteSource(palette, theme) {
       if (againstFirst < g.emphasisAgainstFirstSeries) {
         record(theme.check, 'error', rel(PALETTE_SOURCE),
           `system "${id}" emphasis reads ${round2(againstFirst)}:1 against series[0] on ${theme.ground}, below the ${g.emphasisAgainstFirstSeries}:1 separation floor. An emphasised mark that matches the base mark in lightness disappears in greyscale`);
+      }
+    }
+
+    // A system whose rule is lightness ranks its array, and a ranked array that reverses ranks
+    // backwards while every gate still passes. The ramp contract below asserts this for the
+    // magnitude system; importance is ranked the same way and was not covered by anything.
+    if (system.encodes === 'importance') {
+      for (let i = 0; i < series.length - 1; i += 1) {
+        checked += 1;
+        if (contrast(series[i], surface) > contrast(series[i + 1], surface)) continue;
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" ranks by lightness and does not move toward ${theme.ground} at steps ${i + 1} and ${i + 2}. The array runs from the value furthest from the surface to the value nearest it, so a pair that reverses ranks two series the wrong way round`);
       }
     }
 
@@ -1487,7 +1500,8 @@ function checkEmptyNotice(file, src) {
     record('empty-notice', 'error', file,
       'the empty-data guard sits above the data block it reads, so it tests a name that is not defined yet');
   }
-  const guard = joined.slice(start);
+  // A labelled block written in a comment stops nothing, so the guard is looked for in the code.
+  const guard = stripJsComments(joined.slice(start));
   if (/\bfigure\s*:\s*\{/.test(guard) && /\bbreak\s+figure\s*;/.test(guard)) return;
   record('empty-notice', 'error', file,
     'the empty-data guard cannot stop the drawing. It carries no labelled block and no break out of it, so a form with nothing to draw would print the notice and then draw an empty frame under it');
@@ -1586,11 +1600,21 @@ function checkTypeScale(file, src, palette) {
 // token paints a class, while this check proves the reader gets one labelled chip for each named
 // stream and that the control is placed below the plot where the card leaves room for it.
 function checkLegend(file, src) {
-  const form = path.basename(file, '.html');
-  if (!KEYED_SERIES_FORMS.has(form)) return;
   const { scripts, markup, styles } = regionsOf(stripHtmlComments(src));
-  const code = stripJsComments(scripts.join('\n'));
+  const raw = scripts.join('\n');
+  const code = stripJsComments(raw);
   const css = stripJsComments(styles.join('\n'));
+  // A form is keyed because it declares series, not because its name is on a list. The list this
+  // replaced was two forms out of date, and both omissions were hiding drift rather than
+  // describing a decision.
+  const keyed = /\/\*\s*CHART_SERIES:BEGIN\s*\*\//.test(raw);
+  const buildsLegend = /key-swatch'/.test(code);
+  if (buildsLegend && !keyed) {
+    tally('legend', 1);
+    record('legend', 'error', file,
+      'the figure builds a legend and declares no series for it to name. A chip whose label comes from anywhere but the declared series can drift from the marks it stands for');
+  }
+  if (!keyed) return;
   tally('legend', 7);
 
   const legends = [...markup.matchAll(/<([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*\bdata-chart-legend\b[^>]*>/gi)];
@@ -1615,7 +1639,22 @@ function checkLegend(file, src) {
   }
   if (!/legend-entry|legend-chip|key-swatch/.test(code) || !/gap\s*:\s*16px/.test(css)) {
     record('legend', 'error', file,
-      'the legend has no measured chip/gap vocabulary. Chips use an 8px mark, a 2px corner and a 16px row gap');
+      'the legend has no measured chip vocabulary or its row gap is not 16px');
+  }
+  // The message used to name three measurements and hold one. A chip that drifts off the mark
+  // size or takes a card corner reads as a different component, so all three are held.
+  const chip = /\.key-swatch\s*\{([^}]*)\}/.exec(css);
+  if (!chip) {
+    record('legend', 'error', file, 'the legend declares no chip rule, so its size and corner come from nowhere');
+  } else {
+    if (!/width:\s*8px/.test(chip[1]) || !/height:\s*8px/.test(chip[1])) {
+      record('legend', 'error', file,
+        'the legend chip is not the 8px mark every card row and every key in this corpus shares. A chip at another size reads as a different component rather than as the mark it stands for');
+    }
+    if (!/border-radius:\s*var\(--chart-radius-mark\)/.test(chip[1])) {
+      record('legend', 'error', file,
+        'the legend chip takes its corner from somewhere other than the mark rung. A key wearing a card corner stops looking like the mark it stands for');
+    }
   }
   if (!/justify-content\s*:\s*center/i.test(css)) {
     record('legend', 'error', file,
@@ -1769,6 +1808,16 @@ function checkTooltipIndicator(file, src) {
   // Counting calls alone is satisfied by calling the helper twice for one key and painting the
   // other by hand. In a file that draws keys there is one place a background colour is set, and
   // it is inside the helper; a second one is a key that went around the declaration.
+  // A kind that renders identically to another kind is a declaration with no effect. The corpus
+  // distinguishes them by one rule, so a form declaring a rule has to carry it.
+  if (declarations.some((d) => /'rule'/.test(d))) {
+    tally('tooltip-indicator', 1);
+    const shape = /\.is-rule\b[^{]*\{([^}]*)\}/.exec(stripJsComments(styles.join('\n')));
+    if (!shape || !/height\s*:/.test(shape[1])) {
+      record('tooltip-indicator', 'error', file,
+        'a series is declared as a rule and nothing makes a rule look different from a swatch. The kind is carried by one style rule, and without it the line series is painted as one more square');
+    }
+  }
   const backgrounds = (code.match(/style\s*\.\s*backgroundColor/g) || []).length;
   if (backgrounds > 1) {
     record('tooltip-indicator', 'error', file,
@@ -1804,7 +1853,7 @@ function checkReferenceLine(file, src) {
     record('reference-line', 'error', file,
       'a REFERENCE entry is missing its value, its label or its why. An unnamed line is a rule the reader cannot read, and an unexplained one is a claim nobody signed');
   }
-  const drawing = (/\/\*\s*REFERENCE_DRAW:BEGIN\s*\*\/([\s\S]*?)\/\*\s*REFERENCE_DRAW:END\s*\*\//.exec(raw) || [, ''])[1];
+  const drawing = stripJsComments((/\/\*\s*REFERENCE_DRAW:BEGIN\s*\*\/([\s\S]*?)\/\*\s*REFERENCE_DRAW:END\s*\*\//.exec(raw) || [, ''])[1]);
   const reads = /REFERENCE\s*\.\s*forEach/.test(drawing) || /of\s+REFERENCE\b/.test(drawing);
   if (!reads) {
     record('reference-line', 'error', file,
@@ -1817,7 +1866,7 @@ function checkReferenceLine(file, src) {
       'the drawing walks REFERENCE without putting a rule in the document. A loop that reads the list and appends nothing is the form claiming a level it does not draw');
   }
   tally('reference-line', 2);
-  if (!/\.reference\s*\{/.test(styles.join('\n'))) {
+  if (!/\.reference\s*\{/.test(stripJsComments(styles.join('\n')))) {
     record('reference-line', 'error', file,
       'the file draws a reference rule and carries no style for it. An SVG line with no stroke is invisible, so the level would be declared, appended and unseen');
   }
@@ -1835,7 +1884,10 @@ function checkCursorGuide(file, src) {
   const code = stripJsComments(raw);
   if (!/function openTip\(/.test(code)) return;
   tally('cursor-guide', 5);
-  const declared = /\n  guide: (true|false),/.exec(raw);
+  // Read from the block that holds it, like every other field there. Matching anywhere in the
+  // script by indentation made the rule depend on formatting rather than on the declaration.
+  const marks = /\/\*\s*MARKS:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*MARKS:END\s*\*\//.exec(raw);
+  const declared = marks ? /\bguide\s*:\s*(true|false)\b/.exec(stripJsComments(marks[1])) : null;
   if (!declared) {
     record('cursor-guide', 'error', file,
       'the figure opens a card on a mark but never says whether it guides the pointer. Whether a hairline crosses the plot on every hover is a decision the form makes, so it makes it where the other mark decisions are written');
@@ -1882,9 +1934,13 @@ function checkMarkPolicy(file, src) {
   // to be honest about.
   if (!/^(assets\/(templates|examples)\/|--extra\/)/.test(where)) return;
   const { scripts, styles, markup } = regionsOf(stripHtmlComments(src));
-  const code = scripts.join('\n');
+  // The sentinels live in comments, so the block is found in the raw text; every question this
+  // rule asks about what the file paints is asked of the code, because a sentence mentioning a
+  // gradient is not a gradient and a commented-out mark is not a mark.
+  const raw = scripts.join('\n');
+  const code = stripJsComments(raw);
   tally('mark-policy', 7);
-  const declared = /\/\*\s*MARKS:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*MARKS:END\s*\*\//.exec(code);
+  const declared = /\/\*\s*MARKS:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*MARKS:END\s*\*\//.exec(raw);
   if (!declared) {
     record('mark-policy', 'error', file,
       'the drawing declares no MARKS block. Whether a figure adds points, how its areas are painted and where its zero sits are decisions the paint code makes either way, so the drawing states them where a later editor reads them');
@@ -1915,7 +1971,7 @@ function checkMarkPolicy(file, src) {
   // The fill words promise paint the drawing must carry: a fading or flat area is laid down by
   // a gradient definition or a fill-opacity rule, and a form that declares no area owes neither.
   // Promise and paint are held against each other so the block cannot drift from the drawing.
-  const everything = styles.join('\n') + '\n' + markup + '\n' + code;
+  const everything = stripJsComments(styles.join('\n')) + '\n' + stripHtmlComments(markup) + '\n' + code;
   const fades = /linearGradient|radialGradient/.test(everything);
   const flattens = /fill-opacity/.test(everything);
   if (fill === 'gradient' && !fades) {
@@ -1934,17 +1990,39 @@ function checkMarkPolicy(file, src) {
     record('mark-policy', 'error', file,
       'the MARKS block declares no area, and the file still paints through a gradient or a fill-opacity. An unpromised area is a second handwriting of what the figure does');
   }
-  // A declared point has to reach the drawing. The reverse does not hold and is not asserted:
-  // a form may draw a circle purely as a hit region a reader never sees, which is why a file
-  // declaring none may still carry one.
+  // A declared point has to reach the drawing.
   const drawsCircles = /'circle'/.test(code);
   if ((points === 'sparse' || points === 'all') && !drawsCircles) {
     record('mark-policy', 'error', file,
       'the MARKS block promises marks on the readings and the drawing places none. A figure that says it marks its readings and draws no mark is the drift this block exists to stop');
   }
+  // And the reverse: a form declaring no points may still place a circle, because several put an
+  // invisible one down purely as something a pointer can reach. What it may not do is place a
+  // visible one. A construction this cannot read is an error rather than a pass, so the rule can
+  // never go quiet on a form it did not understand.
+  if (points === 'none' && drawsCircles) {
+    tally('mark-policy', 1);
+    const built = [...code.matchAll(/node\(\s*'circle'\s*,\s*\{[^{}]*\}\s*,\s*'([a-z-]+)'\s*\)/g)];
+    const total = (code.match(/'circle'/g) || []).length;
+    if (built.length !== total) {
+      record('mark-policy', 'error', file,
+        'the drawing declares no points and builds a circle in a form this rule cannot read, so whether that circle is visible cannot be established. A mark the check cannot see is a mark the declaration is not holding');
+    } else {
+      const styleText = styles.join('\n');
+      for (const [, cls] of built) {
+        const rule = new RegExp('^\\.' + cls + '\\s*\\{([^}]*)\\}', 'm').exec(styleText);
+        const body = rule ? rule[1] : '';
+        const hidden = /opacity:\s*0\b/.test(body) || /fill:\s*(transparent|none)/.test(body);
+        if (!hidden) {
+          record('mark-policy', 'error', file,
+            `the MARKS block declares no points and the drawing paints a visible one through ".${cls}". A reader sees a mark the figure says it does not place, and the two cannot both be right`);
+        }
+      }
+    }
+  }
   // A zero is meaningful exactly when the readings cross it: that is the whole difference
   // between a floor the marks stand on and a line the figure is read against.
-  const dataBlock = (/\/\*\s*CHART_DATA:BEGIN\s*\*\/([\s\S]*?)\/\*\s*CHART_DATA:END\s*\*\//.exec(code) || [, ''])[1];
+  const dataBlock = (/\/\*\s*CHART_DATA:BEGIN\s*\*\/([\s\S]*?)\/\*\s*CHART_DATA:END\s*\*\//.exec(raw) || [, ''])[1];
   const crossesZero = /[:,[]\s*-\d/.test(stripJsComments(dataBlock));
   if (zero === 'meaningful' && !crossesZero) {
     record('mark-policy', 'error', file,
@@ -1962,6 +2040,7 @@ function checkMarkPolicy(file, src) {
 // reads. A declared label nobody prints is a second handwriting, and the printed number
 // drifts from the declared one.
 function checkMetricBlock(file, src, isExtra) {
+  const where = file.split(path.sep).join('/');
   const { scripts, markup } = regionsOf(stripHtmlComments(src));
   const hasMetricPart = /data-chart-part\s*=\s*"metric"/.test(markup);
   const code = stripJsComments(scripts.join('\n'));
@@ -1976,8 +2055,11 @@ function checkMetricBlock(file, src, isExtra) {
   // METRIC block, and when the decision is no, the markup has to agree: a metric region left
   // standing over a present:false declaration is a promise of a number nobody prints.
   tally('metric-block', 2);
-  const cardAnatomyGoverns = file.startsWith(TEMPLATE_DIR + path.sep)
-    || file.startsWith(EXAMPLE_DIR + path.sep) || isExtra;
+  // Every rule here is handed a repository-relative label, never an absolute path. Comparing it
+  // against a resolved directory is a test that cannot be true, and the form of the mistake is
+  // silent: the rule keeps reporting on the deliveries it is given and stops reporting on the
+  // corpus it is for.
+  const cardAnatomyGoverns = /^assets\/(templates|examples)\//.test(where) || isExtra;
   if (cardAnatomyGoverns && !declaration) {
     record('metric-block', 'error', file,
       'no METRIC block. Every chart form declares whether the card leads with a number, present true or false, so the decision ships written down rather than implied by whatever the markup happens to carry');
@@ -2299,8 +2381,7 @@ function checkSeriesMapping(file, src, palette, declaredSystem) {
     }
   }
 
-  const form = path.basename(file, '.html');
-  if (KEYED_SERIES_FORMS.has(form)) {
+  if (/\/\*\s*CHART_SERIES:BEGIN\s*\*\//.test(scripts.join('\n'))) {
     tally('series-mapping', 4);
     checkKeyedSeriesMapping(file, scripts.join('\n'), css);
   }
@@ -2313,9 +2394,19 @@ const CURVE_VALUES = new Set(['linear', 'step', 'monotone']);
 
 function checkCurveContract(file, src) {
   const form = path.basename(file, '.html');
-  if (!CURVE_FORMS.has(form)) return;
   const { scripts } = regionsOf(stripHtmlComments(src));
   const joined = scripts.join('\n');
+  // The set names the forms that owe a curve declaration, so it cannot be derived from the files
+  // that carry one: dropping the block would then drop the obligation with it. What is checked
+  // instead is that the set and the corpus agree, which is how a new time path joins the rule.
+  if (!CURVE_FORMS.has(form)) {
+    if (/\/\*\s*CURVE:BEGIN\s*\*\//.test(joined)) {
+      tally('curve-contract', 1);
+      record('curve-contract', 'error', file,
+        'the form declares a curve and is not on the list of forms that owe one, so nothing would notice if the declaration went away. A path over time joins that list by being added to it');
+    }
+    return;
+  }
   tally('curve-contract', 4);
 
   const begins = occurrences(joined, CURVE_BEGIN);
@@ -2896,6 +2987,217 @@ function fileLabel(file, extraDirectory) {
   return rel(file);
 }
 
+// The palette is a derivation of one Style Reference, and until this rule existed nothing held it
+// to that: an edit on either side drifted in silence, and the reason each departure was made lived
+// in a prose note no checker could read. The reference is now carried beside the forms, so the two
+// can be held against each other here.
+// A carried Style Reference records where it came from and pins every file it carries by hash.
+// One of those pins is held by the derivation rule because the palette depends on it; the rest
+// were written down and checked by nobody, which makes them decoration that reads as evidence.
+function checkStyleReference() {
+  const root = path.join(PACKAGE_ROOT, 'assets', 'style-reference');
+  tally('style-reference', 1);
+  if (!fs.existsSync(root)) {
+    record('style-reference', 'error', 'assets/style-reference',
+      'the packet carries no Style Reference, and its stock palette is derived from one. A default that reaches outside the packet is a default something else can change');
+    return;
+  }
+  for (const name of fs.readdirSync(root).sort()) {
+    const directory = path.join(root, name);
+    if (!fs.statSync(directory).isDirectory()) continue;
+    const label = `assets/style-reference/${name}`;
+    tally('style-reference', 2);
+    if (!fs.existsSync(path.join(directory, 'DESIGN.md'))) {
+      record('style-reference', 'error', label,
+        'the directory carries no DESIGN.md, so nothing here can be applied to the corpus');
+    }
+    const originPath = path.join(directory, 'origin.md');
+    if (!fs.existsSync(originPath)) {
+      record('style-reference', 'error', label,
+        'the reference records no origin. A reference nobody can trace is one nobody can re-derive or replace');
+      continue;
+    }
+    const origin = fs.readFileSync(originPath, 'utf8');
+    const pins = [...origin.matchAll(/^\|\s*`([^`]+)`\s*\|\s*`([0-9a-f]{16})…?`\s*\|/gm)];
+    tally('style-reference', 1);
+    if (!pins.length) {
+      record('style-reference', 'error', label,
+        'the origin record pins no file by hash, so nothing states which bytes this reference was read from');
+      continue;
+    }
+    for (const [, file, pin] of pins) {
+      tally('style-reference', 1);
+      const target = path.join(directory, file);
+      if (!fs.existsSync(target)) {
+        record('style-reference', 'error', label,
+          `the origin record pins "${file}", and no such file is carried. A pin for a file nobody ships is a record of something that is not here`);
+        continue;
+      }
+      const digest = crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex');
+      if (!digest.startsWith(pin)) {
+        record('style-reference', 'error', label,
+          `"${file}" is pinned at ${pin}… and hashes to ${digest.slice(0, 16)}…. A pin that has stopped matching is a record of a file that changed without anybody deciding to change it`);
+      }
+    }
+  }
+}
+
+function checkPaletteDerivation(palette) {
+  const derivation = palette.derivation;
+  tally('palette-derivation', 3);
+  if (!derivation) {
+    record('palette-derivation', 'error', 'assets/color/palettes.json',
+      'the palette records no derivation. Every value here came from a Style Reference or from an arithmetic, and a palette that does not say which is a palette nobody can check against its source');
+    return;
+  }
+  const referencePath = path.join(PACKAGE_ROOT, derivation.reference);
+  if (!fs.existsSync(referencePath)) {
+    record('palette-derivation', 'error', 'assets/color/palettes.json',
+      `the derivation names ${derivation.reference}, and no file is there. A palette derived from a reference the packet does not carry cannot be checked against anything`);
+    return;
+  }
+  const source = fs.readFileSync(referencePath, 'utf8');
+  const digest = crypto.createHash('sha256').update(fs.readFileSync(referencePath)).digest('hex');
+  if (digest !== derivation.sha256) {
+    record('palette-derivation', 'error', 'assets/color/palettes.json',
+      `the Style Reference has changed since the palette was derived from it: recorded ${derivation.sha256.slice(0, 16)}…, found ${digest.slice(0, 16)}…. Re-deriving is a deliberate act, so the pin moves only when somebody moves it`);
+  }
+
+  // The reference's own token table, read as a mapping rather than as a bag of colours. A value
+  // being published somewhere in the reference says nothing about the role it may occupy here,
+  // and a check that only asked the first question would let any published hex into any role.
+  const published = new Map();
+  for (const row of source.matchAll(/^\|\s*[^|]+?\s*\|\s*`(#[0-9a-fA-F]{6})`\s*\|\s*`([^`]+)`\s*\|/gm)) {
+    published.set(row[2].trim(), row[1].toUpperCase());
+  }
+  if (!published.size) {
+    record('palette-derivation', 'error', 'assets/color/palettes.json',
+      'the Style Reference publishes no token table this rule can read, so no value in the palette can be traced to it');
+    return;
+  }
+
+  const shipped = new Map(paletteRoles(palette));
+  const accounted = new Set();
+  const claim = (role, where) => {
+    if (accounted.has(role)) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${role} is accounted for twice, the second time under ${where}. One role has one origin, or the record is describing two different palettes`);
+    }
+    accounted.add(role);
+    if (!shipped.has(role)) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `the derivation accounts for ${role} under ${where}, and the palette has no such role. A record describing a value nobody ships is a record nobody maintains`);
+      return false;
+    }
+    return true;
+  };
+
+  // A role that takes a token takes that token's value, not merely some value the reference
+  // happens to publish elsewhere.
+  for (const [role, token] of Object.entries(derivation.roles || {})) {
+    tally('palette-derivation', 1);
+    if (!claim(role, 'roles')) continue;
+    if (!published.has(token)) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${role} is recorded as taking ${token}, which the Style Reference does not publish`);
+      continue;
+    }
+    if (shipped.get(role).toUpperCase() !== published.get(token)) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${role} ships "${shipped.get(role)}" and is recorded as taking ${token}, which the Style Reference publishes as "${published.get(token)}". The palette and its record disagree about where this value came from`);
+    }
+  }
+
+  // A departure is a claim about the value the palette actually ships, so every ratio below is
+  // computed from the palette rather than from the record. Checking the record against itself was
+  // the failure this rule was written to prevent, and it is the failure it first shipped with.
+  for (const departure of derivation.departures || []) {
+    tally('palette-derivation', 4);
+    if (!claim(departure.role, 'departures')) continue;
+    const value = shipped.get(departure.role);
+    if (value.toUpperCase() !== String(departure.shipped).toUpperCase()) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${departure.role} ships "${value}" and the derivation records it as "${departure.shipped}". The record is what a reader trusts about a value that left its reference, so the two cannot differ`);
+      continue;
+    }
+    if (published.get(departure.from) !== String(departure.measured).toUpperCase()) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${departure.role} departs from ${departure.from}, recorded as "${departure.measured}", and the Style Reference publishes that token as "${published.get(departure.from) || 'nothing'}"`);
+      continue;
+    }
+    const threshold = palette.gates[departure.gate];
+    const against = resolveRole(palette, departure.against);
+    if (typeof threshold !== 'number' || !against) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${departure.role} names gate "${departure.gate}" against "${departure.against}", and one of the two does not resolve`);
+      continue;
+    }
+    const before = contrast(departure.measured, against);
+    const after = contrast(value, against);
+    if (before >= threshold) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${departure.role} was moved off "${departure.measured}" to clear ${departure.gate}, and the measured tone already clears it at ${before.toFixed(2)}:1 against ${departure.against}. A departure nothing forces is a value changed for a reason that no longer exists`);
+    }
+    if (after < threshold) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${departure.role} ships "${value}" to clear ${departure.gate} and reaches ${after.toFixed(2)}:1 against ${departure.against}, under the ${threshold} it was moved to reach`);
+    }
+  }
+
+  // The arithmetic values. One of the two kinds is checkable here; the other is held by the ramp
+  // contract in palette-source, and this rule says which rather than implying it holds both.
+  for (const [role, kind] of Object.entries(derivation.derived || {})) {
+    tally('palette-derivation', 1);
+    if (!claim(role, 'derived')) continue;
+    if (!derivation.kinds || !derivation.kinds[kind]) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${role} is recorded as "${kind}", which the derivation does not describe. An arithmetic nobody wrote down exempts a value for no stated reason`);
+      continue;
+    }
+    if (kind === 'ink-at-alpha') {
+      tally('palette-derivation', 1);
+      const theme = role.startsWith('chromeDark') ? palette.chromeDark : palette.chrome;
+      const value = shipped.get(role);
+      if (!new RegExp('^' + theme.ink + '[0-9A-Fa-f]{2}$', 'i').test(value)) {
+        record('palette-derivation', 'error', 'assets/color/palettes.json',
+          `${role} is recorded as that theme's ink at alpha and ships "${value}", which is not "${theme.ink}" with two hex digits after it`);
+      }
+    }
+  }
+
+  for (const [role] of shipped) {
+    tally('palette-derivation', 1);
+    if (accounted.has(role)) continue;
+    record('palette-derivation', 'error', 'assets/color/palettes.json',
+      `${role} ships "${shipped.get(role)}" and the derivation accounts for it nowhere. A value that is neither taken from the reference, nor a named departure from it, nor a stated arithmetic, arrived from somewhere nobody wrote down`);
+  }
+}
+
+// Every colour the palette ships, addressed the way the derivation addresses it.
+function paletteRoles(palette) {
+  const out = [];
+  for (const [key, value] of Object.entries(palette.chrome)) out.push([`chrome.${key}`, value]);
+  for (const [key, value] of Object.entries(palette.chromeDark)) out.push([`chromeDark.${key}`, value]);
+  for (const [id, system] of Object.entries(palette.systems)) {
+    (system.series || []).forEach((value, at) => out.push([`${id}.series[${at}]`, value]));
+    (system.seriesDark || []).forEach((value, at) => out.push([`${id}.seriesDark[${at}]`, value]));
+    if (system.emphasis) out.push([`${id}.emphasis`, system.emphasis]);
+    if (system.emphasisDark) out.push([`${id}.emphasisDark`, system.emphasisDark]);
+  }
+  return out;
+}
+
+function resolveRole(palette, role) {
+  const indexed = /^([a-z-]+)\.(series|seriesDark)\[(\d+)\]$/.exec(role);
+  if (indexed) {
+    const system = palette.systems[indexed[1]];
+    return system && system[indexed[2]] ? system[indexed[2]][Number(indexed[3])] : null;
+  }
+  const chrome = /^(chrome|chromeDark)\.([a-zA-Z]+)$/.exec(role);
+  if (chrome) return palette[chrome[1]] ? palette[chrome[1]][chrome[2]] : null;
+  return null;
+}
+
 function main() {
   const wantRender = process.argv.includes('--render');
   let extraDirectory;
@@ -2907,6 +3209,8 @@ function main() {
   }
   const palette = loadPalette();
   checkRadiusRungs(palette);
+  checkPaletteDerivation(palette);
+  checkStyleReference();
   for (const theme of THEMES) checkPaletteSource(palette, theme);
 
   // The gallery frames every chart rather than being one. Running the chart rules over it would

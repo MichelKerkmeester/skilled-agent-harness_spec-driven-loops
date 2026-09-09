@@ -30,7 +30,8 @@
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference",
-    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference"
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -162,17 +163,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-09T16:25:37.481Z",
+    "last_save_at": "2026-09-09T18:21:21.799Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:80dc520fc924cf2a30ec495085050669272974105ea882c6ec53e4fd369cd536",
+    "source_fingerprint": "sha256:1b2a92f138f8c82340661448aa571ed19dc19180cc8d82aeb0c39daa6380bad6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2cb39c44032de96a6e2767689036cc3c6449d61b1473165057edc653997fe61"
+      "spec.md": "648c3fe7c33caf0b10ae5834ea0e5ca0969f4bf4f13af4394e0df4d7f20bae84"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T18:11:54.124Z"
