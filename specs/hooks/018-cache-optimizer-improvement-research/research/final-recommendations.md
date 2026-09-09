@@ -105,3 +105,26 @@ request identity nobody has verified exists.
   only on `message_end` via `errorMessage` ([index.ts:9395](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/index.ts:9395)). A proxy that names the field only in
   its response body is learned one event later than the 400 itself. I'M UNCERTAIN ABOUT THIS:
   whether that event exposes a body field the handler could read instead was not checked.
+
+
+---
+
+## Backlog closure — every item resolved
+
+Added after implementation, so a later reader does not re-open settled items.
+
+| Item | Outcome |
+|------|---------|
+| F1 unreported is not a miss | **Shipped.** Cost and tokens always record; only the hit ratio excludes |
+| F3 explicit zero prices | **Shipped.** The registry has no absent state to confuse zero with: all 1,356 catalogued models carry a cached-read value, and an omitted cost block arrives with a zero *input* rate, which is what marks it unpriced |
+| F4 capability gate | **Shipped** as a single `reportsCacheUsage` flag, and later fixed to survive virtual routing, where the stats model can carry no compat at all |
+| F5 persist the learned rejection | **Shipped**, and later given the unlearn path it was missing — the list was monotonic, so one 400 disabled a model permanently |
+| F2 cross-turn stability | **Reverted, and then measured.** A two-arm live experiment showed the prefix is already byte-identical from turn 1, while the gate itself introduces a break between turns 1 and 2. It prevented nothing and cost one break per session |
+| F6 request-scoped router hints | **Not buildable as specified.** Pi assigns no request identity: `BeforeProviderRequestEvent` carries only `{type, payload}`, the payload is the outgoing HTTP body, and no lifecycle event exposes a request, turn or message id. Hints cross extension boundaries, so producer and consumer would both need an identity Pi supplies to both. The singleton-slot mechanism is real; the proposed fix is not available |
+| F7 retry guard | **Closed.** Two independent inspections found it correct after its earlier fix, and nobody proposed tuning it |
+
+Three of the operator questions were answered from the system rather than from memory: whether a
+zero cached-read rate means free (it does), whether request identity is stable (it does not exist),
+and whether lifting a candidate early actually churns the prefix (it does not, here). The one that
+remains genuinely open is narrow: a prompt whose stable content changes mid-session, which is the
+case F2 was imagined for and which has never been observed.
