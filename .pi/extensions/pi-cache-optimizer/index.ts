@@ -182,33 +182,6 @@ function getAnthropicTtlFallbackState(): AnthropicTtlFallbackStateV1 {
 
 let runtimeOptimizerEnabled = true;
 
-interface PrefixPromotionAuthorizationState {
-  previousCandidates: Set<string>;
-  authorizedCandidates: Set<string>;
-}
-
-// Keep promotion authorization independent from churn measurements so a
-// reported prefix change can never grant permission to reorder.
-const prefixPromotionAuthorizationBySessionModel = new Map<
-  string,
-  PrefixPromotionAuthorizationState
->();
-
-function clearPrefixPromotionAuthorization(): void {
-  prefixPromotionAuthorizationBySessionModel.clear();
-}
-
-function clearPrefixPromotionAuthorizationForSession(sessionHash: string): void {
-  const prefix = `${sessionHash || '_nosession'}:`;
-  for (const key of prefixPromotionAuthorizationBySessionModel.keys()) {
-    if (key.startsWith(prefix)) prefixPromotionAuthorizationBySessionModel.delete(key);
-  }
-}
-
-function clearPrefixPromotionAuthorizationForScope(scopeKey: string): void {
-  prefixPromotionAuthorizationBySessionModel.delete(scopeKey);
-}
-
 // WORM-flag: if optimizeSystemPrompt ever detects that candidate extraction
 // has accidentally truncated a structural marker (any XML tag or
 // HTML comment boundary marker present in the original prompt), we flip
@@ -867,13 +840,19 @@ function extractStructuralMarkers(prompt: string): {
   return { openingTags, closingTags, commentMarkers };
 }
 
-function collectUniqueStableCandidates(
+function optimizeSystemPrompt(
   original: string,
   opts: BuildSystemPromptOptions,
-): string[] {
-  const candidates: string[] = [];
+): OptimizedSystemPrompt {
+  const stableParts: string[] = [];
   const seen = new Set<string>();
+  let rest = original;
 
+  // Classify candidate ambiguity against one immutable snapshot. Candidates
+  // can be nested (a full context-file block also contains its bare content),
+  // so recomputing occurrence counts after each removal is unsafe: deleting
+  // the full block can make the dynamic copy of its bare content appear unique.
+  const candidates: string[] = [];
   for (const candidate of buildStableCandidates(opts)) {
     const part = candidate.trim();
     if (!part || part.length < MIN_STABLE_CANDIDATE_LENGTH || seen.has(part)) continue;
@@ -881,15 +860,13 @@ function collectUniqueStableCandidates(
     candidates.push(part);
   }
 
-  // Classify candidate ambiguity against one immutable snapshot. Candidates
-  // can be nested, so recomputing occurrence counts after each removal is
-  // unsafe: deleting a full block can make its dynamic copy appear unique.
+  const initialRemainder = rest;
   const occurrenceCount = new Map<string, number>();
   for (const part of candidates) {
     let count = 0;
     let searchFrom = 0;
-    while (searchFrom < original.length) {
-      const occurrence = original.indexOf(part, searchFrom);
+    while (searchFrom < initialRemainder.length) {
+      const occurrence = initialRemainder.indexOf(part, searchFrom);
       if (occurrence < 0) break;
       count++;
       if (count > 1) break;
@@ -898,47 +875,10 @@ function collectUniqueStableCandidates(
     occurrenceCount.set(part, count);
   }
 
-  return candidates.filter((part) => occurrenceCount.get(part) === 1);
-}
-
-function observePrefixPromotionCandidates(
-  original: string,
-  opts: BuildSystemPromptOptions,
-  scopeKey: string,
-): ReadonlySet<string> {
-  let state = prefixPromotionAuthorizationBySessionModel.get(scopeKey);
-  if (!state) {
-    state = {
-      previousCandidates: new Set<string>(),
-      authorizedCandidates: new Set<string>(),
-    };
-    prefixPromotionAuthorizationBySessionModel.set(scopeKey, state);
-  }
-
-  const observedCandidates = new Set(collectUniqueStableCandidates(original, opts));
-  for (const candidate of observedCandidates) {
-    if (state.previousCandidates.has(candidate)) {
-      state.authorizedCandidates.add(candidate);
-    }
-  }
-  state.previousCandidates = observedCandidates;
-  return state.authorizedCandidates;
-}
-
-function optimizeSystemPrompt(
-  original: string,
-  opts: BuildSystemPromptOptions,
-  authorizedCandidates: ReadonlySet<string> = new Set<string>(),
-): OptimizedSystemPrompt {
-  const stableParts: string[] = [];
-  let rest = original;
-
-  const candidates = collectUniqueStableCandidates(original, opts);
-
   // Stable layer: content likely to be identical across sessions/turns.
   // Short / single-char candidates are dropped: see MIN_STABLE_CANDIDATE_LENGTH.
   for (const part of candidates) {
-    if (!authorizedCandidates.has(part)) continue;
+    if (occurrenceCount.get(part) !== 1) continue;
 
     const firstOccurrence = rest.indexOf(part);
     if (firstOccurrence < 0) continue;
@@ -1464,7 +1404,6 @@ function shouldInjectOpenAIPromptCacheKey(): boolean {
 }
 
 function setRuntimeOptimizerEnabled(enabled: boolean, env: MutableEnv = process.env): void {
-  clearPrefixPromotionAuthorization();
   runtimeOptimizerEnabled = enabled;
   if (enabled) {
     requestLongCacheRetention(env);
@@ -8680,12 +8619,8 @@ export default function (pi: ExtensionAPI): void {
   function syncSessionHash(ctx: Pick<ExtensionContext, 'sessionManager'>): void {
     const sid = ctx.sessionManager.getSessionId();
     if (sid && (sid !== currentSessionId || !currentSessionHashSet)) {
-      const nextSessionHash = hashSessionId(sid);
-      if (currentSessionHashSet && currentSessionHash !== nextSessionHash) {
-        clearPrefixPromotionAuthorization();
-      }
       currentSessionId = sid;
-      currentSessionHash = nextSessionHash;
+      currentSessionHash = hashSessionId(sid);
       currentSessionHashSet = true;
       lastActualRoutedModel = undefined;
     }
@@ -8843,9 +8778,6 @@ export default function (pi: ExtensionAPI): void {
 
   function resetStatsForModel(model: PiModel): void {
     const displayKey = modelKey(model);
-    clearPrefixPromotionAuthorizationForScope(
-      `${currentSessionHash || '_nosession'}:${displayKey}`,
-    );
     for (const key of Object.keys(cacheStatsByModel)) {
       if (modelKeyFromSessionScoped(key) === displayKey) delete cacheStatsByModel[key];
     }
@@ -8860,7 +8792,6 @@ export default function (pi: ExtensionAPI): void {
 
   function resetCurrentSessionStats(): void {
     const prefix = `${currentSessionHash || '_nosession'}:`;
-    clearPrefixPromotionAuthorizationForSession(currentSessionHash);
     for (const key of Object.keys(cacheStatsByModel)) {
       if (key.startsWith(prefix)) delete cacheStatsByModel[key];
     }
@@ -9199,7 +9130,6 @@ export default function (pi: ExtensionAPI): void {
   pi.on('session_start', async (event, ctx) => {
     // Guard state is session-scoped: a fresh session starts with clean streaks.
     resetRetryLoopGuard(retryLoopGuardState);
-    clearPrefixPromotionAuthorization();
     if (runtimeOptimizerEnabled) requestLongCacheRetention();
     await restoreCacheStats(event.reason, ctx);
     await publishStatus(ctx);
@@ -9209,7 +9139,6 @@ export default function (pi: ExtensionAPI): void {
     try {
       await flushPersistCacheStats(ctx);
     } finally {
-      clearPrefixPromotionAuthorization();
       latestCacheHint = undefined;
       delete getProtocolGlobal().__piCacheOptimizerCacheKey__;
       uninstallCacheHintsService();
@@ -9229,7 +9158,6 @@ export default function (pi: ExtensionAPI): void {
   });
 
   pi.on('before_agent_start', async (event, _ctx) => {
-    syncSessionHash(_ctx);
     latestCacheHint = undefined;
     // Clear the legacy global before any bypass/disable early return. A valid
     // rewrite path republishes the current session key below; otherwise callers
@@ -9269,7 +9197,6 @@ export default function (pi: ExtensionAPI): void {
     // ────────────────────────────────────────────────────────────────
     const model = routedModel ?? _ctx.model;
     if (model && isResponsesPromptRewriteBypassApi(model.api)) {
-      clearPrefixPromotionAuthorization();
       return {};
     }
 
@@ -9280,7 +9207,6 @@ export default function (pi: ExtensionAPI): void {
     // and stable-prefix reordering). Footer stats and the OpenAI
     // prompt_cache_key fallback remain active.
     if (isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV])) {
-      clearPrefixPromotionAuthorization();
       return {};
     }
 
@@ -9305,18 +9231,7 @@ export default function (pi: ExtensionAPI): void {
     // stability. Operates on the (stripped + compressed) prompt so the
     // cache key derived from `stablePrefix` reflects what actually
     // ships to the provider.
-    const authorizedCandidates = model
-      ? observePrefixPromotionCandidates(
-        compressedPrompt,
-        event.systemPromptOptions,
-        sessionModelKey(model),
-      )
-      : new Set<string>();
-    const optimized = optimizeSystemPrompt(
-      compressedPrompt,
-      event.systemPromptOptions,
-      authorizedCandidates,
-    );
+    const optimized = optimizeSystemPrompt(compressedPrompt, event.systemPromptOptions);
 
     // Prefix-churn detection: when the stable prefix shipped for this model
     // changed versus its previous request, count it. Counting and reporting

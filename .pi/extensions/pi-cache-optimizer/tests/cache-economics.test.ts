@@ -407,19 +407,19 @@ describe('prefix churn detection', () => {
         },
       });
 
-      // Turn 1: first observation for the model — no stable prefix ships.
+      // Turn 1: first observation for the model — never churn.
       await beforeAgentStart(
         { systemPrompt: promptWith('Always verify.'), systemPromptOptions: optionsFor('Always verify.') },
         context,
       );
       await messageEnd(assistantMessage(100), context);
-      // Turn 2: the unchanged candidate is authorized and lifted.
+      // Turn 2: identical stable prefix — no churn.
       await beforeAgentStart(
         { systemPrompt: promptWith('Always verify.'), systemPromptOptions: optionsFor('Always verify.') },
         context,
       );
       await messageEnd(assistantMessage(100), context);
-      // Turn 3: a changed candidate is observed but remains unlifted.
+      // Turn 3: stable prefix changed — one churn.
       await beforeAgentStart(
         { systemPrompt: promptWith('Always verify twice.'), systemPromptOptions: optionsFor('Always verify twice.') },
         context,
@@ -433,7 +433,7 @@ describe('prefix churn detection', () => {
         .flatMap((byModel: any) => Object.values(byModel));
       assert.ok(allRecords.length >= 1);
       const churnCounts = allRecords.map((record: any) => record.prefixChurnCount);
-      assert.deepEqual(churnCounts, [2], 'two measured prefix changes after conservative promotion');
+      assert.deepEqual(churnCounts, [1], 'one churn after the third turn, none before');
     } finally {
       if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
       else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
