@@ -114,6 +114,13 @@ thinner than the receipts and per-iteration deltas, which are the reliable recor
 
 Six questions in `research.md` are marked operator-settled and cannot be closed by more research —
 they need decisions about provider semantics and acceptable false-positive rates.
+
+A second-opinion leg on Sonnet 5 is prepared but not run. Iterations 006-008 exist as prompts and
+`RUN-SONNET-ITERATIONS.sh`, and must be run from a plain shell: the deep-loop recursion guard
+refuses a `cli-claude-code` dispatch whenever the `claude` binary appears in the process ancestry,
+which is true inside any Claude Code session regardless of which account or config directory is
+selected. Verified directly — the refusal is at the `ancestry` layer and persists with the session
+id removed from the environment, so it is a nesting property rather than an auth one.
 <!-- /ANCHOR:limitations -->
 
 ---

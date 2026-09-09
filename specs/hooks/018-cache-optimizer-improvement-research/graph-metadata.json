@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Pi cache extension recently absorbed three capabilities and had three defects fixed, but no one",
     "created_at": "2026-09-09T09:11:34Z",
-    "last_save_at": "2026-09-09T09:57:36.830Z",
+    "last_save_at": "2026-09-09T11:33:17.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:735ebb45f5b5172ce0403c629a91a4435334142e25e040f5bc060edbaa39f3fd",
+    "source_fingerprint": "sha256:ee03c77f43ec91f5cca4f2fc35a8a613040b0e40c4083a48f6c4780a858f23c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8261488f0cd014cab2dbec04e2293420a452e9bb1a26867e2d345acdebea1419",
       "plan.md": "91c1d94346f795462cbf5cd92df3e364a12c725f7346d4bd9993b5fe08c7c366",
       "tasks.md": "a14b81097bc1c31de28e5da46d328d5e17becc903a603c4cd166ee82e6198430",
-      "implementation-summary.md": "e071831eb0bbc88d675a58d677bf1e3b807caf782c9e1509c7589469a4b835ee",
+      "implementation-summary.md": "6fc46de80a31a5dbbd0583d1cc232fc8cf4a2e296c49ccb7922375ddcdb0ee6b",
       "research/research.md": "acc633b81dd51a988653222bf0709caffc04ec47abe609c28491dcd3a5b2c5e3"
     },
     "last_active_at": null
