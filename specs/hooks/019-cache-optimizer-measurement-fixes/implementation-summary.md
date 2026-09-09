@@ -126,18 +126,28 @@ costing every well-behaved third-party route its cache key.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-**W2 rests on an unanswered question.** It assumes an explicit `cacheRead: 0` in a cost block is an
-authoritative "free" and that absent means "unknown". That is the defensible reading and the
-controls pin it precisely, but if the registry writes `0` to mean unknown, that commit is wrong in
-kind and should be reverted rather than adjusted.
+**Four items ship, not five.** The cross-turn stability change was reverted. Its evidence was void:
+`before_agent_start` fires once per user prompt, not once per provider request, so the one-shot
+processes used to test it never reached a second observation and lifted nothing. Its cost was also
+understated — turn one unlifted and turn two lifted changes the head of the prompt once per session
+and invalidates the cached conversation at that point, where the previous behavior lifted from turn
+one and stayed stable. Re-landing it needs multi-prompt sessions, a warm-cache control, and the
+shipped prompt bytes asserted to differ between arms.
 
-**Nothing is proven against a live provider.** Every control is a unit-level assertion. W4 in
-particular changes shipped prompt bytes, and its real test is a hit rate measured over live traffic
-now that W1 makes that number trustworthy.
+**The pricing change still rests on an unanswered question.** It assumes an explicit zero cached-read
+rate is an authoritative "free" and that absent means "unknown". If the registry writes zero to mean
+unknown, that commit is wrong in kind and should be reverted rather than adjusted.
 
-**The router-hint item was not built.** Its mechanism is confirmed and its severity is not: nobody
-has reproduced the concurrent case. It stays out until the `requestId` stability question is
-answered, rather than being built against a guessed concurrency model.
+**The measurement change is narrower than it first appeared.** Pi's usage type requires the cache
+fields, so the unmeasured branch is reachable through the raw fallbacks and the capability
+declaration rather than through the normalized reader. That is why the declaration exists; it is not
+a defect, but the earlier claim that classification "did not misfire" was empty rather than
+reassuring.
+
+**Nothing is proven against a live provider beyond the pricing, capability and migration paths.**
+The quality comparison run earlier is inconclusive by construction, because neither arm lifted a
+prefix, so it compared near-identical bytes.
+
 <!-- /ANCHOR:limitations -->
 
 ---

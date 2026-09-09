@@ -1,0 +1,14 @@
+Implemented all three fixes in four scoped files.
+
+- `message_end` now falls back to the active model’s `reportsCacheUsage` flag when stats compat lacks it.
+- `/cache-optimizer reset` clears learned key rejections and persists the deletion.
+- README documents `reportsCacheUsage`.
+
+Tests added:
+
+- Handler-level virtual routing regression for Fix 1.
+- Persist, reset and fresh-load regression for Fix 2.
+
+Both tests failed with their fixes reverted, then passed after restoration.
+
+Validation: required check passed with 110 tests. Typecheck, comment hygiene and scoped diff checks passed. No spec files changed and nothing was committed.
