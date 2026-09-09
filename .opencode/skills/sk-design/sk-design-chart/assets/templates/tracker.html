@@ -284,9 +284,6 @@ const MARKS = {
   why: 'A block answers by its shade, so points would restate the status; the periods it counts sit above the baseline the strip runs on'
 };
 /* MARKS:END */
-// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
-// drawing needs is taken while the policy is still the MARKS in scope.
-const GUIDE = MARKS.guide;
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -414,7 +411,7 @@ function markable(el, datum, rows) {
       return {
         label: READOUT.label(row[0]),
         value: READOUT.value(row[1], row[2]),
-        token: '--chart-series-1'
+        token: row[3] || '--chart-series-1'
       };
     })
   });
@@ -469,6 +466,9 @@ const STRIP_W = 60 * BLOCK_W + 59 * GAP;
 const X0 = (720 - STRIP_W) / 2;
 const Y0 = 44;
 
+const TOKEN_BY_STATUS = {};
+SERIES.forEach(function (s) { TOKEN_BY_STATUS[s.key] = s.token; });
+
 const STATUS_CLASSES = { held: 'status-held', degraded: 'status-degraded', failed: 'status-failed' };
 const BLOCKS = [];
 DATA.forEach(function (d, i) {
@@ -479,7 +479,7 @@ DATA.forEach(function (d, i) {
     height: BLOCK_H,
     rx: MARK_R
   }, 'block ' + (STATUS_CLASSES[d.status] || 'status-1'));
-  markable(block, d, [['Status', d.status]]);
+  markable(block, d, [['Status', d.status, null, TOKEN_BY_STATUS[d.status]]]);
   BLOCKS.push(block);
 });
 

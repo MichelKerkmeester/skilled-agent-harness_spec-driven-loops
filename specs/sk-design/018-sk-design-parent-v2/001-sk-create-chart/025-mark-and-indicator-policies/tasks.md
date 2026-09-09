@@ -61,6 +61,19 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Review round
+
+- [x] T011 Opus review on a second account plus a parallel audit here, both aimed at assertions that pass for an incidental reason
+- [x] T012 Reproduce every finding on a mutated copy before fixing it, and again after
+- [x] T013 Close the ten leaks; scope the corpus-wide colour exemption to the declaration block rather than the vocabulary
+- [x] T014 Fix the card row token at its source: a row carries its series' own token, not an ordinal
+- [x] T015 Give the orders delivery the reference line its headline already claims
+- [x] T016 Correct the contract and changelog claims the checks do not actually make
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -178,7 +191,7 @@ contextType: "general"
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-09
+**Verification Date**: 2026-09-09 (review round same day)
 <!-- /ANCHOR:summary -->
 
 ---

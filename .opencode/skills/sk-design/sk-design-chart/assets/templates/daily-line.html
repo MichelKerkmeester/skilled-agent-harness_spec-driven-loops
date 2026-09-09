@@ -337,9 +337,6 @@ const MARKS = {
   why: 'The line and its fading area carry the trend, so the crown marks only the day the sentence cites; orders never fall below the baseline the area fades toward'
 };
 /* MARKS:END */
-// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
-// drawing needs is taken while the policy is still the MARKS in scope.
-const GUIDE = MARKS.guide;
 
 /* REFERENCE:BEGIN */
 // Lines the reader measures the marks against, drawn across the plot and named at the right
@@ -494,7 +491,6 @@ guideLine.setAttribute('class', 'cursor-guide');
 svg.appendChild(guideLine);
 
 function moveGuide(mark) {
-  if (!guideLine) return;
   const box = mark.getBBox();
   const at = box.x + box.width / 2;
   guideLine.setAttribute('x1', at);
@@ -505,7 +501,7 @@ function moveGuide(mark) {
 }
 
 function hideGuide() {
-  if (guideLine) guideLine.removeAttribute('data-open');
+  guideLine.removeAttribute('data-open');
 }
 /* CURSOR_GUIDE:END */
 

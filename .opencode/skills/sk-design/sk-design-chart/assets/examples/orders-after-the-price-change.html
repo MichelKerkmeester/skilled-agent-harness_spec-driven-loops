@@ -294,15 +294,14 @@ const MARKS = {
   why: 'The line and its fading area carry the trend, so the mark lands only on the day the headline cites; orders never fall below the baseline the area fades toward'
 };
 /* MARKS:END */
-// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
-// drawing needs is taken while the policy is still the MARKS in scope.
-const GUIDE = MARKS.guide;
 
 /* REFERENCE:BEGIN */
 // Lines the reader measures the marks against, drawn across the plot and named at the right
 // edge. Each entry is { value, label, why }; an empty list draws nothing. A reference line is
 // a claim about the data, so it carries the sentence that justifies it beside the number.
-const REFERENCE = [];
+const REFERENCE = [
+  { value: 184, label: 'Before the price change', why: 'The headline says orders settled almost a quarter lower, and the only way to see that is a line at the level they held before. The ten days to the change average 184, the days after average 140, and nothing after it reaches 158.' }
+];
 /* REFERENCE:END */
 
 // Everything below renders. The block above is the only part to edit.
@@ -451,7 +450,6 @@ guideLine.setAttribute('class', 'cursor-guide');
 svg.appendChild(guideLine);
 
 function moveGuide(mark) {
-  if (!guideLine) return;
   const box = mark.getBBox();
   const at = box.x + box.width / 2;
   guideLine.setAttribute('x1', at);
@@ -462,7 +460,7 @@ function moveGuide(mark) {
 }
 
 function hideGuide() {
-  if (guideLine) guideLine.removeAttribute('data-open');
+  guideLine.removeAttribute('data-open');
 }
 /* CURSOR_GUIDE:END */
 

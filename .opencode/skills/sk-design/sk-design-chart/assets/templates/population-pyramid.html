@@ -268,9 +268,6 @@ const MARKS = {
   why: 'The mirrored bars are the reading and their ends meet the centre, so points would crowd the spine; counts stay positive on both sides'
 };
 /* MARKS:END */
-// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
-// drawing needs is taken while the policy is still the MARKS in scope.
-const GUIDE = MARKS.guide;
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -359,7 +356,7 @@ function compact(v) {
 // The card prints both counts no matter which bar of the band is pointed at, because the
 // reader's question about one side is whether the other side matches it.
 function cardRows(d) {
-  return SERIES.map(function (series, s) { return [series.label, fmt(d.values[s]), null, s + 1]; });
+  return SERIES.map(function (series, s) { return [series.label, fmt(d.values[s]), null, series.token]; });
 }
 
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
@@ -412,6 +409,11 @@ for (let r = 0; r < TIP_ROWS; r += 1) {
 function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
   const seriesNumber = el.getAttribute('data-series') || '1';
+  // A mark's number indexes the declared series, and a series' colour is its own token rather
+  // than that number: two forms here order their marks and their tokens differently, and taking
+  // the number for the colour paints the card in a colour no mark on the page uses.
+  const marked = SERIES[Number(seriesNumber) - 1];
+  const markToken = marked ? marked.token : '--chart-series-' + seriesNumber;
   MARKS.set(el, {
     name: READOUT.label(datum[READOUT.key]),
     rows: rows.map(function (row) {
@@ -421,7 +423,7 @@ function markable(el, datum, rows) {
       return {
         label: READOUT.label(row[0]),
         value: READOUT.value(row[1], row[2]),
-        token: '--chart-series-' + (row[3] || seriesNumber)
+        token: row[3] || markToken
       };
     })
   });

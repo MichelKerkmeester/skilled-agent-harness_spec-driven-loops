@@ -700,14 +700,16 @@ function colourResolves(value) {
   if (v.includes('var(--chart-')) return true;
   if (COLOUR_KEYWORDS.has(v)) return true;
   if (/^url\(\s*['"]?#/.test(v)) return true;
-  // The mark policy speaks in paint words rather than paint: its fill says how an area is laid
-  // down, and that word answers to the mark-policy check, not to the paint judgement here.
-  if (v === 'gradient' || v === 'flat') return true;
   return false;
 }
 
 function checkColourLiterals(file, src, blocks) {
   const cleaned = stripHtmlComments(withoutBlocks(src, blocks))
+    // The mark policy speaks in paint words rather than paint: its fill names how an area is
+    // laid down, and answers to the rule that holds the vocabulary. Letting those words past
+    // this rule everywhere instead of cutting the block they live in would let a mark take a
+    // stroke of "flat", which a browser paints black.
+    .replace(/\/\*\s*MARKS:BEGIN\s*\*\/[\s\S]*?\/\*\s*MARKS:END\s*\*\//g, ' ')
     .replace(/x?link:href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/href\s*=\s*"#[^"]*"/gi, ' ')
     .replace(/url\(\s*#[^)]*\)/gi, ' ');
@@ -1706,6 +1708,15 @@ function checkFindingCue(file, src) {
   }
 }
 
+// A function's own declaration contains the same text as a call to it, so a check that only
+// asks whether the name appears is satisfied by the helper nobody calls. Count the appearances
+// and subtract the declaration.
+function calls(code, name) {
+  const seen = (code.match(new RegExp(name + '\\s*\\(', 'g')) || []).length;
+  const declared = new RegExp('function\\s+' + name + '\\s*\\(').test(code) ? 1 : 0;
+  return seen - declared;
+}
+
 // A key is the only thing in a card that claims to stand for a mark, so it has to take the
 // mark's shape rather than one shape for everything. Whether a card carries keys at all is
 // already settled in the markup by data-single-series, so the kind answers only the second
@@ -1719,9 +1730,14 @@ function checkTooltipIndicator(file, src) {
   const cardKeyed = /\.tip-indicator\s*\{/.test(styles.join('\n')) && !/data-single-series/.test(markup);
   const legendKeyed = /key-swatch'/.test(code);
   if (!cardKeyed && !legendKeyed) return;
-  tally('tooltip-indicator', 3);
-  const keyed = /\/\*\s*CHART_SERIES:BEGIN\s*\*\//.test(raw);
-  const declarations = code.match(/indicator\s*:\s*'([a-z]+)'/g) || [];
+  tally('tooltip-indicator', 4);
+  const seriesBlock = (/\/\*\s*CHART_SERIES:BEGIN\s*\*\/([\s\S]*?)\/\*\s*CHART_SERIES:END\s*\*\//.exec(raw) || [, null])[1];
+  const keyed = seriesBlock !== null;
+  // The declaration is read from the block that holds it. Counting the word across the whole
+  // script let an unrelated object literal carrying the same field stand in for a series that
+  // had none, and let three unrelated key literals fail a file that was correct.
+  const seriesCode = stripJsComments(seriesBlock || '');
+  const declarations = seriesCode.match(/indicator\s*:\s*'([a-z]+)'/g) || [];
   if (!declarations.length) {
     record('tooltip-indicator', 'error', file,
       'the figure draws a key but declares no indicator kind. A square standing for a line tells the reader the series is a bar, so the shape a key takes is stated where the series is named');
@@ -1735,17 +1751,28 @@ function checkTooltipIndicator(file, src) {
       'the indicator kind "' + outside[0] + '" is outside swatch and rule. A key is the shape of the mark it stands for, and a mark is either filled or stroked');
   }
   if (keyed) {
-    const entries = (code.match(/\{\s*key\s*:\s*'[^']+'/g) || []).length;
+    const entries = (seriesCode.match(/\{\s*key\s*:\s*'[^']+'/g) || []).length;
     if (declarations.length < entries) {
       record('tooltip-indicator', 'error', file,
         'a series in the CHART_SERIES list carries no indicator kind. One undeclared series is the one whose key silently borrows another series\' shape');
     }
   }
-  const painted = (code.match(/paintKey\s*\(/g) || []).length -
-    (/function\s+paintKey\s*\(/.test(code) ? 1 : 0);
-  if (painted < 1) {
+  // A file draws a key in as many places as it has key-drawing surfaces, and each one has to
+  // consult the declaration. Counting a single call would let the legend keep painting a square
+  // while the card alone was converted, which is half the defect this family exists to catch.
+  const sites = (legendKeyed ? 1 : 0) + (cardKeyed ? 1 : 0);
+  const painted = calls(code, 'paintKey');
+  if (painted < sites) {
     record('tooltip-indicator', 'error', file,
-      'no key is painted through the declared kind. A declaration the drawing never reads is a comment, and the card goes on painting whatever it painted before');
+      'the file draws ' + sites + ' key' + (sites === 1 ? '' : 's') + ' and consults the declared kind ' + painted + ' time' + (painted === 1 ? '' : 's') + '. A key painted without reading the declaration goes on painting whatever it painted before');
+  }
+  // Counting calls alone is satisfied by calling the helper twice for one key and painting the
+  // other by hand. In a file that draws keys there is one place a background colour is set, and
+  // it is inside the helper; a second one is a key that went around the declaration.
+  const backgrounds = (code.match(/style\s*\.\s*backgroundColor/g) || []).length;
+  if (backgrounds > 1) {
+    record('tooltip-indicator', 'error', file,
+      'a key takes its colour outside the one place that reads the declared kind. Every key in a keyed form is painted through that one helper, so a second background assignment is a key drawn around the declaration rather than through it');
   }
 }
 
@@ -1756,7 +1783,9 @@ function checkReferenceLine(file, src) {
   const { scripts, styles } = regionsOf(stripHtmlComments(src));
   const raw = scripts.join('\n');
   const code = stripJsComments(raw);
-  const cartesian = /const y = function \(v\)/.test(code) && /^\.grid \{/m.test(styles.join('\n'));
+  // The forms this covers share one vertical value scale and a drawn grid. Anchoring the test
+  // to an exact spelling meant a reformat could drop a form out of the rule in silence.
+  const cartesian = /const y = function\s*\(/.test(code) && /\.grid\s*\{/.test(styles.join('\n'));
   if (!cartesian) return;
   tally('reference-line', 3);
   const declared = /\/\*\s*REFERENCE:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*REFERENCE:END\s*\*\//.exec(raw);
@@ -1775,10 +1804,22 @@ function checkReferenceLine(file, src) {
     record('reference-line', 'error', file,
       'a REFERENCE entry is missing its value, its label or its why. An unnamed line is a rule the reader cannot read, and an unexplained one is a claim nobody signed');
   }
-  const reads = /REFERENCE\s*\.\s*forEach/.test(code) || /of\s+REFERENCE\b/.test(code);
+  const drawing = (/\/\*\s*REFERENCE_DRAW:BEGIN\s*\*\/([\s\S]*?)\/\*\s*REFERENCE_DRAW:END\s*\*\//.exec(raw) || [, ''])[1];
+  const reads = /REFERENCE\s*\.\s*forEach/.test(drawing) || /of\s+REFERENCE\b/.test(drawing);
   if (!reads) {
     record('reference-line', 'error', file,
       'the drawing never reads REFERENCE. A declared line the paint code ignores leaves the form claiming a level it does not draw');
+  }
+  // Ten of these forms ship an empty list, so the body has never run in this corpus. Reading
+  // the list proves nothing about what happens when it holds an entry.
+  if (reads && !(/createElementNS/.test(drawing) && /appendChild/.test(drawing))) {
+    record('reference-line', 'error', file,
+      'the drawing walks REFERENCE without putting a rule in the document. A loop that reads the list and appends nothing is the form claiming a level it does not draw');
+  }
+  tally('reference-line', 2);
+  if (!/\.reference\s*\{/.test(styles.join('\n'))) {
+    record('reference-line', 'error', file,
+      'the file draws a reference rule and carries no style for it. An SVG line with no stroke is invisible, so the level would be declared, appended and unseen');
   }
 }
 
@@ -1793,7 +1834,7 @@ function checkCursorGuide(file, src) {
   const raw = scripts.join('\n');
   const code = stripJsComments(raw);
   if (!/function openTip\(/.test(code)) return;
-  tally('cursor-guide', 4);
+  tally('cursor-guide', 5);
   const declared = /\n  guide: (true|false),/.exec(raw);
   if (!declared) {
     record('cursor-guide', 'error', file,
@@ -1809,12 +1850,16 @@ function checkCursorGuide(file, src) {
     record('cursor-guide', 'error', file,
       'the figure guides the pointer with ' + series + ' declared series and ' + points + ' readings. One short series marks its own readings, and a line crossing the plot on every hover is then one more thing to look past');
   }
-  const drawsGuide = /cursor-guide/.test(styles.join('\n')) || /'cursor-guide'/.test(code);
+  const drawsGuide = /\.cursor-guide\s*\{/.test(stripJsComments(styles.join('\n'))) || /'cursor-guide'/.test(code);
   if (on && !drawsGuide) {
     record('cursor-guide', 'error', file,
       'the figure declares a guide it never draws. A form that says it follows the pointer and does not is the declaration this corpus keeps deleting');
   }
-  if (on && !(/moveGuide\(mark\)/.test(code) && /hideGuide\(\)/.test(code))) {
+  if (on && !/appendChild\(guideLine\)/.test(code)) {
+    record('cursor-guide', 'error', file,
+      'the guide element is built and never put in the document. A hairline that exists only as a variable is a guide the reader never sees');
+  }
+  if (on && !(calls(code, 'moveGuide') >= 1 && calls(code, 'hideGuide') >= 1)) {
     record('cursor-guide', 'error', file,
       'the guide is never moved onto a reading, or never cleared when the pointer leaves. A hairline left behind marks a reading nobody is reading');
   }
@@ -1838,14 +1883,16 @@ function checkMarkPolicy(file, src) {
   if (!/^(assets\/(templates|examples)\/|--extra\/)/.test(where)) return;
   const { scripts, styles, markup } = regionsOf(stripHtmlComments(src));
   const code = scripts.join('\n');
-  tally('mark-policy', 4);
+  tally('mark-policy', 7);
   const declared = /\/\*\s*MARKS:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*MARKS:END\s*\*\//.exec(code);
   if (!declared) {
     record('mark-policy', 'error', file,
       'the drawing declares no MARKS block. Whether a figure adds points, how its areas are painted and where its zero sits are decisions the paint code makes either way, so the drawing states them where a later editor reads them');
     return;
   }
-  const block = declared[1];
+  // A commented-out declaration is not a declaration. Every other rule strips comments before
+  // reading a block, and reading this one raw let a disabled line keep answering for the file.
+  const block = stripJsComments(declared[1]);
   const field = (name) => {
     const found = new RegExp('\\b' + name + "\\s*:\\s*'([a-z]+)'").exec(block);
     return found ? found[1] : null;
@@ -1868,14 +1915,44 @@ function checkMarkPolicy(file, src) {
   // The fill words promise paint the drawing must carry: a fading or flat area is laid down by
   // a gradient definition or a fill-opacity rule, and a form that declares no area owes neither.
   // Promise and paint are held against each other so the block cannot drift from the drawing.
-  const paintsArea = /linearGradient|fill-opacity/.test(styles.join('\n') + '\n' + markup + '\n' + code);
-  if ((fill === 'gradient' || fill === 'flat') && !paintsArea) {
+  const everything = styles.join('\n') + '\n' + markup + '\n' + code;
+  const fades = /linearGradient|radialGradient/.test(everything);
+  const flattens = /fill-opacity/.test(everything);
+  if (fill === 'gradient' && !fades) {
     record('mark-policy', 'error', file,
-      'the MARKS block declares a fading or flat fill, and the file paints neither a gradient nor a fill-opacity. A promised area nobody lays down is a declaration the next editor cannot trust');
+      'the MARKS block declares a fading fill and the file defines no gradient. A promised fade nobody lays down is a declaration the next editor cannot trust');
   }
-  if (fill === 'none' && paintsArea) {
+  if (fill === 'flat' && !flattens) {
+    record('mark-policy', 'error', file,
+      'the MARKS block declares a flat fill and the file sets no fill-opacity. A flat area is one opacity held across the shape, and a file that sets none is not painting one');
+  }
+  if (fill === 'flat' && fades) {
+    record('mark-policy', 'error', file,
+      'the MARKS block declares a flat fill and the file defines a gradient. The two words name different paint, so a check that accepted either for both would hold neither');
+  }
+  if (fill === 'none' && (fades || flattens)) {
     record('mark-policy', 'error', file,
       'the MARKS block declares no area, and the file still paints through a gradient or a fill-opacity. An unpromised area is a second handwriting of what the figure does');
+  }
+  // A declared point has to reach the drawing. The reverse does not hold and is not asserted:
+  // a form may draw a circle purely as a hit region a reader never sees, which is why a file
+  // declaring none may still carry one.
+  const drawsCircles = /'circle'/.test(code);
+  if ((points === 'sparse' || points === 'all') && !drawsCircles) {
+    record('mark-policy', 'error', file,
+      'the MARKS block promises marks on the readings and the drawing places none. A figure that says it marks its readings and draws no mark is the drift this block exists to stop');
+  }
+  // A zero is meaningful exactly when the readings cross it: that is the whole difference
+  // between a floor the marks stand on and a line the figure is read against.
+  const dataBlock = (/\/\*\s*CHART_DATA:BEGIN\s*\*\/([\s\S]*?)\/\*\s*CHART_DATA:END\s*\*\//.exec(code) || [, ''])[1];
+  const crossesZero = /[:,[]\s*-\d/.test(stripJsComments(dataBlock));
+  if (zero === 'meaningful' && !crossesZero) {
+    record('mark-policy', 'error', file,
+      'the MARKS block calls its zero meaningful and no reading falls below it. A zero every mark stands on is a floor, and calling it a reading gives the axis a significance the data does not carry');
+  }
+  if (zero === 'baseline' && crossesZero) {
+    record('mark-policy', 'error', file,
+      'the MARKS block calls its zero a baseline and the readings cross it. A figure with signed readings is read against its zero, and drawing it as a floor hides the sign');
   }
 }
 

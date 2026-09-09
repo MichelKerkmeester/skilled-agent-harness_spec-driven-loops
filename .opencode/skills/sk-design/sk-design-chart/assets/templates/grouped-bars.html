@@ -292,9 +292,6 @@ const MARKS = {
   why: 'Bars in a group grow side by side from the shared baseline, so points would fight the comparison; no series value is negative'
 };
 /* MARKS:END */
-// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
-// drawing needs is taken while the policy is still the MARKS in scope.
-const GUIDE = MARKS.guide;
 
 /* REFERENCE:BEGIN */
 // Lines the reader measures the marks against, drawn across the plot and named at the right
@@ -437,13 +434,18 @@ for (let r = 0; r < TIP_ROWS; r += 1) {
 function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
   const seriesNumber = el.getAttribute('data-series') || '1';
+  // A mark's number indexes the declared series, and a series' colour is its own token rather
+  // than that number: two forms here order their marks and their tokens differently, and taking
+  // the number for the colour paints the card in a colour no mark on the page uses.
+  const marked = SERIES[Number(seriesNumber) - 1];
+  const markToken = marked ? marked.token : '--chart-series-' + seriesNumber;
   MARKS.set(el, {
     name: READOUT.label(datum[READOUT.key]),
     rows: rows.map(function (row) {
       return {
         label: READOUT.label(row[0]),
         value: READOUT.value(row[1], row[2]),
-        token: '--chart-series-' + seriesNumber
+        token: row[3] || markToken
       };
     })
   });

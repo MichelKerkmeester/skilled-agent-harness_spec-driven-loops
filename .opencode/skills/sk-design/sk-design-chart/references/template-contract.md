@@ -256,21 +256,36 @@ description that goes stale first.
 `spark` carry one dot each rather than twenty-eight. `all` belongs to the forms whose reading *is*
 the point: `scatter`, `dumbbell`, `distribution-strip` and `parallel-axes`. `meaningful` is
 declared by one form, `waterfall`, because its steps are signed and its baseline separates a rise
-from a fall. Every other form's zero is the floor its bars stand on. The `mark-policy` family
-holds the block, the vocabulary and the agreement with what the file actually paints.
+from a fall. Every other form's zero is the floor its bars stand on.
+
+The `mark-policy` family holds each word against the drawing, not just against the vocabulary. A
+declared fade needs a gradient and a declared flat fill needs an opacity, and neither accepts the
+other's paint. A zero is meaningful exactly when a reading falls below it. Points are held one way
+only: a form promising marks has to draw them, while a form declaring `none` may still carry a
+circle, because several forms place an invisible one purely as something a pointer can reach.
 
 ### A level a reader measures against is declared
 
 A target, an average or a threshold drawn across a plot is a claim about the data, not decoration,
-so a form that can carry one says whether it does. Every cartesian form declares a `REFERENCE`
-list of `{ value, label, why }`; an empty list draws nothing, and the drawing takes all three
-fields from the block rather than from a data field of its own. The line is dashed at the ink
+so a form that can carry one says whether it does. Every form built on the corpus's one vertical
+value scale and a drawn grid declares a `REFERENCE` list of `{ value, label, why }`; an empty list
+draws nothing, and the drawing takes all three fields from the block rather than from a data field
+of its own.
+
+That set is narrower than "cartesian", deliberately. A form reading two scales at once cannot say
+which one a chart-wide value belongs to, which rules out `bar-line-composed`. A form whose value
+runs along the horizontal, or whose points each answer to their own axis, has no single level to
+draw, which rules out `pick-times-by-depot` and `parallel-axes`. `spark` has the scale and no axis,
+no labels and no grid, so a named rule across it would break the form. The line is dashed at the ink
 colour so it is not mistaken for the grid, and its label is set at the right edge of the plot, above
 the rule.
 
-`daily-line` is the worked case: it declares one line at the first week's average, which is what
-makes the headline visible rather than asserted, since nothing after day eleven reaches it. The
-`reference-line` family holds the block, the three fields and the read by the drawing.
+Two forms carry a line, and both carry it for the same reason: the headline is a claim about a
+level, and the level is already in the data. `daily-line` declares the first week's average, which
+nothing after day eleven reaches. The `orders-after-the-price-change` delivery declares the ten
+days before the change, 184 against 140 after it, which is the "almost a quarter lower" its
+headline states. The `reference-line` family holds the block, the three fields, the read by the
+drawing, that the drawing appends a rule, and that the file styles it.
 
 `bullet` is not a consumer, and the reason is worth stating because it looks like one. Its target
 is per row, not per plot: four measures carry four different targets against four different scales,

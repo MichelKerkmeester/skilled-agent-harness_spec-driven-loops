@@ -347,9 +347,6 @@ const MARKS = {
   why: 'The rate line keeps its stroke as the only visible mark and the columns carry their counts, so no point is added; neither series dips below the baseline both scales share'
 };
 /* MARKS:END */
-// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
-// drawing needs is taken while the policy is still the MARKS in scope.
-const GUIDE = MARKS.guide;
 
 // Everything below draws. Two measures is the ceiling for this form. A third would need a
 // third ladder, and a reader cannot hold three scales at once: past two, the honest answer is
@@ -483,6 +480,11 @@ for (let r = 0; r < TIP_ROWS; r += 1) {
 function markable(el, datum, rows) {
   el.setAttribute('data-mark', '');
   const seriesNumber = el.getAttribute('data-series') || '1';
+  // A mark's number indexes the declared series, and a series' colour is its own token rather
+  // than that number: two forms here order their marks and their tokens differently, and taking
+  // the number for the colour paints the card in a colour no mark on the page uses.
+  const marked = SERIES[Number(seriesNumber) - 1];
+  const markToken = marked ? marked.token : '--chart-series-' + seriesNumber;
   MARKS.set(el, {
     name: READOUT.label(datum[READOUT.key]),
     rows: rows.map(function (row) {
@@ -492,7 +494,7 @@ function markable(el, datum, rows) {
       return {
         label: READOUT.label(row[0]),
         value: READOUT.value(row[1], row[2]),
-        token: '--chart-series-' + (row[3] || seriesNumber)
+        token: row[3] || markToken
       };
     })
   });
@@ -508,7 +510,6 @@ guideLine.setAttribute('class', 'cursor-guide');
 svg.appendChild(guideLine);
 
 function moveGuide(mark) {
-  if (!guideLine) return;
   const box = mark.getBBox();
   const at = box.x + box.width / 2;
   guideLine.setAttribute('x1', at);
@@ -519,7 +520,7 @@ function moveGuide(mark) {
 }
 
 function hideGuide() {
-  if (guideLine) guideLine.removeAttribute('data-open');
+  guideLine.removeAttribute('data-open');
 }
 /* CURSOR_GUIDE:END */
 
@@ -691,8 +692,8 @@ DATA.forEach(function (d, i) {
     d: topRounded(cx(i) - barWidth / 2, top, barWidth, BASE - top, MARK_R),
     'data-series': 1
   }, 'bars'), d, [
-    ['Count (left scale)', fmt(d.count), null, 1],
-    ['Rate (right scale)', fmt(d.rate, 1), null, 2]
+    ['Count (left scale)', fmt(d.count), null, SERIES[0].token],
+    ['Rate (right scale)', fmt(d.rate, 1), null, SERIES[1].token]
   ]);
 });
 
@@ -724,8 +725,8 @@ segments.forEach(function (points) {
 DATA.forEach(function (d, i) {
   if (!Number.isFinite(d.rate)) return;
   markable(node('circle', { cx: cx(i), cy: yRate(d.rate), r: 3, 'data-series': 2 }, 'rate-dot'), d, [
-    ['Count (left scale)', fmt(d.count), null, 1],
-    ['Rate (right scale)', fmt(d.rate, 1), null, 2]
+    ['Count (left scale)', fmt(d.count), null, SERIES[0].token],
+    ['Rate (right scale)', fmt(d.rate, 1), null, SERIES[1].token]
   ]);
 });
 
