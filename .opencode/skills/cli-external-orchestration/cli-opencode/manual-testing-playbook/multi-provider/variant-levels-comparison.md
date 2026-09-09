@@ -1,7 +1,7 @@
 ---
 title: "CO-012 -- Variant levels (minimal/low/medium/high)"
 description: "This scenario validates the `--variant` flag levels for `CO-012`. It focuses on confirming the `opencode-go/deepseek-v4-flash` variant range (minimal through the skill-verified `high` default) maps to reasoning effort and produces materially different response depth between extremes."
-version: 1.4.0.19
+version: 1.4.0.20
 ---
 
 # CO-012 -- Variant levels (minimal/low/medium/high)
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Variant levels for `CO-012`. It focuses on confirming the `--variant` flag accepts the documented per-provider range and that the response depth materially differs between extremes when the same prompt is dispatched. Underlying-model conventions apply: the DeepSeek-family reasoning models (via the opencode-go, OpenRouter, and Cline routes) accept reasoning-effort variants.
+This scenario validates Variant levels for `CO-012`. It focuses on confirming the `--variant` flag accepts the documented per-provider range and that the response depth materially differs between extremes when the same prompt is dispatched. Underlying-model conventions apply: the DeepSeek-family reasoning models (via the opencode-go and Cline routes) accept reasoning-effort variants.
 
 ### Why This Matters
 

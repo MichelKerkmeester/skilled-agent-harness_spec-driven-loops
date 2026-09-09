@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.0.0
+version: 1.5.1.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -131,7 +131,7 @@ The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`]
 
 This packet owns provider-specific routing, the availability probe, and prompt construction. The shared deep-loop runtime owns process construction and execution. The runtime now supports the `cli-pi` executor kind — its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so dispatch through the executor kind directly. Do not add a packet-local wrapper, spawn path, or command builder.
 
-**Seven providers are reachable:** `openai-codex`, `opencode-go`, `openrouter`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's flat-price LLM Gateway plan), `minimax` and `xiaomi`. Two of them — `cline-pass` and `llmgateway` — are not Pi builtins and exist only because `.pi/models.json` declares them; their setup, credentials and removal are in [.pi/custom-providers.md](../../../../.pi/custom-providers.md).
+**Six providers are reachable:** `openai-codex`, `opencode-go`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's flat-price LLM Gateway plan), `minimax` and `xiaomi`. Two of them — `cline-pass` and `llmgateway` — are not Pi builtins and exist only because `.pi/models.json` declares them; their setup, credentials and removal are in [.pi/custom-providers.md](../../../../.pi/custom-providers.md).
 
 **Closed roster — non-roster models are FORBIDDEN.** Dispatch ONLY the models in [references/providers-and-models.md](./references/providers-and-models.md) §2, which is the single place the ids, thinking ceilings and per-provider id shapes are recorded; this file names the providers but deliberately does not restate their models. The deep-loop fan-out hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS`); even a direct `pi --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first.
 

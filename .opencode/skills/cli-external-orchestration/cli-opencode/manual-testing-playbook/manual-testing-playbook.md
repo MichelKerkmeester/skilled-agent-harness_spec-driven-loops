@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.0.62
+version: 1.4.0.63
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -335,7 +335,7 @@ This category covers 2 scenario summaries while the linked feature files remain 
 
 #### Description
 
-The direct DeepSeek API provider was retired from the cli-opencode roster; the former CO-011 dispatch contract (direct `deepseek/deepseek-v4-*` ids) is no longer a supported scenario and its feature file was removed. DeepSeek V4 Flash coverage continues via the opencode-go gateway and OpenRouter routes — see CO-012 for the variant-level contract.
+The direct DeepSeek API provider was retired from the cli-opencode roster; the former CO-011 dispatch contract (direct `deepseek/deepseek-v4-*` ids) is no longer a supported scenario and its feature file was removed. DeepSeek V4 Flash coverage continues via the opencode-go gateway route — see CO-012 for the variant-level contract.
 
 ### CO-012 | Variant levels (minimal/low/medium/high/max)
 

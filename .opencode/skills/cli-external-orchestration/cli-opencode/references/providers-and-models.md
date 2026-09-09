@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax xiaomi gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.29
+version: 1.4.0.30
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -77,17 +77,6 @@ opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 | `opencode-go/glm-5.3-flash` | — | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--variant max` by policy; ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 
-### openrouter
-
-OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-segment `openrouter/<upstream>/<model-id>` to `--model`. Confirm live slugs via `opencode models openrouter`. The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--variant max` by the same policy as the direct and opencode-go flash ids.
-
-> **OpenRouter here carries exactly two models: DeepSeek V4 Flash (`openrouter/deepseek/deepseek-v4-flash-vision-exp`) and GLM-5.3-Flash (`openrouter/z-ai/glm-5.3-flash`).** Do not route any other model through OpenRouter here, whatever it fronts and whatever another provider on this page carries.
-
-| Model id | Default? | Notes |
-|----------|----------|-------|
-| `openrouter/deepseek/deepseek-v4-flash-vision-exp` | — | DeepSeek V4 Flash Vision via OpenRouter; reasoning model pinned to `--variant max` by policy; accepts images. Id accepted by the live OpenRouter API on 2026-09-05 |
-| `openrouter/z-ai/glm-5.3-flash` | — | GLM-5.3-Flash via OpenRouter; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--variant max`; ladder re-verified in `opencode models openrouter --verbose` on 2026-09-04. Replaces the retired Ox Alpha stealth route. **GLM-5.3-Flash's top tier is per-route, not per-model:** `max` here and on opencode-go, `xhigh` only on Cline, and **both** on the DevPass `llmgateway` route below |
-
 ### cline-pass
 
 Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The cline-pass DeepSeek entry is a direct-dispatch roster entry only; it is not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
@@ -96,7 +85,7 @@ Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-
 |----------|----------|-------|
 | `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
 
-> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`openrouter/z-ai/glm-5.3-flash`** or **`opencode-go/glm-5.3-flash`** instead.
+> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 
 ### llmgateway
 
