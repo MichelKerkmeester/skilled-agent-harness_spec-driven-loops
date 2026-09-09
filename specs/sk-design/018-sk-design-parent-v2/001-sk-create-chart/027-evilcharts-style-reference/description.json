@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference",
+  "description": "The packet carries one Style Reference, the stock it was derived from",
+  "keywords": [
+    "packet",
+    "carries",
+    "one",
+    "style",
+    "reference",
+    "stock",
+    "derived"
+  ],
+  "lastUpdated": "2026-09-09T16:25:27.399Z",
+  "specId": "027",
+  "folderSlug": "evilcharts-style-reference",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
