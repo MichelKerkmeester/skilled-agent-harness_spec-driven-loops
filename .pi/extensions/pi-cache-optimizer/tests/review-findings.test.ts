@@ -22,6 +22,111 @@ import { __internals_for_tests as internals } from '#extension';
 describe('stable prompt reordering', () => {
   const guideline = '- Always run repository checks before finishing.';
 
+  type Hook = (event: any, context: any) => Promise<any> | any;
+  type Command = (args: string, context: any) => Promise<any> | any;
+
+  function promptModel(id: string) {
+    return {
+      provider: 'proxy',
+      id,
+      name: `Proxy ${id}`,
+      api: 'openai-completions',
+      baseUrl: 'https://proxy.example/v1',
+      compat: {},
+      reasoning: false,
+      input: ['text'],
+      cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+      contextWindow: 128_000,
+      maxTokens: 4096,
+    };
+  }
+
+  type PromptHarness = {
+    handlers: Map<string, Hook>;
+    commands: Map<string, Command>;
+    notifications: string[];
+    sessionId: { value: string };
+    contextFor: (model: ReturnType<typeof promptModel>) => any;
+  };
+
+  async function withFreshPromptHandlers(
+    callback: (harness: PromptHarness) => Promise<void>,
+  ): Promise<void> {
+    const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-prefix-auth-test-'));
+    const previousAgentDir = process.env.PI_CODING_AGENT_DIR;
+    const previousRetention = process.env.PI_CACHE_RETENTION;
+    const previousNoRewrite = process.env.PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE;
+    const sessionId = { value: 'prefix-auth-session-a' };
+    const notifications: string[] = [];
+
+    try {
+      process.env.PI_CODING_AGENT_DIR = tempAgentDir;
+      delete process.env.PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE;
+
+      const jiti = createJiti(join(process.cwd(), 'tests', 'review-findings.test.ts'), {
+        interopDefault: false,
+        moduleCache: false,
+      });
+      const freshModule = await jiti.import<typeof import('../index.ts')>(
+        join(process.cwd(), 'index.ts'),
+      );
+      const handlers = new Map<string, Hook>();
+      const commands = new Map<string, Command>();
+      freshModule.default({
+        on(name: string, handler: Hook) {
+          handlers.set(name, handler);
+        },
+        registerCommand(name: string, command: { handler: Command }) {
+          commands.set(name, command.handler);
+        },
+        registerTool() {},
+        getActiveTools: () => [],
+        setActiveTools() {},
+      } as any);
+
+      const contextFor = (model: ReturnType<typeof promptModel>) => ({
+        model,
+        sessionManager: { getSessionId: () => sessionId.value },
+        modelRegistry: { find: () => undefined, getAvailable: () => [], getAll: () => [] },
+        ui: {
+          notify: (message: string) => notifications.push(message),
+          setStatus() {},
+          confirm: async () => true,
+          select: async () => undefined,
+        },
+      });
+
+      await callback({ handlers, commands, notifications, sessionId, contextFor });
+    } finally {
+      if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
+      else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
+      if (previousRetention === undefined) delete process.env.PI_CACHE_RETENTION;
+      else process.env.PI_CACHE_RETENTION = previousRetention;
+      if (previousNoRewrite === undefined) delete process.env.PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE;
+      else process.env.PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE = previousNoRewrite;
+      await rm(tempAgentDir, { recursive: true, force: true });
+    }
+  }
+
+  function promptTurn(guideline: string, duplicate = false) {
+    const candidate = `- ${guideline}`;
+    const guidelineLines = duplicate ? `${candidate}\n${candidate}` : candidate;
+    return {
+      candidate,
+      event: {
+        systemPrompt: [
+          'Dynamic turn context',
+          '',
+          '## Guidelines',
+          guidelineLines,
+          '',
+          'Tail context',
+        ].join('\n'),
+        systemPromptOptions: { promptGuidelines: [guideline] },
+      },
+    };
+  }
+
   test('preserves an ambiguous candidate inside dynamic marked content', () => {
     const original = [
       '<workflow-state>',
@@ -41,7 +146,7 @@ describe('stable prompt reordering', () => {
     assert.equal(result.changed, false);
   });
 
-  test('lifts a unique candidate deterministically', () => {
+  test('waits for authorization before lifting a unique candidate', () => {
     const original = [
       'Dynamic turn context',
       '',
@@ -53,15 +158,17 @@ describe('stable prompt reordering', () => {
     const options = { promptGuidelines: [guideline.slice(2)] };
 
     const first = internals.optimizeSystemPrompt(original, options);
-    const second = internals.optimizeSystemPrompt(original, options);
+    const second = internals.optimizeSystemPrompt(original, options, new Set([guideline]));
 
-    assert.equal(first.changed, true);
-    assert.equal(first.stablePrefix, guideline);
-    assert.equal(first.systemPrompt, second.systemPrompt);
-    assert.ok(first.systemPrompt.startsWith(`${guideline}\n\n---\n\n`));
-    assert.equal(first.systemPrompt.split(guideline).length - 1, 1);
-    assert.match(first.systemPrompt, /Dynamic turn context/);
-    assert.match(first.systemPrompt, /Tail context/);
+    assert.equal(first.changed, false);
+    assert.equal(first.stablePrefix, '');
+    assert.equal(first.systemPrompt, original);
+    assert.equal(second.changed, true);
+    assert.equal(second.stablePrefix, guideline);
+    assert.ok(second.systemPrompt.startsWith(`${guideline}\n\n---\n\n`));
+    assert.equal(second.systemPrompt.split(guideline).length - 1, 1);
+    assert.match(second.systemPrompt, /Dynamic turn context/);
+    assert.match(second.systemPrompt, /Tail context/);
   });
 
   test('preserves dynamic content nested inside a full context-file candidate', () => {
@@ -72,13 +179,145 @@ describe('stable prompt reordering', () => {
 
     const result = internals.optimizeSystemPrompt(original, {
       contextFiles: [{ path: 'AGENTS.md', content }],
-    });
+    }, new Set([fullContext]));
 
     assert.equal(result.changed, true);
     assert.equal(result.stablePrefix, fullContext);
     assert.equal(result.stablePrefix.split(content).length - 1, 1);
     assert.ok(result.systemPrompt.includes(dynamicBlock));
     assert.equal(result.systemPrompt.split(content).length - 1, 2);
+  });
+
+  test('authorizes a candidate only on the second unchanged turn', async () => {
+    await withFreshPromptHandlers(async ({ handlers, contextFor }) => {
+      const beforeAgentStart = handlers.get('before_agent_start');
+      const sessionStart = handlers.get('session_start');
+      assert.ok(beforeAgentStart);
+      assert.ok(sessionStart);
+
+      const model = promptModel('model-a');
+      const context = contextFor(model);
+      await sessionStart({ reason: 'first' }, context);
+
+      const turnA = promptTurn('Always preserve the first stable instruction.');
+      const turnB = promptTurn('Always preserve the second stable instruction.');
+      const firstA = await beforeAgentStart(turnA.event, context);
+      const secondA = await beforeAgentStart(turnA.event, context);
+      const firstB = await beforeAgentStart(turnB.event, context);
+      const secondB = await beforeAgentStart(turnB.event, context);
+
+      assert.equal(firstA?.systemPrompt, undefined);
+      assert.equal(secondA?.systemPrompt?.startsWith(`${turnA.candidate}\n\n---\n\n`), true);
+      assert.equal(firstB?.systemPrompt, undefined);
+      assert.equal(secondB?.systemPrompt?.startsWith(`${turnB.candidate}\n\n---\n\n`), true);
+    });
+  });
+
+  test('does not authorize a candidate that occurs twice in one prompt', async () => {
+    await withFreshPromptHandlers(async ({ handlers, contextFor }) => {
+      const beforeAgentStart = handlers.get('before_agent_start');
+      const sessionStart = handlers.get('session_start');
+      assert.ok(beforeAgentStart);
+      assert.ok(sessionStart);
+
+      const model = promptModel('model-a');
+      const context = contextFor(model);
+      await sessionStart({ reason: 'first' }, context);
+
+      const uniqueTurn = promptTurn('Prime the authorization history first.');
+      const duplicateTurn = promptTurn('This candidate appears twice in the prompt.', true);
+      assert.equal(
+        (await beforeAgentStart(uniqueTurn.event, context))?.systemPrompt,
+        undefined,
+      );
+      assert.equal(
+        (await beforeAgentStart(duplicateTurn.event, context))?.systemPrompt,
+        undefined,
+      );
+      assert.equal(
+        (await beforeAgentStart(duplicateTurn.event, context))?.systemPrompt,
+        undefined,
+      );
+    });
+  });
+
+  test('keeps promotion authorization isolated by session', async () => {
+    await withFreshPromptHandlers(async ({ handlers, sessionId, contextFor }) => {
+      const beforeAgentStart = handlers.get('before_agent_start');
+      const sessionStart = handlers.get('session_start');
+      assert.ok(beforeAgentStart);
+      assert.ok(sessionStart);
+
+      const model = promptModel('model-a');
+      const turn = promptTurn('Keep this instruction stable across turns.');
+      const context = contextFor(model);
+      await sessionStart({ reason: 'first' }, context);
+      assert.equal((await beforeAgentStart(turn.event, context))?.systemPrompt, undefined);
+      assert.equal(
+        (await beforeAgentStart(turn.event, context))?.systemPrompt?.startsWith(
+          `${turn.candidate}\n\n---\n\n`,
+        ),
+        true,
+      );
+
+      sessionId.value = 'prefix-auth-session-b';
+      const sessionBContext = contextFor(model);
+      assert.equal((await beforeAgentStart(turn.event, sessionBContext))?.systemPrompt, undefined);
+    });
+  });
+
+  test('keeps promotion authorization isolated by model', async () => {
+    await withFreshPromptHandlers(async ({ handlers, contextFor }) => {
+      const beforeAgentStart = handlers.get('before_agent_start');
+      const sessionStart = handlers.get('session_start');
+      assert.ok(beforeAgentStart);
+      assert.ok(sessionStart);
+
+      const modelA = promptModel('model-a');
+      const modelB = promptModel('model-b');
+      const turn = promptTurn('Keep this instruction stable per model.');
+      await sessionStart({ reason: 'first' }, contextFor(modelA));
+      assert.equal(
+        (await beforeAgentStart(turn.event, contextFor(modelA)))?.systemPrompt,
+        undefined,
+      );
+      assert.equal(
+        (await beforeAgentStart(turn.event, contextFor(modelA)))?.systemPrompt?.startsWith(
+          `${turn.candidate}\n\n---\n\n`,
+        ),
+        true,
+      );
+      assert.equal(
+        (await beforeAgentStart(turn.event, contextFor(modelB)))?.systemPrompt,
+        undefined,
+      );
+    });
+  });
+
+  test('reset clears promotion authorization', async () => {
+    await withFreshPromptHandlers(async ({ handlers, commands, contextFor }) => {
+      const beforeAgentStart = handlers.get('before_agent_start');
+      const sessionStart = handlers.get('session_start');
+      const command = commands.get('cache-optimizer');
+      assert.ok(beforeAgentStart);
+      assert.ok(sessionStart);
+      assert.ok(command);
+
+      const model = promptModel('gpt-5.5');
+      const context = contextFor(model);
+      const turn = promptTurn('Reset must require a fresh stable observation.');
+      await sessionStart({ reason: 'first' }, context);
+      assert.equal((await beforeAgentStart(turn.event, context))?.systemPrompt, undefined);
+      assert.equal(
+        (await beforeAgentStart(turn.event, context))?.systemPrompt?.startsWith(
+          `${turn.candidate}\n\n---\n\n`,
+        ),
+        true,
+      );
+
+      await command('reset', context);
+      assert.equal((await beforeAgentStart(turn.event, context))?.systemPrompt, undefined);
+    });
   });
 });
 
