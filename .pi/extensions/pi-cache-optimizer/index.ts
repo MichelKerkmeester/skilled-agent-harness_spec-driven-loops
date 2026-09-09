@@ -418,6 +418,7 @@ interface CacheStatsState {
   totalsByModel: Record<string, CacheStats>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
   lastRoutedModelBySession?: Record<string, PersistedRoutedModelRef>;
+  promptCacheKeyUnsupportedModels?: string[];
 }
 
 interface PersistedCacheStatsV3 {
@@ -452,6 +453,7 @@ interface PersistedCacheStatsV6 {
   totalsByModel: Record<string, CacheStats>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
   lastRoutedModelBySession?: Record<string, PersistedRoutedModelRef>;
+  promptCacheKeyUnsupportedModels?: string[];
 }
 
 interface UsageSnapshot {
@@ -4728,6 +4730,11 @@ function findBestRouterModelStats(
   return best ? { model: best.model, adapter: best.adapter, stats: best.stats } : undefined;
 }
 
+function parsePersistedPromptCacheKeyUnsupportedModels(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return Array.from(new Set(value.filter(isNonEmptyString).map((key) => key.trim())));
+}
+
 function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
   const record = asRecord(value);
   if (!record) return undefined;
@@ -4777,8 +4784,17 @@ function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
 
     const parsedTotals = parsePersistedTotalsByModel(record.totalsByModel);
     const totalsByModel = parsedTotals ?? deriveTotalsByModelFromSessionStats(statsByModel);
+    const promptCacheKeyUnsupportedModels = parsePersistedPromptCacheKeyUnsupportedModels(
+      record.promptCacheKeyUnsupportedModels,
+    );
 
-    return { statsByModel, totalsByModel, legacyFamily, lastRoutedModelBySession };
+    return {
+      statsByModel,
+      totalsByModel,
+      legacyFamily,
+      lastRoutedModelBySession,
+      promptCacheKeyUnsupportedModels,
+    };
   }
 
   // version 3: migrate to v4/v5 semantics by wrapping statsByModel into sessions
@@ -4805,6 +4821,7 @@ function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
       statsByModel,
       totalsByModel: deriveTotalsByModelFromSessionStats(statsByModel),
       legacyFamily,
+      promptCacheKeyUnsupportedModels: [],
     };
   }
 
@@ -4818,14 +4835,24 @@ function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
         if (stats) legacyFamily[id] = stats;
       }
     }
-    return { statsByModel: {}, totalsByModel: {}, legacyFamily };
+    return {
+      statsByModel: {},
+      totalsByModel: {},
+      legacyFamily,
+      promptCacheKeyUnsupportedModels: [],
+    };
   }
 
   // version 1: single DeepSeek stats -> migrate to legacyFamily.deepseek
   if (record.version === 1) {
     const migrated = parseCacheStats(record.stats);
     return migrated
-      ? { statsByModel: {}, totalsByModel: {}, legacyFamily: { deepseek: migrated } }
+      ? {
+        statsByModel: {},
+        totalsByModel: {},
+        legacyFamily: { deepseek: migrated },
+        promptCacheKeyUnsupportedModels: [],
+      }
       : undefined;
   }
 
@@ -5041,6 +5068,7 @@ async function writePersistedCacheStats(
   let existingSessions: Record<string, Record<string, CacheStats>> = {};
   let existingTotalsByModel: Record<string, CacheStats> = {};
   let existingLastRoutedModelBySession: Record<string, PersistedRoutedModelRef> = {};
+  let existingPromptCacheKeyUnsupportedModels: string[] = [];
   try {
     const raw = await readFile(STATE_FILE_PATH, 'utf8');
     const parsed = parsePersistedCacheStats(JSON.parse(raw));
@@ -5058,6 +5086,7 @@ async function writePersistedCacheStats(
       }
       existingTotalsByModel = { ...(parsed.totalsByModel ?? {}) };
       existingLastRoutedModelBySession = { ...(parsed.lastRoutedModelBySession ?? {}) };
+      existingPromptCacheKeyUnsupportedModels = parsed.promptCacheKeyUnsupportedModels ?? [];
     }
   } catch {
     // Ignore read errors (file may not exist yet).
@@ -5070,6 +5099,10 @@ async function writePersistedCacheStats(
     state,
     currentSessionHash,
   );
+  const promptCacheKeyUnsupportedModels = Array.from(new Set([
+    ...existingPromptCacheKeyUnsupportedModels,
+    ...(state.promptCacheKeyUnsupportedModels ?? []),
+  ]));
 
   const payload: PersistedCacheStatsV6 = {
     version: 6,
@@ -5077,6 +5110,9 @@ async function writePersistedCacheStats(
     totalsByModel,
     legacyFamily: state.legacyFamily,
     ...(Object.keys(lastRoutedModelBySession).length > 0 ? { lastRoutedModelBySession } : {}),
+    ...(promptCacheKeyUnsupportedModels.length > 0
+      ? { promptCacheKeyUnsupportedModels }
+      : {}),
   };
   const tempPath = `${STATE_FILE_PATH}.${process.pid}.${Date.now()}.tmp`;
 
@@ -8583,9 +8619,14 @@ export default function (pi: ExtensionAPI): void {
   const lastShippedStablePrefixByModel = new Map<string, string>();
   const PERSIST_DEBOUNCE_MS = 2000;
 
-  function rememberPromptCacheKeyUnsupported(model: PiModel, ctx: ExtensionContext): void {
+  async function rememberPromptCacheKeyUnsupported(
+    model: PiModel,
+    ctx: ExtensionContext,
+  ): Promise<void> {
     const key = modelKey(model);
+    const wasAlreadyKnown = promptCacheKeyUnsupportedModels.has(key);
     promptCacheKeyUnsupportedModels.add(key);
+    if (!wasAlreadyKnown) await flushPersistCacheStats(ctx);
     if (warnedPromptCacheKeyUnsupportedModels.has(key)) return;
     warnedPromptCacheKeyUnsupportedModels.add(key);
     ctx.ui.notify(
@@ -8744,6 +8785,7 @@ export default function (pi: ExtensionAPI): void {
       statsByModel: cacheStatsByModel,
       totalsByModel: cacheStatsTotalsByModel,
       legacyFamily: cacheStatsLegacyFamily,
+      promptCacheKeyUnsupportedModels: Array.from(promptCacheKeyUnsupportedModels),
       ...(currentSessionHashSet && lastActualRoutedModel
         ? { lastRoutedModelBySession: { [currentSessionHash]: lastActualRoutedModel } }
         : {}),
@@ -8850,7 +8892,16 @@ export default function (pi: ExtensionAPI): void {
         Object.entries(state.lastRoutedModelBySession).map(([key, model]) => [key, { ...model }]),
       )
       : undefined;
-    return { statsByModel, totalsByModel, legacyFamily, lastRoutedModelBySession };
+    const promptCacheKeyUnsupportedModels = state.promptCacheKeyUnsupportedModels
+      ? [...state.promptCacheKeyUnsupportedModels]
+      : [];
+    return {
+      statsByModel,
+      totalsByModel,
+      legacyFamily,
+      lastRoutedModelBySession,
+      promptCacheKeyUnsupportedModels,
+    };
   }
 
   function persistCacheStats(ctx?: ExtensionContext): Promise<void> {
@@ -8956,6 +9007,14 @@ export default function (pi: ExtensionAPI): void {
     }
   }
 
+  function restorePromptCacheKeyUnsupportedModels(
+    persisted: CacheStatsState | undefined,
+  ): void {
+    for (const key of persisted?.promptCacheKeyUnsupportedModels ?? []) {
+      promptCacheKeyUnsupportedModels.add(key);
+    }
+  }
+
   async function restoreCacheStats(reason: string, ctx: ExtensionContext): Promise<void> {
     syncSessionHash(ctx);
 
@@ -8969,6 +9028,7 @@ export default function (pi: ExtensionAPI): void {
       clearRecentSamples();
 
       const persisted = await readPersistedCacheStats();
+      restorePromptCacheKeyUnsupportedModels(persisted);
       cacheStatsByModel = filterRestorableStatsForSession(
         persisted,
         currentSessionHashSet ? currentSessionHash : undefined,
@@ -8988,6 +9048,7 @@ export default function (pi: ExtensionAPI): void {
     // this session's entries. If the session hash is unavailable, start
     // fresh instead of loading all persisted session buckets.
     const persisted = await readPersistedCacheStats();
+    restorePromptCacheKeyUnsupportedModels(persisted);
     cacheStatsByModel = filterRestorableStatsForSession(
       persisted,
       currentSessionHashSet ? currentSessionHash : undefined,
@@ -9382,7 +9443,7 @@ export default function (pi: ExtensionAPI): void {
     return addOpenAIPromptCacheKey(event.payload, getSessionPromptCacheKey(ctx));
   });
 
-  pi.on('after_provider_response', (event, ctx) => {
+  pi.on('after_provider_response', async (event, ctx) => {
     const model = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
     if (!runtimeOptimizerEnabled || !model) return;
 
@@ -9391,7 +9452,7 @@ export default function (pi: ExtensionAPI): void {
       const promptCacheKeyUnsupported = isOpenAICompatibleApi(model.api) &&
         hasPromptCacheKeyUnsupportedSignal(event.headers);
       if (promptCacheKeyUnsupported) {
-        rememberPromptCacheKeyUnsupported(model, ctx);
+        await rememberPromptCacheKeyUnsupported(model, ctx);
       }
 
       if (!isPromptCacheRetention400Applicable(model)) return;
@@ -9516,7 +9577,7 @@ export default function (pi: ExtensionAPI): void {
       isOpenAICompatibleApi(requestModel.api) &&
       hasPromptCacheKeyUnsupportedSignal(msgRecord?.errorMessage)
     ) {
-      rememberPromptCacheKeyUnsupported(requestModel, ctx);
+      await rememberPromptCacheKeyUnsupported(requestModel, ctx);
     }
 
     // Record only Anthropic's explicit mixed-TTL ordering error. This is a

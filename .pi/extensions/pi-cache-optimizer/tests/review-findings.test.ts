@@ -327,6 +327,11 @@ describe('stable prompt reordering', () => {
 
 describe('OpenAI prompt cache key self-healing', () => {
   type Hook = (event: any, context: any) => Promise<any> | any;
+  type FreshModule = typeof import('../index.ts');
+  type HandlerBundle = {
+    handlers: Map<string, Hook>;
+    freshModule: FreshModule;
+  };
 
   function openAIModel(id: string, compat: Record<string, unknown> = {}) {
     return {
@@ -361,6 +366,8 @@ describe('OpenAI prompt cache key self-healing', () => {
     callback: (
       handlers: Map<string, Hook>,
       notifications: string[],
+      freshModule: FreshModule,
+      reload: () => Promise<HandlerBundle>,
     ) => Promise<void>,
   ): Promise<void> {
     const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-cache-key-test-'));
@@ -373,25 +380,9 @@ describe('OpenAI prompt cache key self-healing', () => {
         await writeFile(join(tempAgentDir, 'models.json'), JSON.stringify(modelsConfig), 'utf8');
       }
 
-      const jiti = createJiti(join(process.cwd(), 'tests', 'review-findings.test.ts'), {
-        interopDefault: false,
-        moduleCache: false,
-      });
-      const freshModule = await jiti.import<typeof import('../index.ts')>(
-        join(process.cwd(), 'index.ts'),
-      );
-      const handlers = new Map<string, Hook>();
-      freshModule.default({
-        on(name: string, handler: Hook) {
-          handlers.set(name, handler);
-        },
-        registerCommand() {},
-        registerTool() {},
-        getActiveTools: () => [],
-        setActiveTools() {},
-      } as any);
+      const initial = await loadFreshHandlers();
 
-      await callback(handlers, []);
+      await callback(initial.handlers, [], initial.freshModule, loadFreshHandlers);
     } finally {
       if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
       else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
@@ -403,6 +394,27 @@ describe('OpenAI prompt cache key self-healing', () => {
 
   function injectedKey(result: unknown): unknown {
     return (result as Record<string, unknown> | undefined)?.prompt_cache_key;
+  }
+
+  async function loadFreshHandlers(): Promise<HandlerBundle> {
+    const jiti = createJiti(join(process.cwd(), 'tests', 'review-findings.test.ts'), {
+      interopDefault: false,
+      moduleCache: false,
+    });
+    const freshModule = await jiti.import<FreshModule>(
+      join(process.cwd(), 'index.ts'),
+    );
+    const handlers = new Map<string, Hook>();
+    freshModule.default({
+      on(name: string, handler: Hook) {
+        handlers.set(name, handler);
+      },
+      registerCommand() {},
+      registerTool() {},
+      getActiveTools: () => [],
+      setActiveTools() {},
+    } as any);
+    return { handlers, freshModule };
   }
 
   test('unrelated 400 leaves prompt_cache_key injection enabled', async () => {
@@ -448,6 +460,79 @@ describe('OpenAI prompt cache key self-healing', () => {
         'prompt-key-test-session',
       );
       assert.equal(notifications.length, 1);
+    });
+  });
+
+  test('persists an explicit rejection across a fresh extension load', async () => {
+    await withFreshHandlers(
+      undefined,
+      async (handlers, notifications, firstModule, reload) => {
+        const modelA = openAIModel('model-a');
+        const modelB = openAIModel('model-b');
+        const contextA = contextFor(modelA, notifications);
+        const beforeRequest = handlers.get('before_provider_request');
+        const afterResponse = handlers.get('after_provider_response');
+        assert.ok(beforeRequest);
+        assert.ok(afterResponse);
+
+        await afterResponse(
+          { status: 400, headers: { error: 'Unsupported parameter: prompt_cache_key' } },
+          contextA,
+        );
+
+        const persisted = JSON.parse(
+          await readFile(firstModule.__internals_for_tests.STATE_FILE_PATH, 'utf8'),
+        ) as Record<string, unknown>;
+        assert.deepEqual(persisted.promptCacheKeyUnsupportedModels, ['proxy/model-a']);
+
+        const reloaded = await reload();
+        const sessionStart = reloaded.handlers.get('session_start');
+        const reloadedBeforeRequest = reloaded.handlers.get('before_provider_request');
+        assert.ok(sessionStart);
+        assert.ok(reloadedBeforeRequest);
+
+        await sessionStart({ reason: 'startup' }, contextA);
+        assert.equal(await reloadedBeforeRequest({ payload: {} }, contextA), undefined);
+        const contextB = contextFor(modelB, notifications);
+        assert.equal(
+          injectedKey(await reloadedBeforeRequest({ payload: {} }, contextB)),
+          'prompt-key-test-session',
+        );
+      },
+    );
+  });
+
+  test('loads a pre-change stats file with no learned rejection', async () => {
+    await withFreshHandlers(undefined, async (handlers, notifications, freshModule) => {
+      const preChangeState = {
+        version: 6,
+        sessions: {},
+        totalsByModel: {},
+        legacyFamily: {},
+      };
+      await writeFile(
+        freshModule.__internals_for_tests.STATE_FILE_PATH,
+        JSON.stringify(preChangeState),
+        'utf8',
+      );
+
+      const model = openAIModel('model-a');
+      const context = contextFor(model, notifications);
+      const sessionStart = handlers.get('session_start');
+      const beforeRequest = handlers.get('before_provider_request');
+      assert.ok(sessionStart);
+      assert.ok(beforeRequest);
+
+      await sessionStart({ reason: 'startup' }, context);
+      assert.equal(
+        injectedKey(await beforeRequest({ payload: {} }, context)),
+        'prompt-key-test-session',
+      );
+      assert.deepEqual(
+        freshModule.__internals_for_tests.parsePersistedCacheStats(preChangeState)
+          ?.promptCacheKeyUnsupportedModels,
+        [],
+      );
     });
   });
 
