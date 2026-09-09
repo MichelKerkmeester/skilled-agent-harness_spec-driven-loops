@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-007"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "expands flat-pool lineages while bounding concurrency and queuing overflow"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/sandbox-permission.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-007 -- fanout-run sandbox or permission

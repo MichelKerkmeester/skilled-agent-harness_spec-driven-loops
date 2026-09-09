@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "rejects an over-budget codex lineage before spawning a process"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/budget-rejection.md"
 id: "cli-codex-EC-009"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-009 -- cli-codex budget rejection

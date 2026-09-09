@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "passes child gate variables through the full cli-pi runtime"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/child-spec-gate.md"
 id: "cli-pi-EC-006"
-version: 1.0.0.0
+version: 1.5.0.6
 ---
 
 # EC-006 -- cli-pi child spec gate

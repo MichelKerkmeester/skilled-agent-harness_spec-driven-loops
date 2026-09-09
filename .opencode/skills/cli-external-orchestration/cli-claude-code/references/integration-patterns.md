@@ -10,7 +10,7 @@ trigger_phrases:
   - "orchestrate claude code from external ai"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.6
+version: 1.5.0.9
 ---
 
 # Cross-AI Orchestration Patterns: External AI + Claude Code CLI

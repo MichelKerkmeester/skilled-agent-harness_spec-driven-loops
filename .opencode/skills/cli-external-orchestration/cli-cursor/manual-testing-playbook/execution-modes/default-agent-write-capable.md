@@ -1,7 +1,7 @@
 ---
 title: "CU-006 -- Default agent mode (write-capable)"
 description: "This scenario validates Cursor's default write-capable agent mode for `CU-006`. It focuses on confirming a requested file is actually written to disk when no --mode flag is passed, in contrast to plan/ask mode's read-only behavior."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-006 -- Default agent mode (write-capable)

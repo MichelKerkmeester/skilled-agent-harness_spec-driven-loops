@@ -23,7 +23,7 @@ evidence_manifest_digest: 8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b5
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # cli-external-orchestration opencode transport serves compiled and matches legacy

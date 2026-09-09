@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "passes child gate variables through the full cli-claude-code runtime"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/child-spec-gate.md"
 id: "cli-claude-code-EC-006"
-version: 1.0.0.0
+version: 1.5.0.6
 ---
 
 # EC-006 -- cli-claude-code child spec gate

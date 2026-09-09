@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-012"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "preserves exclusive ownership when concurrent worktrees collide"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/worktree-collision.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-012 -- fanout-run worktree collision

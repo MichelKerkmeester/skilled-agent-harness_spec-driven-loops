@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "blocks recursive cli-devin fan-out before process spawn"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/self-invocation.md"
 id: "cli-devin-EC-014"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-014 -- cli-devin self invocation

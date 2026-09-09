@@ -1,7 +1,7 @@
 ---
 title: "PI-018 -- Provider and settings merge"
 description: "This documentation-grounded scenario checks the provider configuration surface against Pi settings merge semantics and leaves the credentialed interaction explicitly SKIP for `PI-018`."
-version: 1.0.0.0
+version: 1.5.0.4
 ---
 
 # PI-018 -- Provider and settings merge

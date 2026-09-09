@@ -9,7 +9,7 @@ trigger_phrases:
   - "delegate from pi"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.0
+version: 1.5.0.5
 ---
 
 # Pi Agent Delegation Reference

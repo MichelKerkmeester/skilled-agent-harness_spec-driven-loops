@@ -1,7 +1,7 @@
 ---
 title: "PI-019 -- CLEAR prompt-quality card"
 description: "This documentation-presence scenario confirms the Pi prompt-quality card delegates to the canonical CLEAR framework and adds Pi dispatch mechanics for `PI-019`."
-version: 1.0.0.0
+version: 1.5.0.3
 ---
 
 # PI-019 -- CLEAR prompt-quality card

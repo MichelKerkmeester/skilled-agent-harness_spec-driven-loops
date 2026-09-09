@@ -1,7 +1,7 @@
 ---
 title: "CC-028 -- Git preflight advisory delivery"
 description: "This scenario validates the sk-git preflight advisory delivery under Claude Code for `CC-028`. It focuses on the PreToolUse Bash hook surfacing the commit-scope-drops-untracked advisory without blocking the command."
-version: 1.1.0.19
+version: 1.5.0.2
 ---
 
 # CC-028 -- Git preflight advisory delivery

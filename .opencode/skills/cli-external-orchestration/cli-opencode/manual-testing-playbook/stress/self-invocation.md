@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "blocks recursive cli-opencode fan-out before process spawn"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/self-invocation.md"
 id: "cli-opencode-EC-014"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-014 -- cli-opencode self invocation

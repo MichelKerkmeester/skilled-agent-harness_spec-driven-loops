@@ -1,7 +1,7 @@
 ---
 title: "DV-018 -- Devin MCP surface"
 description: "Inspect the real devin mcp command surface and verify list/help behavior without changing live MCP registrations."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-018 -- Devin MCP surface

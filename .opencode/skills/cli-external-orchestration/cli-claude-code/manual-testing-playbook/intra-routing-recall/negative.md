@@ -6,7 +6,7 @@ title: 'Negative — out of domain'
 description: "This scenario validates the hub's UNKNOWN_FALLBACK path for CC-N01: an out-of-domain prompt must score zero against every INTENT_SIGNALS entry and route to the documented UNKNOWN_FALLBACK_CHECKLIST instead of guessing an intent."
 expected_intent: none
 expected_resources: []
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # CC-N01: Negative — out of domain

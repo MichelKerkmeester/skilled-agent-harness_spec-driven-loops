@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-013"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "preserves independent node_modules realpaths while fan-out is active"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/node-modules-integrity.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-013 -- fanout-run node modules integrity

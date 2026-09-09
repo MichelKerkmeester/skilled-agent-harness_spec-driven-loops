@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "preserves independent worktree node_modules boundaries during cli-devin dispatch"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/node-modules-integrity.md"
 id: "cli-devin-EC-013"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-013 -- cli-devin node modules integrity

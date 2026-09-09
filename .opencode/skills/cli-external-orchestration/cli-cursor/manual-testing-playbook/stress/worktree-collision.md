@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "runs cli-cursor from each isolated worktree cwd"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-cursor-EC-012"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-012 -- cli-cursor worktree collision

@@ -1,7 +1,7 @@
 ---
 title: "PI-023 -- Cline provider model-id format dispatch"
 description: "This scenario proves the cline-pass provider model-id format contract: pi forwards a model's `id` verbatim, the Cline API requires the slashed `cline-pass/<model>` form, and a bare id returns a 400 invalid-model-format error. It confirms the config declares slashed ids and isolates the credentialed positive-control dispatch for `PI-023`."
-version: 1.0.0.0
+version: 1.5.0.4
 ---
 
 # PI-023 -- Cline provider model-id format dispatch

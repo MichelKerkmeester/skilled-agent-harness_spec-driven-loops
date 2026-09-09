@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "passes child gate variables through the full cli-cursor runtime"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/child-spec-gate.md"
 id: "cli-cursor-EC-006"
-version: 1.0.0.0
+version: 1.4.0.6
 ---
 
 # EC-006 -- cli-cursor child spec gate

@@ -11,7 +11,7 @@ trigger_phrases:
   - "claude code troubleshooting"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.4
+version: 1.5.0.9
 ---
 
 # Claude Code CLI - Complete Command Reference

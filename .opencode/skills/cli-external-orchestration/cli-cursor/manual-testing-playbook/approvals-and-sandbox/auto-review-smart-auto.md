@@ -1,7 +1,7 @@
 ---
 title: "CU-007 -- --auto-review Smart Auto"
 description: "This scenario validates Cursor's --auto-review Smart Auto approval flag for `CU-007`. It focuses on confirming a safe write-capable generation task completes unattended, without an interactive approval prompt blocking completion."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-007 -- --auto-review Smart Auto

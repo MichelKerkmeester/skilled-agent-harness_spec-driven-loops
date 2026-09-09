@@ -1,7 +1,7 @@
 ---
 title: "DV-002 -- Devin availability probe"
 description: "Verify the fail-closed availability preflight checks the Devin binary before constructing a dispatch."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-002 -- Devin availability probe

@@ -14,7 +14,7 @@ expected_leaf_resources:
   - workflow_mode: cli-opencode
     leaf_resource_id: references/integration-patterns.md
 blindToRouterKeywords: true
-version: 1.0.0.1
+version: 1.4.0.6
 ---
 # CE-H01: Blind holdout — external full-runtime handoff
 Prompt: Hand this whole task to a separate autonomous coding session that has the full plugin and memory stack and let it run unattended.

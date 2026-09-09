@@ -1,7 +1,7 @@
 ---
 title: "CU-016 -- --resume explicit chat id"
 description: "This scenario validates Cursor's --resume [chatId] flag for `CU-016`. It focuses on confirming an explicit resume by session_id (captured from --output-format json) produces a coherent continuation of a specific earlier session."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-016 -- --resume explicit chat id

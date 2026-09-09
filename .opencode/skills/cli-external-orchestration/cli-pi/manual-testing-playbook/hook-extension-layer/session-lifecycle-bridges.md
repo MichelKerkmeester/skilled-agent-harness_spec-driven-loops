@@ -1,7 +1,7 @@
 ---
 title: "PI-020 -- Session-lifecycle bridges"
 description: "This scenario live-traces the five session-lifecycle extension bridges (session_start, session_shutdown, session_compact, input) against a real authenticated provider and records per-hook firing evidence for `PI-020`."
-version: 1.0.0.0
+version: 1.5.0.4
 ---
 
 # PI-020 -- Session-lifecycle bridges

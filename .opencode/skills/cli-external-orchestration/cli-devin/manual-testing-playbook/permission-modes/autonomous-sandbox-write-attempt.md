@@ -1,7 +1,7 @@
 ---
 title: "DV-006 -- Autonomous sandbox write attempt"
 description: "Verify that --sandbox selects autonomous execution and confines a write attempt to an isolated workspace."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-006 -- Autonomous sandbox write attempt

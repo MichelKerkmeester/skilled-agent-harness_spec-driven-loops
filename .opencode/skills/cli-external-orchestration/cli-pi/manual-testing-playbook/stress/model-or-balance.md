@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "retains cli-pi model-or-balance diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/model-or-balance.md"
 id: "cli-pi-EC-002"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-002 -- cli-pi model or balance failure

@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-009"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "rejects lineage and aggregate budgets before provider process spawn"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/budget-rejection.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-009 -- fanout-run budget rejection

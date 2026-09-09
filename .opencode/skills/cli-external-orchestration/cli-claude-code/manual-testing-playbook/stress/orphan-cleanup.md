@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "terminates the captured detached cli-claude-code process group after timeout"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-claude-code-EC-011"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-011 -- cli-claude-code orphan cleanup

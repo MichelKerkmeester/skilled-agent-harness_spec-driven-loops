@@ -15,7 +15,7 @@ trigger_phrases:
   - "delegate to pi"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.4.2.0
+version: 1.4.0.15
 ---
 
 # cli-external-orchestration

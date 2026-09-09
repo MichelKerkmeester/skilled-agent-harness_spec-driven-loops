@@ -1,7 +1,7 @@
 ---
 title: "CU-002 -- Auth-fail-but-exit-0 safety gotcha"
 description: "This scenario validates the auth-fail-but-exit-0 safety gotcha for `CU-002`. It focuses on confirming the cli-cursor guard keys on cursor-agent about output text, never the exit code, since a -p dispatch without valid auth exits 0."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-002 -- Auth-fail-but-exit-0 safety gotcha

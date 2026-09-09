@@ -1,7 +1,7 @@
 ---
 title: "CU-003 -- Hallucination-fixture: fake flag / bracket model id"
 description: "This scenario validates the flag/model-id hallucination-fixture probe for `CU-003`. It focuses on confirming a constructed Cursor dispatch never fabricates a --reasoning-effort flag or a bracket-effort model id, using the live-confirmed CLI rejection as a negative control."
-version: 1.0.0.0
+version: 1.4.0.1
 ---
 
 # CU-003 -- Hallucination-fixture: fake flag / bracket model id

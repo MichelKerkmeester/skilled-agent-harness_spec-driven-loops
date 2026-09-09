@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "retains cli-opencode model-or-balance diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/model-or-balance.md"
 id: "cli-opencode-EC-002"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-002 -- cli-opencode model or balance failure

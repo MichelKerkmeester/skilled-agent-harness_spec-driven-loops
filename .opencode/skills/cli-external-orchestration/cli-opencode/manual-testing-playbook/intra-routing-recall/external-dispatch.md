@@ -8,7 +8,7 @@ expected_intent: EXTERNAL_DISPATCH
 expected_resources: 
   - references/cli-reference.md
   - references/integration-patterns.md
-version: 1.0.0.0
+version: 1.4.0.6
 ---
 
 # CO-R01: External dispatch routing

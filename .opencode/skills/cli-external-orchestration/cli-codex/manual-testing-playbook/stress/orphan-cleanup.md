@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "invokes captured-pid and direct-child cleanup without a blanket process sweep"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-codex-EC-011"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-011 -- cli-codex orphan cleanup

@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi validation handback"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.5.0.4
 ---
 
 # Pi CLI Integration Patterns

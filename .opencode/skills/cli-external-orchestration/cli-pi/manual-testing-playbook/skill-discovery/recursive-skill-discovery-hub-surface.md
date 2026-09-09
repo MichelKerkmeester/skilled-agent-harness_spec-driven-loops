@@ -1,7 +1,7 @@
 ---
 title: "PI-004 -- Recursive skill discovery and hub surface"
 description: "This scenario checks the configured `.pi/settings.json` skills pointer and the documented recursive `SKILL.md` discovery shape for `PI-004`, without claiming a provider-gated live hub count."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # PI-004 -- Recursive skill discovery and hub surface

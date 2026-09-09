@@ -1,7 +1,7 @@
 ---
 title: "CU-018 -- CLEAR scoring via quality card"
 description: "This scenario validates the CLEAR 5-check from the canonical prompt-quality card for `CU-018`, near-verbatim ported from cli-codex's CX-022. It focuses on confirming an under-scored prompt is escalated to a structured framework before dispatch."
-version: 1.0.0.0
+version: 1.4.0.4
 ---
 
 # CU-018 -- CLEAR scoring via quality card

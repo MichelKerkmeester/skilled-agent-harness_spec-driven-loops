@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "forwards the asserted cli-opencode sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-opencode-EC-007"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-007 -- cli-opencode sandbox or permission

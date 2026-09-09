@@ -1,7 +1,7 @@
 ---
 title: "PI-008 -- Argument substitution"
 description: "This scenario checks the static `$ARGUMENTS` substitution token in a generated Pi prompt and isolates the provider-dependent multi-argument dispatch sub-check for `PI-008`."
-version: 1.0.0.0
+version: 1.5.0.2
 ---
 
 # PI-008 -- Argument substitution

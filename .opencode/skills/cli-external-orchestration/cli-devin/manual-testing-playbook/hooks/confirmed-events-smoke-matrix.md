@@ -1,7 +1,7 @@
 ---
 title: "DV-007 -- Confirmed hook events smoke matrix"
 description: "Exercise an isolated Devin hook configuration and verify the five lifecycle events currently reachable under devin -p; keep SessionEnd as an interactive-only supplemental check."
-version: 1.0.0.0
+version: 1.4.0.4
 ---
 
 # DV-007 -- Confirmed hook events smoke matrix

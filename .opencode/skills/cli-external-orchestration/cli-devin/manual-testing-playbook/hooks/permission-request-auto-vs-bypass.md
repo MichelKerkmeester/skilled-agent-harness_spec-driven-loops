@@ -1,7 +1,7 @@
 ---
 title: "DV-008 -- PermissionRequest auto versus dangerous"
 description: "Document the unavailable headless PermissionRequest comparison under Devin's canonical permission modes."
-version: 1.0.0.1
+version: 1.4.0.3
 ---
 
 # DV-008 -- PermissionRequest auto versus dangerous

@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-002"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "retains fan-out model-or-balance diagnostics in the failed lineage log"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/model-or-balance.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-002 -- fanout-run model or balance failure

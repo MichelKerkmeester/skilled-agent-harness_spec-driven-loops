@@ -1,7 +1,7 @@
 ---
 title: "DV-012 -- Agent roster enumeration"
 description: "Verify filesystem parity for every mirrored repository-agent profile and dispatch one named profile read-only."
-version: 1.0.0.1
+version: 1.4.0.7
 ---
 
 # DV-012 -- Agent roster enumeration

@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.3.0.14
+version: 1.4.0.24
 ---
 
 # OpenCode CLI - Integration Patterns

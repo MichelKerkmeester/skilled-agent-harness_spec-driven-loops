@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "passes through model-or-balance stderr and exit status"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/model-or-balance.md"
 id: "cli-codex-EC-002"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-002 -- cli-codex model or balance failure

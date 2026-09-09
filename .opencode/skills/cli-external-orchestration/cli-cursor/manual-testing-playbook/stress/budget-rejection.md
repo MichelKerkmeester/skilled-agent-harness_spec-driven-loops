@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "rejects an over-budget cli-cursor lineage before process spawn"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/budget-rejection.md"
 id: "cli-cursor-EC-009"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-009 -- cli-cursor budget rejection

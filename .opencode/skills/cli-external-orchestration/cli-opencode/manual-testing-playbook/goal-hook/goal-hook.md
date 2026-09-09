@@ -1,7 +1,7 @@
 ---
 title: "CO-039 -- Goal hook native opencode-goal validation"
 description: "Validates OpenCode goal actions, session isolation, fixed opaque state keys, lazy legacy migration, native token accounting, and system-prompt injection."
-version: 1.1.0.0
+version: 1.4.0.7
 ---
 
 # CO-039 -- Goal hook native opencode-goal validation

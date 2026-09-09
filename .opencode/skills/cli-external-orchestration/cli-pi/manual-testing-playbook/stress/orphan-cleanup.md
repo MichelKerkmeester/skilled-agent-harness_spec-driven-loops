@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "terminates the captured detached cli-pi process group after timeout"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-pi-EC-011"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-011 -- cli-pi orphan cleanup

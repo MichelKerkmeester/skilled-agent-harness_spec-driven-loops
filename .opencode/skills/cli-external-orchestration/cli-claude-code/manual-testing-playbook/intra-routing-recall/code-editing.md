@@ -8,7 +8,7 @@ expected_intent: CODE_EDITING
 expected_resources: 
   - references/cli-reference.md
   - assets/prompt-templates.md
-version: 1.0.0.0
+version: 1.5.0.6
 ---
 
 # CC-R02: Code editing routing

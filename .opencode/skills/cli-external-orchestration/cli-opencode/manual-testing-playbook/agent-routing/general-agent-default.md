@@ -1,7 +1,7 @@
 ---
 title: "CO-013 -- Unflagged default-agent route"
 description: "This scenario validates the unflagged default-agent route for `CO-013`. It focuses on confirming that OMITTING `--agent` (never passing `--agent general`) produces the expected implementation-style behavior."
-version: 1.3.0.12
+version: 1.4.0.22
 ---
 
 # CO-013 -- Unflagged default-agent route

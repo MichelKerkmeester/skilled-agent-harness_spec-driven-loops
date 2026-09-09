@@ -1,7 +1,7 @@
 ---
 title: "CX-007 -- danger-full-access sandbox (DESTRUCTIVE)"
 description: "This scenario validates the danger-full-access sandbox mode for `CX-007`. It focuses on confirming the elevated mode requires explicit user approval and is paired with --ask-for-approval untrusted."
-version: 1.4.0.7
+version: 1.9.0.11
 ---
 
 # CX-007 -- danger-full-access sandbox **(DESTRUCTIVE)**

@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-011"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "reaps the captured fan-out orphan process group without a blanket sweep"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/orphan-cleanup.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-011 -- fanout-run orphan cleanup

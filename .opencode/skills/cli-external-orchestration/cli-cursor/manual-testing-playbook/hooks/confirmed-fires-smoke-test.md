@@ -1,7 +1,7 @@
 ---
 title: "CU-013 -- Confirmed-fires smoke test"
 description: "This scenario validates that sessionStart, preToolUse, and sessionEnd fire under a real cursor-agent -p dispatch for `CU-013`, reproducing phase 004's live event-delivery evidence in an isolated temp workspace."
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # CU-013 -- Confirmed-fires smoke test

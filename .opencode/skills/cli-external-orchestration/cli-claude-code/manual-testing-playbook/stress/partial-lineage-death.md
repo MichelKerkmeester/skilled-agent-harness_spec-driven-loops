@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "reports a signal-killed cli-claude-code lineage as failed"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/partial-lineage-death.md"
 id: "cli-claude-code-EC-010"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-010 -- cli-claude-code partial lineage death

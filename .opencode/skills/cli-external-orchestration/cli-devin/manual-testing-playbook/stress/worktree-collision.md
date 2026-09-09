@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "runs cli-devin from each isolated worktree cwd"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-devin-EC-012"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-012 -- cli-devin worktree collision

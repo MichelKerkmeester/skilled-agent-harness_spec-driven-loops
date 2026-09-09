@@ -1,7 +1,7 @@
 ---
 title: "PI-010 -- Project agent override"
 description: "This documentation-grounded scenario records Pi's project-over-global agent precedence and deliberately skips a live collision test that would write the operator's real global agent directory for `PI-010`."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # PI-010 -- Project agent override

@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-010"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "reports one externally killed lineage without erasing surviving artifacts"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/partial-lineage-death.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-010 -- fanout-run partial lineage death

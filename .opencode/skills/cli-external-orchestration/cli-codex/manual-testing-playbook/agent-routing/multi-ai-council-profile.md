@@ -1,7 +1,7 @@
 ---
 title: "CX-015 -- @ai-council profile (multi-strategy planning)"
 description: "This scenario validates the codex exec -p ai-council profile for `CX-015`. It focuses on confirming the ai-council profile produces at least 3 distinct strategies for an architecture decision."
-version: 1.4.0.2
+version: 1.9.0.6
 ---
 
 # CX-015 -- @ai-council profile (multi-strategy planning)

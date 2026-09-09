@@ -1,7 +1,7 @@
 ---
 title: "CU-008 -- --force/--yolo + --sandbox toggle"
 description: "This scenario validates Cursor's --force/-f/--yolo unattended approval alias and the --sandbox enabled|disabled toggle for `CU-008`. It focuses on confirming both approval aliases behave identically and that --sandbox is an independent dimension from the approval decision."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-008 -- --force/--yolo + --sandbox toggle

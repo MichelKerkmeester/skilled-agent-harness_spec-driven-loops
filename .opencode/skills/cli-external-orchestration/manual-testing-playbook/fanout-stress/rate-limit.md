@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-003"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "rejects a rate-limited fan-out lineage without a retry spawn"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/rate-limit.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-003 -- fanout-run rate limit

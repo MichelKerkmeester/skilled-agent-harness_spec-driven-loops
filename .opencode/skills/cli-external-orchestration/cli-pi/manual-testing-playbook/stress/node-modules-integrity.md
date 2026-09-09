@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "preserves independent worktree node_modules boundaries during cli-pi dispatch"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/node-modules-integrity.md"
 id: "cli-pi-EC-013"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-013 -- cli-pi node modules integrity

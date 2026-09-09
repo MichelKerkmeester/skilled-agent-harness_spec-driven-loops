@@ -8,7 +8,7 @@ expected_intent: PATTERNS
 expected_resources: 
   - references/integration-patterns.md
   - references/cli-reference.md
-version: 1.0.0.0
+version: 1.4.0.6
 ---
 
 # CO-R07: Patterns routing

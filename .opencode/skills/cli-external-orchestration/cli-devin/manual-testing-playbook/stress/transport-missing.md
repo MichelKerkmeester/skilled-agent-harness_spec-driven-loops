@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "fails before cli-devin execution when its transport is unavailable"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/transport-missing.md"
 id: "cli-devin-EC-008"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-008 -- cli-devin missing transport

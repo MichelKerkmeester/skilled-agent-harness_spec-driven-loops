@@ -1,7 +1,7 @@
 ---
 title: "CC-024 -- Markdown agent spec folder scaffolding"
 description: "This scenario validates markdown agent spec folder scaffolding for `CC-024`. It focuses on confirming `--agent markdown` produces a Level 1 spec folder scaffolding plan using the current tracked-packet path convention."
-version: 1.1.0.7
+version: 1.5.0.12
 ---
 
 # CC-024 -- Markdown agent spec folder scaffolding

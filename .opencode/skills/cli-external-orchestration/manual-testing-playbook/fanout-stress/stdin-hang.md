@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-005"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "closes stdin for the headless fan-out lineage process"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/stdin-hang.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-005 -- fanout-run stdin closure

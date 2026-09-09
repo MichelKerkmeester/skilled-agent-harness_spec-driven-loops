@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.5.0.5
 ---
 
 # Pi CLI Unique Capabilities

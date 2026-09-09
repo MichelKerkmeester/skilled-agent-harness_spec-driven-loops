@@ -1,7 +1,7 @@
 ---
 title: "CX-008 -- explicit approval policies"
 description: "This scenario validates the current Codex approval policies for `CX-008`, with headless never and TTY-only untrusted/on-request checks."
-version: 1.4.0.8
+version: 1.9.0.14
 ---
 
 # CX-008 -- explicit approval policies

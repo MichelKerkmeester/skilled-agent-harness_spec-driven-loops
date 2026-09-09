@@ -1,7 +1,7 @@
 ---
 title: "CU-026 -- Git preflight advisory delivery"
 description: "This scenario validates the sk-git preflight advisory delivery under Cursor for `CU-026`. It uses the direct `Shell` matcher registration in `.cursor/hooks.json` and the shared hook's Cursor payload contract."
-version: 1.0.0.1
+version: 1.4.0.2
 ---
 
 # CU-026 -- Git preflight advisory delivery

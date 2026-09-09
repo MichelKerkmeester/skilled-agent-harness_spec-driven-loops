@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "retains cli-devin authentication diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/auth-failure.md"
 id: "cli-devin-EC-001"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-001 -- cli-devin authentication failure

@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "closes stdin for the headless cli-opencode process"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/stdin-hang.md"
 id: "cli-opencode-EC-005"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-005 -- cli-opencode stdin closure

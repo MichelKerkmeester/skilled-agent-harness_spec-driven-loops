@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "times out and terminates the captured cli-opencode process"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/timeout.md"
 id: "cli-opencode-EC-004"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-004 -- cli-opencode timeout

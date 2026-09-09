@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "reports a signal-killed cli-opencode lineage as failed"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/partial-lineage-death.md"
 id: "cli-opencode-EC-010"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-010 -- cli-opencode partial lineage death

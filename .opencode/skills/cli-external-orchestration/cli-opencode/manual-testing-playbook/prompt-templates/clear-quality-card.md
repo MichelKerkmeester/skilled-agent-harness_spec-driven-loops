@@ -1,7 +1,7 @@
 ---
 title: "CO-024 -- CLEAR quality card 5-check"
 description: "This scenario validates the OpenCode prompt-quality-card pointer for `CO-024`. It focuses on resolving the canonical card in sk-prompt and confirming its CLEAR 5-check, 7-framework selection table, and escalation rule to @prompt-improver at complexity >= 7/10."
-version: 1.3.0.9
+version: 1.4.0.18
 ---
 
 # CO-024 -- CLEAR quality card 5-check

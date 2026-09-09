@@ -1,7 +1,7 @@
 ---
 title: "DV-017 -- Rules paths and loaded inheritance"
 description: "Verify Devin's own Windsurf rules path and its loaded Cursor, Claude, Standard, and Windsurf rule entries."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-017 -- Rules paths and loaded inheritance

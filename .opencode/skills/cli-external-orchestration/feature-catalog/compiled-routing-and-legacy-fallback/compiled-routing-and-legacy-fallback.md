@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "cli-external-orchestration compiled routing"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)

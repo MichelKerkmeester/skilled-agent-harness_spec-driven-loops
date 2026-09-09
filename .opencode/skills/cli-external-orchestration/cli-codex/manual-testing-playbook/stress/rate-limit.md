@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "passes through rate-limit stderr and exit status within one second"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/rate-limit.md"
 id: "cli-codex-EC-003"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-003 -- cli-codex rate limit

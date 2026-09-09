@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "runs cli-opencode from each isolated worktree cwd"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-opencode-EC-012"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-012 -- cli-opencode worktree collision

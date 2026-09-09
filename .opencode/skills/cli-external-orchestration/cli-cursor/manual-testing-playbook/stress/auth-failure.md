@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "retains cli-cursor authentication diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/auth-failure.md"
 id: "cli-cursor-EC-001"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-001 -- cli-cursor authentication failure

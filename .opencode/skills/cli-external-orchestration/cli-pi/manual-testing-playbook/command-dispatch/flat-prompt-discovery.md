@@ -1,7 +1,7 @@
 ---
 title: "PI-007 -- Flat prompt discovery"
 description: "This scenario validates the 36 generated flat `.pi/prompts/*.md` files and checks a real Pi startup for prompt-file and extension-load errors for `PI-007`."
-version: 1.0.0.0
+version: 1.5.0.2
 ---
 
 # PI-007 -- Flat prompt discovery

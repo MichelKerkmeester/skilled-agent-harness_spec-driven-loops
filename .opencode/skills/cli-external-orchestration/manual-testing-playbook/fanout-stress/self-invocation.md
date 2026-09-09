@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-014"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "blocks same-kind recursive fan-out before provider process spawn"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/self-invocation.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-014 -- fanout-run self invocation

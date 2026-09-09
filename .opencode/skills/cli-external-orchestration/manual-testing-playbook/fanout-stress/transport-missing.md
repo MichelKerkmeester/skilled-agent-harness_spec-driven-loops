@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-008"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "fails before fan-out execution when the executor transport is unavailable"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/transport-missing.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-008 -- fanout-run missing transport

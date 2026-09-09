@@ -1,7 +1,7 @@
 ---
 title: "CX-029 -- Git preflight advisory delivery"
 description: "This scenario validates the sk-git preflight advisory delivery under Codex for `CX-029`. It focuses on the PreToolUse exec hook surfacing the commit-scope-drops-untracked advisory without blocking the command."
-version: 1.4.0.18
+version: 1.9.0.2
 ---
 
 # CX-029 -- Git preflight advisory delivery

@@ -8,7 +8,7 @@ expected_intent: CROSS_AI_HANDBACK
 expected_resources: 
   - references/integration-patterns.md
   - references/opencode-tools.md
-version: 1.0.0.0
+version: 1.4.0.7
 ---
 
 # CO-R03: Cross-AI handback routing

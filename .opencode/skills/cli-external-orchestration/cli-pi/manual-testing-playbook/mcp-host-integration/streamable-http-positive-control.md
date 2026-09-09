@@ -1,7 +1,7 @@
 ---
 title: "PI-012 -- Streamable HTTP positive control"
 description: "This scenario records the documented remote `streamable-http` shape separately from stdio lifecycle evidence and SKIPs until a pinned live HTTP handshake is available."
-version: 1.0.0.0
+version: 1.5.0.2
 ---
 
 # PI-012 -- Streamable HTTP positive control

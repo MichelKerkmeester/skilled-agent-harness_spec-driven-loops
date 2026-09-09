@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-004"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "times out and reaps the captured fan-out lineage process"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/timeout.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-004 -- fanout-run timeout

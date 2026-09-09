@@ -1,7 +1,7 @@
 ---
 title: "PI-001 -- Version/help + .pi/ directory creation + settings.json merge"
 description: "This scenario validates the installed Pi version and help surface, confirms the project-local .pi settings package merge, and keeps nested global precedence as an explicitly bounded check for `PI-001`."
-version: 1.0.0.0
+version: 1.5.0.4
 ---
 
 # PI-001 -- Version/help + .pi/ directory creation + settings.json merge

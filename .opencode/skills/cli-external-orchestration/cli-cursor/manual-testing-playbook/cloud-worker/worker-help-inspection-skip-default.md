@@ -1,7 +1,7 @@
 ---
 title: "CU-017 -- worker --help inspection (SKIP by default)"
 description: "This scenario validates the cursor-agent worker subcommand's documented flag surface for `CU-017` via --help inspection only, per this phase's resolved document-and-SKIP-by-default policy for the cloud worker."
-version: 1.0.0.0
+version: 1.4.0.1
 ---
 
 # CU-017 -- worker --help inspection (SKIP by default)

@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode circular dispatch refusal"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # OpenCode CLI - Self-Invocation Guard (ADR-001)

@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "forwards the asserted cli-pi sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-pi-EC-007"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-007 -- cli-pi sandbox or permission

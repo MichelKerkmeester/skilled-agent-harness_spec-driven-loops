@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "refuses dispatch when command -v codex fails"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/transport-missing.md"
 id: "cli-codex-EC-008"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-008 -- cli-codex missing transport

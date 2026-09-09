@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "forwards the asserted cli-claude-code sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-claude-code-EC-007"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-007 -- cli-claude-code sandbox or permission

@@ -1,7 +1,7 @@
 ---
 title: "DV-010 -- Built-in subagent profile"
 description: "Verify a real Devin run_subagent delegation through the built-in subagent_explore profile."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-010 -- Built-in subagent profile

@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "preserves independent worktree node_modules boundaries during cli-opencode dispatch"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/node-modules-integrity.md"
 id: "cli-opencode-EC-013"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-013 -- cli-opencode node modules integrity

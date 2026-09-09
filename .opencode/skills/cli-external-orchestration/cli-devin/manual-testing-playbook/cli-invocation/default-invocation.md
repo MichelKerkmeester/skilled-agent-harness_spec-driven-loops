@@ -1,7 +1,7 @@
 ---
 title: "DV-001 -- Devin default print dispatch"
 description: "Verify a default model-explicit Devin print dispatch returns a usable read-only answer with the repository's non-interactive command discipline."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-001 -- Devin default print dispatch

@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "terminates the captured detached cli-devin process group after timeout"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-devin-EC-011"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-011 -- cli-devin orphan cleanup

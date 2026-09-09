@@ -1,7 +1,7 @@
 ---
 title: "PI-013 -- Project/global MCP precedence"
 description: "This documentation-grounded scenario records project-over-global MCP precedence and skips a live collision test that would write the operator's real global MCP config for `PI-013`."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # PI-013 -- Project/global MCP precedence

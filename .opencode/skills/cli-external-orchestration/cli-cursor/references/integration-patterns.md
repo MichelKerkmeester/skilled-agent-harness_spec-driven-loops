@@ -10,7 +10,7 @@ trigger_phrases:
   - "cursor validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.2.0.0
+version: 1.4.0.8
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Cursor CLI

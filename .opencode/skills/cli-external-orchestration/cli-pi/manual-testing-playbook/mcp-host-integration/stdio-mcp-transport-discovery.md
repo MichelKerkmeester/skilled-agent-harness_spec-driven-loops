@@ -1,7 +1,7 @@
 ---
 title: "PI-011 -- Stdio MCP transport discovery"
 description: "This scenario verifies whether a pinned raw transcript exists for the native stdio MCP connection; without that artifact it records a documented SKIP rather than claiming a live handshake."
-version: 1.0.0.0
+version: 1.5.0.2
 ---
 
 # PI-011 -- Stdio MCP transport discovery

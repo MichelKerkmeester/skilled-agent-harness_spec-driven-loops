@@ -1,7 +1,7 @@
 ---
 title: "CC-023 -- Deep-research agent comparative investigation"
 description: "This scenario validates deep-research agent investigation for `CC-023`. It focuses on confirming `--agent deep-research` produces an evidence-backed feasibility analysis with comparative trade-offs."
-version: 1.1.0.7
+version: 1.5.0.12
 ---
 
 # CC-023 -- Deep-research agent comparative investigation

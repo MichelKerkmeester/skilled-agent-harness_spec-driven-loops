@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.3.0.29
+version: 1.4.0.47
 ---
 
 # OpenCode CLI - Complete Command Reference

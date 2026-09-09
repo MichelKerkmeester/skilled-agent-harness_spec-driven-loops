@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "preserves independent worktree node_modules boundaries during dispatch"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/node-modules-integrity.md"
 id: "cli-codex-EC-013"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-013 -- cli-codex node modules integrity

@@ -1,7 +1,7 @@
 ---
 title: "CU-005 -- Ask mode (read-only)"
 description: "This scenario validates Cursor's read-only --mode ask for `CU-005`. It focuses on confirming Q&A/explanation dispatches answer accurately against real repo content without any file writes."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-005 -- Ask mode (read-only)

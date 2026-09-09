@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "retains cli-pi authentication diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/auth-failure.md"
 id: "cli-pi-EC-001"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-001 -- cli-pi authentication failure

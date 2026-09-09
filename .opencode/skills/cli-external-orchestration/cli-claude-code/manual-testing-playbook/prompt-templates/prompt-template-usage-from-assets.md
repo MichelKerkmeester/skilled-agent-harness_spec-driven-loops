@@ -1,7 +1,7 @@
 ---
 title: "CC-019 -- Prompt template usage from assets"
 description: "This scenario validates Prompt template usage from assets for `CC-019`. It focuses on confirming the prompt templates inventory at `assets/prompt-templates.md` is loadable and a representative template produces well-formed output."
-version: 1.1.0.7
+version: 1.5.0.14
 ---
 
 # CC-019 -- Prompt template usage from assets

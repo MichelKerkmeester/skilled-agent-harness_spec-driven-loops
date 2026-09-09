@@ -1,7 +1,7 @@
 ---
 title: "CU-015 -- --continue same-session follow-up"
 description: "This scenario validates Cursor's --continue flag for `CU-015`. It focuses on confirming a follow-up dispatch picks up the most recent session and produces a coherent continuation referencing prior turn content."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-015 -- --continue same-session follow-up

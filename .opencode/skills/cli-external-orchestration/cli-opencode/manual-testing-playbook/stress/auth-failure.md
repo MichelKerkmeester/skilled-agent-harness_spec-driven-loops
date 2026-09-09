@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "retains cli-opencode authentication diagnostics in bounded lineage output"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/auth-failure.md"
 id: "cli-opencode-EC-001"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-001 -- cli-opencode authentication failure

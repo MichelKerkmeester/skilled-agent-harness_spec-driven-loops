@@ -1,7 +1,7 @@
 ---
 title: "CU-011 -- mcp list / list-tools"
 description: "This scenario validates the cursor-agent mcp list and mcp list-tools subcommands for `CU-011`, with an explicit SKIP when a configured server is not operator-approved."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-011 -- mcp list / list-tools

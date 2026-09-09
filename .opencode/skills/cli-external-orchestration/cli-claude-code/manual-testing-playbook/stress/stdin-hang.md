@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "closes stdin for the headless cli-claude-code process"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/stdin-hang.md"
 id: "cli-claude-code-EC-005"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-005 -- cli-claude-code stdin closure

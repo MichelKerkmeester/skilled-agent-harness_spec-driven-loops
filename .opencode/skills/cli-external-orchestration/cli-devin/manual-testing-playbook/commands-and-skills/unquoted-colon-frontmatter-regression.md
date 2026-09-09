@@ -1,7 +1,7 @@
 ---
 title: "DV-016 -- Unquoted-colon frontmatter regression"
 description: "Verify Devin's strict frontmatter parser does not silently drop a mirrored agent profile whose description carries an unquoted colon."
-version: 2.0.0.0
+version: 1.4.0.4
 ---
 
 # DV-016 -- Unquoted-colon frontmatter regression

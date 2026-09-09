@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "retains cli-cursor rate-limit diagnostics without retry delay"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/rate-limit.md"
 id: "cli-cursor-EC-003"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-003 -- cli-cursor rate limit

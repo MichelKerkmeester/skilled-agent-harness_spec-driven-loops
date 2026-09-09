@@ -1,7 +1,7 @@
 ---
 title: "DV-021 -- Git preflight advisory delivery"
 description: "Verify the sk-git preflight advisory fires under a Devin PreToolUse exec payload, stays silent on an ordinary commit, is suppressible, and never blocks the command."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-021 -- Git preflight advisory delivery

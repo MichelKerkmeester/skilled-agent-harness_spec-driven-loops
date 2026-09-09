@@ -1,7 +1,7 @@
 ---
 title: "CC-021 -- Memory Epilogue context transfer"
 description: "This scenario validates cross-session context transfer for `CC-021`. It focuses on confirming the default agent, with the Memory Epilogue template appended, produces a structured MEMORY_HANDBACK block suitable for cross-session resume via generate-context.js."
-version: 1.1.0.8
+version: 1.5.0.16
 ---
 
 # CC-021 -- Memory Epilogue context transfer

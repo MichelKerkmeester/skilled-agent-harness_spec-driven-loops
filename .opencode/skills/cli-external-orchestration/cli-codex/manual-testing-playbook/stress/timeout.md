@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "marks a stalled dispatch timed out and invokes captured-pid reaping"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/timeout.md"
 id: "cli-codex-EC-004"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-004 -- cli-codex timeout

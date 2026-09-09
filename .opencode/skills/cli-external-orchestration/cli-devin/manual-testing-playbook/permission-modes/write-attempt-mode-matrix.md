@@ -1,7 +1,7 @@
 ---
 title: "DV-005 -- Permission mode write-attempt matrix"
 description: "Compare normal, accept-edits, and bypass behavior on the same isolated write attempt."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-005 -- Permission mode write-attempt matrix

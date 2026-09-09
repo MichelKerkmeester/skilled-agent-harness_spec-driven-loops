@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "terminates the captured detached cli-cursor process group after timeout"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-cursor-EC-011"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-011 -- cli-cursor orphan cleanup

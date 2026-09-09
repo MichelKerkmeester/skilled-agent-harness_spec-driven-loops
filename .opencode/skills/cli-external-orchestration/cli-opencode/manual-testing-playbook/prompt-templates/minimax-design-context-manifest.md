@@ -1,7 +1,7 @@
 ---
 title: "CO-037 -- MiniMax design build dispatch carries a measured Style Reference"
 description: "Verifies that MiniMax-M3 design/UI build dispatches use the profiled small-model prompt shape and carry a measured Style Reference (extracted via sk-design-md-generator), required files, measured-token manifest, and fidelity proof instead of thin generic design context."
-version: 1.1.0.0
+version: 1.4.0.13
 ---
 
 # CO-037 -- MiniMax design build dispatch carries a measured Style Reference

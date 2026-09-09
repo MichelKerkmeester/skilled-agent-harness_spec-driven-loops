@@ -1,7 +1,7 @@
 ---
 title: "PI-002 -- Headless exit-code and event semantics"
 description: "This scenario validates that Pi headless success and auth or dispatch failure are classified from stdout, stderr, and JSON events rather than from an exit code alone for `PI-002`."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # PI-002 -- Headless exit-code and event semantics

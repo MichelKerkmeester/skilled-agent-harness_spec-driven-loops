@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "times out and terminates the captured cli-devin process"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/timeout.md"
 id: "cli-devin-EC-004"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-004 -- cli-devin timeout

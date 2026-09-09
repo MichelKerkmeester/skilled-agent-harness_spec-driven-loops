@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "reports a signal-killed cli-pi lineage as failed"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/partial-lineage-death.md"
 id: "cli-pi-EC-010"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-010 -- cli-pi partial lineage death

@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin cloud handoff template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # Prompt Templates - Devin CLI

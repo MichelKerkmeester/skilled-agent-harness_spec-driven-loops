@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "retains cli-devin rate-limit diagnostics without retry delay"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/rate-limit.md"
 id: "cli-devin-EC-003"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-003 -- cli-devin rate limit

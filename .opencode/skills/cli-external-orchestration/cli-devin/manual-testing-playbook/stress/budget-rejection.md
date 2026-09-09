@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-devin.vitest.ts"
 test_name: "rejects an over-budget cli-devin lineage before process spawn"
 playbook_path: "cli-external-orchestration/cli-devin/manual-testing-playbook/stress/budget-rejection.md"
 id: "cli-devin-EC-009"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-009 -- cli-devin budget rejection

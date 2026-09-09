@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "dispatches from each isolated worktree cwd without crossing boundaries"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-codex-EC-012"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-012 -- cli-codex worktree collision

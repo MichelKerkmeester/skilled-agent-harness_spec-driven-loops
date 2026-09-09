@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "fails before cli-opencode execution when its transport is unavailable"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/transport-missing.md"
 id: "cli-opencode-EC-008"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-008 -- cli-opencode missing transport

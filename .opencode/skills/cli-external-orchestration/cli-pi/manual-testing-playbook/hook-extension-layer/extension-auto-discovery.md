@@ -1,7 +1,7 @@
 ---
 title: "PI-014 -- Extension auto-discovery"
 description: "This scenario validates project-local `.pi/extensions/*.ts` auto-discovery without a settings entry and records the isolated live startup evidence for `PI-014`."
-version: 1.0.0.0
+version: 1.5.0.6
 ---
 
 # PI-014 -- Extension auto-discovery

@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-claude-code.vitest.ts"
 test_name: "times out and terminates the captured cli-claude-code process"
 playbook_path: "cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/timeout.md"
 id: "cli-claude-code-EC-004"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-004 -- cli-claude-code timeout

@@ -1,7 +1,7 @@
 ---
 title: "CC-008 -- Opus extended thinking"
 description: "This scenario validates Opus extended thinking for `CC-008`. It focuses on confirming `--model claude-opus-4-6 --effort high` produces deeper multi-dimensional analysis than the Sonnet default."
-version: 1.1.0.7
+version: 1.5.0.13
 ---
 
 # CC-008 -- Opus extended thinking

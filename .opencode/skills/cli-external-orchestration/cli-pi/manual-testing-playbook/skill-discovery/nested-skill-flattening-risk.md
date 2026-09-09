@@ -1,7 +1,7 @@
 ---
 title: "PI-005 -- Nested skill flattening risk"
 description: "This scenario isolates the unknown whether nested mode `SKILL.md` files surface as independent Pi skills rather than preserving the parent-hub design for `PI-005`."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # PI-005 -- Nested skill flattening risk

@@ -1,7 +1,7 @@
 ---
 title: "DV-003 -- Fabricated flag hallucination fixture"
 description: "Probe the documented SWE hallucination class by asking Devin to distinguish a fabricated flag from the real CLI surface."
-version: 1.0.0.0
+version: 1.4.0.4
 ---
 
 # DV-003 -- Fabricated flag hallucination fixture

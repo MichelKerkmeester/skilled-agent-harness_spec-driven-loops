@@ -1,7 +1,7 @@
 ---
 title: "CO-023 -- Prompt templates inventory (16 templates)"
 description: "This scenario validates the prompt templates inventory for `CO-023`. It focuses on confirming the canonical 16 templates documented in assets/prompt-templates.md are loadable and structurally complete."
-version: 1.3.0.7
+version: 1.4.0.17
 ---
 
 # CO-023 -- Prompt templates inventory (16 templates)

@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "runs cli-pi from each isolated worktree cwd"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/worktree-collision.md"
 id: "cli-pi-EC-012"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-012 -- cli-pi worktree collision

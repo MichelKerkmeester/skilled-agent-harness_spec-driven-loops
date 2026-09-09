@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 replay walkthrough"
 importance_tier: normal
 contextType: implementation
-version: 1.3.0.12
+version: 1.4.0.28
 ---
 
 # cli-opencode permissions matrix

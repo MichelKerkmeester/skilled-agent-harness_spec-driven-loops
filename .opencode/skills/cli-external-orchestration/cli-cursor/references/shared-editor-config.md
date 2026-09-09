@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor mcp.json hooks.json rules"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.4.0.1
 ---
 
 # Cursor CLI Shared Editor Config Surface

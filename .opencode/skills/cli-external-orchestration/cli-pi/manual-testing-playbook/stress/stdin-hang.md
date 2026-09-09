@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "closes stdin for the headless cli-pi process"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/stdin-hang.md"
 id: "cli-pi-EC-005"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-005 -- cli-pi stdin closure

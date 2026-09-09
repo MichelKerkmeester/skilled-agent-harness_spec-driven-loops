@@ -10,7 +10,7 @@ trigger_phrases:
   - "Cursor CLI spec-gate integration"
   - "cross-runtime goal isolation"
 last_updated: "2026-08-10"
-version: 1.6.0.1
+version: 1.4.0.12
 ---
 
 # cli-external-orchestration: Feature Catalog

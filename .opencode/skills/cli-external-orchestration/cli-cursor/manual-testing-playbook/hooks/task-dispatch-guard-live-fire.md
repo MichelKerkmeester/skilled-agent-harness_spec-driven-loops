@@ -1,7 +1,7 @@
 ---
 title: "CU-021 -- Task-matcher preToolUse dispatch guard live-fire"
 description: "This scenario validates that a second preToolUse array entry with \"matcher\": \"Task\" fires alongside the existing unmatched preToolUse entry for a real Task tool call for `CU-021`, reproducing phase 011's live subagent-delegation dispatch evidence in an isolated temp workspace."
-version: 1.0.0.0
+version: 1.4.0.4
 ---
 
 # CU-021 -- Task-matcher preToolUse dispatch guard live-fire

@@ -1,7 +1,7 @@
 ---
 title: "DV-019 -- Continue and resume session continuity"
 description: "Verify Devin's list, continue, and resume flags preserve context across non-interactive turns."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-019 -- Continue and resume session continuity

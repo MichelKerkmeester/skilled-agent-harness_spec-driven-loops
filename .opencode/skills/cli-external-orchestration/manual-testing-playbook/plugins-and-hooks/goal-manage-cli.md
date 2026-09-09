@@ -11,7 +11,7 @@ stage: routing
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.0.0.0
+version: 1.4.0.7
 ---
 
 # Goal Manage CLI: Session Isolation And Legacy Cutover

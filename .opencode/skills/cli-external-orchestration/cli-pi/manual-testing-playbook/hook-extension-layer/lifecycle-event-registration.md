@@ -1,7 +1,7 @@
 ---
 title: "PI-015 -- Lifecycle event registration"
 description: "This scenario checks the real Pi extension event set and records accepted registration for the bridged `tool_call`, `tool_result`, and `input` handlers; live handler-firing is SKIP only when no authenticated provider credential is available to trigger a real tool call, for `PI-015`."
-version: 1.0.0.0
+version: 1.5.0.3
 ---
 
 # PI-015 -- Lifecycle event registration

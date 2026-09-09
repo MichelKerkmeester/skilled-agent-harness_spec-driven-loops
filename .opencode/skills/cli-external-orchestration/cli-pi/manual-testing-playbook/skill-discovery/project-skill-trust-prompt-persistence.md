@@ -1,7 +1,7 @@
 ---
 title: "PI-006 -- Project-skill trust prompt persistence"
 description: "This scenario checks the documented first-load trust prompt and whether a project-skill decision persists for `PI-006`, with persistence left SKIP when a live credentialed session is unavailable."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # PI-006 -- Project-skill trust prompt persistence

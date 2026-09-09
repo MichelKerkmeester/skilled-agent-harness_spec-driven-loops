@@ -1,7 +1,7 @@
 ---
 title: "CU-025 -- Agent mirror symlink integrity"
 description: "Verify every Cursor agent file is a symlink resolving into the canonical Claude agent directory rather than a forked real file."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # CU-025 -- Agent mirror symlink integrity

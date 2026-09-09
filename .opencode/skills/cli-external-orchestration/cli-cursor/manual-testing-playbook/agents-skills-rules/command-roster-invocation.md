@@ -1,7 +1,7 @@
 ---
 title: "CU-024 -- Command roster and invocation"
 description: "Verify the runtime-derived Cursor command roster and invoke a mirrored command through cursor-agent."
-version: 1.0.0.0
+version: 1.4.0.4
 ---
 
 # CU-024 -- Command roster and invocation

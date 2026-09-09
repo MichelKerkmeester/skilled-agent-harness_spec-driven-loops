@@ -1,7 +1,7 @@
 ---
 title: "cli-devin: Manual Testing Playbook"
 description: "Operator-facing split-document playbook for the Devin CLI surface: invocation, permissions, hooks, subagents, skills, rules, MCP, continuity, and cloud handoff."
-version: 1.0.0.0
+version: 1.4.0.8
 ---
 
 # cli-devin: Manual Testing Playbook

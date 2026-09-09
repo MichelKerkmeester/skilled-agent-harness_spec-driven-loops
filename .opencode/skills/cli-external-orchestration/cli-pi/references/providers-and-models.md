@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.32
+version: 1.5.0.34
 ---
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly.

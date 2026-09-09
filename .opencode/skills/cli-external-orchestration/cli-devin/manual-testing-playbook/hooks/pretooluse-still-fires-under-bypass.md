@@ -1,7 +1,7 @@
 ---
 title: "DV-009 -- PreToolUse still fires under bypass"
 description: "Prove in an isolated workspace that PreToolUse remains active when Devin runs with the repository's bypass permission alias."
-version: 1.0.0.0
+version: 1.4.0.6
 ---
 
 # DV-009 -- PreToolUse still fires under bypass

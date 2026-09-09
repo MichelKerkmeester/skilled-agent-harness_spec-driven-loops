@@ -1,7 +1,7 @@
 ---
 title: "CO-017 -- Ultra-think multi-strategy planning"
 description: "This scenario validates the ai-council scoped-write agent for `CO-017`. It focuses on confirming `--agent orchestrate` dispatching `@ai-council` (mode: subagent) produces multiple distinct strategies scored across a rubric and respects the scoped-write constraint (writes ONLY under the pre-bound packet's `ai-council/**` subtree, no writes elsewhere)."
-version: 1.3.0.4
+version: 1.4.0.14
 ---
 
 # CO-017 -- Ultra-think multi-strategy planning

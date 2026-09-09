@@ -8,7 +8,7 @@ expected_resources: []
 expected_workflow_mode: defer
 expected_leaf_resources: []
 created: 2026-07-10
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # CE-003: Ambiguous CLI-dispatch request defers instead of silently defaulting

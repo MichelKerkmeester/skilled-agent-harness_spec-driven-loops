@@ -1,7 +1,7 @@
 ---
 title: "CU-014 -- Confirmed-non-delivery documentation"
 description: "This scenario validates that beforeSubmitPrompt and stop do NOT fire under cursor-agent -p for `CU-014`, and that the dormant spec-gate-classify.mjs adapter and the gap are documented, not silently assumed working."
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # CU-014 -- Confirmed-non-delivery documentation

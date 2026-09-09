@@ -1,7 +1,7 @@
 ---
 title: "CU-009 -- Worktree dry-run / inspection"
 description: "This scenario validates Cursor's native git worktree isolation flag surface for `CU-009`. It focuses on confirming -w/--worktree, --worktree-base, and --skip-worktree-setup are documented in --help, and inspecting .cursor/worktrees.json schema, without creating a real worktree."
-version: 1.0.0.0
+version: 1.4.0.1
 ---
 
 # CU-009 -- Worktree dry-run / inspection

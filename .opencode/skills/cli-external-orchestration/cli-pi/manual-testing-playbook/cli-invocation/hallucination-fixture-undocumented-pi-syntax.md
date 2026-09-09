@@ -1,7 +1,7 @@
 ---
 title: "PI-003 -- Hallucination fixture for undocumented Pi syntax"
 description: "This negative-control scenario checks that constructed Pi dispatches do not fabricate an undocumented flag or bracketed model-id syntax for `PI-003`."
-version: 1.0.0.0
+version: 1.5.0.2
 ---
 
 # PI-003 -- Hallucination fixture for undocumented Pi syntax

@@ -1,7 +1,7 @@
 ---
 title: "CX-002 -- gpt-5.6-luna default model + GPT-5.6 roster"
 description: "This scenario validates the gpt-5.6-luna default pin for `CX-002` and confirms the documented GPT-5.6 model roster (luna / terra / sol) is callable via --model."
-version: 1.4.0.9
+version: 1.9.0.15
 ---
 
 # CX-002 -- gpt-5.6-luna default model + GPT-5.6 roster

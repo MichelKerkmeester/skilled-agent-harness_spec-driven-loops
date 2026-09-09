@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-pi.vitest.ts"
 test_name: "retains cli-pi rate-limit diagnostics without retry delay"
 playbook_path: "cli-external-orchestration/cli-pi/manual-testing-playbook/stress/rate-limit.md"
 id: "cli-pi-EC-003"
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # EC-003 -- cli-pi rate limit

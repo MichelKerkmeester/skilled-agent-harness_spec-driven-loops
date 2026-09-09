@@ -1,7 +1,7 @@
 ---
 title: "CX-016 -- approval policy + native hook integration"
 description: "This scenario validates the current approval-policy form plus native Codex hooks for `CX-016`, confirming SessionStart and UserPromptSubmit advisor injection."
-version: 1.4.0.9
+version: 1.9.0.17
 ---
 
 # CX-016 -- approval policy + native hook integration

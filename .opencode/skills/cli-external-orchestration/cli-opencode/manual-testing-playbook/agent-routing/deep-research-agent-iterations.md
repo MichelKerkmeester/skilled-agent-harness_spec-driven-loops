@@ -1,7 +1,7 @@
 ---
 title: "CO-032 -- Deep-research command-owned iteration loop"
 description: "This scenario validates the deep-research loop for `CO-032`. It focuses on confirming `/deep:research:auto` (never a raw `--agent deep-research` dispatch) drives a single iteration against a pre-bound spec packet and persists the real packet-local JSONL/strategy/dashboard state."
-version: 1.3.0.13
+version: 1.4.0.19
 ---
 
 # CO-032 -- Deep-research command-owned iteration loop

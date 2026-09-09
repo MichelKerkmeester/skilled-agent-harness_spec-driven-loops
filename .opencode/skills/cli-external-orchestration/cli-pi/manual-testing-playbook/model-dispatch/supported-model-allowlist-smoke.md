@@ -1,7 +1,7 @@
 ---
 title: "PI-017 -- Supported-model allowlist smoke"
 description: "This scenario inspects the real Pi-supported model allowlist, confirms no `auto` default, and isolates the provider-dependent smoke dispatch for `PI-017`."
-version: 1.4.0.6
+version: 1.5.0.6
 ---
 
 # PI-017 -- Supported-model allowlist smoke

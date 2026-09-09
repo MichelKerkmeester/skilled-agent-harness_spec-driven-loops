@@ -1,7 +1,7 @@
 ---
 title: "CU-010 -- Real worktree creation (DESTRUCTIVE, opt-in)"
 description: "This scenario validates a real Cursor-native worktree creation for `CU-010`. It focuses on confirming -w genuinely materializes an isolated checkout at the documented path, with mandatory operator approval and cleanup."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-010 -- Real worktree creation **(DESTRUCTIVE, opt-in)**

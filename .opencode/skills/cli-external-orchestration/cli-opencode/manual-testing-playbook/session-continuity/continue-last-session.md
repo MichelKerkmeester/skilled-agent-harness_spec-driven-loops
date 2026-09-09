@@ -1,7 +1,7 @@
 ---
 title: "CO-018 -- Continue last session via -c / --continue"
 description: "This scenario validates the `-c` / `--continue` flag for `CO-018`. It focuses on confirming the next dispatch resumes the most recent session in the project and the follow-up prompt has access to the prior turn's context."
-version: 1.3.0.10
+version: 1.4.0.19
 ---
 
 # CO-018 -- Continue last session via -c / --continue

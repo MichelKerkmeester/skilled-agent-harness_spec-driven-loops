@@ -1,7 +1,7 @@
 ---
 title: "DV-014 -- Native skill discovery"
 description: "Verify that Devin discovers repository skills natively from .opencode/skills."
-version: 1.0.0.1
+version: 1.4.0.3
 ---
 
 # DV-014 -- Native skill discovery

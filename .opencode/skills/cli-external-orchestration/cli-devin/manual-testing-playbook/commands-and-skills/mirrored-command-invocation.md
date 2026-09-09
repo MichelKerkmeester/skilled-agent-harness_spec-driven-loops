@@ -1,7 +1,7 @@
 ---
 title: "DV-015 -- Native repository skill invocation"
 description: "Verify that Devin invokes a real repository skill discovered natively from .opencode/skills."
-version: 1.0.0.1
+version: 1.4.0.3
 ---
 
 # DV-015 -- Native repository skill invocation

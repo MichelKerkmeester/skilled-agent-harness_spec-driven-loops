@@ -1,7 +1,7 @@
 ---
 title: "CU-001 -- Default invocation (composer-2.5, text output)"
 description: "This scenario validates the canonical zero-input default dispatch (composer-2.5 model + text output, paired with the skill's documented auto-review/sandbox-enabled approval default) for `CU-001`. It focuses on confirming the documented skill default produces a usable inline answer with exit code 0."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-001 -- Default invocation (composer-2.5, text output)

@@ -1,7 +1,7 @@
 ---
 title: "CU-012 -- mcp.json precedence + --approve-mcps"
 description: "This scenario validates .cursor/mcp.json project/user precedence and the --approve-mcps flag for `CU-012`. It focuses on confirming the documented project-then-global-then-nested precedence and that --approve-mcps is accepted on a dispatch."
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # CU-012 -- mcp.json precedence + --approve-mcps

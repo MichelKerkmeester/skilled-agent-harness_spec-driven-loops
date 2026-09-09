@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "retains cli-opencode rate-limit diagnostics without retry delay"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/rate-limit.md"
 id: "cli-opencode-EC-003"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-003 -- cli-opencode rate limit

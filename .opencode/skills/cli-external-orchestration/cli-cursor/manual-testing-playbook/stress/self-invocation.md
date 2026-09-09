@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "blocks recursive cli-cursor fan-out before process spawn"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/self-invocation.md"
 id: "cli-cursor-EC-014"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-014 -- cli-cursor self invocation

@@ -1,7 +1,7 @@
 ---
 title: "DV-020 -- Handoff surface document-and-SKIP"
 description: "Inspect Devin's handoff surface while explicitly skipping live cloud transfer unless the operator approves the external side effect."
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # DV-020 -- Handoff surface document-and-SKIP

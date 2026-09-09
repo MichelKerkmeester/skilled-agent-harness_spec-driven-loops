@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-codex.vitest.ts"
 test_name: "blocks same-kind recursion before spawning codex"
 playbook_path: "cli-external-orchestration/cli-codex/manual-testing-playbook/stress/self-invocation.md"
 id: "cli-codex-EC-014"
-version: 1.0.0.0
+version: 1.9.0.5
 ---
 
 # EC-014 -- cli-codex self invocation

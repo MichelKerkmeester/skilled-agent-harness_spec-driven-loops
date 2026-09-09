@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-cursor.vitest.ts"
 test_name: "forwards the asserted cli-cursor sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-cursor/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-cursor-EC-007"
-version: 1.0.0.0
+version: 1.4.0.5
 ---
 
 # EC-007 -- cli-cursor sandbox or permission

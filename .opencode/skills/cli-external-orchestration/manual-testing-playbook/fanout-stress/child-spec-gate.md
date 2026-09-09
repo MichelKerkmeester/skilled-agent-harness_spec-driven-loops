@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-006"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "propagates the non-interactive spec-gate environment through fan-out"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/child-spec-gate.md"
-version: 1.0.0.0
+version: 1.4.0.3
 ---
 
 # EC-006 -- fanout-run child spec gate

@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin session resume continue"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.4.0.13
 ---
 
 # Devin CLI - Complete Command Reference

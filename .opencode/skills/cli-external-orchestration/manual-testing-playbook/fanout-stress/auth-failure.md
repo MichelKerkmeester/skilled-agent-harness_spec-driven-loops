@@ -5,7 +5,7 @@ matrix_cell: "fanout-run:EC-001"
 test_file: "tests/stress/cli-adapter/fanout.vitest.ts"
 test_name: "retains fan-out authentication diagnostics in the failed lineage log"
 playbook_path: "cli-external-orchestration/manual-testing-playbook/fanout-stress/auth-failure.md"
-version: 1.0.0.0
+version: 1.4.0.2
 ---
 
 # EC-001 -- fanout-run authentication failure
