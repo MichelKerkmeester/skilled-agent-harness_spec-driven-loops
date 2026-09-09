@@ -1861,9 +1861,14 @@ function checkReferenceLine(file, src) {
   }
   // Ten of these forms ship an empty list, so the body has never run in this corpus. Reading
   // the list proves nothing about what happens when it holds an entry.
-  if (reads && !(/createElementNS/.test(drawing) && /appendChild/.test(drawing))) {
+  // Counting rather than looking for one call: the loop builds a rule and a label, and asserting
+  // that it appends *something* is satisfied by appending the label and orphaning the rule. Every
+  // element the loop creates has to reach the document.
+  const built = (drawing.match(/createElementNS/g) || []).length;
+  const placed = (drawing.match(/appendChild/g) || []).length;
+  if (reads && (built === 0 || placed < built)) {
     record('reference-line', 'error', file,
-      'the drawing walks REFERENCE without putting a rule in the document. A loop that reads the list and appends nothing is the form claiming a level it does not draw');
+      `the drawing walks REFERENCE and builds ${built} element${built === 1 ? '' : 's'} while placing ${placed}. An element the loop creates and never appends is a level the form claims and does not draw`);
   }
   tally('reference-line', 2);
   if (!/\.reference\s*\{/.test(stripJsComments(styles.join('\n')))) {

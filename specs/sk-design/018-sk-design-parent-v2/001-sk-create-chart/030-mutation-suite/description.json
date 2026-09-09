@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite",
+  "description": "The corpus check is 3,435 lines, forty-two families and about 7,300 assertions, and it is the",
+  "keywords": [
+    "corpus",
+    "check",
+    "lines",
+    "forty-two",
+    "families",
+    "about",
+    "assertions"
+  ],
+  "lastUpdated": "2026-09-09T20:09:25.180Z",
+  "specId": "030",
+  "folderSlug": "mutation-suite",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

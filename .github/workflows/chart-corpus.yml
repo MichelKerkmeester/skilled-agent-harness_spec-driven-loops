@@ -1,0 +1,44 @@
+name: Chart Corpus
+
+on:
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/sk-design/sk-design-chart/**'
+      - '.github/workflows/chart-corpus.yml'
+  pull_request:
+    paths:
+      - '.opencode/skills/sk-design/sk-design-chart/**'
+      - '.github/workflows/chart-corpus.yml'
+  workflow_dispatch:
+
+# The corpus check is the chart packet's contract: forty-two families over every shipped form.
+# Until this existed it ran only when somebody chose to run it, and two reviews found twenty-one
+# assertions inside it that passed for a reason other than the one their message gave. This blocks,
+# unlike the advisory job, because the packet is green with no backlog behind it — a gate that
+# nobody has to triage is a gate people still read.
+#
+# The render gate is deliberately not here. It drives an installed browser, and the one test that
+# needs one says so and skips rather than passing quietly.
+jobs:
+  corpus:
+    name: Corpus contract and its mutation suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Corpus check
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/sk-design/sk-design-chart
+          node scripts/check-corpus.cjs | tee /tmp/corpus.log
+          grep -q 'RESULT: PASSED' /tmp/corpus.log
+
+      - name: Mutation suite and applicator tests
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/sk-design/sk-design-chart
+          node --test scripts/tests/

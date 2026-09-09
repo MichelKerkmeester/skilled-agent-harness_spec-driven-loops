@@ -170,6 +170,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 27 | 027-evilcharts-style-reference/ | A second Style Reference, written from the evilcharts stylesheet, giving the theming override a worked case | Complete |
 | 28 | 028-closeout/ | Every item the chart phases recorded as not-done, closed, plus eleven leaky assertions a fresh review found | Complete |
 | 29 | 029-holding-the-boundaries/ | Four of the five recorded boundaries turned out reachable and are held; the fifth is settled by measurement | Complete |
+| 30 | 030-mutation-suite/ | A standing mutation suite for the corpus check, and a blocking gate that runs it | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

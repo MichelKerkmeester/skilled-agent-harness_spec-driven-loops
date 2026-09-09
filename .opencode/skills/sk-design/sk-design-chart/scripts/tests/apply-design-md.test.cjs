@@ -150,11 +150,16 @@ test('evilcharts declares its dark theme, so the dark set is its own ground and 
 // Nine of the eleven forms carrying a REFERENCE block ship an empty list, so the loop that draws a
 // level has never run in this corpus. The static checks prove the code is there and reads the list;
 // only rendering one with an entry in it proves the code works.
-test('a declared reference line reaches the document on a form that ships none', () => {
+test('a declared reference line reaches the document on a form that ships none', (t) => {
   const { execFileSync } = require('node:child_process');
   const browser = process.env.CHROME_PATH
     || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-  if (!fs.existsSync(browser)) return; // the render gate owns the browser requirement
+  if (!fs.existsSync(browser)) {
+    // Saying so rather than returning quietly: a test that skips in silence is indistinguishable
+    // from one that ran, and this is the only case here that needs a browser.
+    t.skip('no browser at CHROME_PATH; this case needs one to render');
+    return;
+  }
   const form = path.join(ROOT, 'assets', 'templates', 'histogram.html');
   const source = fs.readFileSync(form, 'utf8');
   assert.match(source, /const REFERENCE = \[\];/, 'this form is expected to ship an empty list');
