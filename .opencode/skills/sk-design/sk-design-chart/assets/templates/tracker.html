@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="tracker">
+<meta name="chart-color-system" content="categorical">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
+<title>Did each period hold, and when did it not</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #F7F7F4;
+  --chart-ink: #26251E;
+  --chart-muted: #72716C;
+  --chart-rule: #CDCDC9;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 4px;
+  --chart-radius-pill: 4px;
+  --chart-radius-card: 8px;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #BE8332;
+  --chart-emphasis: #26251E;
+}
+/* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) {
+    --chart-surface: #26251E;
+    --chart-ink: #F7F7F4;
+    --chart-muted: #A1A19F;
+    --chart-rule: #F7F7F417;
+    --chart-series-1: #F54E00;
+    --chart-series-2: #1F8A65;
+    --chart-series-3: #CF2D56;
+    --chart-series-4: #C08532;
+    --chart-emphasis: #F7F7F4;
+  }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #26251E;
+  --chart-ink: #F7F7F4;
+  --chart-muted: #A1A19F;
+  --chart-rule: #F7F7F417;
+  --chart-series-1: #F54E00;
+  --chart-series-2: #1F8A65;
+  --chart-series-3: #CF2D56;
+  --chart-series-4: #C08532;
+  --chart-emphasis: #F7F7F4;
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: CursorGothic, Inter, system-ui, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.metric { margin: 0 0 18px; }
+.metric-value { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 600; color: var(--chart-ink); font-variant-numeric: tabular-nums; }
+.metric-delta { margin: 4px 0 0; font-size: 12px; color: var(--chart-muted); }
+.metric-delta .cue { vertical-align: -1px; margin-right: 4px; }
+/* The cue takes the token the trend calls for: emphasis when the reading falls, the second series when it rises. */
+.metric-delta[data-trend="down"] .cue { color: var(--chart-emphasis); }
+.metric-delta[data-trend="up"] .cue { color: var(--chart-series-2); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the marks crowd rather than
+   read, so the figure scrolls sideways and the drawing keeps the size it was
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.finding .cue { color: var(--chart-emphasis); vertical-align: -1px; margin-right: 6px; }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it. No floor
+   is declared here because a table already has one. Its cells cannot shrink below the text in
+   them, which is the intrinsic minimum an SVG at width 100% does not have, and that is the whole
+   reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
+details.data > summary { cursor: pointer; font-size: 14px; color: var(--chart-muted); padding: 6px 0; list-style: none; }
+details.data > summary::-webkit-details-marker { display: none; }
+details.data > summary svg { display: inline-block; vertical-align: -1px; margin-right: 6px; }
+details.data[open] > summary svg { transform: rotate(90deg); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.notice { fill: var(--chart-muted); font-size: 12px; }
+/* One block per status. A block is the period itself, not a quantity on a scale, so the
+   three states take the categorical series colours and the failed state takes the emphasis
+   token: the one state a reader scans the row for has to be found by colour before anything
+   else about it is read. */
+/* A status is a category, not a rank, so each takes its own hue rather than a step of one ramp:
+   three adjacent ramp steps sit 1.3:1 apart, which a reader cannot pick out of sixty blocks.
+   The classes are named rather than indexed because the token a status takes is chosen by what
+   it means, not by where it sits in a list. */
+.status-held { fill: var(--chart-series-2); }
+.status-degraded { fill: var(--chart-series-4); }
+.status-failed { fill: var(--chart-series-1); }
+/* Every figure a reader compares is set in one mono face, so a value here and a value
+   in the next card line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. */
+td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The legend block carries the status names. It sits below the row, where the card leaves
+   room, so a reader maps a colour to a word without leaving the picture. */
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
+.legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
+.key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.legend-entry:focus:not(:focus-visible) { outline: none; }
+.legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
+
+/* The hover card. It is drawn inside the figure, in the same coordinates as the block it
+   describes, so it travels with the drawing when a narrow screen pans it sideways instead of
+   drifting off its mark. It carries no text until a reader points at something, so a file
+   nobody touches paints exactly what it painted before the card existed. */
+[data-chart-tooltip] {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  min-width: 128px;
+  max-width: calc(100% - 16px);
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--chart-rule) 50%, transparent);
+  border-radius: var(--chart-radius-pill);
+  background: var(--chart-surface);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--chart-ink) 16%, transparent);
+  display: grid;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+[data-chart-tooltip][data-open] { opacity: 1; }
+.tip-row { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-height: 16px; }
+.tip-indicator { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: block; }
+.tip-name { color: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.tip-label { color: var(--chart-muted); font-size: 12px; white-space: nowrap; }
+.tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The figure reveals itself left to right on first paint, so a reader watches the series
+   arrive in reading order instead of finding it already there. The wipe takes the whole
+   figure rather than the marks alone. It runs once and it ends unclipped, which is the
+   picture this file would paint with no animation in it at all. That is what lets the
+   fallback below remove the motion instead of replacing it with a second design. */
+@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* backwards, not both: the clip applies before the first frame and is gone once the
+   animation ends, so the settled file carries no trace of having moved. */
+.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation,
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .figure svg { animation: none; }
+  [data-chart-tooltip] { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The service held on fifty-four of sixty days and never failed twice in a row</h1>
+  <p class="subtitle" data-chart-part="subtitle">One status per day across sixty days. A held day is green, a degraded day amber and a failed day the alarm colour; the block row is read as a strip, one block per day.</p>
+  <div class="metric" data-chart-part="metric">
+    <p class="metric-value"></p>
+    <p class="metric-delta"></p>
+  </div>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 176" id="chart">
+      <desc id="fig-label">Daily uptime status over sixty days</desc>
+      <desc id="fig-desc">Sixty equal blocks in one row, one per day. A block takes the first colour when the day held, the second when it degraded, and the emphasis colour when it failed. Two days failed and a short run degraded; the rest held. The table below the chart carries every day as text.</desc>
+    </svg>
+    <div data-chart-tooltip id="tip-tracker" class="tip-card" aria-live="polite"></div>
+    <div data-chart-legend id="legend-tracker" class="legend-row" aria-label="Chart series"></div>
+  </div>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding" id="finding">Fifty-four of sixty days held. Both failures sit in the second half, either side of the degraded run, and no failure followed another.</p>
+    <p class="source" data-chart-part="source">Source: service monitoring, daily status record.</p>
+  </div>
+</div>
+<div class="card">
+  <details class="data">
+    <summary><svg role="img" aria-labelledby="data-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><title id="data-chevron">Data table disclosure</title><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Show the data</summary>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Daily uptime status, sixty days.</caption>
+      <thead><tr><th scope="col">Day</th><th scope="col">Status</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  </details>
+</div>
+<script>
+// Retargeting this chart means replacing the data block below and nothing else.
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { day: 1, status: 'held' }, { day: 2, status: 'held' }, { day: 3, status: 'held' }, { day: 4, status: 'held' },
+  { day: 5, status: 'held' }, { day: 6, status: 'held' }, { day: 7, status: 'held' }, { day: 8, status: 'held' },
+  { day: 9, status: 'held' }, { day: 10, status: 'held' }, { day: 11, status: 'held' }, { day: 12, status: 'held' },
+  { day: 13, status: 'held' }, { day: 14, status: 'held' }, { day: 15, status: 'held' }, { day: 16, status: 'held' },
+  { day: 17, status: 'held' }, { day: 18, status: 'held' }, { day: 19, status: 'held' }, { day: 20, status: 'held' },
+  { day: 21, status: 'held' }, { day: 22, status: 'held' }, { day: 23, status: 'held' }, { day: 24, status: 'held' },
+  { day: 25, status: 'held' }, { day: 26, status: 'held' }, { day: 27, status: 'held' }, { day: 28, status: 'held' },
+  { day: 29, status: 'held' }, { day: 30, status: 'held' }, { day: 31, status: 'held' }, { day: 32, status: 'held' },
+  { day: 33, status: 'held' }, { day: 34, status: 'held' }, { day: 35, status: 'held' }, { day: 36, status: 'held' },
+  { day: 37, status: 'failed' }, { day: 38, status: 'held' }, { day: 39, status: 'held' }, { day: 40, status: 'held' },
+  { day: 41, status: 'degraded' }, { day: 42, status: 'degraded' }, { day: 43, status: 'degraded' }, { day: 44, status: 'degraded' },
+  { day: 45, status: 'held' }, { day: 46, status: 'failed' }, { day: 47, status: 'held' }, { day: 48, status: 'held' },
+  { day: 49, status: 'held' }, { day: 50, status: 'held' }, { day: 51, status: 'held' }, { day: 52, status: 'held' },
+  { day: 53, status: 'held' }, { day: 54, status: 'held' }, { day: 55, status: 'held' }, { day: 56, status: 'held' },
+  { day: 57, status: 'held' }, { day: 58, status: 'held' }, { day: 59, status: 'held' }, { day: 60, status: 'held' }
+];
+/* CHART_DATA:END */
+
+/* CHART_SERIES:BEGIN */
+const SERIES = [
+  { key: 'held', label: 'Held', token: '--chart-series-2', classes: ['status-held'] },
+  { key: 'degraded', label: 'Degraded', token: '--chart-series-4', classes: ['status-degraded'] },
+  { key: 'failed', label: 'Failed', token: '--chart-series-1', classes: ['status-failed'] }
+];
+/* CHART_SERIES:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return 'Day ' + value; },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'day',
+  unit: ''
+};
+/* READOUT:END */
+
+/* FINDING:BEGIN */
+const FINDING = {
+  trend: 'none',
+  why: 'Fifty-four of sixty days held. Both failures sit in the second half, either side of the degraded run, and no failure followed another.'
+};
+/* FINDING:END */
+
+/* METRIC:BEGIN */
+const METRIC = {
+  present: true,
+  value: 54,
+  valueLabel: '54',
+  delta: -20.0,
+  deltaLabel: '6 fewer held days than the first thirty',
+  period: 'the sixty days to the latest',
+  trend: 'down',
+  why: 'the value is the count of held days, the delta compares the last thirty days with the first thirty, and the period names the span they share'
+};
+/* METRIC:END */
+
+// The drawing answers one question, what has this number been doing lately, at the size of a
+// KPI row rather than a full card. A spark is read against itself, so it carries no axis, no
+// grid and no rung labels: the numbers live in the metric header and in the table, and the
+// drawing holds only the trend.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return d.status === 'held' || d.status === 'degraded' || d.status === 'failed'; });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so the metric, a card reading and a
+// table cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine that
+// opens it exactly as it looked on the machine that made it. Rounding at six decimals
+// strips the dust binary arithmetic leaves on a division, and a value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap in
+// their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+// The hover card, built once and refilled on each hover so a pointer crossing the strip does
+// not churn the document. Every figure it prints goes through fmt above, which is fixed-comma
+// and returns an em dash for a reading nobody took, so the card can never disagree with the
+// printed labels or with the table under the chart. Statuses are words, and a word passes
+// through READOUT.value untouched, which is what keeps the card and the table one reading.
+//
+// This replaces the browser's own title tooltip on these marks. Nothing is lost to a screen
+// reader by that: the drawing declares role="img", which makes its whole subtree one image,
+// so a title on a mark inside it was never announced. The table below the chart is, and still
+// is, the complete reading.
+const TIP_PAD = 10;
+const TIP_FLOOR = 128;
+const TIP_ROWS = 1;
+const tipLayer = document.getElementById('tip-tracker');
+const MARKS = new Map();
+
+function tipNode(cls) {
+  const el = document.createElement('span');
+  el.className = cls;
+  return el;
+}
+
+const tipName = tipNode('tip-name');
+tipLayer.appendChild(tipName);
+const tipRows = [];
+for (let r = 0; r < TIP_ROWS; r += 1) {
+  const row = document.createElement('div');
+  row.className = 'tip-row';
+  const indicator = tipNode('tip-indicator');
+  const label = tipNode('tip-label');
+  const value = tipNode('tip-value');
+  row.appendChild(indicator);
+  row.appendChild(label);
+  row.appendChild(value);
+  tipLayer.appendChild(row);
+  tipRows.push({ indicator, label, value });
+}
+
+function markable(el, datum, rows) {
+  el.setAttribute('data-mark', '');
+  MARKS.set(el, {
+    name: READOUT.label(datum[READOUT.key]),
+    rows: rows.map(function (row) {
+      return {
+        label: READOUT.label(row[0]),
+        value: READOUT.value(row[1], row[2]),
+        token: '--chart-series-1'
+      };
+    })
+  });
+  return el;
+}
+
+function openTip(mark) {
+  const info = MARKS.get(mark);
+  tipName.textContent = info.name;
+  tipRows.forEach(function (row, i) {
+    const item = info.rows[i] || { label: '', value: '\u2014', token: '--chart-series-1' };
+    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    row.label.textContent = item.label;
+    row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
+  });
+  const figure = tipLayer.parentElement;
+  const markBox = mark.getBoundingClientRect();
+  const frameBox = figure.getBoundingClientRect();
+  tipLayer.style.width = 'max-content';
+  const width = Math.min(
+    Math.max(tipLayer.scrollWidth, TIP_FLOOR),
+    Math.max(TIP_FLOOR, figure.clientWidth - 16)
+  );
+  tipLayer.style.width = width + 'px';
+  const height = tipLayer.offsetHeight;
+  let left = markBox.right - frameBox.left + 12;
+  if (left + width > figure.clientWidth) left = markBox.left - frameBox.left - width - 12;
+  left = Math.max(8, Math.min(left, Math.max(8, figure.clientWidth - width - 8)));
+  let top = markBox.top - frameBox.top + (markBox.height - height) / 2;
+  top = Math.max(8, Math.min(top, Math.max(8, figure.clientHeight - height - 8)));
+  tipLayer.style.left = left + 'px';
+  tipLayer.style.top = top + 'px';
+  tipLayer.setAttribute('data-open', '');
+}
+
+function closeTip() {
+  tipLayer.removeAttribute('data-open');
+}
+
+/* LAYOUT: the strip is centred in the frame and carries no axis, because the blocks answer
+   a status question rather than a quantity question: nothing here is measured against a
+   scale, so there is no scale to draw. With no labels inside the drawing, no inset is sized
+   to a label, and the blocks reach into the 12-unit inset by their own width and nothing
+   is clipped. */
+const LEFT = 12;
+const BLOCK_W = 8;
+const GAP = 4;
+const MARK_R = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chart-radius-track')) || 0;
+// A block is a bar, not a dot: tall enough to read as a period and to hold its own colour.
+const BLOCK_H = 56;
+const STRIP_W = 60 * BLOCK_W + 59 * GAP;
+const X0 = (720 - STRIP_W) / 2;
+const Y0 = 44;
+
+const STATUS_CLASSES = { held: 'status-held', degraded: 'status-degraded', failed: 'status-failed' };
+const BLOCKS = [];
+DATA.forEach(function (d, i) {
+  const block = node('rect', {
+    x: X0 + i * (BLOCK_W + GAP),
+    y: Y0,
+    width: BLOCK_W,
+    height: BLOCK_H,
+    rx: MARK_R
+  }, 'block ' + (STATUS_CLASSES[d.status] || 'status-1'));
+  markable(block, d, [['Status', d.status]]);
+  BLOCKS.push(block);
+});
+
+// The key sits below the strip rather than in the sentence above it, so a reader maps a
+// colour to a status word without leaving the picture. It iterates the declared series list,
+// so one chip per status is proved rather than hand-counted.
+const legend = document.getElementById('legend-tracker');
+const entries = [];
+SERIES.forEach(function (series, s) {
+  const name = series.label;
+  const entry = document.createElement('button');
+  entry.type = 'button';
+  entry.className = 'legend-entry';
+  entry.setAttribute('data-series', s + 1);
+  entry.setAttribute('aria-pressed', 'false');
+  entry.setAttribute('aria-label', name);
+  const swatch = document.createElement('span');
+  swatch.className = 'key-swatch';
+  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  const label = document.createElement('span');
+  label.className = 'key';
+  label.textContent = name;
+  entry.appendChild(swatch);
+  entry.appendChild(label);
+  legend.appendChild(entry);
+  entries.push(entry);
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = 'Day ' + d.day;
+  const td = document.createElement('td');
+  td.textContent = d.status;
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
+
+// One delegated listener on the drawing rather than one per block. Sixty blocks are sixty
+// listener registrations the reader pays for nothing.
+let pinned = null;
+
+function markAt(e) {
+  const target = e && e.target;
+  return target && target.closest ? target.closest('[data-mark]') : null;
+}
+
+svg.addEventListener('pointermove', function (e) {
+  if (pinned) return;
+  const mark = markAt(e);
+  if (mark) openTip(mark); else closeTip();
+});
+svg.addEventListener('pointerleave', function () {
+  if (!pinned) closeTip();
+});
+// A touch device never hovers. A tap opens the card, the same tap again closes it, and a tap
+// anywhere else closes it too, which is the gesture a reader already expects.
+svg.addEventListener('click', function (e) {
+  const mark = markAt(e);
+  if (!mark || mark === pinned) {
+    pinned = null;
+    closeTip();
+    return;
+  }
+  pinned = mark;
+  openTip(mark);
+});
+document.addEventListener('click', function (e) {
+  if (pinned && !svg.contains(e.target)) {
+    pinned = null;
+    closeTip();
+  }
+});
+// The card remains a sibling of the SVG, so its absolute position stays within the figure.
+
+/* FINDING_CUE:BEGIN */
+// The finding sentence states a direction, so the cue before the words carries that direction
+// rather than asking the reader to work it out: the tracked number climbs, falls, or, when the
+// sentence only compares readings taken at one moment, the sentence gets no arrow at all.
+const findingParagraph = document.getElementById('finding');
+if (findingParagraph && (FINDING.trend === 'up' || FINDING.trend === 'down')) {
+  const cue = document.createElementNS(SVG, 'svg');
+  cue.setAttribute('class', 'cue');
+  cue.setAttribute('aria-hidden', 'true');
+  cue.setAttribute('width', 12);
+  cue.setAttribute('height', 12);
+  cue.setAttribute('viewBox', '0 0 12 12');
+  const cuePath = document.createElementNS(SVG, 'path');
+  cuePath.setAttribute('d', FINDING.trend === 'up' ? 'M6 10V3M2.5 6.5L6 3l3.5 3.5' : 'M6 2V9M2.5 5.5L6 9l3.5-3.5');
+  cuePath.setAttribute('fill', 'none');
+  cuePath.setAttribute('stroke', 'currentColor');
+  cuePath.setAttribute('stroke-width', 1.5);
+  cue.appendChild(cuePath);
+  findingParagraph.insertBefore(cue, findingParagraph.firstChild);
+}
+/* FINDING_CUE:END */
+
+/* METRIC_READOUT:BEGIN */
+// The card leads with its number: the last reading, the movement since the first, and the
+// stretch of time both sit in. It fills or removes itself on every open whether or not the
+// data drew, because the number belongs to the card rather than to the drawing.
+const metricBox = document.querySelector('.metric');
+if (metricBox && !METRIC.present) {
+  metricBox.remove();
+} else if (metricBox) {
+  const metricValue = metricBox.querySelector('.metric-value');
+  const metricDelta = metricBox.querySelector('.metric-delta');
+  if (metricValue) {
+    metricValue.textContent = READOUT.unit ? METRIC.valueLabel + '\u2009' + READOUT.unit : METRIC.valueLabel;
+  }
+  if (metricDelta) {
+    metricDelta.textContent = METRIC.deltaLabel + ' \u00B7 ' + METRIC.period;
+    if (METRIC.trend === 'up' || METRIC.trend === 'down') {
+      metricDelta.setAttribute('data-trend', METRIC.trend);
+      const cue = document.createElementNS(SVG, 'svg');
+      cue.setAttribute('class', 'cue');
+      cue.setAttribute('aria-hidden', 'true');
+      cue.setAttribute('width', 12);
+      cue.setAttribute('height', 12);
+      cue.setAttribute('viewBox', '0 0 12 12');
+      const cuePath = document.createElementNS(SVG, 'path');
+      cuePath.setAttribute('d', METRIC.trend === 'up' ? 'M6 10V3M2.5 6.5L6 3l3.5 3.5' : 'M6 2V9M2.5 5.5L6 9l3.5-3.5');
+      cuePath.setAttribute('fill', 'none');
+      cuePath.setAttribute('stroke', 'currentColor');
+      cuePath.setAttribute('stroke-width', 1.5);
+      cue.appendChild(cuePath);
+      metricDelta.insertBefore(cue, metricDelta.firstChild);
+    }
+  }
+}
+/* METRIC_READOUT:END */
+</script>
+</body>
+</html>

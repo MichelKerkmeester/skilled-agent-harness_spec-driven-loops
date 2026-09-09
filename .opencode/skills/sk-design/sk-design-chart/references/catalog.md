@@ -55,11 +55,13 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 | independent-percentages | composition | How much of each, when the items share no whole | Several percentages that need not sum to 100 | neutral | assets/templates/independent-percentages.html |
 | treemap | composition | Where did the budget go across a hierarchy | Two-level hierarchy, non-negative weights, about 30 leaves at most | categorical | assets/templates/treemap.html |
 | daily-line | time | What did the daily number do | One reading per day, 30 days or fewer | neutral | assets/templates/daily-line.html |
+| spark | time | What has this number been doing lately | 12 to 30 readings, one series, no axis | neutral | assets/templates/spark.html |
 | daily-range | time | What was the daily spread | A minimum and a maximum per day | neutral | assets/templates/daily-range.html |
 | calendar-grid | time | What happened across a full year, day by day | 52 weeks by 7 days of quantities | ordered | assets/templates/calendar-grid.html |
 | waterfall | time | What was the step by step movement from gross to net | 6 or fewer signed steps with a running total | categorical | assets/templates/waterfall.html |
 | progress-single | time | How far to the target | One value against a goal | ordered | assets/templates/progress-single.html |
 | candlestick | time | Where did it open, high, low and close | Four values per period | categorical | assets/templates/candlestick.html |
+| tracker | time | Did each period hold, and when did it not | 30 to 90 periods, one status each from a set of three | categorical | assets/templates/tracker.html |
 | stacked-area | time | How did the composition shift over continuous time | 2 to 4 series over a continuous axis, with the total also readable | categorical | assets/templates/stacked-area.html |
 | distribution-strip | distribution | How are the individual values spread | Tens to a few hundred records of one variable, grouped | neutral | assets/templates/distribution-strip.html |
 | box-plot | distribution | What does the spread look like as a summary | Grouped records where a five-number summary is legitimate | neutral | assets/templates/box-plot.html |
@@ -132,6 +134,7 @@ Every name in the left column already routes to this packet, so a request carryi
 | donut chart | `unit-ring` | Same question, same ring, same total in the middle. The ring is built from countable ticks rather than from continuous arcs, which is the point: a reader counts marks instead of estimating angles. Parts that arrive as percentages rather than as whole-number counts belong in `unit-grid` |
 | waffle chart | `unit-grid` | The same chart under a different name. One hundred squares, one per percent, filled in reading order |
 | parallel coordinates | `parallel-axes` | The same chart under a different name. One vertical axis per dimension, one line per entity, every axis on its own scale |
+| sparkline | `spark` | The same chart under its shorter name: one series, no axis, a trend at the size of a KPI row, read against itself. The latest value lives in the metric header, because the drawing itself prints no numbers |
 | combo chart, dual axis chart, bar and line chart | `bar-line-composed` | The same chart under three names a reader is more likely to use than the row id. Columns for a count and a line for a rate over the same periods. The second scale is not a setting: the file draws one only when the two measures are an order of magnitude apart, and one ladder otherwise |
 
 One of those rows is a substitution rather than a match, and the difference is worth saying plainly. **This corpus draws no arc-based pie or donut.** It does now draw a binned histogram, which is why `histogram` has moved out of this table and into the index above. Each of the two rows names what arrives instead and why it answers the question the reader asked. The other five rows are the same chart wearing a name the index happens not to use.

@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="spark">
+<meta name="chart-color-system" content="neutral">
+<script>
+  document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+</script>
+<title>One reading per week over twenty-four weeks</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #F7F7F4;
+  --chart-ink: #26251E;
+  --chart-muted: #72716C;
+  --chart-rule: #CDCDC9;
+  --chart-radius-mark: 2px;
+  --chart-radius-track: 4px;
+  --chart-radius-swatch: 4px;
+  --chart-radius-pill: 4px;
+  --chart-radius-card: 8px;
+  --chart-series-1: #26251E;
+  --chart-series-2: #7A7974;
+  --chart-series-3: #84847E;
+  --chart-series-4: #908F8D;
+  --chart-emphasis: #F54E00;
+}
+/* CHART_PALETTE:END */
+
+/* CHART_PALETTE_DARK:BEGIN system=neutral */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) {
+    --chart-surface: #26251E;
+    --chart-ink: #F7F7F4;
+    --chart-muted: #A1A19F;
+    --chart-rule: #F7F7F417;
+    --chart-series-1: #F7F7F4;
+    --chart-series-2: #E6E5E0;
+    --chart-series-3: #CDCDC9;
+    --chart-series-4: #A1A19F;
+    --chart-emphasis: #F54E00;
+  }
+}
+:root[data-scheme="dark"] {
+  --chart-surface: #26251E;
+  --chart-ink: #F7F7F4;
+  --chart-muted: #A1A19F;
+  --chart-rule: #F7F7F417;
+  --chart-series-1: #F7F7F4;
+  --chart-series-2: #E6E5E0;
+  --chart-series-3: #CDCDC9;
+  --chart-series-4: #A1A19F;
+  --chart-emphasis: #F54E00;
+}
+/* CHART_PALETTE_DARK:END */
+
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: CursorGothic, Inter, system-ui, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: var(--chart-radius-card);
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.metric { margin: 0 0 18px; }
+.metric-value { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 600; color: var(--chart-ink); font-variant-numeric: tabular-nums; }
+.metric-delta { margin: 4px 0 0; font-size: 12px; color: var(--chart-muted); }
+.metric-delta .cue { vertical-align: -1px; margin-right: 4px; }
+/* The cue takes the token the trend calls for: emphasis when the reading falls, the second series when it rises. */
+.metric-delta[data-trend="down"] .cue { color: var(--chart-emphasis); }
+.metric-delta[data-trend="up"] .cue { color: var(--chart-series-2); }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the marks crowd rather than
+   read, so the figure scrolls sideways and the drawing keeps the size it was
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.footer { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); }
+.finding { margin: 0; font-size: 14px; font-weight: 500; color: var(--chart-ink); }
+.finding .cue { color: var(--chart-emphasis); vertical-align: -1px; margin-right: 6px; }
+.source { margin: 0; font-size: 14px; color: var(--chart-muted); }
+
+/* The table pans on a narrow screen exactly as the figure above it does, and for the same
+   reason. A table wider than the screen has to move somewhere, and with no region of its own it
+   moved the page: the card, the headline and the source line all slid sideways with it. No floor
+   is declared here because a table already has one. Its cells cannot shrink below the text in
+   them, which is the intrinsic minimum an SVG at width 100% does not have, and that is the whole
+   reason the drawing needs a number and this does not. */
+.table-pan { overflow-x: auto; }
+details.data > summary { cursor: pointer; font-size: 14px; color: var(--chart-muted); padding: 6px 0; list-style: none; }
+details.data > summary::-webkit-details-marker { display: none; }
+details.data > summary svg { display: inline-block; vertical-align: -1px; margin-right: 6px; }
+details.data[open] > summary svg { transform: rotate(90deg); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 12px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+th.num { text-align: right; }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* The fill names a gradient rather than a flat value. The colour still comes from the
+   series token, which the gradient stops below carry; this property exists because a fill
+   has to resolve through a --chart- reference to satisfy the corpus colour rule, and a
+   bare url() reference reads to that rule as a fill with no colour in it at all. */
+:root { --chart-area-fill: url(#area-fade); }
+
+.area { fill: var(--chart-area-fill); }
+/* A neutral series sits close to the ink, so the fade that suits a hue would read as a wall
+   under the line. It runs lighter here and the 2px line stays the mark. */
+.fade-top { stop-color: var(--chart-series-1); stop-opacity: 0.35; }
+.fade-base { stop-color: var(--chart-series-1); stop-opacity: 0.04; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+/* The ring is the surface colour, so the emphasized reading separates from the line it
+   sits on instead of merging into it. */
+.mark { fill: var(--chart-emphasis); stroke: var(--chart-surface); stroke-width: 2; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
+/* Every figure a reader compares is set in one mono face, so a value here and a value
+   in the next card line up digit under digit and a column of numbers reads as a column.
+   The stack is all system faces: a delivered file has no network to fetch one from. */
+td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The figure reveals itself left to right on first paint, so a reader watches the series
+   arrive in reading order instead of finding it already there. The wipe takes the whole
+   figure rather than the marks alone. It runs once and it ends unclipped, which is the
+   picture this file would paint with no animation in it at all. That is what lets the
+   fallback below remove the motion instead of replacing it with a second design. */
+@keyframes chart-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* backwards, not both: the clip applies before the first frame and is gone once the
+   animation ends, so the settled file carries no trace of having moved. */
+.figure svg { animation: chart-reveal 1s cubic-bezier(0, 0.7, 0.5, 1) backwards; }
+/* A reader whose system asks for less motion gets the settled picture immediately. The
+   motion is removed rather than shortened, because a fast animation is still an animation,
+   to somebody it makes ill. */
+@media (prefers-reduced-motion: reduce) {
+  .figure svg { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Weekly actives climbed through the half-year and the late slip has not erased the gain</h1>
+  <p class="subtitle" data-chart-part="subtitle">One reading per week across twenty-four weeks. The final week carries a mark because it is where the number stands now; the earlier weeks are what it climbed through.</p>
+  <div class="metric" data-chart-part="metric">
+    <p class="metric-value"></p>
+    <p class="metric-delta"></p>
+  </div>
+  <div class="figure" data-chart-part="figure" data-chart-inert="The latest value is printed in the metric header, the mark shows where the number stands, and the table below the figure carries every week">
+    <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 176" id="chart">
+      <desc id="fig-label">Weekly active users over twenty-four weeks</desc>
+      <desc id="fig-desc">A single line that climbs from 1,750 to a high of 2,280 by the eighteenth week and slips back to 2,100. The last reading carries a mark because it is the value the metric header leads with. The table below the chart carries every week as text.</desc>
+      <defs>
+        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">
+          <stop offset="0" class="fade-top"></stop>
+          <stop offset="1" class="fade-base"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="footer" data-chart-part="footer">
+    <p class="finding" id="finding">Actives climb from 1,750 in the first week to 2,100 in the last, twenty-four weeks later.</p>
+    <p class="source" data-chart-part="source">Source: product analytics, weekly active totals.</p>
+  </div>
+</div>
+<div class="card">
+  <details class="data" open>
+    <summary><svg role="img" aria-labelledby="data-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><title id="data-chevron">Data table disclosure</title><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Show the data</summary>
+  <div class="table-pan">
+    <table data-chart-table>
+      <caption>Weekly active users, twenty-four weeks.</caption>
+      <thead><tr><th scope="col">Week</th><th scope="col" class="num">Actives</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  </details>
+</div>
+<script>
+// Retargeting this chart means replacing the data block below and nothing else.
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { week: 1, value: 1750 }, { week: 2, value: 1810 }, { week: 3, value: 1785 }, { week: 4, value: 1860 },
+  { week: 5, value: 1920 }, { week: 6, value: 1885 }, { week: 7, value: 1955 }, { week: 8, value: 2010 },
+  { week: 9, value: 1985 }, { week: 10, value: 2050 }, { week: 11, value: 2095 }, { week: 12, value: 2070 },
+  { week: 13, value: 2130 }, { week: 14, value: 2175 }, { week: 15, value: 2150 }, { week: 16, value: 2205 },
+  { week: 17, value: 2225 }, { week: 18, value: 2280 }, { week: 19, value: 2245 }, { week: 20, value: 2195 },
+  { week: 21, value: 2215 }, { week: 22, value: 2160 }, { week: 23, value: 2125 }, { week: 24, value: 2100 }
+];
+/* CHART_DATA:END */
+
+/* READOUT:BEGIN */
+const READOUT = {
+  label: function (value) { return 'Week ' + value; },
+  value: function (value, decimals) { return typeof value === 'string' ? value : fmt(value, decimals); },
+  key: 'week',
+  unit: 'weekly active users'
+};
+/* READOUT:END */
+
+/* FINDING:BEGIN */
+const FINDING = {
+  trend: 'up',
+  why: 'Actives climb from 1,750 in the first week to 2,100 in the last, twenty-four weeks later.'
+};
+/* FINDING:END */
+
+/* METRIC:BEGIN */
+const METRIC = {
+  present: true,
+  value: 2100,
+  valueLabel: '2,100',
+  delta: 20.0,
+  deltaLabel: '20% above the first week',
+  period: 'twenty-four weeks to the latest',
+  trend: 'up',
+  why: 'the value is the last reading, the delta compares it with the first, and the period names the span they share'
+};
+/* METRIC:END */
+
+// The drawing answers one question, what has this number been doing lately, at the size of a
+// KPI row rather than a full card. A spark is read against itself, so it carries no axis, no
+// grid and no rung labels: the numbers live in the metric header and in the table, and the
+// drawing holds only the trend.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
+// One formatter for every number a reader sees, so the metric, the mark's reading and a
+// table cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine that
+// opens it exactly as it looked on the machine that made it. Rounding at six decimals
+// strips the dust binary arithmetic leaves on a division, and a value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap in
+// their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
+/* PLOT: the drawing keeps a 12-unit inset on every side. With no labels in the drawing, no
+   inset is sized to a label; the emphasized mark, and in the bar variant the outermost
+   columns, reach into the inset by their own width and nothing is clipped. */
+const LEFT = 12;
+const RIGHT = 708;
+const TOP = 12;
+const BASE = 164;
+
+/* VARIANTS:BEGIN */
+const VARIANT = 'area';   // 'line' | 'area' | 'bar'
+/* VARIANTS:END */
+/* The mark's radius sizes the emphasized reading and, in the bar variant, every column:
+   a column is the mark's diameter wide. */
+const MARK_R = 5;
+
+// The scale runs from this series' own floor to its own peak, because a spark is read against
+// itself rather than against a zero a reader has to hold in their head. The span's fallback
+// keeps a flat series, where the floor equals the peak, from dividing by zero.
+const readings = DATA.filter(function (d) { return Number.isFinite(d.value); });
+const peak = readings.reduce(function (m, d) { return Math.max(m, d.value); }, -Infinity);
+const floor = readings.reduce(function (m, d) { return Math.min(m, d.value); }, Infinity);
+const span = (peak - floor) || 1;
+const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
+const y = function (v) { return BASE - (BASE - TOP) * ((v - floor) / span); };
+
+// The fade runs down the plot rather than down each path's own box, so every piece of one
+// broken series fades at the same height. The gradient serves the area variant: the line
+// draws without it and the bar never fills beneath itself.
+const fade = document.getElementById('area-fade');
+fade.setAttribute('y1', TOP);
+fade.setAttribute('y2', BASE);
+
+// A week with no reading breaks the line rather than dragging it through a value nobody
+// recorded. Interpolating across the gap invents the reading, and closing the week out moves
+// every later week closer to its neighbours than the weeks they actually followed. The table
+// prints the missed week as a dash; the drawing prints the gap.
+const segments = [];
+let run = [];
+DATA.forEach(function (d, i) {
+  if (Number.isFinite(d.value)) { run.push(x(i) + ',' + y(d.value)); return; }
+  if (run.length) segments.push(run);
+  run = [];
+});
+if (run.length) segments.push(run);
+
+if (VARIANT === 'area') {
+  segments.forEach(function (points) {
+    if (points.length < 2) return;
+    node('path', {
+      d: 'M' + points[0] + ' L' + points.slice(1).join(' L') + ' L' + points[points.length - 1].split(',')[0] + ',' + BASE + ' Z'
+    }, 'area');
+  });
+}
+
+// The joins are straight: with no axis to read values against, a smoothed spark would draw a
+// movement the weekly readings never took. A week standing alone between two gaps has no
+// segment to belong to, so it is drawn as a round cap on a zero-length path.
+if (VARIANT !== 'bar') {
+  segments.forEach(function (points) {
+    node('path', {
+      d: 'M' + points.join(' L') + (points.length === 1 ? ' L' + points[0] : '')
+    }, 'line');
+  });
+}
+
+// One column per reading, the mark's diameter wide, and never narrower than the 2-unit gap the
+// columns owe each other: with more readings than the width fits, the column yields before the
+// gap does. The column's foot is the series' own floor rather than zero, because a spark is
+// read against itself, and the one-unit stub keeps the shortest reading a column instead of
+// an absence.
+if (VARIANT === 'bar') {
+  const width = Math.min(MARK_R * 2, (RIGHT - LEFT) / (DATA.length - 1) - 2);
+  DATA.forEach(function (d, i) {
+    if (!Number.isFinite(d.value)) return;
+    node('rect', {
+      x: x(i) - width / 2,
+      y: y(d.value),
+      width: width,
+      height: Math.max(BASE - y(d.value), 1)
+    }, 'bar');
+  });
+}
+
+// A spark says where the number is now, so the emphasized reading is the last one rather than
+// the extreme: the earlier weeks are the story, this one is the answer.
+const last = readings[readings.length - 1];
+node('circle', { cx: x(DATA.indexOf(last)), cy: y(last.value), r: MARK_R }, 'mark');
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = 'Week ' + d.week;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = fmt(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
+
+/* FINDING_CUE:BEGIN */
+// The finding sentence states a direction, so the cue before the words carries that direction
+// rather than asking the reader to work it out: the tracked number climbs, falls, or, when the
+// sentence only compares readings taken at one moment, the sentence gets no arrow at all.
+const findingParagraph = document.getElementById('finding');
+if (findingParagraph && (FINDING.trend === 'up' || FINDING.trend === 'down')) {
+  const cue = document.createElementNS(SVG, 'svg');
+  cue.setAttribute('class', 'cue');
+  cue.setAttribute('aria-hidden', 'true');
+  cue.setAttribute('width', 12);
+  cue.setAttribute('height', 12);
+  cue.setAttribute('viewBox', '0 0 12 12');
+  const cuePath = document.createElementNS(SVG, 'path');
+  cuePath.setAttribute('d', FINDING.trend === 'up' ? 'M6 10V3M2.5 6.5L6 3l3.5 3.5' : 'M6 2V9M2.5 5.5L6 9l3.5-3.5');
+  cuePath.setAttribute('fill', 'none');
+  cuePath.setAttribute('stroke', 'currentColor');
+  cuePath.setAttribute('stroke-width', 1.5);
+  cue.appendChild(cuePath);
+  findingParagraph.insertBefore(cue, findingParagraph.firstChild);
+}
+/* FINDING_CUE:END */
+
+/* METRIC_READOUT:BEGIN */
+// The card leads with its number: the last reading, the movement since the first, and the
+// stretch of time both sit in. It fills or removes itself on every open whether or not the
+// data drew, because the number belongs to the card rather than to the drawing.
+const metricBox = document.querySelector('.metric');
+if (metricBox && !METRIC.present) {
+  metricBox.remove();
+} else if (metricBox) {
+  const metricValue = metricBox.querySelector('.metric-value');
+  const metricDelta = metricBox.querySelector('.metric-delta');
+  if (metricValue) {
+    metricValue.textContent = READOUT.unit ? METRIC.valueLabel + '\u2009' + READOUT.unit : METRIC.valueLabel;
+  }
+  if (metricDelta) {
+    metricDelta.textContent = METRIC.deltaLabel + ' \u00B7 ' + METRIC.period;
+    if (METRIC.trend === 'up' || METRIC.trend === 'down') {
+      metricDelta.setAttribute('data-trend', METRIC.trend);
+      const cue = document.createElementNS(SVG, 'svg');
+      cue.setAttribute('class', 'cue');
+      cue.setAttribute('aria-hidden', 'true');
+      cue.setAttribute('width', 12);
+      cue.setAttribute('height', 12);
+      cue.setAttribute('viewBox', '0 0 12 12');
+      const cuePath = document.createElementNS(SVG, 'path');
+      cuePath.setAttribute('d', METRIC.trend === 'up' ? 'M6 10V3M2.5 6.5L6 3l3.5 3.5' : 'M6 2V9M2.5 5.5L6 9l3.5-3.5');
+      cuePath.setAttribute('fill', 'none');
+      cuePath.setAttribute('stroke', 'currentColor');
+      cuePath.setAttribute('stroke-width', 1.5);
+      cue.appendChild(cuePath);
+      metricDelta.insertBefore(cue, metricDelta.firstChild);
+    }
+  }
+}
+/* METRIC_READOUT:END */
+</script>
+</body>
+</html>
