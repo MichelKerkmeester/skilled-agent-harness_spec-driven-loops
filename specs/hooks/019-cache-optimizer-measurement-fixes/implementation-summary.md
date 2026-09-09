@@ -134,9 +134,28 @@ and invalidates the cached conversation at that point, where the previous behavi
 one and stayed stable. Re-landing it needs multi-prompt sessions, a warm-cache control, and the
 shipped prompt bytes asserted to differ between arms.
 
-**The pricing change still rests on an unanswered question.** It assumes an explicit zero cached-read
-rate is an authoritative "free" and that absent means "unknown". If the registry writes zero to mean
-unknown, that commit is wrong in kind and should be reverted rather than adjusted.
+Its premise now looks weaker still. The extension already persists a churn counter, and across the
+recorded history — 42 session and model rows, 412 requests — prefix churn is **zero everywhere**, at
+a 94.7% hit rate. The gate was guarding against a failure this installation has never observed. That
+is not proof it cannot happen, and only 3 of those 412 requests were priced, so the *cost* of churn
+remains unmeasured even though its frequency does not.
+
+**The pricing question is settled: zero means free, and the change stands.** The registry has no
+"absent" state to confuse it with — every one of the 1,356 catalogued models carries a `cacheRead`
+value, none missing and none negative. Unknown is expressed by omitting the whole cost block, and
+the composer then fills it with `input: 0` as well
+(`provider-composer.js:71`). The predicate's *unchanged* first line already rejects `input <= 0`, so
+the two states were separable all along and the change only prices a real curated block. Pi's own
+cost arithmetic multiplies the cached-read rate unconditionally with no unknown branch
+(`pi-ai/dist/models.js:545`), and the catalog uses zero as a genuine price elsewhere — 648 models
+pair a positive read rate with a zero write rate, which is exactly how OpenAI bills.
+
+Of the 446 zero-rate models, 331 have a positive input rate, and those are overwhelmingly models
+with no prompt caching at all, where the cached-token count is always zero and no fictitious saving
+is arithmetically reachable. The residual risk is four models of 1,356 that declare a zero read rate
+alongside a positive write rate; caching demonstrably exists there, so those look like an upstream
+data gap rather than a wrong convention. Reverting would have restored a worse bug, in which every
+non-caching priced model reports "unpriced".
 
 **The measurement change is narrower than it first appeared.** Pi's usage type requires the cache
 fields, so the unmeasured branch is reachable through the raw fallbacks and the capability
