@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms"
     last_updated_at: "2026-09-08T18:22:03Z"
     last_updated_by: "scaffold"
-    recent_action: "Planned from the phase 21 synthesis; waits for phase 022"
-    next_safe_action: "Dispatch the build after phase 022 lands"
+    recent_action: "Three micro-forms built and verified; packet closed"
+    next_safe_action: "Commit with the chart package; start phase 025"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-09-08
 <!-- /ANCHOR:metadata -->
 
@@ -54,8 +54,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given spark, tracker and bar-list, When the checker runs static and render, Then every family passes and the catalog families accept the three rows | pending | Unmet | - |
-| AC-002 | REQ-002 | Given the three deliveries, When rendered, Then each shows real data, a real headline and a footer finding, and its capture exists in both schemes | pending | Unmet | - |
+| AC-001 | REQ-001 | Given spark, tracker and bar-list, When the checker runs static and render, Then every family passes and the catalog families accept the three rows | `check-corpus.cjs` reports 29 chart forms, `Summary: errors: 0`, `RESULT: PASSED`; the catalog and catalog-system families accept the three rows | Met | - |
+| AC-002 | REQ-002 | Given the three deliveries, When rendered, Then each shows real data, a real headline and a footer finding, and its capture exists in both schemes | `screenshots/templates/{spark,tracker,bar-list}.png` read by the conductor; bar-list total 57,220 and largest share 32.2 percent recomputed from its data block and matched; spark 1,750 to 2,100 is the declared 20 percent | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The build has not started; phase 022 lands first.
+Both criteria are met: three templates pass every family static and render, the catalogue and gallery list them, and their captures were read.
 <!-- /ANCHOR:closure -->

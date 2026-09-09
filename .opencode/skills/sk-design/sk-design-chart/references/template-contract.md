@@ -634,6 +634,7 @@ A form that gains any of the three also carries one line of interaction hygiene:
 | `independent-percentages` | `inert` | Each track's percentage is printed to its right and its name to its left |
 | `bar-columns` | `inert` | Each column's value is printed above it |
 | `bar-rows` | `inert` | Each bar's value is printed at its end, with its unit suffix |
+| `bar-list` | `tooltip` | The count prints at the rail, a blank column away from the bar it measures, and the share of the total that the metric prints for the largest source exists for no other source outside the table. The card joins the pointed row's name, its count and its unit, which is the reading the separated rail makes you work for |
 | `tracker` | `tooltip` | A day's status is colour only in the drawing, and the degraded and failed runs read as a strip whose boundaries are never printed |
 | `spark` | `inert` | The latest reading is printed in the metric header and every week sits one disclosure away in the table; the drawing carries no value a pointer could add, so the figure answers the pointer with nothing and declares why |
 

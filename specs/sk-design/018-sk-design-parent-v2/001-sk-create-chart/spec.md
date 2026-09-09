@@ -164,7 +164,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 21 | 021-visual-upgrade-research/ | Two-lane deep research on the reference library: luna complete, glm one of five; ranked backlog of visual upgrades for templates, assets and the skill | In Progress |
 | 22 | 022-visual-polish/ | Visual polish from the review and the research: clean source line, taller plots, folded table, finding direction cue, compact numbers with units, contract text fixed | Complete |
 | 23 | 023-metric-delta-header/ | Optional metric-and-delta header block for scalar and time-series forms, with a new type-scale rung | Complete |
-| 24 | 024-micro-forms/ | Three question-first micro-forms: spark, tracker, bar-list | Planned |
+| 24 | 024-micro-forms/ | Three question-first micro-forms: spark, tracker, bar-list | Complete |
 | 25 | 025-mark-and-indicator-policies/ | Sparse-point and meaningful-zero mark policies, per-series tooltip indicator kinds, reference lines, density-earned cursor guides, with their checker families | Planned |
 ### Phase Transition Rules
 

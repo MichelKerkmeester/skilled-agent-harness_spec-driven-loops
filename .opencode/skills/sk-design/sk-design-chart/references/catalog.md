@@ -27,7 +27,7 @@ Every row below points at a template that renders. When no row answers the quest
 
 Start from the question, never from the chart name. A request arrives as "show me the split by plan" and the useful move is to ask what the reader will do with it: compare quantities, rank them, track them over time, or find where they pile up. That question picks the row.
 
-When two rows answer the same question, the one whose data shape matches what you hold is the row. The clearest case is the pair at the top of the index. Both answer "which category is biggest" and the only thing that separates them is whether the category names are words or codes, because a word set on its side is unreadable.
+When two rows answer the same question, the one whose data shape matches what you hold is the row. The clearest case is the ranked trio. All three answer "which category is biggest" and what separates them is where the category name sits: short codes beside the plot in `bar-columns`, short words beside the bar in `bar-rows`, because a word set on its side is unreadable, and long names inside the bar in `bar-list`, where a long name costs no horizontal room.
 
 ---
 
@@ -48,6 +48,7 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 | population-pyramid | distribution | How do two populations differ across the same bands | 6 to 12 ordered bands, two counts each | neutral | assets/templates/population-pyramid.html |
 | bar-rows | comparison | Which category is biggest, when the names are words | 8 or fewer categories, one value each | neutral | assets/templates/bar-rows.html |
 | bar-columns | comparison | Which category is biggest, when the names are short codes | 8 or fewer categories, one value each | neutral | assets/templates/bar-columns.html |
+| bar-list | comparison | Which of these is biggest, when the names are long | 5 to 10 categories, one value each, ranked | neutral | assets/templates/bar-list.html |
 | grouped-bars | comparison | How does this period compare with the last one | 2 series across 6 or fewer categories | neutral | assets/templates/grouped-bars.html |
 | unit-grid | composition | How does the whole split up, in shares a reader can count | Parts summing to 100, 4 or fewer of them | categorical | assets/templates/unit-grid.html |
 | unit-ring | composition | How does the whole split up, when every part is a countable record | Whole-number counts across 4 or fewer groups | categorical | assets/templates/unit-ring.html |

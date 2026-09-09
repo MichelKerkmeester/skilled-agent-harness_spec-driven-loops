@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.8.0.0.md"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.8.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.8.0.0.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Tremor, Vercel and LayerChart answer three reader questions our 26 forms do not: a trend at KPI size, a run of discrete statuses over time, and a ranked list where long names beat the bar",
     "created_at": "2026-09-08T18:22:03Z",
-    "last_save_at": "2026-09-08T18:28:11.676Z",
+    "last_save_at": "2026-09-09T09:02:40.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25f727ec9b534520de1ff38b61428fb4fd914e93eb9a3ed552276d2efaefa438",
+    "source_fingerprint": "sha256:880eff30421b27ba1afe59631e8fa5388ee919ff3a160bf64ff562f916002691",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5be81ac040f2d09b522be4c636d305b701e8858c3cb2fa5be9499371a5f7e03e",
+      "spec.md": "cab5173aa888f59539c856344e515c4032a0bc86fea9675cc7ae8a6ab57c7684",
       "plan.md": "6fc90461bb2721e252ff9e15a107917285df5693a9998fcbb8ad2ec3648da0ac",
-      "tasks.md": "590f544c40cf9103a3906d78f8dc631bd3ddd31994b550be4f4f0831fd04948c",
-      "implementation-summary.md": "60e3901248d581f0487ca0a21b696373a24244b466b8bfb1beab3262767662ee"
+      "tasks.md": "05987f64e835c8eb875b3f8af99cc48561294e5794462edb84ac7be6b8b806e0",
+      "implementation-summary.md": "7e905472a2921d009cd59b5d8b74bda8c59d0434f34c7cb9bba72d69514e640b"
     },
     "last_active_at": null
   }
