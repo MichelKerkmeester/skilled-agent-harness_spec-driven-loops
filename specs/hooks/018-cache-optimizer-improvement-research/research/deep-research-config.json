@@ -1,0 +1,20 @@
+{
+  "command": "deep/research",
+  "mode": "research",
+  "researchTopic": "How to improve the pi-cache-optimizer Pi extension further",
+  "specFolder": "specs/hooks/018-cache-optimizer-improvement-research",
+  "executionMode": "auto",
+  "maxIterations": 5,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.85,
+  "dryRun": false,
+  "concurrency": 1,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  }
+}
