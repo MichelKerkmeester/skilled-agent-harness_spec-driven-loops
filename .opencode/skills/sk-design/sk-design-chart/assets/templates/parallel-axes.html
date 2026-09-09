@@ -109,6 +109,7 @@ body {
 .legend-entry:focus:not(:focus-visible) { outline: none; }
 .legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
 .key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.key-swatch.is-rule { height: 2px; }
 
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
@@ -239,13 +240,21 @@ const DATA = [
   { label: 'Delta', values: [6.6, 5, 3, 97, 4] }
 ];
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'all',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  why: 'A vertex point keeps each reading reachable where the lines cross, so every plotted value takes one; no reading goes under the shared baseline'
+};
+/* MARKS:END */
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'alpha', label: 'Alpha', token: '--chart-series-1', classes: ['line-1', 'dot-1'] },
-  { key: 'beta', label: 'Beta', token: '--chart-series-2', classes: ['line-2', 'dot-2'] },
-  { key: 'gamma', label: 'Gamma', token: '--chart-series-3', classes: ['line-3', 'dot-3'] },
-  { key: 'delta', label: 'Delta', token: '--chart-series-4', classes: ['line-4', 'dot-4'] }
+  { key: 'alpha', label: 'Alpha', token: '--chart-series-1', indicator: 'rule', classes: ['line-1', 'dot-1'] },
+  { key: 'beta', label: 'Beta', token: '--chart-series-2', indicator: 'rule', classes: ['line-2', 'dot-2'] },
+  { key: 'gamma', label: 'Gamma', token: '--chart-series-3', indicator: 'rule', classes: ['line-3', 'dot-3'] },
+  { key: 'delta', label: 'Delta', token: '--chart-series-4', indicator: 'rule', classes: ['line-4', 'dot-4'] }
 ];
 /* CHART_SERIES:END */
 
@@ -355,6 +364,13 @@ AXES.forEach(function (axis, j) {
 // sending it back to the top of the frame. Each pair is a button as well as a label, because
 // it is the control for the dim and a control a pointer can reach has to be reachable from a
 // keyboard too.
+/* A key stands for a mark, so it takes the mark’s shape: a filled series keeps the square and a
+   stroked series gets a rule of the same width. A square against a line reads as one more bar. */
+function paintKey(el, kind, token) {
+  el.classList.toggle('is-rule', kind === 'rule');
+  el.style.backgroundColor = 'var(' + token + ')';
+}
+
 const legend = document.getElementById('legend-parallel-axes');
 const entries = [];
 SERIES.forEach(function (series, s) {
@@ -367,7 +383,7 @@ SERIES.forEach(function (series, s) {
   entry.setAttribute('aria-label', name);
   const swatch = document.createElement('span');
   swatch.className = 'key-swatch';
-  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  paintKey(swatch, series.indicator, series.token);
   const label = document.createElement('span');
   label.className = 'key';
   label.textContent = name;

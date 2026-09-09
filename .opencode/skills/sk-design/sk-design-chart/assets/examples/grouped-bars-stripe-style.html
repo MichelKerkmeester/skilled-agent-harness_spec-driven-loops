@@ -111,6 +111,7 @@ body {
 .legend-entry:focus:not(:focus-visible) { outline: none; }
 .legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
 .key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.key-swatch.is-rule, .tip-indicator.is-rule { height: 2px; }
 
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
@@ -142,6 +143,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
 .grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+/* The reference line is a level, not a reading: it is drawn once across the plot, dashed so it
+   is not mistaken for a series, and darker than the grid so it is not mistaken for one. */
+.reference { stroke: var(--chart-ink); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 4 3; }
+.reference-label { fill: var(--chart-muted); font-size: 12px; }
 .cat { fill: var(--chart-ink); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 /* Every figure a reader compares is set in one mono face, so an axis rung, a value label
@@ -267,6 +272,26 @@ const READOUT = {
   unit: 'signups'
 };
 /* READOUT:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // One short series marks its own readings, so a second line crossing the plot is one more thing to look past
+  guide: false,
+  why: 'Striped bars read as one grouped column, so points would cut through the pattern; no series value is negative, so the shared baseline anchors every group'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
+
+/* REFERENCE:BEGIN */
+// Lines the reader measures the marks against, drawn across the plot and named at the right
+// edge. Each entry is { value, label, why }; an empty list draws nothing. A reference line is
+// a claim about the data, so it carries the sentence that justifies it beside the number.
+const REFERENCE = [];
+/* REFERENCE:END */
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -290,8 +315,8 @@ const METRIC = {
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'last-year', label: 'Last year', token: '--chart-series-3', classes: ['past'] },
-  { key: 'this-year', label: 'This year', token: '--chart-series-1', classes: ['current'] }
+  { key: 'last-year', label: 'Last year', token: '--chart-series-3', indicator: 'swatch', classes: ['past'] },
+  { key: 'this-year', label: 'This year', token: '--chart-series-1', indicator: 'swatch', classes: ['current'] }
 ];
 /* CHART_SERIES:END */
 
@@ -367,6 +392,16 @@ const TIP_ROWS = 1;
 const tipLayer = document.getElementById('tip-grouped-bars');
 const MARKS = new Map();
 
+/* A key stands for a mark, so it takes the mark’s shape: a filled series keeps the square and a
+   stroked series gets a rule of the same width. A square against a line reads as one more bar. */
+const KIND_BY_TOKEN = {};
+SERIES.forEach(function (s) { KIND_BY_TOKEN[s.token] = s.indicator; });
+
+function paintKey(el, kind, token) {
+  el.classList.toggle('is-rule', kind === 'rule');
+  el.style.backgroundColor = 'var(' + token + ')';
+}
+
 function tipNode(cls) {
   const el = document.createElement('span');
   el.className = cls;
@@ -410,7 +445,7 @@ function openTip(mark) {
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
     const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
-    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    paintKey(row.indicator, KIND_BY_TOKEN[item.token] || 'swatch', item.token);
     row.label.textContent = item.label;
     row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
   });
@@ -506,7 +541,7 @@ SERIES.forEach(function (series, s) {
   entry.setAttribute('aria-label', name);
   const swatch = document.createElement('span');
   swatch.className = 'key-swatch';
-  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  paintKey(swatch, series.indicator, series.token);
   const label = document.createElement('span');
   label.className = 'key';
   label.textContent = name;
@@ -713,7 +748,30 @@ document.addEventListener('click', function (e) {
 // The card remains a sibling of the SVG, so its absolute position stays within the figure.
 
 // The drawing ends here. Everything above it ran because the data block held something to draw.
+
+  /* REFERENCE_DRAW:BEGIN */
+  // A reference line is drawn after the marks so it can be followed across them, and stays
+  // quieter than any of them so it reads as the level rather than as another series.
+  REFERENCE.forEach(function (line) {
+    const at = y(line.value);
+    const rule = document.createElementNS(SVG, 'line');
+    rule.setAttribute('class', 'reference');
+    rule.setAttribute('x1', LEFT);
+    rule.setAttribute('x2', RIGHT);
+    rule.setAttribute('y1', at);
+    rule.setAttribute('y2', at);
+    svg.appendChild(rule);
+    const tag = document.createElementNS(SVG, 'text');
+    tag.setAttribute('class', 'reference-label');
+    tag.setAttribute('x', RIGHT);
+    tag.setAttribute('y', at - 6);
+    tag.setAttribute('text-anchor', 'end');
+    tag.textContent = line.label;
+    svg.appendChild(tag);
+  });
+  /* REFERENCE_DRAW:END */
 }
+
 </script>
 </body>
 </html>

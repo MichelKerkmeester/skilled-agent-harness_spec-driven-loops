@@ -153,6 +153,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 .legend-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
 .legend-entry { appearance: none; border: 0; background: transparent; color: var(--chart-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; font-size: 12px; line-height: 16px; }
 .key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.key-swatch.is-rule, .tip-indicator.is-rule { height: 2px; }
 .legend-entry:focus:not(:focus-visible) { outline: none; }
 .legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
 
@@ -259,9 +260,9 @@ const DATA = [
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'held', label: 'Held', token: '--chart-series-2', classes: ['status-held'] },
-  { key: 'degraded', label: 'Degraded', token: '--chart-series-4', classes: ['status-degraded'] },
-  { key: 'failed', label: 'Failed', token: '--chart-series-1', classes: ['status-failed'] }
+  { key: 'held', label: 'Held', token: '--chart-series-2', indicator: 'swatch', classes: ['status-held'] },
+  { key: 'degraded', label: 'Degraded', token: '--chart-series-4', indicator: 'swatch', classes: ['status-degraded'] },
+  { key: 'failed', label: 'Failed', token: '--chart-series-1', indicator: 'swatch', classes: ['status-failed'] }
 ];
 /* CHART_SERIES:END */
 
@@ -273,6 +274,19 @@ const READOUT = {
   unit: ''
 };
 /* READOUT:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // One short series marks its own readings, so a second line crossing the plot is one more thing to look past
+  guide: false,
+  why: 'A block answers by its shade, so points would restate the status; the periods it counts sit above the baseline the strip runs on'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -360,6 +374,16 @@ const TIP_ROWS = 1;
 const tipLayer = document.getElementById('tip-tracker');
 const MARKS = new Map();
 
+/* A key stands for a mark, so it takes the mark’s shape: a filled series keeps the square and a
+   stroked series gets a rule of the same width. A square against a line reads as one more bar. */
+const KIND_BY_TOKEN = {};
+SERIES.forEach(function (s) { KIND_BY_TOKEN[s.token] = s.indicator; });
+
+function paintKey(el, kind, token) {
+  el.classList.toggle('is-rule', kind === 'rule');
+  el.style.backgroundColor = 'var(' + token + ')';
+}
+
 function tipNode(cls) {
   const el = document.createElement('span');
   el.className = cls;
@@ -402,7 +426,7 @@ function openTip(mark) {
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
     const item = info.rows[i] || { label: '', value: '\u2014', token: '--chart-series-1' };
-    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    paintKey(row.indicator, KIND_BY_TOKEN[item.token] || 'swatch', item.token);
     row.label.textContent = item.label;
     row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
   });
@@ -474,7 +498,7 @@ SERIES.forEach(function (series, s) {
   entry.setAttribute('aria-label', name);
   const swatch = document.createElement('span');
   swatch.className = 'key-swatch';
-  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  paintKey(swatch, series.indicator, series.token);
   const label = document.createElement('span');
   label.className = 'key';
   label.textContent = name;

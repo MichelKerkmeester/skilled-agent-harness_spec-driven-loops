@@ -222,6 +222,14 @@ const DATA = [
   { label: 'Welcome call', value: 1.5 }
 ];
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  why: 'Each row ends in its printed figure, so points would repeat it; the values count up from the shared left end, which is the only reference a row gets'
+};
+/* MARKS:END */
 
 // Everything below draws. Horizontal rows are the right orientation whenever the
 // category names are words rather than codes, because a word set vertically is unreadable.

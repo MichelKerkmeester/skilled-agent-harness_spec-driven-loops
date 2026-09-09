@@ -109,6 +109,7 @@ body {
 .legend-entry:focus:not(:focus-visible) { outline: none; }
 .legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
 .key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.key-swatch.is-rule, .tip-indicator.is-rule { height: 2px; }
 
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
@@ -275,6 +276,19 @@ const READOUT = {
   unit: ''
 };
 /* READOUT:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // One short series marks its own readings, so a second line crossing the plot is one more thing to look past
+  guide: false,
+  why: 'Segments read as parts of one column, so points would split them; no part is negative, so the column grows from the shared baseline'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -298,9 +312,9 @@ const METRIC = {
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'platform', label: 'Platform', token: '--chart-series-1', classes: ['series-1'] },
-  { key: 'services', label: 'Services', token: '--chart-series-2', classes: ['series-2'] },
-  { key: 'support', label: 'Support', token: '--chart-series-3', classes: ['series-3'] }
+  { key: 'platform', label: 'Platform', token: '--chart-series-1', indicator: 'swatch', classes: ['series-1'] },
+  { key: 'services', label: 'Services', token: '--chart-series-2', indicator: 'swatch', classes: ['series-2'] },
+  { key: 'support', label: 'Support', token: '--chart-series-3', indicator: 'swatch', classes: ['series-3'] }
 ];
 /* CHART_SERIES:END */
 
@@ -370,6 +384,16 @@ const TIP_ROWS = 1;
 const tipLayer = document.getElementById('tip-stacked-bars');
 const MARKS = new Map();
 
+/* A key stands for a mark, so it takes the mark’s shape: a filled series keeps the square and a
+   stroked series gets a rule of the same width. A square against a line reads as one more bar. */
+const KIND_BY_TOKEN = {};
+SERIES.forEach(function (s) { KIND_BY_TOKEN[s.token] = s.indicator; });
+
+function paintKey(el, kind, token) {
+  el.classList.toggle('is-rule', kind === 'rule');
+  el.style.backgroundColor = 'var(' + token + ')';
+}
+
 function tipNode(cls) {
   const el = document.createElement('span');
   el.className = cls;
@@ -413,7 +437,7 @@ function openTip(mark) {
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
     const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
-    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    paintKey(row.indicator, KIND_BY_TOKEN[item.token] || 'swatch', item.token);
     row.label.textContent = item.label;
     row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
   });
@@ -559,7 +583,7 @@ SERIES.forEach(function (series, s) {
   entry.setAttribute('aria-label', name);
   const swatch = document.createElement('span');
   swatch.className = 'key-swatch';
-  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  paintKey(swatch, series.indicator, series.token);
   const label = document.createElement('span');
   label.className = 'key';
   label.textContent = name;

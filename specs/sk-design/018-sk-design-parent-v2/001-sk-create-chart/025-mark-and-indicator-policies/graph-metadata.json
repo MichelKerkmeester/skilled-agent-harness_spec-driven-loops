@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/mutations.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md"
     ],
     "entities": [
       {
@@ -88,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "mutations.md",
+        "kind": "doc",
+        "path": "scratch/mutations.md",
+        "source": "derived"
+      },
+      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
@@ -97,6 +105,12 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Mark choices that carry meaning are still implicit per template: whether a short series shows its points, whether an area may split at zero, whether a composed form's line is shown with a bar-shaped swatch in the tooltip, whether a target or event line exists, and whether a dense multi-series form guides the cursor",
     "created_at": "2026-09-08T18:22:04Z",
-    "last_save_at": "2026-09-08T18:28:12.958Z",
+    "last_save_at": "2026-09-09T13:51:29.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0dd7dc147801628777efd876db6a7c5b82e6b51edf3b51bd6fd31463351c95a1",
+    "source_fingerprint": "sha256:29cd7f88556069999eb32bf5dfe27badb5ad20f48ad24f6607fa8f74be2fdbb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1dd62a356ecbf54fe9701e35beea5035c7b332e4d88d968a4efb15cb38b7dcbc",
+      "spec.md": "3065dfe4325fd8ef827e347179a689589ee703f8d0f24bed72c094d6ffd47656",
       "plan.md": "7721d5d55ef65a7a93bc58e12e0906a71b1dbdf38d79a59a5e6041a053d6b7f7",
-      "tasks.md": "0fc8064b2a155b147f3471168a3a84eb381b14c4454b1926cd537dbec6d782e0",
-      "implementation-summary.md": "7096fc6d63832ec023b4682295b328535d32f334ce5bd6a8bea657278e3ab220"
+      "tasks.md": "0de251f63c6837f869d67d18fe460f1398b7c0e618bffa7b037c2a6b14136e61",
+      "implementation-summary.md": "c07dd06464fc0f9d7f8ede4b53c9b562e0e2733031cc26544974a2823b778a87"
     },
     "last_active_at": null
   }

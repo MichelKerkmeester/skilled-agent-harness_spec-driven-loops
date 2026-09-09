@@ -153,6 +153,14 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
 .grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+/* The guide is only ever as loud as it needs to be to be followed from the mark down to the
+   axis, and it is not there at all until a reading is being read. */
+.cursor-guide { stroke: var(--chart-ink); stroke-opacity: 0; stroke-width: 1; }
+.cursor-guide[data-open] { stroke-opacity: 0.3; }
+/* The reference line is a level, not a reading: it is drawn once across the plot, dashed so it
+   is not mistaken for a series, and darker than the grid so it is not mistaken for one. */
+.reference { stroke: var(--chart-ink); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 4 3; }
+.reference-label { fill: var(--chart-muted); font-size: 12px; }
 .dot { fill: transparent; stroke: none; }
 /* The ring is the surface colour, so the emphasized reading separates from the line it
    sits on instead of merging into it. */
@@ -319,6 +327,28 @@ const METRIC = {
 const CURVE = 'linear';
 // Linear connects daily measured orders without smoothing away the observed changes.
 /* CURVE:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'sparse',        // 'none' | 'sparse' | 'all'
+  fill: 'gradient',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // Twenty-eight readings on one line, and the marked day is the only one carrying a dot, so the column a reading belongs to is otherwise left to the eye
+  guide: true,
+  why: 'The line and its fading area carry the trend, so the crown marks only the day the sentence cites; orders never fall below the baseline the area fades toward'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
+
+/* REFERENCE:BEGIN */
+// Lines the reader measures the marks against, drawn across the plot and named at the right
+// edge. Each entry is { value, label, why }; an empty list draws nothing. A reference line is
+// a claim about the data, so it carries the sentence that justifies it beside the number.
+const REFERENCE = [
+  { value: 180.3, label: 'First week average', why: 'The headline says the drop never came back, and the only way to see that is a line at the level the series held before it. Days 1 to 7 average 180.3, and nothing after day 11 reaches it.' }
+];
+/* REFERENCE:END */
 
 // Everything below draws. A near-hairline is the right weight here: heavy enough to hold on
 // paper, light enough that the line reads as a measurement rather than as a border. The area fill helps only
@@ -455,7 +485,32 @@ function markable(el, datum, rows) {
   return el;
 }
 
+/* CURSOR_GUIDE:BEGIN */
+// A hairline at the reading under the pointer, earned by density rather than added by
+// default: it answers which column a mark belongs to, which a form with few, well-marked
+// readings has already answered.
+const guideLine = document.createElementNS(SVG, 'line');
+guideLine.setAttribute('class', 'cursor-guide');
+svg.appendChild(guideLine);
+
+function moveGuide(mark) {
+  if (!guideLine) return;
+  const box = mark.getBBox();
+  const at = box.x + box.width / 2;
+  guideLine.setAttribute('x1', at);
+  guideLine.setAttribute('x2', at);
+  guideLine.setAttribute('y1', TOP);
+  guideLine.setAttribute('y2', BASE);
+  guideLine.setAttribute('data-open', '');
+}
+
+function hideGuide() {
+  if (guideLine) guideLine.removeAttribute('data-open');
+}
+/* CURSOR_GUIDE:END */
+
 function openTip(mark) {
+  moveGuide(mark);
   const info = MARKS.get(mark);
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
@@ -485,6 +540,7 @@ function openTip(mark) {
 }
 
 function closeTip() {
+  hideGuide();
   tipLayer.removeAttribute('data-open');
 }
 
@@ -803,6 +859,28 @@ document.addEventListener('click', function (e) {
 // The card remains a sibling of the SVG, so its absolute position stays within the figure.
 
 // The drawing ends here. Everything above it ran because the data block held something to draw.
+
+  /* REFERENCE_DRAW:BEGIN */
+  // A reference line is drawn after the marks so it can be followed across them, and stays
+  // quieter than any of them so it reads as the level rather than as another series.
+  REFERENCE.forEach(function (line) {
+    const at = y(line.value);
+    const rule = document.createElementNS(SVG, 'line');
+    rule.setAttribute('class', 'reference');
+    rule.setAttribute('x1', LEFT);
+    rule.setAttribute('x2', RIGHT);
+    rule.setAttribute('y1', at);
+    rule.setAttribute('y2', at);
+    svg.appendChild(rule);
+    const tag = document.createElementNS(SVG, 'text');
+    tag.setAttribute('class', 'reference-label');
+    tag.setAttribute('x', RIGHT);
+    tag.setAttribute('y', at - 6);
+    tag.setAttribute('text-anchor', 'end');
+    tag.textContent = line.label;
+    svg.appendChild(tag);
+  });
+  /* REFERENCE_DRAW:END */
 }
 
 /* METRIC_READOUT:BEGIN */
@@ -839,6 +917,7 @@ if (metricBox && !METRIC.present) {
   }
 }
 /* METRIC_READOUT:END */
+
 </script>
 </body>
 </html>

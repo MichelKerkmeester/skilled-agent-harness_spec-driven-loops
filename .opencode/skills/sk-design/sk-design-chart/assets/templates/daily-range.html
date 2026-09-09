@@ -144,6 +144,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
 .grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+/* The reference line is a level, not a reading: it is drawn once across the plot, dashed so it
+   is not mistaken for a series, and darker than the grid so it is not mistaken for one. */
+.reference { stroke: var(--chart-ink); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 4 3; }
+.reference-label { fill: var(--chart-muted); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 /* Every figure a reader compares is set in one mono face, so an axis rung, a value label
    and a table cell line up digit under digit and a column of numbers reads as a column.
@@ -260,6 +264,26 @@ const READOUT = {
   unit: 'ms'
 };
 /* READOUT:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // One short series marks its own readings, so a second line crossing the plot is one more thing to look past
+  guide: false,
+  why: 'The band carries both bounds, so a point between them would manufacture the average this form refuses; ranges never fall below the shared baseline'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
+
+/* REFERENCE:BEGIN */
+// Lines the reader measures the marks against, drawn across the plot and named at the right
+// edge. Each entry is { value, label, why }; an empty list draws nothing. A reference line is
+// a claim about the data, so it carries the sentence that justifies it beside the number.
+const REFERENCE = [];
+/* REFERENCE:END */
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -631,6 +655,28 @@ document.addEventListener('click', function (e) {
 // The card remains a sibling of the SVG, so its absolute position stays within the figure.
 
 // The drawing ends here. Everything above it ran because the data block held something to draw.
+
+  /* REFERENCE_DRAW:BEGIN */
+  // A reference line is drawn after the marks so it can be followed across them, and stays
+  // quieter than any of them so it reads as the level rather than as another series.
+  REFERENCE.forEach(function (line) {
+    const at = y(line.value);
+    const rule = document.createElementNS(SVG, 'line');
+    rule.setAttribute('class', 'reference');
+    rule.setAttribute('x1', LEFT);
+    rule.setAttribute('x2', RIGHT);
+    rule.setAttribute('y1', at);
+    rule.setAttribute('y2', at);
+    svg.appendChild(rule);
+    const tag = document.createElementNS(SVG, 'text');
+    tag.setAttribute('class', 'reference-label');
+    tag.setAttribute('x', RIGHT);
+    tag.setAttribute('y', at - 6);
+    tag.setAttribute('text-anchor', 'end');
+    tag.textContent = line.label;
+    svg.appendChild(tag);
+  });
+  /* REFERENCE_DRAW:END */
 }
 
 /* METRIC_READOUT:BEGIN */
@@ -669,6 +715,7 @@ if (metricBox && !METRIC.present) {
   }
 }
 /* METRIC_READOUT:END */
+
 </script>
 </body>
 </html>

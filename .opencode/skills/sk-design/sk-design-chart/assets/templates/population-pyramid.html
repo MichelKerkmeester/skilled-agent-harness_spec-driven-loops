@@ -109,6 +109,7 @@ body {
 .legend-entry:focus:not(:focus-visible) { outline: none; }
 .legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
 .key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.key-swatch.is-rule, .tip-indicator.is-rule { height: 2px; }
 
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
@@ -257,6 +258,19 @@ const READOUT = {
   unit: 'people'
 };
 /* READOUT:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // One short series marks its own readings, so a second line crossing the plot is one more thing to look past
+  guide: false,
+  why: 'The mirrored bars are the reading and their ends meet the centre, so points would crowd the spine; counts stay positive on both sides'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
 
 /* FINDING:BEGIN */
 const FINDING = {
@@ -280,8 +294,8 @@ const METRIC = {
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'men', label: 'Men', token: '--chart-series-3', classes: ['bar-left'] },
-  { key: 'women', label: 'Women', token: '--chart-series-1', classes: ['bar-right'] }
+  { key: 'men', label: 'Men', token: '--chart-series-3', indicator: 'swatch', classes: ['bar-left'] },
+  { key: 'women', label: 'Women', token: '--chart-series-1', indicator: 'swatch', classes: ['bar-right'] }
 ];
 /* CHART_SERIES:END */
 
@@ -345,7 +359,7 @@ function compact(v) {
 // The card prints both counts no matter which bar of the band is pointed at, because the
 // reader's question about one side is whether the other side matches it.
 function cardRows(d) {
-  return SERIES.map(function (series, s) { return [series.label, fmt(d.values[s])]; });
+  return SERIES.map(function (series, s) { return [series.label, fmt(d.values[s]), null, s + 1]; });
 }
 
 // The hover card, built once and refilled on each hover so a pointer crossing the plot does
@@ -362,6 +376,16 @@ const TIP_FLOOR = 128;
 const TIP_ROWS = 2;
 const tipLayer = document.getElementById('tip-population-pyramid');
 const MARKS = new Map();
+
+/* A key stands for a mark, so it takes the mark’s shape: a filled series keeps the square and a
+   stroked series gets a rule of the same width. A square against a line reads as one more bar. */
+const KIND_BY_TOKEN = {};
+SERIES.forEach(function (s) { KIND_BY_TOKEN[s.token] = s.indicator; });
+
+function paintKey(el, kind, token) {
+  el.classList.toggle('is-rule', kind === 'rule');
+  el.style.backgroundColor = 'var(' + token + ')';
+}
 
 function tipNode(cls) {
   const el = document.createElement('span');
@@ -391,10 +415,13 @@ function markable(el, datum, rows) {
   MARKS.set(el, {
     name: READOUT.label(datum[READOUT.key]),
     rows: rows.map(function (row) {
+      // A card that lists two series names paints each row in its own series' colour: the
+      // row belongs to the measure it names, not to whichever mark the pointer happens to
+      // be over. A row that names no series of its own falls back to the mark's.
       return {
         label: READOUT.label(row[0]),
         value: READOUT.value(row[1], row[2]),
-        token: '--chart-series-' + seriesNumber
+        token: '--chart-series-' + (row[3] || seriesNumber)
       };
     })
   });
@@ -406,7 +433,7 @@ function openTip(mark) {
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
     const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
-    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    paintKey(row.indicator, KIND_BY_TOKEN[item.token] || 'swatch', item.token);
     row.label.textContent = item.label;
     row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
   });
@@ -518,7 +545,7 @@ SERIES.forEach(function (series, s) {
   entry.setAttribute('aria-label', name);
   const swatch = document.createElement('span');
   swatch.className = 'key-swatch';
-  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  paintKey(swatch, series.indicator, series.token);
   const label = document.createElement('span');
   label.className = 'key';
   label.textContent = name;

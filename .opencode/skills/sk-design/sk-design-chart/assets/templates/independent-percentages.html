@@ -201,6 +201,14 @@ const DATA = [
   { label: 'Recovery codes', value: 9, lead: true }
 ];
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  why: 'Each track holds its own printed percentage, so points would double the number; every share is measured from the shared zero the tracks start at'
+};
+/* MARKS:END */
 
 // Everything below draws. Each track is its own whole, which is the entire reason this
 // form exists. Values that do share a whole belong in the unit grid or the stacked form.

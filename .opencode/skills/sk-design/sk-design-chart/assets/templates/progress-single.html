@@ -247,6 +247,14 @@ const MEASURE = {
   pace: 0.75
 };
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'gradient',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  why: 'The one fill takes a ramp along its run so the bar reads as distance covered, and the printed figures carry the rest; progress is measured from nothing'
+};
+/* MARKS:END */
 
 // Everything below draws. The pace marker is what turns a number into a comparison. A
 // progress bar with no reference point tells a reader how far, never whether that is enough.

@@ -243,6 +243,39 @@ sentinel, the allowed set, the rationale and the read by the path. The current t
 are `bar-line-composed`, `daily-line`, `stacked-area` and the `orders-after-the-price-change`
 delivery; each ships `linear` because each is a measured trend with finite gaps left visible.
 
+### A form declares what its marks do
+
+Whether a figure adds dots, how it fills the space under a line, and whether its zero means
+anything are decisions the paint code makes either way. A `MARKS` block beside the data states
+them in words a check can hold against the paint: `points` is `none`, `sparse` or `all`; `fill` is
+`none`, `gradient` or `flat`; `zero` is `baseline` or `meaningful`. A one-line why sits beside
+them, and it is the only prose in the block, because a longer reading of the drawing is the second
+description that goes stale first.
+
+`sparse` marks the readings the sentence cites and nothing else, which is why `daily-line` and
+`spark` carry one dot each rather than twenty-eight. `all` belongs to the forms whose reading *is*
+the point: `scatter`, `dumbbell`, `distribution-strip` and `parallel-axes`. `meaningful` is
+declared by one form, `waterfall`, because its steps are signed and its baseline separates a rise
+from a fall. Every other form's zero is the floor its bars stand on. The `mark-policy` family
+holds the block, the vocabulary and the agreement with what the file actually paints.
+
+### A level a reader measures against is declared
+
+A target, an average or a threshold drawn across a plot is a claim about the data, not decoration,
+so a form that can carry one says whether it does. Every cartesian form declares a `REFERENCE`
+list of `{ value, label, why }`; an empty list draws nothing, and the drawing takes all three
+fields from the block rather than from a data field of its own. The line is dashed at the ink
+colour so it is not mistaken for the grid, and its label is set at the right edge of the plot, above
+the rule.
+
+`daily-line` is the worked case: it declares one line at the first week's average, which is what
+makes the headline visible rather than asserted, since nothing after day eleven reaches it. The
+`reference-line` family holds the block, the three fields and the read by the drawing.
+
+`bullet` is not a consumer, and the reason is worth stating because it looks like one. Its target
+is per row, not per plot: four measures carry four different targets against four different scales,
+and a chart-wide list cannot express that. Its target stays in its data.
+
 ### When a form cannot honour the data it was given
 
 A form is honest inside a documented shape, and two different things set that shape. The catalog
@@ -693,6 +726,41 @@ the total`), which assumed per-x hit targets that were never built. Build a one-
 band's series name plus its period total, per the `Card name` and `Rows` cells above. Not a
 five-row card, and not a name-only card either, since a per-x reading is not buildable without
 machinery this packet excludes.
+
+### A key takes the shape of its mark
+
+A card and a legend both paint a small key beside a series name, and for most of this corpus a
+square is right, because the series is a bar, a band, a block or a cell. It is wrong for a line: a
+stroked series told by a square reads as one more bar. Every series in a `CHART_SERIES` list
+declares `indicator`, either `swatch` or `rule`, and both the legend chip and the card row draw the
+kind the series names. `bar-line-composed` is the case the field exists for, and `parallel-axes`
+is the case where every series takes a rule.
+
+Whether a card carries keys at all is a separate question, and it was already answered before this
+field existed: a card whose rows are statistics of one series carries `data-single-series` in the
+markup and shows no key at all. So there is no third kind. The `tooltip-indicator` family holds the
+declaration, the vocabulary and the paint, and it only applies to the forms that actually draw a
+key.
+
+A card that lists two series by name paints each row in that row's own colour. It reads as the
+hovered series' colour otherwise, which tells a reader that both figures belong to the mark they
+are pointing at when one of them belongs to the other measure entirely.
+
+### A guide is earned by density
+
+A hairline following the pointer down the plot answers one question: which column the reading
+under the pointer belongs to. On a form with few, well-marked readings that question is already
+answered, and a line crossing the picture on every hover is one more thing to look past. So the
+`MARKS` block declares `guide`, and a form may declare `true` only with two or more series or more
+than twenty readings.
+
+Density is necessary and not sufficient. The card also has to open on a reading rather than on a
+series: `stacked-area` clears the density bar four times over and declares `false`, because its
+card opens on a band and reports that band's whole period, so a hairline would sit at the middle
+of the band every time rather than on a column. `daily-line`, `bar-line-composed` and the
+`orders-after-the-price-change` delivery declare `true`. The `cursor-guide` family holds the
+declaration, the permission and the agreement between the two, and the check cannot see the
+per-reading requirement — that one is on the author.
 
 ### What a handler may do
 

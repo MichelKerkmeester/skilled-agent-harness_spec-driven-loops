@@ -207,6 +207,14 @@ const DATA = [
   { label: 'Unassigned', value: 7 }
 ];
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  why: 'Each square is one unit, so points would double-count; the squares fill the shared frame from nothing, which is the zero the shares read against'
+};
+/* MARKS:END */
 
 // Everything below draws. The shares have to sum to one hundred, because the grid is
 // a whole. Independent percentages that do not sum to a whole need the other form.

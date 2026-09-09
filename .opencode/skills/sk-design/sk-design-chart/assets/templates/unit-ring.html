@@ -208,6 +208,14 @@ const DATA = [
   { label: 'Human error', value: 3 }
 ];
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  why: 'The ring carries countable marks rather than plotted points, so none is added; shares of one whole never dip under where the ring begins'
+};
+/* MARKS:END */
 
 // Everything below draws. One tick is one record, so the counts have to be whole
 // numbers. A share that only exists as a percentage belongs in the unit grid instead.

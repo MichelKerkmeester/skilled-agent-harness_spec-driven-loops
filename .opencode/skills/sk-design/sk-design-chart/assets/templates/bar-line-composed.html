@@ -116,6 +116,7 @@ body {
 .legend-entry:focus:not(:focus-visible) { outline: none; }
 .legend-entry:focus-visible { outline: 2px solid var(--chart-ink); outline-offset: 2px; }
 .key-swatch { width: 8px; height: 8px; border-radius: var(--chart-radius-mark); display: inline-block; flex: 0 0 8px; }
+.key-swatch.is-rule, .tip-indicator.is-rule { height: 2px; }
 
 /* The table pans on a narrow screen exactly as the figure above it does, and for the same
    reason. A table wider than the screen has to move somewhere, and with no region of its own it
@@ -151,6 +152,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
 .grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+/* The guide is only ever as loud as it needs to be to be followed from the mark down to the
+   axis, and it is not there at all until a reading is being read. */
+.cursor-guide { stroke: var(--chart-ink); stroke-opacity: 0; stroke-width: 1; }
+.cursor-guide[data-open] { stroke-opacity: 0.3; }
 .cat { fill: var(--chart-ink); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 /* An axis on a two-scale chart has to say which measure it belongs to, and it says it in the
@@ -323,8 +328,8 @@ const METRIC = {
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'orders', label: 'Orders', token: '--chart-series-1', classes: ['bars', 'axis-count'] },
-  { key: 'conversion-rate', label: 'Conversion rate', token: '--chart-series-2', classes: ['rate-line', 'rate-dot', 'axis-rate', 'key-rule', 'metric-delta', 'cue'] }
+  { key: 'orders', label: 'Orders', token: '--chart-series-1', indicator: 'swatch', classes: ['bars', 'axis-count'] },
+  { key: 'conversion-rate', label: 'Conversion rate', token: '--chart-series-2', indicator: 'rule', classes: ['rate-line', 'rate-dot', 'axis-rate', 'key-rule', 'metric-delta', 'cue'] }
 ];
 /* CHART_SERIES:END */
 
@@ -332,6 +337,19 @@ const SERIES = [
 const CURVE = 'linear';
 // Linear connects weekly measured rates without smoothing or inventing a value in a missing week.
 /* CURVE:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'baseline',      // 'baseline' | 'meaningful'
+  // Two series read against two scales, and the line sits between the columns rather than on them
+  guide: true,
+  why: 'The rate line keeps its stroke as the only visible mark and the columns carry their counts, so no point is added; neither series dips below the baseline both scales share'
+};
+/* MARKS:END */
+// MARKS is shadowed inside the drawing block by its map of marks, so the one field the
+// drawing needs is taken while the policy is still the MARKS in scope.
+const GUIDE = MARKS.guide;
 
 // Everything below draws. Two measures is the ceiling for this form. A third would need a
 // third ladder, and a reader cannot hold three scales at once: past two, the honest answer is
@@ -430,6 +448,16 @@ const TIP_ROWS = 2;
 const tipLayer = document.getElementById('tip-bar-line-composed');
 const MARKS = new Map();
 
+/* A key stands for a mark, so it takes the mark’s shape: a filled series keeps the square and a
+   stroked series gets a rule of the same width. A square against a line reads as one more bar. */
+const KIND_BY_TOKEN = {};
+SERIES.forEach(function (s) { KIND_BY_TOKEN[s.token] = s.indicator; });
+
+function paintKey(el, kind, token) {
+  el.classList.toggle('is-rule', kind === 'rule');
+  el.style.backgroundColor = 'var(' + token + ')';
+}
+
 function tipNode(cls) {
   const el = document.createElement('span');
   el.className = cls;
@@ -458,22 +486,50 @@ function markable(el, datum, rows) {
   MARKS.set(el, {
     name: READOUT.label(datum[READOUT.key]),
     rows: rows.map(function (row) {
+      // A card that lists two series names paints each row in its own series' colour: the
+      // row belongs to the measure it names, not to whichever mark the pointer happens to
+      // be over. A row that names no series of its own falls back to the mark's.
       return {
         label: READOUT.label(row[0]),
         value: READOUT.value(row[1], row[2]),
-        token: '--chart-series-' + seriesNumber
+        token: '--chart-series-' + (row[3] || seriesNumber)
       };
     })
   });
   return el;
 }
 
+/* CURSOR_GUIDE:BEGIN */
+// A hairline at the reading under the pointer, earned by density rather than added by
+// default: it answers which column a mark belongs to, which a form with few, well-marked
+// readings has already answered.
+const guideLine = document.createElementNS(SVG, 'line');
+guideLine.setAttribute('class', 'cursor-guide');
+svg.appendChild(guideLine);
+
+function moveGuide(mark) {
+  if (!guideLine) return;
+  const box = mark.getBBox();
+  const at = box.x + box.width / 2;
+  guideLine.setAttribute('x1', at);
+  guideLine.setAttribute('x2', at);
+  guideLine.setAttribute('y1', TOP);
+  guideLine.setAttribute('y2', BASE);
+  guideLine.setAttribute('data-open', '');
+}
+
+function hideGuide() {
+  if (guideLine) guideLine.removeAttribute('data-open');
+}
+/* CURSOR_GUIDE:END */
+
 function openTip(mark) {
+  moveGuide(mark);
   const info = MARKS.get(mark);
   tipName.textContent = info.name;
   tipRows.forEach(function (row, i) {
     const item = info.rows[i] || { label: '', value: '—', token: '--chart-series-1' };
-    row.indicator.style.backgroundColor = 'var(' + item.token + ')';
+    paintKey(row.indicator, KIND_BY_TOKEN[item.token] || 'swatch', item.token);
     row.label.textContent = item.label;
     row.value.textContent = READOUT.unit ? item.value + '\u2009' + READOUT.unit : item.value;
   });
@@ -498,6 +554,7 @@ function openTip(mark) {
 }
 
 function closeTip() {
+  hideGuide();
   tipLayer.removeAttribute('data-open');
 }
 
@@ -634,8 +691,8 @@ DATA.forEach(function (d, i) {
     d: topRounded(cx(i) - barWidth / 2, top, barWidth, BASE - top, MARK_R),
     'data-series': 1
   }, 'bars'), d, [
-    ['Count (left scale)', fmt(d.count)],
-    ['Rate (right scale)', fmt(d.rate, 1)]
+    ['Count (left scale)', fmt(d.count), null, 1],
+    ['Rate (right scale)', fmt(d.rate, 1), null, 2]
   ]);
 });
 
@@ -667,8 +724,8 @@ segments.forEach(function (points) {
 DATA.forEach(function (d, i) {
   if (!Number.isFinite(d.rate)) return;
   markable(node('circle', { cx: cx(i), cy: yRate(d.rate), r: 3, 'data-series': 2 }, 'rate-dot'), d, [
-    ['Count (left scale)', fmt(d.count)],
-    ['Rate (right scale)', fmt(d.rate, 1)]
+    ['Count (left scale)', fmt(d.count), null, 1],
+    ['Rate (right scale)', fmt(d.rate, 1), null, 2]
   ]);
 });
 
@@ -709,7 +766,7 @@ SERIES.forEach(function (series, s) {
   entry.setAttribute('aria-label', name);
   const swatch = document.createElement('span');
   swatch.className = 'key-swatch';
-  swatch.style.backgroundColor = 'var(' + series.token + ')';
+  paintKey(swatch, series.indicator, series.token);
   const label = document.createElement('span');
   label.className = 'key';
   label.textContent = name;

@@ -151,6 +151,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
 .grid { stroke: var(--chart-rule); stroke-width: 1; stroke-opacity: 0.75; stroke-dasharray: 3 3; }
+/* The reference line is a level, not a reading: it is drawn once across the plot, dashed so it
+   is not mistaken for a series, and darker than the grid so it is not mistaken for one. */
+.reference { stroke: var(--chart-ink); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 4 3; }
+.reference-label { fill: var(--chart-muted); font-size: 12px; }
 .cat { fill: var(--chart-ink); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 .key { fill: var(--chart-muted); font-size: 12px; }
@@ -247,6 +251,21 @@ const DATA = [
   { label: 'Net revenue', value: 0, kind: 'end' }
 ];
 /* CHART_DATA:END */
+/* MARKS:BEGIN */
+const MARKS = {
+  points: 'none',        // 'none' | 'sparse' | 'all'
+  fill: 'none',          // 'none' | 'gradient' | 'flat'
+  zero: 'meaningful',      // 'baseline' | 'meaningful'
+  why: 'Steps rise or fall from the running total, so the sign of each change picks its colour, and zero is a reading the start and end totals anchor to'
+};
+/* MARKS:END */
+
+/* REFERENCE:BEGIN */
+// Lines the reader measures the marks against, drawn across the plot and named at the right
+// edge. Each entry is { value, label, why }; an empty list draws nothing. A reference line is
+// a claim about the data, so it carries the sentence that justifies it beside the number.
+const REFERENCE = [];
+/* REFERENCE:END */
 
 // Everything below draws. The end column is computed from the steps rather than typed,
 // so a step edited in the data block can never disagree with the total drawn beside it.
@@ -460,6 +479,28 @@ if (findingParagraph && (FINDING.trend === 'up' || FINDING.trend === 'down')) {
 }
 /* FINDING_CUE:END */
 // The drawing ends here. Everything above it ran because the data block held something to draw.
+
+  /* REFERENCE_DRAW:BEGIN */
+  // A reference line is drawn after the marks so it can be followed across them, and stays
+  // quieter than any of them so it reads as the level rather than as another series.
+  REFERENCE.forEach(function (line) {
+    const at = y(line.value);
+    const rule = document.createElementNS(SVG, 'line');
+    rule.setAttribute('class', 'reference');
+    rule.setAttribute('x1', LEFT);
+    rule.setAttribute('x2', RIGHT);
+    rule.setAttribute('y1', at);
+    rule.setAttribute('y2', at);
+    svg.appendChild(rule);
+    const tag = document.createElementNS(SVG, 'text');
+    tag.setAttribute('class', 'reference-label');
+    tag.setAttribute('x', RIGHT);
+    tag.setAttribute('y', at - 6);
+    tag.setAttribute('text-anchor', 'end');
+    tag.textContent = line.label;
+    svg.appendChild(tag);
+  });
+  /* REFERENCE_DRAW:END */
 }
 
 /* METRIC_READOUT:BEGIN */
@@ -498,6 +539,7 @@ if (metricBox && !METRIC.present) {
   }
 }
 /* METRIC_READOUT:END */
+
 </script>
 </body>
 </html>

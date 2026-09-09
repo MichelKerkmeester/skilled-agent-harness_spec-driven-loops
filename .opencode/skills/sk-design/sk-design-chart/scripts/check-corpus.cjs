@@ -700,6 +700,9 @@ function colourResolves(value) {
   if (v.includes('var(--chart-')) return true;
   if (COLOUR_KEYWORDS.has(v)) return true;
   if (/^url\(\s*['"]?#/.test(v)) return true;
+  // The mark policy speaks in paint words rather than paint: its fill says how an area is laid
+  // down, and that word answers to the mark-policy check, not to the paint judgement here.
+  if (v === 'gradient' || v === 'flat') return true;
   return false;
 }
 
@@ -1703,6 +1706,179 @@ function checkFindingCue(file, src) {
   }
 }
 
+// A key is the only thing in a card that claims to stand for a mark, so it has to take the
+// mark's shape rather than one shape for everything. Whether a card carries keys at all is
+// already settled in the markup by data-single-series, so the kind answers only the second
+// question, and only where a key is actually drawn.
+const KEY_KINDS = ['swatch', 'rule'];
+
+function checkTooltipIndicator(file, src) {
+  const { scripts, styles, markup } = regionsOf(stripHtmlComments(src));
+  const raw = scripts.join('\n');
+  const code = stripJsComments(raw);
+  const cardKeyed = /\.tip-indicator\s*\{/.test(styles.join('\n')) && !/data-single-series/.test(markup);
+  const legendKeyed = /key-swatch'/.test(code);
+  if (!cardKeyed && !legendKeyed) return;
+  tally('tooltip-indicator', 3);
+  const keyed = /\/\*\s*CHART_SERIES:BEGIN\s*\*\//.test(raw);
+  const declarations = code.match(/indicator\s*:\s*'([a-z]+)'/g) || [];
+  if (!declarations.length) {
+    record('tooltip-indicator', 'error', file,
+      'the figure draws a key but declares no indicator kind. A square standing for a line tells the reader the series is a bar, so the shape a key takes is stated where the series is named');
+    return;
+  }
+  const outside = declarations
+    .map(function (d) { return /'([a-z]+)'/.exec(d)[1]; })
+    .filter(function (kind) { return KEY_KINDS.indexOf(kind) === -1; });
+  if (outside.length) {
+    record('tooltip-indicator', 'error', file,
+      'the indicator kind "' + outside[0] + '" is outside swatch and rule. A key is the shape of the mark it stands for, and a mark is either filled or stroked');
+  }
+  if (keyed) {
+    const entries = (code.match(/\{\s*key\s*:\s*'[^']+'/g) || []).length;
+    if (declarations.length < entries) {
+      record('tooltip-indicator', 'error', file,
+        'a series in the CHART_SERIES list carries no indicator kind. One undeclared series is the one whose key silently borrows another series\' shape');
+    }
+  }
+  const painted = (code.match(/paintKey\s*\(/g) || []).length -
+    (/function\s+paintKey\s*\(/.test(code) ? 1 : 0);
+  if (painted < 1) {
+    record('tooltip-indicator', 'error', file,
+      'no key is painted through the declared kind. A declaration the drawing never reads is a comment, and the card goes on painting whatever it painted before');
+  }
+}
+
+// A level a reader measures against is a claim about the data, not decoration, so a form that can
+// carry one says whether it does. The block is the only place the value, the name the reader sees
+// and the reason for both sit together, and the drawing takes all three from there.
+function checkReferenceLine(file, src) {
+  const { scripts, styles } = regionsOf(stripHtmlComments(src));
+  const raw = scripts.join('\n');
+  const code = stripJsComments(raw);
+  const cartesian = /const y = function \(v\)/.test(code) && /^\.grid \{/m.test(styles.join('\n'));
+  if (!cartesian) return;
+  tally('reference-line', 3);
+  const declared = /\/\*\s*REFERENCE:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*REFERENCE:END\s*\*\//.exec(raw);
+  if (!declared) {
+    record('reference-line', 'error', file,
+      'the plot carries a value scale but declares no REFERENCE block. A form that can hold a target or an average states whether it holds one, so a later editor adds the line by filling a list rather than by inventing markup');
+    return;
+  }
+  // The block's own note names the three fields, so the entries are read from the code alone.
+  const body = stripJsComments(declared[1]);
+  const entries = body.match(/\{[^}]*\}/g) || [];
+  const incomplete = entries.filter(function (entry) {
+    return !/value\s*:/.test(entry) || !/label\s*:/.test(entry) || !/why\s*:/.test(entry);
+  });
+  if (incomplete.length) {
+    record('reference-line', 'error', file,
+      'a REFERENCE entry is missing its value, its label or its why. An unnamed line is a rule the reader cannot read, and an unexplained one is a claim nobody signed');
+  }
+  const reads = /REFERENCE\s*\.\s*forEach/.test(code) || /of\s+REFERENCE\b/.test(code);
+  if (!reads) {
+    record('reference-line', 'error', file,
+      'the drawing never reads REFERENCE. A declared line the paint code ignores leaves the form claiming a level it does not draw');
+  }
+}
+
+// A hairline following the pointer is the one refinement in this corpus that a sparse figure is
+// actively worse for: it crosses the plot on every hover to answer a question a well-marked short
+// series has already answered. So the form declares whether it draws one, and density decides
+// whether it may.
+const GUIDE_MIN_POINTS = 20;
+
+function checkCursorGuide(file, src) {
+  const { scripts, styles } = regionsOf(stripHtmlComments(src));
+  const raw = scripts.join('\n');
+  const code = stripJsComments(raw);
+  if (!/function openTip\(/.test(code)) return;
+  tally('cursor-guide', 4);
+  const declared = /\n  guide: (true|false),/.exec(raw);
+  if (!declared) {
+    record('cursor-guide', 'error', file,
+      'the figure opens a card on a mark but never says whether it guides the pointer. Whether a hairline crosses the plot on every hover is a decision the form makes, so it makes it where the other mark decisions are written');
+    return;
+  }
+  const on = declared[1] === 'true';
+  const seriesEntries = (/\/\*\s*CHART_SERIES:BEGIN\s*\*\/([\s\S]*?)\/\*\s*CHART_SERIES:END\s*\*\//.exec(raw) || [, ''])[1];
+  const series = (stripJsComments(seriesEntries).match(/\{\s*key\s*:/g) || []).length;
+  const dataBlock = (/\/\*\s*CHART_DATA:BEGIN\s*\*\/([\s\S]*?)\/\*\s*CHART_DATA:END\s*\*\//.exec(raw) || [, ''])[1];
+  const points = (stripJsComments(dataBlock).match(/\{[^{}]*\}/g) || []).length;
+  if (on && series < 2 && points <= GUIDE_MIN_POINTS) {
+    record('cursor-guide', 'error', file,
+      'the figure guides the pointer with ' + series + ' declared series and ' + points + ' readings. One short series marks its own readings, and a line crossing the plot on every hover is then one more thing to look past');
+  }
+  const drawsGuide = /cursor-guide/.test(styles.join('\n')) || /'cursor-guide'/.test(code);
+  if (on && !drawsGuide) {
+    record('cursor-guide', 'error', file,
+      'the figure declares a guide it never draws. A form that says it follows the pointer and does not is the declaration this corpus keeps deleting');
+  }
+  if (on && !(/moveGuide\(mark\)/.test(code) && /hideGuide\(\)/.test(code))) {
+    record('cursor-guide', 'error', file,
+      'the guide is never moved onto a reading, or never cleared when the pointer leaves. A hairline left behind marks a reading nobody is reading');
+  }
+  if (!on && drawsGuide) {
+    record('cursor-guide', 'error', file,
+      'the figure declares no guide but carries the code for one. The declaration is what a later editor reads, so it cannot disagree with what the file draws');
+  }
+}
+
+// What the marks, the fills and the baseline do, the paint code decides either way, so the
+// drawing declares those choices beside the data: one word each, from a vocabulary small enough
+// that a checker can hold every word against what the figure actually paints. A prose reading
+// of the drawing is the second handwriting this packet keeps deleting, so the block carries
+// only what this check can hold against the paint, plus the one line of why.
+function checkMarkPolicy(file, src) {
+  const where = file.split(path.sep).join('/');
+  // The vocabulary governs the files that draw a reading: the chart forms, the deliveries built
+  // from them, and whatever a later run adds as an extra. The palette proof sheets draw the
+  // colour system itself, which carries no marks and no zero, so the words have nothing there
+  // to be honest about.
+  if (!/^(assets\/(templates|examples)\/|--extra\/)/.test(where)) return;
+  const { scripts, styles, markup } = regionsOf(stripHtmlComments(src));
+  const code = scripts.join('\n');
+  tally('mark-policy', 4);
+  const declared = /\/\*\s*MARKS:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*MARKS:END\s*\*\//.exec(code);
+  if (!declared) {
+    record('mark-policy', 'error', file,
+      'the drawing declares no MARKS block. Whether a figure adds points, how its areas are painted and where its zero sits are decisions the paint code makes either way, so the drawing states them where a later editor reads them');
+    return;
+  }
+  const block = declared[1];
+  const field = (name) => {
+    const found = new RegExp('\\b' + name + "\\s*:\\s*'([a-z]+)'").exec(block);
+    return found ? found[1] : null;
+  };
+  const points = field('points');
+  if (points !== 'none' && points !== 'sparse' && points !== 'all') {
+    record('mark-policy', 'error', file,
+      `the MARKS block declares points ${points === null ? 'not at all' : '"' + points + '"'}, which is outside none, sparse and all. A figure adds no marks, marks the readings it singles out, or marks every reading, and nothing in between`);
+  }
+  const fill = field('fill');
+  if (fill !== 'none' && fill !== 'gradient' && fill !== 'flat') {
+    record('mark-policy', 'error', file,
+      `the MARKS block declares fill ${fill === null ? 'not at all' : '"' + fill + '"'}, which is outside none, gradient and flat. An area either does not exist, fades toward the baseline, or sits at one flat opacity`);
+  }
+  const zero = field('zero');
+  if (zero !== 'baseline' && zero !== 'meaningful') {
+    record('mark-policy', 'error', file,
+      `the MARKS block declares zero ${zero === null ? 'not at all' : '"' + zero + '"'}, which is outside baseline and meaningful. A zero is either the line every mark grows from or a reading the figure singles out, and no third thing`);
+  }
+  // The fill words promise paint the drawing must carry: a fading or flat area is laid down by
+  // a gradient definition or a fill-opacity rule, and a form that declares no area owes neither.
+  // Promise and paint are held against each other so the block cannot drift from the drawing.
+  const paintsArea = /linearGradient|fill-opacity/.test(styles.join('\n') + '\n' + markup + '\n' + code);
+  if ((fill === 'gradient' || fill === 'flat') && !paintsArea) {
+    record('mark-policy', 'error', file,
+      'the MARKS block declares a fading or flat fill, and the file paints neither a gradient nor a fill-opacity. A promised area nobody lays down is a declaration the next editor cannot trust');
+  }
+  if (fill === 'none' && paintsArea) {
+    record('mark-policy', 'error', file,
+      'the MARKS block declares no area, and the file still paints through a gradient or a fill-opacity. An unpromised area is a second handwriting of what the figure does');
+  }
+}
+
 // The metric block is the number the card leads with, so it is held to the same discipline
 // as the finding cue: what the markup prints has to be declared, the direction has to come
 // from the vocabulary the cue can draw, and the declared label has to be the one the script
@@ -2689,6 +2865,10 @@ function main() {
     checkLegend(name, src);
     checkTooltipCard(name, src);
     checkFindingCue(name, src);
+    checkMarkPolicy(name, src);
+    checkTooltipIndicator(name, src);
+    checkReferenceLine(name, src);
+    checkCursorGuide(name, src);
     checkMetricBlock(name, src, isExtra);
     checkTableDisclosure(name, src);
     checkSourceLine(name, src);

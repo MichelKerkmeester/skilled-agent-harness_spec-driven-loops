@@ -54,8 +54,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given any form, When its declarations are read, Then MARKS, indicator, REFERENCE and guide are present as required and each family fails its mutated copy | pending | Unmet | - |
-| AC-002 | REQ-002 | Given the corpus, When rendered, Then card-readout and pointer-reach pass with guides on and the captures show the four effects | pending | Unmet | - |
+| AC-001 | REQ-001 | Given any form, When its declarations are read, Then MARKS, indicator, REFERENCE and guide are present as required and each family fails its mutated copy | `check-corpus.cjs` RESULT: PASSED with mark-policy 144, tooltip-indicator 24, reference-line 33 and cursor-guide 100 assertions, 0 failures; eleven mutated copies recorded in `scratch/mutations.md` | Met | - |
+| AC-002 | REQ-002 | Given the corpus, When rendered, Then card-readout and pointer-reach pass with guides on and the captures show the four effects | `check-corpus.cjs --render` RESULT: PASSED, 40 files rendered 0 failed; captures read for daily-line (reference line and guide), bar-line-composed (key kinds and guide) and parallel-axes (rules) | Met | - |
 
 ### Status values
 
