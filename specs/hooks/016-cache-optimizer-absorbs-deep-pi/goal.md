@@ -98,10 +98,12 @@ anything above changes, the full text is resent in chat so the operator can upda
 
 - [x] No model reaches Pi without cache handling — the carve-out predicate is gone and the
       extension suite covers the previously excluded models
-- [x] Economics, retry guard and verified edits are exercised beyond the DeepSeek-direct pair —
-      the suite exercises the OpenAI, Claude and Gemini usage adapters; the live dispatch ran on
-      the DevPass route, which is itself a DeepSeek model, so live coverage off DeepSeek is
-      suite-based rather than observed
+- [x] Economics, retry guard and verified edits are exercised beyond the DeepSeek-direct pair.
+      Economics is confirmed live on a non-DeepSeek model: the persisted stats record shows 67
+      requests on `llmgateway/glm-5.3-flash` with 66 hits, 7,729,152 of 8,194,905 input tokens
+      served from cache, and `pricedRequests: 0` correctly reporting unpriced rather than a false
+      zero cost. The retry guard and verified edits stay suite-covered, which is sufficient because
+      neither branches on provider anywhere in the extension
 - [x] The retired extension is absent from the tree, from `.pi/settings.json`, and from every live
       reference — including its statistics data file, which phase 005 had re-tracked
 - [x] Historical records still name it, unedited
