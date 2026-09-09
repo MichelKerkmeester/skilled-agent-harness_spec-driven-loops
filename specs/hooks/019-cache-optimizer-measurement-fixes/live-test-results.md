@@ -14,80 +14,67 @@ contextType: "implementation"
 Live turns through Pi, where the extension actually loads, across two providers, plus a control run
 for every item and an enabled-versus-disabled quality comparison.
 
-## Evidence status
+## Evidence status — corrected after review
 
-| Item | Status | What established it |
-|------|--------|---------------------|
-| W1 unreported is not a miss | **Proven** | Migration ran on a real pre-change record; classification did not misfire on providers that do report |
+An independent review falsified two of the claims below. They are corrected here rather than
+edited away, because the original readings looked convincing and the reason they were wrong is the
+useful part.
+
+| Item | Status | Basis |
+|------|--------|-------|
+| W1 unreported is not a miss | **Migration proven; classification not exercised** | Real pre-change record migrated. The "did not misfire" claim was vacuous |
 | W2 explicit zero prices | **Proven** | Fixture plus a control that fails without the change |
-| W3 capability flag | **Proven** | Declaring model routed to unmeasured |
-| W4 cross-turn stability | **Proven, directional on effect** | Exercised in-process over multi-turn tool work; cache share measured with the gate on and off |
-| W5 persisted rejection | **Partial** | Round-trip across a process boundary proven; learning from a real 400 was never reachable |
-| Quality | **No degradation found** | 18 of 18 correct in both conditions |
+| W3 capability flag | **Proven at the stats layer** | Declaring model routed to unmeasured; the handler path is untested |
+| W4 cross-turn stability | **NOT proven. Never executed** | See below |
+| W5 persisted rejection | **Round-trip only** | Learning from a real 400 was never reachable |
+| Quality | **Inconclusive by construction** | See below |
 
-## W1 — proven
+## W4 — the test never ran the code it was testing
 
-The record on disk predated this work and carried no `unmeasuredRequests` field. It loaded,
-defaulted to `0`, and kept its counters: deepseek's 14 prior requests survived into 16. Both live
-providers report cache fields, so both recorded `unmeasured: 0` — an over-eager classifier would
-have shown up right here as requests disappearing from the ratio.
+`before_agent_start` is documented in Pi's own types as "Fired after user submits prompt but before
+agent loop". It fires **once per prompt**, not once per provider request. Every task was a separate
+one-shot `pi -p` process, so each process saw exactly one observation, never reached the second, and
+lifted nothing. The "gate on" arm was reordering *off*.
 
-## W2 — proven, with a control
+The 98.6% versus 78.0% cache share therefore measured something else: the unlifted prompt was
+byte-identical to prompts already warm in the provider's cache that day, while the neutralised arm
+shipped different bytes and took a cold miss. The gap is warm-versus-cold prefix, and it points the
+way the confound predicts.
 
-No configured model both states a zero cached-read rate and produces cached reads, so one was
-configured: a cost block with `input: 0.27` and `cacheRead: 0` on the gateway DeepSeek route, which
-caches around half its input.
+**W4 also carries a cost the commit understated.** Turn 1 ships unlifted and turn 2 ships lifted, so
+the head of the prompt changes once per session and invalidates the cached conversation at that
+point. Before the change, lifting happened from turn 1 and stayed stable. The premise — that lifting
+a candidate which later changes costs more than that guaranteed break — remains unmeasured.
 
-| | result |
-|---|---|
-| `pricedRequests` | 0 → 1 |
-| actual input cost | $0.0000265 |
-| uncached baseline | $0.0061090 |
-| implied saving | 99.6% |
+## Quality — inconclusive, not negative
 
-**Control:** the same fixture with the pre-change `<= 0` comparison recorded the request but left
-`pricedRequests` at 1 — the zero rate was rejected as unpriced, which is the defect. The fixture was
-removed afterwards and the configuration restored.
+Same firing rule. No run in either arm lifted a prefix, so 18 of 18 compares near-identical bytes.
+The result does not show the extension preserves quality; it shows two conditions that barely
+differed produced the same answers.
 
-## W3 — proven
+A discriminating design needs: at least two user prompts per task with judging on turn 2 or later;
+the shipped system prompt captured at `before_provider_request` and asserted to differ between arms;
+order-sensitive tasks where a lifted instruction moves above something that qualifies it; paired
+scoring over roughly thirty tasks; and a third arm that lifts from turn 1, to separate the gate from
+reordering itself.
 
-A model declaring `reportsCacheUsage: false` moved `unmeasuredRequests` from 0 to 1 on its next
-request. That model normally reports cache fields — it carries 335 prior hits — so without the
-declaration the request would have been counted as a hit or a miss rather than set aside.
+## W1 — narrower than claimed
 
-## W4 — proven in-process, effect measured
+Pi's `Usage` type requires the cache fields, so the normalized reader effectively always sees them
+present and the unmeasured branch is reachable only through the raw fallbacks. "Classification did
+not misfire" was true but empty. The migration evidence stands.
 
-Authorization state is process-scoped, so repeated one-shot invocations can never exercise it. Three
-tool-driven tasks produced seven provider requests inside single processes, which does.
+## W5 — a design gap the review surfaced
 
-| | requests | input tokens | cached | share |
-|---|---:|---:|---:|---:|
-| gate on | 7 | 162,051 | 159,744 | **98.6%** |
-| gate neutralised | 9 | 208,596 | 162,688 | 78.0% |
+The learned list is monotonic: nothing deletes from it, `reset` does not clear it, and the writer
+merges on-disk entries, so clearing memory cannot remove one. A single 400 from a transiently
+misconfigured proxy disables key injection for that model permanently, until the state file is
+edited by hand.
 
-The direction matches the design intent, but this is one run per condition with differing turn
-counts, so treat the gap as directional rather than as a measured 20-point gain.
+## Residue that was left behind, and removed
 
-## W5 — partial, and the control was inconclusive
-
-A seeded rejection survived a fresh process and a real turn, so the record round-trips. The control
-did **not** isolate the change: removing the in-memory contribution still left the entry, because
-the writer merges what is already on disk. So what is proven is the round-trip, not that a newly
-learned rejection is persisted — that needs a provider that actually rejects the key with a 400, and
-none did.
-
-## Quality — no degradation found
-
-Nine tasks with objectively checkable answers, each run with the extension loaded and unloaded, on a
-model that genuinely caches so the extension was doing real work.
-
-- Six factual and format-constrained tasks: 6 of 6 correct in both conditions.
-- Three tool-driven tasks requiring the model to read files and compare them: 3 of 3 in both.
-
-**18 of 18 correct in both conditions.** The tool-driven half matters more than the factual half:
-the extension reorders system-prompt content — tool lists, guidelines, skills text — so tool-driven
-work is the surface where reordering would show up, and simple recall barely touches it.
-
-This is evidence of no degradation at this scale, not proof of none. Nine tasks on one model cannot
-detect a small regression, and nothing here probes long conversations, where a lifted prefix has
-more turns in which to diverge.
+The W2 and W3 fixtures wrote fabricated numbers into cumulative stats: a priced request and a
+$0.0061 baseline for the gateway DeepSeek route from an invented cost block, and an unmeasured
+request for GLM from an invented flag, in both the totals and two session buckets. They were scrubbed
+after the review named them. Configuration files were already restored and verified byte-identical;
+this was recorded state, which the earlier cleanup check did not cover.
