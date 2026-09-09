@@ -1,18 +1,18 @@
 {
   "version": "1.0.0.0",
-  "note": "The single source of truth for every colour value in this packet. A template carries these values inline in a sentinel-marked palette block, and check-corpus.cjs compares the block against this file in both directions. Edit here, then run the validator and paste the block it prints. The values are the cursor Style Reference in the style library (.opencode/skills/sk-design/sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md): its parchment, ink, ash, driftwood, mist, stone and linen carry the chrome and the neutral system, its ember, verdant, crimson and amber carry the categorical system, and its ember drawn toward the ground carries the ordered ramp. Where a measured tone sat just under a gate it was moved by the least amount that clears: ash to #72716C for muted, amber to #BE8332 on paper, mist to #908F8D as the fourth neutral step, and the far end of the paper ramp to #E64B02 so five rungs fit above the ground.",
+  "note": "The single source of truth for every colour value in this packet. A template carries these values inline in a sentinel-marked palette block, and check-corpus.cjs compares the block against this file in both directions. Edit here, then run the validator and paste the block it prints. The values are the cursor Style Reference the packet carries beside its forms (assets/style-reference/cursor/DESIGN.md, a severed copy of the style library capture recorded in that directory's origin.md): its parchment, ink, ash, driftwood, mist, stone and linen carry the chrome and the neutral system, its ember, verdant, crimson and amber carry the categorical system, and its ember drawn toward the ground carries the ordered ramp. Where a measured tone sat just under a gate it was moved by the least amount that clears: ash to #72716C for muted, amber to #BE8332 on paper, mist to #908F8D as the fourth neutral step, and the far end of the paper ramp to #E64B02 so five rungs fit above the ground.",
   "customPropertyPrefix": "--chart-",
   "chrome": {
-      "surface": "#F7F7F4",
-      "ink": "#26251E",
-      "muted": "#72716C",
-      "rule": "#CDCDC9"
+    "surface": "#F7F7F4",
+    "ink": "#26251E",
+    "muted": "#72716C",
+    "rule": "#CDCDC9"
   },
   "chromeDark": {
-      "surface": "#26251E",
-      "ink": "#F7F7F4",
-      "muted": "#A1A19F",
-      "rule": "#F7F7F417"
+    "surface": "#26251E",
+    "ink": "#F7F7F4",
+    "muted": "#A1A19F",
+    "rule": "#F7F7F417"
   },
   "chromeDarkNote": "The ground a reader gets when their operating system asks for dark: the cursor ink itself, which the reference already uses as the surface behind its light action fills. Parchment becomes the ink and mist the muted tone, both clearing the text gate on that ground. The rule is ink at nine percent rather than a solid grey, chosen so the same declaration reads as a hairline on both grounds.",
   "chromeRoles": {
@@ -23,11 +23,11 @@
     "separator": "Not a value. Shapes that touch are separated by a stroke in surface, so no two data colours ever share an edge."
   },
   "radius": {
-      "mark": "2px",
-      "track": "4px",
-      "swatch": "4px",
-      "pill": "4px",
-      "card": "8px"
+    "mark": "2px",
+    "track": "4px",
+    "swatch": "4px",
+    "pill": "4px",
+    "card": "8px"
   },
   "radiusRoles": {
     "ladder": "One 2px knob, five steps, on the cursor reference's 4px corner with 8px for the one container that holds a whole card. Every step is a corner the corpus actually draws, so a rung exists for a consumer rather than for symmetry.",
@@ -79,27 +79,59 @@
       "encodes": "importance",
       "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. Lightness alone ranks the series, starting with the value furthest from the ground.",
       "capacity": 4,
-      "series": ["#26251E","#7A7974","#84847E","#908F8D"],
+      "series": [
+        "#26251E",
+        "#7A7974",
+        "#84847E",
+        "#908F8D"
+      ],
       "emphasis": "#F54E00",
-      "seriesDark": ["#F7F7F4","#E6E5E0","#CDCDC9","#A1A19F"],
+      "seriesDark": [
+        "#F7F7F4",
+        "#E6E5E0",
+        "#CDCDC9",
+        "#A1A19F"
+      ],
       "emphasisDark": "#F54E00"
     },
     "ordered": {
       "encodes": "magnitude",
       "useWhen": "The data is ordered: a value, a rank, a time position, a progress figure. One hue, five steps, and the step furthest from the ground reads as more.",
       "capacity": 5,
-      "series": ["#E64B02","#F56C2C","#F69363","#F6B798","#F7DACB"],
+      "series": [
+        "#E64B02",
+        "#F56C2C",
+        "#F69363",
+        "#F6B798",
+        "#F7DACB"
+      ],
       "emphasis": "#26251E",
-      "seriesDark": ["#F54E00","#CF4606","#AA3F0B","#853810","#603116"],
+      "seriesDark": [
+        "#F54E00",
+        "#CF4606",
+        "#AA3F0B",
+        "#853810",
+        "#603116"
+      ],
       "emphasisDark": "#F7F7F4"
     },
     "categorical": {
       "encodes": "category",
       "useWhen": "The categories are unordered and there are four or fewer. Five or more categories go neutral and carry labels.",
       "capacity": 4,
-      "series": ["#F54E00","#1F8A65","#CF2D56","#BE8332"],
+      "series": [
+        "#F54E00",
+        "#1F8A65",
+        "#CF2D56",
+        "#BE8332"
+      ],
       "emphasis": "#26251E",
-      "seriesDark": ["#F54E00","#1F8A65","#CF2D56","#C08532"],
+      "seriesDark": [
+        "#F54E00",
+        "#1F8A65",
+        "#CF2D56",
+        "#C08532"
+      ],
       "emphasisDark": "#F7F7F4"
     }
   }

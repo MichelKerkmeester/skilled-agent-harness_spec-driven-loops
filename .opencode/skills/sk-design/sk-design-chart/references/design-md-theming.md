@@ -84,11 +84,19 @@ magnitude ramp with step and end gates of its own. A colour table does not suppl
 the script never themes an ordered form: naming one is refused, and `--all` skips it with a note.
 Those forms keep the stock ordered system inside an otherwise themed set.
 
-When a request names no Style Reference, `--default` themes from the `cursor` bundle in the
-style library. It is the same reference the stock palette source is built from since v1.5.0.0, chosen from the
-library because its warm parchment and ink suit a printed chart, it carries a muted ladder and a hairline rule, and its accents clear the mark
-gate on both grounds; its fourth series and its emphasis come from its neutral tones and ink under
-the rules above.
+When a request names no Style Reference, `--default` themes from
+`assets/style-reference/cursor/DESIGN.md`, the copy this packet carries beside its forms. It is the
+same reference the stock palette source is built from since v1.5.0.0, chosen from the style library
+because its warm parchment and ink suit a printed chart, it carries a muted ladder and a hairline
+rule, and its accents clear the mark gate on both grounds; its fourth series and its emphasis come
+from its neutral tones and ink under the rules above.
+
+The copy is severed from the library on purpose. That library holds roughly twelve hundred captures
+and regenerates them, and a regeneration of this one would otherwise change what `--default`
+produces without a diff, and leave the stock palette derived from a capture that no longer exists.
+`assets/style-reference/cursor/origin.md` records where the copy came from and pins each file by
+hash. Overriding is unchanged: pass any other `DESIGN.md` path, including one `sk-design-md-generator`
+has just produced, and the script themes from that instead.
 
 ## Gates before writing
 

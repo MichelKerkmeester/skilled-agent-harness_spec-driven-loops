@@ -182,10 +182,13 @@ script names the shortfall and writes nothing.
 
 ## Where the values come from
 
-Since v1.5.0.0 the stock values are the cursor Style Reference in the style library,
-`sk-design-md-generator/styles/library/bundles/cursor/DESIGN.md`, chosen from a survey of the
-whole library for a warm parchment and ink that suit a printed chart, a full muted ladder, a
-hairline rule, and accents that clear the mark gate on both grounds. Parchment, ink, ash,
+Since v1.5.0.0 the stock values are the cursor Style Reference, chosen from a survey of the whole
+style library for a warm parchment and ink that suit a printed chart, a full muted ladder, a
+hairline rule, and accents that clear the mark gate on both grounds. Since v1.10.0.0 the packet
+carries its own copy of that reference at `assets/style-reference/cursor/`, so the values here are
+derived from a file this packet owns rather than from one a sibling library regenerates.
+`assets/style-reference/cursor/origin.md` records where the copy came from and pins each file by
+hash. Parchment, ink, ash,
 driftwood, mist, stone and linen carry the chrome and the `neutral` system; ember, verdant,
 crimson and amber carry the `categorical` system; ember drawn toward each ground carries the
 `ordered` ramp; and the ink itself is the dark ground, which the reference already uses behind

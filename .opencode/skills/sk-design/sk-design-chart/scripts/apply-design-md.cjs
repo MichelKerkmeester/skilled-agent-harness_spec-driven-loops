@@ -138,10 +138,13 @@ function parseTokens(file) {
   }
 }
 
-// The default Style Reference when a request names none. The cursor bundle was chosen from the
+// The default Style Reference when a request names none. The cursor capture was chosen from the
 // style library because its warm parchment and ink match the corpus' own chrome, it carries a
-// muted ladder and a hairline rule, and its accents clear the mark gate on both grounds.
-const DEFAULT_DESIGN_PATH = path.resolve(PACKAGE_ROOT, '..', 'sk-design-md-generator', 'styles', 'library', 'bundles', 'cursor', 'DESIGN.md');
+// muted ladder and a hairline rule, and its accents clear the mark gate on both grounds. The
+// copy beside the forms is the one read: the library regenerates its captures, and a stock the
+// corpus was derived from cannot be allowed to change under it without a diff. Any other
+// reference is applied by passing its path instead.
+const DEFAULT_DESIGN_PATH = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'cursor', 'DESIGN.md');
 // Provenance records the reference by a path a second machine can resolve: relative to the
 // repository root, never the absolute path of whoever ran the script.
 const REPO_ROOT = path.resolve(PACKAGE_ROOT, '..', '..', '..', '..');

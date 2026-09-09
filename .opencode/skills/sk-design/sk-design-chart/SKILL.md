@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.9.0.0
+version: 1.10.0.0
 metadata:
   packetKind: workflow
 ---
@@ -106,7 +106,8 @@ def route_resources(request):
 | Chart lookup | `references/catalog.md` | Turn the comparison a reader needs into one chart form and the file that draws it |
 | Chart forms | `assets/templates/` | One self-contained file per form, copied whole rather than extracted from |
 | Colour systems | `assets/color/` | The three named stock systems, the palette source they read and their proof sheets |
-| Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms |
+| Stock Style Reference | `assets/style-reference/cursor/` | The reference the stock palette, typeface and corner ladder were derived from, and what `--default` themes to |
+| Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms; pass any other reference's path to override the stock one |
 | Template contract | `references/template-contract.md` | What a form file has to contain before the corpus check passes it |
 | Worked deliveries | `assets/examples/` | One finished delivery per family, read when a form file alone is unclear |
 | Corpus validation | `scripts/` | Prove every form still renders after a change |

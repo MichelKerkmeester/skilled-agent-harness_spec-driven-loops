@@ -28,7 +28,8 @@
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms",
-    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies"
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference"
   ],
   "manual": {
     "depends_on": [],
@@ -160,17 +161,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-09T13:51:00.366Z",
+    "last_save_at": "2026-09-09T15:53:30.846Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:788afde290934c39d7d6029feacdb88899c3423fda2715d89c7b86efebb56d48",
+    "source_fingerprint": "sha256:8719b455a9be5a5313b26a9966085d5b078b9c45c96cef8fc72761971fc5ae01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9286d2b7a3e8ccbcf7a579321e660bd814142e469d4c8e81032986a7bc2a8006"
+      "spec.md": "1a690cc88a3f6eb11c8d622981c76552281b32aa27c7ed38c46e85e482eb7b3d"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T18:11:54.124Z"
