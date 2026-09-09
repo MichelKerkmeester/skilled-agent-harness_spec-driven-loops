@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Eighteen of nineteen criteria met against observed evidence; AC-002 is operator-only"
-    next_safe_action: "Operator runs the live Pi dispatch for AC-002"
+    recent_action: "Eighteen of nineteen met; AC-002 narrowed to a credentialed nested model turn"
+    next_safe_action: "Operator runs one credentialed nested Pi dispatch to close AC-002"
     blockers: []
     key_files: []
     session_dedup:
@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given a bash dispatch composed inside a Pi session naming `cli-pi`, When the preflight hook evaluates it, Then it is not denied by name | 33 passed. The matrix row `cli-pi named by the user` is now `false`; `git diff` shows both the deny branch and its block message removed | Met | - |
-| AC-002 | REQ-001 | Given a real Pi session, When `cli-pi` is dispatched from it, Then the command reaches the pi binary | Operator-run from inside Pi. **Cannot be observed from this runtime** — if unrun, this row stays `Unmet` and the packet says so rather than inferring it from AC-001 | Unmet | - |
+| AC-002 | REQ-001 | Given a real Pi session, When `cli-pi` is dispatched from it, Then the command reaches the pi binary | Narrowed 2026-09-09. The runtime guard half is now verified live: with a real lockfile on disk at the resolved state path under an isolated `HOME`, `detectFromLockfile('cli-pi')` still returns `true` while `validateExecutorDispatchAllowed({kind:'cli-pi'})` ALLOWs under a pi ancestry — and the controls bite, `cli-codex` REFUSE `[ancestry]`, `cli-pi` REFUSE `[stack]`, `cli-pi` REFUSE `[lineage]`. What remains is only a provider-backed nested model turn from inside a real Pi session, which the playbook names as an explicit boundary when credentials are absent from the isolated config dir | Unmet | - |
 | AC-003 | REQ-002 | Given a `cli-pi` config whose only signal is the pi binary in process ancestry, When `validateExecutorDispatchAllowed` runs, Then it returns `allowed: true` | `allows a cli-pi dispatch whose only signal is the pi binary in process ancestry` -> `{allowed: true}` | Met | - |
 | AC-004 | REQ-002 | Given a `cli-pi` config whose only signal is a lockfile in a Pi state path, When the guard runs, Then it returns `allowed: true` | `allows a cli-pi dispatch whose only signal is a pi dispatch lockfile` -> `{allowed: true}` | Met | - |
 | AC-005 | REQ-003 | Given each of the other five executor kinds with an ancestry signal, and again with a lockfile signal, When the guard runs, Then every one is refused | 10 parameterized cases (five kinds x ancestry and lockfile), all refusing. This is the case that fails on a kind-agnostic exemption | Met | - |
@@ -97,12 +97,20 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Not yet — 18 of 19 rows are `Met`; AC-002 remains `Unmet` and is the operator's to run.
+**Closeable:** Not yet — 18 of 19 rows are `Met`. AC-002 stays `Unmet`, but its residual scope is
+now much smaller than "operator-only".
 
-**AC-002 was not promoted from AC-001.** The Pi preflight hook runs inside Pi. Its unit tests pass
-and prove the deny branch is gone and that a named `cli-pi` dispatch now takes the override path;
-they do not prove a real Pi session's dispatch reaches the binary. That distinction is the reason
-this row exists, so it stays `Unmet` rather than being closed on the strength of its neighbour.
+**AC-002 was not promoted from AC-001**, and it is still not promoted from the live guard run. The
+Pi preflight hook's unit tests prove the deny branch is gone; the 2026-09-09 live run proves the
+shared runtime guard permits `cli-pi` with a real lockfile present and refuses every layer that was
+deliberately retained. Neither is a real Pi session dispatching to the pi binary.
+
+**What blocks the last step is a stated precondition, not a missing capability.** The playbook
+requires an isolated `PI_CODING_AGENT_DIR` and forbids writing the real `~/.pi/agent/`; an isolated
+config dir carries no provider credentials, and the playbook records provider-backed model turns as
+an explicit boundary when credentials are absent. The operator can close this row because they can
+run it against their own credentialed config; this runtime cannot without copying credentials into a
+temporary directory, which was declined.
 
 **AC-005 and AC-007 are the negative controls, and both were run rather than read.** AC-005 exercises
 ten parameterized cases proving the other five executor kinds still refuse on both exempted layers —

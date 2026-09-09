@@ -137,10 +137,14 @@ them is a change to the operator's machine, not to this repository.
 The root README carries no prose change; this phase records a decision about it, which is the
 deliverable rather than a substitute for one.
 
-Both npm scopes still physically hold `@arter/deep-pi`, and the project scope additionally carries
-packages absent from `.pi/settings.json`. Nothing loads them, because the settings file governs
-what Pi enables, but a `pi update --extensions` will keep refreshing them. Clearing that is
-operator install-state work and was left for the operator deliberately.
+The project npm scope was cleared on 2026-09-09: `@arter/deep-pi` removed from
+`.pi/npm/package.json` and from `.pi/npm/node_modules/`, with the suite re-run at 92/92 after. The
+project scope still carries other packages absent from `.pi/settings.json`; those were left alone
+because they sit outside this packet's scope and may be disabled deliberately rather than stale.
+
+The user-level scope `~/.pi/agent/npm/package.json` still lists the retired package and was **not**
+touched: the cli-pi playbook requires an isolated `PI_CODING_AGENT_DIR` and forbids writing the real
+`~/.pi/agent/`. Nothing loads it either way, since `.pi/settings.json` governs what Pi enables.
 
 Two claims remain operator-verifiable only: that live `pi list` output matches the reconciled
 roster, and whether the stale npm-scope packages should be removed at all.

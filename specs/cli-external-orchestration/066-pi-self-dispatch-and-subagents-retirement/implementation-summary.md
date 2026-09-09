@@ -115,14 +115,23 @@ resolution works, so that half now asserts at `detectFromLockfile`, which is unc
 reports the signal, while the guard's new verdict is asserted alongside it. The detector still tells
 the truth about what it finds; the policy simply no longer acts on it.
 
-**The version follows the family, not the frontmatter contract — and the two disagree.**
-`sk-create-frontmatter` §3 derives a version as `major.minor.0.<gated edit count>`, which for these
-files computes to `1.4.0.17` (SKILL.md) and `1.4.0.8` (README.md). Every one of the six `cli-*`
-packets instead uses release-style versions with a `0` build tracking the changelog head, and no file
-in the family has a non-zero build segment. Both were set to `1.5.0.0` to match the family and the
-new `changelog/v1.5.0.0.md`. That skill's own ESCALATE rule 2 covers this case — a computed version
-conflicting with a human-set one — so it is raised here rather than resolved silently. Flipping to
-the computed values is a two-line change if the operator prefers the contract.
+**The version was not in conflict with the contract; the earlier reading of it was wrong.**
+`sk-create-frontmatter` §3 sets a skill's anchor to
+`max(SKILL.md frontmatter version, highest changelog/v*.md filename version)` and states that the
+`SKILL.md` version *is* the anchor. §4's `major.minor.0.<gated edit count>` derivation applies only
+to docs that are **not** a `SKILL.md`. With `changelog/v1.5.0.0.md` as the head, the anchor is
+`1.5.0.0`, which is exactly what `SKILL.md` carries. The `1.4.0.17` figure quoted earlier came from
+applying the child-doc rule to a `SKILL.md`, so there was no contract conflict to escalate and no
+two-line flip to offer.
+
+Measured across the family, `cli-pi` is now the most conformant of the six: its `SKILL.md` matches
+its changelog head, where `cli-claude-code` sits at `1.4.0.0` against a `1.5.0.0` head and
+`cli-codex` at `1.8.0.0` against a `1.9.0.0` head. Both are stale anchors in their own packets.
+
+One genuine deviation survives and is recorded rather than fixed here: `README.md` is a child doc,
+so §4 wants its build segment to carry a real edit count, and every README in the family carries
+`0` instead. That is a fleet-wide convention drift across six packets, not a defect this packet
+introduced, and correcting it belongs to whoever owns the frontmatter fleet.
 
 **The retirement is recorded in the changelog, not in the references.** The operator chose removal
 over "mark deprecated", so the reference prose names no retired package; a reader who still has it

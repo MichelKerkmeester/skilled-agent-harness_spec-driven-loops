@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Two facts changed under the `cli-pi` packet and neither is reflected in it",
     "created_at": "2026-09-08T12:09:08.809Z",
-    "last_save_at": "2026-09-08T14:47:04.928Z",
+    "last_save_at": "2026-09-09T05:49:40.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3e05c3ca56f72d7310445786ec5537413c32115560bf1baf2c5bb4ab2f8cbfd",
+    "source_fingerprint": "sha256:8ee8ebed14398796f46673634f1c324e46f91e0ee3ca048b882094affa1592be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f8cb5c73040953a363118cf6fbc30a03601fad59d34f4a4ccf31f2adae025d8",
       "plan.md": "74b02b455f0aeef9c0142b10a1a371334b0e22b8d5fb61290c53cd871d154957",
       "tasks.md": "1f20afb7479b2a532598fbd8d544640039714f52be7195fdfa1604d4b075c9b6",
       "decision-record.md": "2f1aec087964ddd2437abe4f9e5d8cd9a29163352917c285bdaa6c08bd3c23bb",
-      "implementation-summary.md": "aecee9de143bf18a588a5f70e8b7ac1e5a8c49dbae0bc65d24f7ce2ec72da226"
+      "implementation-summary.md": "10340cfcb6cec16c3d48685af2cb8c9cdac7aa00cf790e77689c7012b4e4f23c"
     },
     "last_active_child_id": null,
     "last_active_at": null

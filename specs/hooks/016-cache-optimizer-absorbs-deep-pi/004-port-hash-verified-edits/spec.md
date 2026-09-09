@@ -24,6 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
+      - "The edit_lines tool stays in pi-cache-optimizer: a refused stale edit prevents a paid retry, which is the same cost concern the extension already measures; a separate extension would add a package entry and a lifecycle for no behavior change"
       - "Refusal, never a fuzzy fallback: a looser match is exactly the silent corruption this phase prevents"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -175,5 +176,11 @@ An edit is applied only when the target still hashes to what the model was shown
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Does an `edit_lines` tool belong in a cache extension?** It arrived there because verified edits reduce paid retries, which is a cost concern. That is a real link, but the capability is editing, not caching. Confirm the placement with the operator before shipping, or site it separately.
+- **RESOLVED 2026-09-09 — the `edit_lines` tool stays in `pi-cache-optimizer`.** The question was
+  whether an editing capability belongs in a cache extension. The operator chose to keep it. The
+  cost link is the reason: a refused stale edit prevents a paid retry, which is the same economics
+  the rest of the extension measures. Splitting it into its own extension would add a second
+  package entry, a second lifecycle and a test move for no behavior change, and renaming the
+  extension would churn every reference the documentation phase had just reconciled. The naming
+  cost is accepted and recorded: the extension does slightly more than its name says.
 <!-- /ANCHOR:questions -->
