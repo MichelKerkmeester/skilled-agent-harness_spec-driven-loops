@@ -489,6 +489,7 @@ interface RouterStatsCandidate extends RouterStatsEntry {
 
 interface PersistedStatsWriteOptions {
   deleteModelKeys?: string[];
+  deletePromptCacheKeyUnsupportedModels?: string[];
   replaceTotals?: boolean;
 }
 
@@ -5038,10 +5039,13 @@ async function writePersistedCacheStats(
     state,
     currentSessionHash,
   );
+  const deletedPromptCacheKeyUnsupportedModels = new Set(
+    options.deletePromptCacheKeyUnsupportedModels ?? [],
+  );
   const promptCacheKeyUnsupportedModels = Array.from(new Set([
     ...existingPromptCacheKeyUnsupportedModels,
     ...(state.promptCacheKeyUnsupportedModels ?? []),
-  ]));
+  ])).filter((key) => !deletedPromptCacheKeyUnsupportedModels.has(key));
 
   const payload: PersistedCacheStatsV6 = {
     version: 6,
@@ -8548,6 +8552,7 @@ export default function (pi: ExtensionAPI): void {
   let replacePersistedTotalsOnNextWrite = false;
   let forceReplaceTotalsAfterFailure = false;
   const pendingDeletedTotalModelKeys = new Set<string>();
+  const pendingDeletedPromptCacheKeyUnsupportedModels = new Set<string>();
   let integrityNotificationShown = false;
   let currentSessionId = '';
   let currentSessionHash = '';
@@ -8784,6 +8789,8 @@ export default function (pi: ExtensionAPI): void {
     delete cacheStatsTotalsByModel[displayKey];
     delete cacheStatsProcessByModel[displayKey];
     pendingDeletedTotalModelKeys.add(displayKey);
+    promptCacheKeyUnsupportedModels.delete(displayKey);
+    pendingDeletedPromptCacheKeyUnsupportedModels.add(displayKey);
     for (const key of Array.from(recentSamplesByModelKey.keys())) {
       if (modelKeyFromSessionScoped(key) === displayKey) recentSamplesByModelKey.delete(key);
     }
@@ -8839,10 +8846,14 @@ export default function (pi: ExtensionAPI): void {
     const state = snapshotCacheStatsState();
     const sessionHash = currentSessionHashSet ? currentSessionHash : undefined;
     const deleteModelKeys = Array.from(pendingDeletedTotalModelKeys);
+    const deletePromptCacheKeyUnsupportedModels = Array.from(
+      pendingDeletedPromptCacheKeyUnsupportedModels,
+    );
     const replaceTotals = replacePersistedTotalsOnNextWrite;
     // This queued write owns the current intents. Later mutations can enqueue
     // independent intents without an earlier completion clearing them.
     pendingDeletedTotalModelKeys.clear();
+    pendingDeletedPromptCacheKeyUnsupportedModels.clear();
     replacePersistedTotalsOnNextWrite = false;
 
     return enqueuePersist(async () => {
@@ -8850,6 +8861,7 @@ export default function (pi: ExtensionAPI): void {
       try {
         await writePersistedCacheStats(state, sessionHash, {
           deleteModelKeys,
+          deletePromptCacheKeyUnsupportedModels,
           replaceTotals: replaceTotals || recoverFromEarlierFailure,
         });
         if (recoverFromEarlierFailure) forceReplaceTotalsAfterFailure = false;
@@ -9554,9 +9566,11 @@ export default function (pi: ExtensionAPI): void {
     // the active model id. Virtual routing providers keep message-local
     // identity (router correctness).
     statsModel = consolidateDirectProviderStatsModel(statsModel, ctx.model, ctx);
-    const reportsCacheUsage = statsModel
-      ? getCompat(statsModel).reportsCacheUsage
-      : undefined;
+    const statsCompat = statsModel ? getCompat(statsModel) : {};
+    const activeCompat = requestModel ? getCompat(requestModel) : {};
+    const reportsCacheUsage = typeof statsCompat.reportsCacheUsage === 'boolean'
+      ? statsCompat.reportsCacheUsage
+      : activeCompat.reportsCacheUsage;
     let routedModelChanged = false;
     if (
       isVirtualRoutingModel(ctx.model, ctx) && statsModel && !isVirtualRoutingModel(statsModel, ctx)

@@ -327,6 +327,119 @@ describe('no-cache-fields signal accounting', () => {
       undefined,
     );
   });
+
+  test('uses the active routed model capability when response stats lack compat', async () => {
+    const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-routed-capability-test-'));
+    const previousAgentDir = process.env.PI_CODING_AGENT_DIR;
+    const previousRetention = process.env.PI_CACHE_RETENTION;
+    let unregisterRouter: (() => void) | undefined;
+
+    try {
+      process.env.PI_CODING_AGENT_DIR = tempAgentDir;
+      const jiti = createJiti(join(process.cwd(), 'tests', 'cache-economics.test.ts'), {
+        interopDefault: false,
+        moduleCache: false,
+      });
+      const freshModule = await jiti.import<typeof import('../index.ts')>(
+        join(process.cwd(), 'index.ts'),
+      );
+      const handlers = new Map<string, (event: any, context: any) => Promise<any> | any>();
+      freshModule.default({
+        on(name: string, handler: (event: any, context: any) => Promise<any> | any) {
+          handlers.set(name, handler);
+        },
+        registerCommand() {},
+        registerTool() {},
+        getActiveTools: () => [],
+        setActiveTools() {},
+      } as any);
+
+      const sessionStart = handlers.get('session_start');
+      const messageEnd = handlers.get('message_end');
+      const sessionShutdown = handlers.get('session_shutdown');
+      assert.ok(sessionStart);
+      assert.ok(messageEnd);
+      assert.ok(sessionShutdown);
+
+      const routedModel = {
+        provider: 'router',
+        id: 'auto',
+        name: 'Auto router',
+        api: 'router',
+        reasoning: false,
+        input: ['text'],
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+        contextWindow: 128_000,
+        maxTokens: 4096,
+      };
+      const activeModel = {
+        provider: 'proxy',
+        id: 'gpt-5.5',
+        name: 'GPT-5.5',
+        api: 'openai-completions',
+        baseUrl: 'https://proxy.example/v1',
+        compat: { reportsCacheUsage: false },
+        reasoning: false,
+        input: ['text'],
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+        contextWindow: 128_000,
+        maxTokens: 4096,
+      };
+      const registry = freshModule.__internals_for_tests.ensureRoutingRegistry();
+      unregisterRouter = registry.registerRouter({
+        virtualProvider: 'router',
+        resolveActiveRoute: () => ({
+          virtualProvider: 'router',
+          virtualModelId: 'auto',
+          provider: 'proxy',
+          modelId: 'gpt-5.5',
+          api: 'openai-completions',
+          timestamp: Date.now(),
+        }),
+      });
+
+      const context = {
+        model: routedModel,
+        sessionManager: { getSessionId: () => 'routed-capability-test-session' },
+        modelRegistry: {
+          find: (provider: string, id: string) =>
+            provider === activeModel.provider && id === activeModel.id ? activeModel : undefined,
+          getAvailable: () => [],
+          getAll: () => [],
+        },
+        ui: { notify() {}, setStatus() {} },
+      };
+
+      await sessionStart({ reason: 'startup' }, context);
+      await messageEnd({
+        message: {
+          role: 'assistant',
+          provider: 'proxy',
+          model: 'gpt-5.5',
+          api: 'openai-completions',
+          usage: { input: 500, cacheRead: 0, cacheWrite: 0 },
+        },
+      }, context);
+      await sessionShutdown({}, context);
+
+      const persisted = JSON.parse(
+        await readFile(join(tempAgentDir, 'pi-cache-optimizer-stats.json'), 'utf8'),
+      ) as { sessions: Record<string, Record<string, any>> };
+      const records = Object.values(persisted.sessions)
+        .flatMap((byModel) => Object.values(byModel));
+      assert.equal(records.length, 1);
+      assert.equal(records[0].totalRequests, 1);
+      assert.equal(records[0].unmeasuredRequests, 1);
+      assert.equal(records[0].hitRequests, 0);
+    } finally {
+      unregisterRouter?.();
+      if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
+      else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
+      if (previousRetention === undefined) delete process.env.PI_CACHE_RETENTION;
+      else process.env.PI_CACHE_RETENTION = previousRetention;
+      await rm(tempAgentDir, { recursive: true, force: true });
+    }
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────

@@ -176,6 +176,7 @@ Notes:
 
 - `sendSessionAffinityHeaders: true` is the safe default when your proxy supports sticky routing.
 - `supportsLongCacheRetention: true` is optional. Add it only when the endpoint explicitly supports OpenAI long prompt cache retention.
+- `reportsCacheUsage` tells the extension whether the provider reports cache-usage fields. When unset, the extension follows the response's cache fields. With `false`, requests are routed to unmeasured rather than counted as misses.
 - If you see `400 Unsupported parameter: prompt_cache_retention`, remove/avoid `supportsLongCacheRetention` for that channel. Keep `sendSessionAffinityHeaders` if supported.
 - Use `/cache-optimizer compat` or `/cache-optimizer doctor` to see model-specific advice.
 - For DeepSeek models, the Pi Mono guidance expects `compat.requiresReasoningContentOnAssistantMessages: true` and `compat.thinkingFormat: "deepseek"` alongside cache/session-affinity flags when the endpoint supports them.

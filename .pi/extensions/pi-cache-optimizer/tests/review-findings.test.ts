@@ -88,9 +88,11 @@ describe('stable prompt reordering', () => {
 
 describe('OpenAI prompt cache key self-healing', () => {
   type Hook = (event: any, context: any) => Promise<any> | any;
+  type Command = { handler: (args: string, context: any) => Promise<unknown> | unknown };
   type FreshModule = typeof import('../index.ts');
   type HandlerBundle = {
     handlers: Map<string, Hook>;
+    commands: Map<string, Command>;
     freshModule: FreshModule;
   };
 
@@ -129,6 +131,7 @@ describe('OpenAI prompt cache key self-healing', () => {
       notifications: string[],
       freshModule: FreshModule,
       reload: () => Promise<HandlerBundle>,
+      commands: Map<string, Command>,
     ) => Promise<void>,
   ): Promise<void> {
     const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-cache-key-test-'));
@@ -143,7 +146,7 @@ describe('OpenAI prompt cache key self-healing', () => {
 
       const initial = await loadFreshHandlers();
 
-      await callback(initial.handlers, [], initial.freshModule, loadFreshHandlers);
+      await callback(initial.handlers, [], initial.freshModule, loadFreshHandlers, initial.commands);
     } finally {
       if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
       else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
@@ -166,16 +169,19 @@ describe('OpenAI prompt cache key self-healing', () => {
       join(process.cwd(), 'index.ts'),
     );
     const handlers = new Map<string, Hook>();
+    const commands = new Map<string, Command>();
     freshModule.default({
       on(name: string, handler: Hook) {
         handlers.set(name, handler);
       },
-      registerCommand() {},
+      registerCommand(name: string, command: Command) {
+        commands.set(name, command);
+      },
       registerTool() {},
       getActiveTools: () => [],
       setActiveTools() {},
     } as any);
-    return { handlers, freshModule };
+    return { handlers, commands, freshModule };
   }
 
   test('unrelated 400 leaves prompt_cache_key injection enabled', async () => {
@@ -257,6 +263,51 @@ describe('OpenAI prompt cache key self-healing', () => {
         const contextB = contextFor(modelB, notifications);
         assert.equal(
           injectedKey(await reloadedBeforeRequest({ payload: {} }, contextB)),
+          'prompt-key-test-session',
+        );
+      },
+    );
+  });
+
+  test('reset forgets a persisted prompt cache key rejection', async () => {
+    await withFreshHandlers(
+      undefined,
+      async (handlers, notifications, firstModule, reload, commands) => {
+        const model = openAIModel('gpt-5.5');
+        const context = contextFor(model, notifications);
+        const beforeRequest = handlers.get('before_provider_request');
+        const afterResponse = handlers.get('after_provider_response');
+        const command = commands.get('cache-optimizer');
+        assert.ok(beforeRequest);
+        assert.ok(afterResponse);
+        assert.ok(command);
+
+        await afterResponse(
+          { status: 400, headers: { error: 'Unsupported parameter: prompt_cache_key' } },
+          context,
+        );
+        assert.equal(await beforeRequest({ payload: {} }, context), undefined);
+        const persistedBefore = JSON.parse(
+          await readFile(firstModule.__internals_for_tests.STATE_FILE_PATH, 'utf8'),
+        ) as Record<string, unknown>;
+        assert.deepEqual(persistedBefore.promptCacheKeyUnsupportedModels, ['proxy/gpt-5.5']);
+
+        await command.handler('reset', { ...context, hasUI: false });
+
+        const persistedAfter = JSON.parse(
+          await readFile(firstModule.__internals_for_tests.STATE_FILE_PATH, 'utf8'),
+        ) as Record<string, unknown>;
+        assert.equal(persistedAfter.promptCacheKeyUnsupportedModels, undefined);
+
+        const reloaded = await reload();
+        const sessionStart = reloaded.handlers.get('session_start');
+        const reloadedBeforeRequest = reloaded.handlers.get('before_provider_request');
+        assert.ok(sessionStart);
+        assert.ok(reloadedBeforeRequest);
+
+        await sessionStart({ reason: 'startup' }, context);
+        assert.equal(
+          injectedKey(await reloadedBeforeRequest({ payload: {} }, context)),
           'prompt-key-test-session',
         );
       },
