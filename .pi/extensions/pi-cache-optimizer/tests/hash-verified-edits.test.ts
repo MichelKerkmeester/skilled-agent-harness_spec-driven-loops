@@ -101,15 +101,56 @@ describe('hash-verified edit validation', () => {
     };
   }
 
+  test('refuses an identical line that shifted into the target position', () => {
+    // The failure a content hash cannot see on its own: line 3 is one of two
+    // identical closing braces, a line is inserted above, and the OTHER brace
+    // now sits at line 3 hashing exactly the same.
+    const before = ['section A', '}', '}', 'section B'];
+    const edit: HashEdit = {
+      from: 3,
+      from_hash: lineHash(before[2]!),
+      to: 3,
+      to_hash: lineHash(before[2]!),
+      new_text: 'REPLACED',
+    };
+    const after = ['section A', 'inserted', '}', '}', 'section B'];
+    assert.equal(lineHash(after[2]!), edit.from_hash, 'precondition: the hash still matches');
+    const error = validateEdits(after, [edit], before.length);
+    assert.ok(error, 'the shifted line must be refused, not silently edited');
+    assert.match(error!, /5 lines but the read saw 4/);
+  });
+
+  test('requires the line count so a moved line cannot be edited blind', () => {
+    const error = validateEdits(lines, [editFor(2, 2)], undefined);
+    assert.ok(error);
+    assert.match(error!, /line_count is required/);
+  });
+
+  test('refuses an edit whose interior drifted, not just its endpoints', () => {
+    const wide = ['a', 'b', 'c', 'd'];
+    const edit: HashEdit = {
+      from: 1,
+      from_hash: lineHash('a'),
+      to: 4,
+      to_hash: lineHash('d'),
+      new_text: 'x',
+      line_hashes: [lineHash('a'), lineHash('b'), lineHash('c'), lineHash('d')],
+    };
+    const drifted = ['a', 'b', 'CHANGED', 'd'];
+    const error = validateEdits(drifted, [edit], drifted.length);
+    assert.ok(error, 'interior drift must refuse');
+    assert.match(error!, /line 3 hash mismatch/);
+  });
+
   test('accepts an edit whose endpoint hashes still match', () => {
-    assert.equal(validateEdits(lines, [editFor(2, 3)]), null);
-    assert.equal(validateEdits(lines, [editFor(2, 2)]), null);
+    assert.equal(validateEdits(lines, [editFor(2, 3)], lines.length), null);
+    assert.equal(validateEdits(lines, [editFor(2, 2)], lines.length), null);
   });
 
   test('refuses an edit whose from endpoint drifted', () => {
     const edit = editFor(2, 3);
     edit.from_hash = lineHash('something else');
-    const error = validateEdits(lines, [edit]);
+    const error = validateEdits(lines, [edit], lines.length);
     assert.ok(error);
     assert.match(error!, /line 2 hash mismatch/);
   });
@@ -117,7 +158,7 @@ describe('hash-verified edit validation', () => {
   test('refuses an edit whose to endpoint drifted', () => {
     const edit = editFor(1, 4);
     edit.to_hash = lineHash('drifted');
-    const error = validateEdits(lines, [edit]);
+    const error = validateEdits(lines, [edit], lines.length);
     assert.ok(error);
     assert.match(error!, /line 4 hash mismatch/);
   });
@@ -125,7 +166,7 @@ describe('hash-verified edit validation', () => {
   test('refusal names the drifted line, claimed hash, actual hash, and current content', () => {
     const edit = editFor(2, 3);
     edit.from_hash = 'deadbeef';
-    const error = validateEdits(lines, [edit])!;
+    const error = validateEdits(lines, [edit], lines.length)!;
     assert.match(error, /line 2/);
     assert.match(error, /claimed "deadbeef"/);
     assert.match(error, new RegExp(`actual "${lineHash('one')}"`));
@@ -141,7 +182,7 @@ describe('hash-verified edit validation', () => {
       to_hash: lineHash('two!'),
       new_text: 'TWO',
     };
-    const error = validateEdits(driftedLines, [edit]);
+    const error = validateEdits(driftedLines, [edit], driftedLines.length);
     assert.ok(error);
     assert.match(error!, /line 2 hash mismatch/);
     assert.match(error!, new RegExp(`claimed "${lineHash('two')}"`));
@@ -158,13 +199,13 @@ describe('hash-verified edit validation', () => {
       to_hash: '00000000',
       new_text: 'x',
     });
-    assert.ok(validateEdits(lines, [stub(0, 2)]));
-    assert.ok(validateEdits(lines, [stub(5, 5)]));
-    assert.ok(validateEdits(lines, [stub(3, 2)]));
+    assert.ok(validateEdits(lines, [stub(0, 2)], lines.length));
+    assert.ok(validateEdits(lines, [stub(5, 5)], lines.length));
+    assert.ok(validateEdits(lines, [stub(3, 2)], lines.length));
   });
 
   test('refuses overlapping edits', () => {
-    assert.ok(validateEdits(lines, [editFor(1, 2), editFor(2, 3)]));
+    assert.ok(validateEdits(lines, [editFor(1, 2), editFor(2, 3)], lines.length));
   });
 });
 
@@ -316,6 +357,7 @@ describe('edit_lines tool end to end', () => {
         'c1',
         {
           path: file,
+          line_count: 3,
           edits: [
             {
               from: 2,
@@ -352,6 +394,7 @@ describe('edit_lines tool end to end', () => {
         'c1',
         {
           path: file,
+          line_count: 3,
           edits: [
             {
               from: 2,
@@ -390,6 +433,7 @@ describe('edit_lines tool end to end', () => {
         'c1',
         {
           path: file,
+          line_count: 3,
           edits: [
             {
               from: 2,

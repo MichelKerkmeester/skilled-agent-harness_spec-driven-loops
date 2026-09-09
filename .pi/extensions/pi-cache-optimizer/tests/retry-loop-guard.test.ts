@@ -106,6 +106,37 @@ async function captureGuardHooks() {
 // ───────────────────────────────────────────────────────────────────
 
 describe('retry loop guard batch assembly', () => {
+
+  test('four differing failures do not abort as a repeated request', () => {
+    const state = createRetryLoopGuardState();
+    // Each turn fails with a different error, so nothing is being re-billed.
+    // The old max() collapsed the two counters and aborted here under a message
+    // that claimed the same request had repeated.
+    const decisions = ['alpha', 'beta', 'gamma', 'delta'].map((s) => failBatch(state, s));
+    const aborts = decisions.filter((d) => d.kind === 'abort');
+    assert.equal(aborts.length, 0, 'differing errors must not trip the same-request abort');
+    for (const d of decisions) {
+      if (d.kind !== 'none' && 'message' in d && typeof d.message === 'string') {
+        assert.doesNotMatch(d.message, /re-billing the same request/);
+      }
+    }
+  });
+
+  test('the same failure repeating four times does abort as a repeated request', () => {
+    const state = createRetryLoopGuardState();
+    const decisions = [1, 2, 3, 4].map(() => failBatch(state, 'identical'));
+    const last = decisions.at(-1)!;
+    assert.equal(last.kind, 'abort');
+    assert.match((last as { message: string }).message, /re-billing the same request/);
+  });
+
+  test('a long streak of differing failures still stops, with an honest message', () => {
+    const state = createRetryLoopGuardState();
+    const decisions = ['a', 'b', 'c', 'd', 'e', 'f'].map((s) => failBatch(state, s));
+    const last = decisions.at(-1)!;
+    assert.equal(last.kind, 'abort');
+    assert.match((last as { message: string }).message, /errors differ/);
+  });
   test('discovers Pi toolCall blocks in message order', () => {
     assert.deepEqual(toolCallsFromMessage(assistant), calls);
   });

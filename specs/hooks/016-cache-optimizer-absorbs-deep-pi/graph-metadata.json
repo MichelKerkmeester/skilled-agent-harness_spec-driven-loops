@@ -164,14 +164,14 @@
     ],
     "causal_summary": "Pi loads two cache extensions whose responsibilities are divided by a hand-maintained model",
     "created_at": "2026-09-08T17:57:01Z",
-    "last_save_at": "2026-09-09T07:20:31.376Z",
+    "last_save_at": "2026-09-09T08:11:16.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:46ec05cf490c96cdf9b6f883a8ad0aa837db8dadf45ac251a45d13ef7e211225",
+    "source_fingerprint": "sha256:6c1eb987fe44cc9004ec1736e86ae5ce17fdb59822c343401cc4c61d028d47d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad982662efae376c806f924e7237dfdf1579b01fdbd9829a55d4585bef0c9b75"

@@ -7757,21 +7757,44 @@ export function recordToolOutcome(
   state.repeatCount = state.lastSignature === signature ? state.repeatCount + 1 : 1;
   state.lastSignature = signature;
   state.blockedTurnStreak++;
-  const level = Math.max(state.repeatCount, state.blockedTurnStreak);
+  // These two count different failures and must escalate separately. Taking the
+  // max collapsed them: the streak rises on every all-failed batch while the
+  // repeat count resets whenever the error changes, so the streak always won and
+  // the signature comparison never affected the outcome. Escalating on the streak
+  // alone also let four unrelated failures abort under a message that claimed the
+  // same request had been re-billed.
+  const repeatLevel = state.repeatCount;
+  const streakLevel = state.blockedTurnStreak;
   // A completed all-failed batch is non-empty because batches start from assistant tool calls.
   const lastError = ordered.at(-1)!.text.slice(0, 300);
-  if (level === 3) {
+  if (repeatLevel >= 4) {
+    return {
+      kind: 'abort',
+      message: `[loop guard] Stopped a repeated failed tool batch to stop re-billing ` +
+        `the same request. Last error: ${lastError}`,
+    };
+  }
+  if (streakLevel >= 6) {
+    return {
+      kind: 'abort',
+      message: `[loop guard] Stopped after ${streakLevel} consecutive turns in which every ` +
+        `tool call failed. The errors differ, so this is not one request repeating — the turn ` +
+        `is not converging. Last error: ${lastError}`,
+    };
+  }
+  if (repeatLevel === 3) {
     return {
       kind: 'guard',
       message: `[loop guard] Every tool call in this batch failed repeatedly. ` +
         `Change arguments, use another tool, or report the blocker. Last error: ${lastError}`,
     };
   }
-  if (level >= 4) {
+  if (streakLevel === 4) {
     return {
-      kind: 'abort',
-      message: `[loop guard] Stopped a repeated failed tool batch to stop re-billing ` +
-        `the same request. Last error: ${lastError}`,
+      kind: 'guard',
+      message: `[loop guard] Every tool call has failed for ${streakLevel} turns running, with ` +
+        `differing errors. Change approach, use another tool, or report the blocker. ` +
+        `Last error: ${lastError}`,
     };
   }
   return { kind: 'none' };
@@ -7805,6 +7828,8 @@ export interface HashEdit {
   to: number;
   to_hash: string;
   new_text: string;
+  /** Optional hashes for every line in from..to, indexed from `from`. */
+  line_hashes?: string[];
 }
 
 /** Runtime counters for the annotation hook and the edit_lines tool. */
@@ -7832,6 +7857,12 @@ export const editLinesSchema = {
       type: 'string',
       description: 'Path to the file to edit (relative to cwd or absolute).',
     },
+    line_count: {
+      type: 'integer',
+      description: 'Total number of lines the file had when it was read. An edit is refused ' +
+        'if the file no longer has this many lines, because inserted or removed lines shift ' +
+        'every line number below them.',
+    },
     edits: {
       type: 'array',
       description: 'Hash-anchored edits to apply. Each edit replaces lines from..to ' +
@@ -7853,6 +7884,12 @@ export const editLinesSchema = {
             type: 'string',
             description: 'Replacement text for lines from..to. May contain multiple lines ' +
               '(newline-separated).',
+          },
+          line_hashes: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Optional hashes for every line from..to, in order, so an edit whose ' +
+              'interior drifted is refused rather than overwritten.',
           },
         },
         required: ['from', 'from_hash', 'to', 'to_hash', 'new_text'],
@@ -8014,7 +8051,28 @@ export function annotateContent(content: string, startLine = 1): string {
  *
  * @returns Error string naming the first failure, or null when all edits pass.
  */
-export function validateEdits(lines: string[], edits: HashEdit[]): string | null {
+export function validateEdits(
+  lines: string[],
+  edits: HashEdit[],
+  claimedLineCount?: number,
+): string | null {
+  // A content hash cannot notice that its line moved: an identical line shifted
+  // into the target index hashes the same and would absorb the edit. Movement
+  // always changes the file's line count, so the count is what detects it.
+  if (claimedLineCount === undefined) {
+    return (
+      'edit_lines: line_count is required. Re-read the file and pass the total line ' +
+      'count it reports, so an edit cannot land on a line that moved since the read.'
+    );
+  }
+  if (claimedLineCount !== lines.length) {
+    return (
+      `edit_lines: the file has ${lines.length} lines but the read saw ${claimedLineCount}. ` +
+      'Lines were inserted or removed since then, so every line number below the change has ' +
+      "shifted. Use 'read' to get fresh content with current hashes, then retry."
+    );
+  }
+
   for (const edit of edits) {
     const fromIdx = edit.from - 1;
     const toIdx = edit.to - 1;
@@ -8036,6 +8094,21 @@ export function validateEdits(lines: string[], edits: HashEdit[]): string | null
         "The file may have changed since it was last read. Use 'read' to get fresh content " +
         'with current hashes, then retry.'
       );
+    }
+
+    // Every line in the range is verified, not just the endpoints: a replacement
+    // whose interior drifted would otherwise be written over silently.
+    for (let i = fromIdx + 1; i < toIdx; i++) {
+      const interior = lineHash(lines[i]!);
+      const claimed = edit.line_hashes?.[i - fromIdx];
+      if (claimed !== undefined && claimed !== interior) {
+        return (
+          `edit_lines: line ${i + 1} hash mismatch — claimed "${claimed}", ` +
+          `actual "${interior}".\nCurrent line: "${lines[i]}"\n\n` +
+          "The file may have changed since it was last read. Use 'read' to get fresh content " +
+          'with current hashes, then retry.'
+        );
+      }
     }
 
     if (edit.to !== edit.from) {
@@ -8283,6 +8356,10 @@ export function registerHashVerifiedEdits(pi: ExtensionAPI): HashVerifiedEditSta
       }
       const pathParam = typeof params?.path === 'string' ? params.path : undefined;
       const edits = Array.isArray(params?.edits) ? (params.edits as HashEdit[]) : [];
+      const lineCount =
+        typeof params?.line_count === 'number' && Number.isInteger(params.line_count)
+          ? params.line_count
+          : undefined;
       if (!pathParam || edits.length === 0) {
         return {
           content: [
@@ -8319,7 +8396,7 @@ export function registerHashVerifiedEdits(pi: ExtensionAPI): HashVerifiedEditSta
         };
       }
       const lines = content.split('\n');
-      const validationError = validateEdits(lines, edits);
+      const validationError = validateEdits(lines, edits, lineCount);
       if (validationError) {
         stats.hashMismatches++;
         return {
