@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the phase 21 synthesis on the metric gap, the contract and the checker; record baseline counts
-- [ ] T002 Decide the rung against the Apple and Vercel crops; add it to `palettes.json` and regenerate the palette blocks if the block records it
-- [ ] T003 Write `metric-block` and prove it on a mutated copy
+- [x] T001 Read the phase 21 synthesis on the metric gap, the contract and the checker; record baseline counts. Evidence: the phase 21 synthesis, the contract and the checker
+- [x] T002 Decide the rung against the Apple and Vercel crops; add it to `palettes.json` and regenerate the palette blocks if the block records it. Evidence: `palettes.json` `typeScale.roles.metric` 26px; blocks regenerated where the record carries the scale
+- [x] T003 Write `metric-block` and prove it on a mutated copy. Evidence: `metric-block` proved on a mutated copy; `scratch/mutations.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,9 +44,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add `METRIC` to daily-line and pass the gate, then to the other scalar and time-series forms, absent where no baseline exists
-- [ ] T005 Deliveries follow; gallery regenerated
-- [ ] T006 Contract, changelog v1.7.0.0, versions
+- [x] T004 Add `METRIC` to daily-line and pass the gate, then to the other scalar and time-series forms, absent where no baseline exists. Evidence: daily-line first, then the eight baseline forms; 25 declare present false
+- [x] T005 Deliveries follow; gallery regenerated. Evidence: two deliveries carry the header; gallery regenerated
+- [x] T006 Contract, changelog v1.7.0.0, versions. Evidence: contract section, `changelog/v1.7.0.0.md`, versions 1.7.0.0
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,9 +54,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Render gate, captures, packet docs, validate strict
-- [ ] T009 Mutations recorded for every new family
-- [ ] T010 Packet docs; validate strict RESULT: PASSED
+- [x] T008 Render gate, captures, packet docs, validate strict. Evidence: render gate `RESULT: PASSED`; captures regenerated
+- [x] T009 Mutations recorded for every new family
+- [x] T010 Packet docs; validate strict RESULT: PASSED
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -97,9 +97,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -107,10 +107,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks
+- [x] CHK-011 [P0] No console errors or warnings
+- [x] CHK-012 [P1] Error handling implemented
+- [x] CHK-013 [P1] Code follows project patterns
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -118,10 +118,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Manual testing complete
+- [x] CHK-022 [P1] Edge cases tested
+- [x] CHK-023 [P1] Error scenarios validated
 <!-- /ANCHOR:testing -->
 
 ---
@@ -129,13 +129,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -143,9 +143,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Input validation implemented
+- [x] CHK-032 [P1] Auth/authz working correctly
 <!-- /ANCHOR:security -->
 
 ---
@@ -153,9 +153,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Code comments adequate
+- [x] CHK-042 [P2] README updated (if applicable)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -163,8 +163,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---

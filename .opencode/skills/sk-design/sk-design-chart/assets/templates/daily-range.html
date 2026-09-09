@@ -93,6 +93,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 16px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.metric { margin: 0 0 18px; }
+.metric-value { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 600; color: var(--chart-ink); font-variant-numeric: tabular-nums; }
+.metric-delta { margin: 4px 0 0; font-size: 12px; color: var(--chart-muted); }
+.metric-delta .cue { vertical-align: -1px; margin-right: 4px; }
+/* The cue takes the token the trend calls for: emphasis when the reading falls, the second series when it rises. */
+.metric-delta[data-trend="down"] .cue { color: var(--chart-emphasis); }
+.metric-delta[data-trend="up"] .cue { color: var(--chart-series-2); }
 /* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
    at 720 units wide, and below roughly two thirds of that the axis labels start to
    collide, so the figure scrolls sideways and the marks keep the size they were
@@ -203,6 +210,10 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 <div class="card">
   <h1 class="headline" data-chart-part="headline">The floor held all fortnight while the ceiling nearly tripled</h1>
   <p class="subtitle" data-chart-part="subtitle">Daily minimum and maximum response time in milliseconds, fourteen days. The widest day is marked. Nothing here is averaged, because averaging a range into a line is the quiet dishonesty this form exists to refuse.</p>
+  <div class="metric" data-chart-part="metric">
+    <p class="metric-value"></p>
+    <p class="metric-delta"></p>
+  </div>
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 392" id="chart">
       <desc id="fig-label">Daily response time range over fourteen days</desc>
@@ -256,6 +267,19 @@ const FINDING = {
   why: 'The high climbs from 340 to 910 while the low holds between 115 and 128.'
 };
 /* FINDING:END */
+
+/* METRIC:BEGIN */
+const METRIC = {
+  present: true,
+  value: 910,
+  valueLabel: '910',
+  delta: 167.6,
+  deltaLabel: '167.6% above the first-day high',
+  period: 'fourteen days',
+  trend: 'up',
+  why: 'the value is the high of the last day, and the delta compares it with the high of the first'
+};
+/* METRIC:END */
 
 // Everything below draws. A range is two numbers and it stays two numbers. The moment a
 // midpoint line appears, the reader starts reading an average nobody measured.
@@ -608,6 +632,43 @@ document.addEventListener('click', function (e) {
 
 // The drawing ends here. Everything above it ran because the data block held something to draw.
 }
+
+/* METRIC_READOUT:BEGIN */
+// The card leads with its number: the reading the headline is about, the comparison the data
+// earns, and the stretch of data both cover. It fills or removes itself on every open whether
+// or not the data drew, because the number belongs to the card rather than to the drawing.
+const metricBox = document.querySelector('.metric');
+if (metricBox && !METRIC.present) {
+  metricBox.remove();
+} else if (metricBox) {
+  const metricValue = metricBox.querySelector('.metric-value');
+  const metricDelta = metricBox.querySelector('.metric-delta');
+  if (metricValue) {
+    metricValue.textContent = READOUT.unit ? METRIC.valueLabel + '\u2009' + READOUT.unit : METRIC.valueLabel;
+  }
+  if (metricDelta) {
+    metricDelta.textContent = METRIC.deltaLabel
+      ? METRIC.deltaLabel + ' \u00B7 ' + METRIC.period
+      : METRIC.period;
+    if (METRIC.trend === 'up' || METRIC.trend === 'down') {
+      metricDelta.setAttribute('data-trend', METRIC.trend);
+      const cue = document.createElementNS(SVG, 'svg');
+      cue.setAttribute('class', 'cue');
+      cue.setAttribute('aria-hidden', 'true');
+      cue.setAttribute('width', 12);
+      cue.setAttribute('height', 12);
+      cue.setAttribute('viewBox', '0 0 12 12');
+      const cuePath = document.createElementNS(SVG, 'path');
+      cuePath.setAttribute('d', METRIC.trend === 'up' ? 'M6 10V3M2.5 6.5L6 3l3.5 3.5' : 'M6 2V9M2.5 5.5L6 9l3.5-3.5');
+      cuePath.setAttribute('fill', 'none');
+      cuePath.setAttribute('stroke', 'currentColor');
+      cuePath.setAttribute('stroke-width', 1.5);
+      cue.appendChild(cuePath);
+      metricDelta.insertBefore(cue, metricDelta.firstChild);
+    }
+  }
+}
+/* METRIC_READOUT:END */
 </script>
 </body>
 </html>

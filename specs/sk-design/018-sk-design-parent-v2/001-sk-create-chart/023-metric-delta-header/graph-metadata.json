@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/mutations.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md"
+      ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md"
     ],
     "entities": [
       {
@@ -88,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "mutations.md",
+        "kind": "doc",
+        "path": "scratch/mutations.md",
+        "source": "derived"
+      },
+      {
         "name": "check-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
@@ -97,6 +105,12 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.7.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Both research lanes found the same anatomy gap: our scalar and time-series forms carry their reading only as 14px prose while Apple, Vercel and Tremor lead with a value and a signed delta",
     "created_at": "2026-09-08T18:22:03Z",
-    "last_save_at": "2026-09-08T18:28:10.369Z",
+    "last_save_at": "2026-09-09T06:40:40.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:186c7fb65f1552fc6103d0d41c00e5e5381a3b7ab9e7c95d7d13ee3dddca50fb",
+    "source_fingerprint": "sha256:10b60840755a78caac93537dcaa85b43c1055cf4a03776855db5f27e978fc352",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "087fe2bd8c93a8bd043b40fda5b17e1d4704562f48720b46446de7e9aca68422",
+      "spec.md": "da62b8c71560aca16b41263bba0ee8a8a30cd3b49cf435a7567d74f5c61a9c3a",
       "plan.md": "365ff1d9c42716b8ef75fc79d89c1c591eb25293d7cfd47d78fdcee86ab053b5",
-      "tasks.md": "f809b78d417355316215417de608609761207365d8ae5a2d589431b4a673946a",
-      "implementation-summary.md": "51a8f2b01550dcd4ffa9409c14ce18e73313465f6f4510a2c0211f649f435b09"
+      "tasks.md": "d8593edabd067c49f180c2f444a9446ff77e43c105b48d84c34ce967ce24a65a",
+      "implementation-summary.md": "f88e4c5d540453c93d50e9d3e765055237da442eeae49c4bb5d15a495255fbe5"
     },
     "last_active_at": null
   }

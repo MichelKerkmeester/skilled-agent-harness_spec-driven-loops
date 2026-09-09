@@ -133,7 +133,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 <div class="card">
   <h1 class="headline" data-chart-part="headline">More than half the grant went straight to frontline staff</h1>
   <p class="subtitle" data-chart-part="subtitle">One square is one percent of the 2.4 million grant, spent in the year to 31 March. Squares are countable, so a reader compares two shares by counting rather than by estimating an angle.</p>
-  <div class="figure" data-chart-part="figure" data-chart-inert="Each part's share is printed in the key with its percent sign, and a square is one percent by construction">
+    <div class="figure" data-chart-part="figure" data-chart-inert="Each part's share is printed in the key with its percent sign, and a square is one percent by construction">
     <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 230" id="chart">
       <desc id="fig-label">Where the grant was spent, one square per percent</desc>
       <desc id="fig-desc">One hundred squares in five rows of twenty, filled left to right by category. Frontline staff take fifty-four squares. The table below the chart carries every share as text.</desc>
@@ -163,6 +163,19 @@ const FINDING = {
   why: 'The 54% share sits against the 46% remainder, so the finding tracks no movement.'
 };
 /* FINDING:END */
+
+/* METRIC:BEGIN */
+const METRIC = {
+  present: false,
+  value: 54,
+  valueLabel: '54%',
+  delta: null,
+  deltaLabel: '',
+  period: 'the year to 31 March',
+  trend: 'none',
+  why: 'the largest share, 54% of the grant, has no earlier spend to be read against'
+};
+/* METRIC:END */
 /* CHART_DATA:BEGIN */
 const DATA = [
   { label: 'Frontline staff', value: 54 },

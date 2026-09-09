@@ -160,17 +160,17 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-08T20:22:16.934Z",
+    "last_save_at": "2026-09-09T06:40:40.447Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8149516713387071f880bbc6c617d2ff18df9b6124bc95b23a28cd94a464fa50",
+    "source_fingerprint": "sha256:a8307e125b5fd07b5355b68c9805fca574582d84a711a2d02869af72d92b15d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b06ad39901e27faa71854ea1395dc3b86ae32a986396c53c6b6899a531a00012"
+      "spec.md": "1a00b2dfdcf3d91909f9dc3ee6bcda0650c6d77208f74667d8c5732c21742728"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T18:11:54.124Z"

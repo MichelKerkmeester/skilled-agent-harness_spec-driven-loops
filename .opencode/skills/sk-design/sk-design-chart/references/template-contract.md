@@ -384,6 +384,25 @@ Five rules from the polish pass, each held by the checker.
   `12k` or `1.2M` with one decimal at most, while the card and the table keep full digits, and
   `toLocaleString` and `Intl` stay forbidden.
 
+### A card may lead with its number
+
+A form whose data has an honest baseline declares a `METRIC` block beside `READOUT` and prints a
+value, a signed delta and the period above the plot. `present` is `true` or `false` in every form,
+so the decision is written down rather than implied: twenty-five forms declare `false` because a
+share, a distribution or a matrix has no earlier reading to compare against, and the block's own
+`why` line says so.
+
+- **The value is a literal.** `value` and `valueLabel` name a number the reader can find in the
+  table; the delta is computed from the same data and never at draw time. A form that would have to
+  invent either declares `present: false`.
+- **The rung is published.** The value prints at the `metric` rung, 26px, which lives in the palette
+  source beside the other roles, so the type-scale family accepts it without a template-local size.
+- **The delta carries the same cue as the finding.** Up or down draws the 12px arrow, coloured by
+  the emphasis role for a fall and the second series role for a rise, then the delta phrase and the
+  period in muted text.
+- **`present: false` means no element.** The `metric-block` family errors when a form declares the
+  block absent and still ships the markup, and when a form ships the markup with no block at all.
+
 ### The corner ladder rides in the same block
 
 The light block carries one more kind of shared value: the five corner rungs, `--chart-radius-mark`

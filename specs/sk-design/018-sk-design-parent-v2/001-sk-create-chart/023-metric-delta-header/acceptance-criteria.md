@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header"
     last_updated_at: "2026-09-08T18:22:02Z"
     last_updated_by: "scaffold"
-    recent_action: "Planned from the phase 21 synthesis; waits for phase 022"
-    next_safe_action: "Dispatch the build after phase 022 lands"
+    recent_action: "Metric header built on eight forms and declared on all; packet closed"
+    next_safe_action: "Commit with the chart package; start phase 024"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-09-08
 <!-- /ANCHOR:metadata -->
 
@@ -54,9 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a time-series form with a baseline, When METRIC is present, Then the value, delta and period render above the plot and both numbers are table cells | pending | Unmet | - |
-| AC-002 | REQ-001 | Given a form without a baseline, When METRIC is absent, Then the header is unchanged and the assertion accepts it | pending | Unmet | - |
-| AC-003 | REQ-002 | Given the palette source, When the type-scale family runs, Then the metric rung is published and the header sizes pass | pending | Unmet | - |
+| AC-001 | REQ-001 | Given a time-series form with a baseline, When METRIC is present, Then the value, delta and period render above the plot and both numbers are table cells | 33 files declare a METRIC block, 8 with `present: true`; `metric-block` 104 assertions 0 failures; grouped-bars and orders-after-the-price-change recomputed independently and matched (7,277 against 6,487 is 12.2 percent; 196 to 145 is 26 percent) | Met | - |
+| AC-002 | REQ-001 | Given a form without a baseline, When METRIC is absent, Then the header is unchanged and the assertion accepts it | `palettes.json` `typeScale.roles.metric` is 26px; `type-scale` 510 assertions 0 failures; render gate PASSED | Met | - |
+| AC-003 | REQ-002 | Given the palette source, When the type-scale family runs, Then the metric rung is published and the header sizes pass | `scratch/mutations.md` records the trend and missing-block FAIL lines; `card-parts` 177 assertions 0 failures with metric accepted between subtitle and figure | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The build has not started; phase 022 lands first.
+All three criteria are met by the static and render gates, the recorded mutations and the independent recomputation of two metrics.
 <!-- /ANCHOR:closure -->

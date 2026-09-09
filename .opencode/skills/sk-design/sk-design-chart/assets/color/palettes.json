@@ -39,9 +39,10 @@
     "notALadderRung": "A corner computed from a mark's own geometry, such as a range bar rounded to half its width, is geometry rather than a shared value. It stays in the drawing code."
   },
   "typeScale": {
-    "note": "The chart register and the proof-sheet register, side by side. Not colours, and like the corner ladder they sit in their own object for that reason: they are the other half of the vocabulary a template reads, and they live here so the check that rejects a size off the scale reads a value rather than restating one. The chart roles are the compact card scale measured from the frozen shadcn copy; in-figure text steps down a rung as a form gets denser, which is the scale working.",
+    "note": "The chart register and the proof-sheet register, side by side. Not colours, and like the corner ladder they sit in their own object for that reason: they are the other half of the vocabulary a template reads, and they live here so the check that rejects a size off the scale reads a value rather than restating one. The chart roles are the compact card scale measured from the frozen shadcn copy, and the metric rung is the value a card leads with when its data has a meaningful baseline; in-figure text steps down a rung as a form gets denser, which is the scale working.",
     "roles": {
       "headline": "16px",
+      "metric": "26px",
       "body": "14px",
       "label": "12px"
     },

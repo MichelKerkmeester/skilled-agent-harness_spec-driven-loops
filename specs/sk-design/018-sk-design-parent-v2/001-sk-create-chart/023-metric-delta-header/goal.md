@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header"
     last_updated_at: "2026-09-08T18:22:02Z"
     last_updated_by: "scaffold"
-    recent_action: "Planned from the phase 21 synthesis; waits for phase 022"
-    next_safe_action: "Dispatch the build after phase 022 lands"
+    recent_action: "Metric header built on eight forms and declared on all; packet closed"
+    next_safe_action: "Commit with the chart package; start phase 024"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,10 +73,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] Every scalar and time-series form declares `METRIC`; present blocks render and their values are table cells
-- [ ] The `metric` rung is published in `palettes.json` and `type-scale` accepts it
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED`; captures regenerated; contract and changelog v1.7.0.0 updated
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this packet
+- [x] Every scalar and time-series form declares `METRIC`; present blocks render and their values are table cells
+- [x] The `metric` rung is published in `palettes.json` and `type-scale` accepts it
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED`; captures regenerated; contract and changelog v1.7.0.0 updated
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,10 +93,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened | Done | this file |
+| Metric rung and the header on one form | Done | `typeScale.roles.metric`; daily-line capture |
+| Roll-out to eight baseline forms, 25 declaring absent | Done | `metric-block` 104/0 |
+| Contract, changelog v1.7.0.0, versions | Done | conductor |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Two deliveries carry the header | The brief named where-the-budget-went as a present-false case; the executor agreed and recorded why in the block |
 <!-- /ANCHOR:log -->

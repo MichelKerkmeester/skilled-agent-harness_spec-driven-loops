@@ -1,0 +1,2 @@
+  FAIL [metric-block] --extra/mutant.html: the METRIC block declares no direction of up, down or none. A trend outside that set cannot decide what the cue before the comparison says
+  FAIL [metric-block] --extra/mutant.html: no METRIC block. Every chart form declares whether the card leads with a number, present true or false, so the decision ships written down rather than implied by whatever the markup happens to carry

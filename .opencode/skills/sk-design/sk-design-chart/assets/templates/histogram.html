@@ -262,6 +262,19 @@ const FINDING = {
 };
 /* FINDING:END */
 
+/* METRIC:BEGIN */
+const METRIC = {
+  present: false,
+  value: null,
+  valueLabel: '',
+  delta: null,
+  deltaLabel: '',
+  period: '',
+  trend: 'none',
+  why: 'no baseline the value can be read against, so the card keeps the shorter anatomy'
+};
+/* METRIC:END */
+
 // Everything below draws. The bins are drawn at equal widths in the order they are listed,
 // so the data block has to stay contiguous and equal-width: the form reads shape, and uneven
 // bins would draw a shape the counts do not have. The counts live in the card and the table

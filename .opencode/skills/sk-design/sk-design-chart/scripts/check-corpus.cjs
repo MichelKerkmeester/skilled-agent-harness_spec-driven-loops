@@ -981,14 +981,21 @@ function checkAccessibility(file, src, ids) {
 function checkCardParts(file, src) {
   const isProofSheet = file.startsWith('assets/color/');
   const expectedParts = isProofSheet ? ['headline', 'subtitle', 'figure', 'source'] : CARD_PARTS;
+  // The metric block is an optional part of the anatomy: a card leads with its number when
+  // the number has a baseline to be read against, and a card without one keeps the shorter
+  // anatomy. It may sit in one place only, between the subtitle and the figure, so exactly
+  // two orders of the parts pass and every other arrangement still fails.
+  const metricParts = expectedParts.slice();
+  metricParts.splice(expectedParts.indexOf('subtitle') + 1, 0, 'metric');
   const parts = [];
   const re = /data-chart-part\s*=\s*"([^"]+)"/g;
   let m;
   while ((m = re.exec(src)) !== null) parts.push(m[1]);
   tally('card-parts', expectedParts.length);
-  if (parts.join(',') === expectedParts.join(',')) return;
+  const printed = parts.join(',');
+  if (printed === expectedParts.join(',') || printed === metricParts.join(',')) return;
   record('card-parts', 'error', file,
-    `card parts are [${parts.join(', ')}] and the contract is [${expectedParts.join(', ')}] in that order. The fixed card anatomy is what makes a chart legible with no caption`);
+    `card parts are [${parts.join(', ')}] and the contract is [${expectedParts.join(', ')}] in that order, with an optional "metric" between "subtitle" and "figure". The fixed card anatomy is what makes a chart legible with no caption`);
 }
 
 function checkDeterminism(file, src) {
@@ -1693,6 +1700,58 @@ function checkFindingCue(file, src) {
   if (!/FINDING\s*\.\s*trend/.test(code)) {
     record('finding-cue', 'error', file,
       'the cue is not read from FINDING.trend. A cue that does not consult the declared trend can disagree with the sentence it introduces');
+  }
+}
+
+// The metric block is the number the card leads with, so it is held to the same discipline
+// as the finding cue: what the markup prints has to be declared, the direction has to come
+// from the vocabulary the cue can draw, and the declared label has to be the one the script
+// reads. A declared label nobody prints is a second handwriting, and the printed number
+// drifts from the declared one.
+function checkMetricBlock(file, src, isExtra) {
+  const { scripts, markup } = regionsOf(stripHtmlComments(src));
+  const hasMetricPart = /data-chart-part\s*=\s*"metric"/.test(markup);
+  const code = stripJsComments(scripts.join('\n'));
+  const declaration = /const\s+METRIC\s*=\s*\{/.exec(code);
+  let block = null;
+  if (declaration) {
+    const blockEnd = code.indexOf('};', declaration.index);
+    block = code.slice(declaration.index, blockEnd === -1 ? code.length : blockEnd + 2);
+  }
+  // Leading the card with a number is a decision, and a decision nobody wrote down is one the
+  // next editor cannot see. So every file the card anatomy governs declares the decision in a
+  // METRIC block, and when the decision is no, the markup has to agree: a metric region left
+  // standing over a present:false declaration is a promise of a number nobody prints.
+  tally('metric-block', 2);
+  const cardAnatomyGoverns = file.startsWith(TEMPLATE_DIR + path.sep)
+    || file.startsWith(EXAMPLE_DIR + path.sep) || isExtra;
+  if (cardAnatomyGoverns && !declaration) {
+    record('metric-block', 'error', file,
+      'no METRIC block. Every chart form declares whether the card leads with a number, present true or false, so the decision ships written down rather than implied by whatever the markup happens to carry');
+  }
+  if (block && /\bpresent\s*:\s*false\b/.test(block) && hasMetricPart) {
+    record('metric-block', 'error', file,
+      'METRIC.present is false and the markup still carries a metric region. A card that declares no leading number keeps the shorter anatomy, and a region the readout empties prints an empty value above the plot');
+  }
+  if (!hasMetricPart) return;
+  tally('metric-block', 4);
+  if (!declaration) {
+    record('metric-block', 'error', file,
+      'the metric region declares no METRIC block. A number printed above the plot has to be declared beside the data it sums, not written into the markup by hand');
+    return;
+  }
+  if (/\bpresent\s*:\s*true\b/.test(block)
+    && (!/\bvalueLabel\s*:/.test(block) || !/\bdeltaLabel\s*:/.test(block))) {
+    record('metric-block', 'error', file,
+      'METRIC.present is true and the block declares no valueLabel or no deltaLabel. The value paragraph prints one and the delta paragraph the other, so a missing label prints nothing where its words should be');
+  }
+  if (!/\btrend\s*:\s*'(up|down|none)'/.test(block)) {
+    record('metric-block', 'error', file,
+      'the METRIC block declares no direction of up, down or none. A trend outside that set cannot decide what the cue before the comparison says');
+  }
+  if (!/METRIC\s*\.\s*valueLabel/.test(code)) {
+    record('metric-block', 'error', file,
+      'the script never reads METRIC.valueLabel. A declared label nothing prints is a second handwriting, and the printed number drifts from the declared one');
   }
 }
 
@@ -2630,6 +2689,7 @@ function main() {
     checkLegend(name, src);
     checkTooltipCard(name, src);
     checkFindingCue(name, src);
+    checkMetricBlock(name, src, isExtra);
     checkTableDisclosure(name, src);
     checkSourceLine(name, src);
     checkGradientSweep(name, src, systemId);
