@@ -126,9 +126,17 @@ Both skills document six providers, no live path reaches OpenRouter, and every m
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does the operator want a follow-up packet in `system-deep-loop` to drop `deepseek/deepseek-v4-flash-vision-exp` and `z-ai/glm-5.3-flash` from `PI_SUPPORTED_MODELS` and `PI_MODEL_PROVIDERS`? Until that lands, the fan-out can still dispatch two literals that neither roster documents.
+- **RESOLVED 2026-09-09 — the fan-out keeps OpenRouter; no follow-up packet.** The operator decided
+  that `deepseek/deepseek-v4-flash-vision-exp` and `z-ai/glm-5.3-flash` stay mapped in
+  `PI_SUPPORTED_MODELS` and `PI_MODEL_PROVIDERS`. OpenRouter is therefore off the direct-dispatch
+  roster and deliberately retained on the fan-out path — a narrower direct roster than enforced
+  allowlist, on purpose rather than by omission. The cli-pi roster reference now says so, because a
+  reader who saw only the removal would otherwise "reconcile" the mapping away and silently change
+  which route those two models take.
 - Should the `providers.openrouter` block leave `.pi/models.json`? It is inert once nothing selects the provider, but it is also the last place the account is named.
-- The `cline-pass` GLM-5.3-Flash route is direct-dispatch only because the shared `z-ai/glm-5.3-flash` literal is taken in the fan-out map. If the runtime entry goes, that literal frees up and the Cline route could take the fan-out slot. That is a routing decision for the follow-up packet, not a documentation one.
+- **Closed by the same decision.** The `cline-pass` GLM-5.3-Flash route stays direct-dispatch only,
+  because the shared `z-ai/glm-5.3-flash` literal remains taken by the retained OpenRouter mapping.
+  Nothing frees up, so no routing change follows.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -115,6 +115,16 @@ Effort policy: the two ladders differ, so there is no single tier for this provi
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the six authenticated providers above have a confirmed installed catalog.
 
+**OpenRouter is off this roster, and deliberately still in the fan-out.** Direct dispatch has the
+six providers above. The deep-loop fan-out additionally keeps two OpenRouter literals,
+`deepseek/deepseek-v4-flash-vision-exp` and `z-ai/glm-5.3-flash`, mapped in `PI_MODEL_PROVIDERS`.
+Those are *distinct literals* from the bare `deepseek-v4-flash-vision-exp` and `glm-5.3-flash` rows
+above: one literal maps to one provider, so the slash-prefixed pair composes an OpenRouter selector
+while the bare pair composes the DevPass one. So a fan-out can still reach OpenRouter for exactly
+those two ids. That is an operator decision, not residue the roster removal missed — do not
+"reconcile" it by deleting the mapping, which would silently change which route those two models
+take.
+
 ---
 
 ## 3. DEFAULTS & QUICK INVOCATION

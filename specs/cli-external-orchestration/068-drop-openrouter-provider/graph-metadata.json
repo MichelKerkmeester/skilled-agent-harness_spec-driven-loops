@@ -204,7 +204,7 @@
     ],
     "causal_summary": "OpenRouter is one of seven providers on the closed rosters of `cli-pi` and `cli-opencode`, carrying two models on each: DeepSeek V4 Flash and GLM-5.3-Flash",
     "created_at": "2026-09-09T09:27:41Z",
-    "last_save_at": "2026-09-09T09:39:29.774Z",
+    "last_save_at": "2026-09-09T10:54:39.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89453f42ea0b098880a8c089640f69221ffb0302801b993fa051f42223c3824d",
+    "source_fingerprint": "sha256:8ad8ef7ff26363c4ae391aadc0f344c713333be2249fd19785d52c03fedefb49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af5604e41136891e339055b5fe022f27416a54a5c21d78a14b930dcb11e22ac6",
+      "spec.md": "93e09b3aeaf515d38efa9434cc6b2078d2d37040415814250a045c381e3a340e",
       "plan.md": "3d85487bb052c55414258ea8a4e1e33ec36e6dcc178f4b9e2043f760f5ccafc5",
       "tasks.md": "088789f669b3f621253f2a5cb2b9a70aa88dc635c86a9f63334cf07048a43e5f",
       "implementation-summary.md": "4c696e8a63233477fc534482823412cc2d9fda74975f331add93af710666e552"
