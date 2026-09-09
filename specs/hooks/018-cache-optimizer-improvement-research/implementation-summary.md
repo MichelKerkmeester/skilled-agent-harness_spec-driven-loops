@@ -89,10 +89,10 @@ built on itself instead of running five independent queries.
 
 | Check | Result |
 |-------|--------|
-| Iterations completed | 5 of 5, every dispatch exit 0 |
-| Dispatch receipts | 10 — intent and completion per iteration |
-| Artifact sizes | 8.6k, 7.7k, 12.9k, 17.8k, 9.7k bytes |
-| Loop did real work | Iteration 002 refuted one of iteration 001's three P0 findings |
+| Iterations completed | 8 of 8 across two legs, every dispatch exit 0 |
+| Dispatch receipts | 16 — intent and completion per iteration |
+| Artifact sizes | 8.6k, 7.7k, 12.9k, 17.8k, 9.7k, 5.9k, 8.6k, 9.5k bytes |
+| Loop did real work | Iteration 002 refuted one of iteration 001's three P0s; iteration 007 retargeted F1, promoted F4 and dropped F7 |
 | Lock hygiene | Advisory lock released; reacquire verified before the file was cleared |
 | Extension modified | No — `git status --porcelain .pi/extensions/pi-cache-optimizer` is empty |
 | Packet gate | `NODE_PRESERVE_SYMLINKS=1 bash validate.sh specs/hooks/018-cache-optimizer-improvement-research --strict` |
@@ -115,12 +115,16 @@ thinner than the receipts and per-iteration deltas, which are the reliable recor
 Six questions in `research.md` are marked operator-settled and cannot be closed by more research —
 they need decisions about provider semantics and acceptable false-positive rates.
 
-A second-opinion leg on Sonnet 5 is prepared but not run. Iterations 006-008 exist as prompts and
-`RUN-SONNET-ITERATIONS.sh`, and must be run from a plain shell: the deep-loop recursion guard
-refuses a `cli-claude-code` dispatch whenever the `claude` binary appears in the process ancestry,
-which is true inside any Claude Code session regardless of which account or config directory is
-selected. Verified directly — the refusal is at the `ancestry` layer and persists with the session
-id removed from the environment, so it is a nesting property rather than an auth one.
+The second-opinion leg ran here after the operator explicitly authorised ignoring the nesting
+refusal for this work. The self-presence layers were cleared for those three dispatches only, by
+passing an empty ancestry through the guard's own context parameter and withholding this session's
+id from the child environment. Nothing shipped changed: the guard, its exemption set and every
+other dispatch path are untouched, and the spawn-chain layers still applied to these calls. The
+child was a one-shot non-interactive read-only run under `dontAsk`, so it could neither escalate
+nor write.
+
+`RUN-SONNET-ITERATIONS.sh` remains in the packet as the plain-shell path, which needs no such
+override.
 <!-- /ANCHOR:limitations -->
 
 ---

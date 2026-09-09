@@ -13,10 +13,13 @@ contextType: "research"
 
 ## Provenance
 
-Five iterations, executor `cli-codex` running `gpt-5.6-luna` at reasoning effort `max` on the
-`fast` service tier, dispatched through the audited executor path with intent and completion
-receipts written per iteration. Stop policy was `max-iterations`, so all five ran rather than
-stopping at convergence.
+Eight iterations in two legs, sixteen dispatch receipts.
+
+Iterations 1-5 ran on `cli-codex` with `gpt-5.6-luna` at reasoning effort `max`, `fast` service
+tier. Iterations 6-8 are a second opinion from a different model: `cli-claude-code` with
+`claude-sonnet-5` at effort `xhigh`, on a separate account. Both legs went through the audited
+executor path with intent and completion receipts per iteration. Stop policy was `max-iterations`
+throughout, so no iteration was skipped by early convergence.
 
 | Iteration | Angle | Outcome |
 |---|---|---|
@@ -25,6 +28,9 @@ stopping at convergence.
 | 003 | Minimal design for what survived | Designs fitted to existing structure |
 | 004 | Blast radius, migration, and proof | Per-design test and negative control |
 | 005 | Decision-ready synthesis | Ordered backlog below |
+| 006 | Independent re-derivation (Sonnet 5) | Same top 3 by different route; F5/F6 not covered, and said so |
+| 007 | Attack the backlog (Sonnet 5) | Retargets F1, promotes F4, drops F7 |
+| 008 | Specify rank 1 to buildable detail (Sonnet 5) | F1 spec, test, negative control |
 
 The refutation in iteration 002 is the reason the loop was worth running: the third P0 from
 iteration 001 did not survive being traced, and the design effort went elsewhere.
@@ -62,6 +68,32 @@ because it defines the vocabulary the others measure against.
 - Should unknown third-party key support default to opt-in, or should a documented allowlist remain enabled by default?
 - Is `requestId` stable across `before_agent_start`, provider requests, retries, and multi-request turns?
 - What false-positive rate is acceptable before the retry guard escalates or aborts a turn?
+
+## Second opinion (iterations 6-8, Sonnet 5)
+
+A different model re-derived the top three from the code without adopting the ranking, then attacked
+the backlog. It reached the same top three independently and changed the list in four ways:
+
+| Item | First leg | Second opinion | Change |
+|---|---|---|---|
+| F2 prefix promotion | P0 | P0 | unchanged |
+| F3 zero cached-read pricing | P0 | P0 | unchanged |
+| F1 miss vs unavailable | P0 | P0, **retargeted** | the flag must be wired into the stats-exclusion path, not just the classifier |
+| F4 capability gate | P1 | **P0 companion to F1** | a static gate, not a substitute — do not merge the two |
+| F5 `prompt_cache_key` | P1 | P1, redirected | persist the learned rejection; do not flip the default to opt-in |
+| F6 request-scoped hints | P1 | P1, severity unconfirmed | mechanism confirmed, concurrency trigger unverified |
+| F7 retry guard | P2 | **drop** | inspected twice, no defect found; close it |
+
+**The most useful thing it caught is a trap in F1's own fix.** Implementing F1 as "skip
+`addUsageToCacheStats` when cache fields are missing" would drop those requests from
+`totalInputTokens` and the cost figures as well as from the hit ratio. Real spend happened on those
+requests, so hiding them understates Baseline and Savings — a worse failure than the ambiguity being
+fixed, in a tool whose purpose is a checkable savings number. Cost tracking must always record;
+only the ratio's numerator and denominator may exclude on a missing signal. These are two counters
+on one code path and need different treatment.
+
+Iteration 008 specifies F1 to buildable detail, with the test that fails before and passes after and
+its negative control. Its own uncertainties are listed there rather than smoothed away.
 
 ## Reading these findings
 
