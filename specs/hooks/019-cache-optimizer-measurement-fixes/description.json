@@ -1,0 +1,17 @@
+{
+  "specFolder": "hooks/019-cache-optimizer-measurement-fixes",
+  "description": "cache optimizer measurement and pricing fixes",
+  "keywords": [
+    "cache",
+    "optimizer",
+    "measurement",
+    "pricing"
+  ],
+  "lastUpdated": "2026-09-09T12:46:42.579Z",
+  "specId": "001",
+  "folderSlug": "cache-optimizer-measurement",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
