@@ -60,6 +60,12 @@
             "high": "high",
             "max": "max",
             "xhigh": null
+          },
+          "cost": {
+            "input": 0.14,
+            "output": 0.28,
+            "cacheRead": 0.0028,
+            "cacheWrite": 0
           }
         },
         {
@@ -75,6 +81,12 @@
             "high": "high",
             "max": "max",
             "xhigh": "xhigh"
+          },
+          "cost": {
+            "input": 0.088,
+            "output": 0.25,
+            "cacheRead": 0.025,
+            "cacheWrite": 0
           }
         }
       ]
