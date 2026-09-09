@@ -11,7 +11,7 @@ metadata:
 
 # Create Chart
 
-`sk-design-chart` is the chart-authoring workflow packet of the `sk-doc` parent hub. It produces a standalone HTML chart from a corpus of chart forms that lives inside this packet.
+`sk-design-chart` is the chart-authoring workflow packet of the `sk-design` parent hub. It produces a standalone HTML chart from a corpus of chart forms that lives inside this packet.
 
 ---
 

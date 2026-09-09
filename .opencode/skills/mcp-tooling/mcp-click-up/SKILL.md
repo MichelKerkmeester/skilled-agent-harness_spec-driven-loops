@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and official MCP (docs, goals, bulk). Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 <!-- keywords: clickup cupt task-management work-queue time-tracking mcp -->

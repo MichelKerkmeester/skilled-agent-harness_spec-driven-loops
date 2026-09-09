@@ -12,7 +12,7 @@ metadata:
 
 # Documentation Authoring Hub (sk-doc)
 
-One advisor identity, fifteen workflow packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
+One advisor identity, fourteen workflow modes across thirteen packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
 
 ---
 
@@ -131,7 +131,7 @@ This hub does **not** use keyed resource discovery (`references/<key>/` or `asse
 sk-doc/
   SKILL.md               # this routing hub (no per-packet logic)
   ROUTER.md              # stage-two surface router (authoring intent -> leaf sets)
-  mode-registry.json     # the fifteen-packet discriminator + advisorRouting (single source of truth)
+  mode-registry.json     # the fourteen-mode discriminator + advisorRouting (single source of truth)
   hub-router.json        # router signals + vocabulary classes
   description.json       # hub advisor descriptor
   graph-metadata.json    # the ONE advisor identity for the whole skill
@@ -174,7 +174,7 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 
 ## 5. REFERENCES
 
-- Registry: `mode-registry.json` (fifteen packets; `packetKind: workflow`).
+- Registry: `mode-registry.json` (fourteen modes across thirteen packets, `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Surface router: `ROUTER.md` (authoring intent to packet-local leaf sets).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.

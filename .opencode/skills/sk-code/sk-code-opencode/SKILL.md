@@ -2,7 +2,7 @@
 name: sk-code-opencode
 description: "sk-code OPENCODE surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.4
+version: 1.0.0.5
 metadata:
   author: OpenCode
   family: sk-code

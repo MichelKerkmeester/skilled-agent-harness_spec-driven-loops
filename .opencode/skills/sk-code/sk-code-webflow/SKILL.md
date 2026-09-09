@@ -2,7 +2,7 @@
 name: sk-code-webflow
 description: "sk-code WEBFLOW surface: frontend evidence (CSS/HTML/JavaScript standards, implementation and performance patterns, CDN deployment, browser debugging and verification) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
