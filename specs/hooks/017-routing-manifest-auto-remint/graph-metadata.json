@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/017-routing-manifest-auto-remint",
+  "spec_folder": "hooks/017-routing-manifest-auto-remint",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing manifest auto remint",
+      "stale manifest pre-commit",
+      "compiled routing gate blocks push",
+      "hub manifest goes stale",
+      "route remint plan",
+      "pre-commit auto remint",
+      "route remint tasks",
+      "route remint summary",
+      "pre-commit remint results"
+    ],
+    "key_topics": [
+      "routing",
+      "manifest",
+      "auto",
+      "remint",
+      "stale",
+      "pre-commit",
+      "compiled",
+      "gate",
+      "blocks",
+      "push",
+      "hub",
+      "goes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ROLLBACK",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. STATUS",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHAT IT DOES",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A hub's compiled routing manifest pins a hash of its routing inputs",
+    "created_at": "2026-09-10T06:27:19.346Z",
+    "last_save_at": "2026-09-10T06:27:53.056Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e70fab448b7263df9e60023a98dc96decec7785dcc12ae3672ffa1b442ce53a4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "001daa7b3c56c3a4b22bb834e06f396b01e173665bf4fb57e9d72009b44432b0",
+      "plan.md": "145430d47681ac758785bb34d60b0d41bb62418cb5ea70f124f708e6b00de36d",
+      "tasks.md": "f495f9ee6b23133208acd67b477aa3078c719cbb79284165eaaf32f434bd44a9",
+      "implementation-summary.md": "207b11de268e8b3e1e969183cbb4bf24c5366eaba787c8f4fdc4f17384dd5e1e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

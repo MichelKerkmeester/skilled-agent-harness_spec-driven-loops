@@ -210,6 +210,71 @@ if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   fi
 fi
 
+# --- Compiled-routing auto re-mint (blocking only when it cannot fix it) ---
+# A hub's activation manifest pins a hash of its routing inputs, and every SKILL.md
+# under the hub is one of them. Editing a mode's SKILL.md therefore stales the hub
+# without touching anything that looks like routing, and a stale pin makes the hub
+# serve legacy: the compiled route is dropped from every recommendation and nothing
+# says so. The pre-push gate catches it, which is too late, because by then the edit
+# is committed and the fix costs an amend. It has cost one twice.
+# The manifest is derived from the staged inputs, so this regenerates and stages it
+# rather than printing a command for a human to run. That is a deliberate departure
+# from the block-and-instruct shape of the gates above, and it is confined to this
+# one artifact because nothing here requires a judgment call.
+# Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
+if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
+  ROUTE_MINT="$REPO_ROOT/.opencode/bin/compiled-route-manifest.cjs"
+  ROUTE_AUTHORED="$REPO_ROOT/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation"
+  ROUTE_RUNTIME="$REPO_ROOT/.opencode/bin/lib/compiled-routing/013-live-activation/activation"
+  # Only the five hubs that own a compiled manifest. A skill outside this list has no
+  # manifest to stale, so a SKILL.md edit under it is not a routing input.
+  for ROUTE_HUB in cli-external-orchestration mcp-tooling sk-code sk-doc system-deep-loop; do
+    # mode-registry.json and hub-router.json are read directly by the hash. Every
+    # SKILL.md under the hub reaches it through the leaves the registry declares.
+    ROUTE_STAGED="$(git diff --cached --name-only -- \
+      ".opencode/skills/$ROUTE_HUB/SKILL.md" \
+      ".opencode/skills/$ROUTE_HUB/hub-router.json" \
+      ".opencode/skills/$ROUTE_HUB/mode-registry.json" \
+      ".opencode/skills/$ROUTE_HUB/*/SKILL.md" 2>/dev/null)"
+    [[ -z "$ROUTE_STAGED" ]] && continue
+    # Minting reads the working tree, not the index. If an input is only half staged
+    # the manifest would describe content this commit does not carry, which is a
+    # quieter version of the drift this gate exists to remove. Refuse instead.
+    ROUTE_DIRTY="$(git diff --name-only -- \
+      ".opencode/skills/$ROUTE_HUB/SKILL.md" \
+      ".opencode/skills/$ROUTE_HUB/hub-router.json" \
+      ".opencode/skills/$ROUTE_HUB/mode-registry.json" \
+      ".opencode/skills/$ROUTE_HUB/*/SKILL.md" 2>/dev/null)"
+    if [[ -n "$ROUTE_DIRTY" ]]; then
+      echo "" >&2
+      echo "BLOCKED [gate:route-remint]: $ROUTE_HUB has routing inputs staged and unstaged at once:" >&2
+      printf '  %s\n' $ROUTE_DIRTY >&2
+      echo "A manifest minted now would describe content this commit does not contain." >&2
+      echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+      exit 1
+    fi
+    if [[ ! -f "$ROUTE_MINT" ]]; then
+      echo "BLOCKED [gate:route-remint]: $(basename "$ROUTE_MINT") is missing, so $ROUTE_HUB cannot be re-minted." >&2
+      exit 1
+    fi
+    if ! node "$ROUTE_MINT" refresh --hub "$ROUTE_HUB" \
+         --skill-root ".opencode/skills/$ROUTE_HUB" >/dev/null 2>&1; then
+      echo "" >&2
+      echo "BLOCKED [gate:route-remint]: re-minting $ROUTE_HUB failed." >&2
+      node "$ROUTE_MINT" refresh --hub "$ROUTE_HUB" --skill-root ".opencode/skills/$ROUTE_HUB" >&2 || true
+      echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
+      exit 1
+    fi
+    # The runtime manifest is what serves. The authored copy is what a rebuild would
+    # reinstate, so leaving it behind reintroduces the same staleness on the next one.
+    if [[ -f "$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json" && -f "$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json" ]]; then
+      cp "$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json" "$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json"
+      git add -- "$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json" "$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json"
+      echo "[gate:route-remint] re-minted $ROUTE_HUB and staged both manifests." >&2
+    fi
+  done
+fi
+
 # --- Tool ownership map gate (blocking) ---
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Manual-testing-playbook operator contract: enforced by CI only (pull request,

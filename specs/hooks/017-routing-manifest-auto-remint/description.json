@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks/017-routing-manifest-auto-remint",
+  "description": "A hub's compiled routing manifest pins a hash of its routing inputs",
+  "keywords": [
+    "hub",
+    "compiled",
+    "routing",
+    "manifest",
+    "pins",
+    "hash",
+    "inputs"
+  ],
+  "lastUpdated": "2026-09-10T06:27:46.922Z",
+  "specId": "017",
+  "folderSlug": "routing-manifest-auto-remint",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
