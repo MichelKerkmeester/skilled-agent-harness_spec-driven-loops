@@ -9,7 +9,7 @@ trigger_phrases:
   - "decision breakdown"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.4
+version: 1.1.0.4
 ---
 
 # Tree / Hierarchy

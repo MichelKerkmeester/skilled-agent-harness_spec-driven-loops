@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram colour gates"
 importance_tier: "important"
 contextType: "reference"
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 # Diagram Palette Derivation Record

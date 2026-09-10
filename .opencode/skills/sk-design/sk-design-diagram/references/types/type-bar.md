@@ -10,7 +10,7 @@ trigger_phrases:
   - "focal bar accent"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.4
+version: 1.1.0.4
 ---
 
 # Bar / Column Chart
