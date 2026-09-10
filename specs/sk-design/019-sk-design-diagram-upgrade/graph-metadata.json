@@ -126,6 +126,12 @@
         "source": "derived"
       },
       {
+        "name": "Frontmatter Versioning Standard",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "this",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -136,28 +142,23 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T22:03:21.070Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-10T22:25:21.372Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d313cbd45001bcf9744ca7e0c15e3bf7f89b1fdb6181f31ccb099f3a5cb5830a",
+    "source_fingerprint": "sha256:dc1e750b4cd652618eaa826ae8150abb08a7f4c9c82aadfa599dbdc122d683cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d001a5143db82baa4fc0e1a2d4620dd72e718eeac618f37d505e05f0cd62bcba"
     },
-    "last_active_at": null
+    "last_active_child_id": null,
+    "last_active_at": "2026-09-10T22:08:34.106Z"
   }
 }

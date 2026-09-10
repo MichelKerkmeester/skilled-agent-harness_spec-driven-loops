@@ -47,11 +47,11 @@ Every token is referred to by **semantic role**, not by its hex value. Type refe
 
 > **Brand palette source:** this skin maps to a five-color brand palette — `jet-black #2d3142`, `silver #bfc0c0`, `white-smoke #f5f5f5`, `atomic-tangerine #eb6c36`, `blue-slate #4f5d75`. The `soft`, `rule`, and `link` tokens are derived (lighter slate, ink-at-opacity, and a saturated variant in the blue-slate hue family) to cover roles the brand palette doesn't name directly.
 
-> **Note:** The pre-baked example HTML files in `assets/` were built under an earlier skin. Regenerating them against the current `style-guide.md` is a v5.1 task. New diagrams the skill produces will use the tokens above.
+> **Note:** The example files under `assets/` carry the current role values above; what they do not yet do is read them from one source. Thirty-two of thirty-four type their hex values inline, which a later phase repaints from [derivation-record.md](derivation-record.md).
 
 #### Inversion rule (light → dark)
 
-Any `rgba(28,25,23, X)` in light becomes `rgba(250,247,242, X)` in dark. Same opacities, RGB flipped. The accent gets a slight hue-shift brighter to read on dark paper.
+There is no formula. The dark values are hand-picked: the accent moves from `#eb6c36` to `#f08a59` by hue, saturation and lightness together, so no single rule reproduces it, and the warm `rgba(28,25,23, X)` spelling this section once described appears in none of the examples. Every value, its kind and its origin are recorded in [derivation-record.md](derivation-record.md); a value derived by a rule (ink at an alpha, accent at an alpha) is marked as such there and re-derived by the corpus check.
 
 #### Series palette (multi-series chart types only)
 
@@ -103,6 +103,8 @@ A self-contained palette for the terminal-window primitive (see [primitive-termi
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 ```
+
+**Fallback chains ship already.** Every template root declares them — `'Geist', system-ui, sans-serif`, `'Instrument Serif', serif`, `'Geist Mono', ui-monospace, monospace` (`assets/templates/template.html` and its three siblings) — and every inline SVG `font-family` resolves to one of those chains. A file opened with no network therefore renders in the fallback face, not in a browser default. The Google Fonts link above is the one remote resource a diagram may carry; the corpus check allowlists that host and nothing else.
 
 **Load-bearing rule:** Mono is for *technical* content (ports, commands, URLs, field types). Names go in Geist sans. Page title is Instrument Serif. Italic Instrument Serif is reserved for annotation callouts (see [primitive-annotation.md](../primitives/primitive-annotation.md)). **Never JetBrains Mono** as a blanket "dev" font.
 

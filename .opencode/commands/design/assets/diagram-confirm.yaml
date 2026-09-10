@@ -6,7 +6,7 @@
 #       explicit approval checkpoints between major decisions.
 #       All executions use interactive confirmation gates.
 # -----------------------------------------------------------------
-role: Expert Diagram Author using sk-doc create-diagram packet
+role: Expert Diagram Author using the sk-design diagram packet
 purpose: Produce an HTML/SVG technical diagram, an ASCII/markdown flowchart, or redraw an existing draw.io/Mermaid source with format-aware validation
 action: Resolve html-svg (default) versus ascii-markdown before selecting a type or pattern; then run the matching creation and validation workflow with an approval checkpoint after each step
 

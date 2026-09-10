@@ -2,12 +2,12 @@
 name: sk-design-diagram
 description: Creates self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Create Diagram
 
-`create-diagram` is the `sk-doc` workflow packet for technical/product diagrams in two formats: `html-svg` (default) for 27 diagram types, and `ascii-markdown` for flowcharts embedded in markdown. HTML/SVG output uses one editorial design system, complexity budget, and taste gate. The packet also redraws draw.io / Mermaid sources and exports generated diagrams to PNG / SVG.
+`create-diagram` is the sk-design hub's diagram mode for technical/product diagrams in two formats: `html-svg` (default) for 27 diagram types, and `ascii-markdown` for flowcharts embedded in markdown. HTML/SVG output uses one editorial design system, complexity budget, and taste gate. The packet also redraws draw.io / Mermaid sources and exports generated diagrams to PNG / SVG.
 
 This packet owns both formats. `type-flowchart.md` remains the HTML/SVG TYPE reference; `ascii-format/` and `ascii-patterns/` are the separate ASCII FORMAT path.
 
@@ -403,7 +403,7 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 4. **ALWAYS enforce the 4px grid** — every font size, coordinate, node dimension, and gap divisible by 4; stroke widths and opacity are exempt.
 5. **ALWAYS treat `references/foundations/style-guide.md` as the single source of truth for tokens** — refer to semantic roles and look up hex values there; never hardcode values that disagree with the guide.
 6. **ALWAYS keep `accent` on 1–2 focal elements per diagram.** If you're tempted to accent 4 things, you haven't decided what's focal yet.
-7. **ALWAYS satisfy the resolved format's output contract** — `html-svg` ships one self-contained `.html` file with embedded CSS, inline SVG, no JS required, and the accessible SVG contract (`role="img"`, resolving `aria-labelledby`, prefixed IDs, first-child `<title>`, non-empty `<title>` / `<desc>`); `ascii-markdown` ships one readable markdown flowchart.
+7. **ALWAYS satisfy the resolved format's output contract** — `html-svg` ships one self-contained `.html` file with embedded CSS, inline SVG, no JS required, and the accessible SVG contract in HOW IT WORKS § Output; `ascii-markdown` ships one readable markdown flowchart.
 8. **ALWAYS run `bash scripts/validate-flowchart.sh <target>` before delivering `ascii-markdown` output** — exit `0` is required, including warning-only runs; exit `1` blocks delivery until fixed.
 9. **ALWAYS run the style-guide gate before the first `html-svg` diagram in a project** — don't silently ship default-skinned diagrams into a branded project.
 
@@ -492,7 +492,7 @@ Run the applicable validation gate before delivery. `html-svg` requires the tast
 
 ### Technical
 
-- [ ] Diagram `<svg>` has `role="img"` and `aria-labelledby` resolving to its `<title>` and `<desc>`?
+- [ ] Diagram satisfies the accessible SVG contract (HOW IT WORKS § Output)?
 - [ ] `<title>` is the first child of `<svg>` (before `<defs>`), and both `<title>` and `<desc>` are filled in?
 - [ ] `<title>` / `<desc>` IDs prefixed for this diagram and variant — never bare `title` / `desc`?
 - [ ] Arrows drawn before boxes?

@@ -1,0 +1,27 @@
+{"timestamp":"2026-09-10T22:07:30.366Z","runtime":"claude","status":"ok","freshness":"live","durationMs":880,"cacheHit":false,"skillLabel":"sk-doc"}
+Both changes are on disk and both mandated greps were run and read.
+
+**VERIFY 1 — residue check (expect no output):**
+```
+$ grep -n "create-diagram-auto\|create-diagram-confirm\|sk-doc" .opencode/commands/design/diagram.md .opencode/commands/design/assets/diagram-auto.yaml .opencode/commands/design/assets/diagram-confirm.yaml
+(no output)  exit=1
+```
+Exit 1 is grep's affirmative no-match. I confirmed grep actually read the files: the `file` command shows plain ASCII/UTF-8 (no NUL-byte binary trap) and VERIFY 2 below returned content from two of the same three paths.
+
+**VERIFY 2 — new role lines (expect two):**
+```
+$ grep -n "sk-design diagram packet" .opencode/commands/design/assets/diagram-*.yaml
+.opencode/commands/design/assets/diagram-auto.yaml:8:role: Expert Diagram Author using the sk-design diagram packet
+.opencode/commands/design/assets/diagram-confirm.yaml:9:role: Expert Diagram Author using the sk-design diagram packet
+exit=0
+```
+Exactly two lines, exactly one occurrence per file, at the mandated positions.
+
+**Two-line summary:**
+
+CHANGE 1: `.opencode/commands/design/diagram.md:67` now names `diagram-auto.yaml` and `diagram-confirm.yaml`, matching lines 25-26 and 50-51, with zero `create-diagram-*`/`sk-doc` residue in all three files (grep 1, exit 1).
+
+CHANGE 2: the role lines at `diagram-auto.yaml:8` and `diagram-confirm.yaml:9` now read "Expert Diagram Author using the sk-design diagram packet", each exactly once (grep 2, exit 0).
+
+One honest note on mechanism: the three `edit` calls reported "could not find the exact text", yet the observed final state carries the intended replacements (files' mtimes 00:11, after my 00:11-00:13 reads that showed the old text). The final state is OBSERVED via the greps above; that the harness applied-then-misreported, versus a concurrent writer, is INFERRED. Nothing else was written: the session's only mutations were those three targeted replacements, no comments were added, and no headings or anchors were touched.
+EXIT 0

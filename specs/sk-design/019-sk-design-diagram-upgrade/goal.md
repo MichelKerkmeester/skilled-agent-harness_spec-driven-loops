@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "All six child phases authored and gated; packet ready for phase 002 execution"
-    next_safe_action: "Execute 002-skin-contract: reconcile the ledger, then sign the seven decisions"
+    recent_action: "Phase 002 executed; two of three GLM briefs stalled and were finished by hand"
+    next_safe_action: "Execute 003-applicator-and-sentinels from derivation-record.md"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -93,7 +93,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 - [ ] `node --test .opencode/skills/sk-design/sk-design-diagram/scripts/tests/` passes, and its completeness guard reports no family without a case
 - [ ] `apply-diagram-tokens.cjs --default` over the four templates produces a byte-identical copy of each
 - [ ] `grep -rhoE "#[0-9a-fA-F]{6}" assets/examples assets/templates` outside sentinel blocks returns nothing
-- [ ] One version field across the skill; `.github/workflows/diagram-corpus.yml` green on a push
+- [ ] Every in-scope document's `version` follows the Frontmatter Versioning Standard (`SKILL.md` is the anchor, children inherit major.minor) and the anchor is bumped for this round; `.github/workflows/diagram-corpus.yml` green on a push
 - [ ] A dated capture-review report exists under `benchmark/reports/` with no hand-authored markdown
 - [ ] `validate.sh specs/sk-design/019-sk-design-diagram-upgrade --strict --recursive` reports `RESULT: PASSED` for all seven folders
 <!-- /ANCHOR:completion -->
@@ -108,6 +108,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 research, two lineages | Done | 29 findings; 15 confirmed, 15 corrected, 1 fabrication caught |
+| 002 executed: seven decisions signed, derivation record written, one-locus fixes landed | Done | `derivation-record.md`; `diagram.md:67`; `SKILL.md` ownership and single accessibility locus; versions re-derived by the standard's tool |
 | 002–006 authored | Done | five child goals, each refining parent decisions by id; 29 of 29 findings placed; parent validates recursively |
 | 002 skin-contract | Authored | validate PASSED (0 errors, 0 warnings), 13 tasks, 16 findings |
 | 003 applicator-and-sentinels | Authored | validate PASSED (0 errors, 0 warnings), 10 tasks, 3 findings |
@@ -119,6 +120,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 
 | Item | Note |
 |------|------|
+| Criterion 5 amended: version fields are per document by standard | Both research lineages read the five differing `version:` fields as drift. `sk-create-frontmatter/references/frontmatter-versioning.md` makes them the rule: every in-scope doc carries its own, `SKILL.md` anchors, children inherit major.minor. The criterion now asks for conformance to that standard, not one field |
 | The reconciliation pass is not a phase | Folded into 002's first tasks rather than renumbering five children |
 | The conductor misread the orchestrator as dead after node 005 | Its process hid its argv from `ps`, so the conductor's liveness checks missed it and dispatched a second agent for 006 while the orchestrator's own was writing it; the two reconciled, the orchestrator finished, and its report printed in full: five nodes PASSED, 29 of 29 placed, 7 dispatches |
 <!-- /ANCHOR:log -->
