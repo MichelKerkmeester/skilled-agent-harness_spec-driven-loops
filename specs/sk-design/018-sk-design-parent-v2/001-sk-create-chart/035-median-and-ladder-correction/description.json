@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction",
+  "description": "Two geometry fixes shipped on the strength of my own reading of the captures, because the packet",
+  "keywords": [
+    "two",
+    "geometry",
+    "shipped",
+    "strength",
+    "own",
+    "reading",
+    "captures",
+    "because",
+    "packet"
+  ],
+  "lastUpdated": "2026-09-10T07:14:44.663Z",
+  "specId": "035",
+  "folderSlug": "median-and-ladder-correction",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

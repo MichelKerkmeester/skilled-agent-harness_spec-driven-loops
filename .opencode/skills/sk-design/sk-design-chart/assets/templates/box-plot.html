@@ -137,10 +137,12 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .box { fill: var(--chart-series-1); }
 .box-lead { fill: var(--chart-emphasis); }
 .whisker { stroke: var(--chart-series-2); stroke-width: 1.5; }
-/* The median is a line drawn on the box, not a gap cut through it. At three units of the page
-   colour it read as two stacked bars with a hole between them, worst on the shortest boxes
-   where the band ate an eighth of the height. */
-.median { stroke: var(--chart-surface); stroke-width: 1.5; }
+/* The median contrasts with the box it marks, and never takes the page colour. A stroke the
+   colour of the ground reads as the ground showing through however thin it is drawn, so the box
+   came apart into two stacked bars with a hole between them. A filled box takes the ink; the
+   emphasised box, which is filled with the ink, takes the hue instead. */
+.median { stroke: var(--chart-ink); stroke-width: 1.5; }
+.median-lead { stroke: var(--chart-series-1); stroke-width: 1.5; }
 /* Dashed and drawn below full strength, because the rule token is also the card border and
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */
@@ -189,7 +191,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 .tip-value { color: var(--chart-ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 /* The whiskers and the median line are drawn across the box, so they let the pointer through
    to the box underneath rather than reading as a hole in the middle of it. */
-.whisker, .median { pointer-events: none; }
+.whisker, .median, .median-lead { pointer-events: none; }
 /* A reader who clicks a control inside the figure should not be left looking at a ring they
    never asked for, and a reader who tabs to one has to see it. :focus-visible is what tells
    the two apart. Selecting text is deliberately left alone: the numbers in a delivered chart
@@ -477,7 +479,7 @@ DATA.forEach(function (d, i) {
       ['Upper quartile', fmt(d.q3)], ['Highest', fmt(d.high)]]);
   node('line', {
     x1: cx - boxWidth / 2, y1: y(d.median), x2: cx + boxWidth / 2, y2: y(d.median)
-  }, 'median');
+  }, d.lead ? 'median-lead' : 'median');
   node('text', { x: cx, y: BASE + 22, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
 });
 
