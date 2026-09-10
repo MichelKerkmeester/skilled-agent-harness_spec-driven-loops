@@ -45,7 +45,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".github/workflows/chart-corpus.yml",
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -73,13 +76,43 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "chart-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/chart-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,18 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -140,12 +167,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "`check-diagram-corpus.cjs` with the families phase 1 contracted: accessibility and metadata, no-external with the one documented stylesheet exception, the 4px grid per the signed exemption list, orthogonal connectors with the type allowlist, marker trio and unique ids at the decided scope, gates against sentinel blocks across three grounds, the derivation re-derivation, the catalog in both directions",
+    "causal_summary": "`check-diagram-corpus.cjs` with the families phase 002 contracted: accessibility and metadata, no-external with a one-entry allowlist as net-new work (no documented exception precedent exists to port), the 4px grid per the signed exemption list, orthogonal connectors with the type allowlist, marker trio and unique ids at the decided scope, gates against sentinel blocks across three grounds, the derivation re-derivation, the catalog in both directions",
     "created_at": "2026-09-10T18:45:28Z",
-    "last_save_at": "2026-09-10T18:47:13.261Z",
+    "last_save_at": "2026-09-10T21:33:42.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +206,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:404401fa517a1c7e734bc2d123cc7a9d06d0e762ee226a5cb918a064530bfb8f",
+    "source_fingerprint": "sha256:7a94dd561c09d0448a48ff2bfc5bf672152387308f6bdef0d443ca3c51146db8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0a186edbc5a2eec809e19521c6ae3cc6686897295c31a3209ddbfc076863b99",
-      "plan.md": "3f571e57b6650e2df0defa338a2143548cc7e10bb8efbe67bca7bc5e8db8c9b0",
-      "tasks.md": "324cd13e03ac524fcd3cf9a5f0fe48ee2109cf2bb8f3937d988c1f52ae9c44ee",
-      "implementation-summary.md": "6942df711e8db68fba982fabe6b91c977cbd383caa7846c2b1c51cec2ccfddb2"
+      "spec.md": "c64e93533c8e4f707abedff1ef353d9e2ab5f5254144dbc4304342d9101d8aa1",
+      "plan.md": "83cc8b1187b80c7e7e668b1ee55acc340b0f3e35a785c26b7c6e8e13cc35e306",
+      "tasks.md": "d28dffac0901213daa8fd78058594d71c3702572863d3085324758d4fe4ac434",
+      "implementation-summary.md": "3436ac99626c1082c5da274abe6fef7aaab6f4f49b4f7cca80ae2914f41707bb"
     },
     "last_active_at": null
   }

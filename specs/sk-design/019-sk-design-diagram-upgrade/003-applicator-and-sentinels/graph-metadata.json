@@ -45,7 +45,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-dark.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-full.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-terminal.html",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/color-gates.cjs",
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -73,9 +81,57 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "template.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html",
+        "source": "derived"
+      },
+      {
+        "name": "template-dark.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-dark.html",
+        "source": "derived"
+      },
+      {
+        "name": "template-full.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-full.html",
+        "source": "derived"
+      },
+      {
+        "name": "template-terminal.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-terminal.html",
+        "source": "derived"
+      },
+      {
+        "name": "apply-design-md.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "color-gates.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/color-gates.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -127,7 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,63 +195,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
     "created_at": "2026-09-10T17:17:42Z",
-    "last_save_at": "2026-09-10T18:47:12.953Z",
+    "last_save_at": "2026-09-10T20:57:29.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +211,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:730fe581d42b2130b2d03be6ebaf6f5dc2e9dbb532b9b8899c97a8e9ef56994c",
+    "source_fingerprint": "sha256:33d917c425345fd4c1a34ad69721417458da5fa46adc498cf4e006250b20cc30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "604c7f10f1afc9d5a419fd236c110b6fc3595bf2c274c9253dadb064e7a9a012",
-      "plan.md": "815dd3d7211977174835be5811aa590eb17febd882433b8d3c5c96e9b1e1ab1e",
-      "tasks.md": "b2c758b0651ac92b4f01feeb46a8e3494ed1403699b416dd04526c9b469a8f42",
-      "implementation-summary.md": "d9741221fba1f23ac1cda6100231a848b58c09bc839f99eeb2abc516ae6d5ad2"
+      "spec.md": "6758b86187a90af7e4686c8d705cb413233730d37848606b100f5c9ff6cc5f70",
+      "plan.md": "9372e08680ef4435468752cd1e36bf723b78ecf810729c551ad0e46badccfdee",
+      "tasks.md": "0a60b48688a64982d25543e35c466c1d9a8437f1074d8c6e49461745ca0a78ba",
+      "implementation-summary.md": "56d478437dde859d9798ffed75639f45bac70a1b87f0ad4dd4409b7a04c2af0c"
     },
     "last_active_at": null
   }

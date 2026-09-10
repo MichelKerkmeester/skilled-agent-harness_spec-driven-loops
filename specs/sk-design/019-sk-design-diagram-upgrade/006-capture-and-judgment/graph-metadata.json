@@ -45,7 +45,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
+      "benchmark/reports/README.md"
     ],
     "entities": [
       {
@@ -73,13 +77,49 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-manual-playbook-scenario.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,18 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Document",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,13 +173,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Graduated Date",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -163,39 +191,15 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Removed From",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The playbook scenario formalized: a skin-pinned third capture that must differ from the first, the settled double-capture, and the judged checklist — type fit, the remove test, taste, the visible 6–10px label gap, the deserved focal element, the unavoidable-box exception",
     "created_at": "2026-09-10T18:45:29Z",
-    "last_save_at": "2026-09-10T18:47:13.408Z",
+    "last_save_at": "2026-09-10T21:52:37.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +207,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c68ae047fbfde7f7d48ef32e9d29de24b0fa88afed71e096ef174420ef1a8cd",
+    "source_fingerprint": "sha256:15fae11cf91d55cae6744557f585679bf649bed6539f2210adab0eb23e1e9ad2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e74bb97c2cf0cee212c6dcf72417cd94af332ca44f000688db4b358eaa9b8a38",
-      "plan.md": "d9858b4cf676a9e01eac6a6876d5c389e7a56e5aed483b3b73d4e1cca19a20f0",
-      "tasks.md": "91bfb163eae361bd369baf0e5d8cc82b195780a36b06142c0bdaf8ffb6ec9489",
-      "implementation-summary.md": "2a95b8fe8acc4d6076f3ed6c087689d5af4860d5c4ff84971f0e6d57f278c1f3"
+      "spec.md": "a02bfb106d1bc3003ae337a08d3cd473cc81b92515a011bc73898e031d6704a0",
+      "plan.md": "5d525a6949aee30c197c0ebee0c29b28814e7f06224d017fe6f2ca65a0a5b2bd",
+      "tasks.md": "f55a05dac6b22d59df0a8c97e1b6df5f08047e79ed1fb153ba30af3cda27971c",
+      "implementation-summary.md": "e2021cab9702d62e4c24359af73938ae8a1e40db40f59a1e615882fc7b05f995"
     },
     "last_active_at": null
   }

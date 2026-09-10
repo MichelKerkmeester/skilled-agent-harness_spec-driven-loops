@@ -45,7 +45,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
+      ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/sk-design-diagram/screenshots/icons.png",
+      ".opencode/skills/sk-design/sk-design-diagram/feature-catalog/feature-catalog.md"
     ],
     "entities": [
       {
@@ -73,13 +81,73 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "style-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-screenshots.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "icons.png",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/screenshots/icons.png",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -97,24 +165,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Repaint",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,25 +177,19 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Phase Handoff",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Pattern Batch",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -155,47 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Repaint 1,585 literals and four template roots through the applicator's copies, promoted after diff verification — the style guide's deferred \"v5.1\" note discharged",
+    "causal_summary": "Repaint 1,577 literals and four template roots through the applicator's copies, promoted after",
     "created_at": "2026-09-10T18:45:27Z",
-    "last_save_at": "2026-09-10T18:47:13.110Z",
+    "last_save_at": "2026-09-10T21:15:50.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +211,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8aa669bb160c361645c508179e86a91895cbba3486dbec2f1f1cb2bd22ac5d15",
+    "source_fingerprint": "sha256:7d00a9b32d8ddaf0cf3753fcec5fb466b4f65b0b85efc6fc535f18cb08dd75a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb0a5d8aea679c6d362a7debd7fb5a89308bc11f8cd53a501c7a8827f3a190b0",
-      "plan.md": "7796b10f447f147d02681f6e55dbfde38109884a79149d1c80c96c4d085203ac",
-      "tasks.md": "2ef2d2e4027ec875fb53559636ca79ffce311d5624d84fcb8f0e2a25fa255e9f",
-      "implementation-summary.md": "02c29176ba3157c116ba75604bda2b3b2f9e8c427aa73949a735c20cc8abfc30"
+      "spec.md": "391d56c1cc8f17567ab09ff338adb3a355dd4c9f747402b18f74037c3b054acc",
+      "plan.md": "82a7e0d21754f57af3107b7c74275b37381a5894b22397f1a1133b8d816e6d12",
+      "tasks.md": "a284ee90c0db2f215c9dab780ff29025407139672b247b7c4e93a1c2fa211c52",
+      "implementation-summary.md": "fb627d61765624c56192da4d4438579ac693947db877d8c769846f6bde8c1351"
     },
     "last_active_at": null
   }

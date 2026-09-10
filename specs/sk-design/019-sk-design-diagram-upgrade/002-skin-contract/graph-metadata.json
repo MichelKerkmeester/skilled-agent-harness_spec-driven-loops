@@ -45,7 +45,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
+      ".opencode/commands/design/diagram.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/types/type-high-level.md",
+      ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
       {
@@ -73,9 +79,45 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "style-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "type-high-level.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/types/type-high-level.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -127,7 +169,19 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,63 +193,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Sign the seven decisions: the 4px exemption list resolving `SKILL.md:403` against `:337`; marker vocabulary and id-uniqueness scope; node and coral-element markup conventions; the self-contained bar (lean: keep the fonts link plus fallback chains); the emphasis mapping for an accent at 2.86:1 against a 3.0 gate; token-source scope with `#3d4460` promoted to a named role; the variant lattice",
     "created_at": "2026-09-10T17:17:41Z",
-    "last_save_at": "2026-09-10T18:47:12.802Z",
+    "last_save_at": "2026-09-10T20:35:23.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +209,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9dd0610703e272d360766232438133eec0c94454215349c8aa4cd2b901c21e5b",
+    "source_fingerprint": "sha256:7af4aa6500633c5a63fbad942ce90cc64a77adc7dee229d4358d4394a4e74678",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c30bcd0c7db2a3a8e30c7b2e8a4d76538d93cee88791f43fe67fae7bf793cf9",
-      "plan.md": "544b97c0d1da3fb50cbdb677b1585b61cbd5ffc2f54d9c4ad49a0c56bf3dff41",
-      "tasks.md": "1fc0b055cdec522f23e396f1a997ddcce2d077d702df2d02cba3d300a86abc4d",
-      "implementation-summary.md": "f00900b578c655210cbc024f885f1a6bb13900e776d087fce00f3312601752bd"
+      "spec.md": "01bb954d8d5288d5a9bfb37441a9fc7b5342caec60a238cb7793a38f27821073",
+      "plan.md": "c38be620af9d8afd0316cdd10544c24e7bef289b9a9bd3712dd40a8d4a23501d",
+      "tasks.md": "2a15fb7d08b9035726a74d07b9090258aa10135c86da333d5be91522ba900584",
+      "implementation-summary.md": "2c7f767cd106b855331f41f597509685ca721c4b7f472ff0c968ecf4dcf9b99b"
     },
     "last_active_at": null
   }
