@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The playbook scenario formalized: a skin-pinned third capture that must differ from the first, the settled double-capture, and the judged checklist — type fit, the remove test, taste, the visible 6–10px label gap, the deserved focal element, the unavoidable-box exception",
     "created_at": "2026-09-10T18:45:29Z",
-    "last_save_at": "2026-09-10T21:52:37.480Z",
+    "last_save_at": "2026-09-10T21:53:42.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15fae11cf91d55cae6744557f585679bf649bed6539f2210adab0eb23e1e9ad2",
+    "source_fingerprint": "sha256:6ab46fc730390cefbdff35d50e089689bbbff5936212f38c4e4ea81f416a2b7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a02bfb106d1bc3003ae337a08d3cd473cc81b92515a011bc73898e031d6704a0",
+      "spec.md": "18b1ec2d09858db68924140946e90b36797a21ef5ca578f1b7a396d7cdcb4352",
       "plan.md": "5d525a6949aee30c197c0ebee0c29b28814e7f06224d017fe6f2ca65a0a5b2bd",
-      "tasks.md": "f55a05dac6b22d59df0a8c97e1b6df5f08047e79ed1fb153ba30af3cda27971c",
+      "tasks.md": "7e34c39e02574f49f4c347d9d130977ab18799db3029893b5423c2a7f3605d23",
       "implementation-summary.md": "e2021cab9702d62e4c24359af73938ae8a1e40db40f59a1e615882fc7b05f995"
     },
     "last_active_at": null
