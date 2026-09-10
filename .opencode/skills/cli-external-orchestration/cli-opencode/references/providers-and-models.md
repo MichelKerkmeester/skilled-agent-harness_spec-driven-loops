@@ -93,13 +93,13 @@ DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-
 
 > **The gateway takes BARE model ids.** `llmgateway/deepseek-v4-flash-vision-exp` is provider + id, and the id sent on the wire is `deepseek-v4-flash-vision-exp`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`gonka24/…`, `zai/…`); those names are informational and are never sent.
 
-> **DevPass is flat-price**, so these bill the subscription rather than per token. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). Both models below are **Standard**, so **no weekly cap applies to this roster**.
+> **DevPass bills per token at normal API list rates.** The plan buys credits at a 3x bonus, which discounts the bill rather than removing it, so a cached read still costs less than an uncached one and neither is free. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). Both models below are **Standard**, so **no weekly cap applies to this roster**.
 
 > **`llmgateway` fronts 183 models; exactly the two below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `llmgateway/deepseek-v4-flash-vision-exp` | — | DeepSeek V4 Flash Vision via DevPass; reasoning **and images**; sparse ladder `none`/`low`/`high`/**`max`** (no `minimal`/`medium`/`xhigh`); pinned `--variant max`; context 1.05M, output 384K. DevPass is flat-price, so the paper premium over plain flash never bills. Dispatch-tested 2026-09-04. **Its image reads are unreliable** — 1 correct in 3 solid-colour probes; the image arrives, a single visual answer should not be trusted |
+| `llmgateway/deepseek-v4-flash-vision-exp` | — | DeepSeek V4 Flash Vision via DevPass; reasoning **and images**; sparse ladder `none`/`low`/`high`/**`max`** (no `minimal`/`medium`/`xhigh`); pinned `--variant max`; context 1.05M, output 384K. DevPass meters per token, and this route's published rate matches plain flash, so the vision capability carries no premium. Dispatch-tested 2026-09-04. **Its image reads are unreliable** — 1 correct in 3 solid-colour probes; the image arrives, a single visual answer should not be trusted |
 | `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
 
 ---

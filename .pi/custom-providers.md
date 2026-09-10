@@ -58,7 +58,7 @@ The model `id` MUST be the exact `modelType/model` Cline expects — never bare.
 
 ## 3. LLMGATEWAY (DEVPASS)
 
-Routes two models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass is a flat-price plan, so these four cost the subscription rather than per-token metering.
+Routes two models through the operator's **DevPass** subscription at LLM Gateway (`https://api.llmgateway.io/v1`, OpenAI-compatible), the same account and key opencode already uses. LLM Gateway is not a pi builtin, so without this block pi's picker and `--list-models` never show it. DevPass meters per token at normal API list rates; the plan's 3x credit bonus discounts the bill rather than removing it.
 
 ### Where It Lives
 
@@ -82,7 +82,7 @@ Both are reasoning models, and their ladders differ, so each carries its own `th
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
-| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. **Image-capable**, and the same effective cost as plain flash under a flat-price plan. Reads images unreliably: 1 correct of 3 probes |
+| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. **Image-capable**, and its published rate matches plain flash, so the vision capability carries no premium. Reads images unreliably: 1 correct of 3 probes |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
 
 The global `defaultThinkingLevel` is `xhigh`, which only GLM-5.3-Flash accepts on this route. Pass `--thinking` explicitly rather than relying on the default.
