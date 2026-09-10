@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment",
+  "description": "The command that routes to the chart corpus had drifted from it",
+  "keywords": [
+    "command",
+    "routes",
+    "chart",
+    "corpus",
+    "drifted"
+  ],
+  "lastUpdated": "2026-09-10T11:10:19.800Z",
+  "specId": "038",
+  "folderSlug": "chart-command-alignment",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

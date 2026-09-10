@@ -1,5 +1,5 @@
 ---
-description: Author a standalone HTML chart from a catalog of 26 forms, one per reader question. :auto/:confirm.
+description: Author a standalone HTML chart from a catalog of 29 forms, one per reader question. :auto/:confirm.
 argument-hint: "<target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral|ordered|categorical] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
@@ -64,4 +64,4 @@ The router must not invent visible wording for those surfaces. It selects the wo
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-chart-auto.yaml` for `:auto`, `create-chart-confirm.yaml` for `:confirm` or an omitted mode) runs the chart workflow step by step after Phase 0 verification and setup resolution. It names the comparison the reader needs, resolves it to exactly one catalog row across the index and the reader-name table, copies that form file whole, replaces only the region between the data sentinels, applies one colour system and writes the headline as a conclusion, then runs `check-corpus.cjs` and reads its `RESULT:` line before reporting. `:auto` executes autonomously. `:confirm` runs the same steps as an interactive checkpointed workflow. A reported gap ends either mode and is a successful run. All prompts, dashboards and result display come from the presentation contract, not this router.
+The bound workflow YAML (`chart-auto.yaml` for `:auto`, `chart-confirm.yaml` for `:confirm` or an omitted mode) runs the chart workflow step by step after Phase 0 verification and setup resolution. It names the comparison the reader needs, resolves it to exactly one catalog row across the index and the reader-name table, copies that form file whole, replaces only the region between the data sentinels, applies one colour system and writes the headline as a conclusion, then runs `check-corpus.cjs` and reads its `RESULT:` line before reporting. `:auto` executes autonomously. `:confirm` runs the same steps as an interactive checkpointed workflow. A reported gap ends either mode and is a successful run. All prompts, dashboards and result display come from the presentation contract, not this router.

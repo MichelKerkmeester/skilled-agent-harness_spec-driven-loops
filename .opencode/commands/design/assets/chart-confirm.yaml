@@ -32,7 +32,7 @@ development_philosophy:
     When no row answers the question, report the gap. A reported gap is a successful run.
 
 skill_reference:
-  skill: sk-doc
+  skill: sk-design
   mode: sk-design-chart
   skill_md: .opencode/skills/sk-design/sk-design-chart/SKILL.md
   references:
@@ -42,7 +42,6 @@ skill_reference:
   assets:
     forms: .opencode/skills/sk-design/sk-design-chart/assets/templates/
     palettes: .opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json
-    worked_deliveries: .opencode/skills/sk-design/sk-design-chart/assets/examples/
   scripts:
     corpus_check: .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
 
@@ -332,7 +331,7 @@ interactive_execution:
 completion_report:
   owner: presentation-contract
   note: >-
-    Result wording lives only in create-chart-presentation.txt. Render the block named
+    Result wording lives only in chart-presentation.txt. Render the block named
     below for the terminal state reached. Do not restate or reword it here.
   render:
     delivered: "presentation section 7. SUCCESS OUTPUT"

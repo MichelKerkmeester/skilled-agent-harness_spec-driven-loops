@@ -40,7 +40,8 @@
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction",
     "sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables",
-    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery"
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery",
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -172,7 +173,7 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-10T10:17:21.100Z",
+    "last_save_at": "2026-09-10T11:10:23.230Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
