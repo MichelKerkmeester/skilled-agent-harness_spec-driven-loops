@@ -235,10 +235,56 @@ Of the runtimes the framework can hand work to, Pi went the deepest. `cli-pi` is
 - a skill-discovery bridge so Pi finds and runs the repo's own skills
 - a command layer and an agent bridge
 - MCP host integration and a hook-and-extension layer
-- its own model registry and routing, a fan-out executor and DeepSeek V4 Flash on the roster through a flat-price gateway
-- forked cache extensions, `deep-pi` and `pi-cache-optimizer`, that cut token cost with persistent per-run cost stats
+- its own model registry and routing, plus a fan-out executor
+- two vendored extensions, a cache optimizer and a fast-mode toggle, described below
 
-Where the other executors receive a dispatched prompt and run it, Pi loads the repo's skills, commands, agents, MCP servers and hooks and runs them itself. It is the most complete runtime integration of the six. Pi also dispatches subtasks to its own native subagents by default, so a general request stays on Pi's workers unless you name a `cli-*` mode. A Pi session may now dispatch `cli-pi` itself. It is the one carve-out from the self-invocation rule that blocks every other executor from calling itself.
+Where the other executors receive a dispatched prompt and run it, Pi loads the repo's skills, commands, agents, MCP servers and hooks and runs them itself. It is the most complete runtime integration of the six.
+
+&nbsp;
+
+#### Pi Dispatches Pi
+
+Pi removed its subagents feature during the cycle, which left the CLI as the only way a Pi session can hand work out. So the rule forbidding a Pi session from dispatching `cli-pi` had to go, and it went in all three places at once: the prose in the skill, the Pi preflight hook that enforced it by name, and the shared deep-loop guard that enforced it structurally. Removing only the prose would have left the hook refusing what the prose allows.
+
+This is the one carve-out from the self-invocation rule that blocks every other executor from calling itself, and it is deliberately narrow. The exemption is keyed to `cli-pi` and read only by the two layers that mean "the caller is inside this CLI". The layers that bound a runaway spawn chain, the fan-out lineage and the dispatch stack, still apply to every kind including this one.
+
+&nbsp;
+
+#### A Closed Roster, and Where It Is Narrower Than the Code
+
+Pi reaches six authenticated providers, and the model roster is closed: an id that is not on it is refused, in the fan-out and on a direct call alike. OpenRouter came off that roster this cycle, on Pi and on OpenCode both, which removed twenty-three live references across seven files. Nothing broke, because it was never a default on either CLI, and both models it served keep a direct route and a fan-out route.
+
+One deliberate asymmetry is worth knowing before you read the code and think it is a bug. The deep-loop fan-out still maps two model literals to OpenRouter, so the documented direct roster is narrower than the enforced allowlist on purpose. One literal maps to one provider, so deleting that mapping to tidy it would silently move those two models to a different route.
+
+&nbsp;
+
+#### The Cache Extension Learned What Caching Costs
+
+Pi ran two forked cache extensions for most of the cycle, splitting work by a hand-maintained model allowlist written twice, with a fixture and a cross-extension test whose only job was proving the two copies had not drifted. That is gone. `deep-pi` is retired, its capabilities absorbed into the surviving `pi-cache-optimizer` fork, and one extension now covers every model.
+
+What it gained along the way:
+
+- **Cost, not just token counts.** `/cache-optimizer stats` reports input cost, the fully-uncached baseline it is measured against, savings and prefix churn, priced from the model registry rather than hardcoded rates. A model with no cost block reads as unpriced, never as a confident zero.
+- **Honest measurement.** A response that reports no cache fields counts as unmeasured and stays out of the hit ratio instead of scoring as a miss, while its tokens and cost still count in full, because the request really was billed. A model that never reports can declare so once rather than being guessed at per response.
+- **A retry-loop guard.** A turn whose tool batch keeps failing used to reissue the same billable request with nothing noticing. The guard tracks a whole batch and escalates only when the batch fails repeatedly with no success in between, so one legitimate retry stays silent and the case that actually burns money, a batch that partially succeeds every time and never converges, is the case it catches.
+- **Hash-verified edits.** A model reads a file, composes an edit against what it saw, and the content moves before the edit lands. The edit still matches somewhere, succeeds against the wrong lines and reports nothing. Read output now carries per-line content hashes and the file's line count, and an edit that cannot prove its target held still is refused by name. There is no fuzzy fallback, because a looser match is the silent corruption this exists to prevent.
+
+One experiment was reverted rather than kept. A gate meant to lift a prompt prefix only after it proved stable across turns turned out to rest on void evidence: the hook it used fires once per user prompt rather than once per provider request, so the one-shot processes that tested it never reached a second observation and lifted nothing at all.
+
+&nbsp;
+
+#### What the Caching Is Actually Worth
+
+The gateway behind Pi's DeepSeek and GLM routes is DevPass, and a claim that it is a flat-price subscription was wrong. It bills per token at ordinary list rates. The plan buys credits at a three-times bonus, which discounts the bill rather than removing it. That correction matters, because the flat-price story had been used to argue that no dollar figure could exist for these routes and that tokens were the only honest metric.
+
+They can be measured, and were, across thirteen requests in one sitting:
+
+| Model | Cached input | Billed | Uncached baseline | Saving |
+|---|---|---|---|---|
+| DeepSeek V4 Flash Vision | 169,728 of 172,000 | $0.000793 | $0.024080 | 96.7% |
+| GLM-5.3-Flash | 95,296 of 140,317 | $0.006344 | $0.012348 | 48.6% |
+
+The gap between those two is the part worth carrying away. DeepSeek charges two percent of its prompt rate for a cached read, so a very high hit rate converts almost directly into the saving. GLM charges twenty-eight percent, so a good hit rate yields barely half as much. Same extension, same optimisation, roughly half the value, decided by the rate card. The hit rate in your footer is an input to the saving, not the saving itself.
 
 &nbsp;
 
@@ -471,7 +517,7 @@ There is no single big migration. The common path still works, your spec paths r
 - **Renames to adopt.** `@improve-prompt` to `@prompt-improver`. `/prompt` to `/prompt:improve`. `/interface:*` to `/design:extract`, `/design:chart` and `/design:diagram`. `doc-quality` to `create-quality-control`. `@create` to `@markdown`. The `/create` commands `sk-skill` to `skill` and `folder_readme` to `readme`. The `create-*` packet directories to `sk-create-*`. The `ai-council/` packet to `deep-ai-council/`. The hub `cli-external` to `cli-external-orchestration`. `sk-prompt-improve` existed briefly as an intermediate name and is retired. The hook master switch `MK_HOOKS_DISABLED` to `SYSTEM_HOOKS_DISABLED`, with the old name still working.
 - **Repoint what moved.** `specs` went from `.opencode/specs/` to a top-level `specs/`. The spec-kit engine went from `scripts/` and `mcp-server/` to `.opencode/skills/system-spec-kit/runtime/cli/`. `deep-loop-workflows` and `deep-loop-runtime` merged into `system-deep-loop` and the deep router agent was retired. `mcp-figma` moved under `mcp-tooling/`. The `sk-code` files and routing contract moved under its new mode and surface packets, so anything still pointing at the old flat paths must be updated. Several hubs moved their second-stage router from `shared/references/smart-routing.md` to a root `ROUTER.md`. The `sk-code-review` checklists moved from `references/` to `assets/`. The Human Voice Rules standard moved into `sk-create-with-human-voice/references/`. The deep-loop runtime's `storage/` became `database/`. `deep-review`'s flat reference files regrouped into topic subfolders.
 - **Drop removed surfaces.** `memory_search` and `memory_save` are gone with the memory database, the spec-memory MCP server and its daemon. Use `/speckit:search` and the continuity writer. `cli-gemini` and `cli-copilot` are gone, and Copilot-shaped prompts route to Claude Code. Remove the `open_design` server from `.utcp_config.json` and stop referencing `design-generation-patterns.md`. The `pi-subagents` directive, the `deep-alignment` mode and the `sk-prompt-models` skill were all removed before release. `mcp-webflow` and the Ox Alpha routes are gone too. The four `deep_loop_graph_*` MCP tools were removed with no aliases, so a hardcoded caller needs the script path instead. `SPECKIT_DETERMINISTIC_RANKING` was deleted outright, so a set value now does nothing. `/deep:command-benchmark` and the conformance benchmark family went with the alignment mode. The API-key auth paths for Codex and Claude Code are gone, replaced by sign-in.
-- **Changed defaults.** Pi hands subtasks to its own subagents unless you name a `cli-*` mode. Goals saved under the old global scheme no longer inject, so migrate or archive them. Only `main`, `skilled/v*` releases and names in your allowlist push without asking. New branches use the numbered form `worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`, and owner-first names are rejected. The executor defaults moved too: `cli-opencode` defaults to `opencode-go/deepseek-v4-flash --variant max`, Pi defaults to `deepseek-v4-flash`, and Devin defaults to `swe`. The skill advisor's CLI front door is fail-closed and untrusted by default, and its reciprocal-rank-fusion spine is a shipping default now rather than a dark flag. `sk-vision` is opt-in.
+- **Changed defaults.** Pi removed its subagents feature, so a Pi session now dispatches `cli-pi` to hand work out, the one carve-out from the self-invocation rule. Goals saved under the old global scheme no longer inject, so migrate or archive them. Only `main`, `skilled/v*` releases and names in your allowlist push without asking. New branches use the numbered form `worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`, and owner-first names are rejected. The executor defaults moved too: `cli-opencode` defaults to `opencode-go/deepseek-v4-flash --variant max`, Pi defaults to `deepseek-v4-flash`, and Devin defaults to `swe`. The skill advisor's CLI front door is fail-closed and untrusted by default, and its reciprocal-rank-fusion spine is a shipping default now rather than a dark flag. `sk-vision` is opt-in.
 - **Reconcile your own skills.** This is a framework you adopt, so your own customized skills need aligning to the new skill format. The framework will not do it for you. The first thing likely to fail an adopter is the four-part frontmatter `version` field, now required on every authored markdown file and checked by a CI gate. `sk-code` ships as a parent skill, a hub over workflow modes and read-only surface packets. Either convert your single `sk-code` into that parent shape, or remove the repo's parent and keep your own single `sk-code`. `sk-git` ships as a single skill. Keep it single or promote it to a parent, whichever fits you. Most other skills are framework-internal and repo-agnostic, so leave them alone rather than over-migrating. A step-by-step guide with the decision rule, the single-to-parent procedure using `/create:skill-parent` and the validation steps lives at `sk-create-skill/references/skill/upgrading-a-skill-to-v4.md`.
 
 ---

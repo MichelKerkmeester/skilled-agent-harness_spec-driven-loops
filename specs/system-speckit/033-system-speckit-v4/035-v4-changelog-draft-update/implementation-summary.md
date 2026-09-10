@@ -37,13 +37,15 @@ _memory:
 |-------|-------|
 | **Status** | Complete |
 | **Input** | `../034-v4-state-inventory-research/research/confirmed-drift.md` |
-| **Output** | `../CHANGELOG-v4.0.0.0.md`, 493 lines, rewritten to HVR and corrected against every skill changelog |
+| **Output** | `../CHANGELOG-v4.0.0.0.md`, 538 lines, rewritten to HVR and corrected against every skill changelog and the Pi commit series |
 <!-- /ANCHOR:status -->
 
 ---
 
 <!-- ANCHOR:changes -->
 ## 2. WHAT CHANGED
+
+- Pass five: the cli-pi and pi-cache commits that landed after pass four made four Pi claims false. Rewrote the section into five subsections: the bridge list without the retired extension, the Pi-dispatches-Pi carve-out and why all three enforcement layers moved together, the closed roster with the deliberate fan-out asymmetry, what the surviving cache extension gained (cost reporting, measured versus unmeasured, retry-loop guard, hash-verified edits, one reverted experiment), and the corrected DevPass economics with the measured saving for both models.
 
 - Pass four: fifty-four fresh agents digested the last ten changelog entries of every skill and mode into `scratch/changelog-digests/` with a merged `00-index.md`. The digests became a numbered plan (`scratch/changelog-update-plan.md`, 15 sections, 60 items) and a Sonnet markdown agent applied it. Added: the OAuth-only auth paths for Codex and Claude Code, sk-vision, the frontmatter version standard, the advisor trust gate and fusion defaults, real executor rosters and allowlist truth, dark-ground charts and the 25-check chart gate, the sk-code pre-v4 shape, review verdict and status lines, the reconcile-on-SessionStart git story, the prompt profile removal, mcp-code-mode as standalone, mcp-webflow removal, the Obsidian plugin pruning, sk-communication's second lane, and eleven additions to Upgrade Notes.
 
@@ -69,6 +71,7 @@ _memory:
 
 - `rg -n 'memory_search|/interface|alignment|prompt-models|/prompt-improve|sk-create-diagram|MK_HOOKS|ninety-six|NNNN|1,314|/doc:quality|pi-subagents|eight modes' ../CHANGELOG-v4.0.0.0.md` returns only lines that describe a removal or a correction.
 - Parent `validate.sh --strict` first verdict PASSED with this child present.
+- Pass five checks: HVR zero em dashes and zero prose semicolons at 538 lines, counts intact, structure clean, no live claim naming deep-pi, a flat-price gateway or Pi native subagents outside a correction sentence.
 - Pass four checks: `hvr_scan.py` zero em dashes and zero prose semicolons at 493 lines, every count string present (six hubs, forty rules, 1,275, 102, twenty-two, fourteen modes, nine modes, 26, 27), every `&nbsp;` between two H4s and every `---` between two H2s, residue grep returns removal sentences only.
 - `python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py ../CHANGELOG-v4.0.0.0.md`: em dashes 130 to 0, prose semicolons 63 to 0. The 31 remaining `;` hits are all `&nbsp;` entities at column 6. Soft flags left: `craft` as the noun in "prompt craft", and a handful of common verbs.
 <!-- /ANCHOR:verification -->

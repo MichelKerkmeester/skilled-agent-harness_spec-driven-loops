@@ -22,6 +22,7 @@ contextType: "implementation"
 - [x] T004 Digest the last ten changelog entries of every skill and mode, one agent each, into scratch/changelog-digests/ with a merged index
 - [x] T005 Turn the digests into a numbered change plan per draft section (scratch/changelog-update-plan.md)
 - [x] T006 Apply the plan to the draft through the markdown agent and verify the HVR scan, residue grep, counts and structure
+- [x] T007 Analyze the cli-pi and pi-cache commits that landed after this packet closed, and rewrite the Pi section around what they shipped
 <!-- /ANCHOR:tasks -->
 
 ---

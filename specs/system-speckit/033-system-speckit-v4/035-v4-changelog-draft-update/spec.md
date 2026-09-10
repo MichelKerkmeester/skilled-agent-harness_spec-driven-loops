@@ -93,6 +93,7 @@ Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is
 | REQ-003 | Numbers the research could not reproduce are removed or softened |
 | REQ-004 | The HVR scan reports no hard blocker in prose; the only `;` hits are the `&nbsp;` entities the changelog format requires |
 | REQ-005 | Every skill and mode changelog is digested against the draft and each correction the digests ground is applied or recorded as an operator item |
+| REQ-006 | The Pi section describes the extension set, roster and economics the cli-pi and pi-cache commits actually shipped, with no claim the code contradicts |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -103,4 +104,5 @@ Every row of `../034-v4-state-inventory-research/research/confirmed-drift.md` is
 - **SC-001**: `rg` for each stale name in the draft returns only lines that describe the removal
 - **SC-002**: The parent validates strict with this child present
 - **SC-003**: `hvr_scan.py` on the draft reports zero em dashes and zero prose semicolons
+- **SC-004**: No live claim in the draft names `deep-pi`, a flat-price gateway or Pi native subagents except in a sentence describing its removal or correction
 <!-- /ANCHOR:success-criteria -->

@@ -36,5 +36,6 @@ Each confirmed row maps to one anchored replacement at its cited line. The four 
 | 1 | Anchored replacements for rows 1 to 17 and the three dropped findings | patched draft |
 | 2 | New paragraphs for the late-cycle packets in the draft's voice | patched draft |
 | 3 | Grep residue check, parent validation, commit | pass three committed |
-| 4 | Fifty-four changelog digests, a numbered change plan, one markdown-agent pass over the draft, verification | pass four committed, this packet closed |
+| 4 | Fifty-four changelog digests, a numbered change plan, one markdown-agent pass over the draft, verification | pass four committed |
+| 5 | Read the cli-pi and pi-cache commit series, rewrite the Pi section around the shipped extension set, roster and measured economics | pass five committed, this packet closed |
 <!-- /ANCHOR:phases -->
