@@ -63,7 +63,7 @@ Routes two models through the operator's **DevPass** subscription at LLM Gateway
 ### Where It Lives
 
 - Provider block: `.pi/models.json` under `providers["llmgateway"]`, with two models. The gateway fronts many more; only these two are on the roster
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4-flash-vision-exp"` and `"llmgateway/glm-5.3-flash"`
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4.1-flash"` and `"llmgateway/glm-5.3-flash"`
 - Not a default: `defaultProvider` stays `cline-pass`
 
 **Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
@@ -71,7 +71,7 @@ Routes two models through the operator's **DevPass** subscription at LLM Gateway
 ### Dispatch
 
 ```bash
-pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4-flash-vision-exp --thinking max
+pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4.1-flash --thinking max
 ```
 
 Swap the id for `glm-5.3-flash`. No other id is on the roster for this provider.
@@ -82,7 +82,7 @@ Both are reasoning models, and their ladders differ, so each carries its own `th
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
-| `deepseek-v4-flash-vision-exp` | `max` | Sparse ladder — only `low`, `high`, `max`. **Image-capable**, and its published rate matches plain flash, so the vision capability carries no premium. Reads images unreliably: 1 correct of 3 probes |
+| `deepseek-v4.1-flash` | `max` | **Image-capable.** $0.15 in and $0.60 out per million tokens, cached reads $0.003, which keeps it under the gateway's Premium threshold. The ladder cannot be probed: the API answers `200` to any effort string, so pass the tier deliberately |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
 
 The global `defaultThinkingLevel` is `xhigh`, which only GLM-5.3-Flash accepts on this route. Pass `--thinking` explicitly rather than relying on the default.
@@ -91,9 +91,9 @@ No provider-level `compat.thinkingFormat` is set. The block spans two model fami
 
 ### The Gotcha: Bare Ids, Not Slashed
 
-The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed one. Confirmed against the live API: `"model": "deepseek-v4-flash-vision-exp"` returns `200`, while `"model": "llmgateway/deepseek-v4-flash-vision-exp"` returns `400`. That is the exact inverse of the cline-pass rule directly above, so the two blocks must not be copied into each other. As with Cline, the failure hides from `--list-models` and `pi auth check` and appears only on a real dispatch.
+The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed one. Confirmed against the live API: `"model": "deepseek-v4.1-flash"` returns `200`, while `"model": "llmgateway/deepseek-v4.1-flash"` returns `400`. That is the exact inverse of the cline-pass rule directly above, so the two blocks must not be copied into each other. As with Cline, the failure hides from `--list-models` and `pi auth check` and appears only on a real dispatch.
 
-The gateway rewrites the id upstream — a `deepseek-v4-flash-vision-exp` request comes back reporting `deepseek/deepseek-v4-flash-vision-exp`, GLM as `zai/glm-5.3-flash`. That upstream name is informational; never send it.
+The gateway rewrites the id upstream — a `deepseek-v4.1-flash` request comes back reporting `deepseek/deepseek-v4.1-flash`, GLM as `zai/glm-5.3-flash`. That upstream name is informational; never send it.
 
 ---
 
@@ -133,7 +133,7 @@ For llmgateway:
 ```bash
 pi --list-models | grep llmgateway
 # real round-trip (needs a key) — proves each bare id is accepted:
-pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4-flash-vision-exp --thinking max --mode text
+pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4.1-flash --thinking max --mode text
 pi -p "reply OK" --provider llmgateway --model llmgateway/glm-5.3-flash --thinking max --mode text
 ```
 

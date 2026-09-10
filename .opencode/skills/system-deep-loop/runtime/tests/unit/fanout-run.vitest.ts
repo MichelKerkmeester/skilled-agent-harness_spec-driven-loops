@@ -1574,9 +1574,9 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
-      // DevPass routes DeepSeek V4 Flash under its bare literal → llmgateway/deepseek-v4-flash-vision-exp;
-      // opencode-go fronts the same model but is direct-dispatch only.
-      'deepseek-v4-flash-vision-exp': 'llmgateway',
+      // DevPass routes DeepSeek Flash under its bare literal → llmgateway/deepseek-v4.1-flash;
+      // opencode-go fronts DeepSeek Flash too but is direct-dispatch only.
+      'deepseek-v4.1-flash': 'llmgateway',
       'minimax-m3': 'minimax',
       'gpt-5.6-luna': 'openai-codex',
       'gpt-5.6-sol': 'openai-codex',
@@ -1601,11 +1601,11 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
         opts,
       ) as { command: string; args: string[]; effectiveConfig: { model: string } };
       expect(command.command).toBe('pi');
-      // DeepSeek V4 Flash (bare, provider-prefixed, or the -latest / -vision-exp variants) and
-      // GLM-5.3-Flash (bare opencode-go or vendor-prefixed OpenRouter literal) are pinned to the
-      // max thinking tier, so they always carry --thinking max even when the lineage names no
-      // reasoningEffort; the other picker ids carry no --thinking here.
-      const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|glm-5\.3-flash)$/.test(model);
+      // DeepSeek Flash (the bare 4.1 literal, provider-prefixed, or the -latest / -vision-exp
+      // variants) and GLM-5.3-Flash (bare opencode-go or vendor-prefixed OpenRouter literal) are
+      // pinned to the max thinking tier, so they always carry --thinking max even when the lineage
+      // names no reasoningEffort; the other picker ids carry no --thinking here.
+      const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
       const expectedArgs = isFlashPinned
         ? ['-p', '--offline', '--model', `${provider}/${model}`, '--thinking', 'max', 'bounded prompt']
         : ['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt'];
@@ -1614,7 +1614,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     }
   });
 
-  it('defaults an omitted model to deepseek-v4-flash-vision-exp, max-pinned via its DevPass provider prefix', () => {
+  it('defaults an omitted model to deepseek-v4.1-flash, max-pinned via its DevPass provider prefix', () => {
     const binDir = makeTempDir('fanout-run-pi-default-model-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
@@ -1625,19 +1625,19 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'default',
       opts,
     ) as { args: string[]; effectiveConfig: { model: string } };
-    expect(command.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4-flash-vision-exp', '--thinking', 'max', 'bounded prompt']);
-    expect(command.effectiveConfig.model).toBe('deepseek-v4-flash-vision-exp');
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--thinking', 'max', 'bounded prompt']);
+    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
   });
 
-  it('pins cli-pi deepseek-v4-flash-vision-exp to --thinking max even when a lower effort is requested', () => {
+  it('pins cli-pi deepseek-v4.1-flash to --thinking max even when a lower effort is requested', () => {
     const binDir = makeTempDir('fanout-run-pi-flash-max-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const flashHigh = buildLineageCommand(
-      { kind: 'cli-pi', model: 'deepseek-v4-flash-vision-exp', reasoningEffort: 'high' },
+      { kind: 'cli-pi', model: 'deepseek-v4.1-flash', reasoningEffort: 'high' },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
-    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4-flash-vision-exp', '--thinking', 'max', 'p']);
+    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--thinking', 'max', 'p']);
     expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
     // A non-flash pi model keeps the requested effort.
     const proHigh = buildLineageCommand(

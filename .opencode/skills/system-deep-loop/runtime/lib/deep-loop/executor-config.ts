@@ -180,13 +180,13 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
  * the operator-confirmed picker roster so generic provider routing cannot broaden it.
  */
 export const PI_SUPPORTED_MODELS = [
-  // Bare DeepSeek V4 Flash literal is DevPass-fronted on pi since 2026-09-07 (opencode-go fronts
-  // the same model but one literal maps to one provider, so that route is direct-dispatch only;
+  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (opencode-go fronts DeepSeek Flash
+  // too but one literal maps to one provider, so that route is direct-dispatch only;
   // the direct DeepSeek API provider was retired from the roster); `PI_MODEL_PROVIDERS` in
-  // fanout-run.cjs holds the provider mapping for it. The vision variant carries the same price as
-  // plain flash on this route and additionally accepts images, so it is the one
-  // catalogued; nothing is lost by preferring it.
-  'deepseek-v4-flash-vision-exp',
+  // fanout-run.cjs holds the provider mapping for it. The gateway deactivated the older
+  // vision-exp id and answers 410 for it, so the 4.1 line is the live route. It accepts images
+  // like the id it replaces, so nothing is lost by moving.
+  'deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
@@ -211,7 +211,7 @@ export const PI_SUPPORTED_MODELS = [
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
 /** Stable rotation default; the same model the cli-opencode default names, reached here through DevPass under its bare literal. */
-export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-flash-vision-exp';
+export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4.1-flash';
 
 /** True when `model` is in the enforced cli-pi allowlist. */
 export function isPiModelAllowed(model: string): model is PiSupportedModel {
@@ -230,7 +230,7 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * carries its own tier map, so it never arrives here. Pinning every GLM literal to `xhigh`
  * therefore sent both fan-out routes a tier their provider does not offer.
  *
- * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash-vision-exp`, fronted by DevPass) and
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash`, fronted by DevPass) and
  * provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
@@ -240,7 +240,7 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * bakes the tier into the id and is intentionally not matched here.
  */
 export function isFlashMaxPinnedModel(model: string): boolean {
-  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|glm-5\.3-flash)$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
 }
 
 /** Effective reasoning effort after the Flash top-tier pin. */

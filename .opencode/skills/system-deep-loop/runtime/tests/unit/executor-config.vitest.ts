@@ -821,7 +821,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants and the DevPass GLM-5.3-Flash literal', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
-      'deepseek-v4-flash-vision-exp',
+      'deepseek-v4.1-flash',
       'deepseek/deepseek-v4-flash-vision-exp',
       'glm-5.3-flash',
       'gpt-5.6-luna',
@@ -835,7 +835,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   });
 
   it('defaults to deepseek-v4-flash, which is itself an allowed model', () => {
-    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4-flash-vision-exp');
+    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4.1-flash');
     expect(isPiModelAllowed(PI_DEFAULT_MODEL)).toBe(true);
   });
 
@@ -858,6 +858,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
   it('matches DeepSeek V4 Flash bare, provider-prefixed, the OpenRouter -latest variant, and GLM-5.3-Flash bare and vendor-prefixed', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-vision-exp')).toBe(true);
+    expect(isFlashMaxPinnedModel('deepseek-v4.1-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash-vision-exp')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash')).toBe(true);

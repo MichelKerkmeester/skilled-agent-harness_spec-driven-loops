@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+  "description": "The bare literal `deepseek-v4-flash-vision-exp` was the DevPass route for DeepSeek Flash and the cli-pi default in the deep-loop fan-out",
+  "keywords": [
+    "bare",
+    "literal",
+    "deepseek-v4-flash-vision-exp",
+    "devpass",
+    "route",
+    "deepseek",
+    "flash",
+    "cli-pi",
+    "default",
+    "deep-loop",
+    "fan-out"
+  ],
+  "lastUpdated": "2026-09-10T20:07:11.551Z",
+  "specId": "069",
+  "folderSlug": "llmgateway-deepseek-v4-1-flash",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

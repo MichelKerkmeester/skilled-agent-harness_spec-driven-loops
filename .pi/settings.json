@@ -14,7 +14,7 @@
   "enabledModels": [
     "openai-codex/gpt-6-astra",
     "openai-codex/gpt-5.6-luna",
-    "llmgateway/deepseek-v4-flash-vision-exp",
+    "llmgateway/deepseek-v4.1-flash",
     "openrouter/deepseek/deepseek-v4-flash-vision-exp",
     "opencode-go/deepseek-v4-flash-vision-exp",
     "cline-pass/cline-pass/deepseek-v4-flash",

@@ -1966,8 +1966,9 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 
 // Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash and
 // GLM-5.3-Flash are reasoning models whose top tier is `max`, pinned there by operator
-// policy — never dispatched below max. DeepSeek is bare on cli-pi, provider-prefixed on
-// cli-opencode, and its OpenRouter `-latest` variant is the same family and pinned too; on
+// policy — never dispatched below max. DeepSeek is bare on cli-pi as the 4.1 line,
+// provider-prefixed on cli-opencode, and its OpenRouter `-latest` variant is the same family
+// and pinned too; on
 // cli-pi the bare literal reaches DevPass, whose ladder tops at `max`;
 // GLM-5.3-Flash matches its bare DevPass literal and its OpenRouter `z-ai/` literal.
 //
@@ -1980,7 +1981,7 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // `-max` uid bakes the tier into the id and is not matched. Duplicated as a plain function
 // so the pin lands inside the synchronous command builders below.
 function isFlashMaxPinnedModel(model) {
-  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|glm-5\.3-flash)$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
 }
 
 // Effective reasoning effort after the Flash top-tier pin.
@@ -2072,10 +2073,11 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // pass-through with no house model, so this synchronous duplicate keeps
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
-  // Bare DeepSeek V4 Flash literal is DevPass-fronted on pi (opencode-go fronts the same model,
-  // but one literal maps to one provider, so that route is direct-dispatch only; the direct
-  // DeepSeek API provider was retired).
-  'deepseek-v4-flash-vision-exp',
+  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (opencode-go fronts DeepSeek Flash
+  // too, but one literal maps to one provider, so that route is direct-dispatch only; the direct
+  // DeepSeek API provider was retired). The gateway deactivated the older vision-exp id and
+  // returns 410 for it, so the bare literal here is the 4.1 line.
+  'deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
@@ -2094,7 +2096,7 @@ const PI_ALLOWED_MODELS = new Set([
   // routes are direct-dispatch only and absent here.
   'glm-5.3-flash',
 ]);
-const PI_DEFAULT_MODEL = 'deepseek-v4-flash-vision-exp';
+const PI_DEFAULT_MODEL = 'deepseek-v4.1-flash';
 
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
@@ -2280,7 +2282,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // model. Hand-duplicated as a plain literal so command construction stays
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
-  ['deepseek-v4-flash-vision-exp', 'llmgateway'],
+  ['deepseek-v4.1-flash', 'llmgateway'],
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],
