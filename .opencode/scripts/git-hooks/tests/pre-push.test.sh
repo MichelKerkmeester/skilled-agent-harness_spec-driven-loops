@@ -67,23 +67,23 @@ expect_hook() { # expect_hook <desc> <expected-rc> <line> [env-assignment...]
 }
 
 # ── naming-gate scenarios (unaffected by the permission gate: rejected before
-#    it, or exempted before either gate runs) ───────────────────────────────
+#    it, or exempted before the gate runs) ────────────────────────────────
 mkdir -p "$TMP/.opencode/skills/untracked-owner"
 printf 'name: untracked-owner\n' > "$TMP/.opencode/skills/untracked-owner/SKILL.md"
-expect_hook "untracked owner branch rejected" \
+expect_hook "branch under an untracked owner rejected (creation)" \
   1 "refs/heads/untracked-owner/0041-valid $SHA_A refs/heads/untracked-owner/0041-valid $ZERO_SHA"
 
-expect_hook "new wrapper ref work/opencode/x rejected" \
+expect_hook "new wrapper ref work/opencode/x rejected (creation)" \
   1 "refs/heads/work/opencode/x $SHA_A refs/heads/work/opencode/x $ZERO_SHA"
 
-expect_hook "malformed new branch rejected" \
+expect_hook "oddly shaped new branch rejected (creation)" \
   1 "refs/heads/sk-git/40-nope $SHA_A refs/heads/sk-git/40-nope $ZERO_SHA"
 
-expect_hook "skilled/v9.9.9.9 never blocked (naming + permission both exempt)" \
+expect_hook "skilled/v9.9.9.9 never blocked (release lane is exempt)" \
   0 "refs/heads/skilled/v9.9.9.9 $SHA_A refs/heads/skilled/v9.9.9.9 $ZERO_SHA"
 
-# A new backup/* branch is NOT a blessed grammar form — it is gated like any
-# other non-conformant new branch (genuine backup pushes use the bypass env).
+# backup/* carries no special standing at creation: it is gated like any other
+# new branch, and a genuine backup push names the branch in the approval.
 expect_hook "new backup/* branch rejected" \
   1 "refs/heads/backup/foo $SHA_A refs/heads/backup/foo $ZERO_SHA"
 
@@ -103,13 +103,13 @@ expect_hook "...but SPECKIT_ALLOW_REMOTE_PUSH=1 lets the update through too" \
   0 "refs/heads/legacy-feature $SHA_A refs/heads/legacy-feature $SHA_B" \
   SPECKIT_ALLOW_REMOTE_PUSH=1
 
-# ── the two bypass env vars are independent — skipping one never skips the other ─
-expect_hook "SPECKIT_SKIP_PREPUSH_NAMING=1 alone skips naming but permission STILL blocks" \
-  1 "refs/heads/totally!!bad $SHA_A refs/heads/totally!!bad $ZERO_SHA" \
-  SPECKIT_SKIP_PREPUSH_NAMING=1
-expect_hook "...combined with a named creation approval, both gates clear" \
+# A name git itself accepts but nothing else would is still only a permission
+# question now, so naming it is the whole approval.
+expect_hook "an odd but pushable name is blocked like any other creation" \
+  1 "refs/heads/totally!!bad $SHA_A refs/heads/totally!!bad $ZERO_SHA"
+expect_hook "...and naming it in the approval clears it" \
   0 "refs/heads/totally!!bad $SHA_A refs/heads/totally!!bad $ZERO_SHA" \
-  SPECKIT_SKIP_PREPUSH_NAMING=1 SPECKIT_ALLOW_REMOTE_PUSH='totally!!bad'
+  SPECKIT_ALLOW_REMOTE_PUSH='totally!!bad'
 
 # ── main / skilled/v* are exempt from the permission gate with zero env vars ─
 expect_hook "main push (new form) allowed with no env vars" \
@@ -136,39 +136,13 @@ expect_hook "...but SPECKIT_AUTOSYNC=1 does NOT exempt a DIFFERENT branch (not a
   1 "refs/heads/sk-git/0100-other $SHA_A refs/heads/sk-git/0100-other $SHA_B" \
   SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=sk-git/0099-wip
 
-# An owner-discovery failure is an infrastructure error, so the hook must allow
-# a well-shaped branch's NAMING check while still rejecting malformed syntax
-# before discovery. SPECKIT_ALLOW_REMOTE_PUSH=1 isolates that assertion from
-# the (separately tested) permission gate.
-mkdir -p "$TMP/bin"
-REAL_GIT="$(command -v git)"
-{
-  printf '%s\n' '#!/usr/bin/env bash'
-  printf '%s\n' "if [[ \"\${1:-}\" == \"-C\" && \"\${3:-}\" == \"ls-files\" ]]; then exit 73; fi"
-  printf 'exec "%s" "$@"\n' "$REAL_GIT"
-} > "$TMP/bin/git"
-chmod +x "$TMP/bin/git"
-expect_hook "owner discovery error fails open (naming), permission gate bypassed for isolation" \
-  0 "refs/heads/sk-git/0041-valid $SHA_A refs/heads/sk-git/0041-valid $ZERO_SHA" \
-  PATH="$TMP/bin:$PATH" SPECKIT_ALLOW_REMOTE_PUSH=1
-if grep -q 'internal validator error' "$TMP/last.err"; then
-  PASS=$((PASS+1))
-else
-  FAIL=$((FAIL+1))
-  echo "FAIL: owner discovery error warning missing"
-fi
-expect_hook "malformed branch still rejected during discovery error" \
-  1 "refs/heads/sk-git/0041-BAD $SHA_A refs/heads/sk-git/0041-BAD $ZERO_SHA" \
-  PATH="$TMP/bin:$PATH" SPECKIT_ALLOW_REMOTE_PUSH=1
-rm -rf "${TMP:?}/bin"
-
-# Fail-safe: a broken (syntax-error) validator must NEVER hard-fail a push —
-# BOTH gates fall open together (the permission gate's function lives in the
-# same sourced file, so a broken source can't fail-open one gate but not the
-# other). Regression guard for the errexit-around-source fix.
+# Fail-safe: a broken (syntax-error) validator must NEVER hard-fail a push. The
+# permission gate's allowlist function lives in that sourced file, so a broken
+# source has to fall open rather than reject. Regression guard for the
+# errexit-around-source fix.
 rm -f "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 printf 'broken {{{ (\n' > "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
-expect_hook "broken validator fails open (never blocks either gate)" \
+expect_hook "broken validator fails open (never blocks the push)" \
   0 "refs/heads/totally!!bad $SHA_A refs/heads/totally!!bad $ZERO_SHA"
 rm -f "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 ln -s "$REAL_NAMING" "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"

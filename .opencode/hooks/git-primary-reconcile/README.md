@@ -51,7 +51,7 @@ On each SessionStart, `git-primary-reconcile.sh` runs this flow (every branch ex
    |---|---|
    | `mass-deletion` | `After inspection: SPECKIT_ALLOW_MASS_DELETION=1 git push <REMOTE> HEAD:<LIVE>` |
    | `skill-root-metadata` | `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` |
-   | `naming` | `Use an owner-first branch name; bypass only with SPECKIT_SKIP_PREPUSH_NAMING=1.` |
+   | `remote-create` | `Creating a branch on origin is a decision: SPECKIT_ALLOW_REMOTE_PUSH=<branch> git push <REMOTE> HEAD:<LIVE>` |
    | `remote-permission` | `After explicit approval, retry that one push with SPECKIT_ALLOW_REMOTE_PUSH=1.` |
    | `test-suites` | `Fix the reported test failure or use only the documented operator policy.` |
    | `push-rejected` (default) | `git push <REMOTE> HEAD:<LIVE>` |

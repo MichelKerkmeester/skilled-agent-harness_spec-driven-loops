@@ -158,7 +158,7 @@ This section records wave planning and capacity guidance for running the full sc
 | 2 | Safety Refusals | GIT-008..GIT-011 | Isolate dangerous commands and exact refusal strings |
 | 3 | Integration + Recovery | GIT-012..GIT-019 | Requires scratch repos and branch-state evidence |
 | 4 | Cross-CLI | GIT-020..GIT-022 | Advisory handback validation after policy baseline is trusted |
-| 5 | Numbered Worktree Tooling | GIT-023..GIT-041 | Hermetic fixture repos per script; run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
+| 5 | Numbered Worktree Tooling | GIT-023..GIT-043 | Hermetic fixture repos per script; run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
 | 6 | Git Preflight Advisory | GIT-042 | Disposable repository with tracked and untracked files; verify advisory, ordinary-commit silence and suppression |
 
 ---
@@ -551,7 +551,7 @@ Expected signals: External response is advisory; final command plan is filtered 
 
 ---
 
-## 13. NUMBERED WORKTREE TOOLING (`GIT-023..GIT-041`)
+## 13. NUMBERED WORKTREE TOOLING (`GIT-023..GIT-043`)
 
 This category covers 18 scenarios. The linked per-feature files remain the canonical execution contract. It validates the safety contract of the four numbered-worktree tools: the allocator (`worktree-naming.sh`), the launch-wrapper session (`worktree-session.sh`), the reaper (`worktree-reaper.sh`), and the pre-push naming gate.
 
@@ -747,101 +747,21 @@ Expected signals: `DRY_RUN would:` lines naming the qualifying pair; repository 
 
 > **Feature File:** [GIT-034](owner-first-worktree-tooling/reaper-dry-run-no-mutation.md)
 
-### GIT-036 | Pre-push gates only new remote branch creation
+### GIT-043 | Pre-push remote-permission gate on creation and update
 
 #### Description
 
-Prove the naming gate only evaluates a ref line when the remote sha is all-zeros, and does not re-validate an update to a branch that already exists on the remote.
+Prove that publishing a branch to origin is an explicit decision: a creation is refused unless the branch is named in the approval, an update needs a blanket approval, and the release lane and the allowlist file are the only standing exemptions.
 
 #### Scenario Contract
 
-Prompt: `As a git safety reviewer, gate a simulated push feed containing both a new-branch line and an update-to-existing-branch line. Verify only the new-branch line is evaluated against the naming grammar. Return the accept/reject decision per line and the reasoning.`
+Prompt: `As a git safety reviewer, evaluate the pre-push remote-permission gate. Drive a creation and an update for a non-allowlisted branch, then the release lane, and report which approval form each one needs and why a blanket approval cannot create.`
 
-Expected signals: the new-branch line is rejected; the identical name on an update line is never rejected.
-
-#### Test Execution
-
-> **Feature File:** [GIT-036](owner-first-worktree-tooling/prepush-gates-only-new-branches.md)
-
-### GIT-037 | Pre-push migration tolerance for existing legacy branches
-
-#### Description
-
-Prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the numbered-worktree grammar.
-
-#### Scenario Contract
-
-Prompt: `As a git safety reviewer, evaluate an update push to a pre-existing non-conformant remote branch name. Verify the push is allowed under migration tolerance while the same name would be blocked as a brand-new branch. Return the decision and the migration-tolerance rationale.`
-
-Expected signals: the update is allowed with an advisory notice; the identical name as a new branch is blocked.
+Expected signals: the unapproved creation is blocked, a bare approval still cannot create it, naming the branch clears it, and the release lane passes with no environment variable.
 
 #### Test Execution
 
-> **Feature File:** [GIT-037](owner-first-worktree-tooling/prepush-migration-tolerance.md)
-
-### GIT-038 | Pre-push fails open on a broken validator
-
-#### Description
-
-Prove a missing or syntactically broken `worktree-naming.sh` makes the hook skip the naming gate entirely rather than hard-failing every push.
-
-#### Scenario Contract
-
-Prompt: `As a git safety reviewer, evaluate a push feed against a fixture where worktree-naming.sh is first missing, then present but syntactically broken. Verify both cases fail open with the push allowed and a warning logged. Return the exit code and warning text for each case.`
-
-Expected signals: both cases exit 0 with a clear warning, never a hard failure of the push.
-
-#### Test Execution
-
-> **Feature File:** [GIT-038](owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md)
-
-### GIT-039 | Pre-push never blocks skilled release branches
-
-#### Description
-
-Prove `skilled/v*` release branches are exempt from the naming gate entirely, both as new branches and as updates.
-
-#### Scenario Contract
-
-Prompt: `As a git safety reviewer, push a new skilled/v* release branch and then an update to one, and verify both are exempt from the naming gate with no warning or rejection at all.`
-
-Expected signals: both cases exit 0 with no naming-related stderr output.
-
-#### Test Execution
-
-> **Feature File:** [GIT-039](owner-first-worktree-tooling/prepush-never-blocks-release-branches.md)
-
-### GIT-040 | SPECKIT_SKIP_PREPUSH_NAMING bypass
-
-#### Description
-
-Prove `SPECKIT_SKIP_PREPUSH_NAMING=1` disables the entire naming gate for the push, regardless of how malformed the branch name is.
-
-#### Scenario Contract
-
-Prompt: `As a git safety reviewer, push a maximally malformed new branch name with SPECKIT_SKIP_PREPUSH_NAMING=1 set, and verify the entire gate is skipped with an explicit bypass notice rather than a silent pass.`
-
-Expected signals: exit 0 with an explicit, logged bypass notice.
-
-#### Test Execution
-
-> **Feature File:** [GIT-040](owner-first-worktree-tooling/prepush-skip-env-bypass.md)
-
-### GIT-041 | Pre-push rejects a new wrapper-lane ref
-
-#### Description
-
-Prove a brand-new `work/<runtime>/<slug>` ref pushed to the remote is explicitly rejected with a wrapper-specific message, not just a generic naming failure.
-
-#### Scenario Contract
-
-Prompt: `As a git safety reviewer, push a brand-new work/<runtime>/<slug> ref to the remote and verify it is rejected with a message identifying it specifically as a launch-wrapper ref, distinct from a generic malformed-name rejection.`
-
-Expected signals: exit 1 with the wrapper-specific `[gate:naming]` rejection naming it a launch-wrapper ref.
-
-#### Test Execution
-
-> **Feature File:** [GIT-041](owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md)
+> **Feature File:** [GIT-043](owner-first-worktree-tooling/prepush-remote-permission-gate.md)
 
 ---
 
@@ -923,10 +843,5 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Numbered Worktree Tooling | GIT-032 | `owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md` | Yes |
 | Numbered Worktree Tooling | GIT-033 | `owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md` | Yes |
 | Numbered Worktree Tooling | GIT-034 | `owner-first-worktree-tooling/reaper-dry-run-no-mutation.md` | No |
-| Numbered Worktree Tooling | GIT-036 | `owner-first-worktree-tooling/prepush-gates-only-new-branches.md` | Yes |
-| Numbered Worktree Tooling | GIT-037 | `owner-first-worktree-tooling/prepush-migration-tolerance.md` | Yes |
-| Numbered Worktree Tooling | GIT-038 | `owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md` | Yes |
-| Numbered Worktree Tooling | GIT-039 | `owner-first-worktree-tooling/prepush-never-blocks-release-branches.md` | Yes |
-| Numbered Worktree Tooling | GIT-040 | `owner-first-worktree-tooling/prepush-skip-env-bypass.md` | No |
-| Numbered Worktree Tooling | GIT-041 | `owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md` | Yes |
+| Numbered Worktree Tooling | GIT-043 | `owner-first-worktree-tooling/prepush-remote-permission-gate.md` | Yes |
 | Git Preflight Advisory | GIT-042 | `git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Yes |

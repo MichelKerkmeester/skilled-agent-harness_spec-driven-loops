@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/018-prepush-naming-gate-residue",
+  "spec_folder": "hooks/018-prepush-naming-gate-residue",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-push naming gate residue",
+      "SPECKIT_SKIP_PREPUSH_NAMING dead flag",
+      "pre-push test failures",
+      "gate:naming unreachable",
+      "prepush residue plan",
+      "prepush residue tasks",
+      "prepush residue summary",
+      "gate:naming dead branch"
+    ],
+    "key_topics": [
+      "pre-push",
+      "naming",
+      "gate",
+      "residue",
+      "dead",
+      "flag",
+      "test",
+      "failures",
+      "unreachable",
+      "prepush",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/git-primary-reconcile.sh",
+      ".opencode/scripts/install-git-hooks.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-primary-reconcile.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-primary-reconcile.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`pre-push.test.sh` failed two of twenty-two cases",
+    "created_at": "2026-09-10T08:36:20.104Z",
+    "last_save_at": "2026-09-10T08:36:20.104Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1dc452beb8e6c509df9fe88ae402f8db230d968129960d3220f10c97deffc78a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "64237fca6b4ad65aa31d50b909b8339d6d1c980df9b2ff5a26f161d97695758a",
+      "plan.md": "1773239c4329e5856ca5c58a0041bb66d952996e5523cc02f18242d67c2a0111",
+      "tasks.md": "f53626c5ddd2a4a46a55863a2b6c330a6a460612963de0b2ee242e4ce5e117a1",
+      "implementation-summary.md": "2594a65aa659fdea0674decac9d206a81f6238dc4cd6bbd54bb01d329f5194db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

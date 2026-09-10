@@ -66,4 +66,4 @@ Git has no way to enforce sequential uniqueness itself, so each namespace's coun
 - Feature file path: `worktree-naming/owner-first-worktree-naming.md`
 
 Related references:
-- [pre-push-naming-enforcement.md](pre-push-naming-enforcement.md) — Pre-push naming enforcement hook
+- [remote-branch-policy.md](../../references/remote-branch-policy.md) — What a push to origin needs approved, now that the pre-push naming gate is gone

@@ -87,9 +87,9 @@ _classify_push_gate() {
       PUSH_GATE="skill-root-metadata"
       PUSH_FIX="node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
       ;;
-    *'[gate:naming]'*)
-      PUSH_GATE="naming"
-      PUSH_FIX="Use an owner-first branch name; bypass only with SPECKIT_SKIP_PREPUSH_NAMING=1."
+    *'[gate:remote-create]'*)
+      PUSH_GATE="remote-create"
+      PUSH_FIX="Creating a branch on origin is a decision: SPECKIT_ALLOW_REMOTE_PUSH=<branch> git push <REMOTE> HEAD:<LIVE>"
       ;;
     *'[gate:remote-permission]'*)
       PUSH_GATE="remote-permission"

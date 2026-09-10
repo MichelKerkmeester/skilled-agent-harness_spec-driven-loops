@@ -11,12 +11,11 @@
 #   post-commit — publishes the commit to the live branch in a launch-wrapper session
 #   post-merge  — anchors and surfaces an un-applied --autostash entry after a merge
 #   post-rewrite — anchors and surfaces an un-applied --autostash entry after amend/rebase
-#   pre-push    — two independent gates: (1) blocks a new remote branch that breaks the owner-first naming grammar, updates always allowed (migration tolerance); (2) blocks any push (new or update) to a branch outside the remote allowlist (main, skilled/v*, plus .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt) unless explicitly permitted for that push
+#   pre-push    — blocks a mass deletion, and blocks any push to a branch outside the allowlist unless this push is approved: creating a branch needs it named, updating it accepts a blanket approval; (2) blocks any push (new or update) to a branch outside the remote allowlist (main, skilled/v*, plus .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt) unless explicitly permitted for that push
 #
 # Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...
 # Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
 # Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
-# Bypass pre-push naming gate: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
 # Bypass pre-push remote-permission gate: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
 
 set -euo pipefail
@@ -104,7 +103,6 @@ echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test ho
 echo "Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ..."
 echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
 echo "Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..."
-echo "Bypass pre-push naming gate: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
 echo "Note: the target is resolved by Git (git rev-parse --git-path hooks), so a"
 echo "repo-local or global core.hooksPath override, and per-worktree hook dirs in"
 echo "linked worktrees, are honored automatically."

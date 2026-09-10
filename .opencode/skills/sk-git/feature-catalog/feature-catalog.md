@@ -40,23 +40,19 @@ See [`worktree-naming/owner-first-worktree-naming.md`](worktree-naming/owner-fir
 
 ---
 
-### Pre-push naming + remote-push-permission gates
+### Pre-push remote-push-permission gate
 
 #### Description
 
-A `pre-push` git hook runs two independent gates: one blocks the creation of new remote branches whose name breaks the numbered-worktree grammar; the other blocks any push (new or update) to a branch outside a small remote allowlist, so `origin` stays curated even though local branch creation is unrestricted.
+A `pre-push` git hook runs two gates. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless that push is approved, and it treats creating a branch and updating one as different decisions.
 
 #### Current Reality
 
-The naming gate is migration-tolerant (only a brand-new remote branch is name-checked; existing branches can still be pushed/updated regardless of name). The permission gate applies to every push — new or update — unless the branch is `main`, `skilled/v*`, or listed in `remote-branch-allowlist.txt`; the continuous-integration autosync's live-branch publish gets a narrowly scoped exception. Both gates are fail-open (a missing/broken validator produces a warning, never a blocked push) and independently bypassable (`SPECKIT_SKIP_PREPUSH_NAMING=1` for naming, `SPECKIT_ALLOW_REMOTE_PUSH=1` for permission).
+Creating a branch on origin needs the branch named in the approval, because a bare `SPECKIT_ALLOW_REMOTE_PUSH=1` authorises an update and never a creation. `main`, the `skilled/v*` release lane and any pattern in the allowlist file pass with nothing set. A naming-grammar gate ran beside this one until it was removed, once it was clear it never refused a push this gate would have allowed, so its bypass variable no longer exists.
 
 #### Source Files
 
-See [`worktree-naming/pre-push-naming-enforcement.md`](worktree-naming/pre-push-naming-enforcement.md) for full implementation and test file listings, and [`remote-branch-policy.md`](../references/remote-branch-policy.md) for the permission gate's full contract.
-
----
-
-## 3. SESSION LIFECYCLE
+See [`remote-branch-policy.md`](../references/remote-branch-policy.md) for the approval forms and the autosync exemption, and `.opencode/scripts/git-hooks/tests/pre-push.test.sh` for the automated matrix.
 
 ### Launch-wrapper session isolation
 

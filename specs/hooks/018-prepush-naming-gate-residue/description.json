@@ -1,0 +1,21 @@
+{
+  "specFolder": "hooks/018-prepush-naming-gate-residue",
+  "description": "`pre-push.test.sh` failed two of twenty-two cases",
+  "keywords": [
+    "pre-push",
+    "test",
+    "failed",
+    "two",
+    "twenty-two",
+    "cases"
+  ],
+  "lastUpdated": "2026-09-10T08:36:19.771Z",
+  "specId": "018",
+  "folderSlug": "prepush-naming-gate-residue",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

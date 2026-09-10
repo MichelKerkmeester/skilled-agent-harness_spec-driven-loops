@@ -67,7 +67,7 @@ SPECKIT_AUTOSYNC=1  AND  branch being pushed == $SPECKIT_LIVE_BRANCH
 
 Both conditions must hold. `SPECKIT_AUTOSYNC=1` alone does **not** exempt an arbitrary branch — only the exact live branch the wrapper resolved at session start.
 
-The same exact predicate exempts the destination from the new-branch naming gate. This matters on the first publication of a live branch: the source is a local `work/<runtime>/<slug>` wrapper branch, but the remote ref is the operator-selected live branch. The source branch remains local-only. No wrapper ref is pushed. A push to any other new remote branch still receives the task-branch naming check.
+The same exact predicate exempts the destination from the creation check. This matters on the first publication of a live branch: the source is a local `work/<runtime>/<slug>` wrapper branch, but the remote ref is the operator-selected live branch. The source branch remains local-only. No wrapper ref is pushed. A push to any other new remote branch still receives the task-branch naming check.
 
 **Why this branch is different**: it was already an explicit operator choice — the primary checkout's own branch — made before any session existed to autosync into it. `git-sync.sh`'s documented contract is "never asks the caller mid-hook" and "non-fatal by default" ([continuous-integration.md](continuous-integration.md)); blocking its publish would silently strand every wrapper session's commits and regress a separately documented feature.
 
@@ -75,14 +75,16 @@ This exception does not apply to safety or consistency gates. The mass-deletion 
 
 ---
 
-## 5. THE TWO BYPASS VARIABLES ARE INDEPENDENT
+## 5. THE ONE BYPASS VARIABLE, AND ITS TWO FORMS
 
-| Variable | Scope | Skips |
-|---|---|---|
-| `SPECKIT_SKIP_PREPUSH_NAMING=1` | Naming gate only | The task-branch grammar check on a brand-new branch |
-| `SPECKIT_ALLOW_REMOTE_PUSH=1` | Permission gate only | The remote-allowlist/ask-first check, new or update |
+| Form | Approves |
+|---|---|
+| `SPECKIT_ALLOW_REMOTE_PUSH=1` | One update to a branch that already exists on origin |
+| `SPECKIT_ALLOW_REMOTE_PUSH=<branch>` | That same update, and creating `<branch>` on origin |
 
-Setting one does **not** imply the other. A malformed, non-allowlisted new branch pushed with only `SPECKIT_SKIP_PREPUSH_NAMING=1` still blocks on the permission gate; both are needed together to push it unconditionally.
+The two are not interchangeable, and the difference is the point: creating a branch on origin publishes a name other machines will fetch, so it takes an approval that names what is being created. A bare `1` never creates.
+
+A second variable, `SPECKIT_SKIP_PREPUSH_NAMING`, used to skip a naming-grammar gate that ran beside this one. That gate was removed once it was clear it never refused a push the permission gate would have allowed, so the variable does nothing and is gone from the documentation. Anything still exporting it is harmless and can drop it.
 
 ---
 
