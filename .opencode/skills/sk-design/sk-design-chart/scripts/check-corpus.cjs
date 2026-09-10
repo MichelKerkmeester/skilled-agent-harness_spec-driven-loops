@@ -325,6 +325,15 @@ function checkPaletteSource(palette, theme) {
     // magnitude system; importance is ranked the same way and was not covered by anything.
     if (system.encodes === 'importance') {
       for (let i = 0; i < series.length - 1; i += 1) {
+        // Direction was held here and separation was not, which is how a ladder whose adjacent
+        // steps sat 1.18 apart shipped: two bars a reader is meant to tell apart came out as one
+        // colour, and every gate passed because each step cleared the ground on its own.
+        checked += 1;
+        const apart = contrast(series[i], series[i + 1]);
+        if (apart < g.rampStepSeparation) {
+          record(theme.check, 'error', rel(PALETTE_SOURCE),
+            `system "${id}" ranks by lightness and its steps ${i + 1} and ${i + 2} differ by ${round2(apart)}:1 on ${theme.ground}, below the ${g.rampStepSeparation}:1 rank-readability floor. A rank a reader cannot see is not a rank`);
+        }
         checked += 1;
         if (contrast(series[i], surface) > contrast(series[i + 1], surface)) continue;
         record(theme.check, 'error', rel(PALETTE_SOURCE),
@@ -3168,6 +3177,25 @@ function checkPaletteDerivation(palette) {
     if (after < threshold) {
       record('palette-derivation', 'error', 'assets/color/palettes.json',
         `${departure.role} ships "${value}" to clear ${departure.gate} and reaches ${after.toFixed(2)}:1 against ${departure.against}, under the ${threshold} it was moved to reach`);
+    }
+  }
+
+  // A value the reference publishes and the palette deliberately does not take. It is neither a
+  // departure, which claims a gate forced it, nor an arithmetic. What is checked is that the record
+  // and the palette agree and that the reference really does publish the value being declined; that
+  // the shipped value is readable is the gate rules' job, above.
+  for (const choice of derivation.chosen || []) {
+    tally('palette-derivation', 2);
+    if (!claim(choice.role, 'chosen')) continue;
+    const value = shipped.get(choice.role);
+    if (value.toUpperCase() !== String(choice.shipped).toUpperCase()) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${choice.role} ships "${value}" and the derivation records the choice as "${choice.shipped}"`);
+      continue;
+    }
+    if (published.get(choice.from) !== String(choice.measured).toUpperCase()) {
+      record('palette-derivation', 'error', 'assets/color/palettes.json',
+        `${choice.role} is recorded as declining ${choice.from} at "${choice.measured}", and the Style Reference publishes that token as "${published.get(choice.from) || 'nothing'}". A choice records what it turned down`);
     }
   }
 

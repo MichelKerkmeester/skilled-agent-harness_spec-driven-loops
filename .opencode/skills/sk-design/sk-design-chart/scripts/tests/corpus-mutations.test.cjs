@@ -266,7 +266,7 @@ for (const spec of OTHER_FILE_CASES) {
 // ── the families that read the palette or the carried reference ──────────────────────────────────
 const PACKAGE_CASES = [
   { name: 'palette-derivation refuses a departed value changed under its record',
-    mutate: (d) => editPalette(d, (p) => { p.systems.categorical.series[3] = '#123456'; }),
+    mutate: (d) => editPalette(d, (p) => { p.systems.neutral.series[3] = '#123456'; }),
     family: 'palette-derivation', expect: /ships "#123456" and the derivation records it as/ },
   { name: 'palette-derivation refuses a published colour moved into another role',
     mutate: (d) => editPalette(d, (p) => { p.chrome.rule = '#26251E'; }),
@@ -284,7 +284,7 @@ const PACKAGE_CASES = [
     mutate: (d) => editPalette(d, (p) => { p.systems.ordered.series[4] = '#FEFAF7'; }),
     family: 'palette-derivation', expect: /a spread of .* against the .* these rungs were placed to hold/ },
   { name: 'palette-derivation refuses a reference that changed under its pin',
-    mutate: (d) => fs.appendFileSync(path.join(d, 'assets', 'style-reference', 'cursor', 'DESIGN.md'), '\n<!-- edited -->\n'),
+    mutate: (d) => fs.appendFileSync(path.join(d, 'assets', 'style-reference', 'evilcharts', 'DESIGN.md'), '\n<!-- edited -->\n'),
     family: 'palette-derivation', expect: /has changed since the palette was derived from it/ },
   { name: 'style-reference refuses a carried file that changed under its pin',
     mutate: (d) => fs.appendFileSync(path.join(d, 'assets', 'style-reference', 'evilcharts', 'tokens.json'), '\n'),

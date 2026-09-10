@@ -4,55 +4,55 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="chart-template" content="population-pyramid">
-<meta name="chart-color-system" content="neutral">
+<meta name="chart-color-system" content="categorical">
 <script>
   document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
 </script>
 <title>Population pyramid, two groups mirrored about the centre</title>
 <style>
-/* CHART_PALETTE:BEGIN system=neutral */
+/* CHART_PALETTE:BEGIN system=categorical */
 :root {
-  --chart-surface: #F7F7F4;
-  --chart-ink: #26251E;
-  --chart-muted: #72716C;
-  --chart-rule: #CDCDC9;
+  --chart-surface: #FFFFFF;
+  --chart-ink: #0A0A0A;
+  --chart-muted: #484848;
+  --chart-rule: #E5E5E5;
   --chart-radius-mark: 2px;
-  --chart-radius-track: 4px;
-  --chart-radius-swatch: 4px;
-  --chart-radius-pill: 4px;
-  --chart-radius-card: 8px;
-  --chart-series-1: #26251E;
-  --chart-series-2: #7A7974;
-  --chart-series-3: #84847E;
-  --chart-series-4: #908F8D;
-  --chart-emphasis: #F54E00;
+  --chart-radius-track: 4.4px;
+  --chart-radius-swatch: 4.4px;
+  --chart-radius-pill: 4.4px;
+  --chart-radius-card: 8.4px;
+  --chart-series-1: #F54900;
+  --chart-series-2: #009689;
+  --chart-series-3: #AD46FF;
+  --chart-series-4: #FF2056;
+  --chart-emphasis: #0A0A0A;
 }
 /* CHART_PALETTE:END */
 
-/* CHART_PALETTE_DARK:BEGIN system=neutral */
+/* CHART_PALETTE_DARK:BEGIN system=categorical */
 @media (prefers-color-scheme: dark) {
   :root:not([data-scheme="light"]) {
-    --chart-surface: #26251E;
-    --chart-ink: #F7F7F4;
-    --chart-muted: #A1A19F;
-    --chart-rule: #F7F7F417;
-    --chart-series-1: #F7F7F4;
-    --chart-series-2: #E6E5E0;
-    --chart-series-3: #CDCDC9;
-    --chart-series-4: #A1A19F;
-    --chart-emphasis: #F54E00;
+    --chart-surface: #141110;
+    --chart-ink: #FAFAFA;
+    --chart-muted: #A1A1A1;
+    --chart-rule: #FAFAFA17;
+    --chart-series-1: #F54900;
+    --chart-series-2: #009689;
+    --chart-series-3: #AD46FF;
+    --chart-series-4: #FF2056;
+    --chart-emphasis: #FAFAFA;
   }
 }
 :root[data-scheme="dark"] {
-  --chart-surface: #26251E;
-  --chart-ink: #F7F7F4;
-  --chart-muted: #A1A19F;
-  --chart-rule: #F7F7F417;
-  --chart-series-1: #F7F7F4;
-  --chart-series-2: #E6E5E0;
-  --chart-series-3: #CDCDC9;
-  --chart-series-4: #A1A19F;
-  --chart-emphasis: #F54E00;
+  --chart-surface: #141110;
+  --chart-ink: #FAFAFA;
+  --chart-muted: #A1A1A1;
+  --chart-rule: #FAFAFA17;
+  --chart-series-1: #F54900;
+  --chart-series-2: #009689;
+  --chart-series-3: #AD46FF;
+  --chart-series-4: #FF2056;
+  --chart-emphasis: #FAFAFA;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -132,8 +132,8 @@ td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .notice { fill: var(--chart-muted); font-size: 12px; }
 
-.bar-left { fill: var(--chart-series-3); }
-.bar-right { fill: var(--chart-series-1); }
+.bar-left { fill: var(--chart-series-1); }
+.bar-right { fill: var(--chart-series-2); }
 .axis { stroke: none; stroke-width: 0; }
 .cat { fill: var(--chart-ink); font-size: 12px; }
 .tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
@@ -291,8 +291,8 @@ const METRIC = {
 
 /* CHART_SERIES:BEGIN */
 const SERIES = [
-  { key: 'men', label: 'Men', token: '--chart-series-3', indicator: 'swatch', classes: ['bar-left'] },
-  { key: 'women', label: 'Women', token: '--chart-series-1', indicator: 'swatch', classes: ['bar-right'] }
+  { key: 'men', label: 'Men', token: '--chart-series-1', indicator: 'swatch', classes: ['bar-left'] },
+  { key: 'women', label: 'Women', token: '--chart-series-2', indicator: 'swatch', classes: ['bar-right'] }
 ];
 /* CHART_SERIES:END */
 

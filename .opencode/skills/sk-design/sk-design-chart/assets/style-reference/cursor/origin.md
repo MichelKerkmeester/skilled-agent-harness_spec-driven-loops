@@ -1,5 +1,9 @@
 # Origin of this Style Reference
 
+> **No longer the stock.** Since v2.0.0.0 the corpus is derived from the evilcharts reference beside
+> this one, and `--default` reads that. This capture is carried as an alternative: pass its path to
+> the applicator to theme a delivery back to warm parchment and ink.
+
 This directory is the chart corpus's own copy of the Style Reference its stock palette,
 typeface and corner ladder were derived from. It is a severed copy, not a link: the style
 library that produced it holds roughly twelve hundred captures and regenerates them, and a

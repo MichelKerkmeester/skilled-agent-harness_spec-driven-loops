@@ -105,7 +105,10 @@ test('the default reference themes a categorical form with measured values only'
   const result = apply.run(['--default', '--forms', 'grouped-bars', '--out', output]);
   const text = result.lines.join('\n');
   assert.equal(result.ok, true, text);
-  assert.match(text, /MAPPING light series-1: Ember/);
+  // Named against the property rather than a colour name: pinning the stock's own vocabulary here
+  // meant that changing which reference is stock broke a test about mapping, not about the stock.
+  assert.match(text, /MAPPING light series-1: \S+ \(--[a-z0-9-]+\)/,
+    'the first series comes from a token the reference names, not from a value invented here');
   assert.match(text, /RESULT: PASSED/);
   assert.ok(fs.existsSync(path.join(output, 'grouped-bars.html')));
 });

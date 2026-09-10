@@ -1,18 +1,18 @@
 {
   "version": "1.0.0.0",
-  "note": "The single source of truth for every colour value in this packet. A template carries these values inline in a sentinel-marked palette block, and check-corpus.cjs compares the block against this file in both directions. Edit here, then run the validator and paste the block it prints. The values are the cursor Style Reference the packet carries beside its forms (assets/style-reference/cursor/DESIGN.md, a severed copy of the style library capture recorded in that directory's origin.md): its parchment, ink, ash, driftwood, mist, stone and linen carry the chrome and the neutral system, its ember, verdant, crimson and amber carry the categorical system, and its ember drawn toward the ground carries the ordered ramp. Where a measured tone sat just under a gate it was moved by the least amount that clears: ash to #72716C for muted, amber to #BE8332 on paper, mist to #908F8D as the fourth neutral step, and the far end of the paper ramp to #E64B02 so five rungs fit above the ground.",
+  "note": "The single source of truth for every colour value in this packet. A template carries these values inline in a sentinel-marked palette block, and check-corpus.cjs compares the block against this file in both directions. Edit here, then propagate. The values are the evilcharts Style Reference the packet carries beside its forms (assets/style-reference/evilcharts/DESIGN.md): its canvas, ink, ash and rule carry the chrome; its ink, ash and slate carry the neutral system; its flame, teal, violet and rose carry the categorical system, chosen because those four are the hues that clear a mark on both grounds; and flame drawn toward each ground carries the ordered ramp. Two neutral steps were moved by the least amount that clears a gate, and the derivation block below names both.",
   "customPropertyPrefix": "--chart-",
   "chrome": {
-    "surface": "#F7F7F4",
-    "ink": "#26251E",
-    "muted": "#72716C",
-    "rule": "#CDCDC9"
+    "surface": "#FFFFFF",
+    "ink": "#0A0A0A",
+    "muted": "#484848",
+    "rule": "#E5E5E5"
   },
   "chromeDark": {
-    "surface": "#26251E",
-    "ink": "#F7F7F4",
-    "muted": "#A1A19F",
-    "rule": "#F7F7F417"
+    "surface": "#141110",
+    "ink": "#FAFAFA",
+    "muted": "#A1A1A1",
+    "rule": "#FAFAFA17"
   },
   "chromeDarkNote": "The ground a reader gets when their operating system asks for dark: the cursor ink itself, which the reference already uses as the surface behind its light action fills. Parchment becomes the ink and mist the muted tone, both clearing the text gate on that ground. The rule is ink at nine percent rather than a solid grey, chosen so the same declaration reads as a hairline on both grounds.",
   "chromeRoles": {
@@ -24,10 +24,10 @@
   },
   "radius": {
     "mark": "2px",
-    "track": "4px",
-    "swatch": "4px",
-    "pill": "4px",
-    "card": "8px"
+    "track": "4.4px",
+    "swatch": "4.4px",
+    "pill": "4.4px",
+    "card": "8.4px"
   },
   "radiusRoles": {
     "ladder": "One 2px knob, five steps, on the cursor reference's 4px corner with 8px for the one container that holds a whole card. Every step is a corner the corpus actually draws, so a rung exists for a consumer rather than for symmetry.",
@@ -80,134 +80,126 @@
       "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. Lightness alone ranks the series, starting with the value furthest from the ground.",
       "capacity": 4,
       "series": [
-        "#26251E",
-        "#7A7974",
-        "#84847E",
-        "#908F8D"
+        "#0A0A0A",
+        "#484848",
+        "#747474",
+        "#8F8F8F"
       ],
-      "emphasis": "#F54E00",
+      "emphasis": "#F54900",
       "seriesDark": [
-        "#F7F7F4",
-        "#E6E5E0",
-        "#CDCDC9",
-        "#A1A19F"
+        "#FAFAFA",
+        "#A1A1A1",
+        "#747474",
+        "#616161"
       ],
-      "emphasisDark": "#F54E00"
+      "emphasisDark": "#F54900"
     },
     "ordered": {
       "encodes": "magnitude",
       "useWhen": "The data is ordered: a value, a rank, a time position, a progress figure. One hue, five steps, and the step furthest from the ground reads as more.",
       "capacity": 5,
       "series": [
-        "#E64B02",
-        "#F56C2C",
-        "#F69363",
-        "#F6B798",
-        "#F7DACB"
+        "#F54900",
+        "#F87740",
+        "#FA9D75",
+        "#FCC2A8",
+        "#FEE7DC"
       ],
-      "emphasis": "#26251E",
+      "emphasis": "#0A0A0A",
       "seriesDark": [
-        "#F54E00",
-        "#CF4606",
-        "#AA3F0B",
-        "#853810",
-        "#603116"
+        "#F54900",
+        "#D04003",
+        "#AE3705",
+        "#8D2F07",
+        "#6C2709"
       ],
-      "emphasisDark": "#F7F7F4"
+      "emphasisDark": "#FAFAFA"
     },
     "categorical": {
       "encodes": "category",
       "useWhen": "The categories are unordered and there are four or fewer. Five or more categories go neutral and carry labels.",
       "capacity": 4,
       "series": [
-        "#F54E00",
-        "#1F8A65",
-        "#CF2D56",
-        "#BE8332"
+        "#F54900",
+        "#009689",
+        "#AD46FF",
+        "#FF2056"
       ],
-      "emphasis": "#26251E",
+      "emphasis": "#0A0A0A",
       "seriesDark": [
-        "#F54E00",
-        "#1F8A65",
-        "#CF2D56",
-        "#C08532"
+        "#F54900",
+        "#009689",
+        "#AD46FF",
+        "#FF2056"
       ],
-      "emphasisDark": "#F7F7F4"
+      "emphasisDark": "#FAFAFA"
     }
   },
   "derivation": {
     "note": "What the palette owes the Style Reference it was derived from, in a form the corpus check can hold rather than a form a reader has to trust. Every role is in exactly one of the three lists below: it takes a reference token verbatim, it departs from one to clear a named gate, or it comes from an arithmetic the reference cannot carry.",
-    "reference": "assets/style-reference/cursor/DESIGN.md",
-    "sha256": "c94a9bf3f244454085b26e0484ea064ad095e36808ef69f2509b56ffe7a8a52d",
+    "reference": "assets/style-reference/evilcharts/DESIGN.md",
+    "sha256": "ec8c6f693516026fdd7b22bbb57162f15b8a4b51fa2d9b80df6c331414967f8c",
     "kinds": {
       "ramp-interior": "A rung between the ends of a magnitude ramp, placed by equal contrast rather than by mixing toward the ground. The ramp contract in palette-source holds its separation and its direction.",
       "ink-at-alpha": "That theme’s ink at a fixed alpha, computed rather than picked."
     },
     "roles": {
-      "chrome.surface": "--color-parchment",
-      "chrome.ink": "--color-ink",
-      "chrome.rule": "--color-stone",
-      "chromeDark.surface": "--color-ink",
-      "chromeDark.ink": "--color-parchment",
-      "chromeDark.muted": "--color-mist",
-      "neutral.series[0]": "--color-ink",
-      "neutral.series[1]": "--color-ash",
-      "neutral.series[2]": "--color-driftwood",
-      "neutral.seriesDark[0]": "--color-parchment",
-      "neutral.seriesDark[1]": "--color-linen",
-      "neutral.seriesDark[2]": "--color-stone",
-      "neutral.seriesDark[3]": "--color-mist",
-      "neutral.emphasis": "--color-ember",
-      "neutral.emphasisDark": "--color-ember",
-      "ordered.seriesDark[0]": "--color-ember",
-      "ordered.emphasis": "--color-ink",
-      "ordered.emphasisDark": "--color-parchment",
-      "categorical.series[0]": "--color-ember",
-      "categorical.series[1]": "--color-verdant",
-      "categorical.series[2]": "--color-crimson",
-      "categorical.seriesDark[0]": "--color-ember",
-      "categorical.seriesDark[1]": "--color-verdant",
-      "categorical.seriesDark[2]": "--color-crimson",
-      "categorical.seriesDark[3]": "--color-amber",
-      "categorical.emphasis": "--color-ink",
-      "categorical.emphasisDark": "--color-parchment"
+      "chrome.surface": "--background",
+      "chrome.ink": "--foreground",
+      "chrome.muted": "--muted-foreground",
+      "chrome.rule": "--border",
+      "chromeDark.ink": "--foreground (dark)",
+      "chromeDark.muted": "--ring",
+      "neutral.series[0]": "--foreground",
+      "neutral.series[1]": "--muted-foreground",
+      "neutral.series[2]": "--code-number",
+      "neutral.seriesDark[0]": "--foreground (dark)",
+      "neutral.seriesDark[1]": "--ring",
+      "neutral.seriesDark[2]": "--code-number",
+      "neutral.emphasis": "--chart-1",
+      "neutral.emphasisDark": "--chart-1",
+      "ordered.series[0]": "--chart-1",
+      "ordered.seriesDark[0]": "--chart-1",
+      "ordered.emphasis": "--foreground",
+      "ordered.emphasisDark": "--foreground (dark)",
+      "categorical.series[0]": "--chart-1",
+      "categorical.series[1]": "--chart-2",
+      "categorical.series[2]": "--chart-4 (dark)",
+      "categorical.series[3]": "--chart-5 (dark)",
+      "categorical.seriesDark[0]": "--chart-1",
+      "categorical.seriesDark[1]": "--chart-2",
+      "categorical.seriesDark[2]": "--chart-4 (dark)",
+      "categorical.seriesDark[3]": "--chart-5 (dark)",
+      "categorical.emphasis": "--foreground",
+      "categorical.emphasisDark": "--foreground (dark)"
     },
     "departures": [
       {
-        "role": "chrome.muted",
-        "from": "--color-ash",
-        "measured": "#7A7974",
-        "shipped": "#72716C",
-        "gate": "textOnSurface",
-        "against": "chrome.surface",
-        "why": "Ash is the reference workhorse muted tone and reads secondary text, which owes the text gate rather than the mark gate."
-      },
-      {
         "role": "neutral.series[3]",
-        "from": "--color-mist",
-        "measured": "#A1A19F",
-        "shipped": "#908F8D",
+        "from": "--ring",
+        "measured": "#A1A1A1",
+        "shipped": "#8F8F8F",
         "gate": "markOnSurface",
         "against": "chrome.surface",
-        "why": "Mist is the fourth neutral step and carries a mark, so it owes the mark gate on paper."
+        "why": "Halo is the reference’s quietest grey and carries the fourth neutral step, which is a mark and owes the mark gate on white."
       },
       {
-        "role": "categorical.series[3]",
-        "from": "--color-amber",
-        "measured": "#C08532",
-        "shipped": "#BE8332",
+        "role": "neutral.seriesDark[3]",
+        "from": "--muted-foreground",
+        "measured": "#484848",
+        "shipped": "#616161",
         "gate": "markOnSurface",
-        "against": "chrome.surface",
-        "why": "Amber carries the fourth categorical slot on paper. It returns to its measured tone on ink, where it clears unaided."
-      },
+        "against": "chromeDark.surface",
+        "why": "Ash reads as secondary text on white and is the natural fourth step on ink, where it sits under the mark gate until it is lightened. It moved twice: once for the reference ground, and again when the ground was warmed."
+      }
+    ],
+    "chosen": [
       {
-        "role": "ordered.series[0]",
-        "from": "--color-ember",
-        "measured": "#F54E00",
-        "shipped": "#E64B02",
-        "gate": "rampStepSeparation",
-        "against": "ordered.series[1]",
-        "why": "Not a surface crossing. Ember at its measured tone sits 1.18 from the second rung, under the 1.3 a ramp step needs, so five rungs do not fit above the ground."
+        "role": "chromeDark.surface",
+        "from": "--background (dark)",
+        "measured": "#090909",
+        "shipped": "#141110",
+        "why": "The reference grounds its dark theme on near-pure black, which reads harsh behind a card of figures. The shipped ground is warmed and lifted by the smallest amount that stops it reading as black, and every dark gate was recomputed against it: only the fourth neutral step had to move."
       }
     ],
     "derived": {

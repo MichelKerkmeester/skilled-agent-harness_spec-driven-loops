@@ -33,13 +33,13 @@ hues rather than lightening the light ones, which is the decision worth borrowin
 | Gold | `#ffb900` | `--chart-4` | Fourth series — bright amber, intended for fills rather than thin strokes |
 | Amber | `#fe9a00` | `--chart-5` | Fifth series — between Flame and Gold |
 | Alarm | `#e32d36` | `--destructive` | Destructive action and error state; not a series colour |
-| Pitch | `#090909` | `--background` (dark) | Dark canvas — the ground the dark chart set is chosen against |
-| Snow | `#fafafa` | `--foreground` (dark) | Primary text on the dark ground |
-| Slab | `#171717` | `--card` (dark) | Card ground on the dark theme, one step off the canvas |
-| Cobalt | `#1447e6` | `--chart-1` (dark) | First series on the dark ground — the blue that opens a dark multi-series figure |
-| Jade | `#00bc7d` | `--chart-2` (dark) | Second series on the dark ground |
-| Violet | `#ad46ff` | `--chart-4` (dark) | Fourth series on the dark ground; the one hue that carries a slot on both |
-| Rose | `#ff2056` | `--chart-5` (dark) | Fifth series on the dark ground |
+| Pitch | `#090909` | `--background (dark)` | Dark canvas — the ground the dark chart set is chosen against |
+| Snow | `#fafafa` | `--foreground (dark)` | Primary text on the dark ground |
+| Slab | `#171717` | `--card (dark)` | Card ground on the dark theme, one step off the canvas |
+| Cobalt | `#1447e6` | `--chart-1 (dark)` | First series on the dark ground — the blue that opens a dark multi-series figure |
+| Jade | `#00bc7d` | `--chart-2 (dark)` | Second series on the dark ground |
+| Violet | `#ad46ff` | `--chart-4 (dark)` | Fourth series on the dark ground; the one hue that carries a slot on both |
+| Rose | `#ff2056` | `--chart-5 (dark)` | Fifth series on the dark ground |
 
 ## Tokens — Typography
 
