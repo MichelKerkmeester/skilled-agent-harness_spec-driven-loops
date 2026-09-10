@@ -488,9 +488,17 @@ const x = function (v) { return LEFT + (RIGHT - LEFT) * (v / max); };
 // furthest dot, where no mark is left for a line to serve. Rows carry their names beside them
 // and their readings in the card, so the surviving ladder anchors the scale rather than
 // carrying every figure.
+// Thinning the ladder is only worth doing while a rung survives above the one being dropped. The
+// last even rung can land past the readings, and dropping the odd one below it then leaves the top
+// half of the axis with nothing to read a distance against.
+const lastEven = (function () {
+  for (let t = TICKS - (TICKS % 2); t >= 0; t -= 2) if ((max / TICKS) * t <= peak) return t;
+  return 0;
+}());
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
-  if (t % 2 === 1 || value > peak) continue;
+  if (value > peak) continue;
+  if (t % 2 === 1 && t < lastEven) continue;
   node('line', { x1: x(value), y1: TOP, x2: x(value), y2: BASE }, 'grid');
   node('text', { x: x(value), y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = compact(value);
 }

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/scripts/tests/corpus-mutations.test.cjs",
+      ".opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html",
+      ".opencode/skills/sk-design/sk-design-chart/assets/examples/staff-hours-by-service.html",
+      ".opencode/skills/sk-design/sk-design-chart/assets/templates/box-plot.html",
+      ".opencode/skills/sk-design/sk-design-chart/assets/templates/dumbbell.html",
+      ".opencode/skills/sk-design/sk-design-chart/references/color-system.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-mutations.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/tests/corpus-mutations.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bar-columns.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html",
+        "source": "derived"
+      },
+      {
+        "name": "staff-hours-by-service.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/examples/staff-hours-by-service.html",
+        "source": "derived"
+      },
+      {
+        "name": "box-plot.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/templates/box-plot.html",
+        "source": "derived"
+      },
+      {
+        "name": "dumbbell.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-chart/assets/templates/dumbbell.html",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rule that data never wears the ink arrived mid-round in the packet before this one, and the",
+    "created_at": "2026-09-10T06:51:50Z",
+    "last_save_at": "2026-09-10T06:55:29.893Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d642cd1605a802565e4e3716f3dae3958c648dcaa564970812f1759a5b93a75",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "14b5f19f8ac0d8d7820b6ac4824583b9c35b544fbe1fedacb78308fe6da81d18",
+      "plan.md": "d2bbf01e120b85175d3fba2894ac14c8c3edbe21475b2709f118f51d4d6e48bc",
+      "tasks.md": "f11952c24867e750eff1b82b014fc70e0a64bdc941e544665d061bebc0130bb5",
+      "implementation-summary.md": "bdc2f13f1c8e75927b5da90dde1a6d5e808393cb34e619a0b5331827c0173773"
+    },
+    "last_active_at": null
+  }
+}

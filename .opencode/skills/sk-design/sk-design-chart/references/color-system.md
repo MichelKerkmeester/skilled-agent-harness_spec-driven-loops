@@ -223,6 +223,15 @@ the subject in the same tone as the axis labels around it. The ranked system tak
 emphasis instead, so a plot reads as coloured marks with one that is not, rather than as plain
 marks with one that is.
 
+**The emphasis is spent once per form.** It is the value that says which mark the sentence is
+about, so a form that marks two marks has either two findings or no emphasis. It also has a size:
+the marked mark tends to be the largest one, and two of them put more than half a figure's ink in
+the colour reserved for the exception — which is the inversion above arriving by a different route.
+When the sentence genuinely has two subjects, the repair is the sentence, not a second mark. The
+`emphasis-budget` family holds it in both directions: more than one marked row fails, and a lead
+rule in the styles that no row reaches fails too, because a colour defined and never painted is a
+decision nobody made.
+
 **A single-series Cartesian form starts on the first series token of its own system.** A line, bar
 or area with one data stream uses `--chart-series-1` for its primary mark, whichever system the
 form declares; a neutral form stays neutral rather than borrowing the categorical ramp, because the

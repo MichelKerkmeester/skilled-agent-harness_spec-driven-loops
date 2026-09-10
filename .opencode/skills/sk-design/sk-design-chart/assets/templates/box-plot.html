@@ -137,7 +137,10 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .box { fill: var(--chart-series-1); }
 .box-lead { fill: var(--chart-emphasis); }
 .whisker { stroke: var(--chart-series-2); stroke-width: 1.5; }
-.median { stroke: var(--chart-surface); stroke-width: 3; }
+/* The median is a line drawn on the box, not a gap cut through it. At three units of the page
+   colour it read as two stacked bars with a hole between them, worst on the shortest boxes
+   where the band ate an eighth of the height. */
+.median { stroke: var(--chart-surface); stroke-width: 1.5; }
 /* Dashed and drawn below full strength, because the rule token is also the card border and
    a grid at the same weight competes with the frame around it. The grid is the thing a
    reader looks past, so it gives way first. */

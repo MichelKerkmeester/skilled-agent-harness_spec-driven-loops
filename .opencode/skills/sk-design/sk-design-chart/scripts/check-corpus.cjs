@@ -256,6 +256,20 @@ function checkPaletteSource(palette, theme) {
     record(theme.check, 'error', rel(PALETTE_SOURCE), `${theme.chrome} role "${role}" is missing`);
   }
   const surface = chrome.surface;
+
+  // A figure never spends its data marks on the ink. Drawing the readings in the same tone as the
+  // axis labels and reserving the one colour for the mark the headline is about hands the accent to
+  // the exception and leaves the subject uncoloured, which is a plot that looks like chrome with an
+  // error in it. The emphasis role is where the ink belongs: one mark that is not the others.
+  for (const [id, system] of Object.entries(palette.systems || {})) {
+    const marks = system[theme.series] || [];
+    marks.forEach((value, at) => {
+      checked += 1;
+      if (value.toUpperCase() !== chrome.ink.toUpperCase()) return;
+      record(theme.check, 'error', rel(PALETTE_SOURCE),
+        `system "${id}" draws series ${at + 1} in the ink on ${theme.ground}. A figure that paints its readings the colour of its own labels has spent no colour on what it is about, and whatever accent it has left goes to the one mark that is the exception`);
+    });
+  }
   if (!surface) {
     tally(theme.check, checked);
     return;
@@ -1958,6 +1972,40 @@ function checkCursorGuide(file, src) {
 }
 
 // What the marks, the fills and the baseline do, the paint code decides either way, so the
+// The emphasis colour is the one value in a system that is not a series: it is spent to say "this
+// mark is what the sentence is about". Spending it twice is not twice the emphasis, it is none —
+// and because the emphasised marks in this corpus are the largest ones, two of them put more than
+// half the ink on the page in the colour reserved for the exception. A palette gate already stops
+// a series being defined in the ink; this stops a form handing the ink to half its marks.
+function checkEmphasisBudget(file, src) {
+  const where = file.split(path.sep).join('/');
+  if (!/^(assets\/(templates|examples)\/|--extra\/)/.test(where)) return;
+  const { scripts, styles } = regionsOf(stripHtmlComments(src));
+  // The sentinels are comments, so the block is cut from the raw text and then read as code: a
+  // commented-out row is not a mark, and a sentence about the lead is not a lead.
+  const declared = /\/\*\s*CHART_DATA:BEGIN\s*\*\/\s*([\s\S]*?)\/\*\s*CHART_DATA:END\s*\*\//
+    .exec(scripts.join('\n'));
+  if (!declared) return;
+  const data = stripJsComments(declared[1]);
+  const led = (data.match(/\blead\s*:\s*true\b/g) || []).length;
+  // CSS carries only the block comment form, which the JS stripper already removes.
+  const css = stripJsComments(styles.join('\n'));
+  const hasLeadRule = /(^|\})\s*\.[a-z-]+-lead\b[^{]*\{/.test(css);
+
+  tally('emphasis-budget', 1);
+  if (led > 1) {
+    record('emphasis-budget', 'error', file,
+      `${led} rows are marked lead. The emphasis names the single mark the finding is about, so a form that marks two has either two findings or no emphasis, and the two marked bars in this corpus are the tall ones — the exception colour ends up carrying most of the ink. Say the second subject in the sentence, or make the sentence about one`);
+  }
+  if (hasLeadRule) {
+    tally('emphasis-budget', 1);
+    if (led === 0) {
+      record('emphasis-budget', 'error', file,
+        'the styles declare a lead rule and no row is marked lead, so the emphasis colour is defined and never reaches the page. A form either has a subject or it does not carry the rule');
+    }
+  }
+}
+
 // drawing declares those choices beside the data: one word each, from a vocabulary small enough
 // that a checker can hold every word against what the figure actually paints. A prose reading
 // of the drawing is the second handwriting this packet keeps deleting, so the block carries
@@ -3352,6 +3400,7 @@ function main() {
     checkTooltipCard(name, src);
     checkFindingCue(name, src);
     checkMarkPolicy(name, src);
+    checkEmphasisBudget(name, src);
     checkTooltipIndicator(name, src);
     checkReferenceLine(name, src);
     checkCursorGuide(name, src);

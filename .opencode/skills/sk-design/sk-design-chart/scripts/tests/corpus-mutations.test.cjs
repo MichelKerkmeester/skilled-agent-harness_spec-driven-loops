@@ -172,6 +172,19 @@ for (const spec of MARK_POLICY) {
   test(`mark-policy refuses ${spec.name}`, () => runFileCase(spec));
 }
 
+// ── emphasis-budget ─────────────────────────────────────────────────────────────────────────────
+const EMPHASIS_BUDGET = [
+  { name: 'a second row taking the emphasis', file: 'assets/templates/bar-columns.html',
+    from: "{ label: 'BRM', value: 628 }", to: "{ label: 'BRM', value: 628, lead: true }",
+    family: 'emphasis-budget', expect: /2 rows are marked lead/ },
+  { name: 'a lead rule no row reaches', file: 'assets/templates/bar-rows.html',
+    from: ", lead: true", to: "",
+    family: 'emphasis-budget', expect: /defined and never reaches the page/ },
+];
+for (const spec of EMPHASIS_BUDGET) {
+  test(`emphasis-budget refuses ${spec.name}`, () => runFileCase(spec));
+}
+
 // ── tooltip-indicator ───────────────────────────────────────────────────────────────────────────
 const TOOLTIP_INDICATOR = [
   { name: 'a kind outside the vocabulary', file: 'assets/templates/bar-line-composed.html',
@@ -292,6 +305,12 @@ const PACKAGE_CASES = [
   { name: 'style-reference refuses a carried file that changed under its pin',
     mutate: (d) => fs.appendFileSync(path.join(d, 'assets', 'style-reference', 'evilcharts', 'tokens.json'), '\n'),
     family: 'style-reference', expect: /pinned at .* and hashes to/ },
+  { name: 'palette-source refuses a figure that draws its readings in the ink',
+    mutate: (d) => editPalette(d, (p) => {
+      p.systems.neutral.series[0] = p.chrome.ink;
+      p.derivation.roles['neutral.series[0]'] = '--foreground';
+    }),
+    family: 'palette-source', expect: /draws series 1 in the ink on the light ground/ },
   { name: 'palette-source refuses a ranked system that reverses',
     mutate: (d) => {
       const file = path.join(d, 'assets', 'color', 'palettes.json');
