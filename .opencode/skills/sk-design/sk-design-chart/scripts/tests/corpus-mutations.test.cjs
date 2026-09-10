@@ -78,7 +78,6 @@ function copyPackage() {
   for (const part of PACKAGE_PARTS) {
     fs.cpSync(path.join(ROOT, ...part), path.join(directory, ...part), { recursive: true });
   }
-  fs.copyFileSync(path.join(ROOT, 'assets', 'gallery.html'), path.join(directory, 'assets', 'gallery.html'));
   return directory;
 }
 
@@ -366,13 +365,6 @@ const REMAINING_FILE_CASES = [
   { name: 'table-disclosure refuses a table that starts folded', file: 'assets/templates/bar-columns.html',
     from: '<details class="data" open>', to: '<details class="data">',
     family: 'table-disclosure', expect: /does not carry open/ },
-  { name: 'frame-height refuses a form that never posts its height', file: 'assets/templates/bar-columns.html',
-    from: "window.parent.postMessage({ chartHeight: document.documentElement.scrollHeight }, '*');",
-    to: "void document.documentElement.scrollHeight;",
-    family: 'frame-height', expect: /never posts chartHeight/ },
-  { name: 'frame-height refuses a form that posts its height only once', file: 'assets/templates/bar-columns.html',
-    from: "new ResizeObserver(postHeight).observe(document.documentElement);", to: "postHeight();",
-    family: 'frame-height', expect: /once and never again/ },
   { name: 'table-disclosure refuses a table with no disclosure', file: 'assets/templates/bar-columns.html',
     from: '<details class="data" open', to: '<section class="data" data-open',
     family: 'table-disclosure', expect: /details/ },
@@ -462,7 +454,7 @@ for (const spec of IN_PLACE_CASES) {
   test(spec.name, () => runPackageFileCase(spec));
 }
 
-// The last of them read a reference document, the gallery, or the dark palette, so each mutates
+// The last of them read a reference document or the dark palette, so each mutates
 // the package rather than one form.
 const LAST_CASES = [
   { name: 'catalog refuses a corpus with no index',
@@ -477,9 +469,6 @@ const LAST_CASES = [
         '| neutral | assets/templates/bar-columns.html |', '| invented | assets/templates/bar-columns.html |'), 'utf8');
     },
     family: 'catalog-system', expect: /./ },
-  { name: 'gallery refuses a corpus with nothing showing it',
-    mutate: (d) => fs.rmSync(path.join(d, 'assets', 'gallery.html')),
-    family: 'gallery', expect: /no gallery has been built/ },
   { name: 'pointer-contract-coverage refuses a form with no contract row',
     mutate: (d) => {
       const from = path.join(d, 'assets', 'templates', 'bar-columns.html');

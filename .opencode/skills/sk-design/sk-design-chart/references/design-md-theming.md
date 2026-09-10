@@ -155,7 +155,7 @@ the input file.
 `check-corpus.cjs` keeps the stock source-equality branch for `neutral`, `ordered` and
 `categorical`. For a `design-md` block it instead requires the provenance comment and checks the
 inline values in both themes against the same gates. `--extra DIR` runs the file-level checks over
-HTML deliveries outside the package without adding them to the catalog or gallery:
+HTML deliveries outside the package without adding them to the catalog:
 
 ```bash
 node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra scratch/themed

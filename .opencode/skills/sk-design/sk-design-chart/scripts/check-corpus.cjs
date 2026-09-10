@@ -29,7 +29,6 @@ const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
 const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
 const POINTER_CONTRACT = path.join(PACKAGE_ROOT, 'references', 'template-contract.md');
-const GALLERY = path.join(PACKAGE_ROOT, 'assets', 'gallery.html');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
 const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
 
@@ -159,8 +158,8 @@ function canonicalDarkBlock(palette, systemId) {
   const lines = [];
   lines.push(`/* CHART_PALETTE_DARK:BEGIN system=${systemId} */`);
   // The media block yields to an explicit light pin. Without the exclusion a reader on a dark
-  // machine could never see the light rendering of a form, and the gallery's light column would
-  // silently show dark twice.
+  // machine could never see the light rendering of a form, and a capture asked for light would
+  // silently come back dark.
   lines.push('@media (prefers-color-scheme: dark) {');
   lines.push('  :root:not([data-scheme="light"]) {');
   for (const [prop, value] of customPropertiesDark(palette, systemId)) {
@@ -2205,27 +2204,6 @@ function checkTableDisclosure(file, src) {
     'the disclosure does not carry open. The table starts open on every form, because the values are part of the deliverable and a table folded by default is a table most readers never see');
 }
 
-// A page that frames a form on disk cannot measure it: each file is its own origin, so the frame
-// reads nothing across the boundary and a fixed frame height clips whichever form runs taller.
-// Every form reports its own height to a parent instead, and this holds that the report exists
-// in code rather than in a comment, because the gallery's frames stay clipped if a form goes
-// quiet and nothing else would notice.
-function checkFrameHeight(file, src) {
-  const where = file.split(path.sep).join('/');
-  if (!/^(assets\/templates\/|--extra\/)/.test(where)) return;
-  const { scripts } = regionsOf(stripHtmlComments(src));
-  const code = stripJsComments(scripts.join('\n'));
-  tally('frame-height', 2);
-  if (!/postMessage\(\s*\{\s*chartHeight\s*:/.test(code)) {
-    record('frame-height', 'error', file,
-      'the form never posts chartHeight to a parent, so a page framing it has no way to size the frame and clips it');
-  }
-  if (!/new ResizeObserver\(/.test(code)) {
-    record('frame-height', 'error', file,
-      'the form posts its height once and never again. A table opening or a font settling changes the height after load, and a frame sized once stays wrong');
-  }
-}
-
 // A single mark may sweep along its own ramp, and only where the system already encodes
 // magnitude. A sweep restates an ordering the data has; the same sweep on an unordered or a
 // merely ranked series invents one.
@@ -3383,10 +3361,7 @@ function main() {
   checkStyleReference();
   for (const theme of THEMES) checkPaletteSource(palette, theme);
 
-  // The gallery frames every chart rather than being one. Running the chart rules over it would
-  // ask a contact sheet for a data block and a colour system it has no business carrying; its own
-  // obligation is completeness, which checkGallery below is what enforces.
-  const internalFiles = htmlFilesUnder(ASSET_ROOT).filter((f) => f !== GALLERY);
+  const internalFiles = htmlFilesUnder(ASSET_ROOT);
   const extraFiles = extraDirectory ? htmlFilesUnder(extraDirectory) : [];
   const files = [...internalFiles, ...extraFiles];
   const templateIdentities = new Map();
@@ -3424,7 +3399,6 @@ function main() {
     checkRampProse(name, src);
     checkMetricBlock(name, src, isExtra);
     checkTableDisclosure(name, src);
-    checkFrameHeight(name, src);
     checkSourceLine(name, src);
     checkGradientSweep(name, src, systemId);
     checkSeriesMapping(name, src, palette, systemId);
@@ -3447,42 +3421,6 @@ function main() {
   // joins it by existing.
   checkGeometryBlock([...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(path.join(ASSET_ROOT, 'color'))]);
 
-
-/* ------------------------------------------------------------------ gallery */
-
-// A hand-listed gallery omits the form somebody added last week, and the omission looks exactly
-// like a form that was never meant to be there. This rule makes the omission impossible to ship:
-// the page is generated from the templates directory, and a page that has fallen behind the
-// directory is an error rather than a stale artifact nobody happens to open.
-function checkGallery(templateFiles) {
-  tally('gallery', 1 + templateFiles.length);
-  if (!fs.existsSync(GALLERY)) {
-    record('gallery', 'error', rel(GALLERY),
-      'no gallery has been built, so nothing shows the corpus in both colour schemes. Build it with scripts/build-gallery.cjs');
-    return;
-  }
-  const html = fs.readFileSync(GALLERY, 'utf8');
-  tally('gallery', 1);
-  if (!/chartHeight/.test(html)) {
-    record('gallery', 'error', rel(GALLERY),
-      'the gallery never listens for chartHeight, so every frame keeps a guessed height and clips the forms that run taller. Rebuild it with scripts/build-gallery.cjs');
-  }
-  const declared = /<meta name="chart-gallery" content="(\d+)"/.exec(html);
-  if (!declared) {
-    record('gallery', 'error', rel(GALLERY), 'the gallery declares no form count, so it cannot say what it claims to cover');
-  } else if (Number(declared[1]) !== templateFiles.length) {
-    record('gallery', 'error', rel(GALLERY),
-      `the gallery says it carries ${declared[1]} forms and the corpus has ${templateFiles.length}. Rebuild it with scripts/build-gallery.cjs`);
-  }
-  for (const file of templateFiles) {
-    const form = path.basename(file, '.html');
-    // Two frames per form, because the point of the page is the comparison between schemes.
-    const frames = (html.match(new RegExp(`templates/${form}\\.html`, 'g')) || []).length;
-    if (frames >= 2) continue;
-    record('gallery', 'error', rel(GALLERY),
-      `${form} appears in ${frames} gallery frame(s) and needs two, one per colour scheme. A form missing from the gallery is a form nobody reviews`);
-  }
-}
 
 /* ------------------------------------------------------- pointer-contract coverage */
 
@@ -3536,7 +3474,6 @@ function checkContractCoverage(templateFiles) {
 }
 
   checkContractCoverage(htmlFilesUnder(TEMPLATE_DIR));
-  checkGallery(htmlFilesUnder(TEMPLATE_DIR));
 
   const catalog = parseCatalog();
   checkCatalogResolves(catalog, templateIdentities);

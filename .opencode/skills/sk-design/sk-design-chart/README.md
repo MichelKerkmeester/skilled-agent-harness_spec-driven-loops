@@ -52,7 +52,7 @@ corpus gates, refuses to write on a failure, and places a hash-bearing provenanc
 theme blocks. Site extraction remains the job of `sk-design-md-generator`; this packet applies the
 reference it receives.
 
-The visual register is shared by the corpus: a 16px semibold title, a muted 14px description, a two-row footer, bare axes with 12px tabular ticks, a horizontal dashed grid, measured bar and line geometry, positioned HTML tooltip cards and keyed legend chips. The gallery carries each template's light or dark scheme through a `data-scheme` attribute so the standalone files and their delivery frames use the same palette selectors.
+The visual register is shared by the corpus: a 16px semibold title, a muted 14px description, a two-row footer, bare axes with 12px tabular ticks, a horizontal dashed grid, measured bar and line geometry, positioned HTML tooltip cards and keyed legend chips. Each template accepts `?scheme=light` or `?scheme=dark` and sets `data-scheme` before it paints, so a capture can pin a scheme the host machine does not have.
 
 One form is one file, so there is no gallery page to lift a block out of. The packet holds no per-request logic. It holds a corpus and the rules for picking from it.
 

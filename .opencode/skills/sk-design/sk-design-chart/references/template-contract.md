@@ -377,8 +377,9 @@ The second block sits inside the same style element, immediately after the light
 The delivered file still follows the reader's operating-system preference by default. For a
 deterministic capture, it also accepts `?scheme=light` or `?scheme=dark` and sets
 `data-scheme` on the document before the chart paints; the matching dark projection sits beside
-the media query. The gallery passes that query to every frame, because pinning `color-scheme` on
-an iframe does not change what `prefers-color-scheme` resolves inside the template. A browser that
+the media query. The query exists because a capture on a dark machine has no other way to see the
+light rendering: pinning `color-scheme` from outside does not change what `prefers-color-scheme`
+resolves inside the document. A browser that
 never resolves either signal paints the light block, and print still has the light document path.
 
 Two blocks double the surface a drift can hide in, which is the cost of the amendment and the reason the ceiling is two rather than open. The check counts the sentinels and fails a third block, a repeated pair and a value that disagrees with the source in either direction.

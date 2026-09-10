@@ -7,16 +7,6 @@
 <meta name="chart-color-system" content="neutral">
 <script>
   document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
-  // A page framing this file cannot measure it: a frame on disk is its own origin, so the parent
-  // reads nothing across it. The document reports its own height instead, on load and on every
-  // change, and a page that is not a frame posts to nobody.
-  if (window.parent !== window) {
-    var postHeight = function () {
-      window.parent.postMessage({ chartHeight: document.documentElement.scrollHeight }, '*');
-    };
-    window.addEventListener('load', postHeight);
-    new ResizeObserver(postHeight).observe(document.documentElement);
-  }
 </script>
 <title>Two variables against each other</title>
 <style>

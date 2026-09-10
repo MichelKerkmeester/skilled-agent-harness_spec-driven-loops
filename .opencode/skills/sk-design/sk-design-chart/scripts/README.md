@@ -81,7 +81,7 @@ and applies the text, mark, ramp, separation and emphasis gates. A malformed com
 ratio is an error; stock systems still use the original byte-equality path.
 
 `--extra DIR` adds every `.html` file under `DIR` to those file-level checks without adding it to
-the package catalog, gallery or shared geometry set. This is the proof path for a delivery written
+the package catalog or shared geometry set. This is the proof path for a delivery written
 outside `assets/` and is deliberately separate from the stock corpus inventory.
 
 `series-mapping` is the newest and the one worth reading the reason for. Every other colour rule

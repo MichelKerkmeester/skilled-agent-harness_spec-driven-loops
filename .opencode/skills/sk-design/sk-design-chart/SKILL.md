@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.4.0.0
+version: 2.5.0.0
 metadata:
   packetKind: workflow
 ---
@@ -136,7 +136,7 @@ route that extraction to `sk-design-md-generator`; this packet owns application,
 
 Twenty-nine chart forms across six question families: comparison, composition, time, distribution, relationship and matrix. `references/catalog.md` is the index and the corpus check reads it in both directions, so a row naming a missing file and a file carrying no row both fail. One form is one file. There are no gallery pages to lift a block out of, because what reaches a reader is a delivery and a gallery ships every other form's demo data alongside the one they asked for. When no row answers the question in front of you, report the gap rather than improvising a form.
 
-The corpus shares a measured visual register for card anatomy, type scale, bare axes, bar and line geometry, positioned HTML tooltip cards and keyed legend chips. The gallery passes each frame's light or dark scheme through a `data-scheme` attribute because pinning an iframe's `color-scheme` does not change the `prefers-color-scheme` selectors the templates honour.
+The corpus shares a measured visual register for card anatomy, type scale, bare axes, bar and line geometry, positioned HTML tooltip cards and keyed legend chips. Each template accepts `?scheme=light` or `?scheme=dark` and sets `data-scheme` before it paints, because a capture on a dark machine has no other way to see the light rendering.
 
 ---
 

@@ -41,7 +41,6 @@ const PER_FILE_TIMEOUT_MS = 60000;
 // all of it is megabytes that get rewritten on every palette change. Neither is worth having: what
 // the sheet has to be is complete, and the corpus check asserts that against the directory. It is
 // a page to open, not a picture to keep.
-const NOT_A_FIGURE = /(?:^|\/)gallery\.html$/;
 
 function htmlFilesUnder(root) {
   const out = [];
@@ -49,7 +48,7 @@ function htmlFilesUnder(root) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) walk(full);
-      else if (entry.name.endsWith('.html') && !NOT_A_FIGURE.test(full)) out.push(full);
+      else if (entry.name.endsWith('.html')) out.push(full);
     }
   })(root);
   return out.sort();
