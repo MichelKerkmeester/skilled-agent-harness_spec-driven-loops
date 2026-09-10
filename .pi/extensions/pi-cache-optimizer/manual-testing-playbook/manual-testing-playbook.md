@@ -248,7 +248,7 @@ Desired user-visible outcome: an operator who opts out gets no payload mutation.
 Verify a response carrying no cache fields is counted as unmeasured and left out of the hit ratio, while its tokens and cost still record.
 
 #### Scenario Contract
-Prompt: send a normal request on a channel that omits cache fields from its usage block.
+Prompt: send a normal request on a model or proxy that omits cache fields from its usage block.
 
 Confirm `unmeasuredRequests` increments, tokens and cost increment, and `hitRequests` does not.
 
@@ -263,7 +263,7 @@ Desired user-visible outcome: the report distinguishes "we could not measure thi
 Verify an explicit `cacheRead: 0` prices as free rather than reporting unpriced, while a missing or negative rate still does not price.
 
 #### Scenario Contract
-Prompt: send a request on a model whose cost block has a positive input rate and a zero cached-read rate.
+Prompt: send a request on a model whose cost block states a positive input rate and a zero cached-read rate.
 
 Confirm `pricedRequests` increments and the report shows a real cost and savings figure.
 
@@ -282,7 +282,7 @@ Desired user-visible outcome: a model with free cached reads reports its true sa
 Verify `reportsCacheUsage: false` routes a model's requests to unmeasured rather than to a miss, and that an unset flag changes nothing.
 
 #### Scenario Contract
-Prompt: send a normal request on a model whose compat block declares the flag false.
+Prompt: send a normal request on a model whose compat block declares `reportsCacheUsage: false`.
 
 Confirm `unmeasuredRequests` increments with tokens and cost still recorded, and that removing the flag restores prior behavior.
 
@@ -301,7 +301,7 @@ Desired user-visible outcome: a model that cannot report is set aside instead of
 Verify a repeated request and a run of differing failures escalate on their own counters, each with a message describing what actually happened.
 
 #### Scenario Contract
-Prompt: drive consecutive all-failed tool batches, first with an identical error and then with differing errors.
+Prompt: drive a turn whose whole tool batch fails, first with an identical error, then with differing errors.
 
 Confirm identical failures warn on the 3rd batch and abort on the 4th, while differing failures warn on the 4th turn and abort on the 6th.
 
@@ -320,7 +320,7 @@ Desired user-visible outcome: the turn stops before the budget does, and the mes
 Verify an edit is refused once lines were inserted or removed since the read, including where an identical line has shifted into the target position.
 
 #### Scenario Contract
-Prompt: read a file with repeated identical lines, insert a line above the target, then replay the original edit.
+Prompt: read a file with repeated identical lines, insert a line above the target, then attempt the original edit.
 
 Confirm the edit is refused naming the line count at read time against the count now, and that the file is unchanged.
 
@@ -339,7 +339,7 @@ Desired user-visible outcome: a stale edit fails loudly instead of landing on th
 Verify a learned `prompt_cache_key` rejection survives a process restart, and that `reset` clears it for the active model.
 
 #### Scenario Contract
-Prompt: trigger a matching 400, restart the process, then run `/cache-optimizer reset`.
+Prompt: trigger a matching 400 on a model, restart, then run `/cache-optimizer reset`.
 
 Confirm the restarted process omits the key without a second 400, and that after reset the key is attempted again.
 
