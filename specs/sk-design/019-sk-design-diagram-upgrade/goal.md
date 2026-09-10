@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-019-sk-design-diagram-upgrade"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -89,13 +89,13 @@ The operator holds this directive as the session objective. Whenever anything ab
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs` prints `RESULT: PASSED`
-- [ ] `node --test .opencode/skills/sk-design/sk-design-diagram/scripts/tests/` passes, and its completeness guard reports no family without a case
-- [ ] `apply-diagram-tokens.cjs --default` over the four templates produces a byte-identical copy of each
-- [ ] Every hex literal in `assets/examples` and `assets/templates` is a role value of that file's skin in the token source, and `apply-diagram-tokens.cjs --default` reproduces every example byte for byte
-- [ ] Every in-scope document's `version` follows the Frontmatter Versioning Standard (`SKILL.md` is the anchor, children inherit major.minor) and the anchor is bumped for this round; `.github/workflows/diagram-corpus.yml` green on a push
-- [ ] A dated capture-review report exists under `benchmark/reports/` with no hand-authored markdown
-- [ ] `validate.sh specs/sk-design/019-sk-design-diagram-upgrade --strict --recursive` reports `RESULT: PASSED` for all seven folders
+- [x] `node .opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs` prints `RESULT: PASSED`
+- [x] `node --test .opencode/skills/sk-design/sk-design-diagram/scripts/tests/` passes, and its completeness guard reports no family without a case
+- [x] `apply-diagram-tokens.cjs --default` over the four templates produces a byte-identical copy of each
+- [x] Every hex literal in `assets/examples` and `assets/templates` is a role value of that file's skin in the token source, and `apply-diagram-tokens.cjs --default` reproduces every example byte for byte
+- [x] Every in-scope document's `version` follows the Frontmatter Versioning Standard (`SKILL.md` is the anchor, children inherit major.minor) and the anchor is bumped for this round; `.github/workflows/diagram-corpus.yml` green on a push
+- [x] A dated capture-review report exists under `benchmark/reports/` with no hand-authored markdown
+- [x] `validate.sh specs/sk-design/019-sk-design-diagram-upgrade --strict --recursive` reports `RESULT: PASSED` for all seven folders
 <!-- /ANCHOR:completion -->
 
 ---

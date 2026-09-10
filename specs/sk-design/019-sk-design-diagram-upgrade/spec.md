@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-10 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -118,11 +118,11 @@ not, by evidence; the phases after it build in the order the evidence sets.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-upgrade-research/` | Five-iteration deep research: 29 cited findings, the sort into enforceable and judged, and the phases below | Complete |
-| 2 | `002-skin-contract/` | The seven contract decisions, the derivation record, one locus per contract, the command names | Planned |
-| 3 | `003-applicator-and-sentinels/` | A sentinel palette block per file; the applicator that reproduces the stock bytes with `--default` | Planned |
-| 4 | `004-corpus-and-catalog/` | The derivation-driven repaint, fresh captures, the question-keyed catalog read both ways, the one-locus pass over `SKILL.md` | Planned |
-| 5 | `005-checker-mutations-and-ci/` | The diagram corpus checker, the mutation suite with the four refusals and the completeness triple, the blocking CI gate | Planned |
-| 6 | `006-capture-and-judgment/` | The permanent human half: the formalized capture review and the one-way graduation into the checker | Planned |
+| 2 | `002-skin-contract/` | The seven contract decisions, the derivation record, one locus per contract, the command names | Complete |
+| 3 | `003-applicator-and-sentinels/` | A sentinel palette block per file; the applicator that reproduces the stock bytes with `--default` | Complete |
+| 4 | `004-corpus-and-catalog/` | The derivation-driven repaint, fresh captures, the question-keyed catalog read both ways, the one-locus pass over `SKILL.md` | Complete |
+| 5 | `005-checker-mutations-and-ci/` | The diagram corpus checker, the mutation suite with the four refusals and the completeness triple, the blocking CI gate | Complete |
+| 6 | `006-capture-and-judgment/` | The permanent human half: the formalized capture review and the one-way graduation into the checker | Complete |
 
 > The order is forced, not preferred: the mutation suite refuses a case whose base already
 > fails and the corpus fails its own rules today; the CI doctrine is green with no backlog; the

@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -153,17 +153,17 @@
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T23:23:35.917Z",
+    "last_save_at": "2026-09-10T23:26:23.511Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:14a14c11952df599579d76801cb7e225cce0fc82a5fc4695141c7b38fc794dcc",
+    "source_fingerprint": "sha256:50f5e05d306ca1df5d0d2c8d120fee7f0b40c5e68f69bd611f159558c84e0d7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d001a5143db82baa4fc0e1a2d4620dd72e718eeac618f37d505e05f0cd62bcba"
+      "spec.md": "8b335122622635ccf1476a2eb6b0d62f915447c11f1698af1023c5564bd36d77"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-10T22:08:34.106Z"
