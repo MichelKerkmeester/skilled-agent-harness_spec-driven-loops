@@ -13,12 +13,16 @@ const { contrast, round2 } = require('./color-gates.cjs');
 
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
+const EXAMPLES_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
 const DEFAULT_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'diagram-palette.json');
 const SKINS = ['light', 'dark', 'terminal'];
 const BEGIN = /\/\*\s*DIAGRAM_PALETTE:BEGIN\s+skin=([a-z0-9-]+)\s*\*\//;
 const END = /\/\*\s*DIAGRAM_PALETTE:END\s*\*\//;
 const DECL = /^(\s*--color-([a-z0-9-]+)\s*:\s*)(.*?)(\s*;.*)$/;
 const HEX = /^#[0-9a-f]{6}$/i;
+// Examples carry their colours as bare literals rather than a palette block, so a token is
+// matched whole: six hex digits that are not part of a longer run.
+const HEX_LITERAL = /(?<![0-9a-f])#[0-9a-f]{6}(?![0-9a-f])/gi;
 const TEXT_ROLES = new Set(['ink', 'muted', 'soft']);
 // Surfaces and chrome are structure rather than marks: a second paper tone sits beside its
 // own ground by design, and the terminal skin's soft is its inactive-dot tone, not a text
@@ -42,11 +46,15 @@ function readText(file, label) {
 }
 
 function parseArgs(argv) {
-  const options = { isDefault: false, source: null, out: null, forms: null, skin: null };
+  const options = { isDefault: false, isExamples: false, source: null, out: null, forms: null, skin: null };
   for (let i = 0; i < argv.length; i += 1) {
     const flag = argv[i];
     if (flag === '--default') {
       options.isDefault = true;
+      continue;
+    }
+    if (flag === '--examples') {
+      options.isExamples = true;
       continue;
     }
     const value = argv[i + 1];
@@ -65,12 +73,12 @@ function parseArgs(argv) {
   return options;
 }
 
-function templateNames(forms) {
-  if (!forms) return fs.readdirSync(TEMPLATE_DIR).filter((name) => name.endsWith('.html'))
+function htmlNames(dir, forms, label) {
+  if (!forms) return fs.readdirSync(dir).filter((name) => name.endsWith('.html'))
     .map((name) => name.slice(0, -5)).sort();
   forms.forEach((name) => {
-    if (!/^[a-z0-9-]+$/.test(name)) fail(`template name is not lower-case kebab: ${name}`);
-    if (!fs.existsSync(path.join(TEMPLATE_DIR, `${name}.html`))) fail(`template does not exist: ${name}`);
+    if (!/^[a-z0-9-]+$/.test(name)) fail(`${label} name is not lower-case kebab: ${name}`);
+    if (!fs.existsSync(path.join(dir, `${name}.html`))) fail(`${label} does not exist: ${name}`);
   });
   return [...new Set(forms)];
 }
@@ -175,16 +183,61 @@ function paintTemplate(palette, options, name) {
   return { source, skin, output: block.output, notes: gated.notes, failure: gated.failure };
 }
 
+// An example has no palette block to key on, so each literal is mapped back to a role by the
+// value the stock source gives that role, then repainted with the value the requested source
+// gives it. The map has to come from the stock: an example carries the stock's bytes, and a
+// source that moved a value would otherwise stop recognising the very literal it means to
+// change. A literal the stock skin does not carry is refused rather than guessed.
+function paintExample(palette, stock, name) {
+  const config = stock.examples || palette.examples || {};
+  const file = path.join(EXAMPLES_DIR, `${name}.html`);
+  const source = readText(file, 'example');
+  const skin = (config.skinByFile || {})[`${name}.html`] || config.defaultSkin;
+  if (!skin || !stock.skins[skin]) fail(`${file} has no skin in the stock token source`);
+  if (!palette.skins[skin]) fail(`${file} needs skin ${skin}, which the requested source lacks`);
+  const roles = Object.fromEntries(Object.entries(palette.skins[skin].roles)
+    .filter(([, entry]) => HEX.test(entry.value))
+    .map(([role, entry]) => [role, entry.value]));
+  const byValue = new Map();
+  Object.entries(stock.skins[skin].roles).forEach(([role, entry]) => {
+    if (HEX.test(entry.value) && !byValue.has(entry.value.toLowerCase())) byValue.set(entry.value.toLowerCase(), role);
+  });
+  const used = new Set();
+  const output = source.replace(HEX_LITERAL, (literal) => {
+    const role = byValue.get(literal.toLowerCase());
+    if (!role) fail(`${file} uses ${literal}, which maps to no ${skin} role in the stock source`);
+    if (!(role in roles)) fail(`${file} needs ${skin} ${role}, which the requested source lacks`);
+    used.add(role);
+    return roles[role];
+  });
+  const gated = checkGates(palette, skin, [...used]);
+  return { skin, output, notes: gated.notes, failure: gated.failure };
+}
+
 function main(argv) {
   try {
     const options = parseArgs(argv);
-    const palette = readPalette(options.isDefault ? DEFAULT_SOURCE : options.source);
+    const stock = readPalette(DEFAULT_SOURCE);
+    const palette = options.isDefault ? stock : readPalette(options.source);
+    if (options.isExamples && !palette.examples) fail('token source has no examples section');
     const outDir = path.resolve(options.out);
-    const inside = outDir === TEMPLATE_DIR || outDir.startsWith(TEMPLATE_DIR + path.sep);
-    if (inside) fail('refusing to write inside assets/templates; the stock templates are immutable');
+    const sourceDir = options.isExamples ? EXAMPLES_DIR : TEMPLATE_DIR;
+    const inside = outDir === sourceDir || outDir.startsWith(sourceDir + path.sep);
+    if (inside) {
+      fail(`refusing to write inside ${path.relative(PACKAGE_ROOT, sourceDir)};`
+        + ` the stock ${options.isExamples ? 'examples' : 'templates'} are immutable`);
+    }
     fs.mkdirSync(outDir, { recursive: true });
-    for (const name of templateNames(options.forms)) {
-      const painted = paintTemplate(palette, options, name);
+    const untokenized = new Set(((palette.examples || {}).untokenized || [])
+      .map((entry) => path.basename(entry)));
+    for (const name of htmlNames(sourceDir, options.forms, options.isExamples ? 'example' : 'template')) {
+      if (options.isExamples && untokenized.has(`${name}.html`)) {
+        console.log(`SKIP ${name}.html untokenized`);
+        continue;
+      }
+      const painted = options.isExamples
+        ? paintExample(palette, stock, name)
+        : paintTemplate(palette, options, name);
       if (painted.failure) {
         console.log(`FAILED ${name} ${painted.failure}`);
         console.log('RESULT: FAILED');
@@ -195,9 +248,9 @@ function main(argv) {
       fs.writeFileSync(path.resolve(written), painted.output, 'utf8');
       console.log(`WROTE ${written}`);
     }
-    // The out dir mirrors the template set, so files that are not themes travel unchanged.
-    for (const name of fs.readdirSync(TEMPLATE_DIR).filter((entry) => !entry.endsWith('.html'))) {
-      const extra = path.join(TEMPLATE_DIR, name);
+    // The out dir mirrors the source set, so files that are not themes travel unchanged.
+    for (const name of fs.readdirSync(sourceDir).filter((entry) => !entry.endsWith('.html'))) {
+      const extra = path.join(sourceDir, name);
       if (fs.statSync(extra).isFile()) {
         fs.copyFileSync(extra, path.join(outDir, name));
         console.log(`WROTE ${path.join(options.out, name)}`);

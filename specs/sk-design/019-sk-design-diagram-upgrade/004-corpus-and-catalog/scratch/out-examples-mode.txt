@@ -1,0 +1,35 @@
+{"timestamp":"2026-09-10T22:35:39.099Z","runtime":"claude","status":"ok","freshness":"live","durationMs":1445,"cacheHit":false,"skillLabel":"sk-design"}
+Done. Both gates pass and both IDENTICAL lines print.
+
+**Verification (run from the repo root, output and exit status read)**
+
+```
+$ node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs --default --examples --out /tmp/dx | tail -3
+WROTE /tmp/dx/example-venn.html
+WROTE /tmp/dx/README.md
+RESULT: PASSED
+$ diff -rq -x example-sequence-oauth-dark.html /tmp/dx .opencode/skills/sk-design/sk-design-diagram/assets/examples && echo EXAMPLES-IDENTICAL
+EXAMPLES-IDENTICAL
+
+$ node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs --default --out /tmp/dt | tail -1
+RESULT: PASSED
+$ diff -rq /tmp/dt .opencode/skills/sk-design/sk-design-diagram/assets/templates && echo TEMPLATES-IDENTICAL
+TEMPLATES-IDENTICAL
+```
+
+BSD `diff` has no `--exclude`, so `-x` was used. Without it the diff reports exactly `Only in .../assets/examples: example-sequence-oauth-dark.html`, the file the mode skips as untokenized.
+
+**Supporting evidence**
+
+- Negative control: the pre-change script (HEAD copy in `/tmp/old-script`) exits 2 with `ERROR: unknown argument: --examples`.
+- Refusal path: a temp palette with light `muted` changed makes the run exit 2 with `ERROR: .../example-architecture.html uses #4f5d75, which maps to no light role` and writes no file. The value-keyed map is the briefed algorithm, so a custom source must carry the corpus values or it refuses.
+- Census: 1,577 six-digit literals across the examples, all inside `--color-*` declarations or paint attributes. Zero sit in titles or HTML comments, so the spec's §8 prose-literal edge case is vacuous on this corpus.
+- `node --check` exit 0, `check-comment-hygiene.sh` exit 0 (run under `python3`, the file behind that name is Python).
+- State: one file edited, uncommitted, dirty tree (other pre-existing modifications untouched). All generated output went to `/tmp`. The pre-existing JSDoc header style was left alone, unrelated to this change.
+
+**Summary (three lines)**
+
+1. Added `--examples` to `apply-diagram-tokens.cjs`: skin per file from `examples.skinByFile` or `defaultSkin`, basename skip from `examples.untokenized` with `SKIP <name> untokenized`, literals rewritten through the skin's value-to-role map with refusal on an unmapped value, gates run over the roles used, and non-html extras copied to `--out`.
+2. Verification: examples run 33 html plus README byte-identical to source with 1 SKIP, templates run byte-identical, both gates exit 0.
+3. New line count: 265 (was 217, +48).
+EXIT 0

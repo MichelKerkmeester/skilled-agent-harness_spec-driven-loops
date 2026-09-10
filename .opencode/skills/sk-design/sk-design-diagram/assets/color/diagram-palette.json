@@ -43,6 +43,34 @@
         "link": {
           "value": "#2e5aa8",
           "kind": "primary"
+        },
+        "backend-fill": {
+          "value": "#ffffff",
+          "kind": "primary"
+        },
+        "high-level-chevron": {
+          "value": "#3d4460",
+          "kind": "primary"
+        },
+        "series-1": {
+          "value": "#7c8f6f",
+          "kind": "primary"
+        },
+        "series-2": {
+          "value": "#5e7a9b",
+          "kind": "primary"
+        },
+        "series-3": {
+          "value": "#b8915a",
+          "kind": "primary"
+        },
+        "series-4": {
+          "value": "#9c6b50",
+          "kind": "primary"
+        },
+        "series-5": {
+          "value": "#6e6479",
+          "kind": "primary"
         }
       }
     },
@@ -117,11 +145,18 @@
     "markOnPaper": 3.0,
     "accentAgainstInk": 1.5,
     "ungated": [
+      "backend-fill",
+      "bar",
+      "border",
+      "high-level-chevron",
+      "page",
       "rule",
       "rule-solid",
-      "border",
-      "bar",
-      "page"
+      "series-1",
+      "series-2",
+      "series-3",
+      "series-4",
+      "series-5"
     ]
   },
   "departures": [
@@ -142,13 +177,19 @@
       "why": "structural use only; may not carry sublabel or eyebrow text"
     }
   ],
-  "untokenized": [
-    "assets/examples/example-sequence-oauth-dark.html"
-  ],
   "pins": {
     "assets/templates/template-dark.html": "11578e5d3d3c4c68e352ff58c1327e6ee7408fc545dfd19fc11255d48a69f603",
     "assets/templates/template-full.html": "1a93dfb1b62d8b4bc29d0d970f8b3ec00746deeb48fbae95aa9d0948fde95a41",
     "assets/templates/template-terminal.html": "baf735921a713edd97196e3275f907d362b0631dc27f2a4b8291ef6e7ca64728",
     "assets/templates/template.html": "4cf48c02bd393440b2a83f3f46b018caacf8f93b27fb966d38cb2d2153473846"
+  },
+  "examples": {
+    "skinByFile": {
+      "example-loop-terminal.html": "terminal"
+    },
+    "defaultSkin": "light",
+    "untokenized": [
+      "assets/examples/example-sequence-oauth-dark.html"
+    ]
   }
 }

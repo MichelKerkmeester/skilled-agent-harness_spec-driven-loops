@@ -104,7 +104,7 @@ A self-contained palette for the terminal-window primitive (see [primitive-termi
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 ```
 
-**Fallback chains ship already.** Every template root declares them — `'Geist', system-ui, sans-serif`, `'Instrument Serif', serif`, `'Geist Mono', ui-monospace, monospace` (`assets/templates/template.html` and its three siblings) — and every inline SVG `font-family` resolves to one of those chains. A file opened with no network therefore renders in the fallback face, not in a browser default. The Google Fonts link above is the one remote resource a diagram may carry; the corpus check allowlists that host and nothing else.
+**Fallback chains ship already.** Every template root declares them — `--font-sans: 'Geist', system-ui, sans-serif;` · `--font-serif: 'Instrument Serif', serif;` · `--font-mono: 'Geist Mono', ui-monospace, monospace;` (`assets/templates/template.html` and its three siblings) — and every inline SVG `font-family` resolves to one of those chains. A file opened with no network therefore renders in the fallback face, not in a browser default. The Google Fonts link above is the one remote resource a diagram may carry; the corpus check allowlists that host and nothing else.
 
 **Load-bearing rule:** Mono is for *technical* content (ports, commands, URLs, field types). Names go in Geist sans. Page title is Instrument Serif. Italic Instrument Serif is reserved for annotation callouts (see [primitive-annotation.md](../primitives/primitive-annotation.md)). **Never JetBrains Mono** as a blanket "dev" font.
 

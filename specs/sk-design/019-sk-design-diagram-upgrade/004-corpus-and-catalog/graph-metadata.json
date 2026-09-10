@@ -47,6 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/catalog.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/foundations/router-pseudocode.md",
       ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
       ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
       ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs",
@@ -90,6 +92,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-pseudocode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/foundations/router-pseudocode.md",
         "source": "derived"
       },
       {
@@ -187,23 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Batch",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Repaint 1,577 literals and four template roots through the applicator's copies, promoted after",
     "created_at": "2026-09-10T18:45:27Z",
-    "last_save_at": "2026-09-10T21:15:50.548Z",
+    "last_save_at": "2026-09-10T22:52:04.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d00a9b32d8ddaf0cf3753fcec5fb466b4f65b0b85efc6fc535f18cb08dd75a9",
+    "source_fingerprint": "sha256:33eae9b817a5ea893964c65cd6e596e18acddd155b87ec601d8f1c4c645255c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "391d56c1cc8f17567ab09ff338adb3a355dd4c9f747402b18f74037c3b054acc",
       "plan.md": "82a7e0d21754f57af3107b7c74275b37381a5894b22397f1a1133b8d816e6d12",
-      "tasks.md": "a284ee90c0db2f215c9dab780ff29025407139672b247b7c4e93a1c2fa211c52",
+      "tasks.md": "652e722a88019c13637c142c5aa51fccbfe271fb5f004a9852b6df92ee39fb70",
       "implementation-summary.md": "fb627d61765624c56192da4d4438579ac693947db877d8c769846f6bde8c1351"
     },
     "last_active_at": null

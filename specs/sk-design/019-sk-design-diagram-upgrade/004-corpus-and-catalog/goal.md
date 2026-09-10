@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "markdown-004-corpus-and-catalog"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -79,7 +79,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 ## 3. COMPLETION CRITERIA
 
 - [ ] `grep -ohE "#[0-9a-fA-F]{6}" .opencode/skills/sk-design/sk-design-diagram/assets/examples/*.html | wc -l` reports `1577` — the repaint reproduces the census (F2.1, F2.6)
-- [ ] `grep -cE "^\| [A-Za-z]" .opencode/skills/sk-design/sk-design-diagram/references/catalog.md` reports `27` — one row per canonical type, the examples-references lattice the catalog's own header-name parser checks in both directions (F4.1, F4.4)
+- [ ] `awk '/DIAGRAM_CATALOG:BEGIN/,/DIAGRAM_CATALOG:END/' .opencode/skills/sk-design/sk-design-diagram/references/catalog.md | grep -cE "^\| [a-z]"` reports `28` — the header row plus one row per canonical type — one row per canonical type, the examples-references lattice the catalog's own header-name parser checks in both directions (F4.1, F4.4)
 - [ ] `ls .opencode/skills/sk-design/sk-design-diagram/screenshots/examples/*.png .opencode/skills/sk-design/sk-design-diagram/screenshots/templates/*.png .opencode/skills/sk-design/sk-design-diagram/screenshots/icons.png | wc -l` reports `39` — every capture re-shot against its current source (F4.2)
 - [ ] `grep -c "DIAGRAM_CATALOG:BEGIN" .opencode/skills/sk-design/sk-design-diagram/references/catalog.md` reports `1` — the sentinel-wrapped catalog exists (F4.4)
 - [ ] `grep -c "Smart Router Pseudocode" .opencode/skills/sk-design/sk-design-diagram/SKILL.md` reports `0` and `test -f .opencode/skills/sk-design/sk-design-diagram/references/foundations/router-pseudocode.md` — the 12.6% block relocated, a pointer left behind (F4.5)

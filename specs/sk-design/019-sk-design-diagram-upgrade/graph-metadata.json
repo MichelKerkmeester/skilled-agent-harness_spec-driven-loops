@@ -138,7 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -146,14 +146,14 @@
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T22:33:09.379Z",
+    "last_save_at": "2026-09-10T22:51:11.833Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8029f273d1510c09ddd9c5259379c3011e530c6082251cb9be7a86c7b1a0342d",
+    "source_fingerprint": "sha256:bf29a7fc7b337b407e364bd9cfe40a010c294f99b6b9dac597c60a0d5aea9f91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d001a5143db82baa4fc0e1a2d4620dd72e718eeac618f37d505e05f0cd62bcba"

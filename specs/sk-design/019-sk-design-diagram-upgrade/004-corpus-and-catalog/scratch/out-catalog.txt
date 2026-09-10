@@ -1,0 +1,18 @@
+{"timestamp":"2026-09-10T22:35:39.124Z","runtime":"claude","status":"ok","freshness":"live","durationMs":1470,"cacheHit":false,"skillLabel":"sk-design"}
+**Done. The file is on disk and all three checks pass.**
+
+Verification (run from the skill root, since catalog paths are skill-root-relative like the chart catalog's):
+- `grep -c "DIAGRAM_CATALOG:BEGIN"` → **1**.
+- `awk ... | grep -cE '^\| [a-z]'` → **28**. That is 27 data rows plus the `| id |` header, which also matches the pattern and must not be counted. Data rows, header excluded: **27**.
+- `test -f` over all 27 canonical cells: no missing files. The 5 variant files and 2 import proofs also resolve.
+
+Two judgment calls, disclosed because the dispatch brief and the packet's own criteria diverged:
+1. **Ceiling fallback.** The brief's one sentence said `general: 9 nodes, 12 arrows` for rows without their own ceiling, but AC-008, task T013 and ADR-001 all require those 20 rows to read `No stated ceiling`, and T014 checks that by manual read. The cells say `No stated ceiling`, and the intro prose states that the general budget of 9 nodes and 12 arrows then applies. The seven named type files carry their own number and qualifier.
+2. **Family placement.** `dp-integration` and `dp-security-matrix` sit in `data-structure`, following SKILL.md's explicit "Storage and data structure" list, not `components-and-connections` via its looser "data-platform diagrams" phrase.
+
+Every file, number and cell in the table was read from the named sources. The two remaining verification steps only the operator can run are T014's bidirectional read and the phase-5 checker.
+
+Two-line summary:
+- Wrote `.opencode/skills/sk-design/sk-design-diagram/references/catalog.md`: frontmatter, machine-read intro, 27-row sentinel table, and the `Not indexed` sketchy descope plus icons.html note.
+- Verified 1 sentinel, 27 data rows, all 27 canonical plus 5 variants and 2 imports resolving, and no task id, finding id or spec path anywhere in the file; untracked on `skilled/v4.0.0.0`, not committed.
+EXIT 0

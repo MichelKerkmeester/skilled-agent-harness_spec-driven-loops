@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "Phase 003 executed; the applicator came from DeepSeek V4.1 Flash on the first dispatch"
-    next_safe_action: "Execute 004-corpus-and-catalog: the repaint of 34 examples through the applicator"
+    recent_action: "Phase 004 executed; DeepSeek wrote the examples mode and the catalog"
+    next_safe_action: "Execute 005: the checker, its mutation suite and CI; open with the 004 dress run"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -92,7 +92,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 - [ ] `node .opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs` prints `RESULT: PASSED`
 - [ ] `node --test .opencode/skills/sk-design/sk-design-diagram/scripts/tests/` passes, and its completeness guard reports no family without a case
 - [ ] `apply-diagram-tokens.cjs --default` over the four templates produces a byte-identical copy of each
-- [ ] `grep -rhoE "#[0-9a-fA-F]{6}" assets/examples assets/templates` outside sentinel blocks returns nothing
+- [ ] Every hex literal in `assets/examples` and `assets/templates` is a role value of that file's skin in the token source, and `apply-diagram-tokens.cjs --default` reproduces every example byte for byte
 - [ ] Every in-scope document's `version` follows the Frontmatter Versioning Standard (`SKILL.md` is the anchor, children inherit major.minor) and the anchor is bumped for this round; `.github/workflows/diagram-corpus.yml` green on a push
 - [ ] A dated capture-review report exists under `benchmark/reports/` with no hand-authored markdown
 - [ ] `validate.sh specs/sk-design/019-sk-design-diagram-upgrade --strict --recursive` reports `RESULT: PASSED` for all seven folders
@@ -108,6 +108,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 research, two lineages | Done | 29 findings; 15 confirmed, 15 corrected, 1 fabrication caught |
+| 004 executed: examples mode, catalog both ways, SKILL.md slimmed, 39 captures re-shot | Done except the checker dress run, which 005 opens with | census 1,577 / 25 unchanged; re-theme control repaints every accent; catalog rows resolve both ways |
 | 003 executed: token source, ported gate module, one sentinel block per template, the applicator; --default reproduces the stock bytes | Done | `diff -rq` empty; negative control refused with the nearest clearing value |
 | 002 executed: seven decisions signed, derivation record written, one-locus fixes landed | Done | `derivation-record.md`; `diagram.md:67`; `SKILL.md` ownership and single accessibility locus; versions re-derived by the standard's tool |
 | 002–006 authored | Done | five child goals, each refining parent decisions by id; 29 of 29 findings placed; parent validates recursively |
@@ -121,6 +122,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 
 | Item | Note |
 |------|------|
+| Criterion 4 amended: literals stay, and every one must be a role | 1,374 of the examples' hex values sit in SVG presentation attributes, which cannot hold a CSS variable. The criterion now asks that every literal resolve to a role of its file's skin and that the applicator re-theme it, which is what makes the corpus generated from one source without rewriting 34 hand-drawn files |
 | Criterion 5 amended: version fields are per document by standard | Both research lineages read the five differing `version:` fields as drift. `sk-create-frontmatter/references/frontmatter-versioning.md` makes them the rule: every in-scope doc carries its own, `SKILL.md` anchors, children inherit major.minor. The criterion now asks for conformance to that standard, not one field |
 | The reconciliation pass is not a phase | Folded into 002's first tasks rather than renumbering five children |
 | The conductor misread the orchestrator as dead after node 005 | Its process hid its argv from `ps`, so the conductor's liveness checks missed it and dispatched a second agent for 006 while the orchestrator's own was writing it; the two reconciled, the orchestrator finished, and its report printed in full: five nodes PASSED, 29 of 29 placed, 7 dispatches |
