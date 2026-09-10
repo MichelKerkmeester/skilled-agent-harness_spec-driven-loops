@@ -1,12 +1,9 @@
 {
-  "manifestHash": "d2dade02c0ddbb6e056156750878bd3b819def8ef5319571b655c0d7fea26b14",
+  "manifestHash": "01cb3a881b019e8fe2bd3a793366a258110b502eedd6986c452a078867445d8e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
       "0.05 ambiguity window"
-    ],
-    "000": [
-      "000"
     ],
     "000 001 public root readme changelog": [
       "000 001 public root readme changelog"
@@ -7370,20 +7367,8 @@
     "030 not started": [
       "030 not started"
     ],
-    "030 research plan": [
-      "030 research plan"
-    ],
-    "030 research rust": [
-      "030 research rust"
-    ],
-    "030 research tasks": [
-      "030 research tasks"
-    ],
     "030 review findings": [
       "030 review findings"
-    ],
-    "030 rust backend rewrite": [
-      "030 rust backend rewrite"
     ],
     "030 tasks": [
       "030 tasks"
@@ -8369,9 +8354,6 @@
     ],
     "20 iteration review tasks": [
       "20 iteration review tasks"
-    ],
-    "20 round rust research allocation": [
-      "20 round rust research allocation"
     ],
     "2026 05 14 substrate wave closeout": [
       "2026-05-14 substrate wave closeout"
@@ -9618,9 +9600,6 @@
     ],
     "adversarial verification round": [
       "adversarial verification round"
-    ],
-    "advisor": [
-      "advisor"
     ],
     "advisor 018 001": [
       "advisor-018-001"
@@ -16276,6 +16255,9 @@
     "cache management workflow": [
       "cache management workflow"
     ],
+    "cache measurement provenance": [
+      "cache measurement provenance"
+    ],
     "cache optimizer deep pi absorption": [
       "cache optimizer deep pi absorption"
     ],
@@ -16285,8 +16267,17 @@
     "cache optimizer edits": [
       "cache optimizer edits"
     ],
+    "cache optimizer final recommendations": [
+      "cache optimizer final recommendations"
+    ],
     "cache optimizer fix long retention": [
       "cache-optimizer fix long retention"
+    ],
+    "cache optimizer improvement research": [
+      "cache optimizer improvement research"
+    ],
+    "cache optimizer live test": [
+      "cache optimizer live test"
     ],
     "cache optimizer loops": [
       "cache optimizer loops"
@@ -16303,11 +16294,17 @@
     "cache optimizer playbook tasks": [
       "cache-optimizer playbook tasks"
     ],
+    "cache optimizer savings measured": [
+      "cache optimizer savings measured"
+    ],
     "cache optimizer stats cost": [
       "cache optimizer stats cost"
     ],
     "cache optimizer warning": [
       "cache optimizer warning"
+    ],
+    "cache prefix churn evidence": [
+      "cache prefix churn evidence"
     ],
     "cache savings estimate": [
       "cache savings estimate"
@@ -16323,6 +16320,9 @@
     ],
     "cache split verification tasks": [
       "cache split verification tasks"
+    ],
+    "cache stats denominator": [
+      "cache stats denominator"
     ],
     "cache warning hook": [
       "cache warning hook"
@@ -19179,6 +19179,12 @@
     "classify finding severity": [
       "classify finding severity"
     ],
+    "classify live wiring versus historical record": [
+      "classify live wiring versus historical record"
+    ],
+    "classify then edit": [
+      "classify then edit"
+    ],
     "classifyowner stale heartbeat": [
       "classifyOwner stale-heartbeat"
     ],
@@ -21954,6 +21960,9 @@
     ],
     "closed packet fingerprint rollback": [
       "closed packet fingerprint rollback"
+    ],
+    "closed roster narrowing": [
+      "closed roster narrowing"
     ],
     "closed route algebra implementation": [
       "closed route algebra implementation"
@@ -25965,6 +25974,9 @@
     ],
     "compiled routing freshness predicate": [
       "compiled routing freshness predicate"
+    ],
+    "compiled routing gate blocks push": [
+      "compiled routing gate blocks push"
     ],
     "compiled routing kill switch": [
       "compiled routing kill switch"
@@ -30073,6 +30085,12 @@
     ],
     "cross topic priors": [
       "cross topic priors"
+    ],
+    "cross turn stability decision record": [
+      "cross-turn stability decision record"
+    ],
+    "cross turn stability measurement": [
+      "cross-turn stability measurement"
     ],
     "cross validate": [
       "cross-validate"
@@ -37853,9 +37871,6 @@
     "detached lineage": [
       "detached lineage"
     ],
-    "detail": [
-      "detail"
-    ],
     "detect changes mcp wiring": [
       "detect_changes MCP wiring"
     ],
@@ -40627,6 +40642,9 @@
     "does hvr apply here": [
       "does hvr apply here"
     ],
+    "does the cache extension pay off": [
+      "does the cache extension pay off"
+    ],
     "does this overlap a sibling": [
       "does this overlap a sibling"
     ],
@@ -40962,6 +40980,12 @@
     ],
     "drop one checklist item": [
       "drop one checklist item"
+    ],
+    "drop openrouter from cli opencode": [
+      "drop openrouter from cli-opencode"
+    ],
+    "drop openrouter from cli pi": [
+      "drop openrouter from cli-pi"
     ],
     "drop the injected dispatch mandate": [
       "drop the injected dispatch mandate"
@@ -43941,9 +43965,6 @@
     "extract ts not running": [
       "extract.ts not running"
     ],
-    "extraction": [
-      "extraction"
-    ],
     "extraction parent phase inventory": [
       "extraction parent phase inventory"
     ],
@@ -44781,6 +44802,9 @@
     ],
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
+    ],
+    "fan out roster divergence": [
+      "fan-out roster divergence"
     ],
     "fan out route deepseek": [
       "fan-out route deepseek"
@@ -46676,6 +46700,9 @@
     "flat price fan out billing": [
       "flat price fan-out billing"
     ],
+    "flat price route savings": [
+      "flat price route savings"
+    ],
     "flatten asset subfolders": [
       "flatten asset subfolders"
     ],
@@ -47032,9 +47059,6 @@
     ],
     "fold in worklist": [
       "fold-in worklist"
-    ],
-    "folder": [
-      "folder"
     ],
     "folder boost review finding": [
       "folder boost review finding"
@@ -52103,6 +52127,9 @@
     "hub manager intake coverage": [
       "hub manager intake coverage"
     ],
+    "hub manifest goes stale": [
+      "hub manifest goes stale"
+    ],
     "hub member authoring": [
       "hub member authoring"
     ],
@@ -53416,9 +53443,6 @@
     ],
     "in process lineage execution": [
       "in-process lineage execution"
-    ],
-    "in window spec folder changelog": [
-      "in-window spec folder changelog"
     ],
     "inbound enhances": [
       "inbound enhances"
@@ -57294,6 +57318,9 @@
     "live owner skip": [
       "live owner skip"
     ],
+    "live provider verification": [
+      "live provider verification"
+    ],
     "live reap test plan": [
       "live reap test plan"
     ],
@@ -57389,6 +57416,9 @@
     ],
     "live vs archived rename boundary": [
       "live vs archived rename boundary"
+    ],
+    "live wiring versus historical record": [
+      "live wiring versus historical record"
     ],
     "liveness probe deepprobe reap": [
       "liveness probe deepProbe reap"
@@ -63070,6 +63100,9 @@
     "metal context race spec kit memory": [
       "metal context race spec-kit-memory"
     ],
+    "metered route cost saving": [
+      "metered route cost saving"
+    ],
     "metric suffix denylist validator": [
       "metric suffix denylist validator"
     ],
@@ -63354,6 +63387,9 @@
     ],
     "miss mechanism": [
       "miss mechanism"
+    ],
+    "miss vs unavailable cache signal": [
+      "miss vs unavailable cache signal"
     ],
     "missing active vector success": [
       "missing active vector success"
@@ -66353,9 +66389,6 @@
     "note database plugin gate baseline": [
       "note database plugin gate baseline"
     ],
-    "notes": [
-      "notes"
-    ],
     "notesmd cli": [
       "notesmd cli",
       "notesmd-cli"
@@ -68853,6 +68886,18 @@
     "openrouter devpass two models": [
       "openrouter devpass two models"
     ],
+    "openrouter removal plan": [
+      "openrouter removal plan"
+    ],
+    "openrouter removal tasks": [
+      "openrouter removal tasks"
+    ],
+    "openrouter removed from both rosters": [
+      "openrouter removed from both rosters"
+    ],
+    "openrouter roster retirement": [
+      "openrouter roster retirement"
+    ],
     "openrouter session affinity fix": [
       "openrouter session affinity fix"
     ],
@@ -69864,9 +69909,6 @@
     ],
     "p4b literal cutover runtime": [
       "P4b literal cutover runtime"
-    ],
-    "pack": [
-      "pack"
     ],
     "package aware typescript build": [
       "package aware typescript build"
@@ -71073,9 +71115,6 @@
     ],
     "pending vectors drain": [
       "pending vectors drain"
-    ],
-    "per": [
-      "per"
     ],
     "per child routing recall": [
       "per-child routing recall"
@@ -72997,6 +73036,9 @@
     "phase one decisions analysis": [
       "phase one decisions analysis"
     ],
+    "phase outcome": [
+      "phase outcome"
+    ],
     "phase parent": [
       "phase parent"
     ],
@@ -73278,6 +73320,12 @@
     ],
     "pi cache economics reporting": [
       "pi cache economics reporting"
+    ],
+    "pi cache extension backlog decision": [
+      "pi cache extension backlog decision"
+    ],
+    "pi cache extension findings": [
+      "pi cache extension findings"
     ],
     "pi cache gap scoping": [
       "pi cache gap scoping"
@@ -75745,8 +75793,14 @@
     "pre claim gate": [
       "pre claim gate"
     ],
+    "pre commit auto remint": [
+      "pre-commit auto remint"
+    ],
     "pre commit mirror gate": [
       "pre-commit mirror gate"
+    ],
+    "pre commit remint results": [
+      "pre-commit remint results"
     ],
     "pre commit review guidance": [
       "pre commit review guidance"
@@ -75934,8 +75988,20 @@
     "prefetch cache": [
       "prefetch cache"
     ],
+    "prefix break per session": [
+      "prefix break per session"
+    ],
     "prefix churn detection": [
       "prefix churn detection"
+    ],
+    "prefix gate withdrawal decision": [
+      "prefix gate withdrawal decision"
+    ],
+    "prefix lifting experiment": [
+      "prefix lifting experiment"
+    ],
+    "prefix lifting stability": [
+      "prefix lifting stability"
     ],
     "prefix registry": [
       "prefix registry"
@@ -76086,6 +76152,9 @@
     ],
     "preview completion": [
       "preview completion"
+    ],
+    "pricing not exercised live": [
+      "pricing not exercised live"
     ],
     "primary checkout never behind origin": [
       "primary checkout never behind origin"
@@ -79256,9 +79325,6 @@
     "redraw mermaid flowchart": [
       "redraw mermaid flowchart"
     ],
-    "reduce": [
-      "reduce"
-    ],
     "reduce authority registry ts": [
       "reduce authority-registry.ts"
     ],
@@ -79937,9 +80003,6 @@
     "refinement queue tasks": [
       "refinement queue tasks"
     ],
-    "refresh": [
-      "refresh"
-    ],
     "refresh digests not stamp": [
       "refresh digests not stamp"
     ],
@@ -80406,9 +80469,6 @@
     "relay runtime configuration": [
       "relay runtime configuration"
     ],
-    "release": [
-      "release"
-    ],
     "release alignment remediation": [
       "release alignment remediation"
     ],
@@ -80426,9 +80486,6 @@
     ],
     "release branch still carried memory": [
       "release branch still carried memory"
-    ],
-    "release changelog research": [
-      "release changelog research"
     ],
     "release cleanup 016": [
       "release cleanup 016"
@@ -80886,6 +80943,9 @@
     ],
     "remove numbered prefix snippet files": [
       "remove numbered prefix snippet files"
+    ],
+    "remove openrouter provider": [
+      "remove openrouter provider"
     ],
     "remove process derived root source": [
       "remove process-derived root source"
@@ -82432,6 +82492,12 @@
     ],
     "residue decommission missed": [
       "residue decommission missed"
+    ],
+    "residue sweep proof": [
+      "residue sweep proof"
+    ],
+    "residue sweep verification": [
+      "residue sweep verification"
     ],
     "resilient resource discovery": [
       "resilient resource discovery"
@@ -84519,6 +84585,9 @@
     "root specs directory": [
       "root specs directory"
     ],
+    "roster narrowing checklist": [
+      "roster narrowing checklist"
+    ],
     "roster narrowing decision": [
       "roster narrowing decision"
     ],
@@ -84659,6 +84728,15 @@
     ],
     "route proof is not authority": [
       "route proof is not authority"
+    ],
+    "route remint plan": [
+      "route remint plan"
+    ],
+    "route remint summary": [
+      "route remint summary"
+    ],
+    "route remint tasks": [
+      "route remint tasks"
     ],
     "route request compiled policy route decision": [
       "route request compiled policy route decision"
@@ -85079,6 +85157,9 @@
     ],
     "routing integration tasks": [
       "routing integration tasks"
+    ],
+    "routing manifest auto remint": [
+      "routing manifest auto remint"
     ],
     "routing model": [
       "routing model"
@@ -86052,9 +86133,6 @@
     "rust adapter boundary review": [
       "rust adapter boundary review"
     ],
-    "rust backend rewrite research": [
-      "rust backend rewrite research"
-    ],
     "rust best practices deep research": [
       "rust best practices deep research"
     ],
@@ -86079,14 +86157,8 @@
     "rust commenting and rustdoc": [
       "rust commenting and rustdoc"
     ],
-    "rust deep research checklist": [
-      "rust deep research checklist"
-    ],
     "rust deep research complete": [
       "rust deep research complete"
-    ],
-    "rust deep research loop plan": [
-      "rust deep research loop plan"
     ],
     "rust detection intent resource complete": [
       "rust detection intent resource complete"
@@ -86166,23 +86238,8 @@
     "rust review resources": [
       "rust review resources"
     ],
-    "rust rewrite deep research": [
-      "rust rewrite deep research"
-    ],
-    "rust rewrite deep research angles": [
-      "rust rewrite deep research angles"
-    ],
-    "rust rewrite research plan": [
-      "rust rewrite research plan"
-    ],
-    "rust rewrite research tasks": [
-      "rust rewrite research tasks"
-    ],
     "rust rewrite skill advisor": [
       "rust rewrite skill advisor"
-    ],
-    "rust rewrite spec kit": [
-      "rust rewrite spec kit"
     ],
     "rust rustdoc and cargo": [
       "rust rustdoc and cargo"
@@ -86247,14 +86304,8 @@
     "rust validation commands": [
       "rust validation commands"
     ],
-    "rust vs typescript backend": [
-      "rust vs typescript backend"
-    ],
     "rust vs typescript skill advisor": [
       "rust vs typescript skill advisor"
-    ],
-    "rust vs typescript speckit research": [
-      "rust vs typescript speckit research"
     ],
     "rustdoc error panic translation async patterns": [
       "rustdoc error panic translation async patterns"
@@ -89977,6 +90028,9 @@
     ],
     "six primitive spine ratification evidence": [
       "six-primitive spine ratification evidence"
+    ],
+    "six providers reachable": [
+      "six providers reachable"
     ],
     "six runtime adapter matrix": [
       "Six-runtime adapter matrix"
@@ -97664,12 +97718,6 @@
     "speckit router references": [
       "speckit router references"
     ],
-    "speckit rust backend research": [
-      "speckit rust backend research"
-    ],
-    "speckit rust feasibility": [
-      "speckit rust feasibility"
-    ],
     "speckit save planner mode": [
       "speckit_save_planner_mode"
     ],
@@ -98228,6 +98276,9 @@
     ],
     "stale manifest cause code": [
       "stale-manifest cause code"
+    ],
+    "stale manifest pre commit": [
+      "stale manifest pre-commit"
     ],
     "stale manifest re pinned": [
       "stale manifest re-pinned"
@@ -104509,6 +104560,9 @@
     "unknown surface fallback": [
       "unknown surface fallback"
     ],
+    "unmeasured requests live": [
+      "unmeasured requests live"
+    ],
     "unnumbered h2 headings": [
       "unnumbered H2 headings"
     ],
@@ -104595,9 +104649,6 @@
     ],
     "upcaster dual read adapter implementation": [
       "upcaster dual read adapter implementation"
-    ],
-    "update": [
-      "update"
     ],
     "update a block": [
       "Update a block"
@@ -104958,9 +105009,6 @@
     ],
     "v3 4 1 0 save flow": [
       "v3.4.1.0 save flow"
-    ],
-    "v3 6 0 0 v4 0 0 0 changelog": [
-      "v3.6.0.0 v4.0.0.0 changelog"
     ],
     "v3 remediation local embeddings": [
       "v3 remediation local embeddings"
@@ -105766,6 +105814,9 @@
     ],
     "verification confidence scoring": [
       "verification confidence scoring"
+    ],
+    "verification evidence": [
+      "verification evidence"
     ],
     "verification fixes": [
       "verification fixes"
@@ -107482,6 +107533,9 @@
     ],
     "with goal flag shipped": [
       "with goal flag shipped"
+    ],
+    "withdrawn acceptance criterion": [
+      "withdrawn acceptance criterion"
     ],
     "within entry duplicate signal": [
       "within-entry duplicate signal"

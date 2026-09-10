@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6948,
+    "missing-frontmatter": 6990,
     "non-yaml-frontmatter": 1,
-    "ok": 13942,
-    "valid-empty-list": 7942
+    "ok": 14012,
+    "valid-empty-list": 7833
   },
-  "documentsScanned": 28895,
+  "documentsScanned": 28898,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,24 +16,24 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "d2dade02c0ddbb6e056156750878bd3b819def8ef5319571b655c0d7fea26b14",
+  "manifestHash": "01cb3a881b019e8fe2bd3a793366a258110b502eedd6986c452a078867445d8e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
-      "editor-fallback": 4,
-      "generic-workflow-word": 171,
-      "numeric-only": 121,
+      "editor-fallback": 3,
+      "generic-workflow-word": 170,
+      "numeric-only": 112,
       "prose-sentence": 18,
-      "single-token": 826,
+      "single-token": 815,
       "stop-word-only": 12
     },
     "phrases": {
       "editor-fallback": 2,
-      "generic-workflow-word": 4,
-      "numeric-only": 42,
-      "ok": 35637,
+      "generic-workflow-word": 3,
+      "numeric-only": 41,
+      "ok": 35667,
       "prose-sentence": 27,
-      "single-token": 315,
+      "single-token": 305,
       "stop-word-only": 3
     }
   },
@@ -6424,6 +6424,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -7674,6 +7680,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.1.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -12559,6 +12571,36 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/DESIGN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/origin.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/DESIGN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -12567,6 +12609,42 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.1.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.10.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.11.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.12.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.13.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.14.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.15.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -12591,6 +12669,48 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.5.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.8.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v2.0.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v2.1.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v2.2.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -39268,6 +39388,138 @@
       "reason": "declared empty trigger list"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
@@ -61234,769 +61486,6 @@
       "line": 1,
       "path": "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-1.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-2.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-3.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/deepseek-v4-pro-max/iteration-4.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/grok-4-6-xhigh/iteration-1.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/grok-4-6-xhigh/iteration-2.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/iterations/grok-4-6-xhigh/iteration-3.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/changelog-by-skill.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-002.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-003.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-004.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-005.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-006.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-007.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-008.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-009.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-010.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-011.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-012.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-013.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-014.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-015.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-016.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-017.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-018.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-019.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-020.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-021.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-022.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-023.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-024.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-025.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-026.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-027.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-028.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-029.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-030.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-031.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-032.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-033.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-034.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-035.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-036.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-037.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-038.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-039.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-040.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-041.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-042.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-043.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-044.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-045.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-046.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-047.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-048.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-049.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-050.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-051.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-052.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-053.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-054.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-055.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-056.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-057.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-058.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-059.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-060.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-061.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-062.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-063.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-064.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-065.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-066.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-067.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-068.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-069.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-070.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-071.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-072.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-073.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-074.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-075.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-076.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-077.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-078.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-079.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-080.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-081.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-082.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-083.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/003-deep-research-synthesis/verification-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/agents.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/cli-external-orchestration.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/hooks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/mcp-tooling.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/sk-code.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/sk-design.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/sk-doc.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/sk-git.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/sk-prompt.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/system-deep-loop.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/system-skill-advisor.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/003-synthesis/sections/system-speckit.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/004-release-notes-reduce/release-notes-v4.0.0.0.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 2,
-      "path": "specs/system-speckit/000-release/005-readme-update/readme-delta.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/CHANGELOG-v4.0.0.0.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-release/pipeline/GOAL-PROMPT.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/000-rust-backend-rewrite-research/001-research/research/deep-research-strategy.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
@@ -98336,6 +97825,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/068-drop-openrouter-provider/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -98549,6 +98042,22 @@
     },
     {
       "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/017-cache-optimizer-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/017-routing-manifest-auto-remint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99196,6 +98705,42 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/032-evilcharts-stock/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/scratch",
       "reason": "excluded directory"
     },
@@ -99665,6 +99210,10 @@
     },
     {
       "path": "specs/sk-doc/053-command-contract-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/054-cli-hub-doc-version-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
