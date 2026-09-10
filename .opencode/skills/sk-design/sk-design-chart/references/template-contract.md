@@ -624,11 +624,10 @@ disagree with it by opening the files. Every delivery's pointer contract matches
 template's, mechanism for mechanism: a delivery whose parent carries the hover card carries the
 same card, the same listeners and the same hygiene line, adapted to the delivery's own marks and
 data, and a delivery whose parent is inert declares `data-chart-inert` with the parent's own reason
-string, copied rather than restated. As of this packet all six deliveries hold that state: the four
-built from `heat-matrix`, `distribution-strip`, `scatter` and `daily-line` answer the pointer, and
-the two built from `unit-grid` and `bar-rows` declare why they do not. A delivery found behind its
-parent is a defect in the delivery, the same way a drifted palette block is, and the fix is to bring
-the delivery forward, never to excuse it.
+string, copied rather than restated. The packet ships no deliveries of its own; the rule binds the
+ones the applicator writes and the ones a user retargets. A delivery found behind its parent is a
+defect in the delivery, the same way a drifted palette block is, and the fix is to bring the
+delivery forward, never to excuse it.
 
 A chart answers a pointer. Eighteen forms carry the hover-card register today. The other forms either
 print their values in the drawing or carry a native title on a mark, so a card would repeat the
