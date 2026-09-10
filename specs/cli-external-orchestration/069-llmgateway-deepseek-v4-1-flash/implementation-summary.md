@@ -58,7 +58,7 @@ The question was whether the gateway carried DeepSeek V4.1 Flash yet. It does. A
 
 Your DevPass DeepSeek dispatches now reach `deepseek-v4.1-flash`, which the same account answers `200` for. It takes images like the id it replaces, keeps the 1.05M context, and raises the output ceiling to 384K. The forced `max` effort tier was probed before the pin was pointed at it, because pinning a tier a route does not offer is the failure mode that motivated the pin's own documentation.
 
-The rosters carry what the probe returned rather than what the previous row said. Three claims did not survive contact. The sparse tier ladder was never measurable, because the gateway answers `200` to every effort string it is handed, `medium` and `xhigh` included. The gateway fronts 262 models, not 183. And the upstream rewrite reports `deepseek/`, not the `gonka24/` name the old route produced.
+The rosters carry what the provider documents and what the probes returned. Three claims did not survive contact. The old row's sparse tier ladder was wrong in both directions: `minimal`, `medium` and `xhigh` are all accepted, and they fold onto three real levels rather than adding tiers. The gateway fronts 262 models, not 183. And the upstream rewrite reports `deepseek/`, not the `gonka24/` name the old route produced.
 
 ### Files Changed
 
@@ -82,6 +82,8 @@ The rosters carry what the probe returned rather than what the previous row said
 
 The route was probed before anything was wired, which is the whole lesson of the failure being fixed. Four calls settled it: the candidate, the retired id, a prefixed form, and the candidate under each effort tier. Only the first of those is answerable from a model listing, and the listing would have said nothing about the `410`.
 
+The effort probe was the weak link. It sent five values, all of them valid, and the uniform `200` was written up as proof that the route accepts anything. One deliberately invalid value would have shown otherwise, and the provider's own guide had the ladder in a table the whole time. The correction landed before anything depended on it, but the lesson is that a probe with no negative case cannot support a negative conclusion.
+
 The runtime moved first, because that is what dispatches, then the rosters that describe it. The test suites earned their place immediately: the fan-out suite failed on a data-driven case whose expected arguments came from a private copy of the effort-pin regex living inside the test file. The implementation was right and the test's copy was stale, which is how the third copy of that pattern was found at all.
 
 One recovery is worth recording. A loop meant to revert version-field churn on untouched documents reverted the two edited rosters as well, discarding twelve prose edits. Everything else survived, and the edits were reapplied from a single script rather than by hand. A narrower revert with an explicit file list would not have had the failure mode.
@@ -95,9 +97,9 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 | Decision | Why |
 |----------|-----|
 | Only the gateway literal moved | The operator scoped it there, and the evidence agrees: the `opencode-go`, `cline-pass` and OpenRouter routes to the same family all still resolve. One literal maps to one provider, so three lookalike strings had to survive untouched. |
-| The tier ladder is described as unknowable rather than restated | The gateway accepts every effort string, so any ladder written here would be a guess wearing the clothes of a measurement. |
+| The tier ladder is taken from the provider's own guide | A first pass called it unknowable on the strength of five `200` responses. Every string in that sample was valid, so it showed nothing. The documentation gives three levels plus off, and a probe of a deliberately invalid value confirms the route validates. |
 | The pin was probed before it was pointed | A forced tier the route lacks fails at dispatch, which is exactly the class of silent breakage this packet is repairing. |
-| The Pi thinking-level map was left as it was | Its unmapped tiers now mean unverified rather than known-absent, which is honest. Remapping them would need evidence the API refuses to give. |
+| The Pi thinking-level map was left as it was | Its three mapped tiers are exactly the three that differ. The unmapped aliases are accepted by the route but fold onto those same three, so mapping them would offer the picker levels that change nothing. |
 | Version churn on untouched docs was reverted | The strict formula says every child document's build segment moves, but no gate requires it, and 113 version-only edits would bury a model-id change in noise. |
 | The OpenRouter fan-out literals were left alone | An earlier packet decided that deliberately and called them the deep-loop runtime's contract. Overturning another owner's recorded decision is not this packet's business. |
 <!-- /ANCHOR:decisions -->
@@ -112,11 +114,11 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 | Live call, new bare id | PASS. `200`, upstream `deepseek/deepseek-v4.1-flash` |
 | Live call, retired id | PASS as a negative control. `410`, deactivated |
 | Live call, prefixed id | PASS as a negative control. `400`, provider names the id it rejected |
-| Effort-tier probe | Recorded, not asserted. All five strings returned `200`, so the roster claims no ladder |
+| Effort ladder | Taken from DeepSeek's thinking-mode guide: three levels plus off, `high` by default. `ultra` and every integer refused on this route |
 | `fanout-run.vitest.ts` | PASS. 121 tests, 0 failures |
 | `executor-config.vitest.ts` | PASS. 92 tests, 0 failures |
 | `check-frontmatter-versions.sh` | PASS. 2,961 files, exit 0 |
-| Repository scan for the retired id | PASS. No live surface; only the OpenRouter-prefixed literal, a different route |
+| Repository scan for the retired id | PASS. No live surface. The only match is the OpenRouter-prefixed literal, a different route |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -124,7 +126,7 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The effort ladder for this route is unknown and cannot be established from the API.** The gateway returns `200` for any `reasoning_effort` value, so a tier that is silently clamped is indistinguishable from one that is honoured. What is known is that `max` does not error. Establishing the real ceiling would need a behavioural comparison across tiers rather than a status code.
+1. **The three documented levels cannot be told apart by reasoning-token spend.** Four samples each of `low`, `high` and `max` on one hard problem gave medians of 1,673, 1,947 and 1,515 with fully overlapping ranges, so `max` looked lowest by median. The ladder is real per the provider documentation, but token count is too noisy a proxy to confirm it at this sample size, and no claim here rests on that measurement.
 
 2. **Uncached work on this route costs more than it did.** The retired id billed $0.14 in and $0.28 out per million tokens. The replacement bills $0.15 and $0.60. Cached reads are near-identical. A fan-out that reuses a large prompt is barely affected, and one that generates heavily is not.
 

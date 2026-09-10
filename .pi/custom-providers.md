@@ -66,7 +66,7 @@ Routes two models through the operator's **DevPass** subscription at LLM Gateway
 - Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4.1-flash"` and `"llmgateway/glm-5.3-flash"`
 - Not a default: `defaultProvider` stays `cline-pass`
 
-**Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
+**Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4.1-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
 
 ### Dispatch
 
@@ -82,10 +82,10 @@ Both are reasoning models, and their ladders differ, so each carries its own `th
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
-| `deepseek-v4.1-flash` | `max` | **Image-capable.** $0.15 in and $0.60 out per million tokens, cached reads $0.003, which keeps it under the gateway's Premium threshold. The ladder cannot be probed: the API answers `200` to any effort string, so pass the tier deliberately |
+| `deepseek-v4.1-flash` | `max` | **Image-capable.** $0.15 in and $0.60 out per million tokens, cached reads $0.003, which keeps it under the gateway's Premium threshold. Three efforts plus off: `low`, `high` and `max`. `minimal` folds into `low`, `medium` and `xhigh` fold into `high`, `none` disables thinking, and the default is `high`. `ultra` and the integer form are rejected here. The provider block leaves the folded aliases unmapped on purpose, so the picker offers only the levels that differ |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
 
-The global `defaultThinkingLevel` is `xhigh`, which only GLM-5.3-Flash accepts on this route. Pass `--thinking` explicitly rather than relying on the default.
+The global `defaultThinkingLevel` is `xhigh`. Both models accept that string, but it does not mean the same thing to each: GLM-5.3-Flash has a real `xhigh` above `high`, while DeepSeek folds `xhigh` into `high`. Pass `--thinking` explicitly rather than relying on a default that means two different things.
 
 No provider-level `compat.thinkingFormat` is set. The block spans two model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to one of them; pi's default OpenAI-compatible parsing handles both, confirmed by real dispatches.
 

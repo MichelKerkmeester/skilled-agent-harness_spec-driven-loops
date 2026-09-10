@@ -114,7 +114,7 @@ The DevPass DeepSeek route names a model the gateway actually serves, and every 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | The effort pin forces a tier the new route rejects | High | Probed before wiring. `max` returns `200`. The probe also showed the gateway returns `200` for every effort string, so the roster records that acceptance proves nothing rather than inventing a ladder |
+| Risk | The effort pin forces a tier the new route rejects | High | Probed before wiring. `max` returns `200` and is the top level in the provider's documented ladder, so the pin lands on a real tier. The probe itself was too weak to conclude more: every value it sent was valid, so the uniform `200` said nothing about what the route refuses |
 | Risk | A blanket replace catches routes the operator excluded | Med | Only the gateway literal moved. The `opencode-go`, `cline-pass` and OpenRouter literals are distinct strings and were left as they are |
 | Risk | The pin pattern lives in three places and one is missed | Med | It does live in three: the script, the TypeScript source and a private copy inside a test. The test's copy caught the mismatch by failing, which is what surfaced the third |
 | Dependency | The gateway's published rates and limits | Low | Read from its own model listing on the day, and cited with that date |

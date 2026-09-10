@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The bare literal `deepseek-v4-flash-vision-exp` was the DevPass route for DeepSeek Flash and the cli-pi default in the deep-loop fan-out",
     "created_at": "2026-09-10T20:03:32Z",
-    "last_save_at": "2026-09-10T20:08:11.789Z",
+    "last_save_at": "2026-09-10T20:21:29.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5fc6e6d2e963852cdfcb1fa4a38e7466ef911952241ba75f5e4206c88cc5ef4",
+    "source_fingerprint": "sha256:dfbd1b37c75445bb83c62599c22c41dc7562b776e419659ee99bcd5314b3bb56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8162722a78105aa8c4697e52b07ea86fd6435e5471e83403018edfa2e62ec40c",
+      "spec.md": "1c79f287106d1e892578839de60663721daf5e8414feecaf15f2f89bdb60d6e8",
       "plan.md": "23c938af70159370e88c281e762af5ee32adfb55921e320fd03cd542a290a5e0",
       "tasks.md": "f3f1ef13c350fc8f20e70e4b5c1cb251eca216663834760ccc961c9f9a0f0f64",
-      "implementation-summary.md": "ca9cf689903ee7c2fa2014f3ef5c6742e1b10ab56eadf3e146fd1f9c96cf7128"
+      "implementation-summary.md": "74c1251a39efe801ebb7c4e4f5ef13afe4cd0cc7d2bca31975fb77bf3869268b"
     },
     "last_active_at": null
   }

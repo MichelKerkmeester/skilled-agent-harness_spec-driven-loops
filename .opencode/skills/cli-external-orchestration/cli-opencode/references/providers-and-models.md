@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax xiaomi gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.31
+version: 1.4.0.32
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -99,7 +99,7 @@ DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `llmgateway/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via DevPass; reasoning **and images**; pinned `--variant max`, which the route accepts; context 1.05M, output 384K; $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. **The API will not tell you the tier ladder:** it answers `200` to any `reasoning_effort` string, so pass `--variant` deliberately rather than probing. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
+| `llmgateway/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via DevPass; reasoning **and images**; pinned `--variant max`, which the route accepts; context 1.05M, output 384K; $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
 | `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
 
 ---
@@ -138,7 +138,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 | `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` and `glm-5.3-flash` both reach **`max`**. The gateway accepts any effort string without erroring, so it cannot be probed for a ladder. Always pass `--variant` explicitly here |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`. Both reach **`max`**, so the pin lands. Always pass `--variant` explicitly here |
 
 ---
 
