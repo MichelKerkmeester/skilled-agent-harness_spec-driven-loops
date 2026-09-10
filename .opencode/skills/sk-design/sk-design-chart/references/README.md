@@ -30,7 +30,7 @@ Three files sit here, each one a lookup or a contract rather than a guide to rea
 | [`design-md-theming.md`](./design-md-theming.md) | When applying a local v3 `DESIGN.md` or reviewing a provenance-gated delivery |
 | [`template-contract.md`](./template-contract.md) | Before authoring or editing any template file |
 
-The catalog holds twenty-six chart forms across six question families. When no row answers the question in front of you, defer with the gap named rather than answering freehand, because a freehand chart is what the template-first rule exists to prevent.
+The catalog holds twenty-nine chart forms across six question families. When no row answers the question in front of you, defer with the gap named rather than answering freehand, because a freehand chart is what the template-first rule exists to prevent.
 
 ---
 

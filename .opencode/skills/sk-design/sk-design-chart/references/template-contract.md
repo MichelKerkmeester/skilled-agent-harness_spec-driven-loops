@@ -317,7 +317,7 @@ chart, not a developer console.
 
 ### An empty data block says so, on every form and every delivery
 
-All twenty-six forms and all six deliveries carry the same guard, marked `CHART_EMPTY_NOTICE`,
+All twenty-nine forms carry the same guard, marked `CHART_EMPTY_NOTICE`,
 above their drawing code. When the data block holds nothing readable, the file prints one line in
 the middle of the frame and draws nothing else.
 
