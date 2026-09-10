@@ -133,7 +133,7 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null
   if [[ -n "$UNSTAGED_MIRROR" ]]; then
     echo "" >&2
     echo "BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged:" >&2
-    printf '  %s\n' $UNSTAGED_MIRROR >&2
+    printf '%s\n' "$UNSTAGED_MIRROR" | sed 's/^/  /' >&2
     echo "Fix: git add those paths and re-commit. Leaving them out ships a stale mirror." >&2
     exit 1
   fi
@@ -229,11 +229,41 @@ fi
 # Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
 if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
   ROUTE_MINT="$REPO_ROOT/.opencode/bin/compiled-route-manifest.cjs"
-  ROUTE_AUTHORED="$REPO_ROOT/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation"
-  ROUTE_RUNTIME="$REPO_ROOT/.opencode/bin/lib/compiled-routing/013-live-activation/activation"
-  # Only the five hubs that own a compiled manifest. A skill outside this list has no
-  # manifest to stale, so a SKILL.md edit under it is not a routing input.
-  for ROUTE_HUB in cli-external-orchestration mcp-tooling sk-code sk-doc system-deep-loop; do
+  # Cheap git-only pre-filter. Resolving the hub list costs a node start, and the
+  # overwhelming majority of commits stage no routing input at all, so decide with a
+  # pathspec first and only pay for the modules when something under skills is staged.
+  if [[ -n "$(git diff --cached --name-only --diff-filter=ACMR -- \
+        '.opencode/skills/*/SKILL.md' '.opencode/skills/*/*/SKILL.md' \
+        '.opencode/skills/*/hub-router.json' '.opencode/skills/*/mode-registry.json' 2>/dev/null)" ]]; then
+  # The hub list and the activation root both already exist in the modules the guard
+  # and the sync tool use. Reading them here keeps one definition: a hub added to the
+  # guard is picked up by this gate without a second edit, and a layout change moves
+  # both paths at once. A failure to resolve them is a block, never a silent skip.
+  if ! ROUTE_HUBS="$(node -e '
+      const g = require(process.argv[1]);
+      process.stdout.write(g.HUBS.join(" "));
+    ' "$REPO_ROOT/.opencode/bin/compiled-route-guard.cjs" 2>&1)"; then
+    echo "" >&2
+    echo "BLOCKED [gate:route-remint]: could not read the hub list from compiled-route-guard.cjs:" >&2
+    printf '%s\n' "$ROUTE_HUBS" | sed 's/^/  /' >&2
+    echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
+    exit 1
+  fi
+  if ! ROUTE_RUNTIME="$(node -e '
+      const layout = require(process.argv[1]);
+      const path = require("path");
+      process.stdout.write(layout.activationRootFor(path.join(process.argv[2], ".opencode", "bin", "lib", "compiled-routing")));
+    ' "$REPO_ROOT/.opencode/bin/lib/compiled-route-layout.cjs" "$REPO_ROOT" 2>&1)"; then
+    echo "" >&2
+    echo "BLOCKED [gate:route-remint]: could not resolve the activation root from compiled-route-layout.cjs:" >&2
+    printf '%s\n' "$ROUTE_RUNTIME" | sed 's/^/  /' >&2
+    echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
+    exit 1
+  fi
+  # The authored copy mirrors the runtime tree under the router program packet, so it
+  # takes the same layout-relative suffix rather than a second hardcoded path.
+  ROUTE_AUTHORED="$REPO_ROOT/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/${ROUTE_RUNTIME#"$REPO_ROOT/.opencode/bin/lib/compiled-routing/"}"
+  for ROUTE_HUB in $ROUTE_HUBS; do
     # mode-registry.json and hub-router.json are read directly by the hash. Every
     # SKILL.md under the hub reaches it through the leaves the registry declares.
     # A git pathspec glob crosses "/", so the last pattern matches a SKILL.md at any
@@ -241,6 +271,10 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     # direction: a hub that grows a deeper mode keeps its manifest minted.
     # --diff-filter=ACMR excludes a staged deletion, which would otherwise mint from
     # a tree the leaf has already left and block with a message about the wrong thing.
+    # This set is narrower than the trigger paths in routing-registry-drift.yml on
+    # purpose. That workflow decides whether running the check is worthwhile and can
+    # afford a false positive; this decides what to rewrite and stage, where a false
+    # positive would re-mint on an edit that changed nothing.
     ROUTE_PATHS=(
       ".opencode/skills/$ROUTE_HUB/SKILL.md"
       ".opencode/skills/$ROUTE_HUB/hub-router.json"
@@ -332,6 +366,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     fi
     echo "[gate:route-remint] re-minted $ROUTE_HUB and staged both manifests." >&2
   done
+  fi
 fi
 
 # --- Tool ownership map gate (blocking) ---

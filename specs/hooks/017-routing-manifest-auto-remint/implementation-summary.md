@@ -105,10 +105,10 @@ The review also corrected a claim in this packet. The pre-push guard is not a ba
 
 Three smaller findings were taken: a `cp` failure now prints an attributed block rather than dying under `set -e` with a bare shell error, the failure path captures the mint output instead of re-running a command that writes, and a staged deletion no longer triggers a mint against a tree the leaf has left.
 
-Deliberately not taken, and left as recorded work rather than silent omissions:
+Four smaller items were carried as deferred work for one commit and are now closed:
 
-- The pre-existing ShellCheck violation at the mirror-parity gate. It is a real P0 against the shell standard, and bundling an unrelated fix into this change would muddy its revert.
-- Reading the hub list and activation root from the existing modules instead of the copy here. That is the right shape and it touches three shared files, so it needs its own change.
-- Reconciling this gate's trigger set with the routing-registry-drift workflow, which counts `ROUTER.md` as a routing input where the measurement here shows it is not. Two definitions now coexist and picking one is a decision, not a cleanup.
-- A `pre-commit.test.sh` harness beside the existing `pre-push.test.sh`. The cases here were run by hand and are recorded above, but they leave no artifact that a later change would re-run.
+- The pre-existing ShellCheck violation in the mirror-parity gate is fixed, so the whole hook reports zero findings at every severity rather than the block alone.
+- The hub list and the activation root are read from `compiled-route-guard.cjs` and `compiled-route-layout.cjs` instead of a fourth hardcoded copy, so adding a hub to the guard reaches this gate without a second edit. A cheap pathspec pre-filter runs first, so a commit that stages nothing under `skills` never pays for a node start.
+- The two definitions of a routing input now name each other. The workflow's trigger paths are deliberately wider, because it decides whether running the check is worthwhile and a false positive costs a CI minute, while this gate decides what to rewrite and a false positive would re-mint on an edit that changed nothing. Both comments say so.
+- `tests/pre-commit.test.sh` covers the gate against a fixture hub with stub route modules and a stub mint tool, eight cases, all passing. It runs the real hook file rather than a copy, so a later change to the block is covered whether or not anyone remembers this harness.
 <!-- /ANCHOR:review -->

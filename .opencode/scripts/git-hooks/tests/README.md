@@ -25,6 +25,7 @@ These files are test harnesses, not installed Git hooks. The current source inve
 |---|---|
 | `install-git-hooks-worktree-harness.sh` | Verifies hook placement for a linked worktree and a custom `core.hooksPath`. |
 | `mass-deletion-guard.test.sh` | Exercises the guard's threshold, override, add-versus-delete and fail-open verdict logic against a throwaway repository. |
+| `pre-commit.test.sh` | Exercises the compiled-routing re-mint gate against a fixture hub: the no-op path, a successful re-mint with both manifests confirmed in the index, a partly staged input, a missing authored manifest, a mint failure, a pathspec-narrowed commit and a staged deletion. |
 | `pre-push.test.sh` | Exercises the owner-first branch naming gate, migration tolerance, release branches and the explicit bypass. |
 
 ---
@@ -36,6 +37,7 @@ Run the harnesses from the repository root:
 ```bash
 bash .opencode/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh
 bash .opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh
+bash .opencode/scripts/git-hooks/tests/pre-commit.test.sh
 bash .opencode/scripts/git-hooks/tests/pre-push.test.sh
 ```
 

@@ -7,6 +7,15 @@ name: Routing Registry Drift Guard
 # It also blocks compiled-routing freshness drift: editing a hub's routing inputs
 # without re-minting drops that hub to legacy routing silently, so the trigger paths
 # below cover every input that can invalidate a serving manifest.
+#
+# The paths below are deliberately WIDER than the set that actually stales a manifest.
+# They answer "is it worth running the drift check", where the pre-commit re-mint gate
+# answers "which hub must be re-minted right now", and a false positive costs a CI
+# minute here while a false negative costs a silent legacy fallback. Measured, only a
+# SKILL.md under a hub plus that hub's hub-router.json and mode-registry.json change
+# the policy hash; ROUTER.md, leaf-manifest.json, description.json, graph-metadata.json
+# and command-metadata.json do not. See .opencode/scripts/git-hooks/pre-commit,
+# gate:route-remint, which carries the narrow set and the reason it is narrow.
 on:
   push:
     # skilled/v* is included because release-line pushes land directly (no PR),
@@ -107,7 +116,11 @@ jobs:
       - name: Compiled-routing freshness — serving matches inputs, runtime matches source
         # Editing a hub's routing inputs without re-minting silently drops that hub to
         # legacy routing: nothing errors and nothing logs, so it is only ever found by
-        # accident. This is the authoritative blocker for that drift. A hub that is
+        # accident. Since the pre-commit re-mint gate landed, most of this drift is
+        # repaired in the commit that caused it, so reaching here usually means the gate
+        # was bypassed or the commit was made elsewhere. This remains the authoritative
+        # blocker, and it is the only one that sees the pushed commit rather than a
+        # working tree, which is exactly the case the local gate cannot cover. A hub that is
         # mid-restructure can be excused through the checked-in exemptions file, which
         # covers only an uncompilable hub and never a stale or drifted one.
         run: |
