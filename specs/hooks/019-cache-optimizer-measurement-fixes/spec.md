@@ -106,7 +106,7 @@ Five work items, executed in the order below. Each is independently shippable an
 | ID | Requirement |
 |----|-------------|
 | REQ-005 | A model declaring it does not report cache usage routes to unmeasured, never to miss |
-| REQ-006 | A candidate prefix is lifted only after being observed unchanged across turns |
+| REQ-006 | ~~A candidate prefix is lifted only after being observed unchanged across turns~~ — **withdrawn**: measurement showed the prefix is already stable from turn one, so the gate prevented nothing and cost a break per session |
 | REQ-007 | A learned key rejection survives a process restart |
 
 > Acceptance criteria live in `acceptance-criteria.md`, which decides whether this packet may close.

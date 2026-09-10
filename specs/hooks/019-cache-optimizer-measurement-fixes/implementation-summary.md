@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "hooks/019-cache-optimizer-measurement-fixes"
     last_updated_at: "2026-09-09T12:46:42Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Shipped all five items, each with a negative control"
-    next_safe_action: "None; all five items shipped"
+    recent_action: "Four items shipped, one reverted after measurement"
+    next_safe_action: "None; packet closed"
     blockers: []
     key_files: []
     session_dedup:
@@ -49,14 +49,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-All five items, each its own commit, each proved by a control that fails when the change is reverted.
+Four items ship, each its own commit and each proved by a control that fails when the change is
+reverted. A fifth was built, measured, and reverted.
 
 | Item | Commit | Suite |
 |------|--------|-------|
 | W1 — an unreported cache signal is not a miss | `20ece8e556` | 98 → 103 |
 | W2 — an explicit zero cached-read rate is a price | `afba356590` | 103 → 104 |
 | W3 — a model can declare it never reports cache usage | `29fa3b7825` | 104 → 106 |
-| W4 — lift a prefix only after it proves stable | `43f3e075b4` | 106 → 111 |
+| ~~W4 — lift a prefix only after it proves stable~~ | reverted in `ced19eae00` | — |
 | W5 — remember a learned key rejection across restarts | `a3e0d78f24` | 111 → 113 |
 
 W1 avoided the trap the research identified: tokens and cost record unconditionally, and only

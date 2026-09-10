@@ -59,7 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given an authoritative zero cached-read rate, when pricing resolves, then it prices as free | Zero prices; missing and negative stay unpriced; `readModelInputPricing` tested apart from the registry fallback | Met | - |
 | AC-004 | REQ-004 | Given a record written before this work, when it loads, then no counter is lost and nothing crashes | A pre-change record loads; the new counter defaults to 0 | Met | - |
 | AC-005 | REQ-005 | Given a model declaring it does not report cache usage, when it is recorded, then it routes to unmeasured | Declaring model → unmeasured; unset flag changes nothing | Met | - |
-| AC-006 | REQ-006 | Given a candidate prefix, when it has been seen once, then it is not lifted until seen unchanged again | A/A/B/B: no lift on 1, lift on 2; session and model isolation hold; reset clears | Met | - |
+| AC-006 | REQ-006 | Given a candidate prefix, when it has been seen once, then it is not lifted until seen unchanged again | A/A/B/B: no lift on 1, lift on 2; session and model isolation hold; reset clears | Waived | ADR-001 |
 | AC-007 | REQ-007 | Given a learned key rejection, when the process restarts, then it is remembered | After a matching 400 and restart, the next request omits the key without a second 400 | Met | - |
 
 ### Status values
@@ -85,11 +85,13 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Not yet — nothing is built. All seven rows are `Unmet` by design; this packet is the
-plan, and each row closes as its work item lands.
+**Closeable: yes.** Six of the seven rows are `Met` against observed command output. AC-006 is `Waived` against ADR-001, because the work it described was reverted: a controlled
+experiment showed the prefix is already byte-identical from the first turn, so the gate it specified
+prevented nothing while introducing a break between turns one and two. A criterion for work that no
+longer exists cannot be satisfied, and recording it as met would be false.
 
-**Two rows are gated on answers, not effort.** AC-001 depends on whether the host can distinguish an
-omitted cache field from an explicit zero; if it cannot, the criterion is met through the declaring
-flag instead of per-response inspection. AC-003 depends on what a zero rate means in the registry.
-Neither should be attempted on a guess.
+Every other requirement is closed by a test that fails when its change is neutralised, and the
+pricing, capability-flag and migration paths are additionally confirmed against live provider
+traffic.
+
 <!-- /ANCHOR:closure -->
