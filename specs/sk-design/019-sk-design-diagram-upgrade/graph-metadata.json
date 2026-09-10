@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/019-sk-design-diagram-upgrade",
+  "spec_folder": "sk-design/019-sk-design-diagram-upgrade",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/019-sk-design-diagram-upgrade/001-upgrade-research",
+    "sk-design/019-sk-design-diagram-upgrade/002-corpus-contract-and-checker",
+    "sk-design/019-sk-design-diagram-upgrade/003-token-source-and-repaint",
+    "sk-design/019-sk-design-diagram-upgrade/002-skin-contract",
+    "sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels",
+    "sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog",
+    "sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci",
+    "sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "[Trigger phrase 1]",
+      "[Trigger phrase 2]"
+    ],
+    "key_topics": [
+      "trigger",
+      "phrase",
+      "sk-design-diagram",
+      "sk-design-chart",
+      "stood",
+      "good",
+      "editorial",
+      "design",
+      "feature",
+      "specification",
+      "upgrade",
+      "contract"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/commands/design/diagram.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
+    "created_at": "2026-09-10T17:17:40Z",
+    "last_save_at": "2026-09-10T18:47:13.558Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a10f6a2facbb6382aab9c41ef37ed688a6018d0ff53f5e988865679cd8511540",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19a4abc41e919b2b2e6a3f769a2eedde605c2ad87daf54c5ea4b75384e2150c6"
+    },
+    "last_active_at": null
+  }
+}

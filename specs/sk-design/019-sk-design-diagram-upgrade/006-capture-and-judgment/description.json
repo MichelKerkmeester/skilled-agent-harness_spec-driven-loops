@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment",
+  "description": "The playbook scenario formalized: a skin-pinned third capture that must differ from the first, the settled double-capture, and the judged checklist —",
+  "keywords": [
+    "playbook",
+    "scenario",
+    "formalized",
+    "skin-pinned",
+    "third",
+    "capture",
+    "must",
+    "differ",
+    "first",
+    "settled",
+    "double-capture",
+    "judged",
+    "checklist"
+  ],
+  "lastUpdated": "2026-09-10T18:47:12.440Z",
+  "specId": "006",
+  "folderSlug": "capture-and-judgment",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

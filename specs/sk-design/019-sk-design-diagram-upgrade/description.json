@@ -1,0 +1,21 @@
+{
+  "level": "phase",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade",
+  "description": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
+  "keywords": [
+    "sk-design-diagram",
+    "sk-design-chart",
+    "stood",
+    "good",
+    "editorial",
+    "design"
+  ],
+  "lastUpdated": "2026-09-10T18:47:12.442Z",
+  "specId": "019",
+  "folderSlug": "sk-design-diagram-upgrade",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

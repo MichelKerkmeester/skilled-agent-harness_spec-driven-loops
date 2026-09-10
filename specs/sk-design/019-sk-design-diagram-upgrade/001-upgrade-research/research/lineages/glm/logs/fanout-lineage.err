@@ -1,0 +1,2 @@
+{"timestamp":"2026-09-10T17:22:09.722Z","runtime":"claude","status":"ok","freshness":"stale","durationMs":957,"cacheHit":false,"errorDetails":"SOURCE_NEWER_THAN_SKILL_GRAPH","skillLabel":"system-deep-loop"}
+Request timed out.

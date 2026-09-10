@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels",
+  "description": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
+  "keywords": [
+    "diagrampalette",
+    "begin",
+    "skin",
+    "light",
+    "dark",
+    "terminal",
+    "end",
+    "blocks",
+    "one",
+    "per",
+    "file",
+    "four",
+    "templates"
+  ],
+  "lastUpdated": "2026-09-10T18:47:12.439Z",
+  "specId": "003",
+  "folderSlug": "applicator-and-sentinels",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

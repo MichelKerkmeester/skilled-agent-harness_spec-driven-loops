@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci",
+  "description": "`check-diagram-corpus.cjs` with the families phase 1 contracted: accessibility and metadata, no-external with the one documented stylesheet exception,",
+  "keywords": [
+    "check-diagram-corpus",
+    "cjs",
+    "families",
+    "phase",
+    "contracted",
+    "accessibility",
+    "metadata",
+    "no-external",
+    "one",
+    "documented",
+    "stylesheet",
+    "exception"
+  ],
+  "lastUpdated": "2026-09-10T18:47:12.439Z",
+  "specId": "005",
+  "folderSlug": "checker-mutations-and-ci",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

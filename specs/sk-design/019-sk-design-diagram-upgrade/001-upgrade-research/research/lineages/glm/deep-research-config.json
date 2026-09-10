@@ -1,0 +1,24 @@
+{
+  "loopType": "research",
+  "topic": "How sk-design-diagram should be upgraded to the sk-design-chart standard, adapted to diagrams",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "sessionId": "fanout-glm-1789060912130-0si5to",
+  "lineageLabel": "glm",
+  "executor": "cli-pi model=glm-5.3-flash",
+  "specFolder": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research",
+  "artifactDir": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/lineages/glm",
+  "resourceMap": { "present": false, "emit": true },
+  "status": "active",
+  "createdAt": "2026-09-10T17:27:21Z",
+  "iterationContract": [
+    "Angle 1: the contract and its checker",
+    "Angle 2: the token source and the repaint",
+    "Angle 3: style reference, design-md and fonts",
+    "Angle 4: the corpus shape",
+    "Angle 5: the verification loop and the phase plan"
+  ],
+  "notes": "Fan-out lineage. Inline executor: this session performs every iteration itself; executor-dispatch steps of the workflow YAML are satisfied by the inline execution. Do not converge early: five iterations required; convergence before the cap is telemetry only."
+}

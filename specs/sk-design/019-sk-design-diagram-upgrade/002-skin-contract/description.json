@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/002-skin-contract",
+  "description": "Sign the seven decisions: the 4px exemption list resolving `SKILL.md:403` against `:337`; marker vocabulary and id-uniqueness scope; node and",
+  "keywords": [
+    "sign",
+    "seven",
+    "decisions",
+    "4px",
+    "exemption",
+    "list",
+    "resolving",
+    "skill",
+    "against",
+    "marker",
+    "vocabulary",
+    "id-uniqueness",
+    "scope",
+    "node"
+  ],
+  "lastUpdated": "2026-09-10T18:47:12.438Z",
+  "specId": "002",
+  "folderSlug": "skin-contract",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

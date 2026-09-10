@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog",
+  "description": "Repaint 1,585 literals and four template roots through the applicator's copies, promoted after diff verification — the style guide's deferred \"v5.1\"",
+  "keywords": [
+    "repaint",
+    "literals",
+    "four",
+    "template",
+    "roots",
+    "applicator",
+    "copies",
+    "promoted",
+    "diff",
+    "verification",
+    "style",
+    "guide",
+    "deferred"
+  ],
+  "lastUpdated": "2026-09-10T18:47:12.439Z",
+  "specId": "004",
+  "folderSlug": "corpus-and-catalog",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

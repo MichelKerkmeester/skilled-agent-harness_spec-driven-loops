@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/001-upgrade-research",
+  "description": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
+  "keywords": [
+    "diagram",
+    "skill",
+    "rules",
+    "live",
+    "prose",
+    "nothing",
+    "holding",
+    "them",
+    "chart",
+    "solved"
+  ],
+  "lastUpdated": "2026-09-10T18:48:22.417Z",
+  "specId": "001",
+  "folderSlug": "upgrade-research",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
