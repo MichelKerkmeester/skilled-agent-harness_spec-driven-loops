@@ -7,7 +7,7 @@ trigger_phrases:
   - study Linear design tokens
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 0.22.0.3
 ---
 
 # Linear — Style Reference

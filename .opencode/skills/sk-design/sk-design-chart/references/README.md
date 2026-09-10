@@ -10,7 +10,7 @@ trigger_phrases:
   - "design-md theming"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.0
+version: 0.22.0.10
 ---
 
 # sk-design-chart References

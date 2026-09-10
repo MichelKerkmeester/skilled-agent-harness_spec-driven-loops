@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue",
+  "parent_id": "sk-design/018-sk-design-parent-v2/001-sk-create-chart",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart prerelease versioning",
+      "chart changelog renumber",
+      "chart deletion residue",
+      "leaf manifest stale chart",
+      "implementation plan",
+      "chart renumber approach",
+      "anchor reset plan",
+      "version engine scoped apply",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "chart",
+      "prerelease",
+      "versioning",
+      "changelog",
+      "renumber",
+      "deletion",
+      "residue",
+      "leaf",
+      "manifest",
+      "stale",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
+      ".opencode/skills/sk-design/leaf-manifest.json",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGELOG-v4.0.0.0.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Reference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Directory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The chart packet numbered its releases from `v1.0.0.0` and reached `v2.5.0.0`, which reads as two public major versions with a breaking change between them",
+    "created_at": "2026-09-10T19:01:41Z",
+    "last_save_at": "2026-09-10T19:07:31.655Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:17189e0e46e24652ae8a95291fb2fd1f27e57ba92db5f069d0052dd07c3d5a67",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "638e7f7c08f14b5c396ad5277015f25f492b7fab5c41d957adb2072125848008",
+      "plan.md": "ac6ef98cd26d41a79f9c3dafffad4693705513d2933209525e02334da53c2b07",
+      "tasks.md": "13f5891813cae3d71f2e110a12e95ba1d0374b0d33f80658deda7d0f5dc7d35c",
+      "implementation-summary.md": "b34347d4580534fa029fbfe13dd61ca6704976f2fd011531c5d5da433c79a92b"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "01cb3a881b019e8fe2bd3a793366a258110b502eedd6986c452a078867445d8e",
+  "manifestHash": "28ab0834daecb0727426c080328f5cc68487d727acc524df3ccae057105e1f60",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15576,9 +15576,6 @@
     ],
     "branch naming conventions": [
       "branch naming conventions"
-    ],
-    "branch naming pre push gate": [
-      "branch naming pre-push gate"
     ],
     "branch preserved speckit failure": [
       "branch-preserved speckit failure"
@@ -48496,6 +48493,12 @@
     "gate measurement": [
       "gate measurement"
     ],
+    "gate naming dead branch": [
+      "gate:naming dead branch"
+    ],
+    "gate naming unreachable": [
+      "gate:naming unreachable"
+    ],
     "gate obligation check": [
       "gate obligation check"
     ],
@@ -63220,9 +63223,6 @@
     "migration tasks": [
       "migration tasks"
     ],
-    "migration tolerant naming hook": [
-      "migration-tolerant naming hook"
-    ],
     "milestone sequencing": [
       "milestone sequencing"
     ],
@@ -75877,14 +75877,14 @@
     "pre projection gate complete": [
       "pre-projection gate complete"
     ],
-    "pre push": [
-      "pre-push"
-    ],
     "pre push hook investigation": [
       "pre-push hook investigation"
     ],
-    "pre push naming enforcement hook": [
-      "pre-push naming enforcement hook"
+    "pre push naming gate residue": [
+      "pre-push naming gate residue"
+    ],
+    "pre push test failures": [
+      "pre-push test failures"
     ],
     "pre rendered verdict fragment": [
       "pre rendered verdict fragment"
@@ -76059,6 +76059,15 @@
     ],
     "prepared authorization matcher relocated": [
       "prepared authorization matcher relocated"
+    ],
+    "prepush residue plan": [
+      "prepush residue plan"
+    ],
+    "prepush residue summary": [
+      "prepush residue summary"
+    ],
+    "prepush residue tasks": [
+      "prepush residue tasks"
     ],
     "presentation adherence research": [
       "presentation adherence research"
@@ -80841,9 +80850,6 @@
     ],
     "remote push permission": [
       "remote push permission"
-    ],
-    "remote push permission gate": [
-      "remote push permission gate"
     ],
     "removal usage evidence check": [
       "removal usage evidence check"
@@ -97748,6 +97754,9 @@
     "speckit skill advisor model server enabled default": [
       "SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED default"
     ],
+    "speckit skip prepush naming dead flag": [
+      "SPECKIT_SKIP_PREPUSH_NAMING dead flag"
+    ],
     "speckit soft delete tombstones default off": [
       "SPECKIT_SOFT_DELETE_TOMBSTONES default off"
     ],
@@ -103668,6 +103677,12 @@
     ],
     "trigger matcher guards": [
       "trigger matcher guards"
+    ],
+    "trigger phrase 1": [
+      "[Trigger phrase 1]"
+    ],
+    "trigger phrase 2": [
+      "[Trigger phrase 2]"
     ],
     "trigger phrase configuration": [
       "trigger phrase configuration"

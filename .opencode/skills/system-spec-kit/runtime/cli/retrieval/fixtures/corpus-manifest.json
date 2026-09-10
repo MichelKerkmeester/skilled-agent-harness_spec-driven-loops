@@ -1,5 +1,5 @@
 {
-  "corpusHash": "58424dcc7e4eed526fbb9ef1e860e84cd1630c7f5c8d3ce2dcb6c1360a989a76",
+  "corpusHash": "bad5d91d419ab1a46b22c096db0d6f7f9aae45fdf9cd3a19317ddd9d3ec80a66",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28898,
+  "includedPathCount": 28954,
   "includedPaths": [
     ".opencode/install-guides/README.md",
     ".opencode/install-guides/install-scripts/README.md",
@@ -2906,30 +2906,30 @@
     ".opencode/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
     ".opencode/skills/sk-design/sk-design-chart/README.md",
     ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
-    ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/DESIGN.md",
-    ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/origin.md",
-    ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/source.md",
     ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/DESIGN.md",
     ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.0.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.1.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.10.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.11.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.12.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.13.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.14.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.15.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.2.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.5.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.8.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v2.0.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v2.1.0.0.md",
-    ".opencode/skills/sk-design/sk-design-chart/changelog/v2.2.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.1.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.10.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.11.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.12.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.13.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.14.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.15.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.16.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.17.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.18.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.19.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.2.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.20.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.21.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.22.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.3.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.4.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.5.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.6.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.7.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.8.0.0.md",
+    ".opencode/skills/sk-design/sk-design-chart/changelog/v0.9.0.0.md",
     ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/corpus-integrity/a-chart-that-draws-nothing.md",
     ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/corpus-integrity/catalog-resolves-both-ways.md",
     ".opencode/skills/sk-design/sk-design-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md",
@@ -6251,7 +6251,6 @@
     ".opencode/skills/sk-git/feature-catalog/workflow-playbooks/large-reorg-playbook.md",
     ".opencode/skills/sk-git/feature-catalog/workflow-playbooks/numbered-worktree-workflows.md",
     ".opencode/skills/sk-git/feature-catalog/worktree-naming/owner-first-worktree-naming.md",
-    ".opencode/skills/sk-git/feature-catalog/worktree-naming/pre-push-naming-enforcement.md",
     ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/co-authored-by-footer.md",
     ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/conventional-commit-from-diff.md",
     ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md",
@@ -6269,12 +6268,7 @@
     ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/locked-unique-number-allocation.md",
     ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/orchestrated-child-execs-in-place.md",
     ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/owner-slug-branch-pair-validation.md",
-    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md",
-    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-gates-only-new-branches.md",
-    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-migration-tolerance.md",
-    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-never-blocks-release-branches.md",
-    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md",
-    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-skip-env-bypass.md",
+    ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md",
     ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md",
     ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
     ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md",
@@ -9364,6 +9358,10 @@
     "specs/hooks/018-cache-optimizer-improvement-research/research/research.md",
     "specs/hooks/018-cache-optimizer-improvement-research/spec.md",
     "specs/hooks/018-cache-optimizer-improvement-research/tasks.md",
+    "specs/hooks/018-prepush-naming-gate-residue/implementation-summary.md",
+    "specs/hooks/018-prepush-naming-gate-residue/plan.md",
+    "specs/hooks/018-prepush-naming-gate-residue/spec.md",
+    "specs/hooks/018-prepush-naming-gate-residue/tasks.md",
     "specs/hooks/019-cache-optimizer-measurement-fixes/acceptance-criteria.md",
     "specs/hooks/019-cache-optimizer-measurement-fixes/decision-record.md",
     "specs/hooks/019-cache-optimizer-measurement-fixes/does-it-pay-off.md",
@@ -12233,6 +12231,30 @@
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/plan.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/tasks.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/acceptance-criteria.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/goal.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/implementation-summary.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/plan.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/spec.md",
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/goal.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/relocation-goal.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/relocation-note.md",
@@ -12308,6 +12330,40 @@
     "specs/sk-design/018-sk-design-parent-v2/goal.md",
     "specs/sk-design/018-sk-design-parent-v2/roadmap.md",
     "specs/sk-design/018-sk-design-parent-v2/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/acceptance-criteria.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/implementation-summary.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/plan.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/dispatch-prompt-verify.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/dispatch-prompt.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/tasks.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/acceptance-criteria.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/implementation-summary.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/plan.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/tasks.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/acceptance-criteria.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/implementation-summary.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/plan.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/tasks.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/acceptance-criteria.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/implementation-summary.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/plan.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/tasks.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/acceptance-criteria.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/implementation-summary.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/plan.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/tasks.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/acceptance-criteria.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/implementation-summary.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/plan.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/spec.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/tasks.md",
+    "specs/sk-design/019-sk-design-diagram-upgrade/spec.md",
     "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/research/research.md",
     "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/spec.md",
     "specs/sk-doc/014-sk-doc-parent/002-architecture-decision/decision-record.md",
@@ -28919,7 +28975,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "01cb3a881b019e8fe2bd3a793366a258110b502eedd6986c452a078867445d8e",
+  "manifestHash": "28ab0834daecb0727426c080328f5cc68487d727acc524df3ccae057105e1f60",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29733,6 +29789,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/018-prepush-naming-gate-residue/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/019-cache-optimizer-measurement-fixes/scratch",
       "reason": "excluded directory"
     },
@@ -30417,6 +30477,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/scratch",
       "reason": "excluded directory"
     },
@@ -30466,6 +30542,34 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch",
       "reason": "excluded directory"
     },
     {

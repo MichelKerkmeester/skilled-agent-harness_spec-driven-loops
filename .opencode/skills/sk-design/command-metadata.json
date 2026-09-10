@@ -77,7 +77,7 @@
   {
     "command": "/design:chart",
     "ownerMode": "sk-design-chart",
-    "description": "Author a standalone HTML chart from a catalog of 26 forms, one per reader question. :auto/:confirm.",
+    "description": "Author a standalone HTML chart from a catalog of 29 forms, one per reader question. :auto/:confirm.",
     "argumentHint": "<target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral|ordered|categorical] [:auto|:confirm]",
     "userIntent": {
       "job": "I want a standalone HTML chart that plots values a reader compares.",

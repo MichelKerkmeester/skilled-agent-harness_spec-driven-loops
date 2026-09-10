@@ -2,7 +2,7 @@
 title: "CHT-003 -- Nothing runs past the drawing edge"
 description: "This scenario validates text placement for `CHT-003`. It confirms no label, tick or axis name is clipped by the plot boundary, pushed outside the card or drawn on top of another."
 stage: rendering
-version: 1.0.0.0
+version: 0.22.0.3
 ---
 
 # CHT-003 -- Nothing runs past the drawing edge

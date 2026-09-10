@@ -174,6 +174,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 31 | 031-full-family-coverage/ | A case for every family the checker registers, and a guard that fails when one arrives without | Complete |
 | 32 | 032-evilcharts-stock/ | The stock register becomes evilcharts on a warmed ground, and the ranked ladder stops shipping a pair nobody can tell apart | Complete |
 | 33 | 033-visual-verification/ | Every capture read by fresh reviewers, twelve defects the green checks had no opinion about, and the rule that data never wears the ink | Complete |
+| 39 | 039-prerelease-versioning-and-residue/ | Twenty-two releases renumber below 1.0 in shipping order, and the four live surfaces still naming files the corpus cleanup deleted are reconciled | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -197,6 +198,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 010 | 011 | Every defect the review found carries a before and after measurement, and every checker hole left open carries the mutation that proves it | `check-corpus.cjs --render` prints `RESULT: PASSED`, and each new assertion was watched failing on a mutated copy with the rule unwired as the control |
 | 012 | 013 | Every hover and pointer child closes and the corpus checker passes | `check-corpus.cjs` prints RESULT: PASSED from the final state |
 | 013 | 014 | Six angles answered with citations and every decision tagged implementable or needs a corpus change | `research/lineages/luna/research.md` holds six sections and the final synthesis |
+| 038-chart-command-alignment | 039-prerelease-versioning-and-residue | The changelog reads `v0.1.0.0` to `v0.22.0.0`, `SKILL.md` carries the matching anchor, and no live surface names a file the cleanup removed | `parent-skill-check.cjs` reports zero invariant failures, `check-corpus.cjs` prints `RESULT: PASSED`, and `check-frontmatter-versions.sh` exits zero |
 <!-- /ANCHOR:phase-map -->
 
 ---

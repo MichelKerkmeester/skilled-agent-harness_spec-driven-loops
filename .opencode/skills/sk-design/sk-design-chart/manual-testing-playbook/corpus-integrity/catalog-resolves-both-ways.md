@@ -2,7 +2,7 @@
 title: "CHT-006 -- The index resolves in both directions"
 description: "This scenario validates the chart lookup for `CHT-006`. It confirms every catalog row reaches a file that identifies itself with the same id, and that every chart form on disk appears in the catalog."
 stage: validation
-version: 1.0.0.0
+version: 0.22.0.4
 ---
 
 # CHT-006 -- The index resolves in both directions

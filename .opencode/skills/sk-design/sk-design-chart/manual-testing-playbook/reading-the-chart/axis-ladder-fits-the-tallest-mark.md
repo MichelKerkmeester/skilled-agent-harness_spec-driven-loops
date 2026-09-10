@@ -2,7 +2,7 @@
 title: "CHT-002 -- The axis ladder fits the tallest mark"
 description: "This scenario validates the value axis for `CHT-002`. It confirms the top gridline sits close above the largest value, so the tallest mark fills the plot instead of half of it."
 stage: rendering
-version: 1.0.0.0
+version: 0.22.0.4
 ---
 
 # CHT-002 -- The axis ladder fits the tallest mark

@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.5.0.0
+version: 0.22.0.0
 metadata:
   packetKind: workflow
 ---

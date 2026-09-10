@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 1.4.0.0
+version: 0.22.0.15
 ---
 
 # Chart Catalog

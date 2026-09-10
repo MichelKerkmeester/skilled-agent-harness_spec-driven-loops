@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 62,
-    "missing-frontmatter": 6990,
+    "missing-frontmatter": 6988,
     "non-yaml-frontmatter": 1,
-    "ok": 14012,
+    "ok": 14070,
     "valid-empty-list": 7833
   },
-  "documentsScanned": 28898,
+  "documentsScanned": 28954,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "01cb3a881b019e8fe2bd3a793366a258110b502eedd6986c452a078867445d8e",
+  "manifestHash": "28ab0834daecb0727426c080328f5cc68487d727acc524df3ccae057105e1f60",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35667,
+      "ok": 35672,
       "prose-sentence": 27,
       "single-token": 305,
       "stop-word-only": 3
@@ -12572,24 +12572,6 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/DESIGN.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/origin.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/cursor/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
       "path": ".opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/DESIGN.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -12602,115 +12584,133 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.0.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.1.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.1.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.10.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.10.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.11.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.11.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.12.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.12.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.13.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.13.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.14.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.14.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.15.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.15.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.16.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.2.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.17.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.3.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.18.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.19.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.5.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.2.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.6.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.20.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.7.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.21.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.8.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.22.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.9.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.3.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v2.0.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.4.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v2.1.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.5.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v2.2.0.0.md",
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.6.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.7.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.8.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v0.9.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -30921,37 +30921,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-gates-only-new-branches.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-migration-tolerance.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-never-blocks-release-branches.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-skip-env-bypass.md",
+      "path": ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -46888,6 +46858,24 @@
       "line": 2,
       "path": "specs/sk-design/018-sk-design-parent-v2/roadmap.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/dispatch-prompt-verify.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -98057,6 +98045,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/018-prepush-naming-gate-residue/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/019-cache-optimizer-measurement-fixes/scratch",
       "reason": "excluded directory"
     },
@@ -98741,6 +98733,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/036-evilcharts-only-and-open-tables/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/037-remove-gallery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/scratch",
       "reason": "excluded directory"
     },
@@ -98790,6 +98798,34 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch",
       "reason": "excluded directory"
     },
     {

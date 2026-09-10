@@ -8,7 +8,7 @@ trigger_phrases:
   - "design-md chart delivery"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 0.22.0.8
 ---
 
 # Theming a chart from DESIGN.md
@@ -86,7 +86,7 @@ Those forms keep the stock ordered system inside an otherwise themed set.
 
 When a request names no Style Reference, `--default` themes from
 `assets/style-reference/evilcharts/DESIGN.md`, the one reference this packet carries beside its
-forms and the one the stock palette source is derived from since v2.1.0.0. Theming from it
+forms and the one the stock palette source is derived from since v0.18.0.0. Theming from it
 reproduces the stock palette and the stock corner ladder exactly, which is the property that says
 the default is still the reference the corpus came from; the corpus check holds it through the
 `palette-derivation` family.

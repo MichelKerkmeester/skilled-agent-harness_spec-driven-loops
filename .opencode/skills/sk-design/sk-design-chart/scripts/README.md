@@ -9,7 +9,7 @@ trigger_phrases:
   - "apply DESIGN.md to chart"
 importance_tier: normal
 contextType: reference
-version: 1.7.0.0
+version: 0.22.0.15
 ---
 
 # sk-design-chart Scripts

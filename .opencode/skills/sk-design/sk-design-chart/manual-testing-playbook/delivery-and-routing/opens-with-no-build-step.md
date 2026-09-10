@@ -2,7 +2,7 @@
 title: "CHT-007 -- It opens with no build step"
 description: "This scenario validates the delivery property for `CHT-007`. It confirms a delivered chart opens from a file:// URL with no install, no package manager and no network, carrying no remote resource and no runtime fetch."
 stage: delivery
-version: 1.0.0.0
+version: 0.22.0.4
 ---
 
 # CHT-007 -- It opens with no build step
@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `CHT-007` and confirm th
 ### Commands
 
 1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
-2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/examples/where-the-budget-went.html ~/chart-delivery-check.html`
+2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html ~/chart-delivery-check.html`
 3. `agent: Turn the network off, open ~/chart-delivery-check.html from a file:// URL and read the rendered card`
 4. `agent: Add a remote stylesheet link to a scratch copy of one form under the corpus tree`
 5. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > external.txt 2>&1`
@@ -98,7 +98,7 @@ Open the same copy in a second browser. The corpus draws its own marks as inline
 | File | Role |
 |---|---|
 | [`references/template-contract.md`](../../references/template-contract.md) | Primary anchor, section 5 on what a template may depend on |
-| [`assets/examples/where-the-budget-went.html`](../../assets/examples/where-the-budget-went.html) | The delivery this scenario sends outside the repository |
+| [`assets/templates/treemap.html`](../../assets/templates/treemap.html) | The form this scenario sends outside the repository |
 | [`scripts/check-corpus.cjs`](../../scripts/check-corpus.cjs) | The `no-external` check |
 | [`SKILL.md`](../../SKILL.md) | Section 3 step 6 and the first success criterion |
 

@@ -2,7 +2,7 @@
 title: "CHT-001 -- The headline agrees with its own data"
 description: "This scenario validates the headline claim for `CHT-001`. It confirms every comparative claim in a card's top line is derived from the data block in the same file rather than accepted because the file renders."
 stage: authoring
-version: 1.0.0.0
+version: 0.22.0.4
 ---
 
 # CHT-001 -- The headline agrees with its own data
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `CHT-001` and confirm th
 
 1. `agent: Read references/template-contract.md section 2 for what the headline part has to carry`
 2. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs`
-3. `agent: For each file under assets/examples/, read the headline and the block between the CHART_DATA sentinels`
+3. `agent: For each file under assets/templates/, read the headline and the block between the CHART_DATA sentinels`
 4. `agent: Derive every comparative claim in the headline from those values and report the claim, the values and the arithmetic`
 5. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
 
@@ -98,7 +98,7 @@ Then run the negative control, which is the evidence that this scenario is neede
 |---|---|
 | [`references/template-contract.md`](../../references/template-contract.md) | Primary anchor, section 2 for the card parts and section 9 for what the check does not observe |
 | [`references/catalog.md`](../../references/catalog.md) | The lookup the form is chosen from |
-| [`assets/examples/`](../../assets/examples) | The six deliveries this scenario reads |
+| [`assets/templates/`](../../assets/templates) | The twenty-nine forms this scenario reads |
 | [`SKILL.md`](../../SKILL.md) | Section 3 step 6 and the success criteria |
 
 ---

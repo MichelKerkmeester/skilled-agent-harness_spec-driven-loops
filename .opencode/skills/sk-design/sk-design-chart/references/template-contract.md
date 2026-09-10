@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 2.0.0.0
+version: 0.22.0.30
 ---
 
 # Chart Template Contract

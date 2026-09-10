@@ -2,7 +2,7 @@
 title: "CHT-009 -- A delivery read on a dark system"
 description: "This scenario validates the theme behaviour for `CHT-009`. It confirms a delivered chart answers the reader's operating system, that the dark values are readable rather than merely present, and that printing still puts the light palette on paper."
 stage: delivery
-version: 1.0.0.0
+version: 0.22.0.3
 ---
 
 # CHT-009 -- A delivery read on a dark system
@@ -53,7 +53,7 @@ A desktop browser and an operating system whose colour scheme can be switched. A
 
 1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > before.txt 2>&1`
 2. `bash: echo $?`
-3. `agent: Set the operating system appearance to dark, open assets/examples/where-the-budget-went.html from a file:// URL and read the card, the four category colours, the card edge and the table`
+3. `agent: Set the operating system appearance to dark, open assets/templates/treemap.html from a file:// URL and read the card, the four category colours, the card edge and the table`
 4. `agent: Set the operating system appearance to light, reload the same file and read it again`
 5. `agent: With the appearance set to dark, print the same file to PDF and read the colours on the page`
 6. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html /tmp/keep.html`
@@ -110,7 +110,7 @@ Read one file from each colour system rather than one file overall. The three sy
 | [`assets/color/palettes.json`](../../assets/color/palettes.json) | Primary anchor, the dark chrome and the dark values for all three systems |
 | [`references/color-system.md`](../../references/color-system.md) | Section 4 on when a hue may be re-chosen, and section 5 on the gates run per theme |
 | [`references/template-contract.md`](../../references/template-contract.md) | Section 6 on the second block, and rule 4's two-block ceiling |
-| [`assets/examples/where-the-budget-went.html`](../../assets/examples/where-the-budget-went.html) | The categorical delivery this scenario reads |
+| [`assets/templates/treemap.html`](../../assets/templates/treemap.html) | The categorical form this scenario reads |
 | [`scripts/check-corpus.cjs`](../../scripts/check-corpus.cjs) | The `palette-source-dark` and `dark-render` checks |
 | [`scripts/README.md`](../../scripts/README.md) | The break-and-restore sequences this scenario draws step 7 from |
 

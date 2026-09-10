@@ -2,7 +2,7 @@
 title: "CHT-008 -- The form comes from the lookup, and the diagram boundary holds"
 description: "This scenario validates routing and form selection for `CHT-008`. It confirms a chart request reaches this packet and resolves to a named catalog row, while a structural-visual request still reaches the neighbouring diagram packet."
 stage: routing
-version: 1.0.0.0
+version: 0.22.0.3
 ---
 
 # CHT-008 -- The form comes from the lookup, and the diagram boundary holds

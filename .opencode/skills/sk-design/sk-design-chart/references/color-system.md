@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.7.0.0
+version: 0.22.0.18
 ---
 
 # Chart Colour Systems
@@ -182,7 +182,7 @@ script names the shortfall and writes nothing.
 
 ## Where the values come from
 
-Since v2.1.0.0 the stock values are the evilcharts Style Reference: a white ground with a near-black
+Since v0.18.0.0 the stock values are the evilcharts Style Reference: a white ground with a near-black
 ink, a warmed near-black ground for dark, one flame hue that carries every first series, and a grey
 ladder behind it. The packet carries its own copy at `assets/style-reference/evilcharts/`, the only
 reference it ships, so the values here are derived from a file this packet owns rather than from one
@@ -190,7 +190,7 @@ a sibling library regenerates. `assets/style-reference/evilcharts/origin.md` rec
 came from and pins each file by hash. An earlier stock palette was derived from a different
 reference; that copy is gone, and `--default` themes from this one.
 
-**Since v1.12.0.0 the derivation is held rather than described.** The palette source carries a
+**Since v0.13.0.0 the derivation is held rather than described.** The palette source carries a
 `derivation` block naming the reference, its hash, the four departures with the gate each was made
 to clear, and the values that come from an arithmetic the reference cannot carry: the ordered ramp's
 interior rungs, spaced by equal contrast, and the dark rule, which is ink at alpha. The

@@ -539,7 +539,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 
 ### 🎯 Skills Library
 
-12 advisor skill identities in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+13 advisor skill identities in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -609,10 +609,14 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 &nbsp;
 #### OTHER
 
-**sk-design-md-generator**
-- **Standalone design-reference extraction skill.** Crawls a live URL across five viewports and emits a v3 Style Reference `DESIGN.md`, named tokens, Type Scale, Components, Surfaces, Elevation, Agent Prompt Guide, Quick Start CSS/Tailwind, with every value copied verbatim from the running page and script-validated against `tokens.json`. Carries a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, token vocabulary) so it reads design intent, not only CSS
-- **Measured ground truth, not invented direction:** captures what a site actually ships; it never authors a new visual direction from a brief. Its style corpus and SQLite/FTS5 style database resolve self-relatively under `styles/`
-- **Pairs with `sk-code`:** the skill supplies the measured reference, sk-code builds and verifies against it
+**sk-design**
+- **Parent hub for design work, routed via `mode-registry.json` to four modes.** The hub carries no procedure of its own. It decides which mode owns the question in front of you and hands over
+- **`sk-design-fundamentals`**, the default and the only mode without a command. Designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. Covers screen UI, slide decks, printed pages and document layouts, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen
+- **`sk-design-md-generator`** behind `/design:extract`. Crawls a live URL across five viewports and emits a v3 Style Reference `DESIGN.md`, named tokens, Type Scale, Components, Surfaces, Elevation, Agent Prompt Guide, Quick Start CSS/Tailwind, with every value copied verbatim from the running page and script-validated against `tokens.json`. Carries a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, token vocabulary) so it reads design intent, not only CSS. Its style corpus and SQLite/FTS5 style database resolve self-relatively under `styles/`
+- **`sk-design-chart`** behind `/design:chart`. Turns the comparison a reader needs into one of 29 catalog forms and ships it as a standalone HTML file, no build step and no remote dependency. A corpus checker holds the visual contract across 42 named check families, three of them browser-backed. Ships pre-1.0 and its number says so
+- **`sk-design-diagram`** behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws
+- **Measured ground truth, not invented direction:** the hub captures what a site actually ships. It never authors a new visual direction from a brief
+- **Pairs with `sk-code`:** the hub supplies the measured reference, sk-code builds and verifies against it
 
 **sk-doc**
 - **Parent hub for documentation authoring, routed via `mode-registry.json` to ten workflow packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
@@ -932,7 +936,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.). Includes the findings-first `code-review` mode that reuses these surfaces as review evidence.   |
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
-| `sk-design-md-generator`                  | ✅ Codebase-agnostic                        | Standalone design-reference extraction: crawls a live URL and emits a v3 Style Reference `DESIGN.md` (named tokens, type scale, components, Quick Start CSS/Tailwind), every value measured and validated against `tokens.json`. Pairs with `sk-code` for the build. Works for any project. |
+| `sk-design`                  | ✅ Codebase-agnostic                        | Parent hub for design work over four modes: values and review (`sk-design-fundamentals`), design-reference extraction from a live URL into a v3 Style Reference `DESIGN.md` (`sk-design-md-generator`), standalone HTML charts across 29 forms (`sk-design-chart`), and HTML/SVG diagrams across 27 types (`sk-design-diagram`). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + continuity. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |

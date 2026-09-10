@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue",
+  "description": "The chart packet numbered its releases from `v1.0.0.0` and reached `v2.5.0.0`, which reads as two public major versions with a breaking change between",
+  "keywords": [
+    "chart",
+    "packet",
+    "numbered",
+    "releases",
+    "reached",
+    "reads",
+    "two",
+    "public",
+    "major",
+    "versions",
+    "breaking",
+    "change",
+    "between"
+  ],
+  "lastUpdated": "2026-09-10T19:07:18.959Z",
+  "specId": "039",
+  "folderSlug": "prerelease-versioning-and-residue",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
