@@ -240,17 +240,128 @@ Desired user-visible outcome: an operator who opts out gets no payload mutation.
 
 ---
 
-## 10. AUTOMATED TEST CROSS-REFERENCE
+## 10. CACHE ECONOMICS (`CACHE-008..CACHE-009`)
 
-| Test Module | Coverage | Playbook Overlap |
-|---|---|---|
-| `tests/review-findings.test.ts` | `prompt_cache_key` injection, preservation, and opt-out gates | CACHE-005, CACHE-006, CACHE-007 |
-| `tests/hook-guards.test.ts` | Hook guards and payload preservation | CACHE-005, CACHE-006 |
-| `tests/ownership-composition.test.ts` | Cross-fork ownership boundaries | CACHE-005 |
+### CACHE-008 | Unreported signal is not a miss
+
+#### Description
+Verify a response carrying no cache fields is counted as unmeasured and left out of the hit ratio, while its tokens and cost still record.
+
+#### Scenario Contract
+Prompt: send a normal request on a channel that omits cache fields from its usage block.
+
+Confirm `unmeasuredRequests` increments, tokens and cost increment, and `hitRequests` does not.
+
+Desired user-visible outcome: the report distinguishes "we could not measure this" from "this missed cache".
+
+#### Test Execution
+> **Feature File:** [CACHE-008](cache-economics/unreported-signal-is-not-a-miss.md)
+
+### CACHE-009 | Zero cached-read rate prices
+
+#### Description
+Verify an explicit `cacheRead: 0` prices as free rather than reporting unpriced, while a missing or negative rate still does not price.
+
+#### Scenario Contract
+Prompt: send a request on a model whose cost block has a positive input rate and a zero cached-read rate.
+
+Confirm `pricedRequests` increments and the report shows a real cost and savings figure.
+
+Desired user-visible outcome: a model with free cached reads reports its true saving.
+
+#### Test Execution
+> **Feature File:** [CACHE-009](cache-economics/zero-cached-read-rate-prices.md)
 
 ---
 
-## 11. SCENARIO CROSS-REFERENCE INDEX
+## 11. CAPABILITY DECLARATION (`CACHE-010`)
+
+### CACHE-010 | Model declares no cache reporting
+
+#### Description
+Verify `reportsCacheUsage: false` routes a model's requests to unmeasured rather than to a miss, and that an unset flag changes nothing.
+
+#### Scenario Contract
+Prompt: send a normal request on a model whose compat block declares the flag false.
+
+Confirm `unmeasuredRequests` increments with tokens and cost still recorded, and that removing the flag restores prior behavior.
+
+Desired user-visible outcome: a model that cannot report is set aside instead of dragging the hit rate down.
+
+#### Test Execution
+> **Feature File:** [CACHE-010](capability-declaration/model-declares-no-cache-reporting.md)
+
+---
+
+## 12. RETRY LOOP GUARD (`CACHE-011`)
+
+### CACHE-011 | Repeat and streak escalate separately
+
+#### Description
+Verify a repeated request and a run of differing failures escalate on their own counters, each with a message describing what actually happened.
+
+#### Scenario Contract
+Prompt: drive consecutive all-failed tool batches, first with an identical error and then with differing errors.
+
+Confirm identical failures warn on the 3rd batch and abort on the 4th, while differing failures warn on the 4th turn and abort on the 6th.
+
+Desired user-visible outcome: the turn stops before the budget does, and the message names the real reason.
+
+#### Test Execution
+> **Feature File:** [CACHE-011](retry-loop-guard/repeat-and-streak-escalate-separately.md)
+
+---
+
+## 13. HASH-VERIFIED EDITS (`CACHE-012`)
+
+### CACHE-012 | A moved line is refused
+
+#### Description
+Verify an edit is refused once lines were inserted or removed since the read, including where an identical line has shifted into the target position.
+
+#### Scenario Contract
+Prompt: read a file with repeated identical lines, insert a line above the target, then replay the original edit.
+
+Confirm the edit is refused naming the line count at read time against the count now, and that the file is unchanged.
+
+Desired user-visible outcome: a stale edit fails loudly instead of landing on the wrong line.
+
+#### Test Execution
+> **Feature File:** [CACHE-012](hash-verified-edits/moved-line-is-refused.md)
+
+---
+
+## 14. KEY REJECTION PERSISTENCE (`CACHE-013`)
+
+### CACHE-013 | Rejection persists, reset forgets
+
+#### Description
+Verify a learned `prompt_cache_key` rejection survives a process restart, and that `reset` clears it for the active model.
+
+#### Scenario Contract
+Prompt: trigger a matching 400, restart the process, then run `/cache-optimizer reset`.
+
+Confirm the restarted process omits the key without a second 400, and that after reset the key is attempted again.
+
+Desired user-visible outcome: a rejecting provider costs one failed request rather than one per session, and the decision is reversible.
+
+#### Test Execution
+> **Feature File:** [CACHE-013](key-rejection-persistence/rejection-survives-restart-and-reset-forgets.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
+
+| Test Module | Coverage | Playbook Overlap |
+|---|---|---|
+| `tests/review-findings.test.ts` | `prompt_cache_key` injection, preservation, opt-out gates, and rejection persistence | CACHE-005, CACHE-006, CACHE-007, CACHE-013 |
+| `tests/cache-economics.test.ts` | Usage classification, the unmeasured counter, pricing, and the capability flag | CACHE-008, CACHE-009, CACHE-010 |
+| `tests/retry-loop-guard.test.ts` | Batch assembly and both escalation counters | CACHE-011 |
+| `tests/hash-verified-edits.test.ts` | Line hashing, edit validation, and the refusal paths | CACHE-012 |
+
+---
+
+## 16. SCENARIO CROSS-REFERENCE INDEX
 
 No feature catalog exists for this extension, so the index below is the authoritative scenario directory.
 
@@ -263,3 +374,9 @@ No feature catalog exists for this extension, so the index below is the authorit
 | CACHE-005 | Injects prompt_cache_key | Cache Key Optimization | [CACHE-005](cache-key-optimization/injects-prompt-cache-key.md) |
 | CACHE-006 | Preserves a caller-supplied key | Cache Key Optimization | [CACHE-006](cache-key-optimization/preserves-caller-key.md) |
 | CACHE-007 | Env opt-out disables injection | Opt Out | [CACHE-007](opt-out/env-opt-out-disables-injection.md) |
+| CACHE-008 | Unreported signal is not a miss | Cache Economics | [CACHE-008](cache-economics/unreported-signal-is-not-a-miss.md) |
+| CACHE-009 | Zero cached-read rate prices | Cache Economics | [CACHE-009](cache-economics/zero-cached-read-rate-prices.md) |
+| CACHE-010 | Model declares no cache reporting | Capability Declaration | [CACHE-010](capability-declaration/model-declares-no-cache-reporting.md) |
+| CACHE-011 | Repeat and streak escalate separately | Retry Loop Guard | [CACHE-011](retry-loop-guard/repeat-and-streak-escalate-separately.md) |
+| CACHE-012 | A moved line is refused | Hash-Verified Edits | [CACHE-012](hash-verified-edits/moved-line-is-refused.md) |
+| CACHE-013 | Rejection persists, reset forgets | Key Rejection Persistence | [CACHE-013](key-rejection-persistence/rejection-survives-restart-and-reset-forgets.md) |
