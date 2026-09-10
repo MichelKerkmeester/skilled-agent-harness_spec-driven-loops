@@ -110,7 +110,8 @@ the mutation suite were re-run from the final state to prove nothing else moved.
 | `scripts/check-corpus.cjs` | PASS — 44 families, `RESULT: PASSED` |
 | `node --test scripts/tests/` | PASS — 84 tests, 0 failures |
 | `render-screenshots.cjs` | PASS — 39 rendered, 39 sources covered |
-| Re-read of both changed captures | PASS — each box is one shape with a rule across it; the axis reads 0, 20, 40, 60 |
+| Re-read of both changed captures, by a reader who made neither fix | PASS — REPAIRED on both. Each box one rectangle with a rule across it, worst-case short boxes included; the median visible on the ink-filled box too; axis reads 0, 20, 40, 60 and the furthest dot back-computes to 64.07 from tick spacing |
+| Arithmetic re-derived from the data blocks by the same reader | PASS — medians 36/38/42 and the 85-day span; the 11.5-minute median, the 43.9% delta and the one row that rose |
 <!-- /ANCHOR:verification -->
 
 ---

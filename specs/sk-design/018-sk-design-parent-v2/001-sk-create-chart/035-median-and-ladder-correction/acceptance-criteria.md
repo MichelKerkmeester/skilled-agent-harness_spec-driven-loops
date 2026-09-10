@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given a box filled with the hue and a box filled with the ink, When each is drawn, Then the median contrasts with its own fill and takes the page colour in neither case | `assets/templates/box-plot.html:143-144`; `screenshots/templates/box-plot.png` read after re-render — five boxes, each one shape with a rule across it | Met | - |
 | AC-002 | REQ-002 | Given readings running to 64 on a scale to 80, When the axis is drawn, Then every rung inside the readings is labelled | `screenshots/templates/dumbbell.png` reads 0, 20, 40, 60; the furthest dot sits just past the 60 rung | Met | - |
 | AC-003 | REQ-002 | Given nine of ten rows below 40, When the axis is drawn, Then that span carries an interior rung | The 20 rung is drawn; it was dropped by the thinning rule before | Met | - |
-| AC-004 | REQ-003 | Given two fixes made here, When the packet closes, Then someone who did not make them has read the captures | A fresh reader raised both defects against the previous round and confirmed the arithmetic on all four figures; the corrected captures are re-read in the same loop | Met | - |
+| AC-004 | REQ-003 | Given two fixes made here, When the packet closes, Then someone who did not make them has read the captures | A reader who did not make either fix read both corrected captures at pixel level and returned REPAIRED on each: every box one rectangle with a rule across it including the two short ones, axis labelled 0/20/40/60, the 64 dot back-computed from tick spacing to 64.07. Both figures' headline, metric and finding arithmetic re-derived from the data blocks independently | Met | - |
 
 ### Status values
 

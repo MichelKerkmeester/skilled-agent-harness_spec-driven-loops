@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two geometry fixes shipped on the strength of my own reading of the captures, because the packet",
     "created_at": "2026-09-10T07:13:30Z",
-    "last_save_at": "2026-09-10T07:15:04.711Z",
+    "last_save_at": "2026-09-10T07:24:09.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:791ed24bbffaa5755e9bd0ae86b665c9d4b694febef49fe149fa449d9407fb93",
+    "source_fingerprint": "sha256:c3c3f74561d5c5a3cbc07da53fb4331b0a3b8072b15f0db5c0f1f48d4d455087",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3277128e050a6035e69784b5869598371ca08e4fda9ec5764f98466300f8d6c",
       "plan.md": "7f9415d3b59d4142003493d371aef7596d7f4d799eaf4ba9f6202f5f21b06f94",
       "tasks.md": "5791d74cfe29bb1f3baf93bf2c8e580d27c67060a986a9463fd8f3f3d7af5bac",
-      "implementation-summary.md": "da12ce2b27fffde6591ecd534768c1c46382cc8106585c7f9a89354b82a69cf1"
+      "implementation-summary.md": "f9b538c3214ec9f6c704526b5cb1eedf3d05182e203d87acb3a467683d804ee8"
     },
     "last_active_at": null
   }
