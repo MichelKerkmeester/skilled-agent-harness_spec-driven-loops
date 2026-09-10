@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.opencode/hooks/git/` contains a standalone, opt-in Git hook surface: `install-hooks.sh` symlinks `pre-commit` into Git's resolved hooks directory, and `pre-commit` runs the comment-hygiene and agent-mirror-sync gates for staged changes. The hook is opt-in: a clone does nothing until the installer is run.
 
-This folder is the standalone/legacy surface. The repository's primary Git hook installer is `.opencode/scripts/install-git-hooks.sh`, which installs a broader set of hooks (`commit-msg`, `pre-commit`, `post-commit`, `post-merge`, `post-rewrite`, `pre-push`) from `.opencode/scripts/git-hooks/`. The primary `pre-commit` chains into this folder's `pre-commit` as its comment-hygiene sub-gate, and also runs mass-deletion, doc-model-refs, prompt-card-sync, MCP mutation-class, and tool-ownership gates. Run `install-hooks.sh` here directly only to install or test the hygiene gate standalone, without the other gates.
+This folder is the standalone/legacy surface. The repository's primary Git hook installer is `.opencode/scripts/install-git-hooks.sh`, which installs a broader set of hooks (`commit-msg`, `pre-commit`, `post-commit`, `post-merge`, `post-rewrite`, `pre-push`) from `.opencode/scripts/git-hooks/`. The primary `pre-commit` chains into this folder's `pre-commit` as its comment-hygiene sub-gate, and also runs mass-deletion, doc-model-refs, mirror-parity, prompt-card-sync, MCP mutation-class, compiled-routing re-mint, and tool-ownership gates. Run `install-hooks.sh` here directly only to install or test the hygiene gate standalone, without the other gates.
 
 ---
 

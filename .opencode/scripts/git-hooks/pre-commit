@@ -221,6 +221,11 @@ fi
 # rather than printing a command for a human to run. That is a deliberate departure
 # from the block-and-instruct shape of the gates above, and it is confined to this
 # one artifact because nothing here requires a judgment call.
+# A gate that stages must prove it staged. The pre-push guard cannot cover a failure
+# here: it reads the working tree and returns "no drift" when a manifest file is
+# absent, so a fix that lands on disk but misses the index passes every local check
+# and reaches the remote stale. Every path below therefore ends in a staged manifest
+# or a block, never in silence.
 # Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
 if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
   ROUTE_MINT="$REPO_ROOT/.opencode/bin/compiled-route-manifest.cjs"
@@ -231,47 +236,101 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   for ROUTE_HUB in cli-external-orchestration mcp-tooling sk-code sk-doc system-deep-loop; do
     # mode-registry.json and hub-router.json are read directly by the hash. Every
     # SKILL.md under the hub reaches it through the leaves the registry declares.
-    ROUTE_STAGED="$(git diff --cached --name-only -- \
-      ".opencode/skills/$ROUTE_HUB/SKILL.md" \
-      ".opencode/skills/$ROUTE_HUB/hub-router.json" \
-      ".opencode/skills/$ROUTE_HUB/mode-registry.json" \
-      ".opencode/skills/$ROUTE_HUB/*/SKILL.md" 2>/dev/null)"
+    # A git pathspec glob crosses "/", so the last pattern matches a SKILL.md at any
+    # depth. That is wider than the two levels that exist today and is the safe
+    # direction: a hub that grows a deeper mode keeps its manifest minted.
+    # --diff-filter=ACMR excludes a staged deletion, which would otherwise mint from
+    # a tree the leaf has already left and block with a message about the wrong thing.
+    ROUTE_PATHS=(
+      ".opencode/skills/$ROUTE_HUB/SKILL.md"
+      ".opencode/skills/$ROUTE_HUB/hub-router.json"
+      ".opencode/skills/$ROUTE_HUB/mode-registry.json"
+      ".opencode/skills/$ROUTE_HUB/*/SKILL.md"
+    )
+    ROUTE_STAGED="$(git diff --cached --name-only --diff-filter=ACMR -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
     [[ -z "$ROUTE_STAGED" ]] && continue
+
+    # git runs this hook against a throwaway index when a pathspec narrows the commit
+    # ("git commit -- path"), named next-index-<pid>.lock. Anything staged there is
+    # discarded, so the manifest would reach the commit while the real index keeps the
+    # old blob and the next commit silently reverts it. Auto-fixing is unsafe in that
+    # mode, so say so and let the author run the mint themselves.
+    # The name is the whole discriminator, and it has to be: a plain commit runs with
+    # .git/index and "git commit -a" with .git/index.lock, which IS renamed into place,
+    # so testing for "not index" would block every -a commit in the repository.
+    if [[ "$(basename "${GIT_INDEX_FILE:-index}")" == next-index-* ]]; then
+      echo "" >&2
+      echo "BLOCKED [gate:route-remint]: $ROUTE_HUB needs a re-mint, and this commit narrows its" >&2
+      echo "pathspec, so anything staged now would be discarded with the temporary index." >&2
+      echo "Fix: node .opencode/bin/compiled-route-manifest.cjs refresh --hub $ROUTE_HUB \\" >&2
+      echo "       --skill-root .opencode/skills/$ROUTE_HUB" >&2
+      echo "     then copy the runtime manifest over its authored copy, and commit both." >&2
+      exit 1
+    fi
+
     # Minting reads the working tree, not the index. If an input is only half staged
     # the manifest would describe content this commit does not carry, which is a
     # quieter version of the drift this gate exists to remove. Refuse instead.
-    ROUTE_DIRTY="$(git diff --name-only -- \
-      ".opencode/skills/$ROUTE_HUB/SKILL.md" \
-      ".opencode/skills/$ROUTE_HUB/hub-router.json" \
-      ".opencode/skills/$ROUTE_HUB/mode-registry.json" \
-      ".opencode/skills/$ROUTE_HUB/*/SKILL.md" 2>/dev/null)"
+    ROUTE_DIRTY="$(git diff --name-only -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
     if [[ -n "$ROUTE_DIRTY" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: $ROUTE_HUB has routing inputs staged and unstaged at once:" >&2
-      printf '  %s\n' $ROUTE_DIRTY >&2
+      printf '%s\n' "$ROUTE_DIRTY" | sed 's/^/  /' >&2
       echo "A manifest minted now would describe content this commit does not contain." >&2
       echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
       exit 1
     fi
-    if [[ ! -f "$ROUTE_MINT" ]]; then
-      echo "BLOCKED [gate:route-remint]: $(basename "$ROUTE_MINT") is missing, so $ROUTE_HUB cannot be re-minted." >&2
-      exit 1
-    fi
-    if ! node "$ROUTE_MINT" refresh --hub "$ROUTE_HUB" \
-         --skill-root ".opencode/skills/$ROUTE_HUB" >/dev/null 2>&1; then
+
+    ROUTE_RUNTIME_FILE="$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json"
+    ROUTE_AUTHORED_FILE="$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json"
+    # Fail closed on every precondition. The old shape guarded the copy, the add and
+    # the report behind one existence test, so a missing authored manifest skipped all
+    # three and exited zero with nothing staged and nothing printed.
+    for ROUTE_NEEDED in "$ROUTE_MINT" "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE"; do
+      if [[ ! -f "$ROUTE_NEEDED" ]]; then
+        echo "" >&2
+        echo "BLOCKED [gate:route-remint]: $ROUTE_HUB cannot be re-minted, missing:" >&2
+        echo "  $ROUTE_NEEDED" >&2
+        echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
+        exit 1
+      fi
+    done
+
+    # Captured rather than re-run on failure: refresh writes before it reports, so a
+    # second invocation to show the operator its output would write a second time.
+    if ! ROUTE_OUT="$(node "$ROUTE_MINT" refresh --hub "$ROUTE_HUB" \
+         --skill-root ".opencode/skills/$ROUTE_HUB" 2>&1)"; then
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: re-minting $ROUTE_HUB failed." >&2
-      node "$ROUTE_MINT" refresh --hub "$ROUTE_HUB" --skill-root ".opencode/skills/$ROUTE_HUB" >&2 || true
+      printf '%s\n' "$ROUTE_OUT" | sed 's/^/  /' >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
+
     # The runtime manifest is what serves. The authored copy is what a rebuild would
     # reinstate, so leaving it behind reintroduces the same staleness on the next one.
-    if [[ -f "$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json" && -f "$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json" ]]; then
-      cp "$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json" "$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json"
-      git add -- "$ROUTE_RUNTIME/$ROUTE_HUB/manifest.json" "$ROUTE_AUTHORED/$ROUTE_HUB/manifest.json"
-      echo "[gate:route-remint] re-minted $ROUTE_HUB and staged both manifests." >&2
+    if ! cp "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE" 2>/dev/null; then
+      echo "" >&2
+      echo "BLOCKED [gate:route-remint]: could not copy the $ROUTE_HUB manifest to its authored copy:" >&2
+      echo "  $ROUTE_AUTHORED_FILE" >&2
+      echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
+      exit 1
     fi
+    git add -- "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE"
+
+    # Prove it. An add that silently did nothing leaves the commit carrying a stale
+    # manifest, and no later local gate can see that, so confirm both paths are in
+    # the index before letting the commit through.
+    ROUTE_CONFIRM="$(git diff --cached --name-only -- "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE" 2>/dev/null | wc -l | tr -d ' ')"
+    if [[ "$ROUTE_CONFIRM" != "2" ]]; then
+      echo "" >&2
+      echo "BLOCKED [gate:route-remint]: re-minted $ROUTE_HUB but only $ROUTE_CONFIRM of 2 manifests reached the index." >&2
+      echo "Fix: git add the two manifest paths below, then re-commit." >&2
+      echo "  $ROUTE_RUNTIME_FILE" >&2
+      echo "  $ROUTE_AUTHORED_FILE" >&2
+      exit 1
+    fi
+    echo "[gate:route-remint] re-minted $ROUTE_HUB and staged both manifests." >&2
   done
 fi
 

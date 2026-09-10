@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Status** | Complete |
-| **Surface** | `.opencode/scripts/git-hooks/pre-commit`, one added block |
+| **Surface** | `.opencode/scripts/git-hooks/pre-commit`, one added block, plus five documentation catalogs |
 <!-- /ANCHOR:status -->
 
 ---
@@ -73,7 +73,8 @@ The gate matches exactly that set. A wider trigger would re-mint on edits that c
 
 Run against the real hook, with the tree restored afterwards and the guard reporting every hub fresh.
 
-- `bash -n` on the hook: clean.
+- `bash -n` on the hook: clean. ShellCheck: zero findings in the block, at every severity.
+- The discriminator that detects a throwaway index was proved against values measured from real git: a plain commit runs with `.git/index`, `git commit -a` with `.git/index.lock` and a pathspec commit with `.git/next-index-<pid>.lock`. Only the last blocks. An earlier draft tested for "not index" and would have blocked every `-a` commit in the repository.
 - No routing input staged: zero `route-remint` output, no work done.
 - A nested mode `SKILL.md` staged: `re-minted cli-external-orchestration and staged both manifests`, the index carried the edit plus both manifests, and the guard reported the hub fresh.
 - The same input staged and unstaged at once: exit code 1 with the file named.
@@ -88,3 +89,26 @@ Restored state after testing: index empty, no dirty file under the hub or either
 
 `git revert` the commit. The installed hook is a symlink to the tracked file, so every session picks the revert up at once with no reinstall. `SPECKIT_SKIP_ROUTE_REMINT=1` skips the block for one commit.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:review -->
+## 6. WHAT AN INDEPENDENT REVIEW CHANGED
+
+A fresh reviewer read the first version and found two reachable defects that a green run could not see. Both were reproduced before being accepted, and both are fixed here.
+
+The first was silence. The copy, the `git add` and the report all sat behind one existence test, so a missing authored manifest skipped every one of them and exited zero with nothing staged and nothing printed. The gate now fails closed on each precondition and, after staging, re-reads the index to confirm both manifests actually arrived.
+
+The second was the throwaway index. When a pathspec narrows a commit, git runs the hook against an index it later discards, so the manifest reached the commit while the real index kept the old blob and the next commit reverted it. Reproduced in an isolated repository: after the commit the index held the stale object while HEAD and the disk held the new one. That mode is now refused with the mint command printed, rather than auto-staged into an index that will be thrown away.
+
+The review also corrected a claim in this packet. The pre-push guard is not a backstop for a failed auto-fix, because it reads the working tree and returns no drift when a manifest is missing. The gate carries its own proof instead.
+
+Three smaller findings were taken: a `cp` failure now prints an attributed block rather than dying under `set -e` with a bare shell error, the failure path captures the mint output instead of re-running a command that writes, and a staged deletion no longer triggers a mint against a tree the leaf has left.
+
+Deliberately not taken, and left as recorded work rather than silent omissions:
+
+- The pre-existing ShellCheck violation at the mirror-parity gate. It is a real P0 against the shell standard, and bundling an unrelated fix into this change would muddy its revert.
+- Reading the hub list and activation root from the existing modules instead of the copy here. That is the right shape and it touches three shared files, so it needs its own change.
+- Reconciling this gate's trigger set with the routing-registry-drift workflow, which counts `ROUTER.md` as a routing input where the measurement here shows it is not. Two definitions now coexist and picking one is a decision, not a cleanup.
+- A `pre-commit.test.sh` harness beside the existing `pre-push.test.sh`. The cases here were run by hand and are recorded above, but they leave no artifact that a later change would re-run.
+<!-- /ANCHOR:review -->

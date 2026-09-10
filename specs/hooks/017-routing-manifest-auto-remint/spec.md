@@ -66,7 +66,7 @@ The re-mint happens where it belongs, in the commit that changed the input, so t
 - A refusal path for the case where a hub's routing inputs carry unstaged changes, because a manifest minted from the working tree would then describe content the commit does not contain
 
 ### Out of Scope
-- The pre-push gate, which stays exactly as it is and remains the backstop when the auto-fix fails
+- The pre-push gate, which stays exactly as it is. It is NOT a backstop for a failed auto-fix: it reads the working tree and reports no drift when a manifest file is absent, so a fix that lands on disk but misses the index passes it. That is why every path in the gate ends in a staged manifest or a block. The remote-side backstop is the routing-registry-drift workflow, which checks out the pushed commit
 - Any other generated artifact. The mirror-parity gate keeps its block-and-instruct shape
 - A configuration surface for which hubs participate. The hub list already lives in the guard
 
@@ -88,6 +88,9 @@ The re-mint happens where it belongs, in the commit that changed the input, so t
 | REQ-002 | A commit that stages no routing input does no work and adds no measurable time |
 | REQ-003 | A hub whose routing inputs carry unstaged changes is refused by name rather than minted from a tree that does not match the index |
 | REQ-004 | The gate carries a bypass flag in the house style and fails closed if the mint tool is missing |
+| REQ-005 | The gate never exits zero having changed the disk without staging the result, since no local gate downstream can see that |
+| REQ-006 | A commit whose pathspec narrows it to a throwaway index is refused rather than auto-staged, because git discards that index |
+| REQ-007 | Every live catalog of hook gates and bypass flags names this gate and its flag |
 <!-- /ANCHOR:requirements -->
 
 ---

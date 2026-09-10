@@ -7,7 +7,7 @@
 #
 # Hooks installed:
 #   commit-msg  — blocks invalid structure and warns on clarity issues
-#   pre-commit  — runs validate-doc-model-refs.js (advisory) plus blocking gates (comment hygiene, prompt-knowledge card-sync, MCP mutation-class, tool ownership map)
+#   pre-commit  — runs validate-doc-model-refs.js (advisory) plus blocking gates (comment hygiene, agent-mirror sync, mirror parity, prompt-knowledge card-sync, MCP mutation-class, compiled-routing re-mint, tool ownership map)
 #   post-commit — publishes the commit to the live branch in a launch-wrapper session
 #   post-merge  — anchors and surfaces an un-applied --autostash entry after a merge
 #   post-rewrite — anchors and surfaces an un-applied --autostash entry after amend/rebase
@@ -15,6 +15,7 @@
 #
 # Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...
 # Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
+# Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
 # Bypass pre-push naming gate: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
 # Bypass pre-push remote-permission gate: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
 
@@ -102,6 +103,7 @@ echo ""
 echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test hook installation\"' should run silently unless a gate has something to report."
 echo "Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ..."
 echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
+echo "Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..."
 echo "Bypass pre-push naming gate: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
 echo "Note: the target is resolved by Git (git rev-parse --git-path hooks), so a"
 echo "repo-local or global core.hooksPath override, and per-worktree hook dirs in"
