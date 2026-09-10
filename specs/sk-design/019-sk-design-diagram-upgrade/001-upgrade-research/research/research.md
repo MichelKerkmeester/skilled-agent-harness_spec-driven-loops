@@ -138,8 +138,9 @@ window to that lineage. A second interactive session was working on the chart sk
 same time — packet `018-…/001-sk-create-chart/039-prerelease-versioning-and-residue`,
 renumbering the chart's releases to `0.22.x` and fixing residue from the gallery and examples
 removal. At the lineage's end the runner reverted 28 of that session's uncommitted tracked
-edits to HEAD and saved them as `lineages/sonnet/containment-reverted/1-….patch`. The patch
-re-applied cleanly and was restored, unstaged, exactly as left. The lesson for the runtime,
+edits to HEAD and saved them as a patch. The patch re-applied cleanly and those edits were
+restored, unstaged, exactly as left; the patch itself was then removed from the tree, since it
+was another session's work in progress and not this packet's to keep. The lesson for the runtime,
 recorded here for the packet that owns it: containment cannot distinguish a lineage's writes
 from a sibling session's, so a fan-out run on a repository with live sessions can undo work it
 never touched. Run lineages in a worktree, or run them when nothing else is writing.

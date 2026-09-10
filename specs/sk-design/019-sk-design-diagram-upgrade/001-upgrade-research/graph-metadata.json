@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T19:26:23.676Z",
+    "last_save_at": "2026-09-10T19:27:02.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5318eab9b77c59f9866baedfd7f4d49bc321617de1f029daa62b05089f3c6eb6",
+    "source_fingerprint": "sha256:b6be0edb98b016c0821d8e9db67194b5fcadf5e1ac767d46f65a4f506ecf9114",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33374b8785bff5ae095b9da093e32d9083582831deebc042a555e3ed1e28a7cd",
       "plan.md": "7f2c8d9507ca7fac6a53ea6cd1cbc59710b19a86cb5aca1a39bf377322a59d93",
       "tasks.md": "1011a9638881802da63e2981f06dad79063e51032c2247e848456ffb8a44d089",
       "implementation-summary.md": "35d268b70e25dab1bf8eb0890206ab9da00df8f7f75f5ab8045de9723b1a7227",
-      "research/research.md": "3d93a42cc59f6bf366b6cbcf70bb3b1f12e089694cc380e26d473da8d5deedea"
+      "research/research.md": "5104677a624467db973ecfd67d6d0c5989fc4bcd18584e5ad28b62d039d0169e"
     },
     "last_active_at": null
   }
