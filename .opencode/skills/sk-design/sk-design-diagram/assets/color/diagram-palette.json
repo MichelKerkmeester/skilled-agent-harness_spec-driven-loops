@@ -1,0 +1,154 @@
+{
+  "version": "1.1.0.0",
+  "note": "The stock skins of the diagram templates, harvested from the templates themselves so that --default reproduces them byte for byte. Kinds and gates follow references/foundations/derivation-record.md; a value that disagrees between the record's prose and a template is the template's, and the prose is what 004 corrects.",
+  "skins": {
+    "light": {
+      "roles": {
+        "paper": {
+          "value": "#f5f5f5",
+          "kind": "primary"
+        },
+        "ink": {
+          "value": "#2d3142",
+          "kind": "primary"
+        },
+        "muted": {
+          "value": "#4f5d75",
+          "kind": "primary"
+        },
+        "accent": {
+          "value": "#eb6c36",
+          "kind": "primary"
+        },
+        "paper-2": {
+          "value": "#ececec",
+          "kind": "primary"
+        },
+        "soft": {
+          "value": "#7a8399",
+          "kind": "primary"
+        },
+        "rule": {
+          "value": "rgba(45,49,66,0.12)",
+          "kind": "derived: ink at 0.12"
+        },
+        "rule-solid": {
+          "value": "rgba(79,93,117,0.25)",
+          "kind": "derived: muted at 0.25"
+        },
+        "accent-tint": {
+          "value": "rgba(235,108,54,0.08)",
+          "kind": "derived: accent at 0.08"
+        },
+        "link": {
+          "value": "#2e5aa8",
+          "kind": "primary"
+        }
+      }
+    },
+    "dark": {
+      "roles": {
+        "paper": {
+          "value": "#2d3142",
+          "kind": "primary"
+        },
+        "ink": {
+          "value": "#f5f5f5",
+          "kind": "primary"
+        },
+        "muted": {
+          "value": "#bfc0c0",
+          "kind": "primary"
+        },
+        "accent": {
+          "value": "#f08a59",
+          "kind": "primary"
+        }
+      }
+    },
+    "terminal": {
+      "roles": {
+        "page": {
+          "value": "#0a0a0a",
+          "kind": "primary"
+        },
+        "paper": {
+          "value": "#141414",
+          "kind": "primary"
+        },
+        "bar": {
+          "value": "#1b1b1b",
+          "kind": "primary"
+        },
+        "border": {
+          "value": "#2b2b2b",
+          "kind": "primary"
+        },
+        "ink": {
+          "value": "#f5f5f5",
+          "kind": "primary"
+        },
+        "muted": {
+          "value": "#9a9a9a",
+          "kind": "primary"
+        },
+        "soft": {
+          "value": "#5c5c5c",
+          "kind": "primary"
+        },
+        "accent": {
+          "value": "#ff5a36",
+          "kind": "primary"
+        },
+        "accent-tint": {
+          "value": "rgba(255, 90, 54, 0.12)",
+          "kind": "derived: accent at 0.12"
+        }
+      }
+    }
+  },
+  "grounds": {
+    "light": "paper",
+    "dark": "paper",
+    "terminal": "paper"
+  },
+  "gates": {
+    "textOnPaper": 4.5,
+    "markOnPaper": 3.0,
+    "accentAgainstInk": 1.5,
+    "ungated": [
+      "rule",
+      "rule-solid",
+      "border",
+      "bar",
+      "page"
+    ]
+  },
+  "departures": [
+    {
+      "skin": "light",
+      "role": "accent",
+      "against": "paper",
+      "measured": 2.863,
+      "gate": "markOnPaper",
+      "why": "the brand accent; kept by decision, never re-derived"
+    },
+    {
+      "skin": "light",
+      "role": "soft",
+      "against": "paper",
+      "measured": 3.48,
+      "gate": "textOnPaper",
+      "why": "structural use only; may not carry sublabel or eyebrow text"
+    }
+  ],
+  "untokenized": [
+    "assets/examples/example-sequence-oauth-dark.html"
+  ],
+  "pins": {
+    "assets/templates/template-dark.html": "11578e5d3d3c4c68e352ff58c1327e6ee7408fc545dfd19fc11255d48a69f603",
+    "assets/templates/template-full.html": "1a93dfb1b62d8b4bc29d0d970f8b3ec00746deeb48fbae95aa9d0948fde95a41",
+    "assets/templates/template-terminal.html": "baf735921a713edd97196e3275f907d362b0631dc27f2a4b8291ef6e7ca64728",
+    "assets/templates/template.html": "4cf48c02bd393440b2a83f3f46b018caacf8f93b27fb966d38cb2d2153473846"
+  }
+}

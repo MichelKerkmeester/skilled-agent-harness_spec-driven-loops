@@ -47,6 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/color/diagram-palette.json",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/color-gates.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html",
       ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-dark.html",
       ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-full.html",
@@ -93,6 +96,24 @@
         "source": "derived"
       },
       {
+        "name": "diagram-palette.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/color/diagram-palette.json",
+        "source": "derived"
+      },
+      {
+        "name": "color-gates.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/color-gates.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "apply-diagram-tokens.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs",
+        "source": "derived"
+      },
+      {
         "name": "template.html",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html",
@@ -120,12 +141,6 @@
         "name": "apply-design-md.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "color-gates.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-chart/scripts/color-gates.cjs",
         "source": "derived"
       },
       {
@@ -187,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
     "created_at": "2026-09-10T17:17:42Z",
-    "last_save_at": "2026-09-10T20:57:29.127Z",
+    "last_save_at": "2026-09-10T22:33:09.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33d917c425345fd4c1a34ad69721417458da5fa46adc498cf4e006250b20cc30",
+    "source_fingerprint": "sha256:c36498c714cc697e3d33188d58ee987b92cf1107fd04537f406178482f1d754d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6758b86187a90af7e4686c8d705cb413233730d37848606b100f5c9ff6cc5f70",
       "plan.md": "9372e08680ef4435468752cd1e36bf723b78ecf810729c551ad0e46badccfdee",
-      "tasks.md": "0a60b48688a64982d25543e35c466c1d9a8437f1074d8c6e49461745ca0a78ba",
+      "tasks.md": "162420807c6962f2d79f323ee0aac446128fdebd2a1577d55933ecfcc3997470",
       "implementation-summary.md": "56d478437dde859d9798ffed75639f45bac70a1b87f0ad4dd4409b7a04c2af0c"
     },
     "last_active_at": null

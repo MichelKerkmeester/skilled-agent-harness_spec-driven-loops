@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "Phase 002 executed; two of three GLM briefs stalled and were finished by hand"
-    next_safe_action: "Execute 003-applicator-and-sentinels from derivation-record.md"
+    recent_action: "Phase 003 executed; the applicator came from DeepSeek V4.1 Flash on the first dispatch"
+    next_safe_action: "Execute 004-corpus-and-catalog: the repaint of 34 examples through the applicator"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -108,6 +108,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 research, two lineages | Done | 29 findings; 15 confirmed, 15 corrected, 1 fabrication caught |
+| 003 executed: token source, ported gate module, one sentinel block per template, the applicator; --default reproduces the stock bytes | Done | `diff -rq` empty; negative control refused with the nearest clearing value |
 | 002 executed: seven decisions signed, derivation record written, one-locus fixes landed | Done | `derivation-record.md`; `diagram.md:67`; `SKILL.md` ownership and single accessibility locus; versions re-derived by the standard's tool |
 | 002–006 authored | Done | five child goals, each refining parent decisions by id; 29 of 29 findings placed; parent validates recursively |
 | 002 skin-contract | Authored | validate PASSED (0 errors, 0 warnings), 13 tasks, 16 findings |

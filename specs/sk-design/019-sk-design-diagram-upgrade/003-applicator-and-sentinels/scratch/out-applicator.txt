@@ -1,0 +1,30 @@
+{"timestamp":"2026-09-10T22:28:23.034Z","runtime":"claude","status":"ok","freshness":"live","durationMs":830,"cacheHit":false,"skillLabel":"sk-design"}
+```
+file written: .opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs
+line count:   217 (under the 220 limit)
+DEPARTURE lines the run printed:
+  DEPARTURE light accent 2.86:1 below markOnPaper 3 — the brand accent; kept by decision, never re-derived
+  DEPARTURE light soft 3.48:1 below textOnPaper 4.5 — structural use only; may not carry sublabel or eyebrow text
+  DEPARTURE light accent 2.86:1 below markOnPaper 3 — the brand accent; kept by decision, never re-derived
+```
+
+**Verification output (last run, from the final bytes on disk):**
+```
+$ mkdir -p /tmp/diagram-default && node .../apply-diagram-tokens.cjs --default --out /tmp/diagram-default && diff -rq /tmp/diagram-default .../assets/templates && echo IDENTICAL
+DEPARTURE light accent 2.86:1 below markOnPaper 3 — the brand accent; kept by decision, never re-derived
+WROTE /tmp/diagram-default/template.html
+WROTE /tmp/diagram-default/template-dark.html
+DEPARTURE light soft 3.48:1 below textOnPaper 4.5 — structural use only; may not carry sublabel or eyebrow text
+DEPARTURE light accent 2.86:1 below markOnPaper 3 — the brand accent; kept by decision, never re-derived
+WROTE /tmp/diagram-default/template-full.html
+WROTE /tmp/diagram-default/template-terminal.html
+WROTE /tmp/diagram-default/README.md
+RESULT: PASSED
+IDENTICAL
+```
+Diff printed nothing; exit 0. Negative smoke test: a mutated source refusing at `soft` prints `FAILED template-full role=soft ratio=2.61:1 gate=textOnPaper 4.5 nearest clearing value #707070`, `RESULT: FAILED`, exit 1, no file written for that template.
+
+Two implementation notes worth surfacing:
+- **Structure roles are skipped** beyond `gates.ungated`: `paper`/`page` family (the ground itself and `paper-2` cannot clear a mark gate against their own paper) and the terminal skin's `soft` (inactive dots/spokes, not text). Without this the stock terminal/`full` templates could never pass.
+- **Non-theme files in `assets/templates/` are mirrored into `--out`** (currently `README.md`), because the mandated `diff -rq` is a directory diff and the templates directory carries that README. Templates and JSON were not touched (mtimes/hash state unchanged; only the one new script was written).
+EXIT 0
