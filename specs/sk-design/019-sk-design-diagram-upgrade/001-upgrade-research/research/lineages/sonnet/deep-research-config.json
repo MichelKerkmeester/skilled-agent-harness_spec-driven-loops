@@ -1,0 +1,24 @@
+{
+  "loopType": "research",
+  "topic": "Verify, then deepen and extend, the first lineage's (glm) findings on upgrading sk-design-diagram to the sk-design-chart standard",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "sessionId": "fanout-sonnet-1789066651467-nf6p74",
+  "lineageLabel": "sonnet",
+  "executor": "cli-claude-code model=claude-sonnet-5",
+  "specFolder": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research",
+  "artifactDir": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/lineages/sonnet",
+  "resourceMap": { "present": false, "emit": true },
+  "status": "complete",
+  "createdAt": "2026-09-10T00:00:00Z",
+  "iterationContract": [
+    "Angle 1: the contract and its checker",
+    "Angle 2: the token source and the repaint",
+    "Angle 3: style reference, design-md and fonts",
+    "Angle 4: the corpus shape",
+    "Angle 5: the verification loop and the phase plan"
+  ],
+  "notes": "Verification lineage over the first lineage (glm). Part A verifies glm's 29 findings against disk per angle; Part B deepens and extends per the dispatch-prompt-verify.md gap list. Fan-out lineage, inline executor: this session performs every iteration itself. Do not converge early: five iterations required; convergence before the cap is telemetry only."
+}

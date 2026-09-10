@@ -48,7 +48,8 @@
       "implementation-summary.md",
       "research/research.md",
       "research/dispatch-prompt.md",
-      "research/orchestration-summary.json"
+      "research/orchestration-summary.json",
+      "feature-catalog/feature-catalog.md"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T18:48:22.616Z",
+    "last_save_at": "2026-09-10T19:26:23.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +210,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:132aae1beab90587876f4a516fa91a47dd536a61be2b94712fdd2646287b39a5",
+    "source_fingerprint": "sha256:5318eab9b77c59f9866baedfd7f4d49bc321617de1f029daa62b05089f3c6eb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33374b8785bff5ae095b9da093e32d9083582831deebc042a555e3ed1e28a7cd",
       "plan.md": "7f2c8d9507ca7fac6a53ea6cd1cbc59710b19a86cb5aca1a39bf377322a59d93",
       "tasks.md": "1011a9638881802da63e2981f06dad79063e51032c2247e848456ffb8a44d089",
-      "implementation-summary.md": "665498821bbfd10362807e4d27cbcc30ba1eda54187699470ddea00c077ac9ce",
-      "research/research.md": "de80b20233dc51c770604cf9ec75de09e067a6c627e0125f36f3bf5a43187c1a"
+      "implementation-summary.md": "35d268b70e25dab1bf8eb0890206ab9da00df8f7f75f5ab8045de9723b1a7227",
+      "research/research.md": "3d93a42cc59f6bf366b6cbcf70bb3b1f12e089694cc380e26d473da8d5deedea"
     },
     "last_active_at": null
   }

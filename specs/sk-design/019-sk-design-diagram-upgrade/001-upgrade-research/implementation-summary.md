@@ -101,7 +101,8 @@ The runner enforced the stop policy and refused the lineage at the end for a mis
 
 | Check | Result |
 |-------|--------|
-| Five iteration files with cited findings | PASS: 29 findings, every one file:line |
+| GLM: five iteration files with cited findings | PASS: 29 findings, every one file:line |
+| Sonnet 5 xhigh verification lineage | PASS: 5/5, terminal `maxIterationsReached`; 15 confirmed, 15 corrected, 1 fabrication caught, PNG staleness closed by direct read |
 | Runner stop-policy verdict | FAIL on protocol: iteration-5 state record and synthesis event missing; content complete; recorded |
 | Parent and six children `validate --strict` | PASS |
 <!-- /ANCHOR:verification -->
@@ -111,7 +112,7 @@ The runner enforced the stop policy and refused the lineage at the end for a mis
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **One model, one lineage.** The chart's equivalent round ran two lineages and synthesized across them; this one ran GLM alone, as asked. The phase order rests on that single read.
+1. **The runner's containment reverted a concurrent session's 28 uncommitted edits** during the Sonnet lineage's window and saved them as a patch; they were restored from it, unstaged. The synthesis records the lesson; the fix belongs to the deep-loop runtime.
 2. **The PNG-staleness question was not settled by the lineage.** Its vision tool was unavailable. The conductor's own read of four captures this week found them current; phase 4 re-captures all 38 regardless.
 <!-- /ANCHOR:limitations -->
 

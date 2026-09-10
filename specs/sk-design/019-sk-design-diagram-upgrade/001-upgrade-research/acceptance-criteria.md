@@ -56,6 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the brief, When the lineage runs, Then five iteration files exist each citing file:line and no convergence stop fires before the cap | `research/lineages/glm/iterations/iteration-001..005.md`; state records for 1–4 at newInfoRatio 1.0/0.8/0.8/0.9; stop policy max-iterations | Met | - |
 | AC-002 | REQ-002 | Given the five iterations, When the conductor synthesizes, Then every finding is sorted and six phases are named with a gate each | `research/research.md`: 21 enforceable, 6 judged, 2 governance; the phase table; the parent's map matches | Met | - |
+| AC-004 | REQ-001 | Given the first lineage's findings, When a second model verifies each against the disk, Then every finding carries a CONFIRMED / CORRECTED / UNVERIFIABLE verdict with evidence | `lineages/sonnet/research.md`: 15/15/1 + one fabrication; corrections folded into `research/research.md` | Met | - |
 | AC-003 | REQ-003 | Given the runner's verdict, When the phase closes, Then the missing iteration-5 state record and synthesis event are recorded, not hidden | `research/orchestration-summary.json` failed=1; the run notes in `research/research.md` | Met | - |
 
 ### Status values
