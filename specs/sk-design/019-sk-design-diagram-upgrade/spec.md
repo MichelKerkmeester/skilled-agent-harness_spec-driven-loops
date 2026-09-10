@@ -128,12 +128,6 @@ not, by evidence; the phases after it build in the order the evidence sets.
 > fails and the corpus fails its own rules today; the CI doctrine is green with no backlog; the
 > derivation record gates the applicator, which gates the repaint, which gates the assertions.
 
-| 4 | 004-corpus-and-catalog/ | [Phase 4 scope] | Pending |
-| 5 | 005-checker-mutations-and-ci/ | [Phase 5 scope] | Pending |
-| 6 | 006-capture-and-judgment/ | [Phase 6 scope] | Pending |
-| 4 | 004-corpus-and-catalog/ | [Phase 4 scope] | Pending |
-| 5 | 005-checker-mutations-and-ci/ | [Phase 5 scope] | Pending |
-| 6 | 006-capture-and-judgment/ | [Phase 6 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -150,12 +144,6 @@ not, by evidence; the phases after it build in the order the evidence sets.
 | 003 | 004 | `--default` reproduces the stock bytes over the four templates | byte diff empty |
 | 004 | 005 | The repainted corpus passes every family to come | a dress run of the phase-5 checker |
 | 005 | 006 | Every family has a case or a reasoned exemption; CI green with no backlog | the suite's own completeness tests; the workflow run | `check-corpus` `RESULT: PASSED`; suite green; CI workflow present |
-| 003-token-source-and-repaint | 004-corpus-and-catalog | [Criteria TBD] | [Verification TBD] |
-| 004-corpus-and-catalog | 005-checker-mutations-and-ci | [Criteria TBD] | [Verification TBD] |
-| 005-checker-mutations-and-ci | 006-capture-and-judgment | [Criteria TBD] | [Verification TBD] |
-| 003-applicator-and-sentinels | 004-corpus-and-catalog | [Criteria TBD] | [Verification TBD] |
-| 004-corpus-and-catalog | 005-checker-mutations-and-ci | [Criteria TBD] | [Verification TBD] |
-| 005-checker-mutations-and-ci | 006-capture-and-judgment | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

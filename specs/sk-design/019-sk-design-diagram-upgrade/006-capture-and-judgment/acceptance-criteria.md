@@ -96,7 +96,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 This packet is authored, not executed: T001-T017 have not run, so every AC row above is
 observationally `Unmet` by construction. Unlike phases 002-005, "closing" this document does not
-retire the discipline it describes — the phase gate (AC-010) is proven once, by the first dated
+retire the discipline it describes — the phase gate (AC-012) is proven once, by the first dated
 report, but the capture-review process itself keeps running on every future release. This document
 closes only after 005's judged-boundary block is confirmed on disk (T001), the judged column and
 capture conventions are authored (T004-T011), the first scenario run produces a clean, reasoned

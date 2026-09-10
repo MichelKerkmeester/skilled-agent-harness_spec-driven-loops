@@ -113,12 +113,12 @@ The operator holds this directive as the session objective. Whenever anything ab
 | 003 applicator-and-sentinels | Authored | validate PASSED (0 errors, 0 warnings), 10 tasks, 3 findings |
 | 004 corpus-and-catalog | Authored | validate PASSED (0 errors, 0 warnings), 19 tasks, 6 findings |
 | 005 checker-mutations-and-ci | Authored | validate PASSED (0 errors, 0 warnings), 24 tasks, 13 findings |
-| 006 capture-and-judgment | Authored | validate PASSED, 17 tasks, 3 findings; two agents wrote it concurrently and reconciled |
+| 006 capture-and-judgment | Authored | validate PASSED (0 errors, 0 warnings), 17 tasks, 3 findings; two agents wrote it concurrently and reconciled |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | The reconciliation pass is not a phase | Folded into 002's first tasks rather than renumbering five children |
-| The orchestrator's final report never printed | Its stdout came back empty after node 005; node 006 was authored by its last agent and a conductor-dispatched one concurrently, reconciled, and gated by the conductor |
+| The conductor misread the orchestrator as dead after node 005 | Its process hid its argv from `ps`, so the conductor's liveness checks missed it and dispatched a second agent for 006 while the orchestrator's own was writing it; the two reconciled, the orchestrator finished, and its report printed in full: five nodes PASSED, 29 of 29 placed, 7 dispatches |
 <!-- /ANCHOR:log -->
