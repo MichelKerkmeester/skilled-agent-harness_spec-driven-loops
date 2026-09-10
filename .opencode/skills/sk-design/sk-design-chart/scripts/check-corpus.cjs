@@ -324,6 +324,16 @@ function checkPaletteSource(palette, theme) {
     // backwards while every gate still passes. The ramp contract below asserts this for the
     // magnitude system; importance is ranked the same way and was not covered by anything.
     if (system.encodes === 'importance') {
+      // The first series carries the reading and takes a hue, so the lightness ordering starts
+      // behind it. Ranking every step by lightness would mean the subject of the figure is drawn
+      // in the same ink as its labels, and a plot of ink-coloured marks has spent its only colour
+      // on the one mark that is the exception.
+      for (let i = 1; i < series.length - 1; i += 1) {
+        checked += 1;
+        if (contrast(series[i], surface) > contrast(series[i + 1], surface)) continue;
+        record(theme.check, 'error', rel(PALETTE_SOURCE),
+          `system "${id}" ranks the steps behind its first series by lightness and does not move toward ${theme.ground} at steps ${i + 1} and ${i + 2}`);
+      }
       for (let i = 0; i < series.length - 1; i += 1) {
         // Direction was held here and separation was not, which is how a ladder whose adjacent
         // steps sat 1.18 apart shipped: two bars a reader is meant to tell apart came out as one
@@ -334,10 +344,6 @@ function checkPaletteSource(palette, theme) {
           record(theme.check, 'error', rel(PALETTE_SOURCE),
             `system "${id}" ranks by lightness and its steps ${i + 1} and ${i + 2} differ by ${round2(apart)}:1 on ${theme.ground}, below the ${g.rampStepSeparation}:1 rank-readability floor. A rank a reader cannot see is not a rank`);
         }
-        checked += 1;
-        if (contrast(series[i], surface) > contrast(series[i + 1], surface)) continue;
-        record(theme.check, 'error', rel(PALETTE_SOURCE),
-          `system "${id}" ranks by lightness and does not move toward ${theme.ground} at steps ${i + 1} and ${i + 2}. The array runs from the value furthest from the surface to the value nearest it, so a pair that reverses ranks two series the wrong way round`);
       }
     }
 
@@ -3021,6 +3027,30 @@ function fileLabel(file, extraDirectory) {
 // to that: an edit on either side drifted in silence, and the reason each departure was made lived
 // in a prose note no checker could read. The reference is now carried beside the forms, so the two
 // can be held against each other here.
+// A magnitude ramp runs toward whichever ground the theme uses, so on paper its strong end is the
+// darker one and on ink it is the lighter one. Prose that names a lightness direction is therefore
+// true in one theme and false in the other, and it was false in five places at once after the stock
+// changed. The rule is not that these words are banned: it is that a sentence a reader uses to
+// decode the picture cannot pick a side the picture does not keep.
+const DIRECTION_WORDS = /\b(darker|lighter|brighter|deepens?|deepening|darkens?|lightens?)\b/i;
+
+function checkRampProse(file, src) {
+  const { markup } = regionsOf(stripHtmlComments(src));
+  const sentences = [];
+  for (const pattern of [/class="subtitle"[^>]*>([^<]*)/g, /class="headline"[^>]*>([^<]*)/g,
+                         /class="finding"[^>]*>([^<]*)/g, /<desc id="fig-desc">([\s\S]*?)<\/desc>/g]) {
+    for (const hit of markup.matchAll(pattern)) sentences.push(hit[1]);
+  }
+  if (!sentences.length) return;
+  tally('ramp-prose', 1);
+  for (const sentence of sentences) {
+    const found = DIRECTION_WORDS.exec(sentence);
+    if (!found) continue;
+    record('ramp-prose', 'error', file,
+      `a sentence the reader decodes the figure with says "${found[1]}". A magnitude ramp runs toward whichever ground the theme uses, so a claim about lightness is true on one ground and false on the other. Say which end of the ramp carries more, not which shade it is`);
+  }
+}
+
 // A carried Style Reference records where it came from and pins every file it carries by hash.
 // One of those pins is held by the derivation rule because the palette depends on it; the rest
 // were written down and checked by nobody, which makes them decoration that reads as evidence.
@@ -3325,6 +3355,7 @@ function main() {
     checkTooltipIndicator(name, src);
     checkReferenceLine(name, src);
     checkCursorGuide(name, src);
+    checkRampProse(name, src);
     checkMetricBlock(name, src, isExtra);
     checkTableDisclosure(name, src);
     checkSourceLine(name, src);

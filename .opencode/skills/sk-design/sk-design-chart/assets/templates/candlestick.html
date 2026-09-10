@@ -98,8 +98,10 @@ body {
 .metric-delta { margin: 4px 0 0; font-size: 12px; color: var(--chart-muted); }
 .metric-delta .cue { vertical-align: -1px; margin-right: 4px; }
 /* The cue takes the token the trend calls for: emphasis when the reading falls, the second series when it rises. */
-.metric-delta[data-trend="down"] .cue { color: var(--chart-emphasis); }
-.metric-delta[data-trend="up"] .cue { color: var(--chart-series-2); }
+/* The header arrows take the same two colours the candles do, because a figure cannot
+   spend one hue on "closed down" in the plot and on "up" in the header nine lines above it. */
+.metric-delta[data-trend="down"] .cue { color: var(--chart-series-2); }
+.metric-delta[data-trend="up"] .cue { color: var(--chart-series-3); }
 /* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
    at 720 units wide, and below roughly two thirds of that the axis labels start to
    collide, so the figure scrolls sideways and the marks keep the size they were

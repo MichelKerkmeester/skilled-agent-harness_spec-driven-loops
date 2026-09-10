@@ -255,6 +255,9 @@ const OTHER_FILE_CASES = [
   { name: 'empty-notice refuses a guard that is only a comment', file: 'assets/templates/bar-columns.html',
     from: '\nfigure: {', to: '\n// figure: {',
     family: 'empty-notice', expect: /cannot stop the drawing/ },
+  { name: 'ramp-prose refuses a sentence that picks a lightness side', file: 'assets/templates/calendar-grid.html',
+    from: 'A cell stands further from the page the more it carries.', to: 'Darker is more.',
+    family: 'ramp-prose', expect: /says "Darker"/ },
   { name: 'colour-literals refuses a paint word used as a colour', file: 'assets/templates/daily-line.html',
     from: "rule.setAttribute('class', 'reference');", to: "rule.setAttribute('stroke', 'flat');",
     family: 'colour-literals', expect: /hands stroke the literal "flat"/ },
@@ -316,7 +319,7 @@ const PACKAGE_CASES = [
         }
       }
     },
-    family: 'palette-source', expect: /ranks by lightness and does not move toward/ },
+    family: 'palette-source', expect: /does not move toward/ },
 ];
 for (const spec of PACKAGE_CASES) {
   test(spec.name, () => runPackageCase(spec));

@@ -342,7 +342,11 @@ const MARKS = {
   points: 'none',        // 'none' | 'sparse' | 'all'
   fill: 'none',          // 'none' | 'gradient' | 'flat'
   zero: 'baseline',      // 'baseline' | 'meaningful'
-  // Two series read against two scales, and the line sits between the columns rather than on them
+  // Two series read against two scales, and where the two converge the line crosses the columns
+  // rather than clearing them. That is left alone: separating them would mean stretching one
+  // scale to protect a picture, and the stroke stays legible over the fill because the two
+  // series are far apart in hue. The guide is what tells a reader which column a crossing
+  // point belongs to.
   guide: true,
   why: 'The rate line keeps its stroke as the only visible mark and the columns carry their counts, so no point is added; neither series dips below the baseline both scales share'
 };

@@ -21,11 +21,11 @@
   --chart-radius-swatch: 4.4px;
   --chart-radius-pill: 4.4px;
   --chart-radius-card: 8.4px;
-  --chart-series-1: #0A0A0A;
+  --chart-series-1: #F54900;
   --chart-series-2: #484848;
   --chart-series-3: #747474;
   --chart-series-4: #8F8F8F;
-  --chart-emphasis: #F54900;
+  --chart-emphasis: #0A0A0A;
 }
 /* CHART_PALETTE:END */
 
@@ -36,11 +36,11 @@
     --chart-ink: #FAFAFA;
     --chart-muted: #A1A1A1;
     --chart-rule: #FAFAFA17;
-    --chart-series-1: #FAFAFA;
+    --chart-series-1: #F54900;
     --chart-series-2: #A1A1A1;
     --chart-series-3: #747474;
     --chart-series-4: #616161;
-    --chart-emphasis: #F54900;
+    --chart-emphasis: #FAFAFA;
   }
 }
 :root[data-scheme="dark"] {
@@ -48,11 +48,11 @@
   --chart-ink: #FAFAFA;
   --chart-muted: #A1A1A1;
   --chart-rule: #FAFAFA17;
-  --chart-series-1: #FAFAFA;
+  --chart-series-1: #F54900;
   --chart-series-2: #A1A1A1;
   --chart-series-3: #747474;
   --chart-series-4: #616161;
-  --chart-emphasis: #F54900;
+  --chart-emphasis: #FAFAFA;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -415,7 +415,10 @@ function niceStep(v) {
   return 10 * pow;
 }
 
-const LEFT = 56;
+// The value axis carries four-digit money, and its rotated name sits in the same gutter. At 56 the
+// name was painted over the tick text and ate the leading digit, so 1,800 read as 800. The inset is
+// sized to the widest label this form actually prints, plus room for the name beside it.
+const LEFT = 72;
 const RIGHT = 700;
 const TOP = 16;
 const BASE = 338;

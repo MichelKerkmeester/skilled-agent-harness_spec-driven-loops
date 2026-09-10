@@ -484,9 +484,14 @@ DATA.forEach(function (g, s) {
     const h = HEIGHT * (leaf.value / groupTotal);
     markable(node('rect', { x: x, y: y, width: w, height: h }, 'cell ' + cls),
       leaf, [[g.label, fmt(leaf.value)]]);
+    // A name wider than its cell runs into the neighbour and reads as a broken join rather than
+    // as a label. Measured the way the family caption above already measures itself: where the
+    // name does not fit, the figure keeps the number, which always does, and the name stays
+    // reachable in the card and the table.
     if (h >= 30 && w >= 74) {
-      node('text', { x: x + 10, y: y + 20 }, text).textContent = leaf.label;
-      node('text', { x: x + 10, y: y + 36 }, text + ' num').textContent = fmt(leaf.value);
+      const fits = leaf.label.length * 6.8 + 16 <= w;
+      if (fits) node('text', { x: x + 10, y: y + 20 }, text).textContent = leaf.label;
+      node('text', { x: x + 10, y: y + (fits ? 36 : 20) }, text + ' num').textContent = fmt(leaf.value);
     }
     y += h;
   });

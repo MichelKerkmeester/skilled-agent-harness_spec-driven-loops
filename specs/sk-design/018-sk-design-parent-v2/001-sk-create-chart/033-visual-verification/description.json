@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification",
+  "description": "The palette was replaced wholesale and the checks stayed green throughout, which proves that colour",
+  "keywords": [
+    "palette",
+    "replaced",
+    "wholesale",
+    "checks",
+    "stayed",
+    "green",
+    "throughout",
+    "proves",
+    "colour"
+  ],
+  "lastUpdated": "2026-09-10T06:21:39.084Z",
+  "specId": "033",
+  "folderSlug": "visual-verification",
+  "parentChain": [
+    "sk-design",
+    "018-sk-design-parent-v2",
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

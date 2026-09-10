@@ -36,13 +36,20 @@ const HEIGHT = 900;
 const SETTLE_MS = 2500;
 const PER_FILE_TIMEOUT_MS = 60000;
 
+// A page that frames the whole corpus is as tall as the corpus. A viewport-sized shot of one shows
+// its first tile while sitting in the capture set looking covered, and a shot tall enough to hold
+// all of it is megabytes that get rewritten on every palette change. Neither is worth having: what
+// the sheet has to be is complete, and the corpus check asserts that against the directory. It is
+// a page to open, not a picture to keep.
+const NOT_A_FIGURE = /(?:^|\/)gallery\.html$/;
+
 function htmlFilesUnder(root) {
   const out = [];
   (function walk(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) walk(full);
-      else if (entry.name.endsWith('.html')) out.push(full);
+      else if (entry.name.endsWith('.html') && !NOT_A_FIGURE.test(full)) out.push(full);
     }
   })(root);
   return out.sort();

@@ -216,6 +216,13 @@ Two systems would not rotate in any case. The `neutral` system has no hue to mov
 
 **Index 0 is always the value furthest from that theme's ground.** On paper the first series value is the darkest and on ink it is the brightest, and in both cases it is the one that carries most. That is what keeps `neutral` ranking importance the same way on both grounds and keeps `ordered` reading as more in the same direction. A dark ramp that simply reversed the light array would satisfy the gates and still be wrong, because the light ramp's chroma was placed for a light ground.
 
+**A figure never spends its data marks on the ink.** The first series of every system carries the
+reading and takes a hue. Drawing the readings in the ink and reserving the one colour for the mark
+the headline is about inverts what colour is for: it hands the accent to the exception and leaves
+the subject in the same tone as the axis labels around it. The ranked system takes the ink as its
+emphasis instead, so a plot reads as coloured marks with one that is not, rather than as plain
+marks with one that is.
+
 **A single-series Cartesian form starts on the first series token of its own system.** A line, bar
 or area with one data stream uses `--chart-series-1` for its primary mark, whichever system the
 form declares; a neutral form stays neutral rather than borrowing the categorical ramp, because the

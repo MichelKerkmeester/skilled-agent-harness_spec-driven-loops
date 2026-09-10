@@ -173,6 +173,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 30 | 030-mutation-suite/ | A standing mutation suite for the corpus check, and a blocking gate that runs it | Complete |
 | 31 | 031-full-family-coverage/ | A case for every family the checker registers, and a guard that fails when one arrives without | Complete |
 | 32 | 032-evilcharts-stock/ | The stock register becomes evilcharts on a warmed ground, and the ranked ladder stops shipping a pair nobody can tell apart | Complete |
+| 33 | 033-visual-verification/ | Every capture read by fresh reviewers, twelve defects the green checks had no opinion about, and the rule that data never wears the ink | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

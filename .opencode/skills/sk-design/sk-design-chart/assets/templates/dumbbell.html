@@ -21,11 +21,11 @@
   --chart-radius-swatch: 4.4px;
   --chart-radius-pill: 4.4px;
   --chart-radius-card: 8.4px;
-  --chart-series-1: #0A0A0A;
+  --chart-series-1: #F54900;
   --chart-series-2: #484848;
   --chart-series-3: #747474;
   --chart-series-4: #8F8F8F;
-  --chart-emphasis: #F54900;
+  --chart-emphasis: #0A0A0A;
 }
 /* CHART_PALETTE:END */
 
@@ -36,11 +36,11 @@
     --chart-ink: #FAFAFA;
     --chart-muted: #A1A1A1;
     --chart-rule: #FAFAFA17;
-    --chart-series-1: #FAFAFA;
+    --chart-series-1: #F54900;
     --chart-series-2: #A1A1A1;
     --chart-series-3: #747474;
     --chart-series-4: #616161;
-    --chart-emphasis: #F54900;
+    --chart-emphasis: #FAFAFA;
   }
 }
 :root[data-scheme="dark"] {
@@ -48,11 +48,11 @@
   --chart-ink: #FAFAFA;
   --chart-muted: #A1A1A1;
   --chart-rule: #FAFAFA17;
-  --chart-series-1: #FAFAFA;
+  --chart-series-1: #F54900;
   --chart-series-2: #A1A1A1;
   --chart-series-3: #747474;
   --chart-series-4: #616161;
-  --chart-emphasis: #F54900;
+  --chart-emphasis: #FAFAFA;
 }
 /* CHART_PALETTE_DARK:END */
 
@@ -137,14 +137,15 @@ th.num { text-align: right; }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
-/* The dots carry the two readings, so they take the darker series and the line between them
-   steps down to the lighter one: a reader collecting figures collects dots first. The widest
-   distance takes the emphasis colour, which is where a reader scanning the rows should land
-   first. */
+/* The two dots are the before and the after, and they are painted differently because that is
+   the only thing in the figure that says which way a row moved. Drawn alike, a pair reads as a
+   distance with no direction, and a headline about what got faster cannot be checked against the
+   picture at all. The quiet dot is where the row started. */
 .dumbbell .link { stroke: var(--chart-series-2); stroke-width: 2; }
-.dumbbell .dot { fill: var(--chart-series-1); }
-.dumbbell.wide .link { stroke: var(--chart-emphasis); }
-.dumbbell.wide .dot { fill: var(--chart-emphasis); }
+.dumbbell .dot-before { fill: var(--chart-muted); }
+.dumbbell .dot-after { fill: var(--chart-series-1); }
+.dumbbell.marked .link { stroke: var(--chart-emphasis); }
+.dumbbell.marked .dot-after { fill: var(--chart-emphasis); }
 .notice { fill: var(--chart-muted); font-size: 12px; }
 /* Dashed and drawn below full strength, because the rule token is also the card border and
    a grid at the same weight competes with the frame around it. The grid is the thing a
@@ -218,7 +219,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 <body>
 <div class="card">
   <h1 class="headline" data-chart-part="headline">Nine pipelines build faster after remote caching; one drifts slower</h1>
-  <p class="subtitle" data-chart-part="subtitle">Cold build time per pipeline in minutes, before and after enabling remote caching. The widest change is marked. The line between a pair of dots is a distance, not a reading: nothing at its middle was ever measured.</p>
+  <p class="subtitle" data-chart-part="subtitle">Cold build time per pipeline in minutes, before and after enabling remote caching. The quiet dot is the before and the bright dot the after, so a pair leans the way it moved. The one pipeline that went the other way is marked. The line between a pair of dots is a distance, not a reading: nothing at its middle was ever measured.</p>
   <div class="metric" data-chart-part="metric">
     <p class="metric-value"></p>
     <p class="metric-delta"></p>
@@ -226,7 +227,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-label fig-desc" viewBox="0 0 720 392" id="chart">
       <desc id="fig-label">Cold build time per pipeline, before and after remote caching</desc>
-      <desc id="fig-desc">One row per pipeline, with a dot at that pipeline's cold build time before remote caching and a dot at its time after, joined by a line. Before the change the ten pipelines build in 8 to 64 minutes, and after it they build in 4 to 49. Nine build faster afterwards; the search indexer alone takes four minutes longer. The widest change is marked. The table below the chart carries both readings and the change for every pipeline.</desc>
+      <desc id="fig-desc">One row per pipeline, with a dot at that pipeline's cold build time before remote caching and a dot at its time after, joined by a line. Before the change the ten pipelines build in 8 to 64 minutes, and after it they build in 4 to 49. Nine build faster afterwards; the search indexer alone takes four minutes longer, and it is the marked row. The table below the chart carries both readings and the change for every pipeline.</desc>
     </svg>
     <div data-chart-tooltip data-single-series="" id="tip-dumbbell" class="tip-card" aria-live="polite"></div>
   </div>
@@ -494,9 +495,14 @@ for (let t = 0; t <= TICKS; t += 1) {
   node('text', { x: x(value), y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = compact(value);
 }
 
-// The widest distance takes the emphasis colour, so a reader scanning the rows lands on the
-// comparison this form exists for before anything else.
+// The marked row is the one that moved against the rest, because that is what the sentence under
+// the figure is about. Marking the widest change instead pulled the eye to a row the sentence never
+// mentions. Where nothing runs against the grain, the widest change is the fallback.
+const direction = (d) => Math.sign(d.after - d.before);
+const majority = Math.sign(drawable.reduce((sum, d) => sum + direction(d), 0)) || 1;
+const against = drawable.filter((d) => direction(d) !== 0 && direction(d) !== majority);
 const widest = drawable.reduce(function (a, b) { return Math.abs(b.after - b.before) > Math.abs(a.after - a.before) ? b : a; }, drawable[0]);
+const marked = against.length === 1 ? against[0] : widest;
 const rowGap = (BASE - TOP) / DATA.length;
 // A dot takes the largest radius that still leaves daylight between neighbouring rows, so
 // a pointer moving down the figure meets one row at a time.
@@ -510,10 +516,10 @@ DATA.forEach(function (d, i) {
   // The card reads both readings and the signed distance between them, because the dots
   // print neither number and the distance is what this form exists to compare. A row left
   // undrawn registers nothing.
-  const g = node('g', {}, d === widest ? 'dumbbell wide' : 'dumbbell');
+  const g = node('g', {}, d === marked ? 'dumbbell marked' : 'dumbbell');
   node('line', { x1: x(d.before), y1: cy, x2: x(d.after), y2: cy }, 'link', g);
-  node('circle', { cx: x(d.before), cy: cy, r: DOT_R }, 'dot', g);
-  node('circle', { cx: x(d.after), cy: cy, r: DOT_R }, 'dot', g);
+  node('circle', { cx: x(d.before), cy: cy, r: DOT_R }, 'dot dot-before', g);
+  node('circle', { cx: x(d.after), cy: cy, r: DOT_R }, 'dot dot-after', g);
   markable(g, d, [['Before', fmt(d.before)], ['After', fmt(d.after)], ['Change', changeText(d)]]);
 });
 

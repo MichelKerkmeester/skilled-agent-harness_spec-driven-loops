@@ -77,22 +77,22 @@
   "systems": {
     "neutral": {
       "encodes": "importance",
-      "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. Lightness alone ranks the series, starting with the value furthest from the ground.",
+      "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. The series that carries the reading takes the hue; the steps behind it rank by lightness alone, starting with the value furthest from the ground. A figure never spends its data marks on the ink: a plot of ink-coloured marks with one accent is a plot that has given its only colour to the exception and none to the subject.",
       "capacity": 4,
       "series": [
-        "#0A0A0A",
+        "#F54900",
         "#484848",
         "#747474",
         "#8F8F8F"
       ],
-      "emphasis": "#F54900",
+      "emphasis": "#0A0A0A",
       "seriesDark": [
-        "#FAFAFA",
+        "#F54900",
         "#A1A1A1",
         "#747474",
         "#616161"
       ],
-      "emphasisDark": "#F54900"
+      "emphasisDark": "#FAFAFA"
     },
     "ordered": {
       "encodes": "magnitude",
@@ -150,14 +150,14 @@
       "chrome.rule": "--border",
       "chromeDark.ink": "--foreground (dark)",
       "chromeDark.muted": "--ring",
-      "neutral.series[0]": "--foreground",
+      "neutral.series[0]": "--chart-1",
       "neutral.series[1]": "--muted-foreground",
       "neutral.series[2]": "--code-number",
-      "neutral.seriesDark[0]": "--foreground (dark)",
+      "neutral.seriesDark[0]": "--chart-1",
       "neutral.seriesDark[1]": "--ring",
       "neutral.seriesDark[2]": "--code-number",
-      "neutral.emphasis": "--chart-1",
-      "neutral.emphasisDark": "--chart-1",
+      "neutral.emphasis": "--foreground",
+      "neutral.emphasisDark": "--foreground (dark)",
       "ordered.series[0]": "--chart-1",
       "ordered.seriesDark[0]": "--chart-1",
       "ordered.emphasis": "--foreground",

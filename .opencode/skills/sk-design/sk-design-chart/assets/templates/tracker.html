@@ -141,8 +141,8 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
    The classes are named rather than indexed because the token a status takes is chosen by what
    it means, not by where it sits in a list. */
 .status-held { fill: var(--chart-series-2); }
-.status-degraded { fill: var(--chart-series-4); }
-.status-failed { fill: var(--chart-series-1); }
+.status-degraded { fill: var(--chart-series-1); }
+.status-failed { fill: var(--chart-series-4); }
 /* Every figure a reader compares is set in one mono face, so a value here and a value
    in the next card line up digit under digit and a column of numbers reads as a column.
    The stack is all system faces: a delivered file has no network to fetch one from. */
@@ -206,7 +206,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
 <body>
 <div class="card">
   <h1 class="headline" data-chart-part="headline">The service held on fifty-four of sixty days and never failed twice in a row</h1>
-  <p class="subtitle" data-chart-part="subtitle">One status per day across sixty days. A held day is green, a degraded day amber and a failed day the alarm colour; the block row is read as a strip, one block per day.</p>
+  <p class="subtitle" data-chart-part="subtitle">One status per day across sixty days. A held day is teal, a degraded day orange and a failed day red; the three run from calm to alarming in that order, so a reader scanning the strip meets the worst days last; the block row is read as a strip, one block per day.</p>
   <div class="metric" data-chart-part="metric">
     <p class="metric-value"></p>
     <p class="metric-delta"></p>
@@ -261,8 +261,8 @@ const DATA = [
 /* CHART_SERIES:BEGIN */
 const SERIES = [
   { key: 'held', label: 'Held', token: '--chart-series-2', indicator: 'swatch', classes: ['status-held', 'metric-delta', 'cue'] },
-  { key: 'degraded', label: 'Degraded', token: '--chart-series-4', indicator: 'swatch', classes: ['status-degraded'] },
-  { key: 'failed', label: 'Failed', token: '--chart-series-1', indicator: 'swatch', classes: ['status-failed'] }
+  { key: 'degraded', label: 'Degraded', token: '--chart-series-1', indicator: 'swatch', classes: ['status-degraded'] },
+  { key: 'failed', label: 'Failed', token: '--chart-series-4', indicator: 'swatch', classes: ['status-failed'] }
 ];
 /* CHART_SERIES:END */
 
