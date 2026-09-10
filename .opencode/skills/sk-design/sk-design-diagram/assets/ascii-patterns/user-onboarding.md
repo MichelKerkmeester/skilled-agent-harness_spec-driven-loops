@@ -7,7 +7,7 @@ trigger_phrases:
   - "onboarding completion states"
 importance_tier: normal
 contextType: general
-version: 1.1.0.9
+version: 1.1.0.10
 ---
 
 # User Onboarding Flow Example - Complete Multi-Step Journey

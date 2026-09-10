@@ -182,7 +182,7 @@ Full spec: `references/foundations/style-guide.md`.
 Universal building blocks — background, arrow markers, node boxes, arrow labels, legend. Type-specialized primitives (lifelines, activation bars, regions) live in the relevant `references/types/type-*.md`.
 
 - **Background:** default clean `paper` fill, no dot pattern — the diagram sits directly on the page. Optional dotted-paper variant (`22×22` pattern at ~10% ink opacity) only for long-form editorial hero diagrams.
-- **Arrow markers:** define all three (`arrow`, `arrow-accent`, `arrow-link`); default = muted, accent = coral, link = blue; dashed `5,4` for optional/passive/return. **Draw arrows before boxes** so z-order puts lines behind nodes.
+- **Arrow markers:** a template defines all three (`arrow`, `arrow-accent`, `arrow-link`) so a copy can draw with them; a finished diagram keeps only the markers it draws, and draws only markers it defines; default = muted, accent = coral, link = blue; dashed `5,4` for optional/passive/return. **Draw arrows before boxes** so z-order puts lines behind nodes.
 - **Node box:** opaque paper mask → styled box (`rx=6`) → rectangular type tag (`rx=2`, not a pill) → Geist node name → Geist Mono technical sublabel.
 - **Arrow labels:** every label needs an opaque mask rect *and* a visible 6–10px gap above its connector; ≤14 characters, all-caps, centered on the segment midpoint; never `writing-mode` vertical.
 - **Legend:** horizontal strip at the bottom with a hairline separator — never inside the diagram area; expand the SVG `viewBox` height by ~60px.

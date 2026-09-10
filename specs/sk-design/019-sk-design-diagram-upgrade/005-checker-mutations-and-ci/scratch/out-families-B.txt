@@ -1,0 +1,47 @@
+{"timestamp":"2026-09-10T22:56:50.793Z","runtime":"claude","status":"ok","freshness":"live","durationMs":1427,"cacheHit":false,"skillLabel":"sk-design"}
+**Verdict: the four modules are in and load through the harness registry, and the checker is red for corpus-side reasons.** No asset was edited, no assertion was weakened, and nothing outside the four files was written.
+
+Summary block (`node scripts/check-diagram-corpus.cjs`, exit 1):
+
+```
+Diagram corpus: 38 files, 10 families
+  + accessible-svg: 304 assertion(s), 0 failure(s)
+  + catalog-bidirectional: 97 assertion(s), 0 failure(s)
+  x derivation-gates: 50 assertion(s), 1 failure(s)
+  x grid-4px: 4044 assertion(s), 230 failure(s)
+  x marker-vocabulary: 122 assertion(s), 18 failure(s)
+  + metadata: 61 assertion(s), 0 failure(s)
+  + no-external: 38 assertion(s), 0 failure(s)
+  + node-budget: 38 assertion(s), 0 failure(s)
+  x orthogonal-connectors: 300 assertion(s), 8 failure(s)
+  + unique-ids: 191 assertion(s), 0 failure(s)
+
+Summary: errors: 257
+
+RESULT: FAILED
+```
+
+Negative control: `assets/templates/template-full.html` copied to `/tmp/broken2/t.html`, `--color-muted` set to `#dddddd`, one clean rect's `x` set to `13`, run with `--extra /tmp/broken2`. Both mutations appear (exit 1):
+
+```
+FAIL [derivation-gates] --extra/t.html: role muted is "#dddddd" where the light source says "#4f5d75"; the block and the source must agree byte for byte or the two drift one edit at a time
+FAIL [derivation-gates] --extra/t.html: muted measures 1.25:1 against the paper ground and the gate is 4.5:1; a token under its gate is a recorded departure or it does not ship
+FAIL [grid-4px] --extra/t.html: rect carries x=13 off the 4px grid; layout values must land on it or every later pass has to measure the drawing instead of moving it
+```
+
+Failing files and reasons:
+
+- **grid-4px, 230 records over 34 of 38 files.** 197 records are integer layout values on a 2px or odd grid (node rects at x=198/y=278, connector lines at y=305/253/357, leader lines at x=570/750). 28 records are the full-bleed `<rect width="100%" height="100%">` background. 5 records are icon glyph lines inside an `aria-hidden` svg drawn in a 24x24 viewBox (x1=20.2, y1=16.5). Heaviest: template-full 29, example-data-flow 23, example-high-level 19, example-scatter 18, example-gantt 18. The 4 clean files are the newest (example-loop, example-org-chart, example-dp-security-matrix, example-import-mermaid) and they already sit on the 4px grid, so the corpus is mid-migration rather than 4px-native.
+- **orthogonal-connectors, 8 records in 4 files**: example-medallion 4 (cubic `C` bridge arcs), example-state 1 (`C` feedback curve), example-swimlane 2 (diagonal connectors), example-scatter 1 (diagonal trend line).
+- **derivation-gates, 1 record**: template-terminal `soft` `#5c5c5c` on `#141414` measures 2.76:1 against the 4.5:1 text gate, and no recorded departure covers it. The departure path itself works, since light `soft` 3.48 and light `accent` 2.86 stay quiet.
+- **node-budget: green.** 38 files, 0 tagged nodes, 0 tagged arrows. The budget binds nothing yet.
+- Not mine: **marker-vocabulary** (the other worker's module) reports 18 records, so the run is red for that reason too.
+
+Two readings I made explicit rather than silent. First, radial decoration is exempt on the element that names itself: the loop diagrams' spokes are `<path class="spoke" d="M672 252 L616 284">`, diagonal by design, so reading the spoke exemption at element level spares 8 records and leaves the 8 above. Second, derivation-gates runs on kind `extra` only when the file actually carries a sentinel block, otherwise every `--extra` copy of an example would report a missing block for a file that never had one.
+
+Three-line report:
+
+1. Four modules landed at `.opencode/skills/sk-design/sk-design-diagram/scripts/families/` (grid-4px 60 lines, orthogonal-connectors 79, node-budget 30, derivation-gates 65), each loading through the harness's family registry and each firing only on its own mutant in a direct probe.
+2. The corpus run prints `RESULT: FAILED`, 257 errors, all corpus-side: 230 grid, 8 connector geometry, 1 terminal-soft gate, 18 from another worker's marker family, and the negative control proves both mutated families fire with their own messages.
+3. Nothing outside the four untracked files was written on branch `skilled/v4.0.0.0`. The corpus sits on a 2px grid in 34 of 38 files, so the conductor decides: repaint the corpus geometry or narrow the grid rule and its exemption list (percent extents, icon glyphs, the derived-label offsets that the brief carried only as text baselines).
+EXIT 0

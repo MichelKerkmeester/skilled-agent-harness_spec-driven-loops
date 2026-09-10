@@ -1,0 +1,59 @@
+{"timestamp":"2026-09-10T22:56:50.757Z","runtime":"claude","status":"ok","freshness":"live","durationMs":1391,"cacheHit":false,"skillLabel":"sk-design"}
+Four families are in place and each is proven to fire on its own defect. The corpus run does **not** print `RESULT: PASSED`, and the cause is a genuine corpus/assertion conflict the instructions reserve for you.
+
+## Files created (74 lines total, all under the 80-line budget)
+
+| File | Lines | Assertions |
+|---|---|---|
+| `scripts/families/accessible-svg.cjs` | 78 | 304 |
+| `scripts/families/unique-ids.cjs` | 26 | 191 |
+| `scripts/families/no-external.cjs` | 50 | 38 |
+| `scripts/families/marker-vocabulary.cjs` | 52 | 122 |
+
+Nothing else was written; no asset was touched.
+
+## Checker summary block
+
+```
+Diagram corpus: 38 files, 6 families
+  + accessible-svg: 304 assertion(s), 0 failure(s)
+  + catalog-bidirectional: 97 assertion(s), 0 failure(s)
+  x marker-vocabulary: 122 assertion(s), 18 failure(s)
+  + metadata: 61 assertion(s), 0 failure(s)
+  + no-external: 38 assertion(s), 0 failure(s)
+  + unique-ids: 191 assertion(s), 0 failure(s)
+
+Summary: errors: 18
+
+RESULT: FAILED
+```
+
+## The one failing family — for your decision, not mine
+
+`marker-vocabulary` found 18 definitions that no `marker-start`/`mid`/`end` draws, across 10 files: `template.html` (arrow, arrow-accent, arrow-link), `template-dark.html` (same three), `template-terminal.html` (arrow, arrow-accent), `example-dp-integration.html` (arrow-link, arrow-sm, arrow-dim), `example-er.html` (arrow), `example-import-drawio.html` (arrow-accent), `example-loop.html` (arrow-accent, arrow-link), `example-medallion.html` (arrow-link), `example-org-chart.html` (arrow), `example-process.html` (arrow-sm). Hand-verified: each file defines the id and contains no `marker-*` reference to it anywhere (no single-quoted form, no CSS property, no inline style hides one).
+
+The rule as I was given it and the corpus disagree, and the corpus is following a *different written rule*:
+
+- `SKILL.md:185` — "**Arrow markers:** define all three (`arrow`, `arrow-accent`, `arrow-link`)"
+- `references/types/type-dp-integration.md:222` — "**Defs block** (required, five markers — exactly)" listing arrow, arrow-accent, arrow-link, arrow-sm, arrow-dim
+
+So either those two authorities gain a "…and draw what you defined" clause, or the assertion needs a scope carve-out (templates are scaffolds whose defs block is a library; `type-dp-integration.md` mandates five markers while the example issues only three kinds of connector). I implemented the rule exactly as written and did not weaken it. Flagging for the amendment: this failure also blocks `scripts/tests/corpus-mutations.test.cjs`, whose first test asserts a green corpus and which still lacks its `./mutation-cases.cjs` — the four families will need cases there once it lands.
+
+## Mutation proof — each family reports exactly its planted defect
+
+Copy of `example-flowchart.html` in `/tmp/broken/example-x.html`: `<title>` removed, `id="dots"` duplicated on a rect, `<script src="https://cdn.example.com/a.js">` added, one `marker-end="url(#arrow)"` rewritten to `url(#nope)`.
+
+```
+ACCESSIBLE-SVG  aria-labelledby names "flowchart-title" and no element in the file carries that id
+                the first child of the labelled <svg> is <desc> rather than <title>
+UNIQUE-IDS      id "dots" is defined 2 times
+NO-EXTERNAL     fetches https://cdn.example.com/a.js — cdn.example.com is outside the two allowed font hosts
+MARKER-VOCAB    url(#nope) is drawn as a marker and no <marker id="nope"> is defined in this file
+```
+
+Both `accessible-svg` messages are the single removal seen twice (the element and its id), and the control proves it: with the title restored the family reports **0** while the other three still report their defects. Three further controls: emptying only the title text trips `accessible-svg` alone; defining an orphan `<marker id="orphan">` trips `marker-vocabulary` alone; `assets/icons.html` (87 `<svg>`, zero `role="img"`) is skipped by path while the same file under another name is reported, driving the module directly.
+
+---
+
+Three-line report: `accessible-svg`, `unique-ids`, `no-external` are green over all 38 corpus files; `marker-vocabulary` is correct per its stated rule but fails the corpus 18 times on definitions the skill's own `SKILL.md:185` and `type-dp-integration.md:222` require, so the checker prints `RESULT: FAILED` on that family alone. I did not weaken the assertion and did not edit any asset, per instruction. Everything is uncommitted and untracked (`scripts/families/{accessible-svg,unique-ids,no-external,marker-vocabulary}.cjs`); the decision needed is whether the corpus draws what it defines or the rule exempts scaffolds and the mandated marker set.
+EXIT 0

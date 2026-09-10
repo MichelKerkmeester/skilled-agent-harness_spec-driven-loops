@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram output templates index"
   - "template dark full terminal"
 contextType: general
-version: 1.1.0.4
+version: 1.1.0.5
 ---
 
 # assets/templates

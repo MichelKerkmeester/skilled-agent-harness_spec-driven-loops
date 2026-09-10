@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram token derivation"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.3
 ---
 
 # Diagram Palette Derivation Record
@@ -98,6 +98,7 @@ The terminal skin is a second, fixed skin. You opt into it per diagram, and onbo
 |---|---|---|
 | `accent` (#eb6c36) on `paper` (#f5f5f5) | 2.863:1 | Against the 3.0:1 mark gate; kept as the brand accent by decision; never re-derived |
 | `soft` (#7a8399) on `paper` | 3.48:1 | Above the 3.0:1 mark gate, below the 4.5:1 text gate. May not carry sublabel or eyebrow text. |
+| `terminal-soft` (#5c5c5c) on `terminal-paper` (#141414) | 2.76:1 | Decoration: inactive dots and spokes. Never carries text, so the text gate does not apply; recorded rather than exempted so the number is on the page. |
 
 ---
 

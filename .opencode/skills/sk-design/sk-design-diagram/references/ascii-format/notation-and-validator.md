@@ -9,7 +9,7 @@ trigger_phrases:
   - "validator passing notation"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.7
+version: 1.1.0.8
 ---
 
 # Validator Mechanics and Notation

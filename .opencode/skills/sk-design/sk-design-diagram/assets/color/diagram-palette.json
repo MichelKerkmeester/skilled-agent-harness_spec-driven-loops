@@ -175,6 +175,14 @@
       "measured": 3.48,
       "gate": "textOnPaper",
       "why": "structural use only; may not carry sublabel or eyebrow text"
+    },
+    {
+      "skin": "terminal",
+      "role": "soft",
+      "against": "paper",
+      "measured": 2.76,
+      "gate": "textOnPaper",
+      "why": "decoration: inactive dots and spokes; never carries text"
     }
   ],
   "pins": {

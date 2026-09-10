@@ -47,6 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs",
+      ".github/workflows/diagram-corpus.yml",
       ".github/workflows/chart-corpus.yml",
       "scripts/README.md"
     ],
@@ -85,6 +88,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-diagram-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-mutations.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/diagram-corpus.yml",
         "source": "derived"
       },
       {
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`check-diagram-corpus.cjs` with the families phase 002 contracted: accessibility and metadata, no-external with a one-entry allowlist as net-new work (no documented exception precedent exists to port), the 4px grid per the signed exemption list, orthogonal connectors with the type allowlist, marker trio and unique ids at the decided scope, gates against sentinel blocks across three grounds, the derivation re-derivation, the catalog in both directions",
     "created_at": "2026-09-10T18:45:28Z",
-    "last_save_at": "2026-09-10T21:33:42.919Z",
+    "last_save_at": "2026-09-10T23:14:04.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +212,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a94dd561c09d0448a48ff2bfc5bf672152387308f6bdef0d443ca3c51146db8",
+    "source_fingerprint": "sha256:e50b56a9565e100b4462568d7158b01ba0a3630cc92fc4f04f745defaec2faf4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c64e93533c8e4f707abedff1ef353d9e2ab5f5254144dbc4304342d9101d8aa1",
       "plan.md": "83cc8b1187b80c7e7e668b1ee55acc340b0f3e35a785c26b7c6e8e13cc35e306",
-      "tasks.md": "d28dffac0901213daa8fd78058594d71c3702572863d3085324758d4fe4ac434",
+      "tasks.md": "ee0dce6c5cc7a58691ce2a1be543e7f228310eff1df3e9bb2a6da41062328af4",
       "implementation-summary.md": "3436ac99626c1082c5da274abe6fef7aaab6f4f49b4f7cca80ae2914f41707bb"
     },
     "last_active_at": null

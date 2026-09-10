@@ -50,7 +50,8 @@
       "003-applicator-and-sentinels/goal.md",
       "004-corpus-and-catalog/goal.md",
       "005-checker-mutations-and-ci/goal.md",
-      "006-capture-and-judgment/goal.md"
+      "006-capture-and-judgment/goal.md",
+      ".github/workflows/diagram-corpus.yml"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "diagram.md",
         "kind": "doc",
         "path": ".opencode/commands/design/diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/diagram-corpus.yml",
         "source": "derived"
       },
       {
@@ -138,7 +145,7 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -146,14 +153,14 @@
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T22:51:11.833Z",
+    "last_save_at": "2026-09-10T23:14:04.599Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:bf29a7fc7b337b407e364bd9cfe40a010c294f99b6b9dac597c60a0d5aea9f91",
+    "source_fingerprint": "sha256:e222950db172ec6474f5a8a37b128c5e948ac86304f3fb6c1f5727afa02ab9f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d001a5143db82baa4fc0e1a2d4620dd72e718eeac618f37d505e05f0cd62bcba"

@@ -1,0 +1,54 @@
+name: Diagram Corpus
+
+on:
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/sk-design/sk-design-diagram/**'
+      - '.github/workflows/diagram-corpus.yml'
+  pull_request:
+    paths:
+      - '.opencode/skills/sk-design/sk-design-diagram/**'
+      - '.github/workflows/diagram-corpus.yml'
+  workflow_dispatch:
+
+# The corpus check is the diagram packet's contract: one family per module over every shipped
+# template and example. It blocks because the corpus was made green before the checker existed,
+# so there is no backlog behind the gate and nobody has to triage it. The literal marker is what
+# passes, not the exit code: a run that dies before its first check exits without printing a
+# failure, and the marker is only printed by a run that got to the end.
+#
+# The render pass is deliberately not here. It drives an installed browser, and the capture
+# review that needs one says so and runs on a schedule rather than passing quietly in CI.
+jobs:
+  corpus:
+    name: Corpus contract, its mutation suite and the applicator gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Corpus check
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/sk-design/sk-design-diagram
+          node scripts/check-diagram-corpus.cjs | tee /tmp/diagram-corpus.log
+          grep -q 'RESULT: PASSED' /tmp/diagram-corpus.log
+
+      - name: Applicator reproduces the stock bytes
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/sk-design/sk-design-diagram
+          node scripts/apply-diagram-tokens.cjs --default --out /tmp/diagram-templates | tee /tmp/applicator.log
+          grep -q 'RESULT: PASSED' /tmp/applicator.log
+          diff -rq /tmp/diagram-templates assets/templates
+          node scripts/apply-diagram-tokens.cjs --default --examples --out /tmp/diagram-examples | tail -1
+          diff -rq --exclude=example-sequence-oauth-dark.html /tmp/diagram-examples assets/examples
+
+      - name: Mutation suite
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/sk-design/sk-design-diagram
+          node --test scripts/tests/
