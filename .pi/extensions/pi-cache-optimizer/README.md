@@ -95,10 +95,19 @@ The interactive `/cache-optimizer` menu includes `Footer mode`, where you can ch
 
 A failing turn can re-issue the same billable tool batch until the budget is gone. This extension tracks tool calls as batches — one batch is the set of tool calls in a single assistant message — and escalates only when the **whole batch fails repeatedly** with no success in between.
 
-**When it fires:**
+**When it fires.** Two different failures escalate on their own counters, because they are not the same problem and the message has to say which one happened.
 
-- The 3rd consecutive all-failed batch gets a `[loop guard]` notice appended to the tool result the model sees, telling it to change arguments, use another tool, or report the blocker. The turn is not ended.
-- The 4th consecutive all-failed batch stops the turn: a notification is shown and the agent operation is aborted, so the same request is not billed again.
+*The same request repeating* — consecutive all-failed batches whose error signature matches:
+
+- The 3rd gets a `[loop guard]` notice appended to the tool result the model sees, telling it to change arguments, use another tool, or report the blocker. The turn is not ended.
+- The 4th stops the turn: the agent operation is aborted so the same request is not billed again.
+
+*Failures piling up with differing errors* — consecutive all-failed batches that are not repeats:
+
+- The 4th gets a notice saying every call has failed for four turns running and the errors differ.
+- The 6th stops the turn, saying plainly that this is not one request repeating and the turn is not converging.
+
+The two are deliberately separate. Collapsing them, as an earlier version did, let four unrelated failures abort under a message asserting the same request had been re-billed.
 
 **What resets the streaks:**
 
@@ -109,7 +118,7 @@ A failing turn can re-issue the same billable tool batch until the budget is gon
 **What it does not do:**
 
 - It never rewrites, retries, or "fixes" the user's request to make a call succeed.
-- It cannot fire on a first attempt, and one legitimate retry never triggers it: escalation requires three consecutive all-failed batches.
+- It cannot fire on a first attempt, and one legitimate retry never triggers it: the earliest escalation needs three consecutive all-failed batches, and only when they repeat the same error.
 - It does not change transport-level retry policy; provider-side retries remain the provider's concern.
 - It does not affect cache measurement, prompt rewriting, compat warnings, `doctor`, or `fix`.
 
@@ -123,7 +132,7 @@ Exact-string editing fails silently when a file changes between the model's read
 
 **Refusal is the failure mode.** A stale hash never falls back to a fuzzy or best-effort match; a looser match is exactly the silent corruption this path exists to prevent. The existing exact-string `edit` tool is untouched, and the unguarded path remains available for edits built from current content.
 
-The capability is editing, not caching, and its placement inside this extension is under review. It is implemented as one self-contained block with a single registration entry point and no shared state with the cache code, so it can be lifted into its own extension without being unpicked from cache internals.
+The capability is editing, not caching, and it lives here deliberately: a refused stale edit prevents a paid retry, which is the same cost concern the rest of the extension measures. It stays one self-contained block with a single registration entry point and no shared state with the cache code, so it can still be lifted into its own extension without being unpicked from cache internals — that option is kept open, not pending.
 
 ## Footer cache stats mode
 
