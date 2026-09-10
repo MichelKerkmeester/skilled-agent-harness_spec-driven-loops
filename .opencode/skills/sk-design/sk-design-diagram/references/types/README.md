@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram type conventions index"
   - "27 diagram types"
 contextType: general
-version: 1.1.0.5
+version: 1.1.0.6
 ---
 
 # references/types

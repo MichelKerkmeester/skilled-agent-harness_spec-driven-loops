@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-design-diagram",
+    "rootRel": ".opencode/skills/sk-design/sk-design-diagram"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "capture-review",
+  "verdict": "FAIL",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "CAP-001",
+      "verdict": "FAIL",
+      "reason": "Six judged reads over all 39 captures by two fresh readers: 36 pass; focal balance fails on dp-integration (accent on three boxes and most edges), venn (no accent at all) and template-full (accent on five elements). Skin-pinned third capture differs from the stock by eye (architecture, accent moved). Settled double-capture matches (swimlane). Label-mask measurement at 1:1 with remote fonts disabled: 1 of 14 arrow-label masks overflows (swimlane HANDOFF), 0 of 12 type-tag boxes. Three sequence captures are cropped at the 900px viewport. Verdict FAIL: the corpus has three focal-balance defects and one label overflow to repair, and the capture step needs full-page height.",
+      "stage": "capture-review",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "capture-review",
+      "evidence": [
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/capture-review-findings.md",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/label-mask-measurement.md",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/architecture-skin-pinned.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/swimlane-without-fonts.png"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/capture-review-findings.md",
+          "status": "verified",
+          "bytes": 899,
+          "sha256": "b1ccaebd73138e3bce2aedf77bc828ce37e850fb2e3bcaa476f5e7068c020cb9"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/label-mask-measurement.md",
+          "status": "verified",
+          "bytes": 938,
+          "sha256": "97fdb774d2199d661c20084941debf9b424936a588f7335789c7048bc003a7b8"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/architecture-skin-pinned.png",
+          "status": "verified",
+          "bytes": 57446,
+          "sha256": "62b4c8c3725633caa6eba6b2ac8e26b89865962983ea25e4fcfad52614672a69"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/swimlane-without-fonts.png",
+          "status": "verified",
+          "bytes": 36864,
+          "sha256": "6cf096c712eac746453f7425113ea3fb61dc2bc0ab8ff173ddf95f168073de4d"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-09-10T23:22:48.152Z",
+    "evidenceClass": null,
+    "evidenceArtifacts": [
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/capture-review-findings.md",
+        "status": "verified",
+        "bytes": 899,
+        "sha256": "b1ccaebd73138e3bce2aedf77bc828ce37e850fb2e3bcaa476f5e7068c020cb9"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/label-mask-measurement.md",
+        "status": "verified",
+        "bytes": 938,
+        "sha256": "97fdb774d2199d661c20084941debf9b424936a588f7335789c7048bc003a7b8"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/architecture-skin-pinned.png",
+        "status": "verified",
+        "bytes": 57446,
+        "sha256": "62b4c8c3725633caa6eba6b2ac8e26b89865962983ea25e4fcfad52614672a69"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/swimlane-without-fonts.png",
+        "status": "verified",
+        "bytes": 36864,
+        "sha256": "6cf096c712eac746453f7425113ea3fb61dc2bc0ab8ff173ddf95f168073de4d"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "CAP-001",
+    "stage": "capture-review",
+    "dispatch": "manual",
+    "evidenceClass": null,
+    "requestedExecutorLabel": "conductor-with-fresh-readers",
+    "requestedModelLabel": "claude-sonnet-5",
+    "variant": "capture-review"
+  }
+}

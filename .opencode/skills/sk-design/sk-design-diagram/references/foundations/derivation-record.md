@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram token derivation"
 importance_tier: important
 contextType: reference
-version: 1.1.0.3
+version: 1.1.0.4
 ---
 
 # Diagram Palette Derivation Record

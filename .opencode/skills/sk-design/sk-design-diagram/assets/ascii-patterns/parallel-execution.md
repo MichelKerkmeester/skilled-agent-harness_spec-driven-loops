@@ -7,7 +7,7 @@ trigger_phrases:
   - "concurrent branch pipeline"
 importance_tier: normal
 contextType: general
-version: 1.1.0.10
+version: 1.1.0.11
 ---
 
 # Parallel Execution Example - Simultaneous Tasks with Synchronization

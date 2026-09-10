@@ -17,6 +17,7 @@ Canonical package artifacts:
 - `diagram-generation/`
 - `import-export/`
 - `command-and-hub-integration/`
+- `capture-review/`
 
 The feature-catalog package ships as a sibling deliverable at `feature-catalog/`. Every `**Catalog:**` reference in this package resolves against it.
 
@@ -24,12 +25,14 @@ The feature-catalog package ships as a sibling deliverable at `feature-catalog/`
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+The capture-review scenario (`CAP-001`) persists through the same runner.
+Every `SKIP` carries its reason in the reason column, and a `SKIP` with an empty reason is a failed run.
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook covers the full operator-visible surface of the `sk-design-diagram` packet across three categories: diagram generation, import/export, and command/hub integration. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract. The operator validator computes the exact census from the walked tree; this document does not hand-maintain counts.
+This playbook covers the full operator-visible surface of the `sk-design-diagram` packet across four categories: diagram generation, import/export, command/hub integration, and capture review. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract. The operator validator computes the exact census from the walked tree; this document does not hand-maintain counts.
 
 Coverage note (2026-08-12): every scenario is runnable today against the shipped references, the `assets/templates/template*.html` variants, and the `scripts/drawio_extract.py` / `scripts/mermaid_extract.py` extractors; the PNG export scenario requires a local Playwright install and is otherwise a documented `SKIP` with a named blocker.
 
@@ -326,7 +329,29 @@ Desired user-visible outcome: a registration verdict backed by the two manifest 
 
 ---
 
-## 10. AUTOMATED TEST CROSS-REFERENCE
+## 10. CAPTURE REVIEW (`CAP-001`)
+
+### CAP-001 | Capture review of the rendered corpus
+
+#### Description
+Verify a rendered capture of a corpus illustration against the six reads the corpus checker states it does not hold — connector overlap, the attach fan, the visible label gap, a route behind a box, focal balance, and type fit — on a capture pair that proves the skin reached the paint and a settle pair that proves the drawing had stopped moving.
+
+#### Scenario Contract
+Prompt: `Capture assets/examples/example-swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
+
+- Objective: verify a rendered capture of a corpus illustration against the six judged reads, on a capture pair that proves the skin reached the paint and a settle pair that proves the drawing had stopped moving
+- Real user request: `Here's the render of the diagram that's going into our docs — tell me what a person actually sees wrong with it before we publish.`
+- Expected signals: three captures of the one file (stock, skin-pinned, settled); the skin pair differs by eye in paper, ink, or accent; the settle pair matches; all six reads answered with the reason that decided them; two taste notes recorded but not scored; no arrow-label mask shows ink outside its own bounds in the no-fonts render; the outcome persisted under `benchmark/reports/<dated-run-label>/` with a reason on any `SKIP`.
+- Pass/fail: PASS if all six reads hold on the settled capture, the skin pair differs and the settle pair matches, and no mask overflows; FAIL if any read fails, the skin pair reads the same, the settle pair differs, a mask overflows, or a `SKIP` is recorded with an empty reason; `SKIP` only when a named blocker stops the render.
+- Desired user-visible outcome: an operator-readable verdict on whether the diagram is clean to the eye, backed by the captures that show why.
+- Evidence: the capture paths for the stock, skin-pinned, and both settled captures; the with-fonts and no-fonts renders with every mask rect's bounds and crop; the six answers with their reasons; the label of the run folder the outcome was persisted to.
+
+#### Test Execution
+> **Feature File:** [CAP-001](capture-review/capture-review.md)
+
+---
+
+## 11. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
@@ -338,7 +363,7 @@ Note: `sk-design-diagram` ships no committed automated feature test suite. The t
 
 ---
 
-## 11. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -351,3 +376,13 @@ Note: `sk-design-diagram` ships no committed automated feature test suite. The t
 | IMP-003 | Export guidance | IMPORT AND EXPORT | [IMP-003](import-export/export-guidance.md) |
 | CMD-001 | create-diagram command | COMMAND AND HUB INTEGRATION | [CMD-001](command-and-hub-integration/design-diagram-command.md) |
 | CMD-002 | Hub registration | COMMAND AND HUB INTEGRATION | [CMD-002](command-and-hub-integration/hub-registration.md) |
+| CAP-001 | Capture review of the rendered corpus | CAPTURE REVIEW | [CAP-001](capture-review/capture-review.md) |
+
+---
+
+## 13. GRADUATION LOG
+
+A judged read that becomes computable moves *into* the corpus checker as a named family beside the others under `scripts/families/`, and the move is logged here with its date, its family, and the evidence that the family held on the current corpus. Nothing travels the other way: a family never returns to the eye, because a rule the checker holds is enforced on every run while a rule handed back to a reader is enforced on no run at all. The table stays empty until the first judged read crosses.
+
+| Item | Graduated | Family | Evidence | Removed from |
+|---|---|---|---|---|

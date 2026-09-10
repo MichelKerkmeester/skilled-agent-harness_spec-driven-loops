@@ -9,7 +9,7 @@ trigger_phrases:
   - "combined fragment alt opt loop"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.6
+version: 1.1.0.7
 ---
 
 # Sequence

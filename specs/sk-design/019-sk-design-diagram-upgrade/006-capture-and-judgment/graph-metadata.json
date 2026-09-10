@@ -48,6 +48,7 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
       "benchmark/reports/README.md"
     ],
@@ -92,6 +93,12 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-diagram-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Removed From",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The playbook scenario formalized: a skin-pinned third capture that must differ from the first, the settled double-capture, and the judged checklist — type fit, the remove test, taste, the visible 6–10px label gap, the deserved focal element, the unavoidable-box exception",
     "created_at": "2026-09-10T18:45:29Z",
-    "last_save_at": "2026-09-10T21:55:57.344Z",
+    "last_save_at": "2026-09-10T23:23:35.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +211,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a86d4e6357fe866b44f035e319d7abf9d3299ed72161c92b85c6efb5d5218de",
+    "source_fingerprint": "sha256:bda2cb8c251e2934d1b89811d2f42a4f78c2048eff8ac4dd4a43ee0cfbe5d9aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "18b1ec2d09858db68924140946e90b36797a21ef5ca578f1b7a396d7cdcb4352",
       "plan.md": "5d525a6949aee30c197c0ebee0c29b28814e7f06224d017fe6f2ca65a0a5b2bd",
-      "tasks.md": "7e34c39e02574f49f4c347d9d130977ab18799db3029893b5423c2a7f3605d23",
+      "tasks.md": "97449d4f8614a31499969b91dd8add8bd39b0ff04eed85dbe175ae4dce86c8cf",
       "implementation-summary.md": "e2021cab9702d62e4c24359af73938ae8a1e40db40f59a1e615882fc7b05f995"
     },
     "last_active_at": null

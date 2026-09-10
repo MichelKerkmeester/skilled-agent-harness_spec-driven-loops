@@ -1,0 +1,17 @@
+swimlane "HANDOFF" mask 452,140 60x12: outside ink with fonts=12 without=19 -> OVERFLOW
+swimlane "REVISE" mask 548,228 52x12: outside ink with fonts=7 without=7 -> ok
+swimlane "DEPLOY TRIGGER" mask 712,308 80x12: outside ink with fonts=0 without=0 -> ok
+swimlane: renders differ = True
+architecture "CONTENT" mask 672,132 52x12: outside ink with fonts=0 without=0 -> ok
+architecture "HTTPS" mask 172,252 48x12: outside ink with fonts=0 without=0 -> ok
+architecture "RESP" mask 172,278 32x12: outside ink with fonts=0 without=0 -> ok
+architecture "SSR" mask 368,252 48x12: outside ink with fonts=0 without=0 -> ok
+architecture "READ MDX" mask 564,234 60x12: outside ink with fonts=0 without=0 -> ok
+architecture "QUERY" mask 568,298 44x12: outside ink with fonts=0 without=0 -> ok
+architecture "EXT" mask 48,248 28x12: outside ink with fonts=0 without=0 -> ok
+architecture "EDGE" mask 228,248 32x12: outside ink with fonts=0 without=0 -> ok
+architecture "ORIG" mask 424,248 32x12: outside ink with fonts=0 without=0 -> ok
+architecture "BUN" mask 636,168 32x12: outside ink with fonts=2 without=2 -> ok
+architecture "CMS" mask 636,328 28x12: outside ink with fonts=28 without=24 -> ok
+architecture: renders differ = True
+RESULT: FAIL (1 of 14 arrow-label masks overflow)

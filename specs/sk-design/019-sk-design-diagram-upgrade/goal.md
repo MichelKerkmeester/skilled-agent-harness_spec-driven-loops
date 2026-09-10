@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "Phase 005 executed; the grid became a ratchet and ten dead markers left the corpus"
-    next_safe_action: "Read the CI run, then execute 006: the capture review scenario"
+    recent_action: "All six phases executed; the first capture review recorded five corpus defects for repair"
+    next_safe_action: "Repair the five findings the capture review recorded, then re-run CAP-001"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-019-sk-design-diagram-upgrade"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -108,7 +108,8 @@ The operator holds this directive as the session objective. Whenever anything ab
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 research, two lineages | Done | 29 findings; 15 confirmed, 15 corrected, 1 fabrication caught |
-| 005 executed: checker with ten families, mutation suite 14/14, CI workflow | Done except the CI run read | four families were red on the real corpus and each red became a recorded decision |
+| 006 executed: CAP-001 in the playbook, first dated capture-review report | Done | verdict FAIL with reasons: focal balance on dp-integration, venn, template-full; swimlane HANDOFF label overflows without web fonts; three sequence captures cropped |
+| 005 executed: checker with ten families, mutation suite 14/14, CI workflow | Done; CI run 34541227429 green | four families were red on the real corpus and each red became a recorded decision |
 | 004 executed: examples mode, catalog both ways, SKILL.md slimmed, 39 captures re-shot | Done except the checker dress run, which 005 opens with | census 1,577 / 25 unchanged; re-theme control repaints every accent; catalog rows resolve both ways |
 | 003 executed: token source, ported gate module, one sentinel block per template, the applicator; --default reproduces the stock bytes | Done | `diff -rq` empty; negative control refused with the nearest clearing value |
 | 002 executed: seven decisions signed, derivation record written, one-locus fixes landed | Done | `derivation-record.md`; `diagram.md:67`; `SKILL.md` ownership and single accessibility locus; versions re-derived by the standard's tool |
@@ -123,6 +124,7 @@ The operator holds this directive as the session objective. Whenever anything ab
 
 | Item | Note |
 |------|------|
+| Open findings from the first capture review | focal balance on dp-integration, venn and template-full; swimlane HANDOFF mask overflows under a substituted font; the renderer crops tall diagrams at 900px. These are repairs to the corpus and the shared renderer, recorded in the dated report rather than fixed in this packet\'s closing hour |
 | D5 refined: the grid binds new files and ratchets legacy ones | the corpus was never on the grid; 302 values across 24 files are recorded in `grid-baseline.json` and may only fall |
 | D6 refined: templates define the trio, deliveries keep what they draw | the rule as signed would have failed every skeleton for doing its job |
 | Criterion 4 amended: literals stay, and every one must be a role | 1,374 of the examples' hex values sit in SVG presentation attributes, which cannot hold a CSS variable. The criterion now asks that every literal resolve to a role of its file's skin and that the applicator re-theme it, which is what makes the corpus generated from one source without rewriting 34 hand-drawn files |
