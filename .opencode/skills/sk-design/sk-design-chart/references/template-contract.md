@@ -632,7 +632,7 @@ the delivery forward, never to excuse it.
 
 A chart answers a pointer. Eighteen forms carry the hover-card register today. The other forms either
 print their values in the drawing or carry a native title on a mark, so a card would repeat the
-reading. See the per-form table below for the decided contract of all 26 forms.
+reading. See the per-form table below for the decided contract of all 29 forms.
 
 The pointer rows remain a register for behaviour a static check cannot see, while the state,
 number-format and card/table boundaries are asserted. The split is marked here so nobody reads a

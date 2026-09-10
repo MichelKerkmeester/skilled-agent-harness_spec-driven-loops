@@ -29,7 +29,7 @@ version: 2.1.0.0
 | **Invoke with** | "create a chart", "plot the data", a named form such as "treemap" or a direct read of `SKILL.md` |
 | **Works on** | A dataset and the comparison someone wants to make from it |
 | **Produces** | One self-contained HTML file, built from a form file and one colour system |
-| **Corpus** | Twenty-six chart forms across six question families, plus three stock colour systems and provenance-gated design-md deliveries |
+| **Corpus** | Twenty-nine chart forms across six question families, plus three stock colour systems and provenance-gated design-md deliveries |
 
 ---
 
