@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Add User Authentication [template:examples/level-1/plan.md]"
+title: "Implementation Plan: Add User Authentication"
 description: "planning required for a simple authentication feature. Note the straightforward"
 trigger_phrases:
   - "implementation plan"

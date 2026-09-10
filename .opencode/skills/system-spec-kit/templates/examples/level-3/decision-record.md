@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Add User Authentication [template:examples/level-3/decision-record.md]"
+title: "Decision Record: Add User Authentication"
 description: "architecture decisions with proper context, alternatives, and consequences."
 trigger_phrases:
   - "decision"

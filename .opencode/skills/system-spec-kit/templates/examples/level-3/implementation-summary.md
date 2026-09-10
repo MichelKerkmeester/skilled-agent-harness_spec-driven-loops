@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level-3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "decision summary, comprehensive metrics, and lessons learned sections. -->"
 trigger_phrases:
   - "implementation summary"

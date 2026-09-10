@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Add User Authentication [template:examples/level-3+/decision-record.md]"
+title: "Decision Record: Add User Authentication"
 description: "Level 3, demonstrating that governance-level features are primarily in spec.md"
 trigger_phrases:
   - "decision"

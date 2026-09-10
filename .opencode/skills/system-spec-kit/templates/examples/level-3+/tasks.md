@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Add User Authentication [template:examples/level-3+/tasks.md]"
+title: "Tasks: Add User Authentication"
 description: "features including 3-Tier Task Format, AI Execution Protocol, and Workstream"
 trigger_phrases:
   - "task breakdown"

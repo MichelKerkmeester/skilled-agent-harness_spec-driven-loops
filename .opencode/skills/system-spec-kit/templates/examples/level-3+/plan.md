@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Add User Authentication [template:examples/level-3+/plan.md]"
+title: "Implementation Plan: Add User Authentication"
 description: "Note the AI Execution Framework, Workstream Coordination, and Communication Plan"
 trigger_phrases:
   - "implementation plan"

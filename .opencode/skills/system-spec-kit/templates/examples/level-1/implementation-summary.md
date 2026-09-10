@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level-1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "the completed authentication feature. Created AFTER implementation completes. -->"
 trigger_phrases:
   - "implementation summary"

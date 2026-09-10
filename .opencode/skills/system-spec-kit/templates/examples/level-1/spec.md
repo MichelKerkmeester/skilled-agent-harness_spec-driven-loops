@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Add User Authentication [template:examples/level-1/spec.md]"
+title: "Feature Specification: Add User Authentication"
 description: "required for a simple authentication feature (~80 LOC). Use this as a reference when"
 trigger_phrases:
   - "feature specification"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Add User Authentication [template:examples/level-2/plan.md]"
+title: "Implementation Plan: Add User Authentication"
 description: "planning. Note the addition of Phase Dependencies, Effort Estimation, and Enhanced"
 trigger_phrases:
   - "implementation plan"

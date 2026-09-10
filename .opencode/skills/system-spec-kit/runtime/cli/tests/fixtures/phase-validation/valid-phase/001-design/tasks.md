@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Design Phase [template:examples/level-1/tasks.md]"
+title: "Tasks: Design Phase"
 description: "Current-template Level 1 task list for the design phase validation child."
 trigger_phrases:
   - "phase"

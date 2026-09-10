@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Design Phase [template:examples/level-1/spec.md]"
+title: "Feature Specification: Design Phase"
 description: "Current-template Level 1 child fixture for phase validation design coverage."
 trigger_phrases:
   - "phase"

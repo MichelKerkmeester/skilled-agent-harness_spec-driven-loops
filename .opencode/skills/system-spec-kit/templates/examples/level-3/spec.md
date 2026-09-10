@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Add User Authentication [template:examples/level-3/spec.md]"
+title: "Feature Specification: Add User Authentication"
 description: "documentation. Note the addition of Executive Summary, Risk Matrix, User Stories"
 trigger_phrases:
   - "feature specification"

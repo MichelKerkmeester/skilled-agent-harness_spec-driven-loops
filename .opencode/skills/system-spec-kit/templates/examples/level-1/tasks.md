@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Add User Authentication [template:examples/level-1/tasks.md]"
+title: "Tasks: Add User Authentication"
 description: "needed for a simple authentication feature. Note the straightforward task numbering"
 trigger_phrases:
   - "task breakdown"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level-2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "verification documentation and test coverage details. -->"
 trigger_phrases:
   - "implementation summary"

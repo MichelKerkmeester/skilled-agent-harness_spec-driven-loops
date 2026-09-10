@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Add User Authentication [template:examples/level-3/plan.md]"
+title: "Implementation Plan: Add User Authentication"
 description: "planning. Note the addition of Dependency Graph, Critical Path, Milestones, and"
 trigger_phrases:
   - "implementation plan"

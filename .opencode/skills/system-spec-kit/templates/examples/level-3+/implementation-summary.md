@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level-3+/implementation-summary.md]"
+title: "Implementation Summary"
 description: "metrics, workstream performance, AI execution analysis, and comprehensive lessons"
 trigger_phrases:
   - "implementation summary"

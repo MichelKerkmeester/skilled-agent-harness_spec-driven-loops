@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Add User Authentication [template:examples/level-3+/spec.md]"
+title: "Feature Specification: Add User Authentication"
 description: "Note the Complexity Assessment, Approval Workflow, Compliance Checkpoints, Stakeholder"
 trigger_phrases:
   - "feature specification"

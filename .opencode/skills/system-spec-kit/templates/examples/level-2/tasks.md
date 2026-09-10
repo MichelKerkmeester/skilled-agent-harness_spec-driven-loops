@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Add User Authentication [template:examples/level-2/tasks.md]"
+title: "Tasks: Add User Authentication"
 description: "including effort estimates and explicit verification tasks for each feature. -->"
 trigger_phrases:
   - "task breakdown"
