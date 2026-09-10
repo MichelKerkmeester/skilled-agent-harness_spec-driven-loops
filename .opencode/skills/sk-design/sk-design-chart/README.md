@@ -87,7 +87,6 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 | [`references/`](./references/) | The catalog, the colour systems and the template contract |
 | [`assets/templates/`](./assets/templates/) | One self-contained file per chart form, copied whole |
 | [`assets/color/`](./assets/color/) | The three stock colour systems, their palette source and their proof sheets |
-| [`assets/examples/`](./assets/examples/) | One finished delivery per family, for when a form file alone is unclear |
 | [`assets/style-reference/`](./assets/style-reference/) | The Style Reference the stock palette was derived from, carried here rather than read from a sibling library |
 | [`scripts/`](./scripts/) | The corpus validator, shared gate arithmetic and the local `DESIGN.md` applicator |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |

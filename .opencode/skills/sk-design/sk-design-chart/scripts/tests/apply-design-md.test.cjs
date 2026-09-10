@@ -119,12 +119,15 @@ test('an ordered form named outright is refused and keeps its stock ramp', () =>
   assert.equal(fs.existsSync(output), false);
 });
 
-// The two references the packet carries are the ones a run actually reaches for: the stock, which
-// --default reads, and the second one, which exists to prove the override is not theoretical.
-// Nothing else in the suite would notice if either stopped deriving.
-test('both carried references derive two gated themes', () => {
-  for (const name of ['cursor', 'evilcharts']) {
-    const carried = path.join(ROOT, 'assets', 'style-reference', name, 'DESIGN.md');
+// Every reference the packet carries is one a run can reach for, and nothing else in the suite
+// would notice if one stopped deriving. The set is read from the directory rather than listed, so
+// a reference added or removed is covered or released without this test being told.
+test('every carried reference derives two gated themes', () => {
+  const root = path.join(ROOT, 'assets', 'style-reference');
+  const names = fs.readdirSync(root).filter((n) => fs.statSync(path.join(root, n)).isDirectory());
+  assert.ok(names.length > 0, 'the packet carries no reference at all');
+  for (const name of names) {
+    const carried = path.join(root, name, 'DESIGN.md');
     const parsed = apply.derive({ designPath: carried, scheme: 'both' });
     assert.equal(parsed.failures.length, 0, `${name} should clear every derived gate`);
     assert.equal(parsed.light.series.length, 4, `${name} light series capacity`);

@@ -225,8 +225,7 @@ giving the card one local knob.
 `number-format` asserts the block and its use. A tooltip without `READOUT`, a block without all
 three fields, a card path that does not read `READOUT.label`, `READOUT.value` and
 `READOUT.key` from the registered datum, or a path that builds an object with `[READOUT.key]` only
-to read that same property back is an error. The same contract travels to the four tooltip-bearing
-deliveries under `assets/examples/`.
+to read that same property back is an error.
 
 ### A time path states its curve
 
@@ -418,9 +417,11 @@ Five rules from the polish pass, each held by the checker.
   ring, treemap, progress, bullet, funnel, independent percentages, population pyramid) keep their
   own height; the reasoning per form is recorded with the pass.
 - **The table folds, it never leaves.** The data table sits inside `<details class="data">` with a
-  "Show the data" summary, open on inert forms and closed on forms with a tooltip, and keeps
-  `data-chart-table` on the table itself so the accessibility and card-readout checks read it
-  unchanged. The `table-disclosure` family holds the wrapper, the summary and the open state.
+  "Show the data" summary, open on every form, and keeps `data-chart-table` on the table itself
+  so the accessibility and card-readout checks read it unchanged. It used to start closed wherever
+  a tooltip answered the pointer, which left the tooltip as the only visible source of the values,
+  one hover per number. The `table-disclosure` family holds the wrapper, the summary and the open
+  state.
 - **A finding declares its direction.** A `FINDING` block beside `READOUT` carries `trend` as
   `up`, `down` or `none` with a one-line reason; the footer draws a 12px inline arrow in the
   emphasis colour for up or down and nothing for none. A share, a comparison or a spread is
@@ -613,10 +614,10 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 ## 10. WHAT A FILE MAY DO WITH A POINTER
 
-This contract binds every rendered chart artifact this skill ships, the 26 forms under
-`assets/templates/` and the deliveries under `assets/examples/` alike. A delivery inherits its
-parent template's contract, and it does not get to answer the pointer differently just because it is
-a rendered example rather than a template.
+This contract binds every rendered chart artifact this skill ships: the forms under
+`assets/templates/`, and any delivery made from one. A delivery inherits its parent template's
+contract, and it does not get to answer the pointer differently just because it is a themed or
+retargeted copy rather than a template.
 
 That inheritance is a state the corpus is in, not an aspiration, and it is stated so a reader can
 disagree with it by opening the files. Every delivery's pointer contract matches its own parent
@@ -722,7 +723,7 @@ card exists only while a pointer is on a mark.
 
 The table below records the six forms whose card shape was made explicit when the tooltip contract
 landed. The same local block is required on every tooltip-bearing form, including the other
-templates and the four tooltip-bearing deliveries.
+templates.
 
 | Form | Card name | Rows | `TIP_ROWS` |
 | --- | --- | --- | --- |

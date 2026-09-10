@@ -182,13 +182,13 @@ script names the shortfall and writes nothing.
 
 ## Where the values come from
 
-Since v1.5.0.0 the stock values are the cursor Style Reference, chosen from a survey of the whole
-style library for a warm parchment and ink that suit a printed chart, a full muted ladder, a
-hairline rule, and accents that clear the mark gate on both grounds. Since v1.10.0.0 the packet
-carries its own copy of that reference at `assets/style-reference/cursor/`, so the values here are
-derived from a file this packet owns rather than from one a sibling library regenerates.
-`assets/style-reference/cursor/origin.md` records where the copy came from and pins each file by
-hash.
+Since v2.1.0.0 the stock values are the evilcharts Style Reference: a white ground with a near-black
+ink, a warmed near-black ground for dark, one flame hue that carries every first series, and a grey
+ladder behind it. The packet carries its own copy at `assets/style-reference/evilcharts/`, the only
+reference it ships, so the values here are derived from a file this packet owns rather than from one
+a sibling library regenerates. `assets/style-reference/evilcharts/origin.md` records where the copy
+came from and pins each file by hash. An earlier stock palette was derived from a different
+reference; that copy is gone, and `--default` themes from this one.
 
 **Since v1.12.0.0 the derivation is held rather than described.** The palette source carries a
 `derivation` block naming the reference, its hash, the four departures with the gate each was made
@@ -197,20 +197,23 @@ interior rungs, spaced by equal contrast, and the dark rule, which is ink at alp
 `palette-derivation` family checks all of it — that the reference is still the file the palette was
 derived from, that every value is either published by it, a named departure or one of those
 arithmetic ones, and that each departure is still necessary and still sufficient. The prose above
-stays because it explains why; the block is what fails when the two drift. Parchment, ink, ash,
-driftwood, mist, stone and linen carry the chrome and the `neutral` system; ember, verdant,
-crimson and amber carry the `categorical` system; ember drawn toward each ground carries the
-`ordered` ramp; and the ink itself is the dark ground, which the reference already uses behind
-its light action fills. Four values were moved by the least amount that clears a gate and the
-palette source names each: ash to `#72716C` for muted, amber to `#BE8332` on paper, mist to
-`#908F8D` as the fourth neutral step, and the far end of the paper ramp to `#E64B02`. The corner
-ladder follows the reference's 4px corner, with 8px for the card. Everything else is verbatim.
+stays because it explains why; the block is what fails when the two drift. The reference's
+background, foreground, muted foreground and border carry the chrome on each ground; its flame
+`--chart-1` carries the first series of every system; its greys carry the steps behind it in
+`neutral`; its four chart hues carry `categorical`; and flame drawn toward each ground carries the
+`ordered` ramp. Two values depart, each by the least amount that clears the mark gate, and the
+palette source names both: the fourth neutral step on white, from the reference's `#A1A1A1` ring
+to `#8F8F8F`, and the fourth on ink, from its `#484848` ash to `#616161`. One value is chosen
+rather than derived: the dark ground is the reference's `#090909` warmed and lifted to `#141110`,
+by the smallest amount that stops it reading as black, and every dark gate was recomputed against
+it. The corner ladder takes the reference's 4.4px corner for track, swatch and pill and its 8.4px
+card corner for the card; the 2px mark corner is the corpus's own. Everything else is verbatim.
 
-**A theme boundary is the one place a hue may be re-chosen.** That rule above was written when there was one ground, and mixing toward the surface is exactly what makes a mark disappear when the surface is near-black. So a system's dark values are chosen for the dark ground rather than derived from its light ones, under one stated rule: a dark value is re-chosen at a hue the dark ground can carry, and its lightness is set so it holds the same ratio against near-black that its light counterpart holds against paper.
+**A theme boundary is the one place a hue may be re-chosen.** That rule above was written when there was one ground, and mixing toward the surface is exactly what makes a mark disappear when the surface is near-black. So a system's dark values are gated against the dark ground rather than derived from its light ones. A value that clears the dark gates ships unchanged on both grounds, which is what every categorical hue and the shared neutral grey do; only a value that fails them is re-chosen, at a hue the dark ground can carry and at whatever lightness clears the gate, and the palette source names each such move as a departure. Ratio parity between the grounds is not a rule and the shipped values do not have it.
 
 The reason a hue may have to move is arithmetic rather than taste. A hue reaches its own ceiling of lightness: pure blue tops out near a tenth of the luminance pure yellow reaches, so a hue carrying the brightest slot on paper cannot always carry the brightest slot on ink without desaturating. Where that bites, the hue lands in the slot whose lightness it can reach with its chroma intact.
 
-**The palette that ships needs none of it, and that is worth stating rather than leaving the rule to imply otherwise.** Since the corpus was rebased on the cursor reference, all four `categorical` hues clear the mark gate on both grounds unchanged: ember at 3.28:1 on paper and 4.37:1 on ink, verdant at 4.01 and 3.57, crimson at 4.70 and 3.05. Only the fourth value moves, and it moves back: amber is darkened to `#BE8332` to clear 3:1 on paper and returns to its measured `#C08532` on ink, where it reaches 4.86:1 unaided. The rotation rule stays because it is what a future reference with a narrower hue would need; this one does not exercise it.
+**The palette that ships needs none of it, and that is worth stating rather than leaving the rule to imply otherwise.** All four `categorical` hues clear the mark gate on both grounds unchanged, so the dark set is the light set: flame at 3.60:1 on white and 5.22:1 on the dark ground, teal at 3.67 and 5.12, violet at 4.12 and 4.56, rose at 3.75 and 5.01. The rotation rule stays because it is what a future reference with a narrower hue would need; this one does not exercise it.
 
 Two systems would not rotate in any case. The `neutral` system has no hue to move, so its dark values are the same warm greys ordered from the other end. The `ordered` ramp stays in the ember family on both grounds, because a magnitude ramp needs one hue; what changes is direction, running toward the paper on light and toward the ink on dark.
 

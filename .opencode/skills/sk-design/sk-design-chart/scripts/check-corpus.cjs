@@ -31,7 +31,6 @@ const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
 const POINTER_CONTRACT = path.join(PACKAGE_ROOT, 'references', 'template-contract.md');
 const GALLERY = path.join(PACKAGE_ROOT, 'assets', 'gallery.html');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
-const EXAMPLE_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
 const ASSET_ROOT = path.join(PACKAGE_ROOT, 'assets');
 
 const PALETTE_BEGIN = /\/\*\s*CHART_PALETTE:BEGIN\s+system=([a-z0-9-]+)\s*\*\//;
@@ -1979,7 +1978,7 @@ function checkCursorGuide(file, src) {
 // a series being defined in the ink; this stops a form handing the ink to half its marks.
 function checkEmphasisBudget(file, src) {
   const where = file.split(path.sep).join('/');
-  if (!/^(assets\/(templates|examples)\/|--extra\/)/.test(where)) return;
+  if (!/^(assets\/templates\/|--extra\/)/.test(where)) return;
   const { scripts, styles } = regionsOf(stripHtmlComments(src));
   // The sentinels are comments, so the block is cut from the raw text and then read as code: a
   // commented-out row is not a mark, and a sentence about the lead is not a lead.
@@ -2016,7 +2015,7 @@ function checkMarkPolicy(file, src) {
   // from them, and whatever a later run adds as an extra. The palette proof sheets draw the
   // colour system itself, which carries no marks and no zero, so the words have nothing there
   // to be honest about.
-  if (!/^(assets\/(templates|examples)\/|--extra\/)/.test(where)) return;
+  if (!/^(assets\/templates\/|--extra\/)/.test(where)) return;
   const { scripts, styles, markup } = regionsOf(stripHtmlComments(src));
   // The sentinels live in comments, so the block is found in the raw text; every question this
   // rule asks about what the file paints is asked of the code, because a sentence mentioning a
@@ -2143,7 +2142,7 @@ function checkMetricBlock(file, src, isExtra) {
   // against a resolved directory is a test that cannot be true, and the form of the mistake is
   // silent: the rule keeps reporting on the deliveries it is given and stops reporting on the
   // corpus it is for.
-  const cardAnatomyGoverns = /^assets\/(templates|examples)\//.test(where) || isExtra;
+  const cardAnatomyGoverns = /^assets\/templates\//.test(where) || isExtra;
   if (cardAnatomyGoverns && !declaration) {
     record('metric-block', 'error', file,
       'no METRIC block. Every chart form declares whether the card leads with a number, present true or false, so the decision ships written down rather than implied by whatever the markup happens to carry');
@@ -2174,17 +2173,16 @@ function checkMetricBlock(file, src, isExtra) {
   }
 }
 
-// The data table folds behind a native disclosure so the printed card stays a picture with its
-// readouts while every plotted value stays one click away for whoever needs the numbers. The
-// fold wraps the table's data-chart-table register rather than replacing it, and the default
-// state follows the interaction register: a form that already answers the pointer in a tooltip
-// starts closed, while a form without a tooltip is inert, so its table starts open as the only
-// readable source of the values.
+// The data table sits inside a native disclosure so a reader can fold it away, and it starts
+// open on every form: the numbers are part of the deliverable, not an appendix, and a form that
+// hid them behind a click shipped a picture whose values the reader had to go looking for. The
+// fold wraps the table's data-chart-table register rather than replacing it. The open state used
+// to follow the interaction register, closed wherever a tooltip answered the pointer; that made the
+// tooltip the only visible source of the values, which is one hover per number.
 function checkTableDisclosure(file, src) {
   const { markup } = regionsOf(stripHtmlComments(src));
   if (!/\bdata-chart-table\b/.test(markup)) return;
   tally('table-disclosure', 3);
-  const hasTooltip = /\bdata-chart-tooltip\b/.test(markup);
   const details = /<details\b[^>]*class="data"[^>]*>/.exec(markup);
   if (!details) {
     record('table-disclosure', 'error', file,
@@ -2202,11 +2200,30 @@ function checkTableDisclosure(file, src) {
       'the disclosure details carries no <summary>. Without a summary the folded table has no visible, keyboard-operable label, so a pointerless reader cannot reopen the numbers');
   }
   const hasOpen = /(^|\s)open(?=[\s>]|$)/.test(details[0]);
-  if (hasOpen === !hasTooltip) return;
+  if (hasOpen) return;
   record('table-disclosure', 'error', file,
-    hasTooltip
-      ? 'the disclosure carries open although the form answers the pointer in a tooltip. A tooltip-bearing form keeps the table folded, because the opened card would duplicate a table the reader did not ask for'
-      : 'the disclosure does not carry open although the form has no tooltip. An inert form hides its only readable values, so the table starts open');
+    'the disclosure does not carry open. The table starts open on every form, because the values are part of the deliverable and a table folded by default is a table most readers never see');
+}
+
+// A page that frames a form on disk cannot measure it: each file is its own origin, so the frame
+// reads nothing across the boundary and a fixed frame height clips whichever form runs taller.
+// Every form reports its own height to a parent instead, and this holds that the report exists
+// in code rather than in a comment, because the gallery's frames stay clipped if a form goes
+// quiet and nothing else would notice.
+function checkFrameHeight(file, src) {
+  const where = file.split(path.sep).join('/');
+  if (!/^(assets\/templates\/|--extra\/)/.test(where)) return;
+  const { scripts } = regionsOf(stripHtmlComments(src));
+  const code = stripJsComments(scripts.join('\n'));
+  tally('frame-height', 2);
+  if (!/postMessage\(\s*\{\s*chartHeight\s*:/.test(code)) {
+    record('frame-height', 'error', file,
+      'the form never posts chartHeight to a parent, so a page framing it has no way to size the frame and clips it');
+  }
+  if (!/new ResizeObserver\(/.test(code)) {
+    record('frame-height', 'error', file,
+      'the form posts its height once and never again. A table opening or a font settling changes the height after load, and a frame sized once stays wrong');
+  }
 }
 
 // A single mark may sweep along its own ramp, and only where the system already encodes
@@ -2472,7 +2489,7 @@ function checkSeriesMapping(file, src, palette, declaredSystem) {
 }
 
 const CURVE_FORMS = new Set([
-  'bar-line-composed', 'daily-line', 'stacked-area', 'orders-after-the-price-change',
+  'bar-line-composed', 'daily-line', 'stacked-area',
 ]);
 const CURVE_VALUES = new Set(['linear', 'step', 'monotone']);
 
@@ -3407,6 +3424,7 @@ function main() {
     checkRampProse(name, src);
     checkMetricBlock(name, src, isExtra);
     checkTableDisclosure(name, src);
+    checkFrameHeight(name, src);
     checkSourceLine(name, src);
     checkGradientSweep(name, src, systemId);
     checkSeriesMapping(name, src, palette, systemId);
@@ -3418,7 +3436,7 @@ function main() {
     // A delivery is also the copy somebody edits, so it is the copy most likely to be handed an
     // empty block. The one file this does not reach is a proof sheet, whose data block is the
     // palette it draws rather than a reading it displays.
-    if (isExtra || file.startsWith(TEMPLATE_DIR + path.sep) || file.startsWith(EXAMPLE_DIR + path.sep)) {
+    if (isExtra || file.startsWith(TEMPLATE_DIR + path.sep)) {
       checkEmptyNotice(name, src);
     }
     if (id && file.startsWith(TEMPLATE_DIR + path.sep)) templateIdentities.set(id, file);
@@ -3444,6 +3462,11 @@ function checkGallery(templateFiles) {
     return;
   }
   const html = fs.readFileSync(GALLERY, 'utf8');
+  tally('gallery', 1);
+  if (!/chartHeight/.test(html)) {
+    record('gallery', 'error', rel(GALLERY),
+      'the gallery never listens for chartHeight, so every frame keeps a guessed height and clips the forms that run taller. Rebuild it with scripts/build-gallery.cjs');
+  }
   const declared = /<meta name="chart-gallery" content="(\d+)"/.exec(html);
   if (!declared) {
     record('gallery', 'error', rel(GALLERY), 'the gallery declares no form count, so it cannot say what it claims to cover');

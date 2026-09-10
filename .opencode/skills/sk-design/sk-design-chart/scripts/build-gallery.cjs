@@ -97,7 +97,8 @@ function render(list) {
   .frame { margin: 0; }
   figcaption { font-size: 12px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.04em;
                text-transform: uppercase; }
-  iframe { width: 100%; height: 560px; border: 1px solid var(--rule); border-radius: 8px;
+  /* A frame takes the height its chart reports; the floor only covers the moment before it does. */
+  iframe { width: 100%; min-height: 320px; border: 1px solid var(--rule); border-radius: 8px;
            background: Canvas; display: block; }
 </style>
 </head>
@@ -110,6 +111,15 @@ function render(list) {
 </header>
 ${cards}
 <script>
+// A frame on disk is its own origin, so this page cannot measure a chart. Every form posts its
+// own height on load and on every change, and the frame that sent it takes that height.
+window.addEventListener('message', function (event) {
+  var height = event.data && event.data.chartHeight;
+  if (!height) return;
+  document.querySelectorAll('iframe').forEach(function (frame) {
+    if (frame.contentWindow === event.source) frame.style.height = Math.ceil(height) + 'px';
+  });
+});
 // Each frame pins its own scheme so the pair is a comparison rather than two copies of whatever the
 // reader's system happens to be set to. The query is read before the chart paints, while the direct
 // attribute assignment keeps the pin true if a browser restores a frame from its cache.

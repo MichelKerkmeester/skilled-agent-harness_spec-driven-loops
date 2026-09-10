@@ -85,18 +85,17 @@ the script never themes an ordered form: naming one is refused, and `--all` skip
 Those forms keep the stock ordered system inside an otherwise themed set.
 
 When a request names no Style Reference, `--default` themes from
-`assets/style-reference/cursor/DESIGN.md`, the copy this packet carries beside its forms. It is the
-same reference the stock palette source is built from since v1.5.0.0, chosen from the style library
-because its warm parchment and ink suit a printed chart, it carries a muted ladder and a hairline
-rule, and its accents clear the mark gate on both grounds; its fourth series and its emphasis come
-from its neutral tones and ink under the rules above.
+`assets/style-reference/evilcharts/DESIGN.md`, the one reference this packet carries beside its
+forms and the one the stock palette source is derived from since v2.1.0.0. Theming from it
+reproduces the stock palette and the stock corner ladder exactly, which is the property that says
+the default is still the reference the corpus came from; the corpus check holds it through the
+`palette-derivation` family.
 
-The copy is severed from the library on purpose. That library holds roughly twelve hundred captures
-and regenerates them, and a regeneration of this one would otherwise change what `--default`
-produces without a diff, and leave the stock palette derived from a capture that no longer exists.
-`assets/style-reference/cursor/origin.md` records where the copy came from and pins each file by
-hash. Overriding is unchanged: pass any other `DESIGN.md` path, including one `sk-design-md-generator`
-has just produced, and the script themes from that instead.
+The copy is severed from its source on purpose. A reference that is regenerated elsewhere would
+change what `--default` produces without a diff, and leave the stock palette derived from a file
+that no longer exists. `assets/style-reference/evilcharts/origin.md` records where the copy came from
+and pins each file by hash. Overriding is unchanged: pass any other `DESIGN.md` path, including one
+`sk-design-md-generator` has just produced, and the script themes from that instead.
 
 ## The corner ladder is a floor, not a mapping
 
@@ -104,20 +103,21 @@ Each of the corpus's five rungs takes the largest corner the reference publishes
 A reference with nothing that small has said nothing about that rung and the corpus value stands,
 the way an ordered form keeps the stock ramp when a colour table cannot supply one. It used to
 collapse to zero instead, which squared every data mark, legend swatch and progress capsule in a
-themed set and said nothing about having done so; even the stock reference produced a zero mark
-corner, against the 2px the corpus ships.
+themed set and said nothing about having done so.
 
-What the floor costs is worth stating rather than leaving to be discovered: a reference whose
-corners are all larger than the corpus rungs contributes none of them. evilcharts publishes 4.4,
-6.4, 8.4 and 12.4px and reaches only the card rung, at 6.4.
+The stock reference publishes 4.4, 6.4, 8.4 and 12.4px. Under the floor its 4.4 lands on track,
+swatch and pill and its 8.4 on the card, which is the stock ladder exactly; the 2px mark corner is
+below anything it publishes, so the corpus value stands. What the floor costs is worth stating rather
+than leaving to be discovered: a reference whose corners are all larger than the corpus rungs
+contributes none of them.
 
 Mapping by the reference's own element names instead — its `cards` row straight to the card rung —
-was measured and rejected. The cursor reference publishes `cards` at 4px and `modals` at 8px, and
-the corpus card rung is 8px because the stock ladder deliberately took the larger of the two when it
-was derived. A name mapping would hand the card rung 4px and the stock reference would stop
-reproducing the stock ladder, which is the one property that says the default is still the reference
-the corpus came from. The floor keeps that true. It buys the property at the cost of a reference
-with larger corners contributing fewer of them, and that is the right side of the trade.
+was measured and rejected. It happens to agree with the floor for this reference, whose `cards` row
+is 8.4px, and it disagreed for the one before it, which named a 4px card and would have handed the
+rung a corner the stock ladder had deliberately not taken. The floor is the rule that reproduced the
+stock ladder from both, which is the one property that says the default is still the reference the
+corpus came from. It buys that property at the cost of a reference with larger corners contributing
+fewer of them, and that is the right side of the trade.
 
 ## Gates before writing
 

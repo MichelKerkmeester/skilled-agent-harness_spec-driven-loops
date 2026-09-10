@@ -118,8 +118,6 @@ A family here is a group of questions, not a rendering style. Every form in the 
 | relationship | Do two variables move together, including across a run of periods, and how do a few entities compare across several measures |
 | matrix | Which combinations of two discrete dimensions are hot |
 
-`assets/examples/` carries one finished delivery per family, chosen to show that family at its most characteristic. Those files are deliveries rather than forms, so they carry no row here.
-
 ---
 
 ## 5. THE NAME A READER ARRIVES WITH
@@ -174,7 +172,7 @@ renders.
 
 ## 7. WHAT IS NOT INDEXED HERE
 
-The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one. The same holds for the deliveries under `assets/examples/`.
+The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one.
 
 ---
 

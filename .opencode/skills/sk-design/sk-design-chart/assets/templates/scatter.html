@@ -7,6 +7,16 @@
 <meta name="chart-color-system" content="neutral">
 <script>
   document.documentElement.dataset.scheme = new URLSearchParams(location.search).get('scheme') || '';
+  // A page framing this file cannot measure it: a frame on disk is its own origin, so the parent
+  // reads nothing across it. The document reports its own height instead, on load and on every
+  // change, and a page that is not a frame posts to nobody.
+  if (window.parent !== window) {
+    var postHeight = function () {
+      window.parent.postMessage({ chartHeight: document.documentElement.scrollHeight }, '*');
+    };
+    window.addEventListener('load', postHeight);
+    new ResizeObserver(postHeight).observe(document.documentElement);
+  }
 </script>
 <title>Two variables against each other</title>
 <style>
@@ -206,7 +216,7 @@ td.num { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, 
   </div>
 </div>
 <div class="card">
-  <details class="data">
+  <details class="data" open>
     <summary><svg role="img" aria-labelledby="data-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><title id="data-chevron">Data table disclosure</title><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Show the data</summary>
   <div class="table-pan">
     <table data-chart-table>

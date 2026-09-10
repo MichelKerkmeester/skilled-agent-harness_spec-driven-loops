@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.3.0.0
+version: 2.4.0.0
 metadata:
   packetKind: workflow
 ---
@@ -106,10 +106,9 @@ def route_resources(request):
 | Chart lookup | `references/catalog.md` | Turn the comparison a reader needs into one chart form and the file that draws it |
 | Chart forms | `assets/templates/` | One self-contained file per form, copied whole rather than extracted from |
 | Colour systems | `assets/color/` | The three named stock systems, the palette source they read and their proof sheets |
-| Stock Style Reference | `assets/style-reference/cursor/` | The reference the stock palette, typeface and corner ladder were derived from, and what `--default` themes to |
+| Stock Style Reference | `assets/style-reference/evilcharts/` | The reference the stock palette and corner ladder were derived from, and what `--default` themes to |
 | Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms; pass any other reference's path to override the stock one |
 | Template contract | `references/template-contract.md` | What a form file has to contain before the corpus check passes it |
-| Worked deliveries | `assets/examples/` | One finished delivery per family, read when a form file alone is unclear |
 | Corpus validation | `scripts/` | Prove every form still renders after a change |
 
 ---
@@ -130,7 +129,7 @@ When the request names a `DESIGN.md`, a style reference or a measured site's loo
 application branch to `scripts/apply-design-md.cjs`. It reads the v3 headings documented by
 `references/design-md-theming.md`, derives both grounds from local values, and writes themed
 copies only after the corpus gates pass. A request that asks for themed charts without naming a
-reference runs it with `--default`, the `cursor` bundle from the style library. If the request asks to create the Style Reference itself,
+reference runs it with `--default`, the evilcharts reference carried at `assets/style-reference/evilcharts/`. If the request asks to create the Style Reference itself,
 route that extraction to `sk-design-md-generator`; this packet owns application, not extraction.
 
 ### What the corpus holds

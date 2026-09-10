@@ -70,7 +70,7 @@ function runFileCase(spec) {
 // need a package to mutate. The copy carries only what the static check reads.
 const PACKAGE_PARTS = [
   ['scripts'], ['references'],
-  ['assets', 'color'], ['assets', 'style-reference'], ['assets', 'templates'], ['assets', 'examples'],
+  ['assets', 'color'], ['assets', 'style-reference'], ['assets', 'templates'],
 ];
 
 function copyPackage() {
@@ -325,7 +325,7 @@ const PACKAGE_CASES = [
       fs.writeFileSync(file, `${JSON.stringify(palette, null, 2)}\n`, 'utf8');
       // The block check would catch this on its own, so the templates are moved with it: what is
       // under test is whether anything holds the ranking once the drift is gone.
-      for (const part of ['templates', 'examples', 'color']) {
+      for (const part of ['templates', 'color']) {
         const directory = path.join(d, 'assets', part);
         for (const name of fs.readdirSync(directory)) {
           if (!name.endsWith('.html')) continue;
@@ -363,6 +363,16 @@ const REMAINING_FILE_CASES = [
   { name: 'determinism refuses a random in the drawing', file: 'assets/templates/bar-columns.html',
     from: 'const rows = document.getElementById', to: 'const jitter = Math.random();\nconst rows = document.getElementById',
     family: 'determinism', expect: /Math\.random\(\) in rendering code/ },
+  { name: 'table-disclosure refuses a table that starts folded', file: 'assets/templates/bar-columns.html',
+    from: '<details class="data" open>', to: '<details class="data">',
+    family: 'table-disclosure', expect: /does not carry open/ },
+  { name: 'frame-height refuses a form that never posts its height', file: 'assets/templates/bar-columns.html',
+    from: "window.parent.postMessage({ chartHeight: document.documentElement.scrollHeight }, '*');",
+    to: "void document.documentElement.scrollHeight;",
+    family: 'frame-height', expect: /never posts chartHeight/ },
+  { name: 'frame-height refuses a form that posts its height only once', file: 'assets/templates/bar-columns.html',
+    from: "new ResizeObserver(postHeight).observe(document.documentElement);", to: "postHeight();",
+    family: 'frame-height', expect: /once and never again/ },
   { name: 'table-disclosure refuses a table with no disclosure', file: 'assets/templates/bar-columns.html',
     from: '<details class="data" open', to: '<section class="data" data-open',
     family: 'table-disclosure', expect: /details/ },
@@ -393,11 +403,33 @@ const REMAINING_FILE_CASES = [
   { name: 'type-scale refuses a size outside the published scale', file: 'assets/templates/bar-columns.html',
     from: '.source { margin: 0; font-size: 14px', to: '.source { margin: 0; font-size: 15px',
     family: 'type-scale', expect: /./ },
-  { name: 'design-md refuses a themed delivery whose provenance is malformed',
-    file: 'assets/examples/grouped-bars-stripe-style.html',
-    from: 'sha256=', to: 'sha=',
-    family: 'design-md', expect: /provenance/ },
 ];
+
+// The corpus no longer ships a themed delivery, so the design-md case builds one: the applicator
+// themes one form from the carried reference into a scratch directory, and the case reads that
+// output back as an extra. The fixture is made by the code under test rather than kept by hand,
+// which is the only way it stays in step with what the applicator writes.
+const DESIGN_MD_CASE = { family: 'design-md', expect: /provenance/ };
+test('design-md refuses a themed delivery whose provenance is malformed', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'corpus-themed-'));
+  try {
+    execFileSync(process.execPath,
+      [path.join(ROOT, 'scripts', 'apply-design-md.cjs'), '--default', '--forms', 'bar-columns', '--out', directory],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const target = path.join(directory, 'bar-columns.html');
+    const original = fs.readFileSync(target, 'utf8');
+    assert.ok(original.includes('sha256='), 'the applicator wrote no provenance to mutate');
+    const before = failuresFor(runChecker(CHECKER, directory), DESIGN_MD_CASE.family);
+    assert.equal(before.length, 0, `the fresh delivery already fails design-md:\n${before.join('\n')}`);
+
+    fs.writeFileSync(target, original.replace('sha256=', 'sha='), 'utf8');
+    const after = failuresFor(runChecker(CHECKER, directory), DESIGN_MD_CASE.family);
+    assert.ok(after.length > 0, 'design-md did not fire on a malformed provenance line');
+    assert.ok(after.some((line) => DESIGN_MD_CASE.expect.test(line)), `design-md fired on something else:\n${after.join('\n')}`);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
 for (const spec of REMAINING_FILE_CASES) {
   test(spec.name, () => runFileCase(spec));
 }
