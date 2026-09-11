@@ -1,0 +1,144 @@
+{
+  "sessionId": "fanout-deepseek-1789150583287-1f2g93",
+  "generation": 1,
+  "lineageMode": "auto",
+  "stopPolicy": "max-iterations",
+  "stopReason": "maxIterationsReached",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "The design-md gate list in color-system.md names three gates the design-md path does not apply",
+      "file": "references/color-system.md:307-310",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "contentHash": "sha256:1a7f3c9d24e5b086a1c2f4e7d9b3a5c18e6f0d2b4a7c9e1f3b5d7a9c2e4f6081"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "Catalog family column carries two values the same document does not define and no check reads the column",
+      "file": "references/catalog.md:46-47",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "contentHash": "sha256:2b8e4d0f35a6c197b2d3e5f8a0c4b6d29f701e3c5b8d0f2a4c6e8b1d3f5a7092"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "dimension": "security",
+      "title": "The immutable-stock-forms guard compares paths lexically",
+      "file": "scripts/apply-design-md.cjs:666-669",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "contentHash": "sha256:3c9f5e1a46b7d208c3e4f6a9b1d5c7e30a812f4d6c9e1a3b5d7f9c2e4a6b8103"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "references/README.md says three reference files and ships four",
+      "file": "references/README.md:24",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "contentHash": "sha256:4d0a6f2b57c8e319d4f5a7b0c2e6d8f41b923a5e7d0f2b4c6e8a1d3f5b7c9214"
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Five sites still name the cursor Style Reference removed by v0.21.0.0, and one states corner values the checker enforces against",
+      "file": "references/template-contract.md:462-464",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "contentHash": "sha256:5e1b7c3d68a9f420e5a6b8c1d3f7e5092c1340b5d7f9a1c3e5b7d9f2a4c6e803"
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "The manual-testing-playbook states twenty-one chart forms where the corpus ships twenty-nine",
+      "file": "manual-testing-playbook/manual-testing-playbook.md:50",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "contentHash": "sha256:6f2c8d4e79b0a531f6b7c9d2e4a8f6103d2451c6e8a0b2d4f6c8e0a3b5d7f904"
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "scripts/README.md accounts for 22 of the 42 check families the runner emits and never says the list is partial",
+      "file": "scripts/README.md:75",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "contentHash": "sha256:70ad9e5f8ac1b64207c8da3f5b9a7214e3562d7f9b1c3e5a7d9f1b3c5e7a9d05"
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "The standing proof suite is named in no living packet document",
+      "file": "scripts/tests/corpus-mutations.test.cjs:1",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "contentHash": "sha256:81bea0f69bd2c75318d9eb40c6a1b825f4673e80c2d4a6b8c0e2d4f6a8c0e206"
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "Scripts and playbook version fields did not follow the v0.23.0.0 release",
+      "file": "scripts/README.md:12",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "contentHash": "sha256:92cfb1a70ce3d86429eafc51d7b2c936a5784f91d3e5b7c9d1f3a5b7c9d1f307"
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "dimension": "traceability",
+      "title": "The review target spec folder is an unfilled Level-2 scaffold, so spec_code and checklist_evidence have no counterpart",
+      "file": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/spec.md:28-33",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "contentHash": "sha256:a3d0c2b81ef4e9753af0bd62e8c3d047b6895a02e4f6c8d0b2e4f6a8c0e2b408"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 6
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.6667,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "verdict": "CONDITIONAL",
+  "stopReason": "maxIterationsReached"
+}

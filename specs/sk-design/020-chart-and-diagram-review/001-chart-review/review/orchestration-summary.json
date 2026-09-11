@@ -1,0 +1,22 @@
+{
+  "run_id": "1789151247807-azut43",
+  "loop_type": "review",
+  "spec_folder": "specs/sk-design/020-chart-and-diagram-review/001-chart-review",
+  "base_artifact_dir": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

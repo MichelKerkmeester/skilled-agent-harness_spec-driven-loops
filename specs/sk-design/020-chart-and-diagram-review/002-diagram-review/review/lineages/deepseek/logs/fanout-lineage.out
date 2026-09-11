@@ -1,0 +1,13 @@
+Lineage complete — 2 iterations (correctness+security; traceability+maintainability) written into `specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek`.
+
+**Verdict: CONDITIONAL** — 0 P0 / 7 P1 / 5 P2, `stopReason: maxIterationsReached`.
+
+Headline findings, all with file:line evidence and executed verification:
+- **F001 (P1)** `scripts/apply-design-md.cjs:974` — the applicator gates only the roles whose bytes *changed* (`:804` precedes `:805`), so one reference returns 5 gate failures on `starter-dark.html` and 0 on `sequence-oauth-dark.html`, which then ships ink at 1.29:1 and accent at 1.75:1 with `RESULT: PASSED`.
+- **F002 (P1)** the palette's dark skin declares 5 roles while `style-guide.md:37-48` and `derivation-record.md:44-56` declare 10; `rgba(240,138,89,0.10)` ships in `sequence-oauth-dark.html` where no gate can see it.
+- **F003 (P1)** `node-budget` counts an attribute no shipped form carries — 0 of 38 — yet reports 38 assertions.
+- **F006/F007/F008/F009 (P1)** the theming contract's printed `--forms template-full` throws (executed); the record claims a corpus-check enforcement no code performs; two of five series colours measure 3.49:1 and 2.90:1 against the gate the style guide says all five clear; and the form-library index claims a connector check the checker's own header says it cannot hold.
+
+Also verified sound (no findings): the corpus check is green, all 38 forms reproduce byte-identically under `--default`, and the 38-form / 27-type / 12-family / dot-pattern counts are accurate. No file outside the lineage was created or modified.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

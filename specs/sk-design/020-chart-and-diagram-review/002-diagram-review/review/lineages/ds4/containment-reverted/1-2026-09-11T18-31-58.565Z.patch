@@ -1,0 +1,74 @@
+diff --git a/.opencode/hooks/goal/lib/goal-slice.cjs b/.opencode/hooks/goal/lib/goal-slice.cjs
+index f0cebf2286..9d75fb848c 100644
+--- a/.opencode/hooks/goal/lib/goal-slice.cjs
++++ b/.opencode/hooks/goal/lib/goal-slice.cjs
+@@ -113,6 +113,60 @@ function buildObjectiveSlice(content, packetPath) {
+   return { text: lines.join('\n'), nested };
+ }
+ 
++const CRITERIA_HEADING = 'DONE WHEN:';
++
++/**
++ * Split an objective slice into the sentence that names the packet and the
++ * completion criteria under it.
++ *
++ * The two parts have different truncation rules. The headline must survive
++ * whole, because it carries the address of the file everything else is read
++ * from. A criterion is only useful entire, so a budget drops whole items
++ * rather than cutting one mid-sentence and leaving a fragment that reads as a
++ * different requirement.
++ *
++ * @param {string} objectiveText - Objective slice text, or any plain objective.
++ * @returns {{ headline: string, criteria: string[] }} The two parts; criteria is empty for a plain objective.
++ */
++function splitObjectiveSlice(objectiveText) {
++  const lines = String(objectiveText || '').split('\n');
++  const headingIndex = lines.findIndex((line) => line.trim() === CRITERIA_HEADING);
++  if (headingIndex === -1) return { headline: String(objectiveText || '').trim(), criteria: [] };
++  const headline = lines.slice(0, headingIndex).join('\n').trim();
++  const criteria = lines
++    .slice(headingIndex + 1)
++    .map((line) => line.trim())
++    .filter((line) => line.startsWith('- '))
++    .map((line) => line.slice(2).trim())
++    .filter(Boolean);
++  return { headline, criteria };
++}
++
++/**
++ * Choose the criteria that fit a character budget, whole items only.
++ *
++ * A caller that renders the result must be able to say how many it dropped,
++ * because a silently shortened list of completion criteria reads as a complete
++ * one and changes when the work looks done.
++ *
++ * @param {string[]} criteria - Ordered criteria.
++ * @param {number} budgetChars - Characters available for the rendered list.
++ * @returns {{ shown: string[], omitted: number }} What fits, and how many were left out.
++ */
++function selectCriteriaWithin(criteria, budgetChars) {
++  const items = Array.isArray(criteria) ? criteria : [];
++  const budget = Number.isFinite(budgetChars) ? Math.max(0, Math.trunc(budgetChars)) : 0;
++  const shown = [];
++  let used = 0;
++  for (const item of items) {
++    const cost = item.length + 3;
++    if (used + cost > budget) break;
++    shown.push(item);
++    used += cost;
++  }
++  return { shown, omitted: items.length - shown.length };
++}
++
+ /**
+  * A stable digest of the durable slice. Whitespace runs collapse before hashing
+  * so a reflowed paragraph or a trailing newline is not a change; a decision, a
+@@ -278,6 +332,8 @@ module.exports = {
+   extractDurableSlice,
+   renderChatSlice,
+   buildObjectiveSlice,
++  splitObjectiveSlice,
++  selectCriteriaWithin,
+   durableSliceHash,
+   resolvePacketDir,
+   resolveGoalBudget,

@@ -1,0 +1,20 @@
+{
+  "level": "phase",
+  "specFolder": "sk-design/020-chart-and-diagram-review",
+  "description": "[One-paragraph problem statement — what needs solving and why]",
+  "keywords": [
+    "one-paragraph",
+    "problem",
+    "statement",
+    "needs",
+    "solving"
+  ],
+  "lastUpdated": "2026-09-11T17:13:02.538Z",
+  "specId": "020",
+  "folderSlug": "chart-and-diagram-review",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,64 @@
+{
+  "topic": "Review the sk-design-chart skill at .opencode/skills/sk-design/sk-design-chart: its corpus checker and mutation suite, the DESIGN.md applicator and its gates, the 29 chart forms, the style-reference bundle that owns colour, and every reference document",
+  "mode": "review",
+  "reviewTarget": "specs/sk-design/020-chart-and-diagram-review/001-chart-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-ds4-1789151247807-azut43",
+  "parentSessionId": null,
+  "lineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "specs/sk-design/020-chart-and-diagram-review/001-chart-review",
+  "artifactDir": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/ds4",
+  "artifactDirSource": "config.fanout_lineage_artifact_dir",
+  "stopPolicy": "max-iterations",
+  "executor": "cli-pi",
+  "executorModel": "deepseek-v4.1-flash",
+  "executionMode": "AUTONOMOUS",
+  "fanout": {
+    "label": "ds4",
+    "siblingLabels": ["deepseek", "luna"],
+    "mergePolicy": "strongest-restriction"
+  },
+  "createdAt": "2026-09-11T18:28:21Z",
+  "status": "initialized",
+  "executionModeLabel": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

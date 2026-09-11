@@ -1,0 +1,7 @@
+Lineage complete. Two iterations ran inline (no nested dispatch), verdict **CONDITIONAL** — 4 P1, 6 P2, 0 P0, stopReason `maxIterationsReached`.
+
+Artifacts written, all inside `specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/`: `deep-review-config.json`, `deep-review-state.jsonl` (8 records), `deep-review-strategy.md`, `deep-review-dashboard.md`, `deep-review-findings-registry.json`, `deltas/iter-00{1,2}.jsonl`, `iterations/iteration-00{1,2}.md`, `review-report.md`, `prompts/run-record.md`, `logs/run.log`. Verified: all JSON/JSONL parse, both iteration files end with exactly `Review verdict: CONDITIONAL`, both deltas carry a `type == "iteration"` record, and `git status --porcelain .opencode/skills/sk-design/` is empty (packet byte-identical).
+
+The four P1s: `color-system.md:307-310` states a design-md gate set the code never applies (`rampDarkestOnSurface`/`rampLightestOnSurface` absent everywhere in the design-md path; `rampStepSeparation` is an all-pairs disjunction, not an adjacent-pair gate) and contradicts `design-md-theming.md:128-133`; the catalog's `family` cell carries `part-to-whole` and `change` that `catalog.md:112-119` does not define, in a column no check reads; five sites still name the `cursor` reference removed in v0.21.0.0, one of them stating 4px/8px against an enforced 4.4px/8.4px; and `manual-testing-playbook.md:50` claims twenty-one forms where twenty-nine ship.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

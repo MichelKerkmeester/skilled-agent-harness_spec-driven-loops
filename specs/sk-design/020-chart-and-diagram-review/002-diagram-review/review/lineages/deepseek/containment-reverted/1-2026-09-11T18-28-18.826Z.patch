@@ -1,0 +1,123 @@
+diff --git a/specs/hooks/021-compat-opt-in-and-image-declaration/description.json b/specs/hooks/021-compat-opt-in-and-image-declaration/description.json
+index fc327af1ee..22440846d5 100644
+--- a/specs/hooks/021-compat-opt-in-and-image-declaration/description.json
++++ b/specs/hooks/021-compat-opt-in-and-image-declaration/description.json
+@@ -1,27 +1,23 @@
+ {
++  "level": "1",
+   "specFolder": "hooks/021-compat-opt-in-and-image-declaration",
+-  "description": "Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model",
++  "description": "`llmgateway/deepseek-v4.1-flash` produces a blocking-looking warning at every Pi launch:",
+   "keywords": [
+-    "gate",
+-    "deepseek",
+-    "cache-compat",
+-    "advice",
+-    "explicit",
+-    "wire-protocol",
+-    "opt-in",
+-    "declare",
+-    "image",
+-    "input",
+     "llmgateway",
+-    "model"
++    "deepseek-v4",
++    "1-flash",
++    "produces",
++    "blocking-looking",
++    "warning",
++    "every",
++    "launch"
+   ],
+-  "lastUpdated": "2026-09-11T07:59:30.639Z",
++  "lastUpdated": "2026-09-11T08:05:57.727Z",
+   "specId": "021",
+   "folderSlug": "compat-opt-in-and-image-declaration",
+   "parentChain": [
+     "hooks"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "1"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file
+diff --git a/specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/graph-metadata.json b/specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/graph-metadata.json
+index c4396fd96d..0100923dd0 100644
+--- a/specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/graph-metadata.json
++++ b/specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/graph-metadata.json
+@@ -46,6 +46,7 @@
+       "tasks.md",
+       "goal.md",
+       "implementation-summary.md",
++      "research/research.md",
+       "research/deep-research-strategy.md",
+       ".opencode/hooks/goal/lib/goal-slice.cjs",
+       ".opencode/hooks/goal/lib/goal-core.cjs",
+@@ -87,6 +88,12 @@
+         "path": "implementation-summary.md",
+         "source": "derived"
+       },
++      {
++        "name": "research.md",
++        "kind": "doc",
++        "path": "research/research.md",
++        "source": "derived"
++      },
+       {
+         "name": "deep-research-strategy.md",
+         "kind": "doc",
+@@ -194,17 +201,11 @@
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "Key Components",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "The packet shipped green, but a first review already showed the unit tests missed real defects",
+     "created_at": "2026-09-11T10:52:14Z",
+-    "last_save_at": "2026-09-11T14:13:25.307Z",
++    "last_save_at": "2026-09-11T18:22:02.485Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -212,15 +213,17 @@
+       "plan.md",
+       "tasks.md",
+       "goal.md",
+-      "implementation-summary.md"
++      "implementation-summary.md",
++      "research/research.md"
+     ],
+-    "source_fingerprint": "sha256:db1403df5a1f02005215c200e187f5b8854bde9b064d42a94efc97a24c262c4d",
++    "source_fingerprint": "sha256:a42550870a97bfbb171d0cb535caf480d7b2b8c410b8930e31036eb87428ac77",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+       "spec.md": "f71d72f0667ff3be873a073e05d5a26630ef4b74935fa77e9b640ebfce47d3ac",
+       "plan.md": "95075ba8a51b9077d76b3d0a55e8ac1e2fbb2b6028754d2737239ccffb7cb289",
+       "tasks.md": "19031a5228b127b98bd2f3df0de9105b577a62ebdca71a25fc9bdda5654b89fd",
+-      "implementation-summary.md": "b997314546407d90625274846b0ea41eeeec477267dcce553be47b38de16e9dc"
++      "implementation-summary.md": "b997314546407d90625274846b0ea41eeeec477267dcce553be47b38de16e9dc",
++      "research/research.md": "920cc95a36505dfe22e6791d300402157bd9961445cff3c444ecfb91fd8cfd6b"
+     },
+     "last_active_at": null
+   }
+diff --git a/specs/system-speckit/033-system-speckit-v4/036-goal-unification/graph-metadata.json b/specs/system-speckit/033-system-speckit-v4/036-goal-unification/graph-metadata.json
+index 2a6ddcd80a..a650599d23 100644
+--- a/specs/system-speckit/033-system-speckit-v4/036-goal-unification/graph-metadata.json
++++ b/specs/system-speckit/033-system-speckit-v4/036-goal-unification/graph-metadata.json
+@@ -11,7 +11,8 @@
+     "system-speckit/033-system-speckit-v4/036-goal-unification/005-runtime-surfaces",
+     "system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration",
+     "system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
+-    "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research"
++    "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research",
++    "system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions"
+   ],
+   "manual": {
+     "depends_on": [],
