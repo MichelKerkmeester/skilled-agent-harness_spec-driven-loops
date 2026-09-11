@@ -7,7 +7,8 @@ trigger_phrases:
   - "conventional commits worktree"
   - "git workspace commit finish"
   - "pull request commit hygiene"
-version: 1.4.1.0
+  - "commit id trailer"
+version: 1.6.0.0
 ---
 
 # sk-git
@@ -24,6 +25,7 @@ version: 1.4.1.0
 | **Invoke with** | Git-workflow keywords ("commit", "worktree", "pull request", "finish work") through the skill advisor, plus a direct `SKILL.md` read path |
 | **Works on** | Any repository with numbered worktrees, staged changes ready to commit or finished work ready to integrate |
 | **Produces** | Numbered worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
+| **Commit identity** | Every commit ends with a trailer paragraph carrying a packet `Spec:` line and an always-stamped seven-digit `Commit-Id:` ordinal |
 
 ---
 
@@ -150,6 +152,8 @@ Worktree isolation keeps concurrent sessions safe, but it also hides each sessio
 
 The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style. Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path. The history reads consistently no matter which session or model produced it.
 
+Every commit also ends with a contiguous trailer paragraph. Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock. An amend keeps the id the commit already owns, while a cherry-pick drops the copied id and mints a fresh one. Three queries read the trailer back with no extra tooling: `git log -E --grep='^Spec: sk-git/028'` lists a packet's commits, `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal and `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id.
+
 ### Cleanup And Safety Refusals
 
 Finishing is not done when the PR merges. The completion flow removes the worktree directory and deletes the local feature branch. It drops the remote tracking branch too, so branches and worktrees do not accumulate. A test gate blocks the merge or PR while tests fail.
@@ -193,7 +197,7 @@ Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need st
 sk-git/
 +-- SKILL.md                       # Runtime instructions, smart router and rules
 +-- README.md                      # This file
-+-- scripts/                       # Allocator and validator, plus tests
++-- scripts/                       # Allocators, stampers and validators, plus tests
 +-- references/                    # Phase workflows loaded by the router
 +-- assets/                        # PR template, commit template, worktree checklist
 +-- feature-catalog/               # Capability catalog by category
@@ -204,6 +208,10 @@ sk-git/
 | Path | Purpose |
 |---|---|
 | `scripts/worktree-naming.sh` | Numbered-worktree allocator, worktree creators and grammar validators |
+| `scripts/commit-id-naming.sh` | Repository-wide commit ordinal allocator, high-water scanner and validator |
+| `scripts/stamp-branch.sh` | Stamps ordinals onto a rebased branch's unique commits |
+| `scripts/tests/commit-id-naming.test.sh` | Harness for the commit ordinal allocator |
+| `scripts/tests/stamp-branch.test.sh` | Harness for the branch ordinal stamper |
 | `references/worktree-workflows.md` | Workspace creation, directory and branch strategy |
 | `references/commit-workflows.md` | Commit flow with artifact filtering and scoped staging |
 | `references/finish-workflows.md` | Completion: PR, merge, cleanup and release notes |
@@ -247,6 +255,10 @@ A: Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need
 
 A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNN}-{slug}`, delete the local branch with `git branch -d worktrees/{NNN}-{slug}` (or `branches/{NNN}-{slug}`) and the remote with `git push origin --delete worktrees/{NNN}-{slug}`, then `git worktree prune`. Remove the worktree before deleting its branch, because a branch checked out by a worktree cannot be deleted.
 
+**Q: How do I find the commits for a packet?**
+
+A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: sk-git/028'`. Substitute the track and packet you want. Every matching commit names that packet in its trailer paragraph, so the result needs no other index.
+
 ---
 
 ## 8. VERIFICATION
@@ -258,6 +270,9 @@ The skill ships a manual testing playbook with scenarios across 8 categories and
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/README.md --type readme` reports zero issues |
 | Skill packaging and structure | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
 | Allocator behavior | `bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
+| Commit message structure | `bash .opencode/scripts/git-hooks/tests/commit-msg.test.sh` reports `PASS=11 FAIL=0` |
+| Commit trailer stamping | `bash .opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh` reports `PASS=43 FAIL=0` |
+| Commit ordinal allocation | `bash .opencode/skills/sk-git/scripts/tests/commit-id-naming.test.sh` reports `PASS=39 FAIL=0` |
 | Live behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/` in a live session |
 
 ---
