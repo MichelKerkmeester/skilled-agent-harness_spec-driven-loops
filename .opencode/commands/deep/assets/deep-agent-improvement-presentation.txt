@@ -341,6 +341,27 @@ Do **not** document or attempt journal replay, iteration carry-forward, or `resu
 - Converged: `STATUS=OK REASON="converged"` (when all 5 legal-stop gates pass)
 - Error: `STATUS=FAIL ERROR="{message}"`
 
+### What the completion message must carry
+
+A path and a count are not a report. The reader asked a question and the run answered it, so
+the answer belongs in the message and the artifact path belongs after it, for going deeper.
+Handing over only a path moves the work of reading the report onto the person who asked for it.
+
+**Carry:**
+- what changed in the candidate
+- the score delta against the baseline, not the absolute scores alone
+- the promote, keep-baseline or rollback call, and the evidence for it
+- then the artifact location
+
+**Leave out:** per-iteration narration, internal loop metrics, the full evidence chain, and
+anything the reader would skim past to reach the answer.
+
+Write it to the voice half of the human voice standard, the voice directives and the word and
+tell lists, not its document-structure sections. Concision, ordering and sentence shape are
+already owned by the repo's communication rules and are not respecified here.
+
+---
+
 ### Example Output
 
 ```
