@@ -1,8 +1,9 @@
 'use strict';
 
-// One case per family. Each breaks exactly one thing in a copy and expects the named family to
-// say the specific thing its message promises. A case that could pass for any other reason is a
-// case the harness refuses, which is the point of keeping them this narrow.
+// One case per family, and a second wherever a family grew a second rule. Each breaks exactly one
+// thing in a copy and expects the named family to say the specific thing its message promises. A
+// case that could pass for any other reason is a case the harness refuses, which is the point of
+// keeping them this narrow.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -40,6 +41,15 @@ const FILE_CASES = [
     file: 'assets/diagrams/starter-light.html',
     from: '--color-muted:   #4f5d75;', to: '--color-muted:   #dddddd;',
     expect: /muted/ },
+  { name: 'a themed block whose provenance comment was deleted', family: 'derivation-gates',
+    file: 'scripts/tests/fixtures/design-md-sample.html',
+    from: '      /* DESIGN.md provenance: path=.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 generator=1.0.0.0 */\n',
+    to: '',
+    expect: /provenance/ },
+  { name: 'a themed block whose accent falls under the text-on-mark gate', family: 'derivation-gates',
+    file: 'scripts/tests/fixtures/design-md-sample.html',
+    from: '--color-accent:  #b34a1e;', to: '--color-accent:  #c2551f;',
+    expect: /textOnMark/ },
   { name: 'a legend swatch keying a dash the drawing never paints', family: 'legend-fidelity',
     file: 'assets/diagrams/high-level.html',
     from: 'x1="808" y1="466" x2="828" y2="466" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="4,3"',

@@ -144,7 +144,16 @@ function main() {
     const src = fs.readFileSync(file, 'utf8');
     const clean = stripHtmlComments(src);
     const kind = isExtra ? 'extra' : STARTER.test(file) ? 'starter' : 'form';
-    const ctx = { ...shared, file, label, isExtra, src, clean, regions: regionsOf(clean), kind };
+    // A delivery is a copy of a form, so it is judged as the form it came from. Without this a
+    // themed copy answers for rules its source is excused from — a starter's marker trio, a legacy
+    // file's recorded off-grid values — and the checker punishes the delivery for the corpus's own
+    // history. The basename is the link, because that is what the applicator preserves.
+    const origin = isExtra ? internal.find((f) => path.basename(f) === path.basename(file)) : null;
+    const ctx = {
+      ...shared, file, label, isExtra, src, clean, regions: regionsOf(clean),
+      kind: origin ? (STARTER.test(origin) ? 'starter' : 'form') : kind,
+      originLabel: origin ? rel(origin) : null,
+    };
     for (const family of families) if (family.scope === 'file') family.run(ctx);
   }
   for (const family of families) if (family.scope === 'corpus') family.run({ ...shared, files: internal });

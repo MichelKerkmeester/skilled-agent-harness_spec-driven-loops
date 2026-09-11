@@ -71,9 +71,10 @@ module.exports = {
   scope: 'file',
   countOffGrid,
   run(ctx) {
-    const { tally, record, label } = ctx;
+    const { tally, record, label, originLabel } = ctx;
     const offenders = countOffGrid(ctx);
-    const allowed = baseline()[label];
+    // A delivery inherits its source's recorded allowance; it did not write those values.
+    const allowed = baseline()[label] ?? baseline()[originLabel];
     tally(NAME, 1);
     if (allowed === undefined) {
       // A file the baseline does not know is new work, and new work lands on the grid.
