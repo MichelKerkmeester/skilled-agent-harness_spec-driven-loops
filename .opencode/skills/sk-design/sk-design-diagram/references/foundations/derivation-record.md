@@ -23,7 +23,7 @@ Every color role the diagram skin themes appears in exactly one of three lists: 
 - **primary**: a value chosen by hand, stated verbatim. A re-theme replaces primaries and nothing else.
 - **derived**: computed from a primary by a stated rule, for example `ink` at an alpha. This is stricter than the style guide's prose, which also calls `soft` and `link` "derived" although no rule reproduces them.
 - **fixed**: a value that never re-themes. Onboarding and hand-edits of the skin leave it untouched.
-- **untokenized**: a kind that applies to files, not values. It marks a file that carries its own fixed skin and is exempt from this record. Today exactly one: `assets/examples/example-sequence-oauth-dark.html`.
+- **untokenized**: a kind that applies to files, not values. It marks a file exempt from this record because it carries its own fixed skin. The list is empty. The one file that held the exemption carried a tone the dark skin never defined, at 4.44:1 under the text gate; repointing it onto the dark muted role emptied the list, and the applicator now reproduces that file like any other.
 
 The opt-in series palette for multi-series charts lives in the style guide, not here. The applicator of a later phase reads this record, and the corpus checker re-derives every value marked **derived** from the primaries recorded here.
 
@@ -102,18 +102,16 @@ The terminal skin is a second, fixed skin. You opt into it per diagram, and onbo
 
 ---
 
-## 6. PINS
+## 6. WHAT HOLDS THE STARTERS TO THIS RECORD
 
-The four template files under the skill's `assets/templates/` are the stock skin's source of values. A pin that stops matching means a template changed without this record being updated.
+This section used to pin each starter file by sha256, on the theory that a pin which stops matching
+means a starter changed without the record being updated. Nothing read the pins, and every one of
+them was stale: fixing a defect in a starter changes its bytes, which is the point of fixing it.
 
-| File | sha256 |
-|---|---|
-| `template-dark.html` | `11578e5d3d3c4c68e352ff58c1327e6ee7408fc545dfd19fc11255d48a69f603` |
-| `template-full.html` | `1a93dfb1b62d8b4bc29d0d970f8b3ec00746deeb48fbae95aa9d0948fde95a41` |
-| `template-terminal.html` | `baf735921a713edd97196e3275f907d362b0631dc27f2a4b8291ef6e7ca64728` |
-| `template.html` | `4cf48c02bd393440b2a83f3f46b018caacf8f93b27fb966d38cb2d2153473846` |
-
----
+What holds the relationship now is stronger and needs no upkeep. The applicator regenerates every
+form from the values in this record, and the corpus check requires the result to equal the shipped
+bytes exactly. A value that drifts from the record fails that comparison by name. A geometry change,
+which a hash would have flagged and a reader would then have waved through, is not a drift at all.
 
 ## 7. TOLERANCES
 

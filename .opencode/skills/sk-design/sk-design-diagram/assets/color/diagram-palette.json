@@ -189,19 +189,12 @@
       "why": "decoration: inactive dots and spokes; never carries text"
     }
   ],
-  "pins": {
-    "assets/templates/template-dark.html": "11578e5d3d3c4c68e352ff58c1327e6ee7408fc545dfd19fc11255d48a69f603",
-    "assets/templates/template-full.html": "1a93dfb1b62d8b4bc29d0d970f8b3ec00746deeb48fbae95aa9d0948fde95a41",
-    "assets/templates/template-terminal.html": "baf735921a713edd97196e3275f907d362b0631dc27f2a4b8291ef6e7ca64728",
-    "assets/templates/template.html": "4cf48c02bd393440b2a83f3f46b018caacf8f93b27fb966d38cb2d2153473846"
-  },
   "examples": {
     "skinByFile": {
-      "example-loop-terminal.html": "terminal"
+      "example-loop-terminal.html": "terminal",
+      "example-sequence-oauth-dark.html": "dark"
     },
     "defaultSkin": "light",
-    "untokenized": [
-      "assets/examples/example-sequence-oauth-dark.html"
-    ]
+    "untokenized": []
   }
 }
