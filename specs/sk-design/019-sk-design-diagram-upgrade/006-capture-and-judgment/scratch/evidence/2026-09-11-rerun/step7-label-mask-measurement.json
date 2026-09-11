@@ -1,0 +1,398 @@
+{
+  "crop_margin_px": 10,
+  "spill_band_px": 4,
+  "ink_threshold": 24,
+  "spill_definition": "ink in a 4px band immediately outside the mask in the no-fonts render where the with-fonts render had none",
+  "masks_measured": 9,
+  "masks_with_pixel_spill": 6,
+  "masks_with_negative_dom_slack": 1,
+  "masks": [
+    {
+      "file": "swimlane",
+      "label": "HANDOFF",
+      "mask_attrs": {
+        "x": "452",
+        "y": "140",
+        "w": "60",
+        "h": "12"
+      },
+      "mask_px": [
+        582.4,
+        327.9,
+        72,
+        14.4
+      ],
+      "crop_box": [
+        572,
+        317,
+        664,
+        352
+      ],
+      "dom_slack_with_fonts": {
+        "left": 11.8,
+        "right": 11.8,
+        "top": 2.0,
+        "bottom": -0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 11.73,
+        "right": 11.73,
+        "top": 3.0,
+        "bottom": 0.4
+      },
+      "text_width_with_fonts": 48.39,
+      "text_width_no_fonts": 48.53,
+      "spill_px": {
+        "left": 4,
+        "right": 0,
+        "top": 0,
+        "bottom": 2
+      },
+      "spill_total_px": 6
+    },
+    {
+      "file": "swimlane",
+      "label": "REVISE",
+      "mask_attrs": {
+        "x": "548",
+        "y": "228",
+        "w": "52",
+        "h": "12"
+      },
+      "mask_px": [
+        697.6,
+        433.5,
+        62.4,
+        14.4
+      ],
+      "crop_box": [
+        687,
+        423,
+        770,
+        457
+      ],
+      "dom_slack_with_fonts": {
+        "left": 10.46,
+        "right": 10.46,
+        "top": 2.0,
+        "bottom": -0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 10.4,
+        "right": 10.4,
+        "top": 3.0,
+        "bottom": 0.4
+      },
+      "text_width_with_fonts": 41.48,
+      "text_width_no_fonts": 41.59,
+      "spill_px": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 2
+      },
+      "spill_total_px": 2
+    },
+    {
+      "file": "swimlane",
+      "label": "DEPLOY TRIGGER",
+      "mask_attrs": {
+        "x": "712",
+        "y": "308",
+        "w": "80",
+        "h": "12"
+      },
+      "mask_px": [
+        894.4,
+        529.5,
+        96,
+        14.4
+      ],
+      "crop_box": [
+        884,
+        519,
+        1000,
+        553
+      ],
+      "dom_slack_with_fonts": {
+        "left": -0.39,
+        "right": -0.39,
+        "top": 2.0,
+        "bottom": -0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": -0.52,
+        "right": -0.52,
+        "top": 3.0,
+        "bottom": 0.4
+      },
+      "text_width_with_fonts": 96.78,
+      "text_width_no_fonts": 97.05,
+      "spill_px": {
+        "left": 4,
+        "right": 4,
+        "top": 0,
+        "bottom": 2
+      },
+      "spill_total_px": 10
+    },
+    {
+      "file": "architecture",
+      "label": "CONTENT",
+      "mask_attrs": {
+        "x": "672",
+        "y": "132",
+        "w": "52",
+        "h": "12"
+      },
+      "mask_px": [
+        846.4,
+        318.3,
+        62.4,
+        14.4
+      ],
+      "crop_box": [
+        836,
+        308,
+        918,
+        342
+      ],
+      "dom_slack_with_fonts": {
+        "left": 9.44,
+        "right": 9.44,
+        "top": 2.8,
+        "bottom": 1.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 9.38,
+        "right": 9.38,
+        "top": 2.8,
+        "bottom": 1.6
+      },
+      "text_width_with_fonts": 43.52,
+      "text_width_no_fonts": 43.64,
+      "spill_px": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "spill_total_px": 0
+    },
+    {
+      "file": "architecture",
+      "label": "HTTPS",
+      "mask_attrs": {
+        "x": "172",
+        "y": "252",
+        "w": "48",
+        "h": "12"
+      },
+      "mask_px": [
+        246.4,
+        462.3,
+        57.6,
+        14.4
+      ],
+      "crop_box": [
+        236,
+        452,
+        314,
+        486
+      ],
+      "dom_slack_with_fonts": {
+        "left": 12.48,
+        "right": 12.48,
+        "top": 2.0,
+        "bottom": -0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 12.43,
+        "right": 12.42,
+        "top": 3.0,
+        "bottom": 0.4
+      },
+      "text_width_with_fonts": 32.64,
+      "text_width_no_fonts": 32.75,
+      "spill_px": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "spill_total_px": 0
+    },
+    {
+      "file": "architecture",
+      "label": "RESP",
+      "mask_attrs": {
+        "x": "172",
+        "y": "272",
+        "w": "32",
+        "h": "12"
+      },
+      "mask_px": [
+        246.4,
+        486.3,
+        38.4,
+        14.4
+      ],
+      "crop_box": [
+        236,
+        476,
+        294,
+        510
+      ],
+      "dom_slack_with_fonts": {
+        "left": 6.14,
+        "right": 6.14,
+        "top": 0.8,
+        "bottom": 0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 6.1,
+        "right": 6.1,
+        "top": 1.8,
+        "bottom": 1.6
+      },
+      "text_width_with_fonts": 26.12,
+      "text_width_no_fonts": 26.2,
+      "spill_px": {
+        "left": 6,
+        "right": 4,
+        "top": 38,
+        "bottom": 4
+      },
+      "spill_total_px": 52
+    },
+    {
+      "file": "architecture",
+      "label": "SSR",
+      "mask_attrs": {
+        "x": "368",
+        "y": "252",
+        "w": "48",
+        "h": "12"
+      },
+      "mask_px": [
+        481.6,
+        462.3,
+        57.6,
+        14.4
+      ],
+      "crop_box": [
+        471,
+        452,
+        549,
+        486
+      ],
+      "dom_slack_with_fonts": {
+        "left": 19.0,
+        "right": 19.0,
+        "top": 2.0,
+        "bottom": -0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 18.97,
+        "right": 18.97,
+        "top": 3.0,
+        "bottom": 0.4
+      },
+      "text_width_with_fonts": 19.59,
+      "text_width_no_fonts": 19.66,
+      "spill_px": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "spill_total_px": 0
+    },
+    {
+      "file": "architecture",
+      "label": "READ MDX",
+      "mask_attrs": {
+        "x": "584",
+        "y": "234",
+        "w": "60",
+        "h": "12"
+      },
+      "mask_px": [
+        740.8,
+        440.7,
+        72,
+        14.4
+      ],
+      "crop_box": [
+        730,
+        430,
+        822,
+        465
+      ],
+      "dom_slack_with_fonts": {
+        "left": 9.88,
+        "right": 9.88,
+        "top": 0.8,
+        "bottom": 0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 9.8,
+        "right": 9.8,
+        "top": 1.8,
+        "bottom": 1.6
+      },
+      "text_width_with_fonts": 52.23,
+      "text_width_no_fonts": 52.39,
+      "spill_px": {
+        "left": 4,
+        "right": 4,
+        "top": 0,
+        "bottom": 0
+      },
+      "spill_total_px": 8
+    },
+    {
+      "file": "architecture",
+      "label": "QUERY",
+      "mask_attrs": {
+        "x": "584",
+        "y": "298",
+        "w": "44",
+        "h": "12"
+      },
+      "mask_px": [
+        740.8,
+        517.5,
+        52.8,
+        14.4
+      ],
+      "crop_box": [
+        730,
+        507,
+        803,
+        541
+      ],
+      "dom_slack_with_fonts": {
+        "left": 10.08,
+        "right": 10.08,
+        "top": 0.8,
+        "bottom": 0.6
+      },
+      "dom_slack_no_fonts": {
+        "left": 10.03,
+        "right": 10.02,
+        "top": 1.8,
+        "bottom": 1.6
+      },
+      "text_width_with_fonts": 32.64,
+      "text_width_no_fonts": 32.75,
+      "spill_px": {
+        "left": 4,
+        "right": 4,
+        "top": 0,
+        "bottom": 0
+      },
+      "spill_total_px": 8
+    }
+  ]
+}

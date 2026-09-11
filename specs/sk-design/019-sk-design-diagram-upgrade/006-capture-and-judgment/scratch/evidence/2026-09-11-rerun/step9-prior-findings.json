@@ -1,0 +1,37 @@
+{
+  "previous_run": "benchmark/reports/2026-09-11--manual-testing-playbook--capture-review",
+  "findings": [
+    {
+      "finding": "Focal balance fails on dp-integration (accent on three boxes and most edges)",
+      "status": "STILL OPEN",
+      "checked_against": "prior-dp-integration.png, rendered fresh with --full-page and byte-identical to the committed screenshot",
+      "current_state": "Two boxes now carry the accent (Object storage, Query engine) rather than three, but coral still strokes nine connectors - seven primary data paths plus the AUTH and AUDIT risers - and the legend declares coral twice, as 'Focal platform surface' and as 'Primary data path'. 10 var(--accent) and 2 var(--accent-tint) uses. The accent is still a signalling system as well as a focus signal, which is the substance of the original finding and SKILL.md rule 10."
+    },
+    {
+      "finding": "Focal balance fails on venn (no accent at all)",
+      "status": "STILL OPEN",
+      "checked_against": "prior-venn.png, rendered fresh with --full-page and byte-identical to the committed screenshot",
+      "current_state": "#eb6c36 appears exactly once in the file, in the :root variable block, and is never used. The Shippable intersection is solid ink. references/types/type-venn.md line 26 requires 'Coral accent on the ONE focal intersection - the sweet spot', so the focal treatment is the one this type names and the drawing does not use it. The prior reader's stated reason (it reads as a warning state) is weaker than the type convention, but the finding stands."
+    },
+    {
+      "finding": "Focal balance fails on template-full (accent on five elements)",
+      "status": "STILL OPEN",
+      "checked_against": "prior-starter-full.png (the form the prior run called templates/template-full), rendered fresh with --full-page and byte-identical to the committed screenshot",
+      "current_state": "Six accent-carrying elements in the drawing, not five: the Auth Provider box, the JWT auth-flow connector, the TLS connector, the OAI PROTECTED note inside S3 Buckets, the SG dashed security group, and the Web App box. Against a 1-2 ceiling. Renaming the file did not change the paint."
+    },
+    {
+      "finding": "The swimlane HANDOFF label mask overflows under a substituted font",
+      "status": "CLOSED - not reproducible",
+      "checked_against": "swimlane-with-fonts.png / swimlane-no-fonts.png and maskcrop-swimlane-handoff.png",
+      "current_state": "With remote fonts blocked (0 FontFace entries, against 37 loaded in the paired render), the HANDOFF label keeps 11.73px of slack on each side of its mask, 3.00px above and 0.40px below. The six pixels the band test flags sit on the elbow corner and the vertical connector, not on a glyph. The prior run's method counted ink anywhere in a 6px margin, so a 1px antialiasing shift on an adjacent stroke read as label spill; tightening the band to 4px and reading the crop shows no glyph outside the mask."
+    },
+    {
+      "finding": "The renderer crops tall captures at the 900px viewport (three sequence forms)",
+      "status": "CLOSED",
+      "checked_against": "prior-sequence-oauth.png plus a fresh --full-page render of all six forms",
+      "current_state": "render-screenshots.cjs --full-page measures the page and captures at that height: sequence-oauth and sequence-oauth-dark come out 1280x1004, sequence-oauth-full 1280x1399, starter-full 1280x1561. The legend strip is fully inside the frame in the capture I read. Every fresh render is byte-identical to the committed screenshot, so the shipped set was shot the same way."
+    }
+  ],
+  "still_open": 3,
+  "closed": 2
+}

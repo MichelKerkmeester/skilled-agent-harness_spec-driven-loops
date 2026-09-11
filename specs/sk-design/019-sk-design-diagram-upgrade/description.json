@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-design/019-sk-design-diagram-upgrade",
   "description": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
   "keywords": [

@@ -1,0 +1,67 @@
+{
+  "read1_connector_overlap": {
+    "intersecting_or_touching_pairs": [],
+    "count": 0
+  },
+  "read2_attach_fan": {
+    "edges_with_more_than_one_attach": {},
+    "max_connectors_on_one_edge": 1,
+    "min_spacing_required_px": 12
+  },
+  "read3_visible_gap": {
+    "required": "mask rect never touches the stroke; 6-10 units of visible gap",
+    "labels": [
+      {
+        "label": "HANDOFF",
+        "mask": [
+          452,
+          140,
+          60,
+          12
+        ],
+        "labels_connector": "2 OpenPR->Review",
+        "clearance_to_own_connector_units": -8,
+        "verdict": "OVERLAPS STROKE",
+        "masks_other_connectors": [],
+        "mask_overlaps_boxes": [
+          "Open PR"
+        ]
+      },
+      {
+        "label": "REVISE",
+        "mask": [
+          548,
+          228,
+          52,
+          12
+        ],
+        "labels_connector": "3 Review->Polish",
+        "clearance_to_own_connector_units": -20,
+        "verdict": "OVERLAPS STROKE",
+        "masks_other_connectors": [],
+        "mask_overlaps_boxes": []
+      },
+      {
+        "label": "DEPLOY TRIGGER",
+        "mask": [
+          712,
+          308,
+          80,
+          12
+        ],
+        "labels_connector": "5 Approve->Build",
+        "clearance_to_own_connector_units": -4,
+        "verdict": "OVERLAPS STROKE",
+        "masks_other_connectors": [],
+        "mask_overlaps_boxes": [
+          "Approve merge"
+        ]
+      }
+    ],
+    "labels_overlapping_their_stroke": 3
+  },
+  "read4_behind_box": {
+    "non_endpoint_box_transits": [],
+    "count": 0
+  }
+}

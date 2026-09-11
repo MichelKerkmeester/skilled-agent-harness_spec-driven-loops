@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation"
-    last_updated_at: "2026-09-11T00:00:00Z"
+    last_updated_at: "2026-09-11T08:44:35Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the phase 8 planning documents"
-    next_safe_action: "Execute T001"
+    recent_action: "Closeout pass ticked tasks.md/acceptance-criteria.md from live evidence; 9/16 AC Met"
+    next_safe_action: "Execute T005, T008, T009, T010, T012-T014, T015 to close the six Unmet AC rows"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation/spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "markdown-008-doctrine-reconciliation"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 56
     open_questions: []
     answered_questions: []
 ---
@@ -96,10 +96,10 @@ The operator holds this directive as the session objective. Whenever anything ab
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase docs authored (spec, plan, tasks, acceptance-criteria, goal) | Pending | Drafted in this pass; `validate.sh --strict` and operator review still pending |
+| Phase docs authored (spec, plan, tasks, acceptance-criteria, goal) | Done | This closeout pass re-read every document against the live corpus and ticked tasks/AC rows from evidence; `validate.sh --strict` run below |
 | Fact-base numbers re-verified on disk before authoring | Done | Confirmed live: ten S2 files' exact `<text fill="#7a8399">` line numbers, `diagram-palette.json`'s already-correct `rule-solid` entry, template-full.html's zero in-svg `var(--color-*)` occurrences (all ten roles' references sit in HTML chrome above `<svg`), and the four typed-chip files' series hex usage |
-| 007's dependency fixes (F4, F6, F14, F17, F22, F26, F31, F32) | Pending | Not yet confirmed on disk; T002 checks this at execution time, since 007 and 008 were authored in the same pass |
-| T001-onward mechanical execution | Pending | Drafted in `tasks.md`; DeepSeek execution pending 007's fixes landing first |
+| 007's dependency fixes (F4, F6, F14, F17, F22, F26, F31, F32) | Done | Confirmed on disk (T002): `007-manual-review-remediation/scratch/fix-verification.md` shows F4/F6/F14/F17/F22/F31/F32 landed; F26 (row 18, initially missed) closed in round two — `diagram-palette.json`'s `untokenized` list is `[]` |
+| T004-T024 execution | Partial | S1's scope widening (T004), S2 (T006-T007), S7 (T011), both new checker families with mutation cases (T018-T019, T021), and the corpus/suite/applicator verification (T022-T023) landed. S1's property rename (T005), S3's marker/fill sub-fixes and S6's file naming (partial in T010/T015), S4 (T008), S5 (T009), S9 (T012-T014), and the judged-boundary comment narrowing (T020) never executed — see `tasks.md` for the line-by-line evidence |
 
 ### Deviations and findings
 
@@ -109,4 +109,6 @@ The operator holds this directive as the session objective. Whenever anything ab
 | The legend-fill separation in S3 stays legend-only | `style-guide.md` §4's node-type-treatment table (`external`/`store`/`input`) already documents the low alphas the legend swatches key; widening those corpus-wide values was rejected as out of scope, since the review's complaint is about the legend's own legibility, not the node-type tokens themselves |
 | S9's true scope required re-reading `var()` placement, not just counting occurrences | An initial file-wide grep for `var(--color-*)` in `template-full.html` showed several roles already "used," but every occurrence sits in the HTML page-chrome CSS above the `<svg>` tag — zero inside the drawing itself, exactly matching the review's "ten declared roles, zero referenced in the drawing" claim once the region is scoped correctly |
 | `template-terminal.html`'s `page`/`bar`/`border` roles left out of S9's in-drawing requirement | These are window-chrome concepts by their own stated purpose and are absent from the `<svg>` in the review's own "correct throughout" reference example (`example-loop-terminal.html`); requiring them inside the drawing would flag a file the review called clean |
+| Execution diverged from `tasks.md`'s own sequencing and file set | S3's dash-array fix landed in `c1f109bfe4` (a directory-merge commit authored after this phase's three primary fix commits), not in a dedicated S3 task commit; the pin-recompute task (T016) was replaced with deleting the PINS table outright, a stronger guarantee than the literal task text asked for; S1's typed-chip widening and the S2 text-fill repoint both landed cleanly, but S1's property rename, all of S4, all of S5, and all of S9 never executed at all — closeout found this by reading the live corpus (`assets/diagrams/`, paths moved from `assets/examples/`+`assets/templates/` by a later commit) rather than trusting the task list |
+| `f3bf733cf4` folded in a `text-on-mark` gate not named in this phase's REQ list | Found while confirming S8's family shipped green: a chip label (`series-2`, used as a typed-chip fill under S1's widened scope) measured 4.44:1 against white, below a gate that didn't yet exist in `diagram-palette.json`. The gate was added (`textOnMark: 4.5`) and the one failing value darkened to 4.56:1, documented in `derivation-record.md`. This is adjacent to S1 rather than a tenth S-item; it is not scored against any AC above, since no REQ names it |
 <!-- /ANCHOR:log -->

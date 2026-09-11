@@ -44,15 +44,15 @@ verification runs entirely on the conductor's side, never the executor's.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `006-capture-and-judgment/scratch/evidence/manual-review-opus.md` exists and its 34 findings are read in full
-- [ ] `check-diagram-corpus.cjs` and `scripts/tests/` (005) print `RESULT: PASSED` against the pre-remediation corpus — the baseline this phase must not regress
-- [ ] `color-gates.cjs`, `apply-diagram-tokens.cjs` and `diagram-palette.json` (002/003) are confirmed on disk, since every colour fix and the byte-identical guarantee route through them
+- [x] `006-capture-and-judgment/scratch/evidence/manual-review-opus.md` exists and its 34 findings are read in full — re-confirmed in this closeout pass, including the exact "Fix:" wording for F23, F26 and F32
+- [x] `check-diagram-corpus.cjs` and `scripts/tests/` (005) print `RESULT: PASSED` against the pre-remediation corpus — the baseline this phase must not regress — re-verified from a worktree pinned to `7b97ce1a16`: `RESULT: PASSED`, 10 families, 0 errors
+- [x] `color-gates.cjs`, `apply-diagram-tokens.cjs` and `diagram-palette.json` (002/003) are confirmed on disk, since every colour fix and the byte-identical guarantee route through them — re-verified from the same pre-fix worktree: exports `channel, luminance, contrast, round2`; pre-fix role counts light 17 / dark 4 / terminal 9
 
 ### Definition of Done
-- [ ] All 37 rows in `acceptance-criteria.md` are `Met`, `Waived` or `Superseded`
-- [ ] `check-diagram-corpus.cjs` prints `RESULT: PASSED` against the fully remediated corpus
-- [ ] `apply-diagram-tokens.cjs --default` and `--default --examples` reproduce every file byte for byte
-- [ ] `node --test scripts/tests/` passes and `grid-baseline.json`'s counts hold or fall
+- [x] All 37 rows in `acceptance-criteria.md` are `Met`, `Waived` or `Superseded` — all 37 are `Met`
+- [x] `check-diagram-corpus.cjs` prints `RESULT: PASSED` against the fully remediated corpus — confirmed today (38 files, 12 families, 0 errors)
+- [x] `apply-diagram-tokens.cjs --default` and `--default --examples` reproduce every file byte for byte — the `--examples` flag no longer exists post-merge; the current `--all` flag reproduces all 38 forms byte for byte (`diff -rq` empty), confirmed today for both `apply-diagram-tokens.cjs` and `apply-design-md.cjs`
+- [x] `node --test scripts/tests/` passes and `grid-baseline.json`'s counts hold or fall — 16/16 pass today; `grid-baseline.json`'s 24 counts are byte-identical to the pre-fix snapshot (this phase's commits never touch the file)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -213,9 +213,9 @@ Setup (T001-T003) ──► P1 fixes (T004-T005) ──► Lane dispatches (T006
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) — not applicable; every artifact is git-tracked
-- [ ] Feature flag configured — not applicable; no runtime feature ships from this phase
-- [ ] Monitoring alerts set — not applicable; the CI workflow's own run history is the monitoring surface
+- [x] Backup created (if data changes) — not applicable; every artifact is git-tracked
+- [x] Feature flag configured — not applicable; no runtime feature ships from this phase
+- [x] Monitoring alerts set — not applicable; the CI workflow's own run history is the monitoring surface, confirmed green for both `77898f7776` and `c0f1ad041c`
 
 ### Rollback Procedure
 1. Stop touching the named file(s) for the lane in question.

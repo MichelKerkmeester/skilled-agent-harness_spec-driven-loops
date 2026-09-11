@@ -1,0 +1,64 @@
+{
+  "scenario": "CAP-001",
+  "variant": "capture-review",
+  "file_under_review": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html",
+  "renderer": ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs --full-page (headless Chrome 153.0.8010.36, device scale factor 1)",
+  "captures": {
+    "stock": {
+      "file": "swimlane-stock.png",
+      "bytes": 52731,
+      "sha256": "d0584a473f99bc6ba8b4973deb275e5683daa7887b4ab375a2f3be28be439302",
+      "size": [
+        1280,
+        813
+      ]
+    },
+    "settled": {
+      "file": "swimlane-settled.png",
+      "bytes": 52731,
+      "sha256": "d0584a473f99bc6ba8b4973deb275e5683daa7887b4ab375a2f3be28be439302",
+      "size": [
+        1280,
+        813
+      ]
+    },
+    "skin_pinned": {
+      "file": "swimlane-skin-pinned.png",
+      "bytes": 52815,
+      "sha256": "80767faac6ab1b060c46431c8e8ae1a57daf7a145ccf1ef5c9cef885eb3b2ea8",
+      "size": [
+        1280,
+        813
+      ]
+    }
+  },
+  "settle_pair": {
+    "compared": [
+      "swimlane-stock.png",
+      "swimlane-settled.png"
+    ],
+    "result": "MATCH",
+    "bbox": null,
+    "differing_pixels": 0,
+    "percent": 0.0,
+    "note": "identical sha256; the drawing had stopped moving, so the reads are taken on the settled frame"
+  },
+  "skin_pair": {
+    "compared": [
+      "swimlane-stock.png",
+      "swimlane-skin-pinned.png"
+    ],
+    "token_source": "palette-accent-teal.json (light accent #eb6c36 -> #0f766e, contrast 5.02:1 on paper and 2.35:1 on ink, both gates cleared)",
+    "applicator": "scripts/apply-diagram-tokens.cjs --source ... --out <scratch> --forms swimlane -> RESULT: PASSED",
+    "result": "DIFFERS BY EYE (accent)",
+    "bbox": [
+      197,
+      539,
+      1145,
+      725
+    ],
+    "differing_pixels": 1296,
+    "percent": 0.125,
+    "note": "the Deploy box border, the Approve->Build handoff arrow and both legend accent marks read teal instead of coral; the stock forms were left byte-unchanged"
+  }
+}

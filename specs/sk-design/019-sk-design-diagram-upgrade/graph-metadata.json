@@ -11,7 +11,12 @@
     "sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels",
     "sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog",
     "sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci",
-    "sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment"
+    "sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment",
+    "sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation",
+    "sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation",
+    "sk-design/019-sk-design-diagram-upgrade/009-one-form-library",
+    "sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference",
+    "sk-design/019-sk-design-diagram-upgrade/011-full-page-capture"
   ],
   "manual": {
     "depends_on": [],
@@ -51,7 +56,11 @@
       "004-corpus-and-catalog/goal.md",
       "005-checker-mutations-and-ci/goal.md",
       "006-capture-and-judgment/goal.md",
-      ".github/workflows/diagram-corpus.yml"
+      "007-manual-review-remediation/goal.md",
+      "008-doctrine-reconciliation/goal.md",
+      "009-one-form-library/goal.md",
+      "010-design-md-style-reference/goal.md",
+      "011-full-page-capture/goal.md"
     ],
     "entities": [
       {
@@ -70,12 +79,6 @@
         "name": "diagram.md",
         "kind": "doc",
         "path": ".opencode/commands/design/diagram.md",
-        "source": "derived"
-      },
-      {
-        "name": "diagram-corpus.yml",
-        "kind": "config",
-        "path": ".github/workflows/diagram-corpus.yml",
         "source": "derived"
       },
       {
@@ -115,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "Style Reference",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -122,12 +131,6 @@
       },
       {
         "name": "The Google Fonts",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Style Reference",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -145,7 +148,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "evidence",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -153,17 +156,17 @@
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T23:26:23.511Z",
+    "last_save_at": "2026-09-11T04:36:01.809Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:50f5e05d306ca1df5d0d2c8d120fee7f0b40c5e68f69bd611f159558c84e0d7c",
+    "source_fingerprint": "sha256:46e7b53facd73223f8b70ac9af9dffaed43b46279e4feba8a0db30e68dabf6cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b335122622635ccf1476a2eb6b0d62f915447c11f1698af1023c5564bd36d77"
+      "spec.md": "daf26781f73f1e12f4c3d659019c4cbea3e6b3fd7e3a1b21f7417066df89fd69"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-10T22:08:34.106Z"

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".github/workflows/diagram-corpus.yml"
+      "scratch/fix-verification.md",
+      ".github/workflows/diagram-corpus.yml",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html"
     ],
     "entities": [
       {
@@ -87,9 +89,21 @@
         "source": "derived"
       },
       {
+        "name": "fix-verification.md",
+        "kind": "doc",
+        "path": "scratch/fix-verification.md",
+        "source": "derived"
+      },
+      {
         "name": "diagram-corpus.yml",
         "kind": "config",
         "path": ".github/workflows/diagram-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "swimlane.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html",
         "source": "derived"
       },
       {
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Astro Origin",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The manual review read all 38 corpus files and rendered each fresh, finding 34 numbered defects",
     "created_at": "2026-09-11T03:52:45Z",
-    "last_save_at": "2026-09-11T04:12:09.815Z",
+    "last_save_at": "2026-09-11T07:14:03.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68205dfc5ce13a725b574485002a990f24fa27844f35e524320bdc31ee5c41e7",
+    "source_fingerprint": "sha256:c0ae834adca7ef7d5429b6e7cd05ad9ad3e8195045a930e8d2f2d9dca0aae4a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d26ebb8072c1aa6a9b80b02ad30759fdf216f9da24da5937a2d6b13e86501c0b",
-      "plan.md": "6602bb6be39c694a3db5ad745c8226ff4f166d67f9b360dc410d117209c3410e",
-      "tasks.md": "7d4f4c5a19e1f466c7d2335ed941146dabf5effc6ba8da015d0e67dc949fd27f",
-      "implementation-summary.md": "f10e8777afa5ff4dccf77f607387107c9e74e2bc264f5818f32af37b36a233cb"
+      "spec.md": "358a3031538dc1e80dbe254272f369d518f19bbd04799bda9f730e416027e0b8",
+      "plan.md": "555368b23b3335a0eca5c2dac240ccc789cbe3789155a862339c3d31e97d54f3",
+      "tasks.md": "0f52262c3097d99a108efd046ffd9d54c3f0b2c6bf8e2ed7d34003031de2d670",
+      "implementation-summary.md": "9ef8ccd09a05bd396f27e19e44c01950888c1be52e404493bfb3b18ada5e6b29"
     },
     "last_active_at": null
   }

@@ -1,0 +1,96 @@
+{
+  "scenario": "CAP-001",
+  "judged_on": "swimlane-settled.png (1280x813, scale 1, full page)",
+  "reads": [
+    {
+      "n": 1,
+      "read": "Connector overlap",
+      "asks": "do any two connectors share a stroke or cross without a hop?",
+      "answer": "NO fault",
+      "verdict": "PASS",
+      "reason": "Six connectors, none touching: a 2D pass over the six transcribed axis-aligned segments returns 0 intersecting or touching pairs (step8-swimlane-geometry.json, read1 count 0), and the settled capture shows six separate routes with no crossing anywhere.",
+      "evidence": [
+        "swimlane-settled.png",
+        "step8-swimlane-geometry.json"
+      ]
+    },
+    {
+      "n": 2,
+      "read": "Attach fan",
+      "asks": "do connectors entering the same box edge sit at least 12px apart?",
+      "answer": "YES",
+      "verdict": "PASS",
+      "reason": "No box edge in this drawing carries more than one connector (max_connectors_on_one_edge = 1), so no two attach points can hide one another; the rule is satisfied with nothing to fan.",
+      "evidence": [
+        "step8-swimlane-geometry.json",
+        "swimlane-settled.png"
+      ]
+    },
+    {
+      "n": 3,
+      "read": "Visible gap",
+      "asks": "does every arrow label sit 6-10px clear of its line with an opaque mask?",
+      "answer": "NO",
+      "verdict": "FAIL",
+      "reason": "All three arrow-label masks sit ON their own connector instead of 6-10 units clear of it: HANDOFF (452,140 60x12) buries the whole 40-unit horizontal leg of the Open PR -> Review elbow, clearance -8; REVISE (548,228 52x12) straddles the dashed Review -> Polish stroke, clearance -20, visibly interrupting the dashes; DEPLOY TRIGGER (712,308 80x12) sits on the Approve -> Build stroke, clearance -4. SKILL.md connector rule 12 requires a minimum 6px gap and states the mask rect may never touch or overlap the stroke. Two of the three masks also fall under a box drawn after them: DEPLOY TRIGGER is overpainted by the Approve merge box (box bottom y=316 against a label baseline of y=318) and only the bottom sliver of its glyphs survives, so the label is unreadable in the render.",
+      "evidence": [
+        "crop-handoff.png",
+        "crop-revise.png",
+        "crop-deploy-trigger.png",
+        "step8-swimlane-geometry.json",
+        "swimlane-settled.png"
+      ]
+    },
+    {
+      "n": 4,
+      "read": "Behind-box",
+      "asks": "does any connector pass behind a box that is not its source or target without being dashed?",
+      "answer": "NO fault",
+      "verdict": "PASS",
+      "reason": "Every segment of all six connectors clears every box that is not its own endpoint (read4 non_endpoint_box_transits = 0). The one connector that runs along a box edge, Approve -> Build at y=316, runs along its own source box.",
+      "evidence": [
+        "step8-swimlane-geometry.json",
+        "swimlane-settled.png"
+      ]
+    },
+    {
+      "n": 5,
+      "read": "Focal balance",
+      "asks": "is the accent on one or two elements that deserve it?",
+      "answer": "YES",
+      "verdict": "PASS",
+      "reason": "Coral carries exactly two things in the drawing: the Deploy box (accent stroke + accent-tint fill) and the Approve -> Build critical handoff with its label. Everything else is ink or muted, and the two remaining coral marks are legend chrome. Deploy is the outcome of the process and the handoff is the one step that leaves the human lanes, so the two elements a reader should look at first are the two that carry the accent - inside the 1-2 ceiling in style-guide.md.",
+      "evidence": [
+        "swimlane-settled.png"
+      ]
+    },
+    {
+      "n": 6,
+      "read": "Type fit",
+      "asks": "is this the right diagram type for the question the title asks?",
+      "answer": "YES",
+      "verdict": "PASS",
+      "reason": "The title asks how an article gets published, and the content is one item of work changing hands across four owners (AUTHOR, REVIEWER, EDITOR, CI/CD). Ownership handoff is the question a swimlane exists to answer; a plain flowchart would draw the same seven steps and lose who does each one.",
+      "evidence": [
+        "swimlane-settled.png"
+      ]
+    }
+  ],
+  "reads_passed": 5,
+  "reads_failed": [
+    3
+  ],
+  "taste_notes": [
+    {
+      "note": "The remove test",
+      "observation": "The DEPLOY TRIGGER label can go. It is the only coral connector on the page and the legend already names that arrow 'Critical handoff', so the label restates what colour and legend have already said - and it is the label whose mask collides with the Approve merge box. REVISE is a weaker case of the same: it labels the only dashed return in the drawing.",
+      "blocking": false
+    },
+    {
+      "note": "Density",
+      "observation": "Seven nodes and six arrows, well inside the 9-node / 12-arrow budget. The four lanes read as one shape at a glance and need no guide beside them; the only thing that stops the eye is the illegible label, not the density.",
+      "blocking": false
+    }
+  ],
+  "taste_notes_are_scored": false
+}

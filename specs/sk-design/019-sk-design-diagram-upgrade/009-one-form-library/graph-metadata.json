@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,13 +184,13 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Diagram Corpus",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The diagram skill splits its 38 worked diagrams into two directories by a distinction nobody uses: `assets/templates/` (4 skin skeletons) and `assets/examples/` (34 finished diagrams, each named with a redundant `example-` prefix)",
     "created_at": "2026-09-11T03:52:47Z",
-    "last_save_at": "2026-09-11T04:10:12.586Z",
+    "last_save_at": "2026-09-11T06:58:53.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75ce7c4b0b0857db5f969d4a200bb3a5ad3623c06f3cd426f4be1772f1076f47",
+    "source_fingerprint": "sha256:50bff2dae98b6b8810d03b3a43da92a18b90b108d507205d948f6ed4fe4f6e1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c4ad857e977ccf7d58ea5dbf46063dae8ea6544d06d7cf536a0487201c01ea4",
+      "spec.md": "d0b997401c78c5ecd2b492d5e15fd31d7648966391d772ef155e9a42a4a49dc6",
       "plan.md": "8125927a0ae4358da68e2ffc2987298a47ec40cdde0c0712006115f893bd22bd",
-      "tasks.md": "e229725e3214561e0b20702400ae660f45080f3f77b0b4746d58adf920d4eaec",
-      "implementation-summary.md": "6fed7246708bfb3c554403be4a7585777538a6730efd321d910ecdc602756fb0"
+      "tasks.md": "3bddc7a18f5049c10a9f12331273b2d3a9fce95e6beb8fad8f813a585225423d",
+      "implementation-summary.md": "5fecd7c353ec157d9b27735b848ac96bc5ac75bd3a80f0acdbeadcece7fa490a"
     },
     "last_active_at": null
   }

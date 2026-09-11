@@ -47,9 +47,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/references/design-md-theming.md",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json",
+      ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
-      ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
       "scripts/README.md"
     ],
     "entities": [
@@ -90,6 +95,42 @@
         "source": "derived"
       },
       {
+        "name": "apply-design-md.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "design-md-theming.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/design-md-theming.md",
+        "source": "derived"
+      },
+      {
+        "name": "DESIGN.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md",
+        "source": "derived"
+      },
+      {
+        "name": "origin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-palette.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "derivation-gates.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs",
@@ -99,12 +140,6 @@
         "name": "mutation-cases.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
         "source": "derived"
       },
       {
@@ -166,41 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Mapping Table Every",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The diagram skill has one colour system: `assets/color/diagram-palette.json`, applied by `apply-diagram-tokens.cjs`",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-09-11T04:14:57.023Z",
+    "last_save_at": "2026-09-11T07:02:23.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ffff9758ba1108334ab0452b0c0a89d6f427c186f4c157855fc63728ebdd4f9",
+    "source_fingerprint": "sha256:bd1608e5c64b5cddda087dafe1459817855ab02fdca40a0d071e7c9fe21e8c20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d8f77ddc8728f0b50b3deb88378e5eae83c2f6f4bf3a5ccc7cc4b8809ea66d5",
-      "plan.md": "c63a75a08704f890ae86070f92bbe23d2b863eb345a6d7c40fe3311415e096a7",
-      "tasks.md": "b370c99332d35acd4de9d07bc825489f5c33e227624ee5e227a572636a3c2209",
-      "implementation-summary.md": "e2eeb33ca34c356df4c8201d90e64e1299ed71eb7b526a2f72864285f5af7f92"
+      "plan.md": "33176580348e22ab06005e6ad2e0e46ef21fba98d3adbb74c848a285e6900b0b",
+      "tasks.md": "a5e828ec4a4272a682c5e72f5a9e4efcebe35a2b2642e3f3d48d36f440f671e4",
+      "implementation-summary.md": "897940e401f90d10d3a3d53eebccc330dec18be12a44c1b8bcc500cd73ffbcb1"
     },
     "last_active_at": null
   }

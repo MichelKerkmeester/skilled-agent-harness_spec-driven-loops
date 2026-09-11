@@ -71,6 +71,22 @@ A single-file CLI applicator (`apply-design-md.cjs`) plus an extension to an exi
 
 ### 3.1 Role-Mapping Table
 
+**Amendment, recorded after the fact.** As written below, this table is prose-based selection only
+— a role is filled by reading the reference's `Role` text. That cannot reproduce this corpus: the
+lightest background-tagged row in any faithful reference of this language is the near-white
+`backend-fill`, not the off-white `paper`, so a pure rule picks `#ffffff` for `paper`; and the
+terminal skin's four darkest neutrals order as `#0a0a0a → #141414 → #1b1b1b → #2b2b2b`, which a
+luminance-ascending assignment does not read as `paper=#1b1b1b`/`bar=#141414` the stock skin uses.
+The shipped script (`apply-design-md.cjs`, `deriveSkin()`) resolves every role in two tiers instead:
+**tier one** — a reference's `Token` cell that names a diagram role directly (`--color-<role>`,
+optionally `(dark)`/`(terminal)`) fills that role verbatim from the same row's `Value`; **tier two**
+— for any role no `Token` cell names, the selection rules below apply unchanged. Tier one is what
+makes `--default` exact (the stock reference's `Token` column names every role, so identity holds);
+tier two is the whole derivation for a reference written in another vocabulary, exactly as this
+table already describes. The full statement of both tiers lives in
+`references/design-md-theming.md` §4; this table remains accurate as tier two. Also see `goal.md`'s
+Decisions (D15) and LOG.
+
 Every role `assets/color/diagram-palette.json` defines, across its three skins, the reference rows
 that can fill it, and the stated fallback when none can. `isBackground`/`isText`/`isChromatic` and
 luminance-ordering are the same primitives the chart script already applies to a parsed Colors

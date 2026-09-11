@@ -49,18 +49,12 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
       ".opencode/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-integration.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-architecture.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-drawio.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-mermaid.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-pyramid.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth-full.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-timeline.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-security-matrix.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-it-state.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-org-chart.html"
+      ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/families/legend-fidelity.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html"
     ],
     "entities": [
       {
@@ -112,75 +106,39 @@
         "source": "derived"
       },
       {
-        "name": "example-dp-integration.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-integration.html",
+        "name": "diagram-palette.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json",
         "source": "derived"
       },
       {
-        "name": "example-architecture.html",
+        "name": "legend-fidelity.cjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-architecture.html",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/families/legend-fidelity.cjs",
         "source": "derived"
       },
       {
-        "name": "example-import-drawio.html",
+        "name": "short-connector-labels.cjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-drawio.html",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs",
         "source": "derived"
       },
       {
-        "name": "example-import-mermaid.html",
+        "name": "mutation-cases.cjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-mermaid.html",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
         "source": "derived"
       },
       {
-        "name": "example-pyramid.html",
+        "name": "check-diagram-corpus.cjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-pyramid.html",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
         "source": "derived"
       },
       {
-        "name": "example-sequence.html",
+        "name": "dp-integration.html",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence.html",
-        "source": "derived"
-      },
-      {
-        "name": "example-sequence-oauth.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth.html",
-        "source": "derived"
-      },
-      {
-        "name": "example-sequence-oauth-full.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth-full.html",
-        "source": "derived"
-      },
-      {
-        "name": "example-timeline.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-timeline.html",
-        "source": "derived"
-      },
-      {
-        "name": "example-dp-security-matrix.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-security-matrix.html",
-        "source": "derived"
-      },
-      {
-        "name": "example-it-state.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-it-state.html",
-        "source": "derived"
-      },
-      {
-        "name": "example-org-chart.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-org-chart.html",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
         "source": "derived"
       },
       {
@@ -206,11 +164,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Nine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The manual review found nine systemic patterns (S1-S9) where a document and the corpus disagree, or the corpus itself is internally inconsistent, and named a direction for each rather than leaving the contradiction open",
     "created_at": "2026-09-11T03:52:46Z",
-    "last_save_at": "2026-09-11T04:18:37.920Z",
+    "last_save_at": "2026-09-11T07:03:54.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b574e3f417196d938e79fa3bf7e9efc624b58e9dc710ea798d26bf82830efd5",
+    "source_fingerprint": "sha256:4b4a021c352d4375f64ca9d9310c316772c8344a9929e9e4dd05f41aee572bc1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fefb20d3eb1af5125e1fe5b73234ca2e6daa44d73f6b5d12b7610b7585b51191",
       "plan.md": "8a24e2f131f293f041460918850f98a541fe6ee37e950c2fe776e98b2a71b342",
-      "tasks.md": "afe82bd386d8afcc3824581542b01d883be79a9b386eede146253aa2b3577b20",
-      "implementation-summary.md": "41ae507d0af950721b1711d82c5f8679c3be4b15444e7259972bb933e02be7ea"
+      "tasks.md": "71e2879e6c08403b6e3d795aff8da044eb6f0b76378f1c32bdbe379f2f42e0cf",
+      "implementation-summary.md": "32135ad6aaad6d106f3e5a321180814574f9938ffa3e06404bd00f128a9e02b5"
     },
     "last_active_at": null
   }
