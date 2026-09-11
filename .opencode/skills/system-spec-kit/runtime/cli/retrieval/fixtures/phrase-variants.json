@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28ab0834daecb0727426c080328f5cc68487d727acc524df3ccae057105e1f60",
+  "manifestHash": "3261dd110cb900523a826f5dfc2e7b4b6aa10676d80f296915efe35d09c3b45f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9117,23 +9117,17 @@
     "add a screenshot scenario": [
       "add a screenshot scenario"
     ],
+    "add a style reference": [
+      "add a style reference"
+    ],
     "add a vault": [
       "Add a vault"
-    ],
-    "add advanced canvas styled node": [
-      "add advanced canvas styled node"
     ],
     "add apple health data file": [
       "add apple health data file"
     ],
-    "add chart block": [
-      "add chart block"
-    ],
     "add checklist to task": [
       "add checklist to task"
-    ],
-    "add claudian slash command": [
-      "add claudian slash command"
     ],
     "add cli opencode leg to command benchmark": [
       "add cli-opencode leg to command benchmark"
@@ -9168,17 +9162,11 @@
     "add content blocks to a notion page": [
       "add content blocks to a Notion page"
     ],
-    "add dataview inline field": [
-      "add dataview inline field"
-    ],
     "add deep improvement target": [
       "add deep-improvement target"
     ],
     "add devin executor kind": [
       "add devin executor kind"
-    ],
-    "add file to obsidian git ignore": [
-      "add file to obsidian git ignore"
     ],
     "add iconic rule": [
       "add iconic rule"
@@ -9191,15 +9179,6 @@
     ],
     "add manual testing scenarios checkpoint enrichment frontproxy worktree": [
       "add manual testing scenarios checkpoint enrichment frontproxy worktree"
-    ],
-    "add notion bases lookup column": [
-      "add notion bases lookup column"
-    ],
-    "add notion bases relation column": [
-      "add notion bases relation column"
-    ],
-    "add notion bases rollup column": [
-      "add notion bases rollup column"
     ],
     "add or change a column on a notion data source": [
       "add or change a column on a Notion data source"
@@ -9218,9 +9197,6 @@
     ],
     "add subtask to task": [
       "add subtask to task"
-    ],
-    "add tables column": [
-      "add tables column"
     ],
     "add tag": [
       "add tag"
@@ -9496,65 +9472,14 @@
     "advanced canvas claudian project manager skill folders": [
       "advanced canvas claudian project manager skill folders"
     ],
-    "advanced canvas data model": [
-      "advanced canvas data model"
-    ],
     "advanced canvas deep research plan": [
       "advanced canvas deep research plan"
     ],
     "advanced canvas deep research tasks": [
       "advanced canvas deep research tasks"
     ],
-    "advanced canvas edge pathfinding": [
-      "advanced canvas edge pathfinding"
-    ],
-    "advanced canvas edge pathfinding recipe": [
-      "advanced canvas edge pathfinding recipe"
-    ],
-    "advanced canvas export png svg": [
-      "advanced canvas export png svg"
-    ],
-    "advanced canvas floating edge": [
-      "advanced canvas floating edge"
-    ],
-    "advanced canvas floating edge recipe": [
-      "advanced canvas floating edge recipe"
-    ],
-    "advanced canvas flowchart shape": [
-      "advanced canvas flowchart shape"
-    ],
     "advanced canvas interdimensional caveat tighten": [
       "advanced-canvas interdimensional caveat tighten"
-    ],
-    "advanced canvas invalid canvas json": [
-      "advanced canvas invalid canvas json"
-    ],
-    "advanced canvas metadata startnode": [
-      "advanced canvas metadata startNode"
-    ],
-    "advanced canvas node not rendering": [
-      "advanced canvas node not rendering"
-    ],
-    "advanced canvas node shape": [
-      "advanced canvas node shape"
-    ],
-    "advanced canvas node style": [
-      "advanced canvas node style"
-    ],
-    "advanced canvas plugin": [
-      "advanced canvas plugin"
-    ],
-    "advanced canvas portal": [
-      "advanced canvas portal"
-    ],
-    "advanced canvas portal broken": [
-      "advanced canvas portal broken"
-    ],
-    "advanced canvas presentation": [
-      "advanced canvas presentation"
-    ],
-    "advanced canvas presentation not starting": [
-      "advanced canvas presentation not starting"
     ],
     "advanced canvas reference docs": [
       "advanced canvas reference docs"
@@ -9562,32 +9487,8 @@
     "advanced canvas reference optimization research": [
       "Advanced Canvas reference optimization research"
     ],
-    "advanced canvas style not applied": [
-      "advanced canvas style not applied"
-    ],
-    "advanced canvas styleattributes": [
-      "advanced canvas styleAttributes"
-    ],
-    "advanced canvas version compatibility": [
-      "advanced canvas version compatibility"
-    ],
-    "advanced chart json block": [
-      "advanced chart json block"
-    ],
-    "advanced chart json config": [
-      "advanced chart json config"
-    ],
-    "advanced chart json example": [
-      "advanced chart json example"
-    ],
     "advanced craft h2 casing": [
       "advanced-craft H2 casing"
-    ],
-    "advanced json canvas": [
-      "advanced json canvas"
-    ],
-    "advanced json canvas schema": [
-      "advanced json canvas schema"
     ],
     "adversarial rejection": [
       "adversarial rejection"
@@ -9616,11 +9517,17 @@
     "advisor architecture audit": [
       "advisor architecture audit"
     ],
+    "advisor architecture rewrite": [
+      "advisor architecture rewrite"
+    ],
     "advisor auth helper": [
       "advisor auth helper"
     ],
     "advisor baseline": [
       "advisor baseline"
+    ],
+    "advisor behavior table": [
+      "advisor behavior table"
     ],
     "advisor bridge import repair": [
       "advisor bridge import repair"
@@ -9631,14 +9538,32 @@
     "advisor cache tests": [
       "advisor cache tests"
     ],
+    "advisor caller inventory": [
+      "advisor caller inventory"
+    ],
+    "advisor caller rewire": [
+      "advisor caller rewire"
+    ],
     "advisor catalog rename map": [
       "advisor catalog rename map"
     ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
+    "advisor cli contract": [
+      "advisor cli contract"
+    ],
     "advisor cli fallback": [
       "advisor cli fallback"
+    ],
+    "advisor cli front door": [
+      "advisor cli front door"
+    ],
+    "advisor cli parity": [
+      "advisor cli parity"
+    ],
+    "advisor closeout": [
+      "advisor closeout"
     ],
     "advisor codegraph 027 reconciliation": [
       "advisor codegraph 027 reconciliation"
@@ -9648,6 +9573,12 @@
     ],
     "advisor codegraph procedural readiness": [
       "advisor codegraph procedural readiness"
+    ],
+    "advisor cold boot proof": [
+      "advisor cold boot proof"
+    ],
+    "advisor cold start": [
+      "advisor cold start"
     ],
     "advisor compatibility": [
       "advisor compatibility",
@@ -9698,6 +9629,15 @@
     "advisor daemon": [
       "advisor daemon"
     ],
+    "advisor daemon decision": [
+      "advisor daemon decision"
+    ],
+    "advisor daemon framing": [
+      "advisor daemon framing"
+    ],
+    "advisor daemon protocol": [
+      "advisor daemon protocol"
+    ],
     "advisor daemon reload verification": [
       "advisor daemon reload verification"
     ],
@@ -9715,6 +9655,9 @@
     ],
     "advisor database policy": [
       "advisor database policy"
+    ],
+    "advisor decommission verification": [
+      "advisor decommission verification"
     ],
     "advisor decoupling": [
       "advisor decoupling"
@@ -9740,6 +9683,9 @@
     "advisor doc cleanup post extraction": [
       "advisor doc cleanup post-extraction"
     ],
+    "advisor docs sweep": [
+      "advisor docs sweep"
+    ],
     "advisor documentation path migration": [
       "advisor documentation path migration"
     ],
@@ -9754,6 +9700,9 @@
     ],
     "advisor env hardening": [
       "advisor env hardening"
+    ],
+    "advisor exit taxonomy": [
+      "advisor exit taxonomy"
     ],
     "advisor extraction child 002": [
       "advisor extraction child 002"
@@ -9845,6 +9794,9 @@
     "advisor hook registration paths": [
       "advisor hook registration paths"
     ],
+    "advisor hook rewire": [
+      "advisor hook rewire"
+    ],
     "advisor hook runtime matrix": [
       "advisor hook runtime matrix"
     ],
@@ -9935,8 +9887,17 @@
     "advisor lane weight": [
       "advisor lane weight"
     ],
+    "advisor latency baseline": [
+      "advisor latency baseline"
+    ],
     "advisor latency bench": [
       "advisor latency bench"
+    ],
+    "advisor latency delta": [
+      "advisor latency delta"
+    ],
+    "advisor launcher supervisor": [
+      "advisor launcher supervisor"
     ],
     "advisor lease semantics": [
       "advisor lease semantics"
@@ -9959,8 +9920,14 @@
     "advisor manual testing playbook": [
       "advisor manual testing playbook"
     ],
+    "advisor mcp inventory": [
+      "advisor mcp inventory"
+    ],
     "advisor mcp registration": [
       "advisor mcp registration"
+    ],
+    "advisor mcp removal": [
+      "advisor mcp removal"
     ],
     "advisor mcp server": [
       "advisor mcp server"
@@ -10004,6 +9971,9 @@
     "advisor package envelope": [
       "advisor package envelope"
     ],
+    "advisor package rename": [
+      "advisor package rename"
+    ],
     "advisor package root rename": [
       "advisor package root rename"
     ],
@@ -10015,6 +9985,9 @@
     ],
     "advisor parity rollback tasks": [
       "advisor parity rollback tasks"
+    ],
+    "advisor path migration": [
+      "advisor path migration"
     ],
     "advisor phantom hook row": [
       "advisor phantom hook row"
@@ -10031,11 +10004,17 @@
     "advisor plugin bridge tests": [
       "advisor plugin bridge tests"
     ],
+    "advisor plugin cli": [
+      "advisor plugin cli"
+    ],
     "advisor positive controls dispatch plan": [
       "advisor positive controls dispatch plan"
     ],
     "advisor positive controls dispatch summary": [
       "advisor positive controls dispatch summary"
+    ],
+    "advisor preserve set": [
+      "advisor preserve set"
     ],
     "advisor probe inter skill": [
       "advisor probe inter-skill"
@@ -10051,6 +10030,9 @@
     ],
     "advisor projection filesystem fallback": [
       "advisor projection filesystem-fallback"
+    ],
+    "advisor protocol version": [
+      "advisor protocol version"
     ],
     "advisor proxy removal": [
       "advisor proxy removal"
@@ -10152,6 +10134,9 @@
     "advisor refinement deep review": [
       "advisor refinement deep review"
     ],
+    "advisor registration removal": [
+      "advisor registration removal"
+    ],
     "advisor regression tests": [
       "advisor regression tests"
     ],
@@ -10166,6 +10151,9 @@
     ],
     "advisor renderer fixture drift": [
       "advisor renderer fixture drift"
+    ],
+    "advisor residue sweep": [
+      "advisor residue sweep"
     ],
     "advisor resolver false sentinel": [
       "advisor resolver false sentinel"
@@ -10214,6 +10202,9 @@
     ],
     "advisor routing tokens preserved": [
       "advisor routing tokens preserved"
+    ],
+    "advisor runtime directory": [
+      "advisor runtime directory"
     ],
     "advisor runtime modules": [
       "advisor runtime modules"
@@ -10310,6 +10301,9 @@
     ],
     "advisor smoke test not run": [
       "advisor smoke test not run"
+    ],
+    "advisor socket protocol": [
+      "advisor socket protocol"
     ],
     "advisor socket server": [
       "advisor socket server"
@@ -10410,11 +10404,17 @@
     "advisor transport": [
       "advisor transport"
     ],
+    "advisor transport delete": [
+      "advisor transport delete"
+    ],
     "advisor transport disagreement": [
       "advisor transport disagreement"
     ],
     "advisor transport fallback budget": [
       "advisor transport fallback budget"
+    ],
+    "advisor transport removal": [
+      "advisor transport removal"
     ],
     "advisor transport resilience": [
       "advisor transport resilience"
@@ -10472,6 +10472,9 @@
     ],
     "advisor why recommended": [
       "advisor why recommended"
+    ],
+    "advisor wire contract": [
+      "advisor wire contract"
     ],
     "advisor workspace root resolver false sentinel": [
       "advisor workspace root resolver false sentinel"
@@ -11040,18 +11043,6 @@
     ],
     "agent wrong runtime directory": [
       "agent wrong runtime directory"
-    ],
-    "agentable obsidian table": [
-      "agentable obsidian table"
-    ],
-    "agentable table example": [
-      "agentable table example"
-    ],
-    "agentable table json": [
-      "agentable table json"
-    ],
-    "agentable table round trip": [
-      "Agentable table round-trip"
     ],
     "agentic recall delivery status": [
       "agentic recall delivery status"
@@ -11876,8 +11867,14 @@
     "anchor miss returnedtokens zero": [
       "anchor-miss returnedTokens zero"
     ],
+    "anchor reset plan": [
+      "anchor reset plan"
+    ],
     "anchor to h2 mapping": [
       "anchor-to-H2 mapping"
+    ],
+    "anchorless documents": [
+      "anchorless documents"
     ],
     "anchors checked integrity": [
       "anchors checked integrity"
@@ -12201,6 +12198,9 @@
     ],
     "apply style reference to chart": [
       "apply style reference to chart"
+    ],
+    "apply style reference to diagram": [
+      "apply style reference to diagram"
     ],
     "apply tag to task": [
       "apply tag to task"
@@ -12675,6 +12675,9 @@
     ],
     "artifact routing gate": [
       "artifact routing gate"
+    ],
+    "artifact walker": [
+      "artifact walker"
     ],
     "artifact written event": [
       "artifact_written event"
@@ -13561,9 +13564,6 @@
     "author chart templates": [
       "author chart templates"
     ],
-    "author claudian skill": [
-      "author claudian skill"
-    ],
     "author first gate experience": [
       "author first gate experience"
     ],
@@ -13747,11 +13747,17 @@
     "auto embedder selection plan": [
       "auto embedder selection plan"
     ],
+    "auto fix derived artifact": [
+      "auto fix derived artifact"
+    ],
     "auto fix validation pipeline": [
       "auto-fix validation pipeline"
     ],
     "auto follow skips dirty tree": [
       "auto follow skips dirty tree"
+    ],
+    "auto heal validation": [
+      "auto heal validation"
     ],
     "auto migration start": [
       "AUTO_MIGRATION_START"
@@ -15610,84 +15616,6 @@
     "brand vs structural color": [
       "brand vs structural color"
     ],
-    "brat beta theme install": [
-      "brat beta theme install"
-    ],
-    "brat compatibility gate": [
-      "brat compatibility gate"
-    ],
-    "brat data json schema": [
-      "brat data json schema"
-    ],
-    "brat file layer": [
-      "brat file layer"
-    ],
-    "brat file layer install": [
-      "BRAT file-layer install"
-    ],
-    "brat frozen plugin skipped": [
-      "brat frozen plugin skipped"
-    ],
-    "brat frozen release pin": [
-      "brat frozen release pin"
-    ],
-    "brat frozen version": [
-      "BRAT frozen version"
-    ],
-    "brat frozen version record": [
-      "brat frozen version record"
-    ],
-    "brat github rate limit": [
-      "brat github rate limit"
-    ],
-    "brat headless plugin install": [
-      "brat headless plugin install"
-    ],
-    "brat no release error": [
-      "brat no release error"
-    ],
-    "brat obsidian plugin": [
-      "brat obsidian plugin"
-    ],
-    "brat plugin list settings": [
-      "brat plugin list settings"
-    ],
-    "brat plugin workflow": [
-      "brat plugin workflow"
-    ],
-    "brat private repository token": [
-      "brat private repository token"
-    ],
-    "brat registration removal": [
-      "brat registration removal"
-    ],
-    "brat release asset mismatch": [
-      "brat release asset mismatch"
-    ],
-    "brat release update": [
-      "brat release update"
-    ],
-    "brat secret storage token": [
-      "brat secret storage token"
-    ],
-    "brat stage register activate": [
-      "brat stage register activate"
-    ],
-    "brat theme path confusion": [
-      "brat theme path confusion"
-    ],
-    "brat theme tracking": [
-      "brat theme tracking"
-    ],
-    "brat themes list checksum": [
-      "brat themes list checksum"
-    ],
-    "brat update all frozen skip": [
-      "brat update all frozen skip"
-    ],
-    "brat version tag mismatch": [
-      "brat version tag mismatch"
-    ],
     "breadcrumb suppression fix": [
       "breadcrumb suppression fix"
     ],
@@ -15894,9 +15822,6 @@
     ],
     "build a color palette": [
       "build a color palette"
-    ],
-    "build advanced canvas presentation": [
-      "build advanced canvas presentation"
     ],
     "build artifact cleanup": [
       "build artifact cleanup"
@@ -16652,9 +16577,6 @@
     "canonical promotion policy": [
       "canonical promotion policy"
     ],
-    "canonical rendered examples": [
-      "canonical rendered examples"
-    ],
     "canonical save acceptance criteria": [
       "canonical save acceptance criteria"
     ],
@@ -16831,6 +16753,9 @@
     ],
     "capture interaction states": [
       "capture interaction states"
+    ],
+    "capture judgment discipline": [
+      "capture judgment discipline"
     ],
     "capture normalize project render": [
       "capture normalize project render"
@@ -17462,9 +17387,6 @@
     "change icon color": [
       "change icon color"
     ],
-    "change obsidian git backup interval": [
-      "change obsidian git backup interval"
-    ],
     "change task status": [
       "change task status"
     ],
@@ -17699,9 +17621,6 @@
     "chart binary asset disposition": [
       "chart binary asset disposition"
     ],
-    "chart block invalid json": [
-      "chart block invalid json"
-    ],
     "chart capability analysis": [
       "chart capability analysis"
     ],
@@ -17734,6 +17653,9 @@
     ],
     "chart catalog tasks": [
       "chart catalog tasks"
+    ],
+    "chart changelog renumber": [
+      "chart changelog renumber"
     ],
     "chart checker extension decisions": [
       "chart checker extension decisions"
@@ -17882,6 +17804,9 @@
     "chart decision tasks": [
       "chart decision tasks"
     ],
+    "chart deletion residue": [
+      "chart deletion residue"
+    ],
     "chart determinism proof": [
       "chart determinism proof"
     ],
@@ -17906,9 +17831,6 @@
     "chart fidelity tasks": [
       "chart fidelity tasks"
     ],
-    "chart file layer": [
-      "chart file layer"
-    ],
     "chart fork disposition": [
       "chart fork disposition"
     ],
@@ -17929,12 +17851,6 @@
     ],
     "chart from design md": [
       "chart from design md"
-    ],
-    "chart from table": [
-      "chart from table"
-    ],
-    "chart from table obsidian": [
-      "chart from table obsidian"
     ],
     "chart glow fork": [
       "chart glow fork"
@@ -18026,9 +17942,6 @@
     "chart manual testing playbook": [
       "chart manual testing playbook"
     ],
-    "chart missing type labels": [
-      "chart missing type labels"
-    ],
     "chart mode reachability": [
       "chart mode reachability"
     ],
@@ -18043,9 +17956,6 @@
     ],
     "chart motion tasks": [
       "chart motion tasks"
-    ],
-    "chart not rendering": [
-      "chart not rendering"
     ],
     "chart or diagram": [
       "chart or diagram"
@@ -18101,6 +18011,9 @@
     "chart pointer interaction": [
       "chart pointer interaction"
     ],
+    "chart prerelease versioning": [
+      "chart prerelease versioning"
+    ],
     "chart radius ladder": [
       "chart radius ladder"
     ],
@@ -18142,6 +18055,9 @@
     ],
     "chart remediation tasks": [
       "chart remediation tasks"
+    ],
+    "chart renumber approach": [
+      "chart renumber approach"
     ],
     "chart research decisions": [
       "chart research decisions"
@@ -18196,12 +18112,6 @@
     ],
     "chart source inventory": [
       "chart source inventory"
-    ],
-    "chart table not found": [
-      "chart table not found"
-    ],
-    "chart table reference": [
-      "chart table reference"
     ],
     "chart template contract": [
       "chart template contract"
@@ -18269,21 +18179,6 @@
     "chart visual upgrade": [
       "chart visual upgrade"
     ],
-    "chart yaml block example": [
-      "chart yaml block example"
-    ],
-    "chart yaml block syntax": [
-      "chart yaml block syntax"
-    ],
-    "charts block shows code": [
-      "charts block shows code"
-    ],
-    "charts data json lost settings": [
-      "charts data json lost settings"
-    ],
-    "charts data model": [
-      "charts data model"
-    ],
     "charts dataview excalidraw git outliner minimal": [
       "charts dataview excalidraw git outliner minimal"
     ],
@@ -18298,24 +18193,6 @@
     ],
     "charts dataview excalidraw git outliner minimal routing": [
       "charts dataview excalidraw git outliner minimal routing"
-    ],
-    "charts plugin obsidian": [
-      "charts plugin obsidian"
-    ],
-    "charts render block example": [
-      "charts render block example"
-    ],
-    "charts render block schema": [
-      "charts render block schema"
-    ],
-    "charts settings data json": [
-      "charts settings data json"
-    ],
-    "charts settings edit": [
-      "charts settings edit"
-    ],
-    "charts settings keys": [
-      "charts settings keys"
     ],
     "chat message display validation": [
       "chat.message display validation"
@@ -18437,9 +18314,6 @@
     "check native modules": [
       "check-native-modules"
     ],
-    "check obsidian git repo status": [
-      "check obsidian git repo status"
-    ],
     "check off checklist item": [
       "check off checklist item"
     ],
@@ -18512,6 +18386,9 @@
     ],
     "check the vision runtime health": [
       "check the vision runtime health"
+    ],
+    "checker mutation ci": [
+      "checker mutation ci"
     ],
     "checklist completion tool": [
       "checklist completion tool"
@@ -19257,11 +19134,11 @@
     "claude code goal hook benchmark": [
       "claude code goal hook benchmark"
     ],
+    "claude code goal nesting": [
+      "claude code goal nesting"
+    ],
     "claude code headless projection": [
       "claude code headless projection"
-    ],
-    "claude code in obsidian": [
-      "claude code in obsidian"
     ],
     "claude code json schema output": [
       "claude code json schema output"
@@ -19334,9 +19211,6 @@
     ],
     "claude codex spec gate alias fix": [
       "claude codex spec gate alias fix"
-    ],
-    "claude commands directory": [
-      "claude commands directory"
     ],
     "claude cursor fallback wrap": [
       "claude cursor fallback wrap"
@@ -19467,15 +19341,6 @@
     "claudest research findings": [
       "claudest research findings"
     ],
-    "claudian at mention": [
-      "claudian at mention"
-    ],
-    "claudian cli not found": [
-      "claudian cli not found"
-    ],
-    "claudian data model": [
-      "claudian data model"
-    ],
     "claudian deep research plan": [
       "claudian deep research plan"
     ],
@@ -19485,71 +19350,14 @@
     "claudian deep research tasks": [
       "claudian deep research tasks"
     ],
-    "claudian desktop only": [
-      "claudian desktop only"
-    ],
-    "claudian mcp": [
-      "claudian mcp"
-    ],
-    "claudian mcp json": [
-      "claudian mcp.json"
-    ],
-    "claudian mcp server": [
-      "claudian mcp server"
-    ],
-    "claudian mcp server setup": [
-      "claudian mcp server setup"
-    ],
-    "claudian obsidian": [
-      "claudian obsidian"
-    ],
-    "claudian plan mode": [
-      "claudian plan mode"
-    ],
-    "claudian plugin": [
-      "claudian plugin"
-    ],
-    "claudian plugin not showing": [
-      "claudian plugin not showing"
-    ],
     "claudian positive mcp path unknown": [
       "claudian positive mcp path unknown"
-    ],
-    "claudian prompt template": [
-      "claudian prompt template"
-    ],
-    "claudian provider": [
-      "claudian provider"
-    ],
-    "claudian provider auth": [
-      "claudian provider auth"
-    ],
-    "claudian provider cli": [
-      "claudian provider cli"
-    ],
-    "claudian provider config": [
-      "claudian provider config"
     ],
     "claudian reference optimization": [
       "claudian reference optimization"
     ],
     "claudian reference optimization research": [
       "Claudian reference optimization research"
-    ],
-    "claudian search missing": [
-      "claudian search missing"
-    ],
-    "claudian skill": [
-      "claudian skill"
-    ],
-    "claudian skill file": [
-      "claudian skill file"
-    ],
-    "claudian slash command": [
-      "claudian slash command"
-    ],
-    "claudian vs claudiania": [
-      "claudian vs claudianIA"
     ],
     "claudish reverse engineering": [
       "claudish reverse engineering"
@@ -24210,6 +24018,9 @@
     "codex generate review fix cycle": [
       "codex generate review fix cycle"
     ],
+    "codex goal nesting": [
+      "codex goal nesting"
+    ],
     "codex gpt 5 6 luna terra sol": [
       "codex gpt-5.6 luna terra sol"
     ],
@@ -24286,9 +24097,6 @@
     ],
     "codex image input": [
       "codex image input"
-    ],
-    "codex in obsidian": [
-      "codex in obsidian"
     ],
     "codex install robustness decisions": [
       "Codex install robustness decisions"
@@ -24488,9 +24296,6 @@
     "codex write containment": [
       "codex write containment"
     ],
-    "coding agent in vault": [
-      "coding agent in vault"
-    ],
     "cognition": [
       "cognition"
     ],
@@ -24589,6 +24394,9 @@
     ],
     "color type layout tokens": [
       "color type layout tokens"
+    ],
+    "color value origins": [
+      "color value origins"
     ],
     "colour naming format": [
       "colour naming format"
@@ -25472,6 +25280,9 @@
     ],
     "commit type selection": [
       "commit type selection"
+    ],
+    "commit widening": [
+      "commit widening"
     ],
     "commits since 036 was published": [
       "commits since 036 was published"
@@ -26638,12 +26449,6 @@
     "configure fanout executors": [
       "configure fanout executors"
     ],
-    "configure make md table": [
-      "configure make.md table"
-    ],
-    "configure notion bases view": [
-      "configure notion bases view"
-    ],
     "configured specs root membership": [
       "configured specs root membership"
     ],
@@ -27207,9 +27012,6 @@
     ],
     "context manifest proof gates": [
       "context manifest proof gates"
-    ],
-    "context mdb views mdb": [
-      "context.mdb views.mdb"
     ],
     "context preservation": [
       "context preservation"
@@ -27867,9 +27669,6 @@
     "copy skill advisor dist data": [
       "copy-skill-advisor-dist-data"
     ],
-    "copyable charts block": [
-      "copyable charts block"
-    ],
     "core addendum": [
       "core addendum"
     ],
@@ -27999,6 +27798,9 @@
     "corpus reindex tasks gate zero": [
       "corpus reindex tasks gate zero"
     ],
+    "corpus repaint catalog": [
+      "corpus repaint catalog"
+    ],
     "corpus restyle tasks": [
       "corpus restyle tasks"
     ],
@@ -28043,6 +27845,9 @@
     ],
     "corpus wide restyle plan": [
       "corpus wide restyle plan"
+    ],
+    "corpus wide staleness": [
+      "corpus wide staleness"
     ],
     "corrected phase2 baseline": [
       "corrected phase2 baseline"
@@ -28611,9 +28416,6 @@
     "create a saved notion view": [
       "create a saved notion view"
     ],
-    "create advanced canvas portal": [
-      "create advanced canvas portal"
-    ],
     "create agent": [
       "create agent"
     ],
@@ -28787,9 +28589,6 @@
     ],
     "create chart command": [
       "create chart command"
-    ],
-    "create chart in note": [
-      "create chart in note"
     ],
     "create chart router": [
       "create chart router"
@@ -28973,9 +28772,6 @@
     ],
     "create custom field": [
       "create custom field"
-    ],
-    "create dataview query": [
-      "create dataview query"
     ],
     "create diagram": [
       "create diagram"
@@ -29232,9 +29028,6 @@
     ],
     "create lazy add ons": [
       "create lazy add-ons"
-    ],
-    "create make md space from folder": [
-      "create make.md space from folder"
     ],
     "create manual testing playbook": [
       "/create:manual-testing-playbook"
@@ -29542,12 +29335,6 @@
     ],
     "create subtask": [
       "create subtask"
-    ],
-    "create table md": [
-      "create .table.md"
-    ],
-    "create tables table md": [
-      "create tables table md"
     ],
     "create task": [
       "create task"
@@ -31359,6 +31146,9 @@
     "daemon versus python scorer": [
       "daemon versus python scorer"
     ],
+    "daemon versus stateless": [
+      "daemon versus stateless"
+    ],
     "daemon wal checkpoint before sigkill": [
       "daemon WAL checkpoint before SIGKILL"
     ],
@@ -31566,9 +31356,6 @@
     "database icon": [
       "database icon"
     ],
-    "database md schema": [
-      "database.md schema"
-    ],
     "database migrations": [
       "database migrations"
     ],
@@ -31593,15 +31380,6 @@
     "datasource vault read write": [
       "datasource vault read write"
     ],
-    "dataview block raw code": [
-      "dataview block raw code"
-    ],
-    "dataview data json": [
-      "dataview data json"
-    ],
-    "dataview data model": [
-      "dataview data model"
-    ],
     "dataview deep research plan": [
       "dataview deep research plan"
     ],
@@ -31611,107 +31389,14 @@
     "dataview deep research tasks": [
       "dataview deep research tasks"
     ],
-    "dataview dql": [
-      "dataview dql"
-    ],
-    "dataview dql block": [
-      "dataview dql block"
-    ],
-    "dataview dql example": [
-      "dataview dql example"
-    ],
-    "dataview dql grammar": [
-      "dataview dql grammar"
-    ],
     "dataview file day folder fix": [
       "dataview file.day folder fix"
-    ],
-    "dataview file fields": [
-      "dataview file fields"
-    ],
-    "dataview file fields example": [
-      "dataview file fields example"
-    ],
-    "dataview frontmatter example": [
-      "dataview frontmatter example"
-    ],
-    "dataview frontmatter field": [
-      "dataview frontmatter field"
-    ],
-    "dataview frontmatter fields": [
-      "dataview frontmatter fields"
-    ],
-    "dataview inline field example": [
-      "dataview inline field example"
-    ],
-    "dataview inline field not recognized": [
-      "dataview inline field not recognized"
-    ],
-    "dataview inline fields": [
-      "dataview inline fields"
-    ],
-    "dataview metadata fields": [
-      "dataview metadata fields"
-    ],
-    "dataview metadata layers": [
-      "dataview metadata layers"
-    ],
-    "dataview metadata query": [
-      "dataview metadata query"
-    ],
-    "dataview plugin": [
-      "dataview plugin"
-    ],
-    "dataview query": [
-      "dataview query"
-    ],
-    "dataview query block": [
-      "dataview query block"
-    ],
-    "dataview query empty": [
-      "dataview query empty"
-    ],
-    "dataview query example": [
-      "dataview query example"
-    ],
-    "dataview query syntax": [
-      "dataview query syntax"
-    ],
-    "dataview query wrong result": [
-      "dataview query wrong result"
     ],
     "dataview reference optimization research": [
       "Dataview reference optimization research"
     ],
     "dataview rollups relations migration": [
       "dataview rollups relations migration"
-    ],
-    "dataview settings": [
-      "dataview settings"
-    ],
-    "dataview settings json": [
-      "dataview settings json"
-    ],
-    "dataview settings lost": [
-      "dataview settings lost"
-    ],
-    "dataview table": [
-      "dataview table"
-    ],
-    "dataview table block": [
-      "dataview table block"
-    ],
-    "dataview table example": [
-      "dataview table example"
-    ],
-    "dataview task query": [
-      "dataview task query"
-    ],
-    "dataview three layers": [
-      "dataview three layers"
-    ],
-    "dataviewjs not running": [
-      "dataviewjs not running"
     ],
     "dated benchmark folder": [
       "dated benchmark folder"
@@ -32079,6 +31764,9 @@
     "declared capability loss": [
       "declared capability loss"
     ],
+    "declared residue": [
+      "declared residue"
+    ],
     "declared signal closure": [
       "declared signal closure"
     ],
@@ -32141,6 +31829,9 @@
     ],
     "decoy artifact negative test landed": [
       "decoy artifact negative test landed"
+    ],
+    "dedicated plugin support reduced": [
+      "dedicated plugin support reduced"
     ],
     "dedicated stress folder": [
       "dedicated stress folder"
@@ -36039,9 +35730,6 @@
     "deepseek via devin enabled": [
       "deepseek via devin enabled"
     ],
-    "def json space definition": [
-      "def.json space definition"
-    ],
     "default deny gateway plan": [
       "default deny gateway plan"
     ],
@@ -36414,6 +36102,9 @@
     "delete local cache": [
       "delete local cache"
     ],
+    "delete obsidian plugin doc sets": [
+      "delete obsidian plugin doc sets"
+    ],
     "delete old doctor commands": [
       "delete old doctor commands"
     ],
@@ -36750,6 +36441,9 @@
     "derived age decay": [
       "derived age decay"
     ],
+    "derived artifact registry": [
+      "derived artifact registry"
+    ],
     "derived causal artifact": [
       "derived causal artifact"
     ],
@@ -36800,6 +36494,9 @@
     ],
     "derived metadata extract sync fix": [
       "derived metadata extract sync fix"
+    ],
+    "derived metadata gate": [
+      "derived metadata gate"
     ],
     "derived metadata repair plan": [
       "derived metadata repair plan"
@@ -36866,6 +36563,9 @@
     ],
     "derived skill metadata schema": [
       "derived skill metadata schema"
+    ],
+    "derived staleness walker": [
+      "derived staleness walker"
     ],
     "derived status complete": [
       "derived status complete"
@@ -37468,6 +37168,9 @@
     "design md colour system": [
       "design-md colour system"
     ],
+    "design md diagram delivery": [
+      "design-md diagram delivery"
+    ],
     "design md exemplar conformance adr": [
       "DESIGN.md exemplar conformance ADR"
     ],
@@ -37585,6 +37288,9 @@
     ],
     "design md section order": [
       "design md section order"
+    ],
+    "design md style reference": [
+      "design-md style reference"
     ],
     "design md theming": [
       "design-md theming"
@@ -38690,6 +38396,9 @@
     "devpass llmgateway roster": [
       "devpass llmgateway roster"
     ],
+    "devpass model deactivated 410": [
+      "devpass model deactivated 410"
+    ],
     "devpass pi custom provider": [
       "devpass pi custom provider"
     ],
@@ -38771,6 +38480,9 @@
     "diagram benchmark artifact tasks": [
       "diagram benchmark artifact tasks"
     ],
+    "diagram catalog": [
+      "diagram catalog"
+    ],
     "diagram command router": [
       "diagram command router"
     ],
@@ -38804,9 +38516,6 @@
     "diagram example assets": [
       "diagram example assets"
     ],
-    "diagram examples index": [
-      "diagram examples index"
-    ],
     "diagram extractor": [
       "diagram extractor"
     ],
@@ -38827,6 +38536,9 @@
     ],
     "diagram flowchart merge tasks": [
       "diagram flowchart merge tasks"
+    ],
+    "diagram form library index": [
+      "diagram form library index"
     ],
     "diagram foundations index": [
       "diagram foundations index"
@@ -38870,8 +38582,8 @@
     "diagram inventory tasks": [
       "diagram inventory tasks"
     ],
-    "diagram output templates index": [
-      "diagram output templates index"
+    "diagram lookup": [
+      "diagram lookup"
     ],
     "diagram packet strict gate": [
       "diagram packet strict gate"
@@ -38939,6 +38651,12 @@
     "diagram review remediation tasks": [
       "diagram review remediation tasks"
     ],
+    "diagram role mapping": [
+      "diagram role mapping"
+    ],
+    "diagram router pseudocode": [
+      "diagram router pseudocode"
+    ],
     "diagram scaffold plan": [
       "diagram scaffold plan"
     ],
@@ -38963,11 +38681,17 @@
     "diagram skill target tree": [
       "diagram skill target tree"
     ],
+    "diagram smart router": [
+      "diagram smart router"
+    ],
     "diagram source inventory": [
       "diagram source inventory"
     ],
     "diagram style guide": [
       "diagram style guide"
+    ],
+    "diagram style reference": [
+      "diagram style reference"
     ],
     "diagram styling correction": [
       "diagram styling correction"
@@ -38977,6 +38701,9 @@
     ],
     "diagram styling correction plan": [
       "diagram styling correction plan"
+    ],
+    "diagram token derivation": [
+      "diagram token derivation"
     ],
     "diagram trim manifest plan": [
       "diagram trim manifest plan"
@@ -38998,6 +38725,9 @@
     ],
     "diagram type selection guide": [
       "diagram type selection guide"
+    ],
+    "diagram upgrade goal": [
+      "diagram upgrade goal"
     ],
     "diagram validation plan": [
       "diagram validation plan"
@@ -40279,6 +40009,9 @@
     "doctor route repair": [
       "doctor route repair"
     ],
+    "doctor route rewire": [
+      "doctor route rewire"
+    ],
     "doctor route validate manifest": [
       "doctor route validate manifest"
     ],
@@ -40395,6 +40128,9 @@
     ],
     "doctrine coherence sweep tasks": [
       "doctrine coherence sweep tasks"
+    ],
+    "doctrine reconciliation": [
+      "doctrine reconciliation"
     ],
     "document comparison architecture": [
       "document comparison architecture"
@@ -40926,6 +40662,9 @@
     ],
     "drift suspect write latency guard plan": [
       "drift-suspect write latency guard plan"
+    ],
+    "drift sweep": [
+      "drift sweep"
     ],
     "drift sweep across subsystems": [
       "drift sweep across subsystems"
@@ -41507,9 +41246,6 @@
     "edit a notion page with markdown": [
       "edit a Notion page with Markdown"
     ],
-    "edit chart colors": [
-      "edit chart colors"
-    ],
     "edit clickup doc": [
       "edit clickup doc"
     ],
@@ -41518,12 +41254,6 @@
     ],
     "edit note yaml metadata": [
       "edit note YAML metadata"
-    ],
-    "edit table row by id": [
-      "edit table row by ID"
-    ],
-    "edit tables row": [
-      "edit tables row"
     ],
     "editable seams and frozen lines": [
       "editable seams and frozen lines"
@@ -41584,6 +41314,9 @@
     ],
     "efficiency undefined salvage": [
       "efficiency undefined salvage"
+    ],
+    "effort pin three copies": [
+      "effort pin three copies"
     ],
     "eight mode gates event ledger": [
       "eight mode gates event ledger"
@@ -42350,20 +42083,17 @@
     "empty packet closure gate": [
       "empty packet closure gate"
     ],
+    "empty trigger phrases": [
+      "empty trigger phrases"
+    ],
     "emulate a light source css": [
       "emulate a light source css"
     ],
     "enable 5dim scorer": [
       "enable 5dim scorer"
     ],
-    "enable dataviewjs": [
-      "enable dataviewjs"
-    ],
     "enable debug logging": [
       "enable debug logging"
-    ],
-    "enable local rest api": [
-      "enable local rest api"
     ],
     "enable modes removal": [
       "enable-modes removal"
@@ -43725,9 +43455,6 @@
     "exploit paths review": [
       "exploit paths review"
     ],
-    "export chart image": [
-      "export chart image"
-    ],
     "export diagram to png": [
       "export diagram to png"
     ],
@@ -44733,6 +44460,9 @@
     ],
     "falsifier discipline": [
       "falsifier discipline"
+    ],
+    "falsify the gate": [
+      "falsify the gate"
     ],
     "fan in budget floor": [
       "fan-in budget floor"
@@ -46187,6 +45917,9 @@
     "findings first severity ordering": [
       "findings first severity ordering"
     ],
+    "findings ledger": [
+      "findings ledger"
+    ],
     "findings reconciliation": [
       "findings reconciliation"
     ],
@@ -47399,9 +47132,6 @@
     "former 023 self healing model consolidation": [
       "former 023-self-healing-model-consolidation"
     ],
-    "formula column": [
-      "formula column"
-    ],
     "forward authoring out of scope": [
       "forward authoring out of scope"
     ],
@@ -47808,9 +47538,6 @@
     "frontmatter benefit research": [
       "frontmatter benefit research"
     ],
-    "frontmatter button": [
-      "frontmatter button"
-    ],
     "frontmatter by document type": [
       "frontmatter by document type"
     ],
@@ -47932,6 +47659,9 @@
     "frontmatter migration tasks": [
       "frontmatter migration tasks"
     ],
+    "frontmatter missing": [
+      "frontmatter missing"
+    ],
     "frontmatter mode intent phrases": [
       "frontmatter mode intent phrases"
     ],
@@ -47952,6 +47682,9 @@
     ],
     "frontmatter net new authoring phase": [
       "frontmatter net new authoring phase"
+    ],
+    "frontmatter never sent in chat": [
+      "frontmatter never sent in chat"
     ],
     "frontmatter normalization": [
       "frontmatter normalization"
@@ -48012,6 +47745,9 @@
     ],
     "frontmatter shared versus owned": [
       "frontmatter shared versus owned"
+    ],
+    "frontmatter strip research": [
+      "frontmatter strip research"
     ],
     "frontmatter templates owning mode": [
       "frontmatter templates owning mode"
@@ -48246,6 +47982,9 @@
     ],
     "full matrix stress test design": [
       "full matrix stress test design"
+    ],
+    "full page capture": [
+      "full page capture"
     ],
     "full plugin runtime": [
       "full plugin runtime"
@@ -48618,6 +48357,12 @@
     ],
     "gateway only mutation ledger": [
       "gateway only mutation ledger"
+    ],
+    "gateway route repoint": [
+      "gateway route repoint"
+    ],
+    "gateway route repoint approach": [
+      "gateway route repoint approach"
     ],
     "gauge lag implementation plan": [
       "gauge lag implementation plan"
@@ -49064,23 +48809,11 @@
     "git advisory runtime matrix": [
       "git advisory runtime matrix"
     ],
-    "git backup status": [
-      "git backup status"
-    ],
-    "git branch check": [
-      "git branch check"
-    ],
     "git claims verified": [
       "git claims verified"
     ],
-    "git commit and sync": [
-      "git commit and sync"
-    ],
     "git config leak": [
       "git config leak"
-    ],
-    "git conflict file": [
-      "git conflict file"
     ],
     "git destructive advisory rules": [
       "git destructive advisory rules"
@@ -49151,14 +48884,8 @@
     "git hooks reinstall tasks": [
       "git hooks reinstall tasks"
     ],
-    "git ignore rules": [
-      "git ignore rules"
-    ],
     "git live follow sh poll loop": [
       "git-live-follow.sh poll loop"
-    ],
-    "git log inspection": [
-      "git log inspection"
     ],
     "git mv 324 files": [
       "git mv 324 files"
@@ -49190,9 +48917,6 @@
     "git preflight hook": [
       "git preflight hook"
     ],
-    "git read only commands": [
-      "git read only commands"
-    ],
     "git readme rewrite plan": [
       "git readme rewrite plan"
     ],
@@ -49201,9 +48925,6 @@
     ],
     "git readme rewrite tasks": [
       "git readme rewrite tasks"
-    ],
-    "git remote inspection": [
-      "git remote inspection"
     ],
     "git rule checks": [
       "git rule checks"
@@ -49222,9 +48943,6 @@
     ],
     "git sync sh": [
       "git-sync.sh"
-    ],
-    "git vault repository": [
-      "git vault repository"
     ],
     "git workflow capabilities": [
       "git workflow capabilities"
@@ -49451,6 +49169,9 @@
     "glm research lane spec kit": [
       "glm research lane spec kit"
     ],
+    "glm sonnet verification": [
+      "glm sonnet verification"
+    ],
     "glm thinking tier": [
       "glm thinking tier"
     ],
@@ -49538,17 +49259,26 @@
     "goal addon research resources": [
       "goal addon research resources"
     ],
+    "goal adr freeze": [
+      "goal ADR freeze"
+    ],
     "goal and key result setup": [
       "goal and key result setup"
     ],
     "goal binding": [
       "goal binding"
     ],
+    "goal binding research": [
+      "goal binding research"
+    ],
     "goal capability probes": [
       "goal capability probes"
     ],
     "goal command": [
       "/goal command"
+    ],
+    "goal command every runtime": [
+      "goal command every runtime"
     ],
     "goal core and state": [
       "goal core and state"
@@ -49562,8 +49292,14 @@
     "goal core isolation implementation": [
       "goal core isolation implementation"
     ],
+    "goal core packet backed": [
+      "goal-core packet backed"
+    ],
     "goal core plan": [
       "goal core plan"
+    ],
+    "goal core refactor": [
+      "goal core refactor"
     ],
     "goal core state resolver": [
       "goal-core state resolver"
@@ -49616,6 +49352,9 @@
     "goal documentation parity tasks": [
       "goal documentation parity tasks"
     ],
+    "goal durable budget 4000": [
+      "goal durable budget 4000"
+    ],
     "goal file addon": [
       "goal file addon"
     ],
@@ -49645,6 +49384,15 @@
     ],
     "goal hook playbook tasks": [
       "goal hook playbook tasks"
+    ],
+    "goal hook readme update": [
+      "goal hook readme update"
+    ],
+    "goal hook reads goal md": [
+      "goal hook reads goal.md"
+    ],
+    "goal hook refactor": [
+      "goal hook refactor"
     ],
     "goal hook validation": [
       "goal hook validation"
@@ -49724,6 +49472,12 @@
     "goal manifest entry": [
       "goal manifest entry"
     ],
+    "goal md across runtimes": [
+      "goal.md across runtimes"
+    ],
+    "goal md frontmatter strip": [
+      "goal.md frontmatter strip"
+    ],
     "goal md template": [
       "goal.md template"
     ],
@@ -49739,6 +49493,9 @@
     "goal opencode plugin": [
       "goal opencode plugin"
     ],
+    "goal pi goal opencode goal cursor goal devin": [
+      "goal-pi goal-opencode goal-cursor goal-devin"
+    ],
     "goal plugin final state": [
       "goal plugin final state"
     ],
@@ -49747,6 +49504,9 @@
     ],
     "goal prompt choice": [
       "goal_prompt_choice"
+    ],
+    "goal reminder cadence": [
+      "goal reminder cadence"
     ],
     "goal rename fallout": [
       "goal rename fallout"
@@ -49790,8 +49550,14 @@
     "goal shape rule": [
       "goal shape rule"
     ],
+    "goal shape validator restore": [
+      "goal shape validator restore"
+    ],
     "goal state archive": [
       "goal state archive"
+    ],
+    "goal state in specs": [
+      "goal state in specs"
     ],
     "goal state isolation strategy": [
       "goal state isolation strategy"
@@ -49802,14 +49568,44 @@
     "goal state migration tasks": [
       "goal state migration tasks"
     ],
+    "goal state store retirement": [
+      "goal state store retirement"
+    ],
+    "goal store fate": [
+      "goal store fate"
+    ],
+    "goal store fate decision": [
+      "goal store fate decision"
+    ],
     "goal template": [
       "goal template"
     ],
     "goal template edit": [
       "goal template edit"
     ],
+    "goal template frontmatter strip": [
+      "goal template frontmatter strip"
+    ],
     "goal template shipped": [
       "goal template shipped"
+    ],
+    "goal unification": [
+      "goal unification"
+    ],
+    "goal unification changelog": [
+      "goal unification changelog"
+    ],
+    "goal unification decisions": [
+      "goal unification decisions"
+    ],
+    "goal unification research": [
+      "goal unification research"
+    ],
+    "goal unification research strategy": [
+      "goal unification research strategy"
+    ],
+    "goal unification verification": [
+      "goal unification verification"
     ],
     "goal validator": [
       "goal validator"
@@ -50359,6 +50155,9 @@
     "graph metadata derived fleet migration": [
       "graph-metadata derived fleet migration"
     ],
+    "graph metadata drift": [
+      "graph metadata drift"
+    ],
     "graph metadata drift plan": [
       "graph-metadata drift plan"
     ],
@@ -50583,6 +50382,9 @@
     ],
     "grayscale first": [
       "grayscale first"
+    ],
+    "green theater": [
+      "green theater"
     ],
     "greenfield command generator": [
       "greenfield command generator"
@@ -51088,9 +50890,6 @@
     ],
     "heading shape grading removed": [
       "heading shape grading removed"
-    ],
-    "headless brat workflow": [
-      "headless BRAT workflow"
     ],
     "headless colour scheme": [
       "headless colour scheme"
@@ -51722,6 +51521,9 @@
     "hook kill switch phase status": [
       "hook kill-switch phase status"
     ],
+    "hook latency baseline": [
+      "hook latency baseline"
+    ],
     "hook level lifecycle flags": [
       "hook-level lifecycle flags"
     ],
@@ -52277,6 +52079,9 @@
     "hub router vocabulary parent selection": [
       "hub router vocabulary parent selection"
     ],
+    "hub router vocabulary plugin removal": [
+      "hub router vocabulary plugin removal"
+    ],
     "hub router vs normal router explainer": [
       "hub router vs normal router explainer"
     ],
@@ -52784,8 +52589,14 @@
     "icon rules file layer": [
       "icon rules file layer"
     ],
+    "icon specimen": [
+      "icon specimen"
+    ],
     "icon system detection": [
       "icon system detection"
+    ],
+    "iconic and health md only": [
+      "iconic and health-md only"
     ],
     "iconic backup": [
       "iconic backup"
@@ -53768,9 +53579,6 @@
     "inline gate renderer level gating": [
       "inline-gate-renderer level gating"
     ],
-    "inline input field": [
-      "inline input field"
-    ],
     "inline skill router canary": [
       "inline skill router canary"
     ],
@@ -53945,9 +53753,6 @@
     "install guides trigger index corpus": [
       "install guides trigger index corpus"
     ],
-    "install make md plugin": [
-      "install make.md plugin"
-    ],
     "install motion dev": [
       "install motion dev"
     ],
@@ -53957,9 +53762,6 @@
     "install obsidian theme": [
       "install obsidian theme"
     ],
-    "install plugin from github": [
-      "install plugin from GitHub"
-    ],
     "install plugin into vault manually": [
       "install plugin into vault manually"
     ],
@@ -53968,9 +53770,6 @@
     ],
     "install surface repair": [
       "install surface repair"
-    ],
-    "install tables with brat": [
-      "install tables with brat"
     ],
     "install the pwa": [
       "install the pwa"
@@ -54938,9 +54737,6 @@
     "js capability features tasks": [
       "js capability features tasks"
     ],
-    "js engine block": [
-      "js engine block"
-    ],
     "js engine deep research plan": [
       "js engine deep research plan"
     ],
@@ -55222,6 +55018,9 @@
     ],
     "kebab to snake convention": [
       "kebab-to-snake convention"
+    ],
+    "keep iconic and health md only": [
+      "keep iconic and health-md only"
     ],
     "keep jina code": [
       "KEEP-JINA-CODE"
@@ -56189,6 +55988,9 @@
     ],
     "leaf manifest regeneration task list": [
       "leaf manifest regeneration task list"
+    ],
+    "leaf manifest stale chart": [
+      "leaf manifest stale chart"
     ],
     "leaf manifest unreadable subtree": [
       "leaf manifest unreadable subtree"
@@ -57573,6 +57375,9 @@
     "llmgateway deepseek fanout": [
       "llmgateway deepseek fanout"
     ],
+    "llmgateway deepseek v4 1 flash": [
+      "llmgateway deepseek v4.1 flash"
+    ],
     "llmgateway glm 5 3 flash fanout": [
       "llmgateway glm-5.3-flash fanout"
     ],
@@ -57819,23 +57624,14 @@
     "local rest api": [
       "local rest api"
     ],
-    "local rest api connection refused": [
-      "local rest api connection refused"
-    ],
-    "local rest api data model": [
-      "local rest api data model"
+    "local rest api docs removed": [
+      "local rest api docs removed"
     ],
     "local rest api install": [
       "local rest api install"
     ],
     "local rest api not enabled": [
       "local rest api not enabled"
-    ],
-    "local rest api port": [
-      "local rest api port"
-    ],
-    "local rest api port conflict": [
-      "local rest api port conflict"
     ],
     "local rest api reference folder": [
       "local rest api reference folder"
@@ -58139,9 +57935,6 @@
     ],
     "luna update sonnet verify": [
       "LUNA update Sonnet verify"
-    ],
-    "m schema m fields tables": [
-      "m_schema m_fields tables"
     ],
     "machine block preservation decision": [
       "machine block preservation decision"
@@ -58606,71 +58399,11 @@
     "make it bolder quieter distill delight": [
       "make it bolder quieter distill delight"
     ],
-    "make md add existing": [
-      "make.md add existing"
-    ],
-    "make md board view": [
-      "make.md board view"
-    ],
-    "make md calendar view": [
-      "make.md calendar view"
-    ],
-    "make md chart view": [
-      "make.md chart view"
-    ],
-    "make md columns not showing": [
-      "make.md columns not showing"
-    ],
-    "make md contexts": [
-      "make.md contexts"
-    ],
-    "make md data model": [
-      "make.md data model"
-    ],
-    "make md database": [
-      "make.md database"
-    ],
-    "make md field types": [
-      "make.md field types"
-    ],
-    "make md frontmatter columns": [
-      "make.md frontmatter columns"
-    ],
-    "make md golden sample": [
-      "make.md golden sample"
-    ],
-    "make md golden sample clone": [
-      "make.md golden sample clone"
-    ],
-    "make md icloud sync conflict": [
-      "make.md icloud sync conflict"
-    ],
-    "make md mobile slow": [
-      "make.md mobile slow"
-    ],
-    "make md plugin": [
-      "make.md plugin"
-    ],
     "make md plugin reference": [
       "make-md plugin reference"
     ],
-    "make md space format": [
-      "make.md .space format"
-    ],
-    "make md spaces": [
-      "make.md spaces"
-    ],
-    "make md stale cache": [
-      "make.md stale cache"
-    ],
     "make md support": [
       "make.md support"
-    ],
-    "make md ui takeover": [
-      "make.md ui takeover"
-    ],
-    "make md uninstall": [
-      "make.md uninstall"
     ],
     "make skill creation easy": [
       "make skill creation easy"
@@ -58686,9 +58419,6 @@
     ],
     "make this sound human": [
       "make this sound human"
-    ],
-    "makemd plugin": [
-      "makemd plugin"
     ],
     "malformed fingerprint class": [
       "malformed fingerprint class"
@@ -59022,6 +58752,9 @@
     ],
     "manual registration credential": [
       "manual registration credential"
+    ],
+    "manual review remediation": [
+      "manual review remediation"
     ],
     "manual save triggers": [
       "manual save triggers"
@@ -60536,6 +60269,12 @@
     "mcp obsidian plugin docs remediation": [
       "mcp-obsidian plugin docs remediation"
     ],
+    "mcp obsidian plugin file removal": [
+      "mcp-obsidian plugin file removal"
+    ],
+    "mcp obsidian plugin reduction": [
+      "mcp-obsidian plugin reduction"
+    ],
     "mcp obsidian readme": [
       "mcp obsidian readme"
     ],
@@ -60563,6 +60302,9 @@
     ],
     "mcp obsidian router advisor tasks": [
       "mcp-obsidian router advisor tasks"
+    ],
+    "mcp obsidian router intents": [
+      "mcp-obsidian router intents"
     ],
     "mcp obsidian scaffold": [
       "mcp-obsidian scaffold"
@@ -60629,6 +60371,9 @@
     ],
     "mcp obsidian v0 23 0 0": [
       "mcp-obsidian v0.23.0.0"
+    ],
+    "mcp obsidian v0 24 0 0": [
+      "mcp-obsidian v0.24.0.0"
     ],
     "mcp obsidian v0 3 0 0": [
       "mcp-obsidian v0.3.0.0"
@@ -60959,6 +60704,9 @@
       "mcp_server README update",
       "mcp_server readme update"
     ],
+    "mcp server rename": [
+      "mcp-server rename"
+    ],
     "mcp server shared readme": [
       "mcp_server shared readme"
     ],
@@ -61134,6 +60882,9 @@
     ],
     "mcp tooling hub capabilities": [
       "mcp-tooling hub capabilities"
+    ],
+    "mcp tooling hub leaf manifest obsidian": [
+      "mcp-tooling hub leaf manifest obsidian"
     ],
     "mcp tooling hub playbook implementation plan": [
       "mcp-tooling hub playbook implementation plan"
@@ -61494,6 +61245,9 @@
     ],
     "mechanical versus judgment findings": [
       "mechanical versus judgment findings"
+    ],
+    "mechanism tests": [
+      "mechanism tests"
     ],
     "medallion architecture": [
       "medallion architecture"
@@ -62938,29 +62692,17 @@
     "messageassembler": [
       "MessageAssembler"
     ],
-    "meta bind button": [
-      "meta bind button"
-    ],
-    "meta bind button block": [
-      "meta-bind-button block"
-    ],
     "meta bind deep research plan": [
       "meta bind deep research plan"
     ],
     "meta bind deep research tasks": [
       "meta bind deep research tasks"
     ],
-    "meta bind input field": [
-      "meta bind input field"
-    ],
     "meta bind js action": [
       "Meta Bind js action"
     ],
     "meta bind now bug fix": [
       "meta-bind now() bug fix"
-    ],
-    "meta bind plugin": [
-      "meta bind plugin"
     ],
     "meta bind reference optimization research": [
       "Meta Bind reference optimization research"
@@ -66489,17 +66231,11 @@
     "notion bases calendar recipe plan": [
       "notion bases calendar recipe plan"
     ],
-    "notion bases data model": [
-      "notion bases data model"
-    ],
     "notion bases database schema": [
       "notion bases database schema"
     ],
     "notion bases dataview install real vault": [
       "notion bases dataview install real vault"
-    ],
-    "notion bases dataview supplement": [
-      "notion bases dataview supplement"
     ],
     "notion bases deep research plan": [
       "notion bases deep research plan"
@@ -66509,21 +66245,6 @@
     ],
     "notion bases embed view edge cases": [
       "notion bases embed view edge cases"
-    ],
-    "notion bases lookup": [
-      "notion bases lookup"
-    ],
-    "notion bases lookup ambiguous": [
-      "notion bases lookup ambiguous"
-    ],
-    "notion bases lookup column": [
-      "notion bases lookup column"
-    ],
-    "notion bases missing back reference": [
-      "notion bases missing back reference"
-    ],
-    "notion bases plugin": [
-      "notion bases plugin"
     ],
     "notion bases plugin reference": [
       "notion bases plugin reference"
@@ -66540,47 +66261,11 @@
     "notion bases reference plan": [
       "notion-bases reference plan"
     ],
-    "notion bases relation": [
-      "notion bases relation"
-    ],
-    "notion bases relation column": [
-      "notion bases relation column"
-    ],
-    "notion bases rollup": [
-      "notion bases rollup"
-    ],
-    "notion bases rollup functions": [
-      "notion bases rollup functions"
-    ],
     "notion bases rollup lookup gotchas": [
       "notion bases rollup lookup gotchas"
     ],
     "notion bases rollup relation": [
       "notion bases rollup relation"
-    ],
-    "notion bases rollup wrong value": [
-      "notion bases rollup wrong value"
-    ],
-    "notion bases schema mismatch": [
-      "notion bases schema mismatch"
-    ],
-    "notion bases subtask too deep": [
-      "notion bases subtask too deep"
-    ],
-    "notion bases subtasks": [
-      "notion bases subtasks"
-    ],
-    "notion bases subtasks recipe": [
-      "notion bases subtasks recipe"
-    ],
-    "notion bases unsupported view": [
-      "notion bases unsupported view"
-    ],
-    "notion bases view": [
-      "notion bases view"
-    ],
-    "notion bases view types": [
-      "notion bases view types"
     ],
     "notion bases wrong keys fix": [
       "notion bases wrong keys fix"
@@ -66859,9 +66544,6 @@
     "notion style calendar obsidian recipe": [
       "notion-style calendar obsidian recipe"
     ],
-    "notion style task timer": [
-      "notion style task timer"
-    ],
     "notion to obsidian migration": [
       "notion to obsidian migration"
     ],
@@ -67118,21 +66800,6 @@
     "obsidian": [
       "obsidian"
     ],
-    "obsidian advanced canvas": [
-      "obsidian-advanced-canvas"
-    ],
-    "obsidian api key": [
-      "obsidian api key"
-    ],
-    "obsidian api key 401": [
-      "obsidian api key 401"
-    ],
-    "obsidian api key env var": [
-      "obsidian api key env var"
-    ],
-    "obsidian api key setup": [
-      "obsidian api key setup"
-    ],
     "obsidian api key unset": [
       "obsidian api key unset"
     ],
@@ -67154,17 +66821,11 @@
     "obsidian banners folder docs tasks": [
       "obsidian banners folder docs tasks"
     ],
-    "obsidian base url": [
-      "obsidian base url"
-    ],
     "obsidian bases notion databases": [
       "obsidian bases notion databases"
     ],
     "obsidian beancount flat financing": [
       "obsidian beancount flat-financing"
-    ],
-    "obsidian beta plugin install": [
-      "obsidian beta plugin install"
     ],
     "obsidian brat beta plugin": [
       "obsidian brat beta plugin"
@@ -67195,12 +66856,6 @@
     ],
     "obsidian changelog verification tasks": [
       "obsidian changelog verification tasks"
-    ],
-    "obsidian charts block syntax": [
-      "obsidian charts block syntax"
-    ],
-    "obsidian charts render block": [
-      "obsidian charts render block"
     ],
     "obsidian checklist drafting plan": [
       "obsidian checklist drafting plan"
@@ -67292,6 +66947,9 @@
     "obsidian daily note": [
       "obsidian daily note"
     ],
+    "obsidian dedicated plugin docs": [
+      "obsidian dedicated plugin docs"
+    ],
     "obsidian deep research": [
       "obsidian deep research"
     ],
@@ -67328,60 +66986,6 @@
     "obsidian get note": [
       "obsidian_get_note"
     ],
-    "obsidian git backup": [
-      "obsidian git backup"
-    ],
-    "obsidian git commit and sync": [
-      "obsidian git commit and sync"
-    ],
-    "obsidian git commit message placeholders": [
-      "obsidian git commit message placeholders"
-    ],
-    "obsidian git conflict file": [
-      "obsidian git conflict file"
-    ],
-    "obsidian git conflict file check": [
-      "obsidian git conflict file check"
-    ],
-    "obsidian git credentials": [
-      "obsidian git credentials"
-    ],
-    "obsidian git data json": [
-      "obsidian git data json"
-    ],
-    "obsidian git data json invalid": [
-      "obsidian git data json invalid"
-    ],
-    "obsidian git data json schema": [
-      "obsidian git data json schema"
-    ],
-    "obsidian git data model": [
-      "obsidian git data model"
-    ],
-    "obsidian git default settings": [
-      "obsidian git default settings"
-    ],
-    "obsidian git git not ready": [
-      "obsidian git git not ready"
-    ],
-    "obsidian git not backing up": [
-      "obsidian git not backing up"
-    ],
-    "obsidian git plugin": [
-      "obsidian git plugin"
-    ],
-    "obsidian git pull conflict": [
-      "obsidian git pull conflict"
-    ],
-    "obsidian git push failed": [
-      "obsidian git push failed"
-    ],
-    "obsidian git settings": [
-      "obsidian git settings"
-    ],
-    "obsidian git settings keys": [
-      "obsidian git settings keys"
-    ],
     "obsidian headless test": [
       "obsidian headless test"
     ],
@@ -67409,12 +67013,6 @@
     "obsidian key value": [
       "obsidian key=value"
     ],
-    "obsidian local rest api": [
-      "obsidian local rest api"
-    ],
-    "obsidian local rest api data json": [
-      "obsidian local rest api data json"
-    ],
     "obsidian manage tags": [
       "obsidian_manage_tags"
     ],
@@ -67438,9 +67036,6 @@
     ],
     "obsidian mcp measurement": [
       "obsidian mcp measurement"
-    ],
-    "obsidian mcp not found": [
-      "obsidian mcp not found"
     ],
     "obsidian mcp npx failed": [
       "obsidian mcp npx failed"
@@ -67473,9 +67068,6 @@
     "obsidian measurement tasks": [
       "obsidian measurement tasks"
     ],
-    "obsidian meta bind plugin": [
-      "obsidian-meta-bind-plugin"
-    ],
     "obsidian mobile ios android desktop": [
       "obsidian mobile ios android desktop"
     ],
@@ -67490,12 +67082,6 @@
     ],
     "obsidian notion bases plugin": [
       "obsidian-notion-bases-plugin"
-    ],
-    "obsidian outliner plugin": [
-      "obsidian outliner plugin"
-    ],
-    "obsidian outliner reference": [
-      "obsidian outliner reference"
     ],
     "obsidian package skeleton": [
       "obsidian package skeleton"
@@ -67593,11 +67179,11 @@
     "obsidian research tasks": [
       "obsidian research tasks"
     ],
+    "obsidian resource map cleanup": [
+      "obsidian resource map cleanup"
+    ],
     "obsidian rest api": [
       "obsidian rest api"
-    ],
-    "obsidian rest api workflow": [
-      "obsidian rest api workflow"
     ],
     "obsidian routing contract": [
       "obsidian routing contract"
@@ -67720,18 +67306,8 @@
     "obsidian surface subfolder authoring": [
       "obsidian surface subfolder authoring"
     ],
-    "obsidian tables data model": [
-      "obsidian tables data model"
-    ],
-    "obsidian tables file layer": [
-      "Obsidian Tables file layer",
-      "obsidian tables file layer"
-    ],
     "obsidian tables table md": [
       "obsidian tables table.md"
-    ],
-    "obsidian tables workflow": [
-      "obsidian tables workflow"
     ],
     "obsidian test env setup": [
       "obsidian test env setup"
@@ -67795,12 +67371,6 @@
     ],
     "obsidian verification tasks": [
       "obsidian verification tasks"
-    ],
-    "obsidian verify ssl": [
-      "obsidian verify ssl"
-    ],
-    "obsidian verify ssl error": [
-      "obsidian verify ssl error"
     ],
     "obsidian version scheme reset": [
       "obsidian version scheme reset"
@@ -69456,78 +69026,6 @@
     "outlier identification": [
       "outlier identification"
     ],
-    "outliner backup settings": [
-      "outliner backup settings"
-    ],
-    "outliner commands": [
-      "outliner commands"
-    ],
-    "outliner data json": [
-      "outliner data json"
-    ],
-    "outliner data model": [
-      "outliner data model"
-    ],
-    "outliner defaults": [
-      "outliner defaults"
-    ],
-    "outliner drag and drop broken": [
-      "outliner drag and drop broken"
-    ],
-    "outliner enable drag drop": [
-      "outliner enable drag drop"
-    ],
-    "outliner file layer": [
-      "outliner file layer"
-    ],
-    "outliner fold disabled": [
-      "outliner fold disabled"
-    ],
-    "outliner hotkey conflict": [
-      "outliner hotkey conflict"
-    ],
-    "outliner list editing": [
-      "outliner list editing"
-    ],
-    "outliner listlineaction": [
-      "outliner listLineAction"
-    ],
-    "outliner plugin index": [
-      "outliner plugin index"
-    ],
-    "outliner restore data json": [
-      "outliner restore data json"
-    ],
-    "outliner settings": [
-      "outliner settings"
-    ],
-    "outliner settings edit": [
-      "outliner settings edit"
-    ],
-    "outliner settings not working": [
-      "outliner settings not working"
-    ],
-    "outliner settings schema": [
-      "outliner settings schema"
-    ],
-    "outliner stickcursor": [
-      "outliner stickCursor"
-    ],
-    "outliner troubleshooting": [
-      "outliner troubleshooting"
-    ],
-    "outliner validate settings": [
-      "outliner validate settings"
-    ],
-    "outliner workflows": [
-      "outliner workflows"
-    ],
-    "outliner zoom dependency": [
-      "outliner zoom dependency"
-    ],
-    "outliner zoom not working": [
-      "outliner zoom not working"
-    ],
     "output schema": [
       "output_schema"
     ],
@@ -70123,6 +69621,9 @@
     "packet goal": [
       "packet goal"
     ],
+    "packet goal single source": [
+      "packet goal single source"
+    ],
     "packet handoff alignment": [
       "packet handoff alignment"
     ],
@@ -70261,6 +69762,12 @@
     "palette block amendment tasks": [
       "palette block amendment tasks"
     ],
+    "palette derivation record": [
+      "palette derivation record"
+    ],
+    "palette source": [
+      "palette source"
+    ],
     "paper ink accent muted tokens": [
       "paper ink accent muted tokens"
     ],
@@ -70356,6 +69863,9 @@
     ],
     "parent goal child phases": [
       "parent goal child phases"
+    ],
+    "parent goal resend": [
+      "parent goal resend"
     ],
     "parent goal resend in chat": [
       "parent goal resend in chat"
@@ -70756,6 +70266,9 @@
     "partial failure policy tasks": [
       "partial-failure policy tasks"
     ],
+    "partial failure staging": [
+      "partial failure staging"
+    ],
     "partial recommendation": [
       "PARTIAL recommendation"
     ],
@@ -71115,6 +70628,9 @@
     ],
     "pending vectors drain": [
       "pending vectors drain"
+    ],
+    "per artifact gate": [
+      "per artifact gate"
     ],
     "per child routing recall": [
       "per-child routing recall"
@@ -73712,6 +73228,9 @@
     "pi fan out adapter": [
       "Pi fan-out adapter"
     ],
+    "pi fan out default model": [
+      "pi fan-out default model"
+    ],
     "pi fast mode w subagent support": [
       "pi-fast-mode-w-subagent-support",
       "pi_fast_mode_w_subagent_support"
@@ -75132,6 +74651,9 @@
     "plugin data over ui": [
       "plugin data over ui"
     ],
+    "plugin documentation removal": [
+      "plugin documentation removal"
+    ],
     "plugin entry point src main ts": [
       "plugin entry point src main ts"
     ],
@@ -75216,9 +74738,6 @@
     ],
     "point location sk vision point": [
       "Point location (sk_vision_point)"
-    ],
-    "point mcp at local rest api": [
-      "point mcp at local rest api"
     ],
     "pointed band readout": [
       "pointed band readout"
@@ -76242,6 +75761,9 @@
     ],
     "probe 3 10 14 18 failure patterns": [
       "probe 3 10 14 18 failure patterns"
+    ],
+    "probe before wiring": [
+      "probe before wiring"
     ],
     "probe classification valid stale spec memory benchmark": [
       "probe classification valid stale spec-memory benchmark"
@@ -78269,9 +77791,6 @@
     "read notion page comments": [
       "read Notion page comments"
     ],
-    "read obsidian git settings": [
-      "read obsidian git settings"
-    ],
     "read only audit iterations plan": [
       "read-only audit iterations plan"
     ],
@@ -78827,9 +78346,6 @@
     "real world usefulness test execution": [
       "real world usefulness test execution"
     ],
-    "realclaudian": [
-      "realclaudian"
-    ],
     "realistic corpus result": [
       "realistic corpus result"
     ],
@@ -79079,6 +78595,9 @@
     "reconcile handler registration": [
       "reconcile handler registration"
     ],
+    "reconcile obsidian skill docs after plugin removal": [
+      "reconcile obsidian skill docs after plugin removal"
+    ],
     "reconcile parent packet": [
       "reconcile parent packet"
     ],
@@ -79105,6 +78624,9 @@
     ],
     "reconcile vitest tasks": [
       "reconcile vitest tasks"
+    ],
+    "reconciled fact base": [
+      "reconciled fact base"
     ],
     "reconcilemoves spec folder omission": [
       "reconcileMoves spec_folder omission"
@@ -80096,9 +79618,6 @@
     "register child identity rule": [
       "register child identity rule"
     ],
-    "register claudian provider": [
-      "register claudian provider"
-    ],
     "register cli reference leaves": [
       "register cli reference leaves"
     ],
@@ -80212,6 +79731,9 @@
     ],
     "registry driven deep loop mode classification": [
       "registry-driven deep-loop mode classification"
+    ],
+    "registry driven freshness": [
+      "registry driven freshness"
     ],
     "registry entry is not a route": [
       "registry entry is not a route"
@@ -80949,6 +80471,9 @@
     ],
     "remove numbered prefix snippet files": [
       "remove numbered prefix snippet files"
+    ],
+    "remove obsidian plugin support": [
+      "remove obsidian plugin support"
     ],
     "remove openrouter provider": [
       "remove openrouter provider"
@@ -82788,9 +82313,6 @@
     "responsive design validation cli": [
       "responsive design validation cli"
     ],
-    "rest api plugin": [
-      "rest api plugin"
-    ],
     "restart durability": [
       "restart durability"
     ],
@@ -82820,6 +82342,12 @@
     ],
     "restore relay database": [
       "restore relay database"
+    ],
+    "restore staged": [
+      "restore staged"
+    ],
+    "restore template default": [
+      "restore template default"
     ],
     "restraint gate decision": [
       "restraint gate decision"
@@ -83135,6 +82663,9 @@
     ],
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
+    ],
+    "retired tool id sweep": [
+      "retired tool id sweep"
     ],
     "retired vector search docs cleanup": [
       "retired vector search docs cleanup"
@@ -84650,6 +84181,9 @@
     ],
     "route cycle false positive status": [
       "route cycle false positive status"
+    ],
+    "route diagram resources": [
+      "route_diagram_resources"
     ],
     "route fallback": [
       "route fallback"
@@ -86340,9 +85874,6 @@
     "safe concurrent writers and resume": [
       "safe concurrent writers and resume"
     ],
-    "safe git commands": [
-      "safe git commands"
-    ],
     "safe javascript minification": [
       "safe javascript minification"
     ],
@@ -87255,6 +86786,9 @@
     ],
     "scratch folder usage": [
       "scratch folder usage"
+    ],
+    "scratch worktree sweep": [
+      "scratch worktree sweep"
     ],
     "screen detail refero": [
       "screen detail refero"
@@ -88216,6 +87750,9 @@
     "sentence transformers pin": [
       "sentence-transformers pin"
     ],
+    "sentinel applicator": [
+      "sentinel applicator"
+    ],
     "sentinel checklist gate fixed": [
       "sentinel checklist gate fixed"
     ],
@@ -88438,6 +87975,9 @@
     "session outcome enum": [
       "session outcome enum"
     ],
+    "session packet binding decision": [
+      "session packet binding decision"
+    ],
     "session packet indexing": [
       "session packet indexing"
     ],
@@ -88590,6 +88130,9 @@
     ],
     "set string playbook": [
       "set string playbook"
+    ],
+    "set string playbook update": [
+      "set string playbook update"
     ],
     "set task dependency": [
       "set task dependency"
@@ -94431,6 +93974,9 @@
     "skill advisor manual testing playbook": [
       "skill-advisor manual testing playbook"
     ],
+    "skill advisor mcp decommission": [
+      "skill advisor mcp decommission"
+    ],
     "skill advisor mcp identity": [
       "skill advisor MCP identity"
     ],
@@ -94698,6 +94244,9 @@
     ],
     "skill advisor watcher race": [
       "skill-advisor watcher race"
+    ],
+    "skill advisor without mcp": [
+      "skill advisor without mcp"
     ],
     "skill advisor zombie launcher fix": [
       "skill-advisor zombie launcher fix"
@@ -95981,6 +95530,15 @@
     "skills state path rewrites": [
       "skills state path rewrites"
     ],
+    "skin contract decisions": [
+      "skin contract decisions"
+    ],
+    "skin contract findings": [
+      "skin contract findings"
+    ],
+    "skin starters": [
+      "skin starters"
+    ],
     "skip and continue": [
       "skip and continue"
     ],
@@ -96432,6 +95990,9 @@
     "source phase metadata cleanup": [
       "source phase metadata cleanup"
     ],
+    "source to target map": [
+      "source to target map"
+    ],
     "sourcesignature null": [
       "sourceSignature null",
       "sourcesignature null"
@@ -96567,6 +96128,9 @@
     ],
     "spec doc convention": [
       "spec doc convention"
+    ],
+    "spec doc healer": [
+      "spec doc healer"
     ],
     "spec doc health": [
       "spec doc health"
@@ -97307,6 +96871,12 @@
     "spec memory vitest stabilization": [
       "spec-memory vitest stabilization"
     ],
+    "spec metadata auto remint": [
+      "spec metadata auto remint"
+    ],
+    "spec metadata gate approach": [
+      "spec metadata gate approach"
+    ],
     "spec metadata reconciliation": [
       "spec metadata reconciliation"
     ],
@@ -97604,6 +97174,9 @@
     "speckit flag name cleanup": [
       "speckit flag name cleanup"
     ],
+    "speckit goal auto update": [
+      "speckit goal auto update"
+    ],
     "speckit ipc socket dir runtime configs": [
       "speckit_ipc_socket_dir runtime configs"
     ],
@@ -97651,6 +97224,9 @@
     ],
     "speckit pi directive dedup": [
       "SPECKIT_PI_DIRECTIVE_DEDUP"
+    ],
+    "speckit plan goal integration": [
+      "speckit plan goal integration"
     ],
     "speckit plan not on a feature branch": [
       "speckit plan not on a feature branch"
@@ -98043,9 +97619,6 @@
     "stage readiness rollout": [
       "stage readiness rollout"
     ],
-    "stage register activate beta plugin": [
-      "stage register activate beta plugin"
-    ],
     "stage split scoring semantics": [
       "stage split scoring semantics"
     ],
@@ -98129,6 +97702,9 @@
     ],
     "stale all minilm voyage wording fix": [
       "stale all-MiniLM voyage wording fix"
+    ],
+    "stale artifact test": [
+      "stale artifact test"
     ],
     "stale audit p0 closure": [
       "stale audit P0 closure"
@@ -98246,6 +97822,9 @@
     ],
     "stale filename guard command path": [
       "stale filename guard command path"
+    ],
+    "stale fingerprint sweep": [
+      "stale fingerprint sweep"
     ],
     "stale graph guidance": [
       "stale graph guidance"
@@ -98367,6 +97946,9 @@
     ],
     "stale source digest deep review": [
       "stale source digest deep review"
+    ],
+    "stale source fingerprint": [
+      "stale source fingerprint"
     ],
     "stale specfolder identifiers": [
       "stale specFolder identifiers"
@@ -98574,9 +98156,6 @@
     ],
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
-    ],
-    "start stop timer obsidian": [
-      "start stop timer obsidian"
     ],
     "start storybook for me": [
       "start storybook for me"
@@ -100338,6 +99917,9 @@
     "sweep stale mcp processes": [
       "sweep stale mcp processes"
     ],
+    "sweep then gate": [
+      "sweep then gate"
+    ],
     "sweep verification checklist": [
       "sweep verification checklist"
     ],
@@ -101494,69 +101076,6 @@
     "table status fallback tasks": [
       "table status fallback tasks"
     ],
-    "tables column constraints": [
-      "tables column constraints"
-    ],
-    "tables csv import": [
-      "tables csv import"
-    ],
-    "tables csv type coercion": [
-      "tables csv type coercion"
-    ],
-    "tables duplicate column id": [
-      "tables duplicate column id"
-    ],
-    "tables first sort only": [
-      "tables first sort only"
-    ],
-    "tables formula column": [
-      "tables formula column"
-    ],
-    "tables formula example": [
-      "tables formula example"
-    ],
-    "tables formula persistence": [
-      "tables formula persistence"
-    ],
-    "tables formula rename error": [
-      "tables formula rename error"
-    ],
-    "tables malformed json": [
-      "tables malformed json"
-    ],
-    "tables multi select invalid value": [
-      "tables multi select invalid value"
-    ],
-    "tables named view": [
-      "tables named view"
-    ],
-    "tables obsidian plugin": [
-      "tables obsidian plugin"
-    ],
-    "tables plugin workflow": [
-      "tables plugin workflow"
-    ],
-    "tables sort workflow": [
-      "tables sort workflow"
-    ],
-    "tables stable column ids": [
-      "tables stable column ids"
-    ],
-    "tables starter table": [
-      "tables starter table"
-    ],
-    "tables table md": [
-      "tables table md"
-    ],
-    "tables table md error": [
-      "tables table md error"
-    ],
-    "tables table md example": [
-      "tables table md example"
-    ],
-    "tables table md schema": [
-      "tables table md schema"
-    ],
     "tag and release workflow": [
       "tag and release workflow"
     ],
@@ -101722,9 +101241,6 @@
     ],
     "task template instantiation": [
       "task template instantiation"
-    ],
-    "task timer button": [
-      "task timer button"
     ],
     "task timer frontmatter": [
       "task-timer frontmatter"
@@ -101984,9 +101500,6 @@
     ],
     "template copy commands": [
       "template copy commands"
-    ],
-    "template dark full terminal": [
-      "template dark full terminal"
     ],
     "template dedup": [
       "template dedup"
@@ -102336,6 +101849,9 @@
     "terminal skin palette": [
       "terminal skin palette"
     ],
+    "terminal skin reference gate": [
+      "terminal skin reference gate"
+    ],
     "terminal titlebar dots": [
       "terminal titlebar dots"
     ],
@@ -102578,6 +102094,9 @@
     ],
     "theme dark theme light": [
       "theme-dark theme-light"
+    ],
+    "theme diagram from design md": [
+      "theme diagram from DESIGN.md"
     ],
     "theme file layer": [
       "theme file layer"
@@ -103338,6 +102857,9 @@
     "transactional projections tasks": [
       "transactional projections tasks"
     ],
+    "transactional remint": [
+      "transactional remint"
+    ],
     "transcribe the error message": [
       "transcribe the error message"
     ],
@@ -103482,6 +103004,9 @@
     ],
     "transport return reconciliation": [
       "transport return reconciliation"
+    ],
+    "transport surface classification": [
+      "transport surface classification"
     ],
     "trapezoid layer diagram": [
       "trapezoid layer diagram"
@@ -104464,6 +103989,9 @@
     "unforget disjointness task": [
       "unforget disjointness task"
     ],
+    "unhealable quarantine": [
+      "unhealable quarantine"
+    ],
     "unicode normalized resource path": [
       "unicode-normalized resource path"
     ],
@@ -104688,9 +104216,6 @@
     ],
     "update document page": [
       "update document page"
-    ],
-    "update obsidian git commit message": [
-      "update obsidian git commit message"
     ],
     "update page properties": [
       "Update page properties"
@@ -105227,6 +104752,9 @@
     "validate memory quality v8 false positive": [
       "validate memory quality V8 false positive"
     ],
+    "validate obsidian plugin reduction": [
+      "validate obsidian plugin reduction"
+    ],
     "validate recursive orchestrator": [
       "validate recursive orchestrator"
     ],
@@ -105328,6 +104856,9 @@
     ],
     "validation command reference": [
       "validation command reference"
+    ],
+    "validation distance": [
+      "validation distance"
     ],
     "validation enforce graduation": [
       "validation enforce graduation"
@@ -105593,23 +105124,11 @@
     "variation set selection proof": [
       "variation set selection proof"
     ],
-    "vault git status check": [
-      "vault git status check"
-    ],
     "vault plugins": [
       "vault plugins"
     ],
-    "vault repository state": [
-      "vault repository state"
-    ],
-    "vault rest api": [
-      "vault rest api"
-    ],
     "vault safety rules": [
       "vault safety rules"
-    ],
-    "vault tools instead of obsidian tools": [
-      "vault tools instead of obsidian tools"
     ],
     "vec 1024 half wired": [
       "vec_1024 half-wired"
@@ -106042,6 +105561,9 @@
     ],
     "version derivation reconcile owed": [
       "version derivation reconcile owed"
+    ],
+    "version engine scoped apply": [
+      "version engine scoped apply"
     ],
     "version flag": [
       "version flag"
@@ -107240,6 +106762,9 @@
     "where do skill benchmark reports live": [
       "where do skill-benchmark reports live"
     ],
+    "where do the colours come from": [
+      "where do the colours come from"
+    ],
     "where does this content belong": [
       "where does this content belong"
     ],
@@ -107285,6 +106810,12 @@
     "which create mode": [
       "which create mode"
     ],
+    "which diagram to copy": [
+      "which diagram to copy"
+    ],
+    "which diagram type": [
+      "which diagram type"
+    ],
     "which directories": [
       "which directories"
     ],
@@ -107329,6 +106860,9 @@
     ],
     "which model for pi dispatch": [
       "which model for pi dispatch"
+    ],
+    "which obsidian plugin files are removed": [
+      "which obsidian plugin files are removed"
     ],
     "which obsidian surface": [
       "which obsidian surface"
@@ -107503,9 +107037,6 @@
     ],
     "wire kebab guards": [
       "wire kebab guards"
-    ],
-    "wire obsidian mcp": [
-      "wire obsidian mcp"
     ],
     "wire override built cutover human gated": [
       "wire override built cutover human-gated"

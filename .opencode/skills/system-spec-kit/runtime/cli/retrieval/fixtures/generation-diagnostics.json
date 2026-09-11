@@ -1,12 +1,12 @@
 {
   "counts": {
-    "duplicate-phrase": 62,
-    "missing-frontmatter": 6988,
+    "duplicate-phrase": 57,
+    "missing-frontmatter": 6990,
     "non-yaml-frontmatter": 1,
-    "ok": 14070,
-    "valid-empty-list": 7833
+    "ok": 14525,
+    "valid-empty-list": 7518
   },
-  "documentsScanned": 28954,
+  "documentsScanned": 29091,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "28ab0834daecb0727426c080328f5cc68487d727acc524df3ccae057105e1f60",
+  "manifestHash": "3261dd110cb900523a826f5dfc2e7b4b6aa10676d80f296915efe35d09c3b45f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -24,16 +24,16 @@
       "generic-workflow-word": 170,
       "numeric-only": 112,
       "prose-sentence": 18,
-      "single-token": 815,
+      "single-token": 814,
       "stop-word-only": 12
     },
     "phrases": {
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35672,
+      "ok": 35517,
       "prose-sentence": 27,
-      "single-token": 305,
+      "single-token": 304,
       "stop-word-only": 3
     }
   },
@@ -6431,6 +6431,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.5.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -7687,6 +7693,12 @@
       "line": 1,
       "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.1.0.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -10088,42 +10100,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/advanced-canvas-styling.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/brat-headless-install.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/charts-render-block.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/claudian-command-skill.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/dataview-metadata-query.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/git-status-roundtrip.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/health-md-data.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10136,91 +10112,8 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/meta-bind-file-layer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-dataview-install.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/obsidian-tables-roundtrip.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/outliner-settings-defaults.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/theme-activation.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"advanced canvas plugin\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/make-md/make-md.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"make md plugin\""
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"meta bind plugin\""
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/troubleshooting.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/notion-bases.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"notion bases plugin\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 7,
-      "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"obsidian local rest api\""
     },
     {
       "category": "missing-frontmatter",
@@ -12782,6 +12675,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -13051,8 +12956,80 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-design/sk-design-diagram/changelog/v1.0.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/changelog/v1.1.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -38282,13 +38259,6 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 14,
-      "path": "specs/cli-external-orchestration/042-pi-remote-experience-parity/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-external-orchestration/042-pi-remote-experience-parity/plan.md",
@@ -38316,64 +38286,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 14,
-      "path": "specs/cli-external-orchestration/044-deepseek-v4-flash-max-only/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 14,
-      "path": "specs/cli-external-orchestration/044-deepseek-v4-flash-max-only/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 28,
       "path": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/cli-external-orchestration/046-cli-devin-current-cli-repair/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/cli-external-orchestration/046-cli-devin-current-cli-repair/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/cli-external-orchestration/046-cli-devin-current-cli-repair/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -41670,90 +41584,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 15,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 15,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 15,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 15,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
@@ -41944,20 +41774,6 @@
     {
       "category": "valid-empty-list",
       "line": 14,
-      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 14,
-      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 14,
       "path": "specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/spec.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
@@ -41965,28 +41781,7 @@
     {
       "category": "valid-empty-list",
       "line": 14,
-      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 14,
-      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 14,
       "path": "specs/sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 14,
-      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -42062,190 +41857,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/001-research-contracts/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/001-research-contracts/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-communication/002-sk-communication-triggers/001-research-contracts/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/001-research-contracts/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/002-rewrite-response/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/002-rewrite-response/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/002-rewrite-response/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/004-skill-and-mirrors/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/004-skill-and-mirrors/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/004-skill-and-mirrors/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 27,
-      "path": "specs/sk-communication/002-sk-communication-triggers/005-external-cli-provider/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-communication/002-sk-communication-triggers/005-external-cli-provider/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/005-external-cli-provider/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 29,
-      "path": "specs/sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 28,
-      "path": "specs/sk-communication/002-sk-communication-triggers/007-command-namespace-rename/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/sk-communication/002-sk-communication-triggers/007-command-namespace-rename/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/007-command-namespace-rename/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 26,
-      "path": "specs/sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 28,
-      "path": "specs/sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-communication/003-visual-explanation-lane/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-communication/003-visual-explanation-lane/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -43189,71 +42802,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/sk-design/012-sk-design-program/001-research/001-research-style-database/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/001-research/001-research-style-database/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 19,
       "path": "specs/sk-design/012-sk-design-program/001-research/001-research-style-database/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/001-research/001-research-style-database/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -43303,41 +42853,6 @@
       "category": "valid-empty-list",
       "line": 4,
       "path": "specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/research/resource-map.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/sk-design/012-sk-design-program/002-style-database/001-style-database/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/002-style-database/001-style-database/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/002-style-database/001-style-database/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/003-interface-commands/001-interface-commands/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/003-interface-commands/001-interface-commands/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -43422,48 +42937,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -43856,27 +43329,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-design/012-sk-design-program/005-reviews-and-remediation/000-program-review-artifacts/review/lineages/sol/prompts/iteration-005.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -44296,321 +43748,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-design/012-sk-design-program/006-design-mode-consolidation/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-design/013-structure-naming-cleanup/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-design/013-structure-naming-cleanup/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-design/013-structure-naming-cleanup/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/002-references/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/002-references/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/002-references/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/003-assets/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/003-assets/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/003-assets/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/004-procedures/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/004-procedures/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/004-procedures/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/005-corpus/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/005-corpus/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/005-corpus/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/006-feature-catalog/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/006-feature-catalog/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/006-feature-catalog/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/007-manual-testing-playbook/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/007-manual-testing-playbook/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/007-manual-testing-playbook/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/008-changelog/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/008-changelog/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/003-design-motion/008-changelog/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/001-packet-root/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/001-packet-root/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/001-packet-root/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/002-references/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/002-references/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/002-references/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/003-assets/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/003-assets/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/003-assets/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/004-procedures/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/004-procedures/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/004-procedures/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/005-backend/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/005-backend/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/005-backend/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -47251,90 +46388,6 @@
     {
       "category": "valid-empty-list",
       "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/003-migration-tooling/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/003-migration-tooling/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/003-migration-tooling/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/004-execute-migration/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/004-execute-migration/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/004-execute-migration/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
       "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/decision-record.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
@@ -47343,90 +46396,6 @@
       "category": "valid-empty-list",
       "line": 18,
       "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -47748,28 +46717,7 @@
     {
       "category": "valid-empty-list",
       "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
       "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit/plan.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -47783,21 +46731,7 @@
     {
       "category": "valid-empty-list",
       "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
       "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references/plan.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -47811,21 +46745,7 @@
     {
       "category": "valid-empty-list",
       "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
       "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep/plan.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -50090,13 +49010,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 7,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 6,
       "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus/labeling-protocol.md",
       "rawKey": "trigger_phrases",
@@ -50106,20 +49019,6 @@
       "category": "valid-empty-list",
       "line": 6,
       "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus/risk-slices-and-coverage.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 7,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/002-rank-vs-calibrated-contract/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 7,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller/implementation-summary.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -50797,146 +49696,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 16,
-      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/context-index.md",
       "rawKey": "trigger_phrases",
@@ -51576,20 +50335,6 @@
       "category": "valid-empty-list",
       "line": 6,
       "path": "specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation/handover.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -56546,62 +55291,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 15,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 15,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/FIXTURE.md",
       "rawKey": "trigger_phrases",
@@ -56793,34 +55482,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/034-skill-benchmark-codex-executor/transport-comparison.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -57594,20 +56255,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 4,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment/alignment-report.md",
       "rawKey": "trigger_phrases",
@@ -57666,34 +56313,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment/iterations/iteration-008.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -57783,20 +56402,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/FIXTURE.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -57929,62 +56534,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/010-scorecard-and-closeout/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/010-scorecard-and-closeout/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation/evidence/review-fable.md",
       "rawKey": "trigger_phrases",
@@ -58006,99 +56555,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -59676,20 +58134,6 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 19,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/plan.md",
@@ -59703,141 +58147,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 20,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -59852,27 +58163,6 @@
       "category": "valid-empty-list",
       "line": 20,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -59899,13 +58189,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 22,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review/research/research.md",
       "rawKey": "trigger_phrases",
@@ -59922,146 +58205,6 @@
       "category": "valid-empty-list",
       "line": 13,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/plan.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -60153,13 +58296,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -62053,27 +60189,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/research/prompts/iteration-001.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -64627,13 +62742,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/prompts/agent-brief.md",
       "rawKey": "trigger_phrases",
@@ -64664,13 +62772,6 @@
       "category": "valid-empty-list",
       "line": 7,
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -74748,64 +72849,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 21,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion/evidence/017-scenario-validation-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -77617,13 +75662,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on/review/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
@@ -77701,69 +75739,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/review/deep-review-strategy.md",
       "rawKey": "trigger_phrases",
@@ -77801,20 +75776,6 @@
       "category": "valid-empty-list",
       "line": 6,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 18,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -77883,13 +75844,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift/prompts/agent-brief.md",
       "rawKey": "trigger_phrases",
@@ -77911,20 +75865,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display/prompts/agent-brief.md",
       "rawKey": "trigger_phrases",
@@ -77941,13 +75881,6 @@
       "category": "valid-empty-list",
       "line": 7,
       "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -85243,43 +83176,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 23,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle/plan.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -85292,27 +83190,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 24,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety/spec.md",
       "rawKey": "trigger_phrases",
@@ -85320,57 +83197,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 23,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 26,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -87244,20 +85072,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review/lineages/gpt55-p021b-2/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 25,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation/implementation-summary.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -93822,41 +91636,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 26,
-      "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 17,
-      "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 9,
-      "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation/research/deep-research-strategy.md",
       "rawKey": "trigger_phrases",
@@ -93915,13 +91694,6 @@
       "category": "valid-empty-list",
       "line": 12,
       "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 9,
-      "path": "specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation/tasks.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -97333,6 +95105,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/dist",
       "reason": "excluded directory"
     },
@@ -97817,6 +95593,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -98050,6 +95830,10 @@
     },
     {
       "path": "specs/hooks/019-cache-optimizer-measurement-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/020-spec-metadata-auto-remint/scratch",
       "reason": "excluded directory"
     },
     {
@@ -98290,6 +96074,18 @@
     },
     {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/020-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/020-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/020-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
       "reason": "excluded directory"
     },
     {
@@ -98749,6 +96545,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/scratch",
       "reason": "excluded directory"
     },
@@ -98826,6 +96626,30 @@
     },
     {
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/009-one-form-library/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/019-sk-design-diagram-upgrade/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99702,6 +97526,38 @@
     },
     {
       "path": "specs/system-skill-advisor/024-routing-perfection-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -101306,6 +99162,62 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/003-speckit-goal-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/004-goal-core-packet-backed/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/005-runtime-surfaces/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-doc-healer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-derived-artifact-registry/001-artifact-registry-and-walker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-derived-artifact-registry/002-mechanism-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-derived-artifact-registry/003-standing-drift-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-derived-artifact-registry/004-transactional-remint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-derived-artifact-registry/005-unhealable-quarantine/scratch",
       "reason": "excluded directory"
     },
     {
