@@ -61,7 +61,6 @@
       ".opencode/bin/system-skill-advisor-launcher.cjs",
       ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
       "001-transport-and-consumer-inventory/inventory.md",
-      "009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
       "010-deep-research-residue/research/lineages/deepseek-research/research.md",
       "008-verification-and-closeout/latency-delta.md"
     ],
@@ -124,12 +123,6 @@
         "name": "inventory.md",
         "kind": "doc",
         "path": "001-transport-and-consumer-inventory/inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
         "source": "derived"
       },
       {
@@ -213,17 +206,17 @@
     ],
     "causal_summary": "The skill advisor is the last subsystem in this framework's own runtime that ships an MCP server, and that server owns no behavior",
     "created_at": "2026-09-11T06:48:54Z",
-    "last_save_at": "2026-09-11T19:20:16.444Z",
+    "last_save_at": "2026-09-11T19:47:36.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d7c28fd1695a47f663783d913b9f265f09153ee20abc98f398a0d9999b9638fd",
+    "source_fingerprint": "sha256:6e66b2b62ac05ff6f99127cece2b38e9b18be2a931539ac990d2d7a7de1bc8b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "96c76b4b48ac8a24528334141405e5cadfcaa5788a88372bebd425b3345e05d7"
+      "spec.md": "5e1cc99e19ef987ae21a6c1a6c46546ed102d2ddf36c4e647f08e6604189cb2f"
     },
     "last_active_at": null
   }

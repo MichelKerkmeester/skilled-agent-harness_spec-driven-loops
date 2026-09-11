@@ -158,9 +158,13 @@ The wider residue classes are deliberate too: trigger-phrase aliases that still 
 
 2. **Four pre-existing red tests, raised not fixed.** `runtime/tests/rename-invariants.vitest.ts` asserts the retired MCP registration (3 failed, 1 passed). `runtime/tests/compat/plugin-bridge.vitest.ts` and `plugin-bridge-smoke.vitest.ts` resolve the removed bridge file by design of their own assertions. `runtime/tests/system-skill-advisor-plugin.vitest.ts` fails 27 of 41 cases because its mocked spawn still models the old bridge payload; its focused disable cases pass (`3 passed` with `-t "opt-out"`). None of the four was caused by this tranche, and fixing them is a code change outside the docs scope.
 
+   **Closed later.** The suites that asserted the retired registration were retired or inverted in a later phase; `rename-invariants.vitest.ts` now asserts the opposite and passes, and `tests/compat/` carries no bridge suites.
+
 3. **The MCP-versus-CLI parity harness cannot be exercised.** `runtime/tests/parity/cli-vs-mcp-parity.cjs` still spawns the launcher for its MCP leg, which now reaches only the unix-socket daemon, so every case times out. It is referenced only by the phase 003 packet.
 
 4. **Stale advisor paths survive outside the declared scope.** The spec-kit env reference still names `mcp-server/` and `plugin-bridges/` paths in its Source columns, and `.pi` docs and doctor configs were listed by the previous tranche. The env example and the live advisor env surface carry no transport-only flag; the path text is a documentation carry-over assigned to a dedicated sweep.
+
+   **Closed later.** Phase 8's residue pass cleared the env reference, the `.pi` docs and the doctor surfaces; the live count is now zero, with historical records keeping their old names by design.
 
 5. **Retained names and generated artifacts.** `feature-catalog/mcp-surface/`, `manual-testing-playbook/native-mcp-tools/`, `references/runtime/standalone-mcp-shape.md`, `references/runtime/legacy-tool-bridge.md`, the `native_mcp_tools` category and `MCP_SHAPE` intent vocabulary keep their names by decision. `leaf-manifest.json` was stale before this tranche and its regeneration command fails at module load on a pre-existing `@spec-kit/shared` resolution defect, so it was not refreshed.
 

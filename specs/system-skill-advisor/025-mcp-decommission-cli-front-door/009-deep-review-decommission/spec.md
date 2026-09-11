@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: deep-review-decommission"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "An author's own residue sweep searches for what it remembers removing, so it cannot find a surface that asserts the retired transport in words the sweep never matched. This phase audits the finished decommission from outside that blind spot, twice."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -57,10 +57,18 @@ This is **Phase 9** of the Deep review and research over the completed MCP decom
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The author of a decommission sweeps for what they remember removing: the retired
+tool ids, the old directory name. A surface that asserts the advisor is an MCP
+server without naming either survives that sweep untouched, and nothing in the
+packet is positioned to notice.
+
+The first audit proved the gap concretely. It found eight live surfaces still
+making that claim, including a doctor install workflow whose steps named a
+deleted directory and whose keyless orphan block silently overwrote its own
+repair commands. None carried a retired tool id.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every live instruction surface matches what ships, proven by an audit that hunts claims rather than tokens, and confirmed by a second pass over the same scope.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -118,7 +126,7 @@ This is **Phase 9** of the Deep review and research over the completed MCP decom
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+| Executor | DeepSeek V4.1 Flash via cli-pi | Loop cannot dispatch | Parent directive freezes the executor; a different one is an amendment |
 | Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 

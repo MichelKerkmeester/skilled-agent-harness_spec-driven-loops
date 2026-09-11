@@ -55,7 +55,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -138,17 +138,16 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-transport-and-consumer-inventory/ | Research. Inventory every MCP surface, every caller, every flag and every document that names the tool ids, and record the preserve set and the behavior that must survive untouched | Draft |
-| 2 | 002-daemon-transport-decision/ | Research. Measure the resident daemon against a stateless CLI on the real prompt-hook path, then freeze the socket protocol the CLI will speak | Draft |
-| 3 | 003-cli-front-door-parity/ | Build. Make the CLI the complete documented front door: nine commands, frozen JSON contract, stable exit taxonomy, session warm path, and a harness proving per-tool output parity with the MCP surface | Draft |
-| 4 | 004-caller-rewire/ | Build. Repoint the two prompt hooks, the OpenCode plugin, the doctor routes and every instruction surface at the CLI while MCP still exists as a fallback | Draft |
-| 5 | 005-mcp-transport-removal/ | Build. Delete the stdio transport, the SDK dependency, the plugin bridge and the MCP framing, remove all five server declarations, and reduce the launcher to a daemon supervisor | Draft |
-| 6 | 006-runtime-package-rename/ | Build. Rename `mcp-server/` to `runtime/` and carry every path, import, dist location, freshness check and reference with it | Draft |
-| 7 | 007-docs-and-residue-sweep/ | Build. Bring architecture, README, SKILL.md, catalog, playbook, install guides and env reference to current reality, then sweep until no live surface describes an MCP server that exists | Draft |
-| 8 | 008-verification-and-closeout/ | Gate. Cold-boot every runtime, prove the automatic brief still arrives, report the latency delta against the recorded baseline, run the suites, and validate the packet recursively | Draft |
-
-| 9 | 009-deep-review-decommission/ | [Phase 9 scope] | Pending |
-| 10 | 010-deep-research-residue/ | [Phase 10 scope] | Pending |
+| 1 | 001-transport-and-consumer-inventory/ | Research. Inventory every MCP surface, every caller, every flag and every document that names the tool ids, and record the preserve set and the behavior that must survive untouched | Complete |
+| 2 | 002-daemon-transport-decision/ | Research. Measure the resident daemon against a stateless CLI on the real prompt-hook path, then freeze the socket protocol the CLI will speak | Complete |
+| 3 | 003-cli-front-door-parity/ | Build. Make the CLI the complete documented front door: nine commands, frozen JSON contract, stable exit taxonomy, session warm path, and a harness proving per-tool output parity with the MCP surface | Complete |
+| 4 | 004-caller-rewire/ | Build. Repoint the two prompt hooks, the OpenCode plugin, the doctor routes and every instruction surface at the CLI while MCP still exists as a fallback | Complete |
+| 5 | 005-mcp-transport-removal/ | Build. Delete the stdio transport, the SDK dependency, the plugin bridge and the MCP framing, remove all five server declarations, and reduce the launcher to a daemon supervisor | Complete |
+| 6 | 006-runtime-package-rename/ | Build. Rename `mcp-server/` to `runtime/` and carry every path, import, dist location, freshness check and reference with it | Complete |
+| 7 | 007-docs-and-residue-sweep/ | Build. Bring architecture, README, SKILL.md, catalog, playbook, install guides and env reference to current reality, then sweep until no live surface describes an MCP server that exists | Complete |
+| 8 | 008-verification-and-closeout/ | Gate. Cold-boot every runtime, prove the automatic brief still arrives, report the latency delta against the recorded baseline, run the suites, and validate the packet recursively | Complete |
+| 9 | 009-deep-review-decommission/ | Audit. Hunt every surviving MCP reference and stale surface on a live instruction surface, then confirm the required findings actually close | Complete |
+| 10 | 010-deep-research-residue/ | Audit. Study what the decommission teaches: which failures a promoted fallback exposes, what residue a transport removal leaves, and the checklist the next migration needs | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

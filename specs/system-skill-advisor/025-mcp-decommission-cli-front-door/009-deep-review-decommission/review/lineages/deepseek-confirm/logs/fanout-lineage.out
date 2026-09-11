@@ -1,0 +1,11 @@
+**Done. Verdict: CONDITIONAL** (0 P0 / 3 P1 / 5 P2 active).
+
+The confirming audit answered all three questions with reproductions. Of the prior nine required findings, six close cleanly (doctor install workflow, doctor script, launcher, `.pi/SYNC.md`, daemon CLI reference, ARCHITECTURE). Three do not: ENV-REFERENCE still asserts runtime-config supply that no committed config carries (F001), bin/README still describes an MCP dual-stack shim surface its own file listing contradicts (F002), and the packet cannot fully present its completion (F003: parent phase map stale and malformed, 009 packet docs still scaffolds beside `Status: Complete`). The fix commits are clean where they claim to be, but the regression scan found three live residues, one inside the repair's own `.gitignore` edit, plus a live playbook step that restarts a retired MCP server (F005 to F008).
+
+Artifacts (all inside `specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/`): `review-report.md`, `iterations/iteration-001..005.md`, `deltas/iter-001..005.jsonl`, `deep-review-state.jsonl` (12 records, parses), `deep-review-findings-registry.json` (8 open), `deep-review-strategy.md`, `deep-review-dashboard.md`, `deep-review-config.json` (`status: complete`, `stopReason: maxIterationsReached`). Five iterations at the D10 ceiling, convergence off, claim adjudication passed 5/5.
+
+Owed evidence, honestly not re-run under write containment: the suite figures (860/5/7 of 872), `validate.sh`, the CLI and latency checks; continuity save via `generate-context.js` was skipped as instructed. Note: the tree carried pre-existing dirty paths outside this lineage before I started (notably `025/goal.md`, mtime 21:29, and the deleted prior-lineage files moved to `review/_archive/`); I did not touch them.
+
+Your move: review the report, then `/speckit:plan` for the three P1 workstreams.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-confirm

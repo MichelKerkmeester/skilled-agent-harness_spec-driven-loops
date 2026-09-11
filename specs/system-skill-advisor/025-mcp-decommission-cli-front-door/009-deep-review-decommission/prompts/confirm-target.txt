@@ -1,0 +1,29 @@
+ROLE: Confirming auditor. A prior review of this packet returned CONDITIONAL with nine required findings and eight advisories. Every one was since acted on. Determine whether that set actually closed, and whether closing it introduced anything new.
+
+CONTEXT: The skill advisor has no MCP transport. One front door, node .opencode/bin/skill-advisor.cjs, nine commands, mutations refused without --trusted, a resident daemon over the advisor's own newline-delimited socket protocol. Package directory is runtime/, build output dist/runtime/. Since the prior review: eight live surfaces corrected, a residue sweep across 87 files, four GitHub Actions workflows and .gitignore repaired, fifteen documents describing a deleted plugin bridge rewritten, the trigger index and its fixtures regenerated, a hand-maintained residue allowlist corrected, a launcher test seam repaired, six no-op environment fallbacks collapsed, a caller-context type renamed, and the verification phase's record written.
+
+ACTION: Answer three questions, each with a reproduction.
+
+1. Does each of the prior nine required findings actually close? They were:
+   doctor-mcp-install.yaml advisor install workflow and its keyless orphan block;
+   doctor/scripts/mcp-doctor.sh listing the advisor among MCP servers;
+   bin/system-skill-advisor-launcher.cjs reporting it built an MCP server;
+   .pi/SYNC.md describing a caller that no longer exists;
+   system-spec-kit references/cli/daemon-cli-reference.md teaching MCP as primary transport;
+   system-spec-kit ARCHITECTURE.md calling the advisor the only MCP daemon still running;
+   system-spec-kit runtime/ENV-REFERENCE.md sourcing advisor vars from the deleted tree;
+   bin/README.md describing a dual-stack MCP surface with a dead dist path;
+   and the packet's own inability to present its completion.
+   Name any that does not close.
+
+2. Did the fixes introduce anything new? Look for a path that does not resolve, a command printed in a document that would fail if run, a claim that does not match what ships, and a test asserting a removed contract.
+
+3. Does the packet present its own completion honestly? Its verification phase claims eight acceptance rows Met, and a suite of 860 passed, 5 failed, 7 skipped of 872 with all five failing identically on the pre-change baseline. Check that claim rather than accepting it.
+
+RULES, binding:
+- A green test proves nothing until its output and exit status are read. A run that exits 0 without executing is a failure, not a pass.
+- Historical records keep old names. Changelogs, dated benchmark reports and frozen fixtures record what was true when written; live instruction surfaces must match what ships. Say which bucket every hit falls in.
+- python-ts-parity, scorer-eval-baseline-ratchet, the command-bridge resolution guard and the inventory-id check fail identically in an untouched checkout. Pre-existing; do not report as regressions.
+- The plugin's bridge_timeout_ms and its environment variable are deliberately unchanged: they are operator-set, and renaming them would change operator-visible behavior.
+
+FORMAT: P0/P1/P2 findings. Each carries file:line, the exact command whose output proves it, that output quoted, and whether it is live surface or historical record. No finding without a reproduction. If the prior set closed cleanly, say so plainly rather than manufacturing findings.

@@ -241,7 +241,6 @@ workflow:
 
       | Server | Before | After | Status |
       |--------|--------|-------|--------|
-      | Skill Advisor | {before} | {after} | {status} |
       | System Code Graph | {before} | {after} | {status} |
       | Code Mode | {before} | {after} | {status} |
 

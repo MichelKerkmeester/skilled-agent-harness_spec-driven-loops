@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Review packet scaffolded with prompts/ and review/ lineage directories
+- [x] T002 Deep-loop runtime available; fan-out runner reachable
+- [x] T003 Executor bound: cli-pi, deepseek-v4.1-flash, max reasoning
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Target written through the prompt improver so the run hunts claims, not tokens
+- [x] T005 First audit run: 6 iterations, CONDITIONAL, 0 P0 / 9 P1 / 8 P2, each finding reproduced
+- [x] T006 Confirming audit re-run under the parent's parameters: 5 of 5 iterations, convergence off
+- [x] T007 Findings classified live surface versus historical record, so changelogs keep their old names
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Three findings re-verified by hand before any fix was dispatched; all three held
+- [x] T009 Pre-existing failures named in the target so they were not reported as regressions
+- [x] T010 Both review reports written under `review/lineages/`; the first run archived under `review/_archive/`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: findings sampled and reproduced independently
 <!-- /ANCHOR:completion -->
 
 ---

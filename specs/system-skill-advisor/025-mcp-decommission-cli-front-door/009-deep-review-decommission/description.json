@@ -1,18 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The author of a decommission sweeps for what they remember removing: the retired",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "author",
+    "decommission",
+    "sweeps",
+    "remember",
+    "removing",
+    "retired"
   ],
-  "lastUpdated": "2026-09-11T18:01:11.322Z",
+  "lastUpdated": "2026-09-11T19:47:04.771Z",
   "specId": "009",
   "folderSlug": "deep-review-decommission",
   "parentChain": [

@@ -47,16 +47,16 @@ Frozen. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Delete, do not deprecate: stdio server, MCP SDK, plugin bridge, the MCP method vocabulary and result envelope, all five runtime declarations. JSON-RPC framing and `initialize` stay: the preserved socket bridge parses them |
-| D2 | Preservation is the bar. All nine capabilities, the unprompted brief, and every operator-visible output stay identical. A behavior change is a failure, not a trade-off |
-| D3 | The daemon's fate is decided by measurement, not preference. Both options are benchmarked against the recorded baseline before the protocol freezes. Inconclusive keeps the daemon |
-| D4 | One CLI front door for every caller: both prompt hooks, the OpenCode plugin, doctor routes, any agent, through `.opencode/bin/skill-advisor.cjs`. One caller-facing seam, not one code path: it absorbs the local-scorer fallback |
-| D5 | Rename `mcp-server/` to `runtime/` in this packet |
-| D6 | Order is load-bearing: prove the replacement, rewire callers, delete, rename, retrofit docs. Nothing goes before its replacement does |
-| D7 | Scope is the advisor's own transport. Routing quality untouched; every other MCP server keeps its registration; shared model server and socket bridge preserved |
-| D8 | Implementation runs DeepSeek V4.1 Flash at max thinking via LLM Gateway, dispatched by cli-pi. Another executor is an amendment |
-| D9 | A degraded answer is acceptable; no answer is a failure. The CLI still starts the daemon, bounded rather than skipped, and still renders a route line when it fell back |
-| D10 | Two audit loops close the packet, each 5 iterations, convergence disabled, run through their own commands: a review hunting surviving MCP references, and a research on what this teaches |
+| D1 | Delete, do not deprecate: stdio server, MCP SDK, plugin bridge, MCP method vocabulary and result envelope, all five runtime declarations. JSON-RPC framing and `initialize` stay: the socket bridge parses them |
+| D2 | Preservation is the bar. All nine capabilities, the unprompted brief and every operator-visible output stay identical. A behavior change is a failure, not a trade-off |
+| D3 | The daemon's fate is decided by measurement, not preference: both options benchmarked against the recorded baseline before the protocol freezes. Inconclusive keeps it |
+| D4 | One CLI front door for every caller: both prompt hooks, the OpenCode plugin, doctor routes, any agent, through `.opencode/bin/skill-advisor.cjs`. One caller-facing seam, not one code path: it absorbs the local scorer |
+| D5 | Rename `mcp-server/` to `runtime/` here |
+| D6 | Order is load-bearing: prove the replacement, rewire callers, delete, rename, retrofit docs. Nothing goes before its replacement |
+| D7 | Scope is the advisor's own transport. Routing quality untouched; every other MCP server keeps its registration; model server and socket bridge preserved |
+| D8 | Implementation runs DeepSeek V4.1 Flash at max thinking via LLM Gateway, dispatched by cli-pi. Amended: binds implementation dispatch; verification, remediation and packet records are the session's own |
+| D9 | A degraded answer is acceptable; no answer is a failure. The CLI still starts the daemon, bounded not skipped, and renders a route line when it fell back |
+| D10 | Two audit loops close the packet, each 5 iterations, convergence disabled, run through their own commands: a review hunting surviving MCP references, and a research on what it teaches |
 
 <!-- /ANCHOR:directive -->
 
@@ -107,7 +107,7 @@ criterion is an amendment to the parent: apply it there first, then resend.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded and parent authored | Done | Eight children with goals; parent spec, goal and phase map authored; nine folders validate strict with 0 errors |
-| Durable directive compressed for the operator surface | Done | Durable text measured at 2,481 characters against the 4,000 cap |
+| Durable directive compressed for the operator surface | Done | Measured 2,481 characters when first compressed. The phase 2 and phase 4 amendments later pushed it to 4,860, over the cap; recompressed in phase 8 to 3,993 with no decision lost |
 | 001 transport and consumer inventory | Done | `001-transport-and-consumer-inventory/inventory.md` at freeze `6012ec5c7d`: 5 SDK sites, 5 declarations, 13 executable callers, 4 automatic behaviors, 63 flags, 7 preserve-set items, 0 unclassified |
 | 002 daemon transport decision | Done | `baseline.md` (numbers, daemon kept, budget), `protocol-contract.md` (frozen wire contract, D1 amendment) and `warm-mechanism.md` (per-runtime warm, pi gap recorded) |
 | 003 cli front door parity | Done | 22 frozen cases across nine commands: 7 matched, 15 allowlisted with reasons, 0 differed, harness exits 0. Exit taxonomy 5/5 tests pass. Contract document shipped. Reopened once and closed on the wire migration in `3def6d6c9b` |
@@ -144,5 +144,8 @@ One row per completion criterion above, with the evidence that closes it.
 | Phase 7's residue claim did not hold | The sweep searched for the advisor's retired tool ids and its old directory name. What survived asserts the advisor is an MCP server in wording containing neither, and prints a directory that was renamed. The review loop found eight such surfaces by hunting claims instead of tokens; a path count in phase 8 then found 87 live files still naming `mcp-server/` |
 | CI would have failed on this branch | Four GitHub Actions workflows and `.gitignore` still pointed at `system-skill-advisor/mcp-server`, one of them as a `working-directory` that no longer exists. Neither audit loop looked under `.github/`. Found and fixed while closing the review findings |
 | The research lineage was failed by another loop's leftovers | Write containment found 19 untracked paths and reverted the research lineage on them; all 19 belong to the review's output, left uncommitted from the earlier run. The research wrote none of them and its five iterations were already complete. Committing a loop's artifacts before starting the next one is the fix |
+| D8 amended, not reverted | The eight surface fixes ran on DeepSeek through cli-pi as frozen. Everything after — the residue sweep, the launcher seam repair, the packet records — the session did directly. Reverting would mean redoing correct work through a different executor for no gain and some risk, so D8 is amended to say what it actually governs: implementation dispatch, not verification or remediation |
+| D10's convergence flag never bound, and the cause is not this packet | The first review resolved `antiConvergence.convergenceMode` to `standard` and `maxIterations` to 6, against `--convergence-mode=off --max-iterations=5`. Root cause: `fanout-run.cjs` contains no reference to convergence mode at all, so the fan-out path silently drops the flag the command documents. `--stop-policy=max-iterations` is carried and delivers the same no-early-stop behaviour, and the run exceeded the five-iteration floor, so the outcome complied while the flag did not. Worth raising against the deep-loop runtime |
+| Criterion 8 closed by re-execution rather than argument | Per-finding evidence is not the same as a second pass. A confirming review was re-run over the same scope under D10's parameters and D8's executor, asking whether the nine required findings actually close and whether closing them introduced anything new |
 
 <!-- /ANCHOR:log -->

@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the MCP child and bridges stdio to the running daemon.
+- Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the daemon child and bridges stdio to the running daemon.
 - The CLI shim runs the built daemon-backed CLI (`skill-advisor`, 9 tools) against the resident daemon. It enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
 - The freshness check itself is a shared module, not per-shim logic: every shim calls `checkPackageFreshness()` from [`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`](../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs), which also backs `validate.sh`'s hard staleness backstop, the `sk-code` PostToolUse hook, and the `system-dist-freshness-guard` OpenCode plugin, one source of truth for "is this package's dist current" across all four call sites. See §6 "Dist freshness" for the full package table and consumer list.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
@@ -135,7 +135,7 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ spawn MCP child, bridge stdio to socket  │
+│ spawn daemon child, bridge stdio to sock │
 └──────────────────────────────────────────┘
                   │
                   ▼
@@ -168,15 +168,15 @@ Main flow:
 
 ### Daemon-backed CLI shims
 
-The three CLI shims are the dual-stack front door shipped by the MCP-to-CLI transition: the MCP registrations stay unchanged, and the CLI is an additive surface over the same daemons for hooks, cron, CI and transport-down recovery. Usage is uniform across all three: `<shim> <tool_name> [--json '{...}' | --param value] [--format json|text|jsonl] [--timeout-ms N]`, with `list-tools` answering offline (no daemon contact). Flag values are coerced against each tool's input schema, so `--limit 3` arrives as a number, not a string.
+The CLI shim is the advisor's single front door: it registers no MCP server, and reaches the resident daemon over the advisor's own socket protocol. Other MCP servers keep their own registrations, unaffected. It shares the same daemons for hooks, cron, CI and transport-down recovery. Usage is uniform across all three: `<shim> <tool_name> [--json '{...}' | --param value] [--format json|text|jsonl] [--timeout-ms N]`, with `list-tools` answering offline (no daemon contact). Flag values are coerced against each tool's input schema, so `--limit 3` arrives as a number, not a string.
 
 **Exit taxonomy (shared).** `0` success, `1` runtime error, `64` usage/schema error, `69` protocol mismatch or missing/stale dist, `75` retryable daemon error. A `spawnSync` failure in the shim itself also exits `75`.
 
 **Warm-only and prompt time.** `--warm-only` (or the per-CLI `*_CLI_WARM_ONLY` / `*_CLI_PROMPT_TIME` envs, plus the shared `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CODEX_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) makes the CLI probe the daemon and exit `75` instead of cold-spawning it, the contract prompt-time hooks rely on. Without warm-only, a cold daemon is auto-spawned through the matching `mk-*-launcher.cjs`, so non-prompt contexts (scripts, CI) work from a cold start.
 
-**Dist freshness.** Each shim calls the shared `checkPackageFreshness()` (`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`) to compare its package's watched source files against the built dist entrypoint, exiting `69` with a rebuild instruction when stale. Dev overrides: `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
+**Dist freshness.** Each shim calls the shared `checkPackageFreshness()` (`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`) to compare its package's watched source files against the built dist entrypoint, exiting `69` with a rebuild instruction when stale. Dev overrides: `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
-The same shared module tracks 7 dist-producing packages total (the 3 CLI shims' own `mcp_server`s plus `system-spec-kit/{shared,scripts}`, `mcp-code-mode/mcp-server`, and `sk-design-md-generator/backend`) and backs three other consumers: `validate.sh`'s `run_node_orchestrator()` fails closed (exit `3`, no auto-rebuild) when the compiled spec-validation orchestrator it depends on is stale. the `sk-code` `claude-posttooluse.sh` PostToolUse hook prints a non-blocking `STALE DIST WARNING` banner when an edit lands in a watched source tree. and the `system-dist-freshness-guard` OpenCode plugin (`.opencode/plugins/`) surfaces stale packages to the agent via bounded system-context injection (`experimental.chat.system.transform`) plus an append-only `.opencode/logs/dist-freshness-guard.log`, never stdout/stderr, which the TUI would paint over the chat input, refreshed before a Bash call matching `opencode run`/`validate.sh` and once per session on `session.created`. Root cause and full design: `system-speckit/028-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement` spec folder.
+The same shared module tracks 6 dist-producing packages total (`system-spec-kit/{shared,runtime,runtime/cli}`, `system-skill-advisor/runtime`, `mcp-code-mode/mcp-server`, and `sk-design-md-generator/backend`) and backs three other consumers: `validate.sh`'s `run_node_orchestrator()` fails closed (exit `3`, no auto-rebuild) when the compiled spec-validation orchestrator it depends on is stale. the `sk-code` `claude-posttooluse.sh` PostToolUse hook prints a non-blocking `STALE DIST WARNING` banner when an edit lands in a watched source tree. and the `system-dist-freshness-guard` OpenCode plugin (`.opencode/plugins/`) surfaces stale packages to the agent via bounded system-context injection (`experimental.chat.system.transform`) plus an append-only `.opencode/logs/dist-freshness-guard.log`, never stdout/stderr, which the TUI would paint over the chat input, refreshed before a Bash call matching `opencode run`/`validate.sh` and once per session on `session.created`. Root cause and full design: `system-speckit/028-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement` spec folder.
 
 **Trust (skill-advisor only).** `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. everything else is sent untrusted by default. The daemon-side gate fails closed when transport `_meta` is absent, see the skill-advisor server docs.
 

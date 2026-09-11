@@ -132,7 +132,6 @@ dist/
 .opencode/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
 .opencode/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.lockdir/
 .opencode/skills/system-skill-advisor/runtime/database/skill-graph.json
-.opencode/skills/system-skill-advisor/mcp_server/
 
 # ───────────────────────────────────────────
 # Daemon ownership/lease files

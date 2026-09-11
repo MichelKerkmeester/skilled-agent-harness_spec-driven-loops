@@ -39,16 +39,14 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "prompts/review-target.txt",
-      "review/lineages/deepseek-review/review-report.md",
-      "review/lineages/deepseek-review/deep-review-findings-registry.json"
+      "prompts/review-target.txt"
     ],
     "entities": [
       {
@@ -88,18 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/lineages/deepseek-review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-findings-registry.json",
-        "kind": "config",
-        "path": "review/lineages/deepseek-review/deep-review-findings-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -130,7 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -190,15 +176,27 @@
         "source": "derived"
       },
       {
+        "name": "prompts",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The author of a decommission sweeps for what they remember removing: the retired",
     "created_at": "2026-09-11T17:15:39Z",
-    "last_save_at": "2026-09-11T18:02:17.202Z",
+    "last_save_at": "2026-09-11T19:47:36.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +206,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:314c3c28d30fff72cda5b68d2546e294897e9ed34bbaa7e227c903af7ef1e509",
+    "source_fingerprint": "sha256:cf0bd47e4f5067a808ce835b372ffb85e71c69491ce3c3eacab9465fdbac2d5b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fc14f554e362e4ffe1e55c2c4ff41f0281f0a42b6f74b5866b167511c8901a7",
+      "spec.md": "bf02e14cb916784731901056535ba46803310ad540d1fdfe477050cb0a36f7a9",
       "plan.md": "97f94f0681853ff469b5f47356568b8fdbfd5e717e31b74e0c0c1094c91a606d",
-      "tasks.md": "0d9dc2a305efcf753bedcf305d3300ee89f24c3bdcf518a284e3b2304d1e94e1",
+      "tasks.md": "20ff39a3f752366cb07faae842d83bce693effe14a7936e1679efb9d09d0397a",
       "implementation-summary.md": "1b2b325da7ea8d812391495c5a5d6444068e814c403e703482b9c6da37965e02"
     },
     "last_active_at": null
