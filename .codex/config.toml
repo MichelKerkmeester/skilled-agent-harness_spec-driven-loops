@@ -1,7 +1,7 @@
 [features]
 hooks = true
 
-# Unlike its siblings above, this server cannot run on just any Node: it bundles
+# This server cannot run on just any Node: it bundles
 # isolated-vm, which has no Node 25+ build and segfaults at isolate creation
 # there. A segfault cannot be caught, so a wrong interpreter kills the whole MCP
 # connection on the first tool call rather than failing at startup. The launcher
