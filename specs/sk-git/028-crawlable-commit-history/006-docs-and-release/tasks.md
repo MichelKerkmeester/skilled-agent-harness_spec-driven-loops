@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T008 validate_document.py on every touched skill file, package_skill.py --check, ci-skill-root-metadata.cjs
 - [x] T009 Recursive validate of the parent packet
-- [ ] T010 [B] Advisor routing probe on the main checkout after the merge
+- [x] T010 Advisor routing probe on the main checkout after the merge: sk-git confidence 0.95, score 0.80
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,8 +65,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`: T010 waits for the merge
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed for everything before the merge
 <!-- /ANCHOR:completion -->
 

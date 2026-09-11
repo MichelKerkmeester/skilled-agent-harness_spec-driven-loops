@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-11-skgit-028"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -103,7 +103,7 @@ Two cli-pi dispatches on DeepSeek V4.1 Flash at high effort, one for the release
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The advisor routing check waits for the merge.** Run `skill-advisor.cjs advisor_recommend` with a commit-id prompt on the main checkout and expect sk-git at or above 0.8.
+1. **The advisor probe ran after the merge.** A commit-id prompt routes to sk-git at confidence 0.95 and score 0.80.
 2. **The rule validator reports a missing overview on every rule file.** That is the rule anatomy, not this edit, and belongs to sk-create-repo-rule's contract.
 <!-- /ANCHOR:limitations -->
 

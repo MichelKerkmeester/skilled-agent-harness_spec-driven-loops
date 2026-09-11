@@ -52,7 +52,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-11 |
 | **Branch** | `worktrees/048-crawlable-commit-history` |
 | **Parent Spec** | `../spec.md` |
@@ -132,8 +132,8 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 2 | `002-format-decision/` | Freeze the grammar, the identifier scheme and the rewrite mapping rule in a decision record the operator approves | Complete |
 | 3 | `003-contract-and-hook/` | Update the sk-git contract, the commit-msg hook and the preflight rule, each with a test | Complete |
 | 4 | `004-search-surface/` | Search recipes, catalog and playbook entries, and an index only if research shows one is needed | Complete |
-| 5 | `005-history-rewrite/` | Rewrite main, skilled/v4.0.0.0 and tags on a mirror clone, remap citations in specs, force-push after a written rollback and an explicit yes | Rehearsed, push pending |
-| 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata, the git repo rule with its REPO RULES.md and AGENTS.md integration, and the parent closeout, executed last | Done, advisor probe after merge |
+| 5 | `005-history-rewrite/` | Rewrite main, skilled/v4.0.0.0 and tags on a mirror clone, remap citations in specs, force-push after a written rollback and an explicit yes | Complete |
+| 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata, the git repo rule with its REPO RULES.md and AGENTS.md integration, and the parent closeout, executed last | Complete |
 | 7 | `007-git-workflow-run-failures/` | Analyze every git workflow that can fail an automated run and adjust sk-git and the hooks so it does not, executed before 006 | Complete |
 
 ### Phase Transition Rules

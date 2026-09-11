@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-git/028-crawlable-commit-history/005-history-rewrite"
     last_updated_at: "2026-09-11T07:16:31Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Authored the acceptance criteria for this packet"
+    recent_action: "Met the last criterion with the operator-approved push"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-11-skgit-028"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** sk-git/028-crawlable-commit-history/005-history-rewrite
 **Level:** 3
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-11
 <!-- /ANCHOR:metadata -->
 
@@ -58,7 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given the refined cascade, When 100 sampled rows are judged, Then the error rate is under 5 percent | scratch/sample-judgment.md: 2 of 55 mapped rows wrong | Met | - |
 | AC-003 | REQ-003 | Given a mirror of the source, When the rehearsal runs with the 109 on-line tags, Then all six invariants pass | rehearsal-2 rewrite.log: INVARIANTS: PASS, 111,686 messages checked, residue 0, tags 149 = 149 | Met | - |
 | AC-004 | REQ-004 | Given the rehearsal commit map, When the remap dry-runs over specs and skills, Then only commit tokens change and decoys stay | 1,704 tokens recognized and replaced, 10,092 skipped, 1,672 files would change | Met | - |
-| AC-005 | REQ-005 | Given the invariants, When the push happens, Then it follows a recorded rollback sentence and a fresh yes | pending the operator's window | Unmet | - |
+| AC-005 | REQ-005 | Given the invariants, When the push happens, Then it follows a recorded rollback sentence and a fresh yes | rollback sentence in plan.md; yes recorded 2026-09-11 against pin 7acc23fcb9; origin main a1faf0914a, skilled/v4.0.0.0 6358770875 then 7bb115bd61 after the remap | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-005 is the operator's window. Everything before it is met and rehearsed at full scale.
+AC-003 and AC-005 carried the packet: a rehearsal that passed every invariant and a push the operator approved against a pin that held. Left out on purpose: the 58 other branches and 28 worktrees, which their owners rebase and stamp.
 <!-- /ANCHOR:closure -->

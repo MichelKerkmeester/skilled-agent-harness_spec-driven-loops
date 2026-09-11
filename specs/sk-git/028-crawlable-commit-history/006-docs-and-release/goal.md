@@ -98,5 +98,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Advisor probe | Deferred to the merge, named in the summary |
+| Advisor probe | Ran after the merge: sk-git 0.95, score 0.80 |
 <!-- /ANCHOR:log -->

@@ -43,3 +43,12 @@ Phase 007 starts from these, reproduces each, and adjusts the producer.
     "does not have a commit checked out", so the run's own evidence blocks the commit that records it.
 14. The fan-out runner reported a `timestamp_anomaly` on the lineage's state records, six of seven
     after its window, because the child stamps local time with a Z suffix.
+15. The pre-push routing gate hashes the working tree, so another session's uncommitted edits
+    under a hub block a push of a clean commit from the same checkout. Pushing the exact commit
+    from a clean worktree lets the gate judge the commit.
+16. A refresh of a hub's manifest against a dirty tree attests uncommitted content; it had to be
+    reverted before it could be committed by mistake.
+17. zsh does not word-split an unquoted variable, so a refspec list built as a string reaches git
+    as one argument and the push fails on a nonexistent refspec. Arrays only.
+18. The citation remap moved three hashes inside a hub's benchmark reports, which are routing
+    inputs, so the same push then needed the hub re-minted and its authored copy resynced.

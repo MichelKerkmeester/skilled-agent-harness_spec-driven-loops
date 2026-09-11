@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -146,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -159,6 +153,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "sk-git's README says nothing about commit identity, its changelog stops at 1.5.2.0, the advisor cannot route commit-id vocabulary, and the two rule surfaces still lack the freeze paragraph and the identity row",
     "created_at": "2026-09-11T07:16:31Z",
-    "last_save_at": "2026-09-11T16:42:15.932Z",
+    "last_save_at": "2026-09-11T16:50:42.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92e7447f0fcda13b9021b74192d4fba5ffccc11f4e5e08d250b13a76be7323c4",
+    "source_fingerprint": "sha256:a2c91fa23c1f7f4e5c67efd456ac357d5a704846be92a17d31d577ddcd1a78a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7afcdef90daa57e16bb3d108e2e3f959ed02f21d95c73e270902db80e4062428",
+      "spec.md": "470115883372d2327bdd78b608fdb8981d43feb3ae55a189aee557faca04410d",
       "plan.md": "edc955912efbc26f8f4b7837a1231b6e30f837ba18d16102c559b1fc6401c326",
-      "tasks.md": "4359383c80a990d73d6ed3599d0f695e32bef9b30c79e60ba82aae577bceffc7",
-      "implementation-summary.md": "bb1aadaa487e9f9d4a032540e52c8e33cf608f3a198d8b26af0bed13664c8598"
+      "tasks.md": "62ae7c4952a78bdacdf66f0c1611c3b28947623784ec289081fae0ef9397f739",
+      "implementation-summary.md": "2d6c6e182b47d78d2ed9af67a4ed1bce2e9f8aa535732cea808f8e4b93e2cd89"
     },
     "last_active_at": null
   }

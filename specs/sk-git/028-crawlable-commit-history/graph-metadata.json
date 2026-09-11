@@ -155,12 +155,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -174,6 +168,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -211,17 +211,17 @@
     ],
     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
     "created_at": "2026-09-11T07:16:22Z",
-    "last_save_at": "2026-09-11T16:42:14.183Z",
+    "last_save_at": "2026-09-11T16:50:44.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5da6dbbc4e1ecbf2489a76d4fd58eedc66362de33b1a8f09a36ec3c872ff0f95",
+    "source_fingerprint": "sha256:3ee498664f4266bbd3728cab56e9ba21d684ee52f2c4d974e67cbde8cf282196",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2104d166c723d2d3b8d2aeca5e8734542bd20e163e258527140a9e7437acb6ea"
+      "spec.md": "df52d75a5c44a4b369b8ed37bc446b66529f1c4d8aa1c6129ae519ec98309929"
     },
     "last_active_at": null
   }

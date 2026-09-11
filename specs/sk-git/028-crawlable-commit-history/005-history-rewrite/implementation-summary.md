@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-git/028-crawlable-commit-history/005-history-rewrite"
     last_updated_at: "2026-09-11T09:20:38Z"
     last_updated_by: "code-implementer"
-    recent_action: "Rehearsed the full rewrite twice with all invariants passing"
-    next_safe_action: "Open the window with the operator: freeze, pin, rewrite, remap, push on a fresh yes"
+    recent_action: "Pushed the rewritten history and the citation remap on the operator's yes"
+    next_safe_action: "Owners rebase the 58 other branches onto the new base and stamp them with stamp-branch.sh"
     blockers: []
     key_files:
       - "scripts/rewrite-run.sh"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-history-rewrite"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-history-rewrite |
-| **Completed** | pending the operator's window |
+| **Completed** | 2026-09-11 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -77,7 +77,7 @@ You get five scripts and one runbook. The plan builder walks the pinned tip in t
 
 Four cli-pi dispatches on DeepSeek V4.1 Flash, one script each, serial after the operating system killed three that ran together. The conductor re-ran every suite, judged the plan sample by hand, and ran two full-scale rehearsals in the session scratchpad: the first found 31 ordinals git could not extract and a header the remapper refused, the second, with the fixes and the 109 on-line tags, passed every invariant. The plan builder's first cut refused 2,086 single-packet commits on a confirmation rule; the decision record was amended so that only a positive contradiction refuses, and the unmapped share fell from 60 to 38.6 percent.
 
-What is deliberately not done: the push. It needs a quiet window, a fresh plan from the tip pinned at that moment, a rehearsal on that plan, the rollback sentence, and the operator's yes, in that order.
+The window ran on 2026-09-11. The first pin was overtaken by one commit and the operator said so; the rewrite was re-pinned on 7acc23fcb9, rehearsed again on 9,163 commits, and pushed on a fresh yes after a last fetch confirmed the pin held. Origin main became a1faf0914a and skilled/v4.0.0.0 became 6358770875, with 104 forced ref updates including 109 tags. The citation remap then landed as ordinal 0009164 on the rewritten line, stamped by the live hook, touching 1,714 files and 1,737 tokens with zero residue, and the executor hub's routing manifest was re-minted as 0009165 because three of those citations sat in its benchmark reports. The main checkout's working tree was never touched; its branch refs were moved to the rewritten commits and it follows the two later commits on its next fast-forward.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -113,7 +113,7 @@ What is deliberately not done: the push. It needs a quiet window, a fresh plan f
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing is pushed.** The rehearsal proves the mechanics on a mirror. The window is the operator's.
+1. **Fifty-eight branches and 28 worktrees keep old ancestry.** Their owners rebase onto the new base and run stamp-branch.sh; dependabot's two branches need re-creating. The pre-rewrite backup stays in the session scratchpad until CI is green.
 2. **Two ordinals still hide from git's parser.** Two legacy messages end in `config: ...`; the token was added to the prose list after the second rehearsal, so the next run covers them.
 3. **The plan is stale the moment the branch moves.** Five sessions moved it today. The window rebuilds the plan from the pinned tip.
 4. **Off-line branches keep old ancestry.** Fifty-eight branches and 28 worktrees reference the old commits until their owners rebase and stamp them, and the mirror keeps those objects alive meanwhile.

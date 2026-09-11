@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T008 Rehearse at full scale on a mirror, twice, the second with the 109 tags: INVARIANTS PASS
 - [x] T009 Dry-run the citation remap against the rehearsal commit map: 1,704 tokens, 1,672 files
-- [ ] T010 [B] Open the window: freeze writers, pin the tip, rewrite, remap, push after the operator's yes, sync followers
+- [x] T010 Open the window: pinned 7acc23fcb9, rehearsed, pushed main, skilled/v4.0.0.0 and 109 tags on the operator's yes, remapped citations as 0009164, re-minted the executor hub as 0009165
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,8 +65,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining: T010 waits for the operator's yes
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed for everything before the window
 <!-- /ANCHOR:completion -->
 
@@ -175,7 +175,7 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 before the window |
+| P0 Items | 9 | 9/9 |
 | P1 Items | 11 | 11/11 |
 | P2 Items | 2 | 2/2 |
 
@@ -245,7 +245,7 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Technical Lead | [ ] Approved, the push | |
+| Operator | Technical Lead | [x] Approved the push against 7acc23fcb9 | 2026-09-11 |
 | Conductor session | Verification | [x] Approved, everything before the push | 2026-09-11 |
 <!-- /ANCHOR:sign-off -->
 
