@@ -1,6 +1,6 @@
 ---
 title: "deep-improvement Manual Testing Playbook"
-description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, intra-packet routing recall, and the model-benchmark and skill-benchmark lanes."
+description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, intra-packet routing recall, and the model-benchmark lane."
 version: 1.17.0.44
 ---
 
@@ -23,24 +23,23 @@ Canonical package artifacts:
 - `runtime-truth/`
 - `agent-discipline-stress-tests/`
 - `model-benchmark-mode/`
-- `skill-benchmark/`
 - `intra-routing-recall/`
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
-> into `deep-improvement/benchmark/reports/<dated-run-label>/`. An outcome that exists only in a
-> terminal buffer is not a recorded result.
+> outcome and reason are persisted through the operator evidence trail described in §3 GLOBAL
+> EVIDENCE REQUIREMENTS below. An outcome that exists only in a terminal buffer is not a recorded
+> result.
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), the Lane C skill-benchmark scenarios (10), and the packet's own intra-routing recall (11). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), and the packet's own intra-routing recall (10). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
 ### Lane Note
 
-Scenarios belong to one of three lanes, or are shared. Categories `integration-scanner`, `profile-generator`, `end-to-end-loop`, `runtime-truth`, and `agent-discipline-stress-tests` are Lane A (agent-improvement). Category `model-benchmark-mode` is Lane B (model-benchmark). Category `skill-benchmark` is Lane C (skill-benchmark). Categories `five-d-scorer`, `benchmark-integration`, and `reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. Category `intra-routing-recall` is lane-independent: it exercises the packet's own smart router, which every lane enters through, so it runs whichever lane is under validation. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
+Scenarios belong to one of two lanes, or are shared. Categories `integration-scanner`, `profile-generator`, `end-to-end-loop`, `runtime-truth`, and `agent-discipline-stress-tests` are Lane A (agent-improvement). Category `model-benchmark-mode` is Lane B (model-benchmark). Categories `five-d-scorer`, `benchmark-integration`, and `reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. Category `intra-routing-recall` is lane-independent: it exercises the packet's own smart router, which every lane enters through, so it runs whichever lane is under validation. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
 
 ### REALISTIC TEST MODEL
 
@@ -113,8 +112,8 @@ Scenario verdict — the vocabulary is closed, and every run lands on exactly on
 Release passes only when:
 
 1. No feature verdict is `FAIL`.
-2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), SB-043..048 (skill-benchmark), and DI-R01..DI-R08 plus DI-R10 (intra-routing recall) have all been executed or explicitly skipped with a named blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 51 numbered scenarios (`IS-001..SB-048` plus MB-049, E2E-050, and the reviewer regression `MB-R01`) and 9 intra-routing-recall scenarios (`DI-R01..DI-R08` plus `DI-R10`).
+2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), and DI-R01..DI-R07 plus DI-R10 (intra-routing recall) have all been executed or explicitly skipped with a named blocker.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 45 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, and the reviewer regression `MB-R01`) and 8 intra-routing-recall scenarios (`DI-R01..DI-R07` plus `DI-R10`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 
@@ -795,95 +794,11 @@ Expected signals: `report.json` contains `outcomeScoreDelta`, `fixtureDeltas[]`,
 
 ---
 
-## 16. SKILL-BENCHMARK MODE
+## 16. INTRA ROUTING RECALL
 
-This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane C (Skill-Benchmark): the `loop-host.cjs --mode=skill-benchmark` arm, the contamination gate, router-replay (Mode A), the D5 connectivity hard gate, scoring against the private gold, and the dual report plus remediation taxonomy. See `SKILL.md` "Lane C: Skill-Benchmark" and `references/skill-benchmark/operator-guide.md` for the source-of-truth contract.
+This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. Each scenario exercises the packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`): one `INTENT_SIGNALS` key must score as the dominant intent for a prompt shaped around its keywords, and the matching `RESOURCE_MAP` entries must load on top of `references/shared/quick-reference.md`, which `load_if_available(DEFAULT_RESOURCE)` loads unconditionally before the per-intent loop. The eight scenarios cover all eight intents, so a keyword collision that lets one intent absorb another's prompt fails here rather than silently mis-routing a real session.
 
-### SB-043 | Mode Wiring and Routing via loop-host
-
-#### Description
-`loop-host.cjs --mode=skill-benchmark` routes to `run-skill-benchmark.cjs` while the agent-improvement and model-benchmark plans stay unchanged; an unknown mode warns to stderr and falls back to agent-improvement.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that loop-host resolves `--mode=skill-benchmark` to the skill-benchmark orchestrator and that an unknown mode falls back to agent-improvement. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: the skill-benchmark run completes with exit code 0 and emits `skill-benchmark-report.json` plus the rendered `skill-benchmark-report.md`; `--mode=bogus` writes `unknown mode 'bogus', defaulting to 'agent-improvement'` to stderr; the default and model-benchmark routes are unchanged.
-
-#### Test Execution
-> **Feature File:** [SB-043](../manual-testing-playbook/skill-benchmark/mode-wiring-routing.md)
-
-### SB-044 | Contamination Gate
-
-#### Description
-`contamination-lint.cjs` rejects a public fixture prompt that leaks the answer (the target skill id or its router keywords) and passes a clean prompt.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the contamination linter fails a leaking public prompt and passes a clean one. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: the leaking prompt run exits 1 with `passed: false` and reports the leaked terms; the clean prompt run exits 0 with `passed: true` and zero hard leaks; banned vocabulary is built from the target skill's own identity (name, triggers, router keywords, resource-path tokens), so a leak is treated as a fixture failure, not a skill failure.
-
-#### Test Execution
-> **Feature File:** [SB-044](../manual-testing-playbook/skill-benchmark/contamination-gate.md)
-
-### SB-045 | Router-Replay (Mode A, Deterministic)
-
-#### Description
-`router-replay.cjs` replays the target skill's own router for a task and produces stable, deterministic routing decisions (the CI gate).
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that router-replay produces deterministic routing output for a fixed task. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: two runs over the same task exit 0 and produce byte-identical JSON (deterministic); `parseable: true`; the resolved `intents` and `resources` reflect the task (e.g. a REVIEW task routes to the expected resources with no missing resources).
-
-#### Test Execution
-> **Feature File:** [SB-045](../manual-testing-playbook/skill-benchmark/router-replay-mode-a.md)
-
-### SB-046 | D5 Connectivity Hard Gate
-
-#### Description
-`d5-connectivity.cjs` is a static structural scan that runs FIRST and caps the verdict to `BLOCKED-BY-STRUCTURE`; an unparseable/unreachable router is a P0 gate failure.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the D5 scan hard-gates a skill whose router cannot be parsed and passes a healthy router-bearing skill. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: a router-less skill exits 1 with `gateFailed: true`, `routerParseable: false`, a `router_unparseable` P0 finding, and `score` reduced by the P0 penalty (<= 60); a healthy router-bearing skill exits 0 with `gateFailed: false` and an empty `deadResourcePaths`.
-
-#### Test Execution
-> **Feature File:** [SB-046](../manual-testing-playbook/skill-benchmark/d5-connectivity-hard-gate.md)
-
-### SB-047 | Scoring Against the Private Gold
-
-#### Description
-`run-skill-benchmark.cjs` plus `score-skill-benchmark.cjs` score router-replay output against the private gold fixture and aggregate the D1-D5 dimensions over only the dimensions actually measured.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the skill-benchmark run scores the shipped `deep-improvement` fixture pair and produces an aggregate verdict. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: the run exits 0 with `scoringMethod: "mode-a-router-replay"`; at least one scored scenario row carries `dims.d1intra`; the aggregate carries an `aggregateScore` and a verdict (`PASS`/`CONDITIONAL`/`FAIL`); `D4` is reported `unscored` (live-mode ablation) and `D5.hardGate` is present; under the default deterministic path `unscoredDimensions` includes `D1inter` (advisor probe off).
-
-#### Test Execution
-> **Feature File:** [SB-047](../manual-testing-playbook/skill-benchmark/scoring-vs-private-gold.md)
-
-### SB-048 | Dual Report and Remediation Taxonomy
-
-#### Description
-the orchestrator emits a machine `skill-benchmark-report.json` and a human `skill-benchmark-report.md` rendered from it (anti-drift); ranked bottleneck classes are members of the remediation taxonomy.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the run emits both reports, that re-rendering the markdown from the JSON is byte-identical, and that bottleneck classes map to the remediation taxonomy. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` and `.md`; re-rendering via `build-report.cjs --report <json>` reproduces the orchestrator markdown byte-for-byte (anti-drift); every bottleneck `class` is a member of `assets/skill-benchmark/remediation-taxonomy.json` (classes carry `severity`, `oneLineFix`, and `handoffLane`). Note: the taxonomy is a reference asset validated by test; the report code does not yet enrich bottlenecks with its fields.
-
-#### Test Execution
-> **Feature File:** [SB-048](../manual-testing-playbook/skill-benchmark/dual-report-and-remediation.md)
-
----
-
-## 17. INTRA ROUTING RECALL
-
-This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract. Each scenario exercises the packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`): one `INTENT_SIGNALS` key must score as the dominant intent for a prompt shaped around its keywords, and the matching `RESOURCE_MAP` entries must load on top of `references/shared/quick-reference.md`, which `load_if_available(DEFAULT_RESOURCE)` loads unconditionally before the per-intent loop. The nine scenarios cover all nine intents, so a keyword collision that lets one intent absorb another's prompt fails here rather than silently mis-routing a real session.
-
-Five of these prompts also contain an `ON_DEMAND_KEYWORDS` term (`benchmark`, `score candidate`, `target profile`, `mirror drift`), which makes the router load every `RESOURCE_MAP` path in addition to the selected intent's set. For those scenarios the resource assertion is containment, not equality — see the per-feature file for which rule applies.
+Four of these prompts also contain an `ON_DEMAND_KEYWORDS` term (`benchmark`, `score candidate`, `target profile`, `mirror drift`), which makes the router load every `RESOURCE_MAP` path in addition to the selected intent's set. For those scenarios the resource assertion is containment, not equality — see the per-feature file for which rule applies.
 
 ### DI-R01 | Quick Reference Routing
 
@@ -976,19 +891,6 @@ Expected signals: `MODEL_BENCHMARK` is the dominant intent, outscoring the `LOOP
 #### Test Execution
 > **Feature File:** [DI-R07](../manual-testing-playbook/intra-routing-recall/model-benchmark.md)
 
-### DI-R08 | Skill Benchmark Routing
-
-#### Description
-A skill-benchmark-shaped request scores the `SKILL_BENCHMARK` intent and loads its resource set through the packet's own smart router.
-
-#### Scenario Contract
-Prompt summary: `Benchmark a skill for skill routing, unprompted discovery, routing accuracy, and skill-benchmark diagnostics.`
-
-Expected signals: `SKILL_BENCHMARK` is the dominant intent, not the `LOOP_EXECUTION` intent its shared `benchmark` keyword also scores; the loaded resource set covers `RESOURCE_MAP["SKILL_BENCHMARK"]` plus the always-loaded default.
-
-#### Test Execution
-> **Feature File:** [DI-R08](../manual-testing-playbook/intra-routing-recall/skill-benchmark.md)
-
 ### DI-R10 | Full Setup Routing
 
 #### Description
@@ -1004,7 +906,7 @@ Expected signals: `FULL_SETUP` is the dominant intent; the loaded resource set c
 
 ---
 
-## 18. AUTOMATED TEST CROSS-REFERENCE
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives lane-locally under each lane's `tests/` (`scripts/<lane>/tests/`; see `scripts/shared/tests/README.md` for the index) and should be used as regression evidence when a scenario touches the matching helper.
 
@@ -1018,11 +920,10 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts` | Benchmark delta emission and ledger coverage used by MB-049 |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Benchmark-mode promotion gates, accept/ship split, rollback, and preserved-branch events used by MB-049 and E2E-050 |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Lane mix and benchmark delta reducer summaries used by MB-049 |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
 
 ---
 
-## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The feature catalog root is `.opencode/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 
@@ -1036,6 +937,5 @@ The feature catalog root is `.opencode/skills/system-deep-loop/deep-improvement/
 | End-to-End Loop | `.opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md`, `two-phase-promotion-and-rollback.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
 | Model-Benchmark Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/mode-switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md` |
-| Skill-Benchmark Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model-benchmark/evaluator-contract.md`, `references/agent-improvement/integration-scanning.md`, and `references/shared/quick-reference.md`.

@@ -20,7 +20,7 @@ importance_tier: "important"
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
-The compiled inventory is intentionally limited to the three commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`; no legacy body in that directory lacks a compiled counterpart. The rollout entries for `deep/agent-improvement`, `deep/model-benchmark` and `deep/skill-benchmark` are fallback-only and are not compiler-managed asset pairs.
+The compiled inventory is intentionally limited to the three commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`; no legacy body in that directory lacks a compiled counterpart. The rollout entries for `deep/agent-improvement` and `deep/model-benchmark` are fallback-only and are not compiler-managed asset pairs.
 
 ---
 

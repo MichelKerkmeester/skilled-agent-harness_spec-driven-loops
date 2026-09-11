@@ -11,8 +11,8 @@
  * runtime, never from a packet-local adapter (its single-adapter hard rule).
  * The fan-out orchestrator (fanout-run.cjs) owns multi-lineage iteration loops;
  * this helper owns the complementary case: one synchronous request/response,
- * used by measurement harnesses (e.g. the Lane C skill-benchmark live path) that
- * need a single routing-analysis reply rather than a convergence loop.
+ * used by measurement harnesses that need a single routing-analysis reply
+ * rather than a convergence loop.
  *
  * Flag choices mirror fanout-run.cjs's codex branch (model /
  * model_reasoning_effort / service_tier / approval_policy=never / sandbox /

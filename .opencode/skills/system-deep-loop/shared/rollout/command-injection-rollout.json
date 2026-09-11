@@ -4,6 +4,5 @@
   "deep/ai-council": "fallback",
   "deep/alignment": "fallback",
   "deep/agent-improvement": "fallback",
-  "deep/model-benchmark": "fallback",
-  "deep/skill-benchmark": "fallback"
+  "deep/model-benchmark": "fallback"
 }

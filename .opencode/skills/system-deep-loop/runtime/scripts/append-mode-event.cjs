@@ -99,7 +99,6 @@ function normalizeMode(mode) {
   if (trimmed === 'ai-council' || trimmed === 'council' || trimmed === 'deep-ai-council' || trimmed === 'deep-council') return 'deep-ai-council';
   if (trimmed === 'agent-improvement' || trimmed === 'deep-agent-improvement') return 'agent-improvement';
   if (trimmed === 'model-benchmark' || trimmed === 'deep-model-benchmark') return 'model-benchmark';
-  if (trimmed === 'skill-benchmark' || trimmed === 'deep-skill-benchmark') return 'skill-benchmark';
   // The authority order is the canonical spelling; a private alias that
   // disagrees with it makes a real fleet mode unreachable.
   if (trimmed === 'improvement' || trimmed === 'deep-improvement' || trimmed === 'deep-improvement-common') return 'deep-improvement-common';
@@ -152,15 +151,6 @@ async function resolveModeAdapter(mode) {
         createRegistry: mod.createModelBenchmarkEventRegistry,
         prepareEvent: mod.prepareModelBenchmarkEvent,
         isEventStem: mod.isModelBenchmarkEventStem,
-      };
-    }
-    case 'skill-benchmark': {
-      const mod = await import('../lib/skill-benchmark-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'skill-benchmark',
-        createRegistry: mod.createSkillBenchmarkEventRegistry,
-        prepareEvent: mod.prepareSkillBenchmarkEvent,
-        isEventStem: mod.isSkillBenchmarkEventStem,
       };
     }
     case 'deep-improvement-common': {

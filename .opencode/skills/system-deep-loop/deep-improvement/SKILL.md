@@ -12,7 +12,6 @@ triggers:
   - dynamic profiling
   - model-benchmark mode
   - benchmark a model or prompt framework
-  - skill-benchmark mode
 ---
 
 <!-- Keywords: deep-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->
@@ -25,24 +24,22 @@ Evaluator-first workflow for testing whether a bounded agent surface can be impr
 
 ## 1. WHEN TO USE
 
-### Three Co-Equal Lanes
+### Two Co-Equal Lanes
 
-This skill supports three co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
+This skill supports two co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
 
 | Lane | Pick when | Command |
 | --- | --- | --- |
 | **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:agent-improvement` |
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:model-benchmark` |
-| **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:skill-benchmark` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Both lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 
 ### Activation Triggers
 
 Use this skill when:
 - You want to test whether an agent prompt or instruction surface can be improved (Lane A)
 - You want to benchmark a model or prompt framework against repeatable fixtures (Lane B)
-- You want to diagnose whether a skill is well-routed, discoverable, efficient, and useful in practice (Lane C)
 - The mutation boundary is explicit and narrow
 - You need packet-local evidence instead of ad hoc prompt tweaking
 - You need target-specific benchmark or scoring rules before any canonical mutation
@@ -52,7 +49,6 @@ Use this skill when:
 
 - **Lane A** — proposal-first loop for any bounded agent file: packet-local candidates, dynamic 5-dimension scoring, append-only evidence, guarded promotion/rollback with drift review kept separate. See §3.
 - **Lane B** — benchmarks a model or prompt framework (not an agent file) against a benchmark profile, scoring produced outputs; shares the candidate, dispatcher, and scorer seams with Lane A. See §4.
-- **Lane C** — diagnoses whether a *skill* is well-routed, discoverable, efficient, and useful in practice; emits a ranked Skill Benchmark Report and is diagnostic by default (no target mutation). See `references/skill-benchmark/operator-guide.md`.
 
 ### When NOT to Use
 
@@ -75,7 +71,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/` for reusable runtime templates such as the charter and strategy markdown files
 - `scripts/` for deterministic benchmark, scoring, reduction, promotion, rollback, and drift-check helpers
 
-**Lane awareness**: resources are organized by lane. `references/agent-improvement/` + `assets/agent-improvement/` carry Lane A guidance, `references/model-benchmark/` + `assets/model-benchmark/` carry Lane B guidance, and `references/skill-benchmark/` + `assets/skill-benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
+**Lane awareness**: resources are organized by lane. `references/agent-improvement/` + `assets/agent-improvement/` carry Lane A guidance and `references/model-benchmark/` + `assets/model-benchmark/` carry Lane B guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` intent to its lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to both lanes.
 
 ### Resource Loading Levels
 
@@ -109,7 +105,6 @@ INTENT_SIGNALS = {
     "TARGET_ONBOARDING": {"weight": 4, "keywords": ["new target", "target profile", "onboarding", "second target"]},
     "INTEGRATION_SCAN": {"weight": 4, "keywords": ["integration", "scan surfaces", "mirror sync", "dynamic profile", "5-dimension"]},
     "MODEL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a model", "benchmark a prompt framework", "optimize a model", "model-benchmark", "model benchmark"]},
-    "SKILL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a skill", "skill benchmark", "skill routing", "unprompted discovery", "routing accuracy", "skill-benchmark"]},
     "FULL_SETUP": {"weight": 3, "keywords": ["full setup", "initialize runtime", "charter", "strategy"]},
 }
 
@@ -121,14 +116,12 @@ RESOURCE_MAP = {
     "TARGET_ONBOARDING": ["references/agent-improvement/target-onboarding.md"],
     "INTEGRATION_SCAN": ["references/agent-improvement/integration-scanning.md", "references/model-benchmark/evaluator-contract.md", "references/agent-improvement/profiling-audit-log.md"],
     "MODEL_BENCHMARK": ["references/model-benchmark/benchmark-operator-guide.md", "references/model-benchmark/evaluator-contract.md", "references/model-benchmark/lane-b-mechanics.md", "references/model-benchmark/mixed-executor-methodology.md", "assets/model-benchmark/benchmark-fixtures/reviewer-schema.md"],
-    "SKILL_BENCHMARK": ["references/skill-benchmark/operator-guide.md", "references/skill-benchmark/scoring-contract.md", "references/skill-benchmark/scenario-authoring.md", "references/skill-benchmark/routing-optimization.md", "assets/skill-benchmark/fixtures/deep-loop-workflows/routing-precision.md"],
     "FULL_SETUP": ["assets/agent-improvement/improvement-charter.md", "assets/agent-improvement/improvement-strategy.md"],
 }
 
 RUNTIME_ASSETS = {
     "ALWAYS": ["assets/agent-improvement/improvement-config.json", "assets/agent-improvement/target-manifest.jsonc"],
     "MODEL_BENCHMARK": ["assets/model-benchmark/benchmark-profiles/default.json"],
-    "SKILL_BENCHMARK": ["assets/skill-benchmark/default-profile.json"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
@@ -201,8 +194,6 @@ def route_recursive_agent_resources(task):
     runtime_assets = list(RUNTIME_ASSETS["ALWAYS"])
     if "MODEL_BENCHMARK" in intents:
         runtime_assets.extend(RUNTIME_ASSETS.get("MODEL_BENCHMARK", []))
-    if "SKILL_BENCHMARK" in intents:
-        runtime_assets.extend(RUNTIME_ASSETS.get("SKILL_BENCHMARK", []))
 
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
@@ -312,7 +303,6 @@ Core references: `README.md`, `references/shared/quick-reference.md`, `reference
 
 - `/deep:agent-improvement` initializes and runs the Lane A bounded workflow
 - `/deep:model-benchmark` initializes and runs the Lane B model-benchmark workflow
-- `/deep:skill-benchmark` runs the Lane C skill diagnostic
 - `.opencode/agents/deep-improvement.md` provides the mutator surface for deep-improvement runs
 - `sk-doc` validators enforce package-shape, README, and markdown document consistency
 - `system-spec-kit` packet validation proves phase records remain truthful
@@ -323,6 +313,6 @@ Core references: `README.md`, `references/shared/quick-reference.md`, `reference
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/shared/loop-protocol.md`, `references/shared/quick-reference.md`, `references/model-benchmark/benchmark-operator-guide.md`, `references/model-benchmark/evaluator-contract.md`, `references/agent-improvement/integration-scanning.md`, `references/agent-improvement/mirror-drift-policy.md`, `references/shared/promotion-rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Scripts: `scripts/agent-improvement/benchmark-stability.cjs` (repeatability and weight recommendations), `scripts/agent-improvement/candidate-lineage.cjs` (candidate parentage across waves), `scripts/agent-improvement/check-mirror-drift.cjs` (runtime mirror drift report), `scripts/agent-improvement/generate-profile.cjs` (dynamic target profile), `scripts/shared/improvement-journal.cjs` (append-only lifecycle journal), `scripts/shared/materialize-benchmark-fixtures.cjs` (static fixture materializer), `scripts/shared/mutation-coverage.cjs` (mutation coverage graph), `scripts/shared/promote-candidate.cjs` (guarded canonical promotion), `scripts/shared/reduce-state.cjs` (dashboard and registry reducer), `scripts/shared/loop-host.cjs` (deep-loop host entrypoint), `scripts/agent-improvement/rollback-candidate.cjs` (promotion rollback), `scripts/model-benchmark/run-benchmark.cjs` (Lane B fixture runner), `scripts/model-benchmark/sweep-benchmark.cjs` (Lane B matrix sweep and scoring), `scripts/agent-improvement/scan-integration.cjs` (integration surface scanner), `scripts/agent-improvement/score-candidate.cjs` (Lane A candidate scorer), `scripts/agent-improvement/trade-off-detector.cjs` (Pareto trade-off detector), `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C orchestrator), `scripts/skill-benchmark/live-executor.cjs` (Lane C live dispatch executor), `scripts/skill-benchmark/score-skill-benchmark.cjs` (Lane C D1-D5 scorer), `scripts/skill-benchmark/d4-ablation.cjs` (D4 and D4-R ablation), `scripts/skill-benchmark/build-report.cjs` (Lane C markdown report renderer), `scripts/skill-benchmark/executor-dispatch.cjs` (Lane C executor router), `scripts/skill-benchmark/router-replay.cjs` (router-mode replay harness), `scripts/skill-benchmark/advisor-probe.cjs` (D1-inter deterministic advisor probe), `scripts/skill-benchmark/d5-connectivity.cjs` (D5 router-connectivity drift guard), `scripts/skill-benchmark/contamination-lint.cjs` (skill-off contamination linter), `scripts/skill-benchmark/load-playbook-scenarios.cjs` (playbook scenario loader), `scripts/skill-benchmark/playbook-generator.cjs` (playbook scenario generator), `scripts/skill-benchmark/browser-executor.cjs` (Lane C browser-trace executor), and `scripts/model-benchmark/dispatch-model.cjs` (Lane B per-cell dispatch envelope). This list names the lane-level scripts; per-lane `scorer/`, `lib/`, and `tests/` helpers are discovered dynamically and not all enumerated here.
+Scripts: `scripts/agent-improvement/benchmark-stability.cjs` (repeatability and weight recommendations), `scripts/agent-improvement/candidate-lineage.cjs` (candidate parentage across waves), `scripts/agent-improvement/check-mirror-drift.cjs` (runtime mirror drift report), `scripts/agent-improvement/generate-profile.cjs` (dynamic target profile), `scripts/shared/improvement-journal.cjs` (append-only lifecycle journal), `scripts/shared/materialize-benchmark-fixtures.cjs` (static fixture materializer), `scripts/shared/mutation-coverage.cjs` (mutation coverage graph), `scripts/shared/promote-candidate.cjs` (guarded canonical promotion), `scripts/shared/reduce-state.cjs` (dashboard and registry reducer), `scripts/shared/loop-host.cjs` (deep-loop host entrypoint), `scripts/agent-improvement/rollback-candidate.cjs` (promotion rollback), `scripts/model-benchmark/run-benchmark.cjs` (Lane B fixture runner), `scripts/model-benchmark/sweep-benchmark.cjs` (Lane B matrix sweep and scoring), `scripts/agent-improvement/scan-integration.cjs` (integration surface scanner), `scripts/agent-improvement/score-candidate.cjs` (Lane A candidate scorer), `scripts/agent-improvement/trade-off-detector.cjs` (Pareto trade-off detector), and `scripts/model-benchmark/dispatch-model.cjs` (Lane B per-cell dispatch envelope). This list names the lane-level scripts; per-lane `scorer/`, `lib/`, and `tests/` helpers are discovered dynamically and not all enumerated here.
 
 Related skills: `sk-doc` for package-shape and markdown validation, `system-spec-kit` for packet validation, and `sk-prompt` when prompt surfaces need evaluator-backed rewriting.

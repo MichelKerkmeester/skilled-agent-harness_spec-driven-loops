@@ -2490,15 +2490,6 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "model-benchmark",
         "routing_enabled": False,
     },
-    "command-deep-skill-benchmark": {
-        "description": "",
-        "slash_markers": ["/deep:skill-benchmark"],
-        "inventory_id": "command-deep-skill-benchmark",
-        "command": "/deep:skill-benchmark",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "skill-benchmark",
-        "routing_enabled": False,
-    },
     "command-design-chart": {
         "description": "",
         "slash_markers": ["/design:chart"],

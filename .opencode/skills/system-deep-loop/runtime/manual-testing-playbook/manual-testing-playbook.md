@@ -8,9 +8,8 @@ version: 1.4.0.15
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through
-> `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
-> into `.opencode/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
+> outcome and reason are persisted into
+> `.opencode/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against real files, scripts, and test fixtures. Acceptable verdicts are PASS, FAIL, or SKIP; use SKIP only when a concrete sandbox blocker prevents execution.
 

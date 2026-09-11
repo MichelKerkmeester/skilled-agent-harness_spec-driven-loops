@@ -113,9 +113,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `runtime-capabilities.vitest.ts` | Executable checks for the runtime capabilities runtime contract. |
 | `sealed-reference-artifacts.vitest.ts` | Executable checks for the sealed reference artifacts runtime contract. |
 | `semantic-communities.vitest.ts` | Executable checks for the semantic communities runtime contract. |
-| `skill-benchmark-ledger-schema.vitest.ts` | Executable checks for the skill benchmark ledger schema runtime contract. |
-| `skill-benchmark-reducers.vitest.ts` | Executable checks for the skill benchmark reducers runtime contract. |
-| `skill-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the skill benchmark sealed artifacts runtime contract. |
 | `sleep.vitest.ts` | Executable checks for the sleep runtime contract. |
 | `spawn-cjs.vitest.ts` | Executable checks for the spawn cjs runtime contract. |
 | `speckit-autopilot-contract.vitest.ts` | Executable checks for the speckit autopilot contract runtime contract. |

@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 21,
+    "commandMetadata": 20,
     "allowList": 8,
-    "generated": 29,
+    "generated": 28,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -408,21 +408,6 @@
             "deep:review"
           ],
           "owningSkill": "deep-review"
-        }
-      }
-    },
-    {
-      "id": "command-deep-skill-benchmark",
-      "command": "/deep:skill-benchmark",
-      "skillId": "system-deep-loop",
-      "ownerMode": "skill-benchmark",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
         }
       }
     },

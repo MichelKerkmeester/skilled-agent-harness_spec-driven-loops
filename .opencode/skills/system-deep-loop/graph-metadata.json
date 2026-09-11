@@ -125,7 +125,6 @@
       "improvement-mode",
       "agent-improvement",
       "model-benchmark",
-      "skill-benchmark",
       "runtime-infrastructure"
     ],
     "key_files": [

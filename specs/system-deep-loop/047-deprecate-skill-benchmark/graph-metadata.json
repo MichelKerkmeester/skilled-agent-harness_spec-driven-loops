@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/047-deprecate-skill-benchmark",
+  "spec_folder": "system-deep-loop/047-deprecate-skill-benchmark",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate skill benchmark",
+      "remove skill-benchmark lane",
+      "deep-skill-benchmark deprecation",
+      "lane c removal",
+      "deep-loop five modes",
+      "implementation plan",
+      "skill-benchmark removal plan",
+      "deep-loop mode removal",
+      "command-bridge regeneration",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "deprecate",
+      "skill",
+      "benchmark",
+      "remove",
+      "skill-benchmark",
+      "lane",
+      "deep-skill-benchmark",
+      "deprecation",
+      "removal",
+      "deep-loop",
+      "five",
+      "modes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/commands/README.txt",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/hub-router.json",
+      ".opencode/skills/system-deep-loop/leaf-manifest.json",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop-host.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `skill-benchmark` lane is carried by the `system-deep-loop` hub as a sixth workflow mode, with a command in five runtime trees, a 56-file script tree, a large fixture corpus, three runtime ledger libraries and its own reference, catalog and playbook documentation",
+    "created_at": "2026-09-11T17:07:53Z",
+    "last_save_at": "2026-09-11T17:47:01.644Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f1c0932c7649fc744bf5d93a1f13ab536e2d00b8d354446c8d5c076909d33665",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16859970170592488c5654d3136bab355ad1202cc5b1bd676c2197db005a5ac4",
+      "plan.md": "f3578d454efbcc5f95e7c492831fbf49d0078b3ce5b316602e610bcacc0580b9",
+      "tasks.md": "effb18ab577a342f7be2f5f5096ddbf86b1608a4e7caf0375f442d8770ef0bb0",
+      "implementation-summary.md": "1f698cbe7edc908082de3ff314a34a453feafa566842b5eb53edb1949f64548d"
+    },
+    "last_active_at": null
+  }
+}

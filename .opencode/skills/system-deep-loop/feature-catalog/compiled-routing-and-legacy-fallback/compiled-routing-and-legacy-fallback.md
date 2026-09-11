@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 `system-deep-loop`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`deep-loop-mode-classification.md`](../deep-loop-mode-classification/deep-loop-mode-classification.md).
 
-The directive is on by default for `system-deep-loop` (a member of the per-hub default-on cohort): the compiled front door resolves and `system-deep-loop` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `system-deep-loop` (and every eligible hub) back to legacy registry-driven routing.
+The directive is on by default for `system-deep-loop` (a member of the per-hub default-on cohort): the compiled front door resolves and `system-deep-loop` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every scenario (`compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `system-deep-loop` (and every eligible hub) back to legacy registry-driven routing.
 
 ---
 

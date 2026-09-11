@@ -20,7 +20,7 @@ importance_tier: "important"
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
 
-Each body has a matching compiled contract in `../compiled/`. There is no fifth body and no unmatched body-to-contract relationship in this directory. The remaining rollout entries, `deep/agent-improvement`, `deep/model-benchmark` and `deep/skill-benchmark`, are intentionally fallback-only command files outside this asset inventory and have not been compiled.
+Each body has a matching compiled contract in `../compiled/`. There is no fifth body and no unmatched body-to-contract relationship in this directory. The remaining rollout entries, `deep/agent-improvement` and `deep/model-benchmark`, are intentionally fallback-only command files outside this asset inventory and have not been compiled.
 
 ---
 

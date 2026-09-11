@@ -23,8 +23,7 @@ export type CutoverCertificateMode =
   | 'deep-improvement-common'
   | 'deep-research'
   | 'deep-review'
-  | 'model-benchmark'
-  | 'skill-benchmark';
+  | 'model-benchmark';
 
 /** Route a selector may hand a mode adapter; there is never more than one canonical route. */
 export type AuthorityRoute = 'legacy' | 'dark';
@@ -126,7 +125,7 @@ export type AuthoritySelectorResult =
 // 4. MANIFEST ORDER
 // ───────────────────────────────────────────────────────────────────
 
-/** The eight mode/workstream identities in the frozen cutover-order sequence. */
+/** The mode/workstream identities in the frozen cutover-order sequence. */
 export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Object.freeze([
   'deep-research',
   'deep-review',
@@ -134,5 +133,4 @@ export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Obje
   'deep-improvement-common',
   'agent-improvement',
   'model-benchmark',
-  'skill-benchmark',
 ]);

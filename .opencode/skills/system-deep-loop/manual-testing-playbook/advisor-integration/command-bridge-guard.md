@@ -14,7 +14,7 @@ version: "1.2.0.0"
 
 ## 1. OVERVIEW
 
-This scenario verifies that `model-benchmark` and `skill-benchmark` are command-bridge modes. They are reached by their commands, not by a bare `deep-improvement` advisor alias.
+This scenario verifies that `model-benchmark` is a command-bridge mode. It is reached by its command, not by a bare `deep-improvement` advisor alias.
 
 ---
 
@@ -22,27 +22,21 @@ This scenario verifies that `model-benchmark` and `skill-benchmark` are command-
 
 **Realistic user request**: An operator checks that the improvement family does not silently route bare benchmark wording into specialized lanes without the command surface.
 
-**Exact prompt**:
+**Exact prompt** (bare wording must not fire a command-bridge lane without its `/deep:*` command):
 ```
 Benchmark a model against prompt framework candidates.
 ```
 
-**Additional advisor probes** (bare wording must not fire a command-bridge lane without its `/deep:*` command):
-```
-Benchmark a skill against routing prompts.
-```
-
 **Expected route**:
-- Bare prompts should not claim command-bridge routing unless the matching command is present.
-- The matching commands are `/deep:model-benchmark` and `/deep:skill-benchmark`.
-- The command-bridge modes share agent `deep-improvement` and artifact root `improvement/`.
+- A bare prompt should not claim command-bridge routing unless the matching command is present.
+- The matching command is `/deep:model-benchmark`.
+- The command-bridge mode uses agent `deep-improvement` and artifact root `improvement/`.
 
 **Why this route is expected**:
 - `model-benchmark` registry evidence: `advisorRouting.routingClass: "command-bridge"`, `command: "/deep:model-benchmark"`.
-- `skill-benchmark` registry evidence: `advisorRouting.routingClass: "command-bridge"`, `command: "/deep:skill-benchmark"`.
 - Advisor contract evidence: `"command-bridge" = routed by its /deep:* command, not an advisor map entry`.
 
-**Desired user-visible outcome**: The AI either asks the operator to use the explicit command or routes only after the command is present. It must not claim these lanes are selected by a bare `deep-improvement` advisor alias.
+**Desired user-visible outcome**: The AI either asks the operator to use the explicit command or routes only after the command is present. It must not claim this lane is selected by a bare `deep-improvement` advisor alias.
 
 ---
 
@@ -50,46 +44,45 @@ Benchmark a skill against routing prompts.
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the two command-bridge entries.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the command-bridge entry.
 2. Skill advisor is callable.
 
 ### Prompt
 
 - Prompt: `Benchmark a model against prompt framework candidates.`
-- Additional bare-wording probe: `Benchmark a skill against routing prompts.`
 
 ### Exact Command Sequence
 
-1. **Run bare advisor probes**: run the skill advisor once for each bare prompt and append output to `/tmp/dlw-AI-003/bare-advisor.jsonl`.
-2. **Invoke hub with bare prompts**: invoke `Skill(system-deep-loop, "<prompt>")` once for each prompt.
-3. **Invoke command prompts**: rerun each scenario with its exact `/deep:*` command and save output to `/tmp/dlw-AI-003/command-routes.txt`.
-4. **Compare to registry**: confirm specialized lanes activate only through command surfaces.
+1. **Run the bare advisor probe**: run the skill advisor once for the bare prompt and append output to `/tmp/dlw-AI-003/bare-advisor.jsonl`.
+2. **Invoke hub with the bare prompt**: invoke `Skill(system-deep-loop, "<prompt>")` with that prompt.
+3. **Invoke the command prompt**: rerun the scenario with its exact `/deep:*` command and save output to `/tmp/dlw-AI-003/command-routes.txt`.
+4. **Compare to registry**: confirm the specialized lane activates only through its command surface.
 
 ### Expected Signals
 
 | Step | Signal |
 |---|---|
-| 1 | Bare advisor prompts do not establish a command-bridge route by alias alone. |
+| 1 | The bare advisor prompt does not establish a command-bridge route by alias alone. |
 | 2 | Hub response asks for the explicit command or avoids claiming a specialized command-bridge lane. |
-| 3 | Command prompts resolve to `model-benchmark` and `skill-benchmark`. |
-| 4 | Each command route matches the registry command, agent, backend, and artifact root. |
+| 3 | The command prompt resolves to `model-benchmark`. |
+| 4 | The command route matches the registry command, agent, backend, and artifact root. |
 
 ### Evidence
 
 - Bare-advisor probe log: `/tmp/dlw-AI-003/bare-advisor.jsonl`.
 - Command-route transcript: `/tmp/dlw-AI-003/command-routes.txt`.
-- The hub's response text for each bare prompt, showing whether it declined or asked for the command instead of firing the lane.
+- The hub's response text for the bare prompt, showing whether it declined or asked for the command instead of firing the lane.
 
 ### Pass/Fail Criteria
 
-- **PASS**: bare prompts never directly select `model-benchmark` or `skill-benchmark` — either declining the lane or asking for the explicit command — and both `/deep:*` command prompts resolve to their exact matching modes with the registry's command, agent, and artifact root.
+- **PASS**: the bare prompt never directly selects `model-benchmark` — either declining the lane or asking for the explicit command — and the `/deep:model-benchmark` command prompt resolves to its exact matching mode with the registry's command, agent, and artifact root.
 - **FAIL**: a bare advisor alias directly selects a command-bridge lane, or a command prompt routes to the wrong lane or omits a registry-matching field.
 
 ### Failure Triage
 
 1. If a bare prompt fires a command-bridge lane, inspect the `advisorRoutingContract.routingClass` definition.
 2. If a command prompt fails, verify the exact command string matches the registry.
-3. If all bare prompts fold to `agent-improvement`, confirm whether the AI is treating them as generic improvement and not as the specialized command-bridge route.
+3. If the bare prompt folds to `agent-improvement`, confirm whether the AI is treating it as generic improvement and not as the specialized command-bridge route.
 
 ---
 
@@ -106,5 +99,5 @@ Benchmark a skill against routing prompts.
 - **Critical path**: No
 - **Destructive**: No
 - **Sandbox**: `/tmp/dlw-AI-003/`
-- **Concurrent-safe**: Advisor probes can run concurrently; command checks run serially
+- **Concurrent-safe**: The advisor probe and the command check run serially
 - **Last validated**: pending first manual run

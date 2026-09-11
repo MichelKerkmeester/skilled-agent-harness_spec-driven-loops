@@ -14,7 +14,7 @@ version: 1.1.0.0
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-improvement` packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`) scores a quick-reference-shaped request as `QUICK_REFERENCE` and loads the `QUICK_REFERENCE` resource set, distinct from the other eight intra-routing-recall intents (LOOP_EXECUTION, EVALUATION_POLICY, PROMOTION_OPERATIONS, TARGET_ONBOARDING, INTEGRATION_SCAN, MODEL_BENCHMARK, SKILL_BENCHMARK, FULL_SETUP).
+This scenario verifies the `deep-improvement` packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`) scores a quick-reference-shaped request as `QUICK_REFERENCE` and loads the `QUICK_REFERENCE` resource set, distinct from the other seven intra-routing-recall intents (LOOP_EXECUTION, EVALUATION_POLICY, PROMOTION_OPERATIONS, TARGET_ONBOARDING, INTEGRATION_SCAN, MODEL_BENCHMARK, FULL_SETUP).
 
 ---
 
@@ -75,7 +75,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 ### Failure Triage
 
 1. Re-run step 2 for the specific path that failed and confirm whether it was renamed or removed.
-2. If a different intent wins, compare keyword overlap against the other eight intents (LOOP_EXECUTION, EVALUATION_POLICY, PROMOTION_OPERATIONS, TARGET_ONBOARDING, INTEGRATION_SCAN, MODEL_BENCHMARK, SKILL_BENCHMARK, FULL_SETUP) before assuming a routing defect.
+2. If a different intent wins, compare keyword overlap against the other seven intents (LOOP_EXECUTION, EVALUATION_POLICY, PROMOTION_OPERATIONS, TARGET_ONBOARDING, INTEGRATION_SCAN, MODEL_BENCHMARK, FULL_SETUP) before assuming a routing defect.
 
 ---
 

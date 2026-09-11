@@ -484,7 +484,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Deep research** | `/deep:research` | loop → convergence → synthesize → memory save |
 | **Deep review** | `/deep:review` | loop → convergence → `review-report.md` → memory save |
 | **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
-| **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | — |
+| **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` | — |
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
 | **Goal state** | the bound packet's `goal.md` | durable slice is the source → resend stripped on change → never stop for it |
 | **Save context** | `/speckit:save`, or compose JSON → `generate-context.js` | — |
