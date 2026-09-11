@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "sk-git/028-crawlable-commit-history/001-research",
+  "description": "Nothing in a commit today can be looked up the way `sk-git/028` can",
+  "keywords": [
+    "nothing",
+    "commit",
+    "today",
+    "looked",
+    "way",
+    "sk-git"
+  ],
+  "lastUpdated": "2026-09-11T07:20:18.162Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-git",
+    "028-crawlable-commit-history"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
