@@ -48,10 +48,11 @@
       "goal.md",
       "implementation-summary.md",
       "scripts/build-commit-plan.py",
-      "scripts/tests/test_build_commit_plan.py",
       "scripts/stamp-callback.py",
       "scripts/rewrite-run.sh",
-      "scripts/remap-citations.py"
+      "scripts/remap-citations.py",
+      ".opencode/skills/sk-git/scripts/stamp-branch.sh",
+      "scratch/sample-judgment.md"
     ],
     "entities": [
       {
@@ -97,12 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "test_build_commit_plan.py",
-        "kind": "file",
-        "path": "scripts/tests/test_build_commit_plan.py",
-        "source": "derived"
-      },
-      {
         "name": "stamp-callback.py",
         "kind": "file",
         "path": "scripts/stamp-callback.py",
@@ -118,6 +113,18 @@
         "name": "remap-citations.py",
         "kind": "file",
         "path": "scripts/remap-citations.py",
+        "source": "derived"
+      },
+      {
+        "name": "stamp-branch.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/stamp-branch.sh",
+        "source": "derived"
+      },
+      {
+        "name": "sample-judgment.md",
+        "kind": "doc",
+        "path": "scratch/sample-judgment.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-09-11T09:55:06.668Z",
+    "last_save_at": "2026-09-11T10:17:51.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7eaa4248b6c31ff5a506564737e65159d46c5a179b3d75b4996b08a522b9a51b",
+    "source_fingerprint": "sha256:ae1f3339e4a23ee07832484df987d4ab99eb46c81c36110ee5dbe28dce9ee239",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4079c18826b2dadd6d0cb84b533eb1b0daf4e19c5c7c900bdbd670202868541b",
       "plan.md": "551b496678ee58001aba46d95762237e41df33cbcdfe44732d81b3949e1faf37",
-      "tasks.md": "7e8b4e6fc61e25f36f45220197101d87bfa88b4271836e3976bbc61c8fe37853",
-      "implementation-summary.md": "5768b19208b2b8c0b73233fc759308641a65432910efbf5f3092d1df615115d2"
+      "tasks.md": "c59b87864ab6a1cb28f4874fa783f04751b7069e3a3390fc8bff7f393f7a94bd",
+      "implementation-summary.md": "48ac12ba3c6d60b7635aa587a3ff480e3bb51314e9151d43259a106f99724d98"
     },
     "last_active_at": null
   }
