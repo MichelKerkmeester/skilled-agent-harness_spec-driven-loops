@@ -1,0 +1,18 @@
+**Lineage complete — final pass corrected two stale citations and verified the whole artifact set.**
+
+## What ran in this final pass
+
+1. **Stale-citation fix.** The AGENTS.md §8 paragraphs are at lines **424, 426, 428** (429/425/427 are blank lines). Iteration files and deltas were already corrected earlier; `research.md` (2 refs) and `findings-registry.json` (2 refs) still carried the stale numbers. Both fixed; residual grep is clean.
+2. **Citation resolution sweep.** All **67 file:line citations** in `research.md` extracted and checked — every file exists and every cited line is within range. **All resolve.**
+3. **Registry validation.** `findings-registry.json` is valid JSON: 31 findings, 7/7 key questions `resolved: true` each with an answer, `terminalStop` = `maxIterationsReached` over 4 iterations.
+4. **State verification.** `deep-research-state.jsonl` carries config → session → 4 iteration records (ratios 0.9 / 0.85 / 0.9 / 0.6) → `synthesis_complete` event. Strategy §10 marked complete. Dashboard carries the iteration table, question status, dead ends, and terminal verdict.
+
+## Artifact inventory (all inside `.../research/lineages/pi-deepseek/`)
+
+`deep-research-config.json` · `deep-research-strategy.md` · `deep-research-state.jsonl` · `deep-research-dashboard.md` · `findings-registry.json` · `resource-map.md` · `research.md` (synthesis, Q1–Q7 + VERDICT + verification notes) · `iterations/001–004.md` · `deltas/iter-001–004.jsonl`
+
+## Verdict recorded by the lineage
+
+**`deep-loop-contracts-only`**, decided by the four-part refusal test: no new rule file, no new `communication.md` section (244/250 lines), no AGENTS.md row, no fifth section-4 widening. The delivery half already lives in `communication.md` §§7–8; the verified failure is the missing content field in the six deep-loop Results Display templates, owned by sibling packet `046-synthesis-chat-presentation`. No file outside the lineage directory was created, modified, or deleted; no nested executor was spawned.
+
+**Next (parent/operator):** the fan-out orchestrator collects this lineage for synthesis; packet 046 implements the per-mode contract change; the recorded caveat stands — if HVR grading should bind every reply generally, the target becomes `communication.md` §4's load sentence, and that placement call is the operator's.

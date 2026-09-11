@@ -1,0 +1,91 @@
+{
+  "sessionId": "fanout-pi-deepseek-1789124400614-oxa15x",
+  "parentSessionId": "009-001-deep-research",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-09-11T11:52:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-always-loaded-test",
+      "text": "On a turn where no trigger fires, must the close-out next-steps behaviour still hold?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true,
+      "answer": "Yes for half (A): it must bind on read-only turns, so it belongs in AGENTS.md as a compressed row. No for half (B), which is action-conditioned."
+    },
+    {
+      "id": "question-2-four-part-refusal-test",
+      "text": "Is the proposal a trigger-shaped cluster or a single row, does an existing rule already carry it, and does it have an AGENTS.md anchor?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true,
+      "answer": "Single row, partly carried by evidence-and-proof §10 and communication §§7-9, anchored by AGENTS.md §10 / §2 / §7 / §8, still refused. Request status: partly satisfied on both halves."
+    },
+    {
+      "id": "question-3-restraint-test",
+      "text": "What failure happens today that the absence of this rule caused?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true,
+      "answer": "No failure is evidenced in git history or spec records. The restraint test returns nothing concrete for any net-new rule artifact."
+    },
+    {
+      "id": "question-4-scope-boundary-test",
+      "text": "Does the question-tool half sit In or Out of REPO RULES.md §4, and would it be a fourth widening?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true,
+      "answer": "Out, and it would be the fourth widening, of the selection-shaped kind the router pre-refuses. Only an operator decision could widen §4."
+    },
+    {
+      "id": "question-5-verdict",
+      "text": "Which single shape does the evidence admit: new-rule-file, section-inside-an-existing-rule, AGENTS.md-row or refuse?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true,
+      "answer": "AGENTS.md-row for half (A), decided by the always-loaded test. Refused for any repo-rules artifact: no new rule file, no net-new rule section. Half (B) refused by the scope boundary test."
+    }
+  ],
+  "findings": [
+    {"id": "F1.1", "iteration": 1, "claim": "Gate 5 loads the router on the FIRST write of a session, and read-only turns never fire it.", "evidence": "AGENTS.md:121-122", "confidence": "observed"},
+    {"id": "F1.2", "iteration": 1, "claim": "The router audit measured a read-only turn at 0 rows fired and 0 tokens loaded, while AGENTS.md loads every turn.", "evidence": "specs/sk-doc/043-repo-rules-router-audit/implementation-summary.md:73-74,90", "confidence": "observed"},
+    {"id": "F1.3", "iteration": 1, "claim": "The close-out trigger row cannot overcome the Gate 5 read-only exclusion.", "evidence": "REPO RULES.md:42; repo-rules/evidence-and-proof.md:38", "confidence": "observed"},
+    {"id": "F1.4", "iteration": 1, "claim": "Half (A) must hold on read-only turns, where the operator most needs a stated next action.", "evidence": "specs/agents/009-turn-closeout-next-steps/spec.md:66-67", "confidence": "inferred-from-request"},
+    {"id": "F1.5", "iteration": 1, "claim": "AGENTS.md already keeps close-out content always loaded and keeps unconditional clauses in §8.", "evidence": "AGENTS.md:515,425", "confidence": "observed"},
+    {"id": "F2.1", "iteration": 2, "claim": "The proposal is a single row, not a trigger-shaped cluster.", "evidence": "decision-tests.md:87-91,124-125; refusal-reproduction.md:15", "confidence": "observed"},
+    {"id": "F2.2", "iteration": 2, "claim": "evidence-and-proof §10 obliges four status items and what is not done, never an operator action list.", "evidence": "repo-rules/evidence-and-proof.md:164-175", "confidence": "observed"},
+    {"id": "F2.3", "iteration": 2, "claim": "communication §§7-9 oblige verdict-first replies, recommendation shape and consolidated decision-changing questions, never a tool name or action list.", "evidence": "repo-rules/communication.md:154-166,169-186,189-201", "confidence": "observed"},
+    {"id": "F2.4", "iteration": 2, "claim": "The request is partly satisfied on both halves.", "evidence": "repo-rules/evidence-and-proof.md:169; AGENTS.md:417; specs/agents/009-turn-closeout-next-steps/spec.md:66-69", "confidence": "derived"},
+    {"id": "F2.6", "iteration": 2, "claim": "AGENTS.md anchors exist for both halves, so the refusals rest on tests 1 and 2, not on anchor availability.", "evidence": "AGENTS.md:515,131-132,417,423-425", "confidence": "observed"},
+    {"id": "F2.7", "iteration": 2, "claim": "The four-part test still refuses the ten prior candidates for their recorded reasons.", "evidence": "refusal-reproduction.md:13-22", "confidence": "observed"},
+    {"id": "F3.2", "iteration": 3, "claim": "No incident-level failure caused by the absence of this rule is evidenced in git history or spec records.", "evidence": "bounded search, coverage named in iteration-003.md", "confidence": "observed-bounded"},
+    {"id": "F3.4", "iteration": 3, "claim": "Sub-agent contracts already require next actions at handoff boundaries, and session end routes to a continuation prompt.", "evidence": ".opencode/agents/context.md:43; .opencode/agents/debug.md:63; AGENTS.md:485", "confidence": "observed"},
+    {"id": "F3.6", "iteration": 3, "claim": "With no named failure, the restraint test refuses any net-new rule artifact.", "evidence": "decision-tests.md:112-114,134", "confidence": "derived"},
+    {"id": "F4.3", "iteration": 4, "claim": "Half (B) sits Out: per-runtime tool naming is ask-surface mechanics, and the posture half is already carried.", "evidence": "REPO RULES.md:80-84; repo-rules/communication.md:196-200; AGENTS.md:131-132", "confidence": "derived"},
+    {"id": "F4.4", "iteration": 4, "claim": "Admitting per-runtime tool names would be the fourth widening, of the selection-shaped kind the router pre-refuses.", "evidence": "REPO RULES.md:86-91; decision-tests.md:72-76; agents-md-integration.md:57-60", "confidence": "derived"},
+    {"id": "F4.5", "iteration": 4, "claim": "The third-widening carve-out is not precedent: it admits verification while refusing selection.", "evidence": "REPO RULES.md:88-90; decision-tests.md:78-79", "confidence": "observed"}
+  ],
+  "verdict": {
+    "shape": "AGENTS.md-row",
+    "decidingTest": "always-loaded test",
+    "repoRulesOutcome": "refuse",
+    "notes": "No new rule file and no net-new rule section. Half (B) refused by the scope boundary test, fourth widening is operator-only. Restraint test found no evidenced failure."
+  }
+}

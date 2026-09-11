@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/009-turn-closeout-next-steps/004-agents-md-integration",
+  "description": "Phase 4: agents-md-integration",
+  "keywords": [
+    "phase",
+    "agents-md-integration"
+  ],
+  "lastUpdated": "2026-09-11T10:54:58.015Z",
+  "specId": "004",
+  "folderSlug": "agents-md-integration",
+  "parentChain": [
+    "agents",
+    "009-turn-closeout-next-steps"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

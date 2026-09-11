@@ -1,0 +1,125 @@
+{
+  "sessionId": "fanout-pi-deepseek-1789135481636-tk5wla",
+  "parentSessionId": "009-006-synthesis-presentation",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "answeredCount": 7,
+    "totalQuestions": 7,
+    "timestamp": "2026-09-11T14:42:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-always-loaded-test",
+      "text": "On a turn where no trigger fires, must presenting the synthesis still hold, or is the presentation action trigger-shaped?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true,
+      "answer": "Trigger-shaped, not always-loaded. The producing turn is a write turn with matching trigger rows, the mode contract loads at the presentation moment, and AGENTS.md section 10 already carries the unconditional turn-end minimum."
+    },
+    {
+      "id": "question-2-scope-boundary-test",
+      "text": "Which side of REPO RULES.md section 4 does the proposal sit on, and does it need a fifth widening?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true,
+      "answer": "In, under how the resulting reply reads. No fifth widening: the proposal selects nothing, and the fourth widening's pre-refusal targets selection."
+    },
+    {
+      "id": "question-3-four-part-refusal-test",
+      "text": "Is the proposal a trigger-shaped cluster or a single row, does an existing rule already carry it, and which AGENTS.md sections anchor it?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true,
+      "answer": "Single row, partly satisfied. communication.md sections 7-8 own the delivery doctrine and handoff-and-questions owns the turn end. The un-carried half is mode-level content. Anchors: AGENTS.md section 8 and section 10. A new section is blocked by the 244/250 length ceiling."
+    },
+    {
+      "id": "question-4-restraint-test",
+      "text": "Is the 2026-09-11 four-iteration 265-line synthesis with a findingsless success template real, and what does it cost?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true,
+      "answer": "Confirmed independently from the 001 lineage's config, four iteration files, closing state row and measured 265-line research.md. No template has a findings field. The cost is a conclusion that never reaches chat. The failure is real but located in the presentation templates."
+    },
+    {
+      "id": "question-5-per-mode-table",
+      "text": "What does each of the six deep-loop modes produce, what should its chat presentation carry and not carry, and is recommendations the right noun?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true,
+      "answer": "Six distinct rows: findings (research), findings plus remediation (review), recommendations proper with dissent (council), candidate plus promotion recommendation (agent improvement), scores plus a benchmark verdict (model benchmark), verdict plus ranked bottlenecks (skill benchmark). One generic answer would misfile four modes."
+    },
+    {
+      "id": "question-6-hvr-in-a-reply",
+      "text": "Can HVR bind a chat reply, should the rule reach in for the tells, or does the communication.md section 4 boundary need changing?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true,
+      "answer": "HVR can bind a reply in its voice and tell layers, not its document-structure layer. Reach into HVR for the tells while communication.md keeps the reply, and name the subset in the invoking contract. The boundary only needs amending if HVR must bind every reply, and then only its one-line load sentence."
+    },
+    {
+      "id": "question-7-duplication-line",
+      "text": "Where is the line between what a repo rule binds and what the deep-loop presentation contracts specify, given the sibling packet 046?",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true,
+      "answer": "Rule binds cross-cutting reply posture; contract binds the mode's artifact and completion-message fields. Per-mode field lists in a rule would restate communication.md sections 7-8, which the corpus duplication guard forbids. The sibling packet owns the change; the rule set needs no addition."
+    }
+  ],
+  "findings": [
+    {"id": "F1.1", "iteration": 1, "claim": "Gate 5 loads the router on the FIRST write of a session and read-only turns never fire it; nothing fired means AGENTS.md alone governs.", "evidence": "AGENTS.md:121-122; REPO RULES.md:18", "confidence": "observed"},
+    {"id": "F1.2", "iteration": 1, "claim": "Presenting a synthesis is action-conditioned: the producing turn writes loop artifacts and the trigger table already carries the present-a-recommendation and close-out rows.", "evidence": "REPO RULES.md:47-48; deep-research/SKILL.md:271-275", "confidence": "derived"},
+    {"id": "F1.3", "iteration": 1, "claim": "The unconditional residue is already placed in AGENTS.md section 8 and the section 10 close-out row, so test 1 does not force a new AGENTS.md row.", "evidence": "AGENTS.md:428,518; decision-tests.md:48-51", "confidence": "derived"},
+    {"id": "F1.4", "iteration": 1, "claim": "The mode presentation contracts load with the mode and reach completion moments Gate 5 cannot guarantee, including non-interactive and fan-out terminal messages.", "evidence": "deep-research-presentation.txt:3,19; repo-rules/delegation-and-orchestration.md:102-107", "confidence": "observed"},
+    {"id": "F1.5", "iteration": 1, "claim": "REPO RULES.md section 4 In includes how the resulting reply reads; In/Out quoted verbatim in the iteration file.", "evidence": "REPO RULES.md:75-87", "confidence": "observed"},
+    {"id": "F1.6", "iteration": 1, "claim": "The proposal sits In and needs no fifth widening; the fourth widening's pre-refusal targets selection only.", "evidence": "REPO RULES.md:77,83-84,96-107", "confidence": "derived"},
+    {"id": "F1.7", "iteration": 1, "claim": "decision-tests.md still says the router was widened exactly three times while the live router carries a fourth ask-surface widening.", "evidence": "decision-tests.md:72-76; REPO RULES.md:96-107", "confidence": "observed"},
+    {"id": "F2.1", "iteration": 2, "claim": "The proposal is a single row, not a trigger-shaped cluster; a new file requires a cluster.", "evidence": "decision-tests.md:87-91", "confidence": "observed"},
+    {"id": "F2.2", "iteration": 2, "claim": "communication.md sections 7 and 8 already oblige verdict-first recommendation presentation, trade-off naming, required-versus-optional separation and stated assumptions; sections 2, 5, 6 carry the concision half.", "evidence": "repo-rules/communication.md:154-186,71-85,124-133,137-150", "confidence": "observed"},
+    {"id": "F2.3", "iteration": 2, "claim": "handoff-and-questions.md obliges the turn-end operator action list and explicitly excludes a summary of what was done.", "evidence": "repo-rules/handoff-and-questions.md:41-46,50-58,72-77", "confidence": "observed"},
+    {"id": "F2.4", "iteration": 2, "claim": "The design-exclusion condition passes because Q2 placed the proposal In.", "evidence": "decision-tests.md:87-92; REPO RULES.md:77", "confidence": "derived"},
+    {"id": "F2.5", "iteration": 2, "claim": "AGENTS.md section 8 and section 10 already anchor reply-delivery rules.", "evidence": "AGENTS.md:424,426,515-518", "confidence": "observed"},
+    {"id": "F2.6", "iteration": 2, "claim": "communication.md is at 244 lines against a 250-line ceiling, so a new section cannot fit.", "evidence": "rule-anatomy.md:105,92", "confidence": "observed"},
+    {"id": "F2.7", "iteration": 2, "claim": "The 2026-09-11 incident is verified: maxIterations 4, four iteration files, synthesis_complete with stopReason maxIterationsReached, 265-line research.md.", "evidence": "001 lineage deep-research-config.json; deep-research-state.jsonl:5; research.md (265 lines)", "confidence": "observed"},
+    {"id": "F2.8", "iteration": 2, "claim": "The deep-research success template names iterations, stop reason, artifacts and a next command, and no field for a finding.", "evidence": "deep-research-presentation.txt:270-277; deep-research/SKILL.md:404-409", "confidence": "observed"},
+    {"id": "F2.9", "iteration": 2, "claim": "Across all six Results Display sections no template carries synthesized content; the closest fields hold counts, scores, tokens or paths.", "evidence": "deep-review-presentation.txt:355-364; deep-ai-council-presentation.txt:290-299; deep-agent-improvement-presentation.txt:336-371; deep-model-benchmark-presentation.txt:310-315,331-357; deep-skill-benchmark-presentation.txt:77-85", "confidence": "observed"},
+    {"id": "F2.10", "iteration": 2, "claim": "The failure's cost is delivery: the conclusion never reaches chat while the artifact remains canonical and named.", "evidence": "001 lineage research.md; deep-research-presentation.txt:270-277", "confidence": "derived"},
+    {"id": "F3.1", "iteration": 3, "claim": "deep-research produces a 17-section synthesis plus resource-map and treats ruled-out directions as first-class output; the completion display carries metrics only.", "evidence": "deep-research-presentation.txt:244,364,270-277; deep-research/SKILL.md:415-421", "confidence": "observed"},
+    {"id": "F3.2", "iteration": 3, "claim": "deep-review produces a nine-section report with P0/P1/P2 severities and a fixed verdict; its display reduces that to counts plus a token.", "evidence": "deep-review/SKILL.md:296-298,319-333,339-359; deep-review-presentation.txt:355-364", "confidence": "observed"},
+    {"id": "F3.3", "iteration": 3, "claim": "deep-ai-council hands recommendations and risk analysis to implementation and converges on adjudicator-verdict stability, so its presentation owes the direction, agreement level and dissent.", "evidence": "deep-ai-council/SKILL.md:459-461,305; deep-ai-council-presentation.txt:290-299", "confidence": "observed"},
+    {"id": "F3.4", "iteration": 3, "claim": "deep-agent-improvement produces packet-local candidates with 5-dimension scores and a stopReason/sessionOutcome pair; its display reports scores only.", "evidence": "deep-improvement/SKILL.md:214-222,258-271; deep-agent-improvement-presentation.txt:344-371", "confidence": "observed"},
+    {"id": "F3.5", "iteration": 3, "claim": "deep-model-benchmark produces fixture scores, an aggregate and a scoringMethod against a profile, and is the only mode whose display names a recommendation field.", "evidence": "deep-improvement/SKILL.md:226-235; deep-model-benchmark-presentation.txt:310-315,331-357", "confidence": "observed"},
+    {"id": "F3.6", "iteration": 3, "claim": "deep-skill-benchmark emits a ranked diagnostic report; its presentation boundary forbids the router from synthesizing verdicts, scores or bottlenecks.", "evidence": "deep-skill-benchmark-presentation.txt:55-65,77-87,109-119", "confidence": "observed"},
+    {"id": "F3.7", "iteration": 3, "claim": "The correct cross-mode obligation is the synthesized conclusion plus the smallest set of specifics that changes the reader's next action, with the artifact path for provenance.", "evidence": "synthesis of F3.1-F3.6", "confidence": "derived"},
+    {"id": "F4.1", "iteration": 4, "claim": "communication.md section 4 quotes the HVR boundary: the full standard is loaded when writing a document rather than a reply.", "evidence": "repo-rules/communication.md:117-120", "confidence": "observed"},
+    {"id": "F4.2", "iteration": 4, "claim": "HVR is document-scoped by its own text: purpose, usage and section 9 structure are document-shaped.", "evidence": "hvr-rules.md:17,29,455-459", "confidence": "observed"},
+    {"id": "F4.3", "iteration": 4, "claim": "HVR's voice directives and word/tell lists are modality-neutral and can bind a reply; communication.md carries the punctuation subset and points at HVR for the rest.", "evidence": "hvr-rules.md:54-106,136-149,155-168,283-295,348-378; repo-rules/communication.md:105-119", "confidence": "observed"},
+    {"id": "F4.4", "iteration": 4, "claim": "The tells route is correct and the invoking contract should name the subset; only a universal reply-wide HVR grade would need section 4's load sentence amended.", "evidence": "repo-rules/communication.md:117-120; rule-anatomy.md:105,92", "confidence": "derived"},
+    {"id": "F4.5", "iteration": 4, "claim": "Rule-versus-contract test: statements identical for every mode are reply doctrine; statements that vary by artifact are contract content, and the contract is what loads at the completion moment.", "evidence": "repo-rules/communication.md:154-165; deep-model-benchmark-presentation.txt:270-276; deep-skill-benchmark-presentation.txt:115-119", "confidence": "derived"},
+    {"id": "F4.6", "iteration": 4, "claim": "A repo rule restating the presentation obligation would duplicate communication.md sections 7-8, which the corpus duplication guard forbids; 046 is the right owner.", "evidence": "repo-rules/communication.md:169-186; creation-standards.md:132-145; rule-anatomy.md:120-128; REPO RULES.md:85-87", "confidence": "derived"},
+    {"id": "F4.7", "iteration": 4, "claim": "The battery converges on deep-loop-contracts-only: Q1 passes trigger-shaped, Q2 passes In, Q3 refuses the new-file and in-place routes, Q4 locates the real failure in the templates.", "evidence": "synthesis of F1.1-F4.6", "confidence": "derived"}
+  ],
+  "verdict": {
+    "shape": "deep-loop-contracts-only",
+    "decidingTest": "four-part refusal test",
+    "repoRulesOutcome": "no new rule file and no net-new rule section; communication.md unchanged at 244/250; no AGENTS.md row and no fifth widening required",
+    "notes": "Delivery doctrine already lives in communication.md sections 7-8; the verified failure (findingsless completion templates, 2026-09-11 four-iteration 265-line run) is located in the six deep-loop presentation contracts owned by sibling packet specs/system-deep-loop/046-synthesis-chat-presentation. HVR applies to the presentation through its voice and tell layers only. Doctrine drift recorded: decision-tests.md still says three widenings while the live router carries four."
+  }
+}

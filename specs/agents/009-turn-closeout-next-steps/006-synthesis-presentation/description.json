@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "agents/009-turn-closeout-next-steps/006-synthesis-presentation",
+  "description": "A deep-loop run can spend twenty minutes producing a ranked set of recommendations and then report an iteration count, four file paths and a status",
+  "keywords": [
+    "deep-loop",
+    "run",
+    "spend",
+    "twenty",
+    "minutes",
+    "producing",
+    "ranked",
+    "set",
+    "recommendations",
+    "report",
+    "iteration",
+    "count",
+    "four",
+    "file",
+    "paths",
+    "status"
+  ],
+  "lastUpdated": "2026-09-11T14:04:05.309Z",
+  "specId": "006",
+  "folderSlug": "synthesis-presentation",
+  "parentChain": [
+    "agents",
+    "009-turn-closeout-next-steps"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

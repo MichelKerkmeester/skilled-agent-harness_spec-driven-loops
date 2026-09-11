@@ -1,0 +1,24 @@
+{
+  "specFolder": "agents/009-turn-closeout-next-steps",
+  "description": "Repo rule for turn close-out next steps and structured operator questions",
+  "keywords": [
+    "repo",
+    "rule",
+    "turn",
+    "close-out",
+    "next",
+    "steps",
+    "structured",
+    "operator",
+    "questions"
+  ],
+  "lastUpdated": "2026-09-11T10:54:55.502Z",
+  "specId": "009",
+  "folderSlug": "turn-closeout-next-steps",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

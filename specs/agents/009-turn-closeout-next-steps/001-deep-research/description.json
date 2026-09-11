@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "agents/009-turn-closeout-next-steps/001-deep-research",
+  "description": "The operator wants every turn to end with what they have to do next, and wants a structured question used where a choice is needed",
+  "keywords": [
+    "operator",
+    "wants",
+    "every",
+    "turn",
+    "end",
+    "next",
+    "structured",
+    "question",
+    "choice",
+    "needed"
+  ],
+  "lastUpdated": "2026-09-11T10:57:07.519Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "agents",
+    "009-turn-closeout-next-steps"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

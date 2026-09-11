@@ -1,0 +1,58 @@
+{
+  "topic": "Decide whether presenting a synthesized set of recommendations in chat earns its own repo rule, and establish what each of the six deep-loop modes owes the reader given what that mode actually produces. The operator's request, verbatim: \"synthesized recommendations should always be presented in chat in simple and concise terms, structured written with HVR\"",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 4,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 4,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 14,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation",
+  "createdAt": "2026-09-11T14:08:30Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-pi-deepseek-1789135481636-tk5wla",
+    "parentSessionId": "009-006-synthesis-presentation",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/findings-registry.json",
+    "dashboardFile": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/deep-research-dashboard.md",
+    "strategyFile": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions", "answered-questions", "what-worked", "what-failed",
+      "exhausted-approaches", "ruled-out-directions", "next-focus"
+    ]
+  },
+  "pauseSentinelPath": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

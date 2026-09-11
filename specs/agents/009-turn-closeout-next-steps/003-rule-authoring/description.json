@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/009-turn-closeout-next-steps/003-rule-authoring",
+  "description": "Phase 3: rule-authoring",
+  "keywords": [
+    "phase",
+    "rule-authoring"
+  ],
+  "lastUpdated": "2026-09-11T10:54:57.369Z",
+  "specId": "003",
+  "folderSlug": "rule-authoring",
+  "parentChain": [
+    "agents",
+    "009-turn-closeout-next-steps"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
