@@ -42,14 +42,14 @@ Run steps 2-3 per database before moving to the next; steps 4-7 can run in paral
 
 ### Recovery routing — inventoried feature → Obsidian plugin
 
-Each item this inventory surfaces maps to a specific reconstruction plugin on the Obsidian side. This is a routing summary so the inventory flags what every dropped or at-risk feature will need after the import; the recipes themselves live in the write-side method (`../../mcp-obsidian/references/notion-migration.md` §4) and the plugin references it points to. Route from this table — do not build from it.
+Each item this inventory surfaces maps to a specific reconstruction plugin on the Obsidian side. This is a routing summary so the inventory flags what every dropped or at-risk feature will need after the import; the recipes themselves live in the write-side method (`../../mcp-obsidian/references/notion-migration.md` §4), which since mcp-obsidian v0.24.0.0 defers plugin-specific detail to each plugin's own documentation. Route from this table — do not build from it.
 
 | Inventoried feature | Obsidian recovery | Where the recipe lives |
 |---|---|---|
-| Relations & rollups (steps 2, 7) | Notion Bases plugin, with Dataview as a supplement for aggregations it can't express | `notion-migration.md` §4; `../../mcp-obsidian/references/plugins/notion-bases/` |
+| Relations & rollups (steps 2, 7) | Notion Bases plugin, with Dataview as a supplement for aggregations it can't express | `notion-migration.md` §4 |
 | Saved views (step 4) | Notion Bases view configs (board / gallery / timeline / chart), with a Core-Bases / Dataview fallback | `notion-migration.md` §4 view recovery |
-| Calendar view (step 4) | The Notion Bases calendar recipe (calendar view + Meta Bind date entry + optional Dataview agenda) | `../../mcp-obsidian/references/plugins/notion-bases/workflows.md` |
-| Interactive elements (buttons, date widgets) | Meta Bind + JS Engine reconstruction | `notion-migration.md` §4 interactive-element recovery; `../../mcp-obsidian/references/plugins/meta-bind/` |
+| Calendar view (step 4) | The Notion Bases calendar recipe (calendar view + Meta Bind date entry + optional Dataview agenda) | The Notion Bases plugin's own documentation; `mcp-obsidian` no longer carries the recipe |
+| Interactive elements (buttons, date widgets) | Meta Bind + JS Engine reconstruction | `notion-migration.md` §4 interactive-element recovery |
 | Formulas (step 2) | Notion Bases formulas, or a hand-translated static value where no Obsidian equivalent exists | `notion-migration.md` §4 |
 | Comments (step 6) | `[!comment]` callout reconstruction | `notion-migration.md` §5 |
 

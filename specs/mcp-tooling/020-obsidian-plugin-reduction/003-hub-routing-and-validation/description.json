@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "mcp-tooling/020-obsidian-plugin-reduction/003-hub-routing-and-validation",
+  "description": "Routing runs in two stages, and phase 2 only fixed the second one inside the mode",
+  "keywords": [
+    "routing",
+    "runs",
+    "two",
+    "stages",
+    "phase",
+    "only",
+    "second",
+    "one",
+    "inside",
+    "mode"
+  ],
+  "lastUpdated": "2026-09-11T07:51:10.763Z",
+  "specId": "003",
+  "folderSlug": "hub-routing-and-validation",
+  "parentChain": [
+    "mcp-tooling",
+    "020-obsidian-plugin-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

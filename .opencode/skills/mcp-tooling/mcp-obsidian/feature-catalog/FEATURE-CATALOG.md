@@ -20,9 +20,9 @@ The inventory records current behavior only. Exact `notesmd-cli` flags for `crea
 
 ## 1. OVERVIEW
 
-The mode has 34 catalog entries: 14 CLI cards (11 headless operations and 3 official app-backed capabilities), 6 MCP cards (5 confirmed cyanheads core tools plus 1 inventory boundary for the remaining 9 tools), and 14 plugin and theme file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
+The mode has 23 catalog entries: 14 CLI cards (11 headless operations and 3 official app-backed capabilities), 6 MCP cards (5 confirmed cyanheads core tools plus 1 inventory boundary for the remaining 9 tools), and 3 plugin and theme file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
 
-The catalog groups cards by execution surface: `cli/` (14), `mcp/` (6), and `plugins/` (14). Display order below preserves operating sequence and priority context without making directory names part of the contract.
+The catalog groups cards by execution surface: `cli/` (14), `mcp/` (6), and `plugins/` (3). Display order below preserves operating sequence and priority context without making directory names part of the contract.
 
 ---
 
@@ -198,19 +198,7 @@ See [`mcp/additional-tools-verify.md`](mcp/additional-tools-verify.md).
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the fourteen artifacts narrated below: Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, Advanced Canvas, Claudian, Notion Bases, Make.md, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. Beyond this narrated set, the router carries a dedicated reference for Local REST API — the MCP transport backbone rather than a file-layer authoring target, so it has no catalog card; see `references/plugins/installed-plugins.md` for the full roster. The theme system's references live outside the plugin tree under `references/themes/`.
-
-### Obsidian Tables
-
-Create and edit the Tables plugin's `.table.md` Agentable JSON payload, then verify the rendered table.
-
-See [`plugins/obsidian-tables.md`](plugins/obsidian-tables.md).
-
-### BRAT
-
-Stage GitHub beta-plugin assets, register the repository and release policy, and activate the manifest ID through the vault files.
-
-See [`plugins/obsidian42-brat.md`](plugins/obsidian42-brat.md).
+The plugin category records file-layer operations for the three artifacts narrated below: Health.md, Iconic, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. See `references/plugins/installed-plugins.md` for the full vault roster. The theme system's references live outside the plugin tree under `references/themes/`.
 
 ### Health.md Visualizations
 
@@ -223,60 +211,6 @@ See [`plugins/health-md.md`](plugins/health-md.md).
 Add, edit, and disable Iconic icon rules and visibility toggles in `data.json` with backup-before-merge discipline.
 
 See [`plugins/iconic.md`](plugins/iconic.md).
-
-### Charts
-
-Author and validate chart render blocks and operate the Charts settings file with backup-before-write discipline.
-
-See [`plugins/charts.md`](plugins/charts.md).
-
-### Dataview
-
-Add and patch note metadata (frontmatter and inline fields) and author DQL query blocks that read it.
-
-See [`plugins/dataview.md`](plugins/dataview.md).
-
-### Meta Bind
-
-Author `INPUT[]`/`BUTTON[]`/`VIEW[]` widgets and button-action lists in notes and, with the JS Engine companion, build the Notion-style task timer: Start/End buttons that stamp frontmatter timestamps over a Notion Bases task database, with a formula column totalling elapsed time.
-
-See [`plugins/meta-bind.md`](plugins/meta-bind.md).
-
-### Git
-
-Read vault git state and operate the plugin settings file with backup discipline; never run destructive git operations on a real vault.
-
-See [`plugins/git.md`](plugins/git.md).
-
-### Outliner
-
-Operate the Outliner settings file (editor-behavior contract only; the plugin has no note format of its own).
-
-See [`plugins/outliner.md`](plugins/outliner.md).
-
-### Advanced Canvas
-
-Extend the native `.canvas` JSON with Advanced JSON Canvas keys — node shapes and borders, edge path/arrow/pathfinding styles, floating edges, portals, collapsible groups, and a presentation start node — all at the file layer.
-
-See [`plugins/advanced-canvas.md`](plugins/advanced-canvas.md).
-
-### Claudian
-
-Configure the Claudian providers and author the in-vault artifacts it reads — slash commands, reusable skills, subagents, and provider-native config — at the file layer, never running the agent loop or authoring a `.claude/mcp.json`.
-
-See [`plugins/claudian.md`](plugins/claudian.md).
-
-### Notion Bases
-
-Author and validate `_database.md` schemas — two-way relations, the seven rollup functions, lookup columns, self-relation subtasks, and the seven supported view types — resolving relations and rollups by hand from the real related rows.
-
-See [`plugins/notion-bases.md`](plugins/notion-bases.md).
-
-### Make.md
-
-Operate Make.md Spaces and Contexts — table, board, gallery, calendar, and chart views with relations and formulas — as a Notion-like workspace layer, noting that its configuration is UI-driven rather than fully file-scriptable.
-
-See [`plugins/make-md.md`](plugins/make-md.md).
 
 ### Obsidian theme system
 

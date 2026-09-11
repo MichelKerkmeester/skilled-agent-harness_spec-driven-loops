@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "mcp-tooling/020-obsidian-plugin-reduction",
+  "description": "The `mcp-obsidian` mode documents fourteen Obsidian plugins, and only two are wanted",
+  "keywords": [
+    "mcp-obsidian",
+    "mode",
+    "documents",
+    "fourteen",
+    "obsidian",
+    "plugins",
+    "only",
+    "two",
+    "wanted"
+  ],
+  "lastUpdated": "2026-09-11T07:28:46.049Z",
+  "specId": "020",
+  "folderSlug": "obsidian-plugin-reduction",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -23,7 +23,7 @@ The `mcp-obsidian` mode operates Obsidian community plugins by editing the data 
 
 ### Purpose
 
-Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The per-plugin references (`obsidian-tables`, `obsidian42-brat`, `health-md`, `iconic`, `charts`, `dataview`, `git`, `outliner`, `minimal`, `meta-bind`) apply this model to their specific file shapes; this document is the general contract.
+Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The surviving per-plugin and theme references (`health-md`, `iconic`, `minimal`) apply this model to their specific file shapes; this document is the general contract.
 
 ### Core Principle
 
@@ -33,7 +33,7 @@ The mode has no headless UI bridge, so command-palette actions and in-app button
 
 ### When to Use
 
-- Any request that changes what a plugin shows or computes (icons, tables, health charts, beta installs, ledger entries).
+- Any request that changes what a plugin shows or computes (icons, health charts, theme appearance).
 - Deciding whether a plugin capability is reachable headlessly before promising it to the operator.
 - Extending the mode to a plugin not yet covered by a per-plugin reference.
 
@@ -49,7 +49,7 @@ The mode has no headless UI bridge, so command-palette actions and in-app button
 
 For any plugin, locate its data by checking, in order:
 
-1. A **document convention** — a dedicated file extension (`.table.md`), a fenced code-block language, or a frontmatter key.
+1. A **document convention** — a dedicated file extension, a fenced code-block language (e.g. a `health-viz` render block), or a frontmatter key.
 2. A **plain-text ledger/sidecar** the plugin renders (e.g. a structured data file at a configured path).
 3. **Plugin settings/state** at `<vault>/.obsidian/plugins/{plugin-id}/data.json`.
 4. **Vault-level plugin state** — `community-plugins.json` (enabled ids), `app.json`, `appearance.json`.
@@ -58,19 +58,12 @@ For any plugin, locate its data by checking, in order:
 
 ---
 
-## 3. THE TEN ARTIFACTS — DATA MAP
+## 3. THE THREE ARTIFACTS — DATA MAP
 
 | Artifact | Data the AI edits | Operation |
 |--------|-------------------|-----------|
-| `obsidian-tables` | `*.table.md` (JSON) | edit `columns`/`rows`/`views` JSON (`VERIFY` schema) |
-| `obsidian42-brat` | `.obsidian/plugins/{id}/` + `community-plugins.json` + BRAT `data.json` | install = write plugin assets + enable id + register in BRAT |
 | `health-md` | Apple + Android Health export files in the data folder (default `Health/`), JSON/CSV/Markdown/Bases | `health-viz` render blocks; create/append/patch data files; verify real folder + authentic source (bundled mock-data fallback renders on empty folder); NEVER fabricate data |
 | `iconic` | `.obsidian/plugins/iconic/data.json` (rulebook + settings) | merge rules/toggles with backup-before-write; preserve unrelated keys; rendering is in-app |
-| `charts` | `chart`/`advanced-chart` render blocks (JSON body) + `.obsidian/plugins/obsidian-charts/data.json` | author/validate render-block JSON; edit settings with backup-before-write; the Charts View pane is in-app |
-| `dataview` | inline metadata in notes (frontmatter + `Key:: Value`) + `.obsidian/plugins/dataview/data.json` | author DQL/dataviewjs query blocks; add or patch metadata fields; edit settings with backup-before-write |
-| `meta-bind` | `INPUT[]`/`BUTTON[]`/`VIEW[]` fields + fenced `meta-bind`/`meta-bind-button` blocks in notes + `.obsidian/plugins/obsidian-meta-bind-plugin/data.json` | author inline field/button syntax; define button-action lists that patch frontmatter; pair with JS Engine (```js-engine) for computed values (e.g. timer timestamps); edit settings with backup-before-write; rendering is in-app |
-| `git` | the vault git repository (`.git` at vault root) + `.obsidian/plugins/obsidian-git/data.json` | read status/log/diff; edit settings with backup-before-write; never run destructive git ops on a real vault (throwaway repos only) |
-| `outliner` | no note format of its own; only `.obsidian/plugins/obsidian-outliner/data.json` | settings edits with backup-before-write; editor behavior is in-app |
 | `minimal` | theme: `.obsidian/themes/Minimal/theme.css` + `appearance.json` `cssTheme` key | verify install/activation; propose snippet-based tweaks (`.obsidian/snippets/`); never edit `theme.css` in a real vault |
 
 **Validation**: `plugin_data_map_applied` — the row above names the exact data artifact and the exact mutation discipline before the agent edits anything.
@@ -88,7 +81,7 @@ For any plugin, locate its data by checking, in order:
 ### CANNOT (needs the app / a reload)
 
 - Invoke command-palette commands or click ribbon icons.
-- Force in-app computations that only run on render (e.g. obsidian-tables **formula evaluation** happens when the note is opened — the AI writes the formula string; Obsidian evaluates it).
+- Force in-app computations that only run on render (e.g. a Health.md `health-viz` render block draws its chart when the note is opened — the AI writes the block; Obsidian renders it).
 - Guarantee a live view refreshes without the user reloading the note/pane.
 
 **Note:** the file-layer model covers everything the plugin persists. If a capability is not reachable through a persisted artifact, it is out of reach headlessly.
@@ -105,7 +98,7 @@ Write the data, then tell the user (or a smoke step) to open/reload the relevant
 
 1. Fetch the plugin's README + manifest; record repo id, author, data convention.
 2. Generate one real artifact in-app, then **match its on-disk shape** (this removes schema guesswork).
-3. Write a per-plugin reference mirroring `obsidian-tables.md` / `notion-bases.md`: identity → what it does → data model → settings → file-layer recipes → gotchas/VERIFY → sources.
+3. Write a per-plugin reference mirroring `iconic.md` / `health-md.md`: identity → what it does → data model → settings → file-layer recipes → gotchas/VERIFY → sources.
 4. Add a row to the plugin data map above and an example asset.
 
 **Validation**: `plugin_reference_complete` — a real artifact's on-disk shape was matched, the per-plugin reference exists, and the data map row plus asset landed.
@@ -114,4 +107,4 @@ Write the data, then tell the user (or a smoke step) to open/reload the relevant
 
 ## 6. RELATION TO THE MODE
 
-These references are loaded on demand by the `mcp-obsidian` SKILL.md router when a request mentions tables, beta-plugin install, health data, or icon rules. See `assets/workflows.md` for end-to-end procedures.
+These references are loaded on demand by the `mcp-obsidian` SKILL.md router when a request mentions health data or icon rules. See `assets/workflows.md` for end-to-end procedures.

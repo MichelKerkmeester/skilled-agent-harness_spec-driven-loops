@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "mcp-tooling/020-obsidian-plugin-reduction/002-skill-surface-reconciliation",
+  "description": "After phase 1 the mode's own documents are wrong",
+  "keywords": [
+    "phase",
+    "mode",
+    "own",
+    "documents",
+    "wrong"
+  ],
+  "lastUpdated": "2026-09-11T07:50:20.879Z",
+  "specId": "002",
+  "folderSlug": "skill-surface-reconciliation",
+  "parentChain": [
+    "mcp-tooling",
+    "020-obsidian-plugin-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

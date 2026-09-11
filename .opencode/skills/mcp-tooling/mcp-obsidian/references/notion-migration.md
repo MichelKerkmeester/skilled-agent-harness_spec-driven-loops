@@ -114,7 +114,7 @@ The importer converts only the default **table** view; every other saved view is
 | Chart | `chart` — `chartType` / `chartXAxis` / `chartYAxis` | Faithful |
 | Form / Map / Dashboard | No Obsidian equivalent through any plugin | **None — document as lost** |
 
-The **calendar recipe** — a Notion-style month/week grid built from the database's own dated notes, with a Meta Bind date picker for click-to-pick entry and an optional read-only Dataview agenda beside it — lives in `references/plugins/notion-bases/workflows.md`. Point to it rather than re-deriving the calendar view block here.
+The **calendar recipe** — a Notion-style month/week grid built from the database's own dated notes, with a Meta Bind date picker for click-to-pick entry and an optional read-only Dataview agenda beside it — is documented by the Notion Bases plugin itself. Consult that plugin's own documentation for it rather than re-deriving the calendar view block here.
 
 **Core-Bases / Dataview fallback.** When the Notion Bases plugin is not installed, Core Bases covers only `table` / `board` / `list` / `calendar` (no gallery, timeline, or chart), and Dataview supplies read-only `TABLE` / `LIST` / `CALENDAR` blocks as a last resort. A Dataview block is a fallback, not a faithful conversion — it cannot reproduce a board, gallery, timeline, or chart.
 
@@ -185,9 +185,6 @@ Load this reference when a request involves:
 
 | File | Use it for |
 |---|---|
-| `references/plugins/notion-bases/notion-bases.md` | The primary DB-replacement plugin tree: two-way relations, the 7 rollup functions, lookups, subtasks, the 7 view types (section 4's view recovery), and the calendar recipe (in its `workflows.md`) |
-| `references/plugins/meta-bind/meta-bind.md` | Reconstructing dropped interactive elements — buttons, date pickers, and live timers via Meta Bind + JS Engine (section 4's interactive-element recovery) |
-| `references/plugins/dataview/dataview.md` | Authoring the Dataview queries this method uses for back-reference lookups and custom aggregations |
 | `references/plugins/plugin-operation-logic.md` | The general file-layer model for writing `.base` files and plugin schemas |
 | `../../mcp-notion/references/migration-inventory.md` | The read-side counterpart: the 7-step inventory procedure that must run before and during this method |
 
@@ -196,9 +193,6 @@ Load this reference when a request involves:
 ## 8. RELATED RESOURCES
 
 - `../../mcp-notion/references/migration-inventory.md` — `mcp-notion`'s read-side inventory method (7-step procedure, API-gap reads, and read-limit constraints) that feeds step 1 of this method.
-- `references/plugins/notion-bases/notion-bases.md` — the Notion Bases plugin tree (data model, workflows including the calendar recipe, troubleshooting): the P0 DB-replacement behind section 4's relation, rollup, lookup, and view recovery.
-- `references/plugins/meta-bind/meta-bind.md` — the Meta Bind + JS Engine tree: the interactive-element reconstruction (buttons, date pickers, live timers) in section 4.
-- `references/plugins/dataview/dataview.md` — Dataview plugin index, used for back-reference queries and rollup supplementation (section 4).
 - `references/plugins/plugin-operation-logic.md` — the general file-layer model this method's `.base`/plugin-schema writes follow.
 - `references/mcp-tools.md` — the cyanheads MCP catalog, an optional accelerator for step 6/8 when a live Obsidian session is available.
 - Notion Bases community plugin: https://github.com/bgarciamoura/obsidian-notion-bases-plugin — the P0 plugin behind sections 3-4's recovery matrix.

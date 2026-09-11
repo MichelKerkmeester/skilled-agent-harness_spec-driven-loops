@@ -20,7 +20,7 @@ version: 0.18.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins (Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Make.md, Meta Bind) and the Obsidian theme system |
+| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of the Health.md and Iconic plugins and the Obsidian theme system |
 | **Invoke with** | "obsidian", "notesmd-cli", "obsidian vault", "daily note", "local rest api", a plugin name or an `obsidian_*` MCP operation |
 | **Works on** | Vault files directly with no running app or through the live desktop app and its Local REST API when the situation needs it |
 | **Produces** | Created, moved and tagged notes, daily notes, vault registrations, live-app opens and plugin data files edited at the file layer |
@@ -31,7 +31,7 @@ version: 0.18.0.0
 
 ### Why This Skill Exists
 
-Obsidian holds your thinking. Notes, daily notes, tags and a growing stack of plugins that turn plain files into ledgers, tables, dashboards and icon rules. The value of AI in that workspace comes from one thing: an agent that can actually work with what the vault contains.
+Obsidian holds your thinking. Notes, daily notes, tags and a stack of plugins that turn plain files into charts, dashboards and icon rules. The value of AI in that workspace comes from one thing: an agent that can actually work with what the vault contains.
 
 That is the whole reason this skill exists. It makes AI use inside Obsidian effective. It knows how to read and write vault files headlessly, how to reach the live app when the UI itself is the goal and how to understand the plugins you run at the data level so it can operate them without guessing. The skill is not a launcher for two CLIs. The CLIs and the MCP are the means. Working with your knowledge and your plugins is the point.
 
@@ -43,26 +43,15 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 - The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls an already-running app. It reaches what only the live app knows: the resolved link graph, the computed tag and task index, Bases, sync and file history, and plugin state.
 - The cyanheads Obsidian MCP exposes a structured 12-tool `obsidian_*` surface through Code Mode when the live app and the Local REST API plugin are available. It is the specialist surface, not the default one.
 
-On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer: the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+On top of those surfaces sits the plugin knowledge layer. The mode treats each documented community plugin as a file format: Health.md export files with `health-viz` render blocks and the Iconic `data.json` rulebook. Alongside the plugins it operates the Obsidian theme system at the file layer: the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
 
 ### The Plugin Knowledge Layer
 
 | Plugin | What the skill knows how to operate |
 |---|---|
-| **Obsidian Tables** | edit `columns`, `rows` and `views` inside `.table.md` JSON payloads |
-| **BRAT** | stage GitHub beta-plugin assets, register repos and activate manifest IDs |
 | **Health.md** | create and validate Apple and Android Health export files, place `health-viz` render blocks and detect the bundled mock-data fallback |
 | **Iconic** | merge the canonical 21 file rules and 11 folder rules into `data.json` with backup-before-write discipline |
-| **Charts** | author and validate chart render blocks and operate the settings file with backup discipline |
-| **Dataview** | add and patch note metadata (frontmatter and inline fields) and author DQL query blocks |
-| **Git** | read vault git state and operate settings. Destructive operations only on throwaway repos |
-| **Outliner** | operate the minimal settings file. The plugin is an editor-behavior contract with no note format |
 | **Theme system** | operate the Obsidian theme system at the file layer: activate a community theme via `cssTheme`, customize with CSS snippets and variables, and build or publish themes, never editing a shipped theme's own files (Minimal as the worked example) |
-| **Meta Bind** | author `INPUT`/`VIEW` fields and `meta-bind-button` blocks whose `updateMetadata` actions read and write note frontmatter, with the JS Engine companion powering the Notion-style start/stop task timer |
-| **Notion Bases** | operate `_database.md` schemas, two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar, as the Notion-database replacement |
-| **Make.md** | operate Spaces and Contexts, table, board, gallery, calendar and chart views with relations and formulas, as a Notion-like workspace layer, noting that its configuration is UI-driven rather than fully file-scriptable |
-| **Advanced Canvas** | extend `.canvas` files at the JSON layer with styled nodes, pathfinding edges, portals, collapsible groups and the presentation start node per the Advanced JSON Canvas data model |
-| **Claudian** | operate the `.claudian/` settings file and the provider-native `.claude/` slash-command and reusable-skill files for the in-vault coding-agent chat plugin |
 
 ---
 
@@ -195,7 +184,7 @@ A: No. Empty output means the selected vault has no match. Verify the vault and 
 
 **Q: What does the skill know about my plugins?**
 
-A: It ships reference sets for Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Make.md and Meta Bind, plus a general Obsidian theme-system reference set under `references/themes/`. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
+A: It ships reference sets for Health.md and Iconic, plus a general Obsidian theme-system reference set under `references/themes/`. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
 
 ---
 

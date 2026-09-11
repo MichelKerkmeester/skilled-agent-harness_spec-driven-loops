@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "mcp-tooling/020-obsidian-plugin-reduction/001-plugin-doc-removal",
+  "description": "Twelve of the mode's fourteen dedicated plugin doc sets are unwanted",
+  "keywords": [
+    "twelve",
+    "mode",
+    "fourteen",
+    "dedicated",
+    "plugin",
+    "doc",
+    "sets",
+    "unwanted"
+  ],
+  "lastUpdated": "2026-09-11T07:50:20.879Z",
+  "specId": "001",
+  "folderSlug": "plugin-doc-removal",
+  "parentChain": [
+    "mcp-tooling",
+    "020-obsidian-plugin-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -60,11 +60,7 @@
     "note-management",
     "health-md-data",
     "iconic-rulebook",
-    "charts-render",
-    "dataview-query",
     "excalidraw-drawing",
-    "vault-git",
-    "outliner-editing",
     "minimal-theme"
    ],
    "resources": [
@@ -353,30 +349,6 @@
     "iconic ruleset"
    ]
   },
-  "charts-render": {
-   "keywords": [
-    "charts",
-    "chart block",
-    "render block",
-    "bar chart",
-    "line chart",
-    "pie chart",
-    "chart json",
-    "advanced-chart"
-   ]
-  },
-  "dataview-query": {
-   "keywords": [
-    "dataview",
-    "dql",
-    "dataviewjs",
-    "inline field",
-    "metadata query",
-    "frontmatter query",
-    "task query",
-    "dataview query"
-   ]
-  },
   "excalidraw-drawing": {
    "keywords": [
     "excalidraw",
@@ -385,29 +357,6 @@
     "embedded drawing",
     "whiteboard",
     "drawing script"
-   ]
-  },
-  "vault-git": {
-   "keywords": [
-    "obsidian git",
-    "obsidian-git",
-    "auto backup",
-    "vault git",
-    "commit vault",
-    "push vault",
-    "pull vault",
-    "git status",
-    "git log"
-   ]
-  },
-  "outliner-editing": {
-   "keywords": [
-    "outliner",
-    "obsidian outliner",
-    "list editing",
-    "list zoom",
-    "fold list",
-    "list indentation"
    ]
   },
   "minimal-theme": {
