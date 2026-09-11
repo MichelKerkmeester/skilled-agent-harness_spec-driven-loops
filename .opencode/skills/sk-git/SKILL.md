@@ -490,7 +490,7 @@ Refs: <issue, PR or URL>
 
 The trailer paragraph is the commit's final paragraph, contiguous and separated from the prose
 above it by a blank line. The `Commit-Id:` ordinal is stamped by the `prepare-commit-msg` hook
-and never typed by hand. An amend keeps its id. A cherry-pick re-mints a fresh one.
+and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one.
 
 Use only sections that carry useful information, explain internal terms on first use, and state
 in verification what actually ran and its result.

@@ -1,0 +1,57 @@
+{
+  "topic": "Deep review of sk-git/028-crawlable-commit-history (phase-parent spec + 7 children): crawlable commit grammar, commit-msg/prepare-commit-msg hooks, commit-id allocator, history-rewrite scripts, search surface, docs/release metadata, git run-failure hardening",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/sk-git/028-crawlable-commit-history",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-deepseek-1789125627716-t7qggd",
+  "parentSessionId": null,
+  "lineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 4,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "sk-git/028-crawlable-commit-history",
+  "artifact_dir": ".opencode/specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek",
+  "stopPolicy": "max-iterations",
+  "createdAt": "2026-09-11T11:21:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

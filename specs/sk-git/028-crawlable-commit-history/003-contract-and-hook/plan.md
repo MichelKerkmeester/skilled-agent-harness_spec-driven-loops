@@ -263,3 +263,18 @@ Phase 1.5 (Config) ───┘
 
 ---
 
+### ADR-002: No preflight advisory rule for the message shape
+
+**Status**: Accepted
+
+**Context**: The parent spec scoped an advisory rule in `git-rule-checks.mjs` for the new commit shape. Research iteration 10 found the advisory engine inspects command shape, never message text, and that the blocking commit-msg hook already holds the contract.
+
+**Decision**: No message-shape rule is added to the advisory engine. The hook is the single enforcement point.
+
+**Consequences**:
+- One place to change when the grammar changes
+- A committer learns of a bad message at commit time, not before; the hook's error names the fix
+
+**Alternatives Rejected**:
+- An advisory that parses the message from a `-m` argument: it would cover one command form and miss editors and templates
+

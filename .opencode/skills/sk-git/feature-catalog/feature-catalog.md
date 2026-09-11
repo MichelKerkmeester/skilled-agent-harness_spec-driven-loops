@@ -6,7 +6,7 @@ trigger_phrases:
   - "git workflow capabilities"
   - "worktree naming allocator"
   - "sk-git capability inventory"
-last_updated: "2026-07-17"
+last_updated: "2026-09-11"
 version: 1.1.0.0
 ---
 

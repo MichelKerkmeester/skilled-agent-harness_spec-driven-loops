@@ -130,6 +130,7 @@ and findings belong here.
 | Worktree allocated | Done | `worktrees/048-crawlable-commit-history` at `/Users/michelkerkmeester/worktrees/public/048-crawlable-commit-history` |
 | Packet scaffolded | Done | `create.sh --track sk-git --phase --phases 6 --level 3 --with-goal` |
 | Phase 001 research | Done |
+| Deep review, 4 iterations on cli-pi deepseek max | Done | CONDITIONAL: 2 P1 and 13 P2; 14 fixed in the two review-fix commits, F005 (machine-wide hooks execute a repository path) deferred as pre-existing and systemic |
 | Phase 006 docs and release | Done | `d6ca91f853`, `a8135ef83c`, `d4d6096ac1`; advisor probe after the merge |
 | Phase 007 run failures | Done | ten producers fixed, four runtime seams named, proof lineage succeeded 1 |
 | Phase 005 history rewrite | Rehearsed | tooling committed, two full-scale rehearsals PASS, push waits for the window |

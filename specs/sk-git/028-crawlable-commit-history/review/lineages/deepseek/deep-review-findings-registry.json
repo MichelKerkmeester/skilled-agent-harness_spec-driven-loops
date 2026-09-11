@@ -1,0 +1,268 @@
+{
+  "sessionId": "fanout-deepseek-1789125627716-t7qggd",
+  "generation": 1,
+  "lineageMode": "auto",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Trailer-position contract unenforced; advertised %(trailers:) reader can miss accepted keys",
+      "file": ".opencode/scripts/git-hooks/commit-msg",
+      "line": 150,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Fixes:/Closes: colon-form trailers unrecognized by TRAILER_RE",
+      "file": ".opencode/scripts/git-hooks/commit-msg",
+      "line": 121,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Quoted Commit-Id text in bodies poisons collision scan and allocator high-water",
+      "file": ".opencode/scripts/git-hooks/commit-msg",
+      "line": 155,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Amend -m re-mints an id despite the unconditional 'amend keeps its id' claim",
+      "file": ".opencode/scripts/git-hooks/prepare-commit-msg",
+      "line": 174,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Machine-wide hook model executes repository-controlled allocator path",
+      "file": ".opencode/scripts/git-hooks/prepare-commit-msg",
+      "line": 191,
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery (systemic; pre-existing pattern)" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Unredacted SOURCE URL (possible token) persisted into rewrite.log and push lines",
+      "file": ".opencode/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/rewrite-run.sh",
+      "line": 107,
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "In-place write follows file symlinks outside --root",
+      "file": ".opencode/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/remap-citations.py",
+      "line": 167,
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "SPECKIT_COMMIT_SPEC unvalidated; newline can forge trailer lines",
+      "file": ".opencode/scripts/git-hooks/prepare-commit-msg",
+      "line": 243,
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "REPO RULES.md Files-to-Change row superseded by ADR-005 but still reads as an open deliverable",
+      "file": ".opencode/specs/sk-git/028-crawlable-commit-history/spec.md",
+      "line": 117,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Governance claim 'refuses a hand-written id' overstates hook enforcement",
+      "file": "AGENTS.md",
+      "line": 343,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "L3+ compliance checklist items checked without evidence in 006 and 007",
+      "file": ".opencode/specs/sk-git/028-crawlable-commit-history/006-docs-and-release/tasks.md",
+      "line": 224,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Duplicate scaffold phase row contradicts the completed phase-7 row",
+      "file": ".opencode/specs/sk-git/028-crawlable-commit-history/spec.md",
+      "line": 139,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F013",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Scoped preflight advisory rule and git-rule-checks.mjs row unshipped with no supersession decision",
+      "file": ".opencode/specs/sk-git/028-crawlable-commit-history/spec.md",
+      "line": 86,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "README 'always-stamped' claim overstates the fail-open stamper",
+      "file": ".opencode/skills/sk-git/README.md",
+      "line": 28,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "feature-catalog last_updated stale after this packet's edit",
+      "file": ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
+      "line": 9,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    { "findingId": "F001", "severity": "P1", "iterations": [1, 4] },
+    { "findingId": "F002", "severity": "P2", "iterations": [1, 4] },
+    { "findingId": "F003", "severity": "P2", "iterations": [1, 4] },
+    { "findingId": "F004", "severity": "P2", "iterations": [1, 4] },
+    { "findingId": "F005", "severity": "P2", "iterations": [2, 4] },
+    { "findingId": "F006", "severity": "P2", "iterations": [2, 4] },
+    { "findingId": "F007", "severity": "P2", "iterations": [2, 4] },
+    { "findingId": "F008", "severity": "P2", "iterations": [2, 4] },
+    { "findingId": "F009", "severity": "P2", "iterations": [3, 4] },
+    { "findingId": "F010", "severity": "P2", "iterations": [3, 4] },
+    { "findingId": "F011", "severity": "P2", "iterations": [3, 4] },
+    { "findingId": "F012", "severity": "P2", "iterations": [3, 4] }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 13
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

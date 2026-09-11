@@ -221,10 +221,10 @@ contextType: "general"
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [x] CHK-130 [P1] Security review completed
-- [x] CHK-131 [P1] Dependency licenses compatible
-- [x] CHK-132 [P2] OWASP Top 10 checklist completed
-- [x] CHK-133 [P2] Data handling compliant with requirements
+- [x] CHK-130 [P1] Not applicable: no auth, data or network surface in this phase
+- [x] CHK-131 [P1] Not applicable: no dependency added
+- [x] CHK-132 [P2] Not applicable
+- [x] CHK-133 [P2] Not applicable
 <!-- /ANCHOR:compliance-verify -->
 
 ---

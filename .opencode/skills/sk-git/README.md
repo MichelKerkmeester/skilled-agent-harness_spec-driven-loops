@@ -25,7 +25,7 @@ version: 1.6.0.0
 | **Invoke with** | Git-workflow keywords ("commit", "worktree", "pull request", "finish work") through the skill advisor, plus a direct `SKILL.md` read path |
 | **Works on** | Any repository with numbered worktrees, staged changes ready to commit or finished work ready to integrate |
 | **Produces** | Numbered worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
-| **Commit identity** | Every commit ends with a trailer paragraph carrying a packet `Spec:` line and an always-stamped seven-digit `Commit-Id:` ordinal |
+| **Commit identity** | Every commit ends with a trailer paragraph carrying a packet `Spec:` line and a stamped seven-digit `Commit-Id:` ordinal |
 
 ---
 
@@ -152,7 +152,7 @@ Worktree isolation keeps concurrent sessions safe, but it also hides each sessio
 
 The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style. Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path. The history reads consistently no matter which session or model produced it.
 
-Every commit also ends with a contiguous trailer paragraph. Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock. An amend keeps the id the commit already owns, while a cherry-pick drops the copied id and mints a fresh one. Three queries read the trailer back with no extra tooling: `git log -E --grep='^Spec: sk-git/028'` lists a packet's commits, `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal and `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id.
+Every commit also ends with a contiguous trailer paragraph. Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock. An amend keeps the id the commit already owns unless `-m` replaces the message, while a cherry-pick drops the copied id and mints a fresh one. The stamper fails open: when the allocator cannot answer, the commit lands unstamped and the commit-msg hook still validates what is there. Three queries read the trailer back with no extra tooling: `git log -E --grep='^Spec: sk-git/028'` lists a packet's commits, `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal and `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id.
 
 ### Cleanup And Safety Refusals
 

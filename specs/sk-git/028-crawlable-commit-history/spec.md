@@ -105,7 +105,7 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | `.opencode/skills/sk-git/assets/commit-message-template.md` | Modify | 003-contract-and-hook | Worked examples in the new grammar |
 | `.opencode/skills/sk-git/references/commit-workflows.md` | Modify | 003-contract-and-hook | The seven-step workflow with identifier minting |
 | `.opencode/scripts/git-hooks/commit-msg` | Modify | 003-contract-and-hook | Regexes for the new subject, body and trailer contract, plus a test beside it |
-| `.opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs` | Modify | 003-contract-and-hook | Advisory rule for the new shape |
+| `.opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs` | Superseded | 003-contract-and-hook | No advisory rule for the message shape: the hook enforces it, decided in 003 plan ADR-002 |
 | `.opencode/skills/sk-git/references/quick-reference.md` | Modify | 004-search-surface | Search recipes |
 | `.opencode/skills/sk-git/feature-catalog/` | Modify | 004-search-surface | Catalog entry for the search surface |
 | `005-history-rewrite/scripts/` | Create | 005-history-rewrite | filter-repo message callback, hash-map emitter and citation remapper |
@@ -113,8 +113,8 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | `.opencode/skills/sk-git/README.md` | Modify | 006-docs-and-release | Capability overview |
 | `.opencode/skills/sk-git/changelog/v1.6.0.0.md` | Create | 006-docs-and-release | Release entry |
 | `.opencode/skills/sk-git/graph-metadata.json` | Modify | 006-docs-and-release | Advisor vocabulary for commit search |
-| `repo-rules/<git-rule>.md` | Create | 006-docs-and-release | The git discipline rule, if 002 decides one is needed |
-| `REPO RULES.md` | Modify | 006-docs-and-release | Trigger row routing git actions to the rule |
+| `repo-rules/<git-rule>.md` | Superseded | 006-docs-and-release | No new rule file, per ADR-005 |
+| `REPO RULES.md` | Superseded | 006-docs-and-release | No trigger row change, per ADR-005; the delegation rule was revised instead |
 | `AGENTS.md` | Modify | 006-docs-and-release | Section 5 Git Workspace Safety row for commit identity and run-safe git |
 | `.opencode/scripts/git-hooks/*` and `.opencode/bin/git-sync.sh` | Modify | 007-git-workflow-run-failures | Adjustments so hooks and live-sync cannot fail an automated run |
 <!-- /ANCHOR:scope -->
@@ -136,7 +136,6 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata, the git repo rule with its REPO RULES.md and AGENTS.md integration, and the parent closeout, executed last | Done, advisor probe after merge |
 | 7 | `007-git-workflow-run-failures/` | Analyze every git workflow that can fail an automated run and adjust sk-git and the hooks so it does not, executed before 006 | Complete |
 
-| 7 | 007-git-workflow-run-failures/ | [Phase 7 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -156,7 +155,6 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 005-history-rewrite | 007-git-workflow-run-failures | Rewritten lines on origin | followers synced |
 | 007-git-workflow-run-failures | 006-docs-and-release | Every run-failing workflow adjusted with a test or reproduction | `node --test` and hook tests exit 0 |
 | 006-docs-and-release | Done | sk-doc validators, skill-root metadata gate and repo-rule validation green | `validate_document.py`, `package_skill.py --check`, `ci-skill-root-metadata.cjs` exit 0 |
-| 006-docs-and-release | 007-git-workflow-run-failures | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
