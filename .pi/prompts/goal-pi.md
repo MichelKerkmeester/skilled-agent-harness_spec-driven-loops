@@ -2,7 +2,7 @@
 
 ## 1. OVERVIEW
 
-The `goal-context.ts` extension registers the authoritative `/goal-pi` command. Pi executes registered extension commands before prompt templates, so a healthy goal extension handles the command natively with `ctx.sessionManager.getSessionId()` and this file is never expanded.
+The `goal-context.ts` extension registers the authoritative `/goal-pi` command, whose actions are `bind <packet-path>`, `show`, `resent`, `log <item> | <state> | <evidence>`, `packet <packet-path>`, `set <objective>`, `clear`, `complete`, `pause`, `resume`. Pi executes registered extension commands before prompt templates, so a healthy goal extension handles the command natively with `ctx.sessionManager.getSessionId()` and this file is never expanded.
 
 If this fallback prompt runs, the identity-aware extension command is unavailable. The runtime-neutral CLI requires an explicit native binding and must not guess the current session.
 
