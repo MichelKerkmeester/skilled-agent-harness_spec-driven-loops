@@ -131,7 +131,7 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 1 | `001-research/` | Ten iterations of deep research on commit grammar, identifier minting and safe history rewrite, run by cli-pi with DeepSeek V4.1 Flash at max | Complete |
 | 2 | `002-format-decision/` | Freeze the grammar, the identifier scheme and the rewrite mapping rule in a decision record the operator approves | Complete |
 | 3 | `003-contract-and-hook/` | Update the sk-git contract, the commit-msg hook and the preflight rule, each with a test | Complete |
-| 4 | `004-search-surface/` | Search recipes, catalog and playbook entries, and an index only if research shows one is needed | Planned |
+| 4 | `004-search-surface/` | Search recipes, catalog and playbook entries, and an index only if research shows one is needed | Complete |
 | 5 | `005-history-rewrite/` | Rewrite main, skilled/v4.0.0.0 and tags on a mirror clone, remap citations in specs, force-push after a written rollback and an explicit yes | Planned |
 | 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata, the git repo rule with its REPO RULES.md and AGENTS.md integration, and the parent closeout, executed last | Planned |
 | 7 | `007-git-workflow-run-failures/` | Analyze every git workflow that can fail an automated run and adjust sk-git and the hooks so it does not, executed before 006 | Planned |

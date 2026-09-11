@@ -90,11 +90,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Dispatch | Done | four files VALID |
+| Query proof | Done | fixture commit 24f46cd returned by all three queries |
+| Commit | Done | `98be1cebc2` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Playbook package validator fails on a pre-existing scenario | Outside scope, named in the summary |
 <!-- /ANCHOR:log -->

@@ -39,14 +39,15 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/remap-citations.py"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "remap-citations.py",
+        "kind": "file",
+        "path": "scripts/remap-citations.py",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-09-11T07:22:54.981Z",
+    "last_save_at": "2026-09-11T08:52:36.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68d0434e237cb1fe6fef147ed9af3ff36911a25124de0562f7b05b49208d063f",
+    "source_fingerprint": "sha256:15d17abe3d952143bed475b48a4e47df00367521011ed36da215cc86d8fa8a09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aae9e4283a810d2b040a52242415654d211a8257d17d0bafa2de4020655a97c1",
+      "spec.md": "4079c18826b2dadd6d0cb84b533eb1b0daf4e19c5c7c900bdbd670202868541b",
       "plan.md": "7e22aa40cd4c23c19b55c5b3be51f78335360807cf33254715a2884be038b10c",
       "tasks.md": "7e8b4e6fc61e25f36f45220197101d87bfa88b4271836e3976bbc61c8fe37853",
       "implementation-summary.md": "6a972b7891424580a0305afaa25d2c074cbf2d31af6040333c3d62c74fa61c89"

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 4: search-surface"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "One sk-doc dispatch extends the commit workflows catalog entry and adds a playbook scenario that proves the three queries, and the conductor runs the queries on a stamped fixture commit."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown under sk-doc create-feature-catalog and create-manual-testing-playbook |
+| **Framework** | sk-git feature catalog and manual testing playbook shapes |
+| **Storage** | None |
+| **Testing** | validate_document.py, the two package validators, the queries run on a fixture commit |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Research showed plain git log answers every query, so no index is built. The catalog entry gains a subsection on commit identity and search, the playbook gains scenario GIT-044, and the conductor proves the queries on a commit stamped through both hooks in a fixture.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Documentation only
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Catalog entry**: what commit identity is and how to query it
+- **Playbook scenario GIT-044**: the operator contract that proves the queries
+- **Quick reference**: the copy-paste queries, added in phase 003
 
 ### Data Flow
-[Brief description of how data moves through the system]
+A reader starts at the catalog or the quick reference, runs one git log query, and gets the commit.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +74,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| none | docs only | unchanged | no code changed |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +99,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | none | - |
+| Integration | a stamped commit resolves by packet, by id and by trailer extraction | fixture repo with the worktree hooks path |
+| Manual | scenario GIT-044 | operator playbook |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +111,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| phase 003 hooks and allocator | Internal | Green | nothing to query |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +119,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: a validator regression
+- **Procedure**: revert the docs commit
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +152,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | 15 minutes |
+| Core Implementation | Low | 25 minutes, one dispatch |
+| Verification | Low | 10 minutes |
+| **Total** | | **under one hour** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +164,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Not applicable
+- [x] Not applicable
+- [x] Not applicable
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert the docs commit
+2. Nothing else
+3. Re-run validate_document.py
+4. Not user-facing
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +203,8 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Dispatch | phase 003 | four docs | Proof |
+| Proof | hooks | query output | closeout |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +212,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Dispatch** - 25 minutes - CRITICAL
+2. **Fixture proof** - 5 minutes - CRITICAL
+3. **Closeout** - 10 minutes - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: 40 minutes
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The dispatch ran beside the phase 003 closeout
+- The phase 005 briefs were written during it
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +230,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Dispatch returned | four files VALID | 2026-09-11, done |
+| M2 | Queries proven | three queries return the stamped commit | 2026-09-11, done |
+| M3 | Committed | `98be1cebc2` | 2026-09-11, done |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: No index script
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: The parent spec allowed an index generator if research showed plain git log was not enough.
 
-**Decision**: [What we decided]
+**Decision**: None is built. Every query the format promises is one git log line.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- Nothing to maintain or re-run
+- A cross-clone search still needs git; the GitHub search behavior stays unverified offline
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- A generated commit index file: a second copy of what git already answers
 
 ---
 

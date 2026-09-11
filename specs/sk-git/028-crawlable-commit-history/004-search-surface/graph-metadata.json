@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -148,7 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,12 +167,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A reader who knows a packet or an ordinal has no documented way to get from it to a commit",
     "created_at": "2026-09-11T07:16:28Z",
-    "last_save_at": "2026-09-11T08:47:19.920Z",
+    "last_save_at": "2026-09-11T08:52:31.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45745c53420efc9754fdb505cd234b04385424ff0358ba6841b8fd01b41f67fc",
+    "source_fingerprint": "sha256:ed4816257e6668e678f26b2da09a8ed9e71ebbe60daf76a0556ffee851924591",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31c6562b544bff4e053d9902659c6c930267b6d5e2c204828fcf5f74cd823ce3",
-      "plan.md": "3103fa6795a381e9e300691750c0f67f6c69c4d38e52891039bd92ae8cbd69d0",
-      "tasks.md": "662221c2395fe7007447f4a0dde0c0023f31615e8009ef3af9cd9924ea2a1a86",
-      "implementation-summary.md": "81678652594df261181c637cfa9b07be00e574a2651b9de2717d7a52fba3739a"
+      "spec.md": "b57f7761423e6f265ed55b26056192d719a7faa047d2cf063b42fd26e8ffc2da",
+      "plan.md": "007956d26eaa09996062727ba08a0a7db50d7bfdfbfb574fadb6702160a7a03a",
+      "tasks.md": "18d7c1b13c4e607e22a29a8dd797239bcc344be4f4131cc8f9136ac94b14d833",
+      "implementation-summary.md": "2f6efbafde53d9b3ee80b4a77f06ccae671f6561f5f41329b0f5b9cba7e95ec0"
     },
     "last_active_at": null
   }

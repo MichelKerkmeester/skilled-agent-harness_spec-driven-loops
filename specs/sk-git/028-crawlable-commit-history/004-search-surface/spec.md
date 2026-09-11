@@ -33,7 +33,7 @@ The grammar exists and the hooks enforce it. This phase documents how to find co
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-11 |
 | **Branch** | `worktrees/048-crawlable-commit-history` |
 | **Parent Spec** | ../spec.md |
