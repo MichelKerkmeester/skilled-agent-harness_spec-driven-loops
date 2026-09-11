@@ -34,6 +34,7 @@ const {
   readRetryCountsFromLedger,
   createWavePlannerInterface,
   writeOrchestrationSummary,
+  CONTAINMENT_ADVISORY_STATUS,
 } = require('./fanout-pool.cjs');
 
 const {
@@ -187,6 +188,22 @@ function rawConfigWithCliBudgetOverrides(rawConfig, args) {
   return merged;
 }
 
+// The command surface documents --convergence-mode, but a fan-out lineage had no
+// way to carry it: the runner never read the flag, so every lineage silently took
+// the default while the caller believed convergence was disabled. Only the stop
+// policy reached the leaf, which happens to produce the same no-early-stop
+// behaviour and hid the gap.
+function normalizeConvergenceMode(raw) {
+  if (raw === undefined || raw === false || raw === null || raw === '') {
+    return null;
+  }
+  const allowed = ['default', 'off', 'sliding-window', 'divergent'];
+  if (raw === true || typeof raw !== 'string' || !allowed.includes(raw)) {
+    throw inputError(`convergenceMode must be one of: ${allowed.join(', ')}`);
+  }
+  return raw;
+}
+
 function normalizeStopPolicy(raw) {
   if (raw === undefined || raw === false || raw === null || raw === '') {
     return 'convergence';
@@ -196,6 +213,23 @@ function normalizeStopPolicy(raw) {
   }
   if (raw !== 'convergence' && raw !== 'max-iterations') {
     throw inputError('stopPolicy must be convergence or max-iterations');
+  }
+  return raw;
+}
+
+// Returns null when the flag is absent, so the fan-out config value can supply the mode
+// instead. Preserve is the default because the guard cannot prove which writer made an
+// out-of-scope change on a shared checkout, and a restore acts on that guess by overwriting
+// the bytes on disk; restore stays reachable only by asking for it, here or in the config.
+function normalizeContainmentMode(raw) {
+  if (raw === undefined || raw === false || raw === null || raw === '') {
+    return null;
+  }
+  if (raw === true || typeof raw !== 'string') {
+    throw inputError('containmentMode must be preserve or restore');
+  }
+  if (raw !== 'preserve' && raw !== 'restore') {
+    throw inputError('containmentMode must be preserve or restore');
   }
   return raw;
 }
@@ -1324,6 +1358,9 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   if (options.convergenceThreshold !== null && options.convergenceThreshold !== undefined) {
     params.push(`  config.convergenceThreshold: ${options.convergenceThreshold}`);
   }
+  if (options.convergenceMode) {
+    params.push(`  config.convergenceMode: ${options.convergenceMode}`);
+  }
   // Review lineages scope by spec_folder but the auto-workflow preflight
   // still requires the same review setup bindings the native command path pre-binds.
   // Without these, a detached CLI lineage can fail first-run initialization or infer a
@@ -1390,6 +1427,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     `--max-iterations=${maxIterations}`,
     `--convergence=${convergenceThreshold}`,
     `--stop-policy=${stopPolicy}`,
+    ...(options.convergenceMode ? [`--convergence-mode=${options.convergenceMode}`] : []),
     `--fanout-lineage-artifact-dir=${lineageDir}`,
     '--lineage-mode=auto',
   ];
@@ -1411,6 +1449,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     `maxIterations: ${maxIterations}`,
     `convergenceThreshold: ${convergenceThreshold}`,
     `stop_policy: ${stopPolicy}`,
+    ...(options.convergenceMode ? [`convergence_mode: ${options.convergenceMode}`] : []),
     `config.fanout_lineage_artifact_dir: ${lineageDir}`,
   ].join('\n');
 }
@@ -2554,6 +2593,8 @@ async function main() {
   const lineageTimeoutHoursOverride = parseOptionalNumber(args, 'lineageTimeoutHours');
   assertLineageTimeoutHoursOverrideWithinCeiling(lineageTimeoutHoursOverride);
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
+  const convergenceMode = normalizeConvergenceMode(args.convergenceMode);
+  const containmentModeOverride = normalizeContainmentMode(args.containmentMode);
 
   const {
     parseFanoutConfig,
@@ -2607,6 +2648,8 @@ async function main() {
     });
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const parsedFanoutConfig = parseFanoutConfig(rawConfig);
+  // CLI flag first, then the fan-out config value, then the schema default.
+  const containmentMode = containmentModeOverride ?? parsedFanoutConfig.containment.mode ?? 'preserve';
   const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
   const stallWatchdogMs = normalizeStallWatchdogMs(rawGuardConfig);
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
@@ -2800,6 +2843,7 @@ async function main() {
       const sessionId = `fanout-${lineage.label}-${runId}`;
       const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic, {
         convergenceThreshold,
+        convergenceMode,
         stopPolicy,
       });
 
@@ -2838,6 +2882,7 @@ async function main() {
           lineageDir,
           sessionId,
           convergenceThreshold,
+          convergenceMode,
           stopPolicy,
           researchTopic,
         },
@@ -2941,12 +2986,11 @@ async function main() {
         },
       });
 
-      // Every dispatch kind runs write-containment uniformly: a not-in-HEAD out-of-scope
-      // path is preserved on disk and reported as a non-fatal advisory (never deleted),
-      // and only an in-HEAD breach (git-recoverable via checkout HEAD) is fatal. That
-      // makes monitoring every kind safe even for dispatch models whose CLI may
-      // legitimately write outside lineageDir -- the guard can no longer destroy such a
-      // write, only flag it.
+      // Every dispatch kind runs write-containment uniformly: an out-of-scope path is
+      // preserved on disk and reported (never deleted, and never restored from HEAD by
+      // default). That makes monitoring every kind safe even for dispatch models whose
+      // CLI may legitimately write outside lineageDir -- the guard can no longer destroy
+      // such a write, only flag it.
       const containmentEnabled = true;
       // containmentRepoRoot is resolved once per run above.
       // Sibling lineages run concurrently and write their own artifacts after this
@@ -2977,6 +3021,7 @@ async function main() {
         ? snapshotOutOfScopeDirtyPaths({
           repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
+          captureContentDir: lineageDir,
           unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
           unattributablePaths: orchestratorOwnedPaths,
         })
@@ -3034,72 +3079,6 @@ async function main() {
       const salvage = runSalvageSweep(lineageDir, loopType, savedStdout);
       const slotAccounting = buildSlotAccounting(hrStart, slotIntervalMs);
       lineageSlotAccounting.set(lineage.label, slotAccounting);
-
-      // Structural write-containment, uniform across every dispatch kind: diff the
-      // working tree for NEW out-of-artifact-dir writes. An in-HEAD breach is
-      // reverted from HEAD (git-recoverable) and fails the iteration fail-closed; a
-      // not-in-HEAD path is preserved on disk and logged as a non-fatal advisory,
-      // never deleted, since it may be a concurrent parent/sibling write this leaf
-      // cannot be proven to own. The leaf must still be free to write its iteration
-      // file/delta/state record inside lineageDir; only OUT-of-lineageDir writes are
-      // violations. Fails open when the artifact dir is outside the git worktree
-      // (hermetic test lineages).
-      if (containmentEnabled) {
-        const containment = enforceWriteContainment({
-          repoRoot: containmentRepoRoot,
-          artifactDir: lineageDir,
-          unattributableDirs: [
-            ...staticUnattributableDirs,
-            ...preDispatchForeignRunDirs,
-            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
-          ],
-          unattributablePaths: orchestratorOwnedPaths,
-          preDispatchDirtyPaths,
-          iteration: attempt,
-          label: lineage.label,
-        });
-        if (containment.advisories.length > 0) {
-          appendFanoutStatusLedger(ledgerPath, {
-            type: 'event',
-            event: 'containment_advisory',
-            severity: 'warning',
-            at: new Date().toISOString(),
-            label: lineage.label,
-            run_id: runId,
-            loop_type: loopType,
-            spec_folder: specFolder,
-            iteration: attempt,
-            gauges: latestGauges,
-            violations: containment.advisories.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
-            reverted: containment.revertResult.reverted.filter((r) => r.action === 'preserved_untracked'),
-          });
-        }
-        if (containment.violations.length > 0) {
-          if (containment.event) {
-            appendFanoutStatusLedger(ledgerPath, {
-              ...containment.event,
-              at: new Date().toISOString(),
-              label: lineage.label,
-              run_id: runId,
-              loop_type: loopType,
-              spec_folder: specFolder,
-              gauges: latestGauges,
-            });
-          }
-          const failure = new Error(
-            `lineage ${lineage.label} violated write containment: reverted `
-              + `${containment.violations.length} out-of-scope path(s): `
-              + `${containment.violations.map((v) => v.path).join(', ')}`
-              + `${containment.recoveryHint ? `; ${containment.recoveryHint}` : ''}`,
-          );
-          failure.label = lineage.label;
-          failure.exitCode = 1;
-          failure.timedOut = false;
-          failure.containmentViolation = containment.violations;
-          failure.salvage = salvage;
-          throw failure;
-        }
-      }
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
@@ -3185,7 +3164,75 @@ async function main() {
         throw failure;
       }
 
+      // Structural write-containment, uniform across every dispatch kind: diff the
+      // working tree for NEW out-of-artifact-dir writes. Runs AFTER every artifact and
+      // stop-policy gate, so a finding here describes a lineage that has already proven
+      // complete -- information about it, never a reason to fail it. Under the default
+      // preserve mode the path stays on disk and is reported, never deleted, since it may
+      // be a concurrent parent/sibling write this leaf cannot be proven to own; restore
+      // mode is an explicit opt-in that rolls a path back. The leaf must
+      // still be free to write its iteration file/delta/state record inside lineageDir;
+      // only OUT-of-lineageDir writes are detected. Fails open when the artifact dir is
+      // outside the git worktree (hermetic test lineages).
+      let containmentFindings = null;
+      let containmentRecoveryHint = null;
+      if (containmentEnabled) {
+        const containment = enforceWriteContainment({
+          repoRoot: containmentRepoRoot,
+          artifactDir: lineageDir,
+          unattributableDirs: [
+            ...staticUnattributableDirs,
+            ...preDispatchForeignRunDirs,
+            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
+          ],
+          unattributablePaths: orchestratorOwnedPaths,
+          preDispatchDirtyPaths,
+          baselineContentRoot: lineageDir,
+          mode: containmentMode,
+          iteration: attempt,
+          label: lineage.label,
+        });
+        if (containment.advisories.length > 0) {
+          appendFanoutStatusLedger(ledgerPath, {
+            type: 'event',
+            event: 'containment_advisory',
+            severity: 'warning',
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            iteration: attempt,
+            gauges: latestGauges,
+            violations: containment.advisories.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
+            detected: containment.revertResult.reverted.filter((r) => r.action === 'preserved_untracked'),
+          });
+        }
+        if (containment.violations.length > 0) {
+          if (containment.event) {
+            appendFanoutStatusLedger(ledgerPath, {
+              ...containment.event,
+              at: new Date().toISOString(),
+              label: lineage.label,
+              run_id: runId,
+              loop_type: loopType,
+              spec_folder: specFolder,
+              gauges: latestGauges,
+            });
+          }
+          containmentFindings = containment.violations;
+          containmentRecoveryHint = containment.recoveryHint;
+        }
+      }
+
       const output = { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
+      if (containmentFindings !== null) {
+        // Every artifact and stop-policy gate above already passed, so an out-of-scope
+        // write found by the guard describes a COMPLETE lineage: report it as an advisory
+        // rather than reject a lineage whose deliverables all exist.
+        output.status = CONTAINMENT_ADVISORY_STATUS;
+        output.containment = { violations: containmentFindings, recoveryHint: containmentRecoveryHint };
+      }
       if (stateRead.statePath && !stateRead.missing && !stateRead.parseError) {
         const slotWindowEndIso = new Date().toISOString();
         try {

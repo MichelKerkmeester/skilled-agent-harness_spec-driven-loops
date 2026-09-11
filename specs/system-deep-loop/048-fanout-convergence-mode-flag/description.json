@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/048-fanout-convergence-mode-flag",
+  "description": "The fan-out path never read --convergence-mode, so every lineage silently took the default while the caller believed convergence was disabled.",
+  "keywords": [
+    "fan-out",
+    "path",
+    "never",
+    "read",
+    "convergence-mode",
+    "every",
+    "lineage",
+    "silently",
+    "took",
+    "default",
+    "while",
+    "caller",
+    "believed",
+    "convergence",
+    "disabled"
+  ],
+  "lastUpdated": "2026-09-11T20:55:35.772Z",
+  "specId": "048",
+  "folderSlug": "fanout-convergence-mode-flag",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
